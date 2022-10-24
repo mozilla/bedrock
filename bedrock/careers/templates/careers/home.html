@@ -10,368 +10,294 @@
 {% block page_desc %}At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere.{% endblock %}
 
 {% block careers_content %}
-<section class="mzp-c-hero mzp-t-dark page-hero">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">Feel good about your work again</h1>
+<!-- Hero -->
+{% include "careers/includes/homepage-header.html" %}
 
-      <div class="mzp-c-hero-desc">
+  <section class="c-careers-intro">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>Feel good about your work</h2>
+      <p>
+        Mozilla has big ambitions for the next decade to build impactful products that are <em>different</em> — that have more respect for the individuals using them, that operate with a different business model, and that explore new forms of openness. It’s going to take hard work that Mozilla is uniquely suited to take on. It’s why we’re here. It’s who we are. And it’s our future.
+      </p>
+      <p>
+        Bring your drive, your creativity, your big ideas and your new perspectives to make the difference we’re aiming for.
+      </p>
+    </div>
+  </section>
+
+    <!-- Values section -->
+    <section class="c-careers-values c-careers-section">
+      <div class="mzp-l-content mzp-t-content-md">
+        <h2>
+          Our values bring us together as one team
+        </h2>
         <p>
-          Pursue your future while working to protect the future of the internet for everyone, everywhere.
+          How we work together is as important as what we make together. In 2022, we finalized a yearlong effort to codify what helps our team be its best, and we love where we landed. Our shared operating values drive confident decision-making, boost healthy collaborations and just plain make it easier to get stuff done.
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="mzp-l-content apply-now-wrapper">
-  <div class="centered">
-    <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
-  </div>
-</div>
-
-<div class="mzp-l-card-hero">
-  <section class="mzp-c-card mzp-c-card-large mzp-has-aspect-16-9 mzp-has-video has-video-embed">
-    <div class="mzp-c-card-media-wrapper iframe-video-wrapper">
-      <iframe src="https://www.youtube-nocookie.com/embed/_EeFDE5WW0I?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <div class="mzp-c-card-content">
-      <div class="mzp-c-card-tag">Video</div>
-      <h2 class="mzp-c-card-title">Because sometimes we zoom</h2>
-      <div class="mzp-c-card-desc">
-        Since March of 2020, like so many of our peers, we closed our offices and asked just over ½ of our employees, for their safety, to head home to work (the other ½ was already there). And we are all <a href="https://blog.mozilla.org/careers/working-from-home-at-mozilla/" class="mzp-c-cta-link">doing the best we can</a>.
-      </div>
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-c-card-small">
-    <div class="mzp-c-card-content">
-      <ol class="survey-wrapper">
-        <li>
-          <h4>Engagement</h4>
-          I am proud to work for Mozilla:
-          <div class="survey-graph">
-            <div class="survey-favorable" style="width: 82%;"><span class="survey-graph-text">82%<span class="visually-hidden"> favorable</span></span></div><div class="survey-neutral" style="width: 14%;"><span class="survey-graph-text">14%<span class="visually-hidden"> neutral</span></span></div><div class="survey-unfavorable" style="width: 4%;"><span class="survey-graph-text">&nbsp;<span class="visually-hidden">4% unfavorable</span></span></div>
-          </div>
-        </li>
-        <li>
-          <h4>Innovation</h4>
-          Within my organization, I feel psychologically safe:
-          <div class="survey-graph">
-            <div class="survey-favorable" style="width: 74%;"><span class="survey-graph-text">74%<span class="visually-hidden"> favorable</span></span></div><div class="survey-neutral" style="width: 13%;"><span class="survey-graph-text">13%<span class="visually-hidden"> neutral</span></span></div><div class="survey-unfavorable" style="width: 13%;"><span class="survey-graph-text">13%<span class="visually-hidden">13% unfavorable</span></span></div>
-          </div>
-        </li>
-        <li>
-          <h4>Diversity & Inclusion</h4>
-          My manager provides opportunity for diverse viewpoints to be heard:
-          <div class="survey-graph">
-            <div class="survey-favorable" style="width: 83%;"><span class="survey-graph-text">83%<span class="visually-hidden"> favorable</span></span></div><div class="survey-neutral" style="width: 13%;"><span class="survey-graph-text">13%<span class="visually-hidden"> neutral</span></span></div><div class="survey-unfavorable" style="width: 4%;"><span class="survey-graph-text">&nbsp;<span class="visually-hidden">4% unfavorable</span></span></div>
-          </div>
-        </li>
-      </ol>
-      <dl class="survey-legend-wrapper">
-        <div>
-          <dt>Favorable</dt>
-          <dd><div class="survey-legend survey-favorable"></div></dd>
-        </div>
-        <div>
-          <dt>Neutral</dt>
-          <dd><div class="survey-legend survey-neutral"></div></dd>
-        </div>
-        <div>
-          <dt>Unfavorable</dt>
-          <dd><div class="survey-legend survey-unfavorable"></div></dd>
-        </div>
-      </dl>
-      <h2 class="mzp-c-card-title">Our culture ensures our future</h2>
-      <div class="mzp-c-card-desc">
-        Our September 2020 employee survey confirms respect for one another and an emphasis on learning and innovation are what will ensure our future.
-      </div>
-    </div>
-  </section>
-</div>
-
-<br />
-
-<section class="mzp-l-card-half">
-    <div class="mzp-c-card mzp-c-card-medium">
-      <div class="mzp-c-card-media-wrapper iframe-video-wrapper mzp-has-aspect-16-9 mzp-has-video has-video-embed">
-        <iframe src="https://www.youtube-nocookie.com/embed/VkK6rDcEEhU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="mzp-c-card mzp-c-card-medium">
-      <div class="mzp-c-card-content">
-        <h2 class="mzp-c-card-title">Diversity and Inclusion at Mozilla</h2>
-        <div class="mzp-c-card-desc">
-          We’ve made some progress that we’re proud of, and we have a lot more work to do.
-        </div>
-        <a href="{{ url('mozorg.diversity.2021.index') }}" class="mzp-c-cta-link">Learn more</a>
-      </div>
-    </div>
-  </section>
-
-<div class="mzp-c-billboard mzp-l-billboard-right improving-lives-billboard">
-  <div class="mzp-c-billboard-image-container">
-    <img class="mzp-c-billboard-image" src="{{ static('img/careers/improving-lives-not-profits.png') }}" srcset="{{ static('img/careers/improving-lives-not-profits-high-res.png') }} 1.5x" alt="Illustration signifying balance between work and personal life" height="381" width="286" />
-  </div>
-  <div class="mzp-c-billboard-content">
-    <div class="mzp-c-billboard-content-container">
-      <div class="mzp-c-billboard-content-inner">
-        <h2 class="mzp-c-billboard-title">Improving lives, not profits</h2>
-        <p class="mzp-c-billboard-desc">
-          Our mission is to keep the internet open and safe for everyone. It’s the
-          driving force of our culture, and almost every conversation.
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-content-xl">
+      {% call picto(
+        base_el='li',
+        title='We welcome differences',
+        image_url='img/careers/icons/mozilla-theme/careers-rainbow.svg',
+        body=True,
+      ) %}
+        <p>
+          Because we want Mozilla to be a place where everyone can do their best work, and because we know diverse perspectives and experiences result in better solutions, we welcome differences.
         </p>
-        <a class="mzp-c-cta-link" href="https://assets.mozilla.net/pdf/mozilla-careers-comp-brochure.pdf">Learn more about us</a>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='We are relationship-minded',
+        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
+        body=True,
+      ) %}
+        <p>
+          We take the long view of our connections and interactions, both with each other and with the people who use our products. This requires a commitment to empathy, active listening and giving without the expectation of getting. It’s digging in to understand what makes people tick and caring about that.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='We practice responsible participation',
+        image_url='img/careers/icons/mozilla-theme/careers-participation.svg',
+        body=True,
+      ) %}
+        <p>
+          Transparent and open processes are a unique part of our genetic code. When coupled with responsible participation — being generous and kind with both our inputs and our outputs — we create trust and accountability and elevate the quality of our decisions.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='We have grit',
+        image_url='img/careers/icons/mozilla-theme/careers-target.svg',
+        body=True,
+      ) %}
+        <p>
+          We are here to do hard things, take on giants and make a difference in people’s online lives — so we must have grit. Having grit means facing obstacles with optimism, determination to find new ways forward and being relentless about learning from what worked and what didn’t.
+        </p>
+      {% endcall %}
+      </ul>
+    </section>
+
+    <!-- Testimonials section -->
+    {% include "careers/includes/testimonials.html" %}
+
+    <!-- Benefits section -->
+    <section class="c-careers-benefits c-careers-section">
+      <div class="mzp-l-content mzp-t-content-md">
+        <h2>
+          Benefits for real life
+        </h2>
+        <p>
+          Our benefits package is world class. To us, offering a comprehensive, industry-leading health and wellbeing program to our employees and their families is plain common sense, and the right thing to do. We also believe it’s easier to focus on our work when we’re feeling well.
+        </p>
       </div>
-    </div>
-  </div>
-</div>
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-content-xl">
+      {% call picto(
+        base_el='li',
+        title='Health and wellness',
+        image_url='img/careers/icons/mozilla-theme/careers-items.svg',
+        body=True,
+      ) %}
+        <p>
+          Mozilla covers medical, dental and vision plan premiums at 100%. Our offerings give you the options you need to manage your health — and your family’s — the way you want.
+        </p>
+      {% endcall %}
 
-<div class="mzp-l-content apply-now-wrapper">
-  <div class="centered">
-    <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
-  </div>
-</div>
+      {% call picto(
+        base_el='li',
+        title='Mental health',
+        image_url='img/careers/icons/mozilla-theme/careers-watering.svg',
+        body=True,
+      ) %}
+        <p>
+          Mental health is as important as our physical health. That’s why Mozilla’s health benefits include therapy and coaching sessions to make sure our people have access to the care they need.
+        </p>
+      {% endcall %}
 
-{% if recent_posts %}
-  <section class="mzp-l-card-third">
-  {% for post in recent_posts %}
-    <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
-      <a href="{{ post.link }}" class="mzp-c-card-block-link">
-        <div class="mzp-c-card-media-wrapper">
-          <div class="lazy-image-container">
-            <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
-          </div>
+      {% call picto(
+        base_el='li',
+        title='Time away',
+        image_url='img/careers/icons/mozilla-theme/careers-camp.svg',
+        body=True,
+      ) %}
+        <p>
+          Time away from work to disconnect and recharge is essential. In addition to country-specific holidays (12 in the U.S.), employees start accruing vacation and sick leave on day one (specifics vary by country). Plus, everyone enjoys quarterly all-company wellness days and the most personal holiday of all: your birthday.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Parental leave',
+        image_url='img/careers/icons/mozilla-theme/careers-dino-egg.svg',
+        body=True,
+      ) %}
+        <p>
+          While Mozilla’s parental leave policies vary globally, our U.S.-based employees can look forward to 26 weeks of paid leave for childbearing parents and 12 weeks of paid leave for non-childbearing parents.
+        </p>
+      {% endcall %}
+      </ul>
+      <div class="c-careers-button-wrapper">
+        <a href="{{ url('careers.benefits') }}" data-cta-type="button" data-cta-name="careers benefits" class="mzp-c-button mzp-t-secondary">Read more about our benefits</a>
+      </div>
+    </section>
+
+    <!-- Teams section -->
+      <section class="c-careers-teams c-careers-section">
+      <div class="mzp-l-content mzp-t-content-md">
+        <h2>
+          Meet our teams
+        </h2>
+        <p>
+          Mozilla is a global community of technologists, thinkers and builders working together to keep the internet healthy, safer and accessible — while shipping beloved products to people all over the world.
+        </p>
+        <p>
+          Meet a few of our teams who are making it happen.
+        </p>
+      </div>
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-content-xl">
+      {% call picto(
+        base_el='li',
+        title='Product Engineering',
+        image_url='img/careers/icons/mozilla-theme/careers-web.svg',
+        body=True,
+      ) %}
+        <p>
+          Our engineers work on some of the most interesting challenges facing the internet today — privacy, security, decentralization, access, convenience, compatibility and more — all to continue building an internet that serves as a global public resource, open and accessible to all.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Data Organization',
+        image_url='img/careers/icons/mozilla-theme/careers-charts.svg',
+        body=True,
+      ) %}
+        <p>
+          Mozilla’s Data team is at the forefront of how to use mountains of data to guide business and product decisions while respecting the privacy and security of our users. Data team members have a deep knowledge of data processing infrastructure, a thorough understanding of the business and market, and astute statistical and modeling expertise.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Marketing',
+        image_url='img/careers/icons/mozilla-theme/careers-webpage.svg',
+        body=True,
+      ) %}
+        <p>
+          Mozilla's Marketing team has the exciting role of sharing our company vision and our innovative, privacy-forward products with the world through creative storytelling.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Innovation',
+        image_url='img/careers/icons/mozilla-theme/careers-connection.svg',
+        body=True,
+      ) %}
+        <p>
+          With an experimental mindset at its core, our innovation team is out in front, quickly identifying, building and testing product concepts that engage, influence and drive impact within the web ecosystem.
+        </p>
+      {% endcall %}
+      </ul>
+      <div class="c-careers-button-wrapper">
+        <a href="{{ url('careers.benefits') }}" data-cta-type="button" data-cta-name="careers teams" class="mzp-c-button mzp-t-secondary">View all teams</a>
+      </div>
+    </section>
+
+    <section class="c-careers-diversity c-careers-section">
+      <div class="mzp-l-content mzp-t-content-md">
+        <h2>
+          Diversity and Inclusion
+        </h2>
+        <p>
+          At Mozilla, our employees, volunteers and community members span the globe. We want to ensure that our organization is as diverse as the communities we serve — and that our culture is inclusive and welcoming to all.
+        </p>
+        <p>
+          We’ve made some progress that we’re proud of, and we also have a lot more work to do.
+        </p>
+        <div class="c-careers-button-wrapper">
+          <a href="{{ url('careers.diversity') }}" data-cta-type="button" data-cta-name="careers diversity" class="mzp-c-button mzp-t-secondary">Read more</a>
         </div>
-        <div class="mzp-c-card-content">
-          <h2 class="mzp-c-card-title">{{ post.title }}</h2>
-          <div class="mzp-c-card-desc">
-            {{ post.excerpt }}
-          </div>
+      </div>
+    </section>
+
+    <!-- office locations -->
+  <section class="c-careers-locations c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+        <h2>We'll meet you where you are</h2>
+
+
+        <p>Mozilla is a remote-first company. Relying on our years of experience in working asynchronously around the world, we’re reimaging what work can look like — balancing your life with the connection and community essential to the products we’re building.</p>
+
+        <div class="mzp-c-video">
+          <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/_EeFDE5WW0I" title="Mozillians, kids, and pets on Zoom" frameborder="0" allowfullscreen>
+            <p><a href="https://www.youtube.com/watch?v=_EeFDE5WW0I&t">Watch the video</a></p>
+          </iframe>
         </div>
-      </a>
     </div>
-  {% endfor %}
-  {% if featured_post %}
-    <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
-      <a href="{{ featured_post.link }}" class="mzp-c-card-block-link">
-        <div class="mzp-c-card-media-wrapper">
-          <div class="lazy-image-container">
-            <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" />
-          </div>
-        </div>
-        <div class="mzp-c-card-content">
-          <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
-          <div class="mzp-c-card-desc">
-            {{ featured_post.excerpt }}
-          </div>
-          <ul>
-        </div>
-      </a>
-    </div>
-  {% endif %}
-  </section>
-{% endif %}
 
-<br />
+    <div class="c-careers-button-wrapper">
+      <a href="{{ url('careers.locations') }}" data-cta-type="button" data-cta-name="careers locations" class="mzp-c-button mzp-t-secondary">Read more about the future of work at Mozilla</a>
+    </div>
+  </section>
 
-<div class="centered">
-  <h4>Connection is our superpower</h4>
+<!-- blog content -->
 
-  <p>
-    We’re united by our passion for the internet, and for supporting each other. Once
-    you’re a Mozillian, you’re always a Mozillian.
-  </p>
-</div>
-
-<div class="mzp-l-card-third">
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/mozilla-office.jpg') }}" srcset="{{ static('img/careers/mozillians/mozilla-office-high-res.jpg') }} 1.5x" alt="Father typing with a child in a front-facing baby carrier" class="mzp-c-card-image" />
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/london.jpg') }}" srcset="{{ static('img/careers/mozillians/london-high-res.jpg') }} 1.5x" alt="Overhead view of employees sitting in communal bean bag chairs working on laptops" class="mzp-c-card-image" />
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/whistler-1.jpg') }}" srcset="{{ static('img/careers/mozillians/whistler-1-high-res.jpg') }} 1.5x" alt="Three female-presenting employees talking and laughing at a company gathering in Whistler, Canada" class="mzp-c-card-image" />
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/whistler-2.jpg') }}" srcset="{{ static('img/careers/mozillians/whistler-2-high-res.jpg') }} 1.5x" alt="Two children posing for a picture with the Firefox mascot" class="mzp-c-card-image" />
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/mozilla-team.jpg') }}" srcset="{{ static('img/careers/mozillians/mozilla-team-high-res.jpg') }} 1.5x" alt="A row of employees doing coordinated squats against a wall" class="mzp-c-card-image" />
-    </div>
-  </section>
-  <section class="mzp-c-card mzp-has-aspect-1-1">
-    <div class="mzp-c-card-media-wrapper">
-      <img src="{{ static('img/careers/mozillians/whistler-all-hands.jpg') }}" srcset="{{ static('img/careers/mozillians/whistler-all-hands-high-res.jpg') }} 1.5x" alt="Mitchell Baker smiling while giving a presentationf" class="mzp-c-card-image" />
-    </div>
-  </section>
-</div>
-
-<section class="accolades">
-  <div class="mzp-c-call-out">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-call-out-title">Accolades from others</h2>
-      <p class="mzp-c-call-out-desc">
-        The praise we value most comes from our employees, but we’re still honored to have
-        been acknowledged by these organizations.
+  <section class="c-careers-blog c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>
+        Life@Mozilla
+      </h2>
+      <p>
+        Real people, real projects, real stories. Read about what it’s like to work here.
       </p>
     </div>
-  </div>
 
-  <div class="mzp-l-card-third">
-    <section class="mzp-c-card mzp-has-aspect-1-1">
-      <a href="https://www.fastcompany.com/90373504/fighting-for-online-freedom" class="mzp-c-card-block-link" rel="noopener noreferrer">
-        <div class="mzp-c-card-content centered">
-          <h2 class="mzp-c-card-title">Fast Company’s Best Workplaces for Innovators</h2>
-          <div class="mzp-c-card-desc">&ndash; 2019 &ndash;</div>
+    {% if recent_posts %}
+      <div class="mzp-l-card-third mzp-l-content">
+      {% for post in recent_posts %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ post.link }}" data-cta-type="button" data-cta-name="{{ post.title }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ post.excerpt }}
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
-    </section>
-    <section class="mzp-c-card mzp-has-aspect-1-1">
-      <a href="https://www.fastcompany.com/90299092/mozilla-most-innovative-companies-2019" class="mzp-c-card-block-link" rel="noopener noreferrer">
-        <div class="mzp-c-card-content centered">
-          <h2 class="mzp-c-card-title">Fast Company Most Innovative Companies</h2>
-          <div class="mzp-c-card-desc">&ndash; 2019 &ndash;</div>
+      {% endfor %}
+      {% if featured_post %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ featured_post.link }}" data-cta-type="button" data-cta-name="featured post - {{ featured_post.title }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ featured_post.excerpt }}
+              </div>
+              <ul>
+            </div>
+          </a>
         </div>
-      </a>
-    </section>
-    <section class="mzp-c-card mzp-has-aspect-1-1">
-      <a href="https://blog.mozilla.org/careers/mozilla-corporation-takes-part-in-hrcs-2019-lgbtq-workplace-equality-index/" class="mzp-c-card-block-link" rel="noopener noreferrer">
-        <div class="mzp-c-card-content centered">
-          <h2 class="mzp-c-card-title">Human Rights Campaign Corporate Equality Index</h2>
-          <div class="mzp-c-card-desc">&ndash; 2019 &ndash;</div>
-        </div>
-      </a>
-    </section>
-  </div>
-</section>
-
-<div class="mzp-l-content apply-now-wrapper">
-  <div class="centered">
-    <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
-  </div>
-</div>
-
-<section class="mzp-c-call-out">
-  <div class="mzp-l-content">
-    <h2 class="mzp-c-call-out-title">Your career growth is part of our mission </h2>
-    <p class="mzp-c-call-out-desc">
-      Serving 300+ million people means our small team has a mighty mandate. Add a
-      culture of exploration and mentorship, and there is always a new way to learn and
-      grow here.
-    </p>
-  </div>
-</section>
-
-<section class="mission-points">
-  <section class="mzp-c-billboard mzp-l-billboard-left">
-    <div class="mzp-c-billboard-image-container">
-      <img class="mzp-c-billboard-image" src="{{ static('img/careers/truly-mission-driven.png') }}" srcset="{{ static('img/careers/truly-mission-driven-high-res.png') }} 1.5x" alt="Illustration of two people tending to a tree" height="309" width="236" />
-    </div>
-    <div class="mzp-c-billboard-content">
-      <div class="mzp-c-billboard-content-container">
-        <div class="mzp-c-billboard-content-inner">
-          <h3 class="mzp-c-billboard-title">Truly “mission-driven”</h3>
-          <p class="mzp-c-billboard-desc">
-            Being wholly-owned by the non-profit Mozilla Foundation means we can focus on
-            the real needs of people, rather than a bottom line.
-          </p>
-        </div>
+      {% endif %}
       </div>
-    </div>
+    {% endif %}
   </section>
 
-  <section class="mzp-c-billboard mzp-l-billboard-right">
-    <div class="mzp-c-billboard-image-container">
-      <img class="mzp-c-billboard-image" src="{{ static('img/careers/the-web-the-way-it-should-be.png') }}" srcset="{{ static('img/careers/the-web-the-way-it-should-be-high-res.png') }} 1.5x" alt="Illustration of a group of activists with their fists in the air, holding megaphones and signs" height="319" width="270" />
-    </div>
-    <div class="mzp-c-billboard-content">
-      <div class="mzp-c-billboard-content-container">
-        <div class="mzp-c-billboard-content-inner">
-          <h2 class="mzp-c-billboard-title">The web the way it should be</h2>
-          <p class="mzp-c-billboard-desc">
-            Join a global community of employees, collaborators, activists, and advocates
-            fighting to keep the internet healthy for generations.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- end blog content -->
 
-  <section class="mzp-c-billboard mzp-l-billboard-left">
-    <div class="mzp-c-billboard-image-container">
-      <img class="mzp-c-billboard-image" src="{{ static('img/careers/beyond-the-browser.png') }}" srcset="{{ static('img/careers/beyond-the-browser-high-res.png') }} 1.5x" alt="Illustration of a group of people working together to connect abstract dots and lines" height="358" width="358" />
-    </div>
-    <div class="mzp-c-billboard-content">
-      <div class="mzp-c-billboard-content-container">
-        <div class="mzp-c-billboard-content-inner">
-          <h2 class="mzp-c-billboard-title">Beyond the browser</h2>
-          <p class="mzp-c-billboard-desc">
-            While our Firefox family of products works to keep everyone safer and smarter
-            online, our Mozilla initiatives focus on shaping the future of the internet.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-
-<div class="mzp-l-content apply-now-wrapper">
-  <div class="centered">
-    <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
-  </div>
-</div>
-
-<section class="mzp-l-content centered locations" id="locations">
-  <div class="mzp-c-call-out">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-call-out-title">A global view</h2>
-      <p class="mzp-c-call-out-desc">
-        With offices all over the world, we consider the internet from multiple cultures
-        and contexts.
-      </p>
-    </div>
-  </div>
-
-  <ul class="locations-list">
-    <li>
-      <a href="{{ url('mozorg.contact.spaces.san-francisco') }}">
-        <img src="{{ static('img/careers/locations/san-francisco.png') }}" srcset="{{ static('img/careers/locations/san-francisco-high-res.png') }}" alt="Illustration representing the city of San Francisco" />
-        San Francisco
-      </a>
-    </li>
-    <li>
-      <a href="{{ url('mozorg.contact.spaces.berlin') }}">
-        <img src="{{ static('img/careers/locations/berlin.png') }}" srcset="{{ static('img/careers/locations/berlin-high-res.png') }}" alt="Illustration representing the city of Berlin" />
-        Berlin
-      </a>
-    </li>
-    <li>
-      <a href="{{ url('mozorg.contact.spaces.toronto') }}">
-        <img src="{{ static('img/careers/locations/toronto.png') }}" srcset="{{ static('img/careers/locations/toronto-high-res.png') }}" alt="Illustration representing the city of Toronto" />
-        Toronto
-      </a>
-    </li>
-    <li>
-      <a href="{{ url('mozorg.contact.spaces.paris') }}">
-        <img src="{{ static('img/careers/locations/paris.png') }}" srcset="{{ static('img/careers/locations/paris-high-res.png') }}" alt="Illustration representing the city of Paris" />
-        Paris
-      </a>
-    </li>
-    <li>
-      <img src="{{ static('img/careers/locations/remote.png') }}" srcset="{{ static('img/careers/locations/remote-high-res.png') }}" alt="Illustration representing the desk of remote office workers" />
-      Remote
-    </li>
-  </ul>
-</section>
 {% endblock %}

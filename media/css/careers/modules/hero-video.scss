@@ -1,0 +1,25 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-hero-video {
+    .video-play::after {
+        background: url('/media/img/icons/video-play.svg') top left no-repeat;
+        content: '';
+        height: 100px;
+        left: 50%;
+        margin: -50px 0 0 -50px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 100px;
+        z-index: 2;
+    }
+
+    .video-play:hover::after,
+    .video-play:focus::after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}

@@ -3,53 +3,35 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-
-<footer class="mzp-c-footer" id="colophon">
-  <div class="mzp-l-content">
-    <nav class="mzp-c-footer-primary">
-      <div class="mzp-c-foot-sections">
-        <div class="mzp-c-footer-section mzp-c-footer-primary-logo">
-          <a href="{{ url('mozorg.home') }}">Mozilla</a>
-        </div>
-        <div class="mzp-c-footer-section">
-          <a target="_blank" href='https://www.glassdoor.com/Overview/Working-at-Mozilla-EI_IE19129.11,18.htm'>
-            <img class="glassdoor-logo" src='/media/img/careers/glassdoor_250x90.png' alt="Glassdoor logo">
-          </a>
-        </div>
-      </div>
-      <div class="mzp-c-footer-sections">
-        <section class="mzp-c-footer-section">
-          <h5 class="mzp-c-footer-heading">
-            Company
-          </h5>
-          <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('mozorg.about.index') }}">About</a></li>
-            <li><a href="https://blog.mozilla.org/press/">Press Center</a>
-          </ul>
-        </section>
-        <section class="mzp-c-footer-section">
-          <h5 class="mzp-c-footer-heading">
-            Resources
-          </h5>
-          <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('privacy') }}">Privacy</a></li>
-            <li><a href="{{ url('mozorg.contact.contact-landing') }}">Contact</a></li>
-          </ul>
-        </section>
-      </div>
-    </nav>
-    <nav class="mzp-c-footer-secondary">
-      <ul class="mzp-c-footer-links-social">
-        <li><a class="twitter" href="https://twitter.com/mozilla">Twitter<span> (@mozilla)</span></a></li>
-        <li><a class="instagram" href="https://www.instagram.com/mozilla/">Instagram<span> (@mozilla)</span></a></li>
-      </ul>
-      <div class="mzp-c-footer-legal">
-        <p class="mzp-c-footer-license">
-            Visit Mozilla Corporation’s not-for-profit parent, the <a href="https://foundation.mozilla.org">Mozilla Foundation</a>.
-            Portions of this content are ©1998–{{ thisyear() }} by individual mozilla.org
-            contributors. Content available under a <a rel="license" href="{{ url('foundation.licensing.website-content') }}">Creative Commons license</a>.
-        </p>
-      </div>
-    </nav>
-  </div>
-</footer>
+{% block careers_bottom %}
+<section class="c-careers-bottom">
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+      media_class='mzp-l-split-h-center mzp-l-split-media-overflow',
+      media_include='careers/includes/big-picture-video.html',
+      image_url='img/careers/locations/mozilla-remote.png',
+      media_after=True
+      ) %}
+      <h2>Ready for work that does you good?</h2>
+      <p>We’re hiring curious and kind people across the organization. Come help write Mozilla’s next chapter.</p>
+      <a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-product">Browse open roles</a>
+        <ul class="c-careers-socials">
+          <li>
+            <a href="https://www.instagram.com/mozilla/" class="c-careers-instagram" data-link-name="Instagram">
+              <span class="visually-hidden">Instagram</span>
+            </a>
+            </li>
+          <li>
+            <a href="https://twitter.com/mozilla" class="c-careers-twitter" data-link-name="Twitter">
+              <span class="visually-hidden">Twitter</span>
+            </a>
+            </li>
+          <li>
+            <a href="https://www.glassdoor.com/Overview/Working-at-Mozilla-EI_IE19129.11,18.htm" class="c-careers-glassdoor" data-link-name="Glassdoor">
+              <span class="visually-hidden">Glassdoor</span>
+            </a>
+            </li>
+        </ul>
+      {% endcall %}
+  </section>
+{% endblock %}

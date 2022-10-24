@@ -1,0 +1,98 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+@use 'sass:color';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+/* Hero with background video */
+
+.c-careers-video-hero {
+    position: relative;
+
+    .c-video-wrapper {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .c-background-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .overlay {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: '';
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.75);
+            pointer-events: none;
+        }
+
+        .mzp-c-split {
+            z-index: 20;
+
+            .mzp-c-split-body {
+                h1,
+                p {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+}
+
+.c-careers-intro {
+    background-color: cp.$teal-primary;
+    padding: $layout-lg 0;
+}
+
+.c-careers-section {
+    margin: $layout-xl auto;
+}
+
+.c-careers-diversity {
+    background-color: cp.$teal-primary;
+    padding: $layout-lg 0;
+}
+
+/* Locations */
+
+.c-careers-locations {
+    .mzp-c-video {
+        margin: $spacing-2xl 0;
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+// Diversity page
+.c-careers-diversity-numbers {
+    .mzp-c-picto-heading {
+        @include text-title-xl;
+    }
+}
+
+.c-careers-diversity-mrg {
+    blockquote {
+        p {
+            @include text-body-lg;
+        }
+    }
+}

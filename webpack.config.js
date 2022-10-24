@@ -92,11 +92,6 @@ const jsConfig = {
                     // Copy legacy IE scripts that aren't bundled.
                     from: path.resolve(__dirname, 'media/js/ie/'),
                     to: 'js/ie/'
-                },
-                {
-                    // Copy minified careers pages JS.
-                    from: path.resolve(__dirname, 'media/js/careers/libs/'),
-                    to: 'js/careers/libs/'
                 }
             ]
         }),

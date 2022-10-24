@@ -35,41 +35,21 @@
         <dd class="job-post-location">{{ postings | map(attribute='job_locations') | join(', ') }}</dd>
       </dl>
     </div>
-    <div class="job-apply">
-    {% if postings|length == 1 %}
-      <div class="appy-btn">
-        <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
-      </div>
-    {% else %}
-      <div class="mzp-c-menu-list">
-        <h3 class="mzp-c-menu-list-title">Apply Now</h3>
-        <ul class="mzp-c-menu-list-list">
-        {% for job in postings %}
-          <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
-        {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
+    <div class="appy-btn">
+      <a href="{{ position.apply_url }}" class="mzp-c-button" data-cta-type="button" data-cta-name="Apply Now">Apply Now</a>
     </div>
+  </div>
+  <div class="appy-btn-sm apply-sm">
+    <a href="{{ position.apply_url }}" class="mzp-c-button" data-cta-type="button" data-cta-name="Apply Now">Apply Now</a>
   </div>
   <div>
     {{ position.description|safe }}
   </div>
-  <div class="job-apply">
-  {% if postings|length == 1 %}
-    <div class="appy-btn">
-      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
-    </div>
-  {% else %}
-    <div class="mzp-c-menu-list">
-      <h3 class="mzp-c-menu-list-title">Apply Now</h3>
-      <ul class="mzp-c-menu-list-list">
-      {% for job in postings %}
-        <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
-      {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+  <div class="c-apply-button-container">
+    <a href="{{ position.apply_url }}" class="mzp-c-button" data-cta-type="button" data-cta-name="Apply Now">Apply for this job</a>
+    <small>
+      <a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a>
+    </small>
   </div>
 
   <p><a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a></p>

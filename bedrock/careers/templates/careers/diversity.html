@@ -1,0 +1,244 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "careers/base.html" %}
+
+{% block careers_content %}
+
+<!-- Hero -->
+  {% include "careers/includes/diversity-page-header.html" %}
+
+  <!-- Diversity intro -->
+  <section class="c-careers-intro">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>Belong where you work</h2>
+      <p>
+        We’re an organization with employees, volunteers and community members spanning the globe, and we want to ensure that who we are, what we build and how we choose to engage the world around us reflects our commitment to diversity, equity and inclusion. And we want everyone to feel empowered to join our movement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Metrics -->
+  <section class="c-careers-diversity-numbers c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>By the numbers</h2>
+      <p>We’re invested in making progress in diversity equity and inclusion at Mozilla — and we’re committed to the hard work needed to take us further.</p>
+    </div>
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
+      {% call picto(
+        base_el='li',
+        title='37%',
+        body=True,
+      ) %}
+        <p>
+          By the end of 2021, women made up more than a third of our workforce. We also saw a 4.2% increase of women in technical roles from 2020 to 2021.
+        </p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title='7.8%',
+        body=True,
+      ) %}
+        <p>
+          From 2020 to 2021, the percentage of Black/African-American Mozillians increased from 4.8% to 7.8%. Black/African-Americans in technical roles increased from 3.1% to 5.8%
+        </p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title='37%',
+        body=True,
+      ) %}
+        <p>
+          37% of Mozillians live outside of the U.S. We’re proud to be a truly global company, and that our products and culture reflect perspectives from around the world.
+        </p>
+      {% endcall %}
+    </ul>
+  </section>
+
+  <!-- MRGs quotes -->
+  <section class="c-careers-diversity-mrg c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>
+        Mozilla Resource Groups
+      </h2>
+      <p>
+        Mozilla Resource Groups (MRGs) are internal employee networks where we find connection and community across different experiences and backgrounds. These groups have formed organically over the years through employee interest, and nearly one-third of all Mozilla employees belong to at least one MRG.
+      </p>
+    </div>
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
+      {% call picto(
+        base_el='li',
+        title='Afrozilla',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “Being a part of this group has challenged me to not just carry things on my own or pretend they don’t exist, and to show up more fully as an advocate myself.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Tina Rattliff</cite>
+            <p>Lifecycle Marketing Manager</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Disability@',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “One value we included in our charter is that ableism is unacceptable and will not be tolerated. But it’s immediately followed by another value: We make space for growth, and we expect to make, and learn from, mistakes.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Kim Bryant</cite>
+            <p>Head of Operations for Rally</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Latin Pride',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “The more Latinx people we hire, the stronger and more dynamic Latin Pride will be. I want our members to use their voices not just within our group, but throughout all of Mozilla.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Solana Larsen</cite>
+            <p>Editor, Internet Health Report</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Mozilla API',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “Our discussions have been so powerful. There’s often a tension, especially in East Asian cultures with roots in Confucianism, between speaking up and keeping a sort of stiff upper lip. So it’s good to have a forum where we can say — and our allies can hear — the things we’re usually quiet about.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Julie Hollek</cite>
+            <p>Senior Manager, Data Science, Business & Metrics</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+        {% call picto(
+        base_el='li',
+        title='Pridezilla',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “Pridezilla is important not only for Mozillians who are LGBTQ, but for all of us to better understand our colleagues from different walks of life. We’re a resource for anyone who wants to learn.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Damiano DeMonte</cite>
+            <p>Senior Communications Manager</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='WoMoz',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            “I’ve also enjoyed being able to connect with other women at the company. Mozilla is so distributed — and I live in a very remote part of Canada and don’t have many opportunities to see people in person — so I especially appreciate having a place where I can chat with people who might have some similar experiences to me, and who I can learn from.”
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Elgin-Skye McLaren</cite>
+            <p>Hubs Senior Product Manager</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Yallazilla',
+        body=True,
+      ) %}
+        <blockquote>
+          <p>
+            Yallazilla is our newest MRG, and provides a space where employees from the SWANA region feel supported, and connected to the work at Mozilla.
+          </p>
+          <div class="c-diversity-citation">
+            <cite>Yallazillian</cite>
+            <p>Senior developer for Firefox</p>
+          </div>
+        </blockquote>
+      {% endcall %}
+
+    </ul>
+  </section>
+
+  <!-- blog content -->
+
+  <section class="c-careers-blog c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>
+        Life@Mozilla
+      </h2>
+      <p>
+        Real people, real projects, real stories. Read about what it’s like to work here.
+      </p>
+    </div>
+
+    {% if recent_posts %}
+      <div class="mzp-l-card-third mzp-l-content">
+      {% for post in recent_posts %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ post.link }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ post.excerpt }}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+      {% if featured_post %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ featured_post.link }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ featured_post.excerpt }}
+              </div>
+              <ul>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('careers-hero-video') }}
+{% endblock %}

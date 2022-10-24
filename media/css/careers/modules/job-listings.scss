@@ -1,0 +1,403 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+/* -------------------------------------------------------------------------- */
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.centered {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* visually hidden, but accessible to screen readers */
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* nav */
+.mzp-c-menu-category .mzp-c-menu-title {
+    font-weight: bold;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Home */
+
+.page-hero {
+    align-items: center;
+    background: url('/media/img/careers/hero-bg.jpg') center center no-repeat;
+    background-size: cover;
+    display: flex;
+    min-height: 388px;
+}
+
+.mzp-c-hero-title,
+.mzp-c-hero-desc {
+    text-shadow:
+        -1px 1px 0 rgba(0, 0, 0, 0.3),
+        1px 1px 0 rgba(0, 0, 0, 0.3),
+        1px -1px 0 rgba(0, 0, 0, 0.3),
+        -1px -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.page-hero .mzp-c-hero-desc,
+.page-hero .mzp-c-hero-desc p {
+    margin-bottom: 0;
+}
+
+.apply-now-wrapper {
+    margin-bottom: 24px;
+    margin-top: 24px;
+}
+
+.iframe-video-wrapper {
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.iframe-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.survey-wrapper h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.survey-graph {
+    border-radius: 22px;
+    height: 24px;
+    margin-top: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.survey-graph div {
+    display: inline-block;
+    text-align: center;
+}
+
+.survey-graph-text {
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.survey-wrapper svg {
+    display: block;
+    margin-top: 1rem;
+}
+
+.survey-wrapper li {
+    margin-bottom: 2rem;
+}
+
+.survey-legend-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.survey-legend {
+    border-radius: 22px;
+    display: block;
+    height: 24px;
+    margin: 8px auto 0;
+    width: 48px;
+}
+
+.survey-favorable {
+    background-color: #a0f5f5;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='translate(20.000000, 20.000000) rotate(90.000000) translate(-20.000000, -20.000000)' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.survey-neutral {
+    background-color: #fff781;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.survey-unfavorable {
+    background: #ff838d;
+}
+
+.accolades {
+    background: url('/media/img/careers/medal.png') top center no-repeat;
+    padding-top: 130px;
+}
+
+.improving-lives-billboard {
+    margin-bottom: 60px;
+}
+
+.accolades .mzp-c-call-out,
+.locations .mzp-c-call-out {
+    background: transparent;
+}
+
+.mission-points .mzp-c-billboard {
+    background: transparent;
+}
+
+.glassdoor-logo {
+    height: 32px;
+    width: 100px;
+}
+
+/* Locations */
+
+.locations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 30px;
+}
+
+.locations-list a {
+    display: block;
+}
+
+.locations-list img {
+    display: block;
+    margin: 0 auto 10px;
+    transition: transform 0.1s ease-in;
+    width: 95px;
+}
+
+.locations-list a:hover img {
+    transform: scale(1.05) translateY(-6px);
+}
+
+/* $mq-sm in protocol */
+@media only screen and (min-width: 480px) {
+    .locations-list {
+        grid-gap: 70px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Jobs */
+.job-row {
+    margin-top: 15px;
+
+    @media #{$mq-md} {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.job-title {
+    font-size: 1.3rem;
+}
+
+.title-location {
+    margin-bottom: 15px;
+}
+
+.apply-sm {
+    margin: 0 0 15px;
+}
+
+.listings-page .page-hero {
+    background-image: url('/media/img/careers/hero-bg-jobs.jpg');
+}
+
+.benefits-page .page-hero {
+    background-image: url('/media/img/careers/hero-bg-benefits.jpg');
+}
+
+.position-page .page-hero {
+    background-image: url('/media/img/careers/hero-bg-position.jpg');
+    min-height: 190px;
+}
+
+#listings-filters {
+    text-align: right;
+}
+
+.listings-filter {
+    margin-bottom: 20px;
+}
+
+#listings-filters select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('/media/img/careers/arrow.svg') right 10px center no-repeat;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: inset 0 0 2px rgba(000, 000, 000, 0.5);
+    font-size: 0.8rem;
+    max-width: 250px;
+    padding: 12px 28px 12px 12px;
+}
+
+.listings-positions thead {
+    display: none;
+}
+
+.listings-positions tbody tr {
+    border-bottom: 1px solid #d6d4d4;
+    display: block;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.listings-positions tbody tr.hidden {
+    display: none;
+}
+
+.listings-positions tbody td {
+    display: list-item;
+    list-style: none;
+}
+
+.job-post {
+    margin-bottom: $layout-lg;
+}
+
+.job-post ul {
+    list-style: disc;
+    margin-left: 32px;
+}
+
+.job-post li {
+    margin-bottom: 0.25em;
+}
+
+.c-apply-button-container {
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.c-apply-button-container small {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.job-apply {
+    min-width: 200px;
+    max-width: 250px;
+    margin-bottom: $spacing-lg;
+
+    .mzp-c-menu-list-title {
+        @include font-base;
+    }
+
+    ul {
+        margin: 0;
+    }
+}
+
+/* $mq-md in protocol */
+@media only screen and (min-width: 768px) {
+    .accolades {
+        padding-top: 100px;
+    }
+
+    .listings-positions thead {
+        border-bottom: 1px solid #d6d4d4;
+        display: table-header-group;
+        text-align: left;
+    }
+
+    .listings-positions thead h4 {
+        font-size: 1.8rem;
+    }
+
+    .listings-positions tbody tr {
+        border-bottom: 1px solid #d6d4d4;
+        display: table-row;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .listings-positions tbody tr.hidden {
+        display: none;
+    }
+
+    .listings-positions tbody td {
+        display: table-cell;
+        padding: 15px 20px 15px 0;
+        vertical-align: top;
+    }
+
+    .title {
+        width: 50%;
+    }
+
+    .location {
+        width: 25%;
+    }
+
+    .name {
+        width: 25%;
+    }
+
+    #listings-filters {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #listings-filters .listings-filter {
+        padding-left: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .appy-btn-sm {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .appy-btn {
+        display: none;
+    }
+}
+
+/* $mq-xl in protocol */
+@media only screen and (min-width: 1312px) {
+    .listings-positions tbody td {
+        padding: 20px 30px 20px 0;
+    }
+}
+
+/* high res images */
+/* stylelint-ignore-next-line media-feature-name-no-vendor */
+@media #{$mq-high-res} {
+    .page-hero {
+        background-image: url('/media/img/careers/hero-bg-high-res.jpg');
+    }
+
+    .listings-page .page-hero {
+        background-image: url('/media/img/careers/hero-bg-jobs-high-res.jpg');
+    }
+
+    .position-page .page-hero {
+        background-image: url('/media/img/careers/hero-bg-position-high-res.jpg');
+    }
+
+    .accolades {
+        background-image: url('/media/img/careers/medal-high-res.png');
+        background-size: 165px 148px;
+    }
+}

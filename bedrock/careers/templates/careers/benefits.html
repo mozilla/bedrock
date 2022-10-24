@@ -6,32 +6,125 @@
 
 {% extends "careers/base.html" %}
 
-{% block page_title %}Mozilla Careers — Feel good about your work again.{% endblock %}
-{% block page_desc %}At Mozilla, you can pursue your future while working to protect the future of the internet for everyone, everywhere.{% endblock %}
-
-{% block body_class %}benefits-page{% endblock %}
-
 {% block careers_content %}
-<section class="mzp-c-hero mzp-t-dark page-hero"></section>
 
-<section class="mzp-l-content">
-    <h2>Benefits</h2>
-    <p>
-        To ensure our employees and their families feel safe, cared for, and supported, we offer world-class benefits, including:
-    </p>
-    <ul class="mzp-u-list-styled">
-        <li>Flexible work environment (nearly half of Mozillians work remotely)</li>
-        <li>Industry-leading paid parental leave (up to 26 weeks of fully paid leave for childbearing parents and up to 12 weeks for non-childbearing parents)</li>
-        <li>Generous medical, dental and vision coverage for you and your family (including no payroll deductions in most countries)</li>
-        <li>Reimbursement for professional development (up to $3,000 USD/year)</li>
-        <li>A work setup including the latest hardware and software of your choice</li>
-        <li>Wellness programs—we reimburse up to $1700 USD/year for a variety of expenses like child and elder care, mental wellness, and personal enrichment</li>
+<!-- Hero -->
+  <header class="c-careers-text-hero">
+    <div class="mzp-l-content c-text-hero-wrapper mzp-t-content-md">
+      <div class="c-text-hero-title">
+        <h1>Benefits for real life</h1>
+      </div>
+      <div class="c-text-hero-body">
+        <p>We’re proud to offer our employees these outstanding benefits, which set us apart from other companies in our industry.</p>
+
+        <div class="c-careers-button-wrapper">
+          <a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-secondary" data-cta-type="button" data-cta-name="careers listings">See our open roles</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="c-careers-benefits-intro c-careers-section">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>What we offer</h2>
+
+      <p>Our benefits package is world class. By offering a comprehensive, industry-leading health and wellbeing program to our employees and their families, we believe it’s easier for everyone to focus on the work we’re here to do together. Here’s a sample of what’s included in our benefits package. One thing to note: Global benefits vary by location, and a recruiter can answer specific questions if you live outside the U.S. Here’s a sampling of what we offer.</p>
+    </div>
+  </section>
+
+  <section class="c-careers-benefits-list c-careers-section">
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
+
+      {% call picto(
+        base_el='li',
+        title='Health and wellness',
+        image_url='img/careers/icons/mozilla-theme/careers-items.svg',
+        body=True,
+      ) %}
+        <p>
+          Our health plans give you the options you need to manage your health the way you want, no matter where you’re located. For our U.S. and Canadian employees, we cover the premiums for our generous medical, dental and vision plans at 100% Enrollment is also open to your eligible spouse or domestic partner and dependents under the age of 26.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Mental wellness',
+        image_url='img/careers/icons/mozilla-theme/careers-watering.svg',
+        body=True,
+      ) %}
+        <p>
+          Mental health is as important as physical health. We offer our employees access to a variety of resources — therapy, coaching, assessments and more — so they can select the care that works for them in the areas they’d like to focus on.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Time away',
+        image_url='img/careers/icons/mozilla-theme/careers-camp.svg',
+        body=True,
+      ) %}
+        <p>
+          With all of life’s demands, time away from work to disconnect and recharge is essential. In addition to country-specific holidays (12 in the U.S. and Canada), vacation and sick time start accruing right away (specifics vary by country). Everyone also takes a pause together on quarterly all-company wellness days, plus you get to celebrate the most personal holiday of all: your birthday.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Parental leave',
+        image_url='img/careers/icons/mozilla-theme/careers-dino-egg.svg',
+        body=True,
+      ) %}
+        <p>
+          While Mozilla’s parental leave policies vary globally, our U.S. and Canadian-based employees can look forward to 26 weeks of paid leave for childbearing parents and 12 weeks of paid leave for non-childbearing parents.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Financial',
+        image_url='img/careers/icons/mozilla-theme/careers-charts.svg',
+        body=True,
+      ) %}
+        <p>
+          Mozilla is a private company, so our compensation isn’t tied to stock options or equity plans. Instead, we offer generous, performance-based bonus plans to all regular employees to underscore that we share in our success as one team. As for retirement savings for U.S. and Canadian employees, Mozilla contributes a percentage of your eligible base salary each year to the 401(k) Plan/RRSP, with 100% vesting.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Learning and development',
+        image_url='img/careers/icons/mozilla-theme/careers-chat.svg',
+        body=True,
+      ) %}
+        <p>
+          We’re big believers in learning by doing, and we also want to invest in your education and development beyond your role. Every employee is eligible for an annual professional development budget. Mozillians can put it toward technical or management training, certifications, conferences and more.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Help when you need it',
+        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
+        body=True,
+      ) %}
+        <p>
+          Life is full of surprises, that’s why it’s important to be
+          prepared. Mozilla provides Life/AD&D and Short and Long Term Disability insurance to ensure that you and your family will have a safety net in place should you ever need it.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title='Plus a bit more',
+        image_url='img/careers/icons/mozilla-theme/careers-more.svg',
+        body=True,
+      ) %}
+        <p>
+          A few other benefits include a quarterly wellbeing stipend (to use on those things just for you), an employee referral bonus, internet reimbursement if you’re remote, and a budget for office essentials to make working remotely ergonomically comfortable.
+        </p>
+      {% endcall %}
     </ul>
-</section>
 
-<div class="mzp-l-content">
-  <div class="centered">
-    <a class="mzp-c-button" href="{{ url('careers.listings') }}">Apply Now</a>
-  </div>
-</div>
-{% endblock %}
+  </section>
+
+  {% endblock %}

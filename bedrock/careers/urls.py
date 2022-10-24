@@ -18,6 +18,9 @@ urlpatterns = [
     path("listings/", views.PositionListView.as_view(), name="careers.listings"),
     path("internships/", views.InternshipsView.as_view(), name="careers.internships"),
     path("benefits/", views.BenefitsView.as_view(), name="careers.benefits"),
+    path("diversity/", views.DiversityView.as_view(), name="careers.diversity"),
+    path("teams/", views.TeamsView.as_view(), name="careers.teams"),
+    path("locations/", views.LocationsView.as_view(), name="careers.locations"),
 ]
 
 

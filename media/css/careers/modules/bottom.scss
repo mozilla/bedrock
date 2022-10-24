@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-careers-bottom {
+    .mzp-c-split {
+        overflow: hidden;
+        padding-top: 0;
+
+        .mzp-c-split-container {
+            margin-bottom: -180px;
+        }
+
+        .c-careers-socials {
+            display: flex;
+            margin-top: $spacing-lg;
+
+            li {
+                margin-right: $spacing-md;
+
+                a {
+                    display: inline-block;
+                    width: 22px;
+                    height: 20px;
+                    border-bottom: 2px solid transparent;
+                    text-decoration: underline;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        // border-bottom: 2px solid green;
+                    }
+
+                    &.c-careers-instagram {
+                        background-image: url('#{$image-path}/icons/social/instagram/black.svg');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+
+                    &.c-careers-twitter {
+                        background-image: url('#{$image-path}/icons/social/twitter/black.svg');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+
+                    &.c-careers-glassdoor {
+                        background-image: url('/media/img/careers/icons/social/glassdoor/black.svg');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+            }
+        }
+    }
+}

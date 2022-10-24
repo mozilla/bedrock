@@ -63,11 +63,11 @@
       #}
       {% set position = postings | first %}
       <tr class="position"
-          data-team="{{ position.department | trim }},"
-          data-type="{{ position.position_type | trim }},"
-          data-location="{{ postings | join(',', attribute='job_locations') }},">
-        <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
-        <td class="location">{{ postings | map(attribute='job_locations') | join(', ') }}</td>
+          data-team="{{ position.department.strip() }},"
+          data-type="{{ position.position_type.strip() }},"
+          data-location="{{ position.location.strip() }},">
+        <td class="title"><a href="{{ position.get_absolute_url() }}" data-cta-type="button" data-cta-name="{{ position.department }} - {{ position.title }}">{{ position.title }}</a></td>
+        <td class="location">{{ position.job_locations }}</td>
         <td class="name">{{ position.department }}</td>
       </tr>
     {% endfor %}

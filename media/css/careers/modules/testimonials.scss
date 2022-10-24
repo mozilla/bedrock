@@ -1,0 +1,176 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+
+.c-careers-testimonials {
+    // Hide pull quotes section if JS is disabled
+    &.no-js-hidden {
+        .no-js & {
+            @include hidden;
+        }
+    }
+
+    blockquote {
+        @include text-title-xs;
+
+        span {
+            background: $color-black;
+            color: $color-white;
+            line-height: 1.4;
+        }
+    }
+
+    .c-careers-citation-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            height: 120px;
+        }
+
+        cite {
+            font-weight: bold;
+            @include text-body-lg;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-careers-citation-wrapper {
+            flex-direction: row;
+
+            img {
+                margin-right: $spacing-2xl;
+            }
+        }
+    }
+}
+
+.c-careers-full-testimonials {
+    // Hide full testimonials if JS is enabled
+    .js-modal-content {
+        .js & {
+            @include hidden;
+        }
+    }
+}
+
+.mzp-c-modal-inner.c-careers-full-testimonial-wrapper {
+    background-color: $color-white;
+
+    .c-careers-testimonials-modal {
+        width: 100%;
+
+        blockquote {
+            @include text-title-2xs;
+            font-weight: 400;
+            border: 0;
+
+            .c-careers-testimonial-quote {
+                position: relative;
+
+                p:nth-of-type(1n) {
+                    &::before {
+                        @include text-title-md;
+                        content: '“';
+                        position: absolute;
+                        top: -15px;
+                        left: -20px;
+                        color: cp.$teal-primary;
+                        font-weight: bold;
+                    }
+                }
+
+                p:last-of-type {
+                    &::after {
+                        @include text-title-md;
+                        content: '”';
+                        position: absolute;
+                        bottom: -15px;
+                        color: cp.$teal-primary;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Styling modal citation section
+.c-testimonials-citation {
+    border-left: 4px solid cp.$teal-primary;
+    padding-left: $spacing-lg;
+
+    cite {
+        @include text-title-sm;
+        font-weight: 700;
+        font-style: normal;
+
+        &::before {
+            content: '';
+        }
+    }
+
+    p {
+        @include text-body-xs;
+        @include font-base;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+}
+
+// styling modal controls
+.c-careers-full-testimonial-wrapper {
+    .mzp-c-modal-close {
+        background: $color-black;
+        border-radius: 100%;
+
+        button {
+            cursor: pointer;
+        }
+    }
+
+    .c-modal-next {
+        @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+        background: cp.$teal-primary;
+        right: 3.75rem;
+
+        .hide-next & {
+            display: none;
+        }
+
+        .c-modal-button-next {
+            background-image: url('/media/protocol/img/icons/arrow-right.svg');
+        }
+    }
+
+    .c-modal-prev {
+        @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+        background: cp.$teal-primary;
+        right: 7.1rem;
+
+        .hide-next & {
+            right: 3.75rem;
+        }
+
+        .hide-prev & {
+            display: none;
+        }
+
+        .c-modal-button-prev {
+            background-image: url('/media/protocol/img/icons/arrow-left.svg');
+        }
+    }
+
+    .c-modal-button-next,
+    .c-modal-button-prev {
+        @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
+    }
+}

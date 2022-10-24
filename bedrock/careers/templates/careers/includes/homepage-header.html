@@ -1,0 +1,33 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<!-- Hero -->
+
+{% block careers_content %}
+  <header class="c-careers-video-hero">
+    <div class="c-video-wrapper">
+      <!-- Overlay div to create an overlay effect for the background video -->
+      <div class="overlay"></div>
+      <video class="c-background-video" autoplay loop muted>
+        <source src="https://assets.mozilla.net/video/careers/careers-homepage-optimized1.mp4" type="video/mp4">
+      </video>
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md',
+        media_class='mzp-l-split-h-center',
+        media_include='careers/includes/big-picture-video.html',
+        media_after=True
+        ) %}
+          <h1>Good work that does you good</h1>
+          <p><a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-product">Find your role at Mozilla</a></p>
+        {% endcall %}
+      </div>
+  </header>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('careers-hero-video') }}
+{% endblock %}
