@@ -51,16 +51,11 @@ class BasePage(Page):
         _mobile_menu_close_btn_locator = (By.CLASS_NAME, "mobile-nav-close-btn")
         _mobile_menu_locator = (By.CLASS_NAME, "mobile-nav")
         _mobile_menu_wrapper_locator = (By.CLASS_NAME, "mobile-nav-wrapper")
-        _home_mobile_menu_locator = (By.CSS_SELECTOR, '.mobile-nav-list-link[href="https://getpocket.com/home?src=navbar"]')
-        _my_list_mobile_menu_locator = (By.CSS_SELECTOR, '.mobile-nav-list-link[href="https://getpocket.com/saves?src=navbar"]')
+        _mobile_menu_link_locator = (By.CSS_SELECTOR, ".mobile-nav-list-link")
 
         @property
-        def is_mobile_menu_home_link_displayed(self):
-            return self.is_element_displayed(*self._home_mobile_menu_locator)
-
-        @property
-        def is_mobile_menu_my_list_link_displayed(self):
-            return self.is_element_displayed(*self._my_list_mobile_menu_locator)
+        def is_mobile_menu_nav_link_displayed(self):
+            return self.is_element_displayed(*self._mobile_menu_link_locator)
 
         @property
         def is_mobile_menu_open(self):
