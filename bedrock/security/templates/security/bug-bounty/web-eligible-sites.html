@@ -178,7 +178,11 @@
         <li>getpocket.com/account</li>
         <li>getpocket.com/discover</li>
         <li>getpocket.com/collections</li>
+        {% if switch('pocket-rename-my-list-to-saves') %}
+        <li>getpocket.com/saves/*</li>
+        {% else %}
         <li>getpocket.com/my-list/*</li>
+        {% endif %}
         <li>getpocket.com/read/*</li>
         <li>getpocket.com/premium/*</li>
       </ul>

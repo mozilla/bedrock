@@ -15,13 +15,11 @@ def test_mobile_menu(pocket_base_url, selenium_mobile):
     page = AboutPage(selenium_mobile, pocket_base_url).open()
     assert page.navigation.is_mobile_menu_open_button_displayed
     page.navigation.open_mobile_menu()
-    assert page.navigation.is_mobile_menu_home_link_displayed
-    assert page.navigation.is_mobile_menu_my_list_link_displayed
+    assert page.navigation.is_mobile_menu_nav_list_displayed
 
     assert page.navigation.is_mobile_menu_close_button_displayed
     page.navigation.close_mobile_menu()
-    assert not page.navigation.is_mobile_menu_home_link_displayed
-    assert not page.navigation.is_mobile_menu_my_list_link_displayed
+    assert not page.navigation.is_mobile_menu_nav_list_displayed
 
 
 def test_accessible_mobile_menu_open_name(pocket_base_url, selenium_mobile):
