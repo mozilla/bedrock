@@ -51,11 +51,11 @@ class BasePage(Page):
         _mobile_menu_close_btn_locator = (By.CLASS_NAME, "mobile-nav-close-btn")
         _mobile_menu_locator = (By.CLASS_NAME, "mobile-nav")
         _mobile_menu_wrapper_locator = (By.CLASS_NAME, "mobile-nav-wrapper")
-        _mobile_menu_link_locator = (By.CSS_SELECTOR, ".mobile-nav-list-link")
+        _mobile_menu_nav_list_locator = (By.CSS_SELECTOR, ".mobile-nav-list")
 
         @property
-        def is_mobile_menu_nav_link_displayed(self):
-            return self.is_element_displayed(*self._mobile_menu_link_locator)
+        def is_mobile_menu_nav_list_displayed(self):
+            return self.is_element_displayed(*self._mobile_menu_nav_list_locator)
 
         @property
         def is_mobile_menu_open(self):
