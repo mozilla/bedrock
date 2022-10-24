@@ -58,7 +58,6 @@
 
 {% block content %}
 
-{% set show_mr2_browser_promo = switch("browser-mr2-promo") and variant == 'fx94' and ftl_has_messages('firefox-desktop-love-your-life', 'firefox-desktop-its-your-internet') %}
 {% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
@@ -72,13 +71,8 @@
     <div class="c-block-container">
       <div class="c-block-body">
         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
-        {% if show_mr2_browser_promo %}
-          <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-love-your-life') }}</h2>
-          <p>{{ ftl('firefox-desktop-its-your-internet') }}</p>
-        {% else %}
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
           <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
-        {% endif %}
         <div class="c-intro-download">
           {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
 
@@ -88,30 +82,26 @@
         </div>
       </div>
       <div class="c-block-media l-v-center">
-        {% if show_mr2_browser_promo %}
-          {{ high_res_img('img/firefox/new/desktop/hero-MR2.png', {'width': '572', 'height': '517', 'alt': '', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
-        {% else %}
-          <div class="c-block-img">
-            <div class="c-noodles">
-              <!--[if gt IE 9]><!-->
-              <div class="noodle-circle t-outline-yellow"></div>
-              <div class="noodle-svg">
-                <svg width="537" height="502" viewBox="0 0 537 502" xmlns="http://www.w3.org/2000/svg">
-                  <linearGradient x1="0%" y1="50%" x2="100%" y2="75%" id="yellow-pink">
-                    <stop stop-color="#ffde4d" offset="0"/>
-                    <stop stop-color="#ff31a3" offset="1"/>
-                  </linearGradient>
-                  <path transform="translate(-28 -3)" d="M243.358 14.088c38.422 22.008 52.309 70.656 31.478 109.807l-1.157 2.317c-19.906 37.529-6.25 84.093 31.015 104.71 37.264 20.618 84.018 7.645 105.08-29.189l1.39-2.316c22.219-38.688 71.519-52.587 110.866-30.811 39.58 22.007 53.93 72.046 31.941 111.66-64.807 116.99-212.013 159.151-328.667 94.286-117.116-64.865-159.472-212.201-94.665-329.19C152.396 5.98 201.464-8.383 241.043 12.698l1.158.695 1.157.695z" fill="url(#yellow-pink)" />
-                </svg>
-              </div>
-              <div class="noodle-circle t-fill-yellow-orange"></div>
-              <div class="noodle-pill t-fill-blue"></div>
-              <div class="noodle-pill t-outline-pink"></div>
-              <div class="noodle-browser"></div>
-              <!--<![endif]-->
+        <div class="c-block-img">
+          <div class="c-noodles">
+            <!--[if gt IE 9]><!-->
+            <div class="noodle-circle t-outline-yellow"></div>
+            <div class="noodle-svg">
+              <svg width="537" height="502" viewBox="0 0 537 502" xmlns="http://www.w3.org/2000/svg">
+                <linearGradient x1="0%" y1="50%" x2="100%" y2="75%" id="yellow-pink">
+                  <stop stop-color="#ffde4d" offset="0"/>
+                  <stop stop-color="#ff31a3" offset="1"/>
+                </linearGradient>
+                <path transform="translate(-28 -3)" d="M243.358 14.088c38.422 22.008 52.309 70.656 31.478 109.807l-1.157 2.317c-19.906 37.529-6.25 84.093 31.015 104.71 37.264 20.618 84.018 7.645 105.08-29.189l1.39-2.316c22.219-38.688 71.519-52.587 110.866-30.811 39.58 22.007 53.93 72.046 31.941 111.66-64.807 116.99-212.013 159.151-328.667 94.286-117.116-64.865-159.472-212.201-94.665-329.19C152.396 5.98 201.464-8.383 241.043 12.698l1.158.695 1.157.695z" fill="url(#yellow-pink)" />
+              </svg>
             </div>
+            <div class="noodle-circle t-fill-yellow-orange"></div>
+            <div class="noodle-pill t-fill-blue"></div>
+            <div class="noodle-pill t-outline-pink"></div>
+            <div class="noodle-browser"></div>
+            <!--<![endif]-->
           </div>
-        {% endif %}
+        </div>
       </div>
     </div>
   </section>
