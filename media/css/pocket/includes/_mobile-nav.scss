@@ -2,8 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '../utils/variables' as pocket;
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '../utils/variables';
 
 $icon-path: '/media/img/pocket/mobile-nav/';
 
@@ -35,7 +36,7 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
 }
 
 .mobile-nav {
-    background: $color-white;
+    background: pocket.$color-white;
     border-radius: 0;
     bottom: 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -55,193 +56,193 @@ $easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
         transform: translateX(0);
         transition: all 250ms $easing-decelerate;
     }
+}
 
-    .mobile-nav-close {
-        align-items: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        border-bottom: 1px solid #d9d9d9;
-        display: flex;
-        height: 64px;
-        margin-bottom: 8px;
-        padding: 0;
+.mobile-nav-close {
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    height: 64px;
+    margin-bottom: 8px;
+    padding: 0;
 
-        &:focus,
-        &:focus-within {
-            border: 1px solid $color-action-primary;
-        }
-
-        .mobile-nav-close-btn {
-            @include image-replaced;
-            background: url('#{$icon-path}/back-btn.svg') no-repeat transparent;
-            border: none;
-            color: $color-text-primary;
-            height: $spacing-lg;
-            margin: 0 $spacing-sm;
-            outline: none;
-            width: $spacing-lg;
-        }
+    &:focus,
+    &:focus-within {
+        border: 1px solid pocket.$color-action-primary;
     }
 }
 
+.mobile-nav-close-btn {
+    @include image-replaced;
+    background: url('#{$icon-path}/back-btn.svg') no-repeat transparent;
+    border: none;
+    color: pocket.$color-text-primary;
+    height: $spacing-lg;
+    margin: 0 $spacing-sm;
+    outline: none;
+    width: $spacing-lg;
+}
+
 .mobile-nav-list {
-    background: $color-white;
+    background: pocket.$color-white;
     display: flex;
     flex-direction: column;
-    font-family: $font-sans;
+    font-family: pocket.$font-sans;
     font-size: 16px;
     font-weight: 500;
     list-style: none;
     margin: 0;
     padding: 0;
+}
 
-    .mobile-nav-list-item {
-        margin: 0;
-        padding: 0;
-        width: 100%;
+.mobile-nav-list-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 
-        .mobile-nav-list-link {
-            align-items: center;
-            color: $color-text-primary;
-            fill: currentColor;
-            line-height: 24px;
-            display: inline-flex;
-            padding: 12px 16px;
-            position: relative;
-            text-decoration: none;
-            transition: background-color 100ms ease-out;
-            width: 100%;
+.mobile-nav-list-link {
+    align-items: center;
+    color: pocket.$color-text-primary;
+    fill: currentColor;
+    line-height: 24px;
+    display: inline-flex;
+    padding: 12px 16px;
+    position: relative;
+    text-decoration: none;
+    transition: background-color 100ms ease-out;
+    width: 100%;
 
-            &::before {
-                background-repeat: no-repeat;
-                content: '';
-                height: $spacing-lg;
-                width: $spacing-xl;
-            }
+    &::before {
+        background-repeat: no-repeat;
+        content: '';
+        height: $spacing-lg;
+        width: $spacing-xl;
+    }
 
-            &.home {
-                &::before {
-                    background-image: url('#{$icon-path}home-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}home-icon-active.svg');
-                }
-            }
-
-            &.my-list {
-                &::before {
-                    background-image: url('#{$icon-path}my-list-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}my-list-icon-active.svg');
-                }
-            }
-
-            &.discover {
-                &::before {
-                    background-image: url('#{$icon-path}discover-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}discover-icon-active.svg');
-                }
-            }
-
-            &.collections {
-                &::before {
-                    background-image: url('#{$icon-path}collections-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}collections-icon-active.svg');
-                }
-            }
-
-            &.archive {
-                &::before {
-                    background-image: url('#{$icon-path}archive-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}archive-icon-active.svg');
-                }
-            }
-
-            &.favorites {
-                &::before {
-                    background-image: url('#{$icon-path}favorites-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}favorites-icon-active.svg');
-                }
-            }
-
-            &.highlights {
-                &::before {
-                    background-image: url('#{$icon-path}highlights-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}highlights-icon-active.svg');
-                }
-            }
-
-            &.articles {
-                &::before {
-                    background-image: url('#{$icon-path}articles-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}articles-icon-active.svg');
-                }
-            }
-
-            &.videos {
-                &::before {
-                    background-image: url('#{$icon-path}videos-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}videos-icon-active.svg');
-                }
-            }
-
-            &.tags {
-                &::before {
-                    background-image: url('#{$icon-path}tags-icon.svg');
-                }
-
-                &:hover::before {
-                    background-image: url('#{$icon-path}tags-icon-active.svg');
-                }
-            }
-
-            &:focus,
-            &:focus-within {
-                border: 1px solid $color-action-primary;
-            }
-
-            &:hover:not(.selected):not(.disabled) {
-                background-color: $color-action-primary;
-                color: $color-white;
-            }
-
-            &.selected {
-                background-color: $color-nav-current;
-                color: $color-action-primary;
-            }
-
-            .beta {
-                border: 1px solid #1eabf9;
-                border-radius: 4px;
-                color: #1eabf9;
-                font-size: 11px;
-                font-weight: 500;
-                margin-left: 8px;
-                padding: 0 5px;
-            }
+    &.home {
+        &::before {
+            background-image: url('#{$icon-path}home-icon.svg');
         }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}home-icon-active.svg');
+        }
+    }
+
+    &.my-list {
+        &::before {
+            background-image: url('#{$icon-path}my-list-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}my-list-icon-active.svg');
+        }
+    }
+
+    &.discover {
+        &::before {
+            background-image: url('#{$icon-path}discover-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}discover-icon-active.svg');
+        }
+    }
+
+    &.collections {
+        &::before {
+            background-image: url('#{$icon-path}collections-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}collections-icon-active.svg');
+        }
+    }
+
+    &.archive {
+        &::before {
+            background-image: url('#{$icon-path}archive-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}archive-icon-active.svg');
+        }
+    }
+
+    &.favorites {
+        &::before {
+            background-image: url('#{$icon-path}favorites-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}favorites-icon-active.svg');
+        }
+    }
+
+    &.highlights {
+        &::before {
+            background-image: url('#{$icon-path}highlights-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}highlights-icon-active.svg');
+        }
+    }
+
+    &.articles {
+        &::before {
+            background-image: url('#{$icon-path}articles-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}articles-icon-active.svg');
+        }
+    }
+
+    &.videos {
+        &::before {
+            background-image: url('#{$icon-path}videos-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}videos-icon-active.svg');
+        }
+    }
+
+    &.tags {
+        &::before {
+            background-image: url('#{$icon-path}tags-icon.svg');
+        }
+
+        &:hover::before {
+            background-image: url('#{$icon-path}tags-icon-active.svg');
+        }
+    }
+
+    &:focus,
+    &:focus-within {
+        border: 1px solid pocket.$color-action-primary;
+    }
+
+    &:hover:not(.selected):not(.disabled) {
+        background-color: pocket.$color-action-primary;
+        color: pocket.$color-white;
+    }
+
+    &.selected {
+        background-color: pocket.$color-nav-current;
+        color: pocket.$color-action-primary;
+    }
+
+    .beta {
+        border: 1px solid #1eabf9;
+        border-radius: 4px;
+        color: #1eabf9;
+        font-size: 11px;
+        font-weight: 500;
+        margin-left: 8px;
+        padding: 0 5px;
     }
 }

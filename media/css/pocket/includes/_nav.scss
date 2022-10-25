@@ -2,286 +2,179 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '../utils/variables';
-@import './mobile-nav';
-
+$image-path: '/media/protocol/img';
 $pocket-image-path: '/media/img/pocket';
 
-.pocket-header {
-    width: 100%;
-    background: $color-white;
-    box-shadow: $box-shadow-sm;
-    border-bottom: 1px solid $color-divider;
+@use '../utils/variables' as pocket;
 
-    .global-nav-container {
-        padding: 0 $spacing100;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        max-width: 1168px;
-        margin: 0 auto;
-    }
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements'; // this probably needs to be in base pocket style imports
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import './mobile-nav';
+
+.pocket-header {
+    background-color: pocket.$color-white;
+    border-bottom: 1px solid pocket.$color-divider;
+    box-shadow: pocket.$box-shadow-sm;
+    padding-bottom: $spacing-xs;
+    padding-top: $spacing-xs;
 }
 
-.global-nav-mobile-menu-btn {
-    display: block;
-    margin-left: -$spacing-sm;
-    width: 36px;
-    height: 36px;
-    position: relative;
-    line-height: 110%;
-    border: none;
-    border-radius: 4px;
-    transition: all 0.15s ease-out;
+.global-nav-container {
+    font-family: pocket.$font-sans;
+    font-weight: 500;
+    color: pocket.$color-text-primary;
+    display: flex;
+    align-items: center;
 
-    &:focus,
-    &:focus-within {
-        border: 1px solid $color-action-primary;
+    :last-child {
+        margin-left: auto;
     }
 
-    &.inline {
-        background: none;
-        padding: 0;
-        color: $color-text-primary;
-        text-decoration: underline;
+    &.mzp-l-content.mzp-t-content-xl {
+        max-width: 1128px; // needs to match web app nav width
+        box-sizing: content-box;
     }
 
-    .hamburger-btn {
-        width: 24px;
-        height: 24px;
-        margin-bottom: -2px;
-        display: inline-block;
-        margin-top: -4px;
-        pointer-events: none;
-        vertical-align: middle;
-    }
-
-    @media #{$mq-md} {
-        display: none;
+    .mzp-c-wordmark {
+        margin-bottom: 0;
+        width: pocket.$wordmark-width-sm;
     }
 }
 
 .pocket-logo {
     display: inline-block;
-    position: relative;
-    margin-left: 8px;
-    margin-right: 0;
-    padding: 8px 0;
-    line-height: 1;
+    margin-left: $spacing-sm;
 
     &:focus {
-        outline: none;
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            bottom: -2px;
-            right: -2px;
-            border: 2px solid $color-action-primary;
-            border-radius: 4px;
-        }
-    }
-
-    &:active::before,
-    &:hover::before {
-        display: none;
-    }
-
-    .pocket-logo-svg {
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-image: url('#{$pocket-image-path}/pocket-logo-light-mode.svg');
-        width: 94px;
-        height: 24px;
-
-        span {
-            @include visually-hidden;
-        }
-    }
-
-    &.logged-in .logo {
-        display: none;
-    }
-
-    @media #{$mq-md} {
-        margin-right: 56px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    @media #{$mq-lg} {
-        margin-right: 96px;
-    }
-}
-
-.sr-only {
-    border: 0;
-    clip-path: polygon(0 0, 0 0, 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap;
-}
-
-.page-navigation {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 2;
-    line-height: 1;
-    white-space: nowrap;
-
-    .page-navigation-list {
-        @include text-body-md;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        display: none;
-
-        .page-navigation-list-item {
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-        }
-
-        @media #{$mq-md} {
-            display: flex;
-        }
-    }
-}
-
-.page-navigation-list-item-link {
-    font-weight: 500;
-    line-height: $spacing-lg;
-    text-decoration: none;
-    padding: 20px;
-    position: relative;
-
-    &:focus {
-        outline: 0;
-
-        &::before {
-            content: '';
-            display: block;
-            box-sizing: border-box;
-            position: absolute;
-            left: $spacing-xs;
-            right: $spacing-xs;
-            top: $spacing-sm;
-            bottom: $spacing-sm;
-            border: 2px solid $color-action-primary;
-            border-radius: $border-radius-sm;
-        }
-    }
-
-    &:hover::before {
-        display: none;
-    }
-
-    &:active::before {
-        display: none;
-    }
-
-    &.selected::after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 10px;
-        right: 10px;
-        height: $spacing-xs;
-        background-color: $color-action-primary;
-    }
-
-    &.selected:active::after {
-        background-color: $color-action-primary-hover;
+        outline: 2px solid pocket.$color-action-primary;
+        outline-offset: $spacing-sm;
     }
 }
 
 .nav-link {
-    display: none;
-    position: relative;
-    vertical-align: middle;
-    font-weight: 500;
+    color: inherit;
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: $spacing-sm;
+    margin-left: $spacing-sm;
     text-decoration: none;
-    color: $color-text-primary;
 
-    &:focus,
-    &:active {
-        color: $color-action-primary;
-        outline: 0;
-
-        &::before {
-            content: '';
-            display: block;
-            box-sizing: border-box;
-            position: absolute;
-            left: -2px;
-            right: -2px;
-            top: -2px;
-            bottom: -2px;
-            border: 2px solid $color-action-primary;
-            border-radius: $border-radius-sm;
-        }
-    }
-
-    &:hover {
-        text-decoration: none;
-    }
-
-    &:hover::before,
-    &:active::before {
-        display: none;
-    }
-
-    &.login-link {
-        margin-right: $spacing-lg;
-    }
-
-    &.signup-link {
-        border-radius: $border-radius-sm;
-        padding: 12px;
-        transition: all 0.15s ease-out;
-        cursor: pointer;
-        background: none;
-        border: 2px solid $color-text-primary;
-
-        &:hover {
-            background-color: $color-text-primary;
-            color: #f2f2f2;
-        }
-    }
-
-    @media #{$mq-md} {
-        display: inline-block;
+    &:focus {
+        outline: 2px solid pocket.$color-action-primary;
+        outline-offset: -$spacing-sm;
     }
 }
 
-.signup-icon {
-    display: inline-block;
-    line-height: 0;
-    vertical-align: middle;
-    margin-top: 0;
-    height: $spacing-lg;
-    color: $color-text-primary;
+.global-nav-mobile-menu-btn {
+    background-color: transparent;
+    border: none;
+    color: pocket.$color-text-primary;
+    aspect-ratio: 1 / 1;
+    border-radius: $border-radius-sm;
 
     svg {
-        height: 100%;
+        vertical-align: middle;
+        pointer-events: none;
     }
+
+    &:active,
+    &:focus {
+        outline: 1px solid pocket.$color-action-primary;
+    }
+}
+
+.mobile-signup-icon {
+    color: inherit;
+    display: inline-block;
+    line-height: 0;
+    padding: $spacing-md $spacing-sm;
 
     span {
         @include visually-hidden;
     }
 
-    @media #{$mq-md} {
+    &:hover,
+    &:focus,
+    &:active {
+        color: pocket.$color-action-primary;
+    }
+
+    &:focus {
+        outline: 2px solid pocket.$color-action-primary;
+    }
+}
+
+.page-navigation,
+.login-link,
+.signup-link {
+    display: none;
+}
+
+@media #{$mq-md} {
+    .mobile-signup-icon,
+    .global-nav-mobile-menu-btn {
         display: none;
-        margin-top: -$spacing-xs;
+    }
+
+    .page-navigation,
+    .login-link,
+    .signup-link {
+        display: inline-block;
+    }
+
+    .pocket-logo {
+        margin-left: 0;
+        margin-right: $layout-xl;
+    }
+
+    .page-navigation-list {
+        margin-bottom: 0;
+
+        &-item {
+            display: inline-block;
+        }
+
+        &-item-link {
+            position: relative;
+
+            &.selected::after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: -$spacing-xs;
+                left: $spacing-xs;
+                right: $spacing-xs;
+                height: $spacing-xs;
+                background-color: pocket.$color-action-primary;
+            }
+        }
+    }
+
+    .nav-link:not(.signup-link) {
+        padding: $spacing-md;
+        transition: color 0.1s;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: pocket.$color-action-primary;
+        }
+    }
+
+    .signup-link {
+        background-color: transparent;
+        border: 2px solid pocket.$color-text-primary;
+        border-radius: $border-radius-sm;
+        padding: $spacing-sm;
+        transition: color 0.1s, background-color 0.1s;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: pocket.$color-white;
+            background-color: pocket.$color-text-primary;
+        }
     }
 }

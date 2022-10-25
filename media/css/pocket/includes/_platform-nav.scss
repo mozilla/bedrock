@@ -2,109 +2,115 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
+@use '../utils/variables' as pocket;
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements'; // this probably needs to be in base pocket style imports
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 
 .pocket-header.platform {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    background-color: #f9f9fa;
-}
+    box-shadow: pocket.$box-shadow-sm;
+    background-color: $color-marketing-gray-10;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
 
-.platform-header {
-    align-items: center;
-    display: flex;
-    height: 74px;
-    margin: 0 auto;
-    max-width: $screen-lg;
-    padding: 0 $spacing-md;
+    .mzp-c-wordmark {
+        margin-bottom: 0;
+        width: pocket.$wordmark-width-sm;
 
-    .pocket-logo {
-        margin: 0 auto;
-
-        .pocket-logo-svg {
-            background-image: url('/media/img/pocket/pocket-logo-light-mode.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            height: 38px;
-            width: 151px;
+        // todo: remove once next version of Protocol is available
+        &.mzp-l-wordmark-center-on-sm-md {
+            background-position: center top;
+            margin-left: auto;
+            margin-right: auto;
 
             @media #{$mq-md} {
-                width: 174px;
-                height: 32px;
+                @include bidi(((background-position, top left, top right),));
+                margin-left: 0;
+                margin-right: 0;
             }
+        }
+    }
+}
 
-            span {
-                @include visually-hidden;
+.header-navigation {
+    display: none;
+}
+
+.pocket-logo,
+.header-navigation-list-item-link {
+    &:focus {
+        outline: 2px solid pocket.$color-action-primary;
+    }
+}
+
+.pocket-logo,
+.log-in-cta {
+    outline-offset: $spacing-sm;
+}
+
+@media #{$mq-md} {
+    .platform-header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        // remove unnecessary clear to avoid confusing flexbox
+        &.mzp-l-content::after {
+            content: none;
+        }
+    }
+
+    .pocket-logo {
+        flex-shrink: 1;
+    }
+
+    .header-navigation {
+        display: block;
+        flex-shrink: 0;
+
+        &-list {
+            @include text-body-sm;
+            align-items: center;
+            display: flex;
+            font-family: pocket.$font-sans;
+            margin-bottom: 0;
+        }
+
+        &-list-item-link:not(.log-in-cta) {
+            color: pocket.$color-text-primary;
+            padding: $spacing-sm $spacing-md;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: pocket.$color-text-primary;
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
             }
         }
     }
 
-    .header-navigation {
-        line-height: 1;
-        white-space: nowrap;
-        display: none;
+    .log-in-cta {
+        background-color: pocket.$color-text-primary;
+        border-radius: $border-radius-xs;
+        border: 2px solid pocket.$color-text-primary;
+        color: pocket.$color-white;
+        display: inline-block;
+        font-weight: 500;
+        margin-left: $spacing-md;
+        padding: 0 $spacing-md;
+        text-decoration: none;
+        transition: all 100ms ease-in-out;
 
-        .header-navigation-list {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-            display: none;
-
-            .header-navigation-list-item {
-                display: inline-block;
-                margin: 0;
-                padding: 0;
-
-                .header-navigation-list-item-link {
-                    @include text-body-sm;
-                    font-family: $font-sans;
-                    margin: $spacing-lg $spacing-xs;
-                    text-decoration: none;
-                    color: $color-text-primary;
-
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        text-decoration: underline;
-                        text-decoration-thickness: 1px;
-                    }
-
-                    &.log-in-cta {
-                        @include text-body-xs;
-                        background-color: $color-text-primary;
-                        border-radius: $border-radius-xs;
-                        border: 2px solid $color-text-primary;
-                        color: $color-white;
-                        font-weight: 500;
-                        padding: 3px $spacing-md;
-                        transition: all 100ms ease-in-out;
-
-                        @media #{$mq-md} {
-                            margin-left: 20px;
-                        }
-
-                        &:hover,
-                        &:focus,
-                        &:active {
-                            background-color: transparent;
-                            color: $color-text-primary;
-                            text-decoration: none;
-                        }
-                    }
-                }
-            }
-        }
-        @media #{$mq-md} {
-            display: flex;
-            justify-content: flex-end;
-            flex-grow: 2;
-
-            .header-navigation-list {
-                display: flex;
-            }
-
-            .header-navigation-list-item-link {
-                padding: $spacing-lg $spacing-md;
-            }
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+            color: pocket.$color-text-primary;
         }
     }
 }
