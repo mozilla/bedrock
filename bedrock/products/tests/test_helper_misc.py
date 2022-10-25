@@ -111,7 +111,7 @@ TEST_VPN_RELAY_BUNDLE_PRODUCT_ID = "prod_MIex7Q079igFZJ"
 TEST_VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
-            "12-month": {"id": "price_1La3d7JNcmPzuWtRn0cg2EyH", "price": "US$6.99", "total": "US$83.88", "saving": 50},
+            "12-month": {"id": "price_1LwoSDJNcmPzuWtR6wPJZeoh", "price": "US$6.99", "total": "US$83.88", "saving": 50},
         }
     },
 }
@@ -205,7 +205,7 @@ class TestVPNSubscribeLink(TestCase):
             lang="en-US",
             bundle_relay=True,
         )
-        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1La3d7JNcmPzuWtRn0cg2EyH", markup)
+        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh", markup)
 
     def test_vpn_relay_bundle_subscribe_link_variable_12_month_ca_en(self):
         """Should return expected markup for variable 12-month plan link"""
@@ -215,7 +215,7 @@ class TestVPNSubscribeLink(TestCase):
             lang="en-CA",
             bundle_relay=True,
         )
-        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1La3d7JNcmPzuWtRn0cg2EyH", markup)
+        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh", markup)
 
     def test_vpn_subscribe_link_variable_12_month_us_en(self):
         """Should contain expected 12-month plan ID (US / en-US)"""
