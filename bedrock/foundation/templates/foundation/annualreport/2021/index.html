@@ -1,0 +1,639 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2021/includes/macros.html" import card_third_img with context %}
+
+{% extends "foundation/annualreport/2021/base.html" %}
+
+{# Responsive image sizes for split components #}
+{% set split_image_sizes = {
+  '(min-width: 768px)': 'calc(50vw - 192px)',
+  'default': 'calc(100vw - 48px)'
+} %}
+
+{# Common link attributes for opening in a new tab #}
+{% set new_tab = 'target="_blank" rel="external noopener" title="This link opens in a new tab"'|safe %}
+
+{% block content %}
+<main role="main">
+  <header class="c-hero-banner">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <h1>
+        <span>State of</span> <br>
+        <span>Mozilla</span> <br>
+        <span><time datetime="2021">21</time>-<time datetime="2022">22</time></span>
+      </h1>
+    </div>
+  </header>
+
+  <div class="mzp-l-content mzp-t-content-md" id="overview">
+    <h2 class="c-section-heading">Mozilla was built to make <br><strong>the internet better</strong></h2>
+
+    <p><strong>The internet is awesome, but it can be so much better.</strong></p>
+
+    <p>
+      <strong>
+        Mozilla exists to take on this challenge. We were created to solely care about the
+        interests of the people who use the internet — not to deliver profit to shareholders.
+      </strong>
+    </p>
+
+    <p>
+      We break every conventional notion about what a tech company is. In fact, we’re not just a
+      tech company at all. We’re a non-profit that champions privacy, human dignity and an open
+      internet. We’re a mission-driven business that builds and invests in products that make
+      people’s online lives safer and more joyful. And we’re a global community of millions of
+      people who donate their time, money, and brainpower to make the internet better. Put all
+      this together and you get: Mozilla.
+    </p>
+
+    <p>
+      Each year, we use this report to look back at the products we’ve built and the campaigns
+      we’ve run. This year, we also want to look forward and invite you to join us in building a
+      better internet in the years ahead.
+    </p>
+  </div>
+
+  <div class="c-section-leadership" id="leadership">
+
+    <div class="c-section-leadership-intro mzp-l-content mzp-t-content-md">
+      <h2 class="c-section-heading">Mozilla’s next chapter: <br><strong>A word from our leadership</strong></h2>
+
+      <p>Mozilla has been building a better internet for 25 years.</p>
+
+      <p>
+        It started with a small, open-source community building a browser. And it’s grown into a truly
+        unique collection of people and organizations driven by a bold ambition: to push the whole of
+        the internet in a better direction.
+      </p>
+
+      <p>As we move into our next quarter century, we are also looking to our next chapter.</p>
+    </div>
+
+    <!-- Leadership Cards -->
+    <div class="c-section-leadership-cards mzp-l-content mzp-l-card-third">
+      {{ card(
+        title='Mitchell Baker',
+        ga_title='Mitchell Baker',
+        tag_label='Steering Committee',
+        desc='Chief Executive Officer, Chairwoman of Mozilla Foundation',
+        link_url=url('foundation.annualreport.2021.article.mitchell-baker'),
+        link_target='_blank',
+        link_title='This link opens in a new tab',
+        image=card_third_img(filename='mitchell', ext='jpg')
+      ) }}
+
+      {{ card(
+        title='Mark Surman',
+        ga_title='Mark Surman',
+        tag_label='Steering Committee',
+        desc='President and Executive Director',
+        link_url=url('foundation.annualreport.2021.article.mark-surman'),
+        link_target='_blank',
+        link_title='This link opens in a new tab',
+        image=card_third_img(filename='surman', ext='jpg')
+      ) }}
+
+      {{ card(
+        title='Angela Plohman & Eric Muhlheim',
+        ga_title='Angela Plohman & Eric Muhlheim',
+        tag_label='Steering Committee',
+        desc='Executive Vice President & Chief Financial Officer',
+        link_url=url('foundation.annualreport.2021.article.angela-and-eric'),
+        link_target='_blank',
+        link_title='This link opens in a new tab',
+        image=card_third_img(filename='angela-eric', ext='jpg')
+      ) }}
+    </div>
+  </div>
+
+  <div class="mzp-l-content" id="financial">
+    <ul class="c-report-pdfs">
+      <li>
+        <h3 class="mzp-u-title-xs">2021 Audited Financial Statement</h3>
+        <a class="mzp-c-button" href="#TODO" data-cta-type="link" data-cta-text="Download 2021 Financial Statement PDF">
+          Download PDF
+        </a>
+      </li>
+      <li>
+        <h3 class="mzp-u-title-xs">2021 Form 990</h3>
+        <a class="mzp-c-button" href="#TODO" data-cta-type="link" data-cta-text="Download 2021 Form 990 PDF">
+          Download PDF
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-md" id="building">
+    <h2 class="c-section-heading">Building a different kind of tech industry, <strong>together</strong></h2>
+
+    <p>
+      <strong>Many people complain about today’s tech industry and say it’s impossible to make it better.</strong>
+    </p>
+
+    <p>
+      <strong>We think differently. We think it’s possible to build successful companies — and great products —
+      that put people before profits</strong>. And we know it’s crucial to involve the people who use the internet
+      in shaping where it’s headed.
+    </p>
+
+    <p>
+      This is the kind of tech industry we’re devoted to building over the next quarter century. We’re confident
+      it’s possible, as long as we build it together.
+    </p>
+  </div>
+
+  <a class="c-section-split-link" href="{{ url('foundation.annualreport.2021.article.products') }}" {{ new_tab }} data-cta-type="link" data-cta-text="Building the Products and Business Model for Your Internet">
+    {% call split(
+      image_url='img/foundation/annualreport/2021/split/experiences-900.jpg',
+      image_width=900,
+      image_height=506,
+      loading='lazy',
+      block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+      image_srcset={
+        'img/foundation/annualreport/2021/split/experiences-900.jpg': '900w',
+        'img/foundation/annualreport/2021/split/experiences-1300.jpg': '1300w',
+        'img/foundation/annualreport/2021/split/experiences-1800.jpg': '1800w',
+      },
+      image_sizes=split_image_sizes,
+      image_alt='We need to give people great experiences that help make the internet personal, enjoyable, and safe.'
+    ) %}
+      <p>Steve Teixeira & Lindsey Shepard</p>
+      <h2>Building the Products and Business Model for Your Internet</h2>
+      <button type="button" class="mzp-c-button">Learn more</button>
+    {% endcall %}
+  </a>
+
+  <div class="mzp-l-content mzp-l-card-third">
+    {{ card(
+      title='Changing the Internet For People, With People',
+      ga_title='Changing the Internet For People, With People',
+      tag_label='Ashley Boyd',
+      link_url=url('foundation.annualreport.2021.article.people'),
+      link_target='_blank',
+      link_title='This link opens in a new tab',
+      image=card_third_img(filename='high-five', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Experimentation And Community Are Driving Mozilla’s Innovation',
+      ga_title='Experimentation And Community Are Driving Mozilla’s Innovation',
+      tag_label='Imo Udom & J. Bob Alotta',
+      link_url=url('foundation.annualreport.2021.article.innovation'),
+      link_target='_blank',
+      link_title='This link opens in a new tab',
+      image=card_third_img(filename='ideas', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Mozilla Ventures: Investing in Responsible Tech',
+      ga_title='Mozilla Ventures: Investing in Responsible Tech',
+      tag_label='Mark Surman & Mohamed Nananhey',
+      link_url=url('foundation.annualreport.2021.article.mozilla-ventures'),
+      link_target='_blank',
+      link_title='This link opens in a new tab',
+      image=card_third_img(filename='thumbs-up', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-md" id="team">
+    <h2 class="c-section-heading">
+      <strong>Amazing humans</strong>, making the internet <strong>more humane</strong>
+    </h2>
+
+    <p>
+      <strong>It goes without saying: sending the internet in a better direction will require a huge number of
+      incredibly talented, passionate, and devoted people.</strong>
+    </p>
+
+    <p>
+      It will need many different kinds of people: engineers, policy wonks, data scientists, activists,
+      marketing geniuses, artists and startup founders. People who’ve cut their teeth and built up their
+      skills working in big tech, in activist organizations, in government. And people from all corners
+      of the earth.
+    </p>
+
+    <p>
+      These are exactly the kind of people who are drawn to Mozilla. They are our staff, our fellows, and
+      our community. They’ve come to Mozilla because they want to do the best work of their lives.
+    </p>
+
+    <p>We’ve added nearly 200 of these people in the last two years. And we’re looking for more.</p>
+  </div>
+
+  <a class="c-section-split-link" href="{{ url('foundation.annualreport.2021.article.team') }}" {{ new_tab }} data-cta-type="link" data-cta-text="Building A Team To Better The Internet">
+    {% call split(
+      image_url='img/foundation/annualreport/2021/split/investing-900.jpg',
+      image_width=900,
+      image_height=506,
+      loading='lazy',
+      block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+      image_srcset={
+        'img/foundation/annualreport/2021/split/investing-900.jpg': '900w',
+        'img/foundation/annualreport/2021/split/investing-1300.jpg': '1300w',
+        'img/foundation/annualreport/2021/split/investing-1800.jpg': '1800w',
+      },
+      image_sizes=split_image_sizes,
+      image_alt='We aren’t investing in the next quarter, we are investing in the next quarter century.'
+    ) %}
+      <p>Helen Turvey & Karim Lakhani</p>
+      <h2>Building A Team To Better The Internet</h2>
+      <button type="button" class="mzp-c-button">Learn more</button>
+    {% endcall %}
+  </a>
+
+  <div class="mzp-l-content mzp-l-card-third">
+    {{ card(
+      title='Carlos Torres',
+      ga_title='Carlos Torres',
+      tag_label='Why I Joined Mozilla',
+      link_url='#carlos-torres-desc',
+      class='has-modal',
+      attributes='id="carlos-torres" data-modal-id="carlos-torres"',
+      image=card_third_img(filename='carlos', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Leigh Felton',
+      ga_title='Leigh Felton',
+      tag_label='Why I Joined Mozilla',
+      link_url='#leigh-felton-desc',
+      class='has-modal',
+      attributes='id="leigh-felton" data-modal-id="leigh-felton"',
+      image=card_third_img(filename='leigh', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Anne Kim – Founder of Secure AI Labs',
+      ga_title='Anne Kim – Founder of Secure AI Labs',
+      tag_label='Mozilla Ventures Highlight',
+      link_url='#anne-kim-desc',
+      class='has-modal',
+      attributes='id="anne-kim" data-modal-id="anne-kim"',
+      image=card_third_img(filename='anne', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Crystal Lee',
+      ga_title='Crystal Lee',
+      tag_label='Why I Joined Mozilla',
+      link_url='#crystal-lee-desc',
+      class='has-modal',
+      attributes='id="crystal-lee" data-modal-id="crystal-lee"',
+      image=card_third_img(filename='crystal', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Tracy Chou – CEO and Founder of Block Party',
+      ga_title='Tracy Chou – CEO and Founder of Block Party',
+      tag_label='Mozilla Ventures Highlight',
+      link_url='#tracy-chou-desc',
+      class='has-modal',
+      attributes='id="tracy-chou" data-modal-id="tracy-chou"',
+      image=card_third_img(filename='tracy', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Brandon Borrman',
+      ga_title='Brandon Borrman',
+      tag_label='Why I Joined Mozilla',
+      link_url='#brandon-borrman-desc',
+      class='has-modal',
+      attributes='id="brandon-borrman" data-modal-id="brandon-borrman"',
+      image=card_third_img(filename='brandon', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='KeyAnna Schmiedl',
+      ga_title='KeyAnna Schmiedl',
+      tag_label='Why I Joined Mozilla',
+      link_url='#keyanna-Schmiedl-desc',
+      class='has-modal',
+      attributes='id="keyanna-Schmiedl" data-modal-id="keyanna-Schmiedl"',
+      image=card_third_img(filename='keyanna', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Mohamed Nanabhay',
+      ga_title='Mohamed Nanabhay',
+      tag_label='Why I Joined Mozilla',
+      link_url='#mohamed-nanabhay-desc',
+      class='has-modal',
+      attributes='id="mohamed-nanabhay" data-modal-id="mohamed-nanabhay"',
+      image=card_third_img(filename='mohamed', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+
+    {{ card(
+      title='Zhilun Pang',
+      ga_title='Zhilun Pang',
+      tag_label='Why I Joined Mozilla',
+      link_url='#zhilun-pang-desc',
+      class='has-modal',
+      attributes='id="zhilun-pang" data-modal-id="zhilun-pang"',
+      image=card_third_img(filename='zhilun', ext='jpg'),
+      aspect_ratio='mzp-has-aspect-16-9'
+    ) }}
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-md" id="foundations">
+    <h2 class="c-section-heading">
+      Laying the foundations for our <br><strong>next chapter</strong>
+    </h2>
+
+    <p>
+      <strong>The future we imagine will need many building blocks — products, policies, research, technology, communities
+      that all add up to a better internet over time.</strong>
+    </p>
+
+    <p>
+      We’ve created many such building blocks over the past 25 years. And, over the last year, we created more. We
+      rolled out Total Cookie Protection in Firefox. We battled misinformation in Kenya. We made our VPN product
+      more robust. We shone a light on privacy violations in digital period trackers. We created Pocket collections
+      that helped people make sense of global events in an age of rampant misinformation. We made voice technology
+      more diverse and inclusive. We called on the US Congress to act fast on competition in the tech industry. We
+      lifted up the work of people around the world who are making AI more trustworthy in our annual Internet
+      Health Report.
+    </p>
+
+    <p>
+      On their own, each of these things is just one small building block. Together, they help lay a foundation for
+      the next chapter of Mozilla.
+    </p>
+  </div>
+
+  <div class="split-container">
+    <div class="has-modal" id="open-letter-congress" data-modal-id="open-letter-congress">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/congress-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/congress-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/congress-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/congress-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Policy</span>
+        <h2>The fight continues in Washington</h2>
+        <a href="#open-letter-congress-desc" class="mzp-c-button">
+          Learn more
+        </a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="transparency-report" data-modal-id="transparency-report">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/advertising-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/advertising-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/advertising-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/advertising-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes,
+      ) %}
+        <span class="c-label-category">Advertising</span>
+        <h2>Leading by example</h2>
+        <a href="#transparency-report-desc" class="mzp-c-button">
+          Learn more
+        </a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="regrets-reporter" data-modal-id="regrets-reporter">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/regrets-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/regrets-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/regrets-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/regrets-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Innovation</span>
+        <h2>Crowdsourcing research into YouTube’s AI</h2>
+        <a href="#regrets-reporter-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="privacy-not-included" data-modal-id="privacy-not-included">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/period-trackers-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/period-trackers-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/period-trackers-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/period-trackers-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Privacy</span>
+        <h2>Sounding the alarm on period trackers</h2>
+        <a href="#privacy-not-included-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="total-cookie-protection" data-modal-id="total-cookie-protection">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/tcp-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/tcp-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/tcp-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/tcp-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes,
+      ) %}
+        <span class="c-label-category">Firefox</span>
+        <h2>Rolling out cookie protection for all</h2>
+        <a href="#total-cookie-protection-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="misinformation" data-modal-id="misinformation">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/misinformation-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/misinformation-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/misinformation-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/misinformation-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Mrady</span>
+        <h2>Battling misinformation in Kenya</h2>
+        <a href="#misinformation-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="common-voice" data-modal-id="common-voice">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/common-voice-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/common-voice-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/common-voice-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/common-voice-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Community</span>
+        <h2>Making voice technology for everyone</h2>
+        <a href="#common-voice-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="containers" data-modal-id="containers">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/containers-800.jpg',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/containers-800.jpg': '800w',
+          'img/foundation/annualreport/2021/split/containers-1200.jpg': '1200w',
+          'img/foundation/annualreport/2021/split/containers-1600.jpg': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">Security</span>
+        <h2>Keeping your online lives private</h2>
+        <a href="#containers-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+
+    <div class="has-modal" id="trustworthy-ai" data-modal-id="trustworthy-ai">
+      {% call split(
+        image_url='img/foundation/annualreport/2021/split/irl-800.png',
+        image_width=900,
+        image_height=506,
+        loading='lazy',
+        block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
+        image_srcset={
+          'img/foundation/annualreport/2021/split/irl-800.png': '800w',
+          'img/foundation/annualreport/2021/split/irl-1200.png': '1200w',
+          'img/foundation/annualreport/2021/split/irl-1600.png': '1600w',
+        },
+        image_sizes=split_image_sizes
+      ) %}
+        <span class="c-label-category">IRL</span>
+        <h2>Listening to the future of AI</h2>
+        <a href="#trustworthy-ai-desc" class="mzp-c-button">Learn more</a>
+      {% endcall %}
+    </div>
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-md" id="join-us">
+    <h2 class="c-section-heading">Join us in creating a <strong>better internet</strong></h2>
+
+    <p>
+      We know the internet can be better. More joyful. More trustworthy. Safer, and more secure.
+      But we can only get there if we work together. We invite you to join us as this next
+      chapter begins.
+    </p>
+  </div>
+
+  <div class="mzp-l-content">
+    <div class="mzp-l-card-third">
+      {{ card(
+        title='Donate',
+        ga_title='Donate',
+        link_url=donate_url(country_code, 'annualreport2021'),
+        image=card_third_img(filename='donate', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+
+      {{ card(
+        title='Download Firefox',
+        ga_title='Download Firefox',
+        link_url=url('firefox.new'),
+        image=card_third_img(filename='firefox', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+
+      {{ card(
+        title='Join the Team',
+        ga_title='Join the Team',
+        link_url=url('careers.home'),
+        image=card_third_img(filename='join', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+
+      {{ card(
+        title='Subscribe to VPN',
+        ga_title='Subscribe to VPN',
+        link_url=url('products.vpn.landing'),
+        image=card_third_img(filename='vpn', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+
+      {{ card(
+        title='Discover the Internet with Pocket',
+        ga_title='Discover the Internet with Pocket',
+        link_url='https://getpocket.com/?' + utm_params,
+        image=card_third_img(filename='pocket', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+
+      {{ card(
+        title='Join Our Community',
+        ga_title='Join Our Community',
+        link_url='https://foundation.mozilla.org/what-you-can-do/?' + utm_params,
+        image=card_third_img(filename='community', ext='jpg'),
+        aspect_ratio='mzp-has-aspect-16-9'
+      ) }}
+    </div>
+  </div>
+
+  <!-- Modal content -->
+  <div class="mzp-l-content mzp-t-content-md js-modal-content">
+    {% include "foundation/annualreport/2021/includes/modal-people.html" %}
+    {% include "foundation/annualreport/2021/includes/modal-blog.html" %}
+  </div>
+
+</main>
+
+<div class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('annual_report_modal') }}
+{% endblock %}

@@ -1,0 +1,68 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# responsive image macro for card images over three columns #}
+{% macro card_third_img(filename, ext) -%}
+  {{ resp_img(
+    url='img/foundation/annualreport/2021/card/' ~ filename ~ '-450.' ~ ext,
+    srcset={
+      'img/foundation/annualreport/2021/card/' ~ filename ~ '-450.' ~ ext: '450w',
+      'img/foundation/annualreport/2021/card/' ~ filename ~ '-900.' ~ ext: '900w'
+    },
+    sizes={
+      '(min-width: 1024px)': 'calc(33vw - 192px)',
+      '(min-width: 480px)': 'calc(50vw - 80px)',
+      'default': 'calc(100vw - 48px)'
+    },
+    optional_attributes={
+      "height": "253",
+      "loading": "lazy",
+      "width": "450",
+      "class": "mzp-c-card-image"
+    })
+  }}
+{%- endmacro %}
+
+{# responsive image macro for small modal image #}
+{% macro modal_img(filename, ext) -%}
+  {{ resp_img(
+    url='img/foundation/annualreport/2021/card/' ~ filename ~ '-450.' ~ ext,
+    srcset={
+      'img/foundation/annualreport/2021/card/' ~ filename ~ '-450.' ~ ext: '450w',
+      'img/foundation/annualreport/2021/card/' ~ filename ~ '-900.' ~ ext: '900w'
+    },
+    sizes={
+      '(min-width: 580px)': '450px',
+      'default': 'calc(100vw - 100px)'
+    },
+    optional_attributes={
+      "height": "253",
+      "loading": "lazy",
+      "width": "450"
+    })
+  }}
+{%- endmacro %}
+
+{# responsive image macro for large modal image #}
+{% macro modal_img_large(filename, ext) -%}
+  {{ resp_img(
+    url='img/foundation/annualreport/2021/split/' ~ filename ~ '-800.' ~ ext,
+    srcset={
+      'img/foundation/annualreport/2021/split/' ~ filename ~ '-800.' ~ ext: '800w',
+      'img/foundation/annualreport/2021/split/' ~ filename ~ '-1200.' ~ ext: '1200w',
+      'img/foundation/annualreport/2021/split/' ~ filename ~ '-1600.' ~ ext: '1600w',
+    },
+    sizes={
+      '(min-width: 1000px)': '900px',
+      'default': 'calc(100vw - 100px)'
+    },
+    optional_attributes={
+      "height": "506",
+      "loading": "lazy",
+      "width": "900"
+    })
+  }}
+{%- endmacro %}

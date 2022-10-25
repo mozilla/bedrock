@@ -6,8 +6,8 @@ from bedrock.mozorg.util import page
 from bedrock.redirects.util import redirect
 
 urlpatterns = (
-    # Issue 9727 /foundation/annualreport/2019/
-    redirect(r"^annualreport/$", "foundation.annualreport.2020.index", name="foundation.annualreport", locale_prefix=False),
+    # Issue 9727
+    redirect(r"^annualreport/$", "foundation.annualreport.2021.index", name="foundation.annualreport", locale_prefix=False),
     # Older annual report financial faqs - these are linked from blog posts
     # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html
     page("documents/mozilla-2006-financial-faq/", "foundation/documents/mozilla-2006-financial-faq.html"),
@@ -50,6 +50,15 @@ urlpatterns = (
     page("annualreport/2018/", "foundation/annualreport/2018/index.html"),
     page("annualreport/2019/", "foundation/annualreport/2019/index.html"),
     page("annualreport/2020/", "foundation/annualreport/2020/index.html"),
+    page("annualreport/2021/", "foundation/annualreport/2021/index.html"),
+    page("annualreport/2021/article/angela-and-eric/", "foundation/annualreport/2021/article/angela-and-eric.html"),
+    page("annualreport/2021/article/team/", "foundation/annualreport/2021/article/team.html"),
+    page("annualreport/2021/article/innovation/", "foundation/annualreport/2021/article/innovation.html"),
+    page("annualreport/2021/article/mark-surman/", "foundation/annualreport/2021/article/mark-surman.html"),
+    page("annualreport/2021/article/mitchell-baker/", "foundation/annualreport/2021/article/mitchell-baker.html"),
+    page("annualreport/2021/article/mozilla-ventures/", "foundation/annualreport/2021/article/mozilla-ventures.html"),
+    page("annualreport/2021/article/people/", "foundation/annualreport/2021/article/people.html"),
+    page("annualreport/2021/article/products/", "foundation/annualreport/2021/article/products.html"),
     page("feed-icon-guidelines/", "foundation/feed-icon-guidelines/index.html"),
     page("feed-icon-guidelines/faq/", "foundation/feed-icon-guidelines/faq.html"),
     page("licensing/", "foundation/licensing.html"),

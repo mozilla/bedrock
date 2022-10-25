@@ -299,6 +299,12 @@
     },
     {
       "files": [
+        "css/foundation/annual-report-2021.scss"
+      ],
+      "name": "annual-report-2021"
+    },
+    {
+      "files": [
         "css/foundation/annual-report-2019-2020.scss"
       ],
       "name": "annual_report_2019_2020"
@@ -1731,9 +1737,9 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/foundation/annual-report-2019-2020.es6.js"
+        "js/foundation/annual-report-modal.es6.js"
       ],
-      "name": "annual_report_2019_2020"
+      "name": "annual_report_modal"
     },
     {
       "files": [

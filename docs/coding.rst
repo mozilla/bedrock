@@ -1668,6 +1668,27 @@ Card
 
     Example: ``link_url=url('mozorg.about.manifesto')``
 
+- link_rel
+    String for link ``rel`` attribute.
+
+    Default: ``None``
+
+    Example: ``link_rel='noopener noreferrer'``
+
+- link_target
+    String for link ``target`` attribute.
+
+    Default: ``None``
+
+    Example: ``link_target='_blank'``
+
+- link_title
+    String for link ``title`` attribute.
+
+    Default: ``None``
+
+    Example: ``link_title='This link opens in a new tab'``
+
 - media_icon
     An optional CSS class to display a media icon, indicating when card will play video when clicked.
 

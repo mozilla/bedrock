@@ -1,0 +1,21 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "foundation/annualreport/2021/base.html" %}
+
+{% block body_class %}annual-2021-article{% endblock %}
+
+{% block content %}
+<main role="main">
+  <article class="c-article-container mzp-l-content mzp-t-content-md">
+    <h1 class="c-article-main-heading">
+      {% block letter_title %}{% endblock %}
+    </h1>
+
+    {% block letter_content %}{% endblock %}
+  </article>
+</main>
+{% endblock %}

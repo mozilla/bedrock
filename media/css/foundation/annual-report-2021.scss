@@ -1,0 +1,326 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:color';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+
+// * -------------------------------------------------------------------------- */
+// Typography
+
+main {
+    @include text-body-lg;
+}
+
+.c-section-heading {
+    font-weight: normal;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+
+    br {
+        display: none;
+    }
+
+    @media #{$mq-sm} {
+        margin-bottom: $spacing-2xl;
+
+        br {
+            display: block;
+        }
+    }
+}
+
+.c-label-category {
+    @include text-body-md;
+    background: $color-green-40;
+    color: $color-black;
+    display: inline-block;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-sm;
+}
+
+.c-section-split-link {
+    text-decoration: none;
+
+    p {
+        @include text-body-sm;
+        color: $color-marketing-gray-80;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Hero section
+
+.c-hero-banner {
+    background-color: $color-black;
+    text-align: center;
+
+    h1 {
+        @include font-base;
+        @include text-title-xl;
+        color: $color-white;
+        font-weight: normal;
+
+        span {
+            background: #5a61ef;
+            display: inline-block;
+            margin-bottom: $spacing-md;
+            padding: 0 $spacing-md;
+
+            &:nth-of-type(3) {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        @include at2x('/media/img/foundation/annualreport/2021/header/arrow.png', 900px, auto);
+        background-position: center center;
+        background-repeat: no-repeat;
+        min-height: 450px;
+
+        .mzp-l-content {
+            padding-top: 100px;
+        }
+
+        h1 {
+            @include text-title-2xl;
+
+            span {
+                &:nth-of-type(1) {
+                    margin-left: -120px;
+                }
+
+                &:nth-of-type(2) {
+                    margin-left: 120px;
+                }
+
+                &:nth-of-type(3) {
+                    margin-left: -30px;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include background-size(1300px, auto);
+        min-height: 700px;
+
+        .mzp-l-content {
+            padding-top: 150px;
+        }
+
+        h1 {
+            @include font-size(120px);
+
+            span {
+                &:nth-of-type(1) {
+                    margin-left: -200px;
+                }
+
+                &:nth-of-type(2) {
+                    margin-left: 200px;
+                }
+
+                &:nth-of-type(3) {
+                    margin-left: -50px;
+                }
+            }
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Leadership section
+
+.c-section-leadership-intro {
+    padding-bottom: 0;
+}
+
+.c-section-leadership-cards {
+    padding-bottom: $layout-sm;
+}
+
+// * -------------------------------------------------------------------------- */
+// Modal styles
+
+.js-modal-content {
+    .js & {
+        @include hidden;
+    }
+}
+
+.mzp-c-modal .mzp-c-modal-overlay-contents .mzp-c-modal-content {
+    display: block;
+}
+
+.js .has-modal {
+    cursor: pointer;
+}
+
+.mzp-c-modal-inner {
+    background-color: $color-white;
+    padding-top: $layout-lg;
+}
+
+.mzp-c-modal-overlay-contents {
+    color: $color-black;
+    padding-top: $spacing-2xl;
+
+    img {
+        display: block;
+        margin-bottom: $spacing-lg;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: get-theme('link-color-hover');
+        }
+    }
+}
+
+.mzp-c-modal-close {
+    background: $color-green-40;
+    border-radius: 100%;
+
+    button {
+        cursor: pointer;
+    }
+
+    .mzp-c-modal-button-close {
+        background-image: url('/media/protocol/img/icons/close.svg');
+        border-radius: 100%;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: color.adjust($color-green-40, $lightness: -20%);
+        }
+    }
+}
+
+.c-modal-next {
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+    right: 3.75rem;
+
+    .hide-next & {
+        display: none;
+    }
+
+    .c-modal-button-next {
+        background-image: url('/media/protocol/img/icons/arrow-right.svg');
+    }
+}
+
+.c-modal-prev {
+    @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
+    right: 7.1rem;
+
+    .hide-next & {
+        right: 3.75rem;
+    }
+
+    .hide-prev & {
+        display: none;
+    }
+
+    .c-modal-button-prev {
+        background-image: url('/media/protocol/img/icons/arrow-left.svg');
+    }
+}
+
+.c-modal-button-next,
+.c-modal-button-prev {
+    @extend .mzp-c-modal-button-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder */
+}
+
+// * -------------------------------------------------------------------------- */
+// Financial documents
+
+.c-report-pdfs {
+    border-top: 1px solid $color-light-gray-90;
+    padding-top: $spacing-xl;
+
+    li {
+        margin-bottom: $spacing-xl;
+        text-align: center;
+
+        @media #{$mq-md} {
+            padding: $spacing-xl 0;
+            width: 50%;
+
+            &:first-child {
+                border-right: 1px solid $color-light-gray-90;
+            }
+        }
+    }
+
+    span {
+        @include font-mozilla;
+        @include text-title-xs;
+        display: block;
+        font-weight: bold;
+        margin-bottom: $spacing-md;
+    }
+
+    @media #{$mq-md} {
+        display: flex;
+        justify-content: space-around;
+        padding-top: $spacing-2xl;
+        width: 100%;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Split component section
+
+.split-container .has-modal {
+    margin: $layout-lg 0;
+
+    @media #{$mq-md} {
+        margin: $layout-xl 0;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Article / letter styles
+
+.annual-2021-article {
+    main {
+        background: transparent url('/media/img/foundation/annualreport/2021/article/background.jpg') top left no-repeat;
+        background-size: 100% auto;
+        padding-top: $layout-lg;
+
+        @media (prefers-reduced-motion: no-preference) {
+            background-attachment: fixed;
+        }
+    }
+
+    .c-article-container {
+        background-color: $color-white;
+    }
+
+    .c-article-main-heading {
+        margin-bottom: $spacing-2xl;
+
+        br {
+            display: none;
+        }
+
+        @media #{$mq-sm} {
+            br {
+                display: block;
+            }
+        }
+    }
+}

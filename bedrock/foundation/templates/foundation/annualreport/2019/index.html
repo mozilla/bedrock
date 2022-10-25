@@ -21,10 +21,6 @@
   {{ css_bundle('annual_report_2019_2020') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('annual_report_2019_2020') }}
-{% endblock %}
-
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=state-of-mozilla-2019' %}
 
 {% block content %}
@@ -1362,4 +1358,8 @@
 </main>{# end visible content #}
 
 <div class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('annual_report_modal') }}
 {% endblock %}
