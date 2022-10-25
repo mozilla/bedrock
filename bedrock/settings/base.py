@@ -1550,7 +1550,7 @@ VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
             "12-month": {
-                "id": "price_1LhJGWKb9q6OnNsLuCurigPk" if DEV else "price_1La3d7JNcmPzuWtRn0cg2EyH",
+                "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
                 "price": "US$6.99",
                 "total": "US$83.88",
                 "saving": 50,
