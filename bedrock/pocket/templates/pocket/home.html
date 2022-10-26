@@ -54,12 +54,24 @@
           <p class="section-lede">{{ ftl('pocket-home-stop-sending-yourself-links') }}</p>
           {% endcall %}
 
+          <!-- issue #12283 -->
+          {% set mobile_list_image = 'pocket/pocket-list-mobile' %}
+          {% if switch('pocket-rename-my-list-to-saves') and LANG != 'de' %}
+            {% set mobile_list_image = 'pocket/pocket-list-mobile-saves' %}
+          {% endif %}
+
           {% call split(
           block_class='mzp-l-split-center-on-sm-md',
           media_class='mzp-l-split-h-center',
           media_after=True,
           l10n_image=True,
-          image_url='pocket/pocket-list-mobile.png',
+          image_url=mobile_list_image ~ '.png',
+          image_srcset={
+            mobile_list_image ~ '-high-res.png' : '2x'
+          },
+          image_width=472,
+          image_height=350,
+          loading='lazy'
           )%}
           <h2 class="sub-section-heading">{{ ftl('pocket-home-great-recommendations') }}</h2>
           <p class="section-lede">{{ ftl('pocket-home-we-comb-the-internet') }}</p>

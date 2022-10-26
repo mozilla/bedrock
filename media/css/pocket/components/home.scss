@@ -19,6 +19,10 @@ $image-path: '/media/protocol/img';
     color: $color-text-primary;
     font-family: $font-sans;
 
+    .mzp-c-split-media-asset {
+        height: auto;
+    }
+
     .pocket-homepage-header {
         .mzp-l-split-media-overflow {
             width: 145%;
