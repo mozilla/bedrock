@@ -64,7 +64,7 @@
       <tr class="position"
           data-team="{{ position.department.strip() }},"
           data-type="{{ position.position_type.strip() }},"
-          data-location="{{ position.location.strip() }},">
+          data-location="{{ position.job_locations.strip() }},">
         <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
         <td class="location">{{ position.job_locations }}</td>
         <td class="name">{{ position.department }}</td>
