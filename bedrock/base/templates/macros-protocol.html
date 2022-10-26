@@ -246,20 +246,28 @@
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
     {% if image_url %}
     <div class="mzp-c-card-media-wrapper">
-      {{ image(
-        alt=image_alt,
-        class='mzp-c-card-image',
-        height=image_height,
-        highres_image_url=highres_image_url,
-        include_highres=include_highres_image,
-        include_l10n=l10n_image,
-        loading='lazy',
-        sizes=image_sizes,
-        sources=image_sources,
-        srcset=image_srcset,
+      {% set unclean = {
+        'alt': image_alt,
+        'class': 'mzp-c-card-image',
+        'width': image_width,
+        'height': image_height,
+        'loading': 'lazy',
+        'l10n': l10n_image
+      } %}
+      {% set optional_attributes = dict() %}
+      {% for key, value in unclean.items() %}
+        {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
+      {% endfor %}
+      {% if include_highres_image %}
+        {% set filename, ext = image_url.split('.') %}
+        {% set srcset = {"".join([filename, "-", "high-res", ".", ext]): "1.5x"} %}
+      {% endif %}
+      {{ resp_img(
         url=image_url,
-        width=image_width
-      ) }}
+        sizes=image_sizes or None,
+        srcset=image_srcset or srcset or None,
+        optional_attributes=optional_attributes
+        )}}
     </div>
     {% endif %}
     <div class="mzp-c-card-content">
