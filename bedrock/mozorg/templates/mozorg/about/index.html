@@ -108,8 +108,10 @@
       desc=ftl('about-the-principles-we-wrote-in'),
       link_cta=ftl('about-read-the-manifesto'),
       link_url=url('mozorg.about.manifesto'),
-      image_url='img/home/2018/billboard-healthy-internet.png',
-      include_highres_image=True
+      image=resp_img(url='img/home/2018/billboard-healthy-internet.png',
+        srcset={
+          'img/home/2018/billboard-healthy-internet-high-res.png': '2x'
+        }),
   )}}
 </div>
 

@@ -85,8 +85,10 @@
         desc='Mozilla setzt sich für ein gesundes Internet ein – und damit für die Menschen, die es nutzen. Damals. Heute. Morgen.',
         link_cta='Erfahre mehr über Mozilla',
         link_url=url('mozorg.about.manifesto'),
-        image_url='img/home/2018/billboard-more-power.png',
-        include_highres_image=True
+        image=resp_img('img/home/2018/billboard-more-power.png',
+          srcset={
+            'img/home/2018/billboard-more-power-high-res.png': '2x'
+          })
       )}}
 
       <div class="mzp-l-card-half">
@@ -100,8 +102,10 @@
         desc='Virtual Reality, IoT und mehr.',
         link_cta='Entdecke das Web der Zukunft',
         link_url='https://labs.mozilla.org/',
-        image_url='img/home/2018/billboard-open-minds.png',
-        include_highres_image=True,
+        image=resp_img('img/home/2018/billboard-open-minds.png',
+          srcset={
+            'img/home/2018/billboard-open-minds-high-res.png': '2x'
+        }),
         reverse=True
       )}}
 

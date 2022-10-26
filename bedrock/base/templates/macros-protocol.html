@@ -8,37 +8,20 @@
 
 
 {# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
+{# image attribute passed should be one of the following helpers: <img>, resp_img or picture #}
 {% macro billboard(
   desc='',
   ga_title='',
   heading_level=2,
-  image_alt='',
-  image_sizes=None,
-  image_sources=None,
-  image_srcset=None,
-  image_url='',
-  include_highres_image=False,
   link_cta=None,
   link_url=None,
-  loading=None,
   reverse=False,
-  title=''
+  title='',
+  image=None
 ) -%}
 <section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
   <div class="mzp-c-billboard-image-container">
-    {{ image(
-      alt=image_alt,
-      class='mzp-c-billboard-image',
-      height=346,
-      include_highres=include_highres_image,
-      include_l10n=l10n_image,
-      loading=loading,
-      sizes=image_sizes,
-      sources=image_sources,
-      srcset=image_srcset,
-      url=image_url,
-      width=346
-    ) }}
+    {{ image }}
   </div>
   <div class="mzp-c-billboard-content">
     <div class="mzp-c-billboard-content-container">
