@@ -1,0 +1,48 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}{% if not is_root %}404 - {% endif %}Choose your language or locale to browse Mozilla.org{% endblock %}
+
+{% block page_desc -%}
+  Select your country or region to indicate your preferred language.
+{%- endblock %}
+
+{% block canonical_urls %}
+{% if is_root %}
+  <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL + '/' }}">
+{% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('locales') }}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="mzp-l-content">
+  <header class="c-simple-header">
+    <h1 class="c-simple-header-title">
+      {%- if is_root -%}
+        Choose your language or locale to browse Mozilla.org
+      {%- else -%}
+        Page is not yet translated
+      {%- endif -%}
+    </h1>
+    {% if has_header -%}
+      <p>Join our <a href="https://community.mozilla.org/activities/localize-mozilla/">community team</a> and help us <a href="https://wiki.mozilla.org/L10n:Contribute">translate this page.</a></p>
+    {%- endif %}
+    <p>It is available in the following languages:</p>
+  </header>
+  <section class="c-block-list">
+    <ul>
+      {% for locale in available_locales if locale in languages %}
+        <li lang="{{ locale }}"><a href="/{{ locale }}{{ request.path_info }}" title="{{ 'Browse {0} in the {1} language'|f(request.path_info, languages[locale]["native"]) }}">{{ languages[locale]['native'] }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+{% endblock %}

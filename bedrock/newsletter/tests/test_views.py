@@ -557,7 +557,7 @@ class TestNewsletterSubscribe(TestCase):
 
     def test_shows_form_single(self):
         """The MPL page only subscribes to 'mozilla-foundation', so not a multi-newsletter form."""
-        resp = self.client.get("/MPL", follow=True)
+        resp = self.client.get("/en-US/MPL/", follow=True)
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
         self.assertTrue(doc('input[value="mozilla-foundation"]'))

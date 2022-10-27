@@ -98,8 +98,8 @@ def pytest_generate_tests(metafunc):
 
 def get_web_page(url):
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = requests.get(url, timeout=TIMEOUT, headers={"accept-language": "en"})
     except requests.RequestException:
         # retry
-        r = requests.get(url, timeout=TIMEOUT)
+        r = requests.get(url, timeout=TIMEOUT, headers={"accept-language": "en"})
     return BeautifulSoup(r.content, "html.parser")
