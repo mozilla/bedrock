@@ -35,8 +35,12 @@ $pocket-image-path: '/media/img/pocket';
         z-index: 2;
 
         .about-section-heading {
+            @include font-size(28px);
             font-family: $font-sans-alt;
             font-weight: 500;
+
+            // need to increase line-height here to remove visual bug on non EN locales (mainly an issues with the letter 'j'
+            line-height: 60px;
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 28px;
@@ -56,8 +60,7 @@ $pocket-image-path: '/media/img/pocket';
             max-width: 50%;
 
             .about-section-heading {
-                font-size: 32px;
-                line-height: 40px;
+                @include font-size(32px);
             }
         }
     }
