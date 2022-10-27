@@ -22,7 +22,7 @@ def canonical_path(request):
     """
     lang = getattr(request, "locale", settings.LANGUAGE_CODE)
     url = getattr(request, "path", "/")
-    return {"canonical_path": re.sub(r"^/" + lang, "", url)}
+    return {"canonical_path": re.sub(r"^/" + lang, "", url) if lang else url}
 
 
 def current_year(request):

@@ -14,6 +14,7 @@ from bedrock.base import views as base_views
 # which breaks the base template page. So we replace them with views that do!
 handler500 = "bedrock.base.views.server_error_view"
 handler404 = "bedrock.base.views.page_not_found_view"
+locale404 = "lib.l10n_utils.locale_selection"
 
 
 urlpatterns = (
@@ -36,6 +37,13 @@ urlpatterns = (
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),
 )
+
+if settings.DEV:
+
+    urlpatterns += (
+        # Add /404-locale/ for localizers.
+        path("404-locale/", import_string(locale404)),
+    )
 
 if settings.DEBUG:
 
