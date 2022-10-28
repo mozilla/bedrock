@@ -15,9 +15,11 @@
   {{ css_bundle('pocket-add') }}
 {% endblock  %}
 
-{% block content %}
+{% block header %}
+  {% include 'pocket/includes/nav-platform.html' %}
+{% endblock %}
 
-{% include 'pocket/includes/platform-nav.html' %}
+{% block content %}
 
 <div class="add-page">
    <section class="add-header">
@@ -115,7 +117,10 @@
       </div>
    </section>
 </div>
-
-{% include 'pocket/includes/platform-footer.html' %}
-
 {% endblock %}
+
+{% block footer %}
+  {% include 'pocket/includes/footer-platform.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}

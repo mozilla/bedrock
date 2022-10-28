@@ -41,12 +41,22 @@
     <title>Pocket: {% block page_title %}{% endblock page_title %}</title>
   </head>
   <body>
+    {% block header %}
+      {% include 'pocket/includes/nav.html' %}
+    {% endblock %}
+
     <main class="main-container">{% block content %}{% endblock %}</main>
+
+    {% block footer %}
+      {% include 'pocket/includes/footer.html' %}
+    {% endblock %}
 
      {% block site_js %}
       {{ js_bundle('pocket-site') }}
      {% endblock %}
 
-     {% block js %}{% endblock %}
+     {% block js %}
+      {{ js_bundle('pocket-nav') }}
+     {% endblock %}
   </body>
 </html>

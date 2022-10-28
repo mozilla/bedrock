@@ -17,8 +17,6 @@
 
 {% block content %}
 
-{% include 'pocket/includes/nav.html' %}
-
 <section>
 {% call split(
   block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
@@ -68,10 +66,4 @@
 
 {% include 'pocket/includes/pocket-premium.html' %}
 
-{% include 'pocket/includes/footer.html' %}
-
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('pocket-nav') }}
 {% endblock %}
