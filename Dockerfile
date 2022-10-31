@@ -27,6 +27,13 @@ FROM node:16-slim AS assets
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
 
+# Required for required glean_parser dependencies
+COPY docker/bin/apt-install /usr/local/bin/
+RUN apt-install python3 python3-venv
+RUN python3 -m venv /.venv
+COPY --from=python-builder /venv /.venv
+ENV PATH="/.venv/bin:$PATH"
+
 # copy dependency definitions
 COPY package.json package-lock.json ./
 
@@ -38,13 +45,6 @@ COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore we
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean
-
-# Required for required glean_parser dependencies
-COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install python3 python3-venv
-RUN python3 -m venv /.venv
-COPY --from=python-builder /venv /.venv
-ENV PATH="/.venv/bin:$PATH"
 
 RUN npm run build
 
@@ -96,8 +96,6 @@ COPY ./media ./media
 FROM app-base AS devapp
 
 CMD ["./bin/run-tests.sh"]
-
-
 
 RUN apt-install make sqlite3
 COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
