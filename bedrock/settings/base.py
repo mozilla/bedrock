@@ -749,8 +749,6 @@ EMAIL_SUBJECT_PREFIX = config("EMAIL_SUBJECT_PREFIX", default="[bedrock] ")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
-# Google Analytics
-GA_ACCOUNT_CODE = ""
 
 EXTERNAL_FILES_PATH = config("EXTERNAL_FILES_PATH", default=data_path("community_data"))
 EXTERNAL_FILES_BRANCH = config("EXTERNAL_FILES_BRANCH", default="master")
@@ -1175,7 +1173,10 @@ ignore_logger("django.security.DisallowedHost")
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
-GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
+GA_ACCOUNT_CODE = ""  # DELETE ME: Deprecated?
+GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")  # NB: Not used in all Bedrock modes (Mozorg only).
+GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")  # NB: Not used in all Bedrock modes (Pocket only).
+
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
 STUB_ATTRIBUTION_RATE = config("STUB_ATTRIBUTION_RATE", default=str(1 if DEV else 0), parser=float)

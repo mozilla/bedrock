@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 <!DOCTYPE html>
-<html lang="{{ LANG }}">
+<html lang="{{ LANG }}"{% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %}>
   <head>
     {% block shared_meta %}
       <meta charset="utf-8" />
