@@ -1532,55 +1532,6 @@ Billboard
 
     Example: ``heading_level=1``
 
-- image_alt
-    Alt text for the images to be used.
-
-    Default: ``''``
-
-    Example: ``image_alt='Red Panda'``
-
-- image_height
-    Number indicating the height of an image.
-
-    Default: ``None``
-
-    Example: ``image_height='153'``
-
-- image_sizes
-    The ``sizes`` attribute for a responsive image.
-
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_sources
-    A list of ``<source>`` elements for a responsive ``<picture>`` image.
-
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_srcset
-    The ``srcset`` attribute for a responsive image.
-
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_url
-    **Required**. Path to image location.
-
-    Default: ``''``
-
-    Example: ``image_url='img/home/2018/billboard-healthy-internet.png'``
-
-- include_highres_image (deprecated)
-    Boolean that determines whether the image can also appear in high res.
-
-    Default: ``False``
-
-    Example: ``include_highres_image=True``
-
 - link_cta
     String indicating link text (usually a translation id wrapped in an ftl function).
 
@@ -1616,6 +1567,18 @@ Billboard
 
     Example: ``title=ftl('about-the-mozilla-manifesto')``
 
+- image
+    **Required**. Image to be used in the Billboard element. Can pass an <img> element, `resp_img` or `picture` python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
+
+    Default: ``None``
+
+    Example:
+
+    .. code-block::
+
+        image=resp_img('img/firefox/accounts/trailhead/value-respect.jpg', srcset={
+            'img/firefox/accounts/trailhead/value-respect-high-res.jpg': '2x'
+        })
 
 Card
 ^^^^
