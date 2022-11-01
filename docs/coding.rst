@@ -1572,9 +1572,13 @@ Billboard
 
     Default: ``None``
 
-    Example: ``image=resp_img('img/firefox/accounts/trailhead/value-respect.jpg', srcset={
-                        'img/firefox/accounts/trailhead/value-respect-high-res.jpg': '2x'
-                    })``
+    Example:
+
+    .. code-block::
+
+        image=resp_img('img/firefox/accounts/trailhead/value-respect.jpg', srcset={
+            'img/firefox/accounts/trailhead/value-respect-high-res.jpg': '2x'
+        })
 
 Card
 ^^^^
