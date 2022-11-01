@@ -50,9 +50,8 @@
           class='mzp-c-card-medium',
           title=ftl('about-pioneers-of-the-open-web'),
           ga_title='Pioneers of The Open Web',
-          desc=ftl('about-our-leadership-has-been-at'),
-          image_url='img/mozorg/about/leaders.jpg',
-          include_highres_image=True,
+          desc=ftl('about-our-purple-bghip-has-been-at'),
+          image=resp_img('img/mozorg/about/leaders.jpg', srcset={"img/mozorg/about/leaders-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           aspect_ratio='mzp-has-aspect-3-2',
           link_url=url('mozorg.about.leadership.index')
       )}}
@@ -61,8 +60,7 @@
           title=ftl('about-firefox-fast-for-good'),
           ga_title='Firefox: Fast for Good',
           desc=ftl('about-when-you-use-the-new-firefox'),
-          image_url='img/mozorg/about/firefox.jpg',
-          include_highres_image=True,
+          image=resp_img('img/mozorg/about/firefox.jpg', srcset={"img/mozorg/about/firefox-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           aspect_ratio='mzp-has-aspect-3-2',
           link_url=url('firefox.new')
       )}}
@@ -71,7 +69,7 @@
           title=ftl('vision-for-the-web'),
           ga_title='Mozilla’s vision for the Web',
           desc=ftl('read-about-our-vision'),
-          image_url='img/mozorg/about/purple-bg.jpg',
+          image=resp_img('img/mozorg/about/purple-bg.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           aspect_ratio='mzp-has-aspect-3-2',
           link_url=url('mozorg.about.webvision.summary')
       )}}
@@ -80,8 +78,7 @@
           title=ftl('about-talking-internet-issues-irl'),
           ga_title='Talking Internet Issues IRL',
           desc=ftl('about-in-mozillas-irl-podcast-host'),
-          image_url='img/mozorg/about/irl.jpg',
-          include_highres_image=True,
+          image=resp_img('img/mozorg/about/irl.jpg', srcset={"img/mozorg/about/irl-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           aspect_ratio='mzp-has-aspect-3-2',
           link_url='https://irlpodcast.org/'
       )}}
@@ -148,8 +145,7 @@
         title=ftl('about-work-at-mozilla'),
         ga_title='Work at Mozilla',
         desc=ftl('about-join-a-mission-driven-organization'),
-        image_url='img/mozorg/about/careers.jpg',
-        include_highres_image=True,
+        image=resp_img('img/mozorg/about/careers.jpg', srcset={"img/mozorg/about/careers-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         aspect_ratio='mzp-has-aspect-3-2',
         link_url=url('careers.home'),
         cta=ftl('about-mozilla-careers')
@@ -159,8 +155,7 @@
         title=ftl('about-how-you-can-help'),
         ga_title='How You Can Help',
         desc=ftl('about-your-voice-your-code-your'),
-        image_url='img/mozorg/about/involved.jpg',
-        include_highres_image=True,
+        image=resp_img('img/mozorg/about/involved.jpg', srcset={"img/mozorg/about/involved-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         aspect_ratio='mzp-has-aspect-3-2',
         link_url=url('mozorg.contribute'),
         cta=ftl('about-get-involved')

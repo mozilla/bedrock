@@ -209,6 +209,7 @@
   ga_title='',
   heading_level=2,
   highres_image_url=None,
+  image=None,
   image_alt='',
   image_height=None,
   image_sizes=None,
@@ -227,23 +228,8 @@
 ) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}mzp-has-video has-video-embed{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
-    {% if image_url %}
-    <div class="mzp-c-card-media-wrapper">
-      {{ image(
-        alt=image_alt,
-        class='mzp-c-card-image',
-        height=image_height,
-        highres_image_url=highres_image_url,
-        include_highres=include_highres_image,
-        include_l10n=l10n_image,
-        loading='lazy',
-        sizes=image_sizes,
-        sources=image_sources,
-        srcset=image_srcset,
-        url=image_url,
-        width=image_width
-      ) }}
-    </div>
+    {% if image_url or image %}
+    <div class="mzp-c-card-media-wrapper">{{ image }}</div>
     {% endif %}
     <div class="mzp-c-card-content">
     {% if tag_label %}
@@ -280,19 +266,12 @@
 {% macro content_card(name, content_cards=None) -%}
   {% set card_data = get_content_card(content_cards or page_content_cards, name) -%}
   {% if card_data -%}
+    {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
+    {% do card_data.pop('image_url') %}
+    {% do card_data.pop('highres_image_url') %}
+    {% do card_data.update({'image': image}) %}
     {{ card(**card_data) }}
   {% endif %}
-{%- endmacro %}
-
-
-{% macro content_card_layout(layout_data) -%}
-  {% if layout_data -%}
-    <div class="mzp-l-card-{{ layout_data.class }}">
-      {% for card_data in layout_data.cards %}
-        {{ card(**card_data) }}
-      {% endfor %}
-    </div>
-  {%- endif %}
 {%- endmacro %}
 
 
