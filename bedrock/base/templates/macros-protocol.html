@@ -208,16 +208,7 @@
   desc=None,
   ga_title='',
   heading_level=2,
-  highres_image_url=None,
   image=None,
-  image_alt='',
-  image_height=None,
-  image_sizes=None,
-  image_sources=None,
-  image_srcset=None,
-  image_url='',
-  image_width=None,
-  include_highres_image=False,
   l10n_image=None,
   link_url='',
   media_icon=None,
@@ -228,7 +219,7 @@
 ) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}mzp-has-video has-video-embed{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
-    {% if image_url or image %}
+    {% if image %}
     <div class="mzp-c-card-media-wrapper">{{ image }}</div>
     {% endif %}
     <div class="mzp-c-card-content">
