@@ -15,8 +15,6 @@
 {% endblock  %}
 
 {% block content %}
-{% include 'pocket/includes/nav.html' %}
-
     <div class="intro-wrapper">
         <section class="about-section first">
             <div class="about-section-text-wrapper">
@@ -77,11 +75,4 @@
         {% set presspage_attrs = 'id="press-page" href="https://blog.getpocket.com/press/"' %}
         <p class="about-cta-body">{{ ftl('pocket-about-download-press-kit', presspage_attrs=presspage_attrs)}}</p>
     </section>
-
-    {% include 'pocket/includes/footer.html' %}
-{% endblock %}
-
-
-{% block js %}
-  {{ js_bundle('pocket-nav') }}
 {% endblock %}

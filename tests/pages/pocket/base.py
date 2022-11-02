@@ -12,6 +12,8 @@ class BaseRegion(Region):
 
 
 class BasePage(Page):
+    _platform_nav_locator = (By.CSS_SELECTOR, ".pocket-header.platform")
+
     def __init__(self, selenium, pocket_base_url, locale="en", **url_kwargs):
         super(BasePage, self).__init__(selenium, pocket_base_url, locale=locale, **url_kwargs)
 
@@ -42,14 +44,16 @@ class BasePage(Page):
 
     @property
     def navigation(self):
-        return self.Navigation(self)
+        if self.is_element_displayed(*self._platform_nav_locator):
+            return self.NavigationPlatform(self)
+        else:
+            return self.Navigation(self)
 
     class Navigation(BaseRegion):
 
         _content_wrapper_locator = (By.TAG_NAME, "body")
         _mobile_menu_open_btn_locator = (By.CLASS_NAME, "global-nav-mobile-menu-btn")
         _mobile_menu_close_btn_locator = (By.CLASS_NAME, "mobile-nav-close-btn")
-        _mobile_menu_locator = (By.CLASS_NAME, "mobile-nav")
         _mobile_menu_wrapper_locator = (By.CLASS_NAME, "mobile-nav-wrapper")
         _mobile_menu_nav_list_locator = (By.CSS_SELECTOR, ".mobile-nav-list")
 
@@ -98,3 +102,10 @@ class BasePage(Page):
             self.mobile_menu_close_button.click()
             self.wait.until(lambda s: self.is_mobile_menu_closed)
             return self
+
+    class NavigationPlatform(BaseRegion):
+        _mobile_menu_open_btn_locator = (By.CLASS_NAME, "global-nav-mobile-menu-btn")
+
+        @property
+        def mobile_nav_not_available(self):
+            return not self.is_element_displayed(*self._mobile_menu_open_btn_locator)

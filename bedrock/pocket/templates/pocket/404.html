@@ -12,12 +12,20 @@
 
 {% block page_title %}{{ ftl('not-found-title') }}{% endblock page_title %}
 
+{% block header %}
+  {% include 'pocket/includes/nav-platform.html' %}
+{% endblock %}
+
 {% block content %}
-  {% include 'pocket/includes/platform-nav.html' %}
   <div class="mzp-l-content mzp-t-content-lg">
-  <h1>{{ ftl('not-found-how-can-i-help') }}</h1>
-  <p>{{ ftl('not-found-the-link-you-followed', home=url('pocket.home')) }}</p>
-  <p>{{ ftl('not-found-let-us-know', help='https://help.getpocket.com') }}</p>
-</div>
-  {% include 'pocket/includes/platform-footer.html' %}
+    <h1>{{ ftl('not-found-how-can-i-help') }}</h1>
+    <p>{{ ftl('not-found-the-link-you-followed', home=url('pocket.home')) }}</p>
+    <p>{{ ftl('not-found-let-us-know', help='https://help.getpocket.com') }}</p>
+  </div>
 {% endblock  %}
+
+{% block footer %}
+  {% include 'pocket/includes/footer-platform.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}

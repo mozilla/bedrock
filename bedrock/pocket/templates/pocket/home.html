@@ -18,8 +18,11 @@
   {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
+{% block header %}
+  {% include 'pocket/includes/nav-platform.html' %}
+{% endblock %}
+
 {% block content %}
-{% include 'pocket/includes/platform-nav.html' %}
 
     <div class="pocket-homepage mzp-t-content-xl">
         {% call split(
@@ -122,6 +125,10 @@
         </section>
 
     </div>
-
-{% include 'pocket/includes/platform-footer.html' %}
 {% endblock %}
+
+{% block footer %}
+  {% include 'pocket/includes/footer-platform.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}
