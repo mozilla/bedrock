@@ -10,7 +10,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = space
 
-[*.{py,js,css,scss,sh,groovy}]
+[*.{py,js,cjs,css,scss,sh,groovy}]
 indent_size = 4
 
 [*.{json,html,svg,yml}]

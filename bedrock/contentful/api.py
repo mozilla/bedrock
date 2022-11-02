@@ -17,7 +17,6 @@ from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
 
 from bedrock.contentful.constants import (
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_PAGE_GENERAL,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
@@ -479,17 +478,8 @@ class ContentfulPage:
                 return f"https:{preview_image_url}"
 
     def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
-
-        if self.page.content_type.id == COMPOSE_MAIN_PAGE_TYPE:
-            # This means we're dealing with a Compose-structured setup,
-            # and the slug lives not on the Entry, nor the SEO object
-            # but just on the top-level Compose `page`
-            slug = self.page.fields().get("slug")
-        else:
-            # Non-Compose pages
-            slug = entry_fields.get("slug", "home")  # TODO: check if we can use a better fallback
-
-        title = getattr(self.page, "title", "")
+        slug = entry_fields.get("slug", "home")  # TODO: check if we can use a better fallback
+        title = entry_fields.get("title", "")
         title = entry_fields.get("preview_title", title)
         blurb = entry_fields.get("preview_blurb", "")
 
@@ -542,7 +532,6 @@ class ContentfulPage:
         return {"locale": locale}
 
     def get_info_data(self, entry_obj, seo_obj=None):
-        # TODO, need to enable connectors
         entry_fields = entry_obj.fields()
         if seo_obj:
             seo_fields = seo_obj.fields()
@@ -591,20 +580,15 @@ class ContentfulPage:
         return data
 
     def get_content(self):
-        # Check if it is a page or a connector, or a Compose page type
-
+        # Check if it is a page or a connector
         entry_type = self.page.content_type.id
         seo_obj = None
-        if entry_type == COMPOSE_MAIN_PAGE_TYPE:
-            # Contentful Compose page, linking to content and SEO models
-            entry_obj = self.page.content  # The page with the actual content
-            seo_obj = self.page.seo  # The SEO model
-            # Note that the slug lives on self.page, not the seo_obj.
-        elif entry_type.startswith("page"):
-            entry_obj = self.page
-        elif entry_type == "connectHomepage":
+        if entry_type == "connectHomepage":
             # Legacy - TODO: remove me once we're no longer using Connect: Homepage
             entry_obj = self.page.fields()["entry"]
+        elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
+            entry_obj = self.page
+            seo_obj = self.page.seo
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 

@@ -19,8 +19,8 @@ from bedrock.contentful.constants import (
     ACTION_SAVE,
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.management.commands.update_contentful import (
     MAX_MESSAGES_PER_QUEUE_POLL,
@@ -322,7 +322,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     message_actions_sequence,
     command_instance,
 ):
-    # Create is the only message that will not trigger a contenful poll in Dev
+    # Create is the only message that will not trigger a Contentful poll in Dev
     assert settings.APP_NAME == "bedrock-dev"
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
@@ -616,9 +616,9 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
             ],
             0,
         ),
@@ -626,8 +626,8 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
             ],
             1,
         ),
@@ -635,9 +635,9 @@ def test_update_contentful__get_content_to_sync(
             5,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_4", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_4", "en-US"),
             ],
             2,
         ),
@@ -651,18 +651,18 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US", "de", "fr", "it"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "de"),  # simulating deletion/absence from sync
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "de"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "de"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "de"),  # simulating deletion/absence from sync
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "de"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "de"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
             ],
             6,
         ),
@@ -685,7 +685,7 @@ def test_update_contentful__detect_and_delete_absent_entries(
     for locale in locales_to_use:
         for idx in range(total_to_create_per_locale):
             ContentfulEntry.objects.create(
-                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
                 contentful_id=f"entry_{idx+1}",
                 locale=locale,
             )
@@ -713,7 +713,7 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
     for locale in ["en-US", "fr", "it"]:
         for idx in range(3):
             ContentfulEntry.objects.create(
-                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
                 contentful_id=f"entry_{idx+1}",
                 locale=locale,
             )
@@ -722,27 +722,27 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
     entries_processed_in_sync = [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
         # (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
     ]
     retval = command_instance._detect_and_delete_absent_entries(entries_processed_in_sync)
     assert retval == 4
 
     for ctype, contentful_id, locale in [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
     ]:
         assert ContentfulEntry.objects.get(
             content_type=ctype,
@@ -752,9 +752,9 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
 
     for ctype, contentful_id, locale in [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
     ]:
         assert not ContentfulEntry.objects.filter(
             content_type=ctype,
