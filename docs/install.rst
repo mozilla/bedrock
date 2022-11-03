@@ -15,7 +15,7 @@ There are two primary methods of installing bedrock: Docker and Local. Whichever
 
 .. code-block:: bash
 
-    $ git clone git://github.com/mozilla/bedrock.git
+    $ git clone https://github.com/mozilla/bedrock.git
 
 .. code-block:: bash
 
