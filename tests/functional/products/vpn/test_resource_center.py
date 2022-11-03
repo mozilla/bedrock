@@ -22,3 +22,6 @@ def test_vpn_available_in_country(locale, base_url, selenium):
 
     # Light test that the VRC page renders at all
     assert page.is_resource_center_header_displayed
+
+    # ...and that it has at least one article
+    assert page.is_article_card_with_link_displayed
