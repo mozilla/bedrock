@@ -15,7 +15,7 @@ class VPNResourceCenterHomePage(BasePage):
     _resource_center_header_locator = (By.CSS_SELECTOR, ".mzp-c-call-out.resource-center-page-header.resource-center-hero")
 
     # Article link
-    _resource_center_article_link_locator = (By.CSS_SELECTOR, ".mzp-c-card a.mzp-c-card-block-link")
+    _resource_center_article_link_locator = (By.CSS_SELECTOR, ".resource-center-articles .mzp-c-card a.mzp-c-card-block-link")
 
     @property
     def is_resource_center_header_displayed(self):
