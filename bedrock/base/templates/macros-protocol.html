@@ -209,7 +209,6 @@
   ga_title='',
   heading_level=2,
   image=None,
-  l10n_image=None,
   link_url='',
   media_icon=None,
   meta=None,
@@ -220,7 +219,7 @@
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}mzp-has-video has-video-embed{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
     {% if image %}
-    <div class="mzp-c-card-media-wrapper">{{ image }}</div>
+    <div class="mzp-c-card-media-wrapper">{{ image | safe }}</div>
     {% endif %}
     <div class="mzp-c-card-content">
     {% if tag_label %}
@@ -259,7 +258,9 @@
   {% if card_data -%}
     {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
     {% do card_data.pop('image_url') %}
-    {% do card_data.pop('highres_image_url') %}
+    {% if card_data.highres_image_url %}
+      {% do card_data.pop('highres_image_url') %}
+    {% endif %}
     {% do card_data.update({'image': image}) %}
     {{ card(**card_data) }}
   {% endif %}
