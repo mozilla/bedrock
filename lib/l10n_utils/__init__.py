@@ -51,7 +51,7 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
 
 def redirect_to_best_locale(request, translations):
     # Strict only for the root URL.
-    strict = request.path_info == "/"
+    strict = request.path_info == "/" and request.headers.get("Accept-Language") is None
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
     locale = get_best_translation(translations, get_accept_languages(request), strict)
     if locale:

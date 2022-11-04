@@ -29,7 +29,8 @@ jinja_env = Jinja2.get_default()
 class TestRender(TestCase):
     def _test(self, path, template, locale, accept_lang, status, destination=None, active_locales=None, add_active_locales=None):
         request = RequestFactory().get(path)
-        request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
+        if accept_lang:
+            request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
         prefixer = Prefixer(request)
         request.locale = prefixer.locale
 
@@ -79,6 +80,19 @@ class TestRender(TestCase):
         self._test("/sitemap.xml", template, "", "", 200, active_locales=locales)
         self._test("/en-US/sitemap.xml", template, "", "", 200, active_locales=locales)
         self._test("/fr/sitemap.xml", template, "", "", 200, active_locales=locales)
+
+    def test_with_accept_language_header(self):
+        template = "firefox/new.html"
+        locales = ["en-US", "en-GB", "fr", "es-ES"]
+
+        # Test with accept language header and locale-less root path returns 302.
+        self._test("/", template, "", "en-us", 302, "/en-US/", active_locales=locales)
+        # Test with accept language header of unsupported locale and locale-less root path returns 302.
+        self._test("/", template, "", "ach", 302, "/en-US/", active_locales=locales)
+        # Test with accept language header and locale-less path returns 302.
+        self._test("/firefox/new/", template, "", "en-us", 302, "/en-US/firefox/new/", active_locales=locales)
+        # Test with accept language header of unsupported locale and locale-less path returns 302.
+        self._test("/firefox/new/", template, "", "ach", 302, "/en-US/firefox/new/", active_locales=locales)
 
     def test_firefox(self):
         path = "/firefox/new/"
