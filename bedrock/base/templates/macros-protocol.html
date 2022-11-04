@@ -256,11 +256,13 @@
 {% macro content_card(name, content_cards=None) -%}
   {% set card_data = get_content_card(content_cards or page_content_cards, name) -%}
   {% if card_data -%}
-    {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
-    {% do card_data.pop('image_url') %}
     {% if card_data.highres_image_url %}
+      {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
       {% do card_data.pop('highres_image_url') %}
+    {% else %}
+      {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '">' %}
     {% endif %}
+    {% do card_data.pop('image_url') %}
     {% do card_data.update({'image': image}) %}
     {{ card(**card_data) }}
   {% endif %}
