@@ -11,10 +11,18 @@
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
-{% set utm_campaign = campaign + '-de' %}
-
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
-
+<div class="wnp-main-content">
+  <h2 class="wnp-main-title">Mach da weiter, wo du aufgehört hast mit Firefox</h2>
+  <p class="wnp-main-tagline">
+    Deine offenen Tabs, Lesezeichen und Lieblingsseiten auf all deinen Geräten. Hol dir Firefox fürs Handy oder Tablet.
+  </p>
+</div>
+<div class="wnp-main-cta">
+  <h3>Scanne den QR-code los geht's</h3>
+  <!-- todo: use Adjust links -->
+  {{ qrcode("https://accounts.firefox.com") }}
+</div>
 {% endblock %}
