@@ -11,18 +11,30 @@
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_107_eu') }}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
-<div class="wnp-main-content">
-  <h2 class="wnp-main-title">Firefox mobile plus intuitif que jamais</h2>
-  <p class="wnp-main-tagline">
-    Retrouvez vos onglets ouverts, marque-pages et sites favoris de votre ordinateur sur la page d’accueil de votre téléphone ou tablette.
-  </p>
-</div>
-<div class="wnp-main-cta">
-  <h3>Scanner le code QR pour démarrer</h3>
-  <!-- todo: use Adjust links -->
-  {{ qrcode("https://accounts.firefox.com") }}
-</div>
+<div class="wrapper">
+  <div class="wnp-main-content mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-two">
+    <div>
+      <h2 class="wnp-main-title">Firefox mobile plus intuitif que jamais</h2>
+      <p class="wnp-main-tagline">
+        Retrouvez vos onglets ouverts, marque-pages et sites favoris de votre ordinateur sur la page d’accueil de votre téléphone ou tablette.
+      </p>
+    </div>
+    <div class="wnp-main-cta">
+      <h3>Scanner le code QR pour démarrer</h3>
+      <!-- todo: use Adjust links -->
+      {{ qrcode("https://accounts.firefox.com") }}
+    </div>
+  </div> <!-- .wnp-main-content -->
+</div> <!-- .wrapper -->
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}
