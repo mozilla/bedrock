@@ -37,8 +37,7 @@
 {% block content %}
 <main role="main">
   {% call split(
-    image_url='img/firefox/products/hero.jpg',
-    include_highres_image=True,
+    image=resp_img('img/firefox/products/hero.jpg', srcset={ 'img/firefox/products/hero-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='c-landing-banner t-products mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-media-overflow',
   ) %}

@@ -36,7 +36,7 @@
   </header>
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/independent/no-strings.jpg',
+    image=resp_img('img/firefox/features/thumbnails/independent/no-strings.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}
@@ -45,7 +45,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/independent/what-you-see.jpg',
+    image=resp_img('img/firefox/features/thumbnails/independent/what-you-see.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
   ) %}
     <h2>{{ ftl('features-independent-what-you-see-is-what') }}</h2>
@@ -53,7 +53,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/independent/mission.jpg',
+    image=resp_img('img/firefox/features/thumbnails/independent/mission.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}

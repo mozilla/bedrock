@@ -33,8 +33,7 @@
 <main class="mzp-t-firefox">
   {% call split(
     block_id='pocket-hero',
-    image_url='img/firefox/pocket/pocket-hero.png',
-    include_highres_image=True,
+    image=resp_img('img/firefox/pocket/pocket-hero.png', srcset={'img/firefox/pocket/pocket-hero-high-res.png': '2x'}, optional_attributes={'class': 'mzp-c-split-media-asset'}),
     block_class='pocket-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace t-mobile-nospace mzp-l-split-pop-bottom',
     media_class='mzp-l-split-media-overflow mzp-l-split-v-end',
     theme_class='mzp-t-dark'
@@ -49,8 +48,7 @@
 
   {% call split(
     block_id='pocket-popularity',
-    image_url='img/firefox/pocket/pocket-illo-reading.png',
-    include_highres_image=True,
+    image=resp_img('img/firefox/pocket/pocket-illo-reading.png', srcset={'img/firefox/pocket/pocket-illo-reading-high-res.png': '2x'}, optional_attributes={'class': 'mzp-c-split-media-asset'}),
     block_class='pocket-popularity mzp-l-split-reversed mzp-l-split-body-narrow'
   ) %}
     <h2>Capture What Fascinates You</h2>

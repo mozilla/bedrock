@@ -51,7 +51,7 @@
 {% block content %}
 <main role="main">
   {% call split(
-    image_url='img/firefox/enterprise/fx-browser-img.svg',
+    image=resp_img('img/firefox/enterprise/fx-browser-img.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-dark t-enterprise mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-v-start mzp-l-split-h-start',
     media_after=True

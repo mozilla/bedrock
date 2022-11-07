@@ -21,8 +21,7 @@
 {% block content %}
 
 {% call split(
-    image_url='img/firefox/browsers/quantum/browser.jpg',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/quantum/browser.jpg', srcset={ 'img/firefox/browsers/quantum/browser.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     media_after=True,
     media_class='mzp-l-split-h-center',
     block_class='mzp-l-split-hide-media-on-sm-md'

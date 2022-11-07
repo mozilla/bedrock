@@ -39,8 +39,7 @@
 
 {% block content %}
   {% call split(
-  image_url='img/firefox/accounts/trailhead/value-knowledge.jpg',
-  include_highres_image=True,
+  image=resp_img('img/firefox/accounts/trailhead/value-knowledge.jpg', srcset={ 'img/firefox/accounts/trailhead/value-knowledge.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
   media_after=True,
   block_class='mzp-l-split-center-on-sm-md',
   media_class='mzp-l-split-h-center'
@@ -96,7 +95,7 @@
 </div>
 <section>
   {% call split(
-  image_url='img/firefox/accounts/trailhead/value-respect.jpg',
+  image=resp_img('img/firefox/accounts/trailhead/value-respect.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
   media_after=False,
   block_class='mzp-l-split-reversed',
   media_class='mzp-l-split-h-center'

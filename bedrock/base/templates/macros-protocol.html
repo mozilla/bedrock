@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import image with context %}
+{% from "macros.html" import image as image_macro with context %}
 
 
 {# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
@@ -64,7 +64,7 @@
   </div>
   {% if image_url %}
     <div class="mzp-c-hero-image">
-      {{ image(
+      {{ image_macro(
         url=image_url,
         alt=image_alt,
         loading=loading,
@@ -97,7 +97,8 @@
   media_class=None,
   media_include=None,
   mobile_class=None,
-  theme_class=None
+  theme_class=None,
+  image=None
 ) -%}
 <{{base_el}}{% if block_id %} id="{{ block_id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}{% if mobile_class %} {{ mobile_class }}{% endif %}">
   {% if theme_class %}
@@ -105,21 +106,25 @@
   {% endif %}
   <div class="mzp-c-split-container">
     {% if not media_after %}
-      {% if image_url %}
+      {% if image_url or image %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
-          {{ image(
-            alt=image_alt,
-            class='mzp-c-split-media-asset',
-            height=image_height,
-            include_highres=include_highres_image,
-            include_l10n=l10n_image,
-            loading=loading,
-            sizes=image_sizes,
-            sources=image_sources,
-            srcset=image_srcset,
-            url=image_url,
-            width=image_width
-          ) }}
+          {% if image_url %}
+            {{ image_macro(
+              alt=image_alt,
+              class='mzp-c-split-media-asset',
+              height=image_height,
+              include_highres=include_highres_image,
+              include_l10n=l10n_image,
+              loading=loading,
+              sizes=image_sizes,
+              sources=image_sources,
+              srcset=image_srcset,
+              url=image_url,
+              width=image_width
+            ) }}
+          {% else %}
+            {{ image }}
+          {% endif %}
         </div>
       {% elif media_include %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
@@ -131,9 +136,10 @@
       {{ caller() }}
     </div>
     {% if media_after %}
-      {% if image_url %}
+      {% if image_url or image %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
-          {{ image(
+           {% if image_url %}
+            {{ image_macro(
             alt=image_alt,
             class='mzp-c-split-media-asset',
             height=image_height,
@@ -146,6 +152,9 @@
             url=image_url,
             width=image_width
           ) }}
+          {% else %}
+            {{ image }}
+          {% endif %}
         </div>
       {% elif media_include %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
@@ -292,7 +301,7 @@
 ) -%}
 <{{ base_el }} class="mzp-c-picto{% if class %} {{ class }}{% endif %}">
   {% if image_url %}
-  {{ image(
+  {{ image_macro(
       alt=image_alt,
       class='mzp-c-picto-image',
       height=image_height,

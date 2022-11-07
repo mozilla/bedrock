@@ -60,21 +60,23 @@
 {% block content %}
 <main role="main">
   {% call split(
-    image_url='img/firefox/browsers/hero-700.jpg',
-    image_srcset={
+    image=resp_img('img/firefox/browsers/hero-700.jpg',
+    srcset={
       'img/firefox/browsers/hero-500.jpg': '500w',
       'img/firefox/browsers/hero-700.jpg': '700w',
       'img/firefox/browsers/hero-900.jpg': '900w',
       'img/firefox/browsers/hero-1100.jpg': '1100w',
       'img/firefox/browsers/hero-1300.jpg': '1300w',
     },
-    image_sizes={
+    sizes={
       '(min-width: 768px)': 'calc(50vw - 192px)',
       'default': 'calc(100vw - 48px)'
     },
-    image_width='680',
-    image_height='420',
-    include_highres_image=True,
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset',
+      'height': '420',
+      'width': '680'
+    }),
     block_class='c-landing-banner mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-media-overflow',
     media_after=True
