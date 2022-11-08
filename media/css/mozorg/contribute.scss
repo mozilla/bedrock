@@ -98,6 +98,54 @@ $image-path: '/media/protocol/img';
             flex-wrap: wrap;
         }
 
+        // protocol override to avoid over-frequent word breaks
+        &.mzp-l-card-quarter .mzp-c-card {
+            @media #{$mq-lg} {
+                @include bidi((
+                    (float, left, right),
+                    (margin-left, 0, $spacing-xl),
+                    (margin-right, $spacing-xl, 0),
+                ));
+                width: calc(50% - (#{$spacing-xl} * 0.5));
+
+                &.mzp-c-card-extra-small,
+                &,
+                &.mzp-c-card-medium,
+                &.mzp-c-card-large {
+                    max-width: 100%;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+            @media (min-width: 1100px) {
+                @include bidi((
+                    (margin-left, 0, $spacing-xl),
+                    (margin-right, $spacing-xl, 0),
+                ));
+                width: calc(25% - (#{$spacing-xl} - (#{$spacing-xl} * 0.25)));
+
+                &:nth-child(even) {
+                    @include bidi((
+                        (margin-left, 0, $spacing-xl),
+                        (margin-right, $spacing-xl, 0),
+                    ));
+                }
+
+                &:nth-child(4n) {
+                    @include bidi(((margin-right, 0, margin-left, 0),));
+                }
+
+                &:nth-child(4n+1) {
+                    @include bidi(((clear, left, right),));
+                }
+            }
+        }
+
+        // end override
+
         .contribute-card {
             display: flex;
             flex: 1 0 45%;
