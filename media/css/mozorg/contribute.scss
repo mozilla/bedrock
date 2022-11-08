@@ -101,6 +101,7 @@ $image-path: '/media/protocol/img';
         .contribute-card {
             display: flex;
             flex: 1 0 45%;
+            overflow-wrap: break-word;
 
             @media #{$mq-md} {
                 flex: auto;
@@ -110,6 +111,7 @@ $image-path: '/media/protocol/img';
         .contribute-card-wrapper {
             display: flex;
             flex-direction: column;
+            max-width: 100%;
         }
 
         .contribute-card-content {
