@@ -116,6 +116,7 @@ $image-path: '/media/protocol/img';
 
         .contribute-card-content {
             flex: 1;
+            word-wrap: break-word; // IE specific overflow-wrap fix
         }
     }
 }
