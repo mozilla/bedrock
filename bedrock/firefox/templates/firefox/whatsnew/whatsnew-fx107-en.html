@@ -42,20 +42,25 @@
     }}
   </p>
 
-  <aside class="c-coupon">
-    <h3>Use code at checkout for 20% off</h3>
-    <p>
-      <strong class="c-coupon-code">VPNHOLIDAY20</strong>
-      <button type="button" class="c-coupon-copy" id="code-copy" data-code="VPNHOLIDAY20" data-success="Code copied!">Copy code</button>
-    </p>
+  {% if switch('firefox_whatsnew_107_en_coupon') %}
+    <aside class="c-coupon">
+      <h3>Use code at checkout for 20% off</h3>
+      <p>
+        <strong class="c-coupon-code">VPNHOLIDAY20</strong>
+        <button type="button" class="c-coupon-copy" id="code-copy" data-cta-type="button" data-cta-text="Copy code" data-code="VPNHOLIDAY20" data-success="Code copied!">Copy code</button>
+      </p>
 
-    <p class="c-disclaimer">Available for annual plan subscribers.</p>
-  </aside>
+      <p class="c-disclaimer">Available for annual plan subscribers.</p>
+    </aside>
+  {% endif %}
 
 </section>
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew') }}
-  {{ js_bundle('firefox_whatsnew_107_en') }}
+
+  {% if switch('firefox_whatsnew_107_en_coupon') %}
+    {{ js_bundle('firefox_whatsnew_107_en') }}
+  {% endif %}
 {% endblock %}

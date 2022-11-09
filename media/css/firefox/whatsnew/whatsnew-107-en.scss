@@ -82,7 +82,7 @@ $image-path: '/media/protocol/img';
         border: 0;
         cursor: pointer;
         display: block;
-        margin: 0 auto;
+        margin: $spacing-xs auto 0;
         text-decoration: underline;
 
         &:hover,
