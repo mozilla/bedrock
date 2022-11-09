@@ -149,7 +149,6 @@ $image-path: '/media/protocol/img';
         .contribute-card {
             display: flex;
             flex: 1 0 45%;
-            overflow-wrap: break-word;
 
             @media #{$mq-md} {
                 flex: auto;
@@ -164,7 +163,21 @@ $image-path: '/media/protocol/img';
 
         .contribute-card-content {
             flex: 1;
+
+            // fallback when hyphens aren't supported
+            overflow-wrap: break-word;
             word-wrap: break-word; // IE specific overflow-wrap fix
+        }
+
+        @supports (hyphens: auto) {
+            .contribute-card-content {
+                overflow-wrap: unset;
+                word-wrap: unset;
+            }
+
+            .mzp-c-card-title {
+                hyphens: auto;
+            }
         }
     }
 }
