@@ -79,14 +79,19 @@
               {% set size_class = 'mzp-c-card-medium' %}
             {% endif %}
 
+            {% if card_data.highres_image_url %}
+             {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
+            {% else %}
+               {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '">' %}
+            {% endif %}
+
             {{ card(
               class=size_class,
               tag_label=card_data.tag,
               title=card_data.heading,
               desc=card_data.body|external_html,
               ga_title='ga_title',
-              highres_image_url=card_data.highres_image_url,
-              image_url=card_data.image_url,
+              image=image,
               aspect_ratio=card_data.aspect_ratio,
               link_url=card_data.link,
               youtube_id=card_data.youtube_id,
