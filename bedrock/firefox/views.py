@@ -492,6 +492,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx105-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx105-de-1.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx105-de-2.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx107-en.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -510,6 +511,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx104-vpn-de-coupon.html",
         "firefox/whatsnew/whatsnew-fx104-vpn-fr.html",
         "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html",
+        "firefox/whatsnew/whatsnew-fx107-en.html",
     ]
 
     # place expected ?v= values in this list
@@ -582,6 +584,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("107."):
+            if locale.startswith("en-"):
+                template = "firefox/whatsnew/whatsnew-fx107-en.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("105."):

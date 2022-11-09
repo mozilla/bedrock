@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="543" height="238" viewBox="0 0 543 238">
+  <style>
+    .st0,.st3,.st6{fill:none;stroke:#000;stroke-width:2.2095}
+    .st0{stroke-miterlimit:10}
+    .st3,.st6{stroke-linecap:round;stroke-linejoin:round}
+    .st6{fill-rule:evenodd;clip-rule:evenodd;stroke-width:2.2095}
+    .invert-stroke { stroke: #000; }
+    .invert-fill { fill: #fff; }
+  </style>
+  <path d="M364.4 121V83.8c0-9.4 3.8-18.5 10.4-25.1 6.7-6.7 15.7-10.4 25.2-10.4 9.4 0 18.5 3.7 25.2 10.4 6.7 6.7 10.4 15.7 10.4 25.1V121h20.2V85.5c0-14.8-5.9-28.9-16.4-39.4C429 35.6 414.8 29.8 400 29.8c-14.8 0-29 5.9-39.5 16.3s-16.4 24.6-16.4 39.4V121h20.3z" class="st0 invert-stroke"/>
+  <path fill="#6f4ae7" class="invert-stroke" stroke-miterlimit="10" stroke-width="2.2095" d="M468.4 114.9H331.6c-5.8 0-10.5 4.7-10.5 10.5v99.5c0 5.8 4.7 10.5 10.5 10.5h136.9c5.8 0 10.5-4.7 10.5-10.5v-99.5c0-5.8-4.7-10.5-10.6-10.5zM415 174.1c-1.4 2.5-3.4 4.7-5.9 6.2v12.1c0 2.4-1 4.7-2.7 6.4-1.7 1.7-4 2.7-6.4 2.7-2.4 0-4.7-1-6.4-2.7-1.7-1.7-2.7-4-2.7-6.4v-12.1c-2.5-1.6-4.6-3.8-6-6.4-1.4-2.6-2.1-5.6-2-8.5.1-3 .9-5.9 2.5-8.4 1.5-2.5 3.7-4.6 6.3-6 2.6-1.4 5.5-2.2 8.5-2.1 3 0 5.9.9 8.4 2.4 2.6 1.5 4.7 3.7 6.2 6.2 1.5 2.6 2.2 5.5 2.2 8.5.1 2.8-.6 5.6-2 8.1z"/>
+  <path fill="#a77ffa" d="M108.5 236.1V81.7h126v154.6l-126-.2z"/>
+  <path d="M200 80.4V61.1c0-13.9-11.3-25.2-25.2-25.2-14 0-25.2 11.3-25.2 25.2v19.3" class="st3 invert-stroke"/>
+  <path d="M174.8 80.4V61.1c0-13.9-11.3-25.2-25.2-25.2-14 0-25.2 11.3-25.2 25.2v19.3" class="st3 invert-stroke"/>
+  <path d="M85.7 80.4 86.8 215 66 235.8V80.4h169.9v101.1" class="st3 invert-stroke"/>
+  <path d="m86.8 215 21.1 21.1V80.4" class="st3 invert-stroke"/>
+  <path d="M300.6 133.8v-15c0-15.1-12.2-27.3-27.3-27.3-15.1 0-27.3 12.2-27.3 27.3v15" class="st3 invert-stroke"/>
+  <path class="invert-fill" d="M336.2 140.8v-6.4h-125v6.4"/>
+  <path d="M336.2 140.8v-6.4h-125v6.4" class="st3 invert-stroke"/>
+  <path fill="#b5b5ff" d="m357 236.3-16-95.1H205.4l-16 95.1"/>
+  <path d="m357 236.3-16-95.1H205.4l-16 95.1" class="st0 invert-stroke"/>
+  <path d="m216.7 236.3 16.5-95.1" class="st0 invert-stroke"/>
+  <path d="M2 236.3h519.9" class="st3 invert-stroke"/>
+  <path d="M136.2 1.1v12" class="st3 invert-stroke"/>
+  <path d="M142.2 7.1h-12" class="st3 invert-stroke"/>
+  <path d="M23.5 128.5v12" class="st3 invert-stroke"/>
+  <path d="M29.5 134.5h-12" class="st3 invert-stroke"/>
+  <path d="M291.9 36.6c3.4 0 6.2-2.8 6.2-6.2s-2.8-6.2-6.2-6.2c-3.4 0-6.2 2.8-6.2 6.2s2.7 6.2 6.2 6.2z" class="st0 invert-stroke"/>
+  <path d="m505 124 14.8-16" class="st6 invert-stroke"/>
+  <path d="m518.8 146 20.8-6.6" class="st6 invert-stroke"/>
+  <path d="m519.8 171.6 21.6 4.6" class="st6 invert-stroke"/>
+  <path d="m508 194.5 16 14.9" class="st6 invert-stroke"/>
+</svg>

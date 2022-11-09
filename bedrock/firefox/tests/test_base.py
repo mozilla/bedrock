@@ -871,6 +871,28 @@ class TestWhatsNew(TestCase):
 
     # end 105.0 whatsnew tests
 
+    # begin 107.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_107_0_0_en(self, render_mock):
+        """Should use whatsnew-fx105-en template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="107.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx107-en.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_107_0_0_default(self, render_mock):
+        """Should use default whatsnew template for other locales"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "es-ES"
+        self.view(req, version="107.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
+    # end 107.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
