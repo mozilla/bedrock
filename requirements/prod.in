@@ -8,6 +8,7 @@ chardet==5.0.0
 commonware==0.6.0
 contentful==1.13.1
 contextlib2==21.6.0
+cryptography>=38.0.3
 dirsync==2.2.5
 django-allow-cidr==0.5.0
 django-cors-headers==3.13.0
