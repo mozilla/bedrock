@@ -17,6 +17,8 @@ urlpatterns = (
     page("eula/thunderbird-2/", "legal/eula/thunderbird-2-eula.html"),
     # issue #11383 The template is hard-coded English
     page("firefox/", "legal/firefox.html"),
+    # issue #12332 The template is hard-coded English
+    page("terms/staycation/", "legal/terms/staycation.html", ftl_files=["mozorg/about/legal", "privacy/index"]),
     # The "impressum" page is intended for Germany. Redirect to German (de) if
     # requested in any other locale. (Bug 1248393)
     page("impressum/", "legal/impressum.html", active_locales=["de"], ftl_files=["mozorg/about/legal"]),
