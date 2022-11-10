@@ -191,6 +191,18 @@ main {
             color: get-theme('link-color-hover');
         }
     }
+
+    .t-blog {
+        margin: 0 auto;
+        max-width: 900px;
+    }
+
+    @media #{$mq-lg} {
+        .t-people .c-modal-img {
+            float: right;
+            margin: 0 0 $spacing-lg $spacing-lg;
+        }
+    }
 }
 
 .mzp-c-modal-close {
