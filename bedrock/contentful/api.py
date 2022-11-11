@@ -588,7 +588,7 @@ class ContentfulPage:
             entry_obj = self.page.fields()["entry"]
         elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
             entry_obj = self.page
-            seo_obj = self.page.seo
+            seo_obj = getattr(self.page, "seo", None)
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
@@ -612,11 +612,11 @@ class ContentfulPage:
             if ctype_info:
                 processor = getattr(self, ctype_info["proc"])
                 entries.append(processor(item))
+
                 css = ctype_info.get("css")
                 if css:
                     if isinstance(css, str):
                         css = (css,)
-
                     page_css.update(css)
 
                 js = ctype_info.get("js")
@@ -635,10 +635,12 @@ class ContentfulPage:
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
+
         elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             # TODO: can we actually make this generic? Poss not: main_content is a custom field name
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))
+
         else:
             # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
