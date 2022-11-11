@@ -299,7 +299,7 @@ class Command(BaseCommand):
 
             # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
             # TODO: treat the connectHomepage differently because its locale is an overloaded name field
-            for ctype in settings.CONTENTFUL_CONTENT_TYPES:
+            for ctype in settings.CONTENTFUL_CONTENT_TYPES_TO_SYNC:
                 for entry in ContentfulPage.client.entries(
                     {
                         "content_type": ctype,
