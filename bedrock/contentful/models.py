@@ -83,6 +83,7 @@ class ContentfulEntry(models.Model):
     contentful_id = models.CharField(max_length=20)
     content_type = models.CharField(max_length=20)
     locale = models.CharField(max_length=5)
+    localisation_complete = models.BooleanField(default=False)
     last_modified = models.DateTimeField(default=now)
     url_base = models.CharField(max_length=255, blank=True)
     slug = models.CharField(max_length=255, blank=True)
