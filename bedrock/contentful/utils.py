@@ -70,7 +70,7 @@ def get_active_locales(
 
     for locale, count in locale_counts.items():
         relative_pc = (count / default_locale_count) * 100
-        if relative_pc >= settings.CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE:
+        if relative_pc >= settings.CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE:
             active_locales.add(locale)
 
     return sorted(active_locales)

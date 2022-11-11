@@ -107,7 +107,7 @@ def test_can_use_locale(
                 locale=locale,
             )
 
-    with override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=threshold_setting):
+    with override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=threshold_setting):
         decision = can_use_locale(*function_params)
         assert decision == expected
 
@@ -170,6 +170,6 @@ def test_get_active_locales(
                 locale=locale,
             )
 
-    with override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=threshold_setting):
+    with override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=threshold_setting):
         active_locales = get_active_locales(*function_params)
         assert active_locales == expected
