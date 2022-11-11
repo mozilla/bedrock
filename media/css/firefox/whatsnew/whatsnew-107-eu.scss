@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 // Main content
 
 .wrapper {
-    background-color: $color-violet-50;
+    background-color: $color-violet-60;
 }
 
 .mzp-l-content.mzp-l-columns {
@@ -29,13 +29,13 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-tagline {
     @include text-body-xl;
-    color: $color-black;
+    color: $color-white;
     font-weight: 400;
     line-height: 1.6;
 }
 
 .wnp-main-cta {
-    background-color: $color-yellow-20;
+    background-color: $color-white;
     border-radius: $border-radius-sm;
     justify-self: center;
     align-self: start;
@@ -47,6 +47,7 @@ $image-path: '/media/protocol/img';
     }
 
     h3 {
+        color: $color-black;
         max-width: 12ch;
         margin-right: auto;
         margin-left: auto;
