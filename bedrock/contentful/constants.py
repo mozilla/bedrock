@@ -8,6 +8,7 @@ MAX_MESSAGES_PER_QUEUE_POLL = 10
 CONTENT_TYPE_CONNECT_HOMEPAGE = "connectHomepage"
 CONTENT_TYPE_PAGE_RESOURCE_CENTER = "pagePageResourceCenter"
 CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
+CONTENT_TYPE_PAGE_VERSATILE = "pageVersatile"
 
 DEFAULT_CONTENT_TYPES = ",".join(
     [
@@ -15,6 +16,48 @@ DEFAULT_CONTENT_TYPES = ",".join(
         CONTENT_TYPE_PAGE_RESOURCE_CENTER,  # New-era Compose page with a dedicated type
     ]
 )
+
+
+LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
+    # The values in the 'data' field on the ContentfulPage do we need to
+    # check in order to decide whether the ContentfulPage record is complete
+    # for whatever locale it is in?
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER: [
+        {
+            "type": list,
+            "key": "entries",
+            "child": {  # list elements always need a child spec
+                "key": "body",
+                "type": dict,
+            },
+        },
+        {
+            "type": dict,
+            "key": "info",
+            "child": {
+                "key": "seo",
+                "type": dict,
+                "child": {
+                    "key": "description",
+                    "type": dict,
+                },
+            },
+        },
+        {
+            "key": "info",
+            "type": dict,
+            "child": {
+                "key": "seo",
+                "type": dict,
+                "child": {
+                    "key": "image",
+                    "type": dict,
+                },
+            },
+        },
+    ]
+}
+
 
 CONTENT_CLASSIFICATION_VPN = "VPN"  # Matches string in Contentful for VPN as `product`
 

@@ -776,3 +776,50 @@ def test_log():
     with mock.patch("builtins.print") as mock_print:
         command_instance.log("This shall not be printed")
     assert not mock_print.called
+
+
+_dummy_completeness_spec = {
+    "test-content-type": [
+        # just three of anything, as it's not acted upon in this test
+        {
+            "type": list,
+            "key": "fake1",
+        },
+        {
+            "type": dict,
+            "key": "fake2",
+        },
+        {
+            "type": list,
+            "key": "fake3",
+        },
+    ]
+}
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "mock_localised_values, expected_completion_flag",
+    (
+        (["one", "two", "three"], True),
+        (["", "", ""], False),
+        (["one", None, ""], False),
+    ),
+)
+def test_update_contentful__check_localisation_complete(
+    mock_localised_values,
+    expected_completion_flag,
+    command_instance,
+):
+    entry = ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_1",
+        locale="en-US",
+    )
+    assert entry.localisation_complete is False
+
+    command_instance._get_value_from_data = mock.Mock(side_effect=mock_localised_values)
+    command_instance._check_localisation_complete()
+
+    entry.refresh_from_db()
+    assert entry.localisation_complete == expected_completion_flag

@@ -26,6 +26,7 @@ from bedrock.contentful.constants import (
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
+    LOCALISATION_COMPLETENESS_CHECK_CONFIG,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -314,7 +315,45 @@ class Command(BaseCommand):
 
         return content_to_sync
 
-    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
+    def _get_value_from_data(self, data: dict, spec: dict) -> Union[str, None]:
+        """Extract a single value from `data` based on the provided `spec`,
+        which is a nested series of instructions of how to naviate `data`"""
+
+        _key = spec["key"]
+        if spec["type"] == list:
+            retval = []
+            for val in data.get(_key, []):
+                retval.append(self._get_value_from_data(data=val, spec=spec["child"]))
+            retval = " ".join(retval)
+        elif spec["type"] == dict:
+            if "child" in spec:
+                retval = self._get_value_from_data(data=data.get(_key, {}), spec=spec["child"])
+            else:
+                retval = data.get(_key, {})
+
+        return retval
+
+    def _check_localisation_complete(self) -> None:
+        """In the context of Contentful-sourced data, we consider localisation
+        to be complete for a specific locale if ALL of the required aspects,
+        as defined in the config are present. We do NOT check whether
+        the content makes sense or contains as much content as other locales,
+        just that they exist in a 'truthy' way.
+        """
+
+        self.log("Checking localisation completeness")
+        for contentful_entry in ContentfulEntry.objects.all():
+            completeness_spec = LOCALISATION_COMPLETENESS_CHECK_CONFIG.get(contentful_entry.content_type)
+            if completeness_spec:
+                data = contentful_entry.data
+                collected_values = []
+                for step in completeness_spec:
+                    collected_values.append(self._get_value_from_data(data, step))
+                contentful_entry.localisation_complete = all(collected_values)
+                contentful_entry.save()
+        self.log("Localisation completeness checked")
+
+    def _refresh_from_contentful(self) -> Tuple[int, int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
@@ -429,5 +468,7 @@ class Command(BaseCommand):
         except Exception as ex:
             self.log(ex)
             capture_exception(ex)
+
+        self._check_localisation_complete()
 
         return added_count, updated_count, deleted_count, error_count
