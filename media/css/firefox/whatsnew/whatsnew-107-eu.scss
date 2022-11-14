@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import 'includes/base';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.wrapper {
+    background-color: $color-violet-60;
+}
+
+.mzp-l-content.mzp-l-columns {
+    display: grid;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: $color-white;
+    line-height: 1.2;
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+    color: $color-white;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.wnp-main-cta {
+    background-color: $color-white;
+    border-radius: $border-radius-sm;
+    justify-self: center;
+    align-self: start;
+    padding: $spacing-lg;
+    text-align: center;
+
+    @media #{$mq-md} {
+        padding: $spacing-xl;
+    }
+
+    h3 {
+        color: $color-black;
+        max-width: 12ch;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    svg {
+        max-width: 100%;
+    }
+}

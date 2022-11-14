@@ -883,6 +883,24 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/whatsnew-fx107-en.html"]
 
     @override_settings(DEV=False)
+    def test_fx_107_0_0_de(self, render_mock):
+        """Should use whatsnew-fx107-de template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="107.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx107-de.html"]
+
+    @override_settings(DEV=False)
+    def test_fx_107_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx107-fr template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="107.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx107-fr.html"]
+
+    @override_settings(DEV=False)
     def test_fx_107_0_0_default(self, render_mock):
         """Should use default whatsnew template for other locales"""
         req = self.rf.get("/firefox/whatsnew/")
