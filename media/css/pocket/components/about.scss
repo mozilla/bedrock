@@ -182,7 +182,6 @@ $pocket-image-path: '/media/img/pocket';
             height: 590px;
             right: -155px;
             width: 630px;
-            z-index: -1;
         }
 
         @media (min-width: 599px) {
@@ -252,7 +251,6 @@ $pocket-image-path: '/media/img/pocket';
                 left: 57.5%;
                 top: -496px;
                 width: 688px;
-                z-index: -1;
             }
         }
 
@@ -275,7 +273,6 @@ $pocket-image-path: '/media/img/pocket';
             height: 242vw;
             right: -25vw;
             width: 228vw;
-            z-index: -1;
         }
 
         @media #{$mq-md} {
@@ -353,6 +350,8 @@ $pocket-image-path: '/media/img/pocket';
         height: 0;
         border-top: 2px solid #00ccc0;
         max-width: 360px;
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .about-cta-body {
