@@ -11,7 +11,7 @@ exclude: >
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.13
+    rev: v1.3.1
     hooks:
     -   id: insert-license
         language: python
@@ -64,8 +64,8 @@ repos:
     rev: 5.10.1
     hooks:
         - id: isort
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/pycqa/flake8
+    rev: 5.0.4
     hooks:
       - id: flake8
   #        TODO Add this and fix issues found
