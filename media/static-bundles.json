@@ -1115,70 +1115,66 @@
     },
     {
       "files": [
-        "css/pocket/style.scss",
+        "css/pocket/style.scss"
+      ],
+      "name": "pocket-site"
+    },
+    {
+      "files": [
         "css/pocket/components/platforms.scss"
       ],
       "name": "pocket-platforms"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/about.scss"
       ],
       "name": "pocket-about"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/home.scss"
       ],
       "name": "pocket-home"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/pocket-features.scss"
       ],
       "name": "pocket-features"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/add.scss"
       ],
       "name": "pocket-add"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/contact-info.scss"
       ],
       "name": "pocket-contact-info"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/new-tab-learn-more.scss"
       ],
       "name": "pocket-new-tab"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/jobs.scss"
       ],
       "name": "pocket-jobs"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/privacy-tos.scss"
       ],
       "name": "pocket-privacy-tos"
     },
     {
       "files": [
-        "css/pocket/style.scss",
         "css/pocket/components/error-page.scss"
       ],
       "name": "pocket-error-page"

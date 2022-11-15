@@ -36,7 +36,11 @@
       </script>
       <!-- end OneTrust Cookies Consent Notice -->
 
-    {% block pocket_css %}{% endblock  %}
+    {% block site_css %}
+      {{ css_bundle('pocket-site') }}
+    {% endblock %}
+
+    {% block css %}{% endblock  %}
 
     <title>Pocket: {% block page_title %}{% endblock page_title %}</title>
   </head>
