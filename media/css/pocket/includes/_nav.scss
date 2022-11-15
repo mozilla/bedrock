@@ -8,7 +8,6 @@ $pocket-image-path: '/media/img/pocket';
 @use '../utils/variables' as pocket;
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/base/elements'; // this probably needs to be in base pocket style imports
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 @import './mobile-nav';

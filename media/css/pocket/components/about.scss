@@ -8,6 +8,22 @@
 
 $pocket-image-path: '/media/img/pocket';
 
+.main-container {
+    overflow: hidden;
+
+    .about-section a {
+        color: $color-action-primary;
+        text-decoration: underline;
+        transition: color 0.1s ease-out;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-action-primary-hover;
+        }
+    }
+}
+
 .intro-wrapper {
     background-color: #95d5d2;
     color: $color-text-primary;
