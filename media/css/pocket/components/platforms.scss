@@ -19,10 +19,7 @@
         border-radius: 10px;
         border: 1px solid $color-divider;
         padding-bottom: $spacing-lg;
-
-        @media #{$mq-md} {
-            padding-bottom: 0;
-        }
+        padding-top: $spacing-lg;
 
         h1 {
             @include text-title-sm;
