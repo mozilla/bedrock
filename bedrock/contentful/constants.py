@@ -19,43 +19,16 @@ DEFAULT_CONTENT_TYPES = ",".join(
 
 
 LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
-    # The values in the 'data' field on the ContentfulPage do we need to
-    # check in order to decide whether the ContentfulPage record is complete
-    # for whatever locale it is in?
+    # The values in the 'data' field on the ContentfulPage we need to check to
+    # decide whether the ContentfulPage record is complete for the locale it is in
     CONTENT_TYPE_PAGE_RESOURCE_CENTER: [
-        {
-            "type": list,
-            "key": "entries",
-            "child": {  # list elements always need a child spec
-                "key": "body",
-                "type": dict,
-            },
-        },
-        {
-            "type": dict,
-            "key": "info",
-            "child": {
-                "key": "seo",
-                "type": dict,
-                "child": {
-                    "key": "description",
-                    "type": dict,
-                },
-            },
-        },
-        {
-            "key": "info",
-            "type": dict,
-            "child": {
-                "key": "seo",
-                "type": dict,
-                "child": {
-                    "key": "image",
-                    "type": dict,
-                },
-            },
-        },
-    ]
+        ".entries[].body",  # get the 'body' key from every dict in the 'entries' list
+        ".info.seo.description",  # deep nested dictionaries
+        ".info.seo.image",
+    ],
+    # TO COME, once we've refactored them in Contentful
+    # CONTENT_TYPE_PAGE_GENERAL: [],
+    # CONTENT_TYPE_PAGE_VERSATILE: [],
 }
 
 

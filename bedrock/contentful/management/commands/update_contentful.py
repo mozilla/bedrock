@@ -13,6 +13,7 @@ from django.test import RequestFactory
 from django.utils.timezone import now as tz_now
 
 import boto3
+import jq
 from sentry_sdk import capture_exception
 from sentry_sdk.api import capture_message
 
@@ -315,23 +316,18 @@ class Command(BaseCommand):
 
         return content_to_sync
 
-    def _get_value_from_data(self, data: dict, spec: dict) -> Union[str, None]:
+    def _get_value_from_data(self, data: dict, spec: dict) -> str:
         """Extract a single value from `data` based on the provided `spec`,
-        which is a nested series of instructions of how to naviate `data`"""
+        which is written as a jq filter directive"""
 
-        _key = spec["key"]
-        if spec["type"] == list:
-            retval = []
-            for val in data.get(_key, []):
-                retval.append(self._get_value_from_data(data=val, spec=spec["child"]))
-            retval = " ".join(retval)
-        elif spec["type"] == dict:
-            if "child" in spec:
-                retval = self._get_value_from_data(data=data.get(_key, {}), spec=spec["child"])
-            else:
-                retval = data.get(_key, {})
+        # jq docs: https://stedolan.github.io/jq/
+        # jq.py docs: https://github.com/mwilliamson/jq.py
 
-        return retval
+        try:
+            return " ".join(jq.all(spec, data))
+        except TypeError as e:
+            capture_exception(e)
+            return ""
 
     def _check_localisation_complete(self) -> None:
         """In the context of Contentful-sourced data, we consider localisation

@@ -27,6 +27,7 @@ from bedrock.contentful.management.commands.update_contentful import (
     Command as UpdateContentfulCommand,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.contentful.tests.data import resource_center_page_data
 
 
 @pytest.fixture
@@ -823,3 +824,24 @@ def test_update_contentful__check_localisation_complete(
 
     entry.refresh_from_db()
     assert entry.localisation_complete == expected_completion_flag
+
+
+@pytest.mark.parametrize(
+    "spec, expected_string",
+    (
+        (".entries[].body", "Virtual private networks (VPNs) and secure web proxies are solutions "),
+        (
+            ".info.seo.description",
+            "VPNs and proxies are solutions for online privacy and security. Here’s how these protect you and how to choose the best option.",
+        ),
+        (
+            ".info.seo.image",
+            "https://images.ctfassets.net/w5er3c7zdgmd/7o6QXGC6BXMq3aB5hu4mmn/d0dc31407051937f56a0a46767e11f6f/vpn-16x9-phoneglobe.png",
+        ),
+    ),
+)
+def test_update_contentful__get_value_from_data(spec, expected_string, command_instance):
+    assert expected_string in command_instance._get_value_from_data(
+        resource_center_page_data,
+        spec,
+    )
