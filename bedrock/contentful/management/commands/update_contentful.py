@@ -337,17 +337,37 @@ class Command(BaseCommand):
         just that they exist in a 'truthy' way.
         """
 
-        self.log("Checking localisation completeness")
+        self.log("\n====================================\nChecking localisation completeness")
+        seen_count = 0
+        viable_for_localisation_count = 0
+        localisation_not_configured_count = 0
+        localisation_complete_count = 0
+
         for contentful_entry in ContentfulEntry.objects.all():
             completeness_spec = LOCALISATION_COMPLETENESS_CHECK_CONFIG.get(contentful_entry.content_type)
+            seen_count += 1
             if completeness_spec:
+                viable_for_localisation_count += 1
                 data = contentful_entry.data
                 collected_values = []
                 for step in completeness_spec:
                     collected_values.append(self._get_value_from_data(data, step))
                 contentful_entry.localisation_complete = all(collected_values)
                 contentful_entry.save()
-        self.log("Localisation completeness checked")
+                if contentful_entry.localisation_complete:
+                    localisation_complete_count += 1
+            else:
+                localisation_not_configured_count += 1
+
+        self.log(
+            (
+                "Localisation completeness checked:"
+                f"\nFully localised: {localisation_complete_count} of {viable_for_localisation_count} candidates."
+                f"\nNot configured for localisation: {localisation_not_configured_count}."
+                f"\nTotal entries checked: {seen_count}."
+                "\n====================================\n"
+            )
+        )
 
     def _refresh_from_contentful(self) -> Tuple[int, int, int, int]:
         self.log("Pulling from Contentful")
