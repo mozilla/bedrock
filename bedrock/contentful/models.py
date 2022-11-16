@@ -24,11 +24,34 @@ class ContentfulEntryManager(models.Manager):
 
         return self.get(**kwargs).data
 
-    def get_entry_by_slug(self, slug, locale, content_type, classification=None):
+    def get_active_locales_for_slug(
+        self,
+        slug,
+        content_type,
+        classification=None,
+    ):
+        kwargs = dict(
+            slug=slug,
+            content_type=content_type,
+            localisation_complete=True,
+        )
+        if classification:
+            kwargs["classification"] = classification
+        return sorted(self.filter(**kwargs).values_list("locale", flat=True))
+
+    def get_entry_by_slug(
+        self,
+        slug,
+        locale,
+        content_type,
+        classification=None,
+        localisation_complete=True,
+    ):
         kwargs = dict(
             slug=slug,
             locale=locale,
             content_type=content_type,
+            localisation_complete=localisation_complete,
         )
         if classification:
             kwargs["classification"] = classification

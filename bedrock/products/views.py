@@ -19,7 +19,7 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
-from bedrock.contentful.utils import get_active_locales as get_active_contentful_locales
+from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 
@@ -122,7 +122,7 @@ def resource_center_landing_view(request):
 
     ARTICLE_GROUP_SIZE = 6
     template_name = "products/vpn/resource-center/landing.html"
-    active_locales = get_active_contentful_locales(
+    active_locales = locales_with_available_content(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
     )
@@ -176,9 +176,9 @@ def resource_center_article_view(request, slug):
     """Individual detail pages for the VPN Resource Center"""
 
     template_name = "products/vpn/resource-center/article.html"
-
     requested_locale = l10n_utils.get_locale(request)
-    active_locales_for_this_article = get_active_contentful_locales(
+
+    active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         slug=slug,
@@ -193,7 +193,6 @@ def resource_center_article_view(request, slug):
             request,
             translations=active_locales_for_this_article,
         )
-
     ctx = {}
     try:
         article = ContentfulEntry.objects.get_entry_by_slug(
@@ -205,7 +204,7 @@ def resource_center_article_view(request, slug):
         ctx.update(article.data)
     except ContentfulEntry.DoesNotExist as ex:
         # We shouldn't get this far, given active_locales_for_this_article,
-        # so log it loudly before 404ing.
+        # should only show up viable locales etc, so log it loudly before 404ing.
         capture_exception(ex)
         raise Http404()
 

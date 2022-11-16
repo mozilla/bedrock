@@ -10,50 +10,36 @@ from django.conf import settings
 from bedrock.contentful.models import ContentfulEntry
 
 
-def can_use_locale(
-    content_type: str,
-    classification: str,
-    locale: str,
-    default_locale: str = "en-US",
-) -> bool:
-    """Is there enough of this content type, of this classification,
-    in the given locale, compared to the default locale to, for example,
-    show a listing page of it?"""
-
-    active_locales = get_active_locales(
-        content_type,
-        classification,
-        default_locale,
-    )
-    return locale in active_locales
-
-
 # TODO? Cache this
-def get_active_locales(
+def locales_with_available_content(
     content_type: str,
     classification: str,
     default_locale: str = "en-US",
-    slug: str = None,
-) -> List:
-    """How many locales do we have 'enough' of to consider them an active locale?"""
+) -> List[str]:
+    """
+    Returns a list of locale names for which we have 'enough' content in that
+    locale to merit showing a listing page.
+
+    Why? We don't want a resource center with only one article available in it;
+    better to wait a few days till translations for the rest of the content
+    lands in Bedrock.
+
+    Note that this is not about working how much of a _single_ Entry has been
+    localised - it's focused on the number of localised Entries in each
+    non-default locale compared to the number of entries in the default locale.
+    """
+    threshold_pc = settings.CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE
 
     kwargs = dict(
         content_type=content_type,
         classification=classification,
+        localisation_complete=True,
     )
-    if slug:
-        kwargs["slug"] = slug
-
+    # Get all the locales _with at least one complete localisation each_
     all_locales = ContentfulEntry.objects.filter(**kwargs).values_list("locale", flat=True)
 
-    if slug:
-        # There's no need to check the proportion of entries in each locale, because we're
-        # down to a very, very specific combination of slug + content_type + classification
-        # so all results will match/be viable
-        return list(all_locales)
-
-    # Otherwise, we're looking at just entries of a particular content_type and classification
-    # across any number of slugs, so we do need to see if there are enough to activate the locale
+    # Build a Counter-like lookup table that simply tracks the total number of viable
+    # (i.e. complete, localised) articles in each locale
     locale_counts = defaultdict(int)
     for locale in all_locales:
         locale_counts[locale] += 1
@@ -70,7 +56,7 @@ def get_active_locales(
 
     for locale, count in locale_counts.items():
         relative_pc = (count / default_locale_count) * 100
-        if relative_pc >= settings.CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE:
+        if relative_pc >= threshold_pc:
             active_locales.add(locale)
 
     return sorted(active_locales)
