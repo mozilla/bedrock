@@ -44,15 +44,6 @@ main {
     padding: $spacing-sm;
 }
 
-.c-section-split-link {
-    text-decoration: none;
-
-    p {
-        @include text-body-sm;
-        color: $color-marketing-gray-80;
-    }
-}
-
 .byline {
     font-style: italic;
 }
@@ -301,10 +292,20 @@ main {
 // Split component section
 
 .split-container .has-modal {
-    margin: $layout-lg 0;
+    margin: $layout-sm 0;
 
     @media #{$mq-md} {
         margin: $layout-xl 0;
+    }
+}
+
+.c-section-split-link {
+    display: block;
+    text-decoration: none;
+
+    p {
+        @include text-body-sm;
+        color: $color-marketing-gray-80;
     }
 }
 
