@@ -326,7 +326,11 @@ class Command(BaseCommand):
         try:
             return " ".join(jq.all(spec, data))
         except TypeError as e:
-            capture_exception(e)
+            expected_error_if_not_yet_localised = "sequence item 0: expected str instance, NoneType found"
+            if expected_error_if_not_yet_localised not in str(e):
+                # ie, it's not just a fail because we don't yet have localised
+                # content for this entry's data yet, we should log it
+                capture_exception(e)
             return ""
 
     def _check_localisation_complete(self) -> None:
@@ -358,6 +362,10 @@ class Command(BaseCommand):
                     localisation_complete_count += 1
             else:
                 localisation_not_configured_count += 1
+            self.log(
+                f"Checking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
+                f"-> Localised? {contentful_entry.localisation_complete}"
+            )
 
         self.log(
             (
