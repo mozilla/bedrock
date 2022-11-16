@@ -17,6 +17,7 @@ from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
 
 from bedrock.contentful.constants import (
+    CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_GENERAL,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
@@ -478,7 +479,12 @@ class ContentfulPage:
                 return f"https:{preview_image_url}"
 
     def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
-        slug = entry_fields.get("slug", "home")  # TODO: check if we can use a better fallback
+        if self.page.content_type.id == CONTENT_TYPE_CONNECT_HOMEPAGE:
+            fallback_slug = "home"
+        else:
+            fallback_slug = "unknown"
+
+        slug = entry_fields.get("slug", fallback_slug)
         title = entry_fields.get("title", "")
         title = entry_fields.get("preview_title", title)
         blurb = entry_fields.get("preview_blurb", "")
@@ -498,7 +504,7 @@ class ContentfulPage:
         data = {}
 
         # TODO: Check with plans for Contentful use - we may
-        # be able to relax this check and use it for page types
+        # be able to relax this check and use it for all page types
         # once we're in all-Compose mode
         if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             if "category" in entry_fields:
