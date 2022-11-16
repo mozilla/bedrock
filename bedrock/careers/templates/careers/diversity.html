@@ -7,9 +7,24 @@
 {% extends "careers/base.html" %}
 
 {% block careers_content %}
+  <header class="c-careers-video-hero t-hero-diversity">
+    <div class="c-video-wrapper">
+      <div class="overlay"></div>
+      <video class="c-background-video" autoplay loop muted>
+        <source src="https://assets.mozilla.net/video/careers/careers-diversity-page-video.mp4" type="video/mp4">
+      </video>
 
-<!-- Hero -->
-  {% include "careers/includes/diversity-page-header.html" %}
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md',
+        media_class='mzp-l-split-h-center',
+        media_include='careers/includes/diversity-video.html',
+        media_after=True
+        ) %}
+          <h1>Diversity & inclusion at Mozilla</h1>
+          <p><a href="{{ url('mozorg.diversity.2021.index') }}" class="mzp-c-button mzp-t-product">View our 2021 D&I Report</a></p>
+      {% endcall %}
+    </div>
+  </header>
 
   <!-- Diversity intro -->
   <section class="c-careers-intro">
