@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../utils' as cp;
+@use 'sass:color';
 
 $image-path: '/media/protocol/img';
 
@@ -24,6 +25,138 @@ $image-path: '/media/protocol/img';
             background: $color-black;
             color: $color-white;
             line-height: 1.4;
+        }
+    }
+
+    .c-careers-testimonials-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: $spacing-md;
+
+        .c-careers-testimonial-item {
+            padding: $spacing-xl + 15px $spacing-xl $spacing-xl $spacing-xl + 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &:nth-child(1) {
+                background-color: #bfe6ef;
+
+                &:hover {
+                    background-color: color.scale(#bfe6ef, $alpha: -30%);
+                }
+            }
+
+            &:nth-child(3) {
+                background-color: #adddd8;
+
+                &:hover {
+                    background-color: color.scale(#adddd8, $alpha: -30%);
+                }
+            }
+
+            &:nth-child(5) {
+                background-color: #d5edea;
+
+                &:hover {
+                    background-color: color.scale(#d5edea, $alpha: -30%);
+                }
+            }
+
+            &:nth-child(7) {
+                background-color: #82c7ee;
+
+                &:hover {
+                    background-color: color.scale(#82c7ee, $alpha: -30%);
+                }
+            }
+
+            &:nth-child(9) {
+                background-color: #00b7aa;
+
+                &:hover {
+                    background-color: color.scale(#00b7aa, $alpha: -30%);
+                }
+            }
+
+            a {
+                color: $color-black;
+                font-weight: 300;
+                align-self: flex-start;
+            }
+
+            q {
+                @include font-mozilla;
+                @include font-size(28px);
+                color: $color-black;
+                font-weight: bold;
+                margin-bottom: $spacing-md;
+                position: relative;
+
+                &::before {
+                    @include text-title-md;
+                    content: '“';
+                    position: absolute;
+                    top: -15px;
+                    left: -20px;
+                    color: $color-black;
+                    font-weight: bold;
+                }
+
+                &::after {
+                    @include text-title-md;
+                    content: '”';
+                    position: absolute;
+                    bottom: 0;
+                    color: $color-black;
+                    font-weight: bold;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .c-careers-testimonial-image {
+            background-image: url('/media/img/careers/whistler.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 366px;
+        }
+
+        @media #{$mq-md} {
+            grid-template-columns: 1fr 1fr;
+            column-gap: $spacing-md;
+            row-gap: $spacing-md;
+
+            .c-careers-testimonial-item:last-child {
+                grid-column: span 2;
+            }
+
+            .c-careers-testimonial-image {
+                background-size: cover;
+                background-position: top;
+            }
+        }
+
+        @media #{$mq-lg} {
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: $spacing-lg;
+
+            .c-careers-testimonial-item {
+                min-height: 392px;
+
+                q {
+                    @include font-size(32px);
+                }
+
+                &:last-child {
+                    grid-column: initial;
+                }
+            }
         }
     }
 
