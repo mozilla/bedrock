@@ -21,10 +21,6 @@
   {{ css_bundle('annual_report_2019_2020') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('annual_report_2019_2020') }}
-{% endblock %}
-
 {% block content %}
 <main role="main">
   <header class="c-hero-banner">
@@ -1078,4 +1074,8 @@
 </main>
 
 <div class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('annual_report_modal') }}
 {% endblock %}

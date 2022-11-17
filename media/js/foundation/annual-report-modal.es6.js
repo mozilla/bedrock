@@ -155,15 +155,25 @@ for (let i = 0; i < modalContainers.length; i++) {
                     document.querySelector('.mzp-c-modal-close');
                 modalCloseButton.insertAdjacentHTML(
                     'beforebegin',
-                    modalNextButtonFragment
+                    modalPrevButtonFragment
                 );
                 modalCloseButton.insertAdjacentHTML(
                     'beforebegin',
-                    modalPrevButtonFragment
+                    modalNextButtonFragment
                 );
 
                 // set next/prev listeners
                 modalInit();
+
+                // temporary workaround for https://github.com/mozilla/protocol/issues/829
+                const modal = document.querySelector('.mzp-c-modal');
+                modal.addEventListener(
+                    'animationend',
+                    (e) => {
+                        e.target.focus();
+                    },
+                    false
+                );
             },
             onDestroy: () => {
                 if (window.history) {
@@ -182,6 +192,30 @@ for (let i = 0; i < modalContainers.length; i++) {
                 );
                 const currentModalContent = modalParent.firstElementChild;
 
+                /**
+                 * Ensure focus is returned to opening CTA on modal close.
+                 * We have to do some manual DOM walking here as some clickable
+                 * parent elements do not normally receive focus programatically.
+                 * Issue: https://github.com/mozilla/bedrock/issues/12346
+                 */
+                const parentId =
+                    currentModalContent.getAttribute('data-modal-parent');
+
+                // Try and get the modal parent ID/ element.
+                if (parentId) {
+                    const parentElement = document.querySelector(
+                        `[data-modal-id="${parentId}"]`
+                    );
+
+                    // If the modal element contains a link or button,
+                    // set focus to the first child instance.
+                    const parentCta = parentElement.querySelector('a, button');
+
+                    if (parentCta) {
+                        parentCta.focus();
+                    }
+                }
+
                 modalParent.removeChild(currentModalContent);
             }
         });
@@ -192,7 +226,13 @@ for (let i = 0; i < modalContainers.length; i++) {
 if (window.location.hash) {
     const target = document.getElementById(window.location.hash.substr(1));
 
-    if (target && target.classList.contains('has-modal')) {
-        target.click();
+    if (target) {
+        // Query by data attribute in the event that not every element may have an ID.
+        // Issue https://github.com/mozilla/bedrock/issues/12346
+        const link = document.querySelector(`[data-modal-id="${target.id}"]`);
+
+        if (link && link.classList.contains('has-modal')) {
+            link.click();
+        }
     }
 }
