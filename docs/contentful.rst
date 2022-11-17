@@ -288,26 +288,56 @@ the `ContentfulPage` class in api.py. The renderers themselves are also defined 
 L10N
 ----
 
-The localization approach has been decided, and is currently being implemented.
+Smartling - our selected approach
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here are three possible approaches for translation - we are going with the first (Contentful + Smartling)
+When setting up a content model in Contentful, fields can be designated as available for
+translation.
 
-Smartling
-~~~~~~~~~
+Individual users can be associated with different languages, so when they edit
+entries they see duplicate fields for each language they can translate into.
+In addition - and in the most common case - these fields are automatically sent to
+Smartling to be translated there.
 
-When setting up a content model in Contentful fields can be designated as available for
-translation. Individual users can be associated with different languages and when they edit
-entries they see duplicate fields for each language they can translate into. These fields
-can also be sent to Smartling to be translated there.
+Once text for translation lands in Smartling, it is batched up into jobs for
+human translation. When the work is complete, Smartling automatically updates
+the relevant Contentful entries with the translations, in the appropriate fields.
 
-On the bedrock side, the translated content can be pulled from the appropriate fields and
-inserted into the rendered page.
+Note that those translations are only visible in Contentful if you select to view
+that locale's fields, but if they are present in Contentful's datastore (and
+that locale is enabled in the API response) they will be synced down by Bedrock.
 
-At the moment bedrock is capable of displaying the localized content but the Smartling
-integration has not been set up.
+On the Bedrock side, the translated content is pulled down the same way as the
+default locale's content is, and is stored in a locale-specific ContentfulEntry
+in the database.
 
-This would be the "official" way of doing translations but would be limited to the locales
-that we are paying to have active in Smartling.
+In terms of 'activation', or "Do we have all the parts to show this
+Contentful content"?, Contentful content is not evaluted in the same way as
+Fluent strings (where we will show a page in a given locale if 80% of its
+Fluent strings have been translated, falling back to en-US where not).
+
+Instead, we check that all of the required fields present in the translated
+Entry have non-null data, and if so, then the entire page is viable to show in the
+given locale. (ie, we look at fields, not strings. It's a coarser level of
+granularity compared to Fluent, because the data is organised differently
+ - most of Contentful-sourced content will be rich text, not individual strings).
+
+The check about whether or not a Contentful entry is 'active' or 'localisation complete'
+happens during the main sync from Contentful. Note that there is no fallback
+locale for Contentful content other than a redirect to the en-US version of the
+page - either the page is definitely available in a locale, or it's not at all
+available in that locale.
+
+Notes:
+* The batching of jobs in Smartling is still manual, even though the data flow
+is automated. We need to keep an eye on how onerous this is, plus what the cost
+exposure could be like if we fully automate it.
+* The Smartling integration is currently only set to use Mozilla.org's
+10 most popular locales, in addition to en-US.
+* No localisation of Contentful content happens via Pontoon.
+* The Smartling setup is most effectively leveraged with Compose-based pages
+rather than Connect-based components, and the latter may require some code tweaks.
+
 
 Fluent
 ~~~~~~
