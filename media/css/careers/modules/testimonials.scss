@@ -120,11 +120,7 @@ $image-path: '/media/protocol/img';
         }
 
         .c-careers-testimonial-image {
-            background-image: url('/media/img/careers/whistler.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 366px;
+            display: none;
         }
 
         @media #{$mq-md} {
@@ -132,13 +128,22 @@ $image-path: '/media/protocol/img';
             column-gap: $spacing-md;
             row-gap: $spacing-md;
 
-            .c-careers-testimonial-item:last-child {
-                grid-column: span 2;
+            .c-careers-testimonial-item {
+                q {
+                    @include font-size(26px);
+                }
+
+                &:last-child {
+                    grid-column: span 2;
+                }
             }
 
             .c-careers-testimonial-image {
+                display: block;
                 background-size: cover;
                 background-position: top;
+                background-image: url('/media/img/careers/whistler.png');
+                background-repeat: no-repeat;
             }
         }
 
@@ -147,11 +152,8 @@ $image-path: '/media/protocol/img';
             row-gap: $spacing-lg;
 
             .c-careers-testimonial-item {
-                min-height: 392px;
-
-                q {
-                    @include font-size(32px);
-                }
+                // won't work for legacy browsers (won't break anything), but will help keep the sqaure shape on newer browsers
+                aspect-ratio: 1/1;
 
                 &:last-child {
                     grid-column: initial;
