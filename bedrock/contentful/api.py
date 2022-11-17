@@ -21,6 +21,7 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_PAGE_GENERAL,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
+from bedrock.contentful.models import ContentfulEntry
 from lib.l10n_utils import get_locale, render_to_string
 
 # Some of Bedrock and Contentful's locale codes slightly differ, so we translate between them.
@@ -42,6 +43,8 @@ BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
     "vi": "vi-VN",
 }
 CONTENTFUL_TO_BEDROCK_LOCALE_MAP = {v: k for k, v in BEDROCK_TO_CONTENTFUL_LOCALE_MAP.items()}
+
+DEFAULT_LOCALE = "en-US"
 
 ASPECT_RATIOS = {
     "1:1": "1-1",
@@ -478,6 +481,20 @@ class ContentfulPage:
             if preview_image_url:
                 return f"https:{preview_image_url}"
 
+    def _get_image_from_default_locale_seo_object(
+        self,
+        contentful_id,
+        default_locale=DEFAULT_LOCALE,
+    ):
+        try:
+            entry = ContentfulEntry.objects.get(
+                contentful_id=contentful_id,
+                locale=default_locale,
+            )
+        except ContentfulEntry.DoesNotExist:
+            return ""
+        return entry.data.get("info", {}).get("seo", {}).get("image", None)
+
     def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
         if self.page.content_type.id == CONTENT_TYPE_CONNECT_HOMEPAGE:
             fallback_slug = "home"
@@ -570,6 +587,12 @@ class ContentfulPage:
             _seo_fields = deepcopy(seo_fields)  # NB: don't mutate the source dict
             if _preview_image:
                 _seo_fields["image"] = _preview_image
+            else:
+                if data.get("locale") != DEFAULT_LOCALE:
+                    # Fall back to stealing the SEO image from the default locale, if we can
+                    _seo_fields["image"] = self._get_image_from_default_locale_seo_object(
+                        contentful_id=entry_obj.sys["id"],
+                    )
 
             # We don't need the preview_image key if we've had it in the past, and
             # if reading it fails then we don't want it sticking around, either
