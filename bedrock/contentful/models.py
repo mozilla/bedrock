@@ -57,13 +57,21 @@ class ContentfulEntryManager(models.Manager):
             kwargs["classification"] = classification
         return self.get(**kwargs)
 
-    def get_page_by_slug(self, slug, locale, content_type, classification=None):
+    def get_page_by_slug(
+        self,
+        slug,
+        locale,
+        content_type,
+        classification=None,
+        localisation_complete=True,
+    ):
         # Thin wrapper that gets back only the JSON data
         return self.get_entry_by_slug(
-            slug,
-            locale,
-            content_type,
-            classification,
+            slug=slug,
+            locale=locale,
+            content_type=content_type,
+            classification=classification,
+            localisation_complete=localisation_complete,
         ).data
 
     def get_entries_by_type(
@@ -71,6 +79,7 @@ class ContentfulEntryManager(models.Manager):
         content_type,
         locale,
         classification=None,
+        localisation_complete=True,
         order_by="last_modified",
     ):
         """Get multiple appropriate ContentfulEntry records, not just the JSON data.
@@ -89,6 +98,7 @@ class ContentfulEntryManager(models.Manager):
         kwargs = dict(
             content_type=content_type,
             locale=locale,
+            localisation_complete=localisation_complete,
         )
         if classification:
             kwargs["classification"] = classification

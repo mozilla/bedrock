@@ -269,10 +269,11 @@ def test_contentfulentrymanager__get_page_by_slug(mock_get_entry_by_slug):
     )
     assert res == {"mocked": "data"}
     mock_get_entry_by_slug.assert_called_once_with(
-        "test_slug",
-        "test_locale",
-        "test_content_type",
-        "test_classification",
+        slug="test_slug",
+        locale="test_locale",
+        content_type="test_content_type",
+        classification="test_classification",
+        localisation_complete=True,
     )
 
 
