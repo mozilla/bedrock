@@ -142,12 +142,6 @@ $image-path: '/media/protocol/img';
             }
         }
     }
-
-    @media #{$mq-xl} {
-        .mzp-c-button.mzp-t-secondary {
-            width: auto;
-        }
-    }
 }
 
 .c-fundraiser-submit .mzp-c-button {
@@ -170,14 +164,6 @@ $image-path: '/media/protocol/img';
 
         @media #{$mq-xl} {
             grid-template: 1fr / repeat(4, 1fr);
-        }
-    }
-
-    .c-fundraiser-donation-choice {
-        @media #{$mq-xl} {
-            display: grid;
-            grid-column-gap: $spacing-xl;
-            grid-template-columns: max-content 1fr;
         }
     }
 
