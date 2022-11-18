@@ -183,7 +183,9 @@ def resource_center_article_view(request, slug):
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         slug=slug,
     )
+
     if not active_locales_for_this_article:
+        # ie, this article just isn't available in any locale
         raise Http404()
 
     if requested_locale not in active_locales_for_this_article:

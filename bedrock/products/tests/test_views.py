@@ -241,6 +241,7 @@ class TestVPNResourceListingView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for
@@ -357,6 +358,7 @@ class TestVPNResourceArticleView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for
