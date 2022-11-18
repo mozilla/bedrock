@@ -144,37 +144,37 @@ $image-path: '/media/protocol/img';
                 background-position: top;
                 background-repeat: no-repeat;
 
-                &.lauren {
-                    background-image: url('/media/img/careers/testimonials/lauren.jpg');
-                }
-
-                &.tom {
-                    background-image: url('/media/img/careers/testimonials/tom.jpg');
-                }
-
-                &.perla {
+                &.one {
                     background-image: url('/media/img/careers/testimonials/perla.jpg');
                 }
 
-                &.sunil {
+                &.two {
+                    background-image: url('/media/img/careers/testimonials/lauren.jpg');
+                }
+
+                &.three {
                     background-image: url('/media/img/careers/testimonials/sunil.jpg');
                 }
 
+                &.four {
+                    background-image: url('/media/img/careers/testimonials/tom.jpg');
+                }
+
                 @media #{$mq-high-res} {
-                    &.lauren {
-                        background-image: url('/media/img/careers/testimonials/lauren-high-res.jpg');
-                    }
-
-                    &.tom {
-                        background-image: url('/media/img/careers/testimonials/tom-high-res.jpg');
-                    }
-
                     &.perla {
                         background-image: url('/media/img/careers/testimonials/perla-high-res.jpg');
                     }
 
-                    &.sunil {
+                    &.two {
+                        background-image: url('/media/img/careers/testimonials/lauren-high-res.jpg');
+                    }
+
+                    &.three {
                         background-image: url('/media/img/careers/testimonials/sunil-high-res.jpg');
+                    }
+
+                    &.four {
+                        background-image: url('/media/img/careers/testimonials/tom-high-res.jpg');
                     }
                 }
             }
