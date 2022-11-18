@@ -112,6 +112,7 @@ $image-path: '/media/protocol/img';
         @include text-title-sm;
         font-weight: 700;
         font-style: normal;
+        color: $color-dark-gray-20;
 
         &::before {
             content: '';
@@ -119,8 +120,9 @@ $image-path: '/media/protocol/img';
     }
 
     p {
-        @include text-body-xs;
+        @include text-body-sm;
         @include font-base;
+        color: $color-dark-gray-20;
         font-weight: 700;
         margin-bottom: 0;
     }

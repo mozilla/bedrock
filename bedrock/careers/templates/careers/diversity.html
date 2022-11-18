@@ -15,10 +15,10 @@
       </video>
 
       {% call split(
-        block_class='mzp-l-split-center-on-sm-md',
+        block_class='',
         media_class='mzp-l-split-h-center',
         media_include='careers/includes/diversity-video.html',
-        media_after=True
+        media_after=False
         ) %}
           <h1>Diversity & inclusion at Mozilla</h1>
           <p><a href="{{ url('mozorg.diversity.2021.index') }}" class="mzp-c-button mzp-t-product">View our 2021 D&I Report</a></p>
@@ -83,116 +83,165 @@
         Mozilla Resource Groups (MRGs) are internal employee networks where we find connection and community across different experiences and backgrounds. These groups have formed organically over the years through employee interest, and nearly one-third of all Mozilla employees belong to at least one MRG.
       </p>
     </div>
-    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
-      {% call picto(
-        base_el='li',
-        title='Afrozilla',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “Being a part of this group has challenged me to not just carry things on my own or pretend they don’t exist, and to show up more fully as an advocate myself.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Tina Rattliff</cite>
-            <p>Lifecycle Marketing Manager</p>
-          </div>
+    <ul class="mzp-l-content mzp-t-content-xl">
+      <!-- Afrozillians -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/mrg-afrozilla.jpg',
+        media_after=False
+        ) %}
+          <h3>Afrozilla</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              Being a part of this group has challenged me to not just carry things on my own or pretend they don’t exist, and to show up more fully as an advocate myself.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-afrozilla-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Tina R.</cite>
+                <p>Lifecycle Marketing Manager</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-      {% call picto(
-        base_el='li',
-        title='Disability@',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “One value we included in our charter is that ableism is unacceptable and will not be tolerated. But it’s immediately followed by another value: We make space for growth, and we expect to make, and learn from, mistakes.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Kim Bryant</cite>
-            <p>Head of Operations for Rally</p>
-          </div>
+      <!-- Disability@ -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/mrg-disability-at-mozilla.jpg',
+        media_after=False
+        ) %}
+          <h3>Disability@</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              One value we included in our charter is that ableism is unacceptable and will not be tolerated. But it’s immediately followed by another value: We make space for growth, and we expect to make, and learn from, mistakes.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-disability-at-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Kim B.</cite>
+                <p>Head of Operations for Rally</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-      {% call picto(
-        base_el='li',
-        title='Latin Pride',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “The more Latinx people we hire, the stronger and more dynamic Latin Pride will be. I want our members to use their voices not just within our group, but throughout all of Mozilla.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Solana Larsen</cite>
-            <p>Editor, Internet Health Report</p>
-          </div>
+        <!-- Latin pride -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/mrg-latin-pride.jpg',
+        media_after=False
+        ) %}
+          <h3>Latin Pride</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              The more Latinx people we hire, the stronger and more dynamic Latin Pride will be. I want our members to use their voices not just within our group, but throughout all of Mozilla.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-latin-pride-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Solana L.</cite>
+                <p>Editor, Internet Health Report</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-      {% call picto(
-        base_el='li',
-        title='Mozilla API',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “Our discussions have been so powerful. There’s often a tension, especially in East Asian cultures with roots in Confucianism, between speaking up and keeping a sort of stiff upper lip. So it’s good to have a forum where we can say — and our allies can hear — the things we’re usually quiet about.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Julie Hollek</cite>
-            <p>Senior Manager, Data Science, Business & Metrics</p>
-          </div>
+      <!-- Mozilla API -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/mrg-moz-api.jpg',
+        media_after=False
+        ) %}
+          <h3>Mozilla API</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              Our discussions have been so powerful. There’s often a tension, especially in East Asian cultures with roots in Confucianism, between speaking up and keeping a sort of stiff upper lip. So it’s good to have a forum where we can say — and our allies can hear — the things we’re usually quiet about.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-moz-api-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Julie H.</cite>
+                <p>Senior Manager, Data Science, Business & Metrics</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-        {% call picto(
-        base_el='li',
-        title='Pridezilla',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “Pridezilla is important not only for Mozillians who are LGBTQ, but for all of us to better understand our colleagues from different walks of life. We’re a resource for anyone who wants to learn.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Damiano DeMonte</cite>
-            <p>Senior Communications Manager</p>
-          </div>
+      <!-- Pridezilla -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/pridezilla.jpg',
+        media_after=False
+        ) %}
+          <h3>Pridezilla</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              Pridezilla is important not only for Mozillians who are LGBTQ, but for all of us to better understand our colleagues from different walks of life. We’re a resource for anyone who wants to learn.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-pridezilla-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Damiano D.</cite>
+                <p>Senior Communications Manager</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-      {% call picto(
-        base_el='li',
-        title='WoMoz',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            “I’ve also enjoyed being able to connect with other women at the company. Mozilla is so distributed — and I live in a very remote part of Canada and don’t have many opportunities to see people in person — so I especially appreciate having a place where I can chat with people who might have some similar experiences to me, and who I can learn from.”
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Elgin-Skye McLaren</cite>
-            <p>Hubs Senior Product Manager</p>
-          </div>
+      <!-- WoMoz -->
+      {% call split(
+        block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/womoz.jpg',
+        media_after=False
+        ) %}
+          <h3>WoMoz</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              I’ve also enjoyed being able to connect with other women at the company. Mozilla is so distributed — and I live in a very remote part of Canada and don’t have many opportunities to see people in person — so I especially appreciate having a place where I can chat with people who might have some similar experiences to me, and who I can learn from.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-womoz-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Elgin-Skye M.</cite>
+                <p>Hubs Senior Product Manager</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
-      {% call picto(
-        base_el='li',
-        title='Yallazilla',
-        body=True,
-      ) %}
-        <blockquote>
-          <p>
-            Yallazilla is our newest MRG, and provides a space where employees from the SWANA region feel supported, and connected to the work at Mozilla.
-          </p>
-          <div class="c-diversity-citation">
-            <cite>Yallazillian</cite>
-            <p>Senior developer for Firefox</p>
-          </div>
+      <!-- Yallazilla -->
+      {% call split(
+        block_class='mzp-l-split-body-wide',
+        media_class='mzp-l-split-h-center',
+        image_url='img/careers/mozilla-resource-groups/mrg-yallazilla.jpg',
+        media_after=False
+        ) %}
+          <h3>Yallazilla</h3>
+          <blockquote>
+            <p class="c-careers-diversity-quote">
+              I was so happy when I learned about Yallazilla. It offers a space to connect with people from different countries and cultures and to discuss topics that affect folks from the SWANA/MENA region. I hope we are able to advocate for our people in what Mozilla does in their efforts for a more joyful internet.
+            </p>
+            <div class="c-diversity-citation">
+              <div class="c-diversity-citation-image c-yallazilla-image">
+              </div>
+              <div class="c-diversity-citation-author">
+                <cite>Frida K.</cite>
+                <p>Security Engineer, Risk Management</p>
+              </div>
+            </div>
         </blockquote>
       {% endcall %}
 
@@ -218,7 +267,7 @@
           <a href="{{ post.link }}" class="mzp-c-card-block-link">
             <div class="mzp-c-card-media-wrapper">
               <div class="lazy-image-container">
-                <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
+                <!-- <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" /> -->
               </div>
             </div>
             <div class="mzp-c-card-content">
@@ -235,7 +284,7 @@
           <a href="{{ featured_post.link }}" class="mzp-c-card-block-link">
             <div class="mzp-c-card-media-wrapper">
               <div class="lazy-image-container">
-                <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" />
+                <!-- <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" /> -->
               </div>
             </div>
             <div class="mzp-c-card-content">

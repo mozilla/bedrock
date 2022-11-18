@@ -30,17 +30,13 @@ $image-path: '/media/protocol/img';
                     height: 20px;
                     border-bottom: 2px solid transparent;
                     text-decoration: underline;
-
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        // border-bottom: 2px solid green;
-                    }
+                    position: relative;
 
                     &.c-careers-instagram {
                         background-image: url('#{$image-path}/icons/social/instagram/black.svg');
                         background-size: contain;
                         background-repeat: no-repeat;
+                        background-origin: content-box;
                     }
 
                     &.c-careers-twitter {
