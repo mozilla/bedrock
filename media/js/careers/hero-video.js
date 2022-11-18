@@ -118,7 +118,7 @@ window.onYouTubeIframeAPIReady = function () {
             '.c-careers-video-hero .js-video-play'
         );
 
-        heroVideoButton.setAttribute('aria-role', 'button');
+        heroVideoButton.setAttribute('role', 'button');
         heroVideoButton.addEventListener('click', openVideoModal, false);
     }
 

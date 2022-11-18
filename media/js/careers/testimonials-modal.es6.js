@@ -131,7 +131,7 @@ function prevModalArticle() {
 for (let i = 0; i < modalContainers.length; i++) {
     const modalContainer = modalContainers[i];
 
-    modalContainer.setAttribute('aria-role', 'button');
+    modalContainer.setAttribute('aria-label', 'open modal');
     modalContainer.setAttribute('data-current-index', i);
 
     modalContainer.addEventListener('click', function (e) {
@@ -147,7 +147,7 @@ for (let i = 0; i < modalContainers.length; i++) {
             .cloneNode(true);
         window.location.hash = modalId;
         modalContent.removeAttribute('id');
-        modalContent.setAttribute('aria-role', 'article');
+        modalContent.setAttribute('role', 'article');
 
         window.Mzp.Modal.createModal(e.target, content, {
             allowScroll: false,
@@ -182,6 +182,16 @@ for (let i = 0; i < modalContainers.length; i++) {
 
                 // set next/prev listeners
                 modalInit();
+
+                // temporary workaround for https://github.com/mozilla/protocol/issues/829 to keep modal focussed
+                const modal = document.querySelector('.mzp-c-modal');
+                modal.addEventListener(
+                    'animationend',
+                    (e) => {
+                        e.target.focus();
+                    },
+                    false
+                );
             },
             onDestroy: function () {
                 if (window.history) {
