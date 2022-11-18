@@ -7,14 +7,13 @@
 
 // Header with no video
 .c-careers-text-hero {
-    background-color: cp.$teal-primary;
-    padding: $layout-xl 0;
+    background-color: cp.$teal-secondary;
 
     .c-text-hero-wrapper {
-        display: flex;
         align-items: center;
-        justify-content: center;
+        display: flex;
         flex-direction: column;
+        justify-content: center;
         text-align: center;
     }
 }

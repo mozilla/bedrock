@@ -221,12 +221,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// Hide full testimonials if JS is enabled
 .c-careers-full-testimonials {
-    // Hide full testimonials if JS is enabled
-    .js-modal-content {
-        .js & {
-            @include hidden;
-        }
+    .js & {
+        @include hidden;
     }
 }
 

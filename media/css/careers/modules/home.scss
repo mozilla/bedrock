@@ -57,16 +57,41 @@
 
 .c-careers-intro {
     background-color: cp.$teal-primary;
-    padding: $layout-lg 0;
 }
 
-.c-careers-section {
-    margin: $layout-xl auto;
-}
+.c-careers-mozillians {
+    background-image: url('/media/img/careers/mozillians.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 460px;
+    position: relative;
 
-.c-careers-diversity {
-    background-color: cp.$teal-primary;
-    padding: $layout-lg 0;
+    .overlay {
+        background: rgba(0, 0, 0, 0.75);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .c-mozillians-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        z-index: 20;
+
+        h2 {
+            color: $color-white;
+        }
+    }
 }
 
 /* Locations */

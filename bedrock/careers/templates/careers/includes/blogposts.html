@@ -3,19 +3,19 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-{% block careers_content %}
   <section class="c-careers-blog c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>
-        Life@Mozilla
-      </h2>
-      <p>
-        Real people, real projects, real stories. Read about what it’s like to work here.
-      </p>
-    </div>
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          Life@Mozilla
+        </h2>
+        <p>
+          Real people, real projects, real stories. Read about what it’s like to work here.
+        </p>
+      </div>
 
     {% if recent_posts %}
-      <div class="mzp-l-card-third mzp-l-content">
+      <div class="mzp-l-card-third">
       {% for post in recent_posts %}
         <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
           <a href="{{ post.link }}" class="mzp-c-card-block-link">
@@ -53,4 +53,3 @@
       </div>
     {% endif %}
   </section>
-{% endblock %}

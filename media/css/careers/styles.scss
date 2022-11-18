@@ -11,24 +11,23 @@ $image-path: '/media/protocol/img';
 @use './modules/diversity.scss';
 @use './modules/locations.scss';
 @use './modules/job-listings.scss';
-@use './modules/internships.scss';
+@use './modules/position.scss';
 @use './modules/bottom.scss';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@import '../protocol/components/custom-menu-list';
 
 .c-careers {
-    .mzp-l-content {
-        padding-top: $spacing-md;
-        padding-bottom: $spacing-md;
-    }
-
-    h2 {
+    .c-careers-section-title {
         text-align: center;
     }
 
     .c-careers-button-wrapper {
+        margin: $spacing-lg auto;
         text-align: center;
     }
 
@@ -40,3 +39,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-careers-section-intro {
+    max-width: $content-md;
+    margin: 0 auto $layout-sm;
+}

@@ -12,40 +12,33 @@
 {% block body_class %}listings-page{% endblock %}
 
 {% block careers_content %}
-<section class="mzp-c-hero mzp-t-dark page-hero">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">Feel good about your work again</h1>
-
-      <div class="mzp-c-hero-desc">
-        <p>
-          Join us.
-        </p>
-      </div>
+<header class="c-careers-text-hero">
+  <div class="mzp-l-content c-text-hero-wrapper mzp-t-content-md">
+    <h1 class="c-text-hero-title">Feel good about your work again</h1>
+    <div class="c-text-hero-body">
+      <p>Bring your drive, your creativity, your big ideas and your new perspectives to make the difference we’re aiming for.</p>
     </div>
   </div>
-</section>
+</header>
 
-<section class="mzp-l-content">
-  <h2>Listings</h2>
+<section class="mzp-l-content mzp-t-content-xl">
+  <h2 class="c-careers-section-title">Listings</h2>
 
   <form id="listings-filters" class="hide-from-legacy-ie">
     <div class="listings-filter listings-filter-location">
-      {{ form.location }}
       <label for="id_location" class="visually-hidden">Location</label>
+      {{ form.location }}
     </div>
 
     {# hidden input keeps JS/python working, but removes the old form field #}
     <input type="hidden" id="id_position_type" name="position_type" value=""/>
 
     <div class="listings-filter listings-filter-name">
-      {{ form.team }}
       <label for="id_team" class="visually-hidden">Team</label>
+      {{ form.team }}
     </div>
   </form>
-</section>
 
-<section class="mzp-l-content">
   <table class="listings-positions" id="listings-positions">
     <thead>
       <tr>
@@ -63,11 +56,11 @@
       #}
       {% set position = postings | first %}
       <tr class="position"
-          data-team="{{ position.department.strip() }},"
-          data-type="{{ position.position_type.strip() }},"
-          data-location="{{ position.location.strip() }},">
-        <td class="title"><a href="{{ position.get_absolute_url() }}" data-cta-type="button" data-cta-name="{{ position.department }} - {{ position.title }}">{{ position.title }}</a></td>
-        <td class="location">{{ position.job_locations }}</td>
+          data-team="{{ position.department | trim }},"
+          data-type="{{ position.position_type | trim }},"
+          data-location="{{ postings | join(',', attribute='job_locations') }},">
+        <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
+        <td class="location">{{ postings | map(attribute='job_locations') | join(', ') }}</td>
         <td class="name">{{ position.department }}</td>
       </tr>
     {% endfor %}

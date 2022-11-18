@@ -26,65 +26,80 @@
     </div>
   </header>
 
-  <!-- Diversity intro -->
   <section class="c-careers-intro">
     <div class="mzp-l-content mzp-t-content-md">
-      <h2>Belong where you work</h2>
-      <p>
-        We’re an organization with employees, volunteers and community members spanning the globe, and we want to ensure that who we are, what we build and how we choose to engage the world around us reflects our commitment to diversity, equity and inclusion. And we want everyone to feel empowered to join our movement.
-      </p>
-    </div>
-  </section>
-
-  <!-- Metrics -->
-  <section class="c-careers-diversity-numbers c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>By the numbers</h2>
-      <p>We’re invested in making progress in diversity equity and inclusion at Mozilla — and we’re committed to the hard work needed to take us further.</p>
-    </div>
-    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
-      {% call picto(
-        base_el='li',
-        title='37%',
-        body=True,
-      ) %}
-        <p>
-          By the end of 2021, women made up more than a third of our workforce. We also saw a 4.2% increase of women in technical roles from 2020 to 2021.
-        </p>
-      {% endcall %}
-      {% call picto(
-        base_el='li',
-        title='7.8%',
-        body=True,
-      ) %}
-        <p>
-          From 2020 to 2021, the percentage of Black/African-American Mozillians increased from 4.8% to 7.8%. Black/African-Americans in technical roles increased from 3.1% to 5.8%
-        </p>
-      {% endcall %}
-      {% call picto(
-        base_el='li',
-        title='37%',
-        body=True,
-      ) %}
-        <p>
-          37% of Mozillians live outside of the U.S. We’re proud to be a truly global company, and that our products and culture reflect perspectives from around the world.
-        </p>
-      {% endcall %}
-    </ul>
-  </section>
-
-  <!-- MRGs quotes -->
-  <section class="c-careers-diversity-mrg c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>
-        Mozilla Resource Groups
+      <h2 class="c-careers-section-title">
+        Belong where you work
       </h2>
       <p>
-        Mozilla Resource Groups (MRGs) are internal employee networks where we find connection and community across different experiences and backgrounds. These groups have formed organically over the years through employee interest, and nearly one-third of all Mozilla employees belong to at least one MRG.
+        We’re an organization with employees, volunteers and community members
+        spanning the globe, and we want to ensure that who we are, what we build
+        and how we choose to engage the world around us reflects our commitment
+        to diversity, equity and inclusion. And we want everyone to feel empowered
+        to join our movement.
       </p>
     </div>
-    <ul class="mzp-l-content mzp-t-content-xl">
-      <!-- Afrozillians -->
+  </section>
+
+  <section class="c-careers-diversity-numbers c-careers-section">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          By the numbers
+        </h2>
+
+        <p>We’re invested in making progress in diversity equity and inclusion at
+        Mozilla – and we’re committed to the hard work needed to take us further.</p>
+      </div>
+
+      <ul class="mzp-l-columns mzp-t-columns-three">
+        {% call picto(
+          base_el='li',
+          title='37%',
+          body=True,
+        ) %}
+          <p>
+            By the end of 2021, women made up more than a third of our workforce.
+            We also saw a 4.2% increase of women in technical roles from 2020 to 2021.
+          </p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title='7.8%',
+          body=True,
+        ) %}
+          <p>
+            From 2020 to 2021, the percentage of Black/African-American Mozillians
+            increased from 4.8% to 7.8%. Black/African-Americans in technical roles
+            increased from 3.1% to 5.8%
+          </p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title='37%',
+          body=True,
+        ) %}
+          <p>
+            37% of Mozillians live outside of the U.S. We’re proud to be a truly
+            global company, and that our products and culture reflect perspectives
+            from around the world.
+          </p>
+        {% endcall %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="c-careers-diversity-mrg c-careers-section">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          Mozilla Resource Groups
+        </h2>
+        <p>
+          Mozilla Resource Groups (MRGs) are internal employee networks where we find connection and community across different experiences and backgrounds. These groups have formed organically over the years through employee interest, and nearly one-third of all Mozilla employees belong to at least one MRG.
+        </p>
+      </div>
+
       {% call split(
         block_class=' mzp-l-split-body-wide',
         media_class='mzp-l-split-h-center',
@@ -108,7 +123,6 @@
         </blockquote>
       {% endcall %}
 
-      <!-- Disability@ -->
       {% call split(
         block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
         media_class='mzp-l-split-h-center',
@@ -132,7 +146,6 @@
         </blockquote>
       {% endcall %}
 
-        <!-- Latin pride -->
       {% call split(
         block_class=' mzp-l-split-body-wide',
         media_class='mzp-l-split-h-center',
@@ -156,7 +169,6 @@
         </blockquote>
       {% endcall %}
 
-      <!-- Mozilla API -->
       {% call split(
         block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
         media_class='mzp-l-split-h-center',
@@ -180,7 +192,6 @@
         </blockquote>
       {% endcall %}
 
-      <!-- Pridezilla -->
       {% call split(
         block_class=' mzp-l-split-body-wide',
         media_class='mzp-l-split-h-center',
@@ -204,7 +215,6 @@
         </blockquote>
       {% endcall %}
 
-      <!-- WoMoz -->
       {% call split(
         block_class=' mzp-l-split-body-wide mzp-l-split-reversed',
         media_class='mzp-l-split-h-center',
@@ -228,7 +238,6 @@
         </blockquote>
       {% endcall %}
 
-      <!-- Yallazilla -->
       {% call split(
         block_class='mzp-l-split-body-wide',
         media_class='mzp-l-split-h-center',
@@ -252,7 +261,7 @@
         </blockquote>
       {% endcall %}
 
-    </ul>
+    </div>
   </section>
 
   <!-- blog content -->

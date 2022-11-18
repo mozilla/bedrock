@@ -7,15 +7,13 @@
 {% extends "careers/base.html" %}
 
 {% block careers_content %}
-
-<!-- Hero -->
   <header class="c-careers-text-hero">
     <div class="mzp-l-content c-text-hero-wrapper mzp-t-content-md">
-      <div class="c-text-hero-title">
-        <h1>Meet Mozilla's teams</h1>
-      </div>
+      <h1 class="c-text-hero-title">Meet Mozilla’s teams</h1>
       <div class="c-text-hero-body">
-        <p>Mozilla is a global community of pioneering technologists, thinkers, builders and creators working together to keep the internet open and accessible to all.</p>
+        <p>Mozilla is a global community of pioneering technologists, thinkers,
+          builders and creators working together to keep the internet open and
+          accessible to all.</p>
         <div class="c-careers-button-wrapper">
           <a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-secondary" data-cta-type="button" data-cta-name="careers listings">See our open roles</a>
         </div>
@@ -24,129 +22,166 @@
   </header>
 
   <section class="c-careers-teams-intro c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>One team</h2>
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          One team
+        </h2>
 
-      <p>Though Mozillians sit on functional teams, we are all about working as “one team”, reflecting our belief that being highly collaborative with a focus on experimentation is essential to individual growth and moving Mozilla’s future forward.</p>
+        <p>Though Mozillians sit on functional teams, we are all about working
+          as “one team”, reflecting our belief that being highly collaborative
+          with a focus on experimentation is essential to individual growth and
+          moving Mozilla’s future forward.</p>
 
-      <p>Each one of us has made a choice to spend our time, our energy and our gifts, to make the internet a rich, exciting, decent and humane place. Meet a few of our teams who are making it happen.</p>
+        <p>Each one of us has made a choice to spend our time, our energy and
+          our gifts, to make the internet a rich, exciting, decent and humane
+          place. Meet a few of our teams who are making it happen.</p>
+      </div>
+
+      <ul class="mzp-l-columns mzp-t-columns-three">
+        {% call picto(
+          base_el='li',
+          title='Engineering',
+          body=True,
+        ) %}
+          <p>
+            Our engineers (and we have a lot of them!) work on the most interesting
+            challenges facing the internet today — privacy, security, decentralization,
+            access, convenience, compatibility and more — collaborating with peers
+            not only at Mozilla but across the industry. From Firefox to Pocket,
+            Relay to Mozilla VPN, our code touches the lives of millions.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Data Organization',
+          body=True,
+        ) %}
+          <p>
+            How can businesses use mountains of data to guide decisions while
+            respecting the privacy and security of users? Mozilla’s Data Organization
+            is at the forefront of these conversations, with a deep knowledge of
+            data processing infrastructure, the market we compete in and our business.
+            They work closely with multiple functional areas to keep Mozilla a
+            data-informed business that is modern, global and ethical.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Innovation',
+          body=True,
+        ) %}
+          <p>
+            With an experimental mindset at its core, our innovation teams are
+            quickly identifying, building and testing product concepts that
+            influence and drive impact within the internet ecosystem. Key
+            differentiators for our innovation work are the focus on increasing
+            inclusion with products such as Hubs which enables broader access to
+            immersive web collaboration. Additionally we differentiate with our
+            ecosystem engagements such as grant programs, investments and partnerships
+            to identify, drive or enable products and businesses aiming to improve
+            the human experience on the internet.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Product Design / UX',
+          body=True,
+        ) %}
+          <p>
+            Product Designers collaborate with product managers, engineers,
+            researchers and other designers to optimize product experiences that
+            drive engagement, increase revenue, and improve retention, basically
+            ensuring our products are modern, delightful and easy to use.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Marketing',
+          body=True,
+        ) %}
+          <p>
+            Mozilla's Marketing team has the exciting role of sharing our company
+            vision and our innovative, privacy-forward products with the world
+            through creative storytelling. They're obsessed with impact, but never
+            at the expense of our users. People on this team come from different
+            backgrounds, from engineering to art directing, but all have one thing
+            in common: they believe in our mission and want to build a better
+            internet for all.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Trust & Security',
+          body=True,
+        ) %}
+          <p>
+            Our Trust & Security team is responsible for upholding the core tenants
+            of Mozilla’s foundational mission: protecting privacy and security.
+            Through risk assessments, security audits, incident response and more,
+            this team ensures the trust we’ve built with users and employees is secure.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Global Policy',
+          body=True,
+        ) %}
+          <p>
+            Mozilla’s Global Policy team brings together our community, employees,
+            policy experts and thought leaders in privacy and innovation to give
+            input on policies and services that make the web more robust. We’re
+            taking action worldwide to protect and strengthen the web’s DNA.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Legal',
+          body=True,
+        ) %}
+          <p>
+            The Legal team handles all of Mozilla’s corporate and employment matters,
+            either at the (virtual) conference table or behind the scenes.
+            Efficiently adapting to serve a constantly changing product landscape,
+            our Legal team ensures we’re always running smoothly.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='People',
+          body=True,
+        ) %}
+          <p>
+            Our People team works with employees from even before day one. We ensure
+            that our employees are well-supported – in and out of the office – through
+            benefits support, learning and development opportunities, career
+            advancement and more.
+          </p>
+        {% endcall %}
+
+        {% call picto(
+          base_el='li',
+          title='Finance and Business Ops',
+          body=True,
+        ) %}
+          <p>
+            Among many responsibilities, our Finance and Business Ops team literally
+            keeps the lights on – and makes sure we’re using the most energy-efficient
+            bulbs. These team members take charge of our strategy and development,
+            managing everything from internal operations to landing partnerships,
+            and even pursuing business investments. They guide us toward sustainable
+            growth and track our progress along the way.
+          </p>
+        {% endcall %}
+      </ul>
     </div>
   </section>
-
-  <section class="c-careers-teams-types c-careers-section">
-    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-xl">
-
-      {% call picto(
-        base_el='li',
-        title='Engineering',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Our engineers (and we have a lot of them!) work on the most interesting challenges facing the internet today — privacy, security, decentralization, access, convenience, compatibility and more — collaborating with peers not only at Mozilla but across the industry. From Firefox to Pocket, Relay to Mozilla VPN, our code touches the lives of millions.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Data Organization',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          How can businesses use mountains of data to guide decisions while respecting the privacy and security of users? Mozilla’s Data Organization is at the forefront of these conversations, with a deep knowledge of data processing infrastructure, the market we compete in and our business. They work closely with multiple functional areas to keep Mozilla a data-informed business that is modern, global and ethical.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Innovation',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          With an experimental mindset at its core, our innovation teams are quickly identifying, building and testing product concepts that influence and drive impact within the internet ecosystem.  Key differentiators for our innovation work are the focus on increasing inclusion with products such as Hubs which enables broader access to immersive web collaboration.  Additionally we differentiate with our ecosystem engagements such as grant programs, investments and partnerships to identify, drive or enable products and businesses aiming to improve the human experience on the internet.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Product Design / UX',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Product Designers collaborate with product managers, engineers, researchers and other designers to optimize product experiences that drive engagement, increase revenue, and improve retention, basically ensuring our products are modern, delightful and easy to use.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Marketing',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Mozilla's Marketing team has the exciting role of sharing our company vision and our innovative, privacy-forward products with the world through creative storytelling. They're obsessed with impact, but never at the expense of our users. People on this team come from different backgrounds, from engineering to art directing, but all have one thing in common: they believe in our mission and want to build a better internet for all.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Trust & Security',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Our Trust & Security team is responsible for upholding the core tenants of Mozilla’s foundational mission: protecting privacy and security. Through risk assessments, security audits, incident response and more, this team ensures the trust we’ve built with users and employees is secure.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Global Policy',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Mozilla’s Global Policy team brings together our community, employees, policy experts and thought leaders in privacy and innovation to give input on policies and services that make the web more robust. We’re taking action worldwide to protect and strengthen the web’s DNA.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Legal',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          The Legal team handles all of Mozilla’s corporate and employment matters, either at the (virtual) conference table or behind the scenes. Efficiently adapting to serve a constantly changing product landscape, our Legal team ensures we’re always running smoothly.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='People',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Our People team works with employees from even before day one. We ensure that our employees are well-supported — in and out of the office — through benefits support, learning and development opportunities, career advancement and more.
-        </p>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title='Finance and Business Ops',
-        image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
-        body=True,
-      ) %}
-        <p>
-          Among many responsibilities, our Finance and Business Ops team literally keeps the lights on — and makes sure we’re using the most energy-efficient bulbs. These team members take charge of our strategy and development, managing everything from internal operations to landing partnerships, and even pursuing business investments. They guide us toward sustainable growth and track our progress along the way.
-        </p>
-      {% endcall %}
-    </ul>
-
-  </section>
-
 {% endblock %}
