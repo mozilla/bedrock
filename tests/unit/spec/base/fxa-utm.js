@@ -12,6 +12,10 @@
 import FxaUtm from '../../../../media/js/base/fxa-utm.es6.js';
 
 describe('fxa-utm.js', function () {
+    beforeEach(function () {
+        window.Mozilla.dntEnabled = sinon.stub();
+    });
+
     describe('getHostName', function () {
         it('should return a hostname as expected', function () {
             const url1 =
