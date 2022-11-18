@@ -56,9 +56,9 @@
       #}
       {% set position = postings | first %}
       <tr class="position"
-          data-team="{{ position.department | trim }},"
-          data-type="{{ position.position_type | trim }},"
-          data-location="{{ postings | join(',', attribute='job_locations') }},">
+          data-team="{{ position.department | trim }}"
+          data-type="{{ position.position_type | trim }}"
+          data-location="{{ postings | join(',', attribute='job_locations') }}">
         <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
         <td class="location">{{ postings | map(attribute='job_locations') | join(', ') }}</td>
         <td class="name">{{ position.department }}</td>
@@ -73,6 +73,8 @@
   </table>
 </section>
 {% endblock %}
+
+{% block careers_bottom %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('careers-listings') }}

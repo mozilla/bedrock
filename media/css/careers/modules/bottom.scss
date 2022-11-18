@@ -44,8 +44,6 @@ $image-path: '/media/protocol/img';
 
                 &.c-careers-instagram {
                     background-image: url('#{$image-path}/icons/social/instagram/black.svg');
-                    background-size: contain;
-                    background-repeat: no-repeat;
                 }
 
                 &.c-careers-twitter {
