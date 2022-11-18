@@ -884,7 +884,7 @@ DONATE_PARAMS = {
     "aud": {"currency": "aud", "symbol": "A$", "presets": "60,30,20,10", "default": "30", "prefix": "true"},
     "brl": {"currency": "brl", "symbol": "R$", "presets": "80,40,20,10", "default": "40", "prefix": "true"},
     "cad": {"currency": "cad", "symbol": "$", "presets": "60,30,20,10", "default": "30", "prefix": "true"},
-    "chf": {"currency": "chf", "symbol": "Fr.", "presets": "60,30,20,10", "default": "30", "prefix": "true"},
+    "chf": {"currency": "chf", "symbol": "CHF", "presets": "60,30,20,10", "default": "30", "prefix": "true"},
     "czk": {"currency": "czk", "symbol": "Kč", "presets": "450,220,110,70", "default": "220", "prefix": "false"},
     "dkk": {"currency": "dkk", "symbol": "kr", "presets": "130,60,30,20", "default": "60", "prefix": "false"},
     "eur": {"currency": "eur", "symbol": "€", "presets": "60,30,20,10", "default": "30", "prefix": "false"},
