@@ -101,8 +101,8 @@ class TestHomePage(TestCase):
                 "currency": "usd",
                 "default": "30",
                 "prefix": "true",
-                "preset_list": ["50", "30", "20", "10"],
-                "presets": "50,30,20,10",
+                "preset_list": ["60", "30", "20", "10"],
+                "presets": "60,30,20,10",
                 "symbol": "$",
             },
         )
@@ -118,8 +118,8 @@ class TestHomePage(TestCase):
                 "currency": "eur",
                 "default": "30",
                 "prefix": "false",
-                "preset_list": ["50", "30", "20", "10"],
-                "presets": "50,30,20,10",
+                "preset_list": ["60", "30", "20", "10"],
+                "presets": "60,30,20,10",
                 "symbol": "€",
             },
         )
@@ -133,10 +133,10 @@ class TestHomePage(TestCase):
             ctx["donate_params"],
             {
                 "currency": "gbp",
-                "default": "25",
+                "default": "30",
                 "prefix": "true",
-                "preset_list": ["40", "25", "15", "8"],
-                "presets": "40,25,15,8",
+                "preset_list": ["60", "30", "20", "10"],
+                "presets": "60,30,20,10",
                 "symbol": "£",
             },
         )
