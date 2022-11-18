@@ -98,6 +98,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-afrozilla-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-afrozilla-tina.png') }}" alt="Tina from Mozilla's Afrozilla MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Tina R.</cite>
@@ -121,6 +122,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-disability-at-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-disability-kim.png') }}" alt="Kim from Mozilla's Disability@ MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Kim B.</cite>
@@ -144,6 +146,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-latin-pride-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-latinpride-solana.png') }}" alt="Solana from Mozilla's Latin Pride MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Solana L.</cite>
@@ -167,6 +170,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-moz-api-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-mozapi-julie.png') }}" alt="Julie from Mozilla's MozAPI MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Julie H.</cite>
@@ -190,6 +194,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-pridezilla-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-pridezilla-damiano.png') }}" alt="Damiano from Mozilla's Pridezilla MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Damiano D.</cite>
@@ -213,6 +218,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-womoz-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-womoz-elgin.png') }}" alt="Elgin from Mozilla's WoMoz MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Elgin-Skye M.</cite>
@@ -236,6 +242,7 @@
             </p>
             <div class="c-diversity-citation">
               <div class="c-diversity-citation-image c-yallazilla-image">
+                <img src="{{ static('img/careers/mozilla-resource-groups/mrg-yallazilla-frida.png') }}" alt="Frida from Mozilla's Yallazilla MRG">
               </div>
               <div class="c-diversity-citation-author">
                 <cite>Frida K.</cite>
@@ -249,57 +256,7 @@
   </section>
 
   <!-- blog content -->
-
-  <section class="c-careers-blog c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2>
-        Life@Mozilla
-      </h2>
-      <p>
-        Real people, real projects, real stories. Read about what it’s like to work here.
-      </p>
-    </div>
-
-    {% if recent_posts %}
-      <div class="mzp-l-card-third mzp-l-content">
-      {% for post in recent_posts %}
-        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
-          <a href="{{ post.link }}" class="mzp-c-card-block-link">
-            <div class="mzp-c-card-media-wrapper">
-              <div class="lazy-image-container">
-                <!-- <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" /> -->
-              </div>
-            </div>
-            <div class="mzp-c-card-content">
-              <h2 class="mzp-c-card-title">{{ post.title }}</h2>
-              <div class="mzp-c-card-desc">
-                {{ post.excerpt }}
-              </div>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-      {% if featured_post %}
-        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
-          <a href="{{ featured_post.link }}" class="mzp-c-card-block-link">
-            <div class="mzp-c-card-media-wrapper">
-              <div class="lazy-image-container">
-                <!-- <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" /> -->
-              </div>
-            </div>
-            <div class="mzp-c-card-content">
-              <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
-              <div class="mzp-c-card-desc">
-                {{ featured_post.excerpt }}
-              </div>
-              <ul>
-            </div>
-          </a>
-        </div>
-      {% endif %}
-      </div>
-    {% endif %}
-  </section>
+  {% include "careers/includes/blogposts.html" %}
 
 {% endblock %}
 

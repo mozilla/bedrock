@@ -60,40 +60,13 @@ $image-path: '/media/protocol/img';
 
             .c-diversity-citation-image {
                 margin-bottom: $spacing-sm;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
                 border-radius: 50%;
-                height: 95px;
-                width: 95px;
                 flex-shrink: 0;
 
-                &.c-afrozilla-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-afrozilla-tina.png');
-                }
-
-                &.c-disability-at-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-disability-kim.png');
-                }
-
-                &.c-latin-pride-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-latinpride-solana.png');
-                }
-
-                &.c-moz-api-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-mozapi-julie.png');
-                }
-
-                &.c-pridezilla-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-pridezilla-damiano.png');
-                }
-
-                &.c-womoz-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-womoz-elgin.png');
-                }
-
-                &.c-yallazilla-image {
-                    background-image: url('/media/img/careers/mozilla-resource-groups/mrg-yallazilla-frida.png');
+                img {
+                    height: 95px;
+                    width: 95px;
+                    border-radius: 50%;
                 }
             }
 
