@@ -312,7 +312,7 @@ default locale's content is, and is stored in a locale-specific ContentfulEntry
 in the database.
 
 In terms of 'activation', or "Do we have all the parts to show this
-Contentful content"?, Contentful content is not evaluted in the same way as
+Contentful content"?, Contentful content is not evaluated in the same way as
 Fluent strings (where we will show a page in a given locale if 80% of its
 Fluent strings have been translated, falling back to en-US where not).
 
