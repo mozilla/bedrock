@@ -44,22 +44,23 @@
 <main role="main">
   {% call split(
     image=resp_img('img/firefox/browsers/hero-500.jpg',
-    srcset={
-      'img/firefox/browsers/hero-500.jpg': '500w',
-      'img/firefox/browsers/hero-700.jpg': '700w',
-      'img/firefox/browsers/hero-900.jpg': '900w',
-      'img/firefox/browsers/hero-1100.jpg': '1100w',
-      'img/firefox/browsers/hero-1300.jpg': '1300w',
-    },
-    sizes={
-      '(min-width: 768px)': 'calc(50vw - 192px)',
-      'default': 'calc(100vw - 48px)'
-    },
-    optional_attributes={
-      'class': 'mzp-c-split-media-asset',
-      'height': '420',
-      'width': '680'
-    }),
+      srcset={
+        'img/firefox/browsers/hero-500.jpg': '500w',
+        'img/firefox/browsers/hero-700.jpg': '700w',
+        'img/firefox/browsers/hero-900.jpg': '900w',
+        'img/firefox/browsers/hero-1100.jpg': '1100w',
+        'img/firefox/browsers/hero-1300.jpg': '1300w',
+      },
+      sizes={
+        '(min-width: 768px)': 'calc(50vw - 192px)',
+        'default': 'calc(100vw - 48px)'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'height': '420',
+        'width': '680'
+      }
+    ),
     block_class='mzp-has-media-hide mzp-l-split-center-on-sm-md',
     body_class='mzp-l-v-center',
     media_class='mzp-l-fit-flush mzp-l-constrain-height'
@@ -122,7 +123,10 @@
 
     <div class="c-landing-grid-item c-landing-grid-wide">
       {% call split(
-        image=resp_img('img/firefox/browsers/dev.png', srcset={ 'img/firefox/browsers/dev.png': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
+        image=resp_img('img/firefox/browsers/dev.png',
+          srcset={ 'img/firefox/browsers/dev-high-res.png': '2x' },
+          optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+        ),
         block_class='t-compare'
       ) %}
         <h2>{{ ftl('browsers-mobile-see-how-firefox-for-desktop-compare') }}</h2>

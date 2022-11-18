@@ -119,8 +119,10 @@
     </div>
 
     {% call split(
-      image=resp_img('img/firefox/home/master/browsers-mr1.jpg', srcset={ 'img/firefox/home/master/browsers-mr1-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-      include_highres_image=True,
+      image=resp_img('img/firefox/home/master/browsers-mr1.jpg',
+        srcset={ 'img/firefox/home/master/browsers-mr1-high-res.jpg': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
       block_class='t-browsers',
       media_class='mzp-l-split-h-center',
       media_after=True

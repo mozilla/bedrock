@@ -27,7 +27,10 @@
 
 {% block content %}
   {% call split(
-    image=resp_img('img/firefox/browsers/quantum/browser.jpg', srcset={ 'img/firefox/browsers/quantum/browser.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
+    image=resp_img('img/firefox/browsers/quantum/browser.jpg',
+      srcset={ 'img/firefox/browsers/quantum/browser-high-res.jpg': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+    ),
     media_after=True,
     block_class='mzp-l-split-hide-media-on-sm-md',
     media_class='mzp-l-split-h-center'
@@ -58,7 +61,10 @@
   <section>
     <h2 class="mzp-c-section-heading">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
     {% call split(
-      image=resp_img('img/firefox/browsers/chromebook/shield.png', srcset={ 'img/firefox/browsers/chromebook/shield.png': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
+      image=resp_img('img/firefox/browsers/chromebook/shield.png',
+        srcset={ 'img/firefox/browsers/chromebook/shield-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
     ) %}
       <p>{{ ftl('browsers-chromebook-while-a-chromebook') }}</p>
       <ul class="mzp-u-list-styled">

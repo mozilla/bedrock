@@ -39,7 +39,10 @@
 
 {% block content %}
   {% call split(
-  image=resp_img('img/firefox/accounts/trailhead/value-knowledge.jpg', srcset={ 'img/firefox/accounts/trailhead/value-knowledge.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
+  image=resp_img('img/firefox/accounts/trailhead/value-knowledge.jpg',
+    srcset={ 'img/firefox/accounts/trailhead/value-knowledge-high-res.jpg': '2x' },
+    optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+  ),
   media_after=True,
   block_class='mzp-l-split-center-on-sm-md',
   media_class='mzp-l-split-h-center'

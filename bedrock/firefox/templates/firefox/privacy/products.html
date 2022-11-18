@@ -161,7 +161,10 @@
   {% set block_class = 'mzp-l-split-reversed' %}
   {% endif %}
     {% call split(
-      image=resp_img('img/firefox/privacy/products/pocket.png', srcset={ 'img/firefox/privacy/products/pocket-high-res.png': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
+      image=resp_img('img/firefox/privacy/products/pocket.png',
+        srcset={ 'img/firefox/privacy/products/pocket-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
       block_class=block_class,
       media_class='mzp-l-split-h-center'
     ) %}

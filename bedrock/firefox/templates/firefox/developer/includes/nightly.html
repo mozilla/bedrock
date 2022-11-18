@@ -7,9 +7,10 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% call split(
-  image=resp_img('img/firefox/developer/browser-nightly.png', srcset={ 'img/firefox/developer/browser-nightly.png': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'})
-  image_url='img/firefox/developer/browser-nightly.png',
-  include_highres_image=True,
+  image=resp_img('img/firefox/developer/browser-nightly.png',
+    srcset={ 'img/firefox/developer/browser-nightly-high-res.png': '2x' },
+    optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+  ),
   block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md',
   media_after=True
 ) %}

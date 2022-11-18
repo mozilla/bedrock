@@ -21,7 +21,10 @@
 {% block content %}
 <main>
   {% call split(
-      image=resp_img('img/firefox/switch/switch.png', srcset={'img/firefox/switch/switch-high-res.png': '2x'}, optional_attributes={'class': 'mzp-c-split-media-asset'}),
+      image=resp_img('img/firefox/switch/switch.png',
+        srcset={'img/firefox/switch/switch-high-res.png': '2x'},
+        optional_attributes={'class': 'mzp-c-split-media-asset'}
+      ),
       media_after=True,
       media_class='mzp-l-split-h-center',
       block_class='mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md'
