@@ -221,6 +221,10 @@ $pocket-image-path: '/media/img/pocket';
             width: 100vw;
         }
 
+        @media (min-width: 450px) {
+            padding-bottom: 875px;
+        }
+
         @media (min-width: 599px) {
             padding-bottom: 1020px;
 
