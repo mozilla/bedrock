@@ -318,20 +318,28 @@ class Command(BaseCommand):
 
     def _get_value_from_data(self, data: dict, spec: dict) -> str:
         """Extract a single value from `data` based on the provided `spec`,
-        which is written as a jq filter directive"""
+        which is written as a jq filter directive.
+
+        This will get all the strings in the data and return them as a
+        single string. As such, this is not intended for extracing
+        presentation-ready data, but is useful to check if we have viable
+        data at all."""
 
         # jq docs: https://stedolan.github.io/jq/
         # jq.py docs: https://github.com/mwilliamson/jq.py
 
         try:
-            return " ".join(jq.all(spec, data))
+            values = jq.all(spec, data)
         except TypeError as e:
-            expected_error_if_not_yet_localised = "sequence item 0: expected str instance, NoneType found"
-            if expected_error_if_not_yet_localised not in str(e):
-                # ie, it's not just a fail because we don't yet have localised
-                # content for this entry's data yet, we should log it
-                capture_exception(e)
+            capture_exception(e)
             return ""
+
+        for i, val in enumerate(values):
+            if val:
+                values[i] = val.strip()
+            elif val is None:
+                values[i] = ""
+        return " ".join(values).strip()
 
     def _check_localisation_complete(self) -> None:
         """In the context of Contentful-sourced data, we consider localisation

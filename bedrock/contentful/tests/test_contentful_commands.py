@@ -845,3 +845,21 @@ def test_update_contentful__get_value_from_data(spec, expected_string, command_i
         resource_center_page_data,
         spec,
     )
+
+
+@pytest.mark.parametrize(
+    "jq_all_mocked_output, expected",
+    (
+        (["   ", "", None], ""),
+        ([" Hello, World!  ", "test", None], "Hello, World! test"),
+    ),
+)
+@mock.patch("bedrock.contentful.management.commands.update_contentful.jq.all")
+def test__get_value_from_data__no_false_positives(
+    mocked_jq_all,
+    jq_all_mocked_output,
+    expected,
+    command_instance,
+):
+    mocked_jq_all.return_value = jq_all_mocked_output
+    assert command_instance._get_value_from_data(data=None, spec=None) == expected
