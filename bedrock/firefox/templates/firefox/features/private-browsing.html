@@ -36,7 +36,7 @@
   </header>
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/private/no-trace.jpg',
+    image=resp_img('img/firefox/features/thumbnails/private/no-trace.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}
@@ -45,7 +45,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/private/zero-chill.jpg',
+    image=resp_img('img/firefox/features/thumbnails/private/zero-chill.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
   ) %}
     <h2>{{ ftl('features-private-browsing-catch-those-hidden') }}</h2>
@@ -53,7 +53,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/private/baggage.jpg',
+    image=resp_img('img/firefox/features/thumbnails/private/baggage.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}

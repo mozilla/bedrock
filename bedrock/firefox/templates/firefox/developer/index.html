@@ -85,8 +85,10 @@
     {% include '/firefox/developer/includes/engage.html' %}
 
     {% call split(
-      image_url='img/firefox/developer/browser.png',
-      include_highres_image=True,
+      image=resp_img('img/firefox/developer/browser.png',
+        srcset={ 'img/firefox/developer/browser-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset' }
+      ),
       block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md',
       media_after=True
     ) %}

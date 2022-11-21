@@ -36,7 +36,7 @@
   </header>
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/fast/low-memory.jpg',
+    image=resp_img('img/firefox/features/thumbnails/fast/low-memory.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}
@@ -45,7 +45,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/fast/multi-tabs.jpg',
+    image=resp_img('img/firefox/features/thumbnails/fast/multi-tabs.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
   ) %}
     <h2>{{ ftl('features-fast-get-all-the-tabs-without-lags') }}</h2>
@@ -53,7 +53,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/features/thumbnails/fast/gaming.jpg',
+    image=resp_img('img/firefox/features/thumbnails/fast/gaming.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-split-nospace',
     theme_class='mzp-l-split-reversed',
   ) %}

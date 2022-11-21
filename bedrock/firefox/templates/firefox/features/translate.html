@@ -28,8 +28,10 @@
     block_class='mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-media-constrain-height',
-    image_url='img/firefox/features/translate/translate.png',
-    include_highres_image=True,
+    image=resp_img('img/firefox/features/translate/translate.png',
+      srcset={ 'img/firefox/features/translate/translate-high-res.png': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+    ),
   ) %}
     <span class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></span>
     <h1 class="mzp-u-title-xl">{{ ftl('features-translate-translate-the-web') }}</h1>

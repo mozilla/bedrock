@@ -81,7 +81,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/fast-and-private.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/fast-and-private.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -90,7 +90,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/one-tap-to-private-mode.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/one-tap-to-private-mode.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-android-one-tap-to') }}</h3>
@@ -98,7 +98,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/search-your-own-way.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/search-your-own-way.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -107,7 +107,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/save-power-with-dark-mode.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/save-power-with-dark-mode.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-android-save-power-with') }}</h3>
@@ -115,7 +115,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/easily-organize-your-tabs.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/easily-organize-your-tabs.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -124,7 +124,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/supercharge-firefox-with-add-ons.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/supercharge-firefox-with-add-ons.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-android-supercharge-firefox-with') }}</h3>
@@ -132,7 +132,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/pick-up-where-you-left-off.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/pick-up-where-you-left-off.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -141,7 +141,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/search-from-your-phones-home-screen.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/search-from-your-phones-home-screen.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-android-search-from-your') }}</h3>
@@ -149,7 +149,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/android/pin-videos-to-your-screen.svg',
+    image=resp_img('img/firefox/browsers/mobile/android/pin-videos-to-your-screen.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -158,19 +158,21 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/about-hero-800.png',
-    image_srcset={
+    image=resp_img('img/firefox/browsers/mobile/about-hero-800.png',
+    srcset={
       'img/firefox/browsers/mobile/about-hero-500.png': '500w',
       'img/firefox/browsers/mobile/about-hero-800.png': '800w',
       'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
     },
-    image_sizes={
+    sizes={
       '(min-width: 768px)': '760px',
       'default': '250px'
     },
-    image_width='760',
-    image_height='664',
-    include_highres_image=True,
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset',
+      'height': '664',
+      'width': '760'
+    }),
     block_class='about-mozilla mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-h-center',

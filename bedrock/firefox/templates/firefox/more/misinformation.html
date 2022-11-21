@@ -23,8 +23,10 @@
 {% block content %}
 
 {% call split(
-  image_url='img/firefox/more/misinformation/hero.jpg',
-  include_highres_image=True,
+  image=resp_img('img/firefox/more/misinformation/hero.jpg',
+    srcset={ 'img/firefox/more/misinformation/hero-high-res.jpg': '2x' },
+    optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+  ),
   block_class='c-hero mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md mzp-t-split-nospace t-mobile-nospace',
   media_class='mzp-l-split-media-overflow',
   theme_class='mzp-t-dark'
@@ -106,7 +108,7 @@
     <h2 class="misinformation-firefox-helps-heading">{{ ftl('misinformation-how-firefox-helps-heading') }}</h2>
 
     {% call split(
-      image_url='img/firefox/more/misinformation/tracking-protection.svg',
+      image=resp_img('img/firefox/more/misinformation/tracking-protection.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='mzp-l-split-reversed'
     ) %}
       <h2>{{ ftl('misinformation-firefox-keeps-trackers-heading') }}</h2>
@@ -114,7 +116,7 @@
     {% endcall %}
 
     {% call split(
-      image_url='img/firefox/more/misinformation/facebook-container.svg',
+      image=resp_img('img/firefox/more/misinformation/facebook-container.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='mzp-l-split-reversed'
     ) %}
       <h2>{{ ftl('misinformation-social-media-clean-heading') }}</h2>
@@ -124,7 +126,7 @@
     {# Pocket recommendations in Firefox are currently shown to English and German audiences only. #}
     {% if LANG.startswith('en-') or LANG == 'de' %}
       {% call split(
-        image_url='img/firefox/more/misinformation/pocket.svg',
+        image=resp_img('img/firefox/more/misinformation/pocket.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
         block_class='mzp-l-split-reversed'
       ) %}
         <h2>{{ ftl('misinformation-surface-content-heading') }}</h2>

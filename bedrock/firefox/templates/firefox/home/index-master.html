@@ -119,8 +119,10 @@
     </div>
 
     {% call split(
-      image_url='img/firefox/home/master/browsers-mr1.jpg',
-      include_highres_image=True,
+      image=resp_img('img/firefox/home/master/browsers-mr1.jpg',
+        srcset={ 'img/firefox/home/master/browsers-mr1-high-res.jpg': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
       block_class='t-browsers',
       media_class='mzp-l-split-h-center',
       media_after=True
@@ -148,7 +150,7 @@
     {% endcall %}
 
     {% call split(
-      image_url='img/firefox/home/master/monitor-mr1.svg',
+      image=resp_img('img/firefox/home/master/monitor-mr1.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='t-monitor mzp-l-split-reversed',
       media_class='mzp-l-split-h-center',
       media_after=True
@@ -162,7 +164,7 @@
 
   {% if ftl_has_messages('firefox-home-protection-for-your-whole') %}
     {% call split(
-        image_url='img/firefox/home/master/vpn.svg',
+        image=resp_img('img/firefox/home/master/vpn.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
         block_class='t-mozvpn',
         media_class='mzp-l-split-h-center',
         media_after=True
@@ -190,7 +192,7 @@
   </div>
 
     {% call split(
-      image_url='img/firefox/home/master/pocket-mr1.svg',
+      image=resp_img('img/firefox/home/master/pocket-mr1.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='t-pocket',
       media_class='mzp-l-split-h-center',
       media_after=True
@@ -210,7 +212,7 @@
     {% endcall %}
 
     {% call split(
-      image_url='img/firefox/home/master/firefox-relay.jpg',
+      image=resp_img('img/firefox/home/master/firefox-relay.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='t-monitor mzp-l-split-reversed',
       media_class='mzp-l-split-h-center',
       media_after=True

@@ -83,7 +83,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/disappear-your-history.svg',
+    image=resp_img('img/firefox/browsers/mobile/focus/disappear-your-history.svg', { 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -92,7 +92,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg',
+    image=resp_img('img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg', { 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-focus-take-private-mode') }}</h3>
@@ -100,7 +100,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/tracking-protection.svg',
+    image=resp_img('img/firefox/browsers/mobile/focus/tracking-protection.svg', { 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -109,7 +109,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/ad-blocking.svg',
+    image=resp_img('img/firefox/browsers/mobile/focus/ad-blocking.svg', { 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-focus-ad-blocking') }}</h3>
@@ -117,7 +117,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/see-it-all-faster.svg',
+    image=resp_img('img/firefox/browsers/mobile/focus/see-it-all-faster.svg', { 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -126,24 +126,27 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/about-hero-800.png',
-    image_srcset={
-      'img/firefox/browsers/mobile/about-hero-500.png': '500w',
-      'img/firefox/browsers/mobile/about-hero-800.png': '800w',
-      'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
-    },
-    image_sizes={
-      '(min-width: 768px)': '760px',
-      'default': '250px'
-    },
-    image_width='760',
-    image_height='664',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/mobile/about-hero-800.png',
+      srcset={
+        'img/firefox/browsers/mobile/about-hero-500.png': '500w',
+        'img/firefox/browsers/mobile/about-hero-800.png': '800w',
+        'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
+      },
+      image_sizes={
+        '(min-width: 768px)': '760px',
+        'default': '250px'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'height': '664',
+        'width': '760'
+        'loading': 'lazy'
+      }
+    ),
     block_class='about-mozilla mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-h-center',
     media_after=True,
-    loading='lazy'
   ) %}
     <h3>{{ ftl('mobile-focus-made-by-mozilla') }}</h3>
     <p>{{ ftl('mobile-focus-we-believe-everyone') }}</p>

@@ -20,8 +20,9 @@
 {% block content %}
 <main>
   {% call split(
-    image_url='img/firefox/privacy/promise/privacy-hero-700.png',
-    image_sources=[
+    image=picture(
+      'img/firefox/privacy/promise/privacy-hero-700.png',
+      sources=[
       {
         'media': '(min-width: 768px)',
         'srcset': {
@@ -40,9 +41,13 @@
           'img/placeholder.png': 'default'
         }
       }
-    ],
-    image_width='680',
-    image_height='626',
+      ],
+      optional_attributes={
+        'height': '626',
+        'width': '680',
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='page-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace t-mobile-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-v-end'

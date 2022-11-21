@@ -32,8 +32,7 @@
   }}
 
   {% call split(
-    image_url='img/firefox/privacy/products/report.svg',
-    l10n_image=True,
+    image=resp_img('img/firefox/privacy/products/report.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset', 'l10n': 'true'}),
     block_class='privacy-products-hero mzp-t-dark mzp-l-split-hide-media-on-sm-md',
     media_class='mzp-l-split-media-overflow'
   ) %}
@@ -124,7 +123,7 @@
 
   <div class="privacy-products-list t-medium">
     {% call split(
-      image_url='img/firefox/privacy/products/monitor.svg',
+      image=resp_img('img/firefox/privacy/products/monitor.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       media_class='mzp-l-split-h-center'
     ) %}
       <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-monitor">
@@ -140,7 +139,7 @@
 
   {% if ftl_has_messages('firefox-privacy-hub-surf-stream-and-get-work') %}
     {% call split(
-      image_url='img/firefox/privacy/products/vpn.svg',
+      image=resp_img('img/firefox/privacy/products/vpn.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='mzp-l-split-reversed',
       media_class='mzp-l-split-h-center'
     ) %}
@@ -162,8 +161,10 @@
   {% set block_class = 'mzp-l-split-reversed' %}
   {% endif %}
     {% call split(
-      image_url='img/firefox/privacy/products/pocket.png',
-      include_highres_image=True,
+      image=resp_img('img/firefox/privacy/products/pocket.png',
+        srcset={ 'img/firefox/privacy/products/pocket-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
       block_class=block_class,
       media_class='mzp-l-split-h-center'
     ) %}

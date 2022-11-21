@@ -65,7 +65,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/make-firefox-your-default-browser.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/make-firefox-your-default-browser.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -74,7 +74,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/fast-private-secure.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/fast-private-secure.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl'
   ) %}
     <h3>{{ ftl('mobile-ios-fast-private-secure') }}</h3>
@@ -82,7 +82,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/stay-private-online.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/stay-private-online.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -91,7 +91,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/your-browser-history-is-history.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/your-browser-history-is-history.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl'
   ) %}
     <h3>{{ ftl('mobile-ios-your-browsing-history') }}</h3>
@@ -99,7 +99,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/get-more-firefox-in-your-life.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/get-more-firefox-in-your-life.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -108,7 +108,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/find-it-all-faster.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/find-it-all-faster.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl'
   ) %}
     <h3>{{ ftl('mobile-ios-find-it-all') }}</h3>
@@ -116,7 +116,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/keep-tabs-on-all-those-tabs.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/keep-tabs-on-all-those-tabs.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -125,7 +125,7 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/ios/discover-more-of-what-you-love.svg',
+    image=resp_img('img/firefox/browsers/mobile/ios/discover-more-of-what-you-love.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl'
   ) %}
     <h3>{{ ftl('mobile-ios-discover-more-of') }}</h3>
@@ -133,24 +133,27 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/about-hero-800.png',
-    image_srcset={
-      'img/firefox/browsers/mobile/about-hero-500.png': '500w',
-      'img/firefox/browsers/mobile/about-hero-800.png': '800w',
-      'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
-    },
-    image_sizes={
-      '(min-width: 768px)': '760px',
-      'default': '250px'
-    },
-    image_width='760',
-    image_height='664',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/mobile/about-hero-800.png',
+      srcset={
+        'img/firefox/browsers/mobile/about-hero-500.png': '500w',
+        'img/firefox/browsers/mobile/about-hero-800.png': '800w',
+        'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
+      },
+      sizes={
+        '(min-width: 768px)': '760px',
+        'default': '250px'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'height': '664',
+        'width': '760',
+        'loading': 'lazy'
+      }
+    ),
     block_class='about-mozilla mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-h-center',
-    media_after=True,
-    loading='lazy'
+    media_after=True
   ) %}
     <h3>{{ ftl('mobile-ios-about-mozilla') }}</h3>
     <p>{{ ftl('mobile-ios-mozilla-exists-to') }}</p>
