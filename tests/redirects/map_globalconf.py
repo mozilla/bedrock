@@ -1207,5 +1207,7 @@ URLS = flatten(
         ),
         # Issue 11991
         url_test("/transparency/", "/about/policy/transparency/"),
+        # Issue 12376
+        url_test("/newsletter/country/success/", "/newsletter/updated/"),
     )
 )

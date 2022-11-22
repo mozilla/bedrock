@@ -208,16 +208,14 @@ def set_country(request, token):
         initial["country"] = countrycode.lower()
 
     form = CountrySelectForm("en-US", data=request.POST or None, initial=initial)
-    if form.is_valid():
-        try:
-            basket.request("post", "user-meta", data=form.cleaned_data, token=token)
-        except basket.BasketException:
-            log.exception("Error updating user's country in basket")
-            messages.add_message(request, messages.ERROR, general_error)
-        else:
-            return redirect(reverse("newsletter.country_success"))
 
-    return l10n_utils.render(request, "newsletter/country.html", {"form": form})
+    context = {
+        "action": f"{settings.BASKET_URL}/news/user-meta/{token}/",
+        "form": form,
+        "updated_url": reverse("newsletter.updated"),
+    }
+
+    return l10n_utils.render(request, "newsletter/country.html", context)
 
 
 @never_cache

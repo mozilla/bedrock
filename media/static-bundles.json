@@ -577,6 +577,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-country.scss"
+      ],
+      "name": "newsletter-country"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-recovery.scss",
         "css/newsletter/newsletter-opt-out-confirmation.scss"
       ],
@@ -1796,6 +1802,13 @@
         "js/newsletter/recovery-init.es6.js"
       ],
       "name": "newsletter-recovery"
+    },
+    {
+      "files": [
+        "js/newsletter/country.es6.js",
+        "js/newsletter/country-init.es6.js"
+      ],
+      "name": "newsletter-country"
     },
     {
       "files": [
