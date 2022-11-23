@@ -31,7 +31,7 @@ class LatestPositionsFeed(Feed):
         return Position.categories()
 
     def items(self):
-        return [list(g)[0] for k, g in groupby(Position.objects.all().order_by("job_id"), key=lambda p: p.internal_job_id)]
+        return [list(g)[0] for k, g in groupby(Position.objects.all().order_by("internal_job_id", "job_id"), key=lambda p: p.internal_job_id)]
 
     def item_title(self, item):
         return item.title
