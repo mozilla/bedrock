@@ -4,15 +4,15 @@
 
 $image-path: '/media/protocol/img';
 
-@use './modules/hero-text.scss';
-@use './modules/hero-video.scss';
-@use './modules/home.scss';
-@use './modules/testimonials.scss';
-@use './modules/diversity.scss';
-@use './modules/locations.scss';
-@use './modules/job-listings.scss';
-@use './modules/position.scss';
-@use './modules/bottom.scss';
+@use './components/hero-text.scss';
+@use './components/hero-video.scss';
+@use './components/home.scss';
+@use './components/testimonials.scss';
+@use './components/diversity.scss';
+@use './components/locations.scss';
+@use './components/job-listings.scss';
+@use './components/position.scss';
+@use './components/bottom.scss';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';

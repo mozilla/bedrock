@@ -7,7 +7,16 @@
 
 // Header with no video
 .c-careers-text-hero {
-    background-color: cp.$teal-secondary;
+    background-color: $color-black;
+    color: cp.$blue-primary;
+
+    h1 {
+        color: $color-white;
+    }
+
+    p {
+        @include text-body-xl;
+    }
 
     .c-text-hero-wrapper {
         align-items: center;

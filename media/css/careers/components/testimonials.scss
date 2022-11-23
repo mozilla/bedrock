@@ -57,10 +57,10 @@ $image-path: '/media/protocol/img';
             }
 
             &:nth-child(5) {
-                background-color: #d5edea;
+                background-color: cp.$teal-tertiary;
 
                 &:hover {
-                    background-color: color.scale(#d5edea, $alpha: -30%);
+                    background-color: color.scale(cp.$teal-tertiary, $alpha: -30%);
                 }
             }
 
@@ -73,10 +73,10 @@ $image-path: '/media/protocol/img';
             }
 
             &:nth-child(9) {
-                background-color: #00b7aa;
+                background-color: cp.$teal-primary;
 
                 &:hover {
-                    background-color: color.scale(#00b7aa, $alpha: -30%);
+                    background-color: color.scale(cp.$teal-primary, $alpha: -30%);
                 }
             }
 

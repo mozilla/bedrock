@@ -6,57 +6,13 @@
 @use 'sass:color';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-/* Hero with background video */
-
-.c-careers-video-hero {
-    position: relative;
-
-    .c-video-wrapper {
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .c-background-video {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
-
-        .overlay {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            content: '';
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.75);
-            pointer-events: none;
-        }
-
-        .mzp-c-split {
-            z-index: 20;
-
-            .mzp-c-split-body {
-                h1,
-                p {
-                    color: $color-white;
-                }
-            }
-        }
-    }
-}
-
 .c-careers-intro {
-    background-color: cp.$teal-secondary;
+    background-color: $color-black;
+    color: cp.$blue-primary;
+
+    h2 {
+        color: $color-white;
+    }
 }
 
 .c-careers-mozillians {

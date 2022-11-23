@@ -8,7 +8,7 @@
 
 {% block careers_content %}
   <header class="c-careers-text-hero">
-    <div class="mzp-l-content c-text-hero-wrapper mzp-t-content-md">
+    <div class="mzp-l-content mzp-t-content-md c-text-hero-wrapper">
       <h1 class="c-text-hero-title">Benefits for real life</h1>
 
       <div class="c-text-hero-body">
@@ -16,7 +16,7 @@
           set us apart from other companies in our industry.</p>
 
         <p class="c-careers-button-wrapper">
-          <a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-secondary" data-cta-type="button" data-cta-name="careers listings">See our open roles</a>
+          <a href="{{ url('careers.listings') }}" class="mzp-c-button mzp-t-dark" data-cta-type="button" data-cta-name="careers listings">See our open roles</a>
         </p>
       </div>
     </div>
@@ -34,8 +34,7 @@
           families, we believe it’s easier for everyone to focus on the work we’re
           here to do together. Here’s a sample of what’s included in our benefits
           package. One thing to note: Global benefits vary by location, and a
-          recruiter can answer specific questions if you live outside the U.S.
-          Here’s a sampling of what we offer.</p>
+          recruiter can answer specific questions about your locale.</p>
       </div>
 
       <ul class="mzp-l-columns mzp-t-columns-three">
@@ -129,34 +128,35 @@
           </p>
         {% endcall %}
 
+
         {% call picto(
           base_el='li',
           title='Help when you need it',
           image_url='img/careers/icons/mozilla-theme/careers-dino-help.svg',
           body=True,
-        ) %}
+          ) %}
           <p>
             Life is full of surprises; that’s why it’s important to be
             prepared. Mozilla provides Life/AD&D and Short and Long Term
             Disability insurance to ensure that you and your family will have
             a safety net in place should you ever need it.
           </p>
-        {% endcall %}
+          {% endcall %}
 
-        {% call picto(
-          base_el='li',
-          title='Plus a bit more',
-          image_url='img/careers/icons/mozilla-theme/careers-more.svg',
-          body=True,
-        ) %}
-          <p>
-            A few other benefits include a quarterly wellbeing stipend (to use
-            on those things just for you), an employee referral bonus, internet
-            reimbursement if you’re remote, and a budget for office essentials
-            to make working remotely ergonomically comfortable.
-          </p>
-        {% endcall %}
-      </ul>
+          {% call picto(
+            base_el='li',
+            title='Plus a bit more',
+            image_url='img/careers/icons/mozilla-theme/careers-more.svg',
+            body=True,
+            ) %}
+            <p>
+              A few other benefits include a quarterly wellbeing stipend (to use
+              on those things just for you), an employee referral bonus, internet
+              reimbursement if you’re remote, and a budget for office essentials
+              to make working remotely ergonomically comfortable.
+            </p>
+            {% endcall %}
+        </ul>
     </div>
   </section>
-  {% endblock %}
+{% endblock %}

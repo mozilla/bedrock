@@ -3,6 +3,8 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../utils' as cp;
+@use 'sass:color';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // Header with video
@@ -34,7 +36,7 @@
         }
 
         .overlay {
-            background: rgba(0, 0, 0, 0.75);
+            background-color: color.adjust($color: cp.$blue-primary, $amount: 0.2);
             content: '';
             display: block;
             height: 100%;
@@ -52,7 +54,7 @@
             .mzp-c-split-body {
                 h1,
                 p {
-                    color: $color-white;
+                    color: $color-black;
                 }
             }
         }
