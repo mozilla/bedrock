@@ -493,7 +493,7 @@ class ContentfulPage:
             )
         except ContentfulEntry.DoesNotExist:
             return ""
-        return entry.data.get("info", {}).get("seo", {}).get("image", None)
+        return entry.data.get("info", {}).get("seo", {}).get("image", "")
 
     def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
         if self.page.content_type.id == CONTENT_TYPE_CONNECT_HOMEPAGE:

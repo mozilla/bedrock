@@ -858,7 +858,7 @@ def test_ContentfulPage___get_image_from_default_locale_seo_object__no_relevant_
         },
     )
 
-    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") is None
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") == ""
 
 
 @pytest.mark.parametrize(
