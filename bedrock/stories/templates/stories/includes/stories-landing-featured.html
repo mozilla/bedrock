@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="c-stories-featured-collection">
+<section class="c-stories-featured-collection {% if theme_class %}theme-{{ theme_class }}{% else %}theme-pink{% endif %}">
   <div class="c-stories-featured-story">
   <a class="featured-story-image" href="{{ url }}">
     <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">

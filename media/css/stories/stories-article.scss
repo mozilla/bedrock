@@ -17,39 +17,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-body {
-    &.theme-connection {
-        background: $pink-primary;
-
-        .c-stories-article-blockquote.color-accent {
-            background: $pink-primary;
-        }
-
-        .mzp-c-breadcrumb {
-            background-color: $pink-primary;
-        }
-    }
-
-    // not a real theme, needed to provide different background on Joy of Color
-    &.theme-joy {
-        background: $green;
-
-        .c-stories-article-blockquote.color-accent {
-            background: $green;
-        }
-
-        .mzp-c-breadcrumb {
-            background-color: $green;
-        }
-
-        .mzp-c-breadcrumb,
-        .c-stories-article-header,
-        .c-stories-article-blockquote.color-accent {
-            color: $color-white;
-        }
-    }
-}
-
 // HACKY overrides for the navigation to match the comps (deals with box shadow and scrolling)
 html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
     box-shadow: none;
@@ -101,7 +68,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
 .c-stories-article-header {
     width: 100%;
-    color: $color-black;
 
     .c-stories-article-header-container {
         @include stories-grid;
@@ -386,122 +352,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             margin-top: 0;
         }
 
-        .c-stories-article-blockquote {
-            @include article-width-full;
-            border-top: 4px solid #e8e8e8;
-            border-bottom: 4px solid #e8e8e8;
-            padding: $layout-md 0;
-            margin: 0 $spacing-lg $spacing-2xl;
-
-            &.color-accent {
-                grid-column: 1 / 13;
-                border: none;
-                margin-left: 0;
-                margin-right: 0;
-
-                blockquote {
-                    box-sizing: border-box;
-                    font-weight: 400;
-                    margin-bottom: $spacing-lg;
-                    max-width: 100%;
-                    padding: 0 $spacing-lg;
-                }
-            }
-
-            blockquote {
-                @include font-size(28px);
-                color: $color-black;
-                font-family: $font-stories-title;
-                text-transform: uppercase;
-                text-align: center;
-                border: none;
-                padding: 0;
-                margin: 0 auto;
-                width: 100%;
-
-                &.contains-caption {
-                    margin-bottom: $spacing-lg;
-                }
-            }
-
-            figcaption {
-                @include font-size(20px);
-                color: $color-black;
-                font-family: $font-stories-body;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            @media #{$mq-sm} {
-                blockquote {
-                    width: 435px;
-                    @include font-size(36px);
-                }
-            }
-
-            @media #{$mq-md} {
-                margin-top: $spacing-2xl;
-                margin-bottom: $layout-xl;
-                padding: $layout-lg 0;
-
-                blockquote {
-                    @include font-size(36px);
-                    width: 450px;
-                }
-
-                &.color-accent {
-                    padding: $layout-xl + $spacing-xl 0 $layout-xl;
-
-                    blockquote {
-                        width: 80%;
-                    }
-                }
-            }
-
-            @media (min-width: 900px) {
-                padding: $layout-xl 0;
-
-                blockquote {
-                    @include font-size(43px);
-                    width: 520px;
-                }
-
-                &.long-quote blockquote {
-                    @include font-size(36px);
-                }
-            }
-
-            @media #{$mq-lg} {
-                blockquote {
-                    width: 595px;
-                    @include font-size(48px);
-                }
-
-                &.color-accent blockquote {
-                    width: 850px;
-                }
-
-                &.long-quote blockquote {
-                    @include font-size(42px);
-                }
-            }
-
-            @media #{$mq-xl} {
-                blockquote {
-                    @include font-size(58px);
-                    width: 750px;
-                }
-
-                &.color-accent blockquote {
-                    width: 1000px;
-                }
-
-                &.long-quote blockquote {
-                    @include font-size(48px);
-                }
-            }
-        }
-
         .c-stories-article-float-container {
             @include article-width-full;
 
@@ -518,6 +368,122 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
                 float: right;
                 margin-right: $spacing-md;
             }
+        }
+    }
+}
+
+.c-stories-article-blockquote {
+    @include article-width-full;
+    border-top: 4px solid #e8e8e8;
+    border-bottom: 4px solid #e8e8e8;
+    padding: $layout-md 0;
+    margin: 0 $spacing-lg $spacing-2xl;
+
+    &.color-accent {
+        grid-column: 1 / 13;
+        border: none;
+        margin-left: 0;
+        margin-right: 0;
+
+        blockquote {
+            box-sizing: border-box;
+            font-weight: 400;
+            margin-bottom: $spacing-lg;
+            max-width: 100%;
+            padding: 0 $spacing-lg;
+        }
+    }
+
+    blockquote {
+        @include font-size(28px);
+        color: $color-black;
+        font-family: $font-stories-title;
+        text-transform: uppercase;
+        text-align: center;
+        border: none;
+        padding: 0;
+        margin: 0 auto;
+        width: 100%;
+
+        &.contains-caption {
+            margin-bottom: $spacing-lg;
+        }
+    }
+
+    figcaption {
+        @include font-size(20px);
+        color: $color-black;
+        font-family: $font-stories-body;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    @media #{$mq-sm} {
+        blockquote {
+            width: 435px;
+            @include font-size(36px);
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-top: $spacing-2xl;
+        margin-bottom: $layout-xl;
+        padding: $layout-lg 0;
+
+        blockquote {
+            @include font-size(36px);
+            width: 450px;
+        }
+
+        &.color-accent {
+            padding: $layout-xl + $spacing-xl 0 $layout-xl;
+
+            blockquote {
+                width: 80%;
+            }
+        }
+    }
+
+    @media (min-width: 900px) {
+        padding: $layout-xl 0;
+
+        blockquote {
+            @include font-size(43px);
+            width: 520px;
+        }
+
+        &.long-quote blockquote {
+            @include font-size(36px);
+        }
+    }
+
+    @media #{$mq-lg} {
+        blockquote {
+            width: 595px;
+            @include font-size(48px);
+        }
+
+        &.color-accent blockquote {
+            width: 850px;
+        }
+
+        &.long-quote blockquote {
+            @include font-size(42px);
+        }
+    }
+
+    @media #{$mq-xl} {
+        blockquote {
+            @include font-size(58px);
+            width: 750px;
+        }
+
+        &.color-accent blockquote {
+            width: 1000px;
+        }
+
+        &.long-quote blockquote {
+            @include font-size(48px);
         }
     }
 }

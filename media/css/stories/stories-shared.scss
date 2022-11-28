@@ -10,6 +10,41 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
+// Match featured article with single article by color theme
+.theme-pink {
+    --theme-color-bg: #{$pink-primary};
+    --theme-color-text: #{$color-black};
+}
+
+.theme-green {
+    --theme-color-bg: #{$color-green-80};
+    --theme-color-text: #{$color-white};
+}
+
+.theme-violet {
+    --theme-color-bg: #{$color-violet-90};
+    --theme-color-text: #{$color-white};
+}
+
+[class*='theme'] {
+    background-color: var(--theme-color-bg);
+    color: var(--theme-color-text);
+
+    .c-stories-article-blockquote.color-accent {
+        background-color: var(--theme-color-bg);
+
+        blockquote,
+        figcaption {
+            color: var(--theme-color-text);
+        }
+    }
+
+    .mzp-c-breadcrumb {
+        background-color: var(--theme-color-bg);
+        color: var(--theme-color-text);
+    }
+}
+
 .c-stories-related {
     background-color: $color-white;
 

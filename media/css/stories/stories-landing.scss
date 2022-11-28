@@ -9,9 +9,6 @@ $image-path: '/media/protocol/img';
 @import 'includes/lib';
 
 .c-stories-featured-collection {
-    background-color: $green;
-    color: $color-white;
-
     .c-stories-featured-story {
         @include stories-grid;
         margin: 0 auto;
