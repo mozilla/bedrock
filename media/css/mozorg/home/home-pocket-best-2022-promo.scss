@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
     padding: 0;
 
     .pocket-best-2022-promo-title {
-        @include text-display-sm;
+        @include text-title-sm;
         @include font-firefox;
 
         br {
@@ -55,7 +55,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         .pocket-best-2022-promo-title {
-            @include text-display-md;
+            @include text-title-md;
         }
 
         .pocket-best-2022-promo-desc {
@@ -85,7 +85,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .pocket-best-2022-promo-title {
-            @include text-display-lg;
+            @include text-title-lg;
 
             br {
                 display: block;
