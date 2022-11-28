@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
 import uuid
-from unittest.mock import ANY, DEFAULT, patch
+from unittest.mock import DEFAULT, patch
 
 from django.http import HttpResponse
 from django.test.client import RequestFactory
@@ -400,32 +400,6 @@ class TestConfirmView(TestCase):
             self.assertFalse(context["success"])
             self.assertFalse(context["generic_error"])
             self.assertTrue(context["token_error"])
-
-
-class TestSetCountryView(TestCase):
-    def setUp(self):
-        self.token = str(uuid.uuid4())
-        self.url = reverse("newsletter.country", kwargs={"token": self.token})
-
-    def test_normal_submit(self):
-        """Confirm works with a valid token"""
-        with patch("basket.request") as basket_mock:
-            basket_mock.return_value = {"status": "ok"}
-            rsp = self.client.post(self.url, {"country": "gb"})
-
-        self.assertEqual(302, rsp.status_code)
-        basket_mock.assert_called_with("post", "user-meta", data={"country": "gb"}, token=self.token)
-        assert rsp["Location"] == reverse("newsletter.country_success")
-
-    @patch("basket.request")
-    @patch("bedrock.newsletter.views.messages")
-    def test_basket_down(self, messages_mock, basket_mock):
-        """If basket is down, we report the appropriate error"""
-        basket_mock.side_effect = basket.BasketException()
-        rsp = self.client.post(self.url, {"country": "gb"})
-        self.assertEqual(200, rsp.status_code)
-        basket_mock.assert_called_with("post", "user-meta", data={"country": "gb"}, token=self.token)
-        messages_mock.add_message.assert_called_with(ANY, messages_mock.ERROR, ANY)
 
 
 class TestNewsletterSubscribe(TestCase):

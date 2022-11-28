@@ -194,8 +194,26 @@ main {
 // * -------------------------------------------------------------------------- */
 // newsletter/country/ custom styles.
 
-#country-newsletter-form {
+.country-newsletter-content {
+    &.hide {
+        display: none;
+    }
+}
+
+.country-newsletter-form {
     select {
         width: 100%;
+    }
+}
+
+.country-newsletter-title {
+    @include text-display-md;
+}
+
+.country-newsletter-thanks {
+    display: none;
+
+    &.show {
+        display: block;
     }
 }

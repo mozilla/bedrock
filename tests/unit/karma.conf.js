@@ -69,6 +69,7 @@ module.exports = function (config) {
             'tests/unit/spec/glean/utils.js',
             'tests/unit/spec/products/vpn/invite.js',
             'tests/unit/spec/products/vpn/affiliate-attribution.js',
+            'tests/unit/spec/newsletter/country.js',
             'tests/unit/spec/newsletter/form-utils.js',
             'tests/unit/spec/newsletter/recovery.js',
             'tests/unit/spec/newsletter/newsletter.js',

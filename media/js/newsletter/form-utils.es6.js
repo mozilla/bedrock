@@ -15,7 +15,7 @@ const errorList = {
 };
 
 /**
- * Reallly primative validation (e.g a@a)
+ * Really primitive validation (e.g a@a)
  * matches built-in validation in Firefox
  * @param {String} email
  * @returns {Boolean}
