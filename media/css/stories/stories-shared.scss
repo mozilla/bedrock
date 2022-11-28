@@ -21,9 +21,9 @@ $image-path: '/media/protocol/img';
     --theme-color-text: #{$color-white};
 }
 
-.theme-violet {
-    --theme-color-bg: #{$color-violet-90};
-    --theme-color-text: #{$color-white};
+.theme-orange {
+    --theme-color-bg: #{$color-yellow-40};
+    --theme-color-text: #{$color-black};
 }
 
 [class*='theme'] {
@@ -42,6 +42,16 @@ $image-path: '/media/protocol/img';
     .mzp-c-breadcrumb {
         background-color: var(--theme-color-bg);
         color: var(--theme-color-text);
+    }
+
+    .c-stories-featured-story {
+        figcaption {
+            color: var(--theme-color-text);
+        }
+    }
+
+    .featured-story-header {
+        border-bottom: 3px solid var(--theme-color-text);
     }
 }
 

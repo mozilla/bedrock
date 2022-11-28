@@ -48,7 +48,9 @@
 
 {% macro stories_article_blockquote(quote="", caption="", class="") %}
   <figure class="c-stories-article-blockquote {{ class }}">
-   <blockquote {% if caption %}class="contains-caption"{% endif %}>“{{ quote }}”</blockquote>
-   {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+    <div {% if class == 'color-accent' %}class="stories-max-width-wrapper"{% endif %}>
+      <blockquote {% if caption %}class="contains-caption"{% endif %}>“{{ quote }}”</blockquote>
+      {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+    </div>
   </figure>
 {% endmacro %}

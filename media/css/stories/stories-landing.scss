@@ -31,7 +31,6 @@ $image-path: '/media/protocol/img';
 
             figcaption {
                 @include font-size(12px);
-                color: $color-white;
                 text-align: right;
                 margin-right: $spacing-xs;
             }
@@ -68,7 +67,6 @@ $image-path: '/media/protocol/img';
                 color: inherit;
                 font-family: $font-stories-title;
                 text-transform: uppercase;
-                border-bottom: 3px solid $color-white;
                 margin-bottom: $spacing-lg;
                 max-width: 100%;
                 padding-bottom: $spacing-lg;

@@ -389,8 +389,14 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             box-sizing: border-box;
             font-weight: 400;
             margin-bottom: $spacing-lg;
-            max-width: 100%;
-            padding: 0 $spacing-lg;
+        }
+
+        blockquote,
+        figcaption {
+            grid-column: 2 / 12;
+            width: unset;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 
@@ -437,10 +443,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
 
         &.color-accent {
             padding: $layout-xl + $spacing-xl 0 $layout-xl;
-
-            blockquote {
-                width: 80%;
-            }
         }
     }
 
@@ -463,10 +465,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             @include font-size(48px);
         }
 
-        &.color-accent blockquote {
-            width: 850px;
-        }
-
         &.long-quote blockquote {
             @include font-size(42px);
         }
@@ -476,10 +474,6 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
         blockquote {
             @include font-size(58px);
             width: 750px;
-        }
-
-        &.color-accent blockquote {
-            width: 1000px;
         }
 
         &.long-quote blockquote {
