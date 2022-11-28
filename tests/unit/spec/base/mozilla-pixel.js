@@ -10,9 +10,11 @@
  */
 
 describe('mozilla-pixel.js', function () {
-    afterEach(function () {
+    beforeEach(function () {
         window.Mozilla.dntEnabled = sinon.stub();
+    });
 
+    afterEach(function () {
         document.querySelectorAll('.moz-px').forEach((e) => {
             e.parentNode.removeChild(e);
         });
