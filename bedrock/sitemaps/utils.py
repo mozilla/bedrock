@@ -165,11 +165,12 @@ def _get_vrc_urls():
     urls = defaultdict(list)
 
     for entry in ContentfulEntry.objects.filter(
+        localisation_complete=True,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         classification=CONTENT_CLASSIFICATION_VPN,
     ):
         _path = f"{VRC_ROOT_PATH}{entry.slug}/"
-        urls[_path].append(entry.locale)  # In the future one, slug may support multiple locales
+        urls[_path].append(entry.locale)  # One slug may support multiple locales
 
     return urls
 
