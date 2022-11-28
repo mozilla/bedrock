@@ -13,6 +13,7 @@ from django.test import RequestFactory
 from django.utils.timezone import now as tz_now
 
 import boto3
+import jq
 from sentry_sdk import capture_exception
 from sentry_sdk.api import capture_message
 
@@ -26,6 +27,7 @@ from bedrock.contentful.constants import (
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
+    LOCALISATION_COMPLETENESS_CHECK_CONFIG,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -299,7 +301,7 @@ class Command(BaseCommand):
 
             # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
             # TODO: treat the connectHomepage differently because its locale is an overloaded name field
-            for ctype in settings.CONTENTFUL_CONTENT_TYPES:
+            for ctype in settings.CONTENTFUL_CONTENT_TYPES_TO_SYNC:
                 for entry in ContentfulPage.client.entries(
                     {
                         "content_type": ctype,
@@ -314,7 +316,76 @@ class Command(BaseCommand):
 
         return content_to_sync
 
-    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
+    def _get_value_from_data(self, data: dict, spec: dict) -> str:
+        """Extract a single value from `data` based on the provided `spec`,
+        which is written as a jq filter directive.
+
+        This will get all the strings in the data and return them as a
+        single string. As such, this is not intended for extracing
+        presentation-ready data, but is useful to check if we have viable
+        data at all."""
+
+        # jq docs: https://stedolan.github.io/jq/
+        # jq.py docs: https://github.com/mwilliamson/jq.py
+
+        try:
+            values = jq.all(spec, data)
+        except TypeError as e:
+            capture_exception(e)
+            return ""
+
+        for i, val in enumerate(values):
+            if val:
+                values[i] = val.strip()
+            elif val is None:
+                values[i] = ""
+        return " ".join(values).strip()
+
+    def _check_localisation_complete(self) -> None:
+        """In the context of Contentful-sourced data, we consider localisation
+        to be complete for a specific locale if ALL of the required aspects,
+        as defined in the config are present. We do NOT check whether
+        the content makes sense or contains as much content as other locales,
+        just that they exist in a 'truthy' way.
+        """
+
+        self.log("\n====================================\nChecking localisation completeness")
+        seen_count = 0
+        viable_for_localisation_count = 0
+        localisation_not_configured_count = 0
+        localisation_complete_count = 0
+
+        for contentful_entry in ContentfulEntry.objects.all():
+            completeness_spec = LOCALISATION_COMPLETENESS_CHECK_CONFIG.get(contentful_entry.content_type)
+            seen_count += 1
+            if completeness_spec:
+                viable_for_localisation_count += 1
+                data = contentful_entry.data
+                collected_values = []
+                for step in completeness_spec:
+                    collected_values.append(self._get_value_from_data(data, step))
+                contentful_entry.localisation_complete = all(collected_values)
+                contentful_entry.save()
+                if contentful_entry.localisation_complete:
+                    localisation_complete_count += 1
+            else:
+                localisation_not_configured_count += 1
+            self.log(
+                f"Checking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
+                f"-> Localised? {contentful_entry.localisation_complete}"
+            )
+
+        self.log(
+            (
+                "Localisation completeness checked:"
+                f"\nFully localised: {localisation_complete_count} of {viable_for_localisation_count} candidates."
+                f"\nNot configured for localisation: {localisation_not_configured_count}."
+                f"\nTotal entries checked: {seen_count}."
+                "\n====================================\n"
+            )
+        )
+
+    def _refresh_from_contentful(self) -> Tuple[int, int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
@@ -429,5 +500,7 @@ class Command(BaseCommand):
         except Exception as ex:
             self.log(ex)
             capture_exception(ex)
+
+        self._check_localisation_complete()
 
         return added_count, updated_count, deleted_count, error_count

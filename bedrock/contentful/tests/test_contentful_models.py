@@ -44,6 +44,7 @@ def dummy_entries():
         classification="classification_1",
         data={"dummy": "Type 1, Classification 1, category one, tags 1-3"},
         locale="en-US",
+        localisation_complete=True,
         slug="test-one",
         category="category one",
         tags=["tag 1", "tag 2", "tag 3"],
@@ -54,6 +55,7 @@ def dummy_entries():
         classification="classification_2",  # nb, different from above
         data={"dummy": "Type 1, Classification 2, category one, tag 10 only"},
         locale="en-US",
+        localisation_complete=True,
         slug="test-two",
         category="category one",  # nb, same as above
         tags=["tag 10"],
@@ -64,6 +66,7 @@ def dummy_entries():
         classification="classification_1",
         data={"dummy": "Type 2, Classification 1, category one, tags 1-3"},
         locale="en-US",
+        localisation_complete=True,
         slug="test-three",
         category="category one",  # nb, same as above
         tags=["tag 1", "tag 2", "tag 3"],
@@ -75,6 +78,7 @@ def dummy_entries():
         classification="classification_2",
         data={"dummy": "Type 2, Classification 2, category one, tags 2 and 3"},
         locale="en-US",
+        localisation_complete=True,
         slug="test-four",
         category="category one",  # nb, same as above
         tags=[
@@ -87,6 +91,7 @@ def dummy_entries():
         classification="classification_2",
         data={"dummy": "Type 1, Classification 2, category two, tags 2 and 10 only"},
         locale="en-US",
+        localisation_complete=True,
         slug="test-five",
         category="category two",  # nb, same as above
         tags=["tag 10", "tag 2"],
@@ -97,6 +102,7 @@ def dummy_entries():
         classification="classification_2",
         data={"dummy": "Type 1, Classification 2, category three, tags 2 and 7 only - French locale"},
         locale="fr",
+        localisation_complete=True,
         slug="test-six",
         category="category three",  # nb, same as above
         tags=["tag 2", "tag 7"],
@@ -107,6 +113,7 @@ def dummy_entries():
         classification="",
         data={"dummy": "Type 1, no classification, category three, tags 2 and 7 only - French locale"},
         locale="de",
+        localisation_complete=True,
         slug="test-seven",
         category="category three",  # nb, same as above
         tags=["tag 2", "tag 7"],
@@ -262,11 +269,93 @@ def test_contentfulentrymanager__get_page_by_slug(mock_get_entry_by_slug):
     )
     assert res == {"mocked": "data"}
     mock_get_entry_by_slug.assert_called_once_with(
-        "test_slug",
-        "test_locale",
-        "test_content_type",
-        "test_classification",
+        slug="test_slug",
+        locale="test_locale",
+        content_type="test_content_type",
+        classification="test_classification",
+        localisation_complete=True,
     )
+
+
+def test_contentfulentrymanager__get_active_locales_for_slug():
+
+    for i in range(3):
+        for locale in [
+            "de",
+            "ja",
+            "it",
+        ]:
+            ContentfulEntry.objects.create(
+                contentful_id=f"{locale}-locale00{i}",
+                content_type="test_type_1",
+                classification="",
+                data={"dummy": "dummy"},
+                locale=locale,
+                localisation_complete=True,
+                slug=f"locale00{i}",
+            )
+
+    for i in range(3):
+        for locale in [
+            "pt",
+            "zh-CN",
+        ]:
+            ContentfulEntry.objects.create(
+                contentful_id=f"{locale}-locale00{i}",
+                content_type="test_type_1",
+                classification="test-classification",
+                data={"dummy": "dummy"},
+                locale=locale,
+                localisation_complete=True,
+                slug=f"locale00{i}",
+            )
+
+    for locale in [
+        "en-US",
+        "fr",
+        "es-ES",
+    ]:
+        ContentfulEntry.objects.create(
+            contentful_id=f"{locale}-locale00{i}",
+            content_type="test_type_1",
+            classification="",
+            data={"dummy": "dummy"},
+            locale=locale,
+            localisation_complete=False,
+            slug=f"locale00{i}",
+        )
+
+    # no match for slug
+    assert (
+        ContentfulEntry.objects.get_active_locales_for_slug(
+            slug="non-matching-slug",
+            content_type="test_type_1",
+        )
+        == []
+    )
+
+    # no match for content type
+    assert (
+        ContentfulEntry.objects.get_active_locales_for_slug(
+            slug="locale001",
+            content_type="test_type_DOES_NOT_EXIST",
+        )
+        == []
+    )
+
+    # match for slug and content type, but only on those with localisation complete
+    assert ContentfulEntry.objects.get_active_locales_for_slug(
+        slug="locale001",
+        content_type="test_type_1",
+    ) == ["de", "it", "ja", "pt", "zh-CN"]
+
+    # match for slug and content type and classifcation,
+    # but only on those with localisation complete
+    assert ContentfulEntry.objects.get_active_locales_for_slug(
+        slug="locale001",
+        content_type="test_type_1",
+        classification="test-classification",
+    ) == ["pt", "zh-CN"]
 
 
 @pytest.mark.parametrize(

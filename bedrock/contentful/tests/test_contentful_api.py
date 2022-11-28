@@ -13,6 +13,7 @@ from rich_text_renderer.block_renderers import ListItemRenderer
 from rich_text_renderer.text_renderers import TextRenderer
 
 from bedrock.contentful.api import (
+    DEFAULT_LOCALE,
     AssetBlockRenderer,
     ContentfulPage,
     EmphasisRenderer,
@@ -46,6 +47,7 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
+from bedrock.contentful.models import ContentfulEntry
 
 
 @pytest.mark.parametrize("raw_mode", [True, False])
@@ -790,6 +792,73 @@ def test_ContentfulPage___get_preview_image_from_fields__bad_data(
     fields = {"preview_image": mock_image}
     output = basic_contentful_page._get_preview_image_from_fields(fields)
     assert output is None
+
+
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__happy_path(
+    basic_contentful_page,
+):
+    assert DEFAULT_LOCALE == "en-US"
+
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "seo": {
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") == "https://example.com/test.webp"
+
+
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__no_match_for_id(
+    basic_contentful_page,
+):
+
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "seo": {
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("NOT_THE_test_id") == ""
+
+
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__no_relevant_data(
+    basic_contentful_page,
+):
+
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "bobbins": {  # replacing `seo` key
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") == ""
 
 
 @pytest.mark.parametrize(

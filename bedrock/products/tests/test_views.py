@@ -230,7 +230,7 @@ class TestVPNResourceCenterHelpers(TestCase):
                 self.assertEqual(output, case["expected"])
 
 
-@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+@override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=60)
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNResourceListingView(TestCase):
     def setUp(self):
@@ -241,6 +241,7 @@ class TestVPNResourceListingView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for
@@ -296,7 +297,7 @@ class TestVPNResourceListingView(TestCase):
         resp = self._request(locale="xx")
         self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
-    @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
+    @override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
         # ie, if you go to the VRC for a language we're working on but which
         # isn't active yet because it doesn't meet the activation threshold
@@ -347,7 +348,7 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
 
 
-@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+@override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=60)
 class TestVPNResourceArticleView(TestCase):
     def setUp(self):
         for i in range(8):
@@ -357,6 +358,7 @@ class TestVPNResourceArticleView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for

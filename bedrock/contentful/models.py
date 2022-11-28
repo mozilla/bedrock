@@ -24,23 +24,54 @@ class ContentfulEntryManager(models.Manager):
 
         return self.get(**kwargs).data
 
-    def get_entry_by_slug(self, slug, locale, content_type, classification=None):
+    def get_active_locales_for_slug(
+        self,
+        slug,
+        content_type,
+        classification=None,
+    ):
+        kwargs = dict(
+            slug=slug,
+            content_type=content_type,
+            localisation_complete=True,
+        )
+        if classification:
+            kwargs["classification"] = classification
+        return sorted(self.filter(**kwargs).values_list("locale", flat=True))
+
+    def get_entry_by_slug(
+        self,
+        slug,
+        locale,
+        content_type,
+        classification=None,
+        localisation_complete=True,
+    ):
         kwargs = dict(
             slug=slug,
             locale=locale,
             content_type=content_type,
+            localisation_complete=localisation_complete,
         )
         if classification:
             kwargs["classification"] = classification
         return self.get(**kwargs)
 
-    def get_page_by_slug(self, slug, locale, content_type, classification=None):
+    def get_page_by_slug(
+        self,
+        slug,
+        locale,
+        content_type,
+        classification=None,
+        localisation_complete=True,
+    ):
         # Thin wrapper that gets back only the JSON data
         return self.get_entry_by_slug(
-            slug,
-            locale,
-            content_type,
-            classification,
+            slug=slug,
+            locale=locale,
+            content_type=content_type,
+            classification=classification,
+            localisation_complete=localisation_complete,
         ).data
 
     def get_entries_by_type(
@@ -48,6 +79,7 @@ class ContentfulEntryManager(models.Manager):
         content_type,
         locale,
         classification=None,
+        localisation_complete=True,
         order_by="last_modified",
     ):
         """Get multiple appropriate ContentfulEntry records, not just the JSON data.
@@ -66,6 +98,7 @@ class ContentfulEntryManager(models.Manager):
         kwargs = dict(
             content_type=content_type,
             locale=locale,
+            localisation_complete=localisation_complete,
         )
         if classification:
             kwargs["classification"] = classification
@@ -83,6 +116,7 @@ class ContentfulEntry(models.Model):
     contentful_id = models.CharField(max_length=20)
     content_type = models.CharField(max_length=20)
     locale = models.CharField(max_length=5)
+    localisation_complete = models.BooleanField(default=False)
     last_modified = models.DateTimeField(default=now)
     url_base = models.CharField(max_length=255, blank=True)
     slug = models.CharField(max_length=255, blank=True)

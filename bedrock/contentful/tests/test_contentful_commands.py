@@ -27,6 +27,7 @@ from bedrock.contentful.management.commands.update_contentful import (
     Command as UpdateContentfulCommand,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.contentful.tests.data import resource_center_page_data
 
 
 @pytest.fixture
@@ -492,7 +493,7 @@ def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
     return output
 
 
-@override_settings(CONTENTFUL_CONTENT_TYPES=["type_one", "type_two"])
+@override_settings(CONTENTFUL_CONTENT_TYPES_TO_SYNC=["type_one", "type_two"])
 @mock.patch("bedrock.contentful.management.commands.update_contentful.ContentfulPage")
 def test_update_contentful__get_content_to_sync(
     mock_contentful_page,
@@ -776,3 +777,89 @@ def test_log():
     with mock.patch("builtins.print") as mock_print:
         command_instance.log("This shall not be printed")
     assert not mock_print.called
+
+
+_dummy_completeness_spec = {
+    "test-content-type": [
+        # just three of anything, as it's not acted upon in this test
+        {
+            "type": list,
+            "key": "fake1",
+        },
+        {
+            "type": dict,
+            "key": "fake2",
+        },
+        {
+            "type": list,
+            "key": "fake3",
+        },
+    ]
+}
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "mock_localised_values, expected_completion_flag",
+    (
+        (["one", "two", "three"], True),
+        (["", "", ""], False),
+        (["one", None, ""], False),
+    ),
+)
+def test_update_contentful__check_localisation_complete(
+    mock_localised_values,
+    expected_completion_flag,
+    command_instance,
+):
+    entry = ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_1",
+        locale="en-US",
+    )
+    assert entry.localisation_complete is False
+
+    command_instance._get_value_from_data = mock.Mock(side_effect=mock_localised_values)
+    command_instance._check_localisation_complete()
+
+    entry.refresh_from_db()
+    assert entry.localisation_complete == expected_completion_flag
+
+
+@pytest.mark.parametrize(
+    "spec, expected_string",
+    (
+        (".entries[].body", "Virtual private networks (VPNs) and secure web proxies are solutions "),
+        (
+            ".info.seo.description",
+            "VPNs and proxies are solutions for online privacy and security. Here’s how these protect you and how to choose the best option.",
+        ),
+        (
+            ".info.seo.image",
+            "https://images.ctfassets.net/w5er3c7zdgmd/7o6QXGC6BXMq3aB5hu4mmn/d0dc31407051937f56a0a46767e11f6f/vpn-16x9-phoneglobe.png",
+        ),
+    ),
+)
+def test_update_contentful__get_value_from_data(spec, expected_string, command_instance):
+    assert expected_string in command_instance._get_value_from_data(
+        resource_center_page_data,
+        spec,
+    )
+
+
+@pytest.mark.parametrize(
+    "jq_all_mocked_output, expected",
+    (
+        (["   ", "", None], ""),
+        ([" Hello, World!  ", "test", None], "Hello, World! test"),
+    ),
+)
+@mock.patch("bedrock.contentful.management.commands.update_contentful.jq.all")
+def test__get_value_from_data__no_false_positives(
+    mocked_jq_all,
+    jq_all_mocked_output,
+    expected,
+    command_instance,
+):
+    mocked_jq_all.return_value = jq_all_mocked_output
+    assert command_instance._get_value_from_data(data=None, spec=None) == expected
