@@ -14,6 +14,10 @@
 describe('stub-attribution.js', function () {
     const GA_VISIT_ID = '1456954538.1610960957';
 
+    beforeEach(function () {
+        window.Mozilla.dntEnabled = sinon.stub();
+    });
+
     describe('init', function () {
         let data = {};
 

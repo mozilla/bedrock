@@ -11,6 +11,8 @@
 
 describe('mozilla-pixel.js', function () {
     afterEach(function () {
+        window.Mozilla.dntEnabled = sinon.stub();
+
         document.querySelectorAll('.moz-px').forEach((e) => {
             e.parentNode.removeChild(e);
         });
