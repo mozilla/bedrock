@@ -148,7 +148,7 @@ class ContentfulEntry(models.Model):
     def __str__(self) -> str:
         return f"ContentfulEntry {self.content_type}:{self.contentful_id}[{self.locale}]"
 
-    def get_related_entries(self, order_by="last_modified"):
+    def get_related_entries(self, order_by="last_modified", localisation_complete=True):
         """Find ContentfulEntry records that:
         * are for the same content_type
         * are for the same classification
@@ -163,6 +163,7 @@ class ContentfulEntry(models.Model):
 
         _base_qs = ContentfulEntry.objects.filter(
             locale=self.locale,
+            localisation_complete=localisation_complete,
             content_type=self.content_type,
             classification=self.classification,  # eg same Product/project/area of the site
         ).exclude(
