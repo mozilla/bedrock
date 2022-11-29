@@ -13,7 +13,9 @@ describe('CountryForm', function () {
                 <form id="country-newsletter-form" class="country-newsletter-form" method="post" action="https://basket.mozilla.org/news/user-meta/c3e6c6b9-daf1-43ed-a560-51160e15b360/">
                     <div class="mzp-c-form-errors hidden" id="country-newsletter-errors">
                         <ul class="mzp-u-list-styled">
-                            <li class="error-try-again-later hidden">newsletters-we-are-sorry-but-there</li>
+                            <li class="error-try-again-later hidden">
+                                We are sorry, but there was a problem with our system. Please try again later!
+                            </li>
                         </ul>
                     </div>
 
