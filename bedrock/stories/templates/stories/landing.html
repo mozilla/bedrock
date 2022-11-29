@@ -22,7 +22,23 @@
     {# Featured Stories #}
         {% with
           url=url('stories.articles.raising-technology-eq'),
-          image_url="img/stories/raising-technology-eq-hero.jpg",
+          image=resp_img(
+            url="img/stories/raising-technology-eq-1000.jpg",
+            srcset={
+                "img/stories/raising-technology-eq-500.jpg": "500w",
+                "img/stories/raising-technology-eq-1000.jpg": "1000w",
+                "img/stories/raising-technology-eq-1500.jpg": "1500w"
+            },
+            sizes={
+              "(min-width: 767px)": "calc(100vw - 80px)",
+              "default": "100vw"
+            },
+            optional_attributes={
+              "loading": "eager",
+              "width": "1000",
+              "height": "667"
+            }
+          ),
           caption="Photo by Alina Grubnyak on Unsplash",
           title="Raising Technology’s EQ",
           desc="Pamela Pavliscak studies the impact of technology and how we feel. Here’s why she thinks we’re entering the era of big emotion.",

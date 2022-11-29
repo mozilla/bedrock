@@ -9,13 +9,7 @@
   <a class="featured-story-image" href="{{ url }}">
     <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
       <div class="featured-image-wrapper">
-        {{ image(
-          url=image_url,
-          alt="",
-          width="1010",
-          height="519",
-          include_highres=True
-        ) }}
+        {{ image }}
       </div>
       {% if caption %}
         <figcaption>{{ caption }}</figcaption>
