@@ -35,6 +35,9 @@
         function OptanonWrapper() {}
       </script>
       <!-- end OneTrust Cookies Consent Notice -->
+      {% block google_analytics %}
+        {% include 'pocket/includes/google-analytics.html' %}
+      {% endblock %}
 
     {% block pocket_css %}{% endblock  %}
 
