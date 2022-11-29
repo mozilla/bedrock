@@ -11,9 +11,14 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('newsletter-updated') }}
+{% endblock %}
+
 {% block content %}
   <main role="main">
-    <div class="mzp-l-content">
+    <div class="mzp-l-content c-updated-notification">
       {% block messages %}
         {% if messages %}
           {% for message in messages %}
@@ -33,35 +38,56 @@
             <h2>{{ ftl('newsletters-were-sorry-to-see-you-go') }}</h2>
           </header>
 
-          <form action="{{ url('newsletter.updated') }}" method="post" class="c-updated-block-content c-updated-form">
-            <input type="hidden" name="unsub" value="2" />
+          <form id="newsletter-updated-form" action="{{ action }}" method="post" class="c-updated-block-content c-updated-form">
             <input type="hidden" name="token" value="{{ token }}" />
-            <h4>{{ ftl('newsletters-would-you-mind-telling-us') }}</h4>
-            {% for i, reason in reasons %}
-              <label>
-                <input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}">
-                {{ reason }}
-              </label>
-            {% endfor %}
-            <label>
-              <input type="checkbox" id="unsub99" name="reason-text-p">
+
+            <div class="mzp-c-form-errors hidden" id="newsletter-updated-form-errors">
+              <ul class="mzp-u-list-styled">
+                <li class="error-reason hidden">{{ ftl('newsletters-please-select-a-reason') }}</li>
+                <li class="error-try-again-later hidden">{{ ftl('newsletters-we-are-sorry-but-there') }}</li>
+              </ul>
+            </div>
+
+            <h3>{{ ftl('newsletters-would-you-mind-telling-us') }}</h3>
+
+            <label for="unsub0">
+              <input type="checkbox" id="unsub0" name="reason0" value="{{ ftl('newsletters-you-send-too-many-emails', locale='en')|striptags }}">
+              {{ ftl('newsletters-you-send-too-many-emails') }}
+            </label>
+
+            <label for="unsub1">
+              <input type="checkbox" id="unsub1" name="reason1" value="{{ ftl('newsletters-your-content-wasnt-relevant', locale='en')|striptags }}">
+              {{ ftl('newsletters-your-content-wasnt-relevant') }}
+            </label>
+
+            <label for="unsub2">
+              <input type="checkbox" id="unsub2" name="reason2" value="{{ ftl('newsletters-your-email-design', locale='en')|striptags }}">
+              {{ ftl('newsletters-your-email-design') }}
+            </label>
+
+            <label for="unsub3">
+              <input type="checkbox" id="unsub3" name="reason3" value="{{ ftl('newsletters-i-didnt-sign-up', locale='en')|striptags }}">
+              {{ ftl('newsletters-i-didnt-sign-up') }}
+            </label>
+
+            <label for="unsub4">
+              <input type="checkbox" id="unsub4" name="reason4" value="{{ ftl('newsletters-im-keeping-in-touch-v2', locale='en')|striptags }}">
+              {{ ftl('newsletters-im-keeping-in-touch-v2') }}
+            </label>
+
+            <label for="unsub99">
+              <input type="checkbox" id="unsub99" name="reason-text-p" value="{{ ftl('newsletters-other', locale='en')|striptags }}">
               {{ ftl('newsletters-other') }}<br>
               <textarea cols="35" rows="3" name="reason-text"></textarea>
             </label>
             <div class="mzp-c-button-container mzp-l-align-center">
-              <input type="submit" value="{{ ftl('newsletters-submit') }}" class="mzp-c-button" name="feedback" />
+              <button type="submit" id="newsletter-updated-form-submit" class="mzp-c-button">{{ ftl('newsletters-submit') }}</button>
             </div>
           </form>
-        </section>
-      </div>
-    {% elif reasons_submitted %}
-      <div class="mzp-l-content mzp-t-content-md">
-        <section class="c-updated-block">
-          <header class="c-updated-block-header">
-            <h1>{{ ftl('newsletters-youve-been-unsubscribed') }}</h1>
-            <h2>{{ ftl('newsletters-were-sorry-to-see-you-go') }}</h2>
+
+          <div class="c-updated-form-thanks hidden">
             <p>{{ ftl('newsletters-thanks-for-telling-us-why') }}</p>
-          </header>
+          </div>
         </section>
       </div>
     {% else %}
@@ -166,5 +192,9 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('newsletter-confirm') }}
+  {% if unsubscribed_all %}
+    {{ js_bundle('newsletter-unsubscribed') }}
+  {% else %}
+    {{ js_bundle('newsletter-updated') }}
+  {% endif %}
 {% endblock %}

@@ -5,13 +5,14 @@
  */
 
 const errorList = {
+    COUNTRY_ERROR: 'Country not selected',
     EMAIL_INVALID_ERROR: 'Invalid email address',
     EMAIL_UNKNOWN_ERROR: 'Email address not known',
-    NEWSLETTER_ERROR: 'Newsletter not selected',
-    COUNTRY_ERROR: 'Country not selected',
     LANGUAGE_ERROR: 'Language not selected',
+    LEGAL_TERMS_ERROR: 'Terms not checked',
+    NEWSLETTER_ERROR: 'Newsletter not selected',
     PRIVACY_POLICY_ERROR: 'Privacy policy not checked',
-    LEGAL_TERMS_ERROR: 'Terms not checked'
+    REASON_ERROR: 'Reason not selected'
 };
 
 /**
@@ -125,6 +126,17 @@ function serialize(form) {
     return q.join('&');
 }
 
+/**
+ * Helper function that strips HTML tags from text form input.
+ * @param {String} text
+ * @returns {String}
+ */
+function stripHTML(text) {
+    const div = document.createElement('div');
+    div.innerHTML = text;
+    return div.textContent;
+}
+
 export {
     checkEmailValidity,
     clearFormErrors,
@@ -132,5 +144,6 @@ export {
     disableFormFields,
     enableFormFields,
     postToBasket,
-    serialize
+    serialize,
+    stripHTML
 };

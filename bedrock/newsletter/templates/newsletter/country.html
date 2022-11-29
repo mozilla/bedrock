@@ -17,10 +17,12 @@
   {{ css_bundle('newsletter-country') }}
 {% endblock %}
 
+{% set maintenance_mode = switch('newsletter-maintenance-mode') %}
+
 {% block content %}
 <main role="main">
   <div class="mzp-l-content mzp-t-content-md">
-    {% if switch('newsletter-maintenance-mode') %}
+    {% if maintenance_mode %}
       <div class="mzp-c-emphasis-box">
         <p>This page is in maintenance mode and is temporarily unavailable.</p>
         <p>To update your email preferences, please check back in a little while. Thanks!</p>
@@ -59,5 +61,7 @@
 {% block site_footer %}{% endblock %}
 
 {% block js %}
-  {{ js_bundle('newsletter-country') }}
+  {% if not maintenance_mode %}
+    {{ js_bundle('newsletter-country') }}
+  {% endif %}
 {% endblock %}

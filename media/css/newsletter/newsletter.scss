@@ -10,7 +10,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
 @import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 
 // * -------------------------------------------------------------------------- */
 // Global styles.
@@ -123,97 +122,5 @@ main {
     small {
         display: block;
         margin: $spacing-md 0 $spacing-xl 0;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// newsletter/updated custom styles.
-
-.c-updated-block {
-    margin-top: $layout-xs;
-
-    .c-updated-block-content {
-        margin-top: $layout-lg;
-
-        @media #{$mq-md} {
-            margin-top: $layout-xl;
-        }
-    }
-
-    .c-updated-block-header {
-        text-align: center;
-    }
-
-    .c-updated-back-link {
-        display: none;
-        margin-top: $spacing-lg;
-
-        a::before {
-            content: '\2190\0020';
-        }
-
-        /* only show back link for JS enabled clients */
-        .is-modern-browser & {
-            display: block;
-        }
-    }
-
-    h1 {
-        margin-bottom: $spacing-sm;
-    }
-
-    h2 {
-        margin-bottom: $spacing-2xl;
-    }
-
-    h3 {
-        @include text-title-md;
-        margin-bottom: $spacing-2xl;
-    }
-
-    h4 {
-        @include text-title-xs;
-    }
-
-    .c-updated-form {
-        label {
-            @include text-body-md;
-            display: block;
-            font-weight: 200;
-            margin: $spacing-md 0;
-            padding-left: $spacing-xl;
-            text-indent: -$spacing-xl;
-        }
-
-        input[type='checkbox'] {
-            margin-right: 10px;
-        }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// newsletter/country/ custom styles.
-
-.country-newsletter-content {
-    &.hide {
-        display: none;
-    }
-}
-
-.country-newsletter-form {
-    select {
-        width: 100%;
-    }
-}
-
-.country-newsletter-title {
-    @include text-display-md;
-}
-
-.country-newsletter-thanks {
-    display: none;
-
-    &.show {
-        display: block;
     }
 }
