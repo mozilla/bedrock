@@ -225,6 +225,12 @@ credits, release notes, localizations, legal-docs etc::
 
 .. _run-python-tests:
 
+.. note::
+
+    As a convenience, there is a ``make preflight`` command which automatically brings your installed Python and NPM
+    dependencies up to date and also fetches the latest DB containing the latest site
+    content. This is a good thing to run after pulling latest changes from the ``main`` branch.
+
 Run the tests
 =============
 
