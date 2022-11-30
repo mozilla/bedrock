@@ -1,0 +1,91 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "firefox/whatsnew/includes/fx108/macros.html" import fx108_picture with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_108') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-108-en') %}
+    {{ js_bundle('firefox_whatsnew_108_experiment_en') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% set uitour_enabled = switch('firefox-whatsnew-108-uitour') %}
+{% set utm_campaign = 'best2022-feature-en' %}
+{% set utm_params = 'utm_source=' ~ entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ utm_campaign %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-l-split-body-wide mzp-t-content-xl wnp-content-main',
+    body_class='mzp-l-split-v-start',
+    media_class='mzp-l-split-h-end',
+    image=fx108_picture()
+  ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket"></div>
+    <h2 class="wnp-main-title">The best articles <br>of 2022</h2>
+
+    <div class="wnp-main-cta {% if uitour_enabled %}js-uitour-enabled{% endif %}">
+      <div class="js-default-cta">
+        <p class="wnp-main-tagline">
+          Fill your Pocket with the best articles of 2022, and read or listen to them when you have the time —
+          even in airplane mode on your holiday travels.
+        </p>
+
+        <p class="wnp-main-tagline">
+          <strong>Start building your Pocket library now.</strong>
+        </p>
+
+        {{ pocket_fxa_button(
+          entrypoint=entrypoint,
+          button_text='Activate Pocket in Firefox',
+          optional_parameters={
+            's': entrypoint,
+            'utm_campaign': utm_campaign,
+            'utm_content': 'signup-fxa'
+          },
+          optional_attributes={
+            'data-cta-text': 'Activate Pocket in Firefox',
+            'data-cta-type': 'button'
+          })
+        }}
+      </div>
+
+      <div class="js-alt-cta">
+        <p class="wnp-main-tagline">
+          Fill your Pocket with the best articles of 2022, and read or listen to them when you have the time —
+          even in airplane mode on your holiday travels.
+        </p>
+
+        <p>
+          <a href="https://getpocket.com/collections/pocket-best-articles-2022?{{ utm_params }}" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Check out the Best of Pocket">
+            Check out the Best of Pocket
+          </a>
+        </p>
+      </div>
+    </div>
+  {% endcall %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('fxa_product_button') }}
+
+  {% if uitour_enabled %}
+    {{ js_bundle('firefox_whatsnew_108') }}
+  {% endif %}
+{% endblock %}
