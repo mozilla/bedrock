@@ -14,9 +14,42 @@
 
 
 {% set credits = [
-  {"name": "Ray Fambro", "title": "Product Manager", "image": "img/stories/credit/ray-fembro-credit.jpg"},
-  {"name": "Ania Safko", "title": "Product Manager", "image": "img/stories/credit/ania-safko-credit.jpg"},
-  {"name": "Jon Siddoway", "title": "Product Community Manager", "image": "img/stories/credit/jon-siddoway-credit.jpg"},
+  {
+    "name": "Ray Fambro",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/ray-fembro-credit.jpg',
+      srcset={ 'img/stories/credit/ray-fembro-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Ania Safko",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/ania-safko-credit.jpg',
+      srcset={ 'img/stories/credit/ania-safko-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Jon Siddoway",
+    "title": "Product Community Manager",
+    "image": resp_img(
+      'img/stories/credit/jon-siddoway-credit.jpg',
+      srcset={ 'img/stories/credit/jon-siddoway-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    )
+  },
 ] %}
 
 {% set related = [

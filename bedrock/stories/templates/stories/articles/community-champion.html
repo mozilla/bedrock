@@ -9,7 +9,18 @@
 {% from "stories/includes/macros.html" import stories_article_blockquote with context %}
 
 {% set credits = [
-  {"name": "Asa Dotzler", "title": "Product Manager", "image": "img/stories/credit/asa-dotzler-credit.jpg"},
+  {
+    "name": "Asa Dotzler",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/asa-dotzler-credit.jpg',
+      srcset={ 'img/stories/credit/asa-dotzler-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  }
 ] %}
 
 

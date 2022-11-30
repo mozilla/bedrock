@@ -13,7 +13,17 @@
  {% block body_class %}theme-orange{% endblock %}
 
  {% set credits = [
-  {"name": "Pamela Pavliscak", "title": "Tech Emotionographer, Author, Speaker, Lecturer", "image": "img/stories/credit/pamela-pavliscak-credit.jpg", "photo_credit": "Photo Credit: © Pamela Pavliscak"}
+  {
+    "name": "Pamela Pavliscak",
+    "title": "Tech Emotionographer, Author, Speaker, Lecturer",
+    "image": resp_img(
+      'img/stories/credit/pamela-pavliscak-credit.jpg',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo Credit: © Pamela Pavliscak"}
   ] %}
 
 {% set related = [

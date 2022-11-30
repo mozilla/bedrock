@@ -97,12 +97,7 @@
             {% for credit in credits %}
 
               <figure class="c-stories-image credit">
-                {{ image(
-                  url=credit.image,
-                  width=114,
-                  height=131,
-                  include_highres=True,
-                )}}
+                {{ credit.image }}
                 <figcaption class="credit-name">{{ credit.name }}</figcaption>
                 <figcaption class="credit-position">{{ credit.title }}</figcaption>
                 {% if credit.photo_credit %}<figcaption class="credit-photo-credit">{{ credit.photo_credit }}</figcaption>{% endif %}
