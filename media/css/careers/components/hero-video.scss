@@ -36,7 +36,7 @@
         }
 
         .overlay {
-            background-color: color.adjust($color: cp.$blue-primary, $amount: 0.2);
+            background-color: rgba(0, 256, 256, 0.8);
             content: '';
             display: block;
             height: 100%;
@@ -52,8 +52,7 @@
             z-index: 20;
 
             .mzp-c-split-body {
-                h1,
-                p {
+                h1 {
                     color: $color-black;
                 }
             }

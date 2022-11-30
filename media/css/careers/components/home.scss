@@ -24,7 +24,7 @@
     position: relative;
 
     .overlay {
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.65);
         content: '';
         display: block;
         height: 100%;
@@ -37,6 +37,7 @@
     }
 
     .c-mozillians-content {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
