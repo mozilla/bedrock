@@ -41,42 +41,42 @@ $image-path: '/media/protocol/img';
             justify-content: center;
 
             &:nth-child(1) {
-                background-color: #bfe6ef;
+                background-color: cp.$blue-primary;
 
                 &:hover {
-                    background-color: color.scale(#bfe6ef, $alpha: -30%);
+                    background-color: color.scale(cp.$blue-primary, $alpha: -40%);
                 }
             }
 
             &:nth-child(3) {
-                background-color: #adddd8;
+                background-color: color.scale(cp.$blue-primary, $alpha: -90%);
 
                 &:hover {
-                    background-color: color.scale(#adddd8, $alpha: -30%);
+                    background-color: color.scale(cp.$blue-primary, $alpha: -70%);
                 }
             }
 
             &:nth-child(5) {
-                background-color: cp.$teal-tertiary;
+                background-color: color.scale(cp.$blue-primary, $alpha: -70%);
 
                 &:hover {
-                    background-color: color.scale(cp.$teal-tertiary, $alpha: -30%);
+                    background-color: color.scale(cp.$blue-primary, $alpha: -50%);
                 }
             }
 
             &:nth-child(7) {
-                background-color: #82c7ee;
+                background-color: color.scale(cp.$blue-primary, $alpha: -20%);
 
                 &:hover {
-                    background-color: color.scale(#82c7ee, $alpha: -30%);
+                    background-color: color.scale(cp.$blue-primary, $alpha: -40%);
                 }
             }
 
             &:nth-child(9) {
-                background-color: cp.$teal-primary;
+                background-color: color.scale(cp.$blue-primary, $alpha: -50%);
 
                 &:hover {
-                    background-color: color.scale(cp.$teal-primary, $alpha: -30%);
+                    background-color: color.scale(cp.$blue-primary, $alpha: -70%);
                 }
             }
 
@@ -194,31 +194,6 @@ $image-path: '/media/protocol/img';
             }
         }
     }
-
-    .c-careers-citation-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-            height: 120px;
-        }
-
-        cite {
-            font-weight: bold;
-            @include text-body-lg;
-        }
-    }
-
-    @media #{$mq-md} {
-        .c-careers-citation-wrapper {
-            flex-direction: row;
-
-            img {
-                margin-right: $spacing-2xl;
-            }
-        }
-    }
 }
 
 // Hide full testimonials if JS is enabled
@@ -249,7 +224,7 @@ $image-path: '/media/protocol/img';
                         position: absolute;
                         top: -15px;
                         left: -20px;
-                        color: cp.$teal-primary;
+                        color: $color-dark-gray-20;
                         font-weight: bold;
                     }
                 }
@@ -260,7 +235,7 @@ $image-path: '/media/protocol/img';
                         content: '”';
                         position: absolute;
                         bottom: -15px;
-                        color: cp.$teal-primary;
+                        color: $color-dark-gray-20;
                         font-weight: bold;
                     }
                 }
@@ -271,11 +246,11 @@ $image-path: '/media/protocol/img';
 
 // Styling modal citation section
 .c-testimonials-citation {
-    border-left: 4px solid cp.$teal-primary;
+    border-left: 4px solid cp.$blue-primary;
     padding-left: $spacing-lg;
 
     cite {
-        @include text-title-sm;
+        @include text-title-xs;
         font-weight: 700;
         font-style: normal;
         color: $color-dark-gray-20;
@@ -307,7 +282,7 @@ $image-path: '/media/protocol/img';
 
     .c-modal-next {
         @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
-        background: cp.$teal-primary;
+        background: cp.$blue-primary;
         right: 3.75rem;
 
         .hide-next & {
@@ -321,7 +296,7 @@ $image-path: '/media/protocol/img';
 
     .c-modal-prev {
         @extend .mzp-c-modal-close; /* stylelint-disable-line scss/at-extend-no-missing-placeholder  */
-        background: cp.$teal-primary;
+        background: cp.$blue-primary;
         right: 7.1rem;
 
         .hide-next & {

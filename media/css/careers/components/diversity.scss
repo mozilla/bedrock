@@ -76,7 +76,7 @@ $image-path: '/media/protocol/img';
                 color: $color-dark-gray-20;
 
                 cite {
-                    @include text-title-sm;
+                    @include text-title-xs;
                     color: $color-dark-gray-20;
                     font-style: normal;
 
@@ -90,6 +90,7 @@ $image-path: '/media/protocol/img';
                     @include font-base;
                     color: $color-dark-gray-20;
                     font-weight: 700;
+                    margin-bottom: 0;
                 }
             }
 

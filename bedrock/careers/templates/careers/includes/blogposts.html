@@ -27,7 +27,7 @@
             <div class="mzp-c-card-content">
               <h2 class="mzp-c-card-title">{{ post.title }}</h2>
               <div class="mzp-c-card-desc">
-                {{ post.excerpt }}
+                {{ post.excerpt | safe }}
               </div>
             </div>
           </a>
@@ -44,7 +44,7 @@
             <div class="mzp-c-card-content">
               <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
               <div class="mzp-c-card-desc">
-                {{ featured_post.excerpt }}
+                {{ featured_post.excerpt | safe }}
               </div>
             </div>
           </a>

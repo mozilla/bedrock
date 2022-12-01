@@ -23,8 +23,8 @@
         media_include='careers/includes/big-picture-video.html',
         media_after=True
         ) %}
-          <h1>Good work that does you good</h1>
-          <p><a href="{{ url('careers.listings') }}" class="mzp-c-button">Find your role at Mozilla</a></p>
+          <h1>Feel good about your work</h1>
+          <p><a href="{{ url('careers.listings') }}" class="mzp-c-button">Find your next role at Mozilla</a></p>
       {% endcall %}
     </div>
   </header>
@@ -32,19 +32,19 @@
   <section class="c-careers-intro">
     <div class="mzp-l-content mzp-t-content-md">
       <h2 class="c-careers-section-title">
-        Feel good about your work
+        Here's your chance to make a difference
       </h2>
       <p>
-        Mozilla has big ambitions for the next decade to build impactful products
-        that are <em>different</em> — that have more respect for the individuals
-        using them, that operate with a different business model, and that explore
-        new forms of openness. It’s going to take hard work that Mozilla is
-        uniquely suited to take on. It’s why we’re here. It’s who we are. And
-        it’s our future.
+        At Mozilla, we have big ambitions for the next decade to build impactful
+        products that are <em>different</em> — that are built with more respect for the
+        people using them, that are operated with a different business model,
+        and that help us explore new forms of openness. It’s going to take hard
+        work that Mozilla is uniquely suited to take on. It’s why we’re here.
+        It’s who we are. And it’s our future.
       </p>
       <p>
-        Bring your drive, your creativity, your big ideas and your new perspectives
-        to make the difference we’re aiming for.
+        Bring your drive, your creativity, your big ideas and your new
+        perspectives to make the difference we’re aiming for.
       </p>
     </div>
   </section>
@@ -53,7 +53,7 @@
     <div class="mzp-l-content mzp-t-content-lg">
       <div class="c-careers-section-intro">
         <h2 class="c-careers-section-title">
-          Our values bring us together as one team
+          Our operating values bring us together as one team
         </h2>
 
         <p>
@@ -128,6 +128,29 @@
   <!-- Testimonials section -->
   {% include "careers/includes/testimonials.html" %}
 
+  <!-- Diversity section -->
+   <section class="c-careers-diversity c-careers-section mzp-t-background-secondary">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="c-careers-section-title">
+        Inclusion, diversity, equity, and accountability
+      </h2>
+      <p>
+        At Mozilla, our employees, volunteers and community members span the
+        globe. We want to ensure that our organization is as diverse as the
+        communities we serve — and that our culture is inclusive and welcoming
+        to all.
+      </p>
+      <p>
+        We’ve made some progress that we’re proud of, and we also have a lot
+        more work to do.
+      </p>
+
+      <p class="c-careers-button-wrapper">
+        <a href="{{ url('careers.diversity') }}" data-cta-type="button" data-cta-name="careers diversity" class="mzp-c-button mzp-t-secondary">Read more</a>
+      </p>
+    </div>
+  </section>
+
   <!-- Benefits section -->
   <section class="c-careers-benefits c-careers-section">
     <div class="mzp-l-content mzp-t-content-lg">
@@ -136,7 +159,7 @@
           Benefits for real life
         </h2>
         <p>
-          Our benefits package is world class. To us, offering a comprehensive,
+          Our benefits are some of the best in the industry. To us, offering a comprehensive,
           industry-leading health and wellbeing program to our employees and their
           families is plain common sense, and the right thing to do. We also believe
           it’s easier to focus on our work when we’re feeling well.
@@ -151,7 +174,7 @@
         body=True,
       ) %}
         <p>
-          Mozilla covers medical, dental and vision plan premiums at 100%. Our
+          Mozilla covers medical, dental and vision plan premiums at 100% for U.S. and Canadian employees. Our
           offerings give you the options you need to manage your health — and your
           family’s — the way you want.
         </p>
@@ -290,28 +313,6 @@
 
       <p class="c-careers-button-wrapper">
         <a href="{{ url('careers.teams') }}" data-cta-type="button" data-cta-name="careers teams" class="mzp-c-button mzp-t-secondary">View all teams</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="c-careers-diversity c-careers-section">
-    <div class="mzp-l-content mzp-t-content-md">
-      <h2 class="c-careers-section-title">
-        Diversity and Inclusion
-      </h2>
-      <p>
-        At Mozilla, our employees, volunteers and community members span the
-        globe. We want to ensure that our organization is as diverse as the
-        communities we serve — and that our culture is inclusive and welcoming
-        to all.
-      </p>
-      <p>
-        We’ve made some progress that we’re proud of, and we also have a lot
-        more work to do.
-      </p>
-
-      <p class="c-careers-button-wrapper">
-        <a href="{{ url('careers.diversity') }}" data-cta-type="button" data-cta-name="careers diversity" class="mzp-c-button mzp-t-secondary">Read more</a>
       </p>
     </div>
   </section>
