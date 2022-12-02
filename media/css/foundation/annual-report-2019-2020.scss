@@ -447,7 +447,7 @@ $image-path: '/media/protocol/img';
 .c-section-intro-bg {
     @media #{$mq-lg} {
         background: url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_left.svg') left center no-repeat, url('/media/img/foundation/annualreport/2019/moz_site_som_fighting_for_people_right.svg') right center no-repeat;
-        background-size: auto 100%;
+        background-size: auto 27vw;
     }
 }
 
