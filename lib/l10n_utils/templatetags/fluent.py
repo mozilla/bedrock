@@ -11,12 +11,13 @@ from lib.l10n_utils import fluent
 
 @library.global_function
 @jinja2.pass_context
-def ftl(ctx, message_id, fallback=None, **kwargs):
+def ftl(ctx, message_id, fallback=None, locale=None, **kwargs):
     """Return the translated string.
 
     :param ctx: the context from the template (automatically included)
     :param str message_id: the ID of the message
     :param str fallback: the ID of a message to use if message_id is not translated
+    :param str locale: If set the string returned will be from the given locale instead of the current one
     :param kwargs: the other kwargs are passed to the translation as variables
     :return: the translated string marked as safe
 
@@ -24,7 +25,11 @@ def ftl(ctx, message_id, fallback=None, **kwargs):
 
         <p>{{ ftl('greeting', name='The Dude') }}
     """
-    return Markup(fluent.translate(ctx["fluent_l10n"], message_id, fallback, **kwargs))
+    if locale:
+        return Markup(fluent.ftl(message_id, fallback, locale=locale, ftl_files=ctx["fluent_files"], **kwargs))
+
+    l10n = ctx["fluent_l10n"]
+    return Markup(fluent.translate(l10n, message_id, fallback, **kwargs))
 
 
 @library.global_function
