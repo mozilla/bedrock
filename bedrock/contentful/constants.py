@@ -9,11 +9,13 @@ CONTENT_TYPE_CONNECT_HOMEPAGE = "connectHomepage"
 CONTENT_TYPE_PAGE_RESOURCE_CENTER = "pagePageResourceCenter"
 CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
 CONTENT_TYPE_PAGE_VERSATILE = "pageVersatile"
+CONTENT_TYPE_PAGE_PBJ_STORY = "pageProductJournalismStory"
 
 DEFAULT_CONTENT_TYPES = ",".join(
     [
         CONTENT_TYPE_CONNECT_HOMEPAGE,  # The Connect-based approach, currently used for the homepage
         CONTENT_TYPE_PAGE_RESOURCE_CENTER,  # New-era Compose page with a dedicated type
+        CONTENT_TYPE_PAGE_PBJ_STORY,  # Compose page for PBJ Stories
     ]
 )
 

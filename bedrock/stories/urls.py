@@ -2,8 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.urls import path
 
 from bedrock.mozorg.util import page
+from bedrock.stories import views
 
 urlpatterns = (
     page("", "stories/landing.html"),
@@ -13,4 +15,6 @@ urlpatterns = (
     page("joy-of-color/", "stories/articles/joy-of-color.html"),
     page("raising-technology-eq/", "stories/articles/raising-technology-eq.html"),
     page("dreaming-then-building/", "stories/articles/dreaming-then-building.html"),
+    path("contentful/landing/", views.pbj_landing_page),
+    path("contentful/<slug:slug>/", views.pbj_story_page),
 )

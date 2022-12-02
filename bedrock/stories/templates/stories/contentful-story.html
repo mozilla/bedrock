@@ -1,0 +1,28 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% from "macros-protocol.html" import card with context %}
+{% from "stories/includes/macros.html" import stories_article_blockquote, stories_image, stories_card with context %}
+
+{% set title = info.title | safe %}
+{% set theme = info.theme %}
+
+{% block page_title_full %}{{ title }}{% endblock %}
+{% block page_desc %}{{ desc }}{% endblock %}
+{% block page_og_title %}{{ title }}{% endblock %}
+{% block page_og_desc %}{{ desc }}{% endblock %}
+
+{% block content %}
+  <article>
+  <!-- Stub template -->
+  </article>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle("stories-article")}}
+{% endblock %}

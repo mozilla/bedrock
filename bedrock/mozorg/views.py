@@ -22,6 +22,10 @@ from sentry_sdk import capture_exception
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.constants import (
+    CONTENT_TYPE_PAGE_PBJ_STORY,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+)
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
@@ -183,12 +187,16 @@ class ContentfulPreviewView(L10nTemplateView):
         theme = context["info"]["theme"]
         if page_type == "pageHome":
             template = "mozorg/home/home-contentful.html"
-        elif page_type == "pagePageResourceCenter":
+        elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             template = "products/vpn/resource-center/article.html"
+        elif page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+            template = "stories/contentful-story.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"
         else:
             template = "mozorg/contentful-all.html"
+
+        print(context)
 
         return l10n_utils.render(self.request, template, context, **response_kwargs)
 

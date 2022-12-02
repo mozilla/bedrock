@@ -19,6 +19,7 @@ from rich_text_renderer.text_renderers import BaseInlineRenderer
 from bedrock.contentful.constants import (
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_GENERAL,
+    CONTENT_TYPE_PAGE_PBJ_STORY,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -363,6 +364,54 @@ class AssetBlockRenderer(BaseBlockRenderer):
         )
 
 
+def _make_blockquote(entry):
+    fields = entry.fields()
+    caption = fields.get("citation")
+    class_name = "c-stories-article-blockquote"
+
+    if fields.get("style") == "Full-width":
+        class_name = f"{class_name} full-width"
+
+    if caption is not None:
+        caption = f"<figcaption>{ caption }</figcaption>"
+    else:
+        caption = ""
+
+    string = f"<figure class='{class_name}'><blockquote>“{fields.get('quote')}”{caption}</blockquote></figure>"
+
+    return string
+
+
+def _make_image(entry):
+    fields = entry.fields()
+    caption = fields.get("caption")
+    alt = fields.get("alt_text")
+
+    print(fields.get("alt_text"))
+    if caption is not None:
+        caption = f"<figcaption>{ caption }</figcaption>"
+    else:
+        caption = ""
+
+    string = f"<figure class='c-stories-image'><img src='{_get_image_url(fields.get('image'), 900)}' alt='{alt}' />{caption}</figure>"
+
+    return string
+
+
+class BlockEntryRenderer(BaseNodeRenderer):
+    def render(self, node):
+        entry_id = node["data"]["target"]["sys"]["id"]
+        entry = ContentfulPage.client.entry(entry_id)
+        content_type = entry.sys["content_type"].id
+
+        if content_type == "embedBlockquote":
+            return _make_blockquote(entry)
+        if content_type == "embedImage":
+            return _make_image(entry)
+        else:
+            return content_type
+
+
 class ContentfulPage:
     # TODO: List: stop list items from being wrapped in paragraph tags
     # TODO: Error/ Warn / Transform links to allizom
@@ -378,6 +427,7 @@ class ContentfulPage:
             "paragraph": PRenderer,
             "embedded-entry-inline": InlineEntryRenderer,
             "embedded-asset-block": AssetBlockRenderer,
+            "embedded-entry-block": BlockEntryRenderer,
         }
     )
     SPLIT_LAYOUT_CLASS = {
@@ -601,6 +651,28 @@ class ContentfulPage:
             )
         )
 
+        # easiest place to put it for now, not the best
+        if page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+            COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
+
+            # todo: handle None, return dicts with full info instead of test strings
+            contributors = entry_fields.get("contributors")
+            related = entry_fields.get("related_stories")
+
+            # todo: create multiple image sizes, sm/md/lg
+            data.update(
+                {
+                    "published": entry_fields.get("published"),
+                    "theme": COLOR_MAP[entry_fields.get("accent_color")],
+                    "image": _get_image_url(entry_fields["image"], 800),
+                    "image_caption": entry_fields.get("image_caption"),
+                    "credits": [ContentfulPage.client.entry(contributor.id).name for contributor in contributors],
+                    "dek": entry_fields.get("dek"),
+                    "related": [ContentfulPage.client.entry(story.id).title for story in related],
+                }
+            )
+            # published format: 2022-12-06T09:00-05:00
+
         return data
 
     def get_content(self):
@@ -612,13 +684,14 @@ class ContentfulPage:
             entry_obj = self.page.fields()["entry"]
         elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
             entry_obj = self.page
-            seo_obj = getattr(self.page, "seo", None)
+            seo_obj = getattr(self.page, "seo", None)  # WARNING: this also requires a consistent ID-naming of SEO field in Contentful, too
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
         if not entry_obj:
             raise Exception(f"No 'Entry' detected for {self.page.content_type.id}")
 
+        # can we get reliable published date?
         self.request.page_info = self.get_info_data(
             entry_obj,
             seo_obj,
@@ -663,6 +736,10 @@ class ContentfulPage:
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))
 
+        elif page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+            _content = fields.get("content", {})
+            entries.append(self.get_text_data(_content))
+
         else:
             # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
@@ -672,6 +749,8 @@ class ContentfulPage:
             for item in content:
                 proc(item)
 
+        # does it make sense to include things like "dek" and "theme" in entries?
+        # is page_info more for non-user-facing things?
         return {
             "page_type": page_type,
             "page_css": list(page_css),
