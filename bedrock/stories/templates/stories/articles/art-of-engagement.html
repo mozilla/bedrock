@@ -14,9 +14,42 @@
 
 
 {% set credits = [
-  {"name": "Ray Fambro", "title": "Product Manager", "image": "img/stories/credit/ray-fembro-credit.jpg"},
-  {"name": "Ania Safko", "title": "Product Manager", "image": "img/stories/credit/ania-safko-credit.jpg"},
-  {"name": "Jon Siddoway", "title": "Product Community Manager", "image": "img/stories/credit/jon-siddoway-credit.jpg"},
+  {
+    "name": "Ray Fambro",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/ray-fembro-credit.jpg',
+      srcset={ 'img/stories/credit/ray-fembro-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Ania Safko",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/ania-safko-credit.jpg',
+      srcset={ 'img/stories/credit/ania-safko-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Jon Siddoway",
+    "title": "Product Community Manager",
+    "image": resp_img(
+      'img/stories/credit/jon-siddoway-credit.jpg',
+      srcset={ 'img/stories/credit/jon-siddoway-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    )
+  },
 ] %}
 
 {% set related = [
@@ -58,13 +91,17 @@
     <p>Of course, not everyone in the community is a developer or has an interest in code. But those aren’t necessary. Every member can offer ideas or vote on those that appeal to them, and, as <i>Connect’s</i> name implies, engage in discussions with like-minded people.</p>
 
     {{ stories_image(
-      image_url="img/stories/mozilla-connect.png",
-      include_highres=True,
-      alt="image of Mozilla connect website",
-      width="631",
-      height="544",
-      loading="lazy",
-      image_class="article-width center",
+      image=resp_img(
+        'img/stories/mozilla-connect.png',
+        srcset={ 'img/stories/mozilla-connect-high-res.png': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '631',
+          'height': '544',
+          'alt': 'Mozilla Connect website, Welcome page'
+        }
+      ),
+      image_class="article-width center"
     )}}
 
     <p>“<i>Connect</i> is a space where the community is not dependent on our moderators, but where members can have conversations,” Siddoway said. “Our users are passionate, and when they come to the community they see that many others share their interests and also feel strongly about Firefox and Mozilla.” Case in point: Asa Dotzler, product manager for Firefox accessibility, who was a graduate student in architecture with no coding skills when he became fascinated by <a href="{{ url('stories.articles.community-champion') }}">Mozilla’s vision and joined its community.</a></p>
@@ -78,27 +115,36 @@
     <p>Even so, community remains a vague and slippery concept at many companies. Often it is just another word marketers use to describe customers, and frequently it is a one-way street down which brands encourage consumers to take on some of the work of spreading the word about their products. That’s never been the case at Mozilla, where a passionate, highly engaged volunteer community has helped build its products from the early, bug-filled days of the first Firefox browser.</p>
 
     {{ stories_image(
-      image_url="img/stories/engagement-hero.jpg",
-      include_highres=True,
-      alt="",
-      width="1010",
-      height="519",
-      loading="lazy",
+      image=resp_img(
+        'img/stories/engagement-hero.jpg',
+        srcset={ 'img/stories/engagement-hero-high-res.jpg': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '1010',
+          'height': '519'
+        }
+      ),
       image_class="article-width center",
       caption="Image by: Opensource.com / CC BY-SA 4.0"
     )}}
+
+
 
     <p>At the core of the 1998 Mozilla project was a <a href="{{ url('stories.articles.build-together') }}">commitment to open-source development</a>, and the volunteers who believed in that model played a vital role in developing Firefox 1.0, released six years later. Since then, thousands of people have offered ideas, suggestions and criticisms that continue to shape the browser and other Mozilla products. Between 2017 and 2019 alone, 22,821 non-employees made more than 2 million contributions to Mozilla products, according to the 2020 report “Mozilla and the Rebel Alliance.” Almost 750,000 of those contributions focused on Firefox, with more than 65,000 specifically involving code.</p>
     <p>By the time Siddoway joined Mozilla late in 2021, its community was gathering on a clunky platform that lacked some of the capabilities needed to make interacting, moderating and organizing as easy, efficient, and enjoyable as Firefox’s leadership wanted it to be. They also hoped to enhance the connection between community members and employees.</p>
 
     {{ stories_image(
-      image_url="img/stories/mozilla-connect-message.png",
-      include_highres=True,
-      alt="screenshot of mozilla connect messages",
-      width="631",
-      height="256",
-      loading="lazy",
-      image_class="article-width center",
+      image=resp_img(
+        'img/stories/mozilla-connect-message.png',
+        srcset={ 'img/stories/mozilla-connect-message-high-res.png': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '631',
+          'height': '256',
+          'alt': 'Mozilla Connect messages'
+        },
+      ),
+      image_class="article-width center"
     )}}
 
     <p>The first step toward those goals was to replace the previous platform with a feature-rich one that would encourage participation. <i>Connect</i> now includes new forums, discussion threads, and elements of gamification. But the heart of the platform, Siddoway said, is its idea exchange. Members can submit an idea for a new feature they’d like to see in Firefox or a new product, and others in the community can comment and vote on the idea, allowing the best ones to surface. (Siddoway noted that users should continue to report bugs through <a href="https://www.bugzilla.org/"><i>Bugzilla</i></a>.)</p>

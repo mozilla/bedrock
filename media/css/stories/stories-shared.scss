@@ -10,6 +10,51 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
 
+// Match featured article with single article by color theme
+.theme-pink {
+    --theme-color-bg: #{$pink-primary};
+    --theme-color-text: #{$color-black};
+}
+
+.theme-green {
+    --theme-color-bg: #{$color-green-80};
+    --theme-color-text: #{$color-white};
+}
+
+.theme-orange {
+    --theme-color-bg: #{$color-yellow-40};
+    --theme-color-text: #{$color-black};
+}
+
+[class*='theme'] {
+    background-color: var(--theme-color-bg);
+    color: var(--theme-color-text);
+
+    .c-stories-article-blockquote.color-accent {
+        background-color: var(--theme-color-bg);
+
+        blockquote,
+        figcaption {
+            color: var(--theme-color-text);
+        }
+    }
+
+    .mzp-c-breadcrumb {
+        background-color: var(--theme-color-bg);
+        color: var(--theme-color-text);
+    }
+
+    .c-stories-featured-story {
+        figcaption {
+            color: var(--theme-color-text);
+        }
+    }
+
+    .featured-story-header {
+        border-bottom: 3px solid var(--theme-color-text);
+    }
+}
+
 .c-stories-related {
     background-color: $color-white;
 
@@ -71,6 +116,7 @@ $image-path: '/media/protocol/img';
     }
 
     .card-image {
+        aspect-ratio: 4 / 3;
         transition: transform 200ms ease-in;
         vertical-align: middle;
     }

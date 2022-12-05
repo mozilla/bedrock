@@ -30,16 +30,9 @@
   </section>
 {% endmacro %}
 
-{% macro stories_image(image_url="", alt="", caption="", include_highres=False, image_class="", width="1360", height="765", featured=False, loading=None) %}
+{% macro stories_image(image, caption="", image_class="", featured=False) %}
   <figure class="c-stories-image {% if image_class %}{{ image_class }}{% endif %}">
-    {{ image(
-      url=image_url,
-      alt=alt,
-      width=width,
-      height=height,
-      loading=loading,
-      include_highres=include_highres
-    ) }}
+    {{ image }}
     {% if caption %}
       <figcaption>{{ caption }}</figcaption>
     {% endif %}
@@ -48,7 +41,9 @@
 
 {% macro stories_article_blockquote(quote="", caption="", class="") %}
   <figure class="c-stories-article-blockquote {{ class }}">
-   <blockquote {% if caption %}class="contains-caption"{% endif %}>“{{ quote }}”</blockquote>
-   {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+    <div {% if class == 'color-accent' %}class="stories-max-width-wrapper"{% endif %}>
+      <blockquote {% if caption %}class="contains-caption"{% endif %}>“{{ quote }}”</blockquote>
+      {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+    </div>
   </figure>
 {% endmacro %}

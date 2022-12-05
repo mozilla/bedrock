@@ -1,0 +1,91 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% extends "stories/stories-base-article.html" %}
+
+ {% from "stories/includes/macros.html" import stories_article_blockquote with context %}
+
+ {% set featured = true %}
+
+ {% block body_class %}theme-orange{% endblock %}
+
+ {% set credits = [
+  {
+    "name": "Pamela Pavliscak",
+    "title": "Tech Emotionographer, Author, Speaker, Lecturer",
+    "image": resp_img(
+      'img/stories/credit/pamela-pavliscak-credit.jpg',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo Credit: © Pamela Pavliscak"}
+  ] %}
+
+{% set related = [
+  {
+    "title": "The Joy of Color",
+    "desc": "The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
+    "image_url": "img/stories/joy-of-color-hero.jpg",
+    "image_alt": "",
+    "link_url": url('stories.articles.joy-of-color'),
+  },
+  {
+    "title": "The Art of Engagement",
+    "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
+    "image_url": "img/stories/art-of-engagement.jpg",
+    "link_url": url('stories.articles.art-of-engagement'),
+    "image_alt": ""
+  },
+] %}
+
+ {% block publish_date %}2022-12-05{% endblock %}
+ {% block publish_date_formatted %}December 5, 2022{% endblock %}
+
+ {% block article_title %}Raising Technology’s EQ{% endblock %}
+ {% block article_subtitle %}Pamela Pavliscak studies the impact of technology and how we feel. Here’s why she thinks we’re entering the era of big emotion.{% endblock %}
+ {% block page_image %}{{ static('img/stories/social/raising-technology-eq-social.jpg') }}{% endblock %}
+
+ {% block article_content %}
+ <section class="c-stories-article-section">
+  <div class="stories-max-width-wrapper">
+    <p>“Watching my kids trying to negotiate technology as they define who they are and who they want to be first got me thinking about its emotional side. Popular culture focuses on how technology makes us feel terrible, ashamed, envious or outraged. The solution is that we’re supposed to stay away from technology more. But, of course, we can’t.</p>
+
+    {{ stories_article_blockquote(
+      quote="Watching my kids trying to negotiate technology as they define who they are and who they want to be got me thinking about its emotional side.",
+      caption="Pamela Pavliscak"
+    )}}
+
+    <p>Inside the industry, our focus is on making technology simple, straightforward and frictionless. If it does things well, only <em>then</em> can we give people an extra thrill or delight. That helps us avoid people becoming annoyed or frustrated but leaves out our true experience of technology — which isn’t calm or free of emotion. It is interwoven with how we feel about ourselves, who we are with, and what we just did. That fits into something other than the perfect journeys and perfect personas the industry uses.</p>
+
+    <p>I say ‘emotionally intelligent design’ instead of ‘emotional design’ because we tend to think of the latter as manipulating people. For me, the concept of emotional intelligence — where we become more aware of our emotions and more sympathetic to other people's emotions — is what I want for design. Emotionally intelligent design doesn't necessarily have to create an emotion in you. It needs to understand how people feel and have some sensitivity and awareness about it.</p>
+
+    <p>That means doing more thinking up front: trying to understand what people are feeling and how a particular product fits with that. If you want people to be joyful about accomplishing something, you should design for that goal. You can look at the research in sociology and psychology about what creates and sustains joy, and then you ask questions about how people experience it. As with any design process, you test and evaluate ideas and have to look at them in context — because we tend to make general rules. You see guides saying this color means this or that, but those are incredibly simplistic. Color interacts with texture, scent and personality — and even those depend on context.</p>
+
+    <p>There are flawed ideas that emotion can be mapped directly to physical expression or tone of voice. Technology that tries to detect emotion is very controversial, and rightly so because it's extremely limited now. It's taking all this complexity and saying, for example, that there are about 20 different kinds of smiles.</p>
+
+    <p>I don't know if there's a right metric, measure or target for emotion. Nobody wants a dystopia where we have to smile to pay for something or fake our feelings to interact with a machine. We have to throw away the idea of accuracy and numbers and think more holistically.</p>
+
+    <p>Ideally, you would have technology that has sensitivity: to the fact that you aren’t always happy on Tuesdays, or you're not always angry at 4 o'clock, and can pick up on patterns. Maybe you have little kids and you’re tired around 5 o’clock every day, and technology gives you more awareness of that and you have a snack at 4:30 p.m. and feel a little better.</p>
+
+    <p>I can’t think of any perfect examples of where this is working now, but many industries have the potential to do good things and not just say they know best and here’s what people should do. In health care and mental health, companies are trying to find the line between making something helpful without being overbearing. Gaming is another area to watch because it's so tapped into emotion.</p>
+  </div><!-- .stories-max-width-wrapper -->
+
+  {{ stories_article_blockquote(
+    quote="Technology is pushing us to a time of big emotion.",
+    caption="Pamela Pavliscak",
+    class="color-accent"
+  )}}
+
+  <div class="stories-max-width-wrapper">
+    <p>Technology is pushing us to a time of big emotion. That harkens back to big data, and in the same way, we have to think about data. We must think about technology, like AI, and how it works and if we believe it is ethical. We are likely to see more of a role for people to shape their own experience and what we know or remember about them. Companies that allow people to have some agency over that and some way to interact with their data will see people gravitate towards that and become loyal. This is one of design’s big challenges: how to do that without requiring a ton of extra effort.</p>
+
+    <p>As we experience technology, we have to think about more than the practical side.  It's fair to expect something beyond that. Ask yourself questions: Does it make me feel terrible about myself? Is it undermining a relationship or making me feel wound up when I want to unwind? How is it impacting my emotional life and experience of the world around me? We should expect more from our technology.”</p>
+  </div> <!-- .stories-max-width-wrapper -->
+</section> <!-- .c-stories-article-section -->
+
+ {% endblock %}

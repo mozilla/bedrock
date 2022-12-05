@@ -25,7 +25,7 @@
   {{ js_bundle("stories-article")}}
 {% endblock %}
 
-{% block body_class %}theme-connection{% endblock %}
+{% block body_class %}theme-pink{% endblock %}
 
 {% block site_header %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -92,17 +92,12 @@
         {% if credits %}
         <div class="stories-max-width-wrapper">
           <aside class="c-stories-article-credits">
-            <h2>Article credits</h2>
+            <h2>Article Contributors</h2>
             <div class="article-credits-wrapper">
             {% for credit in credits %}
 
               <figure class="c-stories-image credit">
-                {{ image(
-                  url=credit.image,
-                  width=114,
-                  height=131,
-                  include_highres=True,
-                )}}
+                {{ credit.image }}
                 <figcaption class="credit-name">{{ credit.name }}</figcaption>
                 <figcaption class="credit-position">{{ credit.title }}</figcaption>
                 {% if credit.photo_credit %}<figcaption class="credit-photo-credit">{{ credit.photo_credit }}</figcaption>{% endif %}

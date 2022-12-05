@@ -21,12 +21,29 @@
   <main class="c-stories-main">
     {# Featured Stories #}
         {% with
-          url=url('stories.articles.joy-of-color'),
-          image_url='img/stories/joy-of-color-hero.jpg',
-          caption='Photo by Adrian Trinkaus on Unsplash',
-          title="The Joy of Color",
-          desc="The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
-          value="Connection"
+          url=url('stories.articles.raising-technology-eq'),
+          image=resp_img(
+            url="img/stories/raising-technology-eq-1000.jpg",
+            srcset={
+                "img/stories/raising-technology-eq-500.jpg": "500w",
+                "img/stories/raising-technology-eq-1000.jpg": "1000w",
+                "img/stories/raising-technology-eq-1500.jpg": "1500w"
+            },
+            sizes={
+              "(min-width: 767px)": "calc(100vw - 80px)",
+              "default": "100vw"
+            },
+            optional_attributes={
+              "loading": "eager",
+              "width": "1000",
+              "height": "667"
+            }
+          ),
+          caption="Photo by Alina Grubnyak on Unsplash",
+          title="Raising Technology’s EQ",
+          desc="Pamela Pavliscak studies the impact of technology and how we feel. Here’s why she thinks we’re entering the era of big emotion.",
+          value="Connection",
+          theme_class="orange"
         %}
           {% include 'stories/includes/stories-landing-featured.html' %}
         {% endwith %}
@@ -35,6 +52,14 @@
         <div class="related-stories-grid">
           <h2 class="c-stories-related-header">Other Stories and Collections</h2>
           <div class="related-stories-wrapper">
+            {{ stories_card(
+              title="The Joy of Color",
+              desc="The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
+              image_url="img/stories/joy-of-color-hero.jpg",
+              image_alt="",
+              link_url=url('stories.articles.joy-of-color'),
+              include_highres_image=True
+            )}}
             {{ stories_card(
               title="The Art of Engagement",
               desc="Mozilla’s vibrant community gets a direct connection to the people building the products they love.",

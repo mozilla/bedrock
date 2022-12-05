@@ -8,15 +8,57 @@
 
 {% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
 
-{% block body_class %}theme-joy{% endblock %}
-
-{% set featured = true %}
+{% block body_class %}theme-green{% endblock %}
 
 {% set credits = [
-  {"name": "Ingrid Fetell Lee", "title": "Designer and author", "image": "img/stories/credit/ingrid-fetell-lee-credit.jpg", "photo_credit": "Photo credit: © Ingrid Fetell Lee"},
-  {"name": "Amber Case", "title": "Cyborg anthropologist and UX designer", "image": "img/stories/credit/amber-case-credit.jpg", "photo_credit": "Photo credit: © Amber Case"},
-  {"name": "Keely Alexis", "title": "Streetwear and sneaker designer", "image": "img/stories/credit/keely-alexis-credit.jpg", "photo_credit": "Photo credit: © Keely Alexis"},
-  {"name": "Mikal Lewis", "title": "Senior director of product management at Firefox", "image": "img/stories/credit/mikal-lewis-credit.png", "photo_credit": "Photo credit: © Mikal Lewis"}
+  {
+    "name": "Ingrid Fetell Lee",
+    "title": "Designer and author",
+    "image": resp_img(
+      'img/stories/credit/ingrid-fetell-lee-credit.jpg',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo credit: © Ingrid Fetell Lee"
+  },
+  {
+    "name": "Amber Case",
+    "title": "Cyborg anthropologist and UX designer",
+    "image": resp_img(
+      'img/stories/credit/amber-case-credit.jpg',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo credit: © Amber Case"
+  },
+  {
+    "name": "Keely Alexis",
+    "title": "Streetwear and sneaker designer",
+    "image": resp_img(
+      'img/stories/credit/keely-alexis-credit.jpg',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo credit: © Keely Alexis"
+  },
+  {
+    "name": "Mikal Lewis",
+    "title": "Senior director of product management at Firefox",
+    "image": resp_img(
+      'img/stories/credit/mikal-lewis-credit.png',
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+    "photo_credit": "Photo credit: © Mikal Lewis"
+  }
 ] %}
 
 {% set related = [
@@ -66,14 +108,18 @@
   <div class="stories-max-width-wrapper">
     <p>Behind “Independent Voices,” the new Colorways drop, is streetwear and sneaker designer Keely Alexis. In choosing to work with Mozilla for her first collaboration with a technology company, Alexis—best known for the Air Jordans and other sneakers she created at Nike—created bold and vibrant colored themes, Colorways, based on values she shares with the company. “‘Independent Voices’ are the voices of the past and present that create a better future,” she said. “I chose this [analogy] as my inspiration for the collaboration because it feels authentic to me but it also aligns with Firefox and the vision that we can make the world better, on the internet and beyond.”</p>
     {{ stories_image(
-      image_url='img/stories/joy-of-color-sneakers.jpg',
-      alt='green and white sneakers showcased on white fur rug',
+      image=resp_img(
+        'img/stories/joy-of-color-sneakers.jpg',
+        srcset={ 'img/stories/joy-of-color-sneakers-high-res.jpg': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '878',
+          'height': '864',
+          'alt': 'green and white sneakers showcased on white fur rug'
+        },
+      ),
+      image_class="article-width",
       caption='Photo credit: © Keely Alexis',
-      image_class='article-width',
-      include_highres=True,
-      width='878',
-      height='864',
-      loading='lazy'
     )}}
   </div>
 </section>
@@ -97,14 +143,18 @@
     <p>Some “distractions,” however, boost our mood and productivity. At the top of the list: the right balance of color and light. Colorful artwork on walls and windows that reveal a glimpse of sky or trees can reenergize people throughout the day. “You can't sit for eight hours a day and stare at the laptop,” said Lee. “We know that people perform better, and are actually more productive and more efficient when they have ‘distractions’ that are beneficial.”</p>
     <p>“Research from several countries,” said Lee, “concluded that people in more colorful work environments are more alert, confident, friendly, and joyful than people working in drab spaces. Those studies were conducted in physical environments, but I have to think our response to it is so deep and so hardwired that it would apply in the digital realm.”</p>
     {{ stories_image(
-      image_url='img/stories/joy-of-color-window-wall.jpg',
-      alt='multi-colored windows form the wall of a building',
+      image=resp_img(
+        'img/stories/joy-of-color-window-wall.jpg',
+        srcset={ 'img/stories/joy-of-color-window-wall-high-res.jpg': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '750',
+          'height': '1125',
+          'alt': 'multi-colored windows form the wall of a building'
+        },
+      ),
+      image_class="article-width",
       caption='Image credit: Felix Dubois-Robert on Unsplash',
-      image_class='article-width',
-      include_highres=True,
-      width='750',
-      height='1125',
-      loading='lazy'
     )}}
     <p>Firefox’s research confirmed that to be true:. “We identified color as a way to connect with people across all divides. It is a universal language that transcends the boundaries of our diverse verbal languages,” said Lewis. Early tests of the concept were resoundingly positive, and Firefox decided to include the option in future releases for desktop (and to change the typical language associated with technology’s look and feel). Wallpapers adds color to mobile with a limited edition “Independent Voices”-themed collection, aligning the platforms.</p>
     <p>“We chose to call it ‘colorways’ rather than themes to show we are branching out from our ‘language of browser’ to speak the language of everyday life and everyday users,” said Lewis. “It feels like a natural extension to allow people to use this tool that they’re leveraging every day to feel like more of their own: to feel fresh, to be exciting, to just bring in that small moment of delight to their day.”</p>
@@ -121,14 +171,18 @@
     <p>In that context, the option to customize a browser with color, such as colorways allows, is not just a playful decorative touch. “I think it's a way to reconnect with our intuition and what feels good,” said Lee. “We’re cut off from it because we live these productivity-driven lives.”</p>
     <p>Case argued giving people more choices to design their digital lives is a form of inclusivity. “It’s not the colors themselves that are inclusive, it’s that giving a choice is inclusive rather than people being handed something in the one-size-fits all environment—one that we are forced to live in now,” she said. “The opportunity to allow people to play with color is the kind of thinking that is bringing humanity to a joyous internet.”</p>
     {{ stories_image(
-      image_url='img/stories/joy-of-color-colorways.png',
-      alt='vibrantly illustrated green eye surrounded by blue heart, gold crown, purple headphones, red ball, and orange sneakers',
-      caption='Image credit: Final artwork for Colorways',
-      image_class='article-width',
-      include_highres=True,
-      width='708',
-      height='780',
-      loading='lazy'
+      image=resp_img(
+        'img/stories/joy-of-color-colorways.png',
+        srcset={ 'img/stories/joy-of-color-colorways-high-res.png': '2x' },
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '708',
+          'height': '780',
+          'alt': 'vibrantly illustrated green eye surrounded by blue heart, gold crown, purple headphones, red ball, and orange sneakers'
+        },
+      ),
+      image_class="article-width",
+      caption='Image credit: Final artwork for Colorways'
     )}}
   </div>
 </section>

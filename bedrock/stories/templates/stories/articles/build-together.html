@@ -7,13 +7,46 @@
 {% extends "stories/stories-base-article.html" %}
 
 
-{% from "stories/includes/macros.html" import stories_article_blockquote, stories_image with context %}
+{% from "stories/includes/macros.html" import stories_article_blockquote with context %}
 
 
 {% set credits = [
-  {"name": "Mike Hoye", "title": "Senior Product Manager", "image": "img/stories/credit/mike-hoye-credit.jpg"},
-  {"name": "Daniel Nazer", "title": "Senior IP and Product Counsel", "image": "img/stories/credit/daniel-nazer-credit.jpg"},
-  {"name": "Ray Fambro", "title": "Product Manager", "image": "img/stories/credit/ray-fembro-credit.jpg"},
+  {
+    "name": "Mike Hoye",
+    "title": "Senior Product Manager",
+    "image": resp_img(
+      'img/stories/credit/mike-hoye-credit.jpg',
+      srcset={ 'img/stories/credit/mike-hoye-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Daniel Nazer",
+    "title": "Senior IP and Product Counsel",
+    "image": resp_img(
+      'img/stories/credit/daniel-nazer-credit.jpg',
+      srcset={ 'img/stories/credit/daniel-nazer-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
+  {
+    "name": "Ray Fambro",
+    "title": "Product Manager",
+    "image": resp_img(
+      'img/stories/credit/ray-fembro-credit.jpg',
+      srcset={ 'img/stories/credit/ray-fembro-credit-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '114',
+        'height': '131'
+      },
+    ),
+  },
 ] %}
 
 {% set related = [
