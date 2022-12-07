@@ -183,6 +183,13 @@ You could use that in a template like this:
 For our purposes these are mostly useful for things that can change, but which shouldn't involve
 retranslation of a string (e.g. URLs or email addresses).
 
+You may also request any other translation of the string (or the original English string of course) regardless of the current locale.
+
+.. code-block:: jinja
+
+    <h2>{{ ftl('welcome', locale='en', user='Dude') }}<h2>
+
+
 This helper is available in Jinja templates and Python code in views. For use in a view you should
 always call it in the view itself:
 

@@ -46,6 +46,8 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
             context["fluent_l10n"] = fluent_l10n([locale, "en"], ftl_files)
         else:
             context["fluent_l10n"] = fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
+
+        context["fluent_files"] = ftl_files or settings.FLUENT_DEFAULT_FILES
     return loader.render_to_string(template_name, context, request, using)
 
 
@@ -128,8 +130,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     else:
         context["fluent_l10n"] = fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
 
-    # Every template gets its own .lang file, so figure out what it is
-    # and pass it in the context
+    context["fluent_files"] = ftl_files or settings.FLUENT_DEFAULT_FILES
     context["template"] = template
     context["template_source_url"] = template_source_url(template)
 
