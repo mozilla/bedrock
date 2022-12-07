@@ -156,7 +156,7 @@ const NewsletterManagementForm = {
     },
 
     /**
-     * Get Bedrock URL for querying localised newsletter strings.
+     * Get Bedrock URL for querying localized newsletter strings.
      * @returns {String}
      */
     getNewsletterStringsURL: () => {
@@ -198,7 +198,7 @@ const NewsletterManagementForm = {
      * @returns {Boolean}
      */
     shouldUnsubscribeAll: () => {
-        return document.getElementById('id_remove_all').checked ? true : false;
+        return document.getElementById('id_remove_all').checked;
     },
 
     /**
@@ -213,53 +213,56 @@ const NewsletterManagementForm = {
         const locale = NewsletterManagementForm.getPageLocale();
         const isFxALocale = NewsletterManagementForm.isFxALocale(locale);
 
-        /**
-         * Only include a newsletter if 'active' === true AND 'show' === true
-         * OR if user is already subscribed, OR if they have a Firefox Account
-         * and it's an FxA related newsletter.
-         */
         for (const newsletter in newsletters) {
-            if (Object.prototype.hasOwnProperty.call(newsletters, newsletter)) {
-                const obj = newsletters[newsletter];
-                if (
-                    (obj.active && obj.show) ||
-                    user.newsletters.includes(newsletter) ||
-                    (user.has_fxa &&
-                        NewsletterManagementForm.isFxANewsletter(newsletter) &&
-                        isFxALocale)
-                ) {
-                    // Replace default newsletter copy with localized translations.
-                    if (
-                        Object.prototype.hasOwnProperty.call(
-                            strings,
-                            newsletter
-                        )
-                    ) {
-                        obj.title = strings[newsletter].title;
+            if (
+                !Object.prototype.hasOwnProperty.call(newsletters, newsletter)
+            ) {
+                continue;
+            }
 
-                        // Localized descriptions are optional.
-                        if (strings[newsletter].description) {
-                            obj.description = strings[newsletter].description;
-                        }
-                    }
+            /**
+             * Only include a newsletter if 'active' === true AND 'show' === true
+             * OR if user is already subscribed, OR if they have a Firefox Account
+             * and it's an FxA related newsletter.
+             */
+            const obj = newsletters[newsletter];
 
-                    // Is user subscribed to newsletter
-                    obj.subscribed = user.newsletters.includes(newsletter);
+            const shouldDisplayNewsletter =
+                (obj.active && obj.show) ||
+                user.newsletters.includes(newsletter) ||
+                (user.has_fxa &&
+                    NewsletterManagementForm.isFxANewsletter(newsletter) &&
+                    isFxALocale);
 
-                    // Store reference to newsletter ID
-                    obj.newsletter = newsletter;
+            if (!shouldDisplayNewsletter) {
+                continue;
+            }
 
-                    // Ensure there's always an `indented` property for rendering.
-                    if (!obj.indent) {
-                        obj.indent = false;
-                    }
+            // Replace default newsletter copy with localized translations.
+            if (Object.prototype.hasOwnProperty.call(strings, newsletter)) {
+                obj.title = strings[newsletter].title;
 
-                    // Localized "Subscribe" label copy
-                    obj.subscribeCopy = strings['subscribe-copy'].title;
-
-                    finalNewsletters.push(obj);
+                // Localized descriptions are optional.
+                if (strings[newsletter].description) {
+                    obj.description = strings[newsletter].description;
                 }
             }
+
+            // Is user subscribed to newsletter
+            obj.subscribed = user.newsletters.includes(newsletter);
+
+            // Store reference to newsletter ID
+            obj.newsletter = newsletter;
+
+            // Ensure there's always an `indented` property for rendering.
+            if (!obj.indent) {
+                obj.indent = false;
+            }
+
+            // Localized "Subscribe" label copy
+            obj.subscribeCopy = strings['subscribe-copy'].title;
+
+            finalNewsletters.push(obj);
         }
 
         return NewsletterManagementForm.sortNewsletterData(finalNewsletters);
@@ -535,11 +538,11 @@ const NewsletterManagementForm = {
     },
 
     /**
-     * Returns a localised error string based on given error message ID.
+     * Returns a localized error string based on given error message ID.
      * We use server rendered error strings since we need them even when
      * fetching string JSON might fail.
      * @param {String} msg
-     * @param {STring} newsletterId (optional)
+     * @param {String} newsletterId (optional)
      * @returns {String}
      */
     handleFormError: (msg, newsletterId) => {
@@ -594,7 +597,7 @@ const NewsletterManagementForm = {
 
     /**
      * Validates all form fields
-     * @returns {Array} of localised error messages (or an empty array if valid)
+     * @returns {Array} of localized error messages (or an empty array if valid)
      */
     validateFields: () => {
         const errors = [];
