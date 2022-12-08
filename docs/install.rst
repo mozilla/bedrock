@@ -223,13 +223,13 @@ credits, release notes, localizations, legal-docs etc::
     to the `npm documentation <https://docs.npmjs.com/>`_
     for adding or upgrading Node.js dependencies.
 
-.. _run-python-tests:
-
 .. note::
 
     As a convenience, there is a ``make preflight`` command which automatically brings your installed Python and NPM
     dependencies up to date and also fetches the latest DB containing the latest site
     content. This is a good thing to run after pulling latest changes from the ``main`` branch.
+
+.. _run-python-tests:
 
 Run the tests
 =============

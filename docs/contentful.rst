@@ -319,8 +319,8 @@ Fluent strings have been translated, falling back to en-US where not).
 Instead, we check that all of the required fields present in the translated
 Entry have non-null data, and if so, then the entire page is viable to show in the
 given locale. (ie, we look at fields, not strings. It's a coarser level of
-granularity compared to Fluent, because the data is organised differently
- - most of Contentful-sourced content will be rich text, not individual strings).
+granularity compared to Fluent, because the data is organised differently -
+most of Contentful-sourced content will be rich text, not individual strings).
 
 The check about whether or not a Contentful entry is 'active' or 'localisation complete'
 happens during the main sync from Contentful. Note that there is no fallback
