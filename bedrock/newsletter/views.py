@@ -193,7 +193,6 @@ NEWSLETTER_STRINGS = {
 
 
 UNSUB_UNSUBSCRIBED_ALL = 1
-UNSUB_REASONS_SUBMITTED = 2
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:
@@ -483,20 +482,6 @@ def existing(request, token=None):
     return l10n_utils.render(request, "newsletter/existing.html", context, ftl_files=FTL_FILES)
 
 
-# Possible reasons for unsubscribing
-REASONS = [
-    ftl_lazy("newsletters-you-send-too-many-emails", ftl_files=FTL_FILES),
-    ftl_lazy("newsletters-your-content-wasnt-relevant", ftl_files=FTL_FILES),
-    ftl_lazy("newsletters-your-email-design", ftl_files=FTL_FILES),
-    ftl_lazy("newsletters-i-didnt-sign-up", ftl_files=FTL_FILES),
-    ftl_lazy("newsletters-im-keeping-in-touch-v2", ftl_files=FTL_FILES),
-]
-
-
-def _post_or_get(request, value, default=None):
-    return request.POST.get(value, request.GET.get(value, default))
-
-
 def updated(request):
     """View that users come to after submitting on the `existing`
     or `updated` pages.
@@ -509,7 +494,7 @@ def updated(request):
     all.
 
     """
-    unsub = _post_or_get(request, "unsub", "0")
+    unsub = request.GET.get("unsub", "0")
     try:
         unsub = int(unsub)
     except ValueError:
@@ -517,11 +502,9 @@ def updated(request):
 
     # Did they do an unsubscribe all?  then unsub=1 was passed
     unsubscribed_all = unsub == UNSUB_UNSUBSCRIBED_ALL
-    # Did they submit their reason? then unsub=2 was passed
-    reasons_submitted = unsub == UNSUB_REASONS_SUBMITTED
 
     # Token might also have been passed (on remove_all only)
-    token = _post_or_get(request, "token", None)
+    token = request.GET.get("token", None)
     # token must be a UUID
     if token is not None and not UUID_REGEX.match(token):
         token = None
@@ -530,28 +513,10 @@ def updated(request):
     if not unsub:
         messages.add_message(request, messages.INFO, thank_you)
 
-    if request.method == "POST" and reasons_submitted and token:
-        # Tell basket about their reasons
-        reasons = []
-
-        # Paste together all the reasons that they submitted.  Actually,
-        # paste together the English versions of the reasons they submitted,
-        # so we can read them.  (Well, except for the free-form reason.)
-        for i, reason in enumerate(REASONS):
-            if _post_or_get(request, f"reason{i}"):
-                reasons.append(str(reason))
-        if _post_or_get(request, "reason-text-p"):
-            reasons.append(_post_or_get(request, "reason-text", ""))
-
-        reason_text = "\n\n".join(reasons) + "\n\n"
-
-        utils.custom_unsub_reason(token, reason_text)
-
     context = {
+        "action": f"{settings.BASKET_URL}/news/custom_unsub_reason/",
         "unsubscribed_all": unsubscribed_all,
-        "reasons_submitted": reasons_submitted,
         "token": token,
-        "reasons": enumerate(REASONS),
     }
     return l10n_utils.render(request, "newsletter/updated.html", context, ftl_files=FTL_FILES)
 

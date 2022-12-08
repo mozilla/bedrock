@@ -595,6 +595,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-updated.scss"
+      ],
+      "name": "newsletter-updated"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-recovery.scss",
         "css/newsletter/newsletter-opt-out-confirmation.scss"
       ],
@@ -1822,9 +1828,16 @@
     },
     {
       "files": [
-        "js/newsletter/confirm.js"
+        "js/newsletter/updated.es6.js"
       ],
-      "name": "newsletter-confirm"
+      "name": "newsletter-updated"
+    },
+    {
+      "files": [
+        "js/newsletter/unsubscribed.es6.js",
+        "js/newsletter/unsubscribed-init.es6.js"
+      ],
+      "name": "newsletter-unsubscribed"
     },
     {
       "files": [
