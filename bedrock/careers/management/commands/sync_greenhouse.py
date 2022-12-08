@@ -141,7 +141,7 @@ class Command(BaseCommand):
             # (no-brake space). I ♥ regex
             description = re.sub(r"<(p|h4)>([ ]*|(\xa0)+)</(p|h4)>", "", description)
 
-            for metadata in job.get("metadata", []):
+            for metadata in job.get("metadata", []) or []:
                 if metadata.get("name", "") == "Employment Type":
                     position_type = metadata["value"] or ""
                     break
