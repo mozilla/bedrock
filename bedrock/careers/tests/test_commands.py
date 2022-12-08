@@ -148,3 +148,21 @@ class SyncGreenhouseTests(TestCase):
             requests.get().json.return_value = jobs_response
             call_command("sync_greenhouse", stdout=StringIO())
         self.assertEqual(Position.objects.all().count(), 1)
+
+    def test_metadata_is_none(self):
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "metadata": None,
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)
