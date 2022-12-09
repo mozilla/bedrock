@@ -21,7 +21,6 @@ import lib.l10n_utils as l10n_utils
 # utils.get_newsletters in our tests
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
-from bedrock.newsletter import utils
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
 from .forms import (
