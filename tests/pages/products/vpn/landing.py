@@ -22,6 +22,7 @@ class VPNLandingPage(BasePage):
     # Pricing section
     _get_vpn_monthly_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-monthly .mzp-c-button")
     _get_vpn_12_months_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-12-months .mzp-c-button")
+    _get_vpn_relay_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-12-months .vpn-pricing-add-on-bundle .mzp-c-button")
 
     # Waitlist features section
     _join_waitlist_features_button_locator = (By.CSS_SELECTOR, '.vpn-waitlist-feature-block .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
@@ -66,6 +67,10 @@ class VPNLandingPage(BasePage):
     @property
     def is_get_vpn_12_months_button_displayed(self):
         return self.is_element_displayed(*self._get_vpn_12_months_button_locator)
+
+    @property
+    def is_get_vpn_relay_button_displayed(self):
+        return self.is_element_displayed(*self._get_vpn_relay_button_locator)
 
     # Waitlist Features section
 
