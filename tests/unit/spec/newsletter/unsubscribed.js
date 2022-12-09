@@ -128,6 +128,25 @@ describe('UnsubscribedEmailForm', function () {
             ).toBeFalse();
         });
 
+        it('should handle an invalid token', function () {
+            spyOn(UnsubscribedEmailForm, 'handleFormError').and.callThrough();
+            UnsubscribedEmailForm.init();
+            document.querySelector('input[name="token"]').value = '';
+            document.getElementById('unsub0').click();
+            document.getElementById('newsletter-updated-form-submit').click();
+            expect(UnsubscribedEmailForm.handleFormError).toHaveBeenCalled();
+            expect(
+                document
+                    .getElementById('newsletter-updated-form-errors')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+            expect(
+                document
+                    .querySelector('.error-try-again-later')
+                    .classList.contains('hidden')
+            ).toBeFalse();
+        });
+
         it('should handle failure', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormError').and.callThrough();
             UnsubscribedEmailForm.init();

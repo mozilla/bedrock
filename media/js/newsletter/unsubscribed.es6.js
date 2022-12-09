@@ -115,6 +115,7 @@ const UnsubscribedEmailForm = {
         e.preventDefault();
 
         const url = _unsubscribedForm.getAttribute('action');
+        const token = UnsubscribedEmailForm.getToken();
 
         // Disable form fields until POST has completed.
         disableFormFields(_unsubscribedForm);
@@ -125,6 +126,11 @@ const UnsubscribedEmailForm = {
         // Perform client side form field validation.
         if (!UnsubscribedEmailForm.validateFields()) {
             UnsubscribedEmailForm.handleFormError(errorList.REASON_ERROR);
+            return;
+        }
+
+        if (token === '') {
+            UnsubscribedEmailForm.handleFormError();
             return;
         }
 
