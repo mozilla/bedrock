@@ -765,7 +765,7 @@ automation steps, which aren't captured here, as they are more about
 infrastructure and operations. However, what follows outlines the steps needed
 to add a new L10N integration (for "``newintegration``") to Bedrock.
 
-1. **FILE SETUP (Bedrock developer) **
+1. **FILE SETUP (Bedrock developer)**
 
 Add a directory for the source (``en``) Fluent strings that will
 need translation.
@@ -778,7 +778,7 @@ need translation.
 
 Add the following files:
 
-.. code-block:: plaintext
+.. code-block:: bash
 
     ./l10n-newintegration/
     ./l10n-newintegration/en/  # This is where source Fluent templates go for 'newintegration'
@@ -815,14 +815,15 @@ ii. **An optional repo where files are post-processed following translation**.
 If relevant, this will live in ``github.com/mozmeao/`` - for example ``github.com/mozmeao/www-newintegration-l10n/``
 
 .. important::
-**If you are not using Pontoon/community translations, you do NOT need to create
-this repo.**. Why? If the translations are done by the community (via Pontoon), there is a
-possibility that not enough of the strings will be translated in order to render
-the content in the relevant locale. We run a :abbr:`CI (Continuous Integration)`
-task to determine whether a locale has enough translated strings to be considered
-'active'. At the moment, only Mozorg uses this pattern. The Pocket-mode translations
-do not have their activation measured because their translations come entirely from
-a vendor and we expect the Pocket strings to be 100% translated.
+    **If you are not using Pontoon/community translations, you do NOT need to create
+    this repo.**
+    Why? If the translations are done by the community (via Pontoon), there is a
+    possibility that not enough of the strings will be translated in order to render
+    the content in the relevant locale. We run a :abbr:`CI (Continuous Integration)`
+    task to determine whether a locale has enough translated strings to be considered
+    'active'. At the moment, only Mozorg uses this pattern. The Pocket-mode translations
+    do not have their activation measured because their translations come entirely from
+    a vendor and we expect the Pocket strings to be 100% translated.
 
 3. **CI SETUP (Bedrock dev)**
 
