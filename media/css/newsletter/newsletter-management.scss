@@ -12,27 +12,25 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 
 // * -------------------------------------------------------------------------- */
-// Global styles.
-
-h1 {
-    @include text-title-md;
-    margin-bottom: $layout-sm;
-}
-
-h2 {
-    @include text-title-xs;
-}
+// Base styles.
 
 main {
-    min-height: $content-sm;
-}
+    h1 {
+        @include text-title-md;
+        margin-bottom: $layout-sm;
+    }
 
-.mzp-c-form {
-    margin-bottom: $spacing-2xl;
-}
+    h2 {
+        @include text-title-xs;
+    }
 
-.mzp-c-field {
-    padding-bottom: $label-v-spacing;
+    .mzp-c-form {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .mzp-c-field {
+        padding-bottom: $label-v-spacing;
+    }
 }
 
 // * -------------------------------------------------------------------------- */

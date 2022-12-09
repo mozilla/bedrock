@@ -169,6 +169,6 @@
       "title": "{{ ftl('newsletters-webmaker')|striptags }}"
   },
   "subscribe-copy": {
-    "title": "{{ ftl('newsletters-subscribe') }}"
+    "title": "{{ ftl('newsletters-subscribe')|striptags }}"
   }
 }
