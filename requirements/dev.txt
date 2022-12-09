@@ -88,13 +88,13 @@ blessings==1.7 \
     --hash=sha256:b1fdd7e7a675295630f9ae71527a8ebc10bfefa236b3d6aa4932ee4462c17ba3 \
     --hash=sha256:caad5211e7ba5afe04367cdd4cfc68fa886e2e08f6f35e76b7387d2109ccea6e
     # via curtsies
-boto3==1.26.17 \
-    --hash=sha256:bb40a9788dd2234851cdd1110eec0e3f6b3af6b98280924fa44c25199ced5737 \
-    --hash=sha256:c39b7e87b27b00dcf452b2fc80252d311e275036f3d48464af34d0123077f985
+boto3==1.26.22 \
+    --hash=sha256:a4cf7fe649b0202f2f2307eb982ca215edcf9c87b6e65f5b3405f66c289603f2 \
+    --hash=sha256:f16c3aef1432c5083a9e1c36ac08b70b9072e87205e970f8d7520b10b964858f
     # via -r requirements/prod.txt
-botocore==1.29.19 \
-    --hash=sha256:917807ee4ccca34a2f2848eb4fcf878d9e97a44a911a6965ff556d0830c471fd \
-    --hash=sha256:a54561e591f5d8e653657ce04dcad09c10ebca9dbefba73471976e522abf038a
+botocore==1.29.26 \
+    --hash=sha256:2ca26983156fe0846a87b9325205af6bc56268fb99b8b4b9decccf50203ff3b4 \
+    --hash=sha256:f71220fe5a5d393c391ed81a291c0d0985f147568c56da236453043f93727a34
     # via
     #   -r requirements/prod.txt
     #   boto3
@@ -107,9 +107,9 @@ braceexpand==0.1.7 \
     --hash=sha256:91332d53de7828103dcae5773fb43bc34950b0c8160e35e0f44c4427a3b85014 \
     --hash=sha256:e6e539bd20eaea53547472ff94f4fb5c3d3bf9d0a89388c4b56663aba765f705
     # via -r requirements/dev.in
-certifi==2021.10.8 \
-    --hash=sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872 \
-    --hash=sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569
+certifi==2022.12.7 \
+    --hash=sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3 \
+    --hash=sha256:4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
     # via
     #   -r requirements/prod.txt
     #   requests
@@ -1222,9 +1222,9 @@ trio-websocket==0.9.2 \
     --hash=sha256:5b558f6e83cc20a37c3b61202476c5295d1addf57bd65543364e0337e37ed2bc \
     --hash=sha256:a3d34de8fac26023eee701ed1e7bf4da9a8326b61a62934ec9e53b64970fd8fe
     # via selenium
-twilio==7.15.3 \
-    --hash=sha256:805b3e880b20757726a38f0f4e0ea6f91f7ce68ecb8f75ba263dccc480a7fd26 \
-    --hash=sha256:f64f2106c2c8705ac84c01cb0cdb6157dc8b5d32b5eecbaec70e60cdbf774758
+twilio==7.15.4 \
+    --hash=sha256:13a9eca9e1f06b5f01b8745274a233143198afba19cacd4522ae9e571916dfe5 \
+    --hash=sha256:699c5723d87141e0af3a8f79076b1f97acbdcf3287d384f2adf921e780e419df
     # via -r requirements/prod.txt
 typing-extensions==4.1.1 \
     --hash=sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42 \
