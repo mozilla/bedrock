@@ -1272,6 +1272,12 @@
         "css/firefox/family/styles.scss"
       ],
       "name": "firefox-family"
+    },
+    {
+      "files": [
+        "css/mozorg/santa-locator.scss"
+      ],
+      "name": "santa_locator"
     }
   ],
   "js": [
@@ -1982,6 +1988,12 @@
         "js/firefox/family/animate-checkmark-init.es6.js"
       ],
       "name": "firefox-family"
+    },
+    {
+      "files": [
+        "js/mozorg/santa-locator.js"
+      ],
+      "name": "santa_locator"
     }
   ]
 }
