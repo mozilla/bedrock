@@ -69,13 +69,14 @@ Running functional tests
 
 To download geckodriver and have it ready to run in your system, there are a couple of ways:
 
-- Download its `latest release`_ and add it to your system path, then open your terminal shell, ``cd`` into your `Downloads` directory, and run
+- Download its `latest release`_ and add it to your system path:
 
         .. code-block:: bash
 
+            cd /path/to/your/downloaded/files/
             mv geckodriver /usr/local/bin/
 
-- Download it directly using Homebrew, which automatically places it in your system path:
+- If you're on MacOS, download it directly using Homebrew, which automatically places it in your system path:
 
         .. code-block:: bash
 
