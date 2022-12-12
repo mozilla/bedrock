@@ -74,17 +74,22 @@ repos:
     rev: v2.7.1
     hooks:
       - id: prettier
+  #        TODO Remove this once we migrate to 3.0.0
+  #        See https://github.com/pre-commit/mirrors-prettier/issues/29
+        files: \.js$
+        additional_dependencies:
+          - prettier@2.8.0
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@14.9.1"
-          - "stylelint-config-standard-scss@4.0.0"
+          - "stylelint@14.16.0"
+          - "stylelint-config-standard-scss@6.1.0"
           - "postcss-scss@4.0.2"
           - "postcss@8.3.11"
   - repo: https://github.com/eslint/eslint
-    rev: v8.19.0
+    rev: v8.29.0
     hooks:
       - id: eslint
         additional_dependencies:

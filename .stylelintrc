@@ -36,7 +36,8 @@
                     "grid-template"
                 ]
             }
-        ]
+        ],
+        "selector-not-notation": "simple"
     },
     "ignoreFiles": ["media/css/libs/**/*", "media/css/careers/*"]
 }
