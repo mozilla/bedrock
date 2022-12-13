@@ -97,9 +97,13 @@
       <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
       <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h3>
       <p>
-        {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
-               meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
-               privacy=url('privacy.notices.firefox')) }}
+        {% if ftl_has_messages('firefox-privacy-hub-theres-no-hidden-agenda-here-v2') %}
+          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here-v2', privacy=url('privacy.notices.firefox')) }}
+        {% else %}
+          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
+                meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
+                privacy=url('privacy.notices.firefox')) }}
+        {% endif %}
       </p>
     {% endcall %}
   </div>

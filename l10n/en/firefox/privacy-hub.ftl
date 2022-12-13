@@ -35,6 +35,11 @@ firefox-privacy-hub-youll-always-know-where-you = You’ll always know where you
 
 # Variables:
 #   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
+firefox-privacy-hub-theres-no-hidden-agenda-here-v2 = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. If you want to dig into every data-point we collect, our code is open. And so are we.
+
+# Obsolete string
+# Variables:
+#   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
 #   $meetings (url) - link to https://wiki.mozilla.org/
 firefox-privacy-hub-theres-no-hidden-agenda-here = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. Anyone in the world can attend our <a href="{ $meetings }">weekly company meetings</a>. If you want to dig into every datapoint we collect, our code is open. And so are we.
 
