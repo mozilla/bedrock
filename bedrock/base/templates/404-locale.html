@@ -6,11 +6,21 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{% if not is_root %}404 - {% endif %}Choose your language or locale to browse Mozilla.org{% endblock %}
+{%- block page_title -%}
+  {%- if is_root -%}
+    Internet for people, not profit — Mozilla
+  {%- else -%}
+    404 - Choose your language or locale to browse Mozilla.org
+  {%- endif -%}
+{%- endblock -%}
 
-{% block page_desc -%}
-  Select your country or region to indicate your preferred language.
-{%- endblock %}
+{%- block page_desc -%}
+  {%- if is_root -%}
+    Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.
+  {%- else -%}
+    Select your country or region to indicate your preferred language.
+  {%- endif -%}
+{%- endblock -%}
 
 {% block canonical_urls %}
 {% if is_root %}
