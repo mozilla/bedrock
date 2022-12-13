@@ -12,7 +12,11 @@
         <p>{{ ftl('whatsnew-up-to-date-notification-v2', fallback='whatsnew-up-to-date-notification') }}</p>
       </div>
       <div class="mzp-c-notification-bar out-of-date">
-        <p>{{ ftl('whatsnew-out-of-date-notification-v2', fallback='whatsnew-out-of-date-notification') }}</p>
+        {% if ftl_has_messages('whatsnew-out-of-date-notification-v3') %}
+          <p>{{ ftl('whatsnew-out-of-date-notification-v3', url='https://support.mozilla.org/kb/update-firefox-latest-release?' + utm_params) }}</p>
+        {% else %}
+          <p>{{ ftl('whatsnew-out-of-date-notification-v2') }}</p>
+        {% endif %}
       </div>
     </div>
   </div>
