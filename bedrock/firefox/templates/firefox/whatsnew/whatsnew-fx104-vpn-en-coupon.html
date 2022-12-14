@@ -22,9 +22,14 @@
   {% call split(
     block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace t-mobile-nospace',
     theme_class='t-background-color',
-    image_url='img/firefox/whatsnew/whatsnew104/vpn.svg',
-    image_height='540',
-    image_width='580',
+    image=resp_img(
+      url='img/firefox/whatsnew/whatsnew104/vpn.svg',
+      optional_attributes={
+        'height': '540',
+        'width': '580',
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_after=True,
     media_class='mzp-l-split-h-center'
   ) %}

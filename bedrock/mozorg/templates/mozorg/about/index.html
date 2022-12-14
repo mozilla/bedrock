@@ -87,8 +87,15 @@
 </div>
 
    {% call split(
-    image_url='img/mozorg/about/foundation.jpg',
-    include_highres_image=True,
+    image=resp_img(
+      url='img/mozorg/about/foundation.jpg',
+      srcset={
+        'img/mozorg/about/foundation-high-res.jpg': '2x'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_after=False,
     media_class='mzp-l-split-h-center',
     block_class='mzp-t-split-nospace'

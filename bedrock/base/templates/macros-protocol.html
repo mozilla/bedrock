@@ -123,7 +123,7 @@
               width=image_width
             ) }}
           {% else %}
-            {{ image }}
+            {{ image|safe }}
           {% endif %}
         </div>
       {% elif media_include %}
@@ -153,7 +153,7 @@
             width=image_width
           ) }}
           {% else %}
-            {{ image }}
+            {{ image|safe }}
           {% endif %}
         </div>
       {% elif media_include %}

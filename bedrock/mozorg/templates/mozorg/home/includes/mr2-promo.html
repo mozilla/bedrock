@@ -7,8 +7,12 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% call split(
-  image_url='img/home/2021/mr2-watercolor.png',
-  include_highres_image=True,
+  image=resp_img(
+    url='img/home/2021/mr2-watercolor.png',
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
   block_class='mr2-home-hero mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md',
   body_class=None,
   media_class='mzp-l-split-h-center mzp-l-split-v-center',

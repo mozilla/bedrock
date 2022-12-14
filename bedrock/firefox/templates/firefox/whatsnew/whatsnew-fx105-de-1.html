@@ -31,19 +31,24 @@
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl wnp-content-main',
     body_class='mzp-l-split-v-start',
     media_class='mzp-l-split-h-center',
-    image_url='img/firefox/whatsnew/whatsnew105-eu/save-de-400.png',
-    image_srcset={
-      'img/firefox/whatsnew/whatsnew105-eu/save-de-400.png': '400w',
-      'img/firefox/whatsnew/whatsnew105-eu/save-de-600.png': '600w',
-      'img/firefox/whatsnew/whatsnew105-eu/save-de-800.png': '800w',
-    },
-    image_sizes={
-      '(min-width: 1312px)': '400px',
-      '(min-width: 768px)': 'calc(50vw - 192px)',
-      'default': 'calc(100vw - 48px)'
-    },
-    image_height='306',
-    image_width='400',
+    image=resp_img(
+      url='img/firefox/whatsnew/whatsnew105-eu/save-de-400.png',
+      srcset={
+        'img/firefox/whatsnew/whatsnew105-eu/save-de-400.png': '400w',
+        'img/firefox/whatsnew/whatsnew105-eu/save-de-600.png': '600w',
+        'img/firefox/whatsnew/whatsnew105-eu/save-de-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': 'calc(50vw - 192px)',
+        'default': 'calc(100vw - 48px)'
+      },
+      optional_attributes={
+        'height': '306',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_after=True
   ) %}
     <div class="mzp-c-emphasis-box wnp-main-content">

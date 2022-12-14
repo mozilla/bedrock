@@ -40,8 +40,12 @@
 {% endif %}
 
 {% call split(
-  image_url='img/home/2022/mr-hero-custom.svg',
-  include_highres_image=False,
+  image=resp_img(
+    url='img/home/2022/mr-hero-custom.svg',
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
   block_class='mr106-home-hero show-not-firefox mzp-t-split-nospace mzp-l-split-center-on-sm-md',
   theme_class='mzp-t-dark',
   body_class=None,
@@ -61,8 +65,12 @@
 {% endcall %}
 
 {% call split(
-  image_url='img/home/2022/mr-hero-sync.svg',
-  include_highres_image=False,
+  image=resp_img(
+    url='img/home/2022/mr-hero-sync.svg',
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
   block_class='mr106-home-hero show-firefox mzp-t-split-nospace mzp-l-split-center-on-sm-md',
   theme_class='mzp-t-dark',
   body_class=None,

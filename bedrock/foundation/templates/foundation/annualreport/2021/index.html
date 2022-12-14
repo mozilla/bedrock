@@ -148,18 +148,22 @@
 
   <a class="c-section-split-link" href="{{ url('foundation.annualreport.2021.article.products') }}" {{ new_tab }} data-cta-type="link" data-cta-text="Building the Products and Business Model for Your Internet">
     {% call split(
-      image_url='img/foundation/annualreport/2021/split/experiences-900.jpg',
-      image_width=900,
-      image_height=506,
-      loading='lazy',
       block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-      image_srcset={
-        'img/foundation/annualreport/2021/split/experiences-900.jpg': '900w',
-        'img/foundation/annualreport/2021/split/experiences-1300.jpg': '1300w',
-        'img/foundation/annualreport/2021/split/experiences-1800.jpg': '1800w',
-      },
-      image_sizes=split_image_sizes,
-      image_alt='We need to give people great experiences that help make the internet personal, enjoyable, and safe.'
+      image=resp_img(
+        url='img/foundation/annualreport/2021/split/experiences-900.jpg',
+        srcset={
+          'img/foundation/annualreport/2021/split/experiences-900.jpg': '900w',
+          'img/foundation/annualreport/2021/split/experiences-1300.jpg': '1300w',
+          'img/foundation/annualreport/2021/split/experiences-1800.jpg': '1800w',
+        },
+        sizes=split_image_sizes,
+        optional_attributes={
+          'width': '900',
+          'height': '506',
+          'loading': 'lazy',
+          'alt': 'We need to give people great experiences that help make the internet personal, enjoyable, and safe.'
+        }
+      )
     ) %}
       <p>Steve Teixeira & Lindsey Shepard</p>
       <h2>Building the Products and Business Model for Your Internet</h2>
@@ -229,18 +233,22 @@
 
   <a class="c-section-split-link" href="{{ url('foundation.annualreport.2021.article.team') }}" {{ new_tab }} data-cta-type="link" data-cta-text="Building A Team To Better The Internet">
     {% call split(
-      image_url='img/foundation/annualreport/2021/split/investing-900.jpg',
-      image_width=900,
-      image_height=506,
-      loading='lazy',
       block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-      image_srcset={
-        'img/foundation/annualreport/2021/split/investing-900.jpg': '900w',
-        'img/foundation/annualreport/2021/split/investing-1300.jpg': '1300w',
-        'img/foundation/annualreport/2021/split/investing-1800.jpg': '1800w',
-      },
-      image_sizes=split_image_sizes,
-      image_alt='We aren’t investing in the next quarter, we are investing in the next quarter century.'
+      image=resp_img(
+        url='img/foundation/annualreport/2021/split/investing-900.jpg',
+        srcset={
+          'img/foundation/annualreport/2021/split/investing-900.jpg': '900w',
+          'img/foundation/annualreport/2021/split/investing-1300.jpg': '1300w',
+          'img/foundation/annualreport/2021/split/investing-1800.jpg': '1800w',
+        },
+        sizes=split_image_sizes,
+        optional_attributes={
+          'width': '900',
+          'height': '506',
+          'loading': 'lazy',
+          'alt': 'We aren’t investing in the next quarter, we are investing in the next quarter century.'
+        }
+      )
     ) %}
       <p>Helen Turvey & Karim Lakhani</p>
       <h2>Building A Team To Better The Internet</h2>
@@ -380,17 +388,21 @@
   <div class="split-container">
     <a class="c-section-split-link has-modal" href="#open-letter-congress-desc" id="open-letter-congress" data-modal-id="open-letter-congress" data-cta-type="link" data-cta-text="The fight continues in Washington">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/congress-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/congress-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/congress-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/congress-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/congress-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/congress-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/congress-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/congress-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Policy</span>
         <h2>The fight continues in Washington</h2>
@@ -400,17 +412,21 @@
 
     <a class="c-section-split-link has-modal" href="#transparency-report-desc" id="transparency-report" data-modal-id="transparency-report" data-cta-type="link" data-cta-text="Leading by example">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/advertising-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/advertising-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/advertising-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/advertising-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes,
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/advertising-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/advertising-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/advertising-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/advertising-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Advertising</span>
         <h2>Leading by example</h2>
@@ -420,17 +436,21 @@
 
     <a class="c-section-split-link has-modal" href="#regrets-reporter-desc" id="regrets-reporter" data-modal-id="regrets-reporter" data-cta-type="link" data-cta-text="Crowdsourcing research into YouTube’s AI">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/regrets-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/regrets-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/regrets-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/regrets-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/regrets-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/regrets-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/regrets-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/regrets-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Innovation</span>
         <h2>Crowdsourcing research into YouTube’s AI</h2>
@@ -440,17 +460,21 @@
 
     <a class="c-section-split-link has-modal" href="#privacy-not-included-desc" id="privacy-not-included" data-modal-id="privacy-not-included" data-cta-type="link" data-cta-text="Sounding the alarm on period trackers">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/period-trackers-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/period-trackers-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/period-trackers-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/period-trackers-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/period-trackers-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/period-trackers-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/period-trackers-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/period-trackers-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Privacy</span>
         <h2>Sounding the alarm on period trackers</h2>
@@ -460,17 +484,21 @@
 
     <a class="c-section-split-link has-modal" href="#total-cookie-protection-desc" id="total-cookie-protection" data-modal-id="total-cookie-protection" data-cta-type="link" data-cta-text="Rolling out cookie protection for all">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/tcp-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/tcp-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/tcp-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/tcp-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes,
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/tcp-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/tcp-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/tcp-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/tcp-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Firefox</span>
         <h2>Rolling out cookie protection for all</h2>
@@ -480,17 +508,21 @@
 
     <a class="c-section-split-link has-modal" href="#misinformation-desc" id="misinformation" data-modal-id="misinformation" data-cta-type="link" data-cta-text="Battling misinformation in Kenya">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/misinformation-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/misinformation-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/misinformation-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/misinformation-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/misinformation-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/misinformation-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/misinformation-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/misinformation-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Mradi</span>
         <h2>Battling misinformation in Kenya</h2>
@@ -500,17 +532,21 @@
 
     <a class="c-section-split-link has-modal" href="#common-voice-desc" id="common-voice" data-modal-id="common-voice" data-cta-type="link" data-cta-text="Making voice technology for everyone">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/common-voice-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/common-voice-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/common-voice-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/common-voice-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/common-voice-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/common-voice-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/common-voice-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/common-voice-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Community</span>
         <h2>Making voice technology for everyone</h2>
@@ -520,17 +556,21 @@
 
     <a class="c-section-split-link has-modal" href="#containers-desc" id="containers" data-modal-id="containers" data-cta-type="link" data-cta-text="Keeping your online lives private">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/containers-800.jpg',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-reversed mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/containers-800.jpg': '800w',
-          'img/foundation/annualreport/2021/split/containers-1200.jpg': '1200w',
-          'img/foundation/annualreport/2021/split/containers-1600.jpg': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/containers-800.jpg',
+          srcset={
+            'img/foundation/annualreport/2021/split/containers-800.jpg': '800w',
+            'img/foundation/annualreport/2021/split/containers-1200.jpg': '1200w',
+            'img/foundation/annualreport/2021/split/containers-1600.jpg': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">Security</span>
         <h2>Keeping your online lives private</h2>
@@ -540,17 +580,21 @@
 
     <a class="c-section-split-link has-modal" href="#trustworthy-ai-desc" id="trustworthy-ai" data-modal-id="trustworthy-ai" data-cta-type="link" data-cta-text="Listening to the future of AI">
       {% call split(
-        image_url='img/foundation/annualreport/2021/split/irl-800.png',
-        image_width=900,
-        image_height=506,
-        loading='lazy',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace',
-        image_srcset={
-          'img/foundation/annualreport/2021/split/irl-800.png': '800w',
-          'img/foundation/annualreport/2021/split/irl-1200.png': '1200w',
-          'img/foundation/annualreport/2021/split/irl-1600.png': '1600w',
-        },
-        image_sizes=split_image_sizes
+        image=resp_img(
+          url='img/foundation/annualreport/2021/split/irl-800.png',
+          srcset={
+            'img/foundation/annualreport/2021/split/irl-800.png': '800w',
+            'img/foundation/annualreport/2021/split/irl-1200.png': '1200w',
+            'img/foundation/annualreport/2021/split/irl-1600.png': '1600w',
+          },
+          sizes=split_image_sizes,
+          optional_attributes={
+            'width': '900',
+            'height': '506',
+            'loading': 'lazy',
+          }
+        )
       ) %}
         <span class="c-label-category">IRL</span>
         <h2>Listening to the future of AI</h2>
