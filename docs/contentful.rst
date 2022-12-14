@@ -481,10 +481,28 @@ How to preview your changes on localhost
 When viewing a page in Contentful, it's possible to trigger a preview of the draft page. This is typically rendered on www-dev.allizom.org. However, that's only useful for code that's already in ``main``.
 If you want to preview Contentful content on your local machine - e.g. you're working on a feature branch that isn't ready for merging - do the following:
 
-* In the right-hand sidebar of the editor page in Contentful...
-* ...find the Preview section...
-* ...select ``Change`` and pick ``Localhost Preview``
-* Click ``Open preview`` to trigger a preview on your local machine.
+Existing (master) Content Types
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the right-hand sidebar of the editor page in Contentful:
+
+* Find the Preview section
+* Select ``Change`` and pick ``Localhost Preview``
+* Click ``Open preview``
+
+New (sandbox) Content Types
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In bedrock:
+
+* Update ``class ContentfulPreviewView(L10nTemplateView)`` in `Mozorg Views <https://github.com/mozilla/bedrock/blob/main/bedrock/mozorg/views.py>`_ with a render case for your new content type
+
+In the right-hand sidebar of the editor page in Contentful:
+
+* Click Info tab
+* Find ``Entry ID`` section and copy the value
+
+Manually create preview URL in browser:
+
+* `http://localhost:8000/en-US/contentful-preview/{entry_id}/`
 
 Note that previewing a page will require it to be pulled from Contentful's API, so you will need ``CONTENTFUL_SPACE_ID`` and ``CONTENTFUL_SPACE_KEY`` set in your ``.env``. It may take a few seconds to get the data.
 
