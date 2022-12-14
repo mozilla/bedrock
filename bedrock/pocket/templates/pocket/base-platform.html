@@ -4,45 +4,49 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- {% extends "pocket/base.html" %}
+{% extends "pocket/base.html" %}
 
- {% from "macros-protocol.html" import split with context %}
+{% from "macros-protocol.html" import split with context %}
 
- {% block page_title %}self.page_title(){% endblock %}
+{% block page_title %}self.page_title(){% endblock %}
 
- {% block pocket_css %}
-   {{ css_bundle('protocol-split') }}
-   {{ css_bundle('pocket-platforms') }}
- {% endblock %}
+{% block pocket_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('pocket-platforms') }}
+{% endblock %}
 
- {% block header %}
+{% block header %}
   {% include 'pocket/includes/nav-platform.html' %}
- {% endblock %}
+{% endblock %}
 
- {% block content %}
-     <div class="platform">
-         {% call split(
-           block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-reversed mzp-l-split-hide-media-on-sm-md',
-           media_class='mzp-l-split-h-center',
-           image_url=platform_image,
-           )%}
-           <h1>{{ self.page_title() }}</h1>
-           <p>{{ self.page_desc() }}</p>
-           <a href="{{ self.page_url() }}" class="mzp-c-button" target="_blank" rel="external noopener">{{ self.page_cta() }}</a>
-           {% block bookmarklet %}
-           {% if ftl_has_messages('pocket-platform-install-bookmarklet') %}
-           <p>
-             <a class="bookmarklet" href="https://getpocket.com/bookmarklets/">
-               {{ ftl('pocket-platform-install-bookmarklet') }}
-             </a>
-           </p>
-           {% endif %}
-           {% endblock bookmarklet %}
+{% block content %}
+  <div class="platform">
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-t-content-lg mzp-l-split-reversed mzp-l-split-hide-media-on-sm-md',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url=platform_image,
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h1>{{ self.page_title() }}</h1>
+      <p>{{ self.page_desc() }}</p>
+      <a href="{{ self.page_url() }}" class="mzp-c-button" target="_blank" rel="external noopener">{{ self.page_cta() }}</a>
+      {% block bookmarklet %}
+          {% if ftl_has_messages('pocket-platform-install-bookmarklet') %}
+            <p>
+              <a class="bookmarklet" href="https://getpocket.com/bookmarklets/">
+                {{ ftl('pocket-platform-install-bookmarklet') }}
+              </a>
+            </p>
+          {% endif %}
+      {% endblock bookmarklet %}
+    {% endcall %}
+  </div>
+{% endblock %}
 
-           {% endcall %}
-     </div>
- {% endblock %}
-
- {% block footer %}
+{% block footer %}
   {% include 'pocket/includes/footer-platform.html' %}
- {% endblock %}
+{% endblock %}

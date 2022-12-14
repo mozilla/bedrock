@@ -16,81 +16,98 @@
 {% block page_title %}{{ ftl('pocket-features-for-firefox') }}{% endblock %}
 
 {% block content %}
+  <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/save-inspirations.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <span class="tagline">{{ ftl('pocket-features-pocket-and-firefox') }}</span>
+      <h1 class="section-heading">{{ ftl('pocket-features-build-your-personal') }}</h1>
+      <p class="section-lede">{{ ftl('pocket-features-included-inside') }}</p>
+      <div class="section-ctas">
+        {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+        <a href="https://getpocket.com/signup" class="secondary-cta">{{ ftl('pocket-features-more-ways-to') }}</a>
+      </div>
+    {% endcall %}
+  </section>
 
-<section>
-{% call split(
-  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/save-inspirations.png',
-  )%}
-  <span class="tagline">{{ ftl('pocket-features-pocket-and-firefox') }}</span>
-  <h1 class="section-heading">{{ ftl('pocket-features-build-your-personal') }}</h1>
-  <p class="section-lede">{{ ftl('pocket-features-included-inside') }}</p>
-  <div class="section-ctas">
-    {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
-    <a href="https://getpocket.com/signup" class="secondary-cta">{{ ftl('pocket-features-more-ways-to') }}</a>
-  </div>
-  {% endcall %}
-</section>
-
-<section class="explore-stories">
-  <div class="explore-stories-wrapper mzp-l-content mzp-t-content-md">
-    <h2 class="sub-section-heading">{{ ftl('pocket-features-get-thought') }}</h2>
-    <p class="section-lede">{{ ftl('pocket-features-in-addition-to') }}</p>
-    <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
-  </div>
-</section>
-
-<section>
-  {% call split(
-  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/reading-nook.png',
-  )%}
-  <h2 class="sub-section-heading">{{ ftl('pocket-features-your-private') }}</h2>
-  <p class="section-lede">{{ ftl('pocket-features-when-ready-to') }}</p>
-  {% endcall %}
-</section>
-
-<section>
-  {% call split(
-  block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/focused-reading.png',
-  )%}
-  <h2 class="sub-section-heading">{{ ftl('pocket-features-special-features') }}</h2>
-  <p class="section-lede">{{ ftl('pocket-features-use-pocket-app') }}</p>
-  {% endcall %}
-</section>
-
+  <section class="explore-stories">
+    <div class="explore-stories-wrapper mzp-l-content mzp-t-content-md">
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-get-thought') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-in-addition-to') }}</p>
+      <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
+    </div>
+  </section>
 
   <section>
-  {% call split(
-  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/save-button-doodle.svg',
-  )%}
-  <h2 class="sub-section-heading">{{ ftl('pocket-features-your-save-button') }}</h2>
-  <p class="section-lede">{{ ftl('pocket-features-click-pocket-button') }}</p>
-  {% endcall %}
-</section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/reading-nook.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-your-private') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-when-ready-to') }}</p>
+    {% endcall %}
+  </section>
 
-<section class="personal-library">
-  <h2 class="section-heading">
-    {{ ftl('pocket-features-start-building') }}
-  </h2>
-  <div class="library-ctas">
-    <div>
-      {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
-      <span>
-        <a href="https://getpocket.com/signup">{{ ftl('pocket-features-more-ways-to') }}</a>
-      </span>
-    </div>
-    <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
-  </div>
+  <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/focused-reading.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-special-features') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-use-pocket-app') }}</p>
+    {% endcall %}
   </section>
 
 
-{% include 'pocket/includes/pocket-premium.html' %}
+    <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/save-button-doodle.svg',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-your-save-button') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-click-pocket-button') }}</p>
+    {% endcall %}
+  </section>
 
+  <section class="personal-library">
+    <h2 class="section-heading">
+      {{ ftl('pocket-features-start-building') }}
+    </h2>
+    <div class="library-ctas">
+      <div>
+        {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-features-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+        <span>
+          <a href="https://getpocket.com/signup">{{ ftl('pocket-features-more-ways-to') }}</a>
+        </span>
+      </div>
+      <a href="https://getpocket.com/explore" class="black-white-cta">{{ ftl('pocket-features-discover-stories') }}</a>
+    </div>
+  </section>
+
+  {% include 'pocket/includes/pocket-premium.html' %}
 {% endblock %}
