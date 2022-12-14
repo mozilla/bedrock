@@ -16,54 +16,67 @@
 {% block page_title %}{{ ftl('pocket-features-pocket-and-firefox') }}{% endblock %}
 
 {% block content %}
+  <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/save-inspirations.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h1 class="section-heading">{{ ftl('pocket-features-save-what-inspires') }}</h1>
+      <p class="section-lede">{{ ftl('pocket-features-pocket-is-your-save') }}</p>
+      <div class="app-store-badges">
+        <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="{{ ftl('pocket-features-apple-store') }}"></a>
+        <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="{{ ftl('pocket-features-google-play-store') }}"></a>
+      </div>
+    {% endcall %}
+  </section>
 
-<section>
-{% call split(
-  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/save-inspirations.png',
-  )%}
-  <h1 class="section-heading">{{ ftl('pocket-features-save-what-inspires') }}</h1>
-  <p class="section-lede">{{ ftl('pocket-features-pocket-is-your-save') }}</p>
-  <div class="app-store-badges">
-    <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="{{ ftl('pocket-features-apple-store') }}"></a>
-    <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="{{ ftl('pocket-features-google-play-store') }}"></a>
-  </div>
-  {% endcall %}
-</section>
+  <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/focused-reading.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-special-features') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-use-pocket-app') }}</p>
+    {% endcall %}
+  </section>
 
-<section>
-  {% call split(
-  block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/focused-reading.png',
-  )%}
-  <h2 class="sub-section-heading">{{ ftl('pocket-features-special-features') }}</h2>
-  <p class="section-lede">{{ ftl('pocket-features-use-pocket-app') }}</p>
-  {% endcall %}
-</section>
+  <section>
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
+      media_class='mzp-l-split-h-center',
+      image=resp_img(
+        url='img/pocket/reading-nook.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      )
+    )%}
+      <h2 class="sub-section-heading">{{ ftl('pocket-features-your-private') }}</h2>
+      <p class="section-lede">{{ ftl('pocket-features-when-ready-to') }}</p>
+    {% endcall %}
+  </section>
 
-<section>
-  {% call split(
-  block_class='mzp-l-split-center-on-sm-md pocket-feature-page-split',
-  media_class='mzp-l-split-h-center',
-  image_url='img/pocket/reading-nook.png',
-  )%}
-  <h2 class="sub-section-heading">{{ ftl('pocket-features-your-private') }}</h2>
-  <p class="section-lede">{{ ftl('pocket-features-when-ready-to') }}</p>
-  {% endcall %}
-</section>
+  <section class="personal-library">
+    <h2 class="section-heading">
+      {{ ftl('pocket-features-start-building') }}
+    </h2>
+    <div class="app-store-badges">
+      <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="{{ ftl('pocket-features-apple-store') }}"></a>
+      <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="{{ ftl('pocket-features-google-play-store') }}"></a>
+    </div>
+  </section>
 
-<section class="personal-library">
-  <h2 class="section-heading">
-    {{ ftl('pocket-features-start-building') }}
-  </h2>
-  <div class="app-store-badges">
-    <a href="https://apps.apple.com/us/app/pocket-save-read-grow/" target="_blank" rel="noopener noreferrer" class="apple-store"><img src="{{ static('img/pocket/app-button-apple.png') }}" alt="{{ ftl('pocket-features-apple-store') }}"></a>
-    <a href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro" target="_blank" rel="noopener noreferrer" class="google-play-store"><img src="{{ static('img/pocket/app-button-google.png') }}" alt="{{ ftl('pocket-features-google-play-store') }}"></a>
-  </div>
-</section>
-
-{% include 'pocket/includes/pocket-premium.html' %}
-
+  {% include 'pocket/includes/pocket-premium.html' %}
 {% endblock %}
