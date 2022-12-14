@@ -131,6 +131,8 @@
         {% set loading = 'lazy' %}
       {% endif %}
 
+      {% set image = '<img class="mzp-c-split-media-asset" src="' ~ entry.image ~ '" loading="' ~ loading ~ '">' %}
+
       {% call split(
         block_class=entry.block_class,
         body_class=entry.body_class,
@@ -138,9 +140,7 @@
         media_class=entry.media_class,
         mobile_class=entry.mobile_class,
         media_after=entry.media_after,
-        image_url=entry.image,
-        include_highres_image=False,
-        loading=loading,
+        image=image
       ) %}
         {{ entry.body|external_html }}
 

@@ -31,20 +31,25 @@
     block_class='mzp-l-split-center-on-sm-md mzp-l-split-pop-top mzp-t-content-xl wnp-content-main',
     body_class='mzp-l-split-v-start',
     media_class='mzp-l-split-h-center',
-    image_url='img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png',
-    image_srcset={
-      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png': '500w',
-      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-700.png': '700w',
-      'img/firefox/whatsnew/whatsnew105-eu/discover-uk-900.png': '900w',
-    },
-    image_sizes={
-      '(min-width: 1312px)': '458px',
-      '(min-width: 768px)': 'calc(50vw - 192px)',
-      'default': 'calc(100vw - 48px)'
-    },
-    image_height='638',
-    image_width='458',
-    image_alt='Articles from a wide range of publications',
+    image=resp_img(
+      url='img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png',
+      srcset={
+        'img/firefox/whatsnew/whatsnew105-eu/discover-uk-500.png': '500w',
+        'img/firefox/whatsnew/whatsnew105-eu/discover-uk-700.png': '700w',
+        'img/firefox/whatsnew/whatsnew105-eu/discover-uk-900.png': '900w',
+      },
+      sizes={
+        '(min-width: 1312px)': '458px',
+        '(min-width: 768px)': 'calc(50vw - 192px)',
+        'default': 'calc(100vw - 48px)'
+      },
+      optional_attributes={
+        'height': '638',
+        'width': '458',
+        'class': 'mzp-c-split-media-asset',
+        'alt': 'Articles from a wide range of publications'
+      }
+    ),
     media_after=True
   ) %}
     <div class="mzp-c-emphasis-box wnp-main-content">

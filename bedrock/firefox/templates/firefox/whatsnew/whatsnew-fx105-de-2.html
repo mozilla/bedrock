@@ -37,20 +37,25 @@
   {% call split(
     block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-content-lg wnp-content-main t-kol',
     media_class='mzp-l-split-h-center',
-    image_url='img/firefox/whatsnew/whatsnew105-eu/kol-de-400.jpg',
-    image_srcset={
-      'img/firefox/whatsnew/whatsnew105-eu/kol-de-400.jpg': '400w',
-      'img/firefox/whatsnew/whatsnew105-eu/kol-de-600.jpg': '600w',
-      'img/firefox/whatsnew/whatsnew105-eu/kol-de-800.jpg': '800w',
-    },
-    image_sizes={
-      '(min-width: 1312px)': '400px',
-      '(min-width: 768px)': 'calc(50vw - 192px)',
-      'default': 'calc(100vw - 48px)'
-    },
-    image_height='400',
-    image_width='400',
-    image_alt='Tijen Onaran',
+    image=resp_img(
+      url='img/firefox/whatsnew/whatsnew105-eu/kol-de-400.jpg',
+      srcset={
+        'img/firefox/whatsnew/whatsnew105-eu/kol-de-400.jpg': '400w',
+        'img/firefox/whatsnew/whatsnew105-eu/kol-de-600.jpg': '600w',
+        'img/firefox/whatsnew/whatsnew105-eu/kol-de-800.jpg': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': 'calc(50vw - 192px)',
+        'default': 'calc(100vw - 48px)'
+      },
+      optional_attributes={
+        'height': '400',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+        'alt': 'Tijen Onaran'
+      }
+    ),
     media_after=False
   ) %}
     <div class="mzp-c-emphasis-box t-kol">

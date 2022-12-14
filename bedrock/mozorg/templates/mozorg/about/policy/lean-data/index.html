@@ -25,8 +25,15 @@
 
 {% block content %}
 {% call split(
-    image_url='img/mozorg/about/lean-data/lean-data-hero.png',
-    include_highres_image=True,
+    image=resp_img(
+      url='img/mozorg/about/lean-data/lean-data-hero.png',
+      srcset={
+        'img/mozorg/about/lean-data/lean-data-hero-high-res.png': '2x'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-t-split-nospace t-mobile-nospace',
     theme_class='mzp-t-background-secondary',
     media_class='mzp-l-split-h-center',

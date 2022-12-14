@@ -547,8 +547,15 @@
     <div class="has-modal" data-modal-id="victory-has-a-ring-to-it">
       {% call split(
         block_id='victory-has-a-ring-to-it',
-        image_url='img/foundation/annualreport/2019/victory-ring.jpg',
-        include_highres_image=True,
+        image=resp_img(
+          url='img/foundation/annualreport/2019/victory-ring.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/victory-ring-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
         media_after=False,
         media_class='mzp-l-split-h-center',
         block_class='mzp-l-split-body-narrow mzp-t-split-nospace'
@@ -673,7 +680,12 @@
     <div class="has-modal" data-modal-id="firefox-gives-redirect-trackers-the-boot-with-etp-2-0">
       {% call split(
         block_id='firefox-gives-redirect-trackers-the-boot-with-etp-2-0',
-        image_url='img/foundation/annualreport/2019/redirect-trackers-etp.png',
+        image=resp_img(
+          url='img/foundation/annualreport/2019/redirect-trackers-etp.png',
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
         media_after=False,
         media_class='mzp-l-split-h-center',
         block_class='mzp-t-split-nospace mzp-l-split-body-narrow'
@@ -730,7 +742,12 @@
      <div class="has-modal" data-modal-id="the-internet-needs-our-love">
       {% call split(
         block_id='the-internet-needs-our-love',
-        image_url='img/foundation/annualreport/2019/internet-needs-our-love.jpg',
+        image=resp_img(
+          url='img/foundation/annualreport/2019/internet-needs-our-love.jpg',
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
         media_after=False,
         media_class='mzp-l-split-h-center',
         block_class='mzp-t-split-nospace mzp-l-split-body-narrow'
@@ -1123,8 +1140,15 @@
   <div class="has-modal" data-modal-id="mitchell-baker-named-ceo">
     {% call split(
       block_id='mitchell-baker-named-ceo',
-      image_url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg',
-      include_highres_image=True,
+      image=resp_img(
+        url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg',
+        srcset={
+          'img/foundation/annualreport/2019/mitchell-baker-named-ceo-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      ),
       media_after=False,
       media_class='mzp-l-split-h-center',
       block_class='mzp-t-split-nospace mzp-l-split-body-narrow mzp-l-split-reversed'
@@ -1255,8 +1279,15 @@
     <div class="has-modal" data-modal-id="703m-pocket-saves-and-counting">
       {% call split(
         block_id='703m-pocket-saves-and-counting',
-        image_url='img/foundation/annualreport/2019/pocket-saves.jpg',
-        include_highres_image=True,
+        image=resp_img(
+          url='img/foundation/annualreport/2019/pocket-saves.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/pocket-saves-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
         media_after=False,
         media_class='mzp-l-split-h-center',
         block_class='mzp-t-split-nospace mzp-l-split-body-narrow'
@@ -1340,8 +1371,15 @@
     <div class="has-modal" data-modal-id="launched-mozilla-vpn">
       {% call split(
         block_id='launched-mozilla-vpn',
-        image_url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg',
-        include_highres_image=True,
+        image=resp_img(
+          url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/launched-mozilla-vpn-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
         media_after=False,
         media_class='mzp-l-split-h-center',
         block_class='mzp-t-split-nospace mzp-l-split-body-narrow mzp-l-split-reversed'

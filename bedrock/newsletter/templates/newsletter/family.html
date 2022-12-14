@@ -23,7 +23,12 @@
 {% block content %}
 <main class="newsletter-main" role="main">
   {% call split(
-    image_url='img/newsletter/family/illustration.svg',
+    image=resp_img(
+      url='img/newsletter/family/illustration.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_class='mzp-l-split-v-start',
     block_class='mzp-t-content-lg'
   ) %}

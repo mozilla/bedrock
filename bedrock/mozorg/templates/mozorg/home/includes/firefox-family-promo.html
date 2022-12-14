@@ -7,9 +7,14 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% call split(
-  image_url='img/home/firefox-family-promo.svg',
-  image_width='819',
-  image_height='534',
+  image=resp_img(
+    url='img/home/firefox-family-promo.svg',
+    optional_attributes={
+      'width': '819',
+      'height': '534',
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
   block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
   media_class='mzp-l-split-v-center'
 ) %}

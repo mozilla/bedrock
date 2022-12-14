@@ -48,8 +48,13 @@
       {% include "products/vpn/resource-center/includes/vpn-article-card.html" %}
     {% endfor %}
   </div>
-  {% call split (
-    image_url="img/products/vpn/resource-center/resource_center_split_1.svg",
+  {% call split(
+    image=resp_img(
+      url='img/products/vpn/resource-center/resource_center_split_1.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='resource-center-split mzp-t-content-lg mzp-l-split-center-on-sm-md',
     media_class='resource-center-split-media',
   ) %}
@@ -75,8 +80,13 @@
       {% endfor %}
     </div>
     {# Only show the second split if there was something after the first split #}
-    {% call split (
-      image_url="img/products/vpn/resource-center/resource_center_split_2.jpg",
+    {% call split(
+      image=resp_img(
+        url='img/products/vpn/resource-center/resource_center_split_2.jpg',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      ),
       block_class='mzp-t-content-lg',
     ) %}
       <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>

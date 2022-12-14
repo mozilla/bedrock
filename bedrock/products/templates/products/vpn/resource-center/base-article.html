@@ -67,9 +67,14 @@
   </div>
   {% endif %}
 
-  {% call split (
-  image_url='img/products/vpn/resource-center/resource_center_split_2_2x.jpg',
-  block_class='mzp-t-content-lg',
+  {% call split(
+    image=resp_img(
+      url='img/products/vpn/resource-center/resource_center_split_2_2x.jpg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
+    block_class='mzp-t-content-lg',
   ) %}
     <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>
        {{ vpn_product_referral_link(
