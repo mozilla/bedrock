@@ -1,0 +1,28 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// Header with no video
+.c-careers-text-hero {
+    background-color: $color-black;
+    color: cp.$blue-primary;
+
+    h1 {
+        color: $color-white;
+    }
+
+    p {
+        @include text-body-xl;
+    }
+
+    .c-text-hero-wrapper {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+}

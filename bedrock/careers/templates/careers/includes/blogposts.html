@@ -1,0 +1,55 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+  <section class="c-careers-blog c-careers-section">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          Life@Mozilla
+        </h2>
+        <p>
+          Real people, real projects, real stories. Read about what it’s like to work here.
+        </p>
+      </div>
+
+    {% if recent_posts %}
+      <div class="mzp-l-card-third">
+      {% for post in recent_posts %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ post.link }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ post.get_featured_image_url('post-large')|default(static('img/careers/blog-fallback.png'), true) }}" alt="{{ post.title }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ post.excerpt | safe }}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+      {% if featured_post %}
+        <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-16-9">
+          <a href="{{ featured_post.link }}" class="mzp-c-card-block-link">
+            <div class="mzp-c-card-media-wrapper">
+              <div class="lazy-image-container">
+                <img src="{{ featured_post.image|default(static('img/careers/blog-fallback.png'), true) }}" class="mzp-c-card-image" />
+              </div>
+            </div>
+            <div class="mzp-c-card-content">
+              <h2 class="mzp-c-card-title">{{ featured_post.title }}</h2>
+              <div class="mzp-c-card-desc">
+                {{ featured_post.excerpt | safe }}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+      </div>
+    {% endif %}
+  </section>

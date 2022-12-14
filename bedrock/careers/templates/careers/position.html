@@ -12,12 +12,12 @@
 {% block body_class %}position-page{% endblock %}
 
 {% block careers_content %}
+<div class="mzp-l-content mzp-t-content-lg">
 <section class="job-post" id="job-post">
-  <div class="job-row">
+  <div class="job-header">
     <div class="job-info">
-      <div class="job-title">
-        <strong>{{ position.title }}</strong>
-      </div>
+      <h1 class="job-title">{{ position.title }}</h1>
+
       <div class="title-location">
         at
         {% if position.is_mofo %}
@@ -26,6 +26,7 @@
           Mozilla Corporation
         {% endif %}
       </div>
+
       <dl class="mzp-u-list-styled">
         {% if not position.is_mofo %}
           <dt class="job-post-team-head">Team:</dt>
@@ -35,6 +36,7 @@
         <dd class="job-post-location">{{ postings | map(attribute='job_locations') | join(', ') }}</dd>
       </dl>
     </div>
+
     <div class="job-apply">
     {% if postings|length == 1 %}
       <div class="appy-btn">
@@ -52,9 +54,11 @@
     {% endif %}
     </div>
   </div>
+
   <div>
     {{ position.description|safe }}
   </div>
+
   <div class="job-apply">
   {% if postings|length == 1 %}
     <div class="appy-btn">
@@ -74,6 +78,7 @@
 
   <p><a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a></p>
 </section>
+</div>
 
 <section id="why" class="mzp-c-call-out">
   <div class="mzp-l-content">
@@ -88,7 +93,7 @@
   </div>
 </section>
 
-<br />
+<div class="mzp-l-content mzp-t-content-xl">
 
 <section class="mzp-l-card-third">
   <div class="mzp-c-card">
@@ -145,7 +150,10 @@
     </div>
   </div>
 </section>
+</div>
 {% endblock %}
+
+{% block careers_bottom %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('careers-position') }}

@@ -1,0 +1,105 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+#listings-filters {
+    margin: $layout-lg 0;
+    text-align: right;
+}
+
+.listings-filter {
+    margin-bottom: 20px;
+
+    label {
+        @include visually-hidden;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: url('/media/img/careers/arrow.svg') right 10px center no-repeat;
+        border: 0;
+        border-radius: 6px;
+        box-shadow: inset 0 0 2px rgba(000, 000, 000, 0.5);
+        font-size: 0.8rem;
+        max-width: 250px;
+        padding: 12px 28px 12px 12px;
+    }
+}
+
+.listings-positions {
+    width: 100%;
+    margin-bottom: $spacing-2xl;
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-light-gray-40;
+            display: block;
+            margin-bottom: $spacing-lg;
+            padding-bottom: $spacing-lg;
+
+            &.hidden {
+                display: none;
+            }
+        }
+
+        td {
+            display: list-item;
+            list-style: none;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .listings-positions {
+        thead {
+            border-bottom: 1px solid $color-light-gray-40;
+            display: table-header-group;
+            text-align: left;
+
+            h4 {
+                @include text-title-xs;
+            }
+        }
+
+        tbody {
+            tr {
+                display: table-row;
+            }
+
+            td {
+                display: table-cell;
+                vertical-align: top;
+                padding: $spacing-lg $spacing-xl $spacing-lg 0;
+            }
+        }
+
+        .title {
+            width: 50%;
+        }
+
+        .location {
+            width: 25%;
+        }
+
+        .name {
+            width: 25%;
+        }
+    }
+
+    #listings-filters {
+        display: flex;
+        justify-content: flex-end;
+
+        .listings-filter {
+            padding-left: $spacing-sm;
+        }
+    }
+}

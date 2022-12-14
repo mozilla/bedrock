@@ -1227,10 +1227,7 @@
     },
     {
       "files": [
-        "css/careers/protocol.min.scss",
-        "css/careers/protocol-extra.min.scss",
-        "css/careers/careers.scss",
-        "css/careers/internships.scss"
+        "css/careers/styles.scss"
       ],
       "name": "careers"
     },
@@ -1913,15 +1910,23 @@
     },
     {
       "files": [
-        "js/careers/base.js"
-      ],
-      "name": "careers-base"
-    },
-    {
-      "files": [
         "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/careers/hero-video.js"
+      ],
+      "name": "careers-hero-video"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/careers/testimonials-modal.es6.js"
+      ],
+      "name": "careers-testimonials"
     },
     {
       "files": [

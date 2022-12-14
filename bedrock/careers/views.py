@@ -31,6 +31,32 @@ class HomeView(L10nTemplateView):
         return context
 
 
+class DiversityView(L10nTemplateView):
+    template_name = "careers/diversity.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        posts = BlogPost.objects.filter_by_blogs("careers")
+        featured = posts.filter_by_tags("story").first()
+        if featured:
+            context["featured_post"] = featured
+            context["recent_posts"] = posts.exclude(id=featured.id)[:2]
+        else:
+            context["featured_post"] = None
+            context["recent_posts"] = posts[:3]
+
+        return context
+
+
+class TeamsView(L10nTemplateView):
+    template_name = "careers/teams.html"
+
+
+class LocationsView(L10nTemplateView):
+    template_name = "careers/locations.html"
+
+
 class InternshipsView(L10nTemplateView):
     template_name = "careers/internships.html"
 

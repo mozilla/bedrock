@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+@use 'sass:color';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-careers-intro {
+    background-color: $color-black;
+    color: cp.$blue-primary;
+
+    h2 {
+        color: $color-white;
+    }
+}
+
+.c-careers-mozillians {
+    background-image: url('/media/img/careers/mozillians.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 460px;
+    position: relative;
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.65);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .c-mozillians-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        z-index: 20;
+
+        h2 {
+            color: $color-white;
+        }
+    }
+}
+
+.c-careers-diversity {
+    background-color: color.scale(cp.$blue-primary, $alpha: -90%);
+}
+
+/* Locations */
+
+.c-careers-locations {
+    .mzp-c-video {
+        margin: $spacing-2xl 0;
+
+        iframe {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+// Diversity page
+.c-careers-diversity-numbers {
+    .mzp-c-picto-heading {
+        @include text-title-xl;
+    }
+}
+
+.c-careers-diversity-mrg {
+    blockquote {
+        p {
+            @include text-body-lg;
+        }
+    }
+}
+
+.c-careers-blog {
+    p {
+        text-align: center;
+    }
+}

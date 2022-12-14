@@ -1209,5 +1209,6 @@ URLS = flatten(
         url_test("/transparency/", "/about/policy/transparency/"),
         # Issue 12376
         url_test("/newsletter/country/success/", "/newsletter/updated/"),
+        url_test("/careers/internships/", "/careers/", status_code=requests.codes.found),
     )
 )

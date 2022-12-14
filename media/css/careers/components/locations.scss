@@ -1,0 +1,46 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-careers-locations-list {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: $spacing-2xl 0;
+
+    li {
+        text-align: center;
+        margin: 0 $spacing-md $spacing-lg;
+
+        a,
+        span {
+            @include font-mozilla;
+            @include text-body-xl;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 200ms;
+
+            &:hover,
+            &:focus,
+            &:active {
+                transform: scale(1.05) translateY(-6px);
+            }
+        }
+    }
+
+    .c-careers-locations-image-wrapper {
+        width: 200px;
+
+        img {
+            width: 100%;
+        }
+    }
+}

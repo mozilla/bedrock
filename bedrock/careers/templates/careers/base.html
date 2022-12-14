@@ -6,48 +6,74 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% from "macros.html" import sub_nav with context %}
+{% from "macros-protocol.html" import split, picto with context %}
+
 {% block page_title %}Mozilla Careers — Feel good about your work again{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_image %}{{ static('img/careers/moz-m.png') }}{% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {{ css_bundle('careers') }}
-{% endblock %}
-
-{% block site_js %}
-  <!--[if !IE]><!-->
-    {{ js_bundle('lib') }}
-    <script src="{{ static('js/careers/libs/protocol-base.min.js') }}"></script>
-    <script src="{{ static('js/careers/libs/protocol-utils.min.js') }}"></script>
-    <script src="{{ static('js/careers/libs/protocol-supports.min.js') }}"></script>
-    {{ js_bundle('fxa') }}
-    {{ js_bundle('data') }}
-  <!--<![endif]-->
+  {{ css_bundle('protocol-split')}}
+  {{ css_bundle('protocol-picto')}}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-article') }}
 {% endblock %}
 
 {% block extrahead %}
   <link rel="alternate" type="application/rss+xml" href="{{ url('careers.feed') }}" title="Current Mozilla job openings" />
 {% endblock %}
 
-{% block site_header %}
-  {% include "careers/includes/header.html" %}
+{% block sub_navigation %}
+{{ sub_nav(
+  title={
+    'text': "Mozilla Careers"
+  },
+  links=[
+  {
+    'text': "Overview",
+    'href': url('careers.home'),
+    'cta_name': "Careers overview"
+  },
+  {
+    'text': "Diversity and Inclusion",
+    'href': url('careers.diversity'),
+    'cta_name': "Mozilla Diversity and inclusion"
+  },
+  {
+    'text': "Benefits",
+    'href': url('careers.benefits'),
+    'cta_name': "Mozilla benefits"
+  },
+  {
+    'text': "Teams",
+    'href': url('careers.teams'),
+    'cta_name': "Mozilla teams"
+  },
+  {
+    'text': "Locations",
+    'href': url('careers.locations'),
+    'cta_name': "Mozilla office locations"
+  },
+  {
+    'text': "Job Listings",
+    'href': url('careers.listings'),
+    'cta_name': "Mozilla job listings"
+  },]
+) }}
 {% endblock %}
 
 {% block content %}
-<div id="wrapper" class="mzp-l-content mzp-t-mozilla">
-  <main role="main">
+<div id="wrapper" class="mzp-t-mozilla">
+  <main role="main" class="c-careers">
     {% block careers_content %}{% endblock %}
   </main>
 </div>
-{% endblock %}
 
-{% block site_footer %}
-  {% include "careers/includes/footer.html" %}
-{% endblock %}
+  {% block careers_bottom %}
+    {% include "careers/includes/footer.html" %}
+  {% endblock %}
 
-{% block js %}
-  <script src="{{ static('js/careers/libs/protocol-navigation.min.js') }}"></script>
-  <script src="{{ static('js/careers/libs/protocol-menu.min.js') }}"></script>
-  {{ js_bundle('careers-base') }}
 {% endblock %}

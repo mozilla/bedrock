@@ -1,0 +1,101 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "careers/base.html" %}
+
+{% block careers_content %}
+  <header class="c-careers-text-hero">
+    <div class="mzp-l-content mzp-t-content-md c-text-hero-wrapper">
+      <h1 class="c-text-hero-title">We’ll meet you where you are — office optional</h1>
+      <div class="c-text-hero-body">
+        <p>We know Mozillians do their best work when they have the freedom to
+          choose where they do it.</p>
+
+        <div class="c-careers-button-wrapper">
+          <a href="https://blog.mozilla.org/careers/future-of-work-at-mozilla/" class="mzp-c-button mzp-t-dark" data-cta-type="button" data-cta-name="how we work blogpost">Read more about how we work</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="c-careers-section">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          Location flexible
+        </h2>
+
+        <p>We’ve been a remote-friendly company since our founding in 2005, which
+          means we have plenty of experience cultivating a community that balances
+          human connection and asynchronous communication. Today, we’re continuing
+          to re-imagine the where and how of the way we work.</p>
+      </div>
+
+      <div class="c-careers-section-intro">
+        <h2 class="c-careers-section-title">
+          Gathering spaces
+        </h2>
+
+        <p>As we re-imagine what our offices can be, we’re proud to have these
+          locations for Mozillians to gather around the world. Teams can meet in
+          our offices for collaborative and cultural activities that most benefit
+          from being face-to-face — for planning, product design sprints,
+          hackathons and more. </p>
+      </div>
+
+      <ul class="c-careers-locations-list">
+        <li>
+          <a href="{{ url('mozorg.contact.spaces.san-francisco') }}" data-cta-type="button" data-cta-name="San Francisco office">
+            <div class="c-careers-locations-image-wrapper">
+              <img src="{{ static('img/careers/locations/mozilla-san-francisco.png') }}" alt="">
+            </div>
+            San Francisco
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('mozorg.contact.spaces.berlin') }}" data-cta-type="button" data-cta-name="Berlin office">
+            <div class="c-careers-locations-image-wrapper">
+              <img src="{{ static('img/careers/locations/mozilla-berlin.png') }}" alt="">
+            </div>
+            Berlin
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('mozorg.contact.spaces.toronto') }}" data-cta-type="button" data-cta-name="Toronto office">
+            <div class="c-careers-locations-image-wrapper">
+              <img src="{{ static('img/careers/locations/mozilla-toronto.png') }}" alt="">
+            </div>
+            Toronto
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('mozorg.contact.spaces.paris') }}" data-cta-type="button" data-cta-name="Paris office">
+            <div class="c-careers-locations-image-wrapper">
+              <img src="{{ static('img/careers/locations/mozilla-paris.png') }}" alt="">
+            </div>
+            Paris
+          </a>
+        </li>
+        <li>
+          <div class="c-careers-locations-image-wrapper">
+            <img src="{{ static('img/careers/locations/mozilla-remote.png') }}" alt="">
+          </div>
+          <span>
+            Remote
+          </span>
+        </li>
+        <li>
+          <div class="c-careers-locations-image-wrapper">
+            <img src="{{ static('img/careers/locations/mozilla-coworking-space.png') }}" alt="">
+          </div>
+          <span>
+            Coworking Spaces
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}
