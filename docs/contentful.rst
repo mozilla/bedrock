@@ -489,7 +489,7 @@ In the right-hand sidebar of the editor page in Contentful:
 * Select ``Change`` and pick ``Localhost Preview``
 * Click ``Open preview``
 
-New (sandbox) Content Types
+New (non-master) Content Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In bedrock:
 
