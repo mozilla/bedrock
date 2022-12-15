@@ -83,22 +83,12 @@
   block_class=None,
   block_id=None,
   body_class=None,
-  image_alt='',
-  image_height=None,
-  image_sizes=None,
-  image_sources=None,
-  image_srcset=None,
-  image_url=None,
-  image_width=None,
-  include_highres_image=False,
-  l10n_image=False,
-  loading=None,
+  image=None,
   media_after=False,
   media_class=None,
   media_include=None,
   mobile_class=None,
-  theme_class=None,
-  image=None
+  theme_class=None
 ) -%}
 <{{base_el}}{% if block_id %} id="{{ block_id }}"{% endif %} class="mzp-c-split{% if block_class %} {{ block_class }}{% endif %}{% if mobile_class %} {{ mobile_class }}{% endif %}">
   {% if theme_class %}
@@ -106,25 +96,9 @@
   {% endif %}
   <div class="mzp-c-split-container">
     {% if not media_after %}
-      {% if image_url or image %}
+      {% if image %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
-          {% if image_url %}
-            {{ image_macro(
-              alt=image_alt,
-              class='mzp-c-split-media-asset',
-              height=image_height,
-              include_highres=include_highres_image,
-              include_l10n=l10n_image,
-              loading=loading,
-              sizes=image_sizes,
-              sources=image_sources,
-              srcset=image_srcset,
-              url=image_url,
-              width=image_width
-            ) }}
-          {% else %}
-            {{ image|safe }}
-          {% endif %}
+          {{ image|safe }}
         </div>
       {% elif media_include %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
@@ -136,25 +110,9 @@
       {{ caller() }}
     </div>
     {% if media_after %}
-      {% if image_url or image %}
+      {% if image %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">
-           {% if image_url %}
-            {{ image_macro(
-            alt=image_alt,
-            class='mzp-c-split-media-asset',
-            height=image_height,
-            include_highres=include_highres_image,
-            include_l10n=l10n_image,
-            loading=loading,
-            sizes=image_sizes,
-            sources=image_sources,
-            srcset=image_srcset,
-            url=image_url,
-            width=image_width
-          ) }}
-          {% else %}
-            {{ image|safe }}
-          {% endif %}
+          {{ image|safe }}
         </div>
       {% elif media_include %}
         <div class="mzp-c-split-media{% if media_class %} {{ media_class }}{% endif %}">

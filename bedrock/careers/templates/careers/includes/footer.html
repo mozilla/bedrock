@@ -9,10 +9,17 @@
     block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace',
     media_class='mzp-l-split-h-center mzp-l-split-media-overflow',
     media_include='careers/includes/big-picture-video.html',
-    image_url='img/careers/footer-remote.png',
-    include_highres_image=True,
+    image=resp_img(
+      url='img/careers/footer-remote.png',
+      srcset={
+        'img/careers/footer-remote-high-res.png': '2x'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_after=True
-    ) %}
+  ) %}
     <h2>Feel good about your work again</h2>
     <p>We’re hiring curious and kind people across the organization. Come help write Mozilla’s next chapter.</p>
     <a href="{{ url('careers.listings') }}" class="mzp-c-button">Find your next role at Mozilla</a>
