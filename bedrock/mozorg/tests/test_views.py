@@ -1,9 +1,11 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import json
 import os
 from unittest.mock import ANY, Mock, patch
 
+from django.core import mail
 from django.http.response import HttpResponse
 from django.test.client import RequestFactory
 
@@ -222,3 +224,49 @@ class TestWebvisionRedirect(TestCase):
         resp = self.client.get("/webvision/", follow=True, HTTP_ACCEPT_LANGUAGE="en")
         self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
         self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
+
+
+class TestMeicoEmail(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.view = views.meico_email_form
+        with self.activate("en-US"):
+            self.url = reverse("mozorg.email_meico")
+
+        self.data = {
+            "email": "foo@bar.com",
+            "interests": "a, b",
+            "type": "H",
+            "message": "open text box message",
+        }
+
+    def tearDown(self):
+        mail.outbox = []
+
+    def test_not_post(self):
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Only POST requests are allowed"}')
+
+    def test_bad_json(self):
+        resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Error decoding JSON"}')
+
+    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
+    @patch("bedrock.mozorg.views.EmailMessage")
+    def test_success(self, mock_emailMessage, mock_render_to_string):
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+
+        self.assertEqual(resp.status_code, 200)
+        mock_emailMessage.assert_called_once_with(views.MEICO_EMAIL_SUBJECT, "rendered", views.MEICO_EMAIL_SENDER, views.MEICO_EMAIL_TO)
+        self.assertEqual(resp.content, b'{"status": "ok"}')
+
+    def test_outbox(self):
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(len(mail.outbox), 1)
+
+        email = mail.outbox[0]
+        for k, v in self.data.items():
+            self.assertIn(f"{k}: {v}", email.body)

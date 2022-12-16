@@ -2,15 +2,21 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
+
 from django.conf import settings
+from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
+import jsonview
 from commonware.decorators import xframe_allow
+from jsonview.decorators import json_view
 from product_details import product_details
 from sentry_sdk import capture_exception
 
@@ -231,3 +237,34 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
     def as_view(cls, **initkwargs):
         cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
         return cache_page(cache_timeout)(super().as_view(**initkwargs))
+
+
+MEICO_EMAIL_SUBJECT = "MEICO Interest Form"
+MEICO_EMAIL_SENDER = "Mozilla.com <noreply@mozilla.com>"
+MEICO_EMAIL_TO = ["meico@mozilla.com"]
+
+
+@json_view
+def meico_email_form(request):
+    """
+    This form accepts a POST request from future.mozilla.org/meico and will send
+    an email with the data included in the email.
+    """
+    if request.method != "POST":
+        raise jsonview.exceptions.BadRequest("Only POST requests are allowed")
+
+    try:
+        data = json.loads(request.body.decode("utf-8"))
+    except json.decoder.JSONDecodeError:
+        raise jsonview.exceptions.BadRequest("Error decoding JSON")
+
+    email_msg = render_to_string("mozorg/emails/meico-email.txt", {"data": data}, request=request)
+
+    email = EmailMessage(MEICO_EMAIL_SUBJECT, email_msg, MEICO_EMAIL_SENDER, MEICO_EMAIL_TO)
+
+    try:
+        email.send()
+    except Exception as e:
+        raise jsonview.exceptions.BadRequest(str(e))
+
+    return {"status": "ok"}
