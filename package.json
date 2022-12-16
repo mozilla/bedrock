@@ -34,8 +34,6 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "browser-sync": "^2.27.11",
-    "browser-sync-webpack-plugin": "^2.2.2",
     "concurrently": "^7.6.0",
     "dotenv-webpack": "^8.0.0",
     "eslint": "^8.31.0",
@@ -53,7 +51,8 @@
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
     "svgo": "^3.0.2",
-    "tinypng-cli": "^0.0.7"
+    "tinypng-cli": "^0.0.7",
+    "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
     "prestart": "npm run glean",
@@ -69,7 +68,7 @@
     "prebuild": "npm run glean && npm run static",
     "build": "webpack --mode=production --bail",
     "prewatch": "npm run static",
-    "watch": "webpack --mode=development --watch",
+    "watch": "webpack serve --mode=development",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
     "stylelint-fix": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\" --fix",

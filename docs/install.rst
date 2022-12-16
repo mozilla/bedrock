@@ -302,19 +302,6 @@ If you are not inside a virtualenv, you can activate it by doing::
 
     $ pyenv activate bedrock
 
-Browsersync
------------
-
-Both the Docker and Local methods of running the site use `Browsersync <https://www.browsersync.io/>`_ to serve
-the development static-assets (CSS, JS, etc.) as well as refresh the browser tab for you when you change files. The
-refreshing of the page works by injecting a small JS snippet into the page that listens to the browsersync service
-and will refresh the page when it receives a signal. It also injects a script that shows a small notification in the
-top-right corner of the page to inform you that a refresh is happening and when the page connects to or is disconnected
-from the browsersync service. We've not seen issues with this, but since it is modifying the page it is possible that this
-could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This
-notification can be disabled in the browsersync options in ``webpack.config.js`` by setting ``notify: false`` in the
-``BrowserSyncPlugin`` config.
-
 Prod Mode
 ---------
 
