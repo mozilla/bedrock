@@ -124,7 +124,7 @@ PositionFilters.prototype = {
         for (let i = 0; i < positions.length; i++) {
             const data = positions.item(i).dataset[field];
 
-            if (data.indexOf(value + ',') === -1) {
+            if (data.indexOf(value) === -1) {
                 positions.item(i).classList.add('hidden');
             }
         }
@@ -139,7 +139,7 @@ PositionFilters.prototype = {
         const positions = this.positionTable.getElementsByClassName('position');
 
         for (let i = 0; i < positions.length; i++) {
-            const data = positions.item(i).dataset.location;
+            const data = positions.item(i).dataset.location + ',';
 
             // When user selects 'Remote' only list jobs explicitly marked
             // Remote otherwise list jobs matching value (which is a mozilla
