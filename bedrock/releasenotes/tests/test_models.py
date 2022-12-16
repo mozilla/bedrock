@@ -2,12 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
 from itertools import chain
 from pathlib import Path
 from unittest.mock import call, patch
 
 from django.core.cache import caches
 from django.test.utils import override_settings
+
+import markdown
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import models
@@ -174,3 +177,18 @@ class TestGetLatestRelease(TestCase):
         # non public release
         # should NOT raise multiple objects error
         assert models.get_release("firefox for android", "56.0.3", include_drafts=True)
+
+
+class StrikethroughExtensionTestCase(TestCase):
+    def test_strikethrough_rendered_to_del(self):
+        # Show the StrikethroughExtension works
+        self.assertEqual(
+            markdown.markdown("*hello~~test~~*", extensions=[models.StrikethroughExtension()]),
+            "<p><em>hello<del>test</del></em></p>",
+        )
+
+        # And without strikethough extension - no transformation
+        self.assertEqual(
+            markdown.markdown("*hello~~test~~*"),
+            "<p><em>hello~~test~~</em></p>",
+        )
