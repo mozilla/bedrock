@@ -57,42 +57,42 @@ describe('filters.js', function () {
             </tr>
             </thead>
             <tbody>
-            <tr class="position" data-team="Business Development," data-type="," data-location="San Francisco Office,">
+            <tr class="position" data-team="Business Development" data-type="" data-location="San Francisco Office">
                 <td class="title"><a href="#">Operations Specialist - Business Development</a></td>
                 <td class="location">San Francisco Office</td>
                 <td class="name">Business Development</td>
             </tr>
-            <tr class="position" data-team="Core Product-Firefox," data-type="," data-location="Remote San Francisco Bay Area,">
+            <tr class="position" data-team="Core Product-Firefox" data-type="" data-location="Remote San Francisco Bay Area">
                 <td class="title"><a href="#"> Localization Program Manager </a></td>
                 <td class="location">Remote San Francisco Bay Area</td>
                 <td class="name">Core Product-Firefox</td>
             </tr>
-            <tr class="position" data-team="Core Product-Firefox," data-type="," data-location="Remote Canada,">
+            <tr class="position" data-team="Core Product-Firefox" data-type="" data-location="Remote Canada">
                 <td class="title"><a href="#">Senior Program Manager</a></td>
                 <td class="location">Remote Canada</td>
                 <td class="name">Core Product-Firefox</td>
             </tr>
-            <tr class="position" data-team="Core Product-Security," data-type="," data-location="Remote US,">
+            <tr class="position" data-team="Core Product-Security" data-type="" data-location="Remote US">
                 <td class="title"><a href="#">Senior Software Engineer (C++)</a></td>
                 <td class="location">Remote US</td>
                 <td class="name">Core Product-Security</td>
             </tr>
-            <tr class="position" data-team="Core Product-Security," data-type="," data-location="San Francisco Office,">
+            <tr class="position" data-team="Core Product-Security" data-type="" data-location="San Francisco Office">
                 <td class="title"><a href="#">Senior UI Engineer</a></td>
                 <td class="location">San Francisco Office</td>
                 <td class="name">Core Product-Security</td>
             </tr>
-            <tr class="position" data-team="Data Organization," data-type="," data-location="Remote Canada,Remote Germany,Remote US,">
+            <tr class="position" data-team="Data Organization" data-type="" data-location="Remote Canada,Remote Germany,Remote US">
                 <td class="title"><a href="#">Data Engineer</a></td>
                 <td class="location">Remote Canada, Remote Germany, Remote US</td>
                 <td class="name">Data Organization</td>
             </tr>
-            <tr class="position" data-team="Data Organization," data-type="," data-location="Remote Canada,Remote US,">
+            <tr class="position" data-team="Data Organization" data-type="" data-location="Remote Canada,Remote US">
                 <td class="title"><a href="#">Inference Data Scientist (Staff Level)</a></td>
                 <td class="location">Remote Canada, Remote US</td>
                 <td class="name">Data Organization</td>
             </tr>
-            <tr class="position" data-team="Mozilla Foundation," data-type="," data-location="Remote,">
+            <tr class="position" data-team="Mozilla Foundation" data-type="" data-location="Remote">
                 <td class="title"><a href="#">Senior Software Engineer</a></td>
                 <td class="location">Remote</td>
                 <td class="name">Mozilla Foundation</td>
