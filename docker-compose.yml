@@ -1,10 +1,9 @@
 version: '3.4'
 services:
-  # Run browser-sync and compile static assets.
+  # Run webpack-dev-server and compile static assets.
   #
-  # This is the primary server and it proxies
-  # the Django app so that it can add the fancy
-  # browser refresh JS.
+  # This is the primary server and it proxies the
+  # Django app so that Webpack can watch for file changes.
   assets:
     build:
       context: .
@@ -19,7 +18,7 @@ services:
       - ./bedrock/:/app/bedrock:delegated
       - ./assets/:/app/assets:delegated
     environment:
-      BS_PROXY_URL: "app:8080"
+      WP_PROXY_URL: "http://app:8080"
 
   # the django app
   app:
