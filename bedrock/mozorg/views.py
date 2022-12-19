@@ -14,7 +14,6 @@ from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
-import jsonview
 from commonware.decorators import xframe_allow
 from jsonview.decorators import json_view
 from product_details import product_details
@@ -250,13 +249,21 @@ def meico_email_form(request):
     This form accepts a POST request from future.mozilla.org/meico and will send
     an email with the data included in the email.
     """
+    CORS_HEADERS = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "accept, accept-encoding, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with",
+    }
+
+    if request.method == "OPTIONS":
+        return {}, 200, CORS_HEADERS
+
     if request.method != "POST":
-        raise jsonview.exceptions.BadRequest("Only POST requests are allowed")
+        return {"error": 400, "message": "Only POST requests are allowed"}, 400, CORS_HEADERS
 
     try:
         data = json.loads(request.body.decode("utf-8"))
     except json.decoder.JSONDecodeError:
-        raise jsonview.exceptions.BadRequest("Error decoding JSON")
+        return {"error": 400, "message": "Error decoding JSON"}, 400, CORS_HEADERS
 
     email_msg = render_to_string("mozorg/emails/meico-email.txt", {"data": data}, request=request)
 
@@ -265,6 +272,6 @@ def meico_email_form(request):
     try:
         email.send()
     except Exception as e:
-        raise jsonview.exceptions.BadRequest(str(e))
+        return {"error": 400, "message": str(e)}, 400, CORS_HEADERS
 
-    return {"status": "ok"}
+    return {"status": "ok"}, 200, CORS_HEADERS

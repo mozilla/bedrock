@@ -247,11 +247,15 @@ class TestMeicoEmail(TestCase):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.content, b'{"error": 400, "message": "Only POST requests are allowed"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
     def test_bad_json(self):
         resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.content, b'{"error": 400, "message": "Error decoding JSON"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
     @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
     @patch("bedrock.mozorg.views.EmailMessage")
@@ -261,6 +265,8 @@ class TestMeicoEmail(TestCase):
         self.assertEqual(resp.status_code, 200)
         mock_emailMessage.assert_called_once_with(views.MEICO_EMAIL_SUBJECT, "rendered", views.MEICO_EMAIL_SENDER, views.MEICO_EMAIL_TO)
         self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
     def test_outbox(self):
         resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
