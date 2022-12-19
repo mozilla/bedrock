@@ -149,7 +149,7 @@ const cssConfig = {
 // Plugin will only start when Webpack is in watch mode.
 const browserSync = new BrowserSyncPlugin({
     port: 8000,
-    proxy: process.env.BS_PROXY_URL || 'localhost:8080',
+    proxy: process.env.BS_PROXY_URL || '0.0.0.0:8080',
     open: false,
     notify: true,
     reloadDebounce: 1000,
