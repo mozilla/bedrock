@@ -25,6 +25,7 @@ from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
+from bedrock.mozorg.forms import MeicoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
@@ -261,11 +262,23 @@ def meico_email_form(request):
         return {"error": 400, "message": "Only POST requests are allowed"}, 400, CORS_HEADERS
 
     try:
-        data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(request.body.decode("utf-8"))
     except json.decoder.JSONDecodeError:
         return {"error": 400, "message": "Error decoding JSON"}, 400, CORS_HEADERS
 
-    email_msg = render_to_string("mozorg/emails/meico-email.txt", {"data": data}, request=request)
+    form = MeicoEmailForm(
+        {
+            "email": json_data.get("email", ""),
+            "name": json_data.get("name", ""),
+            "interests": json_data.get("interests", ""),
+            "description": json_data.get("description", ""),
+        }
+    )
+
+    if not form.is_valid():
+        return {"error": 400, "message": "Invalid form data"}, 400, CORS_HEADERS
+
+    email_msg = render_to_string("mozorg/emails/meico-email.txt", {"data": form.cleaned_data}, request=request)
 
     email = EmailMessage(MEICO_EMAIL_SUBJECT, email_msg, MEICO_EMAIL_SENDER, MEICO_EMAIL_TO)
 

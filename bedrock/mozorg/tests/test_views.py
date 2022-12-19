@@ -234,10 +234,10 @@ class TestMeicoEmail(TestCase):
             self.url = reverse("mozorg.email_meico")
 
         self.data = {
+            "name": "The Dude",
             "email": "foo@bar.com",
-            "interests": "a, b",
-            "type": "H",
-            "message": "open text box message",
+            "interests": "abiding, bowling",
+            "description": "The rug really tied the room together.",
         }
 
     def tearDown(self):
@@ -254,6 +254,13 @@ class TestMeicoEmail(TestCase):
         resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.content, b'{"error": 400, "message": "Error decoding JSON"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    def test_invalid_email(self):
+        resp = self.client.post(self.url, content_type="application/json", data='{"email": "foo@bar"}')
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Invalid form data"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
@@ -274,5 +281,7 @@ class TestMeicoEmail(TestCase):
         self.assertEqual(len(mail.outbox), 1)
 
         email = mail.outbox[0]
-        for k, v in self.data.items():
-            self.assertIn(f"{k}: {v}", email.body)
+        self.assertIn(f"Name: {self.data['name']}", email.body)
+        self.assertIn(f"E-mail: {self.data['email']}", email.body)
+        self.assertIn(f"Interests: {self.data['interests']}", email.body)
+        self.assertIn(f"Message:\n{self.data['description']}", email.body)
