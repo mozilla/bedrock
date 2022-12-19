@@ -8,8 +8,10 @@
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
 {% from "macros-protocol.html" import split with context %}
 
-{% block page_title %}{{ ftl('firefox-browsers-get-the-browsers-that-put') }}{% endblock %}
-{% block page_desc %}{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
+{% block page_title %}{{ ftl('firefox-browsers-page-title', fallback='firefox-browsers-get-the-browsers-that-put') }}{% endblock %}
+{% block page_title_suffix %} — Mozilla{% endblock %}
+
+{% block page_desc %}{{ ftl('firefox-browsers-page-desc', fallback='firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
