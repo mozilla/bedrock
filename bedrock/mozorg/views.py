@@ -251,7 +251,7 @@ def meico_email_form(request):
     an email with the data included in the email.
     """
     CORS_HEADERS = {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://future.mozilla.org",
         "Access-Control-Allow-Headers": "accept, accept-encoding, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with",
     }
 
