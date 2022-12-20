@@ -119,6 +119,10 @@ $image-path: '/media/protocol/img';
     .title {
         font-weight: bold;
         margin-bottom: 0;
+
+        br {
+            display: none;
+        }
     }
 
     .note {
@@ -269,10 +273,6 @@ $image-path: '/media/protocol/img';
         text-align: left;
     }
 
-    .title {
-        @include text-title-sm;
-    }
-
     .person-bio {
         margin: 1em 0;
 
@@ -374,8 +374,12 @@ $image-path: '/media/protocol/img';
     }
 
     .title {
-        @include text-title-xs;
-        font-weight: bold;
+        @include text-body-lg;
+        line-height: 1.3;
+
+        br {
+            display: block;
+        }
     }
 
     .note {
