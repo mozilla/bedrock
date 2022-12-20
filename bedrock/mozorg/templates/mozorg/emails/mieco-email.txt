@@ -1,4 +1,4 @@
-The following was submitted on the MEICO form:
+The following was submitted on the MIECO form:
 
 Name: {{ data.name }}
 E-mail: {{ data.email }}
