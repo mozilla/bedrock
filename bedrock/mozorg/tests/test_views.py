@@ -226,12 +226,12 @@ class TestWebvisionRedirect(TestCase):
         self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
 
 
-class TestMeicoEmail(TestCase):
+class TestMiecoEmail(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
-        self.view = views.meico_email_form
+        self.view = views.mieco_email_form
         with self.activate("en-US"):
-            self.url = reverse("mozorg.email_meico")
+            self.url = reverse("mozorg.email_mieco")
 
         self.data = {
             "name": "The Dude",
@@ -270,7 +270,7 @@ class TestMeicoEmail(TestCase):
         resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
 
         self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(views.MEICO_EMAIL_SUBJECT, "rendered", views.MEICO_EMAIL_SENDER, views.MEICO_EMAIL_TO)
+        mock_emailMessage.assert_called_once_with(views.MIECO_EMAIL_SUBJECT, "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO)
         self.assertEqual(resp.content, b'{"status": "ok"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)

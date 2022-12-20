@@ -78,9 +78,9 @@ class NumberInput(widgets.TextInput):
     input_type = "number"
 
 
-class MeicoEmailForm(forms.Form):
+class MiecoEmailForm(forms.Form):
     """
-    A form class used to validate the data coming from the MEICO site.
+    A form class used to validate the data coming from the MIECO site.
     """
 
     name = forms.CharField(required=False, max_length=100)
