@@ -1,0 +1,72 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}Mozilla E.L.F. Santa Locator{% endblock %}
+{% block page_desc %}There’s absolutely, probably no way Santa can go undetected this year{% endblock %}
+
+{% block page_image %}{{ static('img/mozorg/santa-locator/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/mozorg/santa-locator/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/mozorg/santa-locator/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/mozorg/santa-locator/apple-touch-icon.png') }}{% endblock %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('santa_locator') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<div class="santa-locator mzp-t-dark">
+  <div class="mzp-l-content mzp-t-content-md">
+    <div class="message">
+      <div id="status">
+        <h1>Locating Santa…</h1>
+        <p>Acquiring signal from E.L.F. (Earthwide Location Framework)</p>
+        <div class="loading"></div>
+      </div>
+
+      <div id="error">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 32 32" width="32" height="32">
+            <path fill="#fff" d="m12.4 1.6-13 21.7c-.5.9-.5 2.1 0 3S.9 27.8 2 27.8h26c1.1 0 2.1-.6 2.6-1.5s.5-2.1 0-3l-13-21.7C17 .7 16.1.1 15 .1s-2.1.5-2.6 1.5z"/>
+            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.0628" d="M15 9.4v6.1"/>
+            <circle cx="15" cy="21.7" r="1.5" fill-rule="evenodd" clip-rule="evenodd"/>
+        </svg>
+        <p class="err">Unable to locate Santa.</p>
+        <p class="desc">Looks like Santa has activated his VPN and gone into stealth mode. That means he must be getting closer to you. Here’s a red panda to keep you company till he gets there.</p>
+      </div>
+
+      <div id="panda">
+        <img src="{{ static('img/mozorg/santa-locator/panda-clause.png') }}" width="176" height="370" alt="An adorable cartoon red panda wearing a Santa hat, sipping a steaming mug of hot cocoa.">
+      </div>
+    </div>
+
+    <div id="cta">
+      <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
+      <p>
+        {{ vpn_product_referral_link(
+          referral_id='santa-locator',
+          link_text='Learn more',
+          class_name='mzp-t-lg',
+          optional_attributes= {
+              'data-cta-text' : 'Learn more',
+              'data-cta-type' : 'button'
+          })
+        }}
+      </p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('santa_locator') }}
+{% endblock %}

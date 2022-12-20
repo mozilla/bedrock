@@ -1,0 +1,210 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+$santa-red: #e83d53;
+
+// Scrolling stripes
+@keyframes stripes {
+	to {
+		transform: translateX(57px);
+	}
+}
+
+// Fake progress bar
+@keyframes progress {
+    0% {
+        left: 5%;
+    }
+
+    10% {
+        left: 10%;
+    }
+
+    25% {
+        left: 25%;
+    }
+
+    65% {
+        left: 30%;
+    }
+
+    80% {
+        left: 45%;
+    }
+
+    95% {
+        left: 55%;
+    }
+
+    100% {
+        left: 60%;
+    }
+}
+
+// Background sprite
+@keyframes panda-clause {
+    to {
+        background-position: -7840px;
+    }
+}
+
+.santa-locator {
+    background: $santa-red;
+    color: $color-white;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+
+    & > .mzp-l-content {
+        align-items: center;
+        display: grid;
+        grid-template-rows: minmax(40vh, max-content) 1fr;
+        row-gap: $layout-md;
+    }
+}
+
+.message {
+    margin: 0 auto;
+    max-width: $content-md;
+}
+
+#status {
+    display: none;
+    font-weight: bold;
+
+    h1 {
+        @include text-title-sm;
+    }
+
+    .loading {
+        @include text-body-md;
+        font-weight: normal;
+        border: 2px solid $color-white;
+        width: 300px;
+        height: 20px;
+        margin: $spacing-md auto;
+        position: relative;
+        overflow: hidden;
+        color: $color-black;
+
+        &::before {
+            background: repeating-linear-gradient(-45deg, $color-white, $color-white 10px, transparent 10px, transparent 20px);
+            content: '';
+            display: block;
+            height: 100%;
+            left: -57px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        &::after {
+            background: $santa-red;
+            content: '';
+            height: 100%;
+            position: absolute;
+            right: 0;
+            transition: left 100ms ease-in-out;
+        }
+    }
+
+    &.show {
+        .loading::before {
+            animation: stripes 2s linear infinite;
+        }
+
+        .loading::after {
+            animation: progress 5s linear forwards;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding-top: $layout-xl;
+    }
+}
+
+#error {
+    font-weight: bold;
+    max-width: $content-sm;
+    transition: opacity 150ms ease-in;
+
+    .icon {
+        margin: 0 auto $spacing-md;
+    }
+
+    .err {
+        @include text-title-2xs;
+    }
+
+    .desc {
+        @include text-body-md;
+    }
+}
+
+#panda {
+    @include image-replaced;
+    animation: panda-clause 6s steps(40) infinite;
+    background: transparent url('/media/img/mozorg/santa-locator/panda-clause-sprite.png') no-repeat;
+    background-size: 7840px 246px;
+    height: 246px;
+    margin: $spacing-xl auto 0;
+    transition: opacity 150ms ease-in 500ms;
+    width: 196px;
+
+    @media #{$mq-md} {
+        bottom: $layout-sm;
+        position: absolute;
+        right: 0;
+    }
+}
+
+#cta {
+    transition: opacity 150ms ease-in 2000ms;
+
+    .mzp-c-wordmark {
+        background-position: center top;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .mzp-c-button:link,
+    .mzp-c-button:visited {
+        background-color: $color-green-40;
+        border-color: $color-green-40;
+        color: $color-black;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-white;
+            border-color: $color-white;
+            color: $color-black;
+        }
+    }
+}
+
+.js {
+    #status.show {
+        display: block;
+    }
+
+    #error,
+    #panda,
+    #cta {
+        visibility: hidden;
+        opacity: 0;
+
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

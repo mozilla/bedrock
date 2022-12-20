@@ -556,4 +556,5 @@ redirectpatterns = (
     ),
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
+    redirect(r"^santa-locator/?$", "mozorg.santa-locator"),
 )
