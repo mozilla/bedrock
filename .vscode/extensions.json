@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "lextudio.restructuredtext",
+    "macabeus.vscode-fluent",
+    "mikestead.dotenv",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "samuelcolvin.jinjahtml",
+    "streetsidesoftware.code-spell-checker",
+    "trond-snekvik.simple-rst"
+  ]
+}

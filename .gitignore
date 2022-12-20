@@ -51,7 +51,8 @@ root_files/*/sitemap.xml
 root_files/sitemap.json
 root_files/etags.json
 node_modules
-.vscode/
+.vscode/*
+!.vscode/extensions.json
 static_build
 static_final
 static
