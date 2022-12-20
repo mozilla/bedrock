@@ -1,0 +1,9 @@
+The following was submitted on the MEICO form:
+
+Name: {{ data.name }}
+E-mail: {{ data.email }}
+
+Interests: {{ data.interests }}
+
+Message:
+{{ data.description }}

@@ -142,6 +142,7 @@ urlpatterns = (
         name="mozorg.about.webvision.full",
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
+    path("email-meico/", views.meico_email_form, name="mozorg.email_meico"),
 )
 
 if settings.DEV:

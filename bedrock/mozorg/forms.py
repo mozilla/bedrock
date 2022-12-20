@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 from random import randrange
 
+from django import forms
 from django.forms import widgets
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -75,3 +76,14 @@ class TelInput(widgets.TextInput):
 
 class NumberInput(widgets.TextInput):
     input_type = "number"
+
+
+class MeicoEmailForm(forms.Form):
+    """
+    A form class used to validate the data coming from the MEICO site.
+    """
+
+    name = forms.CharField(required=False, max_length=100)
+    email = forms.EmailField()
+    interests = forms.CharField(required=False, max_length=100)
+    description = forms.CharField(required=False, max_length=750)
