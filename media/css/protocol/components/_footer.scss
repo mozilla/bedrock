@@ -89,6 +89,10 @@ $image-path: '/media/protocol/img';
             background-image: url('/media/img/logos/social/spotify-black.svg');
         }
 
+        &.mastodon {
+            background-image: url('/media/img/logos/social/mastodon-black.svg');
+        }
+
         &:hover,
         &:focus,
         &:active {
