@@ -27,6 +27,11 @@ $image-path: '/media/protocol/img';
             &.spotify {
                 background-image: url('/media/img/logos/social/spotify-white.svg');
             }
+
+            &.mastodon {
+                background-image: url('/media/img/logos/social/mastodon-white.svg');
+                background-size: contain;
+            }
         }
     }
 }
