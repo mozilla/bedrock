@@ -1388,7 +1388,7 @@ Split
     Example: ``Not currently in use``
 
 - image
-    Can pass an <img> element, `resp_img` or `picture` python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
+    Can pass an <img> element, `resp_img` or `picture` Python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
 
     Default: ``None``
 
@@ -1503,7 +1503,7 @@ Billboard
     Example: ``title=ftl('about-the-mozilla-manifesto')``
 
 - image
-    **Required**. Image to be used in the Billboard element. Can pass an <img> element, `resp_img` or `picture` python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
+    **Required**. Image to be used in the Billboard element. Can pass an <img> element, `resp_img` or `picture` Python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
 
     Default: ``None``
 
@@ -1584,7 +1584,7 @@ Card
     Example: ``heading_level=2``
 
 - image
-    **Required**. Image to be used in the Card element. Can pass an <img> element, `resp_img` or `picture` python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
+    **Required**. Image to be used in the Card element. Can pass an <img> element, `resp_img` or `picture` Python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
 
     Default: ``None``
 
