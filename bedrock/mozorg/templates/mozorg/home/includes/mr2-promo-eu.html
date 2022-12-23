@@ -7,13 +7,21 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% set image = 'img/home/2021/mr2-watercolor-de.png' if LANG == 'de' else 'img/home/2021/mr2-watercolor-fr.png' %}
+{% set high_res_image = 'img/home/2021/mr2-watercolor-de-high-res.png' if LANG == 'de' else 'img/home/2021/mr2-watercolor-fr-high-res.png' %}
 {% set set_the_tone = 'Gib den Ton an' if LANG == 'de' else 'Donnez le ton' %}
 {% set bring_creativity = 'Entfalte deine Kreativität mit dem anpassbarsten Firefox ever.' if LANG == 'de' else 'Soyez créatif avec le Firefox le plus personnalisable de son histoire.' %}
 {% set cta = 'Jetzt downloaden' if LANG == 'de' else 'Installer maintenant' %}
 
 {% call split(
-  image_url=image,
-  include_highres_image=True,
+  image=resp_img(
+    url=image,
+    srcset={
+      high_res_image: '2x'
+    },
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
   block_class='mr2-home-hero mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md',
   body_class=None,
   media_class='mzp-l-split-h-center mzp-l-split-v-center',
