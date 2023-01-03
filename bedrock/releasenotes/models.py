@@ -5,6 +5,7 @@
 import codecs
 import json
 import os
+import xml.etree.ElementTree as etree
 from glob import glob
 from operator import attrgetter
 
@@ -18,10 +19,26 @@ from django.utils.functional import cached_property
 import bleach
 import markdown
 from django_extensions.db.fields.json import JSONField
+from markdown.extensions import Extension
+from markdown.inlinepatterns import InlineProcessor
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.releasenotes.utils import memoize
+
+
+class StrikethroughInlineProcessor(InlineProcessor):
+    def handleMatch(self, m, data):
+        el = etree.Element("del")
+        el.text = m.group(1)
+        return el, m.start(0), m.end(0)
+
+
+class StrikethroughExtension(Extension):
+    def extendMarkdown(self, md):
+        STRIKETHROUGH_PATTERN = r"~~(.*?)~~"  # like ~~elided~~
+        md.inlinePatterns.register(StrikethroughInlineProcessor(STRIKETHROUGH_PATTERN, md), "del", 175)
+
 
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches["release-notes"]
@@ -32,6 +49,7 @@ markdowner = markdown.Markdown(
         "markdown.extensions.fenced_code",
         "markdown.extensions.toc",
         "markdown.extensions.nl2br",
+        StrikethroughExtension(),
     ]
 )
 # based on bleach.sanitizer.ALLOWED_TAGS
@@ -43,6 +61,7 @@ ALLOWED_TAGS = [
     "blockquote",
     "code",
     "div",
+    "del",
     "em",
     "h1",
     "h2",
@@ -69,7 +88,8 @@ ALLOWED_ATTRS = [
 
 
 def process_markdown(value):
-    return markdowner.reset().convert(bleach.clean(value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS))
+    rendered_html = markdowner.reset().convert(value)
+    return bleach.clean(rendered_html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
 
 
 def process_notes(notes):
