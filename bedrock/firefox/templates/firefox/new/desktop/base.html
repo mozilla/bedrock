@@ -8,20 +8,20 @@
 
 {% block page_title_prefix %}{{ ftl('firefox-desktop-download-meta-title-prefix') }} — {% endblock %}
 
-{%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title') }}{%- endblock -%}
+{%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title-v2', fallback='firefox-desktop-download-meta-title') }}{%- endblock -%}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_full -%}
   {% if LANG == 'en-CA' %}
-    Download Firefox — Fast, Private & Free — from Mozilla (CA)
+    Download Firefox for Desktop — from Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    Download Firefox — Fast, Private & Free — from Mozilla (UK)
+    Download Firefox for Desktop — from Mozilla (UK)
   {% else %}
-    {{ ftl('firefox-desktop-download-meta-title') }}
+    {{ ftl('firefox-desktop-download-meta-title-v2', fallback='firefox-desktop-download-meta-title') }}
   {% endif %}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('firefox-desktop-download-meta-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-desktop-download-meta-desc-v2', fallback='firefox-desktop-download-meta-desc') }}{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}{{ ftl('firefox-desktop-download-og-title') }}{% endblock %}
