@@ -9,7 +9,7 @@
   "author": "",
   "license": "MPL-2.0",
   "dependencies": {
-    "@jungvonmatt/contentful-migrations": "^5.3.2"
+    "@jungvonmatt/contentful-migrations": "^5.4.0"
   },
   "migrations": {
     "storage": "content",
