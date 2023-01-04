@@ -55,7 +55,7 @@ const RecoveryEmailForm = {
 
         // Really basic client side email validity check.
         if (!checkEmailValidity(email)) {
-            RecoveryEmailForm.handleFormError('Invalid email address');
+            RecoveryEmailForm.handleFormError(errorList.EMAIL_INVALID_ERROR);
             enableFormFields(_recoveryForm);
             return false;
         }

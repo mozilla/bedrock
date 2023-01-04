@@ -128,7 +128,7 @@ SendToDevice.prototype.disableForm = function () {
 SendToDevice.prototype.validateFields = function () {
     // Really basic client side email validity check.
     if (!checkEmailValidity(this.input.value)) {
-        this.onFormError('Invalid email address');
+        this.onFormError(errorList.EMAIL_INVALID_ERROR);
         return false;
     }
 

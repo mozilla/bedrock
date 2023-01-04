@@ -1,0 +1,174 @@
+{
+  "about-mozilla": {
+    "description": "{{ ftl('newsletters-join-mozillians-all-around')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla-community')|striptags }}"
+  },
+  "about-standards": {
+    "title": "{{ ftl('newsletters-about-standards')|striptags }}"
+  },
+  "addon-dev": {
+    "title": "{{ ftl('newsletters-addon-development')|striptags }}"
+  },
+  "affiliates": {
+    "description": "{{ ftl('newsletters-a-monthly-newsletter-affiliates')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-affiliates')|striptags }}"
+  },
+  "ambassadors": {
+    "description": "{{ ftl('newsletters-a-monthly-newsletter-ambassadors')|striptags }}",
+     "title": "{{ ftl('newsletters-firefox-student-ambassadors')|striptags }}"
+  },
+  "app-dev": {
+    "description": "{{ ftl('newsletters-a-developers-guide')|striptags }}",
+    "title": "{{ ftl('newsletters-developer-newsletter')|striptags }}"
+  },
+  "aurora": {
+    "description": "{{ ftl('newsletters-aurora')|striptags }}",
+    "title": "{{ ftl('newsletters-aurora')|striptags }}"
+  },
+  "beta": {
+    "description": "{{ ftl('newsletters-read-about-the-latest-features')|striptags }}",
+    "title": "{{ ftl('newsletters-beta-news')|striptags }}"
+  },
+  "download-firefox-android": {
+    "title": "{{ ftl('newsletters-download-firefox-for-android')|striptags }}"
+  },
+  "download-firefox-androidsn": {
+    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
+  },
+  "download-firefox-androidsnus": {
+    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
+  },
+  "download-firefox-ios": {
+    "title": "{{ ftl('newsletters-download-firefox-for-ios')|striptags }}"
+  },
+  "download-firefox-mobile": {
+    "title": "{{ ftl('newsletters-download-firefox-for-mobile')|striptags }}"
+  },
+  "drumbeat": {
+    "title": "{{ ftl('newsletters-drumbeat-newsgroup')|striptags }}"
+  },
+  "firefox-accounts-journey": {
+    "description": "{{ ftl('newsletters-get-the-most-firefox-account')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-accounts-tips')|striptags }}"
+  },
+  "firefox-desktop": {
+    "description": "{{ ftl('newsletters-dont-miss-the-latest')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-for-desktop')|striptags }}"
+  },
+  "firefox-flicks": {
+    "description": "{{ ftl('newsletters-periodic-email-updates')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-flicks')|striptags }}"
+  },
+  "firefox-ios": {
+    "description": "{{ ftl('newsletters-be-the-first-to-know')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-ios')|striptags }}"
+  },
+  "firefox-os": {
+    "description": "{{ ftl('newsletters-dont-miss-important-news')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-os-smartphone-owner')|striptags }}"
+  },
+  "firefox-os-news": {
+    "description": "{{ ftl('newsletters-a-monthly-newsletter-and-special')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-os-and-you')|striptags }}"
+  },
+  "firefox-tips": {
+    "description": "{{ ftl('newsletters-get-a-weekly-tip')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-weekly-tips')|striptags }}"
+  },
+  "get-android-embed": {
+    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
+  },
+  "get-android-notembed": {
+    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
+  },
+  "get-involved": {
+    "title": "{{ ftl('newsletters-get-involved')|striptags }}"
+  },
+  "internet-health-report": {
+    "title": "{{ ftl('newsletters-insights', fallback='newsletters-internet-health-report')|striptags }}",
+    "description": "{{ ftl('newsletters-mozilla-published-articles-and-deep', fallback='newsletters-keep-up-with-our-annual')|striptags }}"
+  },
+  "join-mozilla": {
+    "title": "{{ ftl('newsletters-join-mozilla')|striptags }}"
+  },
+  "knowledge-is-power": {
+    "description": "{{ ftl('newsletters-get-all-the-knowledge')|striptags }}",
+    "title": "{{ ftl('newsletters-knowledge-is-power')|striptags }}"
+  },
+  "labs": {
+    "title": "{{ ftl('newsletters-about-labs')|striptags }}"
+  },
+  "maker-party": {
+    "description": "{{ ftl('newsletters-mozillas-largest-celebration')|striptags }}",
+    "title": "{{ ftl('newsletters-maker-party')|striptags }}"
+  },
+  "marketplace": {
+    "description": "{{ ftl('newsletters-discover-the-latest')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-os')|striptags }}"
+  },
+  "marketplace-android": {
+    "title": "{{ ftl('newsletters-android')|striptags }}"
+  },
+  "marketplace-desktop": {
+    "title": "{{ ftl('newsletters-desktop')|striptags }}"
+  },
+  "mobile": {
+    "description": "{{ ftl('newsletters-keep-up-with-releases')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-for-android')|striptags }}"
+  },
+  "mozilla-and-you": {
+    "description": "{{ ftl('newsletters-get-how-tos')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-news')|striptags }}"
+  },
+  "mozilla-festival": {
+    "description": "{{ ftl('newsletters-special-announcements-about-mozilla-v2')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla-festival')|striptags }}"
+  },
+  "mozilla-foundation": {
+    "description": "{{ ftl('newsletters-regular-updates-to-keep-v2')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla-news')|striptags }}"
+  },
+  "mozilla-general": {
+    "description": "{{ ftl('newsletters-special-accouncements-and-messages')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla')|striptags }}"
+  },
+  "mozilla-learning-network": {
+    "description": "{{ ftl('newsletters-updates-from-our-global')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla-learning-network')|striptags }}"
+  },
+  "mozilla-phone": {
+    "description": "{{ ftl('newsletters-email-updates-from-vouched')|striptags }}",
+    "title": "{{ ftl('newsletters-mozillians')|striptags }}"
+  },
+  "mozilla-technology": {
+    "description": "{{ ftl('newsletters-were-building-the-technology')|striptags }}",
+    "title": "{{ ftl('newsletters-mozilla-labs')|striptags }}"
+  },
+  "os": {
+      "description": "{{ ftl('newsletters-firefox-os-news')|striptags }}",
+      "title": "{{ ftl('newsletters-firefox-os')|striptags }}"
+  },
+  "shape-web": {
+      "description": "{{ ftl('newsletters-news-and-information')|striptags }}",
+      "title": "{{ ftl('newsletters-shapre-of-the-web')|striptags }}"
+  },
+  "student-reps": {
+      "description": "{{ ftl('newsletters-former-university-program')|striptags }}",
+      "title": "{{ ftl('newsletters-student-reps')|striptags }}"
+  },
+  "take-action-for-the-internet": {
+      "description": "{{ ftl('newsletters-add-your-voice')|striptags }}",
+      "title": "{{ ftl('newsletters-take-action')|striptags }}"
+  },
+  "test-pilot": {
+      "description": "{{ ftl('newsletters-help-us-make-a-better')|striptags }}",
+      "title": "{{ ftl('newsletters-new-product-testing')|striptags }}"
+  },
+  "webmaker": {
+      "description": "{{ ftl('newsletters-special-announcements-helping-you')|striptags }}",
+      "title": "{{ ftl('newsletters-webmaker')|striptags }}"
+  },
+  "subscribe-copy": {
+    "title": "{{ ftl('newsletters-subscribe')|striptags }}"
+  }
+}

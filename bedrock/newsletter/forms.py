@@ -138,65 +138,13 @@ class ManageSubscriptionsForm(forms.Form):
 
     def __init__(self, locale, *args, **kwargs):
         regions_dict = product_details.get_regions(locale)
-        regions = sorted(iter(regions_dict.items()), key=itemgetter(1))
-        lang_choices = get_lang_choices()
-        languages = [x[0] for x in lang_choices]
-
-        lang = country = locale.lower()
-        if "-" in lang:
-            lang, country = lang.split("-", 1)
-        lang = lang if lang in languages else "en"
-
-        self.newsletters = kwargs.pop("newsletters", [])
-
-        # Get initial - work with a copy so we're not modifying the
-        # data that was passed to us
-        initial = kwargs.get("initial", {}).copy()
-        if "country" in initial and initial["country"] not in regions_dict:
-            # clear the initial country if it's not in the list
-            del initial["country"]
-        if not initial.get("country", None):
-            initial["country"] = country
-        if not initial.get("lang", None):
-            initial["lang"] = lang
-        else:
-            lang = initial["lang"]
-
-        # Sometimes people are in ET with a language that is spelled a
-        # little differently from our list. E.g. we have 'es' on our
-        # list, but in ET their language is 'es-ES'. Try to find a match
-        # for their current lang in our list and use that. If we can't
-        # find one, then fall back to guessing from their locale,
-        # ignoring what they had in ET.  (This is just for the initial
-        # value on the form; they can always change to another valid
-        # language before submitting.)
-        if lang not in languages:
-            for valid_lang, _unused in lang_choices:
-                # if the first two chars match, close enough
-                if lang.lower()[:2] == valid_lang.lower()[:2]:
-                    lang = valid_lang
-                    break
-            else:
-                # No luck - guess from the locale
-                lang = locale.lower()
-                if "-" in lang:
-                    lang, _unused = lang.split("-", 1)
-            initial["lang"] = lang
-
-        kwargs["initial"] = initial
+        regions = [("", ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country"))] + sorted(
+            iter(regions_dict.items()), key=itemgetter(1)
+        )
+        lang_choices = [("", ftl_lazy("newsletter-form-available-languages"))] + get_lang_choices()
         super().__init__(*args, **kwargs)
         self.fields["country"].choices = regions
         self.fields["lang"].choices = lang_choices
-
-        self.already_subscribed = initial.get("newsletters", [])
-
-    def clean(self):
-        valid_newsletters = utils.get_newsletters()
-        for newsletter in self.newsletters:
-            if newsletter not in valid_newsletters:
-                msg = ftl("newsletters-is-not-a-valid-newsletter", newsletter=newsletter, ftl_files=["mozorg/newsletters"])
-                raise ValidationError(msg)
-        return super().clean()
 
 
 class NewsletterForm(forms.Form):

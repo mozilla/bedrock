@@ -1,0 +1,166 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+// * -------------------------------------------------------------------------- */
+// Base styles.
+
+main {
+    h1 {
+        @include text-title-md;
+        margin-bottom: $layout-sm;
+    }
+
+    h2 {
+        @include text-title-xs;
+    }
+
+    .mzp-c-form {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .mzp-c-field {
+        padding-bottom: $label-v-spacing;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Newsletter management page form styles.
+
+.c-column {
+    box-sizing: border-box;
+    padding: $spacing-xl 0;
+
+    @media #{$mq-lg} {
+        float: left;
+        padding: 0 $spacing-xl;
+        width: 50%;
+
+        &:first-child {
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .c-column-content {
+        @include bidi(((text-align, left, right),));
+
+        h2 {
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+.newsletter-management {
+    header {
+        text-align: center;
+        padding-bottom: 0;
+        margin-bottom: 0;
+
+        .mzp-c-emphasis-box {
+            margin-top: $spacing-2xl;
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+            .mzp-c-button-download-container {
+                margin-bottom: 0;
+            }
+        }
+
+        .js-intro-msg,
+        .js-outdated-browser-msg {
+            display: none;
+
+            &.show {
+                display: block;
+            }
+        }
+    }
+}
+
+.newsletter-management-form {
+    h4 {
+        @include text-title-2xs;
+    }
+
+    p {
+        @include text-body-sm;
+        font-weight: 400;
+    }
+
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    th {
+        padding: $spacing-md 0;
+    }
+
+    td {
+        text-align: center;
+
+        label {
+            @include visually-hidden;
+        }
+    }
+
+    tr.indented th {
+        @include bidi((
+            (padding-left, $spacing-xl, 0),
+            (padding-right, 0, $spacing-xl),
+        ));
+    }
+
+    .mzp-c-form-errors {
+        max-width: $content-md;
+        margin: 0 auto $spacing-lg;
+    }
+
+    .loading-spinner {
+        display: block;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-form-errors {
+            margin-bottom: $spacing-2xl;
+        }
+    }
+}
+
+.newsletter-management-form-fields {
+    display: none; // hide form fields by default as they are JS dependent.
+
+    &.show {
+        @include animation(mzp-a-fade-in 300ms ease-in 0ms 1 normal both);
+        display: block;
+    }
+}
+
+.basic-settings {
+    select {
+        width: 100%;
+    }
+
+    label {
+        margin-top: $spacing-md;
+    }
+
+    small {
+        display: block;
+        margin: $spacing-md 0 $spacing-xl 0;
+    }
+}

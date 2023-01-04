@@ -58,6 +58,12 @@ newsletters-language = Language:
 
 newsletters-not-all-subscriptions-are = Not all subscriptions are supported in all the languages listed. Almost all are offered in English, German and French.
 
+# Form field error message
+newsletters-please-select-country = Please select a country or region
+
+# Form field error message
+newsletters-please-select-language = Please select a language
+
 # Form field label
 newsletters-format = Format:
 
@@ -410,3 +416,6 @@ knowledge-is-power-mozilla = { -brand-name-mozilla }
 knowledge-is-power-firefox = { -brand-name-firefox } browser
 knowledge-is-power-vpn = { -brand-name-mozilla-vpn }
 knowledge-is-power-pocket = { -brand-name-pocket }
+
+# Out of date browser message for newsletter management page.
+newsletters-update-your-browser = Your web browser needs to be updated in order to use this page.

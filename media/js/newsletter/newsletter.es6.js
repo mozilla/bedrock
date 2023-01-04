@@ -117,37 +117,37 @@ const NewsletterForm = {
 
         // Really basic client side email validity check.
         if (!checkEmailValidity(email)) {
-            NewsletterForm.handleFormError('Invalid email address');
+            NewsletterForm.handleFormError(errorList.EMAIL_INVALID_ERROR);
             return false;
         }
 
         // Check for country selection value.
         if (countrySelect && !countrySelect.value) {
-            NewsletterForm.handleFormError('Country not selected');
+            NewsletterForm.handleFormError(errorList.COUNTRY_ERROR);
             return false;
         }
 
         // Check for language selection value.
         if (!lang) {
-            NewsletterForm.handleFormError('Language not selected');
+            NewsletterForm.handleFormError(errorList.LANGUAGE_ERROR);
             return false;
         }
 
         // Confirm at least one newsletter is checked
         if (newsletters.length === 0) {
-            NewsletterForm.handleFormError('Newsletter not selected');
+            NewsletterForm.handleFormError(errorList.NEWSLETTER_ERROR);
             return false;
         }
 
         // Confirm privacy policy is checked
         if (!privacy) {
-            NewsletterForm.handleFormError('Privacy policy not checked');
+            NewsletterForm.handleFormError(errorList.PRIVACY_POLICY_ERROR);
             return false;
         }
 
         // Terms checkbox only appears on /firefox/ios/testflight/ page.
         if (terms && !terms.checked) {
-            NewsletterForm.handleFormError('Terms not checked');
+            NewsletterForm.handleFormError(errorList.LEGAL_TERMS_ERROR);
             return false;
         }
 

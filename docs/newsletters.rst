@@ -11,8 +11,9 @@ Newsletters
 Bedrock includes support for signing up for and managing subscriptions and
 preferences for Mozilla newsletters.
 
-Many pages have a form to signup for the default newsletters, "Mozilla
-Foundation" and "Firefox & You".
+Many pages have a form to sign-up for the default newsletters, "Mozilla
+Foundation" and "Firefox & You". Other pages have more specific sign up
+forms, such as the contribute page, or Mozilla VPN wait-list page.
 
 Features
 --------
@@ -21,17 +22,15 @@ Features
   on the site might include this form.
 
 - Whole pages devoted to subscribing to one newsletter, often with custom
-  text, branding, and layout
+  text, branding, and layout.
 
 - Newsletter preference center - allow user to change their email address,
   preferences (e.g. language, HTML vs. text), which newsletters they're
   subscribed to, etc. Access is limited by requiring a user-specific
   token in the URL (it's a UUID).  The full URL is included as a link in
-  each newsletter sent to the user, which is the only way (currently) they
-  can get the token.
-
-- Landing pages that user ends up on after subscribing. These can vary depending
-  on where they're coming from.
+  each newsletter sent to the user. Users can also recover a link to their
+  token by visiting the newsletter recovery page and entering their email
+  address.
 
 Newsletters
 -----------
@@ -42,7 +41,7 @@ basket back-end that provides our interface to the newsletter vendor.
 
 - Public name - the name that is displayed to users, e.g. "Firefox Weekly Tips".
 
-- Internal name- a short string that is used internal to Bedrock and basket
+- Internal name - a short string that is used internal to Bedrock and basket
   to identify a newsletter. Typically these are lowercase strings of words
   joined by hyphens, e.g. "firefox-tips". This is what we send to basket
   to identify a newsletter, e.g. to subscribe a user to it.
@@ -50,7 +49,9 @@ basket back-end that provides our interface to the newsletter vendor.
 - Show publicly - pages like the newsletter preferences center show a list
   of unsubscribed newsletters and allow subscribing to them. Some newsletters
   aren't included in that list by default (though they are shown if the
-  user is already subscribed, to let them unsubscribe).
+  user is already subscribed, to let them unsubscribe). If the user has a
+  Firefox Account, there are also some other related newsletters that will
+  always be shown in the list.
 
 - Languages - newsletters are available in a particular set of languages.
   Typically when subscribing to a newsletter, a user can choose their
@@ -71,8 +72,8 @@ basket back-end that provides our interface to the newsletter vendor.
   a week later, message 2, and so on until all the canned messages have been
   sent.
 
-  Because drip campaigns depend on the signup date of the user, we're careful
-  not to accidentally change the signup date, which could happen if we sent
+  Because drip campaigns depend on the sign-up date of the user, we're careful
+  not to accidentally change the sign-up date, which could happen if we sent
   redundant subscription commands to our backend.
 
 Bedrock and Basket
@@ -80,40 +81,43 @@ Bedrock and Basket
 
 Bedrock is the user-facing web application. It presents an interface for
 users to subscribe and manage their subscriptions and preferences. It does
-not store any information. It gets all newsletter and user-related
-information, and makes updates, via web requests to the Basket server.
+not store any information. It gets all newsletter and user-related information,
+and makes updates, via web requests to the Basket server. These requests are
+made typically made by Bedrock's front-end JavaScript modules.
 
-The Basket server implements an HTTP API for the newsletters.  The front-end
+The Basket server implements an HTTP API for the newsletters. The front-end
 (Bedrock) can make calls to it to retrieve or change users' preferences and
 subscriptions, and information about the available newsletters. Basket
-implements some of that itself, and other functions by
-calling the newsletter vendor's API. Details of that are outside the scope
-of this document, but it's worth mentioning that both the user token (UUID)
-and the newsletter internal name mentioned above are used only between
-Bedrock and Basket.
+implements some of that itself, and other functions by calling the newsletter
+vendor's API. Details of that are outside the scope of this document, but it's
+worth mentioning that both the user token (UUID) and the newsletter internal
+name mentioned above are used only between Bedrock and Basket.
+
+`See the Basket docs for more information <https://basket.readthedocs.io/>`_.
 
 URLs
 ----
 
-Here are a few important URLs implemented. These were established before
-Bedrock came along and so are unlikely to be changed.
+Here are a few important mozorg newsletter URLs. Some of these were established before
+Bedrock came along, and so are unlikely to be changed.
 
-/newsletter/ - subscribe to 'mozilla-and-you' newsletter (public name: "Firefox & You")
+- ``/newsletter/`` - Subscribe to 'mozilla-and-you' newsletter (public name: "Firefox & You")
 
-/newsletter/existing/USERTOKEN/ - user management of their preferences and subscriptions
+- ``/newsletter/existing/{USERTOKEN}/`` - User management of their preferences and subscriptions.
 
+- ``/newsletter/confirm/{USERTOKEN}/`` - URL someone lands on when they confirm their email address after initially subscribing.
 
-Configuration
--------------
+- ``/newsletter/country/{USERTOKEN}/`` - Allows users to change their country.
 
-Currently, information about the available newsletters is configured in
-Basket. `See Basket for more information <https://basket.readthedocs.io/>`_.
+- ``/newsletter/recovery/`` - Allows users to recover a link containing their token so they can manage their subscriptions.
 
-Footer signup
--------------
+- ``/newsletter/updated/`` - A page users are redirected to after updating their details, or unsubscribing.
 
-Customize the footer signup form by overriding the email_form template
-block.  For example, to have no signup form:
+Footer sign-up
+--------------
+
+In some common templates, you can customize the footer sign-up form by
+overriding the email_form template block. For example, to have no sign-up form:
 
 .. code-block:: jinja
 
@@ -125,10 +129,10 @@ The default is:
 
     {% block email_form %}{{ email_newsletter_form() }}{% endblock %}
 
-which gives a signup for Firefox & You.  You can pass parameters to the
-macro ``email_newsletter_form`` to change that.  For example, the
-``newsletters`` parameter controls which newsletter is signed up for,
-and ``title`` can override the text:
+This will render a sign-up for "Firefox & You". You can pass parameters to the
+macro ``email_newsletter_form`` to change that.  For example, the ``newsletters``
+parameter controls which newsletter is signed up for, and ``title`` can override
+the text:
 
 .. code-block:: jinja
 
@@ -147,4 +151,4 @@ of newsletter IDs or a comma separated list of newsletters IDs:
     {% endblock %}
 
 Pages can control whether country or language fields are included by passing
-include_language=[True|False] and/or include_country=[True|False].
+``include_language=[True|False]`` and/or ``include_country=[True|False]``.

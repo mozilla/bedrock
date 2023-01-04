@@ -6,7 +6,6 @@ from unittest import mock
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.forms import (
     BooleanTabularRadioSelect,
-    ManageSubscriptionsForm,
     NewsletterFooterForm,
     NewsletterForm,
 )
@@ -48,90 +47,6 @@ class TestRenderers(TestCase):
 
         # The False choice should be checked
         self.assertIn('value="false" checked', output)
-
-
-class TestManageSubscriptionsForm(TestCase):
-    @mock.patch("bedrock.newsletter.forms.get_lang_choices")
-    def test_locale(self, langs_mock):
-        """Get initial lang, country from the right places"""
-        # Get initial lang and country from 'initial' if provided there,
-        # else from the locale passed in
-        # First, not passed in
-        langs_mock.return_value = [["en", "English"], ["pt", "Portuguese"]]
-        locale = "en-US"
-        form = ManageSubscriptionsForm(locale=locale, initial={})
-        self.assertEqual("en", form.initial["lang"])
-        self.assertEqual("us", form.initial["country"])
-        # now, test with them passed in.
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "pt",
-                "country": "br",
-            },
-        )
-        self.assertEqual("pt", form.initial["lang"])
-        self.assertEqual("br", form.initial["country"])
-
-    @mock.patch("bedrock.newsletter.forms.get_lang_choices")
-    def test_long_language(self, langs_mock):
-        """Fuzzy match their language preference"""
-        # Suppose their selected language in ET is a long form ("es-ES")
-        # while we only have the short forms ("es") in our list of
-        # valid languages.  Or vice-versa.  Find the match to the one
-        # in our list and use that, not the lang from ET.
-        locale = "en-US"
-        langs_mock.return_value = [["en", "English"], ["es", "Spanish"]]
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "es-ES",
-                "country": "es",
-            },
-        )
-        # Initial value is 'es'
-        self.assertEqual("es", form.initial["lang"])
-
-    def test_bad_language(self):
-        """Handle their language preference if it's not valid"""
-        # Suppose their selected language in ET is one we don't recognize
-        # at all.  Use the language from their locale instead.
-        locale = "pt-BR"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-                "country": "es",
-            },
-        )
-        self.assertEqual("pt", form.initial["lang"])
-
-    def test_bad_country(self):
-        """Handle their country preference if it's not valid"""
-        # Suppose their selected country in CTMS is one we don't recognize
-        # at all.  Use the country from their locale instead.
-        locale = "pt-BR"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-                "country": "Spain",
-            },
-        )
-        self.assertEqual("br", form.initial["country"])
-
-    def test_no_country(self):
-        """Handle their country preference if it's not set"""
-        # Suppose they have no selected country in CTMS.
-        # Use the country from their locale instead.
-        locale = "en-US"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-            },
-        )
-        self.assertEqual("us", form.initial["country"])
 
 
 @mock.patch("bedrock.newsletter.utils.get_newsletters", newsletters_mock)

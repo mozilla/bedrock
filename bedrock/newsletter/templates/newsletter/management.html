@@ -1,0 +1,166 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'newsletter/base.html' %}
+
+{# Template used for a user to manage their subscriptions #}
+
+{% block gtm_page_id %}data-gtm-page-id="/newsletter/existing/"{% endblock %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('newsletter-management') }}
+{% endblock %}
+
+{% block body_class %}newsletter-management{% endblock %}
+
+{% block string_data %}
+  data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired') }}"
+  data-error-invalid-email="{{ ftl('newsletters-this-is-not-a-valid-email') }}"
+  data-error-invalid-newsletter="{{ ftl('newsletters-is-not-a-valid-newsletter', newsletter='%newsletter%') }}"
+  data-error-select-country="{{ ftl('newsletters-please-select-country') }}"
+  data-error-select-lang="{{ ftl('newsletters-please-select-language') }}"
+  data-error-try-again-later="{{ ftl('newsletters-something-is-amiss-with') }}"
+{% endblock %}
+
+{% set maintenance_mode = switch('newsletter-maintenance-mode') %}
+
+{% block content %}
+<main role="main">
+  <header class="mzp-l-content mzp-t-content-lg">
+    {% if did_confirm %}
+      <h1>{{ ftl('newsletters-thanks-for-subscribing') }}</h1>
+
+      <p>
+        {{ ftl('newsletters-youre-awesome') }}
+        {{ ftl('newsletters-and-were-not-just-saying') }}
+        {{ ftl('newsletters-please-be-sure-to-add-mozillaemailmozillaorg') }}
+      </p>
+
+      <p>
+        {{ ftl('newsletters-mozilla-touches-on-a-variety') }}
+        {{ ftl('newsletters-open-your-inbox-and-your') }}
+      </p>
+    {% else %}
+      <h1>{{ ftl('newsletters-manage-your-email-preferences') }}</h1>
+
+      {% if maintenance_mode %}
+        <div class="mzp-c-emphasis-box">
+          <p>{{ ftl('newsletters-this-page-is-in-maintenance') }}</p>
+          <p>{{ ftl('newsletters-to-update-your-email-preferences') }}</p>
+        </div>
+      {% else %}
+        <div class="js-intro-msg">
+          <p>{{ ftl('newsletters-we-love-sharing-updates') }}</p>
+          <p>{{ ftl('newsletters-set-your-preferences-below') }}</p>
+        </div>
+
+        <div class="js-outdated-browser-msg mzp-c-emphasis-box">
+          <p>{{ ftl('newsletters-update-your-browser') }}</p>
+
+          {{ download_firefox_thanks(dom_id='newsletter-management-outdated-browser') }}
+        </div>
+      {% endif %}
+    {% endif %}
+  </header>
+
+  {% if not maintenance_mode %}
+  <div class="mzp-l-content">
+    <form method="post"
+      action="{{ action }}"
+      class="newsletter-management-form"
+      data-token="{{ token }}"
+      data-newsletters-url="{{ newsletters_url }}"
+      data-strings-url="{{ strings_url }}"
+      data-updated-url="{{ updated_url }}"
+      data-unsubscribe-url="{{ unsubscribe_url }}">
+
+      {# noscript warning to enable JavaScript #}
+      <noscript>
+        <div class="mzp-c-notification-bar mzp-t-error">
+          <p><strong>{{ ftl('ui-please-turn-on-javascript') }}</strong></p>
+        </div>
+      </noscript>
+
+      {# placeholder root element for loading spinner #}
+      <div class="loading-spinner hidden"></div>
+
+      {# placeholder root element for client side error message rendering #}
+      <div class="mzp-c-form-errors hidden">
+        <ul class="mzp-u-list-styled"></ul>
+      </div>
+
+      <div class="newsletter-management-form-fields">
+        <div class="c-column">
+          <div class="c-column-content basic-settings">
+            <p>
+              <label>{{ ftl('newsletters-your-email-address') }}</label>
+              <span id="id_email"></span>
+            </p>
+
+            {{ form.country.label_tag(ftl('newsletters-country-or-region', fallback='newsletters-country')) }}
+            {{ form['country'] }}
+
+            {{ form.lang.label_tag(ftl('newsletters-language')) }}
+            {{ form['lang'] }}
+            <small>{{ ftl('newsletters-not-all-subscriptions-are') }}</small>
+
+            {{ form.format.label_tag(ftl('newsletters-format')) }}
+            {{ form['format'] }}
+            <small>{{ ftl('newsletters-text-subscribers-will-receive') }}</small>
+
+            <aside>
+              <p>{{ ftl('newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
+
+              <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('firefox.accounts')) }}</p>
+
+              <p>{{ ftl('newsletters-there-are-many-ways-to', url=url('mozorg.about.forums.forums')) }}</p>
+            </aside>
+          </div> <!-- close .basic-settings -->
+        </div>
+
+        <div class="c-column">
+          <div class="c-column-content">
+            <table class="newsletter-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th colspan="2">{{ ftl('newsletters-subscribe') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    {{ form.remove_all.label_tag(ftl('newsletters-remove-me-from-all-the')) }}
+                  </th>
+                  <td>
+                    {{ form['remove_all'] }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button type="submit" class="mzp-c-button">{{ ftl('newsletters-save-preferences') }}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}
+
+{# Don't display the footer if there is a token present. bug 1247446 #}
+{% block site_footer %}{% endblock %}
+
+{% block js %}
+  {% if not maintenance_mode %}
+    {{ js_bundle('newsletter-management') }}
+  {% endif %}
+{% endblock %}
