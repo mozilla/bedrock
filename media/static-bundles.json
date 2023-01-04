@@ -209,12 +209,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-pocket-best-2022-promo.scss"
-      ],
-      "name": "home-pocket-best-2022-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/home-firefox-family-promo.scss"
       ],
       "name": "home-firefox-family-promo"
