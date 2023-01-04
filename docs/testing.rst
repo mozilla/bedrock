@@ -315,11 +315,11 @@ reliability due to any potential network flakiness.
 Headless tests
 --------------
 
-There are targeted headless tests for the `download`_ and `localized download`_ pages.
+There are targeted headless tests for the `download`_ pages.
 These tests and are run as part of the pipeline to ensure that download links constructed
 via product details are well formed and return valid 200 responses.
 
-.. _Jasmine: https://jasmine.github.io/1.3/introduction.html
+.. _Jasmine: https://jasmine.github.io/index.html
 .. _Karma: https://karma-runner.github.io/
 .. _Sinon: http://sinonjs.org/
 .. _Selenium: http://docs.seleniumhq.org/
@@ -334,7 +334,6 @@ via product details are well formed and return valid 200 responses.
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
 .. _download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py
-.. _localized download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
 .. _latest release: https://github.com/mozilla/geckodriver/releases/

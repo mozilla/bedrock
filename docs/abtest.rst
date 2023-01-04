@@ -220,7 +220,7 @@ Recording the data
 
 .. Note::
 
-    If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
+    If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/firefox-stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
 
 Including the ``data-ex-variant`` and ``data-ex-name`` in the analytics
 reporting will add the test to an auto generated report in :abbr:`GA (Google Analytics)`.

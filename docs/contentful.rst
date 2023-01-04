@@ -256,9 +256,7 @@ Adding support for a new product icon, size, folder
 ---------------------------------------------------
 
 Many content models have drop downs with identical content. For example: the Hero, Callout,
-and Wordmark models all include a "product icon". The icon can be one of any of the
-`supported logos in Protocol <https://protocol.mozilla.org/demos/logo.html>`_. Other common
-fields are width and folder.
+and Wordmark models all include a "product icon". Other common fields are width and folder.
 
 There are two ways to keep these lists up to date to reflect Protocol updates:
 
@@ -490,7 +488,7 @@ In the right-hand sidebar of the editor page in Contentful:
 * Click ``Open preview``
 
 New (non-master) Content Types
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 In bedrock:
 
 * Update ``class ContentfulPreviewView(L10nTemplateView)`` in `Mozorg Views <https://github.com/mozilla/bedrock/blob/main/bedrock/mozorg/views.py>`_ with a render case for your new content type

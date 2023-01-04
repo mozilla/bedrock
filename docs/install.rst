@@ -34,7 +34,7 @@ Docker Installation
 
 .. note::
 
-    This method assumes you have `Docker installed for your platform <https://www.docker.com/community-edition#/download>`_.
+    This method assumes you have `Docker installed for your platform <https://www.docker.com/>`_.
     If not please do that now or skip to the ``Local Installation`` section.
 
 This is the simplest way to get started developing for bedrock. If you're on Linux or Mac (and possibly Windows 10 with the
@@ -433,7 +433,7 @@ To test switches locally:
 #. Enable the switch in your ``.env`` file.
 #. Restart your web server.
 
-To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
+To configure switches/env vars for a demo branch. Follow the `demo-site instructions here <https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites>`_.
 
 Traffic Cop
 -----------
