@@ -536,7 +536,8 @@ def get_app_name(hostname):
 
 
 HOSTNAME = platform.node()
-APP_NAME = get_app_name(HOSTNAME)
+# Prefer APP_NAME from env, but fall back to hostname parsing. TODO: remove get_app_name() usage once fully redundant
+APP_NAME = config("APP_NAME", default=get_app_name(HOSTNAME))
 CLUSTER_NAME = config("CLUSTER_NAME", default="")
 ENABLE_HOSTNAME_MIDDLEWARE = config("ENABLE_HOSTNAME_MIDDLEWARE", default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="true", parser=bool)
