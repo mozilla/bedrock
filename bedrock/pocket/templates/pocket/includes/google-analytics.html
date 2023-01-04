@@ -4,13 +4,13 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if settings.GOOGLE_ANALYTICS_GTM_ID %}
+{% if settings.GTM_CONTAINER_ID %}
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.GOOGLE_ANALYTICS_GTM_ID }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.GTM_CONTAINER_ID }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '{{ settings.GOOGLE_ANALYTICS_GTM_ID }}');
+  gtag('config', '{{ settings.GTM_CONTAINER_ID }}');
 </script>
 {% endif %}
