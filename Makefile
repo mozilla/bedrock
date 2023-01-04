@@ -173,7 +173,7 @@ install-local-python-deps:
 	pip install -r requirements/prod.txt
 	pip install -r requirements/dev.txt
 
-install-local-docs-deps: install-local-python-deps
+install-local-docs-deps:
 	pip install -r requirements/docs.txt
 
 preflight:
