@@ -714,7 +714,7 @@ image()
 ^^^^^^^
 
 We also have an image macro, which is mainly used to encapsulate the conditional logic needed for
-`Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol>`_
+`Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol-design-system>`_
 containing images. You can also import the macro directly into a template.
 
 .. code-block:: jinja
