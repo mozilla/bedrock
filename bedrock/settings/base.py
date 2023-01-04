@@ -1183,7 +1183,8 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
 GA_ACCOUNT_CODE = ""  # DELETE ME: Deprecated?
-GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")  # NB: Not used in all Bedrock modes (Mozorg only).
+GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")  # NB: Will be used in both modes (bedrock and pocket).
+# Pocket mode will be running both GA UA and GA4 for a while going forward
 GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")  # NB: Not used in all Bedrock modes (Pocket only).
 
 GMAP_API_KEY = config("GMAP_API_KEY", default="")

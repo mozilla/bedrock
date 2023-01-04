@@ -120,6 +120,7 @@ if IS_POCKET_MODE:
         # blocked without unsafe-eval. Find a way to remove that.
         "www.mozilla.org",
         "'unsafe-eval'",
+        "www.googletagmanager.com",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
@@ -128,8 +129,11 @@ if IS_POCKET_MODE:
         "'unsafe-inline'",
         "www.mozilla.org",
     ]
-    _csp_child_src = []
+    _csp_child_src = [
+        "www.googletagmanager.com",
+    ]
     _csp_connect_src = [
+        "www.googletagmanager.com",
         "www.google-analytics.com",
         "o1069899.sentry.io",
         "o1069899.ingest.sentry.io",
