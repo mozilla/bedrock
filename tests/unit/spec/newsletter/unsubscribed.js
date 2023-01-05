@@ -48,8 +48,8 @@ describe('UnsubscribedEmailForm', function () {
 
             <label>
                 <input type="checkbox" id="unsub99" name="reason-text-p" value="Other…">
-                Other…<br>
-                <textarea cols="35" rows="3" name="reason-text"></textarea>
+                Other… (maximum 500 characters)<br>
+                <textarea id="unsub99-reason-text" cols="35" rows="3" name="reason-text"></textarea>
             </label>
             <div class="mzp-c-button-container mzp-l-align-center">
                 <button type="submit" id="newsletter-updated-form-submit" class="mzp-c-button">Submit</button>
@@ -88,6 +88,8 @@ describe('UnsubscribedEmailForm', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormSuccess').and.callThrough();
             UnsubscribedEmailForm.init();
             document.getElementById('unsub0').click();
+            document.getElementById('unsub99').click();
+            document.getElementById('unsub99-reason-text').value = 'Test';
             document.getElementById('newsletter-updated-form-submit').click();
             xhrRequests[0].respond(
                 200,
@@ -96,7 +98,7 @@ describe('UnsubscribedEmailForm', function () {
             );
 
             expect(xhrRequests[0].requestBody).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.'
+                'token=1234567890&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATest'
             );
             expect(UnsubscribedEmailForm.handleFormSuccess).toHaveBeenCalled();
             expect(

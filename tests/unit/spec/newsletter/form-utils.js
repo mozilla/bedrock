@@ -6,7 +6,8 @@
 
 import {
     checkEmailValidity,
-    serialize
+    serialize,
+    stripHTML
 } from '../../../../media/js/newsletter/form-utils.es6';
 
 describe('checkEmailValidity', function () {
@@ -61,5 +62,23 @@ describe('serialize', function () {
         expect(
             serialize(document.querySelector('.send-to-device-form'))
         ).toEqual('');
+    });
+});
+
+describe('stripHTML', function () {
+    it('should strip HTML tags from strings as expected', function () {
+        expect(stripHTML('This string should not contain HTML.')).toEqual(
+            'This string should not contain HTML.'
+        );
+        expect(
+            stripHTML(
+                'This string<script></script> should <strong>not</strong> contain <br>HTML<img src="/img/placeholder.png" />.'
+            )
+        ).toEqual('This string should not contain HTML.');
+        expect(
+            stripHTML(
+                'This%20string%3Cscript%3E%3C%2Fscript%3E%20should%20%3Cstrong%3Enot%3C%2Fstrong%3E%20contain%20%3Cbr%3EHTML%3Cimg%20src%3D%22%2Fimg%2Fplaceholder.png%22%20%2F%3E.'
+            )
+        ).toEqual('This string should not contain HTML.');
     });
 });

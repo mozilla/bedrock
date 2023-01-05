@@ -134,7 +134,7 @@ function serialize(form) {
  */
 function stripHTML(text) {
     const div = document.createElement('div');
-    div.innerHTML = text;
+    div.innerHTML = decodeURIComponent(text);
     return div.textContent;
 }
 
