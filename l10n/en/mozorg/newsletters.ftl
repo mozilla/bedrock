@@ -102,7 +102,11 @@ newsletters-send-me-a-link = Send me a link
 newsletters-youve-been-unsubscribed = You’ve been unsubscribed.
 newsletters-were-sorry-to-see-you-go = We’re sorry to see you go.
 newsletters-would-you-mind-telling-us = Would you mind telling us why you’re leaving?
+newsletters-other-v2 = Other… (maximum 500 characters)
+
+# Outdated string
 newsletters-other = Other…
+
 newsletters-submit = Submit
 newsletters-thanks-for-telling-us-why = Thanks for telling us why you’re leaving.
 newsletters-while-here-why-not-check = While here, why not check out some more { -brand-name-firefox } awesomeness.
