@@ -1,0 +1,37 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_109_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <h1>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="2023 will be print-free" class="wnp-main-img-light"/>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="2023 will be print-free" class="wnp-main-img-dark"/>
+    </h1>
+    <p class="wnp-main-tagline">
+      We hope you had a great holiday and weren’t gifted any printer cartridges — because they’re a horrible gift and you don’t need them anymore. Edit documents easily with Firefox’s built-in PDF editor.
+    </p>
+    <p class="wnp-main-tagline">
+      Try it out now and say one last goodbye to
+      paper jams.
+    </p>
+
+    <a class="mzp-c-button mzp-t-product" href="https://assets.mozilla.net/wnp109-eu/wnp-fx109-uk.pdf">Try it now</a>
+  </section>
+
+{% endblock %}
+

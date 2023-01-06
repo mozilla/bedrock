@@ -1,0 +1,35 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_109_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <h1>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="2023 wird druckfrei"/>
+    </h1>
+    <p class="wnp-main-tagline">
+      Wir hoffen, du hattest entspannte Feiertage und keine Druckerpatronen unterm Weihnachtsbaum. Denn mit unserem eingebauten PDF-Editor kannst du dir das Drucken sparen und Dokumente einfach im Browser bearbeiten.
+    </p>
+    <p class="wnp-main-tagline">
+      Probier ihn aus und verabschiede dich ein für alle Mal von Papierstau.
+    </p>
+
+    <a class="mzp-c-button mzp-t-product" href="https://assets.mozilla.net/wnp109-eu/wnp-fx109-de.pdf">Jetzt ausprobieren</a>
+  </section>
+
+{% endblock %}
+
