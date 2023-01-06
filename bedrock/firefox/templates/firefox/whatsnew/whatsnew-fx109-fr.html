@@ -10,6 +10,7 @@
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
   {{ css_bundle('firefox_whatsnew_109_eu') }}
 {% endblock %}
 
@@ -19,7 +20,8 @@
 
   <section class="wnp-content-main mzp-l-content mzp-t-content-md">
     <h1>
-        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="Lettre à votre imprimante"/>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="Lettre à votre imprimante" class="wnp-main-img-light"/>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-dark.svg') }}" alt="Lettre à votre imprimante" class="wnp-main-img-dark"/>
     </h1>
     <p class="wnp-main-tagline">
       La nouvelle année est l’occasion de bonnes résolutions : pourquoi ne pas se mettre au sport, ou enfin faire du tri ? Firefox est désormais équipé d’un éditeur PDF intégré, l’occasion rêvée d’enfin se débarrasser de l’imprimante qui prenait tant de place.
@@ -33,3 +35,6 @@
 
 {% endblock %}
 
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

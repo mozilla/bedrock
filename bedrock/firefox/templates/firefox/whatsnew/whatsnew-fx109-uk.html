@@ -10,6 +10,7 @@
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
   {{ css_bundle('firefox_whatsnew_109_eu') }}
 {% endblock %}
 
@@ -20,7 +21,7 @@
   <section class="wnp-content-main mzp-l-content mzp-t-content-md">
     <h1>
         <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="2023 will be print-free" class="wnp-main-img-light"/>
-        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="2023 will be print-free" class="wnp-main-img-dark"/>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-dark.svg') }}" alt="2023 will be print-free" class="wnp-main-img-dark"/>
     </h1>
     <p class="wnp-main-tagline">
       We hope you had a great holiday and weren’t gifted any printer cartridges — because they’re a horrible gift and you don’t need them anymore. Edit documents easily with Firefox’s built-in PDF editor.
@@ -35,3 +36,6 @@
 
 {% endblock %}
 
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
