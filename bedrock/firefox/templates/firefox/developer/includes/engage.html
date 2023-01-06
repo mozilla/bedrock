@@ -10,7 +10,14 @@
   {% call picto(
     title=ftl('firefox-developer-speak-up'),
     body=True,
-    image_url='img/firefox/developer/icon-speak.svg'
+    image=resp_img(
+      url='img/firefox/developer/icon-speak.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '64',
+        'loading': 'lazy'
+      }
+    ),
   ) %}
     <p>{{ ftl('firefox-developer-feedback-makes-us') }}</p>
     <p><a class="mzp-c-cta-link" href="https://discourse.mozilla.org/c/devtools">{{ ftl('firefox-developer-join-the-convo') }}</a></p>
@@ -18,7 +25,14 @@
   {% call picto(
     title=ftl('firefox-developer-get-involved'),
     body=True,
-    image_url='img/firefox/developer/icon-involved.svg'
+    image=resp_img(
+      url='img/firefox/developer/icon-involved.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '64',
+        'loading': 'lazy'
+      }
+    ),
   ) %}
     <p>{{ ftl('firefox-developer-help-build-the-last') }}</p>
     <p><a class="mzp-c-cta-link" href="https://firefox-dev.tools/">{{ ftl('firefox-developer-start-now') }}</a></p>

@@ -141,7 +141,14 @@
       title=ftl('privacy-book-search-engine-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-search.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-search.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-search-engine-duckduckgo') }}</p>
     {% endcall %}
@@ -150,7 +157,14 @@
       title=ftl('privacy-book-email-have-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-email.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-email.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-email-have-you') }}</p>
     {% endcall %}
@@ -159,7 +173,14 @@
       title=ftl('privacy-book-browser-while-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-browser.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-browser.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-browser-while-many') }}</p>
     {% endcall %}
@@ -168,7 +189,14 @@
       title=ftl('privacy-book-messenger-signal-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-messenger.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-messenger.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-messenger-signal-is') }}</p>
     {% endcall %}

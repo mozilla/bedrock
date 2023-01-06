@@ -53,7 +53,14 @@
     <ul class="mzp-l-columns mzp-t-columns-three mzp-l-content mzp-t-content-lg">
       {% call picto(
         title=ftl('set-as-default-landing-choose-automatic-privacy'),
-        image_url='protocol/img/icons/brand/violet/no-eye.svg',
+        image=resp_img(
+          url='protocol/img/icons/brand/violet/no-eye.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=true,
       ) %}
         <p>{{ ftl('set-as-default-landing-companies-keep-finding') }}</p>
@@ -61,7 +68,14 @@
 
       {% call picto(
         title=ftl('set-as-default-landing-choose-freedom-on-every'),
-        image_url='protocol/img/icons/brand/orange/devices.svg',
+        image=resp_img(
+          url='protocol/img/icons/brand/orange/devices.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=true,
       ) %}
         <p>{{ ftl('set-as-default-landing-firefox-is-fast-and') }}</p>
@@ -69,7 +83,14 @@
 
       {% call picto(
         title=ftl('set-as-default-landing-choose-corporate-independence'),
-        image_url='protocol/img/icons/brand/blue/mountain.svg',
+        image=resp_img(
+          url='protocol/img/icons/brand/blue/mountain.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=true,
       ) %}
         <p>{{ ftl('set-as-default-landing-firefox-is-the-only') }}</p>

@@ -47,7 +47,12 @@
           heading_level=3,
           class='test',
           body=True,
-          image_url='img/firefox/firstrun/test.png',
+          image=resp_img(
+            url='img/firefox/firstrun/test.png',
+            optional_attributes={
+              'class': 'mzp-c-picto-image'
+            }
+          ),
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-find-and-file-bugs') }}</p>
@@ -59,7 +64,12 @@
           heading_level=3,
           class='code',
           body=True,
-          image_url='img/firefox/firstrun/code.png',
+          image=resp_img(
+            url='img/firefox/firstrun/code.png',
+            optional_attributes={
+              'class': 'mzp-c-picto-image'
+            }
+          ),
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-file-bugs-and-work') }}</p>
@@ -71,7 +81,12 @@
           heading_level=3,
           class='localize',
           body=True,
-          image_url='img/firefox/firstrun/localize.png',
+          image=resp_img(
+            url='img/firefox/firstrun/localize.png',
+            optional_attributes={
+              'class': 'mzp-c-picto-image'
+            }
+          ),
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-make-firefox-available') }}</p>

@@ -86,22 +86,40 @@
       <ul class="mzp-l-columns mzp-t-columns-three">
         {% call picto(
           title=ftl('pocket-home-tailor-text'),
-          image_url='img/pocket/pocket-text-icon.svg',
-          image_width=40
+          image=resp_img(
+            url='img/pocket/pocket-text-icon.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '40',
+              'loading': 'lazy'
+            }
+          )
         ) %}
         {% endcall %}
 
         {% call picto(
           title=ftl('pocket-home-categorize-saves'),
-          image_url='img/pocket/pocket-tag-icon.svg',
-          image_width=40
+          image=resp_img(
+            url='img/pocket/pocket-tag-icon.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '40',
+              'loading': 'lazy'
+            }
+          )
         ) %}
         {% endcall %}
 
         {% call picto(
           title=ftl('pocket-home-listen-to-articles'),
-          image_url='img/pocket/pocket-audio-icon.svg',
-          image_width=40,
+          image=resp_img(
+            url='img/pocket/pocket-audio-icon.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '40',
+              'loading': 'lazy'
+            }
+          )
         ) %}
         {% endcall %}
       </ul>

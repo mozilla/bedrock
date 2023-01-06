@@ -139,9 +139,14 @@
     <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
       {% call picto(
         title=ftl('misinformation-why-trust-firefox'),
-        image_url='img/icons/mountain-purple.svg',
-        image_width='153px',
-        loading="lazy",
+        image=resp_img(
+          url='img/icons/mountain-purple.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '153',
+            'loading': 'lazy'
+          }
+        ),
         class='trust',
         body=True,
         base_el='li'
@@ -154,9 +159,14 @@
 
       {% call picto(
         title=ftl('misinformation-your-privacy-by-the-product'),
-        image_url='img/icons/privacy-shield.svg',
-        image_width='146px',
-        loading="lazy",
+        image=resp_img(
+          url='img/icons/privacy-shield.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '146',
+            'loading': 'lazy'
+          }
+        ),
         class='privacy',
         body=True,
         base_el='li',

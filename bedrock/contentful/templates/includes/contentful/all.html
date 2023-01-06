@@ -108,8 +108,13 @@
       <ul class="mzp-l-content {{ entry.layout_class }}">
       {% for picto_data in entry.pictos -%}
         {% call picto(
-          image_url=picto_data.image_url,
-          image_width=entry.image_width,
+          image=resp_img(
+            url=picto_data.image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': entry.image_width
+            }
+          ),
           title=picto_data.heading,
           heading_level=entry.heading_level,
           body=picto_data.body,

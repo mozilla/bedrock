@@ -61,9 +61,15 @@
 
   <aside class="mzp-t-picto-center">
   {% call picto(
-    image_url='img/icons/warning.svg',
+    image=resp_img(
+      url='img/icons/warning.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '44',
+        'loading': 'lazy'
+      }
+    ),
     heading_level=2,
-    image_width=44,
     title=ftl('firefox-channel-see-something-that-isnt-working'),
     body=True,
     ) %}

@@ -42,7 +42,14 @@
     <ul class="mzp-l-columns mzp-t-columns-three">
       {% call picto(
         title=ftl('privacy-first'),
-        image_url='img/firefox/new/desktop/privacy.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/privacy.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('firefox-doesnt-spy') }}</p>
@@ -50,7 +57,14 @@
 
       {% call picto(
         title=ftl('super-fast'),
-        image_url='img/icons/speedometer.svg',
+        image=resp_img(
+          url='img/icons/speedometer.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('get-speed-and') }}</p>
@@ -58,7 +72,14 @@
 
       {% call picto(
         title=ftl('always-evolving'),
-        image_url='img/firefox/new/desktop/highlights.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/highlights.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('find-out-about', url=url('firefox.features.index')) }}</p>
