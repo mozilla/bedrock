@@ -391,96 +391,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-97-en.scss"
-      ],
-      "name": "firefox_whatsnew_97_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-97-eu.scss"
-      ],
-      "name": "firefox_whatsnew_97_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-98-vpn-eu.scss"
-      ],
-      "name": "firefox_whatsnew_98_vpn_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-98-mobile-eu.scss"
-      ],
-      "name": "firefox_whatsnew_98_mobile_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-98-vpn-en.scss"
-      ],
-      "name": "firefox_whatsnew_98_vpn_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-99-en.scss"
-      ],
-      "name": "firefox_whatsnew_99_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-99-en-rally.scss"
-      ],
-      "name": "firefox_whatsnew_99_en_rally"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-99-eu.scss"
-      ],
-      "name": "firefox_whatsnew_99_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-101-vpn-en.scss"
-      ],
-      "name": "firefox_whatsnew_101_vpn_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-101-vpn-mobile.scss"
-      ],
-      "name": "firefox_whatsnew_101_vpn_mobile"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-102-en.scss"
-      ],
-      "name": "firefox_whatsnew_102_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-102-fr.scss"
-      ],
-      "name": "firefox_whatsnew_102_fr"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-102-de.scss"
-      ],
-      "name": "firefox_whatsnew_102_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-103.scss"
-      ],
-      "name": "firefox_whatsnew_103"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-103-en-rally.scss"
-      ],
-      "name": "firefox_whatsnew_103_en_rally"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-104-default.scss"
       ],
       "name": "firefox_whatsnew_104_default"
@@ -1338,33 +1248,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js",
-        "protocol/js/protocol-modal.js",
-        "js/firefox/whatsnew/whatsnew-97-eu.js"
-      ],
-      "name": "firefox_whatsnew_97_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-99-en-experiment.js"
-      ],
-      "name": "firefox_whatsnew_99_en_experiment"
-    },
-    {
-      "files": [
-
-        "js/firefox/whatsnew/whatsnew-101-en-experiment.js"
-      ],
-      "name": "firefox_whatsnew_101_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-103-en-experiment.js"
-      ],
-      "name": "firefox_whatsnew_103_en_experiment"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/whatsnew-105-uk-experiment.es6.js"
       ],
       "name": "firefox_whatsnew_105_uk_experiment"
@@ -1660,12 +1543,6 @@
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew_account"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-103.js"
-      ],
-      "name": "firefox_whatsnew_103"
     },
     {
       "files": [
