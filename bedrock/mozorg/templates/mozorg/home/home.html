@@ -122,9 +122,17 @@
     <section class="externals">
       <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
           {% call picto(
-            image_url='img/home/extensions.png',
-            image_width=100,
-            include_highres_image=True,
+            image=resp_img(
+              url='img/home/extensions.png',
+              srcset={
+                'img/home/extensions-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
             body=True,
             base_el='li'
           ) %}
@@ -135,9 +143,17 @@
           {% endcall %}
 
           {% call picto(
-            image_url='img/home/careers.png',
-            image_width=100,
-            include_highres_image=True,
+            image=resp_img(
+              url='img/home/careers.png',
+              srcset={
+                'img/home/careers-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
             body=True,
             base_el='li'
           ) %}
@@ -148,9 +164,17 @@
           {% endcall %}
 
           {% call picto(
-            image_url='img/home/help.png',
-            image_width=100,
-            include_highres_image=True,
+            image=resp_img(
+              url='img/home/help.png',
+              srcset={
+                'img/home/help-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
             body=True,
             base_el='li'
           ) %}

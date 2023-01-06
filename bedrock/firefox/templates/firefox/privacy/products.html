@@ -74,7 +74,14 @@
     <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
       {% call picto(
         title=ftl('firefox-privacy-hub-invisible-to-the-top-trackers'),
-        image_url='img/firefox/privacy/products/icon-invisible.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-invisible.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}
@@ -82,7 +89,14 @@
       {% endcall %}
       {% call picto(
         title=ftl('firefox-privacy-hub-always-in-your-control'),
-        image_url='img/firefox/privacy/products/icon-control.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-control.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}
@@ -90,7 +104,14 @@
       {% endcall %}
       {% call picto(
         title=ftl('firefox-privacy-hub-protection-beyond-tracking'),
-        image_url='img/firefox/privacy/products/icon-protection.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-protection.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}

@@ -50,8 +50,14 @@
     {% call picto(
       title='Track I: Foundational Technology',
       heading_level=3,
-      image_url='img/mozorg/moss/foundational-technology.svg',
-      image_width=200,
+      image=resp_img(
+        url='img/mozorg/moss/foundational-technology.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '200',
+          'loading': 'lazy'
+        }
+      ),
       body=True,
       base_el='li'
     ) %}
@@ -65,8 +71,14 @@
     {% call picto(
       title='Track II: Mission Partners',
       heading_level=3,
-      image_url='img/mozorg/moss/mission-partners.svg',
-      image_width=200,
+      image=resp_img(
+        url='img/mozorg/moss/mission-partners.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '200',
+          'loading': 'lazy'
+        }
+      ),
       body=True,
       base_el='li'
     ) %}
@@ -80,8 +92,14 @@
     {% call picto(
       title='Track III: Secure Open Source Fund',
       heading_level=3,
-      image_url='img/mozorg/moss/secure-open-source.svg',
-      image_width=200,
+      image=resp_img(
+        url='img/mozorg/moss/secure-open-source.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '200',
+          'loading': 'lazy'
+        }
+      ),
       body=True,
       base_el='li'
     ) %}

@@ -76,8 +76,14 @@
       <ul class="mzp-l-columns mzp-t-columns-three">
         {% call picto(
           title=ftl('firefox-enterprise-your-data-stays-your-business'),
-          image_url='img/firefox/enterprise/icon-data-privacy.svg',
-          image_width='44',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-data-privacy.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '44',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           {% if LANG == 'en-US' %}
@@ -89,8 +95,14 @@
 
         {% call picto(
           title=ftl('firefox-enterprise-deploy-when-and-how-you-want'),
-          image_url='img/firefox/enterprise/icon-deploy.svg',
-          image_width='53',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-deploy.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '53',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('firefox-enterprise-with-install-packages-and') }}</p>
@@ -98,8 +110,14 @@
 
         {% call picto(
           title=ftl('firefox-enterprise-choose-your-release-cadence'),
-          image_url='img/firefox/enterprise/icon-release.svg',
-          image_width='49',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-release.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '49',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('firefox-enterprise-get-rapid-releases-to-make') }}</p>

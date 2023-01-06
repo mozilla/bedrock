@@ -34,8 +34,13 @@
       <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
         {% call picto(
           title=card1_title,
-          image_url=card1_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card1_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}
@@ -43,8 +48,13 @@
         {% endcall %}
         {% call picto(
           title=card2_title,
-          image_url=card2_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card2_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}
@@ -52,8 +62,13 @@
         {% endcall %}
         {% call picto(
           title=card3_title,
-          image_url=card3_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card3_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}

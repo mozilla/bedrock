@@ -1207,75 +1207,18 @@ Picto
 
     Example: ``heading_level=2``
 
-- image_alt
-    Alt text for the images to be used.
-
-    Default: ``''``
-
-    Example: ``image_alt='Red Panda'``
-
-- image_height
-    Number indicating the height of an image.
+- image
+    Can pass an <img> element, `resp_img` or `picture` Python helpers. For information on Bedrock's image helpers, `look here <https://bedrock.readthedocs.io/en/latest/coding.html?highlight=resp_img#primary-image-helpers>`_
 
     Default: ``None``
 
-    Example: ``image_height='153'``
+    Example:
 
-- image_sizes
-    The ``sizes`` attribute for a responsive image.
+    .. code-block::
 
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_sources
-    A list of ``<source>`` elements for a responsive ``<picture>`` image.
-
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_srcset
-    The ``srcset`` attribute for a responsive image.
-
-    Default: ``None``
-
-    Example: See responsive images docs above.
-
-- image_url
-    The default image to be used. Start it off with ``img/``.
-
-    Default: ``''``
-
-    Example: ``image_url='img/icons/mountain-purple.svg'``
-
-- image_width
-    Number indicating the width of an image.
-
-    Default: ``64``
-
-    Example: ``image_width='153'``
-
-- include_highres_image (deprecated)
-    Boolean that determines whether the image can also appear in high res.
-
-    Default: ``False``
-
-    Example: ``include_highres_image=True``
-
-- l10n_image
-    Boolean to indicate if image has translatable text.
-
-    Default: ``False``
-
-    Example: ``l10n_image=True``
-
-- loading
-    String to provide value for image loading attribute. This will use browser default ("eager") if not set. Lazy loading defers fetching of images to a browser decision based on user scroll and connection.
-
-    Default: ``None``
-
-    Example: ``loading='lazy'``
+        image=resp_img('img/firefox/accounts/trailhead/value-respect.jpg', srcset={
+            'img/firefox/accounts/trailhead/value-respect-high-res.jpg': '2x'
+        })
 
 - title
     String indicating heading text (usually a translation id wrapped in ftl function)

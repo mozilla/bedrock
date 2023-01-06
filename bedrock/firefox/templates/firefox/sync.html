@@ -71,7 +71,14 @@
     <ul class="mzp-l-columns mzp-t-columns-three">
       {% call picto(
         title=ftl('firefox-sync-privacy-made-easy'),
-        image_url='img/firefox/new/desktop/privacy.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/privacy.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('firefox-sync-all-you-need') }}</p>
@@ -79,7 +86,14 @@
 
       {% call picto(
         title=ftl('firefox-sync-encrypt-your-data'),
-        image_url='img/icons/speedometer.svg',
+        image=resp_img(
+          url='img/icons/speedometer.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('firefox-sync-your-encryption-key') }}</p>
@@ -87,7 +101,14 @@
 
       {% call picto(
         title=ftl('firefox-sync-feel-safe'),
-        image_url='img/firefox/new/desktop/highlights.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/highlights.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('firefox-sync-we-store-your') }}</p>

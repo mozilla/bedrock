@@ -52,8 +52,14 @@
         {% call picto(
           base_el='li',
           title=ftl('vpn-download-for-windows'),
-          image_url='img/products/vpn/download/platform-windows-black.svg',
-          image_width=100,
+          image=resp_img(
+            url='img/products/vpn/download/platform-windows-black.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '100',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
@@ -65,8 +71,14 @@
         {% call picto(
           base_el='li',
           title=ftl('vpn-download-for-mac'),
-          image_url='img/products/vpn/download/platform-mac-black.svg',
-          image_width=100,
+          image=resp_img(
+            url='img/products/vpn/download/platform-mac-black.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '100',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('vpn-download-version-requirements', version='10.14') }}</p>
@@ -78,8 +90,14 @@
         {% call picto(
           base_el='li',
           title=ftl('vpn-download-for-linux'),
-          image_url='img/products/vpn/download/platform-linux-black.svg',
-          image_width=100,
+          image=resp_img(
+            url='img/products/vpn/download/platform-linux-black.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '100',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('vpn-download-for-linux-requirements', version='18.04') }}</p>
@@ -91,8 +109,14 @@
         {% call picto(
           base_el='li',
           title=ftl('vpn-download-for-android'),
-          image_url='img/products/vpn/download/platform-android-black.svg',
-          image_width=100,
+          image=resp_img(
+            url='img/products/vpn/download/platform-android-black.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '100',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('vpn-download-version-requirements', version='8.0') }}</p>
@@ -104,8 +128,14 @@
         {% call picto(
           base_el='li',
           title=ftl('vpn-download-for-ios'),
-          image_url='img/products/vpn/download/platform-ios-black.svg',
-          image_width=100,
+          image=resp_img(
+            url='img/products/vpn/download/platform-ios-black.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '100',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('vpn-download-version-requirements', version='13.0') }}</p>
