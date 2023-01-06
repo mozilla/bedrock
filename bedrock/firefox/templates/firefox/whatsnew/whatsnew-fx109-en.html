@@ -4,4 +4,57 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<h1>en!</h1>
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
+  {{ css_bundle('firefox_whatsnew_109_en') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+
+    <h2 class="wnp-main-title">
+      Protect what's important </br> all year long
+    </h2>
+
+    <div class="wnp-main-img">
+      <img src="{{ static('img/firefox/whatsnew/whatsnew109-en/privacy-header.jpg') }}" alt="">
+    </div>
+
+    <p class="wnp-main-tagline">
+      Start the year off right with next-level privacy. With the flip of a switch, Mozilla VPN works in the background to protect your entire device.
+    </p>
+
+     <p class="wnp-main-cta">
+    {{ vpn_product_referral_link(
+      referral_id='whatsnew-109-en',
+      link_text='Get Mozilla VPN',
+      class_name='mzp-t-product',
+      optional_attributes= {
+          'data-cta-text' : 'Get Mozilla VPN',
+          'data-cta-type' : 'button'
+      })
+    }}
+  </p>
+
+  <!-- <div class="wnp-content-vpn-container">
+    <div class="wnp-main-img wnp-content-vpn-img">
+    {% include 'firefox/whatsnew/includes/fx109/vpn-privacy-illustration.svg' %}
+    </div>
+    <h3>Blur your location & activity using <span>Mozilla VPN</span></h3>
+  </div> -->
+
+  </section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}

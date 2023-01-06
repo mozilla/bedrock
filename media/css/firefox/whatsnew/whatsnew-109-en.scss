@@ -6,3 +6,45 @@
 @import 'includes/dark-mode';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+.wnp-content-main {
+    .wnp-main-title {
+        color: $color-marketing-gray-99;
+        @include text-title-sm;
+    }
+
+    .wnp-main-img {
+        margin: $spacing-xl 0;
+
+        img {
+            width: 500px;
+        }
+    }
+
+    .wnp-content-vpn-container {
+        background-color: $color-violet-05;
+        border-radius: $border-radius-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $layout-xs;
+        margin-top: $layout-xl;
+
+        .wnp-content-vpn-img {
+            margin-bottom: auto;
+        }
+
+        span {
+            color: #6f4ae7;
+        }
+    }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        .wnp-main-title {
+            color: $color-white;
+        }
+    }
+}
