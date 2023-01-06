@@ -120,6 +120,9 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = "en-US"
 
+# Languages using BiDi (right-to-left) layout. Overrides/extends Django default.
+LANGUAGES_BIDI = ["ar", "ar-dz", "fa", "he", "skr", "ur"]
+
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = "product-details"
