@@ -1,0 +1,30 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+
+{% call split(
+  image=resp_img(
+    url='img/home/2023/vpn-beautiful.png',
+    optional_attributes={
+      'class': 'mzp-c-split-media-asset'
+    }
+  ),
+  block_class='mzp-l-split-reversed mzp-t-split-nospace mzp-l-split-center-on-sm-md',
+  theme_class='mzp-t-dark mzp-t-beautiful',
+  body_class=None,
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+) %}
+  <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-vpn">Mozilla VPN</div>
+  <h2 class="mzp-u-title-lg">Your privacy is a beautiful thing</h2>
+  <p class="">Protect your location and activity online.</p>
+  <div class="">
+    <div class="">
+      <p><a class="mzp-c-button mzp-t-dark" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Get Mozilla VPN" data-link-name="Mozilla VPN">Get Mozilla VPN</a></p>
+    </div>
+  </div>
+{% endcall %}
