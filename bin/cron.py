@@ -151,7 +151,7 @@ def schedule_database_jobs():
 
 
 def schedule_file_jobs():
-    call_command("l10n_update --clean")
+    call_command("l10n_update")
 
     @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
     def update_locales():
