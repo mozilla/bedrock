@@ -59,6 +59,7 @@ ALLOWED_TAGS = [
     "acronym",
     "b",
     "blockquote",
+    "br",
     "code",
     "div",
     "del",
@@ -69,7 +70,9 @@ ALLOWED_TAGS = [
     "h4",
     "h5",
     "h6",
+    "hr",
     "i",
+    "img",
     "li",
     "ol",
     "p",
@@ -83,12 +86,14 @@ ALLOWED_ATTRS = [
     "class",
     "href",
     "id",
+    "src",
     "title",
 ]
 
 
 def process_markdown(value):
-    return markdowner.reset().convert(bleach.clean(value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS))
+    rendered_html = markdowner.reset().convert(value)
+    return bleach.clean(rendered_html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
 
 
 def process_notes(notes):
