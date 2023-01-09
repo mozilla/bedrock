@@ -557,4 +557,9 @@ redirectpatterns = (
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
     redirect(r"^santa-locator/?$", "mozorg.santa-locator"),
+    # Issue 12563
+    redirect(r"^/exp/firefox/?$", "firefox"),
+    redirect(r"^/exp/firefox/new/?$", "firefox.new"),
+    redirect(r"^/exp/firefox/accounts/?$", "firefox.accounts"),
+    redirect(r"^/exp/opt-out/?$", "privacy.convert-opt-out"),
 )

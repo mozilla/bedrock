@@ -23,6 +23,7 @@ urlpatterns = (
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
+    page("websites/convert-opt-out/", "privacy/convert-opt-out.html"),
     path("facebook/", views.facebook_notices, name="privacy.notices.facebook"),
     path("firefox-monitor/", views.firefox_monitor_notices, name="privacy.notices.firefox-monitor"),
     path("firefox-private-network/", views.firefox_private_network, name="privacy.notices.firefox-private-network"),

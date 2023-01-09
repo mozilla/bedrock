@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-import os
 from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
@@ -413,38 +412,6 @@ class TestFirefoxNew(TestCase):
         assert template == ["firefox/new/basic/thanks_direct.html"]
 
     # end /thanks?s=direct URL - issue 10520
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 302
-        assert resp["location"].endswith("/exp/firefox/new/")
-        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate, private"
-        req.locale = "en-US"
-        resp = view(req)
-        assert resp.status_code == 200
-        assert "cache-control" not in resp
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect_query(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?dude=abide&walter=bowl")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 302
-        assert resp["location"].endswith("/exp/firefox/new/?dude=abide&walter=bowl")
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect_automation_param(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?automation=true")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 200
-        assert "cache-control" not in resp
 
 
 class TestFirefoxNewNoIndex(TestCase):
