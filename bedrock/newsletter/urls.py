@@ -27,7 +27,7 @@ urlpatterns = (
     path("newsletter/recovery/", views.recovery, name="newsletter.recovery"),
     # Receives POSTs from all subscribe forms
     path("newsletter/", views.newsletter_subscribe, name="newsletter.subscribe"),
-    # Welcome program out-out confirmation page (bug 1442129)
+    # Welcome program opt-out confirmation page (bug 1442129)
     path("newsletter/opt-out-confirmation/", views.recovery, name="newsletter.opt-out-confirmation"),
     # Branded signup pages for individual newsletters
     page("newsletter/mozilla/", "newsletter/mozilla.html", ftl_files=["mozorg/newsletters"]),

@@ -6,8 +6,6 @@
 
 {% extends "base-protocol.html" %}
 
-{% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
-
 {% block page_title %}Opt-out of Convert experiments{% endblock %}
 
 {% block page_desc %}Your privacy is very important to Mozilla. This page will enable you to opt-out of Convert experiments on www.mozilla.org{% endblock %}
@@ -46,11 +44,11 @@
       <p>Please note you need JavaScript enabled in order to opt-out.</p>
     </noscript>
 
-    <p><a class="mzp-c-cta-link" href="{{ url('exp.opt-out') }}?convert_optout=1">Opt-out of Convert experiments</a></p>
+    <p><a class="mzp-c-cta-link" href="{{ url('privacy.convert-opt-out') }}?convert_optout=1">Opt-out of Convert experiments</a></p>
 
     <p>If you change your mind, you can opt-in again here:</p>
 
-    <p><a class="mzp-c-cta-link" href="{{ url('exp.opt-out') }}?convert_canceloptout=1">Opt-in to Convert experiments</a></p>
+    <p><a class="mzp-c-cta-link" href="{{ url('privacy.convert-opt-out') }}?convert_canceloptout=1">Opt-in to Convert experiments</a></p>
 
     <p>
     {% with dnt='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature' %}
@@ -61,8 +59,4 @@
   </article>
 </div>
 
-{% endblock %}
-
-{% block stub_attribution %}
-  {% include 'exp/includes/stub.html' %}
 {% endblock %}

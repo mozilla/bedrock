@@ -11,69 +11,37 @@ A/B Testing
 Convert experiments
 -------------------
 
-Conversion rate optimization (CRO) experiments on bedrock are run on separate,
-experimental versions of our main landing pages using a tool called
-`Convert <https://convert.com>`_. Convert experiments are for relatively simple
-multivariate experiments, such as testing changes to headlines, images, or
-button copy.
+Conversion rate optimization (CRO) experiments on bedrock can be run using a
+third-party tool called `Convert <https://convert.com>`_. Convert experiments
+are for relatively simple multivariate experiments, such as testing changes
+to headlines, images, or button copy.
 
-Experimental versions of our main product pages can be found under the ``/exp/``
-app within bedrock. We keep our main product pages separate from experiment
-code for the following reasons:
+The Convert script is not included in part of bedrock's base bundle for
+performance reasons. To use Convert on a page, you can load the script
+behind a feature flag, which can be turned on / off for only the duration
+of an experiment. The script should be loaded inside the ``experiments``
+block in your template:
 
-- Performance (when an experiment is active, only those who qualify need download the Convert JS).
-- Security (keeping the experimentation surface as small as required).
-
-Creating experimental pages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Templates within the ``/exp/`` app should have the following characteristics:
-
-1. They should extend their respective jinja templates and live at a separate URL (e.g. /exp/firefox/new/ should extend /firefox/new/).
-
-.. code-block:: jinja
-
-    {% extends "firefox/new/desktop/download.html" %}
-
-2. They should override the following blocks required to load Convert
-
-.. code-block:: jinja
-
-    {% block html_attrs %}{{ super() }} {% include 'exp/includes/id.html' %}{% endblock %}
+.. code_block:: jinja
 
     {% block experiments %}
-        {% include 'exp/includes/convert.html' %}
+        {% if switch('experiment-convert-page-name', ['en-US']) %}
+            {{ js_bundle('convert') }}
+        {% endif %}
     {% endblock %}
 
-    {% block stub_attribution %}
-        {% include 'exp/includes/stub.html' %}
-    {% endblock %}
-
-3. If a page is indexed by search engines, then the experimental equivalent should have a canonical URL that points back to the original page. If the page is considered to be an in-product page, then the experimental page should retain the same noindex meta tag.
-
-.. code-block:: jinja
-
-    {% block canonical_urls %}
-        <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
-    {% endblock %}
-
-4. Experimental pages should also contain an Open Graph sharing URL that points back to the original page.
-
-.. code-block:: jinja
-
-    {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
-
-Once an experimental page exists, A/B tests can then be implemented using
-the `Convert dashboard <https://convert.com>`_ and editor. Convert
-experiments should be coded and tested against staging, before being
-reviewed and scheduled to run in production.
+Convert A/B tests can be implemented using the `Convert dashboard
+<https://convert.com>`_ and editor. Convert experiments should be coded and
+tested against staging, before being reviewed and scheduled to run in
+production.
 
 QA for Convert experiments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The process for QA'ing Convert experiments is as follows:
 
-#. Experiments are completely built and configured to run on ``https://www.allizom.org/*``
+#. Bedrock feature switch should be activated on staging.
+#. Experiment is built and configured to run on ``https://www.allizom.org/*``
 #. In the Github issue for an experiment, someone will request review by an engineer.
 
 An engineer reviewing the experiment will:
@@ -95,47 +63,14 @@ Once the engineer is satisfied, the engineer (or someone else with write privile
 
 #. Add ``https://www.mozilla.org/*`` to the list of URLs the experiment can run on.
 #. Reset the experiment (eliminating any data gathered during QA).
+#. Enable the bedrock feature switch in production.
 #. Activate (or schedule) the experiment.
+
+After an experiment is finished, the feature switch should be deactivated in production.
 
 .. Note::
 
     ``*`` should be replaced by the exact URL pathname for the experiment page.
-
-Routing traffic to experimental pages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Once an experimental page has been created, a predefined percentage of traffic
-can then be redirected from the main product page, to the experimental page
-using a `Cloudflare Worker <https://workers.cloudflare.com/>`_ script. We do
-this using a worker because it has significant performance improvements over
-doing redirection on the client or the server, and can also be done
-independently of a bedrock deployment.
-
-The code for redirecting to experimental pages lives in the
-`www-workers <https://github.com/mozmeao/www-workers>`_ repository.
-
-Adding a new redirect requires making a pull request to add a new object to
-the ``experimentalPages`` array in the ``workers/redirector.js`` file. An
-existing configuration to route 6% of traffic from ``/firefox/new/`` to
-``/exp/firefox/new/`` can be seen below:
-
-.. code-block:: javascript
-
-    const experimentPages = [
-        {
-            'targetPath': `/en-US/firefox/new/`,
-            'sandboxPath': `/en-US/exp/firefox/new/`,
-            'sampleRate': 0.06
-        }
-    ];
-
-.. Important::
-
-    When implementing new changes to the redirector, make sure to test and
-    verify that things are working as expected on dev and stage before
-    pushing to production. See the documentation in the
-    `www-workers <https://github.com/mozmeao/www-workers>`_ repository for
-    more information.
 
 Traffic Cop experiments
 -----------------------

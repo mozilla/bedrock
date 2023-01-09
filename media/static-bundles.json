@@ -1349,14 +1349,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-convert.js",
-        "js/base/stub-attribution.js",
-        "js/base/stub-attribution-convert.js"
-      ],
-      "name": "stub-attribution-convert"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/mozorg/home/youtube.js"
       ],
@@ -1695,7 +1687,7 @@
     },
     {
       "files": [
-        "js/exp/convert.js"
+        "js/base/convert-snippet.js"
       ],
       "name": "convert"
     },

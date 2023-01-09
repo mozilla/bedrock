@@ -1210,5 +1210,10 @@ URLS = flatten(
         # Issue 12376
         url_test("/newsletter/country/success/", "/newsletter/updated/"),
         url_test("/careers/internships/", "/careers/", status_code=requests.codes.found),
+        # Issue 12563
+        url_test("/exp/firefox/", "/firefox/"),
+        url_test("/exp/firefox/new/", "/firefox/new/"),
+        url_test("/exp/firefox/accounts/", "/firefox/accounts/"),
+        url_test("/exp/opt-out/", "/privacy/websites/convert-opt-out/"),
     )
 )
