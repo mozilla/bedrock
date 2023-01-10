@@ -23,22 +23,34 @@
   }
 ] %}
 
-
-
 {% set related = [
   {
     "title": "Licensed to Build Together",
     "desc": "Who really owns the Firefox browser? Its copyleft license means we all do.",
-    "image_url": "img/stories/build-together.jpg",
-    "link_url": url('stories.articles.build-together'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/build-together.jpg',
+      srcset={ 'img/stories/build-together-high-res.jpg': '2x' },
+      optional_attributes={
+        'class': 'card-image',
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.build-together')
   },
   {
     "title": "The Art of Engagement",
     "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
-    "image_url": "img/stories/art-of-engagement.jpg",
-    "link_url": url('stories.articles.art-of-engagement'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/art-of-engagement.jpg',
+      srcset={ 'img/stories/art-of-engagement-high-res.jpg': '2x' },
+      optional_attributes={
+        'class': 'card-image',
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.art-of-engagement')
   }
 ] %}
 
