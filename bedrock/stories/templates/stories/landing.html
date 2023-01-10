@@ -17,6 +17,12 @@
 
 {% block page_title %}Stories{% endblock %}
 
+{% set card_image_attr = {
+  'class': 'card-image',
+  'width': '349',
+  'height': '239'
+} %}
+
 {% block content %}
   <main class="c-stories-main">
     {# Featured Stories #}
@@ -58,10 +64,7 @@
               image=resp_img(
                 'img/stories/joy-of-color.jpg',
                 srcset={ 'img/stories/joy-of-color-high-res.jpg': '2x' },
-                optional_attributes={
-                  'width': '349',
-                  'height': '239'
-                },
+                optional_attributes=card_image_attr,
               ),
               link=url('stories.articles.joy-of-color')
             )}}
@@ -71,10 +74,7 @@
               image=resp_img(
                 'img/stories/art-of-engagement.jpg',
                 srcset={ 'img/stories/art-of-engagement-high-res.jpg': '2x' },
-                optional_attributes={
-                  'width': '349',
-                  'height': '239'
-                },
+                optional_attributes=card_image_attr,
               ),
               link=url('stories.articles.art-of-engagement')
             )}}
@@ -84,10 +84,7 @@
               image=resp_img(
                 'img/stories/build-together.jpg',
                 srcset={ 'img/stories/build-together-high-res.jpg': '2x' },
-                optional_attributes={
-                  'width': '349',
-                  'height': '239'
-                },
+                optional_attributes=card_image_attr,
               ),
               link=url('stories.articles.build-together')
             )}}
@@ -97,10 +94,7 @@
               image=resp_img(
                 'img/stories/community-champion.jpg',
                 srcset={ 'img/stories/community-champion-high-res.jpg': '2x' },
-                optional_attributes={
-                  'width': '349',
-                  'height': '239'
-                },
+                optional_attributes=card_image_attr,
               ),
               link=url('stories.articles.community-champion')
             )}}
