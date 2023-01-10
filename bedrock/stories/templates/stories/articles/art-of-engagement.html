@@ -56,16 +56,28 @@
    {
     "title": "Licensed to Build Together",
     "desc": "Who really owns the Firefox browser? Its copyleft license means we all do.",
-    "image_url": "img/stories/build-together.jpg",
-    "link_url": url('stories.articles.build-together'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/build-together.jpg',
+      srcset={ 'img/stories/build-together-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.build-together')
   },
   {
     "title": "From Volunteer to Mozilla Community Champion",
     "desc": "An early Mozilla volunteer’s curiosity about open-source software led him to a career with a company whose mission he believes in.",
-    "image_url": "img/stories/community-champion.jpg",
-    "link_url": url('stories.articles.community-champion'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/community-champion.jpg',
+      srcset={ 'img/stories/community-champion-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.community-champion')
   }
 ] %}
 

@@ -30,16 +30,28 @@
   {
     "title": "The Joy of Color",
     "desc": "The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
-    "image_url": "img/stories/joy-of-color-hero.jpg",
-    "image_alt": "",
-    "link_url": url('stories.articles.joy-of-color'),
+    "image": resp_img(
+      'img/stories/joy-of-color.jpg',
+      srcset={ 'img/stories/joy-of-color-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.joy-of-color'),
   },
   {
     "title": "The Art of Engagement",
     "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
-    "image_url": "img/stories/art-of-engagement.jpg",
-    "link_url": url('stories.articles.art-of-engagement'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/art-of-engagement.jpg',
+      srcset={ 'img/stories/art-of-engagement-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.art-of-engagement')
   },
 ] %}
 

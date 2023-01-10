@@ -53,16 +53,28 @@
  {
     "title": "The Art of Engagement",
     "desc": "Mozilla’s vibrant community gets a direct connection to the people building the products they love.",
-    "image_url": "img/stories/art-of-engagement.jpg",
-    "link_url": url('stories.articles.art-of-engagement'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/art-of-engagement.jpg',
+      srcset={ 'img/stories/art-of-engagement-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.art-of-engagement')
   },
   {
     "title": "From Volunteer to Mozilla Community Champion",
     "desc": "An early Mozilla volunteer’s curiosity about open-source software led him to a career with a company whose mission he believes in.",
-    "image_url": "img/stories/community-champion.jpg",
-    "link_url": url('stories.articles.community-champion'),
-    "image_alt": ""
+    "image": resp_img(
+      'img/stories/community-champion.jpg',
+      srcset={ 'img/stories/community-champion-high-res.jpg': '2x' },
+      optional_attributes={
+        'width': '349',
+        'height': '239'
+      },
+    ),
+    "link": url('stories.articles.community-champion')
   }
 ] %}
 

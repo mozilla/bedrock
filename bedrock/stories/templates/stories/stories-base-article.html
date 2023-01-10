@@ -131,10 +131,8 @@
               {{ stories_card(
                 title=item.title,
                 desc=item.desc,
-                image_url=item.image_url,
-                image_alt=item.image_alt,
-                link_url=item.link_url,
-                include_highres_image=True
+                image=item.image,
+                link=item.link
               )}}
               {% endfor %}
             </div>
