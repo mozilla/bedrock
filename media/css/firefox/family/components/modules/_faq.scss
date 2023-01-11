@@ -1,0 +1,91 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-faq {
+    @include f3.section-divider;
+    background-color: f3.$green-primary;
+
+    // everything after the module tag has smaller max-width
+    .mzp-t-content-xl > *:not(.c-module-tag-title) {
+        max-width: $content-lg;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .c-module-tag-title {
+        background-color: $color-green-30;
+    }
+
+    .c-card.t-shadow {
+        @include f3.card-shadow($color-green-60);
+        text-align: center;
+        padding-top: $layout-md;
+        padding-bottom: $layout-md;
+
+        @media #{$mq-lg} {
+            padding-top: $layout-lg;
+            padding-bottom: $layout-lg;
+        }
+
+        p {
+            max-width: 60ch;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: $layout-sm;
+        }
+    }
+
+    .c-subtitle {
+        @media screen and (max-width: $screen-md) {
+            @include text-title-md;
+        }
+    }
+
+    &-logo {
+        @include background-size(542px, 62px);
+        @include image-replaced;
+        background-image: url('/media/img/firefox/family/logo-common-sense-media.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        display: block;
+        max-width: 542px;
+        margin: $spacing-md auto 0;
+    }
+
+    &-intro {
+        @include text-title-sm;
+        margin-top: $layout-lg;
+        text-align: center;
+    }
+
+    &-more {
+        font-size: inherit;
+    }
+
+    details {
+        padding-top: $spacing-xl;
+        padding-bottom: $spacing-xl;
+
+        + details {
+            border-top: f3.$border-width solid f3.$color-black;
+        }
+
+        .c-card {
+            border: none;
+            margin-top: $spacing-lg;
+        }
+    }
+
+    summary {
+        padding-right: clamp(48px, 12%, 96px);
+
+        * {
+            margin-bottom: 0;
+        }
+    }
+}
