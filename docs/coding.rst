@@ -710,45 +710,6 @@ is the "box size". It's a parameter that tells the generator how large to set th
 parameters on the XML SVG tag, the units of which are "mm". This can be overriden with CSS so you
 may not need to use it at all. The ``box_size`` parameter is optional.
 
-image()
-^^^^^^^
-
-We also have an image macro, which is mainly used to encapsulate the conditional logic needed for
-`Protocol macros <https://bedrock.readthedocs.io/en/latest/coding.html#working-with-protocol-design-system>`_
-containing images. You can also import the macro directly into a template.
-
-.. code-block:: jinja
-
-    {% from 'macros.html' import image with context %}
-
-    {{ image(
-        url='img/panda-500.jpg',
-        alt='Red Panda',
-        class='panda-hero',
-        width='500',
-        height='500',
-        loading='lazy',
-        srcset={
-            'img/panda-500.jpg': '500w',
-            'img/panda-1000.jpg': '1000w',
-        },
-        sizes={
-            '(min-width: 768px)': 'calc(50vw - 192px)',
-            'default': 'calc(100vw - 48px)'
-        },
-        include_l10n=True
-    ) }}
-
-Only ``url`` is required. By default, alt text will be an empty string, loading will be determined
-by the browser, and responsive/l10n images will not be included. For ``include_l10n=True`` to work,
-you must import the macro ``with context``.
-
-.. note::
-
-    If you are implementing a responsive image using ``srcset`` and ``sizes`` then there's no
-    need to specify ``include_highres=True`` as it will have no effect. The ``include_highres``
-    parameter is only used in the (now deprecated) ``high_res_img()`` helper.
-
 
 Using Large Assets
 ------------------

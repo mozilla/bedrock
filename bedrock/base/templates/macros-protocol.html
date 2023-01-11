@@ -4,8 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import image as image_macro with context %}
-
 {#
   Billboard: https://protocol.mozilla.org/components/detail/billboard.html
   HTML Import: {% from "macros-protocol.html" import billboard with context %}
@@ -47,46 +45,6 @@
   </div>
 </section>
 {%- endmacro %}
-
-
-{# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
-{% macro hero(title, tagline, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, l10n_image=False, image_alt='', product_class=None, loading=None) -%}
-<section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{% if image_url %} mzp-has-image{% endif %}">
-  <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      {% if product_class %}
-        <div class="mzp-c-wordmark mzp-t-wordmark-md {{ product_class }}"></div>
-      {% endif %}
-      <h{{ heading_level }} class="mzp-c-hero-title">{{ title }}</h{{ heading_level }}>
-      {% if tagline or desc %}
-      <div class="mzp-c-hero-desc">
-        {% if tagline %}
-          <p class="mzp-c-hero-tagline">{{ tagline }}</p>
-        {% endif %}
-        {% if desc %}
-          <p>{{ desc }}</p>
-        {% endif %}
-      </div>
-      {% endif %}
-      {% if include_cta %}
-        {{ caller() }}
-      {% endif %}
-    </div>
-  </div>
-  {% if image_url %}
-    <div class="mzp-c-hero-image">
-      {{ image_macro(
-        url=image_url,
-        alt=image_alt,
-        loading=loading,
-        include_highres=include_highres_image,
-        include_l10n=l10n_image
-      ) }}
-    </div>
-  {% endif %}
-</section>
-{%- endmacro %}
-
 
 {#
   Split: https://protocol.mozilla.org/components/detail/split--default.html

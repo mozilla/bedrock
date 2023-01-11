@@ -139,52 +139,6 @@
   </form>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/coding.html#image #}
-{% macro image(
-  url,
-  alt='',
-  class=None,
-  width=None,
-  height=None,
-  highres_image_url=None,
-  loading=None,
-  srcset=None,
-  sizes=None,
-  sources=None,
-  include_highres=False,
-  include_l10n=False
-) -%}
-  {% set unclean = {
-    'alt': alt,
-    'class': class,
-    'width': width,
-    'height': height,
-    'loading': loading,
-    'l10n': include_l10n
-  } %}
-  {% set optional_attributes = dict() %}
-  {% for key, value in unclean.items() %}
-    {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
-  {% endfor %}
-
-  {% if sources %}
-    {{ picture(url, sources, optional_attributes) }}
-  {% elif srcset %}
-    {{ resp_img(url, srcset, sizes, optional_attributes) }}
-  {% elif include_highres %}
-    {{ high_res_img(url, optional_attributes) }}
-  {% else %}
-    {% if url.startswith('https')  %}
-      {% set src = url %}
-    {% elif include_l10n %}
-      {% set src = l10n_img(url) %}
-    {% else %}
-      {% set src = static(url) %}
-    {% endif %}
-    <img src="{{ src }}"{% if highres_image_url %} srcset="{{ highres_image_url }} 2x"{% endif %} alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
-  {% endif %}
-{%- endmacro %}
-
 {% macro sub_nav(
   title,
   links

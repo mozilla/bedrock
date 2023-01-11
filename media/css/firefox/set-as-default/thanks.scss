@@ -14,12 +14,6 @@ $image-path: '/media/protocol/img';
 .mzp-c-call-out.mzp-t-product-firefox.mzp-t-hero {
     background: $color-white;
 
-    .mzp-c-hero-title {
-        @include text-title-xl;
-        @include background-size(60px 60px);
-        padding-top: 84px;
-    }
-
     .mzp-c-call-out-desc {
         @include text-title-xs;
     }

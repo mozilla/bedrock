@@ -9,14 +9,14 @@
 }
 
 /* Hero */
-.internships-page .mzp-c-hero {
+.internships-page .c-hero {
     background:
         linear-gradient(to right, #000, transparent),
         url('/media/img/careers/internships/internships-hero-high-res.jpg') center center no-repeat;
     background-size: cover;
 }
 
-.internships-page .mzp-c-hero-body {
+.internships-page .c-hero-body {
     margin-left: 50px;
     text-align: left;
 }
@@ -24,7 +24,7 @@
 @media
     #{$mq-high-res},
     (min-resolution: 120dpi) {
-    .internships-page .mzp-c-hero {
+    .internships-page .c-hero {
         background:
             linear-gradient(to right, #000, transparent),
             url('/media/img/careers/internships/internships-hero.jpg') center center no-repeat;
@@ -33,11 +33,11 @@
 }
 
 @media (max-width: 600px) {
-    .internships-page .mzp-c-hero {
+    .internships-page .c-hero {
         background: #20123a;
     }
 
-    .internships-page .mzp-c-hero-body {
+    .internships-page .c-hero-body {
         margin: 8px;
     }
 
@@ -45,7 +45,7 @@
         margin: 30px 0 0;
     }
 
-    .internships-page .mzp-c-hero-cta {
+    .internships-page .c-hero-cta {
         text-align: center;
     }
 }
@@ -82,7 +82,7 @@
         margin: 0 0 50px;
     }
 
-    .internships-page .mzp-c-hero-cta .mzp-c-button {
+    .internships-page .c-hero-cta .mzp-c-button {
         margin: 30px 0 0;
     }
 }

@@ -55,10 +55,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        &.mzp-has-image .mzp-c-hero-title {
-            @include bidi(((background-position, top left, top right),));
-        }
-
         .c-intro-download {
             .mzp-c-button-download-container {
                 @include bidi(((text-align, left, right),));

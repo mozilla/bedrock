@@ -6,7 +6,6 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% from "macros.html" import image with context %}
 {% from "macros-protocol.html" import split with context %}
 
 {% block page_title %}The State of Mozilla: 2019 Annual Report{% endblock %}
@@ -84,7 +83,18 @@
       <section class="mzp-c-card mzp-has-aspect-3-2">
         <a class="mzp-c-card-block-link has-modal" data-modal-id="mitchell-baker-letter" href="#mitchell-baker-letter" id="mitchell-baker-letter">
           <div class="mzp-c-card-media-wrapper">
-            {{ image(url='img/foundation/annualreport/2019/leadership-mitchell.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy', include_highres=True) }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/leadership-mitchell.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/leadership-mitchell-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content">
             <div class="mzp-c-card-tag">Steering Committee</div>
@@ -97,7 +107,18 @@
       <section class="mzp-c-card mzp-has-aspect-3-2">
         <a class="mzp-c-card-block-link has-modal" data-modal-id="mark-surman-letter" href="#mark-surman-letter" id="mark-surman-letter">
           <div class="mzp-c-card-media-wrapper">
-            {{ image(url='img/foundation/annualreport/2019/leadership-mark.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/leadership-mark.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/leadership-mark-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content">
             <div class="mzp-c-card-tag">Steering Committee</div>
@@ -110,7 +131,18 @@
       <section class="mzp-c-card mzp-has-aspect-3-2">
         <a class="mzp-c-card-block-link has-modal" data-modal-id="angela-roxi-letter" href="#angela-roxi-letter" id="angela-roxi-letter">
           <div class="mzp-c-card-media-wrapper">
-            {{ image(url='img/foundation/annualreport/2019/leadership-angela-roxi.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/leadership-angela-roxi.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/leadership-angela-roxi-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content">
             <div class="mzp-c-card-tag">Steering Committee</div>
@@ -236,7 +268,18 @@
       <section data-modal-parent="victory-has-a-ring-to-it" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/victory-ring.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/victory-ring.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/victory-ring-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -253,7 +296,18 @@
       <section data-modal-parent="six-stories-to-inspire-better-content-moderation-regulation" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/six-stories.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/six-stories.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/six-stories-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -270,7 +324,18 @@
       <section data-modal-parent="creative-media-awards-demystify-ai" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/creative-media-awards.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/creative-media-awards.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/creative-media-awards-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -287,7 +352,18 @@
       <section data-modal-parent="dialogues-and-debates-go-virtual" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/dialogues-and-debates.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/dialogues-and-debates.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/dialogues-and-debates-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '620',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -305,7 +381,15 @@
       <section data-modal-parent="putting-our-products-to-work-to-amplify-black-voices" class="mzp-c-card-feature mzp-has-aspect-1-1 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/amplify-black-voices.png', width='523', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/amplify-black-voices.png',
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '523',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -322,7 +406,18 @@
       <section data-modal-parent="contact-tracing-governments-and-data-privacy" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/contact-tracing.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/contact-tracing.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/contact-tracing-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -339,7 +434,18 @@
       <section data-modal-parent="transforming-youtube-users-into-youtube-watchdogs" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/transforming-youtube.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/transforming-youtube.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/transforming-youtube-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -356,7 +462,18 @@
       <section data-modal-parent="building-a-roadmap-for-trustworthy-ai" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/building-roadmap.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/building-roadmap.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/building-roadmap-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -373,7 +490,18 @@
       <section data-modal-parent="our-campaign-urged-zoom-to-make-the-right-call-on-encryption" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/zoom-encryption.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/zoom-encryption.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/zoom-encryption-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -390,7 +518,18 @@
       <section data-modal-parent="facebook-stop-hate-for-profit" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/stop-hate-for-profit.png', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/stop-hate-for-profit.png',
+              srcset={
+                'img/foundation/annualreport/2019/stop-hate-for-profit-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -408,7 +547,18 @@
       <section data-modal-parent="another-win-for-privacy-this-time-with-apple" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/privacy-apple.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/privacy-apple.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/privacy-apple-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -425,7 +575,18 @@
       <section data-modal-parent="pushing-video-call-apps-to-be-more-private-and-secure" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/video-call-private.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/video-call-private.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/video-call-private-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -442,7 +603,15 @@
       <section data-modal-parent="firefox-gives-redirect-trackers-the-boot-with-etp-2-0" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/redirect-trackers-etp.png', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/redirect-trackers-etp.png',
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -460,7 +629,15 @@
       <section data-modal-parent="misinfo-mondays-cut-the-crap-and-tell-the-truth" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/misinfo-mondays.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/misinfo-mondays.jpg',
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -477,7 +654,15 @@
       <section data-modal-parent="an-investigation-political-ads-on-popular-streaming-platforms" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -494,7 +679,18 @@
       <section data-modal-parent="when-apple-opened-its-walled-garden-we-met-them-at-the-gate" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/apple-walled-garden.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/apple-walled-garden.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/apple-walled-garden-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '540',
+                'height': '360',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -511,7 +707,18 @@
       <section data-modal-parent="mozilla-urged-facebook-and-twitter-to-halt-dangerous-recommendations" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/facebook-twitter-recommendations.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/facebook-twitter-recommendations.jpg',
+              srcset={
+                'img/foundation/annualreport/2019/facebook-twitter-recommendations-high-res.jpg': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '523',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -530,7 +737,15 @@
       <section data-modal-parent="the-internet-needs-our-love" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            {{ image(url='img/foundation/annualreport/2019/internet-needs-our-love.jpg', width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+            {{ resp_img(
+              url='img/foundation/annualreport/2019/internet-needs-our-love.jpg',
+              optional_attributes={
+                'class': 'mzp-c-card-image',
+                'width': '930',
+                'height': '620',
+                'loading': 'lazy'
+              }
+            ) }}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -586,7 +801,18 @@
         <section class="mzp-c-card mzp-c-card-large mzp-has-aspect-3-2">
           <a id="dialogues-and-debates-go-virtual" class="mzp-c-card-block-link has-modal" data-modal-id="dialogues-and-debates-go-virtual" href="#dialogues-and-debates-go-virtual">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/dialogues-and-debates.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/dialogues-and-debates.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/dialogues-and-debates-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '620',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Pandemic Life</div>
@@ -598,7 +824,15 @@
         <section class="mzp-c-card mzp-has-aspect-1-1">
           <a id="putting-our-products-to-work-to-amplify-black-voices" class="mzp-c-card-block-link has-modal" data-modal-id="putting-our-products-to-work-to-amplify-black-voices" href="#putting-our-products-to-work-to-amplify-black-voices">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/amplify-black-voices.png', width='523', height='523', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/amplify-black-voices.png',
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '523',
+                  'height': '523',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Online Respect</div>
@@ -630,7 +864,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="our-campaign-urged-zoom-to-make-the-right-call-on-encryption" data-modal-id="our-campaign-urged-zoom-to-make-the-right-call-on-encryption" class="mzp-c-card-block-link has-modal" href="#our-campaign-urged-zoom-to-make-the-right-call-on-encryption">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/zoom-encryption.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/zoom-encryption.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/zoom-encryption-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Dependable Security</div>
@@ -642,7 +887,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="facebook-stop-hate-for-profit" data-modal-id="facebook-stop-hate-for-profit" class="mzp-c-card-block-link has-modal" href="#facebook-stop-hate-for-profit">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/stop-hate-for-profit.png', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/stop-hate-for-profit.png',
+                srcset={
+                  'img/foundation/annualreport/2019/stop-hate-for-profit-high-res.png': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Campaigns</div>
@@ -654,7 +910,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="another-win-for-privacy-this-time-with-apple" data-modal-id="another-win-for-privacy-this-time-with-apple" class="mzp-c-card-block-link has-modal" href="#another-win-for-privacy-this-time-with-apple">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/privacy-apple.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/privacy-apple.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/privacy-apple-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '620',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Responsible Data Use</div>
@@ -666,7 +933,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="pushing-video-call-apps-to-be-more-private-and-secure" data-modal-id="pushing-video-call-apps-to-be-more-private-and-secure" class="mzp-c-card-block-link has-modal" href="#pushing-video-call-apps-to-be-more-private-and-secure">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/video-call-private.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/video-call-private.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/video-call-private-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '620',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Products</div>
@@ -704,7 +982,15 @@
         <section class="mzp-c-card mzp-c-card-medium has-aspect-16-9">
           <a id="misinfo-mondays-cut-the-crap-and-tell-the-truth" data-modal-id="misinfo-mondays-cut-the-crap-and-tell-the-truth" class="mzp-c-card-block-link has-modal" href="#misinfo-mondays-cut-the-crap-and-tell-the-truth">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/misinfo-mondays.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/misinfo-mondays.jpg',
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '523',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Trustworthy Content</div>
@@ -716,7 +1002,15 @@
         <section class="mzp-c-card mzp-c-card-medium has-aspect-16-9">
           <a id="an-investigation-political-ads-on-popular-streaming-platforms" data-modal-id="an-investigation-political-ads-on-popular-streaming-platforms" class="mzp-c-card-block-link has-modal" href="#an-investigation-political-ads-on-popular-streaming-platforms">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/political-ads-streaming-platforms.jpg',
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '523',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Taking on Big Tech</div>
@@ -779,7 +1073,18 @@
   <section data-modal-parent="mitchell-baker-named-ceo" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/mitchell-baker-named-ceo.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/mitchell-baker-named-ceo-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -796,7 +1101,18 @@
   <section data-modal-parent="703m-pocket-saves-and-counting" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/pocket-saves.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/pocket-saves.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/pocket-saves-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '620',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -813,7 +1129,18 @@
   <section data-modal-parent="launched-mozilla-vpn" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/launched-mozilla-vpn.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/launched-mozilla-vpn-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -831,7 +1158,18 @@
   <section data-modal-parent="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/firefox-for-android.jpg', include_highres=True, width='930', height='620', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/firefox-for-android.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/firefox-for-android-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '620',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -866,7 +1204,18 @@
   <section data-modal-parent="immersive-social-experiences-delivered-with-a-simple-click" class="mzp-c-card-feature mzp-has-aspect-1-1 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/immersive-social-experiences.jpg', include_highres=True, width='450', height='450', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/immersive-social-experiences.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/immersive-social-experiences-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '450',
+            'height': '450',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -883,7 +1232,18 @@
   <section data-modal-parent="our-racial-justice-commitments" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/racial-justice-commitments.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/racial-justice-commitments.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/racial-justice-commitments-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -902,7 +1262,18 @@
   <section data-modal-parent="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" class="mzp-c-card-feature mzp-has-aspect-1-1 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/funds-for-black-artists.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/funds-for-black-artists.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/funds-for-black-artists-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -919,7 +1290,18 @@
   <section data-modal-parent="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/comcast-partner.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/comcast-partner.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/comcast-partner-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -936,7 +1318,18 @@
   <section data-modal-parent="the-future-of-web-monetization-starts-now" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/web-monetization.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/web-monetization.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/web-monetization-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -954,7 +1347,15 @@
   <section data-modal-parent="covid-19-solutions-fund" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/covid-19-solutions-fund.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/covid-19-solutions-fund.jpg',
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -971,7 +1372,18 @@
   <section data-modal-parent="a-journey-to-environmental-sustainability" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/environmental-sustainability.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/environmental-sustainability.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/environmental-sustainability-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -989,7 +1401,18 @@
   <section data-modal-parent="virtu-all-hands" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/virtu-all-hands.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/virtu-all-hands.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/virtu-all-hands-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1006,7 +1429,18 @@
   <section data-modal-parent="restructuring-to-keep-pace-with-the-future" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/restructuring.jpg', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/restructuring.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/restructuring-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1023,7 +1457,18 @@
   <section data-modal-parent="search-partnerships-continue-to-fuel-mozillas-mission" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/search-partnerships.png', include_highres=True, width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/search-partnerships.png',
+          srcset={
+            'img/foundation/annualreport/2019/search-partnerships-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1039,7 +1484,18 @@
   <section data-modal-parent="mozilla-partners-with-african-tech-hubs-to-explore-new-technology-ideas" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/mozilla-partners-african-tech-hubs.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/mozilla-partners-african-tech-hubs.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/mozilla-partners-african-tech-hubs-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1056,7 +1512,18 @@
   <section data-modal-parent="experimenting-with-open-data" class="mzp-c-card-feature mzp-has-aspect-1-1 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/experimenting-with-open-data.jpg', include_highres=True, width='450', height='450', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/experimenting-with-open-data.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/experimenting-with-open-data-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '450',
+            'height': '450',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1073,7 +1540,15 @@
   <section data-modal-parent="launched-new-tech-and-society-fellowships" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/tech-and-society-fellowships.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/tech-and-society-fellowships.jpg',
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '930',
+            'height': '523',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1090,7 +1565,15 @@
   <section data-modal-parent="our-vision-for-how-eu-digital-services-act-can-build-a-better-internet" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/eu-digital-services-act.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/eu-digital-services-act.jpg',
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1107,7 +1590,18 @@
   <section data-modal-parent="data-futures-lab-examines-new-models-of-data-governance" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/data-futures-lab.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/data-futures-lab.jpg',
+          srcset={
+            'img/foundation/annualreport/2019/data-futures-lab-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1124,7 +1618,15 @@
   <section data-modal-parent="investing-today-to-shape-european-ai-tomorrow" class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half">
     <div class="mzp-c-card-feature-media-wrapper">
       <div class="mzp-c-card-feature-media">
-        {{ image(url='img/foundation/annualreport/2019/european-ai-fund.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+        {{ resp_img(
+          url='img/foundation/annualreport/2019/european-ai-fund.jpg',
+          optional_attributes={
+            'class': 'mzp-c-card-image',
+            'width': '540',
+            'height': '360',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
     <div class="mzp-c-card-feature-content">
@@ -1182,7 +1684,15 @@
         <section class="mzp-c-card mzp-c-card-large mzp-has-aspect-16-9">
           <a id="mozilla-builders-are-moving-fast-and-fixing-things" class="mzp-c-card-block-link has-modal" data-modal-id="mozilla-builders-are-moving-fast-and-fixing-things" href="#mozilla-builders-are-moving-fast-and-fixing-things">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/mozilla-builders.jpg', width='930', height='523', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/mozilla-builders.jpg',
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '930',
+                  'height': '523',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Future Focus</div>
@@ -1194,7 +1704,18 @@
         <section class="mzp-c-card mzp-has-aspect-1-1">
           <a id="immersive-social-experiences-delivered-with-a-simple-click" class="mzp-c-card-block-link has-modal" data-modal-id="immersive-social-experiences-delivered-with-a-simple-click" href="#immersive-social-experiences-delivered-with-a-simple-click">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/immersive-social-experiences.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/immersive-social-experiences.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/immersive-social-experiences-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Products</div>
@@ -1227,7 +1748,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" data-modal-id="comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution" class="mzp-c-card-block-link has-modal" href="#comcast-becomes-first-isp-to-partner-with-mozilla-in-evolving-privacy-solution">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/comcast-partner.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/comcast-partner.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/comcast-partner-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Dependable Security</div>
@@ -1240,7 +1772,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="data-futures-lab-examines-new-models-of-data-governance" data-modal-id="data-futures-lab-examines-new-models-of-data-governance" class="mzp-c-card-block-link has-modal" href="#data-futures-lab-examines-new-models-of-data-governance">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/data-futures-lab.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/data-futures-lab.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/data-futures-lab-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Responsible Data Use</div>
@@ -1252,7 +1795,15 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="investing-today-to-shape-european-ai-tomorrow" data-modal-id="investing-today-to-shape-european-ai-tomorrow" class="mzp-c-card-block-link has-modal" href="#investing-today-to-shape-european-ai-tomorrow">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/european-ai-fund.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/european-ai-fund.jpg',
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Future Focus</div>
@@ -1264,7 +1815,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="the-future-of-web-monetization-starts-now" data-modal-id="the-future-of-web-monetization-starts-now" class="mzp-c-card-block-link has-modal" href="#the-future-of-web-monetization-starts-now">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/web-monetization.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/web-monetization.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/web-monetization-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Responsible Data Use</div>
@@ -1320,7 +1882,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" data-modal-id="a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core" class="mzp-c-card-block-link has-modal" href="#a-new-firefox-for-android-fast-private-by-design-and-independent-to-the-core">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/firefox-for-android.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/firefox-for-android.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/firefox-for-android-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Products</div>
@@ -1332,7 +1905,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="our-racial-justice-commitments" data-modal-id="our-racial-justice-commitments" class="mzp-c-card-block-link has-modal" href="#our-racial-justice-commitments">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/racial-justice-commitments.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/racial-justice-commitments.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/racial-justice-commitments-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Racial Justice</div>
@@ -1344,7 +1928,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="a-journey-to-environmental-sustainability" data-modal-id="a-journey-to-environmental-sustainability" class="mzp-c-card-block-link has-modal" href="#a-journey-to-environmental-sustainability">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/environmental-sustainability.jpg', include_highres=True, width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/environmental-sustainability.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/environmental-sustainability-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Future Focus</div>
@@ -1356,7 +1951,18 @@
         <section class="mzp-c-card mzp-c-card-extra-small has-aspect-3-2">
           <a id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" data-modal-id="funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice" class="mzp-c-card-block-link has-modal" href="#funds-for-black-artists-exploring-the-effects-of-ai-on-racial-justice">
             <div class="mzp-c-card-media-wrapper">
-              {{ image(url='img/foundation/annualreport/2019/funds-for-black-artists.jpg', width='540', height='360', class='mzp-c-card-image', loading='lazy') }}
+              {{ resp_img(
+                url='img/foundation/annualreport/2019/funds-for-black-artists.jpg',
+                srcset={
+                  'img/foundation/annualreport/2019/funds-for-black-artists-high-res.jpg': '2x'
+                },
+                optional_attributes={
+                  'class': 'mzp-c-card-image',
+                  'width': '540',
+                  'height': '360',
+                  'loading': 'lazy'
+                }
+              ) }}
             </div>
             <div class="mzp-c-card-content">
               <div class="mzp-c-card-tag">Racial Justice</div>

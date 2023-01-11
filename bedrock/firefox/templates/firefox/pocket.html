@@ -4,7 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import image with context %}
 {% from "macros-protocol.html" import card, call_out, split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -102,14 +101,23 @@
     media_class='mzp-l-split-media-overflow',
     media_after=True
   ) %}
-    <h2 class="mzp-c-hero-title">
+    <h2 class="pocket-sidekick-title">
       The Content You Love Belongs in Your Pocket.
     </h2>
-    <div class="mzp-c-hero-cta">
-      <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source},
-        optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position':
-        'secondary'}) }}</p>
-    </div>
+    <p>
+      {{ pocket_fxa_button(
+        entrypoint=_entrypoint,
+        button_text='Try Pocket Now',
+        optional_parameters={
+          's': _source
+        },
+        optional_attributes={
+          'data-cta-text': 'Try Pocket Now',
+          'data-cta-type': 'activate pocket',
+          'data-cta-position': 'secondary'
+        }
+      ) }}
+    </p>
   {% endcall %}
 </main>
 {% endblock %}
