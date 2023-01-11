@@ -28,6 +28,7 @@
 .c-pro-tip {
     background-color: f3.$black;
     font-weight: bold;
+    overflow-y: hidden;
 
     .mzp-l-content {
         padding-top: $spacing-md;
