@@ -28,7 +28,7 @@
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
-  {% if switch('homepage-vpn-beautiful') and LANG.startswith('en-') %}
+  {% if switch('homepage-vpn-beautiful', ['en']) %}
     {{ css_bundle('home-vpn-beautiful') }}
   {% elif switch('homepage-firefox-mr106-promo') %}
     {{ css_bundle('home-firefox-mr106-promo') }}
@@ -71,7 +71,7 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-  {% if switch('homepage-vpn-beautiful') and LANG.startswith('en-') %}
+  {% if switch('homepage-vpn-beautiful', ['en']) %}
     {% include 'mozorg/home/includes/vpn-beautiful.html' %}
   {% elif switch('homepage-firefox-mr106-promo') %}
     {% include 'mozorg/home/includes/firefox-mr106-promo.html' %}
