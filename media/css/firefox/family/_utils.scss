@@ -74,5 +74,16 @@ $border-width: 3px;
     }
 }
 
+// Override topic in module tag
+@mixin no-topic {
+    background-color: $white;
+    padding: $spacing-sm $spacing-md;
+    margin-bottom: $layout-2xs;
+
+    &::before {
+        display: none;
+    }
+}
+
 // Animation duration
 $animation-duration: 0.5s;

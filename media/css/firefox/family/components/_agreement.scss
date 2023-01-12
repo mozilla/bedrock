@@ -23,15 +23,8 @@
         margin-bottom: $spacing-md;
     }
 
-    // override usual layout
     .c-module-tag-title {
-        background-color: f3.$white;
-        padding: $spacing-sm $spacing-md;
-        margin-bottom: $layout-2xs;
-
-        &::before {
-            display: none;
-        }
+        @include f3.no-topic;
     }
 
     .c-content p,
