@@ -67,50 +67,6 @@
           <em class="mzp-c-fieldnote">{{ ftl('vpn-landing-invite-required-label') }}</em>
         </label>
         {{ newsletter_form.lang|safe }}
-
-        <fieldset>
-          <legend>{{ ftl('vpn-landing-invite-platform-label') }}</legend>
-
-          <ul class="vpn-invite-platform-options">
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-windows" name="fpn_platform" value="windows">
-                {{ ftl('vpn-landing-invite-platform-windows', fallback='vpn-landing-invite-platform-windows-10') }}
-              </label>
-            </li>
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-ios" name="fpn_platform" value="ios">
-                {{ ftl('vpn-landing-invite-platform-ios') }}
-              </label>
-            </li>
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-android" name="fpn_platform" value="android">
-                {{ ftl('vpn-landing-invite-platform-android') }}
-              </label>
-            </li>
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-mac" name="fpn_platform" value="mac">
-                {{ ftl('vpn-landing-invite-platform-mac') }}
-              </label>
-            </li>
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-chromebook" name="fpn_platform" value="chromebook">
-                {{ ftl('vpn-landing-invite-platform-chromebook') }}
-              </label>
-            </li>
-            <li>
-              <label class="mzp-u-inline">
-                <input type="checkbox" id="platforms-linux" name="fpn_platform" value="linux">
-                {{ ftl('vpn-landing-invite-platform-linux') }}
-              </label>
-            </li>
-          </ul>
-        </fieldset>
-
       </div>
 
       <p class="mzp-c-form-submit">
