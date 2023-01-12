@@ -20,23 +20,19 @@
             width: 500px;
         }
     }
+}
 
-    .wnp-content-vpn-container {
-        background-color: $color-violet-05;
-        border-radius: $border-radius-lg;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: $layout-xs;
-        margin-top: $layout-xl;
+.wnp-sign-off {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-2xl;
 
-        .wnp-content-vpn-img {
-            margin-bottom: auto;
-        }
+    .wnp-sign-off-light {
+        display: block;
+    }
 
-        span {
-            color: #6f4ae7;
-        }
+    .wnp-sign-off-dark {
+        display: none;
     }
 }
 
@@ -45,6 +41,16 @@
     .wnp-content-main {
         .wnp-main-title {
             color: $color-white;
+        }
+    }
+
+    .wnp-sign-off {
+        .wnp-sign-off-light {
+            display: none;
+        }
+
+        .wnp-sign-off-dark {
+            display: block;
         }
     }
 }
