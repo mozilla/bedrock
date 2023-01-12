@@ -24,6 +24,23 @@
     }
 }
 
+.mzp-c-split-body {
+    @include text-body-lg;
+}
+
+// https://github.com/mozilla/protocol/issues/843
+.mzp-c-split-container {
+    min-width: 0;
+}
+
+// https://github.com/mozilla/protocol/issues/842
+.mzp-c-button.mzp-t-dark:visited:focus {
+    background-color: $color-dark-gray-60;
+    border-color: $color-white;
+    color: $color-white;
+    box-shadow: 0 0 0 2px color.mix($color-blue-40, $color-white);
+}
+
 .c-footer-heading {
     text-align: center;
 

@@ -19,6 +19,7 @@
 
 {% set _entrypoint = 'mozilla.org-whatsnew109-features' %}
 {% set _utm_campaign = 'whatsnew109' %}
+{% set params = 'utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
 
 {% block site_header %}{% endblock %}
 
@@ -37,7 +38,7 @@
     <h2>See which trackers Firefox blocked for you this week</h2>
     <p>We use Enhance Tracking Protection to automatically protect your privacy while you browse.</p>
     <p>
-      <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"  data-cta-text="View my protections" data-cta-type="button">
+      <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}"  data-cta-text="View my protections" data-cta-type="button">
         View my protections
       </a>
     </p>
@@ -55,7 +56,7 @@
     <h2>Organize all your open tabs with a magic button</h2>
     <p>Add OneTab to your browser — and with one click, suddenly all your open tabs become a clean list.</p>
     <p>
-      <a class="mzp-c-button mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/onetab/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"  data-cta-text="Learn" data-cta-type="button">
+      <a class="mzp-c-button mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/onetab/?{{ params }}"  data-cta-text="Learn" data-cta-type="button">
         Learn more
       </a>
     </p>
