@@ -66,7 +66,7 @@ class BenefitsView(L10nTemplateView):
 
 
 class PositionListView(LangFilesMixin, RequireSafeMixin, ListView):
-    model = Position
+    queryset = Position.objects.exclude(job_locations="Remote")
     template_name = "careers/listings.html"
     context_object_name = "positions"
 
@@ -84,14 +84,16 @@ class PositionDetailView(LangFilesMixin, RequireSafeMixin, DetailView):
     def get_object(self, queryset=None):
         if queryset is None:
             queryset = self.get_queryset()
-        return get_object_or_404(queryset, **self.kwargs)
+
+        post = get_object_or_404(queryset, **self.kwargs)
+        return post.cover
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         position = context["position"]
 
         context["meta_description"] = generate_position_meta_description(position)
-        context["postings"] = list(Position.objects.filter(internal_job_id=position.internal_job_id))
+        context["postings"] = list(Position.objects.filter(internal_job_id=position.internal_job_id).exclude(job_locations="Remote"))
 
         return context
 

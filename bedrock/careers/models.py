@@ -48,9 +48,24 @@ class Position(models.Model):
     @classmethod
     def locations(cls):
         return sorted(
-            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("job_locations", flat=True)])}
+            {
+                location.strip()
+                for location in chain(
+                    *[locations.split(",") for locations in cls.objects.exclude(job_locations="Remote").values_list("job_locations", flat=True)]
+                )
+            }
         )
 
     @classmethod
     def categories(cls):
         return sorted(set(cls.objects.values_list("department", flat=True)))
+
+    @property
+    def cover(self):
+        # Try to get the job posting of the same `internal_job_id` with "Remote"
+        # job location to use as the "cover" posting.
+        if cover := Position.objects.filter(internal_job_id=self.internal_job_id, job_locations="Remote").first():
+            return cover
+
+        # Fallback to returning `self` if there is no "Remote" location.
+        return self

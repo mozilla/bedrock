@@ -60,7 +60,7 @@
           data-type="{{ position.position_type | trim }}"
           data-location="{{ postings | join(',', attribute='job_locations') }}">
         <td class="title"><a href="{{ position.get_absolute_url() }}">{{ position.title }}</a></td>
-        <td class="location">{{ postings | map(attribute='job_locations') | join(', ') }}</td>
+        <td class="location">{{ postings | join(', ', attribute='job_locations') }}</td>
         <td class="name">{{ position.department }}</td>
       </tr>
     {% endfor %}
