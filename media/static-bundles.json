@@ -221,6 +221,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/vpn-beautiful.scss"
+      ],
+      "name": "home-vpn-beautiful"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-management.scss"
       ],
       "name": "newsletter-management"
