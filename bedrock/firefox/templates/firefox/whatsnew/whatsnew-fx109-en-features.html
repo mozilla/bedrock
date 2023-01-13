@@ -21,6 +21,12 @@
 {% set _utm_campaign = 'whatsnew109' %}
 {% set params = 'utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-109-en') %}
+    {{ js_bundle('firefox_whatsnew_109_en_experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
@@ -114,6 +120,6 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew') }}
+  {{ js_bundle('firefox_whatsnew_update') }}
   {{ js_bundle('firefox_whatsnew_109_features') }}
 {% endblock %}
