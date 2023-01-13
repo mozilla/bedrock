@@ -77,11 +77,7 @@ function _fetch(url, method) {
                 }
             })
             .then((resp) => {
-                if (
-                    resp.statusText === 'OK' &&
-                    resp.status >= 200 &&
-                    resp.status < 300
-                ) {
+                if (resp.status >= 200 && resp.status < 300) {
                     resolve(resp.json());
                 } else {
                     reject(resp);
