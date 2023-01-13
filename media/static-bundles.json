@@ -529,6 +529,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-109-eu.scss"
+      ],
+      "name": "firefox_whatsnew_109_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-109-en.scss"
+      ],
+      "name": "firefox_whatsnew_109_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-109-en-features.scss"
+      ],
+      "name": "firefox_whatsnew_109_en_features"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1374,6 +1392,18 @@
         "js/firefox/whatsnew/whatsnew-105-de-experiment.es6.js"
       ],
       "name": "firefox_whatsnew_105_de_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-109-experiment-en.es6.js"
+      ],
+      "name": "firefox_whatsnew_109_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-109-features.js"
+      ],
+      "name": "firefox_whatsnew_109_features"
     },
     {
       "files": [

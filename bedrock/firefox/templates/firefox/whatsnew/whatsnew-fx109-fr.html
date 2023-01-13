@@ -1,0 +1,40 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
+  {{ css_bundle('firefox_whatsnew_109_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <h1>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-light.svg') }}" alt="Lettre à votre imprimante" class="wnp-main-img-light"/>
+        <img src="{{ l10n_img('firefox/wnp-109/wnp109-print-dark.svg') }}" alt="Lettre à votre imprimante" class="wnp-main-img-dark"/>
+    </h1>
+    <p class="wnp-main-tagline">
+      La nouvelle année est l’occasion de bonnes résolutions : pourquoi ne pas se mettre au sport, ou enfin faire du tri ? Firefox est désormais équipé d’un éditeur PDF intégré, l’occasion rêvée d’enfin se débarrasser de l’imprimante qui prenait tant de place.
+    </p>
+    <p class="wnp-main-tagline">
+      Essayez-le dès maintenant et dites un dernier adieu aux bourrages papier.
+    </p>
+
+    <a class="mzp-c-button mzp-t-product" href="https://assets.mozilla.net/wnp109-eu/wnp-fx109-fr.pdf" data-cta-type="button" data-cta-name="Whatsnew PDF Editor">L’essayer</a>
+  </section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

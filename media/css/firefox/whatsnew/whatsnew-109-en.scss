@@ -1,0 +1,72 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import 'includes/dark-mode';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
+
+.wnp-content-main {
+    padding-top: $spacing-2xl;
+
+    .wnp-main-title {
+        color: $color-marketing-gray-99;
+        @include text-title-sm;
+    }
+
+    .wnp-main-img {
+        margin: $spacing-xl 0;
+
+        img {
+            width: 500px;
+        }
+    }
+}
+
+.wnp-sign-off {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-2xl;
+
+    .wnp-sign-off-light,
+    .wnp-sign-off-dark {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+
+        span {
+            margin: 0 $spacing-xs;
+        }
+    }
+
+    .wnp-sign-off-light {
+        color: $color-black;
+    }
+
+    .wnp-sign-off-dark {
+        display: none;
+    }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        .wnp-main-title {
+            color: $color-white;
+        }
+    }
+
+    .wnp-sign-off {
+        .wnp-sign-off-light {
+            display: none;
+        }
+
+        .wnp-sign-off-dark {
+            display: flex;
+        }
+    }
+}
