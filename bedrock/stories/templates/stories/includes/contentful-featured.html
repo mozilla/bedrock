@@ -1,0 +1,27 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ <section class="c-stories-featured">
+   <div class="mzp-l-content mzp-t-content-lg">
+       <figure class="{% if image_class %}{{ image_class }}{% endif %}">
+         <!-- todo: use resp_img? figure out how to pull ALT from Contentful -->
+         <a href="{{ url }}">
+           <img src="{{ image }}" alt="" loading="eager" width="1000" height="500">
+         </a>
+         {% if caption %}
+           <figcaption>{{ caption | safe }}</figcaption>
+         {% endif %}
+       </figure>
+     <h1>Featured Article</h1>
+     <h2>{{ title }}</h2>
+     <p>{{ desc }}</p>
+     <div class="c-stories-featured-details">
+       <h3>Value</h3>
+       <p class="value">{{ value }}</p>
+       <a class="read-more" title="Read '{{ title }}'" href="{{ url }}">Read<span class="arrow-right"></span></a>
+     </div>
+   </div> <!-- .c-stories-featured-wrapper -->
+ </section> <!-- .c-stories-featured -->

@@ -1,0 +1,54 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-stories-social-share {
+    ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        @include image-replaced;
+        transition: transform 200ms ease-in;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+        height: $spacing-lg;
+        width: $spacing-lg;
+        margin: $spacing-sm;
+
+        &.twitter {
+            background-image: url('/media/img/stories/icons/twitter-icon.svg');
+        }
+
+        &.instagram {
+            background-image: url('/media/img/stories/icons/instagram-icon.svg');
+        }
+
+        &.linkedin {
+            background-image: url('/media/img/stories/icons/linkedin-icon.svg');
+        }
+
+        &.pocket {
+            background-image: url('/media/img/stories/icons/pocket-icon.svg');
+        }
+
+        &:hover {
+            cursor: pointer;
+            outline: 1px solid $color-black;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            &:hover {
+                transform: scale(1.2);
+                outline: none;
+            }
+        }
+    }
+}

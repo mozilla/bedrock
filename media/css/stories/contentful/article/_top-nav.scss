@@ -1,0 +1,30 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+
+.c-navigation {
+    box-shadow: none;
+}
+
+.mzp-c-breadcrumb {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    // overrides
+    .mzp-c-breadcrumb-list .mzp-c-breadcrumb-item a {
+        color: inherit;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}

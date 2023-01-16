@@ -10,10 +10,42 @@
 
 {% extends "base-protocol.html" %}
 
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-contentful-shared')}}
+  {{ css_bundle('mozilla-stories-contentful-landing') }}
+{% endblock %}
+
 {% block page_title %}Stories{% endblock %}
+
+{% block html_attrs %}data-theme={% if featured_story.theme %}{{ featured_story.theme }}{% else %}pink{% endif %}{% endblock %}
 
 {% block content %}
   <main>
-  <!-- Stub template -->
+    {% with
+      url="/stories/" + featured_story.slug,
+      image=featured_story.image,
+      caption=featured_story.image_caption,
+      title=featured_story.title,
+      desc=featured_story.dek,
+      value="Connection"
+    %}
+      {% include 'stories/includes/contentful-featured.html' %}
+    {% endwith %}
+    <section class="c-stories-collections">
+      <div class="mzp-l-content mzp-t-content-lg">
+        <h2>Other Stories</h2>
+        <div class="c-stories-cards mzp-l-card-half">
+        {% for story in stories %}
+          {{ card(
+            title=story.title,
+            desc=story.desc,
+            image=story.image,
+            link_url=story.url,
+            heading_level=3
+          )}}
+        {% endfor %}
+        </div> <!-- .c-stories-cards-->
+      </div> <!-- .mzp-l-content -->
+    </section> <!-- .c-stories-collections -->
   </main>
 {% endblock %}

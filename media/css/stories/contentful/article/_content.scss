@@ -1,0 +1,74 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@use '../../includes/lib' as pbj;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-stories-article-content {
+    @include text-body-xl;
+    font-family: pbj.$font-body;
+
+    // margin reset
+    * {
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+
+    > *:not(:first-child) {
+        margin-top: $layout-md;
+    }
+
+    > :first-child {
+        @include text-title-sm;
+        border-bottom: $border-radius-sm solid $color-black;
+        padding-bottom: $layout-md;
+
+        @media #{$mq-md} {
+            line-height: 1.4;
+        }
+    }
+}
+
+.c-stories-article-blockquote {
+    text-align: center;
+
+    blockquote {
+        @include text-title-md;
+        font-family: pbj.$font-title;
+        text-transform: uppercase;
+        padding: $layout-md $layout-sm;
+        border-width: $border-radius-sm 0;
+
+        @media #{$mq-md} {
+            line-height: 1.125;
+            padding-top: $layout-xl;
+            padding-bottom: $layout-xl;
+        }
+    }
+
+    figcaption {
+        @include text-body-xl;
+        font-family: pbj.$font-body;
+        font-weight: normal;
+        text-transform: none;
+        margin-top: $layout-xs;
+    }
+}
+
+.c-stories-article-blockquote.full-width {
+    blockquote {
+        border-width: 0;
+        max-width: var(--max-line-length);
+    }
+}
+
+.c-stories-image {
+    figcaption {
+        @include text-body-xs;
+        color: pbj.$color-text-gray;
+    }
+}

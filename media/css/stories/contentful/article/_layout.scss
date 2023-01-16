@@ -1,0 +1,93 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+:root {
+    // needs unit or grid template breaks
+    --sidebar-width: 0px; /* stylelint-disable-line length-zero-no-unit */
+    --max-width: #{$content-xl};
+    --max-line-length: #{$content-xl};
+}
+
+.c-stories-article-container {
+    padding-top: $layout-md;
+    padding-bottom: $layout-md;
+}
+
+.c-stories-article-header-wrapper,
+.c-stories-article-credits,
+.c-stories-article-content > *:not(.full-width),
+.c-stories-social-share,
+.c-stories-related {
+    margin-right: $layout-sm;
+    margin-left: $layout-sm;
+}
+
+.c-stories-article-credits-mobile {
+    margin-bottom: $layout-md;
+
+    + div {
+        display: none;
+    }
+}
+
+@media #{$mq-lg} {
+    .c-stories-article-header,
+    .c-stories-article-container {
+        display: grid;
+        grid-template-columns:
+            [full-width-start]
+            1fr
+            [sidebar-start]
+            minmax(min-content, var(--sidebar-width))
+            [content-start]
+            minmax(auto, calc(var(--max-width) - var(--sidebar-width)))
+            [content-end]
+            1fr
+            [full-width-end];
+    }
+
+    .full-width {
+        grid-column: full-width;
+    }
+
+    .c-stories-article-header {
+        &-wrapper {
+            grid-column: sidebar-start / content-end;
+        }
+    }
+
+    .c-stories-article-credits {
+        grid-column: sidebar-start / content-start;
+        grid-row-start: 1;
+
+        figure + figure {
+            margin-top: $spacing-md;
+        }
+
+        &-mobile {
+            display: none;
+
+            + div {
+                display: block;
+            }
+        }
+    }
+
+    .c-stories-social-share,
+    .c-stories-related {
+        grid-column: content;
+    }
+
+    .c-stories-article-content {
+        grid-row-start: 1;
+        display: grid;
+        grid-template-columns: subgrid; // todo: set fallback
+
+        & > *:not(.full-width) {
+            grid-column: content;
+        }
+    }
+}

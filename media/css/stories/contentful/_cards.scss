@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@use '../includes/lib' as pbj;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+
+.c-stories-cards {
+    &.mzp-l-content {
+        padding: 0;
+    }
+
+    .mzp-c-card-content {
+        padding-top: $spacing-md;
+    }
+
+    .mzp-c-card-title {
+        @include text-title-2xs;
+    }
+
+    .mzp-c-card-desc {
+        font-family: pbj.$font-body;
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .mzp-c-card .mzp-c-card-block-link:hover {
+        box-shadow: none;
+
+        .mzp-c-card-title {
+            border-bottom-color: transparent;
+            text-decoration: underline;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .card-media-wrapper {
+            overflow: hidden;
+        }
+
+        img {
+            transition: transform 200ms ease-in;
+        }
+
+        a:hover {
+            img {
+                transform: scale(1.05);
+            }
+        }
+    }
+}

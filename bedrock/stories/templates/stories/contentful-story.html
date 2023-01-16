@@ -9,6 +9,12 @@
 {% from "macros-protocol.html" import card with context %}
 {% from "stories/includes/macros.html" import stories_article_blockquote, stories_image, stories_card with context %}
 
+
+{% block page_css %}
+  {{ css_bundle('mozilla-stories-contentful-shared') }}
+  {{ css_bundle('mozilla-stories-contentful-article') }}
+{% endblock %}
+
 {% set title = info.title | safe %}
 {% set theme = info.theme %}
 
@@ -17,9 +23,81 @@
 {% block page_og_title %}{{ title }}{% endblock %}
 {% block page_og_desc %}{{ desc }}{% endblock %}
 
+{% block html_attrs %}data-theme={% if theme %} {{ theme }} {% else %} pink {% endif %}{% endblock %}
+
+{% block site_header %}
+  {% with story = title %}
+    {% include 'stories/includes/stories-article-nav.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
-  <article>
-  <!-- Stub template -->
+  <article
+    class="c-stories-article"
+    {% if credits %}style="--sidebar-width: 20ch"{% endif %}
+  >
+    <header class="c-stories-article-header full-width">
+      <div class="c-stories-article-header-wrapper">
+        {% if is_featured %}<p class="is-featured">Featured Article</p>{% endif%}
+        <h1>{{ title }}</h1>
+        <div class="metadata">
+          <p>Published<br> <time datetime="">{{ info.published }}</time></p>
+          <p>Value<br> {{ value }}</p>
+      </div>
+    </header>
+    <div class="c-stories-article-container full-width">
+      <aside class="c-stories-article-credits">
+      {% if credits %}
+          <h2>Article contributors</h2>
+          <p class="c-stories-article-credits-mobile">
+            {% for credit in credits %}
+              {{credit.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </p>
+          <div>
+          {% for credit in credits %}
+            <figure>
+              {% if credit.image %}{{ credit.image }}{% endif %}
+              <figcaption>{{ credit.name }}</figcaption>
+              <figcaption>{{ credit.title }}</figcaption>
+              {% if credit.photo_credit %}<figcaption>{{ credit.photo_credit }}</figcaption>{% endif %}
+            </figure>
+          {% endfor %}
+          </div>
+      {% endif %}
+      </aside>
+      <section class="c-stories-article-content full-width">
+        <!-- does it belong under info? -->
+        <p>{{ info.dek }}</p>
+        <!-- does the entries array make sense in these compose pages? -->
+        {% for entry in entries -%}
+          {{ entry.body|external_html }}
+        {% endfor %}
+      </section>
+      <section class="c-stories-social-share">
+        <ul>
+          <li><a target="_blank" href="https://twitter.com/share?url=http://www.mozilla.org{{ request.path }}&text={{ title |urlencode  }}" class="twitter">Twitter</a></li>
+          <li><a target="_blank" href="https://getpocket.com/save?url=http://www.mozilla.org{{ request.path }}&title={{ title |urlencode }}" class="pocket">Pocket</a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://www.mozilla.org{{ request.path }}" class="linkedin">LinkedIn</a></li>
+        </ul>
+      </section>
+      {% if related %}
+        <section class="c-stories-related">
+            <h2>Related Stories</h2>
+            <div class="c-stories-cards mzp-l-content mzp-t-content-lg mzp-l-card-half">
+            {% for item in related %}
+              {{ card(
+                title=item.title,
+                desc=item.desc,
+                image=item.image,
+                link_url=item.link,
+                heading_level=3
+              )}}
+              {% endfor %}
+            </div>
+        </section>
+      {% endif %}
+    </div> <!-- .c-stories-article-container -->
   </article>
 {% endblock %}
 

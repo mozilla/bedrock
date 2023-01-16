@@ -1,0 +1,110 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@use '../../includes/lib' as pbj;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-stories-featured {
+    .mzp-l-content {
+        padding-top: 0;
+    }
+
+    figcaption {
+        @include text-body-xs;
+        text-align: right;
+    }
+
+    h1 {
+        @include text-title-xs;
+        font-family: pbj.$font-body;
+        font-weight: normal;
+        margin-top: $layout-sm;
+        margin-bottom: $layout-sm;
+    }
+
+    h2 {
+        @include font-size(130px);
+        font-family: pbj.$font-title;
+        padding-bottom: $layout-sm;
+        margin-bottom: 0;
+    }
+
+    p {
+        @include text-title-2xs;
+        font-family: pbj.$font-body;
+        margin-top: $layout-sm;
+        margin-bottom: $layout-md;
+
+        @media #{$mq-md} {
+            line-height: 1.5;
+        }
+    }
+
+    p,
+    .c-stories-featured-details {
+        @media #{$mq-md} {
+            max-width: 70%;
+        }
+    }
+}
+
+.c-stories-featured-details {
+    display: grid;
+    grid-template-columns: [col-1-start] min-content [col-1-end] min-content 1fr;
+    column-gap: $spacing-xl;
+    row-gap: $spacing-sm;
+    justify-content: start;
+
+    h3,
+    .value {
+        grid-column: col-1;
+        margin: 0;
+    }
+
+    h3 {
+        @include text-title-3xs;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+
+    .value {
+        @include font-firefox;
+        @include text-title-3xs;
+        font-weight: 700;
+    }
+
+    a.read-more {
+        grid-column-start: 2;
+        grid-row: 1 / 3;
+        align-self: center;
+        background: $color-white;
+        border: none;
+        border-radius: 25px;
+        color: $color-black;
+        display: block;
+        position: relative;
+        padding: $spacing-sm $spacing-2xl $spacing-sm $spacing-xl;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: #ededf0;
+        }
+
+        &::after {
+            content: '';
+            top: 15px;
+            right: 15px;
+            position: absolute;
+            height: 10px;
+            width: 15px;
+            background: url('/media/img/stories/icons/arrow-right.svg');
+        }
+    }
+}

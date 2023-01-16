@@ -1,0 +1,45 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+[data-theme] {
+    body {
+        @supports (isolation: isolate) {
+            // prevent white gap under navigation animation
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                background-color: var(--theme-color-bg);
+                width: 100%;
+                height: 100vh;
+            }
+
+            .c-stories-article {
+                isolation: isolate;
+            }
+        }
+    }
+
+    .mzp-c-breadcrumb {
+        background-color: var(--theme-color-bg);
+        color: var(--theme-color-text);
+    }
+
+    .c-stories-article-header {
+        background-color: var(--theme-color-bg);
+
+        * {
+            color: var(--theme-color-text);
+        }
+    }
+
+    .c-stories-article-blockquote.full-width {
+        background-color: var(--theme-color-bg);
+
+        blockquote,
+        figcaption {
+            color: var(--theme-color-text);
+        }
+    }
+}

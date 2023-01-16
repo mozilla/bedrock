@@ -1215,15 +1215,33 @@
     },
     {
       "files": [
+        "css/stories/contentful/shared.scss"
+      ],
+      "name": "mozilla-stories-contentful-shared"
+    },
+    {
+      "files": [
         "css/stories/stories-landing.scss"
       ],
       "name": "mozilla-stories-landing"
     },
     {
       "files": [
+        "css/stories/contentful/landing/styles.scss"
+      ],
+      "name": "mozilla-stories-contentful-landing"
+    },
+    {
+      "files": [
         "css/stories/stories-article.scss"
       ],
       "name": "mozilla-stories-article"
+    },
+    {
+      "files": [
+        "css/stories/contentful/article/styles.scss"
+      ],
+      "name": "mozilla-stories-contentful-article"
     },
     {
       "files": [

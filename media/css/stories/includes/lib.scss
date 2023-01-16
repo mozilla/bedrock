@@ -9,12 +9,27 @@
 // use math.div to get percentages of grid to use for padding and margins
 $column-width: math.percentage(math.div(math.div(100, 12), 100));
 $half-column: math.percentage(math.div(math.div(100, 24), 100));
+$font-title: 'Antonio', sans-serif;
+$font-body: 'Source Serif Pro', sans-serif;
+$color-text-gray: #838383;
+$color-text-black: $color-black;
+$color-text-white: $color-white;
+
+// theme colors
+$pink: #ffb4db;
+$green: $color-green-80;
+$orange: $color-yellow-40;
+
+/* LEGACY (used in hardcoded templates) */
+// namespacing
 $font-stories-title: 'Antonio', sans-serif;
 $font-stories-body: 'Source Serif Pro', sans-serif;
 
-//  pink theme
+// pink theme
 $pink-primary: #ffb4db;
 $pink-secondary: #ffea7f;
+
+/* ---------------------------------end */
 
 @font-face {
     font-family: Antonio;

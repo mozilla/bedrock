@@ -9,10 +9,20 @@ const isReduced =
     window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
 
 function getHeaderStyle() {
-    const header = document.querySelector('.c-stories-article-header');
-    const articleBody = document.querySelector('.c-stories-article-body');
+    if (isReduced) {
+        return;
+    }
 
-    if (!isReduced) {
+    const isContentful = document.querySelector('[data-theme]');
+    const header = document.querySelector('.c-stories-article-header');
+
+    if (isContentful) {
+        const topNavHeight = getComputedStyle(
+            document.querySelector('.top-header-navigation')
+        ).height;
+        header.style.top = topNavHeight;
+    } else {
+        const articleBody = document.querySelector('.c-stories-article-body');
         const headerHeight = getComputedStyle(header).height;
         articleBody.style.top = headerHeight;
         articleBody.style.marginBottom = headerHeight;
