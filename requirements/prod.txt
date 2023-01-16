@@ -924,8 +924,9 @@ wrapt==1.14.0 \
     --hash=sha256:f0408e2dbad9e82b4c960274214af533f856a199c9274bd4aff55d4634dedc33 \
     --hash=sha256:f2f3bc7cd9c9fcd39143f11342eb5963317bd54ecc98e3650ca22704b69d9653
     # via deprecated
-yamllint==1.26.3 \
-    --hash=sha256:3934dcde484374596d6b52d8db412929a169f6d9e52e20f9ade5bf3523d9b96e
+yamllint==1.29.0 \
+    --hash=sha256:5153bf9f8205aa9dc6af6217e38bd4f5baf09d9a7c6f4ae1e23f90d9c00c49c5 \
+    --hash=sha256:66a755d5fbcbb8831f1a9568676329b5bac82c37995bcc9afd048b6459f9fa48
     # via glean-parser
 zipp==3.7.0 \
     --hash=sha256:9f50f446828eb9d45b267433fd3e9da8d801f614129124863f9c51ebceafb87d \
