@@ -638,7 +638,7 @@ class TestVPNTotalPrice(TestCase):
 
     def test_vpn_12_month_total_price_usd_ca(self):
         """Should return expected markup"""
-        markup = self._render(country_code="US", lang="en-US")
+        markup = self._render(country_code="CA", lang="en-US")
         expected = "US$59.88 total + tax"
         self.assertEqual(markup, expected)
 
