@@ -68,6 +68,8 @@ def test_301_urls(url, base_url, follow_redirects=False):
         "/firefox/nightly/firstrun/",
         "/firefox/releases/",
         "/firefox/unsupported-systems/",
+        "/firefox/android/releasenotes/",
+        "/firefox/ios/releasenotes/",
     ],
 )
 def test_302_urls(url, base_url, follow_redirects=False):
