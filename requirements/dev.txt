@@ -431,9 +431,9 @@ fluent-syntax==0.17.0 \
     #   -r requirements/prod.txt
     #   compare-locales
     #   fluent-runtime
-glean-parser==5.1.0 \
-    --hash=sha256:68c22006e961190541e267ab896d0d52a848e3a3caa1ef8ae38447b7447abe1a \
-    --hash=sha256:f2831b686b16e4b930f4e96e36c5d77b620135b8dea086fdbc38d53adfae1d1d
+glean-parser==6.2.1 \
+    --hash=sha256:672689a97fe458d38f230b5f8d2e2f8e5c582ce98dd31e38363a6b437639d56c \
+    --hash=sha256:daa4b7b127a432118733f0ddc77c95bdd7a8b78ac9a4f3254f68b45a25ccb32e
     # via -r requirements/prod.txt
 greenlet==0.4.17 \
     --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
