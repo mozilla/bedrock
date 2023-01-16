@@ -87,6 +87,8 @@ urlpatterns = (
     re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$", bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
     path("firefox/nightly/notes/feed/", bedrock.releasenotes.views.nightly_feed, name="firefox.nightly.notes.feed"),
     re_path("firefox/(?:latest/)?releasenotes/$", bedrock.releasenotes.views.latest_notes, {"product": "firefox"}),
+    re_path("firefox/android/releasenotes/$", bedrock.releasenotes.views.latest_notes, {"product": "Firefox for Android"}),
+    re_path("firefox/ios/releasenotes/$", bedrock.releasenotes.views.latest_notes, {"product": "Firefox for iOS"}),
     re_path(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
         bedrock.releasenotes.views.latest_sysreq,
