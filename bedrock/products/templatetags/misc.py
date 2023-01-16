@@ -15,6 +15,9 @@ FTL_FILES = ["products/vpn/shared"]
 
 VPN_12_MONTH_PLAN = "12-month"
 
+# Show price "+ tax" in countries such as US & Canada.
+TAX_NOT_INCLUDED = ["US", "CA"]
+
 
 def _vpn_get_available_plans(country_code, lang, bundle_relay=False):
     """
@@ -122,7 +125,11 @@ def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None,
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     amount = selected_plan.get("price")
-    price = ftl("vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
+
+    if country_code in TAX_NOT_INCLUDED:
+        price = ftl("vpn-shared-pricing-monthly-plus-tax", fallback="vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
+    else:
+        price = ftl("vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
 
     markup = f'<span class="vpn-monthly-price-display">{price}</span>'
 
@@ -147,7 +154,11 @@ def vpn_total_price(ctx, country_code=None, lang=None, bundle_relay=False):
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
     selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
     amount = selected_plan.get("total")
-    price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
+
+    if country_code in TAX_NOT_INCLUDED:
+        price = ftl("vpn-shared-pricing-total-plus-tax", fallback="vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
+    else:
+        price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
 
     markup = price
 
