@@ -19,7 +19,7 @@ from rich_text_renderer.text_renderers import BaseInlineRenderer
 from bedrock.contentful.constants import (
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_GENERAL,
-    CONTENT_TYPE_PAGE_PBJ_STORY,
+    CONTENT_TYPE_PAGE_PRODUCT_STORY,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -652,7 +652,7 @@ class ContentfulPage:
         )
 
         # easiest place to put it for now, not the best
-        if page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+        if page_type == CONTENT_TYPE_PAGE_PRODUCT_STORY:
             COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
 
             # todo: handle None, return dicts with full info instead of test strings
@@ -736,7 +736,7 @@ class ContentfulPage:
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))
 
-        elif page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+        elif page_type == CONTENT_TYPE_PAGE_PRODUCT_STORY:
             _content = fields.get("content", {})
             entries.append(self.get_text_data(_content))
 

@@ -23,7 +23,7 @@ from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
 from bedrock.contentful.constants import (
-    CONTENT_TYPE_PAGE_PBJ_STORY,
+    CONTENT_TYPE_PAGE_PRODUCT_STORY,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -189,7 +189,7 @@ class ContentfulPreviewView(L10nTemplateView):
             template = "mozorg/home/home-contentful.html"
         elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             template = "products/vpn/resource-center/article.html"
-        elif page_type == CONTENT_TYPE_PAGE_PBJ_STORY:
+        elif page_type == CONTENT_TYPE_PAGE_PRODUCT_STORY:
             template = "stories/contentful-story.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"

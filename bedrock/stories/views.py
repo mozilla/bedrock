@@ -4,7 +4,7 @@
 
 from django.views.decorators.http import require_safe
 
-from bedrock.contentful.constants import CONTENT_TYPE_PAGE_PBJ_STORY
+from bedrock.contentful.constants import CONTENT_TYPE_PAGE_PRODUCT_STORY
 from bedrock.contentful.models import ContentfulEntry
 from lib import l10n_utils
 
@@ -17,7 +17,7 @@ def pbj_story_page(request, slug):
 
     ctx = {}
     story = ContentfulEntry.objects.get_entry_by_slug(
-        slug=slug, locale="en-US", content_type=CONTENT_TYPE_PAGE_PBJ_STORY, localisation_complete=False  # EN only content
+        slug=slug, locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY, localisation_complete=False  # EN only content
     )
     ctx.update(story.data)
 
@@ -40,7 +40,7 @@ def pbj_landing_page(request):
     stories = [
         story.data["info"]
         for story in ContentfulEntry.objects.get_entries_by_type(
-            locale="en-US", content_type=CONTENT_TYPE_PAGE_PBJ_STORY, localisation_complete=False
+            locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY, localisation_complete=False
         )
     ]
 
