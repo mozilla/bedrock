@@ -21,8 +21,9 @@ urlpatterns = (
     path("newsletter/updated/", views.updated, name="newsletter.updated"),
     # Confirm subscriptions
     re_path("^newsletter/confirm/(?P<token>%s)/$" % uuid_regex, views.confirm, name="newsletter.confirm"),
+    path("newsletter/confirm/thanks/", views.confirm_thanks, name="newsletter.confirm.thanks"),
     # Update country
-    re_path("^newsletter/country/(?P<token>%s)/$" % uuid_regex, views.set_country, name="newsletter.country"),
+    re_path("^newsletter/country/(?P<token>[^/]*)/?$", views.set_country, name="newsletter.country"),
     # Request recovery message with link to manage subscriptions
     path("newsletter/recovery/", views.recovery, name="newsletter.recovery"),
     # Receives POSTs from all subscribe forms

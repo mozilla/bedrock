@@ -8,7 +8,6 @@ from html import escape
 from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect
 from django.views.decorators.cache import never_cache
 
 import basket
@@ -53,12 +52,12 @@ def set_country(request, token):
     if countrycode:
         initial["country"] = countrycode.lower()
 
-    form = CountrySelectForm("en-US", data=request.POST or None, initial=initial)
+    form = CountrySelectForm("en-US", None, initial=initial)
 
     context = {
-        "action": f"{settings.BASKET_URL}/news/user-meta/{token}/",
+        "action": f"{settings.BASKET_URL}/news/user-meta/",
         "form": form,
-        "updated_url": reverse("newsletter.updated"),
+        "recovery_url": reverse("newsletter.recovery"),
     }
 
     return l10n_utils.render(request, "newsletter/country.html", context)
@@ -94,14 +93,25 @@ def confirm(request, token):
     # link twice in quick succession
     if success or rate_limit_error:
         qparams = ["confirm=1"]
-        qs = request.META.get("QUERY_STRING", "")
-        if qs:
+
+        if qs := request.META.get("QUERY_STRING", ""):
             qparams.append(qs)
+
         return HttpResponseRedirect("{}?{}".format(reverse("newsletter.existing.token", kwargs={"token": token}), "&".join(qparams)))
     else:
-        return l10n_utils.render(
-            request, "newsletter/confirm.html", {"success": success, "generic_error": generic_error, "token_error": token_error}, ftl_files=FTL_FILES
-        )
+        qparams = ["error=1"] if generic_error else ["error=2"] if token_error else ["success=1"]
+
+        if qs := request.META.get("QUERY_STRING", ""):
+            qparams.append(qs)
+
+        return HttpResponseRedirect("{}?{}".format(reverse("newsletter.confirm.thanks"), "&".join(qparams)))
+
+
+def confirm_thanks(request):
+    generic_error = request.GET.get("error", None) == "1"
+    token_error = request.GET.get("error", None) == "2"
+
+    return l10n_utils.render(request, "newsletter/confirm.html", {"token_error": token_error, "generic_error": generic_error}, ftl_files=FTL_FILES)
 
 
 def newsletter_strings_json(request):
@@ -123,24 +133,15 @@ def existing(request, token=None):
     """
     locale = l10n_utils.get_locale(request)
 
-    if not token:
-        return redirect(reverse("newsletter.recovery"))
-
-    if not UUID_REGEX.match(token):
-        # Bad token
-        messages.add_message(request, messages.ERROR, bad_token)
-        # Redirect to the recovery page
-        return redirect(reverse("newsletter.recovery"))
-
     form = ManageSubscriptionsForm(locale)
 
     context = {
-        "token": token,
-        "action": f"{settings.BASKET_URL}/news/user/{token}/",
+        "action": f"{settings.BASKET_URL}/news/user/",
         "newsletters_url": f"{settings.BASKET_URL}/news/newsletters/",
-        "unsubscribe_url": f"{settings.BASKET_URL}/news/unsubscribe/{token}/",
+        "unsubscribe_url": f"{settings.BASKET_URL}/news/unsubscribe/",
         "strings_url": reverse("newsletter.strings"),
         "updated_url": reverse("newsletter.updated"),
+        "recovery_url": reverse("newsletter.recovery"),
         "did_confirm": request.GET.get("confirm", None) == "1",
         "form": form,
     }
@@ -169,12 +170,6 @@ def updated(request):
     # Did they do an unsubscribe all?  then unsub=1 was passed
     unsubscribed_all = unsub == UNSUB_UNSUBSCRIBED_ALL
 
-    # Token might also have been passed (on remove_all only)
-    token = request.GET.get("token", None)
-    # token must be a UUID
-    if token is not None and not UUID_REGEX.match(token):
-        token = None
-
     # Say thank you unless we're saying something more specific
     if not unsub:
         messages.add_message(request, messages.INFO, thank_you)
@@ -182,7 +177,6 @@ def updated(request):
     context = {
         "action": f"{settings.BASKET_URL}/news/custom_unsub_reason/",
         "unsubscribed_all": unsubscribed_all,
-        "token": token,
     }
     return l10n_utils.render(request, "newsletter/updated.html", context, ftl_files=FTL_FILES)
 

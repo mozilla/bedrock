@@ -523,6 +523,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-confirm.scss"
+      ],
+      "name": "newsletter-confirm"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-updated.scss"
       ],
       "name": "newsletter-updated"

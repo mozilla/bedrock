@@ -4,19 +4,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import {
-    clearFormErrors,
-    disableFormFields,
-    enableFormFields,
-    postToBasket
-} from './form-utils.es6';
+import FormUtils from './form-utils.es6';
 
 let _form;
 let _countrySelect;
 
 const CountryForm = {
     handleFormError: () => {
-        enableFormFields(_form);
+        FormUtils.enableFormFields(_form);
         _form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
         _form
             .querySelector('.error-try-again-later')
@@ -30,6 +25,14 @@ const CountryForm = {
         document
             .querySelector('.country-newsletter-thanks')
             .classList.remove('hidden');
+    },
+
+    redirectToRecoveryPage: () => {
+        const recoveryUrl = _form.getAttribute('data-recovery-url');
+
+        if (FormUtils.isWellFormedURL(recoveryUrl)) {
+            window.location.href = recoveryUrl;
+        }
     },
 
     serialize: () => {
@@ -46,17 +49,22 @@ const CountryForm = {
         return true;
     },
 
+    getFormActionURL: () => {
+        const token = FormUtils.getUserToken();
+        return `${_form.getAttribute('action')}${token}/`;
+    },
+
     subscribe: (e) => {
-        const url = _form.getAttribute('action');
+        const url = CountryForm.getFormActionURL();
 
         e.preventDefault();
         e.stopPropagation();
 
         // Disable form fields until POST has completed.
-        disableFormFields(_form);
+        FormUtils.disableFormFields(_form);
 
         // Clear any prior messages that might have been displayed.
-        clearFormErrors(_form);
+        FormUtils.clearFormErrors(_form);
 
         // Perform client side form field validation.
         if (!CountryForm.validateFields()) {
@@ -65,7 +73,7 @@ const CountryForm = {
 
         const params = CountryForm.serialize();
 
-        postToBasket(
+        FormUtils.postToBasket(
             null,
             params,
             url,
@@ -80,6 +88,21 @@ const CountryForm = {
 
         if (!_form) {
             return;
+        }
+
+        const urlToken = FormUtils.getURLToken(window.location);
+
+        // If the page URL contains a token, grab it and replace history.
+        if (urlToken) {
+            FormUtils.setUserToken(urlToken);
+            FormUtils.removeTokenFromURL(window.location, urlToken);
+        }
+
+        const token = FormUtils.getUserToken();
+
+        // if there's no locally stored token, redirect to recovery page.
+        if (!token) {
+            CountryForm.redirectToRecoveryPage();
         }
 
         _form.addEventListener('submit', CountryForm.subscribe, false);

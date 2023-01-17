@@ -4,14 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import {
-    checkEmailValidity,
-    clearFormErrors,
-    errorList,
-    disableFormFields,
-    enableFormFields,
-    postToBasket
-} from './form-utils.es6';
+import FormUtils from './form-utils.es6';
 
 let form;
 
@@ -19,29 +12,29 @@ const NewsletterForm = {
     handleFormError: (msg) => {
         let error;
 
-        enableFormFields(form);
+        FormUtils.enableFormFields(form);
 
         form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
         switch (msg) {
-            case errorList.EMAIL_INVALID_ERROR:
+            case FormUtils.errorList.EMAIL_INVALID_ERROR:
                 error = form.querySelector('.error-email-invalid');
                 break;
-            case errorList.NEWSLETTER_ERROR:
+            case FormUtils.errorList.NEWSLETTER_ERROR:
                 form.querySelector(
                     '.error-newsletter-checkbox'
                 ).classList.remove('hidden');
                 break;
-            case errorList.COUNTRY_ERROR:
+            case FormUtils.errorList.COUNTRY_ERROR:
                 error = form.querySelector('.error-select-country');
                 break;
-            case errorList.LANGUAGE_ERROR:
+            case FormUtils.errorList.LANGUAGE_ERROR:
                 error = form.querySelector('.error-select-language');
                 break;
-            case errorList.PRIVACY_POLICY_ERROR:
+            case FormUtils.errorList.PRIVACY_POLICY_ERROR:
                 error = form.querySelector('.error-privacy-policy');
                 break;
-            case errorList.LEGAL_TERMS_ERROR:
+            case FormUtils.errorList.LEGAL_TERMS_ERROR:
                 error = form.querySelector('.error-terms');
                 break;
             default:
@@ -116,38 +109,46 @@ const NewsletterForm = {
         const terms = form.querySelector('input[name="terms"]');
 
         // Really basic client side email validity check.
-        if (!checkEmailValidity(email)) {
-            NewsletterForm.handleFormError(errorList.EMAIL_INVALID_ERROR);
+        if (!FormUtils.checkEmailValidity(email)) {
+            NewsletterForm.handleFormError(
+                FormUtils.errorList.EMAIL_INVALID_ERROR
+            );
             return false;
         }
 
         // Check for country selection value.
         if (countrySelect && !countrySelect.value) {
-            NewsletterForm.handleFormError(errorList.COUNTRY_ERROR);
+            NewsletterForm.handleFormError(FormUtils.errorList.COUNTRY_ERROR);
             return false;
         }
 
         // Check for language selection value.
         if (!lang) {
-            NewsletterForm.handleFormError(errorList.LANGUAGE_ERROR);
+            NewsletterForm.handleFormError(FormUtils.errorList.LANGUAGE_ERROR);
             return false;
         }
 
         // Confirm at least one newsletter is checked
         if (newsletters.length === 0) {
-            NewsletterForm.handleFormError(errorList.NEWSLETTER_ERROR);
+            NewsletterForm.handleFormError(
+                FormUtils.errorList.NEWSLETTER_ERROR
+            );
             return false;
         }
 
         // Confirm privacy policy is checked
         if (!privacy) {
-            NewsletterForm.handleFormError(errorList.PRIVACY_POLICY_ERROR);
+            NewsletterForm.handleFormError(
+                FormUtils.errorList.PRIVACY_POLICY_ERROR
+            );
             return false;
         }
 
         // Terms checkbox only appears on /firefox/ios/testflight/ page.
         if (terms && !terms.checked) {
-            NewsletterForm.handleFormError(errorList.LEGAL_TERMS_ERROR);
+            NewsletterForm.handleFormError(
+                FormUtils.errorList.LEGAL_TERMS_ERROR
+            );
             return false;
         }
 
@@ -162,10 +163,10 @@ const NewsletterForm = {
         e.stopPropagation();
 
         // Disable form fields until POST has completed.
-        disableFormFields(form);
+        FormUtils.disableFormFields(form);
 
         // Clear any prior messages that might have been displayed.
-        clearFormErrors(form);
+        FormUtils.clearFormErrors(form);
 
         // Perform client side form field validation.
         if (!NewsletterForm.validateFields()) {
@@ -174,7 +175,7 @@ const NewsletterForm = {
 
         const params = NewsletterForm.serialize();
 
-        postToBasket(
+        FormUtils.postToBasket(
             email,
             params,
             url,
