@@ -495,6 +495,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx104-vpn-fr.html",
         "firefox/whatsnew/whatsnew-fx104-vpn-fr-coupon.html",
         "firefox/whatsnew/whatsnew-fx107-en.html",
+        "firefox/whatsnew/whatsnew-fx109-en.html",
+        "firefox/whatsnew/whatsnew-fx109-en-features.html",
     ]
 
     # place expected ?v= values in this list
