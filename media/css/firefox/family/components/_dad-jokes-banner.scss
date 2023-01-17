@@ -101,6 +101,7 @@
 
         button {
             transition: opacity 0.5s;
+            cursor: pointer;
 
             &[disabled] {
                 opacity: 0;
