@@ -6,9 +6,20 @@
 
 {% from "macros.html" import image as image_macro with context %}
 
-
-{# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
-{# image attribute passed should be one of the following helpers: <img>, resp_img or picture #}
+{#
+  Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html
+  HTML Import: {% from "macros-protocol.html" import billboard with context %}
+  CSS Import: @import '~@mozilla-protocol/core/protocol/css/components/billboard';
+  Macro Parameters:
+    desc (Required): String indicating paragraph text (usually a translation id wrapped in ftl function).
+    ga_title (Required): String providing value for data-link-name attribute on cta.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+    link_cta: String indicating link text (usually a translation id wrapped in an ftl function).
+    link_url: String or url helper function provides href value for cta link.
+    reverse: Uses default layout: mzp-l-billboard-right. Reverse will switch to billboard (text) left.
+    title: String indicating heading text (usually a translation id wrapped in ftl function).
+    image (Required): Image to be used in the Billboard element. Can pass an <img> element, resp_img or picture Python helpers.
+#}
 {% macro billboard(
   desc='',
   ga_title='',
@@ -77,7 +88,22 @@
 {%- endmacro %}
 
 
-{# Split: https://protocol.mozilla.org/patterns/organisms/split.html #}
+{#
+  Split: https://protocol.mozilla.org/patterns/organisms/split.html
+  HTML import: {% from "macros-protocol.html" import split with context %}
+  CSS Bundle: {% block page_css %} { css_bundle('protocol-split') }} {% endblock %}
+  Macro Parameters:
+    base_el: String for HTML element to use, defaults to 'section'
+    block_class: String providing class(es) to the base element tag.
+    block_id: String providing id to the base element tag (usually if it needs to be used as an in-page link).
+    body_class: String providing class(es) to the body (text content) div inside the section.
+    image: Can pass an <img> element, resp_img or picture Python helpers.
+    media_after: Boolean to determine if image appears before or after text when stacked on mobile size screens.
+    media_class: String providing class(es) to the media div inside the section.
+    media_include: Path to video media (if using a video element).
+    mobile_class: A special class so content can be centered and/or the image can be hidden on mobile viewports.
+    theme_class: String providing theme class(es) to a container div tag inside the section.
+#}
 {% macro split(
   base_el='section',
   block_class=None,
@@ -128,7 +154,17 @@
 {%- endmacro %}
 
 
-{# Call Out: https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out #}
+{#
+  Call Out: https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out
+  HTML import: {% from "macros-protocol.html" import call_out with context %}
+  CSS bundle: {% block page_css %} {{ css_bundle('protocol-call-out') }} {% endblock %}
+  Macro parameters:
+    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
+    class: String adding class(es) to the section tag.
+    include_cta: Boolean indicating whether or not to include the body of the macro call (usually a mix of text and html).
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+#}
 {% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2) -%}
 <section class="mzp-c-call-out {% if class %}{{ class }}{% endif %}">
   <div class="mzp-l-content">
@@ -144,7 +180,10 @@
 {%- endmacro %}
 
 
-{# Call Out (compact): https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out-compact #}
+{#
+  Call Out (compact): https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out-compact
+  see call-out for detailed documentation
+#}
 {% macro call_out_compact(title, desc=None, class=None, heading_level=2) -%}
 <section class="mzp-c-call-out-compact {% if class %}{{ class }}{% endif %}">
   <div class="mzp-l-content">
@@ -166,7 +205,31 @@
 {%- endmacro %}
 
 
-{# Card: https://protocol.mozilla.org/patterns/molecules/card.html #}
+{#
+  Card: https://protocol.mozilla.org/patterns/molecules/card.html
+  HTML import: {% from "macros-protocol.html" import card with context %}
+  CSS Bundle: {% block page_css %} {{ css_bundle('protocol-card') }} {% endblock %}
+  Macro Parameters:
+    aspect_ratio: String indicating size/aspect ratio of the card (make sure to have it even if it’s in a defined Card Layout
+    attributes: A generic parameter to add any extra attributes to the component, such as data or aria attributes. Note that the quotes
+    will pass through unescaped.
+    class: String adding class(es) to the section tag.
+    cta: String adding optional call to action for the card.,
+    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).,
+    ga_title (Required): String providing value for data-link-name attribute on cta.,
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling
+    image (Required): Image to be used in the Card element. Can pass an <img> element, resp_img or picture Python helpers
+    link_rel: String for link rel attribute.
+    link_target: String for link target attribute
+    link_title: String for link title attribute.
+    link_url (Required): String or url helper function provides href value for cta link.
+    media_icon: An optional CSS class to display a media icon, indicating when card will play video when clicked.
+    meta: A string to display additional meta data for a card, such as a publish date.
+    tag_label: A string to display a card type label.
+    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+    youtube_id: String indicating the Youtube ID found at the end of a Youtube video URL. Used when we are embedding a video to the card
+    rather than an image.
+#}
 {% macro card(
   aspect_ratio='mzp-has-aspect-3-2',
   attributes=None,
@@ -239,14 +302,25 @@
 {%- endmacro %}
 
 
-{# Picto: https://protocol.mozilla.org/patterns/molecules/picto.html #}
+{#
+  Picto: https://protocol.mozilla.org/components/detail/picto--default.html
+  HTML Import: {% from "macros-protocol.html" import picto with context %}
+  CSS bundle: {% block page_css %} {{ css_bundle('protocol-picto') }} {% endblock %}
+  Macro parameters:
+    base_el: The element the content of the picto will be read as in HTML. For example, if the Picto macro is wrapped in a ul tag,
+    the base_el would be an li tag.
+    body: A boolean attribute. If true, it will show the contents of the card, if false, it will hide the contents.
+    class: String adding class(es) to the base el tag.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+    image: Can pass an <img> element, resp_img or picture Python helpers.
+    title: String indicating heading text (usually a translation id wrapped in ftl function)
+#}
 {% macro picto(
   base_el='div',
   body=False,
   class=None,
   heading_level=3,
   image=None,
-  loading=None,
   title=None
 ) -%}
 <{{ base_el }} class="mzp-c-picto{% if class %} {{ class }}{% endif %}">
@@ -263,7 +337,9 @@
 {%- endmacro %}
 
 
-{# sidemenu_lists() takes an array of lists and makes nav menus
+{#
+  Sidemenu: https://protocol.mozilla.org/components/detail/sidebar-menu.html
+  sidemenu_lists() takes an array of lists and makes nav menus
   The list has the link, a body_id, and a the text to display
   {% set navigation_bar_client_bounty = [
       (url('security.client-bug-bounty'),'client-bug-bounty', 'Client Bug Bounty'),
@@ -277,7 +353,6 @@
 
   {{ sidemenu_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}
 #}
-
 {% macro sidemenu_lists(arr, body_id='') -%}
   <nav class="mzp-c-sidemenu">
     <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
