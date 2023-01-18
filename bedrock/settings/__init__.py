@@ -122,6 +122,7 @@ if IS_POCKET_MODE:
         "'unsafe-eval'",
         "www.googletagmanager.com",
         "www.google-analytics.com",
+        "region1.google-analytics.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
     ]
