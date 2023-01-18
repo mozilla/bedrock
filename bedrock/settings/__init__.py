@@ -122,7 +122,6 @@ if IS_POCKET_MODE:
         "'unsafe-eval'",
         "www.googletagmanager.com",
         "www.google-analytics.com",
-        "region1.google-analytics.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
     ]
@@ -136,6 +135,7 @@ if IS_POCKET_MODE:
     _csp_connect_src = [
         "www.googletagmanager.com",
         "www.google-analytics.com",
+        "region1.google-analytics.com",
         "o1069899.sentry.io",
         "o1069899.ingest.sentry.io",
         "cdn.cookielaw.org",
