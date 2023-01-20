@@ -19,22 +19,6 @@
         justify-content: center;
         position: relative;
 
-        .c-background-video {
-            bottom: 0;
-            display: none;
-            height: 100%;
-            left: 0;
-            object-fit: cover;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-
-            @media (prefers-reduced-motion: no-preference) {
-                display: block;
-            }
-        }
-
         .overlay {
             background-color: rgba(0, 256, 256, 0.8);
             content: '';
