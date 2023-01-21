@@ -38,11 +38,6 @@
     </div>
 
     <div class="job-apply">
-    {% if postings|length == 1 %}
-      <div class="appy-btn">
-        <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
-      </div>
-    {% else %}
       <div class="mzp-c-menu-list">
         <h3 class="mzp-c-menu-list-title">Apply Now</h3>
         <ul class="mzp-c-menu-list-list">
@@ -51,7 +46,6 @@
         {% endfor %}
         </ul>
       </div>
-    {% endif %}
     </div>
   </div>
 
@@ -60,11 +54,6 @@
   </div>
 
   <div class="job-apply">
-  {% if postings|length == 1 %}
-    <div class="appy-btn">
-      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
-    </div>
-  {% else %}
     <div class="mzp-c-menu-list">
       <h3 class="mzp-c-menu-list-title">Apply Now</h3>
       <ul class="mzp-c-menu-list-list">
@@ -73,7 +62,6 @@
       {% endfor %}
       </ul>
     </div>
-  {% endif %}
   </div>
 
   <p><a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a></p>
