@@ -48,3 +48,4 @@ ACTION_SAVE = "save"
 ACTION_AUTO_SAVE = "auto_save"
 
 VRC_ROOT_PATH = "/products/vpn/resource-center/"
+PRODUCT_STORY_ROOT_PATH = "/stories/"

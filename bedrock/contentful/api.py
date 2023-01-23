@@ -21,6 +21,7 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_PAGE_GENERAL,
     CONTENT_TYPE_PAGE_PRODUCT_STORY,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+    PRODUCT_STORY_ROOT_PATH,
 )
 from bedrock.contentful.models import ContentfulEntry
 from lib.l10n_utils import get_locale, render_to_string
@@ -387,13 +388,12 @@ def _make_image(entry):
     caption = fields.get("caption")
     alt = fields.get("alt_text")
 
-    print(fields.get("alt_text"))
     if caption is not None:
         caption = f"<figcaption>{ caption }</figcaption>"
     else:
         caption = ""
 
-    string = f"<figure class='c-stories-image'><img src='{_get_image_url(fields.get('image'), 900)}' alt='{alt}' />{caption}</figure>"
+    string = f"<figure><img src='{_get_image_url(fields.get('image'), 900)}' alt='{alt}' loading='lazy' />{caption}</figure>"
 
     return string
 
@@ -407,6 +407,7 @@ class BlockEntryRenderer(BaseNodeRenderer):
         if content_type == "embedBlockquote":
             return _make_blockquote(entry)
         if content_type == "embedImage":
+            print("make image")
             return _make_image(entry)
         else:
             return content_type
@@ -606,18 +607,39 @@ class ContentfulPage:
         contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
         related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
 
-        # todo: create multiple image sizes, sm/md/lg
         return {
             "published": entry_fields.get("published"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
-            "image": _get_image_url(entry_fields["image"], 800),
+            "image": {
+                "url": _get_image_url(entry_fields["image"], 500),
+                "srcset": f"{_get_image_url(entry_fields['image'], 500)} 500w, {_get_image_url(entry_fields['image'], 1500)} 1500w",
+                "sizes": "(min-width: 1400px) 1000px, (min-width: 752px) 75vw, 100vw",
+            },
             "image_caption": entry_fields.get("image_caption"),
             "contributors": [
-                {"name": contributor.name, "position": contributor.position, "image": contributor.image, "image_credit": contributor.image_credit}
+                {
+                    "name": contributor.name,
+                    "position": contributor.position,
+                    "image": {"url": _get_image_url(contributor.image, 113), "srcset": f"{_get_image_url(contributor.image, 171)} 1.5x"},
+                    "image_credit": contributor.image_credit,
+                }
                 for contributor in contributors
             ],
             "dek": entry_fields.get("dek"),
-            "related": [{"title": story.title, "dek": story.dek, "image": story.image, "link": story.slug} for story in related],
+            "related": [
+                {
+                    "title": story.title,
+                    "dek": story.dek,
+                    "image": {
+                        "url": _get_image_url(story.image, 400),
+                        "srcset": f"{_get_image_url(story.image, 200)} 200w, {_get_image_url(story.image, 600)} 600w",
+                        "sizes": "(min-width: 1400px) 400px, (min-width: 752px) 50vw, 100vw",
+                    },
+                    "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
+                }
+                for story in related
+            ],
+            # todo: handle Product Story urls in sitemap too?
         }
 
     def get_info_data(self, entry_obj, seo_obj=None):
