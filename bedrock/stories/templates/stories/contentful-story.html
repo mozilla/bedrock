@@ -15,8 +15,13 @@
   {{ css_bundle('mozilla-stories-contentful-article') }}
 {% endblock %}
 
+<!-- Set story-specific info -->
+{% set published = info.published %}
 {% set title = info.title | safe %}
 {% set theme = info.theme %}
+{% set contributors = info.contributors %}
+{% set dek = info.dek %}
+{% set related = info.related %}
 
 {% block page_title_full %}{{ title }}{% endblock %}
 {% block page_desc %}{{ desc }}{% endblock %}
@@ -34,42 +39,40 @@
 {% block content %}
   <article
     class="c-stories-article"
-    {% if credits %}style="--sidebar-width: 20ch"{% endif %}
+    {% if contributors %}style="--sidebar-width: 20ch"{% endif %}
   >
     <header class="c-stories-article-header full-width">
       <div class="c-stories-article-header-wrapper">
         {% if is_featured %}<p class="is-featured">Featured Article</p>{% endif%}
         <h1>{{ title }}</h1>
         <div class="metadata">
-          <p>Published<br> <time datetime="">{{ info.published }}</time></p>
+          <p>Published<br> <time datetime="">{{ published }}</time></p>
           <p>Value<br> {{ value }}</p>
       </div>
     </header>
     <div class="c-stories-article-container full-width">
       <aside class="c-stories-article-credits">
-      {% if credits %}
+      {% if contributors %}
           <h2>Article contributors</h2>
           <p class="c-stories-article-credits-mobile">
-            {% for credit in credits %}
-              {{credit.name }}{% if not loop.last %}, {% endif %}
+            {% for contributor in contributors %}
+              {{contributor.name }}{% if not loop.last %}, {% endif %}
             {% endfor %}
             </p>
           <div>
-          {% for credit in credits %}
+          {% for contributor in contributors %}
             <figure>
-              {% if credit.image %}{{ credit.image }}{% endif %}
-              <figcaption>{{ credit.name }}</figcaption>
-              <figcaption>{{ credit.title }}</figcaption>
-              {% if credit.photo_credit %}<figcaption>{{ credit.photo_credit }}</figcaption>{% endif %}
+              {% if contributor.image %}{{ contributor.image }}{% endif %}
+              <figcaption>{{ contributor.name }}</figcaption>
+              <figcaption>{{ contributor.position }}</figcaption>
+              {% if contributor.photo_contributor %}<figcaption>{{ contributor.image_credit }}</figcaption>{% endif %}
             </figure>
           {% endfor %}
           </div>
       {% endif %}
       </aside>
       <section class="c-stories-article-content full-width">
-        <!-- does it belong under info? -->
-        <p>{{ info.dek }}</p>
-        <!-- does the entries array make sense in these compose pages? -->
+        <p>{{ dek }}</p>
         {% for entry in entries -%}
           {{ entry.body|external_html }}
         {% endfor %}
@@ -88,7 +91,7 @@
             {% for item in related %}
               {{ card(
                 title=item.title,
-                desc=item.desc,
+                desc=item.dek,
                 image=item.image,
                 link_url=item.link,
                 heading_level=3

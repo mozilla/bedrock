@@ -599,6 +599,27 @@ class ContentfulPage:
             locale = entry_obj.sys["locale"]
         return {"locale": locale}
 
+    def _get_info_data__product_story(self, entry_fields):
+        COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
+
+        # todo: handle None, return dicts with full info instead of test strings
+        contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
+        related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
+
+        # todo: create multiple image sizes, sm/md/lg
+        return {
+            "published": entry_fields.get("published"),
+            "theme": COLOR_MAP[entry_fields.get("accent_color")],
+            "image": _get_image_url(entry_fields["image"], 800),
+            "image_caption": entry_fields.get("image_caption"),
+            "contributors": [
+                {"name": contributor.name, "position": contributor.position, "image": contributor.image, "image_credit": contributor.image_credit}
+                for contributor in contributors
+            ],
+            "dek": entry_fields.get("dek"),
+            "related": [{"title": story.title, "dek": story.dek, "image": story.image, "link": story.slug} for story in related],
+        }
+
     def get_info_data(self, entry_obj, seo_obj=None):
         entry_fields = entry_obj.fields()
         if seo_obj:
@@ -651,27 +672,8 @@ class ContentfulPage:
             )
         )
 
-        # easiest place to put it for now, not the best
         if page_type == CONTENT_TYPE_PAGE_PRODUCT_STORY:
-            COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
-
-            # todo: handle None, return dicts with full info instead of test strings
-            contributors = entry_fields.get("contributors")
-            related = entry_fields.get("related_stories")
-
-            # todo: create multiple image sizes, sm/md/lg
-            data.update(
-                {
-                    "published": entry_fields.get("published"),
-                    "theme": COLOR_MAP[entry_fields.get("accent_color")],
-                    "image": _get_image_url(entry_fields["image"], 800),
-                    "image_caption": entry_fields.get("image_caption"),
-                    "credits": [ContentfulPage.client.entry(contributor.id).name for contributor in contributors],
-                    "dek": entry_fields.get("dek"),
-                    "related": [ContentfulPage.client.entry(story.id).title for story in related],
-                }
-            )
-            # published format: 2022-12-06T09:00-05:00
+            data.update(self._get_info_data__product_story(entry_fields))
 
         return data
 
