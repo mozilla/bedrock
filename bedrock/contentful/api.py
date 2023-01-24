@@ -407,7 +407,6 @@ class BlockEntryRenderer(BaseNodeRenderer):
         if content_type == "embedBlockquote":
             return _make_blockquote(entry)
         if content_type == "embedImage":
-            print("make image")
             return _make_image(entry)
         else:
             return content_type
@@ -601,12 +600,14 @@ class ContentfulPage:
         return {"locale": locale}
 
     def _get_info_data__product_story(self, entry_fields):
+        # this info is shared between /stories landing template and individual story template
         COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
 
         # todo: handle None, return dicts with full info instead of test strings
         contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
         related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
 
+        # todo: figure out how to manage the hero image and card image for landing (right now they're both using hero resp image attributes)
         return {
             "published": entry_fields.get("published"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
@@ -626,6 +627,7 @@ class ContentfulPage:
                 for contributor in contributors
             ],
             "dek": entry_fields.get("dek"),
+            "link": f"{PRODUCT_STORY_ROOT_PATH}{entry_fields.get('slug')}",
             "related": [
                 {
                     "title": story.title,

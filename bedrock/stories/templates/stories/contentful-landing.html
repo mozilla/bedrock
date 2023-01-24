@@ -21,8 +21,9 @@
 
 {% block content %}
   <main>
+    {{ featured_story.link }}
     {% with
-      url="/stories/" + featured_story.slug,
+      link=featured_story.link,
       image=featured_story.image,
       caption=featured_story.image_caption,
       title=featured_story.title,
@@ -38,9 +39,9 @@
         {% for story in stories %}
           {{ card(
             title=story.title,
-            desc=story.desc,
-            image=story.image,
-            link_url=story.url,
+            desc=story.dek,
+            image="<img src='{}' srcset='{}' sizes='{}' alt='' width='349' height='239' loading='lazy'>".format(story.image.url, story.image.srcset, story.image.sizes),
+            link_url=story.link,
             heading_level=3
           )}}
         {% endfor %}

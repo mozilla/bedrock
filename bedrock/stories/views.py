@@ -21,22 +21,15 @@ def pbj_story_page(request, slug):
     )
     ctx.update(story.data)
 
-    print(ctx)
-
     return l10n_utils.render(request, template_name, ctx)
 
 
 @require_safe
 def pbj_landing_page(request):
     """Contentful PBJ Landing Page"""
-    # ft. is latest published
-    # all other articles listed in Other Stories section by publish date
     template_name = "stories/contentful-landing.html"
 
-    # get all stories
-    # todo: order by official published date (newest to oldest), not necessarily last modified
-    # does it make sense to convert this to a list?
-    # should there be a _get_pbj_story_preview function that formats the data?
+    # get all stories (TODO: order by info.published field, newest story should be first in list)
     stories = [
         story.data["info"]
         for story in ContentfulEntry.objects.get_entries_by_type(
@@ -44,16 +37,9 @@ def pbj_landing_page(request):
         )
     ]
 
-    # todo:
-    # - separate featured story from other stories
-    # is there a better way to take the latest published story out of the list? does it need to be a list?
+    # Remove first story from list for spotlight as featured story
     featured_story = stories.pop(0)
-    # - only send preview data (no content body)
 
     ctx = {"featured_story": featured_story, "stories": stories}
-
-    # I only get one story here, but there are two (both in draft status) in contentful sandbox
-    print(len(stories))
-    print(stories)
 
     return l10n_utils.render(request, template_name, ctx)
