@@ -548,6 +548,20 @@ class TestRespImg(TestCase):
         )
         self.assertEqual(markup, expected)
 
+    def test_resp_img_absolute_urls(self):
+        """Should return expected markup when absolute image URLs are passed"""
+        expected = (
+            '<img src="https://www.example.com/img/panda-500.png" '
+            'srcset="https://www.example.com/img/panda-500.png 500w,https://www.example.com/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-500.png",
+            {"https://www.example.com/img/panda-500.png": "500w", "https://www.example.com/img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+        )
+        self.assertEqual(markup, expected)
+
     def test_resp_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         expected = (

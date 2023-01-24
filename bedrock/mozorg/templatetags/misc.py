@@ -240,14 +240,16 @@ def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
             attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     # default src
-    url = l10n_img(ctx, url) if l10n else static(url)
+    if not url.startswith("https://"):
+        url = l10n_img(ctx, url) if l10n else static(url)
 
     if srcset:
         srcset_last_item = list(srcset)[-1]
         for image, size in srcset.items():
             postfix = "" if image == srcset_last_item else ","
-            img = l10n_img(ctx, image) if l10n else static(image)
-            final_srcset = final_srcset + img + " " + size + postfix
+            if not image.startswith("https://"):
+                image = l10n_img(ctx, image) if l10n else static(image)
+            final_srcset = final_srcset + image + " " + size + postfix
 
     if sizes:
         sizes_last_item = list(sizes)[-1]
