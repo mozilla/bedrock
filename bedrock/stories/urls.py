@@ -7,14 +7,14 @@ from django.urls import path
 from bedrock.mozorg.util import page
 from bedrock.stories import views
 
+# note: preserving the individual story page urls for backwards compatibility with name-based url calls
 urlpatterns = (
-    page("", "stories/landing.html"),
+    path("", views.landing_page, name="stories.landing"),
+    path("<slug:slug>/", views.story_page),
     page("art-of-engagement/", "stories/articles/art-of-engagement.html"),
     page("build-together/", "stories/articles/build-together.html"),
     page("community-champion/", "stories/articles/community-champion.html"),
     page("joy-of-color/", "stories/articles/joy-of-color.html"),
     page("raising-technology-eq/", "stories/articles/raising-technology-eq.html"),
-    page("dreaming-then-building/", "stories/articles/dreaming-then-building.html"),
-    path("contentful/landing/", views.pbj_landing_page),
-    path("contentful/<slug:slug>/", views.pbj_story_page),
+    page("dreaming-then-building/", "stories/articles/dreaming-then-building.html")
 )

@@ -7,7 +7,7 @@
  <section class="c-stories-featured">
    <div class="mzp-l-content mzp-t-content-lg">
        <figure class="{% if image_class %}{{ image_class }}{% endif %}">
-         <a href="{{ url }}">
+         <a href="{{ link }}">
           <img src='{{ image.url }}' srcset='{{ image.srcset }}' sizes='{{ image.sizes }}' alt='' width='1000' height='500' loading='eager'>
          </a>
          {% if caption %}
