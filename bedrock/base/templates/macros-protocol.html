@@ -7,7 +7,7 @@
 {% from "macros.html" import image as image_macro with context %}
 
 {#
-  Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html
+  Billboard: https://protocol.mozilla.org/components/detail/billboard.html
   HTML Import: {% from "macros-protocol.html" import billboard with context %}
   CSS Import: @import '~@mozilla-protocol/core/protocol/css/components/billboard';
   Macro Parameters:
@@ -89,7 +89,7 @@
 
 
 {#
-  Split: https://protocol.mozilla.org/patterns/organisms/split.html
+  Split: https://protocol.mozilla.org/components/detail/split--default.html
   HTML import: {% from "macros-protocol.html" import split with context %}
   CSS Bundle: {% block page_css %} { css_bundle('protocol-split') }} {% endblock %}
   Macro Parameters:
@@ -155,7 +155,7 @@
 
 
 {#
-  Call Out: https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out
+  Call Out: https://protocol.mozilla.org/components/detail/call-out--default.html
   HTML import: {% from "macros-protocol.html" import call_out with context %}
   CSS bundle: {% block page_css %} {{ css_bundle('protocol-call-out') }} {% endblock %}
   Macro parameters:
@@ -181,8 +181,14 @@
 
 
 {#
-  Call Out (compact): https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out-compact
-  see call-out for detailed documentation
+  Call Out (compact): https://protocol.mozilla.org/components/detail/compact-call-out--default.html
+  HTML import: {% from "macros-protocol.html" import call_out with context %}
+  CSS bundle: {% block page_css %} {{ css_bundle('protocol-call-out') }} {% endblock %}
+  Marco Parameters:
+    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
+    class: tring adding class(es) to the section tag.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
 #}
 {% macro call_out_compact(title, desc=None, class=None, heading_level=2) -%}
 <section class="mzp-c-call-out-compact {% if class %}{{ class }}{% endif %}">
