@@ -33,39 +33,16 @@ $image-path: '/media/protocol/img';
 }
 
 #pocket-sidekick {
-    background: #44a1ff linear-gradient(to top, #00b3f4 0%, #0090ed 72%, #0060df 100%);
-    margin-bottom: 0;
-    margin-top: $spacing-xl;
-
-    // override the default rule on split
-    overflow-x: visible;
+    $pop-out: 10%;
+    $gradient-stop: calc(100% - #{$pop-out});
+    background: #44a1ff linear-gradient(to top, #00b3f4 0%, #0090ed 72%, #0060df $gradient-stop, white $gradient-stop);
+    padding-top: 0;
+    padding-bottom: 0;
 
     .mzp-c-hero-title {
         @include text-title-md;
+        padding-top: calc(#{$pop-out} + #{$layout-md});
         margin-bottom: $layout-md;
-    }
-
-    @media #{$mq-md} {
-        margin-top: $layout-xl;
-
-        .mzp-c-split-media {
-            bottom: 0;
-            height: calc(100% + #{$spacing-xl});
-            width: 50%;
-            left: 50%;
-            position: absolute;
-            top: auto;
-
-            img {
-                bottom: 0;
-                left: 0;
-                max-height: 100%;
-                max-width: none;
-                position: absolute;
-                right: auto;
-                width: auto;
-            }
-        }
     }
 }
 

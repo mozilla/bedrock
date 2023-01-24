@@ -18,36 +18,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// overrides to split component to
-.t-split-hero .mzp-c-split-media {
-    @media #{$mq-md} {
-        height: calc(100% - #{$layout-lg});
-        left: 50%;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        right: auto;
-        top: $spacing-xl;
-        width: 50%;
-        z-index: 2;
-
-        img {
-            bottom: 0;
-            left: 0;
-            max-height: 100%;
-            max-width: none;
-            position: absolute;
-            right: auto;
-            width: auto;
-        }
-    }
-
-    @media #{$mq-lg} {
-        height: calc(100% - #{$layout-xl});
-        top: $spacing-2xl;
-    }
-}
-
 .mzp-c-split-body {
     .mzp-c-wordmark {
         margin-bottom: $spacing-2xl;
