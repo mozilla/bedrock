@@ -662,6 +662,24 @@ class TestPicture(TestCase):
         )
         self.assertEqual(markup, expected)
 
+    def test_picture_absolute_urls(self):
+        """Should return expected markup when absolute image urls are passed"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="https://www.example.com/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="https://www.example.com/img/panda-desktop.png">'
+            '<img src="https://www.example.com/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"https://www.example.com/img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"https://www.example.com/img/panda-desktop.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
     def test_picture_media_multiple_srcset_sizes(self):
         """Should return expected markup when specifying media with multiple srcset and sizes"""
         expected = (
