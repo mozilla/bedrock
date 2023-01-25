@@ -24,6 +24,7 @@ from bedrock.contentful.constants import (
     PRODUCT_STORY_ROOT_PATH,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.mozorg.templatetags.misc import resp_img
 from lib.l10n_utils import get_locale, render_to_string
 
 # Some of Bedrock and Contentful's locale codes slightly differ, so we translate between them.
@@ -393,6 +394,7 @@ def _make_image(entry):
     else:
         caption = ""
 
+    # todo: responsify
     string = f"<figure><img src='{_get_image_url(fields.get('image'), 900)}' alt='{alt}' loading='lazy' />{caption}</figure>"
 
     return string
@@ -607,21 +609,42 @@ class ContentfulPage:
         contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
         related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
 
-        # todo: figure out how to manage the hero image and card image for landing (right now they're both using hero resp image attributes)
+        # todo: add alt text to all images (ensure contentful has specific field)
         return {
             "published": entry_fields.get("published"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
-            "image": {
-                "url": _get_image_url(entry_fields["image"], 500),
-                "srcset": f"{_get_image_url(entry_fields['image'], 500)} 500w, {_get_image_url(entry_fields['image'], 1500)} 1500w",
-                "sizes": "(min-width: 1400px) 1000px, (min-width: 752px) 75vw, 100vw",
-            },
+            "image": resp_img(
+                url=_get_image_url(entry_fields["image"], 500),
+                srcset={
+                    _get_image_url(entry_fields["image"], 500): "500w",
+                    _get_image_url(entry_fields["image"], 1000): "1000w",
+                    _get_image_url(entry_fields["image"], 1500): "1500w",
+                },
+                sizes={"(min-width: 1400px)": "1000px", "(min-width: 752px)": "75vw", "default": "100vw"},
+                optional_attributes={"height": "500", "width": "1000", "loading": "eager"},
+            ),
             "image_caption": entry_fields.get("image_caption"),
+            "card_image": resp_img(
+                url=_get_image_url(entry_fields["image"], 349),
+                srcset={
+                    _get_image_url(entry_fields["image"], 200): "200w",
+                    _get_image_url(entry_fields["image"], 349): "349w",
+                    _get_image_url(entry_fields["image"], 700): "700w",
+                },
+                sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
+                optional_attributes={"height": "239", "width": "349", "loading": "lazy"},
+            ),
             "contributors": [
                 {
                     "name": contributor.name,
                     "position": contributor.position,
-                    "image": {"url": _get_image_url(contributor.image, 113), "srcset": f"{_get_image_url(contributor.image, 171)} 1.5x"},
+                    "image": resp_img(
+                        url=_get_image_url(contributor.image, 113),
+                        srcset={
+                            _get_image_url(contributor.image, 171): "1.5x",
+                        },
+                        optional_attributes={"height": "131", "width": "113"},
+                    ),
                     "image_credit": contributor.image_credit,
                 }
                 for contributor in contributors
@@ -632,11 +655,16 @@ class ContentfulPage:
                 {
                     "title": story.title,
                     "dek": story.dek,
-                    "image": {
-                        "url": _get_image_url(story.image, 400),
-                        "srcset": f"{_get_image_url(story.image, 200)} 200w, {_get_image_url(story.image, 600)} 600w",
-                        "sizes": "(min-width: 1400px) 400px, (min-width: 752px) 50vw, 100vw",
-                    },
+                    "image": resp_img(
+                        url=_get_image_url(story.image, 349),
+                        srcset={
+                            _get_image_url(story.image, 200): "200w",
+                            _get_image_url(story.image, 349): "349w",
+                            _get_image_url(story.image, 700): "700w",
+                        },
+                        sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
+                        optional_attributes={"height": "239", "width": "349", "loading": "lazy"},
+                    ),
                     "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
                 }
                 for story in related

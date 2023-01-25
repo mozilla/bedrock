@@ -55,6 +55,7 @@ def landing_page(request):
             featured_story = stories.pop(0)
             ctx = {"featured_story": featured_story, "stories": stories}
         except Exception as ex:
+            print("error!")
             capture_exception(ex)
     else:
         # set hardcoded landing page

@@ -63,7 +63,7 @@
           {% for contributor in contributors %}
             <figure>
               {% if contributor.image %}
-                <img src={{contributor.image.url}} srcset={{contributor.image.srcset}} alt="" width="114" height="131">
+                {{ contributor.image | external_html }}
               {% endif %}
               <figcaption>{{ contributor.name }}</figcaption>
               <figcaption>{{ contributor.position }}</figcaption>
