@@ -52,7 +52,7 @@ def set_country(request, token):
     if countrycode:
         initial["country"] = countrycode.lower()
 
-    form = CountrySelectForm("en-US", None, initial=initial)
+    form = CountrySelectForm("en-US", initial=initial)
 
     context = {
         "action": f"{settings.BASKET_URL}/news/user-meta/",
@@ -108,8 +108,8 @@ def confirm(request, token):
 
 
 def confirm_thanks(request):
-    generic_error = request.GET.get("error", None) == "1"
-    token_error = request.GET.get("error", None) == "2"
+    generic_error = request.GET.get("error") == "1"
+    token_error = request.GET.get("error") == "2"
 
     return l10n_utils.render(request, "newsletter/confirm.html", {"token_error": token_error, "generic_error": generic_error}, ftl_files=FTL_FILES)
 
@@ -142,7 +142,7 @@ def existing(request, token=None):
         "strings_url": reverse("newsletter.strings"),
         "updated_url": reverse("newsletter.updated"),
         "recovery_url": reverse("newsletter.recovery"),
-        "did_confirm": request.GET.get("confirm", None) == "1",
+        "did_confirm": request.GET.get("confirm") == "1",
         "form": form,
     }
 
