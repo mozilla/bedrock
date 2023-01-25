@@ -225,7 +225,7 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.pass_context
-def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
+def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None):
     alt = ""
     attrs = ""
     final_sizes = ""
