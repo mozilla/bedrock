@@ -41,8 +41,16 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-hero-title {
         @include text-title-md;
-        padding-top: calc(#{$pop-out} + #{$layout-md});
         margin-bottom: $layout-md;
+    }
+
+    .mzp-c-split-body {
+        padding-top: calc(#{$pop-out} + #{$layout-md});
+        padding-bottom: $layout-md;
+    }
+
+    .mzp-c-split-media-asset {
+        max-height: 400px;
     }
 }
 

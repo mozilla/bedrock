@@ -63,8 +63,8 @@
   {% call split(
     block_class='mzp-l-split-center-on-sm-md t-split-hero',
     media_class='mzp-l-split-media-overflow',
-    media_after=False,
-    image=resp_img(hero_img)
+    media_after=True,
+    image=resp_img(url=hero_img, optional_attributes={ 'class': 'mzp-c-split-media-asset' })
 
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox"></div>
