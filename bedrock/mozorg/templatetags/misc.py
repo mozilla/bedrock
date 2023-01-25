@@ -225,7 +225,7 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.pass_context
-def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
+def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None):
     alt = ""
     attrs = ""
     final_sizes = ""
@@ -240,14 +240,16 @@ def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
             attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     # default src
-    url = l10n_img(ctx, url) if l10n else static(url)
+    if not url.startswith("https://"):
+        url = l10n_img(ctx, url) if l10n else static(url)
 
     if srcset:
         srcset_last_item = list(srcset)[-1]
         for image, size in srcset.items():
             postfix = "" if image == srcset_last_item else ","
-            img = l10n_img(ctx, image) if l10n else static(image)
-            final_srcset = final_srcset + img + " " + size + postfix
+            if not image.startswith("https://"):
+                image = l10n_img(ctx, image) if l10n else static(image)
+            final_srcset = final_srcset + image + " " + size + postfix
 
     if sizes:
         sizes_last_item = list(sizes)[-1]
@@ -268,7 +270,7 @@ def resp_img(ctx, url, srcset=None, sizes=None, optional_attributes=None):
 
 @library.global_function
 @jinja2.pass_context
-def picture(ctx, url, sources, optional_attributes=None):
+def picture(ctx={}, url=None, sources=[], optional_attributes=None):
     alt = ""
     attrs = ""
     final_sources = []
@@ -282,7 +284,8 @@ def picture(ctx, url, sources, optional_attributes=None):
             attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     # default src
-    url = l10n_img(ctx, url) if l10n else static(url)
+    if not url.startswith("https://"):
+        url = l10n_img(ctx, url) if l10n else static(url)
 
     # sources
     for source in sources:
@@ -298,11 +301,12 @@ def picture(ctx, url, sources, optional_attributes=None):
             srcset_last_item = list(source_srcset)[-1]
             for image, descriptor in source_srcset.items():
                 postfix = "" if image == srcset_last_item else ","
-                img = l10n_img(ctx, image) if l10n else static(image)
+                if not url.startswith("https://"):
+                    image = l10n_img(ctx, image) if l10n else static(image)
                 if descriptor == "default":
-                    final_srcset = final_srcset + img + postfix
+                    final_srcset = final_srcset + image + postfix
                 else:
-                    final_srcset = final_srcset + img + " " + descriptor + postfix
+                    final_srcset = final_srcset + image + " " + descriptor + postfix
 
         # sizes
         if source_sizes:

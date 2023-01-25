@@ -548,6 +548,20 @@ class TestRespImg(TestCase):
         )
         self.assertEqual(markup, expected)
 
+    def test_resp_img_absolute_urls(self):
+        """Should return expected markup when absolute image URLs are passed"""
+        expected = (
+            '<img src="https://www.example.com/img/panda-500.png" '
+            'srcset="https://www.example.com/img/panda-500.png 500w,https://www.example.com/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-500.png",
+            {"https://www.example.com/img/panda-500.png": "500w", "https://www.example.com/img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+        )
+        self.assertEqual(markup, expected)
+
     def test_resp_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         expected = (
@@ -644,6 +658,24 @@ class TestPicture(TestCase):
             [
                 {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
                 {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_absolute_urls(self):
+        """Should return expected markup when absolute image urls are passed"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="https://www.example.com/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="https://www.example.com/img/panda-desktop.png">'
+            '<img src="https://www.example.com/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"https://www.example.com/img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"https://www.example.com/img/panda-desktop.png": "default"}},
             ],
         )
         self.assertEqual(markup, expected)
