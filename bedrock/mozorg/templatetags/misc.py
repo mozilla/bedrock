@@ -301,7 +301,7 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
             srcset_last_item = list(source_srcset)[-1]
             for image, descriptor in source_srcset.items():
                 postfix = "" if image == srcset_last_item else ","
-                if not url.startswith("https://"):
+                if not image.startswith("https://"):
                     image = l10n_img(ctx, image) if l10n else static(image)
                 if descriptor == "default":
                     final_srcset = final_srcset + image + postfix
