@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/new/basic/base.html" %}
 
@@ -41,6 +41,7 @@
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_new_download') }}
+  {{ css_bundle('protocol-split') }}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -59,14 +60,15 @@
   <div class="mzp-c-notification-bar mzp-t-warning" data-nosnippet="true">{{ ftl('firefox-new-mozilla-no-longer-provides', fallback='firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</div>
   <![endif]-->
 
-  {% call hero(
-    title=hero_title,
-    class='mzp-has-image hero-firefox t-narrow',
-    include_cta=True,
-    image_url=hero_img,
-    heading_level=1
-  ) %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md t-split-hero',
+    media_class='mzp-l-split-media-overflow',
+    media_after=True,
+    image=resp_img(url=hero_img, optional_attributes={ 'class': 'mzp-c-split-media-asset' })
 
+  ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox"></div>
+    <h1 class="c-download-split-title">{{ hero_title }}</h1>
     <div class="c-intro-download">
       {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
 

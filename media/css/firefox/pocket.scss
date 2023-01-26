@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
 .pocket-hero {
     h1 {
@@ -34,24 +33,24 @@ $image-path: '/media/protocol/img';
 }
 
 #pocket-sidekick {
-    background: #44a1ff linear-gradient(to top, #00b3f4 0%, #0090ed 72%, #0060df 100%);
-    margin-bottom: 0;
-    margin-top: $spacing-xl;
+    $pop-out: 10%;
+    $gradient-stop: calc(100% - #{$pop-out});
+    background: #44a1ff linear-gradient(to top, #00b3f4 0%, #0090ed 72%, #0060df $gradient-stop, white $gradient-stop);
+    padding-top: 0;
+    padding-bottom: 0;
 
     .mzp-c-hero-title {
         @include text-title-md;
         margin-bottom: $layout-md;
     }
 
-    @media #{$mq-md} {
-        margin-top: $layout-xl;
+    .mzp-c-split-body {
+        padding-top: calc(#{$pop-out} + #{$layout-md});
+        padding-bottom: $layout-md;
+    }
 
-        .mzp-c-hero-image {
-            bottom: 0;
-            height: calc(100% + #{$spacing-xl});
-            max-width: 50%;
-            top: auto;
-        }
+    .mzp-c-split-media-asset {
+        max-height: 400px;
     }
 }
 

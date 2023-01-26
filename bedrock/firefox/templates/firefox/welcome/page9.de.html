@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -20,18 +20,24 @@
 
 {% block shoulder_cta %}{% endblock %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-call-out') }}
+{% endblock %}
+
+
 {% block content_intro %}
   <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="">
 
-  {% call hero(
+  {% call call_out(
     title='Standort ändern, <br>Verbindung sichern, <br><strong>Privatsphäre schützen</strong>.'|safe,
     desc='Mozilla VPN (Virtuelles Privates Netzwerk) schützt deine gesamte Internetverbindung – auf all deinen Geräten und überall dort, wo du online gehst.',
-    class='mzp-t-firefox',
+    class='mzp-t-firefox mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}
 
-  <p class="mzp-c-hero-desc">Schnell, zuverlässig und extra sicher mit 30 Tage Geld-zurück-Garantie.</p>
+  <p class="mzp-c-call-out-desc">Schnell, zuverlässig und extra sicher mit 30 Tage Geld-zurück-Garantie.</p>
 
   <p class="primary-cta">
     <a href="{{ url('products.vpn.landing') }}{{ _source }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Get Mozilla VPN" data-cta-type="button">Hol dir Mozilla VPN</a>

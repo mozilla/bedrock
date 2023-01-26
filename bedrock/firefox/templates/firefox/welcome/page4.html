@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -17,14 +17,19 @@
 {% set android_url = firefox_adjust_url('android', 'welcome-4') %}
 {% set ios_url = firefox_adjust_url('ios', 'welcome-4') %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-call-out') }}
+{% endblock %}
+
 {% set _entrypoint = 'mozilla.org-firefox-welcome-4' %}
 {% set _utm_campaign = 'welcome-4-mobile' %}
 
 {% block content_intro %}
-{% call hero(
+{% call call_out(
     title=ftl('welcome-page4-privacy-every-screen-now', fallback='welcome-page4-wallet-keys-phone-firefox'),
     desc=ftl('welcome-page4-privacy-on-by-default', fallback='welcome-page4-take-privacy-with-you-on-every'),
-    class='mzp-t-firefox',
+    class='mzp-t-firefox mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}

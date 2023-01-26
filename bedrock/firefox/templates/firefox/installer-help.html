@@ -5,6 +5,7 @@
 #}
 
 {% extends "/firefox/base/base-protocol.html" %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -15,6 +16,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('installer_help') }}
+  {{ css_bundle('protocol-call-out') }}
 {% endblock %}
 
 {% block site_header %}
@@ -33,21 +35,21 @@
   {% set channel_logo = 'protocol/img/logos/firefox/browser/logo-word-hor.svg' %}
 {% endif %}
 
+{% if installer_channel %}
+  {% set call_out_desc = ftl("installer-help-action-channel") %}
+{% else %}
+  {% set call_out_desc = ftl("installer-help-action-choose") %}
+{% endif %}
+
 {% block content %}
 <main class="mzp-l-content">
-  <section class="mzp-c-hero">
-    <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ ftl('installer-help-page-title') }}</h1>
-      <div class="mzp-c-hero-desc">
-        <p>
-          {{ ftl('installer-help-main-tagline') }}
-          {% if installer_channel %}
-            <span>{{ ftl('installer-help-action-channel') }}</span>
-          {% else %}
-            <span>{{ ftl('installer-help-action-choose') }}</span>
-          {% endif %}
-        </p>
-      </div>
+  <section class="mzp-c-call-out mzp-t-hero installer-call-out">
+    <div class="mzp-l-content">
+      <h1 class="mzp-c-call-out-title">{{ ftl('installer-help-page-title') }}</h1>
+      <p class="mzp-c-call-out-desc">
+        {{ ftl('installer-help-main-tagline') }}
+        <span>{{ call_out_desc }}</span>
+      </p>
     </div>
   </section>
 

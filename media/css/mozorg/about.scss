@@ -7,17 +7,17 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
 // * -------------------------------------------------------------------------- */
 // Hero image
 
-.mzp-c-hero.t-mission {
+.mzp-c-call-out.mzp-t-hero {
     @include at2x('/media/img/mozorg/about/about-hero-xxs.jpg', auto, 400px);
     @include border-box;
     background-repeat: no-repeat;
     background-position: bottom center;
     min-height: 400px;
+    background-color: transparent;
 
     @media #{$mq-xs} {
         @include at2x('/media/img/mozorg/about/about-hero-xs.jpg', auto, 400px);
@@ -31,20 +31,22 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         @include border-box;
+        max-width: 830px;
+        padding: $layout-md $layout-lg;
         display: flex;
         flex-direction: column;
         height: 100%;
         justify-content: center;
     }
-}
 
-.mzp-c-hero-desc {
-    font-weight: bold;
-}
+    .mzp-c-call-out-desc {
+        font-weight: bold;
+        margin-bottom: $spacing-2xl;
+    }
 
-.mzp-c-hero-body,
-.mzp-c-hero-title {
-    max-width: 830px;
+    .c-call-out-cta {
+        margin-bottom: 1.25em;
+    }
 }
 
 // * -------------------------------------------------------------------------- */
@@ -72,8 +74,14 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Cities
 
-.mzp-c-hero.t-global {
+.t-global {
     padding: 0;
+    text-align: center;
+
+    .t-global-desc {
+        font-size: 18px;
+        font-weight: 700;
+    }
 }
 
 $city-image-size: 106px;

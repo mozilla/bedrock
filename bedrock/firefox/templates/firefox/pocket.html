@@ -92,25 +92,25 @@
     </div>
   </section>
 
-
-  <section id="pocket-sidekick" class="mzp-c-hero mzp-has-image mzp-t-dark">
-    <div class="mzp-l-content">
-      <div class="mzp-c-hero-body">
-        <h2 class="mzp-c-hero-title">
-          The Content You Love Belongs in Your Pocket.
-        </h2>
-
-        <div class="mzp-c-hero-cta">
-          <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}</p>
-        </div>
-      </div>
+  {% call split(
+    block_id='pocket-sidekick',
+    image=resp_img('img/firefox/pocket/pocket-illo-mobile.png',
+    srcset={'img/firefox/pocket/pocket-illo-mobile-high-res.png': '2x'},
+      optional_attributes={'class': 'mzp-c-split-media-asset', "loading": "lazy" }
+    ),
+    block_class='mzp-t-dark mzp-l-split-center-on-sm-md mzp-l-split-body-narrow',
+    media_class='mzp-l-split-media-overflow',
+    media_after=True
+  ) %}
+    <h2 class="mzp-c-hero-title">
+      The Content You Love Belongs in Your Pocket.
+    </h2>
+    <div class="mzp-c-hero-cta">
+      <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source},
+        optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position':
+        'secondary'}) }}</p>
     </div>
-
-    <div class="mzp-c-hero-image">
-      {{ image(url='img/firefox/pocket/pocket-illo-mobile.png', include_highres=True, loading="lazy") }}
-    </div>
-  </section>
-
+  {% endcall %}
 </main>
 {% endblock %}
 

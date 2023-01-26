@@ -6,15 +6,12 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 
-.mzp-c-hero {
-    .mzp-c-hero-title {
+.mzp-c-call-out.mzp-t-hero.mzp-t-product-firefox {
+    background: $color-white;
+
+    .mzp-c-call-out-title {
         @include background-size(64px, 64px);
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: $layout-xl;
     }
 }
 

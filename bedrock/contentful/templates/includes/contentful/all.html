@@ -5,38 +5,10 @@
 #}
 
 
-{% from "macros-protocol.html" import hero, call_out_compact, card, split, picto with context %}
+{% from "macros-protocol.html" import call_out_compact, card, split, picto with context %}
 
 {% for entry in entries -%}
-
-    {% if entry.component == 'hero' %}
-
-    {% if entries.index(entry) == 0: %}
-      {% set heading_level = 1 %}
-      {% set loading = 'eager' %}
-    {% else %}
-      {% set heading_level = 2 %}
-      {% set loading = 'lazy' %}
-    {% endif %}
-
-      {% call hero(
-        title=entry.title,
-        tagline=entry.tagline,
-        desc=entry.body|external_html,
-        product_class=entry.product_class,
-        class=entry.theme_class + ' ' + entry.image_class,
-        include_cta=entry.include_cta,
-        heading_level=heading_level,
-        image_url=entry.image,
-        include_highres_image=False,
-        loading=loading
-      ) %}
-
-        {{ entry.cta|external_html }}
-
-      {% endcall %}
-
-    {% elif entry.component == 'callout' %}
+    {% if entry.component == 'callout' %}
 
       {% call call_out_compact(
         title=entry.title,

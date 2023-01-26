@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import call_out_compact, call_out with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -27,23 +27,21 @@
 {% endblock %}
 
 {% block content %}
-  <section class="mzp-c-hero mzp-t-product-firefox">
+  <section class="mzp-c-call-out mzp-t-hero mzp-t-product-firefox">
     <div class="mzp-l-content">
-      <div class="mzp-c-hero-body">
-        <h1 class="mzp-c-hero-title">{{ ftl('features-adblocker-the-ad-blocker-a-secret') }}</h1>
-        <h2 class="mzp-c-hero-subtitle">{{ ftl('features-adblocker-so-many-ads-so-little') }}</h2>
-        <div class="mzp-c-hero-desc">
-          <p>{{ ftl('features-adblocker-the-average-person-sees') }}</p>
-          <p>
-            {{ ftl('features-adblocker-an-ad-blocker-is-a-piece') }}
-          </p>
-          <p>
-            {{ ftl('features-adblocker-these-ads-might-be-loud', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/') }}
-          </p>
-        </div>
-        <div class="mzp-c-hero-cta">
-          {{ download_firefox(download_location='primary cta') }}
-        </div>
+      <h1 class="mzp-c-call-out-title">{{ ftl('features-adblocker-the-ad-blocker-a-secret') }}</h1>
+      <h2 class="mzp-c-call-out-subtitle">{{ ftl('features-adblocker-so-many-ads-so-little') }}</h2>
+      <div class="mzp-c-call-out-desc">
+        <p>{{ ftl('features-adblocker-the-average-person-sees') }}</p>
+        <p>
+          {{ ftl('features-adblocker-an-ad-blocker-is-a-piece') }}
+        </p>
+        <p>
+          {{ ftl('features-adblocker-these-ads-might-be-loud', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/') }}
+        </p>
+      </div>
+      <div class="mzp-c-call-out-cta">
+        {{ download_firefox(download_location='primary cta') }}
       </div>
     </div>
   </section>
