@@ -18,6 +18,41 @@
   {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
+{% if locale == 'de' and switch('pocket-banner-de-home') %}
+  {% block banner %}
+    <section class="c-banner">
+      <div class="c-banner-section-left">
+          {{ picture(
+              url='img/pocket/home/de-banner.png',
+              sources=[
+                {
+                  "media": "(min-width: 1312px)",
+                  "srcset": {
+                    'img/pocket/home/de-banner.png': '234w',
+                    'img/pocket/home/de-banner-high-res.png': '2x'
+                  }
+                },
+                {
+                  "media": "(min-width: 1024px)",
+                  "srcset": {
+                    'img/pocket/home/de-banner-cropped.png': '188w',
+                    'img/pocket/home/de-banner-cropped-high-res.png': '2x'
+                  }
+                }
+              ],
+              optional_attributes={ 'class': "c-banner-image"}
+            )
+          }}
+          <p>Storys für mehr Sichtbarkeit</p>
+      </div>
+      <div class="c-banner-section-right">
+          <p>Entdecke Content, der die Autor*innen von „People of Deutschland“ inspiriert.</p>
+          <a data-cta-type="button" data-cta-text="Discover Pocket Collections" href="https://getpocket.com/de/collections/eine-partnerschaft-fuer-mehr-sichtbarkeit-bipoc-im-spotlight" class="mzp-c-button mzp-t-md mzp-t-product">Entdecke Pocket Collections</a>
+      </div>
+    </section>
+  {% endblock %}
+{% endif %}
+
 {% block header %}
   {% include 'pocket/includes/nav-platform.html' %}
 {% endblock %}
