@@ -27,13 +27,13 @@
   <main class="c-stories-main">
     {# Featured Stories #}
         {% with
-          url=url('stories.articles.raising-technology-eq'),
+          url=url('stories.articles.dreaming-then-building'),
           image=resp_img(
-            url="img/stories/raising-technology-eq-1000.jpg",
+            url="img/stories/platform-discovery-1000.jpg",
             srcset={
-                "img/stories/raising-technology-eq-500.jpg": "500w",
-                "img/stories/raising-technology-eq-1000.jpg": "1000w",
-                "img/stories/raising-technology-eq-1500.jpg": "1500w"
+                "img/stories/platform-discovery-500.jpg": "500w",
+                "img/stories/platform-discovery-1000.jpg": "1000w",
+                "img/stories/platform-discovery-1500.jpg": "1500w"
             },
             sizes={
               "(min-width: 767px)": "calc(100vw - 80px)",
@@ -45,11 +45,10 @@
               "height": "667"
             }
           ),
-          caption="Photo by Alina Grubnyak on Unsplash",
-          title="Raising Technology’s EQ",
-          desc="Pamela Pavliscak studies the impact of technology and how we feel. Here’s why she thinks we’re entering the era of big emotion.",
+          title="Dreaming Then Building With Platform Discovery",
+          desc="Product manager Karen Kim kicked off the chat with a question: “How can we…?” Several Zoom meetings and one Miro board later, her team had a solid wishlist of engineer-dreamed ideas to pick from and deliver.",
           value="Connection",
-          theme_class="orange"
+          theme_class="pink"
         %}
           {% include 'stories/includes/stories-landing-featured.html' %}
         {% endwith %}
@@ -58,6 +57,15 @@
         <div class="related-stories-grid">
           <h2 class="c-stories-related-header">Other Stories and Collections</h2>
           <div class="related-stories-wrapper">
+            {{ stories_card(
+              title="Raising Technology’s EQ",
+              desc="Pamela Pavliscak studies the impact of technology and how we feel. Here’s why she thinks we’re entering the era of big emotion.",
+              image=resp_img(
+                'img/stories/raising-technology-eq-500.jpg',
+                optional_attributes=card_image_attr,
+              ),
+              link=url('stories.articles.raising-technology-eq')
+            )}}
             {{ stories_card(
               title="The Joy of Color",
               desc="The internet is supposed to be fun. Firefox gives color to the gray world of browsing with seasonal shades and a new collaboration with former Nike sneaker designer Keely Alexis.",
