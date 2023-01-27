@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 @use '../../utils' as f3;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
@@ -68,25 +70,31 @@
     }
 
     details {
-        padding-top: $spacing-xl;
-        padding-bottom: $spacing-xl;
-
         + details {
             border-top: f3.$border-width solid f3.$color-black;
         }
 
         .c-card {
             border: none;
-            margin-top: $spacing-lg;
+            margin-bottom: $spacing-xl;
         }
     }
 
     summary {
         padding-right: 48px; // fallback for IE
         padding-right: clamp(48px, 12%, 96px);
+        padding-top: $spacing-xl;
+        padding-bottom: $spacing-xl;
+        background-color: inherit;
+        transition: background-color 0.2s;
 
         * {
             margin-bottom: 0;
+        }
+
+        &:hover,
+        &:focus-visible {
+            background-color: color.change(f3.$green-primary, $red: 156, $green: 245, $blue: 213);
         }
     }
 }
