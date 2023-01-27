@@ -39,8 +39,32 @@ $image-path: '/media/protocol/img';
     }
 
     .c-blurb {
-        background-color: f3.$green-light;
+        @include text-body-lg;
+        @include font-firefox;
+
+        --shadow-offset: #{$border-radius-md};
+        @include f3.card-shadow;
+        background-color: f3.$blue-light;
+        border-radius: $border-radius-lg;
+        font-weight: bold;
         margin-top: $layout-lg;
+        text-align: center;
+
+        @media #{$mq-md} {
+            display: flex; // allow logo to share same line as text
+        }
+    }
+
+    .c-blurb-logo {
+        @include background-size(222px, 26px);
+        @include image-replaced;
+        background-image: url('/media/img/firefox/family/logo-common-sense-media.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        max-width: 222px;
+        min-width: 20ch;
+        display: block;
     }
 }
 

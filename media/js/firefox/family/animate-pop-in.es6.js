@@ -20,9 +20,12 @@ const createObserver = () => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-pop-in');
                     if (_heroSection.contains(entry.target)) {
-                        // pop-in "The" box
+                        // pop-in "The" box & blurb
                         entry.target
                             .querySelector('.lockup-white-box')
+                            .classList.add('animate-pop-in');
+                        _heroSection
+                            .querySelector('.c-blurb')
                             .classList.add('animate-pop-in');
                     } else if (_privateModeSection.contains(entry.target)) {
                         // change background color and pop-in mask
