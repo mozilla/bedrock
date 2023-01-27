@@ -82,6 +82,7 @@
     }
 
     summary {
+        padding-right: 48px; // fallback for IE
         padding-right: clamp(48px, 12%, 96px);
 
         * {
