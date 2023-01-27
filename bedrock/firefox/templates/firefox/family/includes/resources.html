@@ -7,7 +7,6 @@
  {% from "macros-protocol.html" import card with context %}
  {% from "firefox/family/includes/macros.html" import module_tag %}
 
- <!-- todo: utm params and gtm data attributes -->
  <section id="resources" class="c-resources">
   <div class="mzp-l-content mzp-t-content-xl">
       {{ module_tag(title='More Resources', anchor='resources') }}
@@ -16,6 +15,7 @@
       <div class="l-flex">
         {{ card(
           link_url="https://www.youtube.com/playlist?list=PLFlAJDI87Jg1It3hFaH61sYytK1lAU7fG",
+          ga_title="firefox-for-families-resources-ask-firefox",
           class="c-card t-shadow",
           aspect_ratio="mzp-has-aspect-16-9",
           image=resp_img(
@@ -33,6 +33,7 @@
         ) }}
         {{ card(
           link_url="https://blog.mozilla.org/en/privacy-security/privacy-security-tips/back-to-school-checklist-for-online-safety/",
+          ga_title="firefox-for-families-resources-safety-checklist",
           class="c-card t-shadow",
           aspect_ratio="mzp-has-aspect-16-9",
           image=resp_img(
@@ -50,6 +51,7 @@
         ) }}
         {{ card(
           link_url="https://blog.mozilla.org/en/internet-culture/deep-dives/parental-controls-internet-safety-for-kids/",
+          ga_title="firefox-for-families-resources-parental-controls",
           class="c-card t-shadow",
           aspect_ratio="mzp-has-aspect-16-9",
           image=resp_img(
