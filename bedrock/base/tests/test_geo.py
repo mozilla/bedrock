@@ -39,8 +39,9 @@ class TestGeo(TestCase):
         assert get_country_from_request(req) == "FR"
 
         # should use header if at prod domain
-        req = self.factory.get("/", data={"geo": "fr"}, HTTP_CF_IPCOUNTRY="de", HTTP_HOST="www.mozilla.org")
-        assert get_country_from_request(req) == "DE"
+        with override_settings(IS_PROD=True):
+            req = self.factory.get("/", data={"geo": "fr"}, HTTP_CF_IPCOUNTRY="de")
+            assert get_country_from_request(req) == "DE"
 
     @override_settings(DEV=False)
     def test_invalid_geo_param(self):
