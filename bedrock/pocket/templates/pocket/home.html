@@ -18,8 +18,8 @@
   {{ css_bundle('pocket-home') }}
 {% endblock  %}
 
-{% if locale == 'de' and switch('pocket-banner-de-home') %}
-  {% block banner %}
+{% block banner %}
+  {% if LANG == 'de' and switch('pocket-banner-de-home') %}
     <section class="c-banner">
       <div class="c-banner-section-left">
           {{ picture(
@@ -40,7 +40,7 @@
                   }
                 }
               ],
-              optional_attributes={ 'class': "c-banner-image"}
+              optional_attributes={ 'class': "c-banner-image", 'alt': '' }
             )
           }}
           <p>Storys für mehr Sichtbarkeit</p>
@@ -50,8 +50,8 @@
           <a data-cta-type="button" data-cta-text="Discover Pocket Collections" href="https://getpocket.com/de/collections/eine-partnerschaft-fuer-mehr-sichtbarkeit-bipoc-im-spotlight" class="mzp-c-button mzp-t-md mzp-t-product">Entdecke Pocket Collections</a>
       </div>
     </section>
-  {% endblock %}
-{% endif %}
+  {% endif %}
+{% endblock %}
 
 {% block header %}
   {% include 'pocket/includes/nav-platform.html' %}
