@@ -103,15 +103,21 @@ $image-path: '/media/protocol/img';
 
 .js {
     @media (prefers-reduced-motion: no-preference) {
-        h1 {
-            opacity: 0;
-        }
+        .c-hero {
+            h1 {
+                opacity: 0;
+            }
 
-        .lockup-white-box {
-            opacity: 0;
+            .lockup-white-box {
+                opacity: 0;
 
-            &.animate-pop-in {
-                animation-delay: f3.$animation-duration;
+                &.animate-pop-in {
+                    animation-delay: f3.$animation-duration;
+                }
+            }
+
+            .c-blurb {
+                opacity: 0;
             }
         }
     }
