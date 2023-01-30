@@ -252,9 +252,9 @@ fluent-runtime==0.3.1 \
     --hash=sha256:1da9bf779e6b8cbfb5a71dd59cd7e193f8dc8da318bda7163bc41e9ae15f8574 \
     --hash=sha256:f3a879b9d0a2129b3f8e8755f0291c445f272f3d0d26a408c7b76f608acf3409
     # via -r requirements/prod.in
-fluent-syntax==0.17.0 \
-    --hash=sha256:ac3db2f77d62b032fdf1f17ef5c390b7801a9e9fb58d41eca3825c0d47b88d79 \
-    --hash=sha256:e26be470aeebe4badd84f7bb0b648414e0f2ef95d26e5336d634af99e402ea61
+fluent-syntax==0.18.1 \
+    --hash=sha256:0e63679fa4f1b3042565220a5127b4bab842424f07d6a13c12299e3b3835486a \
+    --hash=sha256:3a55f5e605d1b029a65cc8b6492c86ec4608e15447e73db1495de11fd46c104f
     # via
     #   -r requirements/prod.in
     #   fluent-runtime
