@@ -46,9 +46,29 @@ $image-path: '/media/protocol/img';
         @include f3.card-shadow;
         background-color: f3.$blue-light;
         border-radius: $border-radius-lg;
+        color: inherit;
+        display: inline-block;
         font-weight: bold;
         margin-top: $layout-lg;
         text-align: center;
+        text-decoration: none;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform 0.2s;
+
+            &:hover,
+            &:focus {
+                transform: scale(1.2);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+                text-decoration-thickness: 2px;
+            }
+        }
 
         @media #{$mq-md} {
             display: flex; // allow logo to share same line as text
@@ -85,7 +105,7 @@ $image-path: '/media/protocol/img';
                 padding: $spacing-2xl;
             }
 
-            .c-blurb {
+            .c-blurb-container {
                 grid-column: 1 / -1;
                 justify-self: center;
                 width: fit-content;
@@ -116,7 +136,7 @@ $image-path: '/media/protocol/img';
                 }
             }
 
-            .c-blurb {
+            .c-blurb-container {
                 opacity: 0;
             }
         }

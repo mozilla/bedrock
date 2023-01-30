@@ -23,7 +23,7 @@ const createObserver = () => {
                         const _lockupBox =
                             entry.target.querySelector('.lockup-white-box');
                         const _ctaBlurb =
-                            _heroSection.querySelector('.c-blurb');
+                            _heroSection.querySelector('.c-blurb-container');
                         // pop-in "The" box
                         _lockupBox.classList.add('animate-pop-in');
                         // pop-in CTA blurb AFTER box animation ends
