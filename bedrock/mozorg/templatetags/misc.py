@@ -684,7 +684,7 @@ def slugify(text):
 
 @library.filter
 def bleach_tags(text):
-    return bleach.clean(text, tags=[], strip=True).replace("&amp;", "&")
+    return bleach.clean(text, tags=set(), strip=True).replace("&amp;", "&")
 
 
 # from jingo

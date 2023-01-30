@@ -26,7 +26,7 @@ def make_datetime(datestr):
 
 
 def strip_tags(text):
-    return bleach.clean(text, tags=[], strip=True).strip()
+    return bleach.clean(text, tags=set(), strip=True).strip()
 
 
 def post_to_dict(blog_slug, post):

@@ -7,7 +7,7 @@ from django_jinja import library
 from markupsafe import Markup
 
 # based on bleach.sanitizer.ALLOWED_TAGS
-ALLOWED_TAGS = [
+ALLOWED_TAGS = {
     "a",
     "abbr",
     "acronym",
@@ -34,7 +34,7 @@ ALLOWED_TAGS = [
     "strike",
     "strong",
     "ul",
-]
+}
 ALLOWED_ATTRS = [
     "alt",
     "class",

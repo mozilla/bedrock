@@ -23,7 +23,7 @@ GREENHOUSE_URL = "https://api.greenhouse.io/v1/boards/{}/jobs/?content=true"
 # jq -r .jobs[0].content | sed 's/&lt;/</g' | sed 's/&quot;/"/g' | sed 's/&gt;/>/g'
 
 # based on bleach.sanitizer.ALLOWED_TAGS
-ALLOWED_TAGS = [
+ALLOWED_TAGS = {
     "a",
     "abbr",
     "acronym",
@@ -49,7 +49,7 @@ ALLOWED_TAGS = [
     "strike",
     "strong",
     "ul",
-]
+}
 ALLOWED_ATTRS = [
     "alt",
     "class",
