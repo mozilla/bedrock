@@ -76,7 +76,7 @@ def test_allowed_attrs_const__remains_what_we_expect():
 def test_allowed_tags_const__remains_what_we_expect():
     # Regression safety net so that any amendment to ALLOWED_TAGS is 100% deliberate
 
-    assert ALLOWED_TAGS == [
+    assert ALLOWED_TAGS == {
         "a",
         "abbr",
         "acronym",
@@ -103,4 +103,4 @@ def test_allowed_tags_const__remains_what_we_expect():
         "strike",
         "strong",
         "ul",
-    ]
+    }
