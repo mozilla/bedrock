@@ -10,6 +10,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const staticBundles = require('./media/static-bundles.json');
 const webpack = require('webpack');
@@ -48,7 +49,12 @@ module.exports = {
         publicPath: '/media/'
     },
     optimization: {
-        minimizer: [new CssMinimizerPlugin({})]
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: { ie8: true }
+            }),
+            new CssMinimizerPlugin({})
+        ]
     },
     module: {
         rules: [
