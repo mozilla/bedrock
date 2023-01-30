@@ -7,6 +7,7 @@ from unittest.mock import ANY, Mock, patch
 
 from django.core import mail
 from django.http.response import HttpResponse
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
@@ -42,16 +43,18 @@ class TestRobots(TestCase):
         self.rf = RequestFactory()
         self.view = views.Robots()
 
+    @override_settings(IS_PROD=True)
     def test_production_disallow_all_is_false(self):
-        self.view.request = self.rf.get("/", HTTP_HOST="www.mozilla.org")
+        self.view.request = self.rf.get("/")
         self.assertFalse(self.view.get_context_data()["disallow_all"])
 
     def test_non_production_disallow_all_is_true(self):
         self.view.request = self.rf.get("/", HTTP_HOST="www.allizom.org")
         self.assertTrue(self.view.get_context_data()["disallow_all"])
 
+    @override_settings(IS_PROD=True)
     def test_robots_no_redirect(self):
-        response = self.client.get("/robots.txt", HTTP_HOST="www.mozilla.org")
+        response = self.client.get("/robots.txt")
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data["disallow_all"])
         self.assertEqual(response.get("Content-Type"), "text/plain")

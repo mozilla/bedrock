@@ -65,7 +65,12 @@ class Robots(RequireSafeMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         hostname = self.request.get_host()
-        return {"disallow_all": not hostname == "www.mozilla.org"}
+        disallow_all = True
+        if settings.IS_PROD:
+            disallow_all = False
+            hostname = "www.mozilla.org"
+
+        return {"disallow_all": disallow_all, "hostname": hostname}
 
 
 NAMESPACES = {
