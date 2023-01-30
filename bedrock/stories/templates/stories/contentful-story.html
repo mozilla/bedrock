@@ -46,8 +46,8 @@
         {% if is_featured %}<p class="is-featured">Featured Article</p>{% endif%}
         <h1>{{ title }}</h1>
         <div class="metadata">
-          <p>Published<br> <time datetime="">{{ published }}</time></p>
-          <p>Value<br> {{ value }}</p>
+          <p>Published<br> <time datetime="{{ published }}">{{ published }}</time></p>
+          <p>Value<br> Connection</p>
       </div>
     </header>
     <div class="c-stories-article-container full-width">
@@ -94,7 +94,7 @@
               {{ card(
                 title=item.title,
                 desc=item.dek,
-                image="<img src='{}' srcset='{}' sizes='{}' alt='' width='349' height='239' loading='lazy'>".format(item.image.url, item.image.srcset, item.image.sizes),
+                image=item.image,
                 link_url=item.link,
                 heading_level=3
               )}}
