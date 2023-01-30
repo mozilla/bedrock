@@ -44,18 +44,19 @@ def landing_page(request):
     if switch("contentful-product-story"):
         try:
             template_name = "stories/contentful-landing.html"
-            # get all stories (TODO: order by info.published field, newest story should be first in list)
+            # get all stories
             stories = [
                 story.data["info"]
                 for story in ContentfulEntry.objects.get_entries_by_type(
                     locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY, localisation_complete=False
                 )
             ]
+            # order by published date, newest to oldest
+            sorted_stories = sorted(stories, key=lambda x: x["published"], reverse=True)
             # Remove first story from list for spotlight as featured story
-            featured_story = stories.pop(0)
-            ctx = {"featured_story": featured_story, "stories": stories}
+            featured_story = sorted_stories.pop(0)
+            ctx = {"featured_story": featured_story, "stories": sorted_stories}
         except Exception as ex:
-            print("error!")
             capture_exception(ex)
     else:
         # set hardcoded landing page
