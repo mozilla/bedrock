@@ -1227,47 +1227,9 @@ button.mzp-c-cta-link {
 .c-mobile {
     @include light-links;
     background-color: $color-violet-70;
-    background-position:
-        bottom -120px right 10px,
-        top right -200px,
-        bottom -100px left 20px,
-        top 100px left -50px,
-        bottom right -500px,
-        top 15% left 100px;
-    background-repeat: no-repeat;
     color: $color-white;
     position: relative;
     overflow-x: hidden;
-
-    @media #{$mq-md} {
-        background-position:
-            bottom left 120px,
-            top right,
-            bottom left 20px,
-            top 100px left,
-            bottom right,
-            top 15% center;
-    }
-
-    @media #{$mq-lg} {
-        background-position:
-            bottom left 100px,
-            top right,
-            bottom left 40%,
-            top 100px left,
-            bottom right,
-            top 15% center;
-    }
-
-    .loaded & {
-        background-image:
-            url('/media/img/firefox/new/desktop/mobile/circle-bottom.svg'),
-            url('/media/img/firefox/new/desktop/mobile/circle-top-right.svg'),
-            url('/media/img/firefox/new/desktop/mobile/oval-bottom.svg'),
-            url('/media/img/firefox/new/desktop/mobile/oval-left.svg'),
-            url('/media/img/firefox/new/desktop/mobile/elbow-bottom-right.svg'),
-            url('/media/img/firefox/new/desktop/mobile/elbow.svg');
-    }
 
     h2 {
         color: $color-white;
