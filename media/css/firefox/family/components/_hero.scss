@@ -58,7 +58,14 @@ $image-path: '/media/protocol/img';
 
             &:hover,
             &:focus {
-                transform: scale(1.2);
+                transform: scale(1.05);
+            }
+
+            @media #{$mq-sm} {
+                &:hover,
+                &:focus {
+                    transform: scale(1.2);
+                }
             }
         }
 
