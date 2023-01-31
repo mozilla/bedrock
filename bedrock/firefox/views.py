@@ -477,6 +477,10 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx109-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx109-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx109-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-uk.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-de-v1.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-de-v2.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -494,7 +498,7 @@ class WhatsnewView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3"]
+    variations = ["1", "2"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -563,6 +567,20 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("110.0"):
+            if locale == "en-US" and country == "GB":
+                template = "firefox/whatsnew/whatsnew-fx110-uk.html"
+            elif locale == "en-GB":
+                template = "firefox/whatsnew/whatsnew-fx110-uk.html"
+            elif locale == "de":
+                if variant == "2":
+                    template = "firefox/whatsnew/whatsnew-fx110-de-v2.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx110-de-v1.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx110-fr.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("109."):
