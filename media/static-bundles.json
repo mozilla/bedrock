@@ -1697,10 +1697,15 @@
       "files": [
         "js/pocket/base.js",
         "js/base/mozilla-cookie-helper.js",
-        "js/pocket/snowplow.es6.js",
-        "js/pocket/google-analytics.js"
+        "js/pocket/snowplow.es6.js"
       ],
       "name": "pocket-site"
+    },
+    {
+      "files": [
+        "js/pocket/google-analytics.es6.js"
+      ],
+      "name": "pocket-ga"
     },
     {
       "files": [

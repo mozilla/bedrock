@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 <!DOCTYPE html>
-<html lang="{{ LANG }}"{% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %}>
+<html lang="{{ LANG }}" {% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %} {% if settings.GTM_CONTAINER_ID %} data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %}>
   <head>
     {% block shared_meta %}
       <meta charset="utf-8" />
@@ -28,16 +28,16 @@
       <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}">
       <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
       {% endblock shared_meta %}
+
+      <!-- Google Universal Analytics and GA4 via Tag Manager -->
+      {% block google_analytics %}
+        {{ js_bundle('pocket-ga') }}
+      {% endblock %}
+
       <!-- OneTrust Cookies Consent Notice start for getpocket.com -->
       <script type="text/javascript" src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/OtAutoBlock.js"></script>
-      <script type="text/javascript" src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/otSDKStub.js" charset="UTF-8"data-domain-script="a7ff9c31-9f59-421f-9a8e-49b11a3eb24e"></script>
-      <script type="text/javascript">
-        function OptanonWrapper() {}
-      </script>
+      <script type="text/javascript" src="{{ settings.COOKIE_CONSENT_SCRIPT_SRC }}" charset="UTF-8" data-domain-script="{{ settings.COOKIE_CONSENT_DATA_DOMAIN }}"></script>
       <!-- end OneTrust Cookies Consent Notice -->
-      {% block google_analytics %}
-        {% include 'pocket/includes/google-analytics.html' %}
-      {% endblock %}
 
     {% block pocket_css %}{% endblock  %}
 

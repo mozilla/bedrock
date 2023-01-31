@@ -102,6 +102,13 @@ if IS_POCKET_MODE:
     DEV_LANGUAGES = PROD_LANGUAGES
     LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
 
+    COOKIE_CONSENT_SCRIPT_SRC = (
+        "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+        if DEV
+        else "https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/otSDKStub.js"
+    )
+    COOKIE_CONSENT_DATA_DOMAIN = "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e-test" if DEV else "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e"
+
     # CSP settings for POCKET, expanded upon later:
     _csp_default_src = [
         "'self'",
