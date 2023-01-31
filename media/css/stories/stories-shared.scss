@@ -60,6 +60,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.visually-hidden {
+    @include visually-hidden;
+}
+
 .c-stories-related {
     background-color: $color-white;
 
