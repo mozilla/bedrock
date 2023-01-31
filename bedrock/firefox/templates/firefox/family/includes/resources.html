@@ -13,6 +13,7 @@
       <h3 class="c-subtitle">Can't get enough of this parenting/<br>internet stuff?</h3>
       <p class="c-resources-subtext">Need more info? We got you! Be sure to check back often, we’re always posting super helpful links guaranteed to keep the conversations flowing.</p>
       <div class="l-flex">
+        <!-- ASK FIREFOX -->
         {{ card(
           link_url="https://www.youtube.com/playlist?list=PLFlAJDI87Jg1It3hFaH61sYytK1lAU7fG",
           ga_title="firefox-for-families-resources-ask-firefox",
@@ -24,31 +25,35 @@
               "img/firefox/family/ask-firefox-high-res.jpg": "2x"
             },
             optional_attributes={
-              "loading": "lazy"
+              "loading": "lazy",
+              "alt": "Is school Wi-Fi safe? #AskFirefox"
             }
           ),
           heading_level=4,
           title="More (helpful) hacks: The #AskFirefox video series",
           desc="Firefox answers your pressing questions to help you understand the web and live your best online life."
         ) }}
+        <!-- SAFETY REPORT -->
         {{ card(
-          link_url="https://blog.mozilla.org/en/privacy-security/privacy-security-tips/back-to-school-checklist-for-online-safety/",
-          ga_title="firefox-for-families-resources-safety-checklist",
+          link_url="https://blog.mozilla.org/en/internet-culture/parenting-online-safety-report/",
+          ga_title="firefox-for-families-resources-safety-report",
           class="c-card t-shadow",
           aspect_ratio="mzp-has-aspect-16-9",
           image=resp_img(
-            url="img/firefox/family/back-to-school-checklist.jpg",
+            url="img/firefox/family/parenting-survey.jpg",
             srcset={
-              "img/firefox/family/back-to-school-checklist-high-res.jpg": "2x"
+              "img/firefox/family/parenting-survey-high-res.jpg": "2x"
             },
             optional_attributes={
-              "loading": "lazy"
+              "loading": "lazy",
+              "alt": "Firefox and YouGov parenting survey"
             }
           ),
           heading_level=4,
-          title="A back-to-school checklist for online safety",
-          desc="This school year, make the best use of the internet while staying safe."
+          title="Toddlers, tablets, and the “Tech Talk”",
+          desc="We surveyed parents to get an understanding of how families use the internet across the U.S., Canada, France, Germany and the U.K."
         ) }}
+        <!-- PARENTAL CONTROLS -->
         {{ card(
           link_url="https://blog.mozilla.org/en/internet-culture/deep-dives/parental-controls-internet-safety-for-kids/",
           ga_title="firefox-for-families-resources-parental-controls",
