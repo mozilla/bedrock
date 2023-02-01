@@ -69,14 +69,20 @@
         font-size: inherit;
     }
 
+    &-answer {
+        background-color: f3.$white;
+        padding: $layout-xs;
+        margin-bottom: $spacing-xl;
+
+        *:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+
     details {
         + details {
             border-top: f3.$border-width solid f3.$color-black;
-        }
-
-        .c-card {
-            border: none;
-            margin-bottom: $spacing-xl;
         }
     }
 
