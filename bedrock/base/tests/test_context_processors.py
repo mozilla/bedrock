@@ -56,9 +56,8 @@ class TestContext(TestCase):
         assert self.render("{{ country_code }}", req) == "FR"
 
         # should use header if at prod domain
-        with override_settings(IS_PROD=True):
-            req = self.factory.get("/", data={"geo": "fr"}, HTTP_CF_IPCOUNTRY="de")
-            assert self.render("{{ country_code }}", req) == "DE"
+        req = self.factory.get("/", data={"geo": "fr"}, HTTP_CF_IPCOUNTRY="de", HTTP_HOST="www.mozilla.org")
+        assert self.render("{{ country_code }}", req) == "DE"
 
     @override_settings(DEV=False)
     def test_invalid_geo_param(self):
