@@ -8,9 +8,9 @@ appdirs==1.4.4 \
     --hash=sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41 \
     --hash=sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
     # via glean-parser
-apscheduler==3.9.1.post1 \
-    --hash=sha256:b2bea0309569da53a7261bfa0ce19c67ddbfe151bda776a6a907579fdbd3eb2a \
-    --hash=sha256:c8c618241dbb2785ed5a687504b14cb1851d6f7b5a4edf3a51e39cc6a069967a
+apscheduler==3.10.0 \
+    --hash=sha256:575299f20073c60a2cc9d4fa5906024cdde33c5c0ce6087c4e3c14be3b50fdd4 \
+    --hash=sha256:a49fc23269218416f0e41890eea7a75ed6b284f10630dcfe866ab659621a3696
     # via -r requirements/prod.in
 asgiref==3.5.0 \
     --hash=sha256:2f8abc20f7248433085eda803936d98992f1343ddb022065779f37c5da0181d0 \
