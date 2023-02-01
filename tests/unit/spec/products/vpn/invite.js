@@ -70,49 +70,6 @@ describe('WaitListForm', function () {
                             <option value="en">English</option>
                             <option value="fr">Français</option>
                         </select>
-
-                        <fieldset>
-                            <legend>Which platforms are you interested in?</legend>
-
-                            <ul class="vpn-invite-platform-options">
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-windows" name="fpn_platform" value="windows">
-                                        Windows 10/11
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-ios" name="fpn_platform" value="ios">
-                                        iOS
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-android" name="fpn_platform" value="android">
-                                        Android
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-mac" name="fpn_platform" value="mac">
-                                        Mac
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-chromebook" name="fpn_platform" value="chromebook">
-                                        Chromebook
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="mzp-u-inline">
-                                        <input type="checkbox" id="platforms-linux" name="fpn_platform" value="linux">
-                                        Linux
-                                    </label>
-                                </li>
-                            </ul>
-                        </fieldset>
                     </div>
                     <p class="mzp-c-form-submit">
                         <button class="mzp-c-button mzp-t-xl" id="newsletter-submit" type="submit">Join the Waitlist</button>
@@ -310,12 +267,6 @@ describe('WaitListForm', function () {
             const data1 = WaitListForm.serialize();
             expect(data1).toEqual(
                 'email=fox%40example.com&newsletters=guardian-vpn-waitlist&fpn_country=us&lang=en&format=H&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fproducts%2Fvpn%2Finvite%2F'
-            );
-            document.getElementById('platforms-windows').click();
-            document.getElementById('platforms-android').click();
-            const data2 = WaitListForm.serialize();
-            expect(data2).toEqual(
-                'email=fox%40example.com&newsletters=guardian-vpn-waitlist&fpn_country=us&lang=en&format=H&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fproducts%2Fvpn%2Finvite%2F&fpn_platform=windows%2Candroid'
             );
         });
     });
