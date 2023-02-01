@@ -7,4 +7,4 @@ disallow: /*/newsletter/existing/
 disallow: /*/whatsnew/
 disallow: /*/etc/
 {% endif -%}
-Sitemap: https://{{ hostname }}/sitemap.xml
+Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap.xml

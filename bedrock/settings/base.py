@@ -543,9 +543,6 @@ APP_NAME = config("APP_NAME", default=get_app_name(HOSTNAME))
 CLUSTER_NAME = config("CLUSTER_NAME", default="")
 ENABLE_HOSTNAME_MIDDLEWARE = config("ENABLE_HOSTNAME_MIDDLEWARE", default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="true", parser=bool)
-# this will be True when the site is running in production
-# in either mozorg or pocket mode
-IS_PROD = APP_NAME == "bedrock-prod"
 # set this to enable basic auth for the entire site
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
