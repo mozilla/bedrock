@@ -761,8 +761,9 @@ pyyaml==6.0 \
     #   -r requirements/prod.in
     #   glean-parser
     #   yamllint
-qrcode==7.3.1 \
-    --hash=sha256:375a6ff240ca9bd41adc070428b5dfc1dcfbb0f2507f1ac848f6cded38956578
+qrcode==7.4 \
+    --hash=sha256:7ff613c4ef2d56a0dddbc54d8d1b6dce8060794ed7d1737356a83e2bdf49bbe9 \
+    --hash=sha256:c775424e983c9eba814da1febdfcf853165ecc01e494077591e370c8d4802bd5
     # via -r requirements/prod.in
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
