@@ -477,6 +477,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx109-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx109-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx109-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-de-v1.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-de-v2.html": ["firefox/whatsnew/whatsnew"],
@@ -570,10 +571,13 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("110.0"):
-            if locale == "en-US" and country == "GB":
-                template = "firefox/whatsnew/whatsnew-fx110-uk.html"
-            elif locale == "en-GB":
-                template = "firefox/whatsnew/whatsnew-fx110-uk.html"
+            if locale.startswith("en-"):
+                if country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx110-uk.html"
+                elif locale == "en-GB":
+                    template = "firefox/whatsnew/whatsnew-fx110-uk.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx110-en.html"
             elif locale == "de":
                 if variant == "2":
                     template = "firefox/whatsnew/whatsnew-fx110-de-v2.html"
