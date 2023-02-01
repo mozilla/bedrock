@@ -72,7 +72,7 @@ describe('stripHTML', function () {
         );
         expect(
             stripHTML(
-                'This string<script></script> should <strong>not</strong> contain <br>HTML<img src="/img/placeholder.png" />.'
+                'This string<script></script> should <strong>not</strong> contain <br>HTML<img src="/img/placeholder.png">.'
             )
         ).toEqual('This string should not contain HTML.');
         expect(

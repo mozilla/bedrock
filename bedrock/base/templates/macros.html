@@ -56,43 +56,43 @@
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">
-    <input type="hidden" name="action" value="email" />
-    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
-    <input type="hidden" name="form_type" value="email" />
+    <input type="hidden" name="action" value="email">
+    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint">
+    <input type="hidden" name="form_type" value="email">
     {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
-    <input type="hidden" name="flow_id" value="" />
-    <input type="hidden" name="flow_begin_time" value="" />
-    <input type="hidden" name="device_id" value="" />
-    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source" />
-    <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
+    <input type="hidden" name="flow_id" value="">
+    <input type="hidden" name="flow_begin_time" value="">
+    <input type="hidden" name="device_id" value="">
+    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source">
+    <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium">
 
     {% if entrypoint_experiment %}
-      <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment" />
+      <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment">
     {% endif %}
 
     {% if entrypoint_variation %}
-      <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation" />
+      <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation">
     {% endif %}
 
     {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}
     {% if utm_campaign %}
-      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign">
     {% else %}
-      <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+      <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">
     {% endif %}
 
     {# utm_content is optional. It should only be declared when there is new messaging associated with the form. (For example: `get-the-rest-of-firefox`) #}
     {% if utm_content %}
-      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content" />
+      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content">
     {% endif %}
 
     {# utm_term is optional. It is used for paid search keywords. This should be provided if needed. #}
     {% if utm_term %}
-      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term" />
+      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term">
     {% endif %}
 
     {% if style %}
-      <input type="hidden" name="style" value="{{ style }}" />
+      <input type="hidden" name="style" value="{{ style }}">
     {% endif %}
 
     <header class="mzp-c-form-header">

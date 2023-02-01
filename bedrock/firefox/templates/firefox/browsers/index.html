@@ -60,7 +60,7 @@
 {% endblock %}
 
 {% block content %}
-<main role="main">
+<main>
   {% call split(
     image=resp_img('img/firefox/browsers/hero-700.jpg',
       srcset={
@@ -101,7 +101,7 @@
         <![endif]-->
         <!--[if !IE]><!-->
           {# Download link should be locale neutral see issue 7982 #}
-          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ ftl('firefox-browsers-download-for-desktop') }}</a></li>
+          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
         <!--<![endif]-->
       </p>
 

@@ -22,9 +22,9 @@ describe('fxa-form.js', function () {
                     <input type="hidden" name="form_type" value="email">
                     <input type="hidden" name="utm_source" value="mozilla.org-privacy-products" id="fxa-email-form-utm-source">
                     <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">
-                    <input type="hidden" name="flow_id" value="" />
-                    <input type="hidden" name="flow_begin_time" value="" />
-                    <input type="hidden" name="device_id" value="" />
+                    <input type="hidden" name="flow_id" value="">
+                    <input type="hidden" name="flow_begin_time" value="">
+                    <input type="hidden" name="device_id" value="">
                     <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required="">
                     <button type="submit" class="mzp-c-button mzp-t-primary mzp-t-product" id="fxa-email-form-submit">Continue</button>
                 </form>`;

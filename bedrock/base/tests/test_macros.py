@@ -22,14 +22,14 @@ def inner_html(el):
 
 
 EXPECTED_IMAGES = {
-    "basic": '<img src="/media/test.jpg" alt="" />',
-    "lazy": '<img src="/media/test.jpg" alt="" loading="lazy" />',
-    "with_alt": '<img src="/media/test.jpg" alt="test alt" />',
-    "with_class": '<img src="/media/test.jpg" alt="" class="test" />',
-    "with_dimensions": '<img src="/media/test.jpg" alt="" width="64" height="64" />',
+    "basic": '<img src="/media/test.jpg" alt="">',
+    "lazy": '<img src="/media/test.jpg" alt="" loading="lazy">',
+    "with_alt": '<img src="/media/test.jpg" alt="test alt">',
+    "with_class": '<img src="/media/test.jpg" alt="" class="test">',
+    "with_dimensions": '<img src="/media/test.jpg" alt="" width="64" height="64">',
     "highres": '<img class="" src="/media/test.jpg" srcset="/media/test-high-res.jpg 1.5x" alt="">',
-    "l10n": '<img src="/media/img/l10n/en-US/test.jpg" alt="" />',
-    "external": '<img src="https://test.jpg" alt="" />',
+    "l10n": '<img src="/media/img/l10n/en-US/test.jpg" alt="">',
+    "external": '<img src="https://test.jpg" alt="">',
     "l10n_highres": '<img class="" src="/media/img/l10n/en-US/test.jpg" srcset="/media/img/l10n/en-US/test-high-res.jpg 1.5x" alt="">',
     "highres_lazy": '<img class="" src="/media/test.jpg" srcset="/media/test-high-res.jpg 1.5x" alt="" loading="lazy">',
     "all_attributes": (
@@ -66,7 +66,7 @@ EXPECTED_IMAGES = {
         '<source media="(min-width: 800px)" srcset="/media/test-desktop.png">'
         '<img src="/media/test-mobile.jpg" alt="test" class="test" width="64" height="64" loading="lazy"></picture>'
     ),
-    "highres_image_url": ('<img src="https://www.example.com/test.jpg" srcset="https://www.example.com/test-high-res.jpg 2x" alt="" />'),
+    "highres_image_url": ('<img src="https://www.example.com/test.jpg" srcset="https://www.example.com/test-high-res.jpg 2x" alt="">'),
 }
 
 
