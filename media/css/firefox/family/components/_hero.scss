@@ -79,6 +79,7 @@ $image-path: '/media/protocol/img';
 
         @media #{$mq-md} {
             display: flex; // allow logo to share same line as text
+            gap: $spacing-sm;
         }
     }
 
