@@ -50,10 +50,12 @@
 }
 
 @supports (flex: 1 0 auto) {
-    .l-flex {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .c-bullying {
+        .l-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     @media #{$mq-md} {

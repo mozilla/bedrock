@@ -1,0 +1,78 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% from "macros-protocol.html" import card with context %}
+ {% from "firefox/family/includes/macros.html" import module_tag %}
+
+ <section id="resources" class="c-resources">
+  <div class="mzp-l-content mzp-t-content-xl">
+      {{ module_tag(title='More Resources', anchor='resources') }}
+      <h3 class="c-subtitle">Can't get enough of this parenting/<br>internet stuff?</h3>
+      <p class="c-resources-subtext">Need more info? We got you! Be sure to check back often, we’re always posting super helpful links guaranteed to keep the conversations flowing.</p>
+      <div class="l-flex">
+        <!-- ASK FIREFOX -->
+        {{ card(
+          link_url="https://www.youtube.com/playlist?list=PLFlAJDI87Jg1It3hFaH61sYytK1lAU7fG",
+          ga_title="firefox-for-families-resources-ask-firefox",
+          class="c-card t-shadow",
+          aspect_ratio="mzp-has-aspect-16-9",
+          image=resp_img(
+            url="img/firefox/family/ask-firefox.jpg",
+            srcset={
+              "img/firefox/family/ask-firefox-high-res.jpg": "2x"
+            },
+            optional_attributes={
+              "loading": "lazy",
+              "alt": "Is school Wi-Fi safe? #AskFirefox"
+            }
+          ),
+          heading_level=4,
+          title="More (helpful) hacks: The #AskFirefox video series",
+          desc="Firefox answers your pressing questions to help you understand the web and live your best online life."
+        ) }}
+        <!-- SAFETY REPORT -->
+        {{ card(
+          link_url="https://blog.mozilla.org/en/internet-culture/parenting-online-safety-report/",
+          ga_title="firefox-for-families-resources-safety-report",
+          class="c-card t-shadow",
+          aspect_ratio="mzp-has-aspect-16-9",
+          image=resp_img(
+            url="img/firefox/family/parenting-survey.jpg",
+            srcset={
+              "img/firefox/family/parenting-survey-high-res.jpg": "2x"
+            },
+            optional_attributes={
+              "loading": "lazy",
+              "alt": "Firefox and YouGov parenting survey"
+            }
+          ),
+          heading_level=4,
+          title="Toddlers, tablets, and the “Tech Talk”",
+          desc="We surveyed parents to get an understanding of how families use the internet across the U.S., Canada, France, Germany and the U.K."
+        ) }}
+        <!-- PARENTAL CONTROLS -->
+        {{ card(
+          link_url="https://blog.mozilla.org/en/internet-culture/deep-dives/parental-controls-internet-safety-for-kids/",
+          ga_title="firefox-for-families-resources-parental-controls",
+          class="c-card t-shadow",
+          aspect_ratio="mzp-has-aspect-16-9",
+          image=resp_img(
+            url="img/firefox/family/parental-controls.jpg",
+            srcset={
+              "img/firefox/family/parental-controls-high-res.jpg": "2x"
+            },
+            optional_attributes={
+              "loading": "lazy"
+            }
+          ),
+          heading_level=4,
+          title="Are parental controls the answer to keeping kids safe online?",
+          desc="There are a few things to consider before giving parental controls a go."
+        ) }}
+    </div> <!-- .mzp-t-columns -->
+    <a class="mzp-c-button mzp-t-product" data-cta-type="link" data-cta-position="firefox-for-families-resources" data-cta-text="View more" href="https://blog.mozilla.org/en/uncategorized/the-tech-talk/">View more</a>
+  </div> <!-- .mzp-l-content-->
+</section>

@@ -109,31 +109,7 @@ const WaitListForm = {
             form.querySelector('input[name="source_url"]').value
         );
 
-        // Platform interest selection (optional)
-        let platforms = '';
-        const hasPlatformInterest = form.querySelector(
-            '.vpn-invite-platform-options'
-        );
-
-        if (hasPlatformInterest) {
-            const checkedPlatforms = document.querySelectorAll(
-                'input[name="fpn_platform"]:checked'
-            );
-
-            if (checkedPlatforms.length) {
-                platforms =
-                    '&fpn_platform=' +
-                    encodeURIComponent(
-                        Array.from(checkedPlatforms)
-                            .map(function (platform) {
-                                return platform.value;
-                            })
-                            .join(',')
-                    );
-            }
-        }
-
-        return `email=${email}&newsletters=${newsletter}&fpn_country=${country}&lang=${lang}&format=H&source_url=${sourceUrl}${platforms}`;
+        return `email=${email}&newsletters=${newsletter}&fpn_country=${country}&lang=${lang}&format=H&source_url=${sourceUrl}`;
     },
 
     newsletterSubscribe: (e) => {

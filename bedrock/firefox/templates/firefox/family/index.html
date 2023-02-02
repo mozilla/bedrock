@@ -7,6 +7,7 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-card') }}
   {{ css_bundle('firefox-family') }}
 {% endblock %}
 
@@ -42,6 +43,7 @@
   {% include 'firefox/family/includes/parental-pro-tip.html' %}
 {% endwith %}
 {% include 'firefox/family/includes/modules/bullying.html' %}
+{% include 'firefox/family/includes/modules/faq.html' %}
 {% include 'firefox/family/includes/modules/public-wifi.html' %}
 {% include 'firefox/family/includes/download-firefox.html' %}
 {% include 'firefox/family/includes/modules/passwords.html' %}
@@ -50,6 +52,7 @@
   {% include 'firefox/family/includes/parental-pro-tip.html' %}
 {% endwith %}
 {% include 'firefox/family/includes/agreement.html' %}
+{% include 'firefox/family/includes/resources.html' %}
 </main>
 {% include 'firefox/family/includes/dad-jokes-banner.html' %}
 {% endblock %}

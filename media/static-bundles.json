@@ -1697,10 +1697,15 @@
       "files": [
         "js/pocket/base.js",
         "js/base/mozilla-cookie-helper.js",
-        "js/pocket/snowplow.es6.js",
-        "js/pocket/google-analytics.js"
+        "js/pocket/snowplow.es6.js"
       ],
       "name": "pocket-site"
+    },
+    {
+      "files": [
+        "js/pocket/google-analytics.es6.js"
+      ],
+      "name": "pocket-ga"
     },
     {
       "files": [
@@ -1879,7 +1884,9 @@
         "js/firefox/family/animate-pop-in.es6.js",
         "js/firefox/family/animate-pop-in-init.es6.js",
         "js/firefox/family/animate-checkmark.es6.js",
-        "js/firefox/family/animate-checkmark-init.es6.js"
+        "js/firefox/family/animate-checkmark-init.es6.js",
+        "js/firefox/family/default-open-first-detail.es6.js",
+        "js/firefox/family/default-open-first-detail-init.es6.js"
       ],
       "name": "firefox-family"
     },

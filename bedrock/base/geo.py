@@ -14,8 +14,9 @@ def valid_country_code(country):
 
 
 def get_country_from_param(request):
+    is_prod = request.get_host() == "www.mozilla.org"
     country_code = valid_country_code(request.GET.get("geo"))
-    return country_code if not settings.IS_PROD else None
+    return country_code if not is_prod else None
 
 
 def get_country_from_header(request):

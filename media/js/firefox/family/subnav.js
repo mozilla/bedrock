@@ -20,7 +20,7 @@
         ) {
             // check browser supports matchMedia
             if (Mzp.Supports.matchMedia) {
-                var _mqWide = matchMedia('(max-width: 950px)');
+                var _mqWide = matchMedia('(max-width: 1060px)');
 
                 // initialize details if screen is small
                 if (_mqWide.matches) {

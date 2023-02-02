@@ -39,8 +39,60 @@ $image-path: '/media/protocol/img';
     }
 
     .c-blurb {
-        background-color: f3.$green-light;
+        @include text-body-lg;
+        @include font-firefox;
+
+        --shadow-offset: #{$border-radius-md};
+        @include f3.card-shadow;
+        background-color: f3.$blue-light;
+        border-radius: $border-radius-lg;
+        color: inherit;
+        display: inline-block;
+        font-weight: bold;
         margin-top: $layout-lg;
+        text-align: center;
+        text-decoration: none;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform 0.2s;
+
+            &:hover,
+            &:focus {
+                transform: scale(1.05);
+            }
+
+            @media #{$mq-sm} {
+                &:hover,
+                &:focus {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+                text-decoration-thickness: 2px;
+            }
+        }
+
+        @media #{$mq-md} {
+            display: flex; // allow logo to share same line as text
+            gap: $spacing-sm;
+        }
+    }
+
+    .c-blurb-logo {
+        @include background-size(222px, 26px);
+        @include image-replaced;
+        background-image: url('/media/img/firefox/family/logo-common-sense-media.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        max-width: 222px;
+        min-width: 18ch;
+        display: block;
     }
 }
 
@@ -61,7 +113,7 @@ $image-path: '/media/protocol/img';
                 padding: $spacing-2xl;
             }
 
-            .c-blurb {
+            .c-blurb-container {
                 grid-column: 1 / -1;
                 justify-self: center;
                 width: fit-content;
@@ -79,15 +131,21 @@ $image-path: '/media/protocol/img';
 
 .js {
     @media (prefers-reduced-motion: no-preference) {
-        h1 {
-            opacity: 0;
-        }
+        .c-hero {
+            h1 {
+                opacity: 0;
+            }
 
-        .lockup-white-box {
-            opacity: 0;
+            .lockup-white-box {
+                opacity: 0;
 
-            &.animate-pop-in {
-                animation-delay: f3.$animation-duration;
+                &.animate-pop-in {
+                    animation-delay: f3.$animation-duration;
+                }
+            }
+
+            .c-blurb-container {
+                opacity: 0;
             }
         }
     }

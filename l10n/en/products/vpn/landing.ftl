@@ -182,7 +182,12 @@ vpn-landing-faq-link = See more FAQs
 ## Invite page https://www-dev.allizom.org/products/vpn/invite/
 
 vpn-landing-invite-page-title = Join the Waitlist: { -brand-name-mozilla-vpn }
+
+vpn-landing-invite-page-desc-v2 = Get notified when { -brand-name-mozilla-vpn } is available for your region.
+
+# Outdated string
 vpn-landing-invite-page-desc = Get notified when { -brand-name-mozilla-vpn } is available for your device and region.
+
 vpn-landing-invite-page-heading = Join the VPN Waitlist
 vpn-landing-invite-email-label = What is your email address?
 vpn-landing-invite-required-label = Required
@@ -192,18 +197,6 @@ vpn-landing-invite-email-placeholder = yourname@example.com
 
 vpn-landing-invite-country-label = What country do you live in?
 vpn-landing-invite-language-label = Select your preferred language.
-vpn-landing-invite-platform-label = Which platforms are you interested in?
-
-vpn-landing-invite-platform-windows = { -brand-name-windows } 10/11
-
-# Outdated string
-vpn-landing-invite-platform-windows-10 = { -brand-name-windows } 10
-
-vpn-landing-invite-platform-ios = { -brand-name-ios }
-vpn-landing-invite-platform-android = { -brand-name-android }
-vpn-landing-invite-platform-mac = { -brand-name-mac-short }
-vpn-landing-invite-platform-chromebook = { -brand-name-chromebook }
-vpn-landing-invite-platform-linux = { -brand-name-linux }
 
 # Variables:
 #   $privacy (url) - link to https://www.mozilla.org/privacy/subscription-services/
