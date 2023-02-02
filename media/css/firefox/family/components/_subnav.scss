@@ -6,6 +6,7 @@
 // Should be replaced by https://github.com/mozilla/protocol/issues/471
 
 $image-path: '/media/protocol/img';
+$subnav-breakpoint: 1060px; // must match JS value
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
@@ -107,7 +108,7 @@ $image-path: '/media/protocol/img';
                 display: block;
             }
 
-            @media (min-width: 950px) {
+            @media (min-width: #{$subnav-breakpoint}) {
                 display: block;
             }
         }
@@ -140,7 +141,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    @media (min-width: 950px) {
+    @media (min-width: #{$subnav-breakpoint}) {
         @include clearfix;
 
         .c-sub-navigation-title {

@@ -20,10 +20,16 @@ const createObserver = () => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-pop-in');
                     if (_heroSection.contains(entry.target)) {
+                        const _lockupBox =
+                            entry.target.querySelector('.lockup-white-box');
+                        const _ctaBlurb =
+                            _heroSection.querySelector('.c-blurb-container');
                         // pop-in "The" box
-                        entry.target
-                            .querySelector('.lockup-white-box')
-                            .classList.add('animate-pop-in');
+                        _lockupBox.classList.add('animate-pop-in');
+                        // pop-in CTA blurb AFTER box animation ends
+                        _lockupBox.addEventListener('animationend', () => {
+                            _ctaBlurb.classList.add('animate-pop-in');
+                        });
                     } else if (_privateModeSection.contains(entry.target)) {
                         // change background color and pop-in mask
                         entry.target
