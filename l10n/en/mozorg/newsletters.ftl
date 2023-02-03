@@ -28,7 +28,14 @@ newsletters-please-be-sure-to-add-our-v2 = Please be sure to add our sending add
 
 # Obsolete string
 newsletters-please-be-sure-to-add-our = Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.
+
+# Variables:
+#   $recovery_href (url) - link href to https://www.mozilla.org/newsletter/recovery/
+newsletters-the-supplied-link-has-expired-v2 = The supplied link has expired. Please <a { $recovery_href }>request a new link here</a>.
+
+# Obsolete string
 newsletters-the-supplied-link-has-expired = The supplied link has expired. You will receive a new one in the next newsletter.
+
 newsletters-something-is-amiss-with = Something is amiss with our system, sorry! Please try again later.
 newsletters-youre-awesome = You’re awesome!
 newsletters-and-were-not-just-saying = And we’re not just saying that because you trusted us with your email address.
@@ -137,7 +144,6 @@ newsletters-see-where-the-web-can-take = See where the Web can take you with mon
 
 newsletters-we-are-sorry-but-there = We are sorry, but there was a problem with our system. Please try again later!
 newsletters-thanks-for-updating-your = Thanks for updating your email preferences.
-newsletters-the-supplied-link-has-expired-long = The supplied link has expired or is not valid. You will receive a new one in the next newsletter, or below you can request an email with the link.
 newsletters-success-an-email-has-been-sent = Success! An email has been sent to you with your preference center link. Thanks!
 newsletters-this-is-not-a-valid-email = This is not a valid email address. Please check the spelling.
 newsletters-you-send-too-many-emails = You send too many emails.
