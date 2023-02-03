@@ -108,7 +108,7 @@
         {% set loading = 'lazy' %}
       {% endif %}
 
-      {% set image = '<img class="mzp-c-split-media-asset" src="' ~ entry.image ~ '" loading="' ~ loading ~ '">' %}
+      {% set image = '<img class="mzp-c-split-media-asset" src="' ~ entry.image ~ '" loading="' ~ loading ~ '" alt="">' %}
 
       {% call split(
         block_class=entry.block_class,
