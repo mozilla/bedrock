@@ -35,7 +35,6 @@ FTL_FILES = ["mozorg/newsletters"]
 
 general_error = ftl_lazy("newsletters-we-are-sorry-but-there", ftl_files=FTL_FILES)
 thank_you = ftl_lazy("newsletters-your-email-preferences", fallback="newsletters-thanks-for-updating-your", ftl_files=FTL_FILES)
-bad_token = ftl_lazy("newsletters-the-supplied-link-has-expired-long", ftl_files=FTL_FILES)
 invalid_email_address = ftl_lazy("newsletters-this-is-not-a-valid-email", ftl_files=FTL_FILES)
 
 UNSUB_UNSUBSCRIBED_ALL = 1
