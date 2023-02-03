@@ -6,6 +6,8 @@
 
 import FormUtils from '../../../../media/js/newsletter/form-utils.es6';
 
+const TOKEN_MOCK = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
+
 describe('checkEmailValidity', function () {
     it('should return true for primitive email format', function () {
         expect(FormUtils.checkEmailValidity('a@a')).toBeTruthy();
@@ -26,11 +28,10 @@ describe('checkEmailValidity', function () {
 
 describe('getURLToken', function () {
     it('should return a UUID token from a URL', function () {
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
         const location = {
-            pathname: `/en-US/newsletter/existing/${token}/`
+            pathname: `/en-US/newsletter/existing/${TOKEN_MOCK}/`
         };
-        expect(FormUtils.getURLToken(location)).toEqual(token);
+        expect(FormUtils.getURLToken(location)).toEqual(TOKEN_MOCK);
     });
 
     it('should return an empty string if a valid token is not found', function () {
@@ -43,9 +44,8 @@ describe('getURLToken', function () {
 
 describe('getUserToken', function () {
     it('should return a UUID token from cookie', function () {
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
-        spyOn(Mozilla.Cookies, 'getItem').and.returnValue(token);
-        expect(FormUtils.getUserToken()).toEqual(token);
+        spyOn(Mozilla.Cookies, 'getItem').and.returnValue(TOKEN_MOCK);
+        expect(FormUtils.getUserToken()).toEqual(TOKEN_MOCK);
     });
 
     it('should return an empty string if token is invalid', function () {
@@ -57,8 +57,7 @@ describe('getUserToken', function () {
 
 describe('isValidToken', function () {
     it('should return true for a valid token', function () {
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
-        expect(FormUtils.isValidToken(token)).toBeTrue();
+        expect(FormUtils.isValidToken(TOKEN_MOCK)).toBeTrue();
     });
 
     it('should return false if a token is too long', function () {
@@ -115,12 +114,11 @@ describe('isWellFormedURL', function () {
 describe('removeTokenFromURL', function () {
     it('should remove token from URL path name', function () {
         spyOn(window.history, 'replaceState');
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
         const location = {
-            pathname: `/en-US/newsletter/existing/${token}/`,
+            pathname: `/en-US/newsletter/existing/${TOKEN_MOCK}/`,
             search: ''
         };
-        FormUtils.removeTokenFromURL(location, token);
+        FormUtils.removeTokenFromURL(location, TOKEN_MOCK);
         expect(window.history.replaceState).toHaveBeenCalledWith(
             null,
             null,
@@ -130,12 +128,11 @@ describe('removeTokenFromURL', function () {
 
     it('should maintain existing query parameters', function () {
         spyOn(window.history, 'replaceState');
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
         const location = {
-            pathname: `/en-US/newsletter/existing/${token}/`,
+            pathname: `/en-US/newsletter/existing/${TOKEN_MOCK}/`,
             search: '?fxa=1'
         };
-        FormUtils.removeTokenFromURL(location, token);
+        FormUtils.removeTokenFromURL(location, TOKEN_MOCK);
         expect(window.history.replaceState).toHaveBeenCalledWith(
             null,
             null,
@@ -143,25 +140,23 @@ describe('removeTokenFromURL', function () {
         );
     });
 
-    it('should not update the URL is a token is not present', function () {
+    it('should not update the URL if a token is not present', function () {
         spyOn(window.history, 'replaceState');
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
         const location = {
             pathname: '/en-US/newsletter/existing/'
         };
-        FormUtils.removeTokenFromURL(location, token);
+        FormUtils.removeTokenFromURL(location, TOKEN_MOCK);
         expect(window.history.replaceState).not.toHaveBeenCalled();
     });
 });
 
 describe('setUserToken', function () {
     it('should set a cookie with a valid UUID token', function () {
-        const token = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
         spyOn(Mozilla.Cookies, 'setItem');
-        FormUtils.setUserToken(token);
+        FormUtils.setUserToken(TOKEN_MOCK);
         expect(Mozilla.Cookies.setItem).toHaveBeenCalledOnceWith(
             'nl-token',
-            token,
+            TOKEN_MOCK,
             jasmine.any(String),
             '/',
             undefined,

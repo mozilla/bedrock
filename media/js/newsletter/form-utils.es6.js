@@ -51,6 +51,32 @@ const FormUtils = {
     },
 
     /**
+     * Looks for UUID token in the page URL. If found, removes token
+     * from the URL and stores in a cookie. If not found, look for an
+     * existing cookie with a token. If still not found, reject.
+     * @returns {Promise}
+     */
+    checkForUserToken: () => {
+        return new window.Promise((resolve, reject) => {
+            const urlToken = FormUtils.getURLToken(window.location);
+
+            // If the page URL contains a token, grab it and replace history.
+            if (urlToken) {
+                FormUtils.setUserToken(urlToken);
+                FormUtils.removeTokenFromURL(window.location, urlToken);
+            }
+
+            const token = FormUtils.getUserToken();
+
+            if (!token) {
+                reject();
+            } else {
+                resolve();
+            }
+        });
+    },
+
+    /**
      * Add disabled property to all form fields.
      * @param {HTMLFormElement} form
      */
@@ -119,13 +145,7 @@ const FormUtils = {
             return false;
         }
 
-        const matches = token.match(UUID_REGEX);
-
-        if (matches && matches[0]) {
-            return true;
-        } else {
-            return false;
-        }
+        return UUID_REGEX.test(token);
     },
 
     /**

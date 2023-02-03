@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 
+// there's not much content on this page, so min-height
+// ensures a bit of breathing space before the footer.
 main {
     min-height: 500px;
 }

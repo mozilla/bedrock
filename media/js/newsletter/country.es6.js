@@ -32,6 +32,8 @@ const CountryForm = {
 
         if (FormUtils.isWellFormedURL(recoveryUrl)) {
             window.location.href = recoveryUrl;
+        } else {
+            CountryForm.handleFormError();
         }
     },
 
@@ -90,22 +92,13 @@ const CountryForm = {
             return;
         }
 
-        const urlToken = FormUtils.getURLToken(window.location);
-
-        // If the page URL contains a token, grab it and replace history.
-        if (urlToken) {
-            FormUtils.setUserToken(urlToken);
-            FormUtils.removeTokenFromURL(window.location, urlToken);
-        }
-
-        const token = FormUtils.getUserToken();
-
-        // if there's no locally stored token, redirect to recovery page.
-        if (!token) {
-            CountryForm.redirectToRecoveryPage();
-        }
-
         _form.addEventListener('submit', CountryForm.subscribe, false);
+
+        // Look for a valid user token before rendering the page.
+        // If not found, redirect to /newsletter/recovery/.
+        return FormUtils.checkForUserToken().catch(
+            CountryForm.redirectToRecoveryPage
+        );
     }
 };
 

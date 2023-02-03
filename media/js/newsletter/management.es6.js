@@ -737,29 +737,8 @@ const NewsletterManagementForm = {
 
         if (FormUtils.isWellFormedURL(recoveryUrl)) {
             window.location.href = recoveryUrl;
-        }
-    },
-
-    /**
-     * Looks for UUID token in the page URL. If found, removes token
-     * from the URL and stores in a cookie. If not found, look for an
-     * existing cookie with a token. If still not found, redirect
-     * the user back to the /recovery/ page.
-     */
-    checkForUserToken: () => {
-        const urlToken = FormUtils.getURLToken(window.location);
-
-        // If the page URL contains a token, grab it and replace history.
-        if (urlToken) {
-            FormUtils.setUserToken(urlToken);
-            FormUtils.removeTokenFromURL(window.location, urlToken);
-        }
-
-        const token = FormUtils.getUserToken();
-
-        // if there's no locally stored token, redirect to recovery page.
-        if (!token) {
-            NewsletterManagementForm.redirectToRecoveryPage();
+        } else {
+            NewsletterManagementForm.onDataError();
         }
     },
 
@@ -773,64 +752,72 @@ const NewsletterManagementForm = {
 
         _form = document.querySelector('.newsletter-management-form');
 
-        // Grab user token from URL and add to cookie
-        NewsletterManagementForm.checkForUserToken();
+        // Look for a valid user token before rendering the page.
+        // If not found, redirect to /newsletter/recovery/.
+        return FormUtils.checkForUserToken()
+            .then(() => {
+                const userData = NewsletterManagementForm.getUserData();
+                const newsletterData =
+                    NewsletterManagementForm.getNewsletterData();
+                const newsletterStrings =
+                    NewsletterManagementForm.getNewsletterStrings();
 
-        const userData = NewsletterManagementForm.getUserData();
-        const newsletterData = NewsletterManagementForm.getNewsletterData();
-        const newsletterStrings =
-            NewsletterManagementForm.getNewsletterStrings();
+                // Display a loading spinner whilst form data is being fetched.
+                const spinnerTarget = _form.querySelector('.loading-spinner');
+                const spinner = new Spinner({
+                    lines: 12, // The number of lines to draw
+                    length: 4, // The length of each line
+                    width: 2, // The line thickness
+                    radius: 4, // The radius of the inner circle
+                    corners: 0, // Corner roundness (0..1)
+                    rotate: 0, // The rotation offset
+                    direction: 1, // 1: clockwise, -1: counterclockwise
+                    color: '#000', // #rgb or #rrggbb or array of colors
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: true // Whether to use hardware acceleration
+                });
 
-        // Display a loading spinner whilst form data is being fetched.
-        const spinnerTarget = _form.querySelector('.loading-spinner');
-        const spinner = new Spinner({
-            lines: 12, // The number of lines to draw
-            length: 4, // The length of each line
-            width: 2, // The line thickness
-            radius: 4, // The radius of the inner circle
-            corners: 0, // Corner roundness (0..1)
-            rotate: 0, // The rotation offset
-            direction: 1, // 1: clockwise, -1: counterclockwise
-            color: '#000', // #rgb or #rrggbb or array of colors
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: true // Whether to use hardware acceleration
-        });
+                spinnerTarget.classList.remove('hidden');
+                spinner.spin(spinnerTarget);
 
-        spinnerTarget.classList.remove('hidden');
-        spinner.spin(spinnerTarget);
+                // Fetch all the required data needed to render the form.
+                return window.Promise.all([
+                    userData,
+                    newsletterData,
+                    newsletterStrings
+                ])
+                    .then((data) => {
+                        _userData = data[0];
+                        _newsletterData = data[1];
+                        _stringData = data[2];
 
-        // Fetch all the required data needed to render the form.
-        return window.Promise.all([userData, newsletterData, newsletterStrings])
-            .then((data) => {
-                _userData = data[0];
-                _newsletterData = data[1];
-                _stringData = data[2];
+                        const newsletters =
+                            NewsletterManagementForm.filterNewsletterData(
+                                _userData,
+                                _newsletterData,
+                                _stringData
+                            );
 
-                const newsletters =
-                    NewsletterManagementForm.filterNewsletterData(
-                        _userData,
-                        _newsletterData,
-                        _stringData
-                    );
+                        NewsletterManagementForm.setFormDefaults(_userData);
+                        NewsletterManagementForm.renderNewsletters(newsletters);
+                        NewsletterManagementForm.bindEvents();
 
-                NewsletterManagementForm.setFormDefaults(_userData);
-                NewsletterManagementForm.renderNewsletters(newsletters);
-                NewsletterManagementForm.bindEvents();
+                        // Hide loading spinner
+                        spinnerTarget.classList.add('hidden');
 
-                // Hide loading spinner
-                spinnerTarget.classList.add('hidden');
-
-                // display form fields once we've processed the basket data.
-                document
-                    .querySelector('.newsletter-management-form-fields')
-                    .classList.add('show');
+                        // display form fields once we've processed the basket data.
+                        document
+                            .querySelector('.newsletter-management-form-fields')
+                            .classList.add('show');
+                    })
+                    .catch((e) => {
+                        spinnerTarget.classList.add('hidden');
+                        NewsletterManagementForm.onDataError(e);
+                    });
             })
-            .catch((e) => {
-                spinnerTarget.classList.add('hidden');
-                NewsletterManagementForm.onDataError(e);
-            });
+            .catch(NewsletterManagementForm.redirectToRecoveryPage);
     }
 };
 
