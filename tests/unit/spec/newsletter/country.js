@@ -4,13 +4,16 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import FormUtils from '../../../../media/js/newsletter/form-utils.es6';
 import CountryForm from '../../../../media/js/newsletter/country.es6';
+
+const TOKEN_MOCK = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
 
 describe('CountryForm', function () {
     beforeEach(async function () {
         const form = `<div id="country-newsletter-test-form">
             <div class="country-newsletter-content">
-                <form id="country-newsletter-form" class="country-newsletter-form" method="post" action="https://basket.mozilla.org/news/user-meta/c3e6c6b9-daf1-43ed-a560-51160e15b360/">
+                <form id="country-newsletter-form" class="country-newsletter-form" method="post" action="https://basket.mozilla.org/news/user-meta/">
                     <div class="mzp-c-form-errors hidden" id="country-newsletter-errors">
                         <ul class="mzp-u-list-styled">
                             <li class="error-try-again-later hidden">
@@ -48,6 +51,8 @@ describe('CountryForm', function () {
         let xhrRequests = [];
 
         beforeEach(function () {
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
+
             xhr = sinon.useFakeXMLHttpRequest();
             xhr.onCreate = (req) => {
                 xhrRequests.push(req);
@@ -69,6 +74,9 @@ describe('CountryForm', function () {
                 '{"status": "ok"}'
             );
 
+            expect(xhrRequests[0].url).toEqual(
+                `https://basket.mozilla.org/news/user-meta/${TOKEN_MOCK}/`
+            );
             expect(CountryForm.handleFormSuccess).toHaveBeenCalled();
             expect(
                 document

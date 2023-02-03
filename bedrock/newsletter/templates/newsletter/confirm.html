@@ -13,20 +13,26 @@
 
 {% block page_title %}{{ ftl('newsletters-newsletter-confirm') }}{% endblock page_title %}
 
+{% block page_css %}
+  {{ css_bundle('newsletter-confirm') }}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <div class="mzp-l-content mzp-t-content-md">
-    {% if success %}
+    {% if token_error %}
+      <div class="mzp-c-notification-bar mzp-t-error">
+        {{ ftl('newsletters-the-supplied-link-has-expired') }}
+      </div>
+    {% elif generic_error %}
+      <div class="mzp-c-notification-bar mzp-t-error">
+        {{ ftl('newsletters-something-is-amiss-with') }}
+      </div>
+    {% else %}
       <h1>{{ ftl('newsletters-thanks-for-subscribing') }}</h1>
       <p>{{ ftl('newsletters-your-newsletter-subscription') }}</p>
       <p>{{ ftl('newsletters-please-be-sure-to-add-our-v2') }}</p>
-    {% elif token_error %}
-      <p>{{ ftl('newsletters-the-supplied-link-has-expired') }}</p>
-    {% elif generic_error %}
-      <p>{{ ftl('newsletters-something-is-amiss-with') }}</p>
     {% endif %}
   </div>
 </main>
 {% endblock %}
-
-{% block site_footer %}{% endblock %}

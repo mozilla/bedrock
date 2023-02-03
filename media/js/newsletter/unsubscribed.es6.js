@@ -4,14 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import {
-    clearFormErrors,
-    errorList,
-    disableFormFields,
-    enableFormFields,
-    postToBasket,
-    stripHTML
-} from './form-utils.es6';
+import FormUtils from './form-utils.es6';
 
 let _unsubscribedForm;
 
@@ -25,7 +18,7 @@ const UnsubscribedEmailForm = {
             _unsubscribedForm.querySelectorAll(
                 '.c-updated-form input[type="checkbox"]:checked'
             )
-        ).map((reason) => stripHTML(reason.value));
+        ).map((reason) => FormUtils.stripHTML(reason.value));
     },
 
     /**
@@ -36,28 +29,20 @@ const UnsubscribedEmailForm = {
         const text = _unsubscribedForm.querySelector(
             'textarea[name="reason-text"'
         ).value;
-        return stripHTML(text);
-    },
-
-    /**
-     * Get hidden token field value from the form.
-     * @returns  {String}
-     */
-    getToken: () => {
-        return _unsubscribedForm.querySelector('input[name="token"]').value;
+        return FormUtils.stripHTML(text);
     },
 
     handleFormError: (msg) => {
         let error;
 
-        enableFormFields(_unsubscribedForm);
+        FormUtils.enableFormFields(_unsubscribedForm);
 
         _unsubscribedForm
             .querySelector('.mzp-c-form-errors')
             .classList.remove('hidden');
 
         switch (msg) {
-            case errorList.REASON_ERROR:
+            case FormUtils.errorList.REASON_ERROR:
                 error = _unsubscribedForm.querySelector('.error-reason');
                 break;
             default:
@@ -97,7 +82,7 @@ const UnsubscribedEmailForm = {
     serialize: () => {
         const reasons = UnsubscribedEmailForm.getCheckedReasons();
         const text = UnsubscribedEmailForm.getReasonText();
-        const token = UnsubscribedEmailForm.getToken();
+        const token = FormUtils.getUserToken();
 
         if (text !== '') {
             reasons.push(text);
@@ -115,17 +100,19 @@ const UnsubscribedEmailForm = {
         e.preventDefault();
 
         const url = _unsubscribedForm.getAttribute('action');
-        const token = UnsubscribedEmailForm.getToken();
+        const token = FormUtils.getUserToken();
 
         // Disable form fields until POST has completed.
-        disableFormFields(_unsubscribedForm);
+        FormUtils.disableFormFields(_unsubscribedForm);
 
         // Clear any prior messages that might have been displayed.
-        clearFormErrors(_unsubscribedForm);
+        FormUtils.clearFormErrors(_unsubscribedForm);
 
         // Perform client side form field validation.
         if (!UnsubscribedEmailForm.validateFields()) {
-            UnsubscribedEmailForm.handleFormError(errorList.REASON_ERROR);
+            UnsubscribedEmailForm.handleFormError(
+                FormUtils.errorList.REASON_ERROR
+            );
             return;
         }
 
@@ -136,7 +123,7 @@ const UnsubscribedEmailForm = {
 
         const params = UnsubscribedEmailForm.serialize();
 
-        postToBasket(
+        FormUtils.postToBasket(
             null,
             params,
             url,

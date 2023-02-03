@@ -4,13 +4,15 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import FormUtils from '../../../../media/js/newsletter/form-utils.es6';
 import UnsubscribedEmailForm from '../../../../media/js/newsletter/unsubscribed.es6';
+
+const TOKEN_MOCK = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
 
 describe('UnsubscribedEmailForm', function () {
     beforeEach(async function () {
         const form = `<section class="c-updated-block">
             <form id="newsletter-updated-form" action="https://basket.mozilla.org/news/custom_unsub_reason/" method="post" class="c-updated-block-content c-updated-form">
-            <input type="hidden" name="token" value="1234567890">
 
             <div class="mzp-c-form-errors hidden" id="newsletter-updated-form-errors">
                 <ul class="mzp-u-list-styled">
@@ -86,6 +88,7 @@ describe('UnsubscribedEmailForm', function () {
 
         it('should handle success', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormSuccess').and.callThrough();
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             UnsubscribedEmailForm.init();
             document.getElementById('unsub0').click();
             document.getElementById('unsub99').click();
@@ -98,7 +101,7 @@ describe('UnsubscribedEmailForm', function () {
             );
 
             expect(xhrRequests[0].requestBody).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATest'
+                'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATest'
             );
             expect(UnsubscribedEmailForm.handleFormSuccess).toHaveBeenCalled();
             expect(
@@ -115,6 +118,7 @@ describe('UnsubscribedEmailForm', function () {
 
         it('should handle an incomplete form', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormError').and.callThrough();
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             UnsubscribedEmailForm.init();
             document.getElementById('newsletter-updated-form-submit').click();
             expect(UnsubscribedEmailForm.handleFormError).toHaveBeenCalled();
@@ -132,8 +136,8 @@ describe('UnsubscribedEmailForm', function () {
 
         it('should handle an invalid token', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormError').and.callThrough();
+            spyOn(FormUtils, 'getUserToken').and.returnValue('');
             UnsubscribedEmailForm.init();
-            document.querySelector('input[name="token"]').value = '';
             document.getElementById('unsub0').click();
             document.getElementById('newsletter-updated-form-submit').click();
             expect(UnsubscribedEmailForm.handleFormError).toHaveBeenCalled();
@@ -151,6 +155,7 @@ describe('UnsubscribedEmailForm', function () {
 
         it('should handle failure', function () {
             spyOn(UnsubscribedEmailForm, 'handleFormError').and.callThrough();
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             UnsubscribedEmailForm.init();
             document.getElementById('unsub0').click();
             document.getElementById('newsletter-updated-form-submit').click();
@@ -176,32 +181,33 @@ describe('UnsubscribedEmailForm', function () {
 
     describe('serialize', function () {
         it('should serialize form data as expected', function () {
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             UnsubscribedEmailForm.init();
             document.getElementById('unsub0').click();
 
             const data1 = UnsubscribedEmailForm.serialize();
             expect(data1).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.'
+                'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.'
             );
 
             document.getElementById('unsub99').click();
             const data2 = UnsubscribedEmailForm.serialize();
             expect(data2).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6'
+                'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6'
             );
 
             document.querySelector('textarea[name="reason-text"]').value =
                 'Testing';
             const data3 = UnsubscribedEmailForm.serialize();
             expect(data3).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATesting'
+                'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATesting'
             );
 
             document.querySelector('textarea[name="reason-text"]').value =
                 'Testing <script>123</script>';
             const data4 = UnsubscribedEmailForm.serialize();
             expect(data4).toEqual(
-                'token=1234567890&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATesting%20123'
+                'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATesting%20123'
             );
         });
     });
