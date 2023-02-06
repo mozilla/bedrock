@@ -11,7 +11,7 @@
 {% block page_desc %}Your privacy is very important to Mozilla. This page will enable you to opt-out of Convert experiments on www.mozilla.org{% endblock %}
 
 {% block experiments %}
-  <script type="text/javascript" src="https://cdn-3.convertexperiments.com/js/{{ settings.CONVERT_PROJECT_ID }}.js" async></script>
+  <script src="https://cdn-3.convertexperiments.com/js/{{ settings.CONVERT_PROJECT_ID }}.js" async></script>
 {% endblock %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}

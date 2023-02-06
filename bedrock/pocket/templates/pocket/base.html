@@ -7,24 +7,24 @@
 <html lang="{{ LANG }}" {% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %} {% if settings.GTM_CONTAINER_ID %} data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %}>
   <head>
     {% block shared_meta %}
-      <meta charset="utf-8" />
+      <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
       <meta name="description" content="{% block page_desc %}When you find something you want to view later, put it in Pocket.{% endblock %}"/>
       <meta name="x-pocket-override-excerpt" content="{% block pocket_override %}{{ self.page_desc()}}{% endblock %}"/>
-      <meta itemprop="name" content="{{ self.page_title() }} | Pocket" />
+      <meta itemprop="name" content="{{ self.page_title() }} | Pocket">
       <meta itemprop="description" content="{{ self.page_desc()}}"/>
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:url" content="{% block page_twitter_url %}{% endblock %}" />
-      <meta name="twitter:title" content="{{ self.page_title() }} | Pocket" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:url" content="{% block page_twitter_url %}{% endblock %}">
+      <meta name="twitter:title" content="{{ self.page_title() }} | Pocket">
       <meta name="twitter:description" content="{% block twitter_desc %}{% endblock %}"
-      />
-      <meta name="twitter:site" content="@pocket" />
-      <meta property="fb:app_id" content="131450656879143" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="{% block page_og_url %}{% endblock %}" />
-      <meta property="og:title" content="{{ self.page_title() }} | Pocket" />
+     >
+      <meta name="twitter:site" content="@pocket">
+      <meta property="fb:app_id" content="131450656879143">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="{% block page_og_url %}{% endblock %}">
+      <meta property="og:title" content="{{ self.page_title() }} | Pocket">
       <meta property="og:description" content="{{ self.page_desc()}}"/>
-      <meta property="og:site_name" content="Pocket" />
+      <meta property="og:site_name" content="Pocket">
       <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}">
       <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
       {% endblock shared_meta %}
@@ -35,8 +35,8 @@
       {% endblock %}
 
       <!-- OneTrust Cookies Consent Notice start for getpocket.com -->
-      <script type="text/javascript" src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/OtAutoBlock.js"></script>
-      <script type="text/javascript" src="{{ settings.COOKIE_CONSENT_SCRIPT_SRC }}" charset="UTF-8" data-domain-script="{{ settings.COOKIE_CONSENT_DATA_DOMAIN }}"></script>
+      <script src="https://cdn.cookielaw.org/consent/a7ff9c31-9f59-421f-9a8e-49b11a3eb24e/OtAutoBlock.js"></script>
+      <script src="{{ settings.COOKIE_CONSENT_SCRIPT_SRC }}" charset="UTF-8" data-domain-script="{{ settings.COOKIE_CONSENT_DATA_DOMAIN }}"></script>
       <!-- end OneTrust Cookies Consent Notice -->
 
     {% block pocket_css %}{% endblock  %}

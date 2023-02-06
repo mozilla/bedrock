@@ -19,8 +19,8 @@ from bedrock.utils import expand_locale_groups
 
 from ..urlresolvers import reverse
 
-CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css" />'
-JS_TEMPLATE = '<script type="text/javascript" src="%s" charset="utf-8"></script>'
+CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css">'
+JS_TEMPLATE = '<script src="%s"></script>'
 log = logging.getLogger(__name__)
 
 

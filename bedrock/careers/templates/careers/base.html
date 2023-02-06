@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block extrahead %}
-  <link rel="alternate" type="application/rss+xml" href="{{ url('careers.feed') }}" title="Current Mozilla job openings" />
+  <link rel="alternate" type="application/rss+xml" href="{{ url('careers.feed') }}" title="Current Mozilla job openings">
 {% endblock %}
 
 {% block sub_navigation %}
@@ -67,7 +67,7 @@
 
 {% block content %}
 <div id="wrapper" class="mzp-t-mozilla">
-  <main role="main" class="c-careers">
+  <main class="c-careers">
     {% block careers_content %}{% endblock %}
   </main>
 </div>

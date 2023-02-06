@@ -667,7 +667,7 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
         "https://example.com/image-hires.png",
     ]
     output = AssetBlockRenderer().render(node)
-    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="Test Description" loading="lazy" />'
+    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="Test Description" loading="lazy">'
 
     assert mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
     assert mock__get_image_url.call_args_list[1][0] == (mock_asset, 1376)

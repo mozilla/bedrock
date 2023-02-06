@@ -11,7 +11,7 @@
   <p class="c-inline-form-body">{{ ftl('mobile-focus-scan-the-qr-code-to-get-started') }}</p>
   <div class="qr-code-wrapper">
   {% if variation == 'pb' %}
-    <img src="{{ static('img/firefox/browsers/mobile/qr-variation.svg') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}" />
+    <img src="{{ static('img/firefox/browsers/mobile/qr-variation.svg') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">
   {% else %}
     {% if LANG == 'de' %}
       <img src="{{ static('img/firefox/browsers/mobile/qr-klar.png') }}" id="focus-qr" width="400" height="400" alt="{{ ftl('mobile-focus-scan-alt-text') }}">

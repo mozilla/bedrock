@@ -330,7 +330,7 @@ For a simple image, the ``static()`` function is used to generate the image URL.
 
 .. code-block:: html
 
-    <img src="{{ static('img/firefox/new/firefox-wordmark-logo.svg') }}" alt="Firefox" />
+    <img src="{{ static('img/firefox/new/firefox-wordmark-logo.svg') }}" alt="Firefox">
 
 will output an image:
 
@@ -671,7 +671,7 @@ Images that have translatable text can be handled with ``l10n_img()``:
 
 .. code-block:: html
 
-    <img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}" />
+    <img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}">
 
 The images referenced by ``l10n_img()`` must exist in ``media/img/l10n/``, so for above example, the images could include ``media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg`` and ``media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg``.
 
