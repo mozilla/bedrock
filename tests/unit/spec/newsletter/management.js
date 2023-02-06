@@ -4,8 +4,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import FormUtils from '../../../../media/js/newsletter/form-utils.es6';
 import NewsletterManagementForm from '../../../../media/js/newsletter/management.es6';
 import { userData, newsletterData, stringData } from './data.js';
+
+const TOKEN_MOCK = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
 
 describe('management.es6.js', function () {
     beforeEach(function () {
@@ -29,7 +32,7 @@ describe('management.es6.js', function () {
                     </div>
                 </div>
             </header>
-            <form method="post" action="https://basket.mozilla.org/news/user/1234567890/" class="newsletter-management-form" data-token="1234567890" data-newsletters-url="https://basket.mozilla.org/news/newsletters/" data-strings-url="/en-US/newsletter/newsletter-strings.json" data-updated-url="/en-US/newsletter/updated/" data-unsubscribe-url="https://basket.mozilla.org/news/unsubscribe/1234567890/">
+            <form method="post" action="https://basket.mozilla.org/news/user/" class="newsletter-management-form" data-newsletters-url="https://basket.mozilla.org/news/newsletters/" data-strings-url="/en-US/newsletter/newsletter-strings.json" data-updated-url="/en-US/newsletter/updated/" data-recovery-url="/en-US/newsletter/recovery/" data-unsubscribe-url="https://basket.mozilla.org/news/unsubscribe/">
                 <div class="loading-spinner hidden"></div>
                 <div class="mzp-c-form-errors hidden">
                     <ul class="mzp-u-list-styled"></ul>
@@ -118,41 +121,6 @@ describe('management.es6.js', function () {
             expect(NewsletterManagementForm.isFxALocale('es-ES')).toBeFalse();
             expect(NewsletterManagementForm.isFxALocale('it')).toBeFalse();
             expect(NewsletterManagementForm.isFxALocale('pt-BR')).toBeFalse();
-        });
-    });
-
-    describe('isWellFormedURL', function () {
-        it('should return true for absolute URLs', function () {
-            expect(
-                NewsletterManagementForm.isWellFormedURL(
-                    'http://localhost:8000/en-US/newsletter/updated/'
-                )
-            ).toBeTrue();
-            expect(
-                NewsletterManagementForm.isWellFormedURL(
-                    'https://www.mozilla.org/en-US/newsletter/updated/'
-                )
-            ).toBeTrue();
-        });
-
-        it('should return true for relative URLs', function () {
-            expect(
-                NewsletterManagementForm.isWellFormedURL(
-                    '/en-US/newsletter/updated/'
-                )
-            ).toBeTrue();
-        });
-
-        it('should return false for anything else', function () {
-            expect(
-                NewsletterManagementForm.isWellFormedURL(
-                    'undefined?unsub=1&token=null'
-                )
-            ).toBeFalse();
-            expect(
-                NewsletterManagementForm.isWellFormedURL(undefined)
-            ).toBeFalse();
-            expect(NewsletterManagementForm.isWellFormedURL(null)).toBeFalse();
         });
     });
 
@@ -560,6 +528,7 @@ describe('management.es6.js', function () {
 
     describe('validateFields', function () {
         beforeEach(function () {
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'setFormDefaults');
             spyOn(NewsletterManagementForm, 'renderNewsletters');
 
@@ -860,6 +829,7 @@ describe('management.es6.js', function () {
         });
 
         it('should should fetch data and initialise the form as expected', function () {
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
                 window.Promise.resolve(userData)
             );
@@ -896,6 +866,7 @@ describe('management.es6.js', function () {
         it('should render an error message for an invalid / expired token', function () {
             const error = { statusText: 'Not Found' };
 
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
                 window.Promise.reject(error)
             );
@@ -921,6 +892,7 @@ describe('management.es6.js', function () {
         it('should render an error message if fetching from basket fails', function () {
             const error = { statusText: 'Unknown non-helpful error' };
 
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
                 window.Promise.reject(error)
             );
@@ -957,6 +929,17 @@ describe('management.es6.js', function () {
                 ).toBeTrue();
             });
         });
+
+        it('should redirect to the /recovery/ page is a valid token is not found', function () {
+            spyOn(FormUtils, 'getUserToken').and.returnValue('');
+            spyOn(NewsletterManagementForm, 'redirectToRecoveryPage');
+
+            return NewsletterManagementForm.init().catch(() => {
+                expect(
+                    NewsletterManagementForm.redirectToRecoveryPage
+                ).toHaveBeenCalled();
+            });
+        });
     });
 
     describe('onSubmit', function () {
@@ -969,6 +952,7 @@ describe('management.es6.js', function () {
                 xhrRequests.push(req);
             };
 
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
                 window.Promise.resolve(userData)
             );
@@ -995,6 +979,10 @@ describe('management.es6.js', function () {
 
             return NewsletterManagementForm.init().then(() => {
                 document.querySelector('button[type="submit"]').click();
+
+                expect(xhrRequests[0].url).toEqual(
+                    `https://basket.mozilla.org/news/user/${TOKEN_MOCK}/`
+                );
                 expect(xhrRequests[0].requestBody).toEqual(
                     'email=example%40example.com&format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y'
                 );
@@ -1059,6 +1047,10 @@ describe('management.es6.js', function () {
             return NewsletterManagementForm.init().then(() => {
                 document.getElementById('id_remove_all').click();
                 document.querySelector('button[type="submit"]').click();
+
+                expect(xhrRequests[0].url).toEqual(
+                    `https://basket.mozilla.org/news/unsubscribe/${TOKEN_MOCK}/`
+                );
                 expect(xhrRequests[0].requestBody).toEqual(
                     'email=example@example.com&optout=Y'
                 );

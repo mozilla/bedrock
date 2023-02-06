@@ -26,6 +26,11 @@ $image-path: '/media/protocol/img';
     --theme-color-text: #{$color-black};
 }
 
+.theme-light-blue {
+    --theme-color-bg: #abf2ff;
+    --theme-color-text: #{$color-black};
+}
+
 [class*='theme'] {
     background-color: var(--theme-color-bg);
     color: var(--theme-color-text);
@@ -53,6 +58,10 @@ $image-path: '/media/protocol/img';
     .featured-story-header {
         border-bottom: 3px solid var(--theme-color-text);
     }
+}
+
+.visually-hidden {
+    @include visually-hidden;
 }
 
 .c-stories-related {

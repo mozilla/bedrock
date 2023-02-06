@@ -5,13 +5,7 @@
  */
 
 import Spinner from '../libs/spin.min';
-import {
-    checkEmailValidity,
-    clearFormErrors,
-    errorList,
-    postToBasket,
-    serialize
-} from '../newsletter/form-utils.es6';
+import FormUtils from '../newsletter/form-utils.es6';
 
 const SendToDevice = function (id) {
     this.formId = typeof id !== 'undefined' ? id : 'send-to-device';
@@ -127,8 +121,8 @@ SendToDevice.prototype.disableForm = function () {
 
 SendToDevice.prototype.validateFields = function () {
     // Really basic client side email validity check.
-    if (!checkEmailValidity(this.input.value)) {
-        this.onFormError(errorList.EMAIL_INVALID_ERROR);
+    if (!FormUtils.checkEmailValidity(this.input.value)) {
+        this.onFormError(FormUtils.errorList.EMAIL_INVALID_ERROR);
         return false;
     }
 
@@ -142,20 +136,20 @@ SendToDevice.prototype.onFormSubmit = function (e) {
     e.preventDefault();
 
     const url = this.form.getAttribute('action');
-    const params = serialize(this.form);
+    const params = FormUtils.serialize(this.form);
 
     // Disable form fields until POST has completed.
     this.disableForm();
 
     // Clear any prior messages that might have been displayed.
-    clearFormErrors(this.form);
+    FormUtils.clearFormErrors(this.form);
 
     // Perform client side form field validation.
     if (!this.validateFields()) {
         return;
     }
 
-    postToBasket(
+    FormUtils.postToBasket(
         this.input.value,
         params,
         url,
@@ -191,7 +185,7 @@ SendToDevice.prototype.onFormError = function (msg) {
     this.form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
     switch (msg) {
-        case errorList.EMAIL_INVALID_ERROR:
+        case FormUtils.errorList.EMAIL_INVALID_ERROR:
             error = this.form.querySelector('.error-email-invalid');
             break;
         default:

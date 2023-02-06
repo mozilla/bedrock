@@ -4,14 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import {
-    checkEmailValidity,
-    clearFormErrors,
-    errorList,
-    disableFormFields,
-    enableFormFields,
-    postToBasket
-} from './form-utils.es6';
+import FormUtils from './form-utils.es6';
 
 let _recoveryForm;
 
@@ -26,19 +19,19 @@ const RecoveryEmailForm = {
     },
 
     handleFormError: (msg) => {
-        enableFormFields(_recoveryForm);
+        FormUtils.enableFormFields(_recoveryForm);
 
         _recoveryForm
             .querySelector('.mzp-c-form-errors')
             .classList.remove('hidden');
 
         switch (msg) {
-            case errorList.EMAIL_INVALID_ERROR:
+            case FormUtils.errorList.EMAIL_INVALID_ERROR:
                 _recoveryForm
                     .querySelector('.error-email-invalid')
                     .classList.remove('hidden');
                 break;
-            case errorList.EMAIL_UNKNOWN_ERROR:
+            case FormUtils.errorList.EMAIL_UNKNOWN_ERROR:
                 _recoveryForm
                     .querySelector('.error-email-not-found')
                     .classList.remove('hidden');
@@ -54,9 +47,11 @@ const RecoveryEmailForm = {
         const email = document.getElementById('id_email').value;
 
         // Really basic client side email validity check.
-        if (!checkEmailValidity(email)) {
-            RecoveryEmailForm.handleFormError(errorList.EMAIL_INVALID_ERROR);
-            enableFormFields(_recoveryForm);
+        if (!FormUtils.checkEmailValidity(email)) {
+            RecoveryEmailForm.handleFormError(
+                FormUtils.errorList.EMAIL_INVALID_ERROR
+            );
+            FormUtils.enableFormFields(_recoveryForm);
             return false;
         }
 
@@ -71,17 +66,17 @@ const RecoveryEmailForm = {
         const url = _recoveryForm.getAttribute('action');
 
         // Disable form fields until POST has completed.
-        disableFormFields(_recoveryForm);
+        FormUtils.disableFormFields(_recoveryForm);
 
         // Clear any prior messages that might have been displayed.
-        clearFormErrors(_recoveryForm);
+        FormUtils.clearFormErrors(_recoveryForm);
 
         // Perform client side form field validation.
         if (!RecoveryEmailForm.validateFields()) {
             return;
         }
 
-        postToBasket(
+        FormUtils.postToBasket(
             email,
             params,
             url,

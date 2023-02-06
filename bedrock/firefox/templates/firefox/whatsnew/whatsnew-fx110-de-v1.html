@@ -1,0 +1,89 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_110_eu') }}
+{% endblock %}
+
+{% set utm_campaign = 'whatsnew-110-de-v1' %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-110-de') %}
+    {{ js_bundle('firefox_whatsnew_110_experiment_de') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-lg wnp-content-main',
+    body_class='mzp-l-split-v-start',
+    media_class='mzp-l-split-v-start',
+    media_after=True,
+    image=picture(
+      url="img/firefox/whatsnew/whatsnew110-eu/pocket-de.gif",
+      sources=[
+          {
+              "media": "(prefers-reduced-motion: reduce)",
+              "srcset": {
+                  "img/firefox/whatsnew/whatsnew110-eu/pocket-de.png": "default"
+              }
+          },
+          {
+              "media": "(prefers-reduced-motion: no-preference)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew110-eu/pocket-de.gif": "default"
+              }
+          }
+      ],
+      optional_attributes={
+        'height': '400',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+  )
+  ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-pocket"></div>
+    <h2 class="wnp-main-title">Heute speichern, später lesen</h2>
+
+    <div class="wnp-main-cta">
+      <p class="wnp-main-tagline">
+        Mit Pocket speicherst du alles, was du im Web (gut) findest und guckst
+        es dir an, wenn du Zeit dafür hast – online und offline. Außerdem
+        entdeckst du in Pocket neuen Content, der deine Zeit wert ist.
+      </p>
+
+      {{ pocket_fxa_button(
+        entrypoint=entrypoint,
+        button_text='Aktiviere Pocket in Firefox',
+        optional_parameters={
+          's': entrypoint,
+          'utm_campaign': utm_campaign,
+          'utm_content': 'signup-fxa'
+        },
+        optional_attributes={
+          'data-cta-text': 'Activate Pocket in Firefox',
+          'data-cta-type': 'button'
+        })
+      }}
+    </div>
+  {% endcall %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('firefox_whatsnew_110_eu') }}
+{% endblock %}

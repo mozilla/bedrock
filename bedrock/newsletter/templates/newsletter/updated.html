@@ -39,8 +39,6 @@
           </header>
 
           <form id="newsletter-updated-form" action="{{ action }}" method="post" class="c-updated-block-content c-updated-form">
-            <input type="hidden" name="token" value="{{ token }}">
-
             <div class="mzp-c-form-errors hidden" id="newsletter-updated-form-errors">
               <ul class="mzp-u-list-styled">
                 <li class="error-reason hidden">{{ ftl('newsletters-please-select-a-reason') }}</li>
@@ -184,11 +182,8 @@
   </main>
 {% endblock %}
 
-{# Don't display the footer if there is a token present. bug 1247446 #}
 {% block site_footer %}
-  {% if not token %}
-    {{ super() }}
-  {% endif %}
+  {{ super() }}
 {% endblock %}
 
 {% block js %}

@@ -463,6 +463,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-110-eu.scss"
+      ],
+      "name": "firefox_whatsnew_110_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-110-de.scss"
+      ],
+      "name": "firefox_whatsnew_110_de"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -520,6 +532,12 @@
         "css/newsletter/newsletter-country.scss"
       ],
       "name": "newsletter-country"
+    },
+    {
+      "files": [
+        "css/newsletter/newsletter-confirm.scss"
+      ],
+      "name": "newsletter-confirm"
     },
     {
       "files": [
@@ -1595,6 +1613,18 @@
         "js/firefox/whatsnew/whatsnew-108-experiment-de.es6.js"
       ],
       "name": "firefox_whatsnew_108_experiment_de"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-110-eu.js"
+      ],
+      "name": "firefox_whatsnew_110_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-110-experiment-de.es6.js"
+      ],
+      "name": "firefox_whatsnew_110_experiment_de"
     },
     {
       "files": [

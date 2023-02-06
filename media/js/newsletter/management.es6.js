@@ -6,14 +6,7 @@
 
 import Spinner from '../libs/spin.min';
 
-import {
-    checkEmailValidity,
-    clearFormErrors,
-    disableFormFields,
-    enableFormFields,
-    errorList,
-    postToBasket
-} from './form-utils.es6';
+import FormUtils from './form-utils.es6';
 
 const FXA_NEWSLETTERS = [
     'firefox-accounts-journey',
@@ -140,7 +133,26 @@ const NewsletterManagementForm = {
      * @returns {String}
      */
     getUserDataURL: () => {
-        return _form.getAttribute('action');
+        const token = FormUtils.getUserToken();
+        return `${_form.getAttribute('action')}${token}/`;
+    },
+
+    /**
+     * Get Basket URL for unsubscribing to all newsletters.
+     * @returns {String}
+     */
+    getUnsubscribeURL: () => {
+        const token = FormUtils.getUserToken();
+        return `${_form.getAttribute('data-unsubscribe-url')}${token}/`;
+    },
+
+    /**
+     * Get Basket URL for updating user preferences.
+     * @returns {String}
+     */
+    getFormActionURL: () => {
+        const token = FormUtils.getUserToken();
+        return `${_form.getAttribute('action')}${token}/`;
     },
 
     /**
@@ -176,17 +188,6 @@ const NewsletterManagementForm = {
      */
     isFxANewsletter: (newsletter) => {
         return FXA_NEWSLETTERS.includes(newsletter);
-    },
-
-    /**
-     * Returns true if URL string starts with http(s) or a relative path.
-     * @param {String} url
-     * @returns {Boolean}
-     */
-    isWellFormedURL: (url) => {
-        const absolute = /^https?:\/\//;
-        const relative = /^\//;
-        return absolute.test(url) || relative.test(url);
     },
 
     /**
@@ -479,7 +480,7 @@ const NewsletterManagementForm = {
         const list = errorContainer.querySelector('.mzp-c-form-errors ul');
 
         // clear any previously displayed errors.
-        clearFormErrors(_form);
+        FormUtils.clearFormErrors(_form);
 
         errors.forEach((error) => {
             const item = `<li>${error}</li>`;
@@ -489,7 +490,7 @@ const NewsletterManagementForm = {
         errorContainer.classList.remove('hidden');
         window.scrollTo(0, 0); // Scroll to top of page for error visibility.
 
-        enableFormFields(_form);
+        FormUtils.enableFormFields(_form);
     },
 
     /**
@@ -498,7 +499,7 @@ const NewsletterManagementForm = {
     onFormSuccess: () => {
         const url = _form.getAttribute('data-updated-url');
 
-        if (NewsletterManagementForm.isWellFormedURL(url)) {
+        if (FormUtils.isWellFormedURL(url)) {
             window.location.href = url;
         } else {
             NewsletterManagementForm.onDataError();
@@ -507,15 +508,14 @@ const NewsletterManagementForm = {
 
     /**
      * Redirects for `/newsletter/updated/` page on successful unsubscribe
-     * from all newsletters. The `?unsub` and `?token` params are required
-     * to display the unsubscription survey form.
+     * from all newsletters. The `?unsub` param is required to display the
+     * unsubscription survey form.
      */
     onUnsubscribeAll: () => {
-        const token = _form.getAttribute('data-token');
         const updated = _form.getAttribute('data-updated-url');
-        const url = `${updated}?unsub=${UNSUB_UNSUBSCRIBED_ALL}&token=${token}`;
+        const url = `${updated}?unsub=${UNSUB_UNSUBSCRIBED_ALL}`;
 
-        if (NewsletterManagementForm.isWellFormedURL(url)) {
+        if (FormUtils.isWellFormedURL(url)) {
             window.location.href = url;
         } else {
             NewsletterManagementForm.onDataError();
@@ -546,13 +546,13 @@ const NewsletterManagementForm = {
         let error;
 
         switch (msg) {
-            case errorList.NOT_FOUND:
+            case FormUtils.errorList.NOT_FOUND:
                 error = strings.getAttribute('data-error-token-not-found');
                 break;
-            case errorList.EMAIL_INVALID_ERROR:
+            case FormUtils.errorList.EMAIL_INVALID_ERROR:
                 error = strings.getAttribute('data-error-invalid-email');
                 break;
-            case errorList.NEWSLETTER_ERROR:
+            case FormUtils.errorList.NEWSLETTER_ERROR:
                 error = strings.getAttribute('data-error-invalid-newsletter');
 
                 // replace '%newsletter%' placeholder with actual newsletter ID.
@@ -560,10 +560,10 @@ const NewsletterManagementForm = {
                     error = error.replace('%newsletter%', newsletterId);
                 }
                 break;
-            case errorList.COUNTRY_ERROR:
+            case FormUtils.errorList.COUNTRY_ERROR:
                 error = strings.getAttribute('data-error-select-country');
                 break;
-            case errorList.LANGUAGE_ERROR:
+            case FormUtils.errorList.LANGUAGE_ERROR:
                 error = strings.getAttribute('data-error-select-lang');
                 break;
             default:
@@ -600,10 +600,10 @@ const NewsletterManagementForm = {
 
         // Basic email validation
         const email = NewsletterManagementForm.getUserEmail();
-        if (!checkEmailValidity(email)) {
+        if (!FormUtils.checkEmailValidity(email)) {
             errors.push(
                 NewsletterManagementForm.handleFormError(
-                    errorList.EMAIL_INVALID_ERROR
+                    FormUtils.errorList.EMAIL_INVALID_ERROR
                 )
             );
         }
@@ -613,7 +613,7 @@ const NewsletterManagementForm = {
         if (unexpected.length > 0) {
             errors.push(
                 NewsletterManagementForm.handleFormError(
-                    errorList.NEWSLETTER_ERROR,
+                    FormUtils.errorList.NEWSLETTER_ERROR,
                     unexpected[0]
                 )
             );
@@ -624,7 +624,7 @@ const NewsletterManagementForm = {
         if (!country) {
             errors.push(
                 NewsletterManagementForm.handleFormError(
-                    errorList.COUNTRY_ERROR
+                    FormUtils.errorList.COUNTRY_ERROR
                 )
             );
         }
@@ -634,7 +634,7 @@ const NewsletterManagementForm = {
         if (!lang) {
             errors.push(
                 NewsletterManagementForm.handleFormError(
-                    errorList.LANGUAGE_ERROR
+                    FormUtils.errorList.LANGUAGE_ERROR
                 )
             );
         }
@@ -669,7 +669,7 @@ const NewsletterManagementForm = {
     onSubmit: (e) => {
         e.preventDefault();
 
-        disableFormFields(_form);
+        FormUtils.disableFormFields(_form);
 
         // Perform client side form field validation.
         const errors = NewsletterManagementForm.validateFields();
@@ -684,19 +684,20 @@ const NewsletterManagementForm = {
         if (unsubscribeAll) {
             // Do opt-out from all newsletters.
             const email = NewsletterManagementForm.getUserEmail();
-            postToBasket(
+
+            FormUtils.postToBasket(
                 email,
                 `email=${email}&optout=Y`,
-                _form.getAttribute('data-unsubscribe-url'),
+                NewsletterManagementForm.getUnsubscribeURL(),
                 NewsletterManagementForm.onUnsubscribeAll,
                 NewsletterManagementForm.onDataError
             );
         } else {
             // Update user data to reflect form changes.
-            postToBasket(
+            FormUtils.postToBasket(
                 NewsletterManagementForm.getUserEmail(),
                 NewsletterManagementForm.serialize(),
-                _form.getAttribute('action'),
+                NewsletterManagementForm.getFormActionURL(),
                 NewsletterManagementForm.onFormSuccess,
                 NewsletterManagementForm.onDataError
             );
@@ -711,72 +712,112 @@ const NewsletterManagementForm = {
         );
     },
 
+    showUpdateBrowserCopy: () => {
+        document
+            .querySelector('.js-outdated-browser-msg')
+            .classList.add('show');
+    },
+
+    showIntroCopy: () => {
+        const intro = document.querySelector('.js-intro-msg');
+
+        // Intro copy is conditional on ?confirm=1, so
+        // check that it exists in the DOM before trying
+        // to display it.
+        if (intro) {
+            intro.classList.add('show');
+        }
+    },
+
+    /**
+     * Perform a client side redirect to the /newsletter/recovery/ page.
+     */
+    redirectToRecoveryPage: () => {
+        const recoveryUrl = _form.getAttribute('data-recovery-url');
+
+        if (FormUtils.isWellFormedURL(recoveryUrl)) {
+            window.location.href = recoveryUrl;
+        } else {
+            NewsletterManagementForm.onDataError();
+        }
+    },
+
     init: () => {
         if (!NewsletterManagementForm.meetsRequirements()) {
-            document
-                .querySelector('.js-outdated-browser-msg')
-                .classList.add('show');
+            NewsletterManagementForm.showUpdateBrowserCopy();
             return window.Promise.reject();
         } else {
-            document.querySelector('.js-intro-msg').classList.add('show');
+            NewsletterManagementForm.showIntroCopy();
         }
 
         _form = document.querySelector('.newsletter-management-form');
-        const userData = NewsletterManagementForm.getUserData();
-        const newsletterData = NewsletterManagementForm.getNewsletterData();
-        const newsletterStrings =
-            NewsletterManagementForm.getNewsletterStrings();
 
-        // Display a loading spinner whilst form data is being fetched.
-        const spinnerTarget = _form.querySelector('.loading-spinner');
-        const spinner = new Spinner({
-            lines: 12, // The number of lines to draw
-            length: 4, // The length of each line
-            width: 2, // The line thickness
-            radius: 4, // The radius of the inner circle
-            corners: 0, // Corner roundness (0..1)
-            rotate: 0, // The rotation offset
-            direction: 1, // 1: clockwise, -1: counterclockwise
-            color: '#000', // #rgb or #rrggbb or array of colors
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: true // Whether to use hardware acceleration
-        });
+        // Look for a valid user token before rendering the page.
+        // If not found, redirect to /newsletter/recovery/.
+        return FormUtils.checkForUserToken()
+            .then(() => {
+                const userData = NewsletterManagementForm.getUserData();
+                const newsletterData =
+                    NewsletterManagementForm.getNewsletterData();
+                const newsletterStrings =
+                    NewsletterManagementForm.getNewsletterStrings();
 
-        spinnerTarget.classList.remove('hidden');
-        spinner.spin(spinnerTarget);
+                // Display a loading spinner whilst form data is being fetched.
+                const spinnerTarget = _form.querySelector('.loading-spinner');
+                const spinner = new Spinner({
+                    lines: 12, // The number of lines to draw
+                    length: 4, // The length of each line
+                    width: 2, // The line thickness
+                    radius: 4, // The radius of the inner circle
+                    corners: 0, // Corner roundness (0..1)
+                    rotate: 0, // The rotation offset
+                    direction: 1, // 1: clockwise, -1: counterclockwise
+                    color: '#000', // #rgb or #rrggbb or array of colors
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: true // Whether to use hardware acceleration
+                });
 
-        // Fetch all the required data needed to render the form.
-        return window.Promise.all([userData, newsletterData, newsletterStrings])
-            .then((data) => {
-                _userData = data[0];
-                _newsletterData = data[1];
-                _stringData = data[2];
+                spinnerTarget.classList.remove('hidden');
+                spinner.spin(spinnerTarget);
 
-                const newsletters =
-                    NewsletterManagementForm.filterNewsletterData(
-                        _userData,
-                        _newsletterData,
-                        _stringData
-                    );
+                // Fetch all the required data needed to render the form.
+                return window.Promise.all([
+                    userData,
+                    newsletterData,
+                    newsletterStrings
+                ])
+                    .then((data) => {
+                        _userData = data[0];
+                        _newsletterData = data[1];
+                        _stringData = data[2];
 
-                NewsletterManagementForm.setFormDefaults(_userData);
-                NewsletterManagementForm.renderNewsletters(newsletters);
-                NewsletterManagementForm.bindEvents();
+                        const newsletters =
+                            NewsletterManagementForm.filterNewsletterData(
+                                _userData,
+                                _newsletterData,
+                                _stringData
+                            );
 
-                // Hide loading spinner
-                spinnerTarget.classList.add('hidden');
+                        NewsletterManagementForm.setFormDefaults(_userData);
+                        NewsletterManagementForm.renderNewsletters(newsletters);
+                        NewsletterManagementForm.bindEvents();
 
-                // display form fields once we've processed the basket data.
-                document
-                    .querySelector('.newsletter-management-form-fields')
-                    .classList.add('show');
+                        // Hide loading spinner
+                        spinnerTarget.classList.add('hidden');
+
+                        // display form fields once we've processed the basket data.
+                        document
+                            .querySelector('.newsletter-management-form-fields')
+                            .classList.add('show');
+                    })
+                    .catch((e) => {
+                        spinnerTarget.classList.add('hidden');
+                        NewsletterManagementForm.onDataError(e);
+                    });
             })
-            .catch((e) => {
-                spinnerTarget.classList.add('hidden');
-                NewsletterManagementForm.onDataError(e);
-            });
+            .catch(NewsletterManagementForm.redirectToRecoveryPage);
     }
 };
 

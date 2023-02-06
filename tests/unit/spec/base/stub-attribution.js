@@ -774,17 +774,24 @@ describe('stub-attribution.js', function () {
         /* eslint-enable camelcase */
 
         const winUrl =
-            'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
+            'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64Url =
-            'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
+            'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const transitionalUrl =
             'https://www.mozilla.org/firefox/download/thanks/';
+        const winStageUrl =
+            'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US';
+        const win64StageUrl =
+            'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
 
         beforeEach(function () {
             const downloadMarkup = `<ul class="download-list">
                     <li><a id="link-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winUrl}">Download</a></li>
                     <li><a id="link-direct-win" class="download-link" data-download-version="win" href="${winUrl}">Download</a></li>
                     <li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="${win64Url}">Download</a></li>
+                    <li><a id="link-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win" class="download-link" data-download-version="win" href="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win64" class="download-link" data-download-version="win64" href="${win64StageUrl}">Download</a></li>
                 </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
@@ -803,18 +810,39 @@ describe('stub-attribution.js', function () {
             expect(document.getElementById('link-transitional').href).toEqual(
                 'https://www.mozilla.org/firefox/download/thanks/'
             );
+
+            // prod download links
             expect(
                 document
                     .getElementById('link-transitional')
                     .getAttribute('data-direct-link')
             ).toEqual(
-                'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(document.getElementById('link-direct-win').href).toEqual(
-                'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(document.getElementById('link-direct-win64').href).toEqual(
-                'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+
+            // stage download links
+            expect(
+                document
+                    .getElementById('link-stage-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win64').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
         });
 

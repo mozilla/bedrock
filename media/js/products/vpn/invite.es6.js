@@ -4,14 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import {
-    checkEmailValidity,
-    clearFormErrors,
-    errorList,
-    disableFormFields,
-    enableFormFields,
-    postToBasket
-} from '../../newsletter/form-utils.es6';
+import FormUtils from '../../newsletter/form-utils.es6';
 
 let form;
 
@@ -19,18 +12,18 @@ const WaitListForm = {
     handleFormError: (msg) => {
         let error;
 
-        enableFormFields(form);
+        FormUtils.enableFormFields(form);
 
         form.querySelector('.mzp-c-form-errors').classList.remove('hidden');
 
         switch (msg) {
-            case errorList.EMAIL_INVALID_ERROR:
+            case FormUtils.errorList.EMAIL_INVALID_ERROR:
                 error = form.querySelector('.error-email-invalid');
                 break;
-            case errorList.COUNTRY_ERROR:
+            case FormUtils.errorList.COUNTRY_ERROR:
                 error = form.querySelector('.error-select-country');
                 break;
-            case errorList.LANGUAGE_ERROR:
+            case FormUtils.errorList.LANGUAGE_ERROR:
                 error = form.querySelector('.error-select-language');
                 break;
             default:
@@ -67,20 +60,20 @@ const WaitListForm = {
         const lang = form.querySelector('#id_lang').value;
 
         // Really basic client side email validity check.
-        if (!checkEmailValidity(email)) {
-            form.handleFormError(errorList.EMAIL_INVALID_ERROR);
+        if (!FormUtils.checkEmailValidity(email)) {
+            form.handleFormError(FormUtils.errorList.EMAIL_INVALID_ERROR);
             return false;
         }
 
         // Check for country selection value.
         if (countrySelect && !countrySelect.value) {
-            WaitListForm.handleFormError(errorList.COUNTRY_ERROR);
+            WaitListForm.handleFormError(FormUtils.errorList.COUNTRY_ERROR);
             return false;
         }
 
         // Check for language selection value.
         if (!lang) {
-            WaitListForm.handleFormError(errorList.LANGUAGE_ERROR);
+            WaitListForm.handleFormError(FormUtils.errorList.LANGUAGE_ERROR);
             return false;
         }
 
@@ -120,10 +113,10 @@ const WaitListForm = {
         e.stopPropagation();
 
         // Disable form fields until POST has completed.
-        disableFormFields(form);
+        FormUtils.disableFormFields(form);
 
         // Clear any prior messages that might have been displayed.
-        clearFormErrors(form);
+        FormUtils.clearFormErrors(form);
 
         // Perform client side form field validation.
         if (!WaitListForm.validateFields()) {
@@ -132,7 +125,7 @@ const WaitListForm = {
 
         const params = WaitListForm.serialize();
 
-        postToBasket(
+        FormUtils.postToBasket(
             email,
             params,
             url,

@@ -24,8 +24,8 @@ Features
 - Whole pages devoted to subscribing to one newsletter, often with custom
   text, branding, and layout.
 
-- Newsletter preference center - allow user to change their email address,
-  preferences (e.g. language, HTML vs. text), which newsletters they're
+- Newsletter preference center - allow user to change their email preferences
+  (e.g. language, HTML vs. text), as well as which newsletters they're
   subscribed to, etc. Access is limited by requiring a user-specific
   token in the URL (it's a UUID).  The full URL is included as a link in
   each newsletter sent to the user. Users can also recover a link to their
@@ -112,6 +112,14 @@ Bedrock came along, and so are unlikely to be changed.
 - ``/newsletter/recovery/`` - Allows users to recover a link containing their token so they can manage their subscriptions.
 
 - ``/newsletter/updated/`` - A page users are redirected to after updating their details, or unsubscribing.
+
+.. note::
+
+    URLs that contain ``{USERTOKEN}`` will have their path rewritten on page load
+    so that they no longer contain the token e.g. ``/newsletter/existing/{USERTOKEN}/``
+    will be rewritten to just ``/newsletter/existing/``. This helps to prevent
+    accidental sharing of user tokens in URLS and also against referral
+    information leakage.
 
 Footer sign-up
 --------------

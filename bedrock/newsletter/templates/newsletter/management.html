@@ -20,8 +20,14 @@
 
 {% block body_class %}newsletter-management{% endblock %}
 
+{% set recovery_href = 'href="' + url('newsletter.recovery') + '"'|escape %}
+
 {% block string_data %}
-  data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired') }}"
+  {% if ftl_has_messages('newsletters-the-supplied-link-has-expired-v2') %}
+    data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired-v2', recovery_href=recovery_href) }}"
+  {% else %}
+    data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired') }}"
+  {% endif %}
   data-error-invalid-email="{{ ftl('newsletters-this-is-not-a-valid-email') }}"
   data-error-invalid-newsletter="{{ ftl('newsletters-is-not-a-valid-newsletter', newsletter='%newsletter%') }}"
   data-error-select-country="{{ ftl('newsletters-please-select-country') }}"
@@ -75,10 +81,10 @@
     <form method="post"
       action="{{ action }}"
       class="newsletter-management-form"
-      data-token="{{ token }}"
       data-newsletters-url="{{ newsletters_url }}"
       data-strings-url="{{ strings_url }}"
       data-updated-url="{{ updated_url }}"
+      data-recovery-url="{{ recovery_url }}"
       data-unsubscribe-url="{{ unsubscribe_url }}">
 
       {# noscript warning to enable JavaScript #}

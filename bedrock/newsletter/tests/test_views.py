@@ -5,39 +5,12 @@ import json
 import uuid
 from unittest.mock import patch
 
-from django.http import HttpResponse
-from django.test.client import RequestFactory
-
 import basket
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
-from bedrock.newsletter.views import general_error, invalid_email_address, updated
-
-
-class TestViews(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-
-    @patch("bedrock.newsletter.views.l10n_utils.render")
-    def test_updated_allows_good_tokens(self, mock_render):
-        token = str(uuid.uuid4())
-        req = self.rf.get("/", {"token": token, "unsub": 1})
-        updated(req)
-        self.assertEqual(mock_render.call_args[0][2]["token"], token)
-
-    @patch("bedrock.newsletter.views.l10n_utils.render")
-    def test_updated_disallows_bad_tokens(self, mock_render):
-        token = "the-dude"
-        req = self.rf.get("/", {"token": token, "unsub": 1})
-        updated(req)
-        assert mock_render.call_args[0][2]["token"] is None
-
-        token = "'>\"><img src=x onerror=alert(1)>"
-        req = self.rf.get("/", {"token": token, "unsub": 1})
-        updated(req)
-        assert mock_render.call_args[0][2]["token"] is None
+from bedrock.newsletter.views import general_error, invalid_email_address
 
 
 class TestConfirmView(TestCase):
@@ -70,29 +43,19 @@ class TestConfirmView(TestCase):
         """If basket is down, we report the appropriate error"""
         with patch("basket.confirm") as confirm:
             confirm.side_effect = basket.BasketException()
-            with patch("lib.l10n_utils.render") as mock_render:
-                mock_render.return_value = HttpResponse("")
-                rsp = self.client.get(self.url, follow=True)
-            self.assertEqual(200, rsp.status_code)
+            rsp = self.client.get(self.url)
+            self.assertEqual(302, rsp.status_code)
             confirm.assert_called_with(self.token)
-            context = mock_render.call_args[0][2]
-            self.assertFalse(context["success"])
-            self.assertTrue(context["generic_error"])
-            self.assertFalse(context["token_error"])
+            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=1"))
 
     def test_bad_token(self):
         """If the token is bad, we report the appropriate error"""
         with patch("basket.confirm") as confirm:
             confirm.side_effect = basket.BasketException(status_code=403, code=basket.errors.BASKET_UNKNOWN_TOKEN)
-            with patch("lib.l10n_utils.render") as mock_render:
-                mock_render.return_value = HttpResponse("")
-                rsp = self.client.get(self.url, follow=True)
-            self.assertEqual(200, rsp.status_code)
+            rsp = self.client.get(self.url)
+            self.assertEqual(302, rsp.status_code)
             confirm.assert_called_with(self.token)
-            context = mock_render.call_args[0][2]
-            self.assertFalse(context["success"])
-            self.assertFalse(context["generic_error"])
-            self.assertTrue(context["token_error"])
+            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=2"))
 
 
 class TestNewsletterSubscribe(TestCase):
