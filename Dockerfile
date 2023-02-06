@@ -74,6 +74,7 @@ RUN apt-install gettext libxslt1.1 git curl
 COPY --from=python-builder /venv /venv
 
 # changes infrequently
+COPY docker/gitconfig /etc/
 COPY ./bin ./bin
 COPY ./etc ./etc
 COPY ./lib ./lib
