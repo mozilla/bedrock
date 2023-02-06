@@ -28,8 +28,8 @@
    #    with links to each top-level heading.
   #}
   <h1 class="mzp-c-article-title" id="mozilla-root-store-policy">Mozilla Root Store Policy</h1>
-  <p><em>Version 2.8</em></p>
-  <p><em><a href="https://wiki.mozilla.org/CA/Root_Store_Policy_Archive">Effective June 1, 2022</a></em></p>
+  <p><em>Version 2.8.1</em></p>
+  <p><em><a href="https://wiki.mozilla.org/CA/Root_Store_Policy_Archive">Effective February 15, 2023</a></em></p>
 
   <ol class="mzp-u-list-styled">
     <li><a href="#1-introduction">Introduction</a></li>
@@ -136,9 +136,7 @@
         as described in Section 1.1, adhere to this policy.</li>
   </ol>
   <p>CA operators MUST follow and be aware of discussions in
-  <a href="https://groups.google.com/a/mozilla.org/g/dev-security-policy">Mozilla's dev-security-policy</a> forum, where Mozilla's root store is
-  coordinated. They are encouraged, but not required, to contribute to those
-  discussions.</p>
+  <a href="https://groups.google.com/a/mozilla.org/g/dev-security-policy">Mozilla dev-security-policy</a> forum and the <a href="https://groups.google.com/a/ccadb.org/g/public">CCADB Public List</a>, where root store policies and program updates are announced and public discussions of root inclusion requests occur.  They are encouraged, but not required, to contribute to those discussions.</p>
   <h3 id="22-validation-practices">2.2 Validation Practices</h3>
   <p>We consider verification of certificate signing requests to be acceptable if it
   meets or exceeds the following requirements:</p>
@@ -164,8 +162,8 @@
         in the certificate or has been authorized by the domain registrant to
         act on their behalf. This MUST be done using one or more of the
         methods documented in section 3.2.2.4 of the CA/Browser Forum Baseline Requirements. The CA operator's
-        CPS (or, if applicable, the CP or CP/CPS) must clearly specify the procedure(s) that the CA employs, and
-        each documented procedure SHOULD state which subsection of 3.2.2.4 it is
+        CPS (or, if applicable, the CP or CP/CPS) MUST clearly specify the procedure(s) that the CA employs, and
+        each documented procedure MUST state which subsection of 3.2.2.4 it is
         complying with. CAs are not permitted to use 3.2.2.5 (4) ("any other method")
         to fulfill the requirements of method 3.2.2.4.8 (IP Address);</li>
     <li>for a certificate capable of being used for TLS-enabled servers, the CA
@@ -357,7 +355,7 @@
         deal with these documents, and any later versions for root certificates
         that are included in Mozilla's root store, under CC-BY-ND 4.0;</li>
     <li>all CPs, CPSes, and combined CP/CPSes MUST be reviewed and updated as necessary at least once every
-        year, as required by the Baseline Requirements. CA operators MUST indicate that this has
+        365 days, as required by the Baseline Requirements. CA operators MUST indicate that this has
         happened by incrementing the version number and adding a dated changelog entry,
         even if no other changes are made to the document;</li>
     <li>all CPs, CPSes, and combined CP/CPSes MUST be structured according to RFC 3647 and MUST:
@@ -370,9 +368,7 @@
     </li>
     <li>CA operators MUST provide a way to clearly determine which CP, CPS, or combined CP/CPS
         applies to each of its root and intermediate certificates; <em>and</em></li>
-    <li>CA operators SHALL maintain links to older versions of each CP and CPS (or CP/CPS), regardless of
-        changes in ownership or control of the root CA, until the entire root CA certificate hierarchy operated
-        in accordance with such documents is no longer trusted by the Mozilla root store.</li>
+    <li>CA operators SHALL maintain links to all historic versions of each CP and CPS (or CP/CPS) from the creation of included CA certificates, regardless of changes in ownership or control of such CA certificates, until the entire CA certificate hierarchies (i.e. end entity certificates, intermediate CA certificates, and cross-certificates) operated in accordance with such documents are no longer trusted by the Mozilla root store. For CA certificates that were included in Mozilla's root store before December 31, 2022, the CA Operator shall maintain links in their online repositories to all reasonably available historic versions of CPs and CPSes (or CP/CPSes) from creation of the included CA certificates.</li>
   </ol>
   <h2 id="4-common-ca-database">4. Common CA Database</h2>
   <p>Mozilla manages its root store using the Common CA Database (CCADB). CA operators with
@@ -385,7 +381,8 @@
   CCADB Policy, as indicated below in this section 4.</p>
   <h3 id="41-additional-requirements">4.1 Additional Requirements</h3>
   <ul class="mzp-u-list-styled">
-    <li>Effective October 1, 2022, CA operators with intermediate CA certificates that are capable of issuing TLS certificates chaining up to root certificates in Mozilla's root store SHALL populate the CCADB fields under "Pertaining to Certificates Issued by This CA" with either the CRL Distribution Point for the "Full CRL Issued By This CA" or a "JSON Array of Partitioned CRLs"; <em>and</em></li>
+    <li>CA operators with intermediate CA certificates that are capable of issuing TLS certificates chaining up to root certificates in Mozilla's root store SHALL populate the CCADB fields under "Pertaining to Certificates Issued by This CA" with either the CRL Distribution Point for the "Full CRL Issued By This CA" or a "JSON Array of Partitioned CRLs" within 7 days of such intermediate CA issuing its first certificate;</li>
+    <li>Each CRL referenced by the JSON Array of Partitioned CRLs MUST contain a critical Issuing Distribution Point extension as described in section 6.1.2; <em>and</em></li>
     <li>if the revocation of an intermediate certificate chaining up to a root in
     Mozilla’s root store is due to a security concern, as well as performing the
     actions defined in the CCADB Policy, a <a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=NSS&amp;component=CA%20Certificate%20Compliance&amp;groups=crypto-core-security">security bug MUST be filed in
@@ -762,6 +759,12 @@
     <li>the CA operator has revoked the certificate due to domain authorization or compliance issues other than those related to keyCompromise or privilegeWithdrawn.</li>
   </ul>
   <p>Otherwise, the superseded CRLReason MUST NOT be used.</p>
+  <h4 id="612-tls">6.1.2 TLS Certificate CRL Issuing Distribution Points</h4>
+  <p>A CRL whose scope does not include all unexpired certificates that are issued by the CA SHALL contain a critical Issuing Distribution Point extension (OID 2.5.29.28). The distributionPoint field of the extension SHALL include a UniformResourceIdentifier whose value is derived from one of the two following sources:</p>
+  <ol class="mzp-u-list-styled">
+    <li>The UniformResourceIdentifier as encoded in the distributionPoint field of an issued certificate's CRL Distribution Points extension (see RFC 5280 section 5.2.5); or</li>
+    <li>The URL as included in the "JSON Array of Partitioned CRLs" field in the CCADB entry corresponding to the certificate for the issuing CA.</li>
+  </ol>
   <h3 id="62-smime">6.2 S/MIME</h3>
   <p>For any certificate in a hierarchy capable of being used for
   S/MIME, CA operators MUST revoke certificates upon the occurrence of
