@@ -104,10 +104,6 @@ const NewsletterManagementForm = {
         return window.location.href;
     },
 
-    getUserEmail: () => {
-        return _userData ? _userData.email : null;
-    },
-
     getFormCountry: () => {
         return _form.querySelector('select[name="country"]').value;
     },
@@ -598,16 +594,6 @@ const NewsletterManagementForm = {
     validateFields: () => {
         const errors = [];
 
-        // Basic email validation
-        const email = NewsletterManagementForm.getUserEmail();
-        if (!FormUtils.checkEmailValidity(email)) {
-            errors.push(
-                NewsletterManagementForm.handleFormError(
-                    FormUtils.errorList.EMAIL_INVALID_ERROR
-                )
-            );
-        }
-
         // Make sure all checked newsletters have valid IDs
         const unexpected = NewsletterManagementForm.validateNewsletters();
         if (unexpected.length > 0) {
@@ -647,9 +633,6 @@ const NewsletterManagementForm = {
      * @returns {String}
      */
     serialize: () => {
-        const email = encodeURIComponent(
-            NewsletterManagementForm.getUserEmail()
-        );
         const country = _form.querySelector('select[name="country"]').value;
         const lang = _form.querySelector('#id_lang').value;
         const format = document.querySelector(
@@ -659,7 +642,7 @@ const NewsletterManagementForm = {
             NewsletterManagementForm.getCheckedNewsletters().join(',')
         );
 
-        return `email=${email}&format=${format}&country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y`;
+        return `format=${format}&country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y`;
     },
 
     /**
@@ -682,12 +665,9 @@ const NewsletterManagementForm = {
         const unsubscribeAll = NewsletterManagementForm.shouldUnsubscribeAll();
 
         if (unsubscribeAll) {
-            // Do opt-out from all newsletters.
-            const email = NewsletterManagementForm.getUserEmail();
-
             FormUtils.postToBasket(
-                email,
-                `email=${email}&optout=Y`,
+                null,
+                `optout=Y`,
                 NewsletterManagementForm.getUnsubscribeURL(),
                 NewsletterManagementForm.onUnsubscribeAll,
                 NewsletterManagementForm.onDataError
@@ -695,7 +675,7 @@ const NewsletterManagementForm = {
         } else {
             // Update user data to reflect form changes.
             FormUtils.postToBasket(
-                NewsletterManagementForm.getUserEmail(),
+                null,
                 NewsletterManagementForm.serialize(),
                 NewsletterManagementForm.getFormActionURL(),
                 NewsletterManagementForm.onFormSuccess,

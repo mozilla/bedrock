@@ -551,9 +551,6 @@ describe('management.es6.js', function () {
 
         it('should return return an empty array if form data is valid', function () {
             return NewsletterManagementForm.init().then(() => {
-                spyOn(NewsletterManagementForm, 'getUserEmail').and.returnValue(
-                    'example@example.com'
-                );
                 spyOn(
                     NewsletterManagementForm,
                     'validateNewsletters'
@@ -571,9 +568,6 @@ describe('management.es6.js', function () {
 
         it('should return return an array of errors if form data is invalid', function () {
             return NewsletterManagementForm.init().then(() => {
-                spyOn(NewsletterManagementForm, 'getUserEmail').and.returnValue(
-                    'not-an-email'
-                );
                 spyOn(
                     NewsletterManagementForm,
                     'validateNewsletters'
@@ -586,7 +580,6 @@ describe('management.es6.js', function () {
                     undefined
                 );
                 expect(NewsletterManagementForm.validateFields()).toEqual([
-                    'This is not a valid email address. Please check the spelling.',
                     'bargain-hunters-weekly is not a valid newsletter',
                     'Please select a country or region',
                     'Please select a language'
@@ -984,7 +977,7 @@ describe('management.es6.js', function () {
                     `https://basket.mozilla.org/news/user/${TOKEN_MOCK}/`
                 );
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'email=example%40example.com&format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1005,7 +998,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'email=example%40example.com&format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1028,7 +1021,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'email=example%40example.com&format=H&country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1051,9 +1044,7 @@ describe('management.es6.js', function () {
                 expect(xhrRequests[0].url).toEqual(
                     `https://basket.mozilla.org/news/unsubscribe/${TOKEN_MOCK}/`
                 );
-                expect(xhrRequests[0].requestBody).toEqual(
-                    'email=example@example.com&optout=Y'
-                );
+                expect(xhrRequests[0].requestBody).toEqual('optout=Y');
                 xhrRequests[0].respond(
                     200,
                     { 'Content-Type': 'application/json' },
