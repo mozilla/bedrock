@@ -20,6 +20,7 @@ def inner_html(el):
     # always remove newlines and excess whitespace
     return re.sub(r"\s+", " ", el.html()).strip()
 
+
 current_link_input = {"text": "Testing current link", "href": "/current", "cta_name": "Test Link"}
 regular_link_input = {"text": "Testing link", "href": "/regular", "cta_name": "Test Link"}
 
