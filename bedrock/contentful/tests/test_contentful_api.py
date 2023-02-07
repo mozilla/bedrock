@@ -1467,10 +1467,6 @@ def test_ContentfulPage__get_split_data__get_mobile_class(mock__get_image_url, b
 #     assert False, "WRITE ME"
 
 
-# def test_ContentfulPage__get_hero_data():
-#     assert False, "WRITE ME"
-
-
 # def test_ContentfulPage__get_section_data():
 #     assert False, "WRITE ME"
 

@@ -6,7 +6,6 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% from "macros.html" import image with context %}
 {% from "macros-protocol.html" import split, picto, card, with context %}
 
 {% block page_title %}The State of Mozilla: 2020 Annual Report{% endblock %}
@@ -601,7 +600,15 @@
     <article data-modal-parent="firefox-desktop-redesign" id="firefox-desktop-redesign" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/mr1-behind-design.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/mr1-behind-design.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -621,7 +628,15 @@
     <article data-modal-parent="firefox-mobile-redesign" id="firefox-mobile-redesign" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-android.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-android.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -641,7 +656,15 @@
     <article data-modal-parent="firefox-suggest" id="firefox-suggest" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-blog-header.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-blog-header.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -665,7 +688,15 @@
     <article data-modal-parent="picture-in-picture" id="picture-in-picture" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/blog-header-pip.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/blog-header-pip.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -687,7 +718,15 @@
     <article data-modal-parent="pocket-best-of-2021" id="pocket-best-of-2021" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/pocket-best-of-2021.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/pocket-best-of-2021.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -709,7 +748,15 @@
     <article data-modal-parent="firefox-colorways" id="firefox-colorways" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-colorways-header.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-colorways-header.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -729,7 +776,15 @@
     <article data-modal-parent="pocket-joy-collection" id="pocket-joy-collection" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/pocket-joy-collection.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/pocket-joy-collection.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -749,7 +804,15 @@
     <article data-modal-parent="pocket-slate-partnership" id="pocket-slate-partnership" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/pocket-slate-podcast.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/pocket-slate-podcast.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -769,7 +832,15 @@
     <article data-modal-parent="pocket-hercampus" id="pocket-hercampus" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/hercampus-blog-header.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/hercampus-blog-header.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -792,7 +863,15 @@
     <article data-modal-parent="privacy-not-included" id="privacy-not-included" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/moz-pni-header.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/moz-pni-header.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -812,7 +891,15 @@
     <article data-modal-parent="mofo-letter-privacy" id="mofo-letter-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/mofo-privacy-header.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/mofo-privacy-header.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -832,7 +919,15 @@
     <article data-modal-parent="doh-canada" id="doh-canada" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/doh-canada-rollout.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/doh-canada-rollout.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -852,7 +947,15 @@
     <article data-modal-parent="apple-idfa" id="apple-idfa" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/apple-idfa-campaign.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/apple-idfa-campaign.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -872,7 +975,15 @@
     <article data-modal-parent="venmo-privacy" id="venmo-privacy" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/venmo-privacy.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/venmo-privacy.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -892,7 +1003,15 @@
     <article data-modal-parent="vpn-expansion" id="vpn-expansion" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/vpn-blog-header.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/vpn-blog-header.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -912,7 +1031,15 @@
     <article data-modal-parent="privacy-control" id="privacy-control" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-asset.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-asset.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -932,7 +1059,15 @@
     <article data-modal-parent="total-cookie-protection" id="total-cookie-protection" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/total-cookie-protection.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/total-cookie-protection.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -956,7 +1091,15 @@
     <article data-modal-parent="firefox-relay-premium" id="firefox-relay-premium" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-relay-premium.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-relay-premium.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -981,7 +1124,15 @@
     <article data-modal-parent="privacy-advertising" id="privacy-advertising" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/firefox-privacy.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/firefox-privacy.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -1000,7 +1151,15 @@
     <article data-modal-parent="youtube-regrets" id="youtube-regrets" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/youtube-regrets.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/youtube-regrets.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -1020,7 +1179,15 @@
     <article data-modal-parent="tiktok-research" id="tiktok-research" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/tiktok-research.png', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/tiktok-research.png',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -1040,7 +1207,15 @@
     <article data-modal-parent="nyt-op-ed" id="nyt-op-ed" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/nyt-op-ed.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/nyt-op-ed.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -1060,7 +1235,15 @@
     <article data-modal-parent="ad-transparency" id="ad-transparency" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/ad-transparency.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/ad-transparency.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 
@@ -1080,7 +1263,15 @@
     <article data-modal-parent="kenya-research" id="kenya-research" class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-left-half">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          {{ image(url='img/foundation/annualreport/2020/kenya-disinformation.jpg', loading='lazy', width='930', height='523', class='mzp-c-card-image') }}
+          {{ resp_img(
+            url='img/foundation/annualreport/2020/kenya-disinformation.jpg',
+            optional_attributes={
+              'class': 'mzp-c-card-image',
+              'width': '930',
+              'height': '523',
+              'loading': 'lazy'
+            }
+          ) }}
         </div>
       </div>
 

@@ -144,16 +144,6 @@ $image-path: '/media/protocol/img';
             background: $color-ink-80;
             min-height: 0;
         }
-
-        .mzp-c-hero-image {
-            display: block;
-
-            img {
-                bottom: auto;
-                left: $layout-sm;
-                top: calc(50% - 296px); // estimated to match design
-            }
-        }
     }
 }
 

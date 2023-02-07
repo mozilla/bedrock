@@ -60,27 +60,3 @@ $image-path: '/media/protocol/img';
 .mzp-c-call-out-compact.contact {
     background-color: $color-marketing-gray-30;
 }
-
-@media #{$mq-md} {
-    .mzp-c-hero {
-        padding: 0;
-        margin-bottom: $layout-lg;
-
-        .mzp-l-content {
-            display: flex;
-            align-items: center;
-            min-height: 420px;
-        }
-
-        .mzp-c-hero-image {
-            height: 100%;
-            top: 0;
-        }
-    }
-}
-
-@media #{$mq-lg} {
-    .mzp-c-hero-image img {
-        margin-left: $layout-lg;
-    }
-}

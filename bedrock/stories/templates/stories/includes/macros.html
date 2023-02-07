@@ -5,8 +5,6 @@
 #}
 
 {% from "macros-protocol.html" import card with context %}
-{% from "macros.html" import image with context %}
-
 
 {% macro stories_card(title, link, desc, image=None, class="") %}
   <section class="c-stories-card {% if class %}{{ class }}{% endif %}">

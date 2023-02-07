@@ -163,7 +163,7 @@ main .mzp-l-content {
         margin-right: auto;
     }
 
-    .mzp-c-hero-desc {
+    .c-hero-desc {
         text-align: center;
         margin-bottom: $spacing-lg;
     }
@@ -352,21 +352,6 @@ main .mzp-l-content {
 
     66% {
         background-position: 500px 500px, 500px 500px, 50% 75%;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// secondary hero
-
-.t-hero-secondary {
-    &.mzp-c-hero {
-        &.mzp-t-firefox::after {
-            display: none;
-        }
-    }
-
-    .mzp-l-content {
-        padding-bottom: $layout-lg;
     }
 }
 

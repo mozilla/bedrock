@@ -411,10 +411,6 @@ class ContentfulPage:
         "Bottom": "mzp-l-split-pop-bottom",
     }
     CONTENT_TYPE_MAP = {
-        "componentHero": {
-            "proc": "get_hero_data",
-            "css": "c-hero",
-        },
         "componentSectionHeading": {
             "proc": "get_section_data",
             "css": "c-section-heading",
@@ -658,9 +654,7 @@ class ContentfulPage:
         if page_type == CONTENT_TYPE_PAGE_GENERAL:
             # look through all entries and find content ones
             for key, value in fields.items():
-                if key == "component_hero":
-                    proc(value)
-                elif key == "body":
+                if key == "body":
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
@@ -689,29 +683,6 @@ class ContentfulPage:
 
     def get_text_data(self, value):
         data = {"component": "text", "body": self.render_rich_text(value), "width_class": _get_width_class("Medium")}  # TODO
-
-        return data
-
-    def get_hero_data(self, entry_obj):
-        fields = entry_obj.fields()
-
-        hero_image_url = _get_image_url(fields["image"], 800)
-        hero_reverse = fields.get("image_side")
-        hero_body = self.render_rich_text(fields.get("body"))
-
-        product_class = _get_product_class(fields.get("product_icon")) if fields.get("product_icon") and fields.get("product_icon") != "None" else ""
-        data = {
-            "component": "hero",
-            "theme_class": _get_theme_class(fields.get("theme")),
-            "product_class": product_class,
-            "title": fields.get("heading"),
-            "tagline": fields.get("tagline"),
-            "body": hero_body,
-            "image": hero_image_url,
-            "image_class": "mzp-l-reverse" if hero_reverse == "Left" else "",
-            "include_cta": True if fields.get("cta") else False,
-            "cta": _make_cta_button(fields.get("cta")) if fields.get("cta") else "",
-        }
 
         return data
 
