@@ -1,0 +1,231 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+$off-black: #333336;
+
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes blur {
+    0% {
+        color: $off-black;
+        text-shadow: 0;
+    }
+
+    100% {
+        color: transparent;
+        text-shadow: 0 0 10px $off-black;
+    }
+}
+
+.wnp-loading,
+.wnp-mobile,
+.wnp-default {
+    &.show {
+        display: block;
+    }
+
+    &.hide {
+        display: none;
+    }
+}
+
+.wnp-content-main {
+    background: $color-yellow-20;
+    color: $color-black;
+    margin: $layout-xs 0 0;
+    min-height: 50vh;
+    padding-top: 0;
+    text-align: center;
+
+    h1 span {
+        display: block;
+    }
+}
+
+// Show a loading indicator until we can detect default browser
+.wnp-loading {
+    animation: loading 1.2s ease-in-out infinite;
+    background: linear-gradient(100deg, $color-yellow-20 30%, $color-white 50%, $color-yellow-20 70%);
+    background-size: 400%;
+    border-radius: $border-radius-sm;
+    height: 20px;
+    margin: $layout-lg auto;
+    width: 200px;
+
+    &.hide {
+        display: none;
+    }
+}
+
+// Assuming JS is available, show no content until we can detect default browser
+.js {
+    .wnp-default,
+    .wnp-mobile {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// Fall back to the mobile content if JS fails
+.no-js {
+    .wnp-default,
+    .wnp-loading {
+        display: none;
+    }
+
+    .wnp-mobile {
+        display: block;
+    }
+}
+
+// *---------------------------------------------------------------------------*/
+// Content promoting Firefox for mobile
+.wnp-mobile-content {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 110px 110px 1fr auto auto;
+    margin: 0 auto;
+    max-width: 500px;
+
+    @media #{$mq-md} {
+        display: grid;
+    }
+
+    @media #{$mq-xl} {
+        margin-top: -$layout-md;
+    }
+}
+
+.wnp-mobile-title {
+    @include text-title-lg;
+    color: $off-black;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+    margin: 0;
+    z-index: 3;
+
+    .part1 {
+        padding-right: 150px;
+    }
+
+    .part3 {
+        padding-left: 130px;
+    }
+
+    @media #{$mq-md} {
+        @include font-size(64px);
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 2;
+        line-height: 0.95;
+        padding: 0 $spacing-2xl;
+        text-align: left;
+    }
+}
+
+.wnp-mobile-qrcode {
+    background: $color-white;
+    box-shadow: $box-shadow-sm;
+    box-sizing: border-box;
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    margin: 0 auto;
+    padding: $spacing-lg;
+    width: 160px;
+    z-index: 2;
+
+    img {
+        display: block;
+        margin: 0 auto $spacing-sm;
+    }
+
+    @media #{$mq-md} {
+        background: transparent url('/media/img/firefox/whatsnew/whatsnew110/phone.svg') calc(50% + 2px) top no-repeat;
+        background-size: contain;
+        box-shadow: none;
+        min-height: 320px;
+    }
+}
+
+.wnp-mobile-qrcode-label {
+    @include font-firefox;
+    @include text-body-xs;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+}
+
+.wnp-mobile-tagline {
+    @include text-body-lg;
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    margin-top: $spacing-xl;
+    z-index: 3;
+}
+
+// *---------------------------------------------------------------------------*/
+// Content promoting setting Firefox as the default
+.wnp-default {
+    margin: 0 auto;
+    max-width: 550px;
+}
+
+.wnp-default-title {
+    @include text-title-2xl;
+    color: $off-black;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+
+    .part2 {
+        animation: blur 500ms 1250ms ease forwards;
+    }
+
+    @media #{$mq-md} {
+        .part1 {
+            text-align: left;
+        }
+
+        .part2 {
+            text-align: center;
+        }
+
+        .part3 {
+            text-align: right;
+        }
+    }
+}
+
+.wnp-default-tagline {
+    @include text-body-lg;
+    margin: $spacing-xl auto;
+    max-width: $content-sm;
+}
+
+.wnp-sign-off {
+    @include text-body-sm;
+    grid-column: 1 / span 2;
+    grid-row: 5;
+    margin-top: $spacing-2xl;
+
+    strong {
+        display: block;
+
+        @media #{$mq-md} {
+            display: inline;
+        }
+    }
+}
