@@ -66,13 +66,13 @@
       {% block sections %}
       {% endblock %}
     </main>
+    {% if self.footnote()|trim|length %}
     <footer class="privacy-footnote">
       <div>
-        {% if self.footnote()|trim|length %}
           {% block footnote%}{% endblock %}
-        {% endif %}
       </div>
     </footer>
+    {% endif %}
     {% endblock %}
   </article>
   <aside class="mzp-l-sidebar">
