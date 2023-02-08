@@ -48,6 +48,7 @@ $off-black: #333336;
     margin: $layout-xs 0 0;
     min-height: 50vh;
     padding-top: 0;
+    text-align: center;
 
     h1 span {
         display: block;
@@ -104,6 +105,10 @@ $off-black: #333336;
     @media #{$mq-md} {
         display: grid;
     }
+
+    @media #{$mq-xl} {
+        margin-top: -$layout-md;
+    }
 }
 
 .wnp-mobile-title {
@@ -119,7 +124,7 @@ $off-black: #333336;
     }
 
     .part3 {
-        padding-left: 25%;
+        padding-left: 130px;
     }
 
     @media #{$mq-md} {

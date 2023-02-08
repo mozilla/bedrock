@@ -4,45 +4,52 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-function isDefaultBrowser() {
+function defaultTrue() {
     'use strict';
-    return new window.Promise(function (resolve, reject) {
-        window.Mozilla.UITour.getConfiguration('appinfo', function (details) {
-            if (details.defaultBrowser) {
-                resolve();
-            } else {
-                reject();
-            }
-        });
+
+    document.querySelector('.wnp-loading').classList.add('hide');
+    document.querySelector('.wnp-default').classList.add('hide');
+    document.querySelector('.wnp-mobile').classList.add('show');
+
+    window.dataLayer.push({
+        event: 'non-interaction',
+        eAction: 'whatsnew-110-en',
+        eLabel: 'default-true'
+    });
+}
+
+function defaultFalse() {
+    'use strict';
+
+    document.querySelector('.wnp-loading').classList.add('hide');
+    document.querySelector('.wnp-mobile').classList.add('hide');
+    document.querySelector('.wnp-default').classList.add('show');
+
+    window.dataLayer.push({
+        event: 'non-interaction',
+        eAction: 'whatsnew-110-en',
+        eLabel: 'default-false'
     });
 }
 
 function init() {
     'use strict';
 
-    isDefaultBrowser()
-        .then(function () {
-            document.querySelector('.wnp-loading').classList.add('hide');
-            document.querySelector('.wnp-default').classList.add('hide');
-            document.querySelector('.wnp-mobile').classList.add('show');
+    // If UITour is slow to respond, fallback to assuming Fx is not default.
+    const requestTimeout = window.setTimeout(defaultFalse, 2000);
 
-            window.dataLayer.push({
-                event: 'non-interaction',
-                eAction: 'whatsnew-110-en',
-                eLabel: 'firefox-default'
-            });
-        })
-        .catch(function () {
-            document.querySelector('.wnp-loading').classList.add('hide');
-            document.querySelector('.wnp-mobile').classList.add('hide');
-            document.querySelector('.wnp-default').classList.add('show');
+    Mozilla.UITour.getConfiguration('appinfo', function (details) {
+        // Clear timeout as soon as we get a response.
+        window.clearTimeout(requestTimeout);
 
-            window.dataLayer.push({
-                event: 'non-interaction',
-                eAction: 'whatsnew-110-en',
-                eLabel: 'firefox-not-default'
-            });
-        });
+        // If Firefox is already the default, show alternate call to action.
+        if (details.defaultBrowser) {
+            defaultTrue();
+            return;
+        }
+
+        defaultFalse();
+    });
 }
 
 if (
