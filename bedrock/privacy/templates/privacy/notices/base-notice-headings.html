@@ -32,7 +32,7 @@
 
 {% set footnote = doc.body.select('#footnote') %}
 {% if footnote %}
-  {% set footnote = footnote[0].extract() %}
+  {% set footnote = footnote[0].find_parent('section').extract() %}
 {% endif %}
 
 {% block page_title %}{{ title.get_text()|join }}{% endblock %}

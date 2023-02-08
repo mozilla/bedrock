@@ -194,6 +194,8 @@ $border: 2px solid $color-marketing-gray-20;
 
 .privacy-footnote {
     @include text-body-md;
+    border-top: $border;
+    margin-top: $spacing-2xl;
     padding: $spacing-2xl 0;
 
     h3 {
