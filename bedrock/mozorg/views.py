@@ -196,8 +196,6 @@ class ContentfulPreviewView(L10nTemplateView):
         else:
             template = "mozorg/contentful-all.html"
 
-        print(context)
-
         return l10n_utils.render(self.request, template, context, **response_kwargs)
 
 

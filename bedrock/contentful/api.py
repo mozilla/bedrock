@@ -745,7 +745,6 @@ class ContentfulPage:
         if not entry_obj:
             raise Exception(f"No 'Entry' detected for {self.page.content_type.id}")
 
-        # can we get reliable published date?
         self.request.page_info = self.get_info_data(
             entry_obj,
             seo_obj,
@@ -803,8 +802,6 @@ class ContentfulPage:
             for item in content:
                 proc(item)
 
-        # does it make sense to include things like "dek" and "theme" in entries?
-        # is page_info more for non-user-facing things?
         return {
             "page_type": page_type,
             "page_css": list(page_css),
