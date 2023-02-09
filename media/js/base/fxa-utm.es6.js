@@ -41,7 +41,7 @@ const referralCookieID = 'fxa-product-referral-id';
  * @param {String} url.
  * @returns {String} hostname.
  */
-FxaUtm.getHostName = function (url) {
+FxaUtm.getHostName = (url) => {
     const matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
     return matches && matches[0];
 };
@@ -51,7 +51,7 @@ FxaUtm.getHostName = function (url) {
  * @param {Object} params.
  * @returns {Boolean}.
  */
-FxaUtm.hasUtmParams = function (params) {
+FxaUtm.hasUtmParams = (params) => {
     if (typeof params !== 'object') {
         return false;
     }
@@ -66,7 +66,7 @@ FxaUtm.hasUtmParams = function (params) {
     return false;
 };
 
-FxaUtm.getFxALinkReferralData = function (params) {
+FxaUtm.getFxALinkReferralData = (params) => {
     const cookiesEnabled =
         typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
     const allowedChars = /^[\w/.%-]+$/;
@@ -104,15 +104,62 @@ FxaUtm.getFxALinkReferralData = function (params) {
     return null;
 };
 
-FxaUtm.hasFxALinkReferralCookie = function () {
+FxaUtm.getSearchReferralData = (params, ref) => {
+    const referrer = typeof ref === 'string' ? ref : document.referrer;
+    const google = /^https?:\/\/www\.google\.\w{2,3}(\.\w{2})?\/?/;
+    const bing = /^https?:\/\/www\.bing\.com\/?/;
+    const yahoo = /^https?:\/\/(\w*\.)?search\.yahoo\.com\/?/;
+    const duckduckgo = /^https?:\/\/duckduckgo\.com\/?/;
+    const yandex = /^https?:\/\/yandex\.\w{2,3}(\.\w{2})?\/?/;
+    const baidu = /^https?:\/\/www\.baidu\.com\/?/;
+    const naver = /^https?:\/\/search\.naver\.com\/?/;
+
+    let data = {
+        utm_medium: 'organic'
+    };
+
+    switch (true) {
+        case google.test(referrer):
+            data.utm_source = 'google';
+            break;
+        case bing.test(referrer):
+            data.utm_source = 'bing';
+            break;
+        case yahoo.test(referrer):
+            data.utm_source = 'yahoo';
+            break;
+        case duckduckgo.test(referrer):
+            data.utm_source = 'duckduckgo';
+            break;
+        case yandex.test(referrer):
+            data.utm_source = 'yandex';
+            break;
+        case baidu.test(referrer):
+            data.utm_source = 'baidu';
+            break;
+        case naver.test(referrer):
+            data.utm_source = 'naver';
+            break;
+        default:
+            data = null;
+    }
+
+    if (data && params && typeof params === 'object') {
+        return Object.assign(params, data);
+    }
+
+    return data;
+};
+
+FxaUtm.hasFxALinkReferralCookie = () => {
     return Mozilla.Cookies.hasItem(referralCookieID);
 };
 
-FxaUtm.getFxALinkReferralCookie = function () {
+FxaUtm.getFxALinkReferralCookie = () => {
     return Mozilla.Cookies.getItem(referralCookieID);
 };
 
-FxaUtm.setFxALinkReferralCookie = function (id) {
+FxaUtm.setFxALinkReferralCookie = (id) => {
     const cookiesEnabled =
         typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
@@ -133,7 +180,7 @@ FxaUtm.setFxALinkReferralCookie = function (id) {
     }
 };
 
-FxaUtm.onFxALinkReferralClick = function (e) {
+FxaUtm.onFxALinkReferralClick = (e) => {
     const newTab = e.target.target === '_blank' || e.metaKey || e.ctrlKey;
     const referralId = e.target.getAttribute('data-referral-id');
 
@@ -148,7 +195,7 @@ FxaUtm.onFxALinkReferralClick = function (e) {
     }
 };
 
-FxaUtm.bindFxALinkReferrals = function () {
+FxaUtm.bindFxALinkReferrals = () => {
     const ctaLinks = document.querySelectorAll('.js-fxa-product-referral-link');
 
     for (let i = 0; i < ctaLinks.length; i++) {
@@ -165,7 +212,7 @@ FxaUtm.bindFxALinkReferrals = function () {
  * https://mozilla.github.io/ecosystem-platform/docs/relying-parties/metrics-for-relying-parties#metrics-related-query-parameters
  * @returns {Object} if params are valid, else {null}.
  */
-FxaUtm.getAttributionData = function (params) {
+FxaUtm.getAttributionData = (params) => {
     const allowedChars = /^[\w/.%-]+$/;
     const finalParams = {};
 
@@ -180,42 +227,6 @@ FxaUtm.getAttributionData = function (params) {
             } catch (e) {
                 // silently drop malformed parameter values (issue #10897)
             }
-        }
-    }
-
-    /**
-     * Occasionally we link to a mozorg product landing page (e.g. VPN) via an in-product page such as /whatsnew
-     * or /welcome. Here we want to avoid using utm params on internal links since that's bad, so instead we support
-     * the option of passing a `source` parameter to help connect attribution with FxA link referrals.
-     */
-    if (Object.prototype.hasOwnProperty.call(finalParams, 'source')) {
-        if (
-            finalParams['source'].indexOf('whatsnew') !== -1 ||
-            finalParams['source'].indexOf('welcome') !== -1 ||
-            finalParams['source'].indexOf('vpn-info') !== -1
-        ) {
-            // utm_source and entrypoint should always be consistent and omit a version number.
-            if (finalParams['source'].indexOf('vpn-info') !== -1) {
-                finalParams['utm_source'] = 'www.mozilla.org-vpn-info';
-                finalParams['entrypoint'] = 'www.mozilla.org-vpn-info';
-            } else if (finalParams['source'].indexOf('whatsnew') !== -1) {
-                finalParams['utm_source'] = 'www.mozilla.org-whatsnew';
-                finalParams['entrypoint'] = 'www.mozilla.org-whatsnew';
-            } else {
-                finalParams['utm_source'] = 'www.mozilla.org-welcome';
-                finalParams['entrypoint'] = 'www.mozilla.org-welcome';
-            }
-
-            // utm_campaign should indicate which version the referral came from e.g. `whatsnew88`, `welcome9`.
-            finalParams['utm_campaign'] = finalParams['source'];
-
-            // delete the original source param afterward as it's no longer needed.
-            delete finalParams['source'];
-
-            return finalParams;
-        } else {
-            // if source doesn't contain a supported value then delete it.
-            delete finalParams['source'];
         }
     }
 
@@ -278,7 +289,7 @@ FxaUtm.getAttributionData = function (params) {
  * @param {Object} data object consisting of one or more parameters.
  * @returns {String} URL containing updated parameters.
  */
-FxaUtm.appendToDownloadURL = function (url, data) {
+FxaUtm.appendToDownloadURL = (url, data) => {
     let finalParams;
     let linkParams;
 
@@ -338,16 +349,16 @@ FxaUtm.appendToDownloadURL = function (url, data) {
  * If there are validated referral params on the page URL, query the
  * DOM and update Firefox Account links with the new param data.
  */
-FxaUtm.init = function (urlParams) {
-    let params = FxaUtm.getAttributionData(urlParams);
-    const ctaLinks = document.querySelectorAll(
-        '.js-fxa-cta-link, .js-vpn-cta-link'
-    );
-
+FxaUtm.init = (urlParams) => {
     // feature detect support for object modification.
     if (typeof Object.assign !== 'function') {
         return;
     }
+
+    let params = FxaUtm.getAttributionData(urlParams);
+    const ctaLinks = document.querySelectorAll(
+        '.js-fxa-cta-link, .js-vpn-cta-link'
+    );
 
     // Track CTA clicks for FxA link referrals.
     FxaUtm.bindFxALinkReferrals();
@@ -356,6 +367,10 @@ FxaUtm.init = function (urlParams) {
     // same-site page navigation and check to see if there's a referral cookie.
     if (!FxaUtm.hasUtmParams(params)) {
         params = FxaUtm.getFxALinkReferralData(params);
+
+        if (!params) {
+            params = FxaUtm.getSearchReferralData(params);
+        }
     }
 
     // If there are is still no referral data, then do nothing.

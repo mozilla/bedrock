@@ -184,32 +184,6 @@ describe('fxa-utm.js', function () {
             expect(FxaUtm.getAttributionData(validObj)).toEqual(validData);
         });
 
-        it('should return entrypoint and utm params if supported source attribute is present', function () {
-            const validObj1 = {
-                source: 'whatsnew88'
-            };
-
-            const validData1 = {
-                entrypoint: 'www.mozilla.org-whatsnew',
-                utm_source: 'www.mozilla.org-whatsnew',
-                utm_campaign: 'whatsnew88'
-            };
-
-            expect(FxaUtm.getAttributionData(validObj1)).toEqual(validData1);
-
-            const validObj2 = {
-                source: 'welcome9'
-            };
-
-            const validData2 = {
-                entrypoint: 'www.mozilla.org-welcome',
-                utm_source: 'www.mozilla.org-welcome',
-                utm_campaign: 'welcome9'
-            };
-
-            expect(FxaUtm.getAttributionData(validObj2)).toEqual(validData2);
-        });
-
         it('should return null if source attribute is non-specific', function () {
             const validObj = {
                 source: 'the-dude'
@@ -446,6 +420,159 @@ describe('fxa-utm.js', function () {
         });
     });
 
+    describe('getSearchReferralData', function () {
+        it('should return correct utms for google referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'google'
+            };
+            const supportedDomains = [
+                'https://www.google.com',
+                'https://www.google.com/search?q=firefox',
+                'https://www.google.com.au',
+                'https://www.google.co.ma/',
+                'https://www.google.de',
+                'https://www.google.fr/',
+                'https://www.google.cat/'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for bing referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'bing'
+            };
+            const supportedDomains = [
+                'https://www.bing.com',
+                'https://www.bing.com/?cc=gb',
+                'https://www.bing.com/search?q=firefox'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for yahoo referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'yahoo'
+            };
+            const supportedDomains = [
+                'https://search.yahoo.com',
+                'https://uk.search.yahoo.com',
+                'https://de.search.yahoo.com/search'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for duckduckgo referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'duckduckgo'
+            };
+            const supportedDomains = [
+                'https://duckduckgo.com/',
+                'https://duckduckgo.com/?q=firefox'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for yandex referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'yandex'
+            };
+            const supportedDomains = [
+                'https://yandex.com',
+                'https://yandex.com/search/?text=firefox',
+                'https://yandex.ru/',
+                'https://yandex.com.tr'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for baidu referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'baidu'
+            };
+            const supportedDomains = [
+                'https://www.baidu.com',
+                'https://www.baidu.com/s?wd=firefox'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return correct utms for naver referrals', function () {
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'naver'
+            };
+            const supportedDomains = [
+                'https://search.naver.com',
+                'https://search.naver.com/search.naver?query=firefox'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(null, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+
+        it('should return search referral data along with other valid referral data', function () {
+            const params = {
+                entrypoint_experiment: 'test-experiment',
+                entrypoint_variation: 'test-variation'
+            };
+            const expected = {
+                utm_medium: 'organic',
+                utm_source: 'naver',
+                entrypoint_experiment: 'test-experiment',
+                entrypoint_variation: 'test-variation'
+            };
+            const supportedDomains = [
+                'https://search.naver.com',
+                'https://search.naver.com/search.naver?query=firefox'
+            ];
+
+            supportedDomains.forEach((domain) => {
+                expect(FxaUtm.getSearchReferralData(params, domain)).toEqual(
+                    expected
+                );
+            });
+        });
+    });
+
     describe('setFxALinkReferralCookie', function () {
         it('should set a referral cookie as expected', function () {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
@@ -627,6 +754,24 @@ describe('fxa-utm.js', function () {
 
             expect(expectedHref).toEqual(
                 'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=www.mozilla.org&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=navigation'
+            );
+        });
+
+        it('should pass through search referral data if there are no UTM params present in the page', function () {
+            const data = {};
+            spyOn(FxaUtm, 'hasFxALinkReferralCookie').and.returnValue(false);
+            spyOn(FxaUtm, 'getSearchReferralData').and.returnValue({
+                utm_medium: 'organic',
+                utm_source: 'google'
+            });
+
+            FxaUtm.init(data);
+
+            const expected = document.getElementById('test-expected');
+            const expectedHref = expected.getAttribute('href');
+
+            expect(expectedHref).toEqual(
+                'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=google&utm_medium=organic&utm_campaign=fxa-benefits-page'
             );
         });
     });
