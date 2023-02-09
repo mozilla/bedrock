@@ -39,7 +39,7 @@ describe('analytics.es6.js', function () {
             expect(window.PocketAnalytics.reloadPage).not.toHaveBeenCalled();
         });
 
-        it('should not GA when cookie consent is not given', function () {
+        it('should not load GA when cookie consent is not given', function () {
             window.OptanonActiveGroups = 'C0001';
             window.OptanonWrapper();
             expect(window.PocketAnalytics.loadGA).not.toHaveBeenCalled();
@@ -83,7 +83,11 @@ describe('analytics.es6.js', function () {
             window.OptanonActiveGroups = 'C0001';
             window.OptanonWrapper();
 
-            expect(window.snowplow).toHaveBeenCalledWith('clearUserData');
+            expect(window.snowplow).toHaveBeenCalledWith(
+                'clearUserData',
+                true,
+                true
+            );
             expect(window.PocketAnalytics.reloadPage).toHaveBeenCalledTimes(1);
         });
     });
