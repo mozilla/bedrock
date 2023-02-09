@@ -97,7 +97,8 @@ module.exports = {
             files: [
                 'webpack.config.js',
                 'webpack.static.config.js',
-                'tests/unit/karma.conf.js'
+                'tests/unit/karma.conf.js',
+                'bin/img-set.js'
             ],
             env: {
                 node: true,
