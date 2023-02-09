@@ -294,24 +294,52 @@ Release note templates live here: https://github.com/mozilla/bedrock/tree/main/b
 Optimizing Images
 -----------------
 
-Images can take a long time to load and eat up a lot of bandwidth. Always take care
-to optimize images before uploading them to the site.
+Images can take a long time to load and eat up a lot of bandwidth. Two things can be done to decrease the
+bandwidth and impact on our users: use the smallest size image possible for the display needs and always
+optimize images before uploading them to the site. Some scripts exist to help with this.
 
-The script ``img.sh`` can be used to optimize images locally on the command line:
+
+img-set.js()
+^^^^^^^^^^^^
+
+The script ``img-set.js`` can be used to create multiple image sizes from one large source image.
+
+You will need to provide a comma separated list of sizes you want. Think about the largest and smallest images
+needed based on where it will appear on the page and the device resolutions supported. Then, try to limit your
+srcset declaration to 8 or fewer sizes. `The Responsive Image Breakpoints Generator
+<https://www.responsivebreakpoints.com/>`_
+can help with this.
+
+#. Before you run it for the first time you will need to run ``npm install`` to install dependencies
+#. Run the script, passing it the file you want resized  and a comma separated list of sizes
+ ``node ./bin/img-set.js ./media/img/folder/file.jpg 320,640,900,1024,1280,1440,1500``
+#. The new files will be saved in the same directory as the source image with their width appended to
+the file name.
+#. When the script is done it will output a srcset for the `resp_img helper <#resp-img>` (but not a sizes
+declaration, you need to do that)
+#. The generated images will still need to be optimized. You might want to do that with `img-opt.sh`.
+
+
+img-opt.sh()
+^^^^^^^^
+
+The script ``img-opt.sh`` can be used to optimize images locally on the command line:
 
 #. Before you run it for the first time you will need to run ``npm install`` to install dependencies
 #. Add the image files to git's staging area ``git add *``
-#. Run the script ``./bin/img.sh``
+#. Run the script ``./bin/img-opt.sh``
 #. The optimized files will not automatically be staged, so be sure to add them before commiting
 
 The script will:
 
-- optimize JPG and PNG files using `tinypng <https://tinypng.com/>`_ (
-    - this step is optional since running compression on the same images over and over degrades them)
-    - you will be prompted to add a `TinyPNG API key <https://tinypng.com/developers>`_
+- optimize JPG and PNG files using `tinypng <https://tinypng.com/>`_ (this step is optional since running compression
+  on the same images over and over degrades them)
+- you will be prompted to add a `TinyPNG API key <https://tinypng.com/developers>`_
 - optimize SVG images locally with svgo
 - check that SVGs have a viewbox (needed for IE support)
 - check that images that end in ``-high-res`` have low res versions as well
+
+
 
 Embedding Images
 ----------------
