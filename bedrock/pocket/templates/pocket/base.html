@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 <!DOCTYPE html>
-<html lang="{{ LANG }}" {% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %} {% if settings.GTM_CONTAINER_ID %} data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %}>
+<html lang="{{ LANG }}" {% if settings.GOOGLE_ANALYTICS_ID %} data-google-analytics-id="{{ settings.GOOGLE_ANALYTICS_ID }}"{% endif %} {% if settings.GTM_CONTAINER_ID %} data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% if settings.SNOWPLOW_APP_ID %} data-snowplow-app-id="{{ settings.SNOWPLOW_APP_ID }}"{% endif %} {% if settings.SNOWPLOW_SCRIPT_SRC %} data-snowplow-script-src="{{ settings.SNOWPLOW_SCRIPT_SRC }}"{% endif %} {% if settings.SNOWPLOW_CONNECT_URL %} data-snowplow-connect-url="{{ settings.SNOWPLOW_CONNECT_URL }}"{% endif %}>
   <head>
     {% block shared_meta %}
       <meta charset="utf-8">
@@ -29,9 +29,13 @@
       <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}">
       {% endblock shared_meta %}
 
-      <!-- Google Universal Analytics and GA4 via Tag Manager -->
-      {% block google_analytics %}
-        {{ js_bundle('pocket-ga') }}
+      {% block head_js %}
+        {{ js_bundle('pocket-head') }}
+      {% endblock %}
+
+      <!-- Google Universal Analytics and GA4 via Tag Manager, & Snowplow -->
+      {% block analytics %}
+        {{ js_bundle('pocket-analytics') }}
       {% endblock %}
 
       <!-- OneTrust Cookies Consent Notice start for getpocket.com -->
