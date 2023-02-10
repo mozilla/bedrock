@@ -1,0 +1,32 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_111_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <h1>{{ ftl('whatsnew-111-pdf-title') }}</h1>
+    <p class="wnp-main-tagline">{{ ftl('whatsnew-111-pdf-its-spring-cleaning-season') }}</p>
+    <p class="wnp-main-tagline">{{ ftl('whatsnew-111-pdf-try-it-out-now-and-say') }}</p>
+
+    <p><a class="mzp-c-button mzp-t-product" href="https://assets.mozilla.net/wnp109-eu/wnp-fx109-uk.pdf" data-cta-type="button" data-cta-text="Try it now">{{ ftl('whatsnew-111-pdf-cta') }}</a></p>
+  </section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
