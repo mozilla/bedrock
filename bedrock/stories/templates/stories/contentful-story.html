@@ -16,6 +16,7 @@
 
 <!-- Set story-specific info -->
 {% set published = info.published %}
+{% set published_formatted = info.published_formatted %}
 {% set title = info.title | safe %}
 {% set theme = info.theme %}
 {% set contributors = info.contributors %}
@@ -45,7 +46,7 @@
         {% if is_featured %}<p class="is-featured">Featured Article</p>{% endif%}
         <h1>{{ title }}</h1>
         <div class="metadata">
-          <p>Published<br> <time datetime="{{ published }}">{{ published }}</time></p>
+          <p>Published<br> <time datetime="{{ published }}">{{ published_formatted }}</time></p>
           <p>Value<br> Connection</p>
       </div>
     </header>

@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from copy import deepcopy
+from datetime import datetime
 from functools import partialmethod
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
@@ -625,15 +626,15 @@ class ContentfulPage:
             "#ffbd4f": "yellow",
         }
 
-        print(entry_fields.get("accent_color"))
-
+        published = entry_fields.get("published")
         # todo: handle None, return dicts with full info instead of test strings
         contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
         related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
 
         # todo: add alt text to all images (ensure contentful has specific field)
         return {
-            "published": entry_fields.get("published"),
+            "published": published,
+            "published_formatted": datetime.strptime(published.replace("T", ""), "%Y-%m-%d%H:%M%z").strftime("%B %-d, %Y"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
             "image": resp_img(
                 url=_get_image_url(entry_fields["image"], 500),
