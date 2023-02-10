@@ -368,18 +368,17 @@ class AssetBlockRenderer(BaseBlockRenderer):
 
 def _make_blockquote(entry):
     fields = entry.fields()
-    caption = fields.get("citation")
-    class_name = "c-stories-article-blockquote"
-
-    if fields.get("style") == "Full-width":
-        class_name = f"{class_name} full-width"
+    style = fields.get("style")
+    caption = fields.get("caption")
 
     if caption is not None:
         caption = f"<figcaption>{ caption }</figcaption>"
     else:
         caption = ""
 
-    string = f"<figure class='{class_name}'><blockquote>“{fields.get('quote')}”{caption}</blockquote></figure>"
+    string = (
+        f"<figure class='c-embed-blockquote {style if style is not None else ''}'><blockquote>“{fields.get('quote')}”</blockquote>{caption}</figure>"
+    )
 
     return string
 
@@ -387,15 +386,23 @@ def _make_blockquote(entry):
 def _make_image(entry):
     fields = entry.fields()
     caption = fields.get("caption")
-    alt = fields.get("alt_text")
+    image = resp_img(
+        url=_get_image_url(fields.get("image"), 928),
+        srcset={
+            _get_image_url(fields.get("image"), 464): "464w",
+            _get_image_url(fields.get("image"), 928): "928w",
+            _get_image_url(fields.get("image"), 1392): "1392w",
+        },
+        sizes={"(min-width: 1400px)": "928px", "default": "100vw"},
+        optional_attributes={"loading": "lazy", "alt": fields.get("alt_text")},
+    )
 
     if caption is not None:
         caption = f"<figcaption>{ caption }</figcaption>"
     else:
         caption = ""
 
-    # todo: responsify
-    string = f"<figure><img src='{_get_image_url(fields.get('image'), 900)}' alt='{alt}' loading='lazy' />{caption}</figure>"
+    string = f"<figure class='c-embed-image'>{image}{caption}</figure>"
 
     return string
 
