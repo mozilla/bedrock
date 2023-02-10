@@ -16,9 +16,16 @@ $color-text-black: $color-black;
 $color-text-white: $color-white;
 
 // theme colors
-$pink: #ffb4db;
+$light-pink: $color-pink-10;
+$light-blue: $color-blue-05;
+$light-green: $color-green-50;
+$light-yellow: $color-yellow-30;
+$light-purple: $color-violet-40;
+$pink: $color-pink-20;
+$blue: $color-blue-30;
 $green: $color-green-80;
-$orange: $color-yellow-40;
+$yellow: $color-yellow-40;
+$purple: $color-violet-90;
 
 /* LEGACY (used in hardcoded templates) */
 // namespacing

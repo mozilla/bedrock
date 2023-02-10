@@ -11,8 +11,38 @@ body {
 }
 
 // Color themes
+[data-theme='light-pink'] {
+    --theme-color-bg: #{pbj.$light-pink};
+    --theme-color-text: #{pbj.$color-text-black};
+}
+
+[data-theme='light-blue'] {
+    --theme-color-bg: #{pbj.$light-blue};
+    --theme-color-text: #{pbj.$color-text-white};
+}
+
+[data-theme='light-green'] {
+    --theme-color-bg: #{pbj.$light-green};
+    --theme-color-text: #{pbj.$color-text-white};
+}
+
+[data-theme='light-purple'] {
+    --theme-color-bg: #{pbj.$light-purple};
+    --theme-color-text: #{pbj.$color-text-black};
+}
+
+[data-theme='light-yellow'] {
+    --theme-color-bg: #{pbj.$light-yellow};
+    --theme-color-text: #{pbj.$color-text-black};
+}
+
 [data-theme='pink'] {
     --theme-color-bg: #{pbj.$pink};
+    --theme-color-text: #{pbj.$color-text-black};
+}
+
+[data-theme='blue'] {
+    --theme-color-bg: #{pbj.$blue};
     --theme-color-text: #{pbj.$color-text-black};
 }
 
@@ -21,7 +51,12 @@ body {
     --theme-color-text: #{pbj.$color-text-white};
 }
 
-[data-theme='orange'] {
-    --theme-color-bg: #{pbj.$orange};
+[data-theme='purple'] {
+    --theme-color-bg: #{pbj.$purple};
+    --theme-color-text: #{pbj.$color-text-white};
+}
+
+[data-theme='yellow'] {
+    --theme-color-bg: #{pbj.$yellow};
     --theme-color-text: #{pbj.$color-text-black};
 }

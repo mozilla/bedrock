@@ -610,7 +610,22 @@ class ContentfulPage:
 
     def _get_info_data__product_story(self, entry_fields):
         # this info is shared between /stories landing template and individual story template
-        COLOR_MAP = {"#ffbd4f": "orange", "#005e5e": "green"}
+        # note: the colors available in Color App don't exactly match up with our design palette
+        # so we convert the hex to a theme name and set the colors in CSS
+        COLOR_MAP = {
+            "#ffb4db": "light-pink",
+            "#abf2ff": "light-blue",
+            "#3ee0af": "light-green",
+            "#ab71ff": "light-purple",
+            "#ffd567": "light-yellow",
+            "#ff8ac4": "pink",
+            "#01b3f4": "blue",
+            "#005e5e": "green",
+            "#321c64": "purple",
+            "#ffbd4f": "yellow",
+        }
+
+        print(entry_fields.get("accent_color"))
 
         # todo: handle None, return dicts with full info instead of test strings
         contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
