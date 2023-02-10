@@ -7,7 +7,7 @@
 :root {
     // needs unit or grid template breaks
     --sidebar-width: 0px; /* stylelint-disable-line length-zero-no-unit */
-    --max-width: #{$content-xl};
+    --max-width: #{$content-lg};
     --max-line-length: #{$content-xl};
 }
 
@@ -43,7 +43,7 @@
             [sidebar-start]
             minmax(min-content, var(--sidebar-width))
             [content-start]
-            minmax(auto, calc(var(--max-width) - var(--sidebar-width)))
+            minmax(auto, var(--max-width))
             [content-end]
             1fr
             [full-width-end];
@@ -76,18 +76,26 @@
         }
     }
 
+    .c-stories-article-content,
     .c-stories-social-share,
     .c-stories-related {
         grid-column: content;
     }
 
-    .c-stories-article-content {
-        grid-row-start: 1;
-        display: grid;
-        grid-template-columns: subgrid; // todo: set fallback
+    @supports (grid-template-columns: subgrid) and (isolation: isolate) {
+        .c-stories-article-content {
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-column: full-width;
+            grid-row-start: 1;
 
-        & > *:not(.full-width) {
-            grid-column: content;
+            *:not(.full-width) {
+                grid-column: content;
+            }
+        }
+
+        .c-stories-article-credits {
+            isolation: isolate; // keep layered above the full-width content container
         }
     }
 }
