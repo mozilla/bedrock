@@ -469,6 +469,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-110-en-features.scss"
+      ],
+      "name": "firefox_whatsnew_110_en_features"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-110-eu.scss"
       ],
       "name": "firefox_whatsnew_110_eu"
@@ -1305,6 +1311,18 @@
         "js/firefox/whatsnew/whatsnew-109-features.js"
       ],
       "name": "firefox_whatsnew_109_features"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-110-experiment-en.es6.js"
+      ],
+      "name": "firefox_whatsnew_110_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-110-features.js"
+      ],
+      "name": "firefox_whatsnew_110_features"
     },
     {
       "files": [

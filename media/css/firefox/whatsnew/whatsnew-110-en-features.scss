@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:color';
+
+@import 'includes/base';
+@import 'includes/dark-mode';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+.features-v2 .c-page-header {
+    margin-bottom: $layout-xs;
+}
+
+.mzp-c-wordmark {
+    background-position: center top;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media #{$mq-md} {
+        @include bidi(((background-position, left top, right top),));
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.mzp-c-split-body {
+    @include text-body-lg;
+}
+
+// https://github.com/mozilla/protocol/issues/843
+.mzp-c-split-container {
+    min-width: 0;
+}
+
+// https://github.com/mozilla/protocol/issues/842
+.mzp-c-button.mzp-t-dark:visited:focus {
+    background-color: $color-dark-gray-60;
+    border-color: $color-white;
+    color: $color-white;
+    box-shadow: 0 0 0 2px color.mix($color-blue-40, $color-white);
+}
+
+.c-footer-heading {
+    text-align: center;
+
+    h2 {
+        @include text-title-sm;
+    }
+
+    .mzp-l-content {
+        padding-bottom: 0;
+    }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .mzp-c-section-heading,
+    .mzp-c-split-body,
+    .mzp-c-split-body h2 {
+        color: $color-white;
+    }
+
+    .mzp-c-split-body .mzp-c-button.mzp-t-secondary {
+        color: $color-white;
+        border-color: $color-white;
+
+        &:focus {
+            border-color: $color-white;
+            box-shadow: 0 0 0 2px color.mix($color-blue-40, $color-white);
+        }
+
+        &:hover {
+            background-color: $color-dark-gray-20;
+            border-color: $color-white;
+            box-shadow: none;
+            color: $color-white;
+        }
+
+        &:active {
+            background-color: $color-dark-gray-20;
+            border-color: $color-light-gray-50;
+            color: $color-white;
+        }
+    }
+}

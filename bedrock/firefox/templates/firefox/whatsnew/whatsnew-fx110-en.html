@@ -13,6 +13,12 @@
   {{ css_bundle('firefox_whatsnew_110_en') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-110-en') %}
+    {{ js_bundle('firefox_whatsnew_110_en_experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block wnp_content %}
