@@ -11,19 +11,20 @@ from lib.l10n_utils import fluent
 
 TAGS_ALLOWED_IN_FLUENT_STRINGS = {
     "a",
-    "strong",
-    "span",
+    "abbr",
     "br",
     "em",
-    "abbr",
+    "i",
+    "span",
+    "strong",
 }
 
 ATTRS_ALLOWED_IN_FLUENT_STRINGS = [
-    "href",
     "class",
+    "href",
     "id",
-    "title",
     "rel",
+    "title",
 ]
 
 
