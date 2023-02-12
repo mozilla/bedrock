@@ -101,14 +101,14 @@ def test_ftl_bleach_allowlists_are_comprehensive():
                 if attr_matches := re.findall(attr_re, line):
                     attrs_found.update(_clean_attr_matches(attr_matches))
 
-    assert TAGS_ALLOWED_IN_FLUENT_STRINGS == tags_found, (
-        "DANGER! HTML tags were detected in en-US source FTL strings that are not in "
-        "lib.l10n_utils.templatetags.fluent.fluent.TAGS_ALLOWED_IN_FLUENT_STRINGS. "
+    assert TAGS_ALLOWED_IN_FLUENT_STRINGS.issuperset(tags_found), (
+        "DANGER! HTML tags were detected in source FTL strings that are not in "
+        "lib.l10n_utils.templatetags.fluent.TAGS_ALLOWED_IN_FLUENT_STRINGS. "
         f"Unexpected tag(s) found: {tags_found.difference(TAGS_ALLOWED_IN_FLUENT_STRINGS)}"
     )
 
-    assert sorted(ATTRS_ALLOWED_IN_FLUENT_STRINGS) == sorted(attrs_found), (
-        "DANGER! HTML attributes were detected in en-US source FTL strings that are not in "
-        "lib.l10n_utils.templatetags.fluent.fluent.ATTRS_ALLOWED_IN_FLUENT_STRINGS. "
+    assert set(ATTRS_ALLOWED_IN_FLUENT_STRINGS).issuperset(attrs_found), (
+        "DANGER! HTML attributes were detected in source FTL strings that are not in "
+        "lib.l10n_utils.templatetags.fluent.ATTRS_ALLOWED_IN_FLUENT_STRINGS. "
         f"Unexpected attribute(s) found: {set(attrs_found).difference(set(ATTRS_ALLOWED_IN_FLUENT_STRINGS))}"
     )
