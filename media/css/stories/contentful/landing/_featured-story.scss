@@ -30,11 +30,14 @@ $image-path: '/media/protocol/img';
 
     &-image-caption {
         @include text-body-xs;
-        text-align: right;
         padding-top: $spacing-sm;
 
         @media (max-width: $screen-sm) {
             text-align: center;
+        }
+
+        @supports (aspect-ratio: 3 / 2) {
+            text-align: right;
         }
     }
 
@@ -85,18 +88,6 @@ $image-path: '/media/protocol/img';
 }
 
 .c-stories-featured-details {
-    display: grid;
-    grid-template-columns: [col-1-start] min-content [col-1-end] min-content 1fr;
-    column-gap: $spacing-xl;
-    row-gap: $spacing-sm;
-    justify-content: start;
-
-    &-title,
-    &-value {
-        grid-column: col-1;
-        margin: 0;
-    }
-
     &-title {
         @include text-title-3xs;
         text-transform: uppercase;
@@ -110,13 +101,10 @@ $image-path: '/media/protocol/img';
     }
 
     &-link {
-        grid-column-start: 2;
-        grid-row: 1 / 3;
-        align-self: center;
-        background: $color-white;
         border: none;
         border-radius: 25px;
-        color: $color-black;
+        background: $color-black;
+        color: $color-white;
         display: block;
         position: relative;
         padding: $spacing-sm $spacing-2xl $spacing-sm $spacing-xl;
@@ -127,6 +115,7 @@ $image-path: '/media/protocol/img';
         &:focus,
         &:active {
             background: #ededf0;
+            color: $color-black;
         }
 
         &::after {
@@ -137,6 +126,30 @@ $image-path: '/media/protocol/img';
             height: 10px;
             width: 15px;
             background: url('/media/img/stories/icons/arrow-right.svg');
+        }
+    }
+}
+
+@supports (display: grid) {
+    .c-stories-featured-details {
+        display: grid;
+        grid-template-columns: [col-1-start] min-content [col-1-end] min-content 1fr;
+        column-gap: $spacing-xl;
+        row-gap: $spacing-sm;
+        justify-content: start;
+
+        &-title,
+        &-value {
+            grid-column: col-1;
+            margin: 0;
+        }
+
+        &-link {
+            grid-column-start: 2;
+            grid-row: 1 / 3;
+            align-self: center;
+            background: $color-white;
+            color: $color-black;
         }
     }
 }

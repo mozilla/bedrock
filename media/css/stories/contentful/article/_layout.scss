@@ -7,8 +7,6 @@
 :root {
     // needs unit or grid template breaks
     --sidebar-width: 0px; /* stylelint-disable-line length-zero-no-unit */
-    --max-width: #{$content-lg};
-    --max-line-length: #{$content-xl};
 }
 
 .c-stories-article-container {
@@ -36,50 +34,62 @@
 @media #{$mq-lg} {
     .c-stories-article-header,
     .c-stories-article-container {
-        display: grid;
-        grid-template-columns:
-            [full-width-start]
-            1fr
-            [sidebar-start]
-            minmax(min-content, var(--sidebar-width))
-            [content-start]
-            minmax(auto, var(--max-width))
-            [content-end]
-            1fr
-            [full-width-end];
+        max-width: $content-lg;
+        margin-right: auto;
+        margin-left: auto;
     }
 
-    .full-width {
-        grid-column: full-width;
-    }
-
-    .c-stories-article-header {
-        &-wrapper {
-            grid-column: sidebar-start / content-end;
-        }
-    }
-
-    .c-stories-article-credits {
-        grid-column: sidebar-start / content-start;
-        grid-row-start: 1;
-
-        figure + figure {
-            margin-top: $spacing-md;
+    @supports (display: grid) {
+        .c-stories-article-header,
+        .c-stories-article-container {
+            max-width: unset;
+            margin-right: unset;
+            margin-left: unset;
+            display: grid;
+            grid-template-columns:
+                [full-width-start]
+                1fr
+                [sidebar-start]
+                minmax(min-content, var(--sidebar-width))
+                [content-start]
+                minmax(auto, 80ch)
+                [content-end]
+                1fr
+                [full-width-end];
         }
 
-        &-mobile {
-            display: none;
+        .full-width {
+            grid-column: full-width;
+        }
 
-            + div {
-                display: block;
+        .c-stories-article-header {
+            &-wrapper {
+                grid-column: sidebar-start / content-end;
             }
         }
-    }
 
-    .c-stories-article-content,
-    .c-stories-social-share,
-    .c-stories-related {
-        grid-column: content;
+        .c-stories-article-credits {
+            grid-column: sidebar-start / content-start;
+            grid-row-start: 1;
+
+            figure + figure {
+                margin-top: $spacing-md;
+            }
+
+            &-mobile {
+                display: none;
+
+                + div {
+                    display: block;
+                }
+            }
+        }
+
+        .c-stories-article-content,
+        .c-stories-social-share,
+        .c-stories-related {
+            grid-column: content;
+        }
     }
 
     @supports (grid-template-columns: subgrid) and (isolation: isolate) {

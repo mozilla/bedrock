@@ -6,9 +6,6 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// use math.div to get percentages of grid to use for padding and margins
-$column-width: math.percentage(math.div(math.div(100, 12), 100));
-$half-column: math.percentage(math.div(math.div(100, 24), 100));
 $font-title: 'Antonio', sans-serif;
 $font-body: 'Source Serif Pro', sans-serif;
 $color-text-gray: #838383;
@@ -28,6 +25,12 @@ $yellow: $color-yellow-40;
 $purple: $color-violet-90;
 
 /* LEGACY (used in hardcoded templates) */
+
+// grid
+// use math.div to get percentages of grid to use for padding and margins
+$column-width: math.percentage(math.div(math.div(100, 12), 100));
+$half-column: math.percentage(math.div(math.div(100, 24), 100));
+
 // namespacing
 $font-stories-title: 'Antonio', sans-serif;
 $font-stories-body: 'Source Serif Pro', sans-serif;

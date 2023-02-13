@@ -32,13 +32,18 @@ $image-path: '/media/protocol/img';
 
     .metadata {
         @include text-body-md;
-        display: flex;
-        gap: $layout-sm;
         font-weight: bold;
 
         p::first-line {
             font-weight: normal;
             text-transform: uppercase;
+        }
+    }
+
+    @supports (gap: 24px) {
+        .metadata {
+            display: flex;
+            gap: $layout-sm;
         }
     }
 }

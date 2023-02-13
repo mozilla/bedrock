@@ -43,7 +43,7 @@ $image-path: '/media/protocol/img';
         border-width: 0;
 
         blockquote {
-            max-width: var(--max-line-length);
+            max-width: 60ch;
         }
     }
 
