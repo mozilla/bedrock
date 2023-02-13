@@ -22,7 +22,7 @@ behind a feature flag, which can be turned on / off for only the duration
 of an experiment. The script should be loaded inside the ``experiments``
 block in your template:
 
-.. code_block:: jinja
+.. code-block:: jinja
 
     {% block experiments %}
         {% if switch('experiment-convert-page-name', ['en-US']) %}

@@ -15,6 +15,6 @@ export CUSTOM_COMPILE_COMMAND="$ make compile-requirements"
 pip install -U pip==22.3.1
 pip install pip-tools==6.10.0
 
-pip-compile --generate-hashes -r requirements/prod.in
-pip-compile --generate-hashes -r requirements/dev.in
-pip-compile --generate-hashes -r requirements/docs.in
+pip-compile --generate-hashes -r requirements/prod.in --resolver=backtracking
+pip-compile --generate-hashes -r requirements/dev.in --resolver=backtracking
+pip-compile --generate-hashes -r requirements/docs.in --resolver=backtracking
