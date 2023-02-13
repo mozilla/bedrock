@@ -13,6 +13,16 @@ $image-path: '/media/protocol/img';
         padding-top: 0;
     }
 
+    // allow full-width image on mobile
+    .mzp-l-content:first-of-type {
+        padding-bottom: 0;
+
+        @media (max-width: $screen-sm) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
     &-image-link {
         display: block;
         aspect-ratio: 3 / 2;
@@ -21,6 +31,11 @@ $image-path: '/media/protocol/img';
     &-image-caption {
         @include text-body-xs;
         text-align: right;
+        padding-top: $spacing-sm;
+
+        @media (max-width: $screen-sm) {
+            text-align: center;
+        }
     }
 
     &-title {
@@ -28,7 +43,11 @@ $image-path: '/media/protocol/img';
         font-family: pbj.$font-body;
         font-weight: normal;
         margin-top: $layout-sm;
-        margin-bottom: $layout-sm;
+        margin-bottom: $layout-2xs;
+
+        @media #{$mq-sm} {
+            margin-bottom: $layout-sm;
+        }
     }
 
     &-article-title {
