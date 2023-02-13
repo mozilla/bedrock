@@ -24,9 +24,9 @@
 {% set related = info.related %}
 
 {% block page_title_full %}{{ title }}{% endblock %}
-{% block page_desc %}{{ desc }}{% endblock %}
+{% block page_desc %}{{ description }}{% endblock %}
 {% block page_og_title %}{{ title }}{% endblock %}
-{% block page_og_desc %}{{ desc }}{% endblock %}
+{% block page_og_desc %}{{ description }}{% endblock %}
 
 {% block html_attrs %}data-theme={% if theme %} {{ theme }} {% else %} pink {% endif %}{% endblock %}
 
