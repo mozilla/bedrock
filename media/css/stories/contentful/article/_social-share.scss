@@ -11,6 +11,8 @@ $image-path: '/media/protocol/img';
     ul {
         display: flex;
         justify-content: center;
+        margin: 0;
+        padding: $layout-md 0;
     }
 
     a {
