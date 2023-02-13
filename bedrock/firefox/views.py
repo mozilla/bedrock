@@ -478,6 +478,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx109-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx109-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-en-features-v1.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx110-en-features-v2.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-de-v1.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-de-v2.html": ["firefox/whatsnew/whatsnew"],
@@ -496,10 +498,12 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx107-en.html",
         "firefox/whatsnew/whatsnew-fx109-en.html",
         "firefox/whatsnew/whatsnew-fx109-en-features.html",
+        "firefox/whatsnew/whatsnew-fx110-en-features-v1.html",
+        "firefox/whatsnew/whatsnew-fx110-en-features-v2.html",
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2"]
+    variations = ["1", "2", "3"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -577,7 +581,12 @@ class WhatsnewView(L10nTemplateView):
                 elif locale == "en-GB":
                     template = "firefox/whatsnew/whatsnew-fx110-uk.html"
                 else:
-                    template = "firefox/whatsnew/whatsnew-fx110-en.html"
+                    if variant == "1":
+                        template = "firefox/whatsnew/whatsnew-fx110-en-features-v1.html"
+                    elif variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx110-en-features-v2.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx110-en.html"
             elif locale == "de":
                 if variant == "2":
                     template = "firefox/whatsnew/whatsnew-fx110-de-v2.html"
