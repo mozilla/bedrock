@@ -32,10 +32,18 @@ $image-path: '/media/protocol/img';
     }
 
     &-article-title {
-        @include font-size(130px);
+        @include text-title-lg;
         font-family: pbj.$font-title;
         padding-bottom: $layout-sm;
         margin-bottom: 0;
+
+        @media #{$mq-sm} {
+            @include text-title-2xl;
+        }
+
+        @media #{$mq-lg} {
+            @include font-size(130px);
+        }
     }
 
     &-desc {

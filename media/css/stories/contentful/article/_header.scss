@@ -13,8 +13,16 @@ $image-path: '/media/protocol/img';
     padding-bottom: $layout-xl;
 
     h1 {
-        @include font-size(100px);
+        @include text-title-lg;
         font-family: pbj.$font-title;
+
+        @media #{$mq-sm} {
+            @include text-title-2xl;
+        }
+
+        @media #{$mq-lg} {
+            @include font-size(100px);
+        }
     }
 
     .is-featured {
