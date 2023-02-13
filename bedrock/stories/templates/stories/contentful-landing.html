@@ -25,7 +25,7 @@
       image=featured_story.image,
       caption=featured_story.image_caption,
       title=featured_story.title,
-      desc=featured_story.dek,
+      desc=featured_story.description,
       value="Connection"
     %}
       {% include 'stories/includes/contentful-featured.html' %}
@@ -37,7 +37,7 @@
         {% for story in stories %}
           {{ card(
             title=story.title,
-            desc=story.dek,
+            desc=story.description,
             image=story.card_image,
             link_url=story.link,
             heading_level=3

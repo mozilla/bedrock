@@ -626,10 +626,14 @@ class ContentfulPage:
             "#ffbd4f": "yellow",
         }
 
+        # required
         published = entry_fields.get("published")
-        # todo: handle None, return dicts with full info instead of test strings
-        contributors = [ContentfulPage.client.entry(contributor.id) for contributor in entry_fields.get("contributors")]
-        related = [ContentfulPage.client.entry(story.id) for story in entry_fields.get("related_stories")]
+
+        # not required
+        contributors = entry_fields.get("contributors") or []
+        related = entry_fields.get("related_stories") or []
+        contributor_entries = [ContentfulPage.client.entry(contributor.id) for contributor in contributors]
+        related_entries = [ContentfulPage.client.entry(story.id) for story in related]
 
         # todo: add alt text to all images (ensure contentful has specific field)
         return {
@@ -670,14 +674,14 @@ class ContentfulPage:
                     ),
                     "image_credit": contributor.image_credit,
                 }
-                for contributor in contributors
+                for contributor in contributor_entries
             ],
-            "dek": entry_fields.get("dek"),
+            "description": entry_fields.get("description"),
             "link": f"{PRODUCT_STORY_ROOT_PATH}{entry_fields.get('slug')}",
             "related": [
                 {
                     "title": story.title,
-                    "dek": story.dek,
+                    "description": story.description,
                     "image": resp_img(
                         url=_get_image_url(story.image, 349),
                         srcset={
@@ -690,7 +694,7 @@ class ContentfulPage:
                     ),
                     "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
                 }
-                for story in related
+                for story in related_entries
             ],
             # todo: handle Product Story urls in sitemap too?
         }

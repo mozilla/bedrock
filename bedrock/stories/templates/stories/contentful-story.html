@@ -20,7 +20,7 @@
 {% set title = info.title | safe %}
 {% set theme = info.theme %}
 {% set contributors = info.contributors %}
-{% set dek = info.dek %}
+{% set description = info.description %}
 {% set related = info.related %}
 
 {% block page_title_full %}{{ title }}{% endblock %}
@@ -74,7 +74,7 @@
       {% endif %}
       </aside>
       <section class="c-stories-article-content">
-        <p>{{ dek }}</p>
+        <p>{{ description }}</p>
         {% for entry in entries -%}
           {{ entry.body|external_html }}
         {% endfor %}
@@ -93,7 +93,7 @@
             {% for item in related %}
               {{ card(
                 title=item.title,
-                desc=item.dek,
+                desc=item.description,
                 image=item.image,
                 link_url=item.link,
                 heading_level=3
