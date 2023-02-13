@@ -3,24 +3,6 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 [data-theme] {
-    body {
-        @supports (isolation: isolate) {
-            // prevent white gap under navigation animation
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                background-color: var(--theme-color-bg);
-                width: 100%;
-                height: 100vh;
-            }
-
-            .c-stories-article {
-                isolation: isolate;
-            }
-        }
-    }
-
     .mzp-c-breadcrumb {
         background-color: var(--theme-color-bg);
         color: var(--theme-color-text);
@@ -40,6 +22,30 @@
         blockquote,
         figcaption {
             color: var(--theme-color-text);
+        }
+    }
+
+    @supports (isolation: isolate) {
+        // prevent white gap under navigation animation
+        body::before {
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: var(--theme-color-bg);
+            width: 100%;
+            height: 100vh;
+        }
+
+        // remove unneeded header background color
+        .c-stories-article-header {
+            background-color: initial;
+        }
+
+        // stay on top of the body background color
+        .c-navigation,
+        .mzp-c-breadcrumb,
+        .c-stories-article {
+            isolation: isolate;
         }
     }
 }

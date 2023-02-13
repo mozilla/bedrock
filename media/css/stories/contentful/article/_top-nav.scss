@@ -5,11 +5,15 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
+@use '../../includes/lib' as pbj;
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
 .c-navigation {
-    box-shadow: none;
+    @media #{$mq-md} {
+        box-shadow: none;
+    }
 }
 
 .mzp-c-breadcrumb {
