@@ -6,7 +6,7 @@
     .c-stories-featured {
         background-color: var(--theme-color-bg);
 
-        * {
+        *:not(.c-stories-featured-details-link) {
             color: var(--theme-color-text);
         }
 

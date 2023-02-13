@@ -60,3 +60,25 @@ body {
     --theme-color-bg: #{pbj.$yellow};
     --theme-color-text: #{pbj.$color-text-black};
 }
+
+// image hover effect on hero and cards
+@media (prefers-reduced-motion: no-preference) {
+    .card-media-wrapper,
+    .c-stories-featured-image-link {
+        overflow: hidden;
+    }
+
+    .c-stories-featured-image-link img,
+    .mzp-c-card-block-link img {
+        transition: transform 200ms ease-in;
+    }
+
+    .c-stories-featured-image-link:hover,
+    .mzp-c-card-block-link:hover,
+    .c-stories-featured-image-link:focus,
+    .mzp-c-card-block-link:focus {
+        img {
+            transform: scale(1.05);
+        }
+    }
+}

@@ -41,20 +41,4 @@ $image-path: '/media/protocol/img';
             text-decoration: underline;
         }
     }
-
-    @media (prefers-reduced-motion: no-preference) {
-        .card-media-wrapper {
-            overflow: hidden;
-        }
-
-        img {
-            transition: transform 200ms ease-in;
-        }
-
-        a:hover {
-            img {
-                transform: scale(1.05);
-            }
-        }
-    }
 }
