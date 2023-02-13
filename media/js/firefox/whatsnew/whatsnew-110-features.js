@@ -22,31 +22,19 @@
     }
 
     if (client.isFirefoxDesktop) {
-        if (client._getFirefoxMajorVersion() >= 70) {
-            // show "See what Firefox has blocked for you" links.
-            document
-                .querySelector('main')
-                .classList.add('state-firefox-desktop-70');
+        // Intercept link clicks to open about:protections page using UITour.
+        Mozilla.UITour.ping(function () {
+            var protectionReportLinks = document.querySelectorAll(
+                '.js-open-about-protections'
+            );
 
-            // Intercept link clicks to open about:protections page using UITour.
-            Mozilla.UITour.ping(function () {
-                var protectionReportLinks = document.querySelectorAll(
-                    '.js-open-about-protections'
+            for (var i = 0; i < protectionReportLinks.length; i++) {
+                protectionReportLinks[i].addEventListener(
+                    'click',
+                    handleOpenProtectionReport,
+                    false
                 );
-
-                for (var i = 0; i < protectionReportLinks.length; i++) {
-                    protectionReportLinks[i].addEventListener(
-                        'click',
-                        handleOpenProtectionReport,
-                        false
-                    );
-                }
-            });
-        } else {
-            // show "Update your Firefox browser" links.
-            document
-                .querySelector('main')
-                .classList.add('state-firefox-desktop-old');
-        }
+            }
+        });
     }
 })(window.Mozilla);

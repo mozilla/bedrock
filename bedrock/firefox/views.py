@@ -581,9 +581,9 @@ class WhatsnewView(L10nTemplateView):
                 elif locale == "en-GB":
                     template = "firefox/whatsnew/whatsnew-fx110-uk.html"
                 else:
-                    if variant == "2":
+                    if variant == "1":
                         template = "firefox/whatsnew/whatsnew-fx110-en-features-v1.html"
-                    elif variant == "3":
+                    elif variant == "2":
                         template = "firefox/whatsnew/whatsnew-fx110-en-features-v2.html"
                     else:
                         template = "firefox/whatsnew/whatsnew-fx110-en.html"
