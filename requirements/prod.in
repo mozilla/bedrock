@@ -27,7 +27,7 @@ docutils==0.18.0
 envcat==0.1.1
 everett==3.1.0
 fluent.runtime==0.3.1
-fluent.syntax==0.17.0  # hard-pinned subdep to avoid compatibility issues
+fluent.syntax==0.18.1
 glean-parser==6.2.1  # Must match the required version in the Glean NPM package.
 greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
 gunicorn==19.7.1

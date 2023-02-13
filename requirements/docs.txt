@@ -41,13 +41,13 @@ docutils==0.17.1 \
     #   myst-parser
     #   sphinx
     #   sphinx-rtd-theme
-fluent-pygments==0.1.0 \
-    --hash=sha256:4fa2e83322b559a2f9f43af8cb383569534d9424c68d4fe7ca75c5bf091572c6 \
-    --hash=sha256:7a552a056e229203ac8d4321316a0075dec53a70c8afbcf4ea48482e3af05860
+fluent-pygments==1.0 \
+    --hash=sha256:625c87a8a2362ef304146b161d359dcf652bed2a1ae4869b5607b8e06d117d97 \
+    --hash=sha256:b44758f74f87e1aa9d78d8f53363962639c5bf99d88cf3e407d046b5249ec27f
     # via -r requirements/docs.in
-fluent-syntax==0.17.0 \
-    --hash=sha256:ac3db2f77d62b032fdf1f17ef5c390b7801a9e9fb58d41eca3825c0d47b88d79 \
-    --hash=sha256:e26be470aeebe4badd84f7bb0b648414e0f2ef95d26e5336d634af99e402ea61
+fluent-syntax==0.18.1 \
+    --hash=sha256:0e63679fa4f1b3042565220a5127b4bab842424f07d6a13c12299e3b3835486a \
+    --hash=sha256:3a55f5e605d1b029a65cc8b6492c86ec4608e15447e73db1495de11fd46c104f
     # via
     #   -r requirements/docs.in
     #   fluent-pygments
