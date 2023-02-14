@@ -64,4 +64,3 @@ mobile-compare-get-firefox-for-mobile = Get { -brand-name-firefox } for mobile
 mobile-compare-send-a-download-link-to-your = Send a download link to your phone.
 mobile-compare-scan-the-qr-code-to-get-started = Scan the QR code to get started
 mobile-compare-scan-alt-text = Scan the QR code to get { -brand-name-firefox } on your mobile device
-

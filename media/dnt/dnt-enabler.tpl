@@ -14,4 +14,3 @@ msFilterList
 +d dnt.mozilla.org
 +d mozilla.org
 +d mozilla.com
-
