@@ -9,7 +9,6 @@ from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxAccountsPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/accounts/{params}"
 
     _firefox_monitor_button_locator = (By.CSS_SELECTOR, ".c-accounts-hero-body-signed-in .js-fxa-product-button")

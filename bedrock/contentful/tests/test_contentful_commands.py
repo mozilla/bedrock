@@ -159,7 +159,6 @@ def test_update_contentful__get_message_action(
     expected,
     command_instance,
 ):
-
     assert command_instance._get_message_action(param) == expected
 
     if expected is None:
@@ -188,7 +187,6 @@ def _build_mock_messages(actions: List) -> List[List]:
 
 
 def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock.Mock]:
-
     mock_queue = mock.Mock(name="mock_queue")
 
     def _receive_messages(*args, **kwargs):
@@ -482,7 +480,6 @@ def test_update_contentful__refresh(
 
 
 def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
-
     output = []
     for datum_dict in mock_entry_data:
         mock_entry = mock.Mock()
@@ -697,7 +694,6 @@ def test_update_contentful__detect_and_delete_absent_entries(
 
 @pytest.mark.django_db
 def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(command_instance):
-
     # Make two homepages, with en-US locales (because that's how it rolls for now)
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,

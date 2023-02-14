@@ -9,7 +9,6 @@ from pages.base import BasePage, BaseRegion
 
 
 class FirefoxAllPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/all/"
 
     _product_locator = (By.ID, "select-product")
@@ -81,7 +80,6 @@ class FirefoxAllPage(BasePage):
 
 
 class ProductOptions(BaseRegion):
-
     _platform_locator = (By.CSS_SELECTOR, ".c-selection-platform select")
     _language_locator = (By.CSS_SELECTOR, ".c-selection-language select")
 

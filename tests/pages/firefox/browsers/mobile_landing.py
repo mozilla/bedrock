@@ -10,7 +10,6 @@ from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxMobilePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/{params}"
 
     _android_download_link_locator = (By.ID, "android-download")

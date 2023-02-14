@@ -10,7 +10,6 @@ from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxWelcomePage6(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/welcome/6/{params}"
 
     _set_default_button_locator = (By.ID, "set-as-default-button")

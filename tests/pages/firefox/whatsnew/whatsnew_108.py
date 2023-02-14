@@ -9,7 +9,6 @@ from pages.base import BasePage
 
 
 class FirefoxWhatsNew108Page(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/108.0/whatsnew/{params}"
 
     _pocket_button_locator = (By.CSS_SELECTOR, ".wnp-main-cta .mzp-c-button")

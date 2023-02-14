@@ -9,7 +9,6 @@ from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxMobileAndroidPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/android/"
 
     _get_firefox_header_button_locator = (By.ID, "get-firefox")

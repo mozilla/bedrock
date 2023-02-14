@@ -6,5 +6,4 @@ from pages.base import BasePage
 
 
 class NewsletterFamilyPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/newsletter/family/"

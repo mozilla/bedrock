@@ -45,7 +45,6 @@ def desktop_builds(
         version, platforms = firefox_desktop.latest_builds("en-US", channel)
 
     for plat_os, plat_os_pretty in firefox_desktop.platforms(channel, classified):
-
         os_pretty = plat_os_pretty
 
         # Firefox Nightly: The Windows stub installer is now universal,

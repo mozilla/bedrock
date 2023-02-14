@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class DefaultThanksPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/set-as-default/thanks/"
 
     _download_button_locator = (By.ID, "download-button-desktop-release")

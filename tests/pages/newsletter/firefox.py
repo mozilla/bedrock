@@ -6,5 +6,4 @@ from pages.base import BasePage
 
 
 class FirefoxNewsletterPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/newsletter/firefox/"

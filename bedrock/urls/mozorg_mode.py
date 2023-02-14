@@ -38,14 +38,12 @@ urlpatterns = (
 )
 
 if settings.DEV:
-
     urlpatterns += (
         # Add /404-locale/ for localizers.
         path("404-locale/", import_string(locale404)),
     )
 
 if settings.DEBUG:
-
     urlpatterns += (
         path("404/", import_string(handler404)),
         path("500/", import_string(handler500)),

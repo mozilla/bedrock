@@ -116,7 +116,6 @@ class TestVPNResourceCenterHelpers(TestCase):
         return entry
 
     def test__filter_articles(self):
-
         articles = {
             "a": self._build_mock_entry("Category one"),
             "b": self._build_mock_entry("category TWO"),
@@ -260,7 +259,6 @@ class TestVPNResourceListingView(TestCase):
         return resp
 
     def test_simple_get__for_valid_locale_with_enough_content(self, render_mock):
-
         self._request(locale="fr")
         passed_context = render_mock.call_args_list[0][0][2]
 
@@ -309,7 +307,6 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
     def test_category_filtering(self, render_mock):
-
         first = ContentfulEntry.objects.filter(locale="en-US").first()
         first.category = "other category"
         first.save()

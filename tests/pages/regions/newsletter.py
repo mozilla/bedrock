@@ -9,7 +9,6 @@ from selenium.webdriver.support.select import Select
 
 
 class NewsletterEmbedForm(Region):
-
     _root_locator = (By.ID, "newsletter-form")
     _email_locator = (By.ID, "id_email")
     _form_details_locator = (By.ID, "newsletter-details")

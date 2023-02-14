@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class MisinformationPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/more/misinformation/"
 
     _primary_download_locator = (By.ID, "misinformation-download")

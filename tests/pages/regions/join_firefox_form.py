@@ -8,7 +8,6 @@ from pages.base import BaseRegion
 
 
 class JoinFirefoxForm(BaseRegion):
-
     _root_locator = (By.ID, "fxa-email-form")
     _email_locator = (By.ID, "fxa-email-field")
     _continue_button_locator = (By.ID, "fxa-email-form-submit")

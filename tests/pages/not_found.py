@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class NotFoundPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/404/"
 
     _go_back_button_locator = (By.ID, "go-back")

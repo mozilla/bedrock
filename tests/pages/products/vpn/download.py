@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class VPNDownloadPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/products/vpn/download/{params}"
 
     _windows_download_button_locator = (By.CSS_SELECTOR, ".mzp-c-button[data-cta-text='VPN Download (Windows)']")

@@ -8,7 +8,6 @@ from pages.base import BaseRegion
 
 
 class DownloadButton(BaseRegion):
-
     _download_link_locator = (By.CSS_SELECTOR, ".download-link")
 
     @property

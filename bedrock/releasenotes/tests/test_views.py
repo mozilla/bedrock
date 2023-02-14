@@ -85,7 +85,6 @@ def test_releases_index(render_mock, rf):
     request = rf.get("/")
 
     with patch("bedrock.releasenotes.views.firefox_desktop") as mock_firefox_desktop:
-
         mock_firefox_desktop.firefox_history_major_releases = mock_major_releases_val
         mock_firefox_desktop.firefox_history_stability_releases = mock_minor_releases_val
 

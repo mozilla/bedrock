@@ -343,6 +343,7 @@ class SimpleDictCacheTests(TestCase):
         caching code without making it too difficult to use production backends
         with more liberal key rules. Refs #6447.
         """
+
         # mimic custom ``make_key`` method being defined since the default will
         # never show the below warnings
         def func(key, *args):
@@ -409,7 +410,6 @@ class SimpleDictCacheTests(TestCase):
         self.assertEqual(caches["v2"].get("answer4", version=2), None)
 
     def test_cache_versioning_add(self):
-
         # add, default version = 1, but manually override version = 2
         cache.add("answer1", 42, version=2)
         self.assertEqual(cache.get("answer1", version=1), None)

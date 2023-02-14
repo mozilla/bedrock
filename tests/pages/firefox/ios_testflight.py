@@ -9,7 +9,6 @@ from pages.base import BasePage
 
 
 class iOSTestFlightPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/ios/testflight/"
 
     _email_locator = (By.ID, "id_email")

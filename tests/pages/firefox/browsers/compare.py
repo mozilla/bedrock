@@ -10,7 +10,6 @@ from pages.regions.menu_list import MenuList
 
 
 class BrowserComparisonPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/compare/{slug}/"
 
     _primary_download_button_locator = (By.ID, "download-button-thanks")

@@ -8,7 +8,6 @@ import bedrock.releasenotes.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = []
 
     operations = [

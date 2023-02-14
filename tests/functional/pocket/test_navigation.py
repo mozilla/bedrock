@@ -23,7 +23,6 @@ def test_mobile_menu(pocket_base_url, selenium_mobile):
 
 
 def test_accessible_mobile_menu_open_name(pocket_base_url, selenium_mobile):
-
     page = AboutPage(selenium_mobile, pocket_base_url).open()
     button_label_reference = page.navigation.mobile_menu_open_button.get_attribute("aria-labelledby")
     string = page.navigation.mobile_menu_open_button.find_element(By.ID, button_label_reference).text

@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FirefoxMobileFocusPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/focus/"
 
     _get_firefox_header_button_locator = (By.ID, "get-firefox")

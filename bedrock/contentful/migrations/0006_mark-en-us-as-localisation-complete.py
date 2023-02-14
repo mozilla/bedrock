@@ -13,7 +13,6 @@ def make_en_us_localisation_complete(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("contentful", "0005_contentfulentry_localisation_complete"),
     ]

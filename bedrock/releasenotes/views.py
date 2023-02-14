@@ -84,7 +84,6 @@ def check_url(product, version):
 
 @require_safe
 def release_notes(request, version, product="Firefox"):
-
     if not version:
         raise Http404
 

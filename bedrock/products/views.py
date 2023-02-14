@@ -86,7 +86,6 @@ def vpn_invite_page(request):
 
 
 def _build_category_list(entry_list):
-
     # Template is expecting this format:
     # category_list = [
     #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
@@ -110,7 +109,6 @@ def _build_category_list(entry_list):
 
 
 def _filter_articles(articles_list, category):
-
     if not category:
         return articles_list
 
@@ -119,7 +117,6 @@ def _filter_articles(articles_list, category):
 
 @require_safe
 def resource_center_landing_view(request):
-
     ARTICLE_GROUP_SIZE = 6
     template_name = "products/vpn/resource-center/landing.html"
     active_locales = locales_with_available_content(
