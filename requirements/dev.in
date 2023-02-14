@@ -5,7 +5,7 @@ bpython==0.22.1
 braceexpand==0.1.7
 factory-boy==3.2.1
 flake8==5.0.4
-isort==5.10.1
+isort==5.12.0
 pipdeptree==2.2.1
 PyPOM==2.2.3
 pyquery==1.4.3
