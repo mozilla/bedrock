@@ -20,7 +20,7 @@
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
 
 {% block channels %}
-<section id="beta">
+<section id="beta" class="mzp-is-anchor-link">
   {% call call_out_compact(
     title=ftl('firefox-channel-beta'),
     desc=ftl('firefox-channel-try-the-latest-android-features'),
@@ -51,7 +51,7 @@
   </div>
 </section>
 
-<section id="nightly">
+<section id="nightly" class="mzp-is-anchor-link">
   {% call call_out_compact(
     title=ftl('firefox-channel-nightly'),
     desc=ftl('firefox-channel-check-out-new-android-features'),
