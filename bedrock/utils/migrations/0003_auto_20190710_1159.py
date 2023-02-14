@@ -18,7 +18,6 @@ def fix_bytes_repr(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("utils", "0002_auto_20180522_1249"),
     ]

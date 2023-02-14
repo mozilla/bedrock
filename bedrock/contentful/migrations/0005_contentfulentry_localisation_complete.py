@@ -8,7 +8,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("contentful", "0004_update_unique_constraint_on_contentfulentry"),
     ]

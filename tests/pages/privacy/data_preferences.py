@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class DataPreferencesPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/privacy/websites/data-preferences/"
 
     _preference_status_locator = (By.CSS_SELECTOR, ".data-preference-status")

@@ -10,7 +10,6 @@ import django_extensions.db.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("security", "0005_mitrecve_mfsa_ids"),
     ]

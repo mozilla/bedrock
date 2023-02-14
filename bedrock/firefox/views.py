@@ -442,7 +442,6 @@ class FirstrunView(L10nTemplateView):
 
 
 class WhatsnewView(L10nTemplateView):
-
     ftl_files_map = {
         "firefox/developer/whatsnew.html": ["firefox/developer"],
         "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
@@ -921,7 +920,6 @@ def firefox_welcome_page1(request):
 
 @require_safe
 def firefox_features_translate(request):
-
     to_translate_langs = [
         "af",
         "sq",

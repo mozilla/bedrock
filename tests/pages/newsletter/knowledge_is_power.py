@@ -6,5 +6,4 @@ from pages.base import BasePage
 
 
 class KnowledgeIsPowerNewsletterPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/newsletter/knowledge-is-power/"

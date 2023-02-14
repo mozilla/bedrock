@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FamilyPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/family/"
 
     _firefox_nav_cta_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder")

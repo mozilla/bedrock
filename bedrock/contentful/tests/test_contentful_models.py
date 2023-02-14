@@ -241,7 +241,6 @@ def test_contentfulentrymanager__get_entry_by_slug__unhappy_paths(
     content_type,
     classification,
 ):
-
     try:
         ContentfulEntry.objects.get_entry_by_slug(
             slug=slug,
@@ -256,7 +255,6 @@ def test_contentfulentrymanager__get_entry_by_slug__unhappy_paths(
 
 @patch("bedrock.contentful.models.ContentfulEntry.objects.get_entry_by_slug")
 def test_contentfulentrymanager__get_page_by_slug(mock_get_entry_by_slug):
-
     mock_retval = Mock(name="mock_retval")
     mock_retval.data = {"mocked": "data"}
     mock_get_entry_by_slug.return_value = mock_retval
@@ -278,7 +276,6 @@ def test_contentfulentrymanager__get_page_by_slug(mock_get_entry_by_slug):
 
 
 def test_contentfulentrymanager__get_active_locales_for_slug():
-
     for i in range(3):
         for locale in [
             "de",
@@ -415,7 +412,6 @@ def test_contentfulentrymanager__get_entries_by_type(
 
 
 def test_contentfulentrymanager__get_entries_by_type__ordering(dummy_entries):
-
     kwargs = dict(content_type="test_type_1", locale="en-US", classification=None)
 
     # default ordering: last_modified

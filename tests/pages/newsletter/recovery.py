@@ -9,7 +9,6 @@ from pages.base import BasePage
 
 
 class NewsletterRecoveryPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/newsletter/recovery/"
 
     _email_locator = (By.ID, "id_email")

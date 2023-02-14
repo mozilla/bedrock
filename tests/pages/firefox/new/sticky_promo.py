@@ -9,7 +9,6 @@ from pages.regions.sticky_promo import StickyPromo
 
 
 class StickyPromoPage(BasePage):
-
     URL_TEMPLATE = "/{locale}/firefox/new/"
 
     # Used as a scroll target to move down the page, to trigger the sticky promo element

@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class BrowserHistoryPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/browser-history/"
 
     _primary_download_button_locator = (By.ID, "download-button-primary")

@@ -238,7 +238,6 @@ class Command(BaseCommand):
         return viable_message_found
 
     def _detect_and_delete_absent_entries(self, contentful_data_attempted_for_sync) -> int:
-
         q_obj = Q()
         for ctype, _contentful_id, _locale in contentful_data_attempted_for_sync:
             if ctype == CONTENT_TYPE_CONNECT_HOMEPAGE:
@@ -407,7 +406,6 @@ class Command(BaseCommand):
         # when we have a lot of locales in play. For now, the heavier-IO approach should be OK.
 
         for ctype, page_id, locale_code in content_to_sync:
-
             request = self.rf.get("/")
             request.locale = locale_code
             try:

@@ -190,7 +190,6 @@ def test_contentful_preview_view(
     page_data,
     expected_template,
 ):
-
     mock_page_data = Mock(name="mock_page_data")
     mock_page_data.get_content.return_value = page_data
     contentfulpage_mock.return_value = mock_page_data

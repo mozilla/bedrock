@@ -9,7 +9,6 @@ from pages.regions.modal import ModalProtocol
 
 
 class LeadershipPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/about/leadership/"
 
     _bios_locator = (By.CSS_SELECTOR, ".gallery .vcard.has-bio")

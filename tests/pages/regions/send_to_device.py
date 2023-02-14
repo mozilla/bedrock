@@ -9,7 +9,6 @@ from pages.base import BaseRegion
 
 
 class SendToDevice(BaseRegion):
-
     _root_locator = (By.CSS_SELECTOR, ".send-to-device")
     _email_locator = (By.CSS_SELECTOR, ".send-to-device-input")
     _submit_button_locator = (By.CSS_SELECTOR, ".send-to-device .mzp-c-button")

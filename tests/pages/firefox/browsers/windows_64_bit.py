@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class Windows64BitPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/windows-64-bit/"
 
     _download_button_locator = (By.ID, "win64-hero-download")

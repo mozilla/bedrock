@@ -50,7 +50,6 @@ class BasePage(Page):
             return self.Navigation(self)
 
     class Navigation(BaseRegion):
-
         _content_wrapper_locator = (By.TAG_NAME, "body")
         _mobile_menu_open_btn_locator = (By.CLASS_NAME, "global-nav-mobile-menu-btn")
         _mobile_menu_close_btn_locator = (By.CLASS_NAME, "mobile-nav-close-btn")

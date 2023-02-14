@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class HomePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/"
 
     _primary_download_button_locator = (By.CSS_SELECTOR, "#download-primary > .download-link")

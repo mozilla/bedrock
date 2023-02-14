@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class ThankYouPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/download/thanks/"
 
     _direct_download_link_locator = (By.ID, "direct-download-link")

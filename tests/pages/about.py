@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class AboutPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/about/"
 
     _read_mission_button_locator = (By.ID, "read-mission-button")

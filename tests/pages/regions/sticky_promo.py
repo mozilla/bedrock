@@ -8,7 +8,6 @@ from pages.base import BaseRegion
 
 
 class StickyPromo(BaseRegion):
-
     _root_locator = (By.CLASS_NAME, "mzp-c-sticky-promo")
     _close_locator = (By.CLASS_NAME, "mzp-c-sticky-promo-close")
 

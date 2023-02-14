@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class VPNResourceCenterHomePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/products/vpn/resource-center/"
 
     # Header unit

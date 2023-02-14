@@ -513,7 +513,6 @@ class ContentfulPage:
         }
 
     def _get_info_data__category_tags_classification(self, entry_fields, page_type):
-
         data = {}
 
         # TODO: Check with plans for Contentful use - we may
@@ -853,7 +852,6 @@ class ContentfulPage:
         return data
 
     def get_picto_data(self, picto_obj, image_width):
-
         fields = picto_obj.fields()
         body = self.render_rich_text(fields.get("body")) if fields.get("body") else False
 

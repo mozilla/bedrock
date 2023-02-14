@@ -54,7 +54,6 @@ expected_sanitised_data = {
 
 
 def _prep_test_data(shared_datadir, data_to_splice):
-
     retval = []
 
     raw_json = (shared_datadir / "example_sentry_payload.json").read_text()

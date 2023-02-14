@@ -7,7 +7,6 @@ from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxFirstrunPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/firstrun/"
 
     @property

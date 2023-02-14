@@ -18,7 +18,6 @@ def sync_greenhouse(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("careers", "0001_initial"),
     ]

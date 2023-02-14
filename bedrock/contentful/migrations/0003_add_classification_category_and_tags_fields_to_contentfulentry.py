@@ -10,7 +10,6 @@ import django_extensions.db.fields.json
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("contentful", "0002_rename_contentfulentry_language_to_locale"),
     ]

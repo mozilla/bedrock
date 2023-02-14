@@ -8,7 +8,6 @@ import django_extensions.db.fields.json
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("security", "0003_halloffamer"),
     ]

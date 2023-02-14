@@ -6,5 +6,4 @@ from pages.pocket.base import BasePage
 
 
 class AddPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/add/"

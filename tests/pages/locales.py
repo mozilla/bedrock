@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class LocalesPage(BasePage):
-
     _URL_TEMPLATE = "/locales/"
 
     _america_locales_locator = (By.CSS_SELECTOR, "#americas ul > li > a")

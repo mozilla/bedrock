@@ -50,7 +50,6 @@ class BasePage(ScrollElementIntoView, Page):
         return NewsletterEmbedForm(self)
 
     class Navigation(BaseRegion):
-
         _root_locator = (By.CLASS_NAME, "c-navigation")
         _toggle_locator = (By.CLASS_NAME, "c-navigation-menu-button")
         _menu_locator = (By.CLASS_NAME, "c-navigation-items")
@@ -119,7 +118,6 @@ class BasePage(ScrollElementIntoView, Page):
             return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(BaseRegion):
-
         _root_locator = (By.ID, "colophon")
         _language_locator = (By.ID, "page-language-select")
 

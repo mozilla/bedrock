@@ -434,7 +434,6 @@ def test__make_cta_button(
 
 
 def test__make_plain_text():
-
     # Note this test will need a fixup when we add unidecode() support
     node = {
         "content": [
@@ -511,7 +510,6 @@ def test_EmphasisRenderer():
 
 @patch("bedrock.contentful.api.get_current_request")
 def test_LinkRenderer__mozilla_link(mock_get_current_request):
-
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
     mock_get_current_request.return_value = mock_request
@@ -530,7 +528,6 @@ def test_LinkRenderer__mozilla_link(mock_get_current_request):
 
 @patch("bedrock.contentful.api.get_current_request")
 def test_LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
-
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
     mock_get_current_request.return_value = mock_request
@@ -582,7 +579,6 @@ def test_OlRenderer():
 
 @patch("bedrock.contentful.api._only_child")
 def test__LiRenderer(mock__only_child):
-
     li_renderer = LiRenderer()
 
     li_renderer._render_content = Mock("mocked__render_content")
@@ -632,7 +628,6 @@ def test_InlineEntryRenderer(
     mock_client,
     content_type_label,
 ):
-
     mock_entry = Mock()
     mock_content_type = Mock()
     mock_content_type.id = content_type_label
@@ -703,7 +698,6 @@ def test_ContentfulPage__init(
     locale_to_patch,
     rf,
 ):
-
     mock_get_locale.side_effect = lambda x: x.locale
     mock_request = rf.get("/")
     mock_request.locale = locale_to_patch
@@ -735,7 +729,6 @@ def test_ContentfulPage__page_property(basic_contentful_page, locale_to_patch):
 
 
 def test_ContentfulPage__render_rich_text(basic_contentful_page):
-
     # The actual/underlying RichTextRenderer is tested in its own package
     # - this test just checks our usage
 
@@ -821,7 +814,6 @@ def test_ContentfulPage___get_image_from_default_locale_seo_object__happy_path(
 def test_ContentfulPage___get_image_from_default_locale_seo_object__no_match_for_id(
     basic_contentful_page,
 ):
-
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         contentful_id="test_id",
@@ -843,7 +835,6 @@ def test_ContentfulPage___get_image_from_default_locale_seo_object__no_match_for
 def test_ContentfulPage___get_image_from_default_locale_seo_object__no_relevant_data(
     basic_contentful_page,
 ):
-
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
         contentful_id="test_id",
@@ -891,7 +882,6 @@ def test_ContentfulPage__get_info_data__theme_campaign(
     entry_fields,
     expected,
 ):
-
     slug = "test-test-test"
 
     output = basic_contentful_page._get_info_data__theme_campaign(entry_fields, slug)
@@ -1103,7 +1093,6 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
     page_type,
     expected,
 ):
-
     assert basic_contentful_page._get_info_data__category_tags_classification(entry_fields, page_type) == expected
 
 
@@ -1184,7 +1173,6 @@ def test_ContentfulPage__get_info_data(
     seo_obj__fields,
     expected,
 ):
-
     mock__get_preview_image_from_fields.side_effect = [
         "https://example.com/test-entry.png",
         "https://example.com/test-seo.png",

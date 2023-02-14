@@ -24,7 +24,6 @@ urlpatterns = (
 )
 
 if settings.DEBUG:
-
     urlpatterns += (
         path("404/", import_string(handler404)),
         path("500/", import_string(handler500)),

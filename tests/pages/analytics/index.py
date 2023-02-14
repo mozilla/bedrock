@@ -9,7 +9,6 @@ from pages.base import BasePage
 
 
 class AnalyticsTestPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/analytics-tests/"
 
     # GA buttons to test

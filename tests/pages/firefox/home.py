@@ -10,7 +10,6 @@ from pages.regions.sticky_promo import StickyPromo
 
 
 class FirefoxHomePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/"
 
     # browser download menu list
