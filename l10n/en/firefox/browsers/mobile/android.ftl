@@ -57,4 +57,3 @@ mobile-android-short-cut-the-internet = Shortcut the internet with { -brand-name
 mobile-android-see-all-your-open-tabs = See all your open tabs, recent searches and favorite sites all in one place with { -brand-name-firefox } browser for { -brand-name-android }.
 mobile-android-own-your-home = Own your home screen
 mobile-android-get-to-the-parts = Get to the parts of the internet you care about faster. Choose to see all your open tabs, recent searches, bookmarks and favorite sites all in one place.
-
