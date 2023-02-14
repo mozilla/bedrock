@@ -9,7 +9,7 @@ assignees: ''
 
 ## Description
 
-What is the overall outcome we aim to achieve? 
+What is the overall outcome we aim to achieve?
 
 Link to pitch, brief, or background documents.
 
