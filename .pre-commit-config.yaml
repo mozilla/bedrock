@@ -10,6 +10,10 @@ exclude: >
   )
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-yaml
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.4.2
     hooks:
