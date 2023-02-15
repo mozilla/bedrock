@@ -110,7 +110,7 @@ if IS_POCKET_MODE:
     COOKIE_CONSENT_DATA_DOMAIN = "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e-test" if DEV else "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e"
 
     SNOWPLOW_APP_ID = "pocket-web-mktg-dev" if DEV else "pocket-web-mktg"
-    SNOWPLOW_SCRIPT_SRC = "https://assets.getpocket.com/web-utilities/public/static/te-2.18.js"
+    SNOWPLOW_SCRIPT_SRC = "https://assets.getpocket.com/web-utilities/public/static/te-3.1.2.js"
     SNOWPLOW_CONNECT_URL = "com-getpocket-prod1.mini.snplow.net" if DEV else "getpocket.com"
 
     # CSP settings for POCKET, expanded upon later:
