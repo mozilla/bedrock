@@ -135,18 +135,20 @@ const PocketAnalytics = {
 
         const data = getUserData();
         if (data) {
-            window.snowplow('addGlobalContexts', [
-                {
-                    schema: `iglu:com.pocket/user/jsonschema/1-0-0`,
-                    data
-                }
-            ]);
+            window.snowplow('addGlobalContexts', {
+                context: [
+                    {
+                        schema: `iglu:com.pocket/user/jsonschema/1-0-0`,
+                        data
+                    }
+                ]
+            });
         }
-        window.snowplow(
-            'enableActivityTracking',
-            10, // heartbeat delay
-            10 // heartbeat interval
-        );
+        window.snowplow('enableActivityTracking', {
+            // integers are in seconds
+            minimumVisitLength: 10,
+            heartbeatDelay: 10
+        });
         window.snowplow('enableLinkClickTracking');
         window.snowplow('enableFormTracking');
         window.snowplow('trackPageView');
