@@ -12,3 +12,12 @@ ab38b080abbff26e6968ced9267f3c576bb9e5fa
 
 # Format SCSS code using Stylelint
 ec8618cb0705cc87a5230d22048bd6946b0af744
+
+# Added pre-commit hook: end-of-file-fixer
+67e2c4fa0361d125e6c366ccc83112192a4f2cdf
+
+# Added pre-commit hook: trailing-whitespace
+a15178c3c7c976c67b3641af77cae0b66093a175
+
+# Black v23.1.0 updates
+33e51d62551148980740b7d45a12019b044da8b8
