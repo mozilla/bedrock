@@ -38,10 +38,6 @@ $image-path: '/media/protocol/img';
 @import 'components/menu-item';
 @import 'components/sub-navigation';
 
-[hidden] {
-    display: none;
-}
-
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578
 .mzp-c-newsletter-subtitle {

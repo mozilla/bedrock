@@ -164,16 +164,6 @@ for (let i = 0; i < modalContainers.length; i++) {
 
                 // set next/prev listeners
                 modalInit();
-
-                // temporary workaround for https://github.com/mozilla/protocol/issues/829
-                const modal = document.querySelector('.mzp-c-modal');
-                modal.addEventListener(
-                    'animationend',
-                    (e) => {
-                        e.target.focus();
-                    },
-                    false
-                );
             },
             onDestroy: () => {
                 if (window.history) {
