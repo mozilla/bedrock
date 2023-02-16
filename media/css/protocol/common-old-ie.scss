@@ -36,10 +36,6 @@ label {
     display: block;
 }
 
-[hidden] {
-    display: none;
-}
-
 .visually-hidden {
     @include visually-hidden;
 }

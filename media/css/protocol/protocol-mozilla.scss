@@ -41,10 +41,6 @@ $image-path: '/media/protocol/img';
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578
 
-[hidden] {
-    display: none;
-}
-
 .mzp-c-newsletter-subtitle {
     @include text-title-xs;
 }
