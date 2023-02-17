@@ -87,7 +87,10 @@ def locale_selection(request, available_locales=None):
         "languages": product_details.languages,
         "available_locales": sorted(set(available_locales)),
     }
-    return django_render(request, "404-locale.html", context, status=200 if is_root else 404)
+    response = django_render(request, "404-locale.html", context, status=200 if is_root else 404)
+    # Add the Vary header to avoid improper cache
+    response["Vary"] = "Accept-Language"
+    return response
 
 
 def render(request, template, context=None, ftl_files=None, activation_files=None, **kwargs):

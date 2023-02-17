@@ -51,6 +51,8 @@ class TestRender(TestCase):
             self.assertEqual(response.status_code, 404)
         else:
             self.assertEqual(response.status_code, 200)
+            if path == "/":
+                self.assertEqual(response["Vary"], "Accept-Language")
 
     def test_no_accept_language_header(self):
         template = "firefox/new.html"
