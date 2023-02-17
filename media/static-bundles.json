@@ -227,6 +227,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/ijustine-promo.scss"
+      ],
+      "name": "home-ijustine-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-management.scss"
       ],
       "name": "newsletter-management"
@@ -1913,9 +1919,16 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/mozorg/diversity/2021/diversity-2021.es6.js"
+        "js/careers/hero-video.js"
       ],
-      "name": "diversity-2021"
+      "name": "careers-hero-video"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/mozorg/home/youtube.js"
+      ],
+      "name": "ijustine-promo"
     },
     {
       "files": [
