@@ -92,57 +92,6 @@ class TestHomePage(TestCase):
         resp = views.home_view(req)
         self.assertEqual(resp.status_code, 405)
 
-    def test_donate_params_usd(self, render_mock):
-        req = RequestFactory().get("/", HTTP_CF_IPCOUNTRY="US")
-        req.locale = "en-US"
-        views.home_view(req)
-        ctx = render_mock.call_args[0][2]
-        self.assertEqual(
-            ctx["donate_params"],
-            {
-                "currency": "usd",
-                "default": "30",
-                "prefix": "true",
-                "preset_list": ["60", "30", "20", "10"],
-                "presets": "60,30,20,10",
-                "symbol": "$",
-            },
-        )
-
-    def test_donate_params_euro(self, render_mock):
-        req = RequestFactory().get("/", HTTP_CF_IPCOUNTRY="DE")
-        req.locale = "en-US"
-        views.home_view(req)
-        ctx = render_mock.call_args[0][2]
-        self.assertEqual(
-            ctx["donate_params"],
-            {
-                "currency": "eur",
-                "default": "30",
-                "prefix": "false",
-                "preset_list": ["60", "30", "20", "10"],
-                "presets": "60,30,20,10",
-                "symbol": "€",
-            },
-        )
-
-    def test_donate_params_gbp(self, render_mock):
-        req = RequestFactory().get("/", HTTP_CF_IPCOUNTRY="GB")
-        req.locale = "en-US"
-        views.home_view(req)
-        ctx = render_mock.call_args[0][2]
-        self.assertEqual(
-            ctx["donate_params"],
-            {
-                "currency": "gbp",
-                "default": "30",
-                "prefix": "true",
-                "preset_list": ["60", "30", "20", "10"],
-                "presets": "60,30,20,10",
-                "symbol": "£",
-            },
-        )
-
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(

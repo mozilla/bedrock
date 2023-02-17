@@ -19,7 +19,6 @@ from jsonview.decorators import json_view
 from product_details import product_details
 from sentry_sdk import capture_exception
 
-from bedrock.base.geo import get_country_from_request
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
@@ -129,14 +128,8 @@ def namespaces(request, namespace):
 @require_safe
 def home_view(request):
     locale = l10n_utils.get_locale(request)
-    country = get_country_from_request(request)
-    donate_params = settings.DONATE_COUNTRY_CODES.get(country, settings.DONATE_COUNTRY_CODES["US"])
 
-    # presets are stored as a string but, for the home banner
-    # we need it as a list.
-    donate_params["preset_list"] = donate_params["presets"].split(",")
     ctx = {
-        "donate_params": donate_params,
         "pocket_articles": PocketArticle.objects.all()[:4],
         "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
         "add_active_locales": ["de", "fr"],

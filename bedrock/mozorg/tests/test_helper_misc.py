@@ -25,25 +25,6 @@ from lib.l10n_utils.fluent import fluent_l10n
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")
 
-TEST_DONATE_LINK = (
-    "https://donate.mozilla.org/"
-    "?presets={presets}&amount={default}"
-    "&utm_source=mozilla.org&utm_medium=referral&utm_content={source}"
-    "&currency={currency}"
-)
-
-TEST_DONATE_PARAMS = {
-    "eur": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30", "prefix": "false"},
-    "gbp": {"currency": "gbp", "symbol": "£", "presets": "40,25,15,8", "default": "25", "prefix": "true"},
-    "usd": {"currency": "usd", "symbol": "$", "presets": "50,30,20,10", "default": "30", "prefix": "true"},
-}
-
-TEST_DONATE_COUNTRY_CODES = {
-    "DE": TEST_DONATE_PARAMS["eur"],
-    "GB": TEST_DONATE_PARAMS["gbp"],
-    "US": TEST_DONATE_PARAMS["usd"],
-}
-
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 
 jinja_env = Jinja2.get_default()
@@ -331,55 +312,23 @@ class TestPressBlogUrl(TestCase):
         assert self._render("oc") == "https://blog.mozilla.org/press/"
 
 
-@override_settings(
-    DONATE_LINK=TEST_DONATE_LINK,
-    DONATE_COUNTRY_CODES=TEST_DONATE_COUNTRY_CODES,
-)
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
-    def _render(self, country, source=""):
+    def _render(self, campaign="", content=""):
         req = self.rf.get("/")
-        return render(f"{{{{ donate_url('{country}', '{source}') }}}}", {"request": req})
+        return render(f"{{{{ donate_url(campaign='{campaign}', content='{content}') }}}}", {"request": req})
 
-    def test_donate_url_no_country(self):
-        """No country code supplied, fallback to generic link"""
-        assert self._render(False, "mozillaorg_footer") == (
-            "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
+    def test_donate_url_with_params(self):
+        """Should include campaign specific parameters when supplied"""
+        assert self._render(campaign="footer", content="company") == (
+            "https://foundation.mozilla.org/?form=donate&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_campaign=footer&amp;utm_content=company"
         )
 
-    def test_donate_url_usd(self):
-        """US country code, params in USD"""
-        assert self._render("US", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/"
-            "?presets=50,30,20,10&amp;amount=30"
-            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_content=mozillaorg_footer&amp;currency=usd"
-        )
-
-    def test_donate_url_euro(self):
-        """DE country code, params in EURO"""
-        assert self._render("DE", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/"
-            "?presets=50,30,20,10&amp;amount=30"
-            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_content=mozillaorg_footer&amp;currency=eur"
-        )
-
-    def test_donate_url_gbp(self):
-        """GB country code, params in GBP"""
-        assert self._render("GB", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/"
-            "?presets=40,25,15,8&amp;amount=25"
-            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_content=mozillaorg_footer&amp;currency=gbp"
-        )
-
-    def test_donate_url_unsupported_country(self):
-        """Unsupported country, fallback to generic link"""
-        assert self._render("CN", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
-        )
+    def test_donate_url_no_params(self):
+        """Should exclude campaign specific parameters when not supplied"""
+        assert self._render() == ("https://foundation.mozilla.org/?form=donate&amp;utm_source=mozilla.org&amp;utm_medium=referral")
 
 
 class TestFirefoxTwitterUrl(TestCase):

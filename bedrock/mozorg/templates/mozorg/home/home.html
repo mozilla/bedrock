@@ -14,7 +14,7 @@
 {% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
 {% set show_mr2_promo = switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
