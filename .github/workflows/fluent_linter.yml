@@ -1,0 +1,39 @@
+name: Fluent Linter
+on:
+  push:
+    paths:
+      - "l10n/en/**.ftl"
+      - "l10n-pocket/en/**.ftl"
+      - ".github/l10n/*"
+      - ".github/workflows/fluent_linter.yml"
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "l10n/en/**.ftl"
+      - "l10n-pocket/en/**.ftl"
+      - ".github/l10n/*"
+      - ".github/workflows/fluent_linter.yml"
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Set up Python 3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install Python dependencies
+        run: |
+          pip install moz-fluent-linter==0.3.*
+      - name: Lint mozilla.org files
+        run: |
+          moz-fluent-lint l10n/en --config .github/l10n/linter_config.yml
+      - name: Lint Pocket files
+        if: always() # This step should run even if the previous one fails
+        run: |
+          moz-fluent-lint l10n-pocket/en --config .github/l10n/linter_config.yml

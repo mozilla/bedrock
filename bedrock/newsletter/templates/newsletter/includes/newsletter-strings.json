@@ -153,7 +153,7 @@
       "title": "{{ ftl('newsletters-shapre-of-the-web')|striptags }}"
   },
   "student-reps": {
-      "description": "{{ ftl('newsletters-former-university-program')|striptags }}",
+      "description": "{{ ftl('newsletters-former-university-program-v2', fallback='newsletters-former-university-program')|striptags }}",
       "title": "{{ ftl('newsletters-student-reps')|striptags }}"
   },
   "take-action-for-the-internet": {

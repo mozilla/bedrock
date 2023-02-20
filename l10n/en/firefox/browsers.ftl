@@ -41,6 +41,12 @@ firefox-browsers-join-firefox-and-get-the-most = Join { -brand-name-firefox } an
 # Variables:
 #   $fxa_attr (string) - anchor link url and attributes
 #   $accounts_attr (string) - anchor link url and attributes
+firefox-browsers-already-have-an-account-sign-v2 = Already have an account? <a { $fxa_attr }>Sign In</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
+
+# Outdated string
+# Variables:
+#   $fxa_attr (string) - anchor link url and attributes
+#   $accounts_attr (string) - anchor link url and attributes
 firefox-browsers-already-have-an-account-sign = Already have an account? <a { $fxa_attr }>Sign In</a> or <a { $accounts_attr }>learn more</a> about joining Firefox.
 
 firefox-browsers-android = { -brand-name-android }
