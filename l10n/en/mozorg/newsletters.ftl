@@ -250,7 +250,11 @@ newsletters-news-and-information = News and information related to the health of
 newsletters-student-reps = Student Reps
 
 # Description for the newsletter in Newsletter subscription page (Student Reps)
-newsletters-former-university-program = Former University program from 2008-2011, now retired and relaunched as the { -brand-name-firefox } Student Ambassadors program.
+newsletters-former-university-program-v2 = Former University program from 2008-2011, now retired and relaunched as the { -brand-name-firefox } Student Ambassadors program.
+
+# Outdated String
+# Description for the newsletter in Newsletter subscription page (Student Reps)
+newsletters-former-university-program = Former University program from 2008-2011, now retired and relaunched as the Firefox Student Ambassadors program.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-take-action = Take Action for the Internet

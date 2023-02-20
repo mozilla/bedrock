@@ -155,7 +155,7 @@
           {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': 'browsers-footer'}) %}
           {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
           {% set accounts_attr = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
-          {{ ftl('firefox-browsers-already-have-an-account-sign', accounts_attr=accounts_attr, fxa_attr=fxa_attr) }}
+          {{ ftl('firefox-browsers-already-have-an-account-sign-v2', fallback='firefox-browsers-already-have-an-account-sign', accounts_attr=accounts_attr, fxa_attr=fxa_attr) }}
         </p>
       </div>
     </div>
