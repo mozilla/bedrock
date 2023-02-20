@@ -4,6 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+// match css/pocket/utils/_variables
+export const mobileMenuQuery = matchMedia(`(max-width: 720px)`);
+
 let navOpenBtn;
 let mobileNavWrapper;
 let mobileNav;
@@ -19,17 +22,12 @@ function detectClickOutside(event) {
     }
 }
 
-function toggleContentWrapperClass(e) {
-    if (e.target === mobileNavWrapper) {
-        contentWrapper.classList.toggle('mobile-nav-open');
-    }
-}
-
 function handleMenuOpen() {
     mobileNavWrapper.classList.add('active');
     mobileNavWrapper.style.opacity = 1;
     mobileNav.classList.add('active');
     navOpenBtn.setAttribute('aria-expanded', true);
+    contentWrapper.classList.add('mobile-nav-open');
 
     document.addEventListener('click', detectClickOutside);
     window.addEventListener('keydown', handleKeyDown);
@@ -42,6 +40,7 @@ function handleMenuClose() {
     mobileNavWrapper.classList.remove('active');
     mobileNavWrapper.style.opacity = 0;
     navOpenBtn.setAttribute('aria-expanded', false);
+    contentWrapper.classList.remove('mobile-nav-open');
 
     document.removeEventListener('click', detectClickOutside);
     window.removeEventListener('keydown', handleKeyDown);
@@ -98,7 +97,25 @@ function handleKeyDown(e) {
     }
 }
 
-const init = function () {
+export const addMediaQueryListeners = function () {
+    if (typeof mobileMenuQuery.addEventListener === 'function') {
+        // evergreen
+        mobileMenuQuery.addEventListener('change', function (event) {
+            if (event.matches) {
+                init();
+            }
+        });
+    } else if (typeof mobileMenuQuery.addListener === 'function') {
+        // IE fallback
+        mobileMenuQuery.addListener(function (event) {
+            if (event.matches) {
+                init();
+            }
+        });
+    }
+};
+
+export const init = function () {
     // set element references
     navOpenBtn = document.querySelector('.global-nav-mobile-menu-btn');
     mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
@@ -109,12 +126,4 @@ const init = function () {
     // add event listeners
     navOpenBtn.addEventListener('click', handleMenuOpen, false);
     navCloseBtn.addEventListener('click', handleMenuClose, false);
-    // this event is used both for styling and as a test condition
-    mobileNavWrapper.addEventListener(
-        'transitionend',
-        toggleContentWrapperClass,
-        { capture: true }
-    );
 };
-
-export default init;

@@ -76,11 +76,11 @@ class BasePage(Page):
 
         @property
         def is_mobile_menu_open_button_displayed(self):
-            return self.mobile_menu_open_button
+            return self.is_element_displayed(*self._mobile_menu_open_btn_locator)
 
         @property
         def is_mobile_menu_close_button_displayed(self):
-            return self.mobile_menu_close_button
+            return self.is_element_displayed(*self._mobile_menu_close_btn_locator)
 
         @property
         def mobile_menu_open_button(self):

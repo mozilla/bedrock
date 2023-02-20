@@ -4,6 +4,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import init from './mobile-nav.es6';
+import {
+    mobileMenuQuery,
+    init,
+    addMediaQueryListeners
+} from './mobile-nav.es6';
 
-init();
+if (mobileMenuQuery.matches) {
+    init();
+} else {
+    addMediaQueryListeners();
+}
