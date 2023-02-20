@@ -28,7 +28,7 @@
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 
-  {% if switch('homepage-ijustine-promo', ['en']) %}
+  {% if switch('homepage-ijustine-promo', ['en-US']) %}
     {{ css_bundle('home-ijustine-promo') }}
   {% elif switch('homepage-vpn-beautiful', ['en']) %}
     {{ css_bundle('home-vpn-beautiful') }}
@@ -73,7 +73,7 @@
     <h1>{{ self.page_title() }}</h1>
   </header>
 
-    {% if switch('homepage-ijustine-promo', ['en']) %}
+    {% if switch('homepage-ijustine-promo', ['en-US']) %}
     {% include 'mozorg/home/includes/ijustine-promo.html' %}
   {% elif switch('homepage-vpn-beautiful', ['en']) %}
     {% include 'mozorg/home/includes/vpn-beautiful.html' %}
@@ -125,7 +125,7 @@
   {{ js_bundle('home-contentful') }}
   {{ js_bundle('newsletter') }}
 
-  {% if switch('homepage-ijustine-promo', ['en']) %}
+  {% if switch('homepage-ijustine-promo', ['en-US']) %}
     {{ js_bundle ('ijustine-promo')}}
   {% elif show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
