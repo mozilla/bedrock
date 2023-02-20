@@ -69,21 +69,3 @@ def test_switch():
 
     assert ret is waffle.switch.return_value
     waffle.switch.assert_called_with("dude")
-
-
-@override_settings(DONATE_PARAMS={"en-US": {"presets": "50,30,20,10"}, "id": {"presets": "270000,140000,70000,40000"}})
-class TestGetDonateParams(TestCase):
-    def test_en_us(self):
-        ctx = {"LANG": "en-US"}
-        params = helpers.get_donate_params(ctx)
-        assert params["preset_list"] == "50,30,20,10".split(",")
-
-    def test_id(self):
-        ctx = {"LANG": "id"}
-        params = helpers.get_donate_params(ctx)
-        assert params["preset_list"] == "270000,140000,70000,40000".split(",")
-
-    def test_undefined_locale(self):
-        ctx = {"LANG": "de"}
-        params = helpers.get_donate_params(ctx)
-        assert params["preset_list"] == "50,30,20,10".split(",")

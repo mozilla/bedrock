@@ -427,7 +427,7 @@ def press_blog_url(ctx):
 @library.global_function
 @jinja2.pass_context
 def donate_url(ctx, campaign="", content=""):
-    """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
+    """Output a formatted donation link to the donation page
 
     Examples
     ========
