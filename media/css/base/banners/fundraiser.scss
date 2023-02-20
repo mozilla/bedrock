@@ -83,90 +83,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-fundraiser-recurring {
-    margin-bottom: $spacing-lg;
-
-    label {
-        @include text-body-md;
-        display: inline-block;
-        font-weight: normal;
-
-        &:first-child {
-            @include bidi((
-                (margin-right, $spacing-lg, 0),
-                (margin-left, 0, $spacing-lg)
-            ));
-        }
-    }
-}
-
-.c-fundraiser-donation-options {
-    margin-bottom: $spacing-sm;
-
-    .mzp-c-button.mzp-t-secondary {
-        @include text-body-lg;
-        font-weight: normal;
-        padding: 6px $spacing-xl;
-        text-align: center;
-        width: 100%;
-    }
-
-    label {
-        @include bidi((
-            (margin-right, $spacing-md, 0),
-            (margin-left, 0, $spacing-md)
-        ));
-        display: inline-block;
-        position: relative;
-
-        &:last-child {
-            @include bidi((
-                (margin-right, 0, margin-left, 0),
-            ));
-        }
-    }
-
-    .c-fundraiser-amount-input {
-        left: 0;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-
-        &:checked + .mzp-c-button.mzp-t-product.mzp-t-secondary {
-            background-color: rgba($color-blue-10, 0.5);
-
-            &:hover,
-            &:active,
-            &:focus {
-                background-color: $color-blue-60;
-            }
-        }
-    }
-}
-
 .c-fundraiser-submit .mzp-c-button {
     @include text-body-lg;
     margin: 0;
 }
 
 @supports (display: grid) {
-    .c-fundraiser-donation-options {
-        display: grid;
-        grid-column-gap: $spacing-lg;
-        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
-
-        label {
-            @include bidi((
-                (margin-right, 0, 0),
-                (margin-left, 0, 0)
-            ));
-        }
-
-        @media #{$mq-xl} {
-            grid-template: 1fr / repeat(4, 1fr);
-        }
-    }
-
     .c-fundraiser-submit .mzp-c-button {
         width: 100%;
     }

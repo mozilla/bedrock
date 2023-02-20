@@ -13,7 +13,7 @@
 {% block page_desc %}Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
-{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and donate_params and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}

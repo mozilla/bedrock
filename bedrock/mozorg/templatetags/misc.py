@@ -426,8 +426,8 @@ def press_blog_url(ctx):
 
 @library.global_function
 @jinja2.pass_context
-def donate_url(ctx, country="", source=""):
-    """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
+def donate_url(ctx, campaign="", content=""):
+    """Output a formatted donation link to the donation page
 
     Examples
     ========
@@ -435,34 +435,25 @@ def donate_url(ctx, country="", source=""):
     In Template
     -----------
 
-        {{ donate_url(country_code) }}
+        {{ donate_url() }}
 
-    For `country_code == US this would output:
+    This would output:
 
-        https://donate.mozilla.org/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral
 
-    For `country_code === DE` this would output:
+        {{ donate(campaign='footer', content='company')}}
 
-        https://donate.mozilla.org/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
+    This would output:
 
-    If `country_code` is not supplied this would output:
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=company
 
-        https://donate.mozilla.org/?utm_source=mozilla.org&utm_medium=referral&utm_content=footer
 
     """
-    donate_url_params = settings.DONATE_COUNTRY_CODES.get(country, settings.DONATE_COUNTRY_CODES["US"])
 
-    donate_url = settings.DONATE_LINK_UNKNOWN.format(source=source)
+    campaign = "&utm_campaign=" + campaign if campaign else ""
+    content = "&utm_content=" + content if content else ""
 
-    if country in settings.DONATE_COUNTRY_CODES:
-        donate_url = settings.DONATE_LINK.format(
-            presets=donate_url_params["presets"],
-            default=donate_url_params["default"],
-            source=source,
-            currency=donate_url_params["currency"],
-        )
-
-    return donate_url
+    return settings.DONATE_LINK.format(campaign=campaign, content=content)
 
 
 @library.global_function

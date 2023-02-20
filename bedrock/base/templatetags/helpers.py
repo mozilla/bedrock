@@ -149,20 +149,3 @@ def alternate_url(path, locale):
         return alt_paths[path][locale]
 
     return None
-
-
-@library.global_function
-@jinja2.pass_context
-def get_donate_params(ctx):
-    """Returns donation params for the current locale with an added key
-    containing a list version of the preset donation amounts.
-
-    :returns: dictionary of donation values, including list of amount presets
-    """
-
-    donate_params = settings.DONATE_PARAMS.get(ctx["LANG"], settings.DONATE_PARAMS["en-US"])
-
-    # presets are stored as a string but we need a list for views
-    donate_params["preset_list"] = donate_params["presets"].split(",")
-
-    return donate_params
