@@ -8,7 +8,7 @@
 .c-public-wifi {
     background: f3.$blue-dark center / cover no-repeat url('/media/img/firefox/family/grid-curved.svg');
 
-    @media (prefers-reduced-motion: no-preference) {
+    @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
         background-attachment: fixed;
     }
 

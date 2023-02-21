@@ -12,7 +12,7 @@
         background-image: url('/media/img/firefox/family/grid-doomscrollhole-desktop.svg');
     }
 
-    @media (prefers-reduced-motion: no-preference) {
+    @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
         background-attachment: fixed;
     }
 
