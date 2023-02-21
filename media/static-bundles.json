@@ -1926,6 +1926,13 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
+        "js/mozorg/diversity/2021/diversity-2021.es6.js"
+      ],
+      "name": "diversity-2021"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
         "js/mozorg/home/includes/ijustine-modal-video.js"
       ],
       "name": "ijustine-promo"

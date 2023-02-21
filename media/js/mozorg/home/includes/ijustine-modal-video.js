@@ -114,9 +114,7 @@ window.onYouTubeIframeAPIReady = function () {
     }
 
     function init() {
-        var videoButton = document.querySelector(
-            '.mzp-t-ijustine .js-video-play'
-        );
+        var videoButton = document.querySelector('.t-ijustine .js-video-play');
 
         videoButton.setAttribute('role', 'button');
         videoButton.addEventListener('click', openVideoModal, false);

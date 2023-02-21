@@ -2,8 +2,55 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.mzp-t-ijustine {
-    background-color: #6f4ae7;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.t-ijustine {
+    padding: 0;
+
+    .mzp-c-split-bg {
+        background-color: #6f4ae7;
+        padding-top: 0;
+    }
+
+    .mzp-c-split-container {
+        padding: 0;
+    }
+
+    .mzp-c-split-body {
+        .mzp-c-wordmark {
+            display: none;
+        }
+    }
+
+    h2 {
+        @include text-title-md;
+    }
+
+    p {
+        @include text-body-lg;
+    }
+
+    .visually-hidden {
+        @include visually-hidden;
+    }
+
+    @media #{$mq-md} {
+        padding: auto;
+
+        .mzp-c-split-bg {
+            padding: $layout-xl 0;
+        }
+
+        .mzp-c-split-container {
+            padding: 0 $layout-lg;
+        }
+
+        .mzp-c-split-body {
+            .mzp-c-wordmark {
+                display: block;
+            }
+        }
+    }
 }
 
 .mzp-c-video {
