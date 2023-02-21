@@ -4,6 +4,12 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% if LANG == 'de' %}
+  {% set pocket_newsletter_href = 'https://getpocket.com/de/explore/pocket-hits-signup?src=footer_v2'%}
+{% else %}
+  {% set pocket_newsletter_href = 'https://getpocket.com/en/explore/pocket-hits-signup?src=footer_v2'%}
+{% endif %}
+
 <footer class="pocket-footer-container">
     <div class="pocket-footer-content">
         <nav class="pocket-footer-primary">
@@ -14,7 +20,7 @@
                         <a href="https://getpocket.com/explore/must-reads?src=footer_v2">{{ ftl('pocket-footer-must-read-articles') }}</a>
                     </li>
                     <li>
-                        <a href="https://getpocket.com/explore/pocket-hits?src=footer_v2">{{ ftl('pocket-footer-daily-newsletter')}}</a>
+                        <a href="{{ pocket_newsletter_href }}">{{ ftl('pocket-footer-daily-newsletter')}}</a>
                     </li>
                     <li>
                         <a href="https://getpocket.com/premium?src=footer_v2">{{ ftl('pocket-footer-pocket-premium') }}</a>

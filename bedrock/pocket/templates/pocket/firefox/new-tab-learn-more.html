@@ -15,6 +15,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block page_title %}{{ ftl('pocket-new-tab-learn-more') }}{% endblock page_title %}
 
+{% if LANG == 'de' %}
+  {% set pocket_newsletter_href = 'https://getpocket.com/de/explore/pocket-hits-signup' %}
+{% else %}
+  {% set pocket_newsletter_href = 'https://getpocket.com/en/explore/pocket-hits-signup' %}
+{% endif %}
+
 {% block content %}
   <header class="new-tab-header">
     <div class="mzp-c-logo mzp-t-logo-xs mzp-t-product-family">{{ ftl('pocket-new-tab-firefox') }}</div>
@@ -82,7 +88,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       )
     )%}
       <h2 class="new-tab-section-header">{{ ftl('pocket-new-tab-fuel') }}</h2>
-      <p class="new-tab-section-body">{{ ftl('pocket-new-tab-check-out', explore_url='https://getpocket.com/explore', hits_signup_url='https://getpocket.com/explore/pocket-hits-signup') }}</p>
+      <p class="new-tab-section-body">{{ ftl('pocket-new-tab-check-out', explore_url='https://getpocket.com/explore', hits_signup_url=pocket_newsletter_href ) }}</p>
     {% endcall %}
     {% call split(
       block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace new-tab-section',
