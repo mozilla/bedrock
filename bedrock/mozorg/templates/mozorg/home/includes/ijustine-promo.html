@@ -1,0 +1,38 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% call split(
+  image=resp_img(
+    url="img/home/2023/ijustine-promo/ijustine-promo-700.jpg",
+    srcset={
+      "img/home/2023/ijustine-promo/ijustine-promo-500.jpg": "500w",
+      "img/home/2023/ijustine-promo/ijustine-promo-700.jpg": "700w",
+      "img/home/2023/ijustine-promo/ijustine-promo-1000.jpg": "1000w",
+      "img/home/2023/ijustine-promo/ijustine-promo-1500.jpg": "1500w",
+    },
+    optional_attributes={
+          "class": "mzp-c-split-media-asset",
+          "alt": "Justine Ezarik, better known as iJustine, wearing jeans and a blue sweater with leopard print, speaks candidly with an interviewer who faces away from the camera. A microphone can be seen at the top of the frame and a video camera recording the interview takes up the left foreground."
+        }),
+  block_class='mzp-l-split-reversed mzp-t-split-nospace mzp-l-split-center-on-sm-md t-ijustine',
+  theme_class='mzp-t-dark mzp-c-split-bg',
+  body_class=None,
+  media_class='mzp-l-split-h-center mzp-l-split-v-center',
+  )
+ %}
+  <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-family">Mozilla Firefox</div>
+  <h2 class="mzp-u-title-lg">An extremely online life</h2>
+  <p>Learn about iJustine’s work to regain her privacy in our latest Firefox Presents.</p>
+  <a href="https://youtu.be/HsoSSfZP0Cs" class="mzp-c-button mzp-t-dark video-play js-video-play">Watch it now <span class="visually-hidden">Firefox Presents iJustine</span></a>
+
+  <div class="mzp-u-modal-content hidden mzp-has-media">
+    <div class="mzp-c-video">
+      <div class="video-player" data-video-id="HsoSSfZP0Cs" data-video-title="iJustine unboxes some actual privacy"></div>
+    </div>
+  </div>
+{% endcall %}
