@@ -15,7 +15,7 @@ $image-path: '/media/protocol/img';
         display: flex;
         flex-flow: column-reverse wrap;
         margin: 0 auto;
-        max-width: $screen-lg;
+        max-width: $screen-xl;
         width: 100%;
         height: auto;
 
@@ -31,7 +31,7 @@ $image-path: '/media/protocol/img';
             color: $color-text-primary;
             display: flex;
             flex-flow: column wrap;
-            height: 220px;
+            height: 300px;
             justify-content: center;
             margin: 0 auto $layout-xs;
             max-width: 500px;
@@ -41,10 +41,12 @@ $image-path: '/media/protocol/img';
                 margin: 0 0 $spacing-md;
                 cursor: pointer;
 
-                a {
+                a,
+                #ot-sdk-btn {
                     color: $color-text-primary;
+                    display: inline-block;
                     text-decoration: none;
-                    margin: $spacing-lg $spacing-xs;
+                    margin: $spacing-sm $spacing-xs;
 
                     &:hover,
                     &:active,
