@@ -37,7 +37,11 @@
             <h3 class="about-section-heading">{{ ftl('pocket-about-find-hidden-gems')}}</h3>
             <p class="about-section-body">{{ ftl('pocket-about-internet-filled-with-buried-treasures') }}</p>
             <p class="about-section-body">
-
+              {% if LANG == 'de' %}
+                {% set pocket_newsletter_attrs = 'id="daily-newsletter" href="https://getpocket.com/de/explore/pocket-hits-signup"'%}
+              {% else %}
+                {% set pocket_newsletter_attrs = 'id="daily-newsletter" href="https://getpocket.com/en/explore/pocket-hits-signup"'%}
+              {% endif %}
               {% set pocket_and_firefox_attrs = 'id="pocket-and-firefox" href="'|safe ~ url('pocket.pocket-and-firefox') ~ '"'|safe %}
               {% set pocket_app_attrs = 'id="bottom-pocket-app" href="'|safe ~ url('pocket.add') ~ '"'|safe %}
               {{ ftl(
@@ -45,7 +49,7 @@
                 pocket_home_attrs='id="home-page" href="/"',
                 pocket_home_domain='GetPocket.com',
                 pocket_and_firefox_attrs=pocket_and_firefox_attrs,
-                pocket_daily_newsletter_attrs='id="daily-newsletter" href="https://getpocket.com/explore/pocket-hits-signup"',
+                pocket_daily_newsletter_attrs=pocket_newsletter_attrs,
                 pocket_app_attrs=pocket_app_attrs)
               }}
             </p>
