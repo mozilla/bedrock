@@ -1898,13 +1898,6 @@
     {
       "files": [
         "protocol/js/protocol-modal.js",
-        "js/careers/hero-video.js"
-      ],
-      "name": "careers-hero-video"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
         "js/careers/testimonials-modal.es6.js"
       ],
       "name": "careers-testimonials"
