@@ -23,10 +23,18 @@
 {% set recovery_href = 'href="' + url('newsletter.recovery') + '"'|escape %}
 
 {% block string_data %}
+  {#
+  Note the outer single quotes wrapping data-error-token-not-found, not
+  doubles - this is critical to avoiding some over-escaping of quotes
+  in `recovery_href` when we bleach during the ftl() call
+  See: https://github.com/mozilla/bedrock/issues/12789
+  #}
+
+  #}
   {% if ftl_has_messages('newsletters-the-supplied-link-has-expired-v2') %}
-    data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired-v2', recovery_href=recovery_href) }}"
+    data-error-token-not-found='{{ ftl("newsletters-the-supplied-link-has-expired-v2", recovery_href=recovery_href) }}'
   {% else %}
-    data-error-token-not-found="{{ ftl('newsletters-the-supplied-link-has-expired') }}"
+    data-error-token-not-found='{{ ftl("newsletters-the-supplied-link-has-expired") }}'
   {% endif %}
   data-error-invalid-email="{{ ftl('newsletters-this-is-not-a-valid-email') }}"
   data-error-invalid-newsletter="{{ ftl('newsletters-is-not-a-valid-newsletter', newsletter='%newsletter%') }}"
