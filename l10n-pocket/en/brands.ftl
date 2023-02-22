@@ -27,6 +27,9 @@
 ## Pocket product
 
 -brand-name-pocket-premium = Pocket Premium
+
+## obsolete name, will be updated to use Mozilla Corp instead
+
 -brand-name-read-it-later = Read It Later, Inc
 
 ## Firefox browsers
