@@ -28,7 +28,7 @@
 
 -brand-name-pocket-premium = Pocket Premium
 
-## obsolete name, will be updated to use Mozilla Corp instead
+## Obsolete string
 
 -brand-name-read-it-later = Read It Later, Inc
 
