@@ -326,12 +326,29 @@ if (typeof window.Mozilla === 'undefined') {
      * Gets the client ID from the GA object.
      * @returns {String} client ID.
      */
-    StubAttribution.getGAVisitID = function () {
+    StubAttribution.getGAClientID = function () {
         try {
             var clientID = window.ga.getAll()[0].get('clientId');
 
             if (clientID && typeof clientID === 'string' && clientID !== '') {
                 return clientID;
+            }
+            return null;
+        } catch (e) {
+            return null;
+        }
+    };
+
+    /**
+     * Gets the session ID from the GA object.
+     * @returns {String} session ID.
+     */
+    StubAttribution.getGASessionID = function () {
+        try {
+            var sessionID = window.ga.getAll()[0].get('_gt');
+
+            if (sessionID && typeof sessionID === 'number') {
+                return sessionID.toString();
             }
             return null;
         } catch (e) {
@@ -352,9 +369,10 @@ if (typeof window.Mozilla === 'undefined') {
 
         function _checkGA() {
             clearTimeout(timeout);
-            var clientID = StubAttribution.getGAVisitID();
+            var clientID = StubAttribution.getGAClientID();
+            var sessionID = StubAttribution.getGASessionID();
 
-            if (clientID) {
+            if (clientID && sessionID) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
@@ -383,7 +401,8 @@ if (typeof window.Mozilla === 'undefined') {
             params.get('variation') || StubAttribution.experimentVariation;
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
         var ua = StubAttribution.getUserAgent();
-        var visitID = StubAttribution.getGAVisitID();
+        var clientID = StubAttribution.getGAClientID();
+        var sessionID = StubAttribution.getGASessionID();
 
         /* eslint-disable camelcase */
         var data = {
@@ -395,7 +414,8 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            visit_id: visitID
+            visit_id: clientID, // passed through as visit_id as was originally named incorrectly
+            session_id: sessionID
         };
         /* eslint-enable camelcase */
 

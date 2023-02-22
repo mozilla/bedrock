@@ -59,6 +59,7 @@ STUB_VALUE_NAMES = [
     ("variation", "(not set)"),
     ("ua", "(not set)"),
     ("visit_id", "(not set)"),
+    ("session_id", "(not set)"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
 
