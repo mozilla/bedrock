@@ -2,17 +2,37 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import bleach
 import jinja2
 from django_jinja import library
 from markupsafe import Markup
 
 from lib.l10n_utils import fluent
 
+TAGS_ALLOWED_IN_FLUENT_STRINGS = {
+    "a",
+    "abbr",
+    "br",
+    "em",
+    "i",
+    "span",
+    "strong",
+}
+
+ATTRS_ALLOWED_IN_FLUENT_STRINGS = [
+    "class",
+    "href",
+    "id",
+    "rel",
+    "title",
+]
+
 
 @library.global_function
 @jinja2.pass_context
 def ftl(ctx, message_id, fallback=None, locale=None, **kwargs):
-    """Return the translated string.
+    """Return the translated string, after sanitising any _disallowed_ HTML
+    markup. (Allowed HTML is left unchanged.)
 
     :param ctx: the context from the template (automatically included)
     :param str message_id: the ID of the message
@@ -26,10 +46,18 @@ def ftl(ctx, message_id, fallback=None, locale=None, **kwargs):
         <p>{{ ftl('greeting', name='The Dude') }}
     """
     if locale:
-        return Markup(fluent.ftl(message_id, fallback, locale=locale, ftl_files=ctx["fluent_files"], **kwargs))
+        localised_string = fluent.ftl(message_id, fallback, locale=locale, ftl_files=ctx["fluent_files"], **kwargs)
+    else:
+        l10n = ctx["fluent_l10n"]
+        localised_string = fluent.translate(l10n, message_id, fallback, **kwargs)
 
-    l10n = ctx["fluent_l10n"]
-    return Markup(fluent.translate(l10n, message_id, fallback, **kwargs))
+    bleached_localised_string = bleach.clean(
+        localised_string,
+        tags=TAGS_ALLOWED_IN_FLUENT_STRINGS,
+        attributes=ATTRS_ALLOWED_IN_FLUENT_STRINGS,
+    )
+
+    return Markup(bleached_localised_string)
 
 
 @library.global_function
