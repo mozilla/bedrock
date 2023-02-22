@@ -27,6 +27,9 @@
 ## Pocket product
 
 -brand-name-pocket-premium = Pocket Premium
+
+## Obsolete string
+
 -brand-name-read-it-later = Read It Later, Inc
 
 ## Firefox browsers
