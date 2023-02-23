@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
@@ -25,4 +27,4 @@ class ThankYouPage(BasePage):
 
     @property
     def is_direct_download_link_valid(self):
-        return "https://download.mozilla.org" in self.find_element(*self._direct_download_link_locator).get_attribute("href")
+        return settings.BOUNCER_URL in self.find_element(*self._direct_download_link_locator).get_attribute("href")
