@@ -479,8 +479,7 @@ const NewsletterManagementForm = {
         FormUtils.clearFormErrors(_form);
 
         errors.forEach((error) => {
-            const item = `<li>${error}</li>`;
-            list.insertAdjacentHTML('afterbegin', item);
+            list.insertAdjacentElement('afterbegin', error);
         });
 
         errorContainer.classList.remove('hidden');
@@ -538,32 +537,40 @@ const NewsletterManagementForm = {
      * @returns {String}
      */
     handleFormError: (msg, newsletterId) => {
-        const strings = document.getElementById('strings');
+        const strings = document.querySelector('.template-error-strings');
         let error;
 
         switch (msg) {
             case FormUtils.errorList.NOT_FOUND:
-                error = strings.getAttribute('data-error-token-not-found');
+                error = strings.querySelector('.error-token-not-found');
                 break;
             case FormUtils.errorList.EMAIL_INVALID_ERROR:
-                error = strings.getAttribute('data-error-invalid-email');
+                error = strings.querySelector('.error-invalid-email');
                 break;
             case FormUtils.errorList.NEWSLETTER_ERROR:
-                error = strings.getAttribute('data-error-invalid-newsletter');
+                error = strings.querySelector('.error-invalid-newsletter');
 
                 // replace '%newsletter%' placeholder with actual newsletter ID.
                 if (typeof newsletterId === 'string') {
-                    error = error.replace('%newsletter%', newsletterId);
+                    const temp = error.textContent.replace(
+                        '%newsletter%',
+                        newsletterId
+                    );
+                    error.textContent = temp;
                 }
                 break;
             case FormUtils.errorList.COUNTRY_ERROR:
-                error = strings.getAttribute('data-error-select-country');
+                error = strings.querySelector('.error-select-country');
                 break;
             case FormUtils.errorList.LANGUAGE_ERROR:
-                error = strings.getAttribute('data-error-select-lang');
+                error = strings.querySelector('.error-select-lang');
                 break;
             default:
-                error = strings.getAttribute('data-error-try-again-later');
+                error = strings.querySelector('.error-try-again-later');
+        }
+
+        if (error) {
+            return error.cloneNode(true);
         }
 
         return error;
@@ -797,7 +804,11 @@ const NewsletterManagementForm = {
                         NewsletterManagementForm.onDataError(e);
                     });
             })
-            .catch(NewsletterManagementForm.redirectToRecoveryPage);
+            .catch(() => {
+                if (!FormUtils.getUserToken()) {
+                    NewsletterManagementForm.redirectToRecoveryPage();
+                }
+            });
     }
 };
 

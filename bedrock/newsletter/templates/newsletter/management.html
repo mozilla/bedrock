@@ -20,29 +20,6 @@
 
 {% block body_class %}newsletter-management{% endblock %}
 
-{% set recovery_href = 'href="' + url('newsletter.recovery') + '"'|escape %}
-
-{% block string_data %}
-  {#
-  Note the outer single quotes wrapping data-error-token-not-found, not
-  doubles - this is critical to avoiding some over-escaping of quotes
-  in `recovery_href` when we bleach during the ftl() call
-  See: https://github.com/mozilla/bedrock/issues/12789
-  #}
-
-  #}
-  {% if ftl_has_messages('newsletters-the-supplied-link-has-expired-v2') %}
-    data-error-token-not-found='{{ ftl("newsletters-the-supplied-link-has-expired-v2", recovery_href=recovery_href) }}'
-  {% else %}
-    data-error-token-not-found='{{ ftl("newsletters-the-supplied-link-has-expired") }}'
-  {% endif %}
-  data-error-invalid-email="{{ ftl('newsletters-this-is-not-a-valid-email') }}"
-  data-error-invalid-newsletter="{{ ftl('newsletters-is-not-a-valid-newsletter', newsletter='%newsletter%') }}"
-  data-error-select-country="{{ ftl('newsletters-please-select-country') }}"
-  data-error-select-lang="{{ ftl('newsletters-please-select-language') }}"
-  data-error-try-again-later="{{ ftl('newsletters-something-is-amiss-with') }}"
-{% endblock %}
-
 {% set maintenance_mode = switch('newsletter-maintenance-mode') %}
 
 {% block content %}
@@ -168,6 +145,35 @@
   </div>
   {% endif %}
 </main>
+
+{# Error strings exist in the DOM instead of JSON as they can still be needed when fetching data fails! #}
+{% set recovery_href = 'href="' + url('newsletter.recovery') + '"' %}
+<div class="template-error-strings" hidden>
+  <ul>
+    <li class="error-token-not-found">
+      {% if ftl_has_messages('newsletters-the-supplied-link-has-expired-v2') %}
+        {{ ftl("newsletters-the-supplied-link-has-expired-v2", recovery_href=recovery_href) }}
+      {% else %}
+        {{ ftl("newsletters-the-supplied-link-has-expired") }}
+      {% endif %}
+    </li>
+    <li class="error-invalid-email">
+      {{ ftl('newsletters-this-is-not-a-valid-email') }}
+    </li>
+    <li class="error-invalid-newsletter">
+      {{ ftl('newsletters-is-not-a-valid-newsletter', newsletter='%newsletter%') }}
+    </li>
+    <li class="error-select-country">
+      {{ ftl('newsletters-please-select-country') }}
+    </li>
+    <li class="error-select-lang">
+      {{ ftl('newsletters-please-select-language') }}
+    </li>
+    <li class="error-try-again-later">
+      {{ ftl('newsletters-something-is-amiss-with') }}
+    </li>
+  </ul>
+</div>
 {% endblock %}
 
 {# Don't display the footer if there is a token present. bug 1247446 #}
