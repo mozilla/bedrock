@@ -8,6 +8,7 @@ set -xe
 # Defaults
 : ${PYTEST_PROCESSES:="1"}
 : ${BASE_URL:="https://www-dev.allizom.org"}
+: ${BOUNCER_URL:="https://download.mozilla.org/"}
 : ${SELENIUM_HOST:="localhost"}
 : ${SELENIUM_PORT:="4444"}
 : ${BROWSER_NAME:="firefox"}
