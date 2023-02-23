@@ -13,7 +13,6 @@ const TOKEN_MOCK = 'a1a2a3a4-abc1-12ab-a123-12345a12345b';
 describe('management.es6.js', function () {
     beforeEach(function () {
         const form = `<div id="newsletter-management-test-form">
-            <div id="strings" data-error-token-not-found="The supplied link has expired. You will receive a new one in the next newsletter." data-error-invalid-email="This is not a valid email address. Please check the spelling." data-error-invalid-newsletter="%newsletter% is not a valid newsletter" data-error-select-country="Please select a country or region" data-error-select-lang="Please select a language" data-error-try-again-later="Something is amiss with our system, sorry! Please try again later."></div>
             <header class="mzp-l-content mzp-t-content-lg">
                 <h1>Manage your Email Preferences</h1>
                 <div class="js-intro-msg">
@@ -96,6 +95,28 @@ describe('management.es6.js', function () {
                     </div>
                 </div>
             </form>
+            <div class="template-error-strings" hidden="">
+                <ul>
+                    <li class="error-token-not-found">
+                        The supplied link has expired. Please <a href="/en-US/newsletter/recovery/">request a new link here</a>.
+                    </li>
+                    <li class="error-invalid-email">
+                        This is not a valid email address. Please check the spelling.
+                    </li>
+                    <li class="error-invalid-newsletter">
+                        %newsletter% is not a valid newsletter
+                    </li>
+                    <li class="error-select-country">
+                        Please select a country or region
+                    </li>
+                    <li class="error-select-lang">
+                        Please select a language
+                    </li>
+                    <li class="error-try-again-later">
+                        Something is amiss with our system, sorry! Please try again later.
+                    </li>
+                </ul>
+            </div>
         </div>`;
 
         document.body.insertAdjacentHTML('beforeend', form);
@@ -579,11 +600,16 @@ describe('management.es6.js', function () {
                 spyOn(NewsletterManagementForm, 'getFormLang').and.returnValue(
                     undefined
                 );
-                expect(NewsletterManagementForm.validateFields()).toEqual([
-                    'bargain-hunters-weekly is not a valid newsletter',
-                    'Please select a country or region',
+                const errors = NewsletterManagementForm.validateFields();
+                expect(errors[0].textContent.trim()).toEqual(
+                    'bargain-hunters-weekly is not a valid newsletter'
+                );
+                expect(errors[1].textContent.trim()).toEqual(
+                    'Please select a country or region'
+                );
+                expect(errors[2].textContent.trim()).toEqual(
                     'Please select a language'
-                ]);
+                );
             });
         });
     });
@@ -873,11 +899,11 @@ describe('management.es6.js', function () {
             ).and.returnValue(window.Promise.resolve(stringData));
 
             return NewsletterManagementForm.init().then(() => {
-                expect(
-                    document.querySelector('.mzp-c-form-errors li:nth-child(1)')
-                        .innerText
-                ).toEqual(
-                    'The supplied link has expired. You will receive a new one in the next newsletter.'
+                const error = document
+                    .querySelector('.mzp-c-form-errors li:nth-child(1)')
+                    .innerHTML.trim();
+                expect(error).toEqual(
+                    'The supplied link has expired. Please <a href="/en-US/newsletter/recovery/">request a new link here</a>.'
                 );
             });
         });
@@ -899,10 +925,10 @@ describe('management.es6.js', function () {
             ).and.returnValue(window.Promise.resolve(stringData));
 
             return NewsletterManagementForm.init().then(() => {
-                expect(
-                    document.querySelector('.mzp-c-form-errors li:nth-child(1)')
-                        .innerText
-                ).toEqual(
+                const error = document
+                    .querySelector('.mzp-c-form-errors li:nth-child(1)')
+                    .innerHTML.trim();
+                expect(error).toEqual(
                     'Something is amiss with our system, sorry! Please try again later.'
                 );
             });
