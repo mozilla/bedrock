@@ -114,10 +114,14 @@ window.onYouTubeIframeAPIReady = function () {
     }
 
     function init() {
-        var videoButton = document.querySelector('.t-ijustine .js-video-play');
+        var videoButtons = document.querySelectorAll(
+            '.t-ijustine .js-video-play'
+        );
 
-        videoButton.setAttribute('role', 'button');
-        videoButton.addEventListener('click', openVideoModal, false);
+        for (var i = 0; i < videoButtons.length; i++) {
+            videoButtons[i].setAttribute('role', 'button');
+            videoButtons[i].addEventListener('click', openVideoModal, false);
+        }
     }
 
     Mozilla.heroVideoPlay = playVideo;
