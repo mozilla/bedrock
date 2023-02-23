@@ -25,7 +25,7 @@
           {% endif %}
             <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-name="Careers">{{ ftl('footer-careers') }}</a></li>
             <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact">{{ ftl('footer-contact') }}</a></li>
-            <li><a href="{{ donate_url(campaign='footer', content='company') }}" data-link-type="footer" data-link-name="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
+            <li><a href="{{ donate_url(content='footer') }}" data-link-type="footer" data-link-name="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
           </ul>
         </section>
 

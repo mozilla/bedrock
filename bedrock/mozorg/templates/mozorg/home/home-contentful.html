@@ -127,7 +127,9 @@
 
   {% if switch('homepage-ijustine-promo', ['en-US']) %}
     {{ js_bundle ('ijustine-promo')}}
-  {% elif show_fundraising_banner %}
+  {% endif %}
+
+  {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}

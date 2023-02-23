@@ -315,20 +315,23 @@ class TestPressBlogUrl(TestCase):
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
-    def _render(self, campaign="", content=""):
+    def _render(self, content=""):
         req = self.rf.get("/")
-        return render(f"{{{{ donate_url(campaign='{campaign}', content='{content}') }}}}", {"request": req})
+        return render(f"{{{{ donate_url(content='{content}') }}}}", {"request": req})
 
-    def test_donate_url_with_params(self):
+    def test_donate_url_with_content_param(self):
         """Should include campaign specific parameters when supplied"""
-        assert self._render(campaign="footer", content="company") == (
-            "https://foundation.mozilla.org/?form=donate&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_campaign=footer&amp;utm_content=company"
+        assert self._render(content="footer") == (
+            "https://foundation.mozilla.org/?form=donate&amp;c_id=7014x000000eQOH&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_campaign=moco&amp;utm_content=footer"
         )
 
     def test_donate_url_no_params(self):
         """Should exclude campaign specific parameters when not supplied"""
-        assert self._render() == ("https://foundation.mozilla.org/?form=donate&amp;utm_source=mozilla.org&amp;utm_medium=referral")
+        assert self._render() == (
+            "https://foundation.mozilla.org/?form=donate&amp;c_id=7014x000000eQOH&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_campaign=moco"
+        )
 
 
 class TestFirefoxTwitterUrl(TestCase):

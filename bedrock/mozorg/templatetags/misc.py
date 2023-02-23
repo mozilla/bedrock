@@ -426,7 +426,7 @@ def press_blog_url(ctx):
 
 @library.global_function
 @jinja2.pass_context
-def donate_url(ctx, campaign="", content=""):
+def donate_url(ctx, content=""):
     """Output a formatted donation link to the donation page
 
     Examples
@@ -439,21 +439,20 @@ def donate_url(ctx, campaign="", content=""):
 
     This would output:
 
-        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco
 
-        {{ donate(campaign='footer', content='company')}}
+        {{ donate(content='footer')}}
 
     This would output:
 
-        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=company
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco&utm_content=footer
 
 
     """
 
-    campaign = "&utm_campaign=" + campaign if campaign else ""
     content = "&utm_content=" + content if content else ""
 
-    return settings.DONATE_LINK.format(campaign=campaign, content=content)
+    return settings.DONATE_LINK.format(content=content)
 
 
 @library.global_function
