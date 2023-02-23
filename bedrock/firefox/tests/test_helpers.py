@@ -63,7 +63,7 @@ class TestDownloadButtons(TestCase):
     def test_button_force_direct(self):
         """
         If the force_direct parameter is True, all download links must be
-        directly to https://download.mozilla.org.
+        directly to https://download.mozilla.org (or whatever settings.BOUNCER_URL is set to)
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")
@@ -73,10 +73,12 @@ class TestDownloadButtons(TestCase):
         # Check that the first 5 links are direct.
         links = doc(".download-list a")
 
+        assert bool(settings.BOUNCER_URL)  # Safety check that it's set to _something_
+
         for link in links[:5]:
             link = pq(link)
             href = link.attr("href")
-            assert href.startswith("https://download.mozilla.org")
+            assert href.startswith(settings.BOUNCER_URL)
             self.assertListEqual(parse_qs(urlparse(href).query)["lang"], ["fr"])
             # direct links should not have the data attr.
             assert link.attr("data-direct-link") is None
@@ -163,7 +165,7 @@ class TestDownloadButtons(TestCase):
         links = doc(".download-list a")
 
         for link in links[:8]:
-            assert pq(link).attr("data-direct-link").startswith("https://download.mozilla.org")
+            assert pq(link).attr("data-direct-link").startswith(settings.BOUNCER_URL)
 
         # The ninth link is mobile and should not have the attr
         assert pq(links[8]).attr("data-direct-link") is None
@@ -339,7 +341,7 @@ class TestDownloadThanksButton(TestCase):
         assert link.attr("data-link-type") == "download"
 
         # Direct attribute for legacy IE browsers should always be win 32bit
-        assert link.attr("data-direct-link") == "https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US"
+        assert link.attr("data-direct-link") == f"{settings.BOUNCER_URL}?product=firefox-stub&os=win&lang=en-US"
 
     def test_download_firefox_thanks_attributes(self):
         """
@@ -393,7 +395,8 @@ class TestDownloadList(TestCase):
 
     def test_firefox_desktop_list_release(self):
         """
-        All release download links must be directly to https://download.mozilla.org.
+        All release download links must be directly to https://download.mozilla.org
+        (or whatever settings.BOUNCER_URL is set to)
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")
@@ -420,12 +423,13 @@ class TestDownloadList(TestCase):
         for link in links:
             link = pq(link)
             href = link.attr("href")
-            assert href.startswith("https://download.mozilla.org")
+            assert href.startswith(settings.BOUNCER_URL)
             self.assertListEqual(parse_qs(urlparse(href).query)["lang"], ["en-US"])
 
     def test_firefox_desktop_list_aurora(self):
         """
-        All aurora download links must be directly to https://download.mozilla.org.
+        All aurora download links must be directly to https://download.mozilla.org
+        (or whatever settings.BOUNCER_URL is set to)
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")
@@ -449,12 +453,13 @@ class TestDownloadList(TestCase):
         for link in links:
             link = pq(link)
             href = link.attr("href")
-            assert href.startswith("https://download.mozilla.org")
+            assert href.startswith(settings.BOUNCER_URL)
             self.assertListEqual(parse_qs(urlparse(href).query)["lang"], ["en-US"])
 
     def test_firefox_desktop_list_nightly(self):
         """
-        All nightly download links must be directly to https://download.mozilla.org.
+        All nightly download links must be directly to https://download.mozilla.org
+        or whatever settings.BOUNCER_URL is set to
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")
@@ -477,7 +482,7 @@ class TestDownloadList(TestCase):
         for link in links:
             link = pq(link)
             href = link.attr("href")
-            assert href.startswith("https://download.mozilla.org")
+            assert href.startswith(settings.BOUNCER_URL)
             self.assertListEqual(parse_qs(urlparse(href).query)["lang"], ["en-US"])
 
 
