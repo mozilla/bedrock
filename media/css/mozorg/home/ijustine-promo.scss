@@ -16,13 +16,53 @@
         padding: 0;
     }
 
-    .mzp-c-split-body {
-        .mzp-c-wordmark {
-            display: none;
+    .c-promo-video {
+        .video-play {
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            line-height: 0;
+            transition: border-color 150ms ease-in-out;
+
+            &::after {
+                background: url('/media/img/icons/video-play.svg') top left no-repeat;
+                content: '';
+                height: 100px;
+                left: 50%;
+                margin: -50px 0 0 -50px;
+                opacity: 0.7;
+                position: absolute;
+                top: 50%;
+                transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+                width: 100px;
+                z-index: 2;
+            }
+
+            &:hover,
+            &:focus {
+                border-color: $color-white;
+                outline: 0;
+
+                &::after {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    .mzp-c-wordmark {
+        background-position: center top;
+        margin-left: auto;
+        margin-right: auto;
+
+        &.mzp-t-wordmark-md.mzp-t-product-firefox {
+            background-image: url('/media/img/logos/firefox/logo-word-hor-white.svg');
+            @include background-size(144px, 48px);
         }
     }
 
     h2 {
+        @include font-firefox;
         @include text-title-md;
     }
 
@@ -43,12 +83,6 @@
 
         .mzp-c-split-container {
             padding: 0 $layout-lg;
-        }
-
-        .mzp-c-split-body {
-            .mzp-c-wordmark {
-                display: block;
-            }
         }
     }
 }
