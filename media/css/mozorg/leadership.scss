@@ -138,19 +138,25 @@ $image-path: '/media/protocol/img';
             position: relative;
 
             &::before {
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-size: contain;
                 color: $color-link;
-                font: 105% FA-Icons-Contact;
-                position: absolute;
+                content: '';
+                height: 1em;
                 left: 0;
+                position: absolute;
                 top: 0.125em;
+                width: 1em;
             }
         }
 
-        a.website::before { content: '\e803'; } /* '' */
-        a.twitter::before { content: '\e809'; } /* '' */
-        a.book::before { content: '\e80e'; } /* '' */
-        a.file::before { content: '\e810'; } /* '' */
-        a.link::before { content: '\e801'; } /* '' */
+        a.website::before { background-image: url('/media/protocol/img/icons/globe.svg'); }
+        a.twitter::before { background-image: url('/media/protocol/img/icons/social/twitter/black.svg'); }
+        a.mastodon::before { background-image: url('/media/img/logos/social/mastodon-black.svg'); }
+        a.profile::before { background-image: url('/media/protocol/img/icons/accounts.svg'); }
+        a.file::before { background-image: url('/media/protocol/img/icons/file-image.svg'); }
+        a.link::before { background-image: url('/media/protocol/img/icons/link.svg'); }
     }
 
     .callout {
