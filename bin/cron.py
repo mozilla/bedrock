@@ -15,7 +15,7 @@ from time import time
 import babis
 import sentry_sdk
 from apscheduler.schedulers.blocking import BlockingScheduler
-from db_s3_utils import DATA_PATH
+from db_utils import DATA_PATH
 from sentry_sdk.integrations.logging import LoggingIntegration
 
 # ROOT path of the project. A pathlib.Path object.

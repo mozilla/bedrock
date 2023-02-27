@@ -8,7 +8,7 @@ import os
 import sys
 
 import requests
-from db_s3_utils import (
+from db_utils import (
     DATA_PATH,
     DB_FILE,
     JSON_DATA_FILE_NAME,

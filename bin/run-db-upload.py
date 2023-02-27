@@ -10,7 +10,7 @@ from time import time
 
 import boto3
 from boto3.exceptions import Boto3Error
-from db_s3_utils import (
+from db_utils import (
     DB_FILE,
     JSON_DATA_FILE,
     JSON_DATA_FILE_NAME,
