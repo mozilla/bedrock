@@ -1,0 +1,22 @@
+name: Unit tests
+on: [pull_request]
+jobs:
+  test-js:
+    runs-on: ubuntu-20.04
+    # NB: this workflow fails on Ubuntu 22.04 (AKA ubuntu-latest) because the
+    # browsers are installed from Ubuntu Snaps, and on 22.04 there's currently
+    # an issue where FF lacks access to auto-create a profile, so it hangs.
+    # However, 20.04 is long-term support (LTS) until 2025: https://wiki.ubuntu.com/Releases
+    steps:
+      - name: "Install framebuffer (xvfb), FF and Chromium from"
+        run: |
+          sudo apt-get update
+          sudo apt-get install chromium-browser firefox xvfb
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: "Install JS dependencies"
+        run: npm ci
+      - name: "Run JS tests"
+        run: xvfb-run npm test
