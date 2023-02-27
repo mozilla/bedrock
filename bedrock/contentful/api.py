@@ -611,7 +611,7 @@ class ContentfulPage:
 
     def _get_info_data__product_story(self, entry_fields):
         # this info is shared between /stories landing template and individual story template
-        # note: the colors available in Color App don't exactly match up with our design palette
+        # note: the colors available in Contentful's Color App don't exactly match up with our design palette
         # so we convert the hex to a theme name and set the colors in CSS
         COLOR_MAP = {
             "#ffb4db": "light-pink",
@@ -765,7 +765,9 @@ class ContentfulPage:
             entry_obj = self.page.fields()["entry"]
         elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
             entry_obj = self.page
-            seo_obj = getattr(self.page, "seo", None)  # WARNING: this also requires a consistent ID-naming of SEO field in Contentful, too
+            seo_obj = getattr(
+                self.page, "seo", None
+            )  # WARNING: Ensure any page in Contentful linking to an SEO Metadata object names the field `seo`
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 

@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@use '../../includes/lib' as pbj;
+@use '../../includes/lib' as stories;
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';

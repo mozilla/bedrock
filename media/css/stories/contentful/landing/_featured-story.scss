@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@use '../../includes/lib' as pbj;
+@use '../../includes/lib' as stories;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-stories-featured {
@@ -43,7 +43,7 @@ $image-path: '/media/protocol/img';
 
     &-title {
         @include text-title-xs;
-        font-family: pbj.$font-body;
+        font-family: stories.$font-body;
         font-weight: normal;
         margin-top: $layout-sm;
         margin-bottom: $layout-2xs;
@@ -55,7 +55,7 @@ $image-path: '/media/protocol/img';
 
     &-article-title {
         @include text-title-lg;
-        font-family: pbj.$font-title;
+        font-family: stories.$font-title;
         padding-bottom: $layout-sm;
         margin-bottom: 0;
 
@@ -70,7 +70,7 @@ $image-path: '/media/protocol/img';
 
     &-desc {
         @include text-title-2xs;
-        font-family: pbj.$font-body;
+        font-family: stories.$font-body;
         margin-top: $layout-sm;
         margin-bottom: $layout-md;
 

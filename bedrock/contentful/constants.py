@@ -15,7 +15,7 @@ DEFAULT_CONTENT_TYPES = ",".join(
     [
         CONTENT_TYPE_CONNECT_HOMEPAGE,  # The Connect-based approach, currently used for the homepage
         CONTENT_TYPE_PAGE_RESOURCE_CENTER,  # New-era Compose page with a dedicated type
-        CONTENT_TYPE_PAGE_PRODUCT_STORY,  # Compose page for PBJ Stories
+        CONTENT_TYPE_PAGE_PRODUCT_STORY,  # Compose page for Product Stories
     ]
 )
 

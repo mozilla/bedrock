@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@use '../../includes/lib' as pbj;
+@use '../../includes/lib' as stories;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-stories-article-header {
@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 
     h1 {
         @include text-title-lg;
-        font-family: pbj.$font-title;
+        font-family: stories.$font-title;
 
         @media #{$mq-sm} {
             @include text-title-2xl;
@@ -27,7 +27,7 @@ $image-path: '/media/protocol/img';
 
     .is-featured {
         @include text-title-xs;
-        font-family: pbj.$font-body;
+        font-family: stories.$font-body;
     }
 
     .metadata {

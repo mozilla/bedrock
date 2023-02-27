@@ -2,63 +2,63 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '../includes/lib' as pbj;
+@use '../includes/lib' as stories;
 @use 'cards';
 
 // Protocol override
 body {
-    color: pbj.$color-text-black;
+    color: stories.$color-text-black;
 }
 
 // Color themes
 [data-theme='light-pink'] {
-    --theme-color-bg: #{pbj.$light-pink};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$light-pink};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='light-blue'] {
-    --theme-color-bg: #{pbj.$light-blue};
-    --theme-color-text: #{pbj.$color-text-white};
+    --theme-color-bg: #{stories.$light-blue};
+    --theme-color-text: #{stories.$color-text-white};
 }
 
 [data-theme='light-green'] {
-    --theme-color-bg: #{pbj.$light-green};
-    --theme-color-text: #{pbj.$color-text-white};
+    --theme-color-bg: #{stories.$light-green};
+    --theme-color-text: #{stories.$color-text-white};
 }
 
 [data-theme='light-purple'] {
-    --theme-color-bg: #{pbj.$light-purple};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$light-purple};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='light-yellow'] {
-    --theme-color-bg: #{pbj.$light-yellow};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$light-yellow};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='pink'] {
-    --theme-color-bg: #{pbj.$pink};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$pink};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='blue'] {
-    --theme-color-bg: #{pbj.$blue};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$blue};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='green'] {
-    --theme-color-bg: #{pbj.$green};
-    --theme-color-text: #{pbj.$color-text-white};
+    --theme-color-bg: #{stories.$green};
+    --theme-color-text: #{stories.$color-text-white};
 }
 
 [data-theme='purple'] {
-    --theme-color-bg: #{pbj.$purple};
-    --theme-color-text: #{pbj.$color-text-white};
+    --theme-color-bg: #{stories.$purple};
+    --theme-color-text: #{stories.$color-text-white};
 }
 
 [data-theme='yellow'] {
-    --theme-color-bg: #{pbj.$yellow};
-    --theme-color-text: #{pbj.$color-text-black};
+    --theme-color-bg: #{stories.$yellow};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 // image hover effect on hero and cards

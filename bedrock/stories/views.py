@@ -15,7 +15,7 @@ from lib import l10n_utils
 
 @require_safe
 def story_page(request, slug):
-    """If switch is ON, use Contentful PBJ Story Page"""
+    """If switch is ON, use Contentful Product Story Page"""
 
     ctx = {}
 
@@ -37,7 +37,7 @@ def story_page(request, slug):
 
 @require_safe
 def landing_page(request):
-    """If switch is ON, use Contentful PBJ Landing Page"""
+    """If switch is ON, use Contentful Product Stories Landing Page"""
 
     ctx = {}
 

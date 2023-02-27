@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@use '../includes/lib' as pbj;
+@use '../includes/lib' as stories;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/card';
 @import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
@@ -24,7 +24,7 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-card-desc {
-        font-family: pbj.$font-body;
+        font-family: stories.$font-body;
     }
 
     img {

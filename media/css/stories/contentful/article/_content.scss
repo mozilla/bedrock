@@ -5,12 +5,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@use '../../includes/lib' as pbj;
+@use '../../includes/lib' as stories;
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-stories-article-content {
     @include text-body-xl;
-    font-family: pbj.$font-body;
+    font-family: stories.$font-body;
 
     // margin reset
     * {
@@ -53,7 +53,7 @@ $image-path: '/media/protocol/img';
 
     blockquote {
         @include text-title-md;
-        font-family: pbj.$font-title;
+        font-family: stories.$font-title;
         text-transform: uppercase;
         border: none;
         padding: 0;
@@ -61,7 +61,7 @@ $image-path: '/media/protocol/img';
 
     figcaption {
         @include text-body-xl;
-        font-family: pbj.$font-body;
+        font-family: stories.$font-body;
         font-weight: normal;
         text-transform: none;
         margin-top: $layout-xs;
@@ -71,6 +71,6 @@ $image-path: '/media/protocol/img';
 .c-embed-image {
     figcaption {
         @include text-body-xs;
-        color: pbj.$color-text-gray;
+        color: stories.$color-text-gray;
     }
 }
