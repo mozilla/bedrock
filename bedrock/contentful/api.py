@@ -630,8 +630,8 @@ class ContentfulPage:
         published = entry_fields.get("published")
 
         # not required
-        contributors = entry_fields.get("contributors") or []
-        related = entry_fields.get("related_stories") or []
+        contributors = entry_fields.get("contributors", [])
+        related = entry_fields.get("related_stories", [])
         contributor_entries = [ContentfulPage.client.entry(contributor.id) for contributor in contributors]
         related_entries = [ContentfulPage.client.entry(story.id) for story in related]
 
