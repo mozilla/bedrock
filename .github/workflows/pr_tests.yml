@@ -2,7 +2,7 @@ name: Unit tests
 on: [pull_request]
 jobs:
   test-js:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: "Install framebuffer (xvfb), FF and Chromium"
         run: |
