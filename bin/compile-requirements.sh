@@ -12,9 +12,9 @@ export CUSTOM_COMPILE_COMMAND="$ make compile-requirements"
 # We need this installed, but we don't want it to live in the main requirements
 # We will need to periodically review this pinning
 
-pip install -U pip==23.0
+pip install -U pip==23.0.1
 pip install pip-tools==6.12.2
 
-pip-compile --generate-hashes -r requirements/prod.in --resolver=backtracking
-pip-compile --generate-hashes -r requirements/dev.in --resolver=backtracking
-pip-compile --generate-hashes -r requirements/docs.in --resolver=backtracking
+pip-compile --generate-hashes -r requirements/prod.in --resolver=backtracking --rebuild
+pip-compile --generate-hashes -r requirements/dev.in --resolver=backtracking --rebuild
+pip-compile --generate-hashes -r requirements/docs.in --resolver=backtracking --rebuild
