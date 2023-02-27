@@ -1,18 +1,16 @@
-name: Unit Tests
+name: Unit tests
 on: [pull_request]
 jobs:
   test-js:
     runs-on: ubuntu-latest
     steps:
+      - name: "Install framebuffer (xvfb), FF and Chromium"
+        run: |
+          sudo apt-get update
+          sudo apt-get install chromium-browser firefox xvfb
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@v1
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
       - run: npm ci
-      - run: npm test
+      - run: xvfb-run npm test
