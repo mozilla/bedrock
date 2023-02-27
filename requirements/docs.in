@@ -2,6 +2,7 @@ certifi==2022.12.7  # hard-pinned subdep for now until sphinx bump it
 chardet==5.0.0
 fluent.pygments==1.0
 fluent.syntax==0.18.1
+markdown-it-py>=2.2.0
 markupsafe==2.0.1
 myst-parser==0.18.0
 Sphinx==5.1.1
