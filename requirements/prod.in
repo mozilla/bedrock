@@ -28,6 +28,7 @@ everett==3.1.0
 fluent.runtime==0.3.1
 fluent.syntax==0.18.1
 glean-parser==6.2.1  # Must match the required version in the Glean NPM package.
+google-cloud-storage==2.7.0
 greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
 gunicorn==19.7.1
 honcho==1.1.0
