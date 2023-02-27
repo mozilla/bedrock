@@ -638,7 +638,7 @@ class ContentfulPage:
         # todo: add alt text to all images (ensure contentful has specific field)
         return {
             "published": published,
-            "published_formatted": datetime.strptime(published.replace("T", ""), "%Y-%m-%d%H:%M%z").strftime("%B %-d, %Y"),
+            "published_formatted": datetime.fromisoformat(published).strftime("%B %-d, %Y"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
             "image": resp_img(
                 url=_get_image_url(entry_fields["image"], 500),
