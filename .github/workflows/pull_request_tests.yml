@@ -1,5 +1,10 @@
 name: Unit tests
-on: [pull_request]
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
 jobs:
   test-js:
     runs-on: ubuntu-20.04
@@ -8,7 +13,7 @@ jobs:
     # an issue where FF lacks access to auto-create a profile, so it hangs.
     # However, 20.04 is long-term support (LTS) until 2025: https://wiki.ubuntu.com/Releases
     steps:
-      - name: "Install framebuffer (xvfb), FF and Chromium from"
+      - name: "Install framebuffer (xvfb), Firefox and Chromium"
         run: |
           sudo apt-get update
           sudo apt-get install chromium-browser firefox xvfb
@@ -22,7 +27,7 @@ jobs:
         run: xvfb-run npm test
 
   test-python:
-    runs-on: ubuntu-20.04  # for consistency with above
+    runs-on: ubuntu-20.04  # For consistency with above
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -38,7 +43,7 @@ jobs:
         with:
           name: coverage-results
           path: python_coverage
-      - name: Upload coverage to Codecov
+      - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v3
         with:
           files: python_coverage/coverage.xml
