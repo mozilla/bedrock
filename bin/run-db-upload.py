@@ -24,7 +24,7 @@ from google.cloud import storage
 CACHE = {}
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_S3_REGION", "us-west-2")
-UPLOAD_TO_GCS = os.getenv("UPLOAD_TO_GCS", 'False').lower() in ('true', '1', 't')
+UPLOAD_TO_GCS = os.getenv("UPLOAD_TO_GCS", "False").lower() in ("true", "1", "t")
 
 
 # Requires setting some environment variables:

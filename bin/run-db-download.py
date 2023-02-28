@@ -22,7 +22,7 @@ BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
 S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
 GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
-DOWNLOAD_FROM_GCS = os.getenv("DOWNLOAD_FROM_GCS", 'False').lower() in ('true', '1', 't')
+DOWNLOAD_FROM_GCS = os.getenv("DOWNLOAD_FROM_GCS", "False").lower() in ("true", "1", "t")
 
 
 def get_file_url(filename):
