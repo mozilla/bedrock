@@ -27,7 +27,7 @@ ROOT = str(ROOT_PATH)
 sys.path.append(ROOT)
 
 # must import after adding bedrock to path
-from bedrock.base.config_manager import config
+from bedrock.base.config_manager import config # noqa
 
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
@@ -38,7 +38,7 @@ DOWNLOAD_FROM_GCS = config("DOWNLOAD_FROM_GCS", parser=bool, default="false")
 
 def get_file_url(filename):
     base_url = GCS_BASE_URL if DOWNLOAD_FROM_GCS else S3_BASE_URL
-    return "/".join([S3_BASE_URL, filename])
+    return "/".join([base_url, filename])
 
 
 def download_db_info():

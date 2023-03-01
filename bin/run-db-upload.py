@@ -5,6 +5,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
+from pathlib import Path
 import sys
 from time import time
 
@@ -29,7 +30,7 @@ ROOT = str(ROOT_PATH)
 sys.path.append(ROOT)
 
 # must import after adding bedrock to path
-from bedrock.base.config_manager import config
+from bedrock.base.config_manager import config # noqa
 
 CACHE = {}
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
