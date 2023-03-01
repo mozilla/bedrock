@@ -8,7 +8,6 @@ import os
 import sys
 from time import time
 
-from bedrock.base.config_manager import config
 import boto3
 from boto3.exceptions import Boto3Error
 from db_utils import (
@@ -21,6 +20,16 @@ from db_utils import (
     set_db_data,
 )
 from google.cloud import storage
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config
 
 CACHE = {}
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")

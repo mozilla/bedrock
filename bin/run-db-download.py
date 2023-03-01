@@ -5,9 +5,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
+from pathlib import Path
 import sys
 
-from bedrock.base.config_manager import config
 import requests
 from db_utils import (
     DATA_PATH,
@@ -18,6 +18,16 @@ from db_utils import (
     get_prev_db_data,
     set_db_data,
 )
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config
 
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
 REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
