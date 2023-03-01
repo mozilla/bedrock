@@ -30,7 +30,7 @@ ROOT = str(ROOT_PATH)
 sys.path.append(ROOT)
 
 # must import after adding bedrock to path
-from bedrock.base.config_manager import config # noqa
+from bedrock.base.config_manager import config  # noqa
 
 CACHE = {}
 BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
