@@ -78,7 +78,3 @@ class TestProdLocales(TestCase):
         # Make sure all locales are included in `PROD_LANGUAGES`.
         # We add 1 for the "ja-JP-mac" exception.
         assert sum([len(locales) for locales in settings.LOCALES_BY_REGION.values()]) + 1 == len(settings.PROD_LANGUAGES)
-
-
-def test_CI_fails_if_not_all_tests_pass():
-    assert False, "DELIBERATE TEST FAILURE"
