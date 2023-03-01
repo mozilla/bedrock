@@ -259,7 +259,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -275,7 +275,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -289,7 +289,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -303,7 +303,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -317,7 +317,7 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -333,7 +333,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -347,7 +347,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:cm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -361,7 +361,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -375,7 +375,7 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -393,7 +393,7 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -409,7 +409,7 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -425,7 +425,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID
+                client_id: GA_CLIENT_ID
             };
             /* eslint-enable camelcase */
 
@@ -542,7 +542,7 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID,
+                client_id: GA_CLIENT_ID,
                 session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
@@ -573,7 +573,7 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID,
+                client_id: GA_CLIENT_ID,
                 session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
@@ -604,7 +604,7 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_CLIENT_ID,
+                client_id: GA_CLIENT_ID,
                 session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
@@ -637,7 +637,7 @@ describe('stub-attribution.js', function () {
                 ua: 'chrome',
                 experiment: 'firefox-new',
                 variation: 1,
-                visit_id: GA_CLIENT_ID,
+                client_id: GA_CLIENT_ID,
                 session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */

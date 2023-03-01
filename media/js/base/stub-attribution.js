@@ -414,7 +414,7 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            visit_id: clientID, // passed through as visit_id as was originally named incorrectly
+            client_id: clientID,
             session_id: sessionID
         };
         /* eslint-enable camelcase */
