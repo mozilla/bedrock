@@ -1,0 +1,45 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_111_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% set _utm_campaign = '&utm_campaign=whatsnew111-translate-fr' %}
+{% set params = 'utm_source=' ~ entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <div class="wnp-main-image" role="presentation">
+      {% include 'firefox/whatsnew/includes/fx111/translate.svg' %}
+    </div>
+
+    <h2 class="wnp-main-title">Dites ‘hello’ à Firefox Translations</h2>
+
+    <p class="wnp-main-tagline">
+      Lost in translation et inquiet pour vos données ? Essayez l’extension Firefox Translations :
+      elle travaille localement, et non dans le cloud, pour que vos plans de domination mondiale
+      (à traduire en estonien) puissent rester secrets.
+    </p>
+
+    <p class="wnp-main-cta translate">
+      <a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/fr/firefox/addon/firefox-translations/?{{ params }}" data-cta-type="button" data-cta-text="Add to Firefox">
+        Ajouter à Firefox
+      </a>
+    </p>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
