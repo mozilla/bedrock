@@ -4,7 +4,6 @@
 
 # coding: utf-8
 
-import random
 import re
 import urllib.parse
 from os import path
@@ -653,13 +652,6 @@ def htmlattr(_list, **kwargs):
         for attr, value in kwargs.items():
             tag[attr] = value
 
-    return _list
-
-
-@library.filter
-def shuffle(_list):
-    """Return a shuffled list"""
-    random.shuffle(_list)
     return _list
 
 
