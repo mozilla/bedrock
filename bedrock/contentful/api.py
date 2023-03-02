@@ -672,7 +672,7 @@ class ContentfulPage:
                         },
                         optional_attributes={"height": "131", "width": "113"},
                     ),
-                    "image_credit": contributor.image_credit,
+                    "image_credit": getattr(contributor, "image_credit", ""),
                 }
                 for contributor in contributor_entries
             ],
