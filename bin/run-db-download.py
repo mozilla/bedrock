@@ -5,8 +5,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import requests
 from db_utils import (
