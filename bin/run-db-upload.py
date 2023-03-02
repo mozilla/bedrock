@@ -33,8 +33,8 @@ sys.path.append(ROOT)
 from bedrock.base.config_manager import config  # noqa
 
 CACHE = {}
-BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_S3_REGION", "us-west-2")
+BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
+REGION_NAME = config("AWS_DB_S3_REGION", default="us-west-2")
 UPLOAD_TO_GCS = config("UPLOAD_TO_GCS", parser=bool, default="false")
 
 
