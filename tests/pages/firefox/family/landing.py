@@ -10,6 +10,8 @@ from pages.base import BasePage
 class FamilyPage(BasePage):
     _URL_TEMPLATE = "/{locale}/firefox/family/"
 
+    _firefox_h1_locator = (By.CSS_SELECTOR, "h1")
+
     _firefox_nav_cta_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder")
 
     _firefox_nav_download_button_locator = (By.CSS_SELECTOR, "[data-download-location='nav']")
@@ -39,3 +41,7 @@ class FamilyPage(BasePage):
     @property
     def is_firefox_pdf_download_button_displayed(self):
         return self.is_element_displayed(*self._firefox_pdf_download_button_locator)
+
+    @property
+    def h1_title(self):
+        return self.find_element(*self._firefox_h1_locator).text
