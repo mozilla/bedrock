@@ -25,19 +25,29 @@ $image-path: '/media/protocol/img';
 
     &-image-link {
         display: block;
-        aspect-ratio: 3 / 2;
     }
 
     &-image-caption {
         @include text-body-xs;
         padding-top: $spacing-sm;
+        text-align: center;
+    }
 
-        @media (max-width: $screen-sm) {
-            text-align: center;
+    @supports (aspect-ratio: 16 / 9) {
+        &-image-link {
+            aspect-ratio: 16 / 9;
         }
 
-        @supports (aspect-ratio: 3 / 2) {
-            text-align: right;
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        @media #{$mq-sm} {
+            &-image-caption {
+                text-align: right;
+            }
         }
     }
 
