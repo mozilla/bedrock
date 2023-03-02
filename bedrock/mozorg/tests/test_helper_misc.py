@@ -13,6 +13,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import pytest
+from bs4 import BeautifulSoup
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
 from pyquery import PyQuery as pq
@@ -160,6 +161,7 @@ class TestVideoTag(TestCase):
     def test_empty(self):
         # No video, no output.
         assert render("{{ video() }}") == ""
+        assert render("{{ video('missing-ext') }}") == ""
 
     def test_video(self):
         # A few common variations
@@ -822,6 +824,43 @@ class TestFirefoxIOSURL(TestCase):
         assert self._render("es-ES", "mozorg") == ("https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926?ct=mozorg")
 
 
+@pytest.mark.parametrize(
+    "html, cleaned",
+    [
+        ("pre <script>alert('oops')</script> post", "pre alert('oops') post"),
+        ("pre <script>alert('oops') post", "pre alert('oops') post"),
+        ("pre <style>body {background-color: red;}</style> post", "pre body {background-color: red;} post"),
+        ("pre <div onclick='foo()'></div> post", "pre  post"),
+        ("pre <p>foo &amp; bar</p> post", "pre foo & bar post"),
+        ("pre <p>mid</p> post", "pre mid post"),
+    ],
+)
+def test_bleach_tags(html, cleaned):
+    s = misc.bleach_tags(html)
+    assert s == cleaned, f"{s} != {cleaned}"
+
+
+def test_attrs():
+    context = {"elem": BeautifulSoup("<h1>Test</h1>", "lxml")}
+    template = "{% do elem.select('h1')|htmlattr(class='dude', id='abides',) %}{{ elem | safe }}"
+    assert render(template, context) == '<html><body><h1 class="dude" id="abides">Test</h1></body></html>'
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("Hello, World!", "hello-world"),
+        (" multiple---dash and  space ", "multiple-dash-and-space"),
+        ("underscore_in-value", "underscore_in-value"),
+        ("spam & eggs", "spam-eggs"),
+        ("__strip__underscore-value___", "strip__underscore-value"),
+    ],
+)
+def test_slugify(text, expected):
+    template = "{{ '%s' | slugify }}" % text
+    assert render(template) == expected
+
+
 # from jingo
 
 
@@ -996,6 +1035,14 @@ class TestFirefoxAdjustUrl(TestCase):
             "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
         )
 
+    def test_firefox_ios_adjust_url_invalid_country(self):
+        """Firefox for mobile with an App Store URL redirect with an unsupported country"""
+        assert (
+            self._render("zz", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
+            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        )
+
     def test_firefox_ios_adjust_url_creative(self):
         """Firefox for mobile with an App Store URL redirect and creative param"""
         assert (
@@ -1034,6 +1081,14 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        )
+
+    def test_focus_ios_adjust_url_invalid_country(self):
+        """Firefox Focus with an App Store URL redirect with an unsupported country"""
+        assert (
+            self._render("zz", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
+            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
             "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
         )
 
@@ -1094,6 +1149,14 @@ class TestLockwiseAdjustUrl(TestCase):
             "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
         )
 
+    def test_lockwise_ios_adjust_url_invalid_country(self):
+        """Firefox Lockwise for mobile with an App Store URL redirect with an unsupported country"""
+        assert (
+            self._render("zz", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
+            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fid1314000270%3Fmt%3D8"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        )
+
     def test_lockwise_ios_adjust_url_creative(self):
         """Firefox Lockwise for mobile with an App Store URL redirect and creative param"""
         assert (
@@ -1132,6 +1195,14 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        )
+
+    def test_pocket_ios_adjust_url_invalid_country(self):
+        """Pocket for mobile with an App Store URL redirect with an unsupported country"""
+        assert (
+            self._render("zz", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
+            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
             "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
         )
 
@@ -1378,6 +1449,15 @@ class TestFxALinkFragment(TestCase):
         markup = self._render(entrypoint="mozilla.org-firefox-whatsnew73", action="signup", optional_parameters={"utm_campaign": "whatsnew73"})
         expected = (
             'href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_fxa_button_email(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint="mozilla.org-firefox-whatsnew73", action="email", optional_parameters={"utm_campaign": "whatsnew73"})
+        expected = (
+            'href="https://accounts.firefox.com/?action=email&entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
             '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"'
         )
         self.assertEqual(markup, expected)
