@@ -36,3 +36,8 @@ def test_firefox_make_default_button_is_displayed(base_url, selenium):
 def test_firefox_pdf_download_button_is_displayed(base_url, selenium):
     page = FamilyPage(selenium, base_url).open()
     assert page.is_firefox_pdf_download_button_displayed
+
+
+def test_h1_has_accessible_title(base_url, selenium):
+    page = FamilyPage(selenium, base_url).open()
+    assert page.h1_title == "The Tech Talk"

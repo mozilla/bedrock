@@ -4,6 +4,10 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+.visually-hidden {
+    @include visually-hidden;
+}
+
 // Colors
 $white: $color-white;
 $black: $color-black;
