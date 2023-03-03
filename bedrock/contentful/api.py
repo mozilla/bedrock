@@ -109,6 +109,7 @@ def get_client(raw_mode=False):
             api_url=settings.CONTENTFUL_SPACE_API,
             raw_mode=raw_mode,
             content_type_cache=False,
+            reuse_entries=True,
             timeout_s=settings.CONTENTFUL_API_TIMEOUT,
         )
 
