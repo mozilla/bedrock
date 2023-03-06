@@ -18,12 +18,12 @@ body {
 
 [data-theme='light-blue'] {
     --theme-color-bg: #{stories.$light-blue};
-    --theme-color-text: #{stories.$color-text-white};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='light-green'] {
     --theme-color-bg: #{stories.$light-green};
-    --theme-color-text: #{stories.$color-text-white};
+    --theme-color-text: #{stories.$color-text-black};
 }
 
 [data-theme='light-purple'] {
