@@ -34,3 +34,8 @@ def test_accessible_mobile_menu_close_name(pocket_base_url, selenium_mobile):
     page.navigation.open_mobile_menu()
     string = page.navigation.mobile_menu_close_button.text
     assert len(string) > 0
+
+
+def test_mobile_menu_not_displayed_on_desktop(pocket_base_url, selenium):
+    page = AboutPage(selenium, pocket_base_url).open()
+    assert not page.navigation.is_mobile_menu_open_button_displayed

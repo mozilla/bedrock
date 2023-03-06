@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import init from '../../../../media/js/pocket/mobile-nav.es6';
+import { init } from '../../../../media/js/pocket/mobile-nav.es6';
 
 describe('mobile-nav.js', () => {
     const mobileNav = `<div class="mobile-nav-wrapper" tabindex="-1">
