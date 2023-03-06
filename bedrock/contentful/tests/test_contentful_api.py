@@ -73,6 +73,7 @@ def test_get_client(mock_contentful_api, raw_mode):
         api_url="https://example.com/test/",
         raw_mode=raw_mode,
         content_type_cache=False,
+        reuse_entries=True,
         timeout_s=987654321,
     )
 
