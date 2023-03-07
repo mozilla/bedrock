@@ -19,14 +19,16 @@
 {% set published_formatted = info.published_formatted %}
 {% set title = info.title | safe %}
 {% set theme = info.theme %}
+{% set image = info.image %}
 {% set contributors = info.contributors %}
-{% set description = info.description %}
+{% set description = info.blurb %}
 {% set related = info.related %}
 
 {% block page_title_full %}{{ title }}{% endblock %}
 {% block page_desc %}{{ description }}{% endblock %}
 {% block page_og_title %}{{ title }}{% endblock %}
 {% block page_og_desc %}{{ description }}{% endblock %}
+{% block page_image %}{{ image }}{% endblock %}
 
 {% block html_attrs %}data-theme={% if theme %} {{ theme }} {% else %} pink {% endif %}{% endblock %}
 
@@ -74,7 +76,6 @@
       {% endif %}
       </aside>
       <section class="c-stories-article-content">
-        <p>{{ description }}</p>
         {% for entry in entries -%}
           {{ entry.body|external_html }}
         {% endfor %}
@@ -93,7 +94,7 @@
             {% for item in related %}
               {{ card(
                 title=item.title,
-                desc=item.description,
+                desc=item.blurb,
                 image=item.image,
                 link_url=item.link,
                 heading_level=3

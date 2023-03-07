@@ -614,6 +614,7 @@ class ContentfulPage:
         # this info is shared between /stories landing template and individual story template
         # note: the colors available in Contentful's Color App don't exactly match up with our design palette
         # so we convert the hex to a theme name and set the colors in CSS
+        # (note: we are purposefully overriding the "theme" set in get_info_data)
         COLOR_MAP = {
             "#ffb4db": "light-pink",
             "#abf2ff": "light-blue",
@@ -637,30 +638,32 @@ class ContentfulPage:
         related_entries = [ContentfulPage.client.entry(story.id) for story in related]
 
         # shared image properties
-        image_alt = entry_fields["image"].description if hasattr(entry_fields["image"], "description") else ""
+        # (note: we use more specific image property names to avoid overriding the "image" property set by get_info_data)
+        image = entry_fields.get("preview_image")
+        image_alt = image.description if hasattr(image, "description") else ""
         card_image_attributes = {"height": "239", "width": "349", "loading": "lazy"}
 
         return {
             "published": published,
             "published_formatted": datetime.fromisoformat(published).strftime("%B %-d, %Y"),
             "theme": COLOR_MAP[entry_fields.get("accent_color")],
-            "image": resp_img(
-                url=_get_image_url(entry_fields["image"], 500),
+            "featured_image": resp_img(
+                url=_get_image_url(image, 500),
                 srcset={
-                    _get_image_url(entry_fields["image"], 500): "500w",
-                    _get_image_url(entry_fields["image"], 1000): "1000w",
-                    _get_image_url(entry_fields["image"], 1500): "1500w",
+                    _get_image_url(image, 500): "500w",
+                    _get_image_url(image, 1000): "1000w",
+                    _get_image_url(image, 1500): "1500w",
                 },
                 sizes={"(min-width: 1400px)": "1000px", "(min-width: 752px)": "75vw", "default": "100vw"},
                 optional_attributes={"height": "563", "width": "1000", "loading": "eager", "alt": image_alt},
             ),
-            "image_caption": entry_fields.get("image_caption"),
+            "featured_image_caption": entry_fields.get("image_caption"),
             "card_image": resp_img(
-                url=_get_image_url(entry_fields["image"], 349),
+                url=_get_image_url(image, 349),
                 srcset={
-                    _get_image_url(entry_fields["image"], 200): "200w",
-                    _get_image_url(entry_fields["image"], 349): "349w",
-                    _get_image_url(entry_fields["image"], 700): "700w",
+                    _get_image_url(image, 200): "200w",
+                    _get_image_url(image, 349): "349w",
+                    _get_image_url(image, 700): "700w",
                 },
                 sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
                 optional_attributes=card_image_attributes.update({"alt": image_alt}),
@@ -684,22 +687,21 @@ class ContentfulPage:
                 }
                 for contributor in contributor_entries
             ],
-            "description": entry_fields.get("description"),
             "link": f"{PRODUCT_STORY_ROOT_PATH}{entry_fields.get('slug')}",
             "related": [
                 {
                     "title": story.title,
-                    "description": story.description,
+                    "blurb": story.seo.description if hasattr(story.seo, "description") else "",
                     "image": resp_img(
-                        url=_get_image_url(story.image, 349),
+                        url=_get_image_url(story.preview_image, 349),
                         srcset={
-                            _get_image_url(story.image, 200): "200w",
-                            _get_image_url(story.image, 349): "349w",
-                            _get_image_url(story.image, 700): "700w",
+                            _get_image_url(story.preview_image, 200): "200w",
+                            _get_image_url(story.preview_image, 349): "349w",
+                            _get_image_url(story.preview_image, 700): "700w",
                         },
                         sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
                         optional_attributes=card_image_attributes.update(
-                            {"alt": story.image.description if hasattr(story.image, "description") else ""}
+                            {"alt": story.preview_image.description if hasattr(story.preview_image, "description") else ""}
                         ),
                     ),
                     "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
