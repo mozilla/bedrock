@@ -706,7 +706,6 @@ class ContentfulPage:
                 }
                 for story in related_entries
             ],
-            # todo: handle Product Story urls in sitemap too?
         }
 
     def get_info_data(self, entry_obj, seo_obj=None):
