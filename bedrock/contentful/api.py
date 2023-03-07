@@ -640,7 +640,7 @@ class ContentfulPage:
         # shared image properties
         # (note: we use more specific image property names to avoid overriding the "image" property set by get_info_data)
         image = entry_fields.get("preview_image")
-        image_alt = image.description if hasattr(image, "description") else ""
+        image_alt = getattr(image, "description", "")
         card_image_attributes = {"height": "239", "width": "349", "loading": "lazy"}
 
         return {
@@ -680,7 +680,7 @@ class ContentfulPage:
                         optional_attributes={
                             "height": "131",
                             "width": "113",
-                            "alt": contributor.image.description if hasattr(contributor.image, "description") else "",
+                            "alt": getattr(contributor.image, "description", ""),
                         },
                     ),
                     "image_credit": getattr(contributor, "image_credit", ""),
@@ -691,7 +691,7 @@ class ContentfulPage:
             "related": [
                 {
                     "title": story.title,
-                    "blurb": story.seo.description if hasattr(story.seo, "description") else "",
+                    "blurb": getattr(story.seo, "description", ""),
                     "image": resp_img(
                         url=_get_image_url(story.preview_image, 349),
                         srcset={
@@ -700,9 +700,7 @@ class ContentfulPage:
                             _get_image_url(story.preview_image, 700): "700w",
                         },
                         sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
-                        optional_attributes=card_image_attributes.update(
-                            {"alt": story.preview_image.description if hasattr(story.preview_image, "description") else ""}
-                        ),
+                        optional_attributes=card_image_attributes.update({"alt": getattr(story.preview_image, "description", "")}),
                     ),
                     "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
                 }
