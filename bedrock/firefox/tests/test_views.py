@@ -52,7 +52,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request({"dude": "abides"})
         resp = views.stub_attribution_code(req)
@@ -66,7 +67,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "5d146033839aa07dd3078a1a001864056c69baefbe7dcd95701457a0bc4c1d71",
         )
 
     def test_no_valid_param_data(self):
@@ -75,7 +76,8 @@ class TestStubAttributionCode(TestCase):
             "utm_medium": "ae<t>her",
             "experiment": "dfb</p>s",
             "variation": "ef&bvcv",
-            "visit_id": "14</p>4538.1610<t>957",
+            "client_id": "14</p>4538.1610<t>957",
+            "session_id": "2w</br>123bg<u>957",
         }
         final_params = {
             "source": "www.mozilla.org",
@@ -85,7 +87,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -99,7 +102,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "5d146033839aa07dd3078a1a001864056c69baefbe7dcd95701457a0bc4c1d71",
         )
 
     def test_some_valid_param_data(self):
@@ -112,7 +115,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -126,7 +130,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b53097f17741b75cdd5b737d3c8ba03349a6093148adeada2ee69adf4fe87322",
+            "68b9e75f17129baa01c2baf91e635035412fc1fcd94a63fa14c1c166dacf4375",
         )
 
     def test_campaign_data_too_long(self):
@@ -139,7 +143,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
         }
         final_params = {
             "source": "brandt",
@@ -148,12 +153,13 @@ class TestStubAttributionCode(TestCase):
             "|thatThe|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe"
             "|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides"
             "|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides|I|dont|know"
-            "|about|you|but|I|take|comfort|in|thatT_",
+            "|about|you|but|I|take|_",
             "content": "A144_A000_0000000",
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -169,7 +175,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "3c1611db912c51a96418eb7806fbaf1400b8d05fbf6ee4f2f1fb3c0ba74a89f4",
+            "22e9951d6658fab0723086be79933622e85283181b27ceae649089a1b67d140e",
         )
 
     def test_other_data_too_long_not_campaign(self):
@@ -195,7 +201,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "firefox-new",
             "variation": "1",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
         }
         final_params = {
             "source": "brandt",
@@ -205,7 +212,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "firefox-new",
             "variation": "1",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -219,7 +227,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b2dc555b2914fdec9f9a1247d244520392e4f888961a6fb57a74a1cdf041261f",
+            "7b0b668edd8f374040faa0e063e3940004c5248ec5254140e24baa19220e3aa2",
         )
 
     def test_handles_referrer(self):
@@ -232,7 +240,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -246,7 +255,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b53097f17741b75cdd5b737d3c8ba03349a6093148adeada2ee69adf4fe87322",
+            "68b9e75f17129baa01c2baf91e635035412fc1fcd94a63fa14c1c166dacf4375",
         )
 
     def test_handles_referrer_no_source(self):
@@ -262,7 +271,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -276,7 +286,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "d075cbcbae3bcef5bda3650a259863151586e3a4709d53886ab3cc83a6963d00",
+            "ef5b4cfcdf34b12142af22ecf3c69144f892a64057d0a9dbea8afe352b706cac",
         )
 
     def test_handles_referrer_utf8(self):
@@ -295,7 +305,8 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -309,7 +320,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "5d146033839aa07dd3078a1a001864056c69baefbe7dcd95701457a0bc4c1d71",
         )
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
