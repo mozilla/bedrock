@@ -1068,7 +1068,7 @@ describe('stub-attribution.js', function () {
     });
 
     describe('getGAClientID', function () {
-        it('should return a valid Google Analytics visit ID', function () {
+        it('should return a valid Google Analytics client ID', function () {
             window.ga = sinon.stub();
             window.ga.getAll = sinon.stub().returns([
                 {
