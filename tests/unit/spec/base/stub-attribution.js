@@ -503,7 +503,7 @@ describe('stub-attribution.js', function () {
             );
         });
 
-        it('should fire a callback when GA visitor ID and session ID are found', function () {
+        it('should fire a callback when GA client ID and session ID are found', function () {
             const callback = jasmine.createSpy('callback');
 
             Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
