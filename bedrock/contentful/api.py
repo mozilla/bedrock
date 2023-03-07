@@ -636,7 +636,10 @@ class ContentfulPage:
         contributor_entries = [ContentfulPage.client.entry(contributor.id) for contributor in contributors]
         related_entries = [ContentfulPage.client.entry(story.id) for story in related]
 
-        # todo: add alt text to all images (ensure contentful has specific field)
+        # shared image properties
+        image_alt = entry_fields["image"].description if hasattr(entry_fields["image"], "description") else ""
+        card_image_attributes = {"height": "239", "width": "349", "loading": "lazy"}
+
         return {
             "published": published,
             "published_formatted": datetime.fromisoformat(published).strftime("%B %-d, %Y"),
@@ -649,7 +652,7 @@ class ContentfulPage:
                     _get_image_url(entry_fields["image"], 1500): "1500w",
                 },
                 sizes={"(min-width: 1400px)": "1000px", "(min-width: 752px)": "75vw", "default": "100vw"},
-                optional_attributes={"height": "500", "width": "1000", "loading": "eager"},
+                optional_attributes={"height": "563", "width": "1000", "loading": "eager", "alt": image_alt},
             ),
             "image_caption": entry_fields.get("image_caption"),
             "card_image": resp_img(
@@ -660,7 +663,7 @@ class ContentfulPage:
                     _get_image_url(entry_fields["image"], 700): "700w",
                 },
                 sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
-                optional_attributes={"height": "239", "width": "349", "loading": "lazy"},
+                optional_attributes=card_image_attributes.update({"alt": image_alt}),
             ),
             "contributors": [
                 {
@@ -671,7 +674,11 @@ class ContentfulPage:
                         srcset={
                             _get_image_url(contributor.image, 171): "1.5x",
                         },
-                        optional_attributes={"height": "131", "width": "113"},
+                        optional_attributes={
+                            "height": "131",
+                            "width": "113",
+                            "alt": contributor.image.description if hasattr(contributor.image, "description") else "",
+                        },
                     ),
                     "image_credit": getattr(contributor, "image_credit", ""),
                 }
@@ -691,7 +698,9 @@ class ContentfulPage:
                             _get_image_url(story.image, 700): "700w",
                         },
                         sizes={"(min-width: 480px)": "50vw", "default": "100vw"},
-                        optional_attributes={"height": "239", "width": "349", "loading": "lazy"},
+                        optional_attributes=card_image_attributes.update(
+                            {"alt": story.image.description if hasattr(story.image, "description") else ""}
+                        ),
                     ),
                     "link": f"{PRODUCT_STORY_ROOT_PATH}{story.slug}",
                 }
