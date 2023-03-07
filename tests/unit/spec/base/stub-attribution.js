@@ -1081,7 +1081,7 @@ describe('stub-attribution.js', function () {
             );
         });
 
-        it('should return a null if Google Analytics visitor ID is invalid', function () {
+        it('should return a null if Google Analytics client ID is invalid', function () {
             window.ga = sinon.stub();
             window.ga.getAll = sinon.stub().returns([
                 {
