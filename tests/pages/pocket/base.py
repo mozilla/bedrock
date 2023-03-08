@@ -73,6 +73,7 @@ class BasePage(Page):
             return (
                 "mobile-nav-open" not in self.find_element(*self._content_wrapper_locator).get_attribute("class")
                 and self.mobile_menu_open_button.get_attribute("aria-expanded") == "false"
+                and self.wait.until(lambda s: not self.is_mobile_menu_nav_list_displayed)
             )
 
         @property
