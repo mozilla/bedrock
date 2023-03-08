@@ -15,6 +15,7 @@ from rich_text_renderer.text_renderers import TextRenderer
 from bedrock.contentful.api import (
     DEFAULT_LOCALE,
     AssetBlockRenderer,
+    BlockEntryRenderer,
     ContentfulPage,
     EmphasisRenderer,
     InlineEntryRenderer,
@@ -34,7 +35,9 @@ from bedrock.contentful.api import (
     _get_product_class,
     _get_width_class,
     _get_youtube_id,
+    _make_blockquote,
     _make_cta_button,
+    _make_image,
     _make_logo,
     _make_plain_text,
     _make_wordmark,
@@ -434,6 +437,60 @@ def test__make_cta_button(
         assert mock_render_to_string.call_count == 0
 
 
+@pytest.mark.parametrize(
+    "caption, style, expected",
+    (
+        (None, None, "<figure class='c-embed-blockquote '><blockquote>“Test Quote”</blockquote></figure>"),
+        (
+            "Test Author",
+            None,
+            "<figure class='c-embed-blockquote '><blockquote>“Test Quote”</blockquote><figcaption>Test Author</figcaption></figure>",
+        ),
+        (None, "full-width", "<figure class='c-embed-blockquote full-width'><blockquote>“Test Quote”</blockquote></figure>"),
+        (
+            "Test Author",
+            "full-width",
+            "<figure class='c-embed-blockquote full-width'><blockquote>“Test Quote”</blockquote><figcaption>Test Author</figcaption></figure>",
+        ),
+    ),
+)
+def test__make_blockquote(
+    caption,
+    style,
+    expected,
+):
+    mock_entry = Mock()
+    data_dict = {"quote": "Test Quote", "caption": caption, "style": style}
+    mock_entry.fields.return_value = data_dict
+
+    output = _make_blockquote(mock_entry)
+
+    assert output == expected
+
+
+@pytest.mark.parametrize(
+    "caption",
+    (
+        (None,),
+        ("Test Caption",),
+    ),
+)
+def test__make_image(caption):
+    mock_asset = Mock()
+    mock_asset.url.return_value = "test-image-url.jpg"
+    mock_entry = Mock()
+    data_dict = {"image": mock_asset, "alt_text": "Required alt text", "caption": caption}
+    mock_entry.fields.return_value = data_dict
+
+    image = _make_image(mock_entry)
+
+    assert "<figure class='c-embed-image'>" in image
+    assert 'alt="Required alt text"' in image
+
+    if caption:
+        assert f"<figcaption>{ caption }</figcaption>" in image
+
+
 def test__make_plain_text():
     # Note this test will need a fixup when we add unidecode() support
     node = {
@@ -669,6 +726,41 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
     assert mock__get_image_url.call_args_list[1][0] == (mock_asset, 1376)
 
     assert output == expected
+
+
+@pytest.mark.parametrize(
+    "content_type_label",
+    (
+        "embedBlockquote",
+        "embedImage",
+        "somethingElse",
+    ),
+)
+@patch("bedrock.contentful.api.ContentfulPage.client")
+@patch("bedrock.contentful.api._make_image")
+@patch("bedrock.contentful.api._make_blockquote")
+def test_BlockEntryRenderer(
+    mock_make_blockquote,
+    mock_make_image,
+    mock_client,
+    content_type_label,
+):
+    mock_entry = Mock()
+    mock_content_type = Mock()
+    mock_content_type.id = content_type_label
+    mock_entry.sys = {"content_type": mock_content_type}
+    mock_client.entry.return_value = mock_entry
+
+    node = {"data": {"target": {"sys": {"id": mock_entry}}}}
+
+    output = BlockEntryRenderer().render(node)
+
+    if content_type_label == "embedBlockquote":
+        mock_make_blockquote.assert_called_once_with(mock_entry)
+    elif content_type_label == "embedImage":
+        mock_make_image.assert_called_once_with(mock_entry)
+    else:
+        assert output == content_type_label
 
 
 def test__render_list():

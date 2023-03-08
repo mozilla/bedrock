@@ -34,3 +34,43 @@ resource_center_page_data = {
         }
     ],
 }
+
+product_story_data = {
+    "page_type": "pageProductJournalismStory",
+    "page_css": [],
+    "page_js": [],
+    "info": {
+        "slug": "test",
+        "title": "Test",
+        "blurb": "Test Blurb",
+        "theme": "light-pink",
+        "locale": "en-US",
+        "utm_source": "www.mozilla.org-test",
+        "utm_campaign": "test",
+        "image": "https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg",
+        "seo": {"name": "Test", "description": "Test Blurb"},
+        "published": "2023-03-08T00:00+00:00",
+        "published_formatted": "March 8, 2023",
+        "featured_image": '<img src="https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=500" srcset="https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=500 500w,https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=1000 1000w,https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=1500 1500w" sizes="(min-width: 1400px) 1000px,(min-width: 752px) 75vw,100vw" alt="" height="563" width="1000" loading="eager">',
+        "featured_image_caption": "Test Image Caption",
+        "card_image": '<img src="https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=349" srcset="https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=200 200w,https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=349 349w,https://images.ctfassets.net/w5er3c7zdgmd/1dhhAGPXECTz54jRE0qpMP/cb89e10d8c7ef1426410e06d5dd003b8/raising-technology-eq.jpg?w=700 700w" sizes="(min-width: 480px) 50vw,100vw" alt="">',
+        "contributors": [
+            {
+                "name": " Test Contributor Name",
+                "position": "Test Contributor Position",
+                "image": '<img src="https://images.ctfassets.net/w5er3c7zdgmd/4kytFzi0VSuJdbgIYqIb8F/5b3d2a8fcbacd98603ab16a9ff8a4fad/asa-dotzler-credit.jpg?w=113" srcset="https://images.ctfassets.net/w5er3c7zdgmd/4kytFzi0VSuJdbgIYqIb8F/5b3d2a8fcbacd98603ab16a9ff8a4fad/asa-dotzler-credit.jpg?w=171 1.5x" alt="" height="131" width="113">',
+                "image_credit": "Test Contributor Image Credit",
+            }
+        ],
+        "link": "/stories/test",
+        "related": [
+            {
+                "title": "Test Related Story Title",
+                "blurb": "Test Related Story Blurb.",
+                "image": '<img src="https://images.ctfassets.net/w5er3c7zdgmd/3h7ZU23sJbLHCTBNUN5ygP/3b4f1326411832d4026a8045ea437815/platform-discovery.jpg?w=349" srcset="https://images.ctfassets.net/w5er3c7zdgmd/3h7ZU23sJbLHCTBNUN5ygP/3b4f1326411832d4026a8045ea437815/platform-discovery.jpg?w=200 200w,https://images.ctfassets.net/w5er3c7zdgmd/3h7ZU23sJbLHCTBNUN5ygP/3b4f1326411832d4026a8045ea437815/platform-discovery.jpg?w=349 349w,https://images.ctfassets.net/w5er3c7zdgmd/3h7ZU23sJbLHCTBNUN5ygP/3b4f1326411832d4026a8045ea437815/platform-discovery.jpg?w=700 700w" sizes="(min-width: 480px) 50vw,100vw" alt="">',
+                "link": "/stories/test-related-story",
+            }
+        ],
+    },
+    "entries": [{"component": "text", "body": "<p>Test blurb</p>\n<p>Test rest of content</p>\n", "width_class": "mzp-t-content-md"}],
+}
