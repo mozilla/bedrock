@@ -34,7 +34,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-embed-blockquote {
-    padding: $layout-md 0;
+    padding: $layout-md $layout-sm;
     border-top: $spacing-xs solid $color-light-gray-20;
     border-bottom: $spacing-xs solid $color-light-gray-20;
     text-align: center;
@@ -44,11 +44,8 @@ $image-path: '/media/protocol/img';
 
         blockquote {
             max-width: 60ch;
+            font-weight: 400;
         }
-    }
-
-    @media #{$mq-md} {
-        padding: $layout-xl $layout-sm;
     }
 
     blockquote {
@@ -65,6 +62,15 @@ $image-path: '/media/protocol/img';
         font-weight: normal;
         text-transform: none;
         margin-top: $layout-xs;
+    }
+
+    @media #{$mq-md} {
+        padding-top: $layout-xl;
+        padding-bottom: $layout-xl;
+
+        blockquote {
+            line-height: 1.16;
+        }
     }
 }
 
