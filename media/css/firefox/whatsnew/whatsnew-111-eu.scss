@@ -8,51 +8,25 @@
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 
 .wnp-content-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     padding-top: $spacing-2xl;
+}
 
-    h1 {
-        padding: $spacing-sm;
-    }
+.wnp-main-image {
+    margin-bottom: $spacing-2xl;
+}
 
-    .wnp-main-img-light {
-        display: block;
-    }
-
-    .wnp-main-img-dark {
-        display: none;
-    }
-
-    .wnp-main-tagline {
-        @include text-body-lg;
-        text-align: center;
-        color: $color-black;
-        padding: $spacing-sm;
-    }
-
-    @media #{$mq-md} {
-        h1 {
-            padding: 0;
-        }
-    }
+.wnp-main-tagline {
+    @include text-body-lg;
+    text-align: center;
+    color: $color-black;
+    padding: $spacing-sm;
 }
 
 // Dark mode support
 @media (prefers-color-scheme: dark) {
-    .wnp-content-main {
-        .wnp-main-img-light {
-            display: none;
-        }
-
-        .wnp-main-img-dark {
-            display: block;
-        }
-
-        .wnp-main-tagline {
-            color: $color-white;
-        }
+    .wnp-main-title,
+    .wnp-main-tagline {
+        color: $color-white;
     }
 }

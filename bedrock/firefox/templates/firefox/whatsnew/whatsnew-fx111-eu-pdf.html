@@ -1,0 +1,70 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_111_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main mzp-l-content mzp-t-content-md">
+    <h2>
+      {{ picture(
+        url="firefox/whatsnew/whatsnew111-eu/pdf-title-light.svg",
+        sources=[
+            {
+                "media": "(prefers-color-scheme: light)",
+                "srcset": {
+                    "img/firefox/whatsnew/whatsnew111-eu/pdf-title-light.svg": "default",
+                }
+            },
+            {
+                "media": "(prefers-color-scheme: dark)",
+                "srcset": {
+                  "img/firefox/whatsnew/whatsnew111-eu/pdf-title-dark.svg": "default",
+              }
+            }
+        ],
+        optional_attributes={
+          "alt": ftl('whatsnew-111-pdf-title-alt'),
+          "l10n": True,
+        }
+    ) }}
+    </h2>
+    <p class="wnp-main-tagline">{{ ftl('whatsnew-111-pdf-its-spring-cleaning-season') }}</p>
+    <p class="wnp-main-tagline">{{ ftl('whatsnew-111-pdf-try-it-out-now-and-say') }}</p>
+
+    {% if LANG == 'es-ES' %}
+      {% set pdf = 'https://assets.mozilla.net/wnp111-eu/wnp-fx111-es.pdf' %}
+    {% elif LANG == 'it' %}
+      {% set pdf = 'https://assets.mozilla.net/wnp111-eu/wnp-fx111-it.pdf' %}
+    {% elif LANG == 'pl' %}
+      {% set pdf = 'https://assets.mozilla.net/wnp111-eu/wnp-fx111-pl.pdf' %}
+    {% elif LANG == 'pt-PT' %}
+      {% set pdf = 'https://assets.mozilla.net/wnp111-eu/wnp-fx111-pt.pdf' %}
+    {% elif LANG == 'nl' %}
+      {% set pdf = 'https://assets.mozilla.net/wnp111-eu/wnp-fx111-nl.pdf' %}
+    {% endif %}
+
+    {% if pdf %}
+    <p class="wnp-main-cta pdf">
+      <a class="mzp-c-button mzp-t-product" href="{{ pdf }}" data-cta-type="button" data-cta-text="Try it now">
+        {{ ftl('whatsnew-111-pdf-cta') }}
+      </a>
+    </p>
+    {% endif %}
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
