@@ -22,7 +22,11 @@ DEFAULT_CONTENT_TYPES = ",".join(
 
 LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
     # The values in the 'data' field on the ContentfulPage we need to check to
-    # decide whether the ContentfulPage record is complete for the locale it is in
+    # decide whether the ContentfulPage record is complete for the locale it is in.
+    #
+    # Tip: to explore the data structure we get, if you can't readily infer it from the
+    # syncing code, you can look at the JSON in the data column of the
+    # contentful_contentfulentry DB table after an initial sync.
     CONTENT_TYPE_PAGE_RESOURCE_CENTER: [
         ".entries[].body",  # get the 'body' key from every dict in the 'entries' list
         ".info.seo.description",  # deep nested dictionaries
@@ -30,6 +34,14 @@ LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
     ],
     CONTENT_TYPE_PAGE_PRODUCT_STORY: [
         ".entries[].body",  # get the 'body' key from every dict in the 'entries' list
+        ".info.seo.description",
+        ".info.seo.name",
+        ".info.image",
+        ".info.title",
+        # NB: if we start localising this, we may need to experiment with tuning this to make
+        # sure we cover all the components that can be translated. It might also be that
+        # .entries[].body is too high level to be able to check things like translated embeds
+        # and instead we'll need a different approach altogether :-/
     ],
     # TO COME, once we've refactored them in Contentful
     # CONTENT_TYPE_PAGE_GENERAL: [],
