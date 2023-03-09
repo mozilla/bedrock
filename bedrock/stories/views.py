@@ -22,9 +22,7 @@ def story_page(request, slug):
     if switch("contentful-product-story"):
         try:
             template_name = "stories/contentful-story.html"
-            story = ContentfulEntry.objects.get_entry_by_slug(
-                slug=slug, locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY, localisation_complete=False  # EN only content
-            )
+            story = ContentfulEntry.objects.get_entry_by_slug(slug=slug, locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY)
             ctx.update(story.data)
         except Exception as ex:
             capture_exception(ex)
@@ -47,9 +45,7 @@ def landing_page(request):
             # get all stories
             stories = [
                 story.data["info"]
-                for story in ContentfulEntry.objects.get_entries_by_type(
-                    locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY, localisation_complete=False
-                )
+                for story in ContentfulEntry.objects.get_entries_by_type(locale="en-US", content_type=CONTENT_TYPE_PAGE_PRODUCT_STORY)
             ]
             # order by published date, newest to oldest
             sorted_stories = sorted(stories, key=lambda x: x["published"], reverse=True)

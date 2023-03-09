@@ -28,6 +28,9 @@ LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
         ".info.seo.description",  # deep nested dictionaries
         ".info.seo.image",
     ],
+    CONTENT_TYPE_PAGE_PRODUCT_STORY: [
+        ".entries[].body",  # get the 'body' key from every dict in the 'entries' list
+    ],
     # TO COME, once we've refactored them in Contentful
     # CONTENT_TYPE_PAGE_GENERAL: [],
     # CONTENT_TYPE_PAGE_VERSATILE: [],
