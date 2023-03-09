@@ -80,20 +80,15 @@
         </div>
 
         <div class="c-manage">
-          <p>You are signed in.</p>
-          {{ fxa_button(
-            entrypoint=_entrypoint,
-            button_text=ftl('firefox-accounts-manage'),
-            action='signin',
-            optional_attributes={'data-cta-text': 'Manage your account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
-          ) }}
+          <p>{{ ftl('firefox-accounts-already') }}</p>
+          <a href="https://accounts.firefox.com/settings" id="manage">{{ ftl('firefox-accounts-manage') }}</a>
         </div>
       </div>
     </div>
     <div class="mzp-c-split-body">
 
       <div class="accounts-products">
-        <h2>{{ ftl('firefox-accounts-sign-in-to') }}</h3>
+        <h2>{{ ftl('firefox-accounts-sign-in-to', fallback='firefox-accounts-meet-our-family-of') }}</h2>
 
         <a href="{{ url('firefox.browsers.index') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-firefox">{{ ftl('firefox-accounts-firefox-browser') }}</h4></a>
         <ul class="mzp-u-list-styled">

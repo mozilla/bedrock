@@ -13,9 +13,12 @@ firefox-accounts-securely-sync-your = Securely sync your passwords, bookmarks an
 firefox-accounts-enter-your-email-address = Enter your email address to get started.
 firefox-accounts-already-have-an-account = Already have an account?
 firefox-accounts-sign-in = Sign In
+firefox-accounts-already = You already have a { -brand-name-firefox-account }. Congrats!
 firefox-accounts-manage = Manage your account
 
-firefox-accounts-sign-in-to = Sign in to your Firefox Account to:
+firefox-accounts-sign-in-to = Sign in to your { -brand-name-firefox-account } to:
+# Obsolete string
+firefox-accounts-meet-our-family-of = Meet our family of privacy-first products.
 
 # Variables:
 #   $send (url) - link to https://blog.mozilla.org/en/products/firefox/firefox-tips/firefox-secret-tips/#send-tabs
