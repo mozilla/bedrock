@@ -1,0 +1,80 @@
+# Workflows that run integration tests on live sites
+
+name: Integration tests
+on:
+  - pull_request  ## TEMPORARY
+  - workflow_dispatch  ## MAKE WORK OFF WEBHOOK ONLY
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - LABEL: test-ie-saucelabs
+            BROWSER_NAME: internet explorer
+            DRIVER: SauceLabs
+            MARK_EXPRESSION: "smoke or sanity"
+            PLATFORM: Windows 10
+            PYTEST_PROCESSES: "8"
+          - LABEL: test-firefox-remote
+            BROWSER_NAME: firefox
+            MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
+            DRIVER: Remote
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-headless
+            DRIVER: ""
+            MARK_EXPRESSION: headless
+          - LABEL: test-chrome-remote
+            BROWSER_NAME: chrome
+            DRIVER: Remote
+            MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-download-remote
+            BROWSER_NAME: "firefox"
+            DRIVER: Remote
+            MARK_EXPRESSION: download
+            PYTEST_PROCESSES: "auto"
+
+    env:
+      BASE_URL: https://dev.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
+      BASE_POCKET_URL: https://dev.pocket.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
+      TEST_IMAGE: mozmeao/bedrock_test:68d422f10f93c515efbed6bdaf0b2d5a56493981  # TODO MAKE DYNAMIC
+      BROWSER_NAME: ${{matrix.BROWSER_NAME}}
+      CI_JOB_ID: ${{github.run_id}}
+      DRIVER: ${{matrix.DRIVER}}
+      LABEL: ${{matrix.LABEL}}
+      MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
+      PLATFORM: ${{matrix.PLATFORM}}
+      PYTEST_PROCESSES: ${{matrix.PYTEST_PROCESSES}}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Run functional integration tests"
+        run: ./bin/integration_tests/functional_tests.sh
+      - name: "Cleanup after functional integration tests"
+        run: ./bin/integration_tests/cleanup_after_functional_tests.sh
+      - name: "Store artifacts"
+        run: echo "TODO STORE THE ARTIFACTS"
+
+      # matrix:
+      #   fruit: [apple, pear]
+      #   animal: [cat, dog]
+      #   include:
+      #     - color: green
+      #     - color: pink
+      #       animal: cat
+      #     - fruit: apple
+      #       shape: circle
+      #     - fruit: banana
+      #     - fruit: banana
+      #       animal: cat
+
+      # will result in six jobs with the following matrix combinations:
+
+      #     {fruit: apple, animal: cat, color: pink, shape: circle}
+      #     {fruit: apple, animal: dog, color: green, shape: circle}
+      #     {fruit: pear, animal: cat, color: pink}
+      #     {fruit: pear, animal: dog, color: green}
+      #     {fruit: banana}
+      #     {fruit: banana, animal: cat}

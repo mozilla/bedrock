@@ -20,7 +20,7 @@ if [ "${DRIVER}" = "SauceLabs" ]; then
   # Temporarily exclude logs for Saucelabs jobs https://github.com/pytest-dev/pytest-selenium/issues/288
   CMD="SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test"
 else
-  CMD="py.test"
+  CMD="pytest"
 fi
 
 CMD="${CMD} -r a"
