@@ -9,14 +9,12 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
-{% set _utm_source = 'mozilla.org-firefox-accounts' %}
-{% set _utm_campaign = 'trailhead' %}
 
 {%- block page_title -%}
-  {{ ftl('firefox-accounts-there-is-a-way-to', fallback='firefox-accounts-get-a-firefox-account') }}
+  {{ ftl('firefox-accounts-get-a-firefox-account') }}
 {%- endblock -%}
 {%- block page_desc -%}
-  {{ ftl('firefox-accounts-take-your-stand-stay-smart', fallback='firefox-accounts-securely-sync-your') }}
+  {{ ftl('firefox-accounts-securely-sync-your') }}
 {%- endblock -%}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
@@ -26,10 +24,11 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox_accounts_2019') }}
 {% endblock %}
 
-{% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default {% endblock %}
+{% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default{% endblock %}
 
 {% block site_header %}
   {% include 'includes/protocol/navigation/navigation.html' %}
@@ -56,152 +55,90 @@
 {% endblock %}
 
 {% block content %}
-{% set has_signed_in_copy = ftl_has_messages('firefox-accounts-youre-signed-in-to',
-                                             'firefox-accounts-see-if-youve-been',
-                                             'firefox-accounts-sign-in-to-monitor',
-                                             'firefox-accounts-get-it-all-on-every',
-                                             'firefox-accounts-firefox-is-technology') %}
+<section class="mzp-c-split mzp-l-split-reversed">
+  <div class="mzp-c-split-container">
+    <div class="mzp-c-split-media">
+      <div class="mzp-c-emphasis-box l-accounts">
+        <div class="c-accounts-form">
+          {{ fxa_email_form(
+            entrypoint=_entrypoint,
+            form_title=ftl('firefox-accounts-sign-in'),
+            intro_text=ftl('firefox-accounts-enter-your-email-address'),
+            button_class='mzp-c-button mzp-t-primary mzp-t-product')
+          }}
 
-<section class="c-accounts-hero">
-  <div class="mzp-l-content">
-    <div class="c-accounts-hero-body {% if has_signed_in_copy %}c-accounts-hero-body-default{% endif %}">
-      <h1 class="c-accounts-hero-title">{{ ftl('firefox-accounts-there-is-a-way-to-protect') }}</h1>
-      <p class="c-accounts-hero-desc">{{ ftl('firefox-accounts-take-your-stand-against') }}</p>
-    </div>
+          <p class="fxa-signin">
+            {{ ftl('firefox-accounts-already-have-an-account') }}
+            {{ fxa_button(
+              entrypoint=_entrypoint,
+              button_text=ftl('firefox-accounts-sign-in'),
+              action='signin',
+              is_button_class=False,
+              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+            ) }}
+          </p>
+        </div>
 
-    {% if has_signed_in_copy %}
-    <div class="c-accounts-hero-body c-accounts-hero-body-signed-in hide-from-legacy-ie">
-      <h2 class="c-accounts-hero-title">{{ ftl('firefox-accounts-youre-signed-in-to') }}</h2>
-      <p class="c-accounts-hero-desc">{{ ftl('firefox-accounts-see-if-youve-been') }}</p>
-
-      {{ monitor_fxa_button(
-        entrypoint=_entrypoint,
-        button_text=ftl('firefox-accounts-sign-in-to-monitor'),
-        optional_parameters={'utm_campaign': _utm_campaign},
-        optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
-      }}
-    </div>
-    {% endif %}
-
-    <div class="mzp-c-emphasis-box c-accounts-form">
-      {{ fxa_email_form(
-        entrypoint=_entrypoint,
-        form_title=ftl('firefox-accounts-join-firefox'),
-        intro_text=ftl('firefox-accounts-enter-your-email-address'),
-        button_class='mzp-c-button mzp-t-primary mzp-t-product',
-        style='trailhead',
-        utm_campaign=_utm_campaign)
-      }}
-
-      <p class="fxa-signin">
-        {{ ftl('firefox-accounts-already-have-an-account') }}
-
-        {{ fxa_button(
-          entrypoint=_entrypoint,
-          button_text=ftl('firefox-accounts-sign-in'),
-          action='signin',
-          is_button_class=False,
-          optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': 'form-upper'},
-          optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
-        ) }}
-    </div>
-  </div>
-</section>
-
-<section class="c-accounts-products">
-  <div class="mzp-l-content">
-    <h2 class="c-section-title">
-      {% if ftl_has_messages('firefox-accounts-meet-our-family-of') %}
-        {{ ftl('firefox-accounts-meet-our-family-of') }}
-      {% elif has_signed_in_copy %}
-        {{ ftl('firefox-accounts-firefox-is-technology') }}
-      {% else %}
-        {{ ftl('firefox-accounts-get-technology-that') }}
-      {% endif %}
-    </h2>
-
-    <ul class="c-product-list {% if ftl_has_messages('firefox-accounts-protection-for-your-whole') %}l-columns-three{% else %}l-columns-two{% endif %}">
-      <li class="c-product-list-item t-product-firefox">
-        <a href="{{ url('firefox.new') }}">
-          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-browser') }}</h3>
-          <p class="c-product-list-desc">{{ ftl('firefox-accounts-travel-the-internet') }}</p>
-        </a>
-      </li>
-    {% if ftl_has_messages('firefox-accounts-whole-device-protection') %}
-      <li class="c-product-list-item t-product-vpn">
-        <a href="{{ url('products.vpn.landing') }}" data-cta-text="Mozilla VPN" data-cta-type="fxa-vpn">
-          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-mozilla-vpn') }}</h3>
-          <p class="c-product-list-desc">{{ ftl('firefox-accounts-whole-device-protection') }}</p>
-        </a>
-      </li>
-    {% endif %}
-      <li class="c-product-list-item t-product-monitor">
-        <a href="https://monitor.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Monitor" data-cta-type="FxA-Monitor">
-          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-monitor') }}</h3>
-          <p class="c-product-list-desc">{{ ftl('firefox-accounts-get-a-lookout-for') }}</p>
-        </a>
-      </li>
-    </ul>
-
-    <p class="c-accounts-products-tagline">
-      {% if has_signed_in_copy %}
-        {{ ftl('firefox-accounts-get-it-all-on-every') }}
-      {% else %}
-        {{ ftl('firefox-accounts-and-get-it-all-on') }}
-      {% endif %}
-    </p>
-  </div>
-</section>
-
-
-<section class="c-accounts-value t-value-respect l-media-left">
-  <div class="c-accounts-value-container">
-    <div class="c-accounts-value-media">
-      {{ high_res_img('img/firefox/accounts/trailhead/value-respect.jpg', {'alt': '', 'width': '800', 'height': '600'}) }}
-    </div>
-
-    <div class="c-accounts-value-content">
-      <h3 class="c-accounts-value-title">{{ ftl('firefox-accounts-get-the-respect-you') }}</h3>
-
-      <p>
-      {{ ftl('firefox-accounts-youll-always-get-the', promise=url('firefox.privacy.index')) }}
-      </p>
-
-      <p><strong>{{ ftl('firefox-accounts-take-less-keep-it') }}</strong></p>
-    </div>
-  </div>
-</section>
-
-<section class="c-accounts-value t-value-knowledge l-media-right">
-  <div class="c-accounts-value-container">
-    <div class="c-accounts-value-media">
-      {{ high_res_img('img/firefox/accounts/trailhead/value-knowledge.jpg', {'alt': '', 'width': '800', 'height': '600'}) }}
-    </div>
-
-    <div class="c-accounts-value-content">
-      <h3 class="c-accounts-value-title">{{ ftl('firefox-accounts-get-the-knowledge') }}</h3>
-      <p class="c-accounts-value-desc">{{ ftl('firefox-accounts-learn-everything-you') }}</p>
-    </div>
-  </div>
-</section>
-
-<section class="c-accounts-movement">
-  <div class="mzp-l-content">
-    <h2 class="c-section-title">{{ ftl('firefox-accounts-and-be-part-of-protecting') }}</h2>
-
-    <div class="c-accounts-movement-container">
-      <div class="c-accounts-movement-item t-movement-build">
-        <h3 class="c-accounts-movement-title">{{ ftl('firefox-accounts-help-us-build-a-better') }}</h3>
-        <p class="c-accounts-movement-desc">{{ ftl('firefox-accounts-get-into-the-open') }}</p>
-      </div>
-
-      <div class="c-accounts-movement-item t-movement-bigtech">
-        <h3 class="c-accounts-movement-title">{{ ftl('firefox-accounts-help-us-keep-big-tech') }}</h3>
-        <p class="c-accounts-movement-desc">{{ ftl('firefox-accounts-we-support-communities') }}</p>
+        <div class="c-manage">
+          <p>{{ ftl('firefox-accounts-already') }}</p>
+          <a href="https://accounts.firefox.com/settings" id="manage">{{ ftl('firefox-accounts-manage') }}</a>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="mzp-c-split-body">
+
+      <div class="accounts-products">
+        <h2>{{ ftl('firefox-accounts-sign-in-to', fallback='firefox-accounts-meet-our-family-of') }}</h2>
+
+        <a href="{{ url('firefox.browsers.index') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-firefox">{{ ftl('firefox-accounts-firefox-browser') }}</h4></a>
+        <ul class="mzp-u-list-styled">
+          {% if ftl_has_messages('firefox-accounts-send-a-tab', 'firefox-accounts-save-and-sync') %}
+
+          <li>{{ ftl('firefox-accounts-send-a-tab', send='https://blog.mozilla.org/en/products/firefox/firefox-tips/firefox-secret-tips/#send-tabs') }}</li>
+          <li>{{ ftl('firefox-accounts-save-and-sync', password=url('firefox.features.password-manager')) }}</li>
+
+          {% else %}
+          <li>{{ ftl('firefox-accounts-keep-your-passwords') }}</li>
+          {% endif %}
+        </ul>
+
+        <a href="https://monitor.firefox.com/"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-monitor">{{ ftl('firefox-accounts-firefox-monitor') }}</h4></a>
+        <ul class="mzp-u-list-styled">
+          <li>{{ ftl('firefox-accounts-get-email-alerts', fallback='firefox-accounts-see-if-youve-been') }}</li>
+        </ul>
+
+        {% if ftl_has_messages('firefox-accounts-protect-your-identity') %}
+        <a href="https://relay.firefox.com/"> <h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-relay">{{ ftl('firefox-accounts-firefox-relay') }}</h4></a>
+        <ul class="mzp-u-list-styled">
+          <li>{{ ftl('firefox-accounts-protect-your-identity') }}</li>
+        </ul>
+        {% endif %}
+
+        <a href="{{ url('products.vpn.landing') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-vpn">{{ ftl('firefox-accounts-mozilla-vpn') }}</h4></a>
+        <ul class="mzp-u-list-styled">
+          {% if ftl_has_messages('firefox-accounts-encrypt-your', 'firefox-accounts-we-never') %}
+            <li>{{ ftl('firefox-accounts-encrypt-your') }}</li>
+            <li>{{ ftl('firefox-accounts-we-never') }}</li>
+          {% else %}
+            <li>{{ ftl('firefox-accounts-travel-the-internet') }}</li>
+          {% endif %}
+        </ul>
+
+        <a href="https://getpocket.com/"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-pocket">{{ ftl('firefox-accounts-pocket') }}</h4></a>
+        {% if ftl_has_messages('firefox-accounts-protect-your-identity') %}
+        <ul class="mzp-u-list-styled">
+          <li>{{ ftl('firefox-accounts-save-articles') }}</li>
+          <li>{{ ftl('firefox-accounts-read-in-a') }}</li>
+        </ul>
+        {% endif %}
+      </div>
+
+      <p class="c-accounts-tagline">{{ ftl('firefox-accounts-get-it-all-on-every') }}</p>
+
+    </div>
+
 </section>
+
 {% endblock %}
 
 {% block js %}
