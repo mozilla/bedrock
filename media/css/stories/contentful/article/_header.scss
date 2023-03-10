@@ -54,9 +54,4 @@ $image-path: '/media/protocol/img';
         top: 0; // set dynamically from JS based on nav height
         z-index: -1;
     }
-
-    // needs to stay readable when scrolling over header
-    .c-stories-article-container {
-        background-color: $color-white;
-    }
 }

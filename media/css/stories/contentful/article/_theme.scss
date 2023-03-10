@@ -2,6 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
 [data-theme] {
     .mzp-c-breadcrumb {
         background-color: var(--theme-color-bg);
@@ -27,13 +32,18 @@
 
     @supports (isolation: isolate) {
         // prevent white gap under navigation animation
-        body::before {
-            content: '';
-            display: block;
-            position: absolute;
-            background-color: var(--theme-color-bg);
-            width: 100%;
-            height: 100vh;
+        body {
+            position: relative;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                background-color: var(--theme-color-bg);
+                width: 100%;
+                top: 0;
+                bottom: 0;
+            }
         }
 
         // remove unneeded header background color
@@ -44,8 +54,14 @@
         // stay on top of the body background color
         .c-navigation,
         .mzp-c-breadcrumb,
-        .c-stories-article {
+        .c-stories-article,
+        footer {
             isolation: isolate;
+        }
+
+        // set background color to layer on top of body background
+        .c-stories-article-container {
+            background-color: $color-white;
         }
     }
 }
