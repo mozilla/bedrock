@@ -1,0 +1,71 @@
+# Workflows that run integration tests on live sites
+
+name: Integration tests
+on:
+  - pull_request  ## TEMPORARY
+  - workflow_dispatch
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        LABEL:
+          - "Default config: should not be used solo"
+        TEST_IMAGE:
+          - mozmeao/bedrock_test:68d422f10f93c515efbed6bdaf0b2d5a56493981
+        include:
+          - MARK_EXPRESSION: not headless and not download and not cdn
+          - LABEL: test-ie-saucelabs
+            BROWSER_NAME: internet explorer
+            DRIVER: SauceLabs
+            MARK_EXPRESSION: "smoke or sanity"
+            PLATFORM: Windows 10
+            PYTEST_PROCESSES: "8"
+          - LABEL: test-firefox-remote
+            BROWSER_NAME: firefox
+            MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
+            DRIVER: Remote
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-headless
+            DRIVER: ""
+            MARK_EXPRESSION: headless
+          - LABEL: test-chrome-remote
+            BROWSER_NAME: chrome
+            DRIVER: Remote
+            MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-download-remote
+            BROWSER_NAME: "firefox"
+            DRIVER: Remote
+            MARK_EXPRESSION: download
+            PYTEST_PROCESSES: "auto"
+
+    steps:
+      - name: "Ping"
+        run: echo "PING!"
+      - name: "Check matrix combinations"
+        run: echo ${{matrix.LABEL}} ${{matrix.BROWSER_NAME}} ${{matrix.DRIVER}} ${{matrix.MARK_EXPRESSION}} ${{matrix.PLATFORM}}  ${{matrix.PYTEST_PROCESSES}}
+
+
+      # matrix:
+      #   fruit: [apple, pear]
+      #   animal: [cat, dog]
+      #   include:
+      #     - color: green
+      #     - color: pink
+      #       animal: cat
+      #     - fruit: apple
+      #       shape: circle
+      #     - fruit: banana
+      #     - fruit: banana
+      #       animal: cat
+
+      # will result in six jobs with the following matrix combinations:
+
+      #     {fruit: apple, animal: cat, color: pink, shape: circle}
+      #     {fruit: apple, animal: dog, color: green, shape: circle}
+      #     {fruit: pear, animal: cat, color: pink}
+      #     {fruit: pear, animal: dog, color: green}
+      #     {fruit: banana}
+      #     {fruit: banana, animal: cat}
