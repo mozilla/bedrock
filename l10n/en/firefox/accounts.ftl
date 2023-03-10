@@ -16,7 +16,9 @@ firefox-accounts-sign-in = Sign In
 firefox-accounts-already = You already have a { -brand-name-firefox-account }. Congrats!
 firefox-accounts-manage = Manage your account
 
+# This is followed by a list of things you can do with your Firefox account
 firefox-accounts-sign-in-to = Sign in to your { -brand-name-firefox-account } to:
+
 # Obsolete string
 firefox-accounts-meet-our-family-of = Meet our family of privacy-first products.
 
@@ -25,9 +27,10 @@ firefox-accounts-meet-our-family-of = Meet our family of privacy-first products.
 firefox-accounts-send-a-tab = <a href="{ $send }">Send a tab</a> to a different device
 
 # Variables:
-#   $password (url) - link to https://www.mozilla.org/en-US/firefox/features/password-manager/
+#   $password (url) - link to https://www.mozilla.org/firefox/features/password-manager/
 firefox-accounts-save-and-sync = <a href="{ $password }">Save and sync passwords</a>
 firefox-accounts-get-email-alerts = Get email alerts when your info appears in a known data breach
+
 # Obsolete string
 firefox-accounts-see-if-youve-been = See if you’ve been involved in an online data breach.
 firefox-accounts-protect-your-identity = Protect your identity with secure phone and email masking
