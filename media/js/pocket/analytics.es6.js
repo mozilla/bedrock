@@ -125,7 +125,7 @@ const PocketAnalytics = {
 
         // https://docs.snowplowanalytics.com/docs/collecting-data/collecting-from-own-applications/javascript-trackers/javascript-tracker/javascript-tracker-v3/tracker-setup/initialization-options/
         window.snowplow('newTracker', 'sp', SNOWPLOW_CONNECT_URL, {
-            SNOWPLOW_APP_ID,
+            appId: SNOWPLOW_APP_ID,
             platform: 'web',
             eventMethod: config.eventMethod,
             respectDoNotTrack: false,
