@@ -29,6 +29,7 @@ from bedrock.contentful.constants import (
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     LOCALISATION_COMPLETENESS_CHECK_CONFIG,
     MAX_MESSAGES_PER_QUEUE_POLL,
+    SINGLE_LOCALE_CONTENT_TYPES,
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.utils.management.decorators import alert_sentry_on_exception
@@ -297,10 +298,14 @@ class Command(BaseCommand):
 
         for locale in available_locales:
             _locale_code = locale.code
-
             # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
             # TODO: treat the connectHomepage differently because its locale is an overloaded name field
             for ctype in settings.CONTENTFUL_CONTENT_TYPES_TO_SYNC:
+                # Are we sure we want this ctype in this locale? Let's check:
+                if ctype in SINGLE_LOCALE_CONTENT_TYPES and SINGLE_LOCALE_CONTENT_TYPES[ctype] != _locale_code:
+                    self.log(f"Content Model {ctype} should not be synced for {_locale_code}")
+                    continue
+
                 for entry in ContentfulPage.client.entries(
                     {
                         "content_type": ctype,
@@ -369,8 +374,20 @@ class Command(BaseCommand):
                     localisation_complete_count += 1
             else:
                 localisation_not_configured_count += 1
+
+                # Hack warning: it's simpler (elsewhere) to automatically consider an entry
+                # that is only available in a single locale to be fully localised, rather than
+                # have to remember to add and maintain config to prove it's fully localised.
+                if contentful_entry.content_type in SINGLE_LOCALE_CONTENT_TYPES:
+                    self.log(
+                        f"Force-marking {contentful_entry} as 'localisation complete', because it can only "
+                        f"exist in one locale ({SINGLE_LOCALE_CONTENT_TYPES[contentful_entry.content_type]})"
+                    )
+                    contentful_entry.localisation_complete = True
+                    contentful_entry.save()
+
             self.log(
-                f"Checking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
+                f"Checked {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
                 f"-> Localised? {contentful_entry.localisation_complete}"
             )
 
