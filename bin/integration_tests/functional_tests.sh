@@ -19,10 +19,12 @@ fi
 
 if [ "${DRIVER}" = "Remote" ]; then
     docker-compose \
+        -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d selenium-hub
 
     docker-compose \
+        -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d --scale ${BROWSER_NAME}=${NUM_BROWSER_NODES} ${BROWSER_NAME}
 
@@ -63,4 +65,4 @@ docker run \
     -e "BOUNCER_URL=${BOUNCER_URL:=https://download.mozilla.org/}" \
     -e "SCREEN_WIDTH=1600" \
     -e "SCREEN_HEIGHT=1200" \
-    ${TEST_IMAGE} bin/integration_tests/run-integration-tests.sh
+    ${TEST_IMAGE} bin/integration_tests/run_integration_tests.sh

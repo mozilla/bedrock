@@ -47,6 +47,8 @@ jobs:
       MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
       PLATFORM: ${{matrix.PLATFORM}}
       PYTEST_PROCESSES: ${{matrix.PYTEST_PROCESSES}}
+      SAUCELABS_API_KEY: ${{secrets.SAUCELABS_API_KEY}}
+      SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
 
     steps:
       - uses: actions/checkout@v3
