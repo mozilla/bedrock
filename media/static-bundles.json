@@ -56,6 +56,12 @@
     },
     {
       "files": [
+        "css/mozorg/social-content-policies.scss"
+      ],
+      "name": "social-content-policies"
+    },
+    {
+      "files": [
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
