@@ -128,8 +128,9 @@ commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
     # via -r requirements/prod.in
-contentful==1.13.1 \
-    --hash=sha256:5d0a2ac8fe2d8fb1e8d5295a65228cc785a14e2fd21a9231dd0299894a384d4c
+contentful==2.1.1 \
+    --hash=sha256:6be3fe980cc68cf2eab2b39958df3ae9b7c4d2b26ee92a4926dd8fdd88bf20c0 \
+    --hash=sha256:7e83776577326c5f088771a83455c2e0eb23c5ee571d024812159b39bb03d206
     # via -r requirements/prod.in
 contextlib2==21.6.0 \
     --hash=sha256:3fbdb64466afd23abaf6c977627b75b6139a5a3e8ce38405c5b413aed7a0471f \
