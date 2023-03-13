@@ -140,10 +140,6 @@
     "description": "{{ ftl('newsletters-email-updates-from-vouched')|striptags }}",
     "title": "{{ ftl('newsletters-mozillians')|striptags }}"
   },
-  "mozilla-technology": {
-    "description": "{{ ftl('newsletters-were-building-the-technology')|striptags }}",
-    "title": "{{ ftl('newsletters-mozilla-labs')|striptags }}"
-  },
   "os": {
       "description": "{{ ftl('newsletters-firefox-os-news')|striptags }}",
       "title": "{{ ftl('newsletters-firefox-os')|striptags }}"
