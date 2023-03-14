@@ -795,6 +795,8 @@ class ContentfulAPIWrapper:
         entries = []
 
         def proc(item):
+            # This should be used to render content from pages that use
+            # the Protocol components, where there is no rich-text field
             content_type = item.sys.get("content_type").id
             ctype_info = self.CONTENT_TYPE_MAP.get(content_type)
             if ctype_info:
@@ -814,6 +816,11 @@ class ContentfulAPIWrapper:
 
                     page_js.update(js)
 
+        # If we're rendering pages whose bodies are just a single
+        # rich-text field, we do not need to pass their content
+        # to proc() -- we just need to add their content to the
+        # entries list directly without post-processing.
+
         if page_type == CONTENT_TYPE_PAGE_GENERAL:
             # look through all entries and find content ones
             for key, value in fields.items():
@@ -823,7 +830,8 @@ class ContentfulAPIWrapper:
                     proc(value)
 
         elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
-            # TODO: can we actually make this generic? Poss not: main_content is a custom field name
+            # main_content is a custom/legacy field name, we prefer
+            # rich_text_content for clarity
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))
 
@@ -834,6 +842,7 @@ class ContentfulAPIWrapper:
         else:
             # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
+            # Note: `content` gets processed with proc() - see below
 
         if content:
             # get components from content

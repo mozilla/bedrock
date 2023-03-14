@@ -11,6 +11,7 @@ CONTENT_TYPE_PAGE_GENERAL = "pageGeneral"
 CONTENT_TYPE_PAGE_VERSATILE = "pageVersatile"
 CONTENT_TYPE_PAGE_PRODUCT_STORY = "pageProductJournalismStory"
 
+# Default content types to sync from Contentful
 DEFAULT_CONTENT_TYPES = ",".join(
     [
         CONTENT_TYPE_CONNECT_HOMEPAGE,  # The Connect-based approach, currently used for the homepage
@@ -33,12 +34,14 @@ SINGLE_LOCALE_CONTENT_TYPES = {
 
 LOCALISATION_COMPLETENESS_CHECK_CONFIG = {
     # ONLY NEEDED FOR PAGES WHERE LOCALISATION IS ENABLED
-    # The values in the 'data' field on the ContentfulPage we need to check to
-    # decide whether the ContentfulPage record is complete for the locale it is in.
+    # The values in the 'data' field on the ContentfulEntry we need to check to
+    # decide whether the ContentfulEntry record is complete for the locale it is in.
     #
     # Tip: to explore the data structure we get, if you can't readily infer it from the
     # syncing code, you can look at the JSON in the data column of the
     # contentful_contentfulentry DB table after an initial sync.
+    #
+    # Note that these are expressed in jq format - see https://stedolan.github.io/jq/
     CONTENT_TYPE_PAGE_RESOURCE_CENTER: [
         ".entries[].body",  # get the 'body' key from every dict in the 'entries' list
         ".info.seo.description",  # deep nested dictionaries
