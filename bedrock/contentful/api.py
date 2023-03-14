@@ -836,7 +836,7 @@ class ContentfulAPIWrapper:
             entries.append(self.get_text_data(_content))
 
         elif page_type == CONTENT_TYPE_PAGE_PRODUCT_STORY:
-            _content = fields.get("content", {})
+            _content = fields.get("rich_text_content", {})
             entries.append(self.get_text_data(_content))
 
         else:
