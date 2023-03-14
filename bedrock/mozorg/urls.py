@@ -68,6 +68,7 @@ urlpatterns = (
     ),
     page("about/governance/policies/module-ownership/", "mozorg/about/governance/policies/module-ownership.html"),
     page("about/governance/policies/regressions/", "mozorg/about/governance/policies/regressions.html"),
+    page("about/governance/policies/social-content-policies/", "mozorg/about/governance/policies/social-content-policies.html"),
     page("about/policy/transparency/", "mozorg/about/policy/transparency/index.html"),
     page("about/policy/transparency/jan-dec-2015/", "mozorg/about/policy/transparency/jan-dec-2015.html"),
     page("about/policy/transparency/jan-jun-2016/", "mozorg/about/policy/transparency/jan-jun-2016.html"),
