@@ -23,7 +23,7 @@ from twilio.rest import Client as TwilioClient
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
-from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.api import ContentfulAPIWrapper
 from bedrock.firefox.firefox_details import (
     firefox_android,
     firefox_desktop,
@@ -1045,7 +1045,7 @@ class FirefoxContentful(L10nTemplateView):
         ctx = super().get_context_data(**kwargs)
         content_id = ctx["content_id"]
         locale = l10n_utils.get_locale(self.request)
-        page = ContentfulPage(content_id, locale)
+        page = ContentfulAPIWrapper(content_id, locale)
         content = page.get_content()
         self.request.page_info = content["info"]
         ctx.update(content)

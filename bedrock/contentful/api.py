@@ -342,7 +342,7 @@ class PRenderer(BaseBlockRenderer):
 class InlineEntryRenderer(BaseNodeRenderer):
     def render(self, node):
         entry_id = node["data"]["target"]["sys"]["id"]
-        entry = ContentfulPage.client.entry(entry_id)
+        entry = ContentfulAPIWrapper.client.entry(entry_id)
         content_type = entry.sys["content_type"].id
 
         if content_type == "componentLogo":
@@ -360,7 +360,7 @@ class AssetBlockRenderer(BaseBlockRenderer):
 
     def render(self, node):
         asset_id = node["data"]["target"]["sys"]["id"]
-        asset = ContentfulPage.client.asset(asset_id)
+        asset = ContentfulAPIWrapper.client.asset(asset_id)
         return self.IMAGE_HTML.format(
             src=_get_image_url(asset, 688),
             src_highres=_get_image_url(asset, 1376),
@@ -412,7 +412,7 @@ def _make_image(entry):
 class BlockEntryRenderer(BaseNodeRenderer):
     def render(self, node):
         entry_id = node["data"]["target"]["sys"]["id"]
-        entry = ContentfulPage.client.entry(entry_id)
+        entry = ContentfulAPIWrapper.client.entry(entry_id)
         content_type = entry.sys["content_type"].id
 
         if content_type == "embedBlockquote":
@@ -423,7 +423,7 @@ class BlockEntryRenderer(BaseNodeRenderer):
             return content_type
 
 
-class ContentfulPage:
+class ContentfulAPIWrapper:
     # TODO: List: stop list items from being wrapped in paragraph tags
     # TODO: Error/ Warn / Transform links to allizom
     client = get_client()
@@ -634,8 +634,8 @@ class ContentfulPage:
         # not required
         contributors = entry_fields.get("contributors", [])
         related = entry_fields.get("related_stories", [])
-        contributor_entries = [ContentfulPage.client.entry(contributor.id) for contributor in contributors]
-        related_entries = [ContentfulPage.client.entry(story.id) for story in related]
+        contributor_entries = [ContentfulAPIWrapper.client.entry(contributor.id) for contributor in contributors]
+        related_entries = [ContentfulAPIWrapper.client.entry(story.id) for story in related]
 
         # shared image properties
         # (note: we use more specific image property names to avoid overriding the "image" property set by get_info_data)

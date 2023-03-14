@@ -281,7 +281,7 @@ provide our own renderers on the bedrock side. They can be as simple as changing
 to `<strong>` tags or as complex as inserting a component.
 
 A list of our custom renderers is passed to the `RichTextRenderer` helper at the start of
-the `ContentfulPage` class in api.py. The renderers themselves are also defined in api.py
+the `ContentfulAPIWrapper` class in api.py. The renderers themselves are also defined in api.py
 
 L10N
 ----

@@ -17,7 +17,10 @@ import jq
 from sentry_sdk import capture_exception
 from sentry_sdk.api import capture_message
 
-from bedrock.contentful.api import CONTENTFUL_TO_BEDROCK_LOCALE_MAP, ContentfulPage
+from bedrock.contentful.api import (
+    CONTENTFUL_TO_BEDROCK_LOCALE_MAP,
+    ContentfulAPIWrapper,
+)
 from bedrock.contentful.constants import (
     ACTION_ARCHIVE,
     ACTION_AUTO_SAVE,
@@ -306,7 +309,7 @@ class Command(BaseCommand):
                     self.log(f"Content Model {ctype} should not be synced for {_locale_code}")
                     continue
 
-                for entry in ContentfulPage.client.entries(
+                for entry in ContentfulAPIWrapper.client.entries(
                     {
                         "content_type": ctype,
                         "include": 0,
@@ -411,7 +414,7 @@ class Command(BaseCommand):
 
         EMPTY_ENTRY_ATTRIBUTE_STRING = "'Entry' object has no attribute 'content'"
 
-        available_locales = ContentfulPage.client.locales()
+        available_locales = ContentfulAPIWrapper.client.locales()
 
         # 1. Build a lookup of pages to sync by type, ID and locale
         content_to_sync = self._get_content_to_sync(available_locales)
@@ -426,7 +429,7 @@ class Command(BaseCommand):
             request = self.rf.get("/")
             request.locale = locale_code
             try:
-                page = ContentfulPage(request, page_id)
+                page = ContentfulAPIWrapper(request, page_id)
                 page_data = page.get_content()
             except AttributeError as ae:
                 # Problem with the page - most likely not-really-a-page-in-this-locale-after-all.

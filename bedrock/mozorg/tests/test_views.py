@@ -125,7 +125,7 @@ class TestHomePage(TestCase):
     ),
 )
 @patch("bedrock.mozorg.views.l10n_utils.render")
-@patch("bedrock.mozorg.views.ContentfulPage")
+@patch("bedrock.mozorg.views.ContentfulAPIWrapper")
 # Trying to hot-reload the URLconf with settings.DEV = True was not
 # viable when the tests were being run in CI or via Makefile, so
 # instead we're explicitly including the urlconf that is loaded

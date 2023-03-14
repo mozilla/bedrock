@@ -491,7 +491,7 @@ def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
 
 
 @override_settings(CONTENTFUL_CONTENT_TYPES_TO_SYNC=["type_one", "type_two"])
-@mock.patch("bedrock.contentful.management.commands.update_contentful.ContentfulPage")
+@mock.patch("bedrock.contentful.management.commands.update_contentful.ContentfulAPIWrapper")
 def test_update_contentful__get_content_to_sync(
     mock_contentful_page,
     command_instance,

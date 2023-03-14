@@ -16,7 +16,7 @@ from bedrock.contentful.api import (
     DEFAULT_LOCALE,
     AssetBlockRenderer,
     BlockEntryRenderer,
-    ContentfulPage,
+    ContentfulAPIWrapper,
     EmphasisRenderer,
     InlineEntryRenderer,
     LinkRenderer,
@@ -675,7 +675,7 @@ def test_PRenderer__empty():
         "somethingElse",
     ),
 )
-@patch("bedrock.contentful.api.ContentfulPage.client")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper.client")
 @patch("bedrock.contentful.api._make_logo")
 @patch("bedrock.contentful.api._make_wordmark")
 @patch("bedrock.contentful.api._make_cta_button")
@@ -707,7 +707,7 @@ def test_InlineEntryRenderer(
 
 
 @patch("bedrock.contentful.api._get_image_url")
-@patch("bedrock.contentful.api.ContentfulPage.client")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper.client")
 def test_AssetBlockRenderer(mock_client, mock__get_image_url):
     mock_asset = Mock()
     mock_asset.title = "test_title.png"
@@ -736,7 +736,7 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
         "somethingElse",
     ),
 )
-@patch("bedrock.contentful.api.ContentfulPage.client")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper.client")
 @patch("bedrock.contentful.api._make_image")
 @patch("bedrock.contentful.api._make_blockquote")
 def test_BlockEntryRenderer(
@@ -770,14 +770,14 @@ def test__render_list():
 
 @pytest.fixture
 def basic_contentful_page(rf):
-    """Naive reusable fixture for setting up a ContentfulPage
+    """Naive reusable fixture for setting up a ContentfulAPIWrapper
     Note that it does NOTHING with set_current_request / thread-locals
     """
     with patch("bedrock.contentful.api.set_current_request"):
         with patch("bedrock.contentful.api.get_locale") as mock_get_locale:
             mock_get_locale.return_value = settings.LANGUAGE_CODE  # use the fallback
             mock_request = rf.get("/")
-            page = ContentfulPage(mock_request, "test-page-id")
+            page = ContentfulAPIWrapper(mock_request, "test-page-id")
 
     return page
 
@@ -794,7 +794,7 @@ def test_ContentfulPage__init(
     mock_get_locale.side_effect = lambda x: x.locale
     mock_request = rf.get("/")
     mock_request.locale = locale_to_patch
-    page = ContentfulPage(mock_request, "test-page-id")
+    page = ContentfulAPIWrapper(mock_request, "test-page-id")
 
     mock_get_locale.assert_called_once_with(mock_request)
     mock_set_current_request.assert_called_once_with(mock_request)
@@ -1250,11 +1250,11 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
     ),
     ids=["entry_obj and seo_obj", "entry_obj, no seo_obj"],
 )
-@patch("bedrock.contentful.api.ContentfulPage._get_preview_image_from_fields")
-@patch("bedrock.contentful.api.ContentfulPage._get_info_data__locale")
-@patch("bedrock.contentful.api.ContentfulPage._get_info_data__theme_campaign")
-@patch("bedrock.contentful.api.ContentfulPage._get_info_data__slug_title_blurb")
-@patch("bedrock.contentful.api.ContentfulPage._get_info_data__category_tags_classification")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper._get_preview_image_from_fields")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper._get_info_data__locale")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper._get_info_data__theme_campaign")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper._get_info_data__slug_title_blurb")
+@patch("bedrock.contentful.api.ContentfulAPIWrapper._get_info_data__category_tags_classification")
 def test_ContentfulPage__get_info_data(
     mock__get_info_data__category_tags_classification,
     mock__get_info_data__slug_title_blurb,

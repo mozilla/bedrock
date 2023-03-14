@@ -21,7 +21,7 @@ from sentry_sdk import capture_exception
 
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
-from bedrock.contentful.api import ContentfulPage
+from bedrock.contentful.api import ContentfulAPIWrapper
 from bedrock.contentful.constants import (
     CONTENT_TYPE_PAGE_PRODUCT_STORY,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -178,7 +178,7 @@ class ContentfulPreviewView(L10nTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         content_id = ctx["content_id"]
-        page = ContentfulPage(self.request, content_id)
+        page = ContentfulAPIWrapper(self.request, content_id)
         ctx.update(page.get_content())
         return ctx
 
