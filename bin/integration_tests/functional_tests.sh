@@ -48,6 +48,7 @@ fi
 
 docker pull ${TEST_IMAGE:=mozmeao/bedrock_test}
 docker run \
+    -d \
     --name "bedrock-${CI_JOB_ID}" \
     ${DOCKER_LINKS[@]} \
     -e "DRIVER=${DRIVER}" \
@@ -65,4 +66,13 @@ docker run \
     -e "BOUNCER_URL=${BOUNCER_URL:=https://download.mozilla.org/}" \
     -e "SCREEN_WIDTH=1600" \
     -e "SCREEN_HEIGHT=1200" \
-    ${TEST_IMAGE} bin/integration_tests/run_integration_tests.sh
+    ${TEST_IMAGE} \
+    echo "test image up"
+
+CONTAINER_ID=$(docker ps -alq)
+echo "Container ID ${CONTAINER_ID}"
+if [ "${COPY_INTEGRATION_TEST_CONFIG_INTO_DOCKER_CONTAINER}" == "true" ]; then
+    docker cp ./bin/integration_tests/ $CONTAINER_ID:/app/bin/integration_tests/
+fi
+
+docker exec ${CONTAINER_ID} bin/integration_tests/run_integration_tests.sh
