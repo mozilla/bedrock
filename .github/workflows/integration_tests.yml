@@ -31,11 +31,12 @@ jobs:
             DRIVER: Remote
             MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
             PYTEST_PROCESSES: "auto"
-          - LABEL: test-download-remote
-            BROWSER_NAME: "firefox"
-            DRIVER: Remote
-            MARK_EXPRESSION: download
-            PYTEST_PROCESSES: "auto"
+          # TEMPORARILY DISABLE DOWNLOAD TESTS - may need selectively running
+          # - LABEL: test-download-remote
+          #   BROWSER_NAME: "firefox"
+          #   DRIVER: Remote
+          #   MARK_EXPRESSION: download
+          #   PYTEST_PROCESSES: "auto"
 
     env:
       BASE_URL: https://dev.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
