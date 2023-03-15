@@ -46,11 +46,10 @@ if [ "${DRIVER}" = "Remote" ]; then
     echo " done"
 fi
 
-docker pull ${TEST_IMAGE:=mozmeao/bedrock_test}
+# DISABLED SO WE USE THE ONE WE JUST BUILT
+# docker pull ${TEST_IMAGE:=mozmeao/bedrock_test}
 
-docker create \
-    --attach STDOUT \
-    --attach STDERR \
+docker run \
     --name "bedrock-${CI_JOB_ID}" \
     ${DOCKER_LINKS[@]} \
     -e "DRIVER=${DRIVER}" \
@@ -68,13 +67,4 @@ docker create \
     -e "BOUNCER_URL=${BOUNCER_URL:=https://download.mozilla.org/}" \
     -e "SCREEN_WIDTH=1600" \
     -e "SCREEN_HEIGHT=1200" \
-    --entrypoint sleep infinity \
-    ${TEST_IMAGE}
-
-if [ $COPY_INTEGRATION_TEST_CONFIG_INTO_DOCKER_CONTAINER = "true" ]; then
-    echo "Copying integration_tests folder into Docker container"
-    docker cp ./bin/integration_tests/ "bedrock-${CI_JOB_ID}":/app/bin/integration_tests/
-fi
-
-docker start "bedrock-${CI_JOB_ID}"
-docker exec "bedrock-${CI_JOB_ID}" bin/integration_tests/run_integration_tests.sh
+    ${TEST_IMAGE} bin/integration_tests/run_integration_tests.sh

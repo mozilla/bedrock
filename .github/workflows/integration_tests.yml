@@ -41,7 +41,6 @@ jobs:
       BASE_POCKET_URL: https://dev.pocket.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
       BROWSER_NAME: ${{matrix.BROWSER_NAME}}
       CI_JOB_ID: ${{github.run_id}}
-      COPY_INTEGRATION_TEST_CONFIG_INTO_DOCKER_CONTAINER: true
       DRIVER: ${{matrix.DRIVER}}
       LABEL: ${{matrix.LABEL}}
       MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
@@ -53,16 +52,16 @@ jobs:
     steps:
       - name: Fetch codebase
         uses: actions/checkout@v3
-      # - name: "Build fresh bedrock_test image (TODO: replace me with image hash via webhook)"
-      #   run: |
-      #     cp docker/envfiles/test.env .env
-      #     docker-compose build --pull app
-      #     CONTAINER_ID=$(docker ps -alq)
-      #     echo $CONTAINER_ID
+      - name: "Build fresh bedrock_test image. TODO: make this a precursor dependency step"
+        run: |
+          cp docker/envfiles/test.env .env
+          docker-compose build --pull app
+          docker tag mozmeao/bedrock_test:latest "bedrock_integration_tests:$CI_JOB_ID"
+
       - name: Run functional integration tests
         run: ./bin/integration_tests/functional_tests.sh
         env:
-          TEST_IMAGE: mozmeao/bedrock_test:latest  # TODO MAKE DYNAMIC BASED ON WEBHOOK
+          TEST_IMAGE: "bedrock_integration_tests:$CI_JOB_ID"  # TODO MAKE DYNAMIC BASED ON WEBHOOK IF POSS
 
       - name: Cleanup after functional integration tests
         run: ./bin/integration_tests/cleanup_after_functional_tests.sh
