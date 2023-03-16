@@ -1,11 +1,11 @@
-# ---
-# name: Glean probe-scraper
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
-# jobs:
-#   glean-probe-scraper:
-#     if: github.repository == 'mozilla/bedrock'
-#     uses: mozilla/probe-scraper/.github/workflows/glean.yaml@main
+---
+name: Glean probe-scraper
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  glean-probe-scraper:
+    if: github.repository == 'mozilla/bedrock'
+    uses: mozilla/probe-scraper/.github/workflows/glean.yaml@main
