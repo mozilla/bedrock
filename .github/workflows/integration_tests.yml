@@ -73,4 +73,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results-${{github.run_id}}  # same as CI_JOB_ID
+          path: results-${{github.run_id}}-${{matrix.label}}
