@@ -1,9 +1,7 @@
 # Workflows that run integration tests on live sites
 
 name: Integration tests
-on:
-  - pull_request  ## TEMPORARY
-  - workflow_dispatch  ## MAKE WORK OFF WEBHOOK ONLY
+on: workflow_dispatch
 
 jobs:
   integration-tests:
