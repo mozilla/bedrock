@@ -2,7 +2,6 @@ version: "3"
 services:
   selenium-hub:
     image: selenium/hub:3
-
   chrome:
     image: selenium/node-chrome:3.141.59-20210713
     volumes:
@@ -14,6 +13,7 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+      - SE_NODE_SESSION_TIMEOUT=600
 
   firefox:
     image: selenium/node-firefox:3
@@ -26,3 +26,4 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+      - SE_NODE_SESSION_TIMEOUT=600

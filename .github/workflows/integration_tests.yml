@@ -65,7 +65,8 @@ jobs:
         env:
           TEST_IMAGE: bedrock_integration_tests:latest  # TODO MAKE DYNAMIC BASED ON WEBHOOK IF POSS
 
-      - name: Cleanup after functional integration tests
-        run: ./bin/integration_tests/cleanup_after_functional_tests.sh
       - name: Store artifacts
         run: echo "TODO STORE THE ARTIFACTS"
+
+      - name: Cleanup after functional integration tests
+        run: ./bin/integration_tests/cleanup_after_functional_tests.sh
