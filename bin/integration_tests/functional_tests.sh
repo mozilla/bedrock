@@ -46,8 +46,7 @@ if [ "${DRIVER}" = "Remote" ]; then
     echo " done"
 fi
 
-# DISABLED SO WE USE THE ONE WE JUST BUILT
-# docker pull ${TEST_IMAGE:=mozmeao/bedrock_test}
+docker pull ${TEST_IMAGE}
 
 docker run \
     --name "bedrock-${CI_JOB_ID}" \
