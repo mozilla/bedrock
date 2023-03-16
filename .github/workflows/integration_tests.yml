@@ -42,6 +42,7 @@ jobs:
       BASE_URL: https://dev.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
       BASE_POCKET_URL: https://dev.pocket.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
       BROWSER_NAME: ${{matrix.BROWSER_NAME}}
+      BOUNCER_URL: https://bouncer-bouncer.stage.mozaws.net/  # TODO: MAKE DYNAMIC BASED ON TARGET
       CI_JOB_ID: ${{github.run_id}}
       DRIVER: ${{matrix.DRIVER}}
       LABEL: ${{matrix.LABEL}}
