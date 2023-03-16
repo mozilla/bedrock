@@ -36,7 +36,7 @@ jobs:
           #   BROWSER_NAME: "firefox"
           #   DRIVER: Remote
           #   MARK_EXPRESSION: download
-          #   PYTEST_PROCESSES: "8"
+          #   PYTEST_PROCESSES: "auto"
 
     env:
       BASE_URL: https://dev.bedrock.nonprod.webservices.mozgcp.net  # TODO MAKE DYNAMIC
@@ -66,8 +66,11 @@ jobs:
         env:
           TEST_IMAGE: bedrock_integration_tests:latest  # TODO MAKE DYNAMIC BASED ON WEBHOOK IF POSS
 
-      - name: Store artifacts
-        run: echo "TODO STORE THE ARTIFACTS"
-
       - name: Cleanup after functional integration tests
         run: ./bin/integration_tests/cleanup_after_functional_tests.sh
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: results-${{github.run_id}}  # same as CI_JOB_ID
