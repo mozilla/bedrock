@@ -12,6 +12,8 @@ if (typeof window.Mozilla === 'undefined') {
 (function () {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     /**
      * Constructs attribution data based on utm parameters and referrer information
      * for relay to the Firefox stub installer. Data is first signed and encoded via
@@ -340,20 +342,14 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Gets the session ID from the GA object.
+     * Returns a random identifier that we use to associate a
+     * visitor's website GA data with their Telemetry attribution
+     * data. This identifier is sent as a non-interaction event
+     * to GA, and also to the stub attribution service as session_id.
      * @returns {String} session ID.
      */
-    StubAttribution.getGASessionID = function () {
-        try {
-            var sessionID = window.ga.getAll()[0].get('_gt');
-
-            if (sessionID && typeof sessionID === 'number') {
-                return sessionID.toString();
-            }
-            return null;
-        } catch (e) {
-            return null;
-        }
+    StubAttribution.createSessionID = function () {
+        return Math.floor(1000000000 + Math.random() * 9000000000).toString();
     };
 
     /**
@@ -370,9 +366,8 @@ if (typeof window.Mozilla === 'undefined') {
         function _checkGA() {
             clearTimeout(timeout);
             var clientID = StubAttribution.getGAClientID();
-            var sessionID = StubAttribution.getGASessionID();
 
-            if (clientID && sessionID) {
+            if (clientID) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
@@ -402,7 +397,6 @@ if (typeof window.Mozilla === 'undefined') {
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
         var ua = StubAttribution.getUserAgent();
         var clientID = StubAttribution.getGAClientID();
-        var sessionID = StubAttribution.getGASessionID();
 
         /* eslint-disable camelcase */
         var data = {
@@ -415,7 +409,7 @@ if (typeof window.Mozilla === 'undefined') {
             experiment: experiment,
             variation: variation,
             client_id: clientID,
-            session_id: sessionID
+            session_id: clientID ? StubAttribution.createSessionID() : null
         };
         /* eslint-enable camelcase */
 
@@ -550,6 +544,14 @@ if (typeof window.Mozilla === 'undefined') {
                     StubAttribution.hasValidData(data)
                 ) {
                     StubAttribution.requestAuthentication(data);
+
+                    // Send the session ID to GA as non-interaction event.
+                    if (data.client_id && data.session_id) {
+                        window.dataLayer.push({
+                            event: 'stub-session-id',
+                            eLabel: data.session_id
+                        });
+                    }
                 }
             });
         }
