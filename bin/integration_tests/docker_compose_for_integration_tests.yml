@@ -13,7 +13,6 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
-      - SE_NODE_SESSION_TIMEOUT=600
 
   firefox:
     image: selenium/node-firefox:3
@@ -26,4 +25,3 @@ services:
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
-      - SE_NODE_SESSION_TIMEOUT=600
