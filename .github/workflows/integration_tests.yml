@@ -22,7 +22,7 @@ jobs:
             BROWSER_NAME: firefox
             MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
             DRIVER: Remote
-            PYTEST_PROCESSES: "8"
+            PYTEST_PROCESSES: "auto"
           - LABEL: test-headless
             DRIVER: ""
             MARK_EXPRESSION: headless
@@ -30,7 +30,7 @@ jobs:
             BROWSER_NAME: chrome
             DRIVER: Remote
             MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
-            PYTEST_PROCESSES: "8"
+            PYTEST_PROCESSES: "auto"
           # TEMPORARILY DISABLE DOWNLOAD TESTS - may need selectively running
           # - LABEL: test-download-remote
           #   BROWSER_NAME: "firefox"
