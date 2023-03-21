@@ -242,9 +242,9 @@ envcat==0.1.1 \
     --hash=sha256:3659c6bad8f47cd3c2691d754a5659c1953480c066718c8a1d87367b03f11bc8 \
     --hash=sha256:6831806d205b7b1c8456bba5d9cd7ced90f52cf2fc8cfbe234d48d3fdb91111d
     # via -r requirements/prod.in
-everett==3.1.0 \
-    --hash=sha256:46175da5bcb06c193aa129e59714bca981344ff067c3a8bc2e625bc0b3dc01f6 \
-    --hash=sha256:db13891b849e45e54faea93ee79881d12458c5378f5b9b7f806eeff03ce1de3c
+everett==3.2.0 \
+    --hash=sha256:80517946d9746734ff8e6bda56d629f0092083389730c72157745f8d5d43d196 \
+    --hash=sha256:cdca5fc8815f402df650444eb1a2fa24c05ef524ff3ebbae3310d17edb11ea6a
     # via -r requirements/prod.in
 fluent-runtime==0.4.0 \
     --hash=sha256:51fd02582c2363e1106d7051642967a1b7f406dd9c317bd4600a73ede40c5146 \
