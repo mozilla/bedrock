@@ -26,6 +26,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     StubAttribution.COOKIE_CODE_ID = 'moz-stub-attribution-code';
     StubAttribution.COOKIE_SIGNATURE_ID = 'moz-stub-attribution-sig';
+    StubAttribution.DLSOURCE = 'mozorg';
 
     /**
      * Experiment name and variation globals. These values can be set directly by a
@@ -409,7 +410,8 @@ if (typeof window.Mozilla === 'undefined') {
             experiment: experiment,
             variation: variation,
             client_id: clientID,
-            session_id: clientID ? StubAttribution.createSessionID() : null
+            session_id: clientID ? StubAttribution.createSessionID() : null,
+            dlsource: StubAttribution.DLSOURCE
         };
         /* eslint-enable camelcase */
 
