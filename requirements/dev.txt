@@ -196,9 +196,9 @@ commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
     # via -r requirements/prod.txt
-compare-locales==9.0.0 \
-    --hash=sha256:6e3fa9879ff6ec895f50554b32dd93b2d5e1883291d2e1e89eedb4725c40d351 \
-    --hash=sha256:a7e8e77fbc9801b9826393430c46b1eef12b4b3dbabdd9aad0566bd4272ae279
+compare-locales==9.0.1 \
+    --hash=sha256:2de0f1d382749fffa6a482d462daff0d70bbc99d48520a0bf8459b22dc7fe9da \
+    --hash=sha256:eda953796841cbfab508ee35f7613a38ae7fbeed48bd26bf5cda9063bd638f06
     # via
     #   -r requirements/dev.in
     #   cl-ext-lang
