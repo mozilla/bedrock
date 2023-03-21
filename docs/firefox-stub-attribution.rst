@@ -43,6 +43,7 @@ The full list of data values we pass to stub attribution is as follows:
 - ``variation`` (``?variation=`` query parameter)
 - ``client_id`` (``clientId`` client ID from Google Analytics (GA))
 - ``session_id`` (random 10 digit string identifier used to associate Telemetry data with GA session).
+- ``dlsource=mozorg`` (used to distinguish mozorg downloads from archive downloads)
 
 .. Note::
 

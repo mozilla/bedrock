@@ -60,6 +60,7 @@ STUB_VALUE_NAMES = [
     ("ua", "(not set)"),
     ("client_id", "(not set)"),
     ("session_id", "(not set)"),
+    ("dlsource", "(not set)"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
 

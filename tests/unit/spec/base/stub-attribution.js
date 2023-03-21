@@ -14,6 +14,7 @@
 describe('stub-attribution.js', function () {
     const GA_CLIENT_ID = '1456954538.1610960957';
     const STUB_SESSION_ID = '1234567890';
+    const DLSOURCE = 'mozorg';
 
     beforeEach(function () {
         window.Mozilla.dntEnabled = sinon.stub();
@@ -564,7 +565,8 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: jasmine.any(String)
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -595,7 +597,8 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: jasmine.any(String)
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -609,7 +612,7 @@ describe('stub-attribution.js', function () {
             expect(result).toEqual(data);
         });
 
-        it('should return only UA and GA data if neither utm params and referrer are present', function () {
+        it('should return only generic data if neither utm params and referrer are present', function () {
             const referrer = '';
 
             /* eslint-disable camelcase */
@@ -626,7 +629,8 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: jasmine.any(String)
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -659,7 +663,8 @@ describe('stub-attribution.js', function () {
                 experiment: 'firefox-new',
                 variation: 1,
                 client_id: GA_CLIENT_ID,
-                session_id: jasmine.any(String)
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
