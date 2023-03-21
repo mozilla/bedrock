@@ -34,9 +34,9 @@ basket-client==1.0.0 \
     --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c \
     --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1
     # via -r requirements/prod.in
-beautifulsoup4==4.11.2 \
-    --hash=sha256:0e79446b10b3ecb499c1556f7e228a53e64a2bfcebd455f370d8927cb5b59e39 \
-    --hash=sha256:bc4bdda6717de5a2987436fb8d72f45dc90dd856bdfd512a1314ce90349a0106
+beautifulsoup4==4.12.0 \
+    --hash=sha256:2130a5ad7f513200fae61a17abb5e338ca980fa28c439c0571014bc0217e9591 \
+    --hash=sha256:c5fceeaec29d09c84970e47c65f2f0efe57872f7cff494c9691a26ec0ff13234
     # via -r requirements/prod.in
 bleach[css]==6.0.0 \
     --hash=sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414 \
