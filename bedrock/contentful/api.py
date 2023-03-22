@@ -616,16 +616,16 @@ class ContentfulAPIWrapper:
         # so we convert the hex to a theme name and set the colors in CSS
         # (note: we are purposefully overriding the "theme" set in get_info_data)
         COLOR_MAP = {
-            "#ffb4db": "light-pink",
-            "#abf2ff": "light-blue",
-            "#3ee0af": "light-green",
-            "#ab71ff": "light-purple",
-            "#ffd567": "light-yellow",
-            "#ff8ac4": "pink",
-            "#01b3f4": "blue",
-            "#005e5e": "green",
-            "#321c64": "purple",
-            "#ffbd4f": "yellow",
+            "#ff99cc": "light-pink",
+            "#99ffff": "light-blue",
+            "#33cc99": "light-green",
+            "#9966ff": "light-purple",
+            "#ffcc66": "light-yellow",
+            "#ff6699": "pink",
+            "#3399cc": "blue",
+            "#006666": "green",
+            "#000033": "purple",
+            "#ff9933": "yellow",
         }
 
         # required
