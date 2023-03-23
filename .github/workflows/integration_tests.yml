@@ -1,0 +1,91 @@
+# Workflows that run integration tests on live sites
+
+name: Integration tests
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: The branch of mozilla/bedrock we're testing against - main|stage|prod|run-integration-tests
+        required: true
+      git_sha:
+        description: The git SHA just deployed to the service we want to test
+        required: true
+      mozorg_service_hostname:
+        description: The hostname of the Mozorg service to test - eg the dev hostname
+        required: true
+      pocket_service_hostname:
+        description: The hostname of the Mozorg service to test - eg the dev hostname
+        required: true
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        include:
+          - LABEL: test-ie-saucelabs
+            BROWSER_NAME: internet explorer
+            DRIVER: SauceLabs
+            MARK_EXPRESSION: "smoke or sanity"
+            PLATFORM: Windows 10
+            PYTEST_PROCESSES: "8"
+          - LABEL: test-firefox-remote
+            BROWSER_NAME: firefox
+            MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
+            DRIVER: Remote
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-headless
+            DRIVER: ""
+            MARK_EXPRESSION: headless
+          - LABEL: test-chrome-remote
+            BROWSER_NAME: chrome
+            DRIVER: Remote
+            MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
+            PYTEST_PROCESSES: "auto"
+          # TEMPORARILY DISABLE DOWNLOAD TESTS - may need selectively running
+          # - LABEL: test-download-remote
+          #   BROWSER_NAME: "firefox"
+          #   DRIVER: Remote
+          #   MARK_EXPRESSION: download
+          #   PYTEST_PROCESSES: "auto"
+
+    env:
+      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
+      BASE_POCKET_URL: ${{ github.event.inputs.pocket_service_hostname }}
+      BROWSER_NAME: ${{matrix.BROWSER_NAME}}
+      CI_JOB_ID: ${{github.run_id}}
+      DRIVER: ${{matrix.DRIVER}}
+      LABEL: ${{matrix.LABEL}}
+      MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
+      PLATFORM: ${{matrix.PLATFORM}}
+      PYTEST_PROCESSES: ${{matrix.PYTEST_PROCESSES}}
+      SAUCELABS_API_KEY: ${{secrets.SAUCELABS_API_KEY}}
+      SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
+
+    steps:
+      - name: Fetch codebase
+        uses: actions/checkout@v3
+      - name: Sets specific env vars IF we're on testing against dev/main only
+        run: |
+          echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
+        if: ${{ github.event.inputs.branch == 'main'}}
+
+      # - name: "Build fresh bedrock_test image"
+      #   run: |
+      #     cp docker/envfiles/test.env .env
+      #     docker-compose build --pull app
+      #     docker tag mozmeao/bedrock_test:latest bedrock_integration_tests:latest
+
+      - name: Run functional integration tests
+        run: ./bin/integration_tests/functional_tests.sh
+        env:
+          TEST_IMAGE: mozmeao/bedrock_test:${{ github.event.inputs.git_sha }}
+
+      - name: Cleanup after functional integration tests
+        run: ./bin/integration_tests/cleanup_after_functional_tests.sh
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: results-${{github.run_id}}-${{matrix.label}}
