@@ -6,8 +6,7 @@ select = [
     # "A", # flake8-builtin errors.
     # TODO: Enable bugbear and fix errors.
     # "B", # bugbear errors
-    # TODO: Enable flake8-django and fix errors.
-    # "DJ", # flake8-django errors.
+    "DJ", # flake8-django errors.
     "E", # pycodestyle errors
     "F", # pyflakes errors
     # TODO: Currently ruff doesn't have the ability to sort Django imports together.

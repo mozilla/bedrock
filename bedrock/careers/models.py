@@ -34,12 +34,12 @@ class Position(models.Model):
     def __str__(self):
         return f"{self.job_id}@{self.source}"
 
+    def get_absolute_url(self):
+        return reverse("careers.position", kwargs={"source": self.source, "job_id": self.job_id})
+
     @property
     def location_list(self):
         return sorted(self.location.split(","))
-
-    def get_absolute_url(self):
-        return reverse("careers.position", kwargs={"source": self.source, "job_id": self.job_id})
 
     @classmethod
     def position_types(cls):
