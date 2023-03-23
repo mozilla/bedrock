@@ -5,7 +5,7 @@
 import logging.config
 import sys
 
-from .base import *  # noqa
+from .base import *  # noqa: F403, F405
 
 # This file:
 # 1. Handles setting specific settings based on the site Bedrock is serving - currently Mozorg or Pocket

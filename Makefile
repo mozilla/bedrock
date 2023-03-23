@@ -19,7 +19,7 @@ help:
 	@echo "  fresh-data                 - pull the latest database and update all external data"
 	@echo "  clean                      - remove all build, test, coverage and Python artifacts"
 	@echo "  rebuild                    - force a rebuild of all of the docker images"
-	@echo "  lint                       - check style with Flake8, ESlint, Stylelint, and Prettier"
+	@echo "  lint                       - check style with Ruff, ESlint, Stylelint, and Prettier"
 	@echo "  format                     - format front-end code using Stylelint and Prettier"
 	@echo "  test                       - run tests against local files"
 	@echo "  test-image                 - run tests against files in docker image"
@@ -109,7 +109,7 @@ clean:
 	git clean -d -f
 
 lint: .docker-build-pull
-	${DC} run test flake8
+	${DC} run test ruff
 	${DC} run assets npm run lint
 
 format: .docker-build-pull
