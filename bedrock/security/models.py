@@ -26,6 +26,18 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # do not use self.name_tuple because don't want ".0" on versions.
+        product, vers = self.name_and_version
+        self.product = product
+        self.product_slug = slugify(product)
+        self.slug = f"{self.product_slug}-{vers}"
+        super().save(force_insert, force_update, using, update_fields)
+
+    def get_absolute_url(self):
+        product, vers = self.name_and_version
+        return reverse("security.product-version-advisories", kwargs={"product": product, "version": vers})
+
     @property
     def name_and_version(self):
         return self.name.rsplit(None, 1)
@@ -48,18 +60,6 @@ class Product(models.Model):
 
     def __lt__(self, other):
         return self.name_tuple < other.name_tuple
-
-    def get_absolute_url(self):
-        product, vers = self.name_and_version
-        return reverse("security.product-version-advisories", kwargs={"product": product, "version": vers})
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # do not use self.name_tuple because don't want ".0" on versions.
-        product, vers = self.name_and_version
-        self.product = product
-        self.product_slug = slugify(product)
-        self.slug = f"{self.product_slug}-{vers}"
-        super().save(force_insert, force_update, using, update_fields)
 
 
 class SecurityAdvisory(models.Model):
@@ -116,6 +116,9 @@ class HallOfFamer(models.Model):
 
     class Meta:
         ordering = ("-date", "id")
+
+    def __str__(self):
+        return f"{self.program}/{self.name}"
 
     @property
     def year_quarter(self):

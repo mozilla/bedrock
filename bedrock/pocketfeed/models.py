@@ -87,7 +87,7 @@ class PocketArticle(models.Model):
     url = models.URLField()
     domain = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    image_src = models.URLField(null=True)  # points to Pocket's image CDN
+    image_src = models.URLField(null=True)  # points to Pocket's image CDN  # noqa: DJ001
     time_shared = models.DateTimeField()
     created_date = models.DateTimeField(auto_now_add=True)
 
