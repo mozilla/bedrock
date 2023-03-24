@@ -490,6 +490,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx111-eu-translate.de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx111-eu-translate.fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx112-eu-translate.html": ["firefox/whatsnew/whatsnew-112-translate", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -581,8 +584,17 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("112."):
-            if settings.DEV and locale in ["es-ES", "it", "pt-PT"]:
+            if locale in ["es-ES", "it", "pt-PT"] and ftl_file_is_active("firefox/whatsnew/whatsnew-112-translate"):
                 template = "firefox/whatsnew/whatsnew-fx112-eu-translate.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html"
+            elif locale.startswith("en-"):
+                if country == "GB" or locale == "en-GB":
+                    template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("111."):

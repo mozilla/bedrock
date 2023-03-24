@@ -1,0 +1,52 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_112_eu_privacy') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content">
+      <div class="wnp-main-wrapper">
+        <h1 class="wnp-main-title">
+          <span class="part1">Privatsphäre</span>
+          <span class="part2">für alle</span>
+        </h1>
+
+        <p class="wnp-main-tagline">Du musst nicht in verschachtelten Einstellungen danach suchen – Privatsphäre ist unser Standard.</p>
+
+        <p class="wnp-cta-default">
+          <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Set Firefox as default" data-cta-type="button">
+            Firefox als Standardbrowser festlegen
+          </a>
+        </p>
+
+        <p class="wnp-cta-protections">
+          <button type="button" class="mzp-c-button mzp-t-product">
+            Sieh dir deinen Schutz an
+          </button>
+        </p>
+
+        <p class="wnp-sign-off">
+          <strong>Powered by Mozilla.</strong> Für dich und das Web. Schon seit 1998.
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_112_eu_privacy') }}
+{% endblock %}
