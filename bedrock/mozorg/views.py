@@ -232,7 +232,7 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
         return cache_page(cache_timeout)(super().as_view(**initkwargs))
 
 
-MIECO_EMAIL_SUBJECT = "MIECO Interest Form"
+MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
 MIECO_EMAIL_SENDER = "Mozilla.com <noreply@mozilla.com>"
 MIECO_EMAIL_TO = {
     "mieco": ["mieco@mozilla.com"],
@@ -275,10 +275,12 @@ def mieco_email_form(request):
     if not form.is_valid():
         return {"error": 400, "message": "Invalid form data"}, 400, CORS_HEADERS
 
-    email_to = MIECO_EMAIL_TO[form.cleaned_data.pop("message_id") or "mieco"]
+    message_id = form.cleaned_data.pop("message_id") or "mieco"
+    email_to = MIECO_EMAIL_TO[message_id]
     email_msg = render_to_string("mozorg/emails/mieco-email.txt", {"data": form.cleaned_data}, request=request)
+    email_sub = MIECO_EMAIL_SUBJECT[message_id]
 
-    email = EmailMessage(MIECO_EMAIL_SUBJECT, email_msg, MIECO_EMAIL_SENDER, email_to)
+    email = EmailMessage(email_sub, email_msg, MIECO_EMAIL_SENDER, email_to)
 
     try:
         email.send()
