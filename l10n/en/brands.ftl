@@ -69,9 +69,10 @@
 -brand-name-firefox-devtools = Firefox DevTools
 -brand-name-firefox-lockwise = Firefox Lockwise
 -brand-name-firefox-monitor = Firefox Monitor
--brand-name-firefox-sync = Firefox Sync
--brand-name-firefox-relay = Firefox Relay
 -brand-name-firefox-private-network = Firefox Private Network
+-brand-name-firefox-relay = Firefox Relay
+-brand-name-firefox-sync = Firefox Sync
+-brand-name-firefox-translations = Firefox Translations
 
 ## Firefox products (short names)
 
