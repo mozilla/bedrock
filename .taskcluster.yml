@@ -7,7 +7,7 @@
 version: 1
 reporting: checks-v1
 policy:
-    pullRequests: collaborators_quiet
+    pullRequests: public
 tasks:
     - $let:
           trustDomain: "bedrock"
