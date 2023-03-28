@@ -211,6 +211,40 @@ These pre-configured content pieces can go in rich text editors when allowed (pi
 Embeds are things like logos, where we want tightly coupled style and content that will be consistent across entries.
 If a logo design changes, we only need to update it in one place, and all uses of that embed will be updated.
 
+Adding a new 📄 Page
+~~~~~~~~~~~~~~~~~~~~
+* Create the content model
+
+    * Ensure the content model name starts with page (i.e. pageProductJournalismStory)
+
+    * Add an SEO reference field which requires the **SEO Metadata** content type
+
+    * In Compose, go to Page Types and click “Manage Page Types” to make your new content model available to the Compose editor.
+
+        * If you have referenced components, you can choose whether they will be displayed as expanded by default.
+
+        * Select “SEO” field for “Page Settings” field
+
+    * If the page is meant to be localised, ensure all fields that need localisation have the “Enable localization of this field” checkbox checked in content model field settings
+
+* Update ``bedrock/contentful/constants``
+
+    * Add content type constant
+
+    * Add constant to default array
+
+    * If page is for a single locale only, add to SINGLE_LOCALE_CONTENT_TYPES
+
+    * If page is localised, add to LOCALISATION_COMPLETENESS_CHECK_CONFIG with an array of localised fields that need to be checked before the page’s translation can be considered complete
+
+* Update ``bedrock/contentful/api.py``
+
+    * If you’re adding new embeddable content types, expand list of renderer helpers configured for the RichTextRenderer in the ``ContentfulAPIWrapper``
+
+    * Update ``ContentfulAPIWrapper.get_content()`` to have a clause to handle the new page type
+
+* Create a `custom view </coding.html#writing-views>`_ to pass the Contentful data to a template
+
 Adding a new ✏️ Component
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
