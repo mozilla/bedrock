@@ -996,10 +996,20 @@
         "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
+        "css/products/vpn/components/pricing-plus-relay.scss",
         "css/products/vpn/common.scss",
         "css/products/vpn/landing.scss"
       ],
       "name": "mozilla-vpn-landing"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/affiliate.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/components/pricing-basic.scss",
+        "css/products/vpn/common.scss"
+      ],
+      "name": "mozilla-vpn-pricing"
     },
     {
       "files": [

@@ -1,0 +1,315 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Pricing Blocks
+
+.vpn-variable-pricing-block {
+    text-align: center;
+    margin-top: 0;
+
+    .vpn-content-block-container {
+        background-color: $color-white;
+    }
+
+    .vpn-pricing-variable-heading {
+        @include text-title-md;
+        margin-bottom: $spacing-xl;
+    }
+
+    .vpn-pricing-variable-sub-heading {
+        @include text-title-xs;
+        margin: $spacing-xl auto $spacing-2xl;
+    }
+}
+
+.vpn-pricing-variable-plans {
+    .vpn-content-block {
+        align-items: start;
+
+        &.t-highlight {
+            .vpn-pricing-variable-plan-tag + .vpn-pricing-variable-grid-container {
+                margin-top: 56px + $spacing-sm;
+            }
+        }
+    }
+
+    .vpn-content-block-container {
+        padding: $spacing-lg;
+        position: relative;
+    }
+
+    .vpn-content-block-heading {
+        @include text-title-sm;
+        display: inline-block;
+        margin-bottom: $spacing-md;
+
+        &.t-product-logo {
+            position: relative;
+            @include bidi(((padding-left, 33px + $spacing-sm, padding-right, 0),));
+
+            &::before {
+                @include background-size(33px, 33px);
+                @include bidi(((left, 0, right, auto),));
+                background-image: url('/media/protocol/img/logos/mozilla/vpn/logo.svg');
+                background-position: top left;
+                background-repeat: no-repeat;
+                content: '';
+                display: inline-block;
+                height: 33px;
+                position: absolute;
+                top: 0;
+                width: 33px;
+            }
+        }
+    }
+
+    .vpn-pricing-variable-features {
+        margin-top: $spacing-lg;
+    }
+
+    .vpn-content-block-sub-heading {
+        @include text-title-md;
+        margin-top: $spacing-2xl;
+
+        .vpn-monthly-price-display span {
+            @include text-title-2xs;
+            display: inline;
+        }
+    }
+
+    .vpn-pricing-variable-plan-tag {
+        @include border-box;
+        background: $color-vpn-brand-purple;
+        color: $color-white;
+        font-weight: bold;
+        left: 0;
+        margin-bottom: 0;
+        padding: $spacing-md;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        html[lang^='en'] & {
+            text-transform: uppercase;
+        }
+    }
+
+    .vpn-pricing-variable-cost-detail {
+        margin: $spacing-md 0 0;
+    }
+
+    .vpn-pricing-variable-saving {
+        @include text-title-2xs;
+        color: $color-vpn-brand-purple;
+        font-weight: bold;
+        margin-bottom: $spacing-sm;
+    }
+
+    .vpn-pricing-variable-total {
+        @include text-body-md;
+        margin-bottom: 0;
+    }
+
+    .vpn-pricing-variable-button .mzp-c-button {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-md} {
+        .vpn-content-block {
+            &.t-highlight {
+                margin-top: 56px;
+                border-top-left-radius: 0;
+
+                .vpn-content-block-container {
+                    padding-top: $spacing-lg;
+                }
+
+                .vpn-pricing-variable-plan-tag + .vpn-pricing-variable-grid-container {
+                    margin-top: 0;
+                }
+            }
+
+            &::after {
+                left: $spacing-lg;
+                top: $spacing-lg;
+            }
+        }
+
+        .vpn-content-block-heading {
+            &.t-product-logo::before {
+                top: 6px;
+            }
+        }
+
+        .vpn-pricing-variable-plan-tag {
+            @include bidi(((left, -4px, right, auto),));
+            border-top-left-radius: $border-radius-sm;
+            border-top-right-radius: $border-radius-sm;
+            height: 56px;
+            min-width: 230px;
+            top: -56px;
+            width: auto;
+        }
+
+        @supports (display: grid) {
+            .vpn-pricing-variable-header {
+                @include bidi(((text-align, left, right),));
+                grid-area: heading;
+            }
+
+            .vpn-content-block-heading {
+                margin: 0;
+            }
+
+            .vpn-pricing-variable-monthly-price {
+                @include bidi(((text-align, left, right),));
+                align-items: flex-end;
+                display: flex;
+                grid-area: subheading;
+                justify-content: flex-start;
+            }
+
+            .vpn-content-block-sub-heading {
+                margin: 0;
+            }
+
+            .vpn-pricing-variable-cost-detail {
+                grid-area: detail;
+            }
+
+            .vpn-pricing-variable-cost-detail-container {
+                @include bidi((
+                    (text-align, right, left),
+                    (border-right, 8px solid $color-vpn-brand-purple, border-left, none),
+                    (padding-right, $spacing-md, padding-left, 0),
+                ));
+
+                .vpn-pricing-variable-saving {
+                    margin: 0 0 $spacing-sm 0;
+                }
+            }
+
+            .vpn-pricing-variable-button {
+                @include bidi(((text-align, right, left),));
+                align-items: flex-end;
+                display: flex;
+                grid-area: button;
+                justify-content: flex-end;
+            }
+
+            .vpn-pricing-variable-grid-container {
+                @include grid-gap($spacing-lg);
+                display: grid;
+                grid-template-areas:
+                    'heading detail'
+                    'subheading button';
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, auto);
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .vpn-content-block {
+            &::after {
+                left: $spacing-md;
+                top: $spacing-md;
+            }
+        }
+
+        @supports (display: grid) {
+            .vpn-pricing-variable-grid-container {
+                @include grid-column-gap($spacing-lg);
+                @include grid-row-gap($spacing-xl);
+            }
+        }
+    }
+
+    @media #{$mq-xl} {
+        .vpn-content-block {
+            &::after {
+                left: $spacing-lg;
+                top: $spacing-lg;
+            }
+        }
+
+        @supports (display: grid) {
+            .vpn-pricing-variable-grid-container {
+                @include grid-column-gap($spacing-xl);
+                @include grid-row-gap($spacing-2xl);
+            }
+        }
+
+        .vpn-content-block-sub-heading .vpn-monthly-price-display span {
+            display: inline;
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Add-on bundle promo block (Firefox Relay)
+
+.vpn-content-block.t-highlight .vpn-content-block-container.vpn-pricing-add-on-bundle {
+    background-color: $color-vpn-brand-purple;
+    color: $color-white;
+
+    .vpn-content-block-heading,
+    .vpn-content-block-sub-heading,
+    .vpn-pricing-variable-saving {
+        color: $color-white;
+    }
+
+    .vpn-feature-list li {
+        background-image: url('/media/img/products/vpn/common/check-pink.svg');
+    }
+
+    .vpn-content-block-heading {
+        &.mzp-t-dark {
+            background: inherit;
+        }
+
+        .mzp-c-wordmark {
+            display: block;
+            height: 48px;
+            margin: 0;
+            width: 220px;
+        }
+    }
+
+    .vpn-pricing-variable-saving {
+        @include text-body-lg;
+        font-weight: normal;
+
+        span {
+            @include text-title-2xs;
+            display: block;
+            font-weight: bold;
+        }
+    }
+
+    @media #{$mq-md} {
+        .vpn-pricing-variable-cost-detail-container {
+            border-color: $color-vpn-brand-pink;
+        }
+
+        .vpn-content-block-heading .mzp-c-wordmark {
+            margin-top: $spacing-md;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .vpn-content-block-heading .mzp-c-wordmark {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -6px;
+        }
+    }
+}

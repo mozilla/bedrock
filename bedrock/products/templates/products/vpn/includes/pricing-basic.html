@@ -1,0 +1,106 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_content_block with context %}
+
+<div class="vpn-variable-pricing-block">
+  {% if ftl_has_messages('vpn-shared-one-subscription-heading', 'vpn-shared-choose-a-plan-sub-heading') %}
+    <h2 class="vpn-pricing-variable-heading">{{ ftl('vpn-shared-one-subscription-heading') }}</h2>
+    <h3 class="vpn-pricing-variable-sub-heading">{{ ftl('vpn-shared-choose-a-plan-sub-heading') }}</h3>
+  {% else %}
+    <h2 class="vpn-pricing-variable-heading">{{ ftl('vpn-shared-pricing-variable-heading-v2') }}</h2>
+  {% endif %}
+
+  <div class="vpn-pricing-variable-plans">
+    {% call vpn_content_block(
+      class_name='vpn-pricing-12-months t-highlight',
+      use_custom_body=True
+    ) %}
+      <div class="vpn-content-block-container">
+        <p class="vpn-pricing-variable-plan-tag">{{ ftl('vpn-shared-pricing-recommended-offer') }}</p>
+
+        <div class="vpn-pricing-variable-grid-container">
+          <div class="vpn-pricing-variable-header">
+            <h2 class="vpn-content-block-heading t-product-logo">
+              {{ ftl('vpn-shared-pricing-plan-12-month-v2', fallback='vpn-shared-pricing-plan-12-month') }}
+            </h2>
+          </div>
+
+          <div class="vpn-pricing-variable-monthly-price">
+            <h3 class="vpn-content-block-sub-heading">
+              {{ vpn_monthly_price(plan='12-month', country_code=country_code, lang=LANG) }}
+            </h3>
+          </div>
+
+          <div class="vpn-pricing-variable-button">
+            {{ vpn_subscribe_link(
+              entrypoint=_utm_source,
+              link_text=ftl('vpn-shared-pricing-get-12-month-v2', fallback='vpn-shared-pricing-get-12-month'),
+              plan='12-month',
+              class_name='mzp-c-button mzp-t-xl',
+              country_code=country_code,
+              lang=LANG,
+              optional_parameters={
+                'utm_campaign': _utm_campaign
+              },
+              optional_attributes={
+                'data-cta-type': 'fxa-vpn',
+                'data-cta-text': 'Get Mozilla VPN 12-month',
+                'data-cta-position': 'pricing'
+              })
+            }}
+          </div>
+
+          <div class="vpn-pricing-variable-cost-detail">
+            <div class="vpn-pricing-variable-cost-detail-container">
+              <p class="vpn-pricing-variable-saving">{{ vpn_saving(country_code=country_code, lang=LANG) }}</p>
+              <p class="vpn-pricing-variable-total">{{ vpn_total_price(country_code=country_code, lang=LANG) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endcall %}
+
+    {% call vpn_content_block(
+     class_name='vpn-pricing-monthly'
+     ) %}
+      <div class="vpn-pricing-variable-grid-container">
+        <div class="vpn-pricing-variable-header">
+          <h2 class="vpn-content-block-heading t-product-logo">
+            {{ ftl('vpn-shared-pricing-plan-monthly-v2', fallback='vpn-shared-pricing-plan-monthly') }}
+          </h2>
+        </div>
+
+        <div class="vpn-pricing-variable-monthly-price">
+          <h3 class="vpn-content-block-sub-heading">
+            {{ vpn_monthly_price(plan='monthly', country_code=country_code, lang=LANG) }}
+          </h3>
+        </div>
+
+        <div class="vpn-pricing-variable-button">
+          {{ vpn_subscribe_link(
+            entrypoint=_utm_source,
+            link_text=ftl('vpn-shared-pricing-get-monthly'),
+            plan='monthly',
+            class_name='mzp-c-button mzp-t-xl',
+            country_code=country_code,
+            lang=LANG,
+            optional_parameters={
+              'utm_campaign': _utm_campaign
+            },
+            optional_attributes={
+              'data-cta-type': 'fxa-vpn',
+              'data-cta-text': 'Get Mozilla VPN monthly',
+              'data-cta-position': 'pricing'
+            })
+          }}
+        </div>
+
+      </div>
+
+    {% endcall %}
+  </div>
+</div>
