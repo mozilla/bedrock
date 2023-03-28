@@ -21,27 +21,28 @@
 
 {% block content %}
   <div class="add-page">
-    <section class="add-header">
-      {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-l-split-reversed mzp-l-split-body-narrow',
-        media_class='mzp-l-split-h-center',
-        image=resp_img(
-          url='img/pocket/add-pocket-header.jpg',
-          optional_attributes={
-            'class': 'mzp-c-split-media-asset'
-          }
-        )
-      )%}
-        <h2>{{ ftl('pocket-add-save-to-pocket') }}</h2>
-        <p>{{ ftl('pocket-add-click-the-pocket-button') }}</p>
-        <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button">{{ ftl('pocket-add-learn-how') }}</a>
-        <p>
-          <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow">
-            {{ ftl('pocket-add-dont-see-the-pocket') }}
-          </a>
-        </p>
-      {% endcall %}
-    </section>
+  <section class="add-header mzp-c-split mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-l-split-reversed mzp-l-split-body-narrow">
+    <h2>{{ ftl('pocket-add-save-to-pocket') }}</h2>
+    <div class="mzp-c-split-container">
+        <div class="mzp-c-split-body ">
+          <p>{{ ftl('pocket-add-click-the-pocket-button') }}</p>
+          <a href="https://help.getpocket.com/article/900-saving-to-pocket-and-viewing-your-list-in-firefox" class="mzp-c-button">{{ ftl('pocket-add-learn-how') }}</a>
+          <p>
+            <a href="https://help.getpocket.com/article/942-where-is-the-pocket-button-in-firefox" class="dark-inline-link rarrow">
+              {{ ftl('pocket-add-dont-see-the-pocket') }}
+            </a>
+          </p>
+        </div>
+        <div class="mzp-c-split-media ">
+          {{ resp_img(
+            url='img/pocket/add-pocket-header.jpg',
+            optional_attributes={
+              'class': 'mzp-c-split-media-asset'
+            }
+          ) }}
+        </div>
+    </div>
+  </section> <!-- .add-header -->
 
     <section class="add-device">
       <h2>{{ ftl('pocket-add-view-from-any') }}</h2>
