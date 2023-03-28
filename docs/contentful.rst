@@ -589,15 +589,15 @@ Troubleshooting
 
 If you run into trouble on an issue, be sure to check in these places first and include the relevant information in requests for help (i.e. environment).
 
-1. Contentful Content Model & Entries
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Contentful Content Model & Entries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * What environment are you using?
 * Do you have the necessary permissions to make changes?
 * Do you see all the entry fields you need? Do those fields have the correct value options?
 
-2. `Bedrock API (api.py) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Bedrock API (api.py) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * What environment are you using?
 * Can you find a Python function definition for the content type you need?
@@ -619,7 +619,7 @@ If you run into trouble on an issue, be sure to check in these places first and 
         # run `print(data)` here to verify data values from Bedrock API
         return data
 
-3. `Bedrock Render (all.html) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html>`_
+`Bedrock Render (all.html) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Can you find a render condition for the component you need?
@@ -642,6 +642,39 @@ If you run into trouble on an issue, be sure to check in these places first and 
 .. note::
 
     Component CSS and JS are defined in a ``CONTENT_TYPE_MAP`` from the Bedrock API (``api.py``).
+
+Bedrock Database
+^^^^^^^^^^^^^^^^
+
+Once content is synced into your local database, it can be found in the contentful_contentfulentry table. All the dependencies to explore the data are installed by default for local development.
+
+Using sqlite (with an example query to get some info about en-US pages):
+
+.. code-block:: bash
+
+    ./manage.py dbshell
+
+.. code-block:: sqlite
+
+    select id, slug, data from contentful_contentfulentry where locale='en-US';
+
+Close the sqlite shell with ``.exit``
+
+Using Django shell (with an example query to get data from first entry of "pageProductJournalismStory" type):
+
+.. code-block:: bash
+
+    ./manage.py shell
+
+.. code-block:: python
+
+    from bedrock.contentful.models import ContentfulEntry
+
+    product_stories = ContentfulEntry.objects.filter(content_type="pageProductJournalismStory", localisation_complete=True, locale="en-US")
+
+    product_stories[0].data  # to see the data stored for the first story in the results
+
+Close the Djanjo shell with ``exit()`` or ``CTRL+D``
 
 Useful Contentful Docs
 ----------------------
