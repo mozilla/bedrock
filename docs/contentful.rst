@@ -57,32 +57,44 @@ CSS files to support the components.
 
 Once rendered the pages get cached on the :abbr:`CDN (Content Delivery Network)` as usual.
 
+Contentful Apps
+---------------
+
+Installed on Environment level. Make sure you are in the environment you want to edit before accessing an app.
+Use *Apps* link in top navigation of Contentful Web App to find an environment's installed apps.
+
 Compose
--------
+~~~~~~~
 
-Compose is a `Contentful-supported app <https://www.contentful.com/developers/docs/compose/what-is-compose/>`_ that
-provides a nicer editing experience. It creates a streamlined view of pages by combining multiple entries
-into a single edit screen and allowing `field groups <https://www.contentful.com/help/field-groups/>`_ for better organization.
-
-To use Compose, find the *Apps* link in the top navigation of Contentful and click *Explore more apps*.
-Make sure you are in the environment you want to edit. This will take you to the environment's installed apps.
-Click *Open Compose*.
-
-.. note::
-
-    Mozilla is currently using Legacy Compose, which requires a specific page content model called ``Compose: Page``.
-    We are in the process of `updating to use the new Compose model <https://github.com/mozilla/bedrock/issues/11810>`_,
-    which can work with any page type.
+`Compose <https://www.contentful.com/marketplace/contentful-app/compose/>`_ provides a nicer editing experience.
+It creates a streamlined view of pages by combining multiple entries into a single edit screen and allowing field
+groups for better organization.
 
 Any changes made to Compose page entries in a specific environment are limited to that
 environment. If you are in a sandbox environment, you should see an ``/environments/sandbox-name`` path at the end
 of your Compose URL.
 
-If you want to reduce the number of fields visible when a Compose page is loaded, go to the content model of the entry that controls
-those fields. Click the *Groups* tab. You will see an automatic ``Default`` group. Add a field group and move the desired
-fields into it. When you next open Compose, you will only see the fields remaining in the ``Default`` group. There will also
-be a new tab containing the fields from your new field group.
+Known Limitations
+^^^^^^^^^^^^^^^^^
+* Comments are not available on Compose entries
+* It is not possible to edit embedded entries in Rich Text fields in Compose app. Selecting the "edit" option in the dropdown opens the entry in the Contentful web app.
 
+Merge
+~~~~~
+
+`Merge <https://www.contentful.com/marketplace/app/merge/>`_ provides a UI for comparing the state of Content Models across two environments. You can select what changes you would like to migrate to a new environment.
+
+Known Limitations
+^^^^^^^^^^^^^^^^^
+* Does not migrate Help Text (under Appearance Tab)
+* Does not migrate any apps used with those Content Models
+* Does not migrate Content Entries or Assets
+* It can identify when Content Models should be available in Compose, but it cannot migrate the field groups
+
+Others
+~~~~~~
+* `Launch <https://www.contentful.com/marketplace/contentful-app/launch/>`_ allows creation of "releases", which can help coordinate publishing of multiple entries
+* `Workflows <https://www.contentful.com/help/workflows-overview/>`_ standardizes process for a specific Content Model. You can specify steps and permissions to regulate how content moves from draft to published.
 
 Content Models
 --------------
