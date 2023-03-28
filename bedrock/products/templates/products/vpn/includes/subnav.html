@@ -27,7 +27,8 @@
             </li>
           {% endif %}
           <li class="c-sub-navigation-item">
-            <a href="#faq" data-link-type="nav" data-link-position="subnav" data-link-name="FAQs">
+            {% set faq_link = '#faq' if request.path == '/products/vpn/' else url('products.vpn.landing') + '#faq' %}
+            <a href="{{ faq_link }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQs">
               {{ ftl('vpn-subnav-faqs') }}
             </a>
           </li>

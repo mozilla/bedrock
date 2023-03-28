@@ -1,0 +1,164 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Pricing Blocks
+
+main {
+    .mzp-c-wordmark.mzp-t-product-vpn {
+        margin: 0 auto;
+        background-position: center;
+    }
+}
+
+.vpn-variable-pricing-block {
+    text-align: center;
+    margin-top: 0;
+
+    .vpn-content-block-container {
+        background-color: $color-white;
+    }
+
+    .vpn-pricing-variable-heading {
+        @include text-title-md;
+        margin: $spacing-2xl 0 $layout-lg;
+    }
+
+    .vpn-pricing-variable-sub-heading {
+        @include text-title-sm;
+        margin: -$layout-sm 0 $layout-lg;
+    }
+
+    @media #{$mq-lg} {
+        .vpn-pricing-variable-sub-heading {
+            margin-bottom: $layout-xl;
+        }
+    }
+}
+
+.vpn-pricing-variable-plans {
+    .vpn-content-block {
+        align-items: start;
+
+        &.t-highlight {
+            .vpn-pricing-variable-plan-tag + .vpn-pricing-variable-grid-container {
+                margin-top: 56px + $spacing-sm;
+            }
+        }
+    }
+
+    .vpn-content-block-container {
+        padding: $spacing-lg;
+        position: relative;
+    }
+
+    .vpn-content-block-heading {
+        @include text-title-sm;
+        display: inline-block;
+        margin-bottom: $spacing-md;
+
+        &.t-product-logo {
+            position: relative;
+            @include bidi(((padding-left, 33px + $spacing-sm, padding-right, 0),));
+
+            &::before {
+                @include background-size(33px, 33px);
+                @include bidi(((left, 0, right, auto),));
+                background-image: url('/media/protocol/img/logos/mozilla/vpn/logo.svg');
+                background-position: top left;
+                background-repeat: no-repeat;
+                content: '';
+                display: inline-block;
+                height: 33px;
+                position: absolute;
+                top: 0;
+                width: 33px;
+            }
+        }
+    }
+
+    .vpn-pricing-variable-features {
+        margin-top: $spacing-lg;
+    }
+
+    .vpn-content-block-sub-heading {
+        @include text-title-md;
+        margin-top: $spacing-xl;
+
+        .vpn-monthly-price-display span {
+            @include text-title-2xs;
+            display: inline;
+        }
+    }
+
+    .vpn-pricing-variable-plan-tag {
+        @include border-box;
+        background: $color-vpn-brand-purple;
+        color: $color-white;
+        font-weight: bold;
+        left: 0;
+        margin-bottom: 0;
+        padding: $spacing-md;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        html[lang^='en'] & {
+            text-transform: uppercase;
+        }
+    }
+
+    .vpn-pricing-variable-cost-detail {
+        margin: $spacing-2xl 0 0;
+    }
+
+    .vpn-pricing-variable-saving {
+        @include text-title-2xs;
+        color: $color-vpn-brand-purple;
+        font-weight: bold;
+        margin-bottom: $spacing-sm;
+    }
+
+    .vpn-pricing-variable-total {
+        @include text-body-md;
+        margin-bottom: 0;
+    }
+
+    .vpn-pricing-variable-button .mzp-c-button {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        @supports (display: grid) {
+            @include grid-column-gap($spacing-2xl);
+            display: grid;
+            grid-template-areas: 'annual monthly';
+            grid-template-columns: repeat(2, 1fr);
+
+            .vpn-pricing-variable-grid-container {
+                margin-top: 56px + $spacing-sm;
+            }
+
+            .vpn-content-block-container {
+                height: 100%;
+            }
+
+            .vpn-pricing-12-months {
+                grid-area: annual;
+            }
+
+            .vpn-pricing-monthly {
+                grid-area: monthly;
+            }
+        }
+    }
+}

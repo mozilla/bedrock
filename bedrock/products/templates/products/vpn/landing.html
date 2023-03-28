@@ -116,7 +116,7 @@
       {% call vpn_content_media(
         heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
         image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
-        class_name='vpn-content-media-left-half vpn-more-countries-coming-soon hide-from-legacy-ie'
+        class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
       ) %}
 
         <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
@@ -151,9 +151,9 @@
     {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
     <div id="pricing" class="mzp-is-anchor-link">
       {% if vpn_available %}
-        {% include 'products/vpn/includes/pricing-variable.html' %}
+        {% include 'products/vpn/includes/pricing-plus-relay.html' %}
       {% else %}
-        <div class="vpn-waitlist-feature-block hide-from-legacy-ie">
+        <div class="vpn-waitlist-feature-block">
           {% call vpn_content_block(
             class_name='vpn-content-block-price t-highlight'
           ) %}
