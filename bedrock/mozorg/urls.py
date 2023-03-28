@@ -146,6 +146,8 @@ urlpatterns = (
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     page("santalocator/", "mozorg/santa-locator.html"),
+    # Builders AI Challenge - Terms and Conditions
+    page("about/legal/terms/builders-challenge", "mozorg/about/legal/builders-challenge.html"),
 )
 
 if settings.DEV:

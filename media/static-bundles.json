@@ -299,6 +299,12 @@
     },
     {
       "files": [
+        "css/legal/builders-challenge.scss"
+      ],
+      "name": "builders-challenge"
+    },
+    {
+      "files": [
         "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"

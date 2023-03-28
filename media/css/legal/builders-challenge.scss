@@ -1,0 +1,42 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.builders-challenge-terms {
+    ol > li::before {
+        font-weight: bold;
+    }
+
+    .nested-lists {
+        .nested-counter-list {
+            counter-reset: count;
+
+            li {
+                counter-increment: count 1;
+
+                &::before {
+                    content: counter(count, decimal) '. ';
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .deep-nested-counter-list {
+            counter-reset: count 3;
+
+            li {
+                counter-increment: count 1;
+
+                &::before {
+                    content: counter(count, decimal) '. ';
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
