@@ -385,6 +385,7 @@ Notes:
     * The Smartling integration is currently only set to use Mozilla.org's 10 most popular locales, in addition to en-US.
     * No localisation of Contentful content happens via Pontoon.
     * The Smartling setup is most effectively leveraged with Compose-based pages rather than Connect-based components, and the latter may require some code tweaks.
+    * Our Compose: SEO field in Contentful is configured for translation (and in use on the VPN Resource Center). All Compose pages require this field. If a Compose page type is *not* meant to be localised, we need to stop these SEO-related fields from going on to Smartling.
 
 
 Fluent
