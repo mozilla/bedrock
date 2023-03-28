@@ -146,6 +146,9 @@ Body (Body Width, Body Vertical Alignment, Body Horizontal Alignment)
     Rich text field in a Component. Do not use this for multi reference fields, even if the only content on the page is other content entries.
     Do not use MarkDown for body fields, we can’t restrict the markup. Copy configuration and validation from an existing page.
 
+Rich Text Content
+    Rich text field in a Compose Page
+
 :abbr:`CTA (Call To Action)`
     The button/link/dropdown that we want a user to interact with following some content. Most often appearing in Split and Callout components.
 
@@ -328,6 +331,10 @@ to `<strong>` tags or as complex as inserting a component.
 
 A list of our custom renderers is passed to the `RichTextRenderer` helper at the start of
 the `ContentfulPage` class in api.py. The renderers themselves are also defined in api.py
+
+.. note::
+
+  * Built-in nodes cannot be extended or customized: *Custom node types and marks are not allowed*. Embed entry types are required to extend rich text functionality. (i.e. if you need more than one style of blockquote)
 
 L10N
 ----
