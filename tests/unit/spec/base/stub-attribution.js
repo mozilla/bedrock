@@ -1125,8 +1125,8 @@ describe('stub-attribution.js', function () {
         it('should return a 10 digit randomly generated number as a string', function () {
             const result = Mozilla.StubAttribution.createSessionID();
 
-            expect(result.length).toEqual(10);
             expect(typeof result).toEqual('string');
+            expect(/^\d{10}$/.test(result)).toBeTruthy();
         });
     });
 });
