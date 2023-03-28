@@ -8,18 +8,18 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .builders-challenge-terms {
-    ol > li::before {
+    ol > li::marker {
         font-weight: bold;
     }
 
     .nested-lists {
-        .nested-counter-list {
-            counter-reset: count;
+        counter-reset: count;
 
+        .nested-counter-list {
             li {
                 counter-increment: count 1;
 
-                &::before {
+                &::marker {
                     content: counter(count, decimal) '. ';
                     font-weight: 500;
                 }
@@ -27,12 +27,10 @@ $image-path: '/media/protocol/img';
         }
 
         .deep-nested-counter-list {
-            counter-reset: count 3;
-
             li {
                 counter-increment: count 1;
 
-                &::before {
+                &::marker {
                     content: counter(count, decimal) '. ';
                     font-weight: 500;
                 }
