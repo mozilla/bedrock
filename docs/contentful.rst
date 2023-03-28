@@ -327,14 +327,11 @@ page - either the page is definitely available in a locale, or it's not at all
 available in that locale.
 
 Notes:
-* The batching of jobs in Smartling is still manual, even though the data flow
-is automated. We need to keep an eye on how onerous this is, plus what the cost
-exposure could be like if we fully automate it.
-* The Smartling integration is currently only set to use Mozilla.org's
-10 most popular locales, in addition to en-US.
-* No localisation of Contentful content happens via Pontoon.
-* The Smartling setup is most effectively leveraged with Compose-based pages
-rather than Connect-based components, and the latter may require some code tweaks.
+
+    * The batching of jobs in Smartling is still manual, even though the data flow is automated. We need to keep an eye on how onerous this is, plus what the cost exposure could be like if we fully automate it.
+    * The Smartling integration is currently only set to use Mozilla.org's 10 most popular locales, in addition to en-US.
+    * No localisation of Contentful content happens via Pontoon.
+    * The Smartling setup is most effectively leveraged with Compose-based pages rather than Connect-based components, and the latter may require some code tweaks.
 
 
 Fluent
