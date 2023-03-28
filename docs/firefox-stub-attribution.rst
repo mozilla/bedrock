@@ -41,8 +41,8 @@ The full list of data values we pass to stub attribution is as follows:
 - ``ua`` (simplified browser name parsed from UA string, e.g. ``chrome``, ``safari``, ``firefox``).
 - ``experiment`` (``?experiment=`` query parameter)
 - ``variation`` (``?variation=`` query parameter)
-- ``client_id`` (``clientId`` client ID from Google Analytics)
-- ``session_id`` (``_gt`` session ID from Google Analytics)
+- ``client_id`` (``clientId`` client ID from Google Analytics (GA))
+- ``session_id`` (random 10 digit string identifier used to associate Telemetry data with GA session).
 
 .. Note::
 
