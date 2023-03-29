@@ -2,38 +2,33 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 .builders-challenge-terms {
     ol > li::marker {
         font-weight: bold;
     }
+}
 
-    .nested-lists {
-        counter-reset: count;
+.nested-lists {
+    counter-reset: count;
 
-        .nested-counter-list {
-            li {
-                counter-increment: count 1;
+    .nested-counter-list {
+        li {
+            counter-increment: count 1;
 
-                &::marker {
-                    content: counter(count, decimal) '. ';
-                    font-weight: 500;
-                }
+            &::marker {
+                content: counter(count, decimal) '. ';
+                font-weight: 500;
             }
         }
+    }
 
-        .deep-nested-counter-list {
-            li {
-                counter-increment: count 1;
+    .deep-nested-counter-list {
+        li {
+            counter-increment: count 1;
 
-                &::marker {
-                    content: counter(count, decimal) '. ';
-                    font-weight: 500;
-                }
+            &::marker {
+                content: counter(count, decimal) '. ';
+                font-weight: 500;
             }
         }
     }
