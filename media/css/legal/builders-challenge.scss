@@ -16,7 +16,7 @@
             counter-increment: count 1;
 
             &::marker {
-                content: counter(count, decimal) '. ';
+                content: counter(count, lower-alpha) '. ';
                 font-weight: 500;
             }
         }
@@ -27,7 +27,7 @@
             counter-increment: count 1;
 
             &::marker {
-                content: counter(count, decimal) '. ';
+                content: counter(count, lower-alpha) '. ';
                 font-weight: 500;
             }
         }
