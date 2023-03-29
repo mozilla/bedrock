@@ -4,33 +4,15 @@
 
 from django.urls import path
 
-from bedrock.mozorg.util import page
 from bedrock.products import views
+from bedrock.redirects.util import redirect
 
 urlpatterns = (
     path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
     path("vpn/pricing/", views.vpn_pricing_page, name="products.vpn.pricing"),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
     # Pages that do not use allowed_countries or default_monthly_price contexts
-    page("vpn/desktop/", "products/vpn/platforms/desktop.html", ftl_files=["products/vpn/platforms/desktop", "products/vpn/shared"]),
-    page("vpn/desktop/linux/", "products/vpn/platforms/linux.html", ftl_files=["products/vpn/platforms/linux", "products/vpn/shared"]),
-    page("vpn/desktop/mac/", "products/vpn/platforms/mac.html", ftl_files=["products/vpn/platforms/mac", "products/vpn/shared"]),
-    page("vpn/desktop/windows/", "products/vpn/platforms/windows.html", ftl_files=["products/vpn/platforms/windows", "products/vpn/shared"]),
     path("vpn/download/", views.vpn_download_page, name="products.vpn.download"),
-    page("vpn/mobile/", "products/vpn/platforms/mobile.html", ftl_files=["products/vpn/platforms/mobile", "products/vpn/shared"]),
-    page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios", "products/vpn/shared"]),
-    page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android", "products/vpn/shared"]),
-    # Evergreen SEO articles (issue #10224)
-    page("vpn/more/what-is-an-ip-address/", "products/vpn/more/ip-address.html", ftl_files=["products/vpn/more/ip-address", "products/vpn/shared"]),
-    page("vpn/more/vpn-or-proxy/", "products/vpn/more/vpn-or-proxy.html", ftl_files=["products/vpn/more/vpn-or-proxy", "products/vpn/shared"]),
-    page("vpn/more/what-is-a-vpn/", "products/vpn/more/what-is-a-vpn.html", ftl_files=["products/vpn/more/what-is-a-vpn", "products/vpn/shared"]),
-    page(
-        "vpn/more/when-to-use-a-vpn/", "products/vpn/more/when-to-use.html", ftl_files=["products/vpn/more/when-to-use-a-vpn", "products/vpn/shared"]
-    ),
-    # VPN pages for Product team (issue #10388)
-    page("vpn/more/why-mozilla-vpn/", "products/vpn/more/why-mozilla-vpn.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
-    page("vpn/more/do-i-need-a-vpn/", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
-    page("vpn/more/what-is-a-vpn-v2/", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",
@@ -42,4 +24,19 @@ urlpatterns = (
         views.resource_center_article_view,
         name="products.vpn.resource-center.article",
     ),
+    # Issue #12937 - updating VPN subnav
+    redirect(r"^vpn/desktop/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/desktop/linux/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/desktop/mac/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/desktop/windows/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/mobile/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/mobile/android/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/mobile/ios/$", "products.vpn.download", permanent=True),
+    redirect(r"^vpn/more/what-is-an-ip-address/$", "/products/vpn/resource-center/what-is-an-ip-address/", permanent=True),
+    redirect(r"^vpn/more/what-is-a-vpn$", "/products/vpn/resource-center/what-is-a-vpn/", permanent=True),
+    redirect(r"^vpn/more/vpn-or-proxy/$", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/", permanent=True),
+    redirect(r"^vpn/more/when-to-use-a-vpn/$", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/", permanent=True),
+    redirect(r"^vpn/more/why-mozilla-vpn/$", "products.vpn.landing", permanent=True),
+    redirect(r"^vpn/more/do-i-need-a-vpn/$", "/products/vpn/resource-center/do-you-need-a-vpn-at-home-here-are-5-reasons-you-might/", permanent=True),
+    redirect(r"^vpn/more/what-is-a-vpn-v2/$", "/products/vpn/resource-center/what-is-a-vpn/", permanent=True),
 )
