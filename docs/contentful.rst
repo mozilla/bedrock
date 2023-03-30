@@ -57,32 +57,44 @@ CSS files to support the components.
 
 Once rendered the pages get cached on the :abbr:`CDN (Content Delivery Network)` as usual.
 
+Contentful Apps
+---------------
+
+Installed on Environment level. Make sure you are in the environment you want to edit before accessing an app.
+Use *Apps* link in top navigation of Contentful Web App to find an environment's installed apps.
+
 Compose
--------
+~~~~~~~
 
-Compose is a `Contentful-supported app <https://www.contentful.com/developers/docs/compose/what-is-compose/>`_ that
-provides a nicer editing experience. It creates a streamlined view of pages by combining multiple entries
-into a single edit screen and allowing `field groups <https://www.contentful.com/help/field-groups/>`_ for better organization.
-
-To use Compose, find the *Apps* link in the top navigation of Contentful and click *Explore more apps*.
-Make sure you are in the environment you want to edit. This will take you to the environment's installed apps.
-Click *Open Compose*.
-
-.. note::
-
-    Mozilla is currently using Legacy Compose, which requires a specific page content model called ``Compose: Page``.
-    We are in the process of `updating to use the new Compose model <https://github.com/mozilla/bedrock/issues/11810>`_,
-    which can work with any page type.
+`Compose <https://www.contentful.com/marketplace/contentful-app/compose/>`_ provides a nicer editing experience.
+It creates a streamlined view of pages by combining multiple entries into a single edit screen and allowing field
+groups for better organization.
 
 Any changes made to Compose page entries in a specific environment are limited to that
 environment. If you are in a sandbox environment, you should see an ``/environments/sandbox-name`` path at the end
 of your Compose URL.
 
-If you want to reduce the number of fields visible when a Compose page is loaded, go to the content model of the entry that controls
-those fields. Click the *Groups* tab. You will see an automatic ``Default`` group. Add a field group and move the desired
-fields into it. When you next open Compose, you will only see the fields remaining in the ``Default`` group. There will also
-be a new tab containing the fields from your new field group.
+Known Limitations
+^^^^^^^^^^^^^^^^^
+* Comments are not available on Compose entries
+* It is not possible to edit embedded entries in Rich Text fields in Compose app. Selecting the "edit" option in the dropdown opens the entry in the Contentful web app.
 
+Merge
+~~~~~
+
+`Merge <https://www.contentful.com/marketplace/app/merge/>`_ provides a UI for comparing the state of Content Models across two environments. You can select what changes you would like to migrate to a new environment.
+
+Known Limitations
+^^^^^^^^^^^^^^^^^
+* Does not migrate Help Text (under Appearance Tab)
+* Does not migrate any apps used with those Content Models
+* Does not migrate Content Entries or Assets
+* It can identify when Content Models should be available in Compose, but it cannot migrate the field groups
+
+Others
+~~~~~~
+* `Launch <https://www.contentful.com/marketplace/contentful-app/launch/>`_ allows creation of "releases", which can help coordinate publishing of multiple entries
+* `Workflows <https://www.contentful.com/help/workflows-overview/>`_ standardizes process for a specific Content Model. You can specify steps and permissions to regulate how content moves from draft to published.
 
 Content Models
 --------------
@@ -133,6 +145,9 @@ Theme
 Body (Body Width, Body Vertical Alignment, Body Horizontal Alignment)
     Rich text field in a Component. Do not use this for multi reference fields, even if the only content on the page is other content entries.
     Do not use MarkDown for body fields, we can’t restrict the markup. Copy configuration and validation from an existing page.
+
+Rich Text Content
+    Rich text field in a Compose Page
 
 :abbr:`CTA (Call To Action)`
     The button/link/dropdown that we want a user to interact with following some content. Most often appearing in Split and Callout components.
@@ -198,6 +213,40 @@ These pre-configured content pieces can go in rich text editors when allowed (pi
 
 Embeds are things like logos, where we want tightly coupled style and content that will be consistent across entries.
 If a logo design changes, we only need to update it in one place, and all uses of that embed will be updated.
+
+Adding a new 📄 Page
+~~~~~~~~~~~~~~~~~~~~
+* Create the content model
+
+    * Ensure the content model name starts with page (i.e. pageProductJournalismStory)
+
+    * Add an SEO reference field which requires the **SEO Metadata** content type
+
+    * In Compose, go to Page Types and click “Manage Page Types” to make your new content model available to the Compose editor.
+
+        * If you have referenced components, you can choose whether they will be displayed as expanded by default.
+
+        * Select “SEO” field for “Page Settings” field
+
+    * If the page is meant to be localised, ensure all fields that need localisation have the “Enable localization of this field” checkbox checked in content model field settings
+
+* Update ``bedrock/contentful/constants``
+
+    * Add content type constant
+
+    * Add constant to default array
+
+    * If page is for a single locale only, add to SINGLE_LOCALE_CONTENT_TYPES
+
+    * If page is localised, add to LOCALISATION_COMPLETENESS_CHECK_CONFIG with an array of localised fields that need to be checked before the page’s translation can be considered complete
+
+* Update ``bedrock/contentful/api.py``
+
+    * If you’re adding new embeddable content types, expand list of renderer helpers configured for the RichTextRenderer in the ``ContentfulAPIWrapper``
+
+    * Update ``ContentfulAPIWrapper.get_content()`` to have a clause to handle the new page type
+
+* Create a `custom view </coding.html#writing-views>`_ to pass the Contentful data to a template
 
 Adding a new ✏️ Component
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -283,6 +332,10 @@ to `<strong>` tags or as complex as inserting a component.
 A list of our custom renderers is passed to the `RichTextRenderer` helper at the start of
 the `ContentfulPage` class in api.py. The renderers themselves are also defined in api.py
 
+.. note::
+
+  * Built-in nodes cannot be extended or customized: *Custom node types and marks are not allowed*. Embed entry types are required to extend rich text functionality. (i.e. if you need more than one style of blockquote)
+
 L10N
 ----
 
@@ -327,14 +380,12 @@ page - either the page is definitely available in a locale, or it's not at all
 available in that locale.
 
 Notes:
-* The batching of jobs in Smartling is still manual, even though the data flow
-is automated. We need to keep an eye on how onerous this is, plus what the cost
-exposure could be like if we fully automate it.
-* The Smartling integration is currently only set to use Mozilla.org's
-10 most popular locales, in addition to en-US.
-* No localisation of Contentful content happens via Pontoon.
-* The Smartling setup is most effectively leveraged with Compose-based pages
-rather than Connect-based components, and the latter may require some code tweaks.
+
+    * The batching of jobs in Smartling is still manual, even though the data flow is automated. We need to keep an eye on how onerous this is, plus what the cost exposure could be like if we fully automate it.
+    * The Smartling integration is currently only set to use Mozilla.org's 10 most popular locales, in addition to en-US.
+    * No localisation of Contentful content happens via Pontoon.
+    * The Smartling setup is most effectively leveraged with Compose-based pages rather than Connect-based components, and the latter may require some code tweaks.
+    * Our Compose: SEO field in Contentful is configured for translation (and in use on the VPN Resource Center). All Compose pages require this field. If a Compose page type is *not* meant to be localised, we need to stop these SEO-related fields from going on to Smartling.
 
 
 Fluent
@@ -538,15 +589,15 @@ Troubleshooting
 
 If you run into trouble on an issue, be sure to check in these places first and include the relevant information in requests for help (i.e. environment).
 
-1. Contentful Content Model & Entries
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Contentful Content Model & Entries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * What environment are you using?
 * Do you have the necessary permissions to make changes?
 * Do you see all the entry fields you need? Do those fields have the correct value options?
 
-2. `Bedrock API (api.py) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Bedrock API (api.py) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * What environment are you using?
 * Can you find a Python function definition for the content type you need?
@@ -568,7 +619,7 @@ If you run into trouble on an issue, be sure to check in these places first and 
         # run `print(data)` here to verify data values from Bedrock API
         return data
 
-3. `Bedrock Render (all.html) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html>`_
+`Bedrock Render (all.html) <https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Can you find a render condition for the component you need?
@@ -591,6 +642,39 @@ If you run into trouble on an issue, be sure to check in these places first and 
 .. note::
 
     Component CSS and JS are defined in a ``CONTENT_TYPE_MAP`` from the Bedrock API (``api.py``).
+
+Bedrock Database
+^^^^^^^^^^^^^^^^
+
+Once content is synced into your local database, it can be found in the contentful_contentfulentry table. All the dependencies to explore the data are installed by default for local development.
+
+Using sqlite (with an example query to get some info about en-US pages):
+
+.. code-block:: bash
+
+    ./manage.py dbshell
+
+.. code-block:: sqlite
+
+    select id, slug, data from contentful_contentfulentry where locale='en-US';
+
+Close the sqlite shell with ``.exit``
+
+Using Django shell (with an example query to get data from first entry of "pageProductJournalismStory" type):
+
+.. code-block:: bash
+
+    ./manage.py shell
+
+.. code-block:: python
+
+    from bedrock.contentful.models import ContentfulEntry
+
+    product_stories = ContentfulEntry.objects.filter(content_type="pageProductJournalismStory", localisation_complete=True, locale="en-US")
+
+    product_stories[0].data  # to see the data stored for the first story in the results
+
+Close the Djanjo shell with ``exit()`` or ``CTRL+D``
 
 Useful Contentful Docs
 ----------------------
