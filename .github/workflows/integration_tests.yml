@@ -19,7 +19,6 @@ on:
 jobs:
   integration-tests:
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
         include:
@@ -62,29 +61,31 @@ jobs:
       SAUCELABS_API_KEY: ${{secrets.SAUCELABS_API_KEY}}
       SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
 
+    # Note we use if: always() below to keep things going, rather than
+    # continue-on-error, because that approach falsely marks the overall
+    # test suite as green/passed even if it has some failures.
+
     steps:
       - name: Fetch codebase
+        if: always()
         uses: actions/checkout@v3
       - name: Sets specific env vars IF we're on testing against dev/main only
+        if: ${{ github.event.inputs.branch == 'main'}}
         run: |
           echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
-        if: ${{ github.event.inputs.branch == 'main'}}
-
-      # - name: "Build fresh bedrock_test image"
-      #   run: |
-      #     cp docker/envfiles/test.env .env
-      #     docker-compose build --pull app
-      #     docker tag mozmeao/bedrock_test:latest bedrock_integration_tests:latest
 
       - name: Run functional integration tests
+        if: always()
         run: ./bin/integration_tests/functional_tests.sh
         env:
           TEST_IMAGE: mozmeao/bedrock_test:${{ github.event.inputs.git_sha }}
 
       - name: Cleanup after functional integration tests
+        if: always()
         run: ./bin/integration_tests/cleanup_after_functional_tests.sh
 
       - name: Store artifacts
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: test-results
