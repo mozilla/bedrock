@@ -20,7 +20,9 @@
 
     h2 {
         color: $color-text-dark-grey;
-        margin-bottom: $spacing100;
+        margin: 0 auto;
+        max-width: 62.5rem;
+        padding: $spacing100;
         font-size: $size150;
         text-align: center;
 
@@ -58,13 +60,11 @@
 // Device section
 .add-device {
     margin: 0 auto;
-    max-width: 62.5em;
+    max-width: 62.5rem;
     padding: $spacing100;
     width: 100%;
 
     @media #{$mq-md} {
-        width: 70%;
-
         .device-context {
             flex-direction: row;
         }
@@ -136,7 +136,6 @@
     @media #{$mq-md} {
         .save-context {
             flex-direction: row;
-            align-items: center;
         }
 
         .save-email {
@@ -151,7 +150,7 @@
 
 .add-save-wrapper {
     margin: 0 auto;
-    max-width: 62.5em;
+    max-width: 62.5rem;
     padding: $spacing100;
     width: 100%;
 }
@@ -213,44 +212,54 @@
     display: flex;
     flex-direction: column;
 
+    h3 + p {
+        margin-top: 0;
+    }
+
     @media #{$mq-md} {
         width: 45%;
     }
 }
 
 .app-types {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
+    ul {
+        padding-left: 0;
+    }
+
+    @media #{$mq-md} {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        gap: $layout-sm;
+    }
 }
+
+$icon-size: 64px;
+$icon-gap: 1rem;
 
 .app-board {
     display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-    width: 60%;
+    gap: $icon-gap;
+
+    @media #{$mq-md} {
+        flex-wrap: wrap;
+        padding: 0;
+        max-width: calc((#{$icon-size} * 2) + #{$icon-gap});
+    }
 }
 
 .app-icon {
-    height: $layout-lg;
-    margin: $spacing-sm;
-    width: $layout-lg;
-
     img {
-        height: 100%;
-        width: 100%;
-        display: block;
+        width: $icon-size;
+        height: $icon-size;
     }
 }
 
 .social-apps {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
     padding: 0;
-    margin-left: $spacing-lg;
 
     li {
         margin: $spacing-sm;

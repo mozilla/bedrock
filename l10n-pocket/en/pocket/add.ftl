@@ -38,8 +38,8 @@ pocket-add-subject = Subject
 pocket-add-cooking-tips = Cooking Tips
 pocket-add-learn-more = Learn more
 
-# The + denotes more than, alt: "Integreated in more than 1500 Apps"
-pocket-add-integrated-in = Integreated in 1500+ Apps
+# The + denotes more than, alt: "Integrated in more than 1500 Apps"
+pocket-add-integrated-in = Integrated in 1500+ Apps
 pocket-add-save-to-pocket-using = Save to { -brand-name-pocket } using your favorite apps, such as:
 pocket-add-twitter = { -brand-name-twitter }
 pocket-add-flipboard = { -brand-name-flipboard }
