@@ -24,7 +24,6 @@ urlpatterns = (
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
     page("websites/convert-opt-out/", "privacy/convert-opt-out.html"),
-    path("facebook/", views.facebook_notices, name="privacy.notices.facebook"),
     path("firefox-monitor/", views.firefox_monitor_notices, name="privacy.notices.firefox-monitor"),
     path("firefox-private-network/", views.firefox_private_network, name="privacy.notices.firefox-private-network"),
     path("mdn-plus/", views.mdn_plus, name="privacy.notices.mdn-plus"),
@@ -58,4 +57,5 @@ urlpatterns = (
     page("archive/firefox-os/2022-05/", "privacy/archive/firefox-os-2022-05.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/firefox-relay/2022-10/", "privacy/archive/firefox-relay-2022-10.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
     page("archive/mozilla-vpn/2022-10/", "privacy/archive/mozilla-vpn-2022-10.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
+    page("archive/facebook/2023-04/", "privacy/archive/facebook-2023-04.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
 )
