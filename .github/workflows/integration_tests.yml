@@ -1,6 +1,7 @@
 # Workflows that run integration tests on live sites
 
 name: Integration tests
+run-name: Integration tests for ${{ inputs.branch }}
 on:
   workflow_dispatch:
     inputs:
