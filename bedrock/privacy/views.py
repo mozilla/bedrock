@@ -6,7 +6,6 @@ import re
 from django.views.decorators.cache import cache_page
 
 from bs4 import BeautifulSoup
-from commonware.response.decorators import xframe_allow
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 from lib import l10n_utils
@@ -67,9 +66,6 @@ hubs_notices = PrivacyDocView.as_view(template_name="privacy/notices/hubs.html",
 thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thunderbird.html", legal_doc_name="thunderbird_privacy_policy")
 
 websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/websites.html", legal_doc_name="websites_privacy_notice")
-
-facebook_notices = PrivacyDocView.as_view(template_name="privacy/notices/facebook.html", legal_doc_name="facebook_privacy_info")
-facebook_notices = xframe_allow(facebook_notices)
 
 firefox_monitor_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-monitor.html", legal_doc_name="firefox_monitor_terms_privacy")
 

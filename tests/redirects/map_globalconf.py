@@ -1215,5 +1215,7 @@ URLS = flatten(
         url_test("/exp/firefox/new/", "/firefox/new/"),
         url_test("/exp/firefox/accounts/", "/firefox/accounts/"),
         url_test("/exp/opt-out/", "/privacy/websites/convert-opt-out/"),
+        # issue 12935
+        url_test("/privacy/facebook/", "/privacy/archive/facebook/2023-04/"),
     )
 )
