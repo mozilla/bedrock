@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import picto with context %}
+{% from "macros-protocol.html" import picto, split with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -14,7 +14,8 @@
 {% block page_desc %}{{ ftl('vpn-download-page-description') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-picto') }}
+{{ css_bundle('protocol-picto') }}
+{{ css_bundle('protocol-split') }}
   {{ css_bundle('mozilla-vpn-download') }}
 {% endblock %}
 
@@ -43,11 +44,20 @@
       {% if block_download %}
         <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
       {% else %}
-        <p>{{ ftl('vpn-download-sub-heading', devices=connect_devices) }}</p>
+      {% call split(
+        media_class='mzp-l-split-h-center',
+        media_include='',
+        media_after=False
+        ) %}
+          <h1>{{ self.page_title_full() }}</h1>
+          <p>{{ ftl('vpn-download-sub-heading', devices=connect_devices) }}</p>
+      {% endcall %}
       {% endif %}
     </header>
 
     {% if not block_download %}
+
+
       <ul class="vpn-download-list">
         {% call picto(
           base_el='li',
