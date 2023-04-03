@@ -118,4 +118,12 @@ urlpatterns = (
         ),
         name="pocket.tos",
     ),
+    path(
+        "opensource_licenses_ios/",
+        LegalDocView.as_view(
+            template_name="pocket/license-ios.html",
+            legal_doc_name="pocket_license_ios",
+        ),
+        name="pocket.ios_license",
+    ),
 )
