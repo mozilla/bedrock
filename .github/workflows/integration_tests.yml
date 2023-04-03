@@ -90,3 +90,4 @@ jobs:
         with:
           name: test-results
           path: results-${{github.run_id}}-${{matrix.label}}
+          if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
