@@ -1,6 +1,7 @@
 # Workflows that run integration tests on live sites
 
 name: Integration tests
+run-name: Integration tests for ${{ inputs.branch }}
 on:
   workflow_dispatch:
     inputs:
@@ -90,3 +91,4 @@ jobs:
         with:
           name: test-results
           path: results-${{github.run_id}}-${{matrix.label}}
+          if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
