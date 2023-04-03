@@ -4,6 +4,7 @@
 
 from django.urls import path
 
+from bedrock.mozorg.util import page
 from bedrock.products import views
 from bedrock.redirects.util import redirect
 
@@ -12,7 +13,14 @@ urlpatterns = (
     path("vpn/pricing/", views.vpn_pricing_page, name="products.vpn.pricing"),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
     # Pages that do not use allowed_countries or default_monthly_price contexts
+    page("vpn/desktop/", "products/vpn/platforms/desktop.html", ftl_files=["products/vpn/platforms/desktop", "products/vpn/shared"]),
+    page("vpn/desktop/linux/", "products/vpn/platforms/linux.html", ftl_files=["products/vpn/platforms/linux", "products/vpn/shared"]),
+    page("vpn/desktop/mac/", "products/vpn/platforms/mac.html", ftl_files=["products/vpn/platforms/mac", "products/vpn/shared"]),
+    page("vpn/desktop/windows/", "products/vpn/platforms/windows.html", ftl_files=["products/vpn/platforms/windows", "products/vpn/shared"]),
     path("vpn/download/", views.vpn_download_page, name="products.vpn.download"),
+    page("vpn/mobile/", "products/vpn/platforms/mobile.html", ftl_files=["products/vpn/platforms/mobile", "products/vpn/shared"]),
+    page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios", "products/vpn/shared"]),
+    page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android", "products/vpn/shared"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",
@@ -25,13 +33,6 @@ urlpatterns = (
         name="products.vpn.resource-center.article",
     ),
     # Issue #12937 - updating VPN subnav
-    redirect(r"^vpn/desktop/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/desktop/linux/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/desktop/mac/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/desktop/windows/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/mobile/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/mobile/android/$", "products.vpn.download", permanent=True),
-    redirect(r"^vpn/mobile/ios/$", "products.vpn.download", permanent=True),
     redirect(r"^vpn/more/what-is-an-ip-address/$", "/products/vpn/resource-center/what-is-an-ip-address/", permanent=True),
     redirect(r"^vpn/more/what-is-a-vpn$", "/products/vpn/resource-center/what-is-a-vpn/", permanent=True),
     redirect(r"^vpn/more/vpn-or-proxy/$", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/", permanent=True),
