@@ -1265,6 +1265,12 @@
         "css/mozorg/rise25.scss"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "css/products/relay/landing.scss"
+      ],
+      "name": "relay-landing"
     }
   ],
   "js": [
