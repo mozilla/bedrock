@@ -450,6 +450,7 @@ NOINDEX_URLS = [
     r"^newsletter/opt-out-confirmation/",
     r"^newsletter/country/success/",
     r"^products/vpn/invite/waitlist/",
+    r"^products/relay/invite/waitlist/",
     r"/system-requirements/$",
     r".*/(firstrun|thanks)/$",
     r"^readiness/$",
