@@ -239,18 +239,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/includes/pocket-promo.scss"
-      ],
-      "name": "home-pocket-promo"
-    },
-    {
-      "files": [
-        "css/mozorg/home/ctd-promo-de.scss"
-      ],
-      "name": "ctd-promo"
-    },
-    {
-      "files": [
         "css/newsletter/newsletter-management.scss"
       ],
       "name": "newsletter-management"
@@ -514,18 +502,6 @@
         "css/firefox/whatsnew/whatsnew-115-eu-vpn.scss"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-115-eu-ctd.scss"
-      ],
-      "name": "firefox_whatsnew_115_eu_ctd"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-115-eu-mobile.scss"
-      ],
-      "name": "firefox_whatsnew_115_eu_mobile"
     },
     {
       "files": [
@@ -956,12 +932,6 @@
     },
     {
       "files": [
-        "css/firefox/welcome15.scss"
-      ],
-      "name": "firefox_welcome_page15"
-    },
-    {
-      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -1238,12 +1208,6 @@
     },
     {
       "files":[
-        "css/mozorg/advertising.scss"
-      ],
-      "name": "mozilla-ads"
-    },
-    {
-      "files":[
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
@@ -1289,18 +1253,6 @@
         "css/mozorg/rise25.scss"
       ],
       "name": "rise-25"
-    },
-    {
-      "files": [
-        "css/firefox/challenge-the-default/index.scss"
-      ],
-      "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "css/products/relay/landing.scss"
-      ],
-      "name": "relay-landing"
     }
   ],
   "js": [
@@ -1362,12 +1314,6 @@
         "js/firefox/welcome/welcome14.js"
       ],
       "name": "firefox_welcome_page14"
-    },
-    {
-      "files": [
-        "js/firefox/welcome/welcome15-experiment.es6.js"
-      ],
-      "name": "firefox_welcome_page15_experiment"
     },
     {
       "files": [
@@ -1617,7 +1563,7 @@
     {
       "files": [
         "js/firefox/all/all-downloads-unified.js",
-        "js/firefox/all/all-downloads-unified-init.es6.js"
+        "js/firefox/all/all-downloads-unified-init.js"
       ],
       "name": "firefox_all_unified"
     },
@@ -1698,30 +1644,6 @@
         "js/firefox/whatsnew/whatsnew-115-eu-vpn.js"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-115-experiment-eu-vpn.es6.js"
-      ],
-      "name": "firefox_whatsnew_115_experiment_eu_vpn"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-115-na-win7.js"
-      ],
-      "name": "firefox_whatsnew_115_na_win7"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-115-na-windows.scss"
-      ],
-      "name": "firefox_whatsnew_115_na_windows"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-115-na-addons.scss"
-      ],
-      "name": "firefox_whatsnew_115_na_addons"
     },
     {
       "files": [
@@ -2033,14 +1955,6 @@
         "js/mozorg/rise25.js"
       ],
       "name": "rise-25"
-    },
-    {
-      "files": [
-        "js/firefox/challenge-the-default/challenge-the-default.es6.js",
-        "js/firefox/challenge-the-default/animate-pop-in.es6.js",
-        "js/firefox/challenge-the-default/device-detect.es6.js"
-      ],
-      "name": "challenge-the-default"
     }
   ]
 }
