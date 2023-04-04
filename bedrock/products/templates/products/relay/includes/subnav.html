@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title is-summary">
+        <a href="{{ url('products.relay.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Relay">
+          {{ ftl('relay-shared-subnav-title') }}
+        </a>
+      </h2>
+      <ul class="c-sub-navigation-list is-details is-closed">
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('products.vpn.more.what-is-a-vpn') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What’s a VPN?">
+            {{ ftl('vpn-subnav-whats-a-vpn') }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
