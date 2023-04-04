@@ -1202,9 +1202,9 @@
     {
       "files": [
         "css/pocket/style.scss",
-        "css/pocket/components/privacy-tos.scss"
+        "css/pocket/components/legal-pages.scss"
       ],
-      "name": "pocket-privacy-tos"
+      "name": "pocket-legal-pages"
     },
     {
       "files": [
