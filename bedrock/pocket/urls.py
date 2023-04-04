@@ -102,6 +102,11 @@ urlpatterns = (
         url_name="pocket.save-to-pocket",
         ftl_files=["pocket/feature-pages", "pocket/banners/pocket-premium"],
     ),
+    page(
+        "opensource_licenses_ios/",
+        "pocket/license-ios.html",
+        url_name="pocket.opensource_licenses_ios",
+    ),
     path(
         "privacy/",
         LegalDocView.as_view(
@@ -117,13 +122,5 @@ urlpatterns = (
             legal_doc_name="pocket_tos",
         ),
         name="pocket.tos",
-    ),
-    path(
-        "opensource_licenses_ios/",
-        LegalDocView.as_view(
-            template_name="pocket/license-ios.html",
-            legal_doc_name="pocket_license_ios",
-        ),
-        name="pocket.ios_license",
     ),
 )
