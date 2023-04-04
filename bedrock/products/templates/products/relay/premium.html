@@ -1,0 +1,60 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/relay/base.html" %}
+{% from "macros-protocol.html" import split with context %}
+
+{% block page_title_full %}{{ ftl('relay-shared-subnav-premium') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_id %}{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-relay-product-page' %}
+{% set _utm_campaign = 'relay-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('relay-landing') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/relay/includes/subnav.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="t-hero">
+  {% call split(
+    block_class='mzp-l-split-pop mzp-l-split-hide-media-on-sm-md',
+    theme_class='',
+    media_class='',
+    media_include='products/relay/includes/phone-premium.html'
+  ) %}
+    <h1 class="mzp-u-title-md">{{ ftl('premium-promo-hero-headline') }}</h1>
+    <p>{{ ftl('premium-promo-hero-body-2-html', monthly_price='TKTK', fallback='premium-promo-hero-body-3') }}</p>
+    <p><button>{{ ftl('hero-section-cta') }}</button></p>
+    <p>{{ ftl('premium-promo-availability-warning-3') }}</p>
+  {% endcall %}
+
+  {% include 'products/relay/includes/bundle.html' %}
+</div>
+
+<section class="c-features-premium">
+  {% include 'products/relay/includes/features.html' %}
+</div>
+
+<section class="t-odd c-pricing">
+  <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
+  <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
+  <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body') }}</p>
+  <div class="mzp-l-content">
+    {% include 'products/relay/includes/matrix.html' %}
+  </div>
+</section>
+
+
+{% endblock %}

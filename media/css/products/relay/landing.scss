@@ -4,3 +4,175 @@
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+@import 'phone';
+@import 'bundle';
+@import 'reviews';
+@import 'matrix';
+
+.u-center {
+    text-align: center;
+}
+
+.u-hidden {
+    @include visually-hidden;
+}
+
+// * -------------------------------------------------------------------------- */
+// hero
+
+.t-hero {
+    background-color: $color-marketing-gray-10;
+
+    .mzp-l-split-pop {
+        @media #{$mq-md} {
+            padding-top: $layout-lg;
+        }
+        @media #{$mq-xl} {
+            padding-top: $layout-xl;
+        }
+    }
+}
+
+.c-brands {
+    border-bottom: 1px solid $color-marketing-gray-20;
+    border-top: 1px solid $color-marketing-gray-20;
+    margin-top: $spacing-lg;
+    padding: $spacing-lg 0;
+}
+
+// * -------------------------------------------------------------------------- */
+// how it works
+
+.c-works-item {
+    max-width: 400px;
+    margin: 0 auto;
+
+    @media #{$mq-lg} {
+        max-width: 100%;
+    }
+}
+
+.c-works-img {
+    display: block;
+    margin: 0 auto $spacing-xl auto;
+}
+
+// * -------------------------------------------------------------------------- */
+
+.t-odd {
+    background-color: $color-marketing-gray-10;
+}
+
+// * -------------------------------------------------------------------------- */
+// pricing
+
+.c-pricing {
+    padding-top: get-theme('v-grid-xs');
+
+    @media #{$mq-md} {
+        padding-top: get-theme('v-grid-md');
+    }
+
+    @media #{$mq-xl} {
+        padding-top: get-theme('v-grid-xl');
+    }
+
+    .mzp-l-content + & {
+        padding-top: 0;
+    }
+}
+
+.c-pricing-sub {
+    max-width: $content-lg;
+    margin: 0 auto $spacing-lg auto;
+    text-align: center;
+}
+
+.c-pricing-intro {
+    max-width: $content-md;
+    margin: 0 auto;
+    text-align: center;
+}
+
+// * -------------------------------------------------------------------------- */
+// features
+
+.c-features {
+    max-width: $content-xl;
+    margin: 0 auto;
+
+    .mzp-c-section-heading {
+        padding-top: 0;
+    }
+
+    .mzp-c-split {
+        @media #{$mq-lg} {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.c-features-premium {
+    padding: get-theme('v-grid-xs') get-theme('h-grid-xs');
+
+    @media #{$mq-md} {
+        padding: get-theme('v-grid-md') get-theme('h-grid-md');
+    }
+
+    @media #{$mq-xl} {
+        padding: get-theme('v-grid-xl') get-theme('h-grid-xl');
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// FAQs
+
+.c-landing-faq {
+    summary {
+        padding-top: $layout-sm;
+        padding-bottom: $layout-sm;
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    details {
+        border-bottom: 1px solid $color-marketing-gray-20;
+
+        &:first-child {
+            border-top: 1px solid $color-marketing-gray-20;
+        }
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: min-content 1fr;
+        grid-template-areas:
+            'head faq'
+            'link faq';
+        column-gap: $layout-md;
+
+        h2 {
+            grid-area: head;
+        }
+
+        p {
+            grid-area: link;
+        }
+
+        div {
+            grid-area: faq;
+        }
+    }
+}

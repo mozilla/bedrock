@@ -1,0 +1,58 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="c-features">
+
+  <h2 class="mzp-c-section-heading">{{ ftl('highlighted-features-section-title') }}</h2>
+    {% call split(
+      block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      media_class='mzp-l-split-h-end',
+      image='<img src="' + static('img/products/relay/landing/features/features-unlimited-email-masks.svg') + '" alt="" loading="lazy">'
+    ) %}
+      <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-unlimited-masks-headline') }}</h3>
+      <p>{{ ftl('highlighted-features-section-unlimited-masks-body', mask_limit=relay_free_addresses()) }}</p>
+    {% endcall %}
+
+
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      media_class='',
+      image='<img src="' + static('img/products/relay/landing/features/features-block-promotional-emails.svg') + '" alt="" loading="lazy">'
+    ) %}
+      <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-masks-on-the-go-headline') }}</h3>
+      <p>{{ ftl('highlighted-features-section-masks-on-the-go-body', mozmail=relay_mozmail()) }}</p>
+    {% endcall %}
+
+
+    {% call split(
+      block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      media_class='mzp-l-split-h-end',
+      image='<img src="' + static('img/products/relay/landing/features/features-reply-to-emails-anon.svg') + '" alt="" loading="lazy">'
+    ) %}
+      <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-replying-headline') }}</h3>
+      <p>{{ ftl('highlighted-features-section-replying-body') }}</p>
+    {% endcall %}
+
+
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      media_class='',
+      image='<img src="' + static('img/products/relay/landing/features/features-block-promotional-emails.svg') + '" alt="" loading="lazy">'
+    ) %}
+      <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-block-promotions-headline') }}</h3>
+      <p>{{ ftl('highlighted-features-section-block-promotions-body') }}</p>
+    {% endcall %}
+
+
+    {% call split(
+      block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      media_class='mzp-l-split-h-end',
+      image='<img src="' + static('img/products/relay/landing/features/features-remove-email-trackers.svg') + '" alt="" loading="lazy">'
+    ) %}
+      <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-remove-trackers-headline') }}</h3>
+      <p>{{ ftl('highlighted-features-section-remove-trackers-body') }}</p>
+    {% endcall %}
+</section>

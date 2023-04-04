@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzp-c-split-media-asset">
+  <div class="c-phone">
+    {% include 'products/relay/includes/phone-outline.svg' %}
+    <img class="c-phone-far" src="{{ static('img/products/relay/landing/phone/blurry.svg') }}" alt="" width="575" height="575">
+
+    {% if LANG == "de" %}
+      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen-premium-de.png') }}" alt="" width="255" height="532">
+      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg-de.svg') }}" alt="" width="509" height="575">
+    {% elif LANG == "fr" %}
+      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen-premium-fr.png') }}" alt="" width="255" height="532">
+      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg-fr.svg') }}" alt="" width="509" height="575">
+    {% else %}
+      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen-premium.png') }}" alt="" width="255" height="532">
+      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg.svg') }}" alt="" width="509" height="575">
+    {% endif %}
+
+  </div>
+</div>

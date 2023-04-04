@@ -1,0 +1,196 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section>
+  <table class="c-matrix-desktop">
+    <thead>
+      <tr>
+        <th scope="col">{{ ftl('plan-matrix-heading-features') }}</th>
+        <th scope="col">{{ ftl('plan-matrix-heading-plan-free') }}</th>
+        <th scope="col">{{ ftl('plan-matrix-heading-plan-premium') }}</th>
+        <th scope="col">{{ ftl('plan-matrix-heading-plan-phones') }}</th>
+        <th scope="col" class="t-matrix-desktop-bundle"><strong>{{ ftl('plan-matrix-heading-plan-bundle-2') }}</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-email-masks') }}</th>
+        <td>{{ relay_free_addresses() }}</td>
+        <td>{{ ftl('plan-matrix-feature-count-unlimited') }}</td>
+        <td>{{ ftl('plan-matrix-feature-count-unlimited') }}</td>
+        <td>{{ ftl('plan-matrix-feature-count-unlimited') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-browser-extension') }}</th>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-email-tracker-removal') }}</th>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-promo-email-blocking') }}</th>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-email-subdomain') }}</th>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-email-reply') }}</th>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-phone-mask') }}</th>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+      <tr>
+        <th scope="row">{{ ftl('plan-matrix-feature-mobile-vpn') }}</th>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td>
+          <img src="{{ static('img/products/relay/icon-not.svg') }}" alt="{{ ftl('plan-matrix-feature-not-included') }}"></td>
+        </td>
+        <td><img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">
+          <div class="u-hidden">{{ ftl('plan-matrix-heading-price') }}</div>
+        </th>
+        <td>
+            {{ ftl('plan-matrix-price-free') }}
+            <button>{{ ftl('plan-matrix-get-relay-cta') }}</button>
+        </td>
+        <td>
+          <div class="c-toggle">
+            <input type="radio" name="plan-email" value="monthly" id="plan-email-monthly"><label for="plan-email-monthly">{{ ftl('plan-matrix-price-period-monthly') }}<em>TKTK/mo</em></label>
+            <input type="radio" name="plan-email" value="yearly" id="plan-email-yearly" checked><label for="plan-email-yearly">{{ ftl('plan-matrix-price-period-yearly') }}<em>TKTK/mo</em></label>
+          </div>
+          <div><button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+        </td>
+        <td>
+          <div class="c-toggle">
+            <input type="radio" name="plan-email-phone" value="monthly" id="plan-email-phone-monthly"><label for="plan-email-phone-monthly">{{ ftl('plan-matrix-price-period-monthly') }}<em>TKTK/mo</em></label>
+            <input type="radio" name="plan-email-phone" value="yearly" id="plan-email-phone-yearly" checked><label for="plan-email-phone-yearly">{{ ftl('plan-matrix-price-period-yearly') }}<em>TKTK/mo</em></label>
+          </div>
+          <div><button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+        </div>
+        </td>
+        <td>
+          <p> {{ ftl('plan-matrix-price-vpn-discount-promo', savings='TKTK') }} </p>
+          <div><button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+
+  <div class="c-matrix-mobile">
+    <ul>
+      <li class="c-matrix-plan">
+        <h3 class="mzp-u-title-xs">{{ ftl('plan-matrix-heading-plan-free') }}</h3>
+        <ul class="c-matrix-features">
+          <li>{{ ftl('plan-matrix-feature-mobile-email-masks') }} <span>5</span></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-browser-extension') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-tracker-removal') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+        </ul>
+        <div class="c-matrix-footer">
+          <div> Free <button>{{ ftl('plan-matrix-sign-up') }}</button></div>
+        </div>
+      </li>
+      <li class="c-matrix-plan">
+        <h3 class="mzp-u-title-xs">{{ ftl('plan-matrix-heading-plan-premium') }}</h3>
+        <ul class="c-matrix-features">
+          <li>{{ ftl('plan-matrix-feature-mobile-email-masks') }} <span>{{ ftl('plan-matrix-feature-count-unlimited') }}</span></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-browser-extension') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-tracker-removal') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-promo-email-blocking') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-subdomain') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-reply') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+        </ul>
+        <div class="c-matrix-footer">
+          <div class="c-toggle">
+            <input type="radio" name="plan-mobile-email" value="monthly" id="plan-mobile-email-monthly"><label for="plan-mobile-email-monthly">{{ ftl('plan-matrix-price-period-monthly') }}<em>TKTK/mo</em></label>
+            <input type="radio" name="plan-mobile-email" value="yearly" id="plan-mobile-email-yearly" checked><label for="plan-mobile-email-yearly">{{ ftl('plan-matrix-price-period-yearly') }}<em>TKTK/mo</em></label>
+          </div>
+          <div><button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+      </li>
+      <li class="c-matrix-plan">
+        <h3 class="mzp-u-title-xs">{{ ftl('plan-matrix-heading-plan-phones') }}</h3>
+        <ul class="c-matrix-features">
+          <li>{{ ftl('plan-matrix-feature-mobile-email-masks') }} <span>{{ ftl('plan-matrix-feature-count-unlimited') }}</span></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-browser-extension') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-tracker-removal') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-promo-email-blocking') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-subdomain') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-reply') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-phone-mask') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+        </ul>
+      <div class="c-matrix-footer">
+        <div class="c-toggle">
+          <input type="radio" name="plan-mobile-email-phone" value="monthly" id="plan-mobile-email-phone-monthly"><label for="plan-mobile-email-phone-monthly">{{ ftl('plan-matrix-price-period-monthly') }}<em>TKTK/mo</em></label>
+          <input type="radio" name="plan-mobile-email-phone" value="yearly" id="plan-mobile-email-phone-yearly" checked><label for="plan-mobile-email-phone-yearly">{{ ftl('plan-matrix-price-period-yearly') }}<em>TKTK/mo</em></label>
+        </div>
+        <div><button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+      </li>
+      <li class="c-matrix-plan t-matrix-mobile-bundle">
+        <h3 class="mzp-u-title-xs">{{ ftl('plan-matrix-heading-plan-bundle-2') }}</h3>
+        <ul class="c-matrix-features">
+          <li>{{ ftl('plan-matrix-feature-mobile-email-masks') }} <span>{{ ftl('plan-matrix-feature-count-unlimited') }}</span></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-browser-extension') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-tracker-removal') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-promo-email-blocking') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-subdomain') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-email-reply') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-phone-mask') }} <img src="{{ static('img/products/relay/icon-check.svg') }}" alt="{{ ftl('plan-matrix-feature-included') }}" width="16"></li>
+          <li>{{ ftl('plan-matrix-feature-mobile-vpn') }}</li>
+        </ul>
+      <div class="c-matrix-footer">
+        <div>
+          <p>{{ ftl('plan-matrix-price-vpn-discount-promo', savings='TKTK') }}</p>
+        </div>
+        <div>$TKTK/mo. <button>{{ ftl('plan-matrix-sign-up') }}</button><small>Billed TKTK</small></div>
+      </div>
+      </li>
+    </ul>
+  </div>
+
+</section>
