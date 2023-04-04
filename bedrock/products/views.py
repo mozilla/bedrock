@@ -223,3 +223,22 @@ def resource_center_article_view(request, slug):
             "products/vpn/shared",
         ],
     )
+
+
+@require_safe
+def relay_landing_page(request):
+    template_name = "products/relay/landing.html"
+    ftl_files = ["products/relay/landing", "products/relay/shared"]
+
+    context = {}
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_invite_page(request):
+    ftl_files = ["products/relay/landing", "products/relay/shared"]
+
+    ctx = {"action": "action", "newsletter_form": "newsletter_form"}
+
+    return l10n_utils.render(request, "products/relay/invite.html", ctx, ftl_files=ftl_files)

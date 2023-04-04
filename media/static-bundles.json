@@ -1266,6 +1266,12 @@
         "css/mozorg/santa-locator.scss"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "css/products/relay/landing.scss"
+      ],
+      "name": "relay-landing"
     }
   ],
   "js": [
