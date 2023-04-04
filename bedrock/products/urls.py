@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.urls import path
 
 from bedrock.mozorg.util import page
@@ -35,3 +36,9 @@ urlpatterns = (
         name="products.vpn.resource-center.article",
     ),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        path("relay/", views.relay_landing_page, name="products.relay.landing"),
+        path("relay/invite/", views.relay_invite_page, name="products.relay.invite"),
+    )
