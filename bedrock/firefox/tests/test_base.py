@@ -1003,33 +1003,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html"]
 
-    @override_settings(DEV=True)
-    def test_fx_112_0_0_es(self, render_mock):
-        """Should use whatsnew-fx112-eu-translate template for es-ES locale"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "es-ES"
-        self.view(req, version="112.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx112-eu-translate.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_112_0_0_it(self, render_mock):
-        """Should use whatsnew-fx112-eu-translate template for it locale"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "it"
-        self.view(req, version="112.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx112-eu-translate.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_112_0_0_pt(self, render_mock):
-        """Should use whatsnew-fx112-eu-translate template for pt-PT locale"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "pt-PT"
-        self.view(req, version="112.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx112-eu-translate.html"]
-
     # end 112.0 whatsnew tests
 
 

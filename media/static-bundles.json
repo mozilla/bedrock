@@ -511,12 +511,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-112-eu-translate.scss"
-      ],
-      "name": "firefox_whatsnew_112_eu_translate"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-111-en.scss"
       ],
       "name": "firefox_whatsnew_111_en"
