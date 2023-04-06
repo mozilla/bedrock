@@ -216,16 +216,6 @@ $off-black: #333336;
 }
 
 .wnp-sign-off {
-    @include text-body-sm;
     grid-column: 1 / span 2;
     grid-row: 5;
-    margin-top: $spacing-2xl;
-
-    strong {
-        display: block;
-
-        @media #{$mq-md} {
-            display: inline;
-        }
-    }
 }

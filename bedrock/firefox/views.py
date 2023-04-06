@@ -492,6 +492,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx112-eu-privacy.de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-en-bundle.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-en-features.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -508,10 +511,13 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx109-en-features.html",
         "firefox/whatsnew/whatsnew-fx110-en-features-v1.html",
         "firefox/whatsnew/whatsnew-fx110-en-features-v2.html",
+        "firefox/whatsnew/whatsnew-fx112-en.html",
+        "firefox/whatsnew/whatsnew-fx112-en-bundle.html",
+        "firefox/whatsnew/whatsnew-fx112-en-features.html",
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3"]
+    variations = ["1", "2", "3", "4", "5", "6"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -591,7 +597,12 @@ class WhatsnewView(L10nTemplateView):
                 if country == "GB" or locale == "en-GB":
                     template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    if variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx112-en-bundle.html"
+                    elif variant in ["3", "4", "5", "6"]:
+                        template = "firefox/whatsnew/whatsnew-fx112-en-features.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx112-en.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("111."):
@@ -732,6 +743,10 @@ class WhatsnewView(L10nTemplateView):
         # do not promote Mozilla VPN in excluded countries.
         if country in settings.VPN_EXCLUDED_COUNTRY_CODES and template in self.vpn_excluded_templates:
             template = "firefox/whatsnew/index-account.html"
+
+        # do not promote VPN + Relay bundle outside US and CA.
+        if country not in ["US", "CA"] and template == "firefox/whatsnew/whatsnew-fx112-en-bundle.html":
+            template = "firefox/whatsnew/whatsnew-fx112-en.html"
 
         # return a list to conform with original intention
         return [template]

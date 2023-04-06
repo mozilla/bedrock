@@ -23,6 +23,10 @@
         @include white-links;
     }
 
+    .wnp-signoff {
+        color: $color-white;
+    }
+
     // override light theme footer styles
     .mzp-c-footer.mzp-t-light {
         background: $color-dark-gray-60;
