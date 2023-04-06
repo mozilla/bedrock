@@ -6,7 +6,6 @@ from django.urls import path
 
 from bedrock.mozorg.util import page
 from bedrock.products import views
-from bedrock.redirects.util import redirect
 
 urlpatterns = (
     path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
@@ -32,12 +31,4 @@ urlpatterns = (
         views.resource_center_article_view,
         name="products.vpn.resource-center.article",
     ),
-    # Issue #12937 - updating VPN subnav
-    redirect(r"^vpn/more/what-is-an-ip-address/$", "/products/vpn/resource-center/what-is-an-ip-address/", permanent=True),
-    redirect(r"^vpn/more/what-is-a-vpn$", "/products/vpn/resource-center/what-is-a-vpn/", permanent=True),
-    redirect(r"^vpn/more/vpn-or-proxy/$", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/", permanent=True),
-    redirect(r"^vpn/more/when-to-use-a-vpn/$", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/", permanent=True),
-    redirect(r"^vpn/more/why-mozilla-vpn/$", "products.vpn.landing", permanent=True),
-    redirect(r"^vpn/more/do-i-need-a-vpn/$", "/products/vpn/resource-center/do-you-need-a-vpn-at-home-here-are-5-reasons-you-might/", permanent=True),
-    redirect(r"^vpn/more/what-is-a-vpn-v2/$", "/products/vpn/resource-center/what-is-a-vpn/", permanent=True),
 )
