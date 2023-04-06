@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-whatsnew-112-en') %}
+  {% if switch('experiment-firefox-whatsnew-112-en', ['en-US', 'en-CA']) and country_code in ['US', 'CA'] %}
     {{ js_bundle('firefox_whatsnew_112_en_experiment') }}
   {% endif %}
 {% endblock %}
@@ -32,7 +32,7 @@
   </div>
 
   <h1 class="wnp-main-title">Give spam and hackers the runaround</h1>
-  <p class="wnp-main-tagline">Protect your email, phone number and devices with one subscription. Get <strong>40% off</strong> Mozilla VPN when you combine it with Firefox Relay.</p>
+  <p class="wnp-main-tagline">Protect your email, phone number and devices with one subscription. Get <strong>50% off</strong> Firefox Relay when you combine it with Mozilla VPN.</p>
   <p class="wnp-main-cta">
     {{ vpn_product_referral_link(
       referral_id='whatsnew-112-en-v2-bundle',

@@ -21,7 +21,7 @@
 {% set params = 'utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-whatsnew-112-en') %}
+  {% if switch('experiment-firefox-whatsnew-112-en', ['en-US', 'en-CA']) and country_code in ['US', 'CA'] %}
     {{ js_bundle('firefox_whatsnew_112_en_experiment') }}
   {% endif %}
 {% endblock %}
@@ -67,7 +67,7 @@
 
   {% elif variant == '4' %}
 
-    {# v4 - Pocket in first position #}
+    {# v4 - VPN in first position #}
     {% call split(
       block_class='mzp-l-split-center-on-sm-md',
       body_class='mzp-l-split-v-center',
@@ -107,7 +107,7 @@
       <h2>See which trackers Firefox blocked for you this week</h2>
       <p>We use Enhance Tracking Protection to automatically protect your privacy while you browse.</p>
       <p>
-        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}"  data-cta-text="View my protections" data-cta-type="button">
+        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}">
           View my protections
         </a>
       </p>
@@ -188,7 +188,7 @@
       <h2>See which trackers Firefox blocked for you this week</h2>
       <p>We use Enhance Tracking Protection to automatically protect your privacy while you browse.</p>
       <p>
-        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}"  data-cta-text="View my protections" data-cta-type="button">
+        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}">
           View my protections
         </a>
       </p>
@@ -251,5 +251,8 @@
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew_update') }}
+  {% if variant in ['3', '5'] %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
   {{ js_bundle('firefox_whatsnew_112_features') }}
 {% endblock %}

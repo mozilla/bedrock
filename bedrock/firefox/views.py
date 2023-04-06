@@ -744,6 +744,10 @@ class WhatsnewView(L10nTemplateView):
         if country in settings.VPN_EXCLUDED_COUNTRY_CODES and template in self.vpn_excluded_templates:
             template = "firefox/whatsnew/index-account.html"
 
+        # do not promote VPN + Relay bundle outside US and CA.
+        if country not in ["US", "CA"] and template == "firefox/whatsnew/whatsnew-fx112-en-bundle.html":
+            template = "firefox/whatsnew/whatsnew-fx112-en.html"
+
         # return a list to conform with original intention
         return [template]
 

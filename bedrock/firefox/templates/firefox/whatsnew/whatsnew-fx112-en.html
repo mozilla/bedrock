@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-whatsnew-112-en') %}
+  {% if switch('experiment-firefox-whatsnew-112-en', ['en-US', 'en-CA']) and country_code in ['US', 'CA'] %}
     {{ js_bundle('firefox_whatsnew_112_en_experiment') }}
   {% endif %}
 {% endblock %}
