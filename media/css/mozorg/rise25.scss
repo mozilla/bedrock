@@ -48,6 +48,22 @@ $image-path: '/media/protocol/img';
             right: -20px;
         }
     }
+
+    @media #{$mq-md} {
+        img {
+            max-width: 40%;
+        }
+    }
+    @media #{$mq-lg} {
+        img {
+            max-width: 30%;
+        }
+    }
+    @media #{$mq-xl} {
+        img {
+            max-width: 28%;
+        }
+    }
 }
 
 .nomination-section {

@@ -7,6 +7,10 @@
 (function () {
     'use strict';
 
+    var isReduced =
+        window.matchMedia('(prefers-reduced-motion: reduce)') === true ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
+
     var heroImageWrapper = document.querySelector('.rise25-hero-image');
     var images = heroImageWrapper.querySelectorAll('.hero-image');
 
@@ -19,8 +23,6 @@
             image.style.transform =
                 'translate(' + amountMovedX + 'px,' + amountMovedY + 'px)';
         }
-        // eslint-disable-next-line
-        //  heroImage.style.transform = 'translate(' + amountMovedX + 'px,' + amountMovedY + 'px)'
     }
 
     // function handleMouseLeave() {
@@ -29,7 +31,8 @@
     //         image.style.transform ='translate(0, 0)';
     //     }
     // }
-
-    heroImageWrapper.addEventListener('mousemove', handleMouseMove);
+    if (!isReduced) {
+        heroImageWrapper.addEventListener('mousemove', handleMouseMove);
+    }
     // heroImageWrapper.addEventListener("mouseleave", handleMouseLeave);
 })();
