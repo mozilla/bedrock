@@ -10,11 +10,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block page_title %}Rise 25{% endblock %}
 
-{% block page_desc %}Keep on grindin{% endblock %}
+{% block page_desc %}Rise and Shine{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('rise-25') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle("rise-25") }}
 {% endblock %}
 
 {% set nomination_cards = [
@@ -54,12 +58,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% call split(
     block_class='mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-split-nospace',
     media_class='mzp-l-split-h-center',
-    image=resp_img(
-      url='img/mozorg/rise25/hero-image-temp.png',
-      optional_attributes={
-          'class': 'mzp-c-split-media-asset'
-      }
-    ),
+    media_include="mozorg/rise25-hero.html",
   ) %}
     <img src="/media/img/mozorg/rise25/hero-title.png" alt="Rise 25">
   {% endcall %}
