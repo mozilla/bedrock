@@ -1270,6 +1270,12 @@
         "css/mozorg/santa-locator.scss"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "css/mozorg/rise25.scss"
+      ],
+      "name": "rise-25"
     }
   ],
   "js": [

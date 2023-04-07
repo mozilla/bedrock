@@ -1,0 +1,69 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
+
+.nomination-section {
+    background: radial-gradient(95% 107% at 9% 12%, #f7e7c8 6.25%, #fff8eb 54.69%, #fcdfa5 100%);
+}
+
+.mzp-t-columns-three {
+    gap: $spacing-xl;
+
+    @media #{$mq-lg} {
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    }
+}
+
+.nomination-card {
+    position: relative;
+    border-radius: $border-radius-md;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-lg;
+    justify-content: space-between;
+    background-color: var(--card-color, #{$color-black});
+
+    h3 {
+        color: $color-white;
+    }
+
+    .mzp-c-button {
+        background-color: var(--card-color);
+        border-color: $color-white;
+        align-self: flex-start;
+    }
+
+    &:first-child {
+        --card-color: #{$color-black};
+        justify-content: center;
+    }
+
+    &:nth-child(2) {
+        --card-color: #e26961;
+    }
+
+    &:nth-child(3) {
+        --card-color: #284786;
+    }
+
+    &:nth-child(4) {
+        --card-color: #167777;
+    }
+
+    &:nth-child(5) {
+        --card-color: #7c4a89;
+    }
+
+    &:nth-child(6) {
+        --card-color: #46c0aa;
+    }
+}
