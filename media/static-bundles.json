@@ -1308,7 +1308,8 @@
         "js/base/site.js",
         "js/base/dnt-helper.js",
         "js/base/mozilla-cookie-helper.js",
-        "js/base/core-datalayer-page-id.js"
+        "js/base/core-datalayer-page-id.js",
+        "js/base/core-datalayer-events-init.es6.js"
       ],
       "name": "site"
     },
