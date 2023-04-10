@@ -25,14 +25,7 @@
         }
     }
 
-    // function handleMouseLeave() {
-    //     for (var index = 0; index < images.length; index++) {
-    //         var image = images[index];
-    //         image.style.transform ='translate(0, 0)';
-    //     }
-    // }
     if (!isReduced) {
         heroImageWrapper.addEventListener('mousemove', handleMouseMove);
     }
-    // heroImageWrapper.addEventListener("mouseleave", handleMouseLeave);
 })();

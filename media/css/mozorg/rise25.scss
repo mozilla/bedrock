@@ -2,16 +2,24 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$brand-theme: 'firefox';
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/video';
 
-.mzp-c-split {
+.mzp-c-split.rise25-hero {
     overflow: hidden;
+
+    .mzp-c-wordmark {
+        margin-bottom: $spacing-md;
+    }
 
     .mzp-c-split-container {
         // override for design
@@ -66,8 +74,92 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.video-section {
+    h2 {
+        @include font-base;
+    }
+
+    p {
+        @include font-size(21px);
+    }
+}
+
+.social-share {
+    --social-share-color: #bbb;
+    display: flex;
+    align-items: center;
+    color: var(--social-share-color);
+
+    p {
+        @include font-size(14px);
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    .social-share-list {
+        display: flex;
+
+        a {
+            width: 30px;
+            height: 30px;
+            margin-left: $spacing-xs;
+            margin-right: $spacing-xs;
+            border: 1px solid var(--social-share-color);
+            border-radius: $border-radius-lg;
+            display: flex;
+            color: var(--social-share-color);
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            stroke: currentColor;
+        }
+    }
+}
+
+.c-rise25-video {
+    .video-play {
+        &::after {
+            background: url('/media/img/icons/video-play.svg') 0 0 no-repeat;
+            content: '';
+            height: 100px;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            opacity: 0.7;
+            position: absolute;
+            top: 50%;
+            transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+            width: 100px;
+            z-index: 2;
+        }
+
+        &:hover,
+        &:focus {
+            border-color: $color-white;
+            outline: 0;
+
+            &::after {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
 .nomination-section {
     background: radial-gradient(95% 107% at 9% 12%, #f7e7c8 6.25%, #fff8eb 54.69%, #fcdfa5 100%);
+
+    .nomination-section-heading {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 80%;
+        text-align: center;
+
+        h2 {
+            @include font-base;
+        }
+    }
 }
 
 .mzp-t-columns-three {
@@ -89,6 +181,7 @@ $image-path: '/media/protocol/img';
     background-color: var(--card-color, #{$color-black});
 
     h3 {
+        @include font-base;
         color: $color-white;
     }
 
@@ -100,7 +193,15 @@ $image-path: '/media/protocol/img';
 
     &:first-child {
         --card-color: #{$color-black};
-        justify-content: center;
+        justify-content: space-between;
+
+        .social-share {
+            --social-share-color: #{$color-white};
+
+            ul {
+                margin-bottom: 0;
+            }
+        }
     }
 
     &:nth-child(2) {

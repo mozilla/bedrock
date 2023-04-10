@@ -4,13 +4,14 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import billboard, card, split with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}Rise 25{% endblock %}
 
-{% block page_desc %}Rise and Shine{% endblock %}
+{% block page_desc %}In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
+the internet for the better over the next quarter century and beyond. Submit your nominations today.{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -19,6 +20,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block js %}
   {{ js_bundle("rise-25") }}
+  {{ js_bundle("rise-25-video")}}
 {% endblock %}
 
 {% set nomination_cards = [
@@ -26,52 +28,50 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     "title": "Activists",
     "desc": "We’re recognizing the advocates who are using the internet to drive social and political change. Nominate individuals who are using the internet to amplify their voices and make a difference in the world.",
     "href": "",
-    "color": "#E26961"
   },
   {
     "title": "Builders",
     "desc": "These are the technical people building the infrastructure of the internet. Nominate the builders shaping the technicalside of the web making it faster, more secure and accessible to everyone.",
     "href": "",
-    "color": "#284786"
   },
   {
     "title": "Artists",
     "desc": "These are the creative forces creating innovative and thought-provoking digital artwork. Nominate artists who use the internet as their canvas to inspire others and re-think what's possible online.",
     "href": "",
-    "color": "#167777"
   },
   {
     "title": "Creators",
     "desc": "These are individuals developing breakthrough internet applications and tech. Nominate entrepreneurs, engineers and designers pushing the boundaries and creating new opportunities for people worldwide.",
     "href": "",
-    "color": "#7C4A89"
   },
   {
     "title": "Stewards",
     "desc": "This category is for the people shaping the policies and regulations governing the internet. Nominate the policymakers, lawyers and advocates who are fighting for an open, free internet.",
     "href": "",
-    "color": "#46C0AA"
   }
 ]%}
 
 {% block content %}
   {% call split(
-    block_class='mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-split-nospace',
+    block_class='mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-split-nospace rise25-hero',
     media_class='mzp-l-split-h-center',
-    media_include="mozorg/rise25-hero.html",
+    media_include="mozorg/rise25/includes/rise25-hero.html",
   ) %}
-    <img src="/media/img/mozorg/rise25/hero-title.png" alt="Rise 25">
+    <div class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-mozilla"></div>
+    <img src="/media/img/mozorg/rise25/RISE25.svg" alt="Rise 25">
   {% endcall %}
-  <section class="mzp-l-content mzp-l-columns mzp-t-columns-two">
-    <div>
-      <h2>Recognizing the game-changers</h2>
-      <p>In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
-      the internet for the better over the next quarter century.</p>
-    </div>
-    <img src="/media/img/mozorg/rise25/text-animation.png" alt="">
-  </section>
+  {% call split(
+    block_class="mzp-l-split-center-on-sm-md video-section",
+    media_class='mzp-l-split-h-center',
+    media_include="mozorg/rise25/includes/rise25-video.html"
+  )%}
+    <h2>Recognizing the game-changers</h2>
+    <p>In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
+    the internet for the better over the next quarter century.</p>
+    {% include "mozorg/rise25/includes/rise25-social-share.html"%}
+  {% endcall %}
   <section class="mzp-l-content nomination-section">
-    <div>
+    <div class="nomination-section-heading">
       <h2>We see them and so do you</h2>
       <p>Nominate the people you see developing tech and shaping the internet to be more ethical, responsible and inclusive.
       We'll choose five honorees across five categories.</p>
@@ -79,6 +79,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <div class="mzp-l-columns mzp-t-columns-three">
       <div class="nomination-card">
         <h3>Now accepting nominations</h3>
+        {% include "mozorg/rise25/includes/rise25-social-share.html"%}
       </div>
       {% for card in nomination_cards %}
         <div class="nomination-card">
