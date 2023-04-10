@@ -1557,7 +1557,7 @@
     {
       "files": [
         "js/firefox/all/all-downloads-unified.js",
-        "js/firefox/all/all-downloads-unified-init.js"
+        "js/firefox/all/all-downloads-unified-init.es6.js"
       ],
       "name": "firefox_all_unified"
     },
