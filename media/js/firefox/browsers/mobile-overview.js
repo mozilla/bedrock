@@ -8,5 +8,5 @@
     'use strict';
 
     // init menus on page
-    window.Mzp.Details.init('.mzp-c-menu-list-title');
+    window.MzpDetails.init('.mzp-c-menu-list-title');
 })();

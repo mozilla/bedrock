@@ -25,7 +25,7 @@ trigger.addEventListener(
     'click',
     (e) => {
         e.preventDefault();
-        Mzp.Modal.createModal(e.target, content, {
+        window.MzpModal.createModal(e.target, content, {
             closeText: window.Mozilla.Utils.trans('global-close')
         });
 

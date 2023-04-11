@@ -4,9 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
-    // init menus on page
-    window.MzpDetails.init('.mzp-c-menu-list-title');
-})(window.Mzp);
+window.MzpModal = MzpModal;

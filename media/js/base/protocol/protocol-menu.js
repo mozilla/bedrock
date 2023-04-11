@@ -6,7 +6,7 @@
 
 // Copied from Protocol, to be backported along with nav updates.
 
-(function (Mzp) {
+(function () {
     'use strict';
 
     var Menu = {};
@@ -339,15 +339,17 @@
      * Basic feature detect for 1st class menu JS support.
      */
     Menu.isSupported = function () {
-        if (typeof Mzp.Supports !== 'undefined') {
-            return Mzp.Supports.matchMedia && Mzp.Supports.classList;
+        if (typeof window.MzpSupports !== 'undefined') {
+            return (
+                window.MzpSupports.matchMedia && window.MzpSupports.classList
+            );
         } else {
             return false;
         }
     };
 
     /**
-     * Initialise menu.
+     * Initialize menu.
      * @param {Object} options - configurable options.
      */
     Menu.init = function (options) {
@@ -367,4 +369,4 @@
     };
 
     window.Mzp.Menu = Menu;
-})(window.Mzp);
+})();

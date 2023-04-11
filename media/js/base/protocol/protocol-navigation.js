@@ -39,12 +39,12 @@
      * @returns {Boolean}
      */
     Navigation.supportsSticky = function () {
-        if (typeof Mzp.Supports !== 'undefined') {
+        if (typeof MzpSupports !== 'undefined') {
             return (
-                Mzp.Supports.matchMedia &&
-                Mzp.Supports.classList &&
-                Mzp.Supports.requestAnimationFrame &&
-                Mzp.Supports.cssFeatureQueries &&
+                window.MzpSupports.matchMedia &&
+                window.MzpSupports.classList &&
+                window.MzpSupports.requestAnimationFrame &&
+                window.MzpSupports.cssFeatureQueries &&
                 CSS.supports('position', 'sticky')
             );
         } else {

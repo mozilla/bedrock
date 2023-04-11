@@ -14,11 +14,11 @@
 
         // check we have global Supports and Details library
         if (
-            typeof Mzp.Supports !== 'undefined' &&
+            typeof window.MzpSupports !== 'undefined' &&
             typeof Mzp.Details !== 'undefined'
         ) {
             // check browser supports matchMedia
-            if (Mzp.Supports.matchMedia) {
+            if (window.MzpSupports.matchMedia) {
                 var _mqWide = matchMedia('(max-width: 767px)');
 
                 // initialize details if screen is small

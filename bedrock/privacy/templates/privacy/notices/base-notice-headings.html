@@ -48,5 +48,6 @@
 {% block footnote %}{{ footnote|join|safe }}{% endblock%}
 
 {% block js %}
+  {{ js_bundle('protocol-sidemenu') }}
   {{ js_bundle('privacy_protocol') }}
 {% endblock %}

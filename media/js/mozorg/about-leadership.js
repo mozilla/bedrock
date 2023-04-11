@@ -25,7 +25,7 @@ if (typeof window.Mozilla === 'undefined') {
             modalContent.removeAttribute('id');
             modalContent.setAttribute('aria-role', 'article');
 
-            Mzp.Modal.createModal(e.target, content, {
+            window.MzpModal.createModal(e.target, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function () {
                     content.appendChild(modalContent);

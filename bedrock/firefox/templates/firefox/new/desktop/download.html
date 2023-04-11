@@ -577,6 +577,7 @@
   {{ js_bundle('firefox_desktop_download') }}
 
   {% if show_firefox_join_modal and not manual_update %}
+    {{ js_bundle('protocol-modal') }}
     {{ js_bundle('firefox_new_desktop_join_modal') }}
   {% endif %}
 {% endblock %}

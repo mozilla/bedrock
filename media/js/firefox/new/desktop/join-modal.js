@@ -14,7 +14,7 @@
         e.preventDefault();
 
         // Open the modal
-        Mzp.Modal.createModal(this, joinFirefoxContent, {
+        window.MzpModal.createModal(this, joinFirefoxContent, {
             title: e.target.textContent,
             className: 'join-firefox-modal'
         });

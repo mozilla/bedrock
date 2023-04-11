@@ -16,7 +16,7 @@
         );
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
-            Mzp.Modal.createModal(this, modalContent, {
+            window.MzpModal.createModal(this, modalContent, {
                 title: modalTitle,
                 className: 'help-modal'
             });
