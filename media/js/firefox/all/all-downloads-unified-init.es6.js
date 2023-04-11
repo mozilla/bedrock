@@ -4,15 +4,18 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function (Mozilla) {
-    'use strict';
+import ProductDownloadTracking from './core-datalayer-product-download';
 
+(function (Mozilla) {
     function onLoad() {
-        var browserHelpContent = document.getElementById('browser-help');
-        var browserHelpIcon = document.getElementById('icon-browser-help');
-        var installerHelpContent = document.getElementById('installer-help');
-        var installerHelpIcon = document.querySelectorAll(
+        const browserHelpContent = document.getElementById('browser-help');
+        const browserHelpIcon = document.getElementById('icon-browser-help');
+        const installerHelpContent = document.getElementById('installer-help');
+        const installerHelpIcon = document.querySelectorAll(
             '.icon-installer-help'
+        );
+        const downloadButton = document.getElementById(
+            'download-button-primary'
         );
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
@@ -46,7 +49,7 @@
         );
 
         // Installer help modal.
-        for (var i = 0; i < installerHelpIcon.length; i++) {
+        for (let i = 0; i < installerHelpIcon.length; i++) {
             installerHelpIcon[i].addEventListener(
                 'click',
                 function (e) {
@@ -61,6 +64,15 @@
                 false
             );
         }
+
+        // event tracking for GA4
+        downloadButton.addEventListener(
+            'click',
+            function (event) {
+                ProductDownloadTracking.linkHandler(event);
+            },
+            false
+        );
     }
 
     Mozilla.run(onLoad);
