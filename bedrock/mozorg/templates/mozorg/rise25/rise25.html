@@ -54,13 +54,16 @@ the internet for the better over the next quarter century and beyond. Submit you
 
 {% block content %}
   <section class="rise25-hero">
-    <video muted autoplay controls poster="/media/img/mozorg/rise25/hero-image.png">
+    <div class="rise25-hero-static-image">
+      <img class="video-placeholder" src="/media/img/mozorg/rise25/hero-image.png" alt="Rise25: In search of the next wave of visionaries and builders">
+    </div>
+    <video muted>
       <source src="/media/img/mozorg/rise25/rise25-video.webm" type="video/webm">
       Your browser does not support the video tag.
     </video>
   </section>
   {% call split(
-    block_class="mzp-l-split-center-on-sm-md video-section",
+    block_class="mzp-l-split-center-on-sm-md gamechanger-section",
     media_class='mzp-l-split-h-center',
     image=resp_img(
     url='img/mozorg/rise25/portraits.jpg',
@@ -82,7 +85,8 @@ the internet for the better over the next quarter century and beyond. Submit you
     </div>
     <div class="mzp-l-columns mzp-t-columns-three">
       <div class="nomination-card">
-        <h3>Now accepting nominations</h3>
+        <p>We'll choose five honorees across each of the five categories to be recognized and celebrated across our platforms later
+        this year.</p>
         {% include "mozorg/rise25/includes/rise25-social-share.html"%}
       </div>
       {% for card in nomination_cards %}

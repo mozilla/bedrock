@@ -14,7 +14,13 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 
-.video-section {
+.rise25-hero {
+    video {
+        display: none;
+    }
+}
+
+.gamechanger-section {
     h2 {
         @include font-base;
     }
