@@ -15,10 +15,6 @@
   {{ css_bundle('about-leadership') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('about-leadership') }}
-{% endblock %}
-
 {% set navigation_bar = [
   (url('mozorg.about.leadership.index'), 'executive-team', 'Leadership'),
   (url('mozorg.about.leadership.index'), 'executive-team', 'Executive Team'),
@@ -43,4 +39,8 @@
   </main>
 </div>
 <div class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-leadership') }}
 {% endblock %}

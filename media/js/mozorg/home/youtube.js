@@ -124,7 +124,7 @@ window.onYouTubeIframeAPIReady = function () {
         var sibling = getNextEl(card);
         var content = sibling.querySelector('.mzp-c-card-video-content');
 
-        Mzp.Modal.createModal(card, content, {
+        window.MzpModal.createModal(card, content, {
             title: title,
             className: 'mzp-has-media',
             onCreate: initVideoPlayer,

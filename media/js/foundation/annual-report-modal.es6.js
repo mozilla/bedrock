@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
+
 const modalContainers = document.getElementsByClassName('has-modal');
 const content = document.querySelector('.mzp-u-modal-content');
 const articleArray = document.querySelectorAll('[data-modal-id]');
@@ -143,7 +145,7 @@ for (let i = 0; i < modalContainers.length; i++) {
         modalContent.removeAttribute('id');
         modalContent.setAttribute('aria-role', 'article');
 
-        window.Mzp.Modal.createModal(this, content, {
+        MzpModal.createModal(this, content, {
             allowScroll: false,
             closeText: window.Mozilla.Utils.trans('global-close'),
             onCreate: () => {
@@ -176,7 +178,7 @@ for (let i = 0; i < modalContainers.length; i++) {
 
                 kbInit = false;
 
-                // Recache the current modal content which may have changed via next/prev buttons
+                // Re-cache the current modal content which may have changed via next/prev buttons
                 const modalParent = document.querySelector(
                     '.mzp-u-modal-content.mzp-c-modal-overlay-contents'
                 );
@@ -185,7 +187,7 @@ for (let i = 0; i < modalContainers.length; i++) {
                 /**
                  * Ensure focus is returned to opening CTA on modal close.
                  * We have to do some manual DOM walking here as some clickable
-                 * parent elements do not normally receive focus programatically.
+                 * parent elements do not normally receive focus programmatically.
                  * Issue: https://github.com/mozilla/bedrock/issues/12346
                  */
                 const parentId =

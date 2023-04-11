@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
+
 const modalContainers = document.getElementsByClassName('has-modal');
 const content = document.querySelector('.mzp-u-modal-content');
 const articleArray = document.querySelectorAll('[data-modal-id]');
@@ -142,7 +144,7 @@ for (let i = 0; i < modalContainers.length; i++) {
         modalContent.removeAttribute('id');
         modalContent.setAttribute('role', 'article');
 
-        window.Mzp.Modal.createModal(this, content, {
+        MzpModal.createModal(this, content, {
             allowScroll: false,
             closeText: window.Mozilla.Utils.trans('global-close'),
             onCreate: () => {
@@ -175,7 +177,7 @@ for (let i = 0; i < modalContainers.length; i++) {
 
                 kbInit = false;
 
-                // Recache the current modal content which may have changed via next/prev buttons
+                // Re-cache the current modal content which may have changed via next/prev buttons
                 const modalParent = document.querySelector(
                     '.mzp-u-modal-content.mzp-c-modal-overlay-contents'
                 );

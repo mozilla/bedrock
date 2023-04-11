@@ -17,9 +17,6 @@ const webpack = require('webpack');
 
 function resolveBundles(fileList) {
     return fileList.map((f) => {
-        if (f.match(/^protocol\//)) {
-            return `./node_modules/@mozilla-protocol/core/${f}`;
-        }
         return path.resolve(__dirname, 'media', f);
     });
 }

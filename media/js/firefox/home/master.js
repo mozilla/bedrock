@@ -7,5 +7,5 @@
 (function () {
     'use strict';
 
-    window.Mzp.Details.init('.mzp-c-menu-list-title');
+    window.MzpDetails.init('.mzp-c-menu-list-title');
 })();

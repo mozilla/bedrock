@@ -110,7 +110,6 @@ module.exports = {
     ],
     globals: {
         Mozilla: 'writable',
-        Mzp: 'writable',
         site: 'writable'
     }
 };

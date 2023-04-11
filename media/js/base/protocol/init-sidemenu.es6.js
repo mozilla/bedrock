@@ -4,9 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+/**
+ * Initialize Protocol side menu.
+ */
+import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
 
-    // init menus on page
-    window.MzpDetails.init('.mzp-c-menu-list-title');
-})(window.Mzp);
+MzpSideMenu.init();
