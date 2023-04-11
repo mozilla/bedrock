@@ -37,7 +37,7 @@ Once a pull request is submitted, a `Unit Tests Github Action`_ will run both th
 unit tests, as well as the suite of redirect headless HTTP(s) response checks.
 
 Push to main branch
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Whenever a change is pushed to the main branch, a new image is built and deployed to the
 dev environment, and the full suite of headless and UI tests are run. This is handled by the
@@ -56,6 +56,26 @@ Note that now we have Mozorg mode and Pocket mode, we actually stand up two dev,
 and two test deployments and we run the appropriate integration tests against each deployment:
 most tests are written for Mozorg, but there are some for Pocket mode that also get run.
 
+.. note::
+
+    **The deployment workflow runs like this**
+
+    1. A push to the ``main``/``stage``/``prod``/``run-integration-tests`` branch
+    of ``mozilla/bedrock`` triggers a webhook ping to the (private)
+    ``mozilla-sre-deploy/deploy-bedrock`` repo.
+
+    2. A Github Action (GHA) in ``mozilla-sre-deploy/deploy-bedrock`` builds a
+    "release"-ready Bedrock container image, which it stores in a private container
+    registry (private because our infra requires container-image
+    access to be locked down). Using the same commit, the workflow also builds
+    an equivalent set of public Bedrock container images, which are pushed to
+    Docker Hub.
+
+    3. The GHA deploys the relevant container image to the appropriate environment.
+
+    4. The GHA pings a webhook back in ``mozilla/bedrock`` to run integration
+    tests against the environment that has just been deployed.
+
 Push to stage branch
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -69,13 +89,11 @@ download tests`.
 Push to prod branch (tagged)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a tagged commit is pushed to the prod branch, a production docker image is built and published
-to Google Container Registry (privately because our infra requires it to be locked down) and also as a
-public image to `Docker Hub`_ if needed (usually this will have already happened as a result of a
-push to the ``main`` or ``stage`` branch), and deployed to each `production`_ deployment.
-
-After each deployment is complete, the full suite of UI tests is
-run again (the same as for stage). As with untagged pushes, this is all handled by the pipeline.
+When a tagged commit is pushed to the ``prod`` branch, a production container image
+(private, see above) is built, and a set of public images is also built and
+pushed to `Docker Hub`_ if needed (usually this will have already happened as
+a result of a push to the ``main`` or ``stage`` branch). The production image
+is deployed to each `production`_ deployment.
 
 **Push to prod cheat sheet**
 
