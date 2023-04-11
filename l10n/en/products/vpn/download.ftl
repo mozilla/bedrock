@@ -13,21 +13,40 @@ vpn-download-sub-heading = You can download { -brand-name-mozilla-vpn } on up to
 
 vpn-download-not-available-in-country = Sorry, { -brand-name-mozilla-vpn } is not available for download in your country.
 vpn-download-button-copy = Download
-vpn-download-for-windows = VPN for { -brand-name-windows } 10/11
+vpn-download-windows = VPN for { -brand-name-windows }
 vpn-download-for-windows-requirements = { -brand-name-windows } 10/11 (64-bit only)
+vpn-download-download-windows = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
 vpn-download-for-mac = VPN for { -brand-name-mac-short }
+vpn-download-download-for-mac = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
 
 # Variables:
 #   $version (number) - operating system version
 vpn-download-version-requirements = Version { $version } and up
 
 vpn-download-for-linux = VPN for { -brand-name-linux }
+vpn-download-download-for-linux = Download { -brand-name-mozilla-vpn } for { -brand-name-linux }
 
 # Variables:
 #   $version (number) - operating system version
 vpn-download-for-linux-requirements = Ubuntu { $version } and up
 
 vpn-download-for-android = VPN for { -brand-name-android }
+vpn-download-download-for-android = Download { -brand-name-mozilla-vpn } for { -brand-name-android }
 vpn-download-for-ios = VPN for { -brand-name-ios }
+vpn-download-download-for-ios = Download VPN { -brand-name-mozilla-vpn } for { -brand-name-ios }
 vpn-download-get-on-google-play = Get on { -brand-name-google-play } Store
 vpn-download-get-on-app-store = Get on { -brand-name-app-store }
+vpn-download-based-on-your = Based on your current device
+
+vpn-download-get-mozilla-vpn = Get { -brand-name-mozilla } VPN
+
+# Obsolete string
+vpn-download-for-windows = VPN for { -brand-name-windows } 10/11
+
+vpn-download-privacy-you-can = Privacy you can trust
+
+# Variables:
+#   $url (url) - link to https://mullvad.net/help/why-wireguard/
+#   $attrs (string) - specific attributes added to external links
+vpn-download-from-the-maker = From the maker of { -brand-name-firefox }, { -brand-name-mozilla-vpn } uses the advanced <a href="{ $url }" { $attrs }>{ -brand-name-wireguard }</a>® protocol to encrypt your online activity and hide your location.
+vpn-download-we-never-log = We never log, track, or share your network data.

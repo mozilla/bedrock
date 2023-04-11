@@ -6,28 +6,112 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import 'includes/lib';
+
+.vpn-downloads {
+    background-color: $color-marketing-gray-10;
+}
 
 .vpn-download-header {
     text-align: center;
 }
 
-.vpn-download-list {
-    text-align: center;
+.vpn-download-primary-platform,
+.vpn-download-secondary-list {
     margin-top: $layout-lg;
 
-    .mzp-c-picto {
-        background: $color-marketing-gray-20;
-        border-radius: $border-radius-sm;
-        display: block;
-        margin: $spacing-lg;
-        padding: $spacing-2xl $spacing-md;
-    }
+    .platform-body {
+        h2 {
+            @include font-base;
+            @include text-body-xl;
+        }
 
-    @media #{$mq-sm} {
-        .mzp-c-picto {
-            display: inline-block;
-            width: 345px;
+        p {
+            color: $color-marketing-gray-60;
+        }
+    }
+}
+
+.vpn-download-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// Primary platform styles
+.vpn-download-primary-platform {
+    .primary-platform {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: $box-shadow-sm;
+        padding: $spacing-xl;
+        height: 305px;
+        width: 430px;
+        display: none;
+
+        .platform-image {
+            margin-bottom: $spacing-xl;
+        }
+
+        .current-platform-lede {
+            color: $color-violet-70;
+        }
+    }
+}
+
+// Secondary platform styles
+.vpn-download-secondary-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .secondary-platform {
+        display: flex;
+        align-items: center;
+        padding: 0 $spacing-lg;
+        border-radius: 6px;
+        box-shadow: $box-shadow-sm;
+        height: 165px;
+        width: 350px;
+
+        img {
+            display: block;
+        }
+
+        .platform-body {
+            margin-left: $spacing-xl;
+            margin-right: $spacing-2xl;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        .platform-download-link {
+            margin-left: auto;
+
+            .platform-download-icon {
+                &:hover,
+                &:focus,
+                &:active {
+                    fill: $color-marketing-gray-20;
+                }
+            }
+        }
+    }
+}
+
+// Style rules for dynamically rendering content based on platforms
+
+/* stylelint-disable-next-line  */
+.vpn-downloads {
+    .js.osx & {
+        .primary-platform.macos {
+            display: block;
+        }
+
+        .secondary-platform.macos {
+            display: none;
         }
     }
 }
