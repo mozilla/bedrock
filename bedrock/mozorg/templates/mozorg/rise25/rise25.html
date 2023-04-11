@@ -23,6 +23,7 @@ the internet for the better over the next quarter century and beyond. Submit you
   {{ js_bundle("rise-25-video")}}
 {% endblock %}
 
+
 {% set nomination_cards = [
   {
     "title": "Activists",
@@ -52,18 +53,21 @@ the internet for the better over the next quarter century and beyond. Submit you
 ]%}
 
 {% block content %}
-  {% call split(
-    block_class='mzp-l-split-center-on-sm-md mzp-t-dark mzp-t-split-nospace rise25-hero',
-    media_class='mzp-l-split-h-center',
-    media_include="mozorg/rise25/includes/rise25-hero.html",
-  ) %}
-    <div class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-mozilla"></div>
-    <img src="/media/img/mozorg/rise25/RISE25.svg" alt="Rise 25">
-  {% endcall %}
+  <section class="rise25-hero">
+    <video muted autoplay controls poster="/media/img/mozorg/rise25/hero-image.png">
+      <source src="/media/img/mozorg/rise25/rise25-video.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+  </section>
   {% call split(
     block_class="mzp-l-split-center-on-sm-md video-section",
     media_class='mzp-l-split-h-center',
-    media_include="mozorg/rise25/includes/rise25-video.html"
+    image=resp_img(
+    url='img/mozorg/rise25/portraits.jpg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
   )%}
     <h2>Recognizing the game-changers</h2>
     <p>In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of

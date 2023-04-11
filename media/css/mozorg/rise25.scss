@@ -14,66 +14,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 
-.mzp-c-split.rise25-hero {
-    overflow: hidden;
-
-    .mzp-c-wordmark {
-        margin-bottom: $spacing-md;
-    }
-
-    .mzp-c-split-container {
-        // override for design
-        padding-right: 0;
-    }
-}
-
-.rise25-hero-image {
-    overflow: hidden;
-    height: 350px;
-
-    img {
-        position: absolute;
-        border-radius: $border-radius-lg;
-        max-width: 40%;
-
-        &:nth-child(1) {
-            bottom: -50px;
-            left: 0;
-        }
-
-        &:nth-child(2) {
-            top: -40px;
-            left: 50px;
-        }
-
-        &:nth-child(3) {
-            bottom: 0;
-            right: 20px;
-        }
-
-        &:nth-child(4) {
-            top: -50px;
-            right: -20px;
-        }
-    }
-
-    @media #{$mq-md} {
-        img {
-            max-width: 40%;
-        }
-    }
-    @media #{$mq-lg} {
-        img {
-            max-width: 30%;
-        }
-    }
-    @media #{$mq-xl} {
-        img {
-            max-width: 28%;
-        }
-    }
-}
-
 .video-section {
     h2 {
         @include font-base;
@@ -99,7 +39,9 @@ $image-path: '/media/protocol/img';
     .social-share-list {
         display: flex;
 
-        a {
+        a,
+        button {
+            background: transparent;
             width: 30px;
             height: 30px;
             margin-left: $spacing-xs;
@@ -110,6 +52,10 @@ $image-path: '/media/protocol/img';
             color: var(--social-share-color);
             align-items: center;
             justify-content: center;
+        }
+
+        button:hover {
+            cursor: pointer;
         }
 
         svg {
