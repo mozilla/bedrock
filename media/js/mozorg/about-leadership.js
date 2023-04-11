@@ -4,6 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
+var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+
 // create namespace
 if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
@@ -25,7 +28,7 @@ if (typeof window.Mozilla === 'undefined') {
             modalContent.removeAttribute('id');
             modalContent.setAttribute('aria-role', 'article');
 
-            Mzp.Modal.createModal(e.target, content, {
+            MzpModal.createModal(e.target, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function () {
                     content.appendChild(modalContent);
@@ -55,4 +58,6 @@ if (typeof window.Mozilla === 'undefined') {
             target.click();
         }
     }
+
+    MzpSideMenu.init();
 })(window.Mozilla);

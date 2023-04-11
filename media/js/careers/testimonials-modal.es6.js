@@ -149,7 +149,7 @@ for (let i = 0; i < modalContainers.length; i++) {
         modalContent.removeAttribute('id');
         modalContent.setAttribute('role', 'article');
 
-        window.Mzp.Modal.createModal(e.target, content, {
+        window.MzpModal.createModal(e.target, content, {
             allowScroll: false,
             closeText: window.Mozilla.Utils.trans('global-close'),
             onCreate: function () {

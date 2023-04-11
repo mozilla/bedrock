@@ -4,12 +4,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// Copied from Protocol, to be backported along with nav updates.
+// Copied from Protocol, to be back-ported along with nav updates.
 
-(function (Mzp) {
+(function () {
     'use strict';
 
-    var Navigation = {};
+    var MzpNavigation = {};
     var _navElem;
     var _navItemsLists;
     var _options = {
@@ -27,10 +27,10 @@
 
     /**
      * Does the viewport meet the minimum width and height
-     * requirements for sticky behaviour?
+     * requirements for sticky behavior?
      * @returns {Boolean}
      */
-    Navigation.isLargeViewport = function () {
+    MzpNavigation.isLargeViewport = function () {
         return _mqLargeNav.matches;
     };
 
@@ -38,13 +38,13 @@
      * Feature detect for sticky navigation
      * @returns {Boolean}
      */
-    Navigation.supportsSticky = function () {
-        if (typeof Mzp.Supports !== 'undefined') {
+    MzpNavigation.supportsSticky = function () {
+        if (typeof window.MzpSupports !== 'undefined') {
             return (
-                Mzp.Supports.matchMedia &&
-                Mzp.Supports.classList &&
-                Mzp.Supports.requestAnimationFrame &&
-                Mzp.Supports.cssFeatureQueries &&
+                window.MzpSupports.matchMedia &&
+                window.MzpSupports.classList &&
+                window.MzpSupports.requestAnimationFrame &&
+                window.MzpSupports.cssFeatureQueries &&
                 CSS.supports('position', 'sticky')
             );
         } else {
@@ -57,10 +57,10 @@
      * operations such as DOM modifications should happen
      * here. Instead we throttle using `requestAnimationFrame`.
      */
-    Navigation.onScroll = function () {
+    MzpNavigation.onScroll = function () {
         if (!_ticking) {
             _animationFrameID = window.requestAnimationFrame(
-                Navigation.checkScrollPosition
+                MzpNavigation.checkScrollPosition
             );
             _ticking = true;
         }
@@ -69,18 +69,18 @@
     /**
      * Create sticky state for the navigation.
      */
-    Navigation.createSticky = function () {
+    MzpNavigation.createSticky = function () {
         _viewport.classList.add('mzp-has-sticky-navigation');
         _animationFrameID = window.requestAnimationFrame(
-            Navigation.checkScrollPosition
+            MzpNavigation.checkScrollPosition
         );
-        window.addEventListener('scroll', Navigation.onScroll, false);
+        window.addEventListener('scroll', MzpNavigation.onScroll, false);
     };
 
     /**
      * Destroy sticky state for the navigation.
      */
-    Navigation.destroySticky = function () {
+    MzpNavigation.destroySticky = function () {
         _viewport.classList.remove('mzp-has-sticky-navigation');
         _navElem.classList.remove('mzp-is-scrolling');
         _navElem.classList.remove('mzp-is-hidden');
@@ -89,7 +89,7 @@
         if (_animationFrameID) {
             window.cancelAnimationFrame(_animationFrameID);
         }
-        window.removeEventListener('scroll', Navigation.onScroll, false);
+        window.removeEventListener('scroll', MzpNavigation.onScroll, false);
     };
 
     /**
@@ -97,7 +97,7 @@
      * Uses `matchMedia` to determine if conditions
      * for sticky navigation are satisfied.
      */
-    Navigation.initSticky = function () {
+    MzpNavigation.initSticky = function () {
         _mqLargeNav = matchMedia(
             '(min-width: ' +
                 _wideBreakpoint +
@@ -108,23 +108,23 @@
 
         _mqLargeNav.addListener(function (mq) {
             if (mq.matches) {
-                Navigation.createSticky();
+                MzpNavigation.createSticky();
             } else {
-                Navigation.destroySticky();
+                MzpNavigation.destroySticky();
             }
         });
 
-        if (Navigation.isLargeViewport()) {
-            Navigation.createSticky();
+        if (MzpNavigation.isLargeViewport()) {
+            MzpNavigation.createSticky();
         }
     };
 
     /**
-     * Implements sticky navigation behaviour as
+     * Implements sticky navigation behavior as
      * user scrolls up and down the viewport.
      */
-    Navigation.checkScrollPosition = function () {
-        // add tyling for when scrolling the viewport
+    MzpNavigation.checkScrollPosition = function () {
+        // add styling for when scrolling the viewport
         if (window.scrollY > 0) {
             _navElem.classList.add('mzp-is-scrolling');
         } else {
@@ -136,8 +136,8 @@
             // hide the sticky nav shortly after scrolling down the viewport.
             if (window.scrollY > _stickyScrollOffset) {
                 // if there's a menu currently open, close it.
-                if (typeof Mzp.Menu !== 'undefined') {
-                    Mzp.Menu.close();
+                if (typeof window.MzpMenu !== 'undefined') {
+                    window.MzpMenu.close();
                 }
 
                 _navElem.classList.add('mzp-is-hidden');
@@ -155,7 +155,7 @@
     /**
      * Event handler for navigation menu button `click` events.
      */
-    Navigation.onClick = function (e) {
+    MzpNavigation.onClick = function (e) {
         var thisNavItemList = e.target.parentNode.querySelector(
             '.c-navigation-items'
         );
@@ -188,7 +188,7 @@
     /**
      * Set initial ARIA navigation states.
      */
-    Navigation.setAria = function () {
+    MzpNavigation.setAria = function () {
         for (var i = 0; i < _navItemsLists.length; i++) {
             _navItemsLists[i].setAttribute('aria-expanded', false);
         }
@@ -197,7 +197,7 @@
     /**
      * Bind navigation event handlers.
      */
-    Navigation.bindEvents = function () {
+    MzpNavigation.bindEvents = function () {
         _navItemsLists = document.querySelectorAll('.c-navigation-items');
         if (_navItemsLists.length > 0) {
             var navButtons = document.querySelectorAll(
@@ -206,19 +206,19 @@
             for (var i = 0; i < navButtons.length; i++) {
                 navButtons[i].addEventListener(
                     'click',
-                    Navigation.onClick,
+                    MzpNavigation.onClick,
                     false
                 );
             }
-            Navigation.setAria();
+            MzpNavigation.setAria();
         }
     };
 
     /**
-     * Initialise menu.
+     * Initialize menu.
      * @param {Object} options - configurable options.
      */
-    Navigation.init = function (options) {
+    MzpNavigation.init = function (options) {
         if (typeof options === 'object') {
             for (var i in options) {
                 if (options.hasOwnProperty.call(i)) {
@@ -227,7 +227,7 @@
             }
         }
 
-        Navigation.bindEvents();
+        MzpNavigation.bindEvents();
 
         /**
          * Init (optional) sticky navigation.
@@ -242,14 +242,14 @@
         var _navIsSticky =
             _navElem &&
             _navElem.classList.contains('mzp-is-sticky') &&
-            Navigation.supportsSticky();
+            MzpNavigation.supportsSticky();
 
         if (_navIsSticky && matchMedia('(prefers-reduced-motion)').matches) {
             _navElem.classList.remove('mzp-is-sticky');
         } else if (_navIsSticky) {
-            Navigation.initSticky();
+            MzpNavigation.initSticky();
         }
     };
 
-    window.Mzp.Navigation = Navigation;
+    window.MzpNavigation = MzpNavigation;
 })(window.Mzp);

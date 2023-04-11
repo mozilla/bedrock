@@ -1260,7 +1260,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/base/send-to-device.es6.js",
         "js/firefox/welcome/welcome4.es6.js"
       ],
@@ -1268,7 +1267,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/base/send-to-device.es6.js",
         "js/firefox/welcome/welcome6.es6.js"
       ],
@@ -1318,15 +1316,13 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js",
+        "js/firefox/sticky-promo.es6.js",
         "js/firefox/new/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/firefox/new/desktop/join-modal.js"
       ],
       "name": "firefox_new_desktop_join_modal"
@@ -1347,8 +1343,7 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js"
+        "js/firefox/sticky-promo.es6.js"
       ],
       "name": "sticky_promo"
     },
@@ -1371,21 +1366,24 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
+        "js/base/protocol/modal-global.es6.js"
+      ],
+      "name": "protocol-modal"
+    },
+    {
+      "files": [
         "js/mozorg/home/youtube.js"
       ],
       "name": "home"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/mozorg/home/youtube.js"
       ],
       "name": "home-contentful"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
@@ -1406,7 +1404,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sidemenu.js",
         "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
       ],
@@ -1466,8 +1463,7 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js",
+        "js/firefox/sticky-promo.es6.js",
         "js/firefox/home/master.js"
       ],
       "name": "firefox-master"
@@ -1483,8 +1479,7 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js",
+        "js/firefox/sticky-promo.es6.js",
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
@@ -1504,14 +1499,12 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sidemenu.js"
+        "js/base/protocol/init-sidemenu.es6.js"
       ],
-      "name": "contact-spaces"
+      "name": "protocol-sidemenu"
     },
     {
       "files": [
-        "protocol/js/protocol-sidemenu.js",
-        "protocol/js/protocol-modal.js",
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
@@ -1544,8 +1537,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-sidemenu.js",
         "js/firefox/all/all-downloads-unified.js",
         "js/firefox/all/all-downloads-unified-init.js"
       ],
@@ -1651,8 +1642,7 @@
         "js/base/mozilla-run.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "protocol/js/protocol-supports.js",
-        "protocol/js/protocol-utils.js"
+        "js/base/protocol-globals.es6.js"
       ],
       "name": "lib"
     },
@@ -1661,10 +1651,8 @@
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
-        "protocol/js/protocol-lang-switcher.js",
-        "js/base/protocol/init-lang-switcher.js",
-        "protocol/js/protocol-details.js",
-        "protocol/js/protocol-footer.js",
+        "js/base/protocol/init-footer.es6.js",
+        "js/base/protocol/init-lang-switcher.es6.js",
         "js/base/protocol/protocol-sub-navigation.js",
         "js/base/base-page-init.js"
       ],
@@ -1687,7 +1675,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sidemenu.js",
         "js/base/mozilla-article.js"
 
       ],
@@ -1695,7 +1682,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/foundation/annual-report-modal.es6.js"
       ],
       "name": "annual_report_modal"
@@ -1746,7 +1732,6 @@
     },
     {
       "files": [
-        "protocol/js/protocol-newsletter.js",
         "js/newsletter/newsletter.es6.js",
         "js/newsletter/newsletter-init.es6.js"
       ],
@@ -1795,8 +1780,7 @@
     },
     {
       "files": [
-        "protocol/js/protocol-sticky-promo.js",
-        "js/firefox/sticky-promo.js",
+        "js/firefox/sticky-promo.es6.js",
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
@@ -1852,45 +1836,33 @@
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/careers/testimonials-modal.es6.js"
       ],
       "name": "careers-testimonials"
     },
     {
       "files": [
-        "protocol/js/protocol-details.js",
         "js/careers/position/position.js"
       ],
       "name": "careers-position"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/careers/hero-video.js"
       ],
       "name": "careers-hero-video"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/mozorg/diversity/2021/diversity-2021.es6.js"
       ],
       "name": "diversity-2021"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
         "js/mozorg/home/includes/ijustine-modal-video.js"
       ],
       "name": "ijustine-promo"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-sidemenu.js",
-        "js/base/mozilla-article.js"
-      ],
-      "name": "webvision"
     },
     {
       "files": [

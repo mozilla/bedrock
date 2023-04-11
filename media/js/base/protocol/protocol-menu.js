@@ -6,10 +6,10 @@
 
 // Copied from Protocol, to be backported along with nav updates.
 
-(function (Mzp) {
+(function () {
     'use strict';
 
-    var Menu = {};
+    var MzpMenu = {};
     var _menuOpen = false;
     var _hoverTimeout;
     var _hoverTimeoutDelay = 150;
@@ -27,7 +27,7 @@
      * @param {Object} el - DOM element (`.mzp-c-menu-category.mzp-js-expandable`)
      * @param {Boolean} animate - show animation when menu panel opens.
      */
-    Menu.open = function (el, animate) {
+    MzpMenu.open = function (el, animate) {
         if (animate) {
             el.classList.add('mzp-is-animated');
         }
@@ -47,7 +47,7 @@
      * Closes all currently open menu panels.
      * Note: on small screens more than one menu can be open at the same time.
      */
-    Menu.close = function () {
+    MzpMenu.close = function () {
         var current = document.querySelectorAll(
             '.c-menu-category.mzp-is-selected'
         );
@@ -73,9 +73,9 @@
         return current.length > 0;
     };
 
-    Menu.onDocumentKeyUp = function (e) {
+    MzpMenu.onDocumentKeyUp = function (e) {
         if (e.keyCode === 27 && _menuOpen) {
-            Menu.close();
+            MzpMenu.close();
         }
     };
 
@@ -83,25 +83,25 @@
      * Menu panel close button `click` event handler.
      * @param {Object} e - Event object.
      */
-    Menu.onCloseButtonClick = function (e) {
+    MzpMenu.onCloseButtonClick = function (e) {
         e.preventDefault();
 
         if (typeof _options.onMenuButtonClose === 'function') {
             _options.onMenuButtonClose();
         }
 
-        Menu.close();
+        MzpMenu.close();
     };
 
     /**
      * Toggles the open/closed state of a menu panel.
      * @param {Object} el - DOM element (`.mzp-c-menu-category.mzp-js-expandable`)
      */
-    Menu.toggle = function (el) {
+    MzpMenu.toggle = function (el) {
         var state = el.classList.contains('mzp-is-selected') ? true : false;
 
         if (!state) {
-            Menu.open(el);
+            MzpMenu.open(el);
         } else {
             // The following classes must be removed in the correct order
             // to work around a bug in bedrock's classList polyfill for IE9.
@@ -125,14 +125,14 @@
      * Animates only if a menu panel is not already open.
      * @param {Object} e - Event object.
      */
-    Menu.onMouseEnter = function (e) {
+    MzpMenu.onMouseEnter = function (e) {
         clearTimeout(_hoverTimeout);
 
         _hoverTimeout = setTimeout(function () {
-            var current = Menu.close();
+            var current = MzpMenu.close();
             var animate = current ? false : true;
 
-            Menu.open(e.target, animate);
+            MzpMenu.open(e.target, animate);
         }, _hoverTimeoutDelay);
     };
 
@@ -140,11 +140,11 @@
      * Menu `mouseleave` event handler.
      * Closes the menu only when hover intent is shown.
      */
-    Menu.onMouseLeave = function () {
+    MzpMenu.onMouseLeave = function () {
         clearTimeout(_hoverTimeout);
 
         _hoverTimeout = setTimeout(function () {
-            Menu.close();
+            MzpMenu.close();
         }, _hoverTimeoutDelay);
     };
 
@@ -152,7 +152,7 @@
      * Menu `focusout` event handler.
      * Closes the menu when focus moves to an alement outside of the currently open panel.
      */
-    Menu.onFocusOut = function () {
+    MzpMenu.onFocusOut = function () {
         var self = this;
 
         /**
@@ -166,7 +166,7 @@
                 !self.contains(document.activeElement) &&
                 self.classList.contains('mzp-is-selected')
             ) {
-                Menu.close();
+                MzpMenu.close();
             }
         }, 0);
     };
@@ -176,10 +176,10 @@
      * Closes any currently open menu panels before opening the selected one.
      * @param {Object} e - Event object.
      */
-    Menu.onClickWide = function (e) {
+    MzpMenu.onClickWide = function (e) {
         e.preventDefault();
-        Menu.close();
-        Menu.open(e.target.parentNode);
+        MzpMenu.close();
+        MzpMenu.open(e.target.parentNode);
     };
 
     /**
@@ -187,48 +187,48 @@
      * Toggles the currently selected menu open open/close state.
      * @param {Object} e - Event object.
      */
-    Menu.onClickSmall = function (e) {
+    MzpMenu.onClickSmall = function (e) {
         e.preventDefault();
-        Menu.toggle(e.target.parentNode);
+        MzpMenu.toggle(e.target.parentNode);
     };
 
     /**
      * Convenience function for checking `matchMedia` state.
      * @return {Boolean}
      */
-    Menu.isWideViewport = function () {
+    MzpMenu.isWideViewport = function () {
         return _mqWideNav.matches;
     };
 
     /**
      * Toggle desktop/mobile navigation using `matchMedia` event handler.
      */
-    Menu.handleState = function () {
+    MzpMenu.handleState = function () {
         _mqWideNav = matchMedia('(min-width: ' + _wideBreakpoint + ')');
 
         _mqWideNav.addListener(function (mq) {
-            Menu.close();
+            MzpMenu.close();
 
             if (mq.matches) {
-                Menu.unbindEventsSmall();
-                Menu.bindEventsWide();
+                MzpMenu.unbindEventsSmall();
+                MzpMenu.bindEventsWide();
             } else {
-                Menu.unbindEventsWide();
-                Menu.bindEventsSmall();
+                MzpMenu.unbindEventsWide();
+                MzpMenu.bindEventsSmall();
             }
         });
 
-        if (Menu.isWideViewport()) {
-            Menu.bindEventsWide();
+        if (MzpMenu.isWideViewport()) {
+            MzpMenu.bindEventsWide();
         } else {
-            Menu.bindEventsSmall();
+            MzpMenu.bindEventsSmall();
         }
     };
 
     /**
      * Bind events for wide viewports.
      */
-    Menu.bindEventsWide = function () {
+    MzpMenu.bindEventsWide = function () {
         var items = document.querySelectorAll(
             '.c-menu-category.mzp-js-expandable'
         );
@@ -236,25 +236,33 @@
         var close;
 
         for (var i = 0; i < items.length; i++) {
-            items[i].addEventListener('mouseenter', Menu.onMouseEnter, false);
-            items[i].addEventListener('mouseleave', Menu.onMouseLeave, false);
-            items[i].addEventListener('focusout', Menu.onFocusOut, false);
+            items[i].addEventListener(
+                'mouseenter',
+                MzpMenu.onMouseEnter,
+                false
+            );
+            items[i].addEventListener(
+                'mouseleave',
+                MzpMenu.onMouseLeave,
+                false
+            );
+            items[i].addEventListener('focusout', MzpMenu.onFocusOut, false);
 
             link = items[i].querySelector('.c-menu-title');
-            link.addEventListener('click', Menu.onClickWide, false);
+            link.addEventListener('click', MzpMenu.onClickWide, false);
 
             close = items[i].querySelector('.c-menu-button-close');
-            close.addEventListener('click', Menu.onCloseButtonClick, false);
+            close.addEventListener('click', MzpMenu.onCloseButtonClick, false);
         }
 
         // close with escape key
-        document.addEventListener('keyup', Menu.onDocumentKeyUp, false);
+        document.addEventListener('keyup', MzpMenu.onDocumentKeyUp, false);
     };
 
     /**
      * Unbind events for wide viewports.
      */
-    Menu.unbindEventsWide = function () {
+    MzpMenu.unbindEventsWide = function () {
         var items = document.querySelectorAll(
             '.c-menu-category.mzp-js-expandable'
         );
@@ -264,56 +272,60 @@
         for (var i = 0; i < items.length; i++) {
             items[i].removeEventListener(
                 'mouseenter',
-                Menu.onMouseEnter,
+                MzpMenu.onMouseEnter,
                 false
             );
             items[i].removeEventListener(
                 'mouseleave',
-                Menu.onMouseLeave,
+                MzpMenu.onMouseLeave,
                 false
             );
-            items[i].removeEventListener('focusout', Menu.onFocusOut, false);
+            items[i].removeEventListener('focusout', MzpMenu.onFocusOut, false);
 
             link = items[i].querySelector('.c-menu-title');
-            link.removeEventListener('click', Menu.onClickWide, false);
+            link.removeEventListener('click', MzpMenu.onClickWide, false);
 
             close = items[i].querySelector('.c-menu-button-close');
-            close.removeEventListener('click', Menu.onCloseButtonClick, false);
+            close.removeEventListener(
+                'click',
+                MzpMenu.onCloseButtonClick,
+                false
+            );
         }
 
-        document.removeEventListener('keyup', Menu.onDocumentKeyUp, false);
+        document.removeEventListener('keyup', MzpMenu.onDocumentKeyUp, false);
     };
 
     /**
      * Bind events for small viewports.
      */
-    Menu.bindEventsSmall = function () {
+    MzpMenu.bindEventsSmall = function () {
         var items = document.querySelectorAll(
             '.c-menu-category.mzp-js-expandable .c-menu-title'
         );
 
         for (var i = 0; i < items.length; i++) {
-            items[i].addEventListener('click', Menu.onClickSmall, false);
+            items[i].addEventListener('click', MzpMenu.onClickSmall, false);
         }
     };
 
     /**
      * Unbind events for small viewports.
      */
-    Menu.unbindEventsSmall = function () {
+    MzpMenu.unbindEventsSmall = function () {
         var items = document.querySelectorAll(
             '.c-menu-category.mzp-js-expandable .c-menu-title'
         );
 
         for (var i = 0; i < items.length; i++) {
-            items[i].removeEventListener('click', Menu.onClickSmall, false);
+            items[i].removeEventListener('click', MzpMenu.onClickSmall, false);
         }
     };
 
     /**
      * Set initial ARIA menu panel states.
      */
-    Menu.setAria = function () {
+    MzpMenu.setAria = function () {
         var items = document.querySelectorAll(
             '.c-menu-category.mzp-js-expandable .c-menu-title'
         );
@@ -326,7 +338,7 @@
     /**
      * Enhances the menu for 1st class JS support.
      */
-    Menu.enhanceJS = function () {
+    MzpMenu.enhanceJS = function () {
         var menu = document.querySelectorAll('.c-menu');
 
         for (var i = 0; i < menu.length; i++) {
@@ -338,19 +350,21 @@
     /**
      * Basic feature detect for 1st class menu JS support.
      */
-    Menu.isSupported = function () {
-        if (typeof Mzp.Supports !== 'undefined') {
-            return Mzp.Supports.matchMedia && Mzp.Supports.classList;
+    MzpMenu.isSupported = function () {
+        if (typeof window.MzpSupports !== 'undefined') {
+            return (
+                window.MzpSupports.matchMedia && window.MzpSupports.classList
+            );
         } else {
             return false;
         }
     };
 
     /**
-     * Initialise menu.
+     * Initialize menu.
      * @param {Object} options - configurable options.
      */
-    Menu.init = function (options) {
+    MzpMenu.init = function (options) {
         if (typeof options === 'object') {
             for (var i in options) {
                 if (options.hasOwnProperty.call(i)) {
@@ -359,12 +373,12 @@
             }
         }
 
-        if (Menu.isSupported()) {
-            Menu.handleState();
-            Menu.setAria();
-            Menu.enhanceJS();
+        if (MzpMenu.isSupported()) {
+            MzpMenu.handleState();
+            MzpMenu.setAria();
+            MzpMenu.enhanceJS();
         }
     };
 
-    window.Mzp.Menu = Menu;
-})(window.Mzp);
+    window.MzpMenu = MzpMenu;
+})();

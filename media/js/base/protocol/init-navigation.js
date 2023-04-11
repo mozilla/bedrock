@@ -11,9 +11,8 @@
     'use strict';
 
     if (
-        typeof Mzp === 'undefined' ||
-        typeof Mzp.Menu === 'undefined' ||
-        typeof Mzp.Navigation === 'undefined'
+        typeof window.MzpMenu === 'undefined' ||
+        typeof window.MzpNavigation === 'undefined'
     ) {
         return;
     }
@@ -45,9 +44,9 @@
 
     initNavButton();
 
-    Mzp.Menu.init({
+    window.MzpMenu.init({
         onMenuOpen: handleOnMenuOpen
     });
 
-    Mzp.Navigation.init();
+    window.MzpNavigation.init();
 })();

@@ -4,19 +4,24 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function (Mzp) {
+var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+
+(function () {
     'use strict';
+
+    // Initialize Protocol side menu.
+    MzpSideMenu.init();
 
     var _mqWide = matchMedia('(max-width: 767px)');
 
     if (_mqWide.matches) {
-        Mzp.Details.init('.side-reference-title');
+        window.MzpDetails.init('.side-reference-title');
     }
     _mqWide.addListener(function (mq) {
         if (mq.matches) {
-            Mzp.Details.init('.side-reference-title');
+            window.MzpDetails.init('.side-reference-title');
         } else {
-            Mzp.Details.destroy('.side-reference-title');
+            window.MzpDetails.destroy('.side-reference-title');
         }
     });
-})(window.Mzp);
+})();

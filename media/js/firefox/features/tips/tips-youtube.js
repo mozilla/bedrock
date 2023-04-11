@@ -6,6 +6,8 @@
 
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
+var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
+
 // YouTube API hook has to be in global scope, ugh.
 window.onYouTubeIframeAPIReady = function () {
     'use strict';
@@ -124,7 +126,7 @@ window.onYouTubeIframeAPIReady = function () {
         var sibling = getNextEl(card);
         var content = sibling.querySelector('.mzp-c-card-video-content');
 
-        Mzp.Modal.createModal(card, content, {
+        MzpModal.createModal(card, content, {
             title: title,
             className: 'mzp-has-media',
             onCreate: initVideoPlayer,

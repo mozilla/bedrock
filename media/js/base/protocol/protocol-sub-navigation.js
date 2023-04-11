@@ -7,34 +7,30 @@
 (function () {
     'use strict';
 
-    // check we have global variable
-    if (typeof window.Mzp !== 'undefined') {
-        var Mzp = window.Mzp;
-        var subNavTitle = '.c-sub-navigation .c-sub-navigation-title';
+    var subNavTitle = '.c-sub-navigation .c-sub-navigation-title';
 
-        // check we have global Supports and Details library
-        if (
-            typeof Mzp.Supports !== 'undefined' &&
-            typeof Mzp.Details !== 'undefined'
-        ) {
-            // check browser supports matchMedia
-            if (Mzp.Supports.matchMedia) {
-                var _mqWide = matchMedia('(max-width: 767px)');
+    // check we have global Supports and Details library
+    if (
+        typeof window.MzpSupports !== 'undefined' &&
+        typeof window.MzpDetails !== 'undefined'
+    ) {
+        // check browser supports matchMedia
+        if (window.MzpSupports.matchMedia) {
+            var _mqWide = matchMedia('(max-width: 767px)');
 
-                // initialize details if screen is small
-                if (_mqWide.matches) {
-                    Mzp.Details.init(subNavTitle);
-                }
-
-                // remove details if screen is big
-                _mqWide.addListener(function (mq) {
-                    if (mq.matches) {
-                        Mzp.Details.init(subNavTitle);
-                    } else {
-                        Mzp.Details.destroy(subNavTitle);
-                    }
-                });
+            // initialize details if screen is small
+            if (_mqWide.matches) {
+                window.MzpDetails.init(subNavTitle);
             }
+
+            // remove details if screen is big
+            _mqWide.addListener(function (mq) {
+                if (mq.matches) {
+                    window.MzpDetails.init(subNavTitle);
+                } else {
+                    window.MzpDetails.destroy(subNavTitle);
+                }
+            });
         }
     }
 })();

@@ -7,6 +7,7 @@
 (function () {
     'use strict';
 
+    var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
     var client = window.Mozilla.Client;
     var joinFirefoxContent = document.querySelector('.join-firefox-content');
 
@@ -14,7 +15,7 @@
         e.preventDefault();
 
         // Open the modal
-        Mzp.Modal.createModal(this, joinFirefoxContent, {
+        MzpModal.createModal(this, joinFirefoxContent, {
             title: e.target.textContent,
             className: 'join-firefox-modal'
         });

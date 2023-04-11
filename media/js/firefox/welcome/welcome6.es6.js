@@ -4,6 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 import SendToDevice from '../../base/send-to-device.es6';
 
 // used for testing purposes only.
@@ -25,7 +26,7 @@ trigger.addEventListener(
     'click',
     (e) => {
         e.preventDefault();
-        Mzp.Modal.createModal(e.target, content, {
+        MzpModal.createModal(e.target, content, {
             closeText: window.Mozilla.Utils.trans('global-close')
         });
 

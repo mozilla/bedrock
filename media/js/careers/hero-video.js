@@ -105,7 +105,7 @@ window.onYouTubeIframeAPIReady = function () {
 
         var content = document.querySelector('.mzp-u-modal-content');
 
-        Mzp.Modal.createModal(e.target, content, {
+        window.MzpModal.createModal(e.target, content, {
             title: videoTitle,
             className: 'mzp-has-media',
             onCreate: initVideoPlayer,

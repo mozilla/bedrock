@@ -7,6 +7,9 @@
 (function (Mozilla) {
     'use strict';
 
+    var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
+    var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+
     function onLoad() {
         var browserHelpContent = document.getElementById('browser-help');
         var browserHelpIcon = document.getElementById('icon-browser-help');
@@ -16,7 +19,7 @@
         );
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
-            Mzp.Modal.createModal(this, modalContent, {
+            MzpModal.createModal(this, modalContent, {
                 title: modalTitle,
                 className: 'help-modal'
             });
@@ -29,6 +32,7 @@
         }
 
         Mozilla.FirefoxDownloader.init();
+        MzpSideMenu.init();
 
         // Browser help modal.
         browserHelpIcon.addEventListener(
