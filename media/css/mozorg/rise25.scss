@@ -15,12 +15,56 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 
 .rise25-hero {
-    .rise25-hero-static-image {
-        width: 100%;
+    position: relative;
+    background-color: $color-black;
+
+    .hero-static-container {
+        margin-left: auto;
+        margin-right: auto;
+
+        // width of largest background image
+        max-width: 1842px;
 
         &:hover {
             cursor: pointer;
         }
+    }
+
+    .hero-text-container {
+        position: absolute;
+
+        img {
+            margin-bottom: $spacing-md;
+        }
+
+        h1 {
+            @include font-size(38px);
+            color: $color-white;
+
+            @media #{$mq-xs} {
+                @include font-size(42px);
+            }
+            @media #{$mq-md} {
+                @include font-size(48px);
+            }
+        }
+
+        .play-container {
+            display: flex;
+
+            p {
+                @include font-size(18px);
+                color: $color-white;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin-bottom: 0;
+                margin-left: $spacing-md;
+            }
+        }
+    }
+
+    .rise25-hero-static-image {
+        display: block;
     }
 
     .video-background {
@@ -180,22 +224,22 @@ $image-path: '/media/protocol/img';
     }
 
     &:nth-child(2) {
-        --card-color: #e26961;
+        --card-color: #f37925;
     }
 
     &:nth-child(3) {
-        --card-color: #284786;
+        --card-color: #118a8a;
     }
 
     &:nth-child(4) {
-        --card-color: #167777;
+        --card-color: #43b19d;
     }
 
     &:nth-child(5) {
-        --card-color: #7c4a89;
+        --card-color: #a285d0;
     }
 
     &:nth-child(6) {
-        --card-color: #46c0aa;
+        --card-color: #b75d72;
     }
 }

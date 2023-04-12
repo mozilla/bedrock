@@ -78,11 +78,13 @@
         var element = copyLinks[index];
         element.addEventListener('click', handleCopyLink);
     }
-    var staticImage = document.querySelector('.rise25-hero-static-image');
+    var staticImage = document.querySelector('.hero-static-container');
     var video = document.querySelector('.rise25-hero video');
 
     staticImage.addEventListener('click', function () {
-        var imageHeight = getComputedStyle(staticImage).height;
+        var imageHeight = getComputedStyle(
+            document.querySelector('.hero-static-container')
+        ).height;
         staticImage.style.display = 'none';
         video.style.height = imageHeight;
         video.style.display = 'block';
