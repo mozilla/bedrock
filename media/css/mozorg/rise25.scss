@@ -15,7 +15,22 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 
 .rise25-hero {
+    .rise25-hero-static-image {
+        width: 100%;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .video-background {
+        background-color: $color-black;
+    }
+
     video {
+        max-height: 530px;
+        margin-left: auto;
+        margin-right: auto;
         display: none;
     }
 }
@@ -34,12 +49,18 @@ $image-path: '/media/protocol/img';
     --social-share-color: #bbb;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: var(--social-share-color);
 
     p {
         @include font-size(14px);
         margin-bottom: 0;
         text-transform: uppercase;
+        margin-right: $spacing-sm;
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-start;
     }
 
     .social-share-list {
@@ -58,6 +79,11 @@ $image-path: '/media/protocol/img';
             color: var(--social-share-color);
             align-items: center;
             justify-content: center;
+
+            &:hover,
+            &:focus {
+                --social-share-color: #989898;
+            }
         }
 
         button:hover {
@@ -100,7 +126,7 @@ $image-path: '/media/protocol/img';
 }
 
 .nomination-section {
-    background: radial-gradient(95% 107% at 9% 12%, #f7e7c8 6.25%, #fff8eb 54.69%, #fcdfa5 100%);
+    background: #f2f0e9;
 
     .nomination-section-heading {
         margin-right: auto;
@@ -114,8 +140,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-t-columns-three {
+.nomination-grid {
+    display: grid;
+    grid-template: columns;
     gap: $spacing-xl;
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 1fr;
+    }
 
     @media #{$mq-lg} {
         grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
@@ -127,6 +159,9 @@ $image-path: '/media/protocol/img';
     border-radius: $border-radius-md;
     color: $color-white;
     display: flex;
+    min-height: 200px;
+    max-height: 360px;
+    max-width: 360px;
     flex-direction: column;
     padding: $spacing-lg;
     justify-content: space-between;
@@ -141,6 +176,13 @@ $image-path: '/media/protocol/img';
         background-color: var(--card-color);
         border-color: $color-white;
         align-self: flex-start;
+
+        &:hover,
+        &:focus {
+            border-color: $color-white;
+            color: var(--card-color);
+            background-color: $color-white;
+        }
     }
 
     &:first-child {
@@ -148,6 +190,8 @@ $image-path: '/media/protocol/img';
         justify-content: space-between;
 
         .social-share {
+            justify-content: flex-start;
+
             --social-share-color: #{$color-white};
 
             ul {

@@ -4,6 +4,8 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{# remove VPN CTA #}
+
 {% from "macros-protocol.html" import split with context %}
 
 {% extends "base-protocol-mozilla.html" %}
@@ -20,7 +22,6 @@ the internet for the better over the next quarter century and beyond. Submit you
 
 {% block js %}
   {{ js_bundle("rise-25") }}
-  {{ js_bundle("rise-25-video")}}
 {% endblock %}
 
 
@@ -55,18 +56,57 @@ the internet for the better over the next quarter century and beyond. Submit you
 {% block content %}
   <section class="rise25-hero">
     <div class="rise25-hero-static-image">
-      <img class="video-placeholder" src="/media/img/mozorg/rise25/hero-image.png" alt="Rise25: In search of the next wave of visionaries and builders">
+      {{ picture(
+        url='img/mozorg/rise25/r25_hero_432.jpg',
+        sources=[
+          {
+          'media': '(min-width: 1440px)',
+            'srcset': {
+              'img/mozorg/rise25/r25_hero_os.jpg': '',
+            }
+          },
+          {
+          'media': '(min-width: 982px)',
+            'srcset': {
+              'img/mozorg/rise25/r25_hero_1440.jpg': '',
+            }
+          },
+          {
+          'media': '(min-width: 688px)',
+            'srcset': {
+              'img/mozorg/rise25/r25_hero_982.jpg': '',
+            }
+          },
+          {
+          'media': '(min-width: 432px)',
+            'srcset': {
+              'img/mozorg/rise25/r25_hero_688.jpg': '',
+          }
+          },
+        ],
+            optional_attributes={
+            'height': '530',
+            'class': 'rise25-hero-static-image'
+            }
+        ) }}
+      {# <img class="video-placeholder" src="/media/img/mozorg/rise25/hero-image.png" alt="Rise25: In search of the next wave of visionaries and builders"> #}
     </div>
-    <video muted>
-      <source src="/media/img/mozorg/rise25/rise25-video.webm" type="video/webm">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-background">
+      <video muted height="530">
+        <source src="/media/img/mozorg/rise25/rise25-video.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </section>
   {% call split(
     block_class="mzp-l-split-center-on-sm-md gamechanger-section",
     media_class='mzp-l-split-h-center',
+    media_after=True,
     image=resp_img(
-    url='img/mozorg/rise25/portraits.jpg',
+    url='img/mozorg/rise25/r25_collage.jpg',
+    srcset={
+      'img/mozorg/rise25/r25_collage-2x.jpg': '2x'
+    },
       optional_attributes={
         'class': 'mzp-c-split-media-asset'
       }
@@ -78,12 +118,7 @@ the internet for the better over the next quarter century and beyond. Submit you
     {% include "mozorg/rise25/includes/rise25-social-share.html"%}
   {% endcall %}
   <section class="mzp-l-content nomination-section">
-    <div class="nomination-section-heading">
-      <h2>We see them and so do you</h2>
-      <p>Nominate the people you see developing tech and shaping the internet to be more ethical, responsible and inclusive.
-      We'll choose five honorees across five categories.</p>
-    </div>
-    <div class="mzp-l-columns mzp-t-columns-three">
+    <div class="nomination-grid">
       <div class="nomination-card">
         <p>We'll choose five honorees across each of the five categories to be recognized and celebrated across our platforms later
         this year.</p>

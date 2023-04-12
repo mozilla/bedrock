@@ -2036,13 +2036,6 @@
         "js/mozorg/rise25.js"
       ],
       "name": "rise-25"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "js/mozorg/rise25-video.js"
-      ],
-      "name": "rise-25-video"
     }
   ]
 }

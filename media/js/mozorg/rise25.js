@@ -74,10 +74,20 @@
         var element = copyLinks[index];
         element.addEventListener('click', handleCopyLink);
     }
-
+    var staticImage = document.querySelector('.rise25-hero-static-image');
     var video = document.querySelector('.rise25-hero video');
 
+    staticImage.addEventListener('click', function () {
+        var imageHeight = getComputedStyle(staticImage).height;
+        staticImage.style.display = 'none';
+        video.style.height = imageHeight;
+        video.style.display = 'block';
+        video.play();
+    });
+
     video.addEventListener('ended', function () {
+        staticImage.style.display = 'block';
+        video.style.display = 'none';
         video.currentTime = 0;
     });
 })();
