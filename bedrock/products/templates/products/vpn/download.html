@@ -42,17 +42,24 @@
   <section class="vpn-downloads">
     <div class="mzp-l-content">
       <header class="vpn-download-header">
-        <h1>{{ self.page_title_full() }}</h1>
         {% if block_download %}
+        <h1>{{ self.page_title_full() }}</h1>
         <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
         {% else %}
         {% call split(
-        media_class='mzp-l-split-h-center',
-        media_include='',
-        media_after=False
+        block_class='mzp-l-split-body-wide',
+        media_class='mzp-l-split-center-on-sm-md mzp-l-split-h-center ',
+        media_after=True,
+        image=resp_img(
+          url='img/products/vpn/landing/vpn-cntwell-04-high-res.png',
+          optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+          }
+        )
         ) %}
         <h1>{{ self.page_title_full() }}</h1>
         <p>{{ ftl('vpn-download-sub-heading', devices=connect_devices) }}</p>
+        <p>{{ ftl('vpn-download-mozilla-vpn-offers') }}</p>
         {% endcall %}
         {% endif %}
       </header>
@@ -132,7 +139,7 @@
           </div>
         </div>
       </div>
-      <ul class="vpn-download-secondary-list mzp-l-columns mzp-t-columns-two">
+      <ul class="vpn-download-secondary-list">
         <!-- Windows -->
         <li class="secondary-platform windows">
           <div class="platform-image">
@@ -221,7 +228,7 @@
   <section class="vpn-privacy mzp-l-content">
     {% call split(
     block_class=' mzp-l-split-reversed',
-    media_class='mzp-l-split-h-center',
+    media_class='mzp-l-split-h-center mzp-l-split-center-on-sm-md',
     image=resp_img(
     url='img/products/vpn/download/vpn-download-shield.png',
     optional_attributes={

@@ -10,6 +10,7 @@ vpn-download-page-description = Download { -brand-name-mozilla-vpn } for { -bran
 # Variables:
 #   $devices (number) - maximum number of connected devices
 vpn-download-sub-heading = You can download { -brand-name-mozilla-vpn } on up to { $devices } devices with one subscription.
+vpn-download-mozilla-vpn-offers = { -brand-name-mozilla-vpn } offers safe and secure protection for all major operating systems.
 
 vpn-download-not-available-in-country = Sorry, { -brand-name-mozilla-vpn } is not available for download in your country.
 vpn-download-button-copy = Download
