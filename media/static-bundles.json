@@ -1308,8 +1308,7 @@
         "js/base/site.js",
         "js/base/dnt-helper.js",
         "js/base/mozilla-cookie-helper.js",
-        "js/base/core-datalayer-page-id.js",
-        "js/base/core-datalayer-events-init.es6.js"
+        "js/base/core-datalayer-page-id.js"
       ],
       "name": "site"
     },
@@ -1645,7 +1644,7 @@
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-sidemenu.js",
         "js/firefox/all/all-downloads-unified.js",
-        "js/firefox/all/all-downloads-unified-init.js"
+        "js/firefox/all/all-downloads-unified-init.es6.js"
       ],
       "name": "firefox_all_unified"
     },

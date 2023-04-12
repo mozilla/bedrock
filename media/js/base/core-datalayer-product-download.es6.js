@@ -4,11 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-/*
-TODO: dev and staging have different domains
-FYI: can click the simple download button from a mobile device and /thanks will forward you to an app store
-*/
-const ProductDownloadTracking = {};
+const TrackProductDownload = {};
 
 /**
  * Callback for a click event attached to a link to download.mozilla.org
@@ -16,10 +12,10 @@ const ProductDownloadTracking = {};
  * - sends it along for tracking
  * @param {Event}
  */
-ProductDownloadTracking.linkHandler = (event) => {
-    const downloadHref = event.target.href;
+TrackProductDownload.linkHandler = (event) => {
+    const downloadURL = event.target.href;
     // send to be formatted then tracked
-    ProductDownloadTracking.sendDetailsFromHref(downloadHref);
+    TrackProductDownload.sendDetailsFromURL(downloadURL);
 };
 
 /**
@@ -27,16 +23,16 @@ ProductDownloadTracking.linkHandler = (event) => {
  * @param {URL}
  * @returns {Boolean}
  */
-ProductDownloadTracking.isValidDownloadURL = (downloadHref) => {
-    // check it is a URL
-    try {
-        new URL(downloadHref);
-        // check starts with https://download.mozilla.org
-
-        // check it has product, os, and lang parameters
-
+TrackProductDownload.isValidDownloadURL = (downloadURL) => {
+    const prodURL = /^https:\/\/download.mozilla.org/;
+    const stageURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
+    if (
+        typeof downloadURL === 'string' &&
+        (prodURL.test(downloadURL) || stageURL.test(downloadURL))
+    ) {
+        // TODO check it has product, os, and lang parameters
         return true;
-    } catch (error) {
+    } else {
         return false;
     }
 };
@@ -47,42 +43,49 @@ ProductDownloadTracking.isValidDownloadURL = (downloadHref) => {
  * - sends it along for tracking
  * @param {String} -  example: https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
  */
-ProductDownloadTracking.sendDetailsFromHref = (downloadHref) => {
-    // validate downloadHref before continuing
-    if (!ProductDownloadTracking.isValidDownloadURL(downloadHref)) {
+TrackProductDownload.sendDetailsFromURL = (downloadURL) => {
+    // validate downloadURL before continuing
+    if (!TrackProductDownload.isValidDownloadURL(downloadURL)) {
         return;
     }
-    const downloadURL = new URL(downloadHref);
 
-    // extract the values we need from the parameters
-    const productParam = downloadURL.searchParams.get('product');
-    const productSplit = productParam.split('-');
-    // product is first word of product param
-    const product = productSplit[0];
-    // release channel is second word of product param, but use release instead of latest
-    const releaseChannel =
-        productSplit[1] === 'latest' ? 'release' : productSplit[1];
-    // os is os
-    const platform = downloadURL.searchParams.get('os');
-    // lang is lang
-    const lang = downloadURL.searchParams.get('lang');
+    // check for SearchParams helper
+    if (typeof window._SearchParams !== 'undefined') {
+        // check for query string
+        if (downloadURL.indexOf('?') > 0) {
+            // convert query string to object
+            const params = window._SearchParams.queryStringToObject(
+                downloadURL.split('?')[1]
+            );
+            // extract the values we need from the parameters
+            const productParam = params.product;
+            const productSplit = productParam.split('-');
+            // product is first word of product param
+            const product = productSplit[0];
+            // release channel is second word of product param
+            // (except for release which says 'latest' but we want 'release')
+            const releaseChannel =
+                productSplit[1] === 'latest' ? 'release' : productSplit[1];
 
-    const eventObj = { event: 'product_download' };
-    eventObj['product'] = product;
-    eventObj['platform'] = platform;
-    eventObj['release_channel'] = releaseChannel;
-    eventObj['download_language'] = lang;
+            // put the object together
+            const eventObj = { event: 'product_download' };
+            eventObj['product'] = product;
+            eventObj['platform'] = params.os;
+            eventObj['release_channel'] = releaseChannel;
+            eventObj['download_language'] = params.lang;
 
-    // send for tracking
-    ProductDownloadTracking.sendEvent(eventObj);
+            // send for tracking
+            TrackProductDownload.sendEvent(eventObj);
+        }
+    }
 };
 
 /**
  * Sends an event to the data layer
- * @param {Object} -  product details formatted into a product_download event
+ * @param {Object} - product details formatted into a product_download event
  */
-ProductDownloadTracking.sendEvent = (details) => {
+TrackProductDownload.sendEvent = (details) => {
     window.dataLayer.push(details);
 };
 
-export default ProductDownloadTracking;
+export default TrackProductDownload;

@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import ProductDownloadTracking from './core-datalayer-product-download';
+import TrackProductDownload from '../../base/core-datalayer-product-download.es6';
 
 (function (Mozilla) {
     function onLoad() {
@@ -69,7 +69,7 @@ import ProductDownloadTracking from './core-datalayer-product-download';
         downloadButton.addEventListener(
             'click',
             function (event) {
-                ProductDownloadTracking.linkHandler(event);
+                TrackProductDownload.linkHandler(event);
             },
             false
         );
