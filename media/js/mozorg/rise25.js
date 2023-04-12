@@ -11,7 +11,9 @@
         var tweetUrl = encodeURIComponent(
             'https://mozilla.org/rise25?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
         );
-        var tweetText = encodeURIComponent('Hey');
+        var tweetText = encodeURIComponent(
+            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n\n Five people from five categories will be selected and honored at an upcoming event. Submit your nomination today!\n'
+        );
         return (
             'https://www.twitter.com/intent/tweet?url=' +
             tweetUrl +
@@ -25,7 +27,7 @@
             'https://mozilla.org/rise25?utm_campaign=rise25&utm_medium=organicsocial&utm_source=facebook&utm_content=rise25-share'
         );
         var shareText = encodeURIComponent(
-            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Submit your nomination today!'
+            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n\n Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Submit your nomination today!\n'
         );
         return (
             'https://facebook.com/sharer.php?u=' +
@@ -64,7 +66,7 @@
             'Mozilla is looking for the next 25 rising stars'
         );
         var body = encodeURIComponent(
-            'In search of the game-changers shaping the internet. \nHelp us find the visionaries and builders shaping the future of the internet. \nMozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better. Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Who will you nominate? \n Submit your nominations: https://mozilla.org/rise25'
+            'In search of the game-changers shaping the internet. \n\nHelp us find the visionaries and builders shaping the future of the internet. \n\nMozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better. Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Who will you nominate? \n\n Submit your nominations: https://mozilla.org/rise25'
         );
         for (var index = 0; index < emailShare.length; index++) {
             var element = emailShare[index];

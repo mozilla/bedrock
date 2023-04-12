@@ -15,6 +15,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block page_desc %}In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
 the internet for the better over the next quarter century and beyond. Submit your nominations today.{% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('rise-25') }}
@@ -64,28 +71,33 @@ the internet for the better over the next quarter century and beyond. Submit you
           'media': '(min-width: 1440px)',
             'srcset': {
               'img/mozorg/rise25/r25_hero_os.jpg': '',
+              'img/mozorg/rise25/r25_hero_os-2x.jpg': '2x',
             }
           },
           {
           'media': '(min-width: 982px)',
             'srcset': {
               'img/mozorg/rise25/r25_hero_1440.jpg': '',
+              'img/mozorg/rise25/r25_hero_1440-2x.jpg': '2x',
             }
           },
           {
           'media': '(min-width: 688px)',
             'srcset': {
               'img/mozorg/rise25/r25_hero_982.jpg': '',
+              'img/mozorg/rise25/r25_hero_982-2x.jpg': '2x',
             }
           },
           {
           'media': '(min-width: 432px)',
             'srcset': {
               'img/mozorg/rise25/r25_hero_688.jpg': '',
+              'img/mozorg/rise25/r25_hero_688-2x.jpg': '2x',
           }
           },
         ],
             optional_attributes={
+            'srcset': '/media/img/mozorg/rise25/r25_hero_432-2x.jpg 2x',
             'height': '530',
             'class': 'rise25-hero-static-image',
             'alt': 'Help us find next wave of visionaries'
@@ -117,10 +129,10 @@ the internet for the better over the next quarter century and beyond. Submit you
     <p>Help us identify and recognize the next 25 game-changers shaping the future of the internet to be more ethical, responsible and inclusive.</p>
     {% include "mozorg/rise25/includes/rise25-social-share.html"%}
   {% endcall %}
-  <section class="mzp-l-content nomination-section">
-    <div class="nomination-grid">
+  <section class="nomination-section">
+    <div class="mzp-l-content nomination-grid">
       <div class="nomination-card">
-        <p>We'll choose five honorees across each of the five categories to be recognized and celebrated across our platforms later
+        <p class="nomination-details">We'll choose five honorees across each of the five categories to be recognized and celebrated across our platforms later
         this year.</p>
         {% include "mozorg/rise25/includes/rise25-social-share.html"%}
       </div>

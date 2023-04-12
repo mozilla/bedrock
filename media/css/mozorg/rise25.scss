@@ -80,47 +80,21 @@ $image-path: '/media/protocol/img';
             align-items: center;
             justify-content: center;
 
-            &:hover,
-            &:focus {
+            &:hover {
                 --social-share-color: #989898;
             }
         }
 
-        button:hover {
-            cursor: pointer;
+        button {
+            padding: 0;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         svg {
             stroke: currentColor;
-        }
-    }
-}
-
-.c-rise25-video {
-    .video-play {
-        &::after {
-            background: url('/media/img/icons/video-play.svg') 0 0 no-repeat;
-            content: '';
-            height: 100px;
-            left: 50%;
-            margin: -50px 0 0 -50px;
-            opacity: 0.7;
-            position: absolute;
-            top: 50%;
-            transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-            width: 100px;
-            z-index: 2;
-        }
-
-        &:hover,
-        &:focus {
-            border-color: $color-white;
-            outline: 0;
-
-            &::after {
-                opacity: 1;
-                transform: scale(1.1);
-            }
         }
     }
 }
@@ -145,7 +119,7 @@ $image-path: '/media/protocol/img';
     grid-template: columns;
     gap: $spacing-xl;
 
-    @media #{$mq-md} {
+    @media (min-width: 688px) {
         grid-template-columns: 1fr 1fr;
     }
 
@@ -155,6 +129,7 @@ $image-path: '/media/protocol/img';
 }
 
 .nomination-card {
+    justify-self: center;
     position: relative;
     border-radius: $border-radius-md;
     color: $color-white;
@@ -177,8 +152,7 @@ $image-path: '/media/protocol/img';
         border-color: $color-white;
         align-self: flex-start;
 
-        &:hover,
-        &:focus {
+        &:hover {
             border-color: $color-white;
             color: var(--card-color);
             background-color: $color-white;
@@ -188,6 +162,11 @@ $image-path: '/media/protocol/img';
     &:first-child {
         --card-color: #{$color-black};
         justify-content: space-between;
+
+        .nomination-details {
+            @include font-size(22px);
+            font-weight: 600;
+        }
 
         .social-share {
             justify-content: flex-start;
