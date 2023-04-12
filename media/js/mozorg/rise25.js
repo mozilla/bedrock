@@ -24,7 +24,9 @@
         var shareUrl = encodeURIComponent(
             'https://mozilla.org/rise25?utm_campaign=rise25&utm_medium=organicsocial&utm_source=facebook&utm_content=rise25-share'
         );
-        var shareText = encodeURIComponent('Hey');
+        var shareText = encodeURIComponent(
+            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Submit your nomination today!'
+        );
         return (
             'https://facebook.com/sharer.php?u=' +
             shareUrl +
@@ -58,15 +60,15 @@
     })();
 
     (function () {
-        var subject = encodeURIComponent('');
-        var body = encodeURIComponent('');
+        var subject = encodeURIComponent(
+            'Mozilla is looking for the next 25 rising stars'
+        );
+        var body = encodeURIComponent(
+            'In search of the game-changers shaping the internet. \nHelp us find the visionaries and builders shaping the future of the internet. \nMozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better. Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Who will you nominate? \n Submit your nominations: https://mozilla.org/rise25'
+        );
         for (var index = 0; index < emailShare.length; index++) {
             var element = emailShare[index];
-            element.href =
-                'mailto:example@website.com?subject=' +
-                subject +
-                '&body=' +
-                body;
+            element.href = 'mailto:?subject=' + subject + '&body=' + body;
         }
     })();
 

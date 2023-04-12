@@ -20,35 +20,36 @@ the internet for the better over the next quarter century and beyond. Submit you
   {{ css_bundle('rise-25') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle("rise-25") }}
-{% endblock %}
-
 
 {% set nomination_cards = [
   {
     "title": "Activists",
-    "desc": "We’re recognizing the advocates who are using the internet to drive social and political change. Nominate individuals who are using the internet to amplify their voices and make a difference in the world.",
+    "desc": "We’re recognizing the activists who are using the internet to drive social and political change. Nominate individuals
+    who are using the internet to amplify their voices and make a difference in the world.",
     "href": "",
   },
   {
     "title": "Builders",
-    "desc": "These are the technical people building the infrastructure of the internet. Nominate the builders shaping the technicalside of the web making it faster, more secure and accessible to everyone.",
+    "desc": "These are the engineers and technical people building the infrastructure of the internet. Nominate the builders shaping
+    the technical side of the web, making it faster, more secure and accessible to everyone.",
     "href": "",
   },
   {
     "title": "Artists",
-    "desc": "These are the creative forces creating innovative and thought-provoking digital artwork. Nominate artists who use the internet as their canvas to inspire others and re-think what's possible online.",
+    "desc": "These are the creative forces creating innovative and thought-provoking digital artwork. Nominate artists who use the
+    internet as their canvas to inspire others and re-think what's possible online.",
     "href": "",
   },
   {
     "title": "Creators",
-    "desc": "These are individuals developing breakthrough internet applications and tech. Nominate entrepreneurs, engineers and designers pushing the boundaries and creating new opportunities for people worldwide.",
+    "desc": "These are the content creators using storytelling to build community online. Nominate the filmmakers, educators,
+    comedians and social media creators inspiring their audiences and sparking important conversations.",
     "href": "",
   },
   {
-    "title": "Stewards",
-    "desc": "This category is for the people shaping the policies and regulations governing the internet. Nominate the policymakers, lawyers and advocates who are fighting for an open, free internet.",
+    "title": "Advocates",
+    "desc": "This category is for the people shaping the policies and regulations governing the internet. Nominate the policymakers,
+    lawyers and advocates who are fighting for an open, free internet.",
     "href": "",
   }
 ]%}
@@ -86,10 +87,10 @@ the internet for the better over the next quarter century and beyond. Submit you
         ],
             optional_attributes={
             'height': '530',
-            'class': 'rise25-hero-static-image'
+            'class': 'rise25-hero-static-image',
+            'alt': 'Help us find next wave of visionaries'
             }
         ) }}
-      {# <img class="video-placeholder" src="/media/img/mozorg/rise25/hero-image.png" alt="Rise25: In search of the next wave of visionaries and builders"> #}
     </div>
     <div class="video-background">
       <video muted height="530">
@@ -112,9 +113,8 @@ the internet for the better over the next quarter century and beyond. Submit you
       }
     ),
   )%}
-    <h2>Recognizing the game-changers</h2>
-    <p>In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
-    the internet for the better over the next quarter century.</p>
+    <h2>Enter your nominations now</h2>
+    <p>Help us identify and recognize the next 25 game-changers shaping the future of the internet to be more ethical, responsible and inclusive.</p>
     {% include "mozorg/rise25/includes/rise25-social-share.html"%}
   {% endcall %}
   <section class="mzp-l-content nomination-section">
@@ -133,4 +133,8 @@ the internet for the better over the next quarter century and beyond. Submit you
       {% endfor %}
     </div>
   </section>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle("rise-25") }}
 {% endblock %}
