@@ -26,7 +26,6 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
-from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 
@@ -130,7 +129,6 @@ def home_view(request):
     locale = l10n_utils.get_locale(request)
 
     ctx = {
-        "pocket_articles": PocketArticle.objects.all()[:4],
         "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
         "add_active_locales": ["de", "fr"],
     }
