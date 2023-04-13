@@ -11,12 +11,16 @@ $image-path: '/media/protocol/img';
     background-color: $color-marketing-gray-10;
 }
 
-.vpn-download-header {
-    text-align: center;
+.vpn-downloads,
+.vpn-privacy {
+    .mzp-c-split {
+        .mzp-c-split-container {
+            min-width: unset;
+        }
 
-    @media #{$mq-md} {
-        .mzp-c-split {
+        @media #{$mq-md} {
             padding: $spacing-lg 0;
+            @include text-body-xl;
         }
     }
 }
@@ -59,7 +63,6 @@ $image-path: '/media/protocol/img';
         box-shadow: $box-shadow-sm;
         padding: $spacing-xl;
         height: 315px;
-        width: 380px;
         display: none;
 
         .platform-image {
@@ -69,10 +72,28 @@ $image-path: '/media/protocol/img';
         .current-platform-lede {
             color: $color-violet-70;
         }
+
+        &.android {
+            height: 360px;
+        }
+
+        &.ios {
+            .platform-download-link {
+                img {
+                    width: 170px;
+                }
+            }
+        }
     }
 
     @media (min-width: 1450px) {
         width: 100%;
+    }
+
+    @media #{$mq-md} {
+        .primary-platform {
+            width: 380px;
+        }
     }
 }
 
@@ -84,29 +105,14 @@ $image-path: '/media/protocol/img';
     margin-bottom: 0;
     justify-self: center;
 
-    @media #{$mq-lg} {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: $spacing-xl;
-        grid-row-gap: $spacing-xl;
-    }
-
-    @media (min-width: 1450px) {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, auto);
-        grid-column-gap: $spacing-xl;
-        grid-row-gap: $spacing-xl;
-        justify-self: end;
-    }
-
     .secondary-platform {
-        display: flex;
-        align-items: center;
-        padding: 0 $spacing-lg;
         border-radius: 6px;
         box-shadow: $box-shadow-sm;
-        height: 165px;
-        width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: $spacing-lg;
 
         img {
             display: block;
@@ -122,7 +128,7 @@ $image-path: '/media/protocol/img';
         }
 
         .platform-download-link {
-            margin-left: auto;
+            // margin-left: auto;
 
             .platform-download-icon {
                 &:hover,
@@ -132,6 +138,56 @@ $image-path: '/media/protocol/img';
                 }
             }
         }
+    }
+
+    @media #{$mq-xs} {
+        .secondary-platform {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            padding: $spacing-lg;
+
+            .platform-body {
+                margin: $spacing-md 0;
+            }
+
+            .platform-download-link {
+                margin-left: unset;
+            }
+        }
+    }
+
+    @media #{$mq-sm} {
+        .secondary-platform {
+            flex-direction: row;
+            height: 165px;
+            width: 350px;
+            padding: 0 $spacing-lg;
+
+            .platform-body {
+                margin: $spacing-md;
+            }
+
+            .platform-download-link {
+                margin-left: auto;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: $spacing-xl;
+        grid-row-gap: $spacing-xl;
+    }
+
+    @media (min-width: 1450px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-column-gap: $spacing-xl;
+        grid-row-gap: $spacing-xl;
+        justify-self: end;
     }
 }
 

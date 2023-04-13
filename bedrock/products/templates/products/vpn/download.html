@@ -45,10 +45,13 @@
         {% if block_download %}
         <h1>{{ self.page_title_full() }}</h1>
         <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
+
         {% else %}
+
         {% call split(
-        block_class='mzp-l-split-body-wide',
-        media_class='mzp-l-split-center-on-sm-md mzp-l-split-h-center ',
+        block_class='mzp-l-split-body-wide mzp-l-split-center-on-sm-md',
+        body_class='mzp-l-split-h-start',
+        media_class='mzp-l-split-center-on-sm-md',
         media_after=True,
         image=resp_img(
           url='img/products/vpn/landing/vpn-cntwell-04-high-res.png',
@@ -57,6 +60,9 @@
           }
         )
         ) %}
+        <div class="vpn-logo">
+          <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
+        </div>
         <h1>{{ self.page_title_full() }}</h1>
         <p>{{ ftl('vpn-download-sub-heading', devices=connect_devices) }}</p>
         <p>{{ ftl('vpn-download-mozilla-vpn-offers') }}</p>
@@ -119,8 +125,8 @@
             <h2>{{ ftl('vpn-download-download-for-ios') }}</h2>
             <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
             <p>{{ ftl('vpn-download-version-requirements', version='13.0') }}</p>
-            <a class="mzp-c-button" href="{{ ios_download_url }}" data-cta-type="button" data-cta-text="VPN Download (iOS)" class="platform-download-link">
-            {{ ftl('vpn-download-get-mozilla-vpn') }}
+            <a href="{{ ios_download_url }}" data-cta-type="button" data-cta-text="VPN Download (iOS)" class="platform-download-link">
+              <img src="{{ static('img/products/vpn/download/apple-app-store-badge.svg') }}" alt=" {{ ftl('vpn-download-get-mozilla-vpn') }}">
             </a>
           </div>
         </div>
@@ -133,8 +139,8 @@
             <h2>{{ ftl('vpn-download-download-for-android') }}</h2>
             <p>{{ ftl('vpn-download-version-requirements', version='8.0') }}</p>
             <p>{{ ftl('vpn-download-version-requirements', version='13.0') }}</p>
-            <a class="mzp-c-button" href="{{ ios_download_url }}" data-cta-type="button" data-cta-text="VPN Download (iOS)" class="platform-download-link">
-            {{ ftl('vpn-download-get-mozilla-vpn') }}
+            <a class="platform-download-link" href="{{ android_download_url }}" data-cta-type="button" data-cta-text="VPN Download (Android)" target="_blank" rel="noopener noreferrer">
+              <img src="{{ static('img/products/vpn/download/google-play-badge.png') }}" alt=" {{ ftl('vpn-download-get-mozilla-vpn') }}">
             </a>
           </div>
         </div>
@@ -227,7 +233,7 @@
   </section>
   <section class="vpn-privacy mzp-l-content">
     {% call split(
-    block_class=' mzp-l-split-reversed',
+    block_class=' mzp-l-split-reversed mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-h-center mzp-l-split-center-on-sm-md',
     image=resp_img(
     url='img/products/vpn/download/vpn-download-shield.png',
@@ -240,10 +246,10 @@
     <p>{{ ftl('vpn-download-from-the-maker', url='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
     <p>{{ ftl('vpn-download-we-never-log') }}</p>
     {% endcall %}
-    <footer class="vpn-footer">
-      {% include 'products/vpn/includes/footer-legal.html' %}
-    </footer>
   </section>
+  <footer class="vpn-footer">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
 </main>
 {% endblock %}
 
