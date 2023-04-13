@@ -38,6 +38,7 @@ $image-path: '/media/protocol/img';
         }
 
         h1 {
+            @include font-base;
             @include font-size(38px);
             color: $color-white;
 
@@ -131,9 +132,81 @@ $image-path: '/media/protocol/img';
 
         button {
             padding: 0;
+            position: relative;
 
             &:hover {
                 cursor: pointer;
+            }
+
+            .social-share-copy,
+            .social-share-copied {
+                @include text-body-sm;
+                background: $color-white;
+                color: $color-black;
+                height: auto;
+                border: 1px solid $color-black;
+                padding: $spacing-xs;
+                pointer-events: none;
+                position: absolute;
+                text-align: center;
+                border-radius: $border-radius-sm;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 1;
+                width: max-content;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: transparent transparent $color-black transparent;
+                    opacity: 1;
+                    transform: translateY(-100%);
+                }
+            }
+
+            .social-share-copied {
+                bottom: 0;
+                display: none;
+                opacity: 1;
+
+                &::before {
+                    top: -18px;
+                    left: 66px;
+                    border-color: $color-black transparent transparent transparent;
+                    opacity: 1;
+                }
+            }
+
+            @media #{$mq-md} {
+                .social-share-copy,
+                .social-share-copied {
+                    bottom: -50px;
+
+                    &::before {
+                        top: 0;
+                    }
+                }
+
+                .social-share-copied {
+                    bottom: -50px;
+
+                    &::before {
+                        bottom: $spacing-xs;
+                        border-color: transparent $color-white transparent transparent;
+                    }
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    .social-share-copy,
+                    .social-share-copy::before {
+                        opacity: 1;
+                    }
+                }
             }
         }
 
