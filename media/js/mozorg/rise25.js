@@ -11,6 +11,9 @@
     var twitterShare = document.querySelectorAll('.social-share .twitter');
     var emailShare = document.querySelectorAll('.social-share .email');
     var copyLinks = document.querySelectorAll('.social-share .copy-text');
+    var staticImage = document.querySelector('.hero-static-container');
+    var video = document.querySelector('.rise25-hero video');
+    var timeout;
 
     function generateTweet() {
         var tweetUrl = encodeURIComponent(
@@ -42,8 +45,6 @@
         );
     }
 
-    var timeout;
-
     function handleCopyLink(e) {
         e.preventDefault;
         navigator.clipboard.writeText('https://mozilla.com/rise25');
@@ -62,6 +63,7 @@
         }, 2000);
     }
 
+    // used iifies to set attributes since the variables for `index` was being overwritten by each other
     (function () {
         for (var index = 0; index < facebookShare.length; index++) {
             var element = facebookShare[index];
@@ -93,8 +95,6 @@
         var element = copyLinks[index];
         element.addEventListener('click', handleCopyLink);
     }
-    var staticImage = document.querySelector('.hero-static-container');
-    var video = document.querySelector('.rise25-hero video');
 
     staticImage.addEventListener('click', function () {
         var imageHeight = getComputedStyle(

@@ -9,14 +9,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
-@import '~@mozilla-protocol/core/protocol/css/components/video';
 
 .rise25-hero {
-    position: relative;
     background-color: $color-black;
+    position: relative;
 
     .hero-static-container {
         margin-left: auto;
@@ -45,6 +41,7 @@ $image-path: '/media/protocol/img';
             @media #{$mq-xs} {
                 @include font-size(42px);
             }
+
             @media #{$mq-md} {
                 @include font-size(48px);
             }
@@ -65,6 +62,7 @@ $image-path: '/media/protocol/img';
     }
 
     .rise25-hero-static-image {
+        // used to avoid the spacing at the bottom of the image which had the background showing through
         display: block;
     }
 
@@ -212,13 +210,6 @@ $image-path: '/media/protocol/img';
             }
 
             @media #{$mq-md} {
-                .social-share-copy,
-                .social-share-copied {
-                    &::before {
-                        top: 0;
-                    }
-                }
-
                 .social-share-copied {
                     &::before {
                         bottom: $spacing-xs;
@@ -259,31 +250,31 @@ $image-path: '/media/protocol/img';
 
 .nomination-grid {
     display: grid;
-    grid-template: columns;
+    grid-template-columns: 1fr;
     gap: $spacing-xl;
 
-    @media (min-width: 688px) {
+    @media #{$mq-md} {
         grid-template-columns: 1fr 1fr;
     }
 
     @media #{$mq-lg} {
-        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 .nomination-card {
-    justify-self: center;
-    position: relative;
+    background-color: var(--card-color, #{$color-black});
     border-radius: $border-radius-md;
     color: $color-white;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
     min-height: 200px;
     max-height: 360px;
     max-width: 360px;
-    flex-direction: column;
+    position: relative;
     padding: $spacing-lg;
-    justify-content: space-between;
-    background-color: var(--card-color, #{$color-black});
 
     h3 {
         @include font-base;
@@ -295,7 +286,8 @@ $image-path: '/media/protocol/img';
         border-color: $color-white;
         align-self: flex-start;
 
-        &:hover {
+        &:hover,
+        &:focus {
             border-color: $color-white;
             color: var(--card-color);
             background-color: $color-white;
