@@ -10,6 +10,17 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
+// requested extra bold font from design
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    src:
+        url('/media/fonts/rise25/Inter-Black.woff2') format('woff2'),
+        url('/media/fonts/rise25/Inter-Black.woff') format('woff');
+}
+
 .rise25-hero {
     background-color: $color-black;
     position: relative;
@@ -36,6 +47,7 @@ $image-path: '/media/protocol/img';
         h1 {
             @include font-base;
             @include font-size(38px);
+            font-weight: 900;
             color: $color-white;
 
             @media #{$mq-xs} {
