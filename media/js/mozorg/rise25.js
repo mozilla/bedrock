@@ -7,6 +7,11 @@
 (function () {
     'use strict';
 
+    var facebookShare = document.querySelectorAll('.social-share .facebook');
+    var twitterShare = document.querySelectorAll('.social-share .twitter');
+    var emailShare = document.querySelectorAll('.social-share .email');
+    var copyLinks = document.querySelectorAll('.social-share .copy-text');
+
     function generateTweet() {
         var tweetUrl = encodeURIComponent(
             'https://mozilla.org/rise25?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
@@ -37,15 +42,25 @@
         );
     }
 
+    var timeout;
+
     function handleCopyLink(e) {
         e.preventDefault;
         navigator.clipboard.writeText('https://mozilla.com/rise25');
-    }
 
-    var facebookShare = document.querySelectorAll('.social-share .facebook');
-    var twitterShare = document.querySelectorAll('.social-share .twitter');
-    var emailShare = document.querySelectorAll('.social-share .email');
-    var copyLinks = document.querySelectorAll('.social-share .copy-text');
+        var copyText = e.currentTarget.querySelector('.social-share-copy');
+        var copiedText = e.currentTarget.querySelector('.social-share-copied');
+
+        clearTimeout(timeout);
+
+        copiedText.style.display = 'block';
+        copyText.style.display = 'none';
+
+        timeout = setTimeout(function () {
+            copiedText.style.display = 'none';
+            copyText.style.display = 'block';
+        }, 2000);
+    }
 
     (function () {
         for (var index = 0; index < facebookShare.length; index++) {

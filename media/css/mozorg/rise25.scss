@@ -141,19 +141,19 @@ $image-path: '/media/protocol/img';
             .social-share-copy,
             .social-share-copied {
                 @include text-body-sm;
-                background: $color-white;
+                background: transparent;
                 color: $color-black;
                 height: auto;
-                border: 1px solid $color-black;
+                left: -100%;
+                bottom: -50px;
+                border: 1px solid #aaa;
                 padding: $spacing-xs;
                 pointer-events: none;
                 position: absolute;
                 text-align: center;
                 border-radius: $border-radius-sm;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 1;
+                display: block;
+                opacity: 0;
                 width: max-content;
 
                 &::before {
@@ -161,49 +161,75 @@ $image-path: '/media/protocol/img';
                     position: absolute;
                     border-width: 10px;
                     border-style: solid;
-                    border-color: transparent transparent $color-black transparent;
-                    opacity: 1;
+                    border-color: transparent transparent #aaa;
+                    opacity: 0;
+                    left: 25%;
+                    top: 0;
+                    transform: translateY(-100%);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent transparent #fff;
+                    opacity: 0;
+                    top: 0;
+                    left: calc(25% + 1px);
                     transform: translateY(-100%);
                 }
             }
 
             .social-share-copied {
-                bottom: 0;
                 display: none;
                 opacity: 1;
+                left: -75%;
 
                 &::before {
-                    top: -18px;
-                    left: 66px;
-                    border-color: $color-black transparent transparent transparent;
+                    content: '';
+                    position: absolute;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: transparent transparent #aaa;
                     opacity: 1;
+                    top: 0;
+                    left: 25%;
+                    transform: translateY(-100%);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent transparent #fff;
+                    opacity: 1;
+                    top: 0;
+                    left: calc(25% + 1px);
+                    transform: translateY(-100%);
                 }
             }
 
             @media #{$mq-md} {
                 .social-share-copy,
                 .social-share-copied {
-                    bottom: -50px;
-
                     &::before {
                         top: 0;
                     }
                 }
 
                 .social-share-copied {
-                    bottom: -50px;
-
                     &::before {
                         bottom: $spacing-xs;
-                        border-color: transparent $color-white transparent transparent;
                     }
                 }
 
                 &:hover,
-                &:focus,
                 &:active {
                     .social-share-copy,
-                    .social-share-copy::before {
+                    .social-share-copy::before,
+                    .social-share-copy::after {
                         opacity: 1;
                     }
                 }
@@ -292,27 +318,42 @@ $image-path: '/media/protocol/img';
 
             ul {
                 margin-bottom: 0;
+
+                .social-share-copy,
+                .social-share-copied {
+                    background-color: $color-white;
+                    color: $color-black;
+                    border: none;
+
+                    &::before {
+                        border-color: transparent transparent #fff;
+                    }
+
+                    &::after {
+                        content: none;
+                    }
+                }
             }
         }
     }
 
     &:nth-child(2) {
-        --card-color: #f37925;
+        --card-color: #bb5a17;
     }
 
     &:nth-child(3) {
-        --card-color: #118a8a;
+        --card-color: #0e8484;
     }
 
     &:nth-child(4) {
-        --card-color: #43b19d;
+        --card-color: #1a8471;
     }
 
     &:nth-child(5) {
-        --card-color: #a285d0;
+        --card-color: #8165ad;
     }
 
     &:nth-child(6) {
-        --card-color: #b75d72;
+        --card-color: #a95267;
     }
 }
