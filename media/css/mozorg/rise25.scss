@@ -26,8 +26,12 @@ $image-path: '/media/protocol/img';
     position: relative;
 
     .hero-static-container {
+        display: block;
+        border: none;
+        outline: none;
         margin-left: auto;
         margin-right: auto;
+        padding: 0;
 
         // width of largest background image
         max-width: 1842px;
@@ -39,6 +43,7 @@ $image-path: '/media/protocol/img';
 
     .hero-text-container {
         position: absolute;
+        text-align: left;
 
         img {
             margin-bottom: $spacing-md;
@@ -120,6 +125,10 @@ $image-path: '/media/protocol/img';
 
     .social-share-list {
         display: flex;
+
+        .visually-hidden {
+            @include visually-hidden;
+        }
 
         a,
         button {
@@ -275,6 +284,8 @@ $image-path: '/media/protocol/img';
 }
 
 .nomination-card {
+    // fallback for legacy browsers
+    background-color: $color-black;
     background-color: var(--card-color, #{$color-black});
     border-radius: $border-radius-md;
     color: $color-white;
