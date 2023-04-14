@@ -1,0 +1,386 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$brand-theme: 'firefox';
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+// requested extra bold font from design
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    src:
+        url('/media/fonts/rise25/Inter-Black.woff2') format('woff2'),
+        url('/media/fonts/rise25/Inter-Black.woff') format('woff');
+}
+
+.rise25-hero {
+    background-color: $color-black;
+    position: relative;
+
+    .hero-static-container {
+        display: block;
+        border: none;
+        outline: none;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+
+        // width of largest background image
+        max-width: 1842px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .hero-text-container {
+        position: absolute;
+        text-align: left;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &.mzp-l-content::after {
+            content: none;
+        }
+
+        h1 {
+            @include font-base;
+            @include font-size(38px);
+            font-weight: 900;
+            margin: 0;
+            color: $color-white;
+
+            @media #{$mq-xs} {
+                @include font-size(42px);
+            }
+
+            @media #{$mq-md} {
+                @include font-size(48px);
+            }
+        }
+
+        .play-container {
+            display: flex;
+
+            p {
+                @include font-size(18px);
+                align-self: center;
+                color: $color-white;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin-bottom: 0;
+                margin-left: $spacing-md;
+            }
+        }
+
+        @media (min-width: 600px) {
+            padding-top: $layout-md;
+            padding-bottom: $layout-md;
+        }
+    }
+
+    .rise25-hero-static-image {
+        // used to avoid the spacing at the bottom of the image which had the background showing through
+        display: block;
+    }
+
+    .video-background {
+        background-color: $color-black;
+    }
+
+    video {
+        max-height: 530px;
+        margin-left: auto;
+        margin-right: auto;
+        display: none;
+    }
+}
+
+.gamechanger-section {
+    h2 {
+        @include font-base;
+    }
+
+    p {
+        @include font-size(21px);
+    }
+}
+
+.social-share {
+    --social-share-color: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--social-share-color);
+
+    p {
+        @include font-size(14px);
+        margin-bottom: 0;
+        text-transform: uppercase;
+        margin-right: $spacing-sm;
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-start;
+    }
+
+    .social-share-list {
+        display: flex;
+
+        .visually-hidden {
+            @include visually-hidden;
+        }
+
+        a,
+        button {
+            background: transparent;
+            width: 30px;
+            height: 30px;
+            margin-left: $spacing-xs;
+            margin-right: $spacing-xs;
+            border: 1px solid var(--social-share-color);
+            border-radius: $border-radius-lg;
+            display: flex;
+            color: var(--social-share-color);
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                --social-share-color: #989898;
+            }
+        }
+
+        button {
+            padding: 0;
+            position: relative;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .social-share-copy,
+            .social-share-copied {
+                @include text-body-sm;
+                background: transparent;
+                color: $color-black;
+                height: auto;
+                left: -100%;
+                bottom: -50px;
+                border: 1px solid #aaa;
+                padding: $spacing-xs;
+                pointer-events: none;
+                position: absolute;
+                text-align: center;
+                border-radius: $border-radius-sm;
+                display: block;
+                opacity: 0;
+                width: max-content;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: transparent transparent #aaa;
+                    opacity: 0;
+                    left: 25%;
+                    top: 0;
+                    transform: translateY(-100%);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent transparent #fff;
+                    opacity: 0;
+                    top: 0;
+                    left: calc(25% + 1px);
+                    transform: translateY(-100%);
+                }
+            }
+
+            .social-share-copied {
+                display: none;
+                opacity: 1;
+                left: -75%;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: transparent transparent #aaa;
+                    opacity: 1;
+                    top: 0;
+                    left: 25%;
+                    transform: translateY(-100%);
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent transparent #fff;
+                    opacity: 1;
+                    top: 0;
+                    left: calc(25% + 1px);
+                    transform: translateY(-100%);
+                }
+            }
+
+            @media #{$mq-md} {
+                .social-share-copied {
+                    &::before {
+                        bottom: $spacing-xs;
+                    }
+                }
+
+                &:hover,
+                &:active {
+                    .social-share-copy,
+                    .social-share-copy::before,
+                    .social-share-copy::after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        svg {
+            stroke: currentColor;
+        }
+    }
+}
+
+.nomination-section {
+    background: #f2f0e9;
+
+    .nomination-section-heading {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 80%;
+        text-align: center;
+
+        h2 {
+            @include font-base;
+        }
+    }
+}
+
+.nomination-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media #{$mq-lg} {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.nomination-card {
+    // fallback for legacy browsers
+    background-color: $color-black;
+    background-color: var(--card-color, #{$color-black});
+    border-radius: $border-radius-md;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
+    min-height: 200px;
+    max-height: 360px;
+    max-width: 360px;
+    position: relative;
+    padding: $spacing-lg;
+
+    h3 {
+        @include font-base;
+        color: $color-white;
+    }
+
+    .mzp-c-button {
+        background-color: var(--card-color);
+        border-color: $color-white;
+        align-self: flex-start;
+
+        &:hover,
+        &:focus {
+            border-color: $color-white;
+            color: var(--card-color);
+            background-color: $color-white;
+        }
+    }
+
+    &:first-child {
+        --card-color: #{$color-black};
+        justify-content: space-between;
+
+        .nomination-details {
+            @include font-size(22px);
+            font-weight: 600;
+        }
+
+        .social-share {
+            justify-content: flex-start;
+
+            --social-share-color: #{$color-white};
+
+            ul {
+                margin-bottom: 0;
+
+                .social-share-copy,
+                .social-share-copied {
+                    background-color: $color-white;
+                    color: $color-black;
+                    border: none;
+
+                    &::before {
+                        border-color: transparent transparent #fff;
+                    }
+
+                    &::after {
+                        content: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &:nth-child(2) {
+        --card-color: #bb5a17;
+    }
+
+    &:nth-child(3) {
+        --card-color: #0e8484;
+    }
+
+    &:nth-child(4) {
+        --card-color: #1a8471;
+    }
+
+    &:nth-child(5) {
+        --card-color: #8165ad;
+    }
+
+    &:nth-child(6) {
+        --card-color: #a95267;
+    }
+}

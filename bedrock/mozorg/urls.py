@@ -146,6 +146,8 @@ urlpatterns = (
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     page("santalocator/", "mozorg/santa-locator.html"),
+    page("rise25/", "mozorg/rise25/rise25.html"),
+    redirect(r"rise-25/?$", "rise25/"),
 )
 
 if settings.DEV:
