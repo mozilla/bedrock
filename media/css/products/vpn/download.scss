@@ -19,9 +19,28 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
             min-width: unset;
         }
 
+        .vpn-logo {
+            img {
+                height: 60px;
+                width: 60px;
+            }
+        }
+
         @media #{$mq-md} {
             padding: $spacing-lg 0;
             @include text-body-xl;
+        }
+
+        // Media query to change to mobile layout sooner to avoid languages with longer words from touching the image
+        @media (max-width: 810px) {
+            .mzp-c-split-container {
+                display: flex;
+                flex-direction: column;
+
+                .mzp-c-split-body {
+                    text-align: center;
+                }
+            }
         }
     }
 }
@@ -279,5 +298,5 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
 }
 
 .vpn-privacy {
-    margin-top: $layout-xl;
+    margin-top: $layout-lg;
 }
