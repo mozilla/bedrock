@@ -133,7 +133,6 @@ platforms and shells in the READMEs for the two pyenv projects.
 
     $ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
     $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    $ echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
     $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 3. Restart your login session for the changes to profile files to take effect - if you're not
@@ -144,9 +143,17 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 4. Install the latest Python 3.9.x (eg 3.9.10), then test it's there::
 
     $ pyenv install 3.9.10
-    ...
 
-    $ pyenv shell 3.9.10  # This temporarily switches your shell session to using 3.9.10
+   If you'd like to make Python 3.9.10 your default globally, you can do so with::
+
+    $ pyenv global 3.9.10
+
+   If you only want to make Python 3.9.10 available in the current shell, while you set up the
+   Python virtualenv (below), you can do so with::
+
+    $ pyenv shell 3.9.10
+
+5. Verify that you have the correct version of Python installed::
 
     $ python --version
     Python 3.9.10
@@ -164,7 +171,10 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ brew install pyenv-virtualenv
 
-2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the ``pyenv-virtualenv`` project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_, in more detail. The following will slot in a command that will work as long as you have pyenv-virtualenv installed::
+2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the
+``pyenv-virtualenv``project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_,
+in more detail. The following will slot in a command that will work as long as you have
+pyenv-virtualenv installed::
 
     $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
@@ -182,17 +192,24 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ pyenv activate bedrock
 
-2. Securely upgrade pip ::
+2. If you'd like to auto activate the virtualenv when you cd into the bedrock directory, and
+deactivate it when you exit the directory, you can do so with::
+
+    $ echo 'bedrock' > .python-version
+
+3. Securely upgrade pip ::
 
     $ pip install --upgrade pip
 
-3. Install / update dependencies ::
+4. Install / update dependencies ::
 
     $ make install-local-python-deps
 
 .. note::
 
-    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple Silicon, 3.9.10 should 'just work':
+    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting
+    the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple
+    Silicon, 3.9.10 should 'just work':
 
     .. code-block:: bash
 
