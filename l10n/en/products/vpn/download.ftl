@@ -14,9 +14,13 @@ vpn-download-mozilla-vpn-offers = { -brand-name-mozilla-vpn } offers safe and se
 
 vpn-download-not-available-in-country = Sorry, { -brand-name-mozilla-vpn } is not available for download in your country.
 vpn-download-button-copy = Download
-vpn-download-windows = VPN for { -brand-name-windows }
+
+# Obsolete string
+vpn-download-for-windows = VPN for { -brand-name-windows } 10/11
+
+vpn-download-for-windows-v2 = VPN for { -brand-name-windows }
 vpn-download-for-windows-requirements = { -brand-name-windows } 10/11 (64-bit only)
-vpn-download-download-windows = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
+vpn-download-download-for-windows = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
 vpn-download-for-mac = VPN for { -brand-name-mac-short }
 vpn-download-download-for-mac = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
 
@@ -38,13 +42,10 @@ vpn-download-download-for-ios = Download VPN { -brand-name-mozilla-vpn } for { -
 vpn-download-get-on-google-play = Get on { -brand-name-google-play } Store
 vpn-download-get-on-app-store = Get on { -brand-name-app-store }
 vpn-download-based-on-your = Based on your current device
-
-vpn-download-get-mozilla-vpn = Get { -brand-name-mozilla } VPN
-
-# Obsolete string
-vpn-download-for-windows = VPN for { -brand-name-windows } 10/11
-
+vpn-download-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
 vpn-download-privacy-you-can = Privacy you can trust
+
+vpn-download-also-available = Also available for:
 
 # Variables:
 #   $url (url) - link to https://mullvad.net/help/why-wireguard/
