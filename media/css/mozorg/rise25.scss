@@ -44,15 +44,21 @@ $image-path: '/media/protocol/img';
     .hero-text-container {
         position: absolute;
         text-align: left;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-        img {
-            margin-bottom: $spacing-md;
+        &.mzp-l-content::after {
+            content: none;
         }
 
         h1 {
             @include font-base;
             @include font-size(38px);
             font-weight: 900;
+            margin: 0;
             color: $color-white;
 
             @media #{$mq-xs} {
@@ -69,12 +75,18 @@ $image-path: '/media/protocol/img';
 
             p {
                 @include font-size(18px);
+                align-self: center;
                 color: $color-white;
                 text-transform: uppercase;
                 font-weight: 700;
                 margin-bottom: 0;
                 margin-left: $spacing-md;
             }
+        }
+
+        @media (min-width: 600px) {
+            padding-top: $layout-md;
+            padding-bottom: $layout-md;
         }
     }
 
