@@ -37,5 +37,6 @@ urlpatterns = (
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/knowledge-is-power/", "newsletter/knowledge-is-power.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
+    page("newsletter/security-and-privacy/", "newsletter/security-privacy-news.html", ftl_files=["mozorg/newsletters"]),
     path("newsletter/newsletter-strings.json", views.newsletter_strings_json, name="newsletter.strings"),
 )

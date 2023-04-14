@@ -880,6 +880,11 @@ const stringData = {
             'Get all the knowledge you need to stay safer and smarter online.',
         title: 'Knowledge is Power'
     },
+    'security-privacy-news': {
+        description:
+            'Stay informed of the latest trends in privacy & security products from Mozilla, the makers of Firefox.',
+        title: 'Security & Privacy News from Mozilla'
+    },
     labs: {
         title: 'About Labs'
     },
