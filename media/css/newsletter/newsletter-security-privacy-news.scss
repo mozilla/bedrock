@@ -8,6 +8,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .section-subscribe {
+    .mzp-l-content:first-child {
+        padding-bottom: 0;
+    }
+
     .page-title {
         @include font-mozilla;
         @include text-title-lg;

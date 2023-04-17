@@ -435,4 +435,4 @@ newsletters-security-and-privacy-news = Security & Privacy News
 newsletters-stay-informed-of-the-latest = Stay informed of the latest trends in privacy & security products from { -brand-name-mozilla }, the makers of { -brand-name-firefox }.
 
 # Subtitle for https://www-dev.allizom.org/newsletter/security-and-privacy/
-newsletters-get-security-and-privacy-news-and-tips = Get security and privacy news and tips from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
+newsletters-get-security-and-privacy-news-and-tips = Get security and privacy news and product updates from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
