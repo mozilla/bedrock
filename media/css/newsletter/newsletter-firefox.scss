@@ -53,6 +53,10 @@ $image-path: '/media/protocol/img';
     background: #fff;
     padding: $spacing-lg 0;
 
+    .mzp-l-content:first-child {
+        padding-bottom: 0;
+    }
+
     h1 {
         @include text-title-xl;
         text-align: center;

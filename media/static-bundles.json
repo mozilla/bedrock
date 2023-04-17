@@ -383,6 +383,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-security-privacy-news.scss"
+      ],
+      "name": "newsletter-security-privacy-news"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-family.scss"
       ],
       "name": "newsletter-family"
