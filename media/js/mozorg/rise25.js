@@ -96,7 +96,9 @@
         element.addEventListener('click', handleCopyLink);
     }
 
-    staticImage.addEventListener('click', function () {
+    staticImage.addEventListener('click', function (e) {
+        e.preventDefault();
+
         var imageHeight = getComputedStyle(
             document.querySelector('.hero-static-container')
         ).height;

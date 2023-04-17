@@ -65,61 +65,61 @@ the internet for the better over the next quarter century and beyond. Submit you
 
 {% block content %}
   <section class="rise25-hero">
-      <button class="hero-static-container" value="Play video" data-cta-type="button" data-cta-text="Rise25 play video">
-        <div class="hero-text-container mzp-l-content">
-            <img src="/media/img/mozorg/rise25/RISE25.svg" width="171" height="35">
-            <h1>In search of<br/> the visionaries<br/> and builders of<br/> tomorrow</h1>
-            <div class="play-container">
-              <span class="play-button">
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.3047 15.0008L10.8493 22.1919L10.8493 7.80973L23.3047 15.0008Z" fill="white" />
-                  <circle cx="15" cy="15" r="14.5908" stroke="white" stroke-width="0.818462" />
-                </svg>
-              </span>
-              <p>Play video</p>
-            </div>
-        </div>
-        <div class="rise25-hero-static-image">
-          {{ picture(
-            url='img/mozorg/rise25/r25_hero_432.jpg',
-            sources=[
-              {
-              'media': '(min-width: 1440px)',
-                'srcset': {
-                  'img/mozorg/rise25/r25_hero_os.jpg': '',
-                  'img/mozorg/rise25/r25_hero_os-2x.jpg': '2x',
-                }
-              },
-              {
-              'media': '(min-width: 982px)',
-                'srcset': {
-                  'img/mozorg/rise25/r25_hero_1440.jpg': '',
-                  'img/mozorg/rise25/r25_hero_1440-2x.jpg': '2x',
-                }
-              },
-              {
-              'media': '(min-width: 688px)',
-                'srcset': {
-                  'img/mozorg/rise25/r25_hero_982.jpg': '',
-                  'img/mozorg/rise25/r25_hero_982-2x.jpg': '2x',
-                }
-              },
-              {
-              'media': '(min-width: 432px)',
-                'srcset': {
-                  'img/mozorg/rise25/r25_hero_688.jpg': '',
-                  'img/mozorg/rise25/r25_hero_688-2x.jpg': '2x',
+    <a href="#" class="hero-static-container" value="Play video" data-cta-type="button" data-cta-text="Rise25 play video">
+      <div class="hero-text-container mzp-l-content">
+          <img src="/media/img/mozorg/rise25/RISE25.svg" width="171" height="35" alt="Rise 25">
+          <h1>In search of<br> the visionaries<br> and builders of<br> tomorrow</h1>
+          <div class="play-container">
+            <span class="play-button">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.3047 15.0008L10.8493 22.1919L10.8493 7.80973L23.3047 15.0008Z" fill="white" />
+                <circle cx="15" cy="15" r="14.5908" stroke="white" stroke-width="0.818462" />
+              </svg>
+            </span>
+            <p>Play video</p>
+          </div>
+      </div>
+      <div class="rise25-hero-static-image">
+        {{ picture(
+          url='img/mozorg/rise25/r25_hero_432.jpg',
+          sources=[
+            {
+            'media': '(min-width: 1440px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_os.jpg': '',
+                'img/mozorg/rise25/r25_hero_os-2x.jpg': '2x',
               }
-              },
-            ],
-            optional_attributes={
-              'srcset': '/media/img/mozorg/rise25/r25_hero_432-2x.jpg 2x',
-              'class': 'rise25-hero-static-image',
-              'alt': 'Help us find next wave of visionaries'
+            },
+            {
+            'media': '(min-width: 982px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_1440.jpg': '',
+                'img/mozorg/rise25/r25_hero_1440-2x.jpg': '2x',
+              }
+            },
+            {
+            'media': '(min-width: 688px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_982.jpg': '',
+                'img/mozorg/rise25/r25_hero_982-2x.jpg': '2x',
+              }
+            },
+            {
+            'media': '(min-width: 432px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_688.jpg': '',
+                'img/mozorg/rise25/r25_hero_688-2x.jpg': '2x',
             }
-          )}}
-        </div>
-    </button>
+            },
+          ],
+          optional_attributes={
+            'srcset': '/media/img/mozorg/rise25/r25_hero_432-2x.jpg 2x',
+            'class': 'rise25-hero-static-image',
+            'alt': 'Help us find next wave of visionaries'
+          }
+        )}}
+      </div>
+    </a>
     <div class="video-background">
       <video muted height="530">
         <source src="https://www.assets.mozilla.net/rise25/rise25-video.webm" type="video/webm">
@@ -157,7 +157,7 @@ the internet for the better over the next quarter century and beyond. Submit you
         <div class="nomination-card">
           <h3>{{ card.title }}</h3>
           <p>{{ card.desc }}</p>
-          <a class="mzp-c-button" target="_blank" role="external noopener noreferrer" href="{{ card.href }}">Nominate</a>
+          <a class="mzp-c-button" target="_blank" rel="external noopener noreferrer" href="{{ card.href }}">Nominate</a>
         </div>
       {% endfor %}
     </div>

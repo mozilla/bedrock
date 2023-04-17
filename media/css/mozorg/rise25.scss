@@ -56,13 +56,13 @@ $image-path: '/media/protocol/img';
 
         h1 {
             @include font-base;
-            @include font-size(38px);
+            @include font-size(32px);
             font-weight: 900;
-            margin: 0;
+            margin: $spacing-md 0;
             color: $color-white;
 
-            @media #{$mq-xs} {
-                @include font-size(42px);
+            @media #{$mq-sm} {
+                @include font-size(38px);
             }
 
             @media #{$mq-md} {
