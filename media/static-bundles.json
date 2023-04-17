@@ -529,12 +529,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-112-en-bundle.scss"
-      ],
-      "name": "firefox_whatsnew_112_en_bundle"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-112-en-features.scss"
       ],
       "name": "firefox_whatsnew_112_en_features"

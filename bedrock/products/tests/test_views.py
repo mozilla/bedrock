@@ -92,27 +92,34 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_REDIRECT="True")
-    def test_affiliate_redirect_on(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?cjevent=1234567890&utm_source=test&utm_campaign=test")
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    def test_vpn_landing_page_relay_bundle_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
         view = views.vpn_landing_page
-        resp = view(req)
-        assert resp.status_code == 301
-        assert resp["location"].endswith("/products/vpn/pricing/?cjevent=1234567890&utm_source=test&utm_campaign=test")
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["relay_bundle_available_in_country"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_REDIRECT="False")
-    def test_affiliate_redirect_off(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?cjevent=1234567890&utm_source=test&utm_campaign=test")
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    def test_vpn_landing_page_relay_bundle_not_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="gb")
         req.locale = "en-US"
         view = views.vpn_landing_page
-        resp = view(req)
-        template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
-        assert resp.status_code == 200
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["relay_bundle_available_in_country"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="False")
+    def test_vpn_landing_page_relay_bundle_disabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["relay_bundle_available_in_country"])
 
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())

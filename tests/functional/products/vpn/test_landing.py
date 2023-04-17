@@ -27,10 +27,11 @@ def test_vpn_available_in_country(country, base_url, selenium):
     assert page.is_get_vpn_12_months_button_displayed
 
     # VPN + Relay bundle is only available in US & Canada.
-    if country in ["us", "ca"]:
-        assert page.is_get_vpn_relay_button_displayed
-    else:
-        assert not page.is_get_vpn_relay_button_displayed
+    # Currently disabled in production behind a switch.
+    # if country in ["us", "ca"]:
+    #     assert page.is_get_vpn_relay_button_displayed
+    # else:
+    #     assert not page.is_get_vpn_relay_button_displayed
 
     # Waitlist features section
     assert not page.is_join_waitlist_features_button_displayed
