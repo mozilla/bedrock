@@ -42,8 +42,10 @@
   <section class="vpn-downloads">
       <header class="vpn-download-header">
         {% if block_download %}
+        <div class="mzp-l-content vpn-download-blocked">
           <h1>{{ self.page_title_full() }}</h1>
           <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
+        </div>
         {% else %}
         {% call split(
           block_class='mzp-l-split-body-wide mzp-l-split-center-on-sm-md',
