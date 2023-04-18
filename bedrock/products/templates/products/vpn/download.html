@@ -40,7 +40,6 @@
 {% block content %}
 <main>
   <section class="vpn-downloads">
-    <div class="mzp-l-coent">
       <header class="vpn-download-header">
         {% if block_download %}
           <h1>{{ self.page_title_full() }}</h1>
@@ -155,7 +154,7 @@
             <img src="{{ static('img/products/vpn/download/platform-windows.svg') }}" alt="">
           </div>
           <div class="platform-body">
-            <h2>{{ ftl('vpn-download-for-windows-v2') }}</h2>
+            <h2>{{ ftl('vpn-download-for-windows-v2', fallback='vpn-download-for-windows') }}</h2>
             <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
           </div>
           <a href="{{ windows_download_url }}" data-cta-type="button" data-cta-text="VPN Download (Windows)" class="platform-download-link">
@@ -217,7 +216,6 @@
       </ul>
       </section>
       {% endif %}
-    </div>
   </section>
 {% if ftl_has_messages('vpn-download-privacy-you-can') %}
   <section class="vpn-privacy">
