@@ -48,4 +48,6 @@ if settings.DEV:
     urlpatterns += (
         path("relay/", views.relay_landing_page, name="products.relay.landing"),
         path("relay/invite/", views.relay_invite_page, name="products.relay.invite"),
+        page("relay/phone/waitlist/", "products/relay/waitlist/phone.html"),
+        page("relay/vpn-relay/waitlist/", "products/relay/waitlist/vpn-relay.html"),
     )
