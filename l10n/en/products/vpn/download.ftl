@@ -20,25 +20,25 @@ vpn-download-for-windows = VPN for { -brand-name-windows } 10/11
 
 vpn-download-for-windows-v2 = VPN for { -brand-name-windows }
 vpn-download-for-windows-requirements = { -brand-name-windows } 10/11 (64-bit only)
-vpn-download-download-for-windows = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
+vpn-download-for-windows-long = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
 vpn-download-for-mac = VPN for { -brand-name-mac-short }
-vpn-download-download-for-mac = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
+vpn-download-for-mac-long = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
 
 # Variables:
 #   $version (number) - operating system version
 vpn-download-version-requirements = Version { $version } and up
 
 vpn-download-for-linux = VPN for { -brand-name-linux }
-vpn-download-download-for-linux = Download { -brand-name-mozilla-vpn } for { -brand-name-linux }
+vpn-download-for-linux-long = Download { -brand-name-mozilla-vpn } for { -brand-name-linux }
 
 # Variables:
 #   $version (number) - operating system version
 vpn-download-for-linux-requirements = Ubuntu { $version } and up
 
 vpn-download-for-android = VPN for { -brand-name-android }
-vpn-download-download-for-android = Download { -brand-name-mozilla-vpn } for { -brand-name-android }
+vpn-download-for-android-long = Download { -brand-name-mozilla-vpn } for { -brand-name-android }
 vpn-download-for-ios = VPN for { -brand-name-ios }
-vpn-download-download-for-ios = Download VPN { -brand-name-mozilla-vpn } for { -brand-name-ios }
+vpn-download-for-ios-long = Download VPN { -brand-name-mozilla-vpn } for { -brand-name-ios }
 vpn-download-get-on-google-play = Get on { -brand-name-google-play } Store
 vpn-download-get-on-app-store = Get on { -brand-name-app-store }
 vpn-download-based-on-your = Based on your current device
