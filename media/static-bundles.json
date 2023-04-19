@@ -1682,6 +1682,12 @@
     },
     {
       "files": [
+        "js/base/datalayer-begincheckout-init.es6.js"
+      ],
+      "name": "data_begincheckout"
+    },
+    {
+      "files": [
         "js/base/mozilla-article.js"
 
       ],
