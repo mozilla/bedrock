@@ -68,6 +68,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
     grid-template-columns: 1fr;
     grid-row-gap: $spacing-xs;
     grid-column-gap: $spacing-xl;
+    padding-bottom: $layout-md;
 
     @media #{$vpn-download-mq-2xl} {
         grid-template-columns: repeat(2, 1fr);
@@ -298,6 +299,22 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         .secondary-platform.android {
             display: none;
         }
+    }
+}
+
+.vpn-download-previous-versions {
+    display: flex;
+    justify-content: center;
+    padding-bottom: $layout-lg;
+    padding-top: 0;
+
+    a {
+        color: $color-black;
+        font-weight: 700;
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-end;
     }
 }
 
