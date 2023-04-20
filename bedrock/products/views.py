@@ -5,9 +5,8 @@ from html import escape
 from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
-from django.http import Http404, HttpResponsePermanentRedirect
+from django.http import Http404
 from django.urls import reverse
-from django.utils.encoding import force_str
 from django.views.decorators.http import require_safe
 
 from sentry_sdk import capture_exception
@@ -34,16 +33,7 @@ def vpn_landing_page(request):
     vpn_available_in_country = country in settings.VPN_COUNTRY_CODES
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
-    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
-    cj_event = request.GET.get("cjevent", None)
-
-    # Redirect affiliate links to simplified pricing page (issue #12912).
-    if cj_event and switch("vpn-affiliate-redirect"):
-        pricing_url = reverse("products.vpn.pricing")
-        query_string = request.META.get("QUERY_STRING", "")
-        if query_string:
-            pricing_url = "?".join([pricing_url, force_str(query_string, errors="ignore")])
-        return HttpResponsePermanentRedirect(pricing_url)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
 
     context = {
         "vpn_available": vpn_available_in_country,
