@@ -313,7 +313,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         font-weight: 700;
     }
 
-    @media #{$mq-md} {
+    @media #{$vpn-download-mq-2xl} {
         justify-content: flex-end;
     }
 }
