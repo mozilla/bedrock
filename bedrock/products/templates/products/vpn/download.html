@@ -71,7 +71,7 @@
 
       {% if not block_download %}
 
-      <section class="vpn-download-options mzp-l-content">
+      <div class="vpn-download-options mzp-l-content">
 
         <!-- Primary list -->
       <div class="vpn-download-primary-platform">
@@ -216,8 +216,17 @@
           </a>
         </li>
       </ul>
-      </section>
-      {% endif %}
+    </div>
+
+    {% if ftl_has_messages('vpn-download-previous-versions') %}
+      <div class="vpn-download-previous-versions mzp-l-content ">
+        <p>
+          <a href="https://archive.mozilla.org/pub/vpn/releases/" data-cta-type="button" data-cta-text="VPN Download Previous Versions">{{ ftl('vpn-download-previous-versions') }}</a>
+        </p>
+      </div>
+    {% endif %}
+
+    {% endif %}
   </section>
 {% if ftl_has_messages('vpn-download-privacy-you-can') %}
   <section class="vpn-privacy">

@@ -52,3 +52,5 @@ vpn-download-also-available = Also available for:
 #   $attrs (string) - specific attributes added to external links
 vpn-download-from-the-maker = From the maker of { -brand-name-firefox }, { -brand-name-mozilla-vpn } uses the advanced <a href="{ $url }" { $attrs }>{ -brand-name-wireguard }</a>® protocol to encrypt your online activity and hide your location.
 vpn-download-we-never-log = We never log, track, or share your network data.
+
+vpn-download-previous-versions = Download previous versions
