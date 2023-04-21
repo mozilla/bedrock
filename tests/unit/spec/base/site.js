@@ -94,6 +94,18 @@ describe('site.js', function () {
                     'foo'
                 )
             ).toBe('other');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/538.10.3 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
+                    'foo'
+                )
+            ).toBe('other');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+                    'foo'
+                )
+            ).toBe('other');
         });
 
         it('should identify iOS', function () {
@@ -119,7 +131,13 @@ describe('site.js', function () {
             ).toBe('osx');
             expect(
                 window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/538.10.3 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
                     'foo'
                 )
             ).toBe('osx');

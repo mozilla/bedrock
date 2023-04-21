@@ -34,7 +34,7 @@
             }
             if (
                 ua.indexOf('Mac OS X') !== -1 &&
-                !/Mac OS X 10.[0-8]\D/.test(ua)
+                !/Mac OS X 10.(1[0-1]|[1-9])\D/.test(ua)
             ) {
                 return 'osx';
             }
