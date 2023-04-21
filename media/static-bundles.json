@@ -1038,6 +1038,13 @@
     },
     {
       "files": [
+        "css/products/vpn/common.scss",
+        "css/products/vpn/platform-download.scss"
+      ],
+      "name": "mozilla-vpn-platform-download"
+    },
+    {
+      "files": [
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/common.scss"

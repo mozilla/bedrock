@@ -1,0 +1,87 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/vpn/download.html" %}
+
+{% block page_title_full %}{{ ftl('vpn-mac-download-page-title') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-vpn-platform-download') }}
+{% endblock %}
+
+{% block content %}
+<div class="vpn-platform-download">
+  <header class="platform-download-header">
+    <div class="mzp-l-content platform-download-header-wrapper">
+      <div class="vpn-logo">
+        <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
+      </div>
+      <h1>{{ ftl('vpn-mac-downloading-mozilla-vpn') }}...</h1>
+      <p>{{ ftl('vpn-your-download-should-start') }}</p>
+    </div>
+  </header>
+  <section class="vpn-mac-download-instructions vpn-download-instructions mzp-l-content">
+     <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+      {% call picto(
+        base_el='li',
+        title=ftl('vpn-open-the-file'),
+        image=resp_img(
+          url='img/products/vpn/download/vpn-file-mac.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        ) %}
+        <p>{{ ftl('vpn-mac-go-to-your-downloads') }}</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title=ftl('vpn-launch-the-app'),
+        image=resp_img(
+          url='img/products/vpn/download/mac-installer.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        ) %}
+        <p>{{ ftl('vpn-mac-follow-the-steps') }}</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title=ftl('vpn-login-or-signup'),
+        image=resp_img(
+          url='img/products/vpn/download/vpn-app.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        ) %}
+        <p>{{ ftl('vpn-enter-your-email') }}</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title=ftl('vpn-turn-on-vpn'),
+        image=resp_img(
+          url='img/products/vpn/download/vpn-app-on.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        ) %}
+        <p>{{ ftl('vpn-pick-a-recommended') }}</p>
+      {% endcall %}
+        </ul>
+  </section>
+</div>
+{% endblock %}
