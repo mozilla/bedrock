@@ -5,7 +5,9 @@
 ### URL: https://www-dev.allizom.org/products/vpn/mac-download/
 
 vpn-mac-download-page-title = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
+vpn-windows-download-page-title = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
 vpn-mac-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-mac }
+vpn-windows-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-windows }
 
 # The <br> tag is a line break for the HTML text
 vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> restart the download or go back to download for another device.

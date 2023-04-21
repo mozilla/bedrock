@@ -23,3 +23,15 @@ $image-path: '/media/protocol/img';
         @include text-body-xl;
     }
 }
+
+.vpn-download-instructions {
+    .mzp-c-picto {
+        // display: inline-flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+    }
+
+    .windows-launch-img {
+        margin: 63px 0;
+    }
+}
