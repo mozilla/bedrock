@@ -2,19 +2,31 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.. _vpn_affiliate_attribution:
+.. _affiliate_attribution:
 
-===================================================================
-Mozilla :abbr:`VPN (Virtual Private Network)` Affiliate Attribution
-===================================================================
+=================================
+Mozilla VPN affiliate attribution
+=================================
 
-The affiliate attribution flow for the Mozilla :abbr:`VPN (Virtual Private Network)` `landing page`_ comprises
-an integration between the `Commission Junction (CJ)`_ affiliate marketing
-event system, bedrock, and the :abbr:`VPN (Virtual Private Network)` product team's `CJ micro service (CJMS)`_.
-For a more detailed breakdown you can view the `full flow diagram`_, but at
-a high level the logic that bedrock is responsible for is as follows:
+The affiliate attribution flow for the Mozilla :abbr:`VPN (Virtual Private Network)`
+`landing page`_ comprises an integration between the `Commission Junction (CJ)`_
+affiliate marketing event system, bedrock, and the VPN product team's
+`CJ micro service (CJMS)`_.
 
-#. On page load, bedrock looks for a ``cjevent`` query parameter in the page URL.
+The system allows individuals who partner with Mozilla, via CJ, to share
+referral links for Mozilla VPN with their audiences. When people subscribe
+using an affiliate link, the partner can be attributed appropriately in CJ's
+system.
+
+How does attribution work?
+--------------------------
+
+For a more detailed breakdown you can view the `full flow diagram`_ (Mozilla
+access only), but at a high level the logic that bedrock is responsible for is
+as follows:
+
+#. On page load, a `JavaScript function`_ looks for a ``cjevent`` query parameter
+   in the page URL.
 #. If found, we validate the query param value and then ``POST`` it together
    with a Firefox Account ``flow_id`` to the CJMS.
 #. The CJMS responds with an affiliate marketing ID and expiry time, which we
@@ -28,6 +40,10 @@ a high level the logic that bedrock is responsible for is as follows:
    purchase a subscription.
 #. The CJMS then responds with an updated ID / expiry time for the affiliate
    marketing cookie.
+
+How can visitors opt out?
+-------------------------
+
 #. To facilitate an opt-out of attribution, we display a cookie notification
    with an opt-out button at the top of the landing page when the flow initiates.
 #. If someone clicks "Reject" to opt-out, we generate a new ``flow_id``
@@ -41,6 +57,17 @@ a high level the logic that bedrock is responsible for is as follows:
    notification on future visits (again with a 1 month expiry) and allow
    attribution to flow.
 
+Cookies
+-------
+
+The affiliate cookie has the following configuration:
+
++-----------------------+--------------+---------------------+---------+
+| Cookie name           | Value        | Domain              | Expiry  |
++=======================+==============+=====================+=========+
+| ``moz-vpn-affiliate`` | Affiliate ID | ``www.mozilla.org`` | 30 days |
++-----------------------+--------------+---------------------+---------+
+
 .. Note::
 
    To query what version of CJMS is currently deployed at the endpoint bedrock
@@ -52,3 +79,4 @@ a high level the logic that bedrock is responsible for is as follows:
 .. _Commission Junction (CJ): https://www.cj.com/
 .. _CJ micro service (CJMS): https://github.com/mozilla-services/cjms
 .. _full flow diagram: https://www.figma.com/file/6jnLCLzclBN0uyS4nJp57d/Affiliate-Marketing-(CJ)-Architecture-%2F-Flow
+.. _JavaScript function: https://github.com/mozilla/bedrock/blob/main/media/js/products/vpn/affiliate-attribution.es6.js
