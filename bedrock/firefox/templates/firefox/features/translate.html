@@ -36,7 +36,7 @@
     <span class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></span>
     <h1 class="mzp-u-title-xl">{{ ftl('features-translate-translate-the-web') }}</h1>
     <div class="c-hero-desc">
-      <p>{{ ftl('features-translate-the-google-translate') }}</p>
+      <p>{{ self.page_desc() }}</p>
     </div>
     {{ download_firefox(dom_id='features-translate-download', download_location='primary cta') }}
 {% endcall %}
@@ -46,11 +46,16 @@
 
     <p class="mzp-c-article-intro">{{ ftl('features-translate-the-internet-is', attrs='href="%s"'|safe|format(url('firefox.all'))) }}</p>
 
+    {% if ftl_has_messages('features-translate-firefox-translations', 'features-translate-the-firefox-translations-extension-provides') %}
+    <h2>{{ ftl('features-translate-firefox-translations') }}</h2>
+    <p>{{ ftl('features-translate-the-firefox-translations-extension-provides', attrs='href="https://addons.mozilla.org/firefox/addon/firefox-translations/" rel="external noopener"') }}</p>
+    <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/firefox-translations/" rel="external noopener">Get Firefox Translations</a></p>
+    {% endif %}
+
     <h2>{{ ftl('features-translate-to-google-translate') }}</h2>
-    <p>{{ ftl('features-translate-google-translate-with', attrs='href="https://addons.mozilla.org/en-US/firefox/addon/to-google-translate/" rel="external noopener"') }}</p>
+    <p>{{ ftl('features-translate-google-translate-with', attrs='href="https://addons.mozilla.org/firefox/addon/to-google-translate/" rel="external noopener"') }}</p>
 
-
-    <p><a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/firefox/addon/to-google-translate/" rel="external noopener">{{ ftl('features-translate-get-the-extension') }}</a></p>
+    <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/to-google-translate/" rel="external noopener">{{ ftl('features-translate-get-to-google-translate') }}</a></p>
     <p>{{ ftl('features-translate-once-installed-simply') }}</p>
 
     <img src="{{ static('img/firefox/features/translate/translation.png') }}" alt="" width="1230" height="797">
