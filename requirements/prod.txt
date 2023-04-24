@@ -821,9 +821,9 @@ tinycss2==1.1.1 \
     --hash=sha256:b2e44dd8883c360c35dd0d1b5aad0b610e5156c2cb3b33434634e539ead9d8bf \
     --hash=sha256:fe794ceaadfe3cf3e686b22155d0da5780dd0e273471a51846d0a02bc204fec8
     # via bleach
-twilio==7.17.0 \
-    --hash=sha256:312e25b0a1ca782974a359d95123f270574e6e4b195b0e2095a156219ad7b7ec \
-    --hash=sha256:f43de32cdc27f8853bb02ab0b8703a487beffbb9dcc8118398b6757e1376e6ed
+twilio==8.1.0 \
+    --hash=sha256:19be48f21e799b9dd10e2e0a5633962438e04842864e806409f4f2dbe446a868 \
+    --hash=sha256:a31863119655cd3643f788099f6ea3fe74eea59ce3f65600f9a4931301311c08
     # via -r requirements/prod.in
 typing-extensions==4.4.0 \
     --hash=sha256:1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc93087aa \
