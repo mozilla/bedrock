@@ -17,10 +17,8 @@ urlpatterns = (
     page("vpn/desktop/mac/", "products/vpn/platforms/mac.html", ftl_files=["products/vpn/platforms/mac", "products/vpn/shared"]),
     page("vpn/desktop/windows/", "products/vpn/platforms/windows.html", ftl_files=["products/vpn/platforms/windows", "products/vpn/shared"]),
     path("vpn/download/", views.vpn_download_page, name="products.vpn.download"),
-    page("vpn/download/mac/thanks", "products/vpn/mac-download.html", ftl_files=["products/vpn/platform-post-download", "products/vpn/shared"]),
-    page(
-        "vpn/download/windows/thanks", "products/vpn/windows-download.html", ftl_files=["products/vpn/platform-post-download", "products/vpn/shared"]
-    ),
+    path("vpn/download/mac/thanks", views.vpn_mac_download_page, name="products.vpn.mac-download"),
+    path("vpn/download/windows/thanks", views.vpn_windows_download_page, name="products.vpn.windows-download"),
     page("vpn/mobile/", "products/vpn/platforms/mobile.html", ftl_files=["products/vpn/platforms/mobile", "products/vpn/shared"]),
     page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios", "products/vpn/shared"]),
     page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android", "products/vpn/shared"]),

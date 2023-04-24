@@ -21,7 +21,7 @@
           <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
         </div>
         <h1>{{ ftl('vpn-mac-downloading-mozilla-vpn') }}...</h1>
-        <p>{{ ftl('vpn-your-download-should-start') }}</p>
+        <p>{{ ftl('vpn-your-download-should-start', url=mac_download_url ) }}</p>
       </div>
     </header>
     <section class="vpn-download-instructions mzp-l-content">
@@ -88,4 +88,8 @@
   <footer class="vpn-footer">
       {% include 'products/vpn/includes/footer-legal.html' %}
   </footer>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('vpn_platform_download') }}
 {% endblock %}

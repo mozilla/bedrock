@@ -1949,6 +1949,19 @@
     },
     {
       "files": [
+        "js/products/vpn/article.js"
+      ],
+      "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "js/products/vpn/thanks.js",
+        "js/products/vpn/thanks-init.js"
+      ],
+      "name": "vpn_platform_download"
+    },
+    {
+      "files": [
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"

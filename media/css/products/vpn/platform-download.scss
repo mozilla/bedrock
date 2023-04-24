@@ -24,11 +24,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.vpn-download-instructions {
+.windows-download-instructions {
     .mzp-c-picto {
-        // display: inline-flex;
-        // flex-direction: column;
-        // justify-content: space-between;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .mzp-c-picto-img {
+            height: 208px;
+        }
     }
 
     .windows-launch-img {

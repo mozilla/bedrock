@@ -9,8 +9,10 @@ vpn-windows-download-page-title = Download { -brand-name-mozilla-vpn } for { -br
 vpn-mac-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-mac }
 vpn-windows-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-windows }
 
+# Variables:
+#   $url (url) - link for either Windows or Mac download, depending on user platform
 # The <br> tag is a line break for the HTML text
-vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> restart the download or go back to download for another device.
+vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> <a href="{ $url }" id="vpn-download-link">click here</a> to download the file, or go back to download for another device.
 
 vpn-open-the-file = Open the file
 vpn-mac-go-to-your-downloads = Go to your downloads folder and double click the .pkg file
