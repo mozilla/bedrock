@@ -10,7 +10,18 @@
 
 {% extends "mozorg/home/base.html" %}
 
-{% block page_title %}Internet for people, not profit{% endblock %}
+{# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Internet for people, not profit — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Internet for people, not profit — Mozilla (UK)
+  {%- else -%}
+    Internet for people, not profit - Mozilla
+  {%- endif -%}
+{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
+
 {% block page_desc %}Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.{% endblock %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}

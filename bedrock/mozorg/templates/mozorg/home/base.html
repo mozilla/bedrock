@@ -8,17 +8,6 @@
 
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
-{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
-{%- block page_title_suffix -%}
-  {% if LANG == 'en-CA' %}
-    — Mozilla (CA)
-  {% elif LANG == 'en-GB' %}
-    — Mozilla (UK)
-  {% else %}
-    — Mozilla
-  {% endif %}
-{%- endblock -%}
-
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
 <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">

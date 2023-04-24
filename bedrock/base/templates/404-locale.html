@@ -14,6 +14,10 @@
   {%- endif -%}
 {%- endblock -%}
 
+{%- block page_title_suffix -%}
+  {% if is_root %} — Mozilla Global{% else %} — Mozilla{% endif %}
+{%- endblock -%}
+
 {%- block page_desc -%}
   {%- if is_root -%}
     Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.
@@ -23,9 +27,12 @@
 {%- endblock -%}
 
 {% block canonical_urls %}
-{% if is_root %}
-  <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL + '/' }}">
-{% endif %}
+  {% if is_root %}
+    <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL + '/' }}">
+    {% for locale in available_locales if locale in languages %}
+      <link rel="alternate" hreflang="{{ locale }}" href="{{ settings.CANONICAL_URL + '/' + locale + '/'}}" title="{{ languages[locale]['native'] }}">
+    {% endfor %}
+  {% endif %}
 {% endblock %}
 
 {% block page_css %}

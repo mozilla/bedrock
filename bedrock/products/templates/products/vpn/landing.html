@@ -8,7 +8,17 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title_full %}{{ ftl('vpn-landing-page-title') }}{% endblock %}
+{# Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Get Mozilla VPN  — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Get Mozilla VPN — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('vpn-landing-page-title') }}
+  {%- endif -%}
+{%- endblock -%}
+
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
