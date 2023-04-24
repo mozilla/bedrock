@@ -95,6 +95,10 @@
     "description": "{{ ftl('newsletters-get-all-the-knowledge')|striptags }}",
     "title": "{{ ftl('newsletters-knowledge-is-power')|striptags }}"
   },
+  "security-privacy-news": {
+    "description": "{{ ftl('newsletters-stay-informed-of-the-latest')|striptags }}",
+    "title": "{{ ftl('newsletters-security-and-privacy-news')|striptags }}"
+  },
   "labs": {
     "title": "{{ ftl('newsletters-about-labs')|striptags }}"
   },
@@ -139,10 +143,6 @@
   "mozilla-phone": {
     "description": "{{ ftl('newsletters-email-updates-from-vouched')|striptags }}",
     "title": "{{ ftl('newsletters-mozillians')|striptags }}"
-  },
-  "mozilla-technology": {
-    "description": "{{ ftl('newsletters-were-building-the-technology')|striptags }}",
-    "title": "{{ ftl('newsletters-mozilla-labs')|striptags }}"
   },
   "os": {
       "description": "{{ ftl('newsletters-firefox-os-news')|striptags }}",

@@ -24,8 +24,4 @@ def test_vpn_download_buttons_displayed(base_url, selenium):
 )
 def test_vpn_download_blocked_in_country(country, base_url, selenium):
     page = VPNDownloadPage(selenium, base_url, params=f"?geo={country}").open()
-    assert not page.is_windows_download_button_displayed
-    assert not page.is_mac_download_button_displayed
-    assert not page.is_linux_download_button_displayed
-    assert not page.is_android_download_button_displayed
-    assert not page.is_ios_download_button_displayed
+    assert not page.is_download_container_displayed

@@ -65,6 +65,7 @@ class BasePage(Page):
             return (
                 "mobile-nav-open" in self.find_element(*self._content_wrapper_locator).get_attribute("class")
                 and self.mobile_menu_open_button.get_attribute("aria-expanded") == "true"
+                and self.wait.until(lambda s: self.is_mobile_menu_close_button_displayed)
             )
 
         @property
@@ -72,15 +73,16 @@ class BasePage(Page):
             return (
                 "mobile-nav-open" not in self.find_element(*self._content_wrapper_locator).get_attribute("class")
                 and self.mobile_menu_open_button.get_attribute("aria-expanded") == "false"
+                and self.wait.until(lambda s: not self.is_mobile_menu_nav_list_displayed)
             )
 
         @property
         def is_mobile_menu_open_button_displayed(self):
-            return self.mobile_menu_open_button
+            return self.is_element_displayed(*self._mobile_menu_open_btn_locator)
 
         @property
         def is_mobile_menu_close_button_displayed(self):
-            return self.mobile_menu_close_button
+            return self.is_element_displayed(*self._mobile_menu_close_btn_locator)
 
         @property
         def mobile_menu_open_button(self):

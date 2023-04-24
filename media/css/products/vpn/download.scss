@@ -4,30 +4,320 @@
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
+$vpn-download-mq-2xl: '(min-width: 1450px)';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import 'includes/lib';
 
-.vpn-download-header {
+.vpn-downloads {
+    background-color: $color-marketing-gray-10;
+}
+
+.vpn-download-blocked {
     text-align: center;
 }
 
-.vpn-download-list {
-    text-align: center;
-    margin-top: $layout-lg;
+.vpn-downloads,
+.vpn-privacy {
+    .mzp-c-split {
+        .mzp-c-split-container {
+            min-width: unset;
+        }
 
-    .mzp-c-picto {
-        background: $color-marketing-gray-20;
-        border-radius: $border-radius-sm;
-        display: block;
-        margin: $spacing-lg;
-        padding: $spacing-2xl $spacing-md;
+        .vpn-logo {
+            img {
+                height: 60px;
+                width: 60px;
+            }
+        }
+
+        @media #{$mq-md} {
+            padding: $spacing-lg 0;
+            @include text-body-xl;
+        }
+
+        // Media query to change to mobile layout sooner to avoid languages with longer words from touching the image
+        @media (max-width: 810px) {
+            .mzp-c-split-container {
+                display: flex;
+                flex-direction: column;
+
+                .mzp-c-split-body {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.vpn-download-primary-platform,
+.vpn-download-secondary-list {
+    .platform-body {
+        h2 {
+            @include font-base;
+            @include text-body-xl;
+        }
+
+        p {
+            color: $color-marketing-gray-60;
+        }
+    }
+}
+
+.vpn-download-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: $spacing-xs;
+    grid-column-gap: $spacing-xl;
+    padding-bottom: $layout-md;
+
+    @media #{$vpn-download-mq-2xl} {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        align-items: center;
+    }
+}
+
+// Primary platform styles
+.vpn-download-primary-platform {
+    justify-self: center;
+
+    .primary-platform {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: $box-shadow-sm;
+        padding: $spacing-xl;
+        height: 315px;
+        display: none;
+
+        .platform-image {
+            margin-bottom: $spacing-xl;
+        }
+
+        .current-platform-lede {
+            color: $color-violet-70;
+        }
+
+        &.android {
+            height: 325px;
+
+            .platform-download-link {
+                img {
+                    width: 220px;
+                }
+            }
+        }
+
+        &.ios {
+            .platform-download-link {
+                img {
+                    width: 170px;
+                }
+            }
+        }
+    }
+
+    h3 {
+        text-align: center;
+        margin-top: $spacing-2xl;
     }
 
     @media #{$mq-sm} {
-        .mzp-c-picto {
-            display: inline-block;
-            width: 345px;
+        h3 {
+            display: block;
         }
     }
+
+    @media #{$mq-md} {
+        .primary-platform {
+            width: 380px;
+        }
+    }
+
+    @media #{$vpn-download-mq-2xl} {
+        width: 100%;
+
+        h3 {
+            display: none;
+        }
+    }
+}
+
+// Secondary platform styles
+.vpn-download-secondary-list {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-row-gap: $spacing-lg;
+    margin-bottom: 0;
+    justify-self: center;
+
+    .secondary-platform {
+        border-radius: 6px;
+        box-shadow: $box-shadow-sm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: $spacing-lg;
+
+        img {
+            display: block;
+        }
+
+        .platform-body {
+            margin-left: $spacing-xl;
+            margin-right: $spacing-2xl;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        .platform-download-link {
+            background-image: url('/media/img/products/vpn/download/vpn-download-icon.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            border-radius: 50%;
+            height: 45px;
+            width: 45px;
+
+            span {
+                @include visually-hidden;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: $color-light-gray-30;
+            }
+        }
+    }
+
+    @media #{$mq-xs} {
+        .secondary-platform {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            padding: $spacing-lg;
+            text-align: center;
+
+            .platform-body {
+                margin: $spacing-md 0;
+            }
+
+            .platform-download-link {
+                margin-left: unset;
+            }
+        }
+    }
+
+    @media #{$mq-sm} {
+        .secondary-platform {
+            flex-direction: row;
+            height: 165px;
+            width: 350px;
+            padding: 0 $spacing-lg;
+            text-align: left;
+
+            .platform-body {
+                margin: $spacing-md;
+            }
+
+            .platform-download-link {
+                margin-left: auto;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: $spacing-xl;
+        grid-row-gap: $spacing-xl;
+    }
+
+    @media #{$vpn-download-mq-2xl} {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-column-gap: $spacing-xl;
+        grid-row-gap: $spacing-xl;
+        justify-self: end;
+    }
+}
+
+// Style rules for dynamically rendering content based on platforms
+
+/* stylelint-disable-next-line  */
+.vpn-downloads {
+    .js.windows & {
+        .primary-platform.windows {
+            display: block;
+        }
+
+        .secondary-platform.windows {
+            display: none;
+        }
+    }
+
+    .js.osx & {
+        .primary-platform.macos {
+            display: block;
+        }
+
+        .secondary-platform.macos {
+            display: none;
+        }
+    }
+
+    .js.linux & {
+        .primary-platform.linux {
+            display: block;
+        }
+
+        .secondary-platform.linux {
+            display: none;
+        }
+    }
+
+    .js.ios & {
+        .primary-platform.ios {
+            display: block;
+        }
+
+        .secondary-platform.ios {
+            display: none;
+        }
+    }
+
+    .js.android & {
+        .primary-platform.android {
+            display: block;
+        }
+
+        .secondary-platform.android {
+            display: none;
+        }
+    }
+}
+
+.vpn-download-previous-versions {
+    display: flex;
+    justify-content: center;
+    padding-bottom: $layout-lg;
+    padding-top: 0;
+
+    a {
+        color: $color-black;
+        font-weight: 700;
+    }
+
+    @media #{$vpn-download-mq-2xl} {
+        justify-content: flex-end;
+    }
+}
+
+.vpn-privacy {
+    margin: $layout-lg 0 $layout-xl;
 }

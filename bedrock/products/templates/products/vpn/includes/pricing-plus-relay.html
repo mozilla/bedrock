@@ -1,0 +1,167 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_content_block with context %}
+
+<div class="vpn-variable-pricing-block">
+  <h2 class="vpn-pricing-variable-heading">{{ ftl('vpn-shared-pricing-variable-heading-v2') }}</h2>
+
+  <h3 class="vpn-pricing-variable-sub-heading">{{ ftl('vpn-shared-pricing-variable-sub-heading') }}</h3>
+
+  <ul class="mzp-u-list-styled vpn-feature-list l-columns-two">
+    <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
+    <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
+    <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+    <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+    <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
+    <li class="vpn-feature-list-item vpn-features-guarantee">{{ ftl('vpn-shared-features-guarantee', fallback='vpn-shared-money-back-guarantee') }}</li>
+  </ul>
+
+  <div class="vpn-pricing-variable-plans">
+    {% call vpn_content_block(
+      class_name='vpn-pricing-12-months t-highlight',
+      use_custom_body=True
+    ) %}
+      <div class="vpn-content-block-container">
+        <p class="vpn-pricing-variable-plan-tag">{{ ftl('vpn-shared-pricing-recommended-offer') }}</p>
+
+        <div class="vpn-pricing-variable-grid-container">
+          <div class="vpn-pricing-variable-header">
+            <h2 class="vpn-content-block-heading t-product-logo">
+              {{ ftl('vpn-shared-pricing-plan-12-month-v2', fallback='vpn-shared-pricing-plan-12-month') }}
+            </h2>
+          </div>
+
+          <div class="vpn-pricing-variable-cost-detail">
+            <div class="vpn-pricing-variable-cost-detail-container">
+              <p class="vpn-pricing-variable-saving">{{ vpn_saving(country_code=country_code, lang=LANG) }}</p>
+              <p class="vpn-pricing-variable-total">{{ vpn_total_price(country_code=country_code, lang=LANG) }}</p>
+            </div>
+          </div>
+
+          <div class="vpn-pricing-variable-monthly-price">
+            <h3 class="vpn-content-block-sub-heading">
+              {{ vpn_monthly_price(plan='12-month', country_code=country_code, lang=LANG) }}
+            </h3>
+          </div>
+
+          <div class="vpn-pricing-variable-button">
+            {{ vpn_subscribe_link(
+              entrypoint=_utm_source,
+              link_text=ftl('vpn-shared-pricing-get-12-month-v2', fallback='vpn-shared-pricing-get-12-month'),
+              plan='12-month',
+              class_name='mzp-c-button mzp-t-xl',
+              country_code=country_code,
+              lang=LANG,
+              optional_parameters={
+                'utm_campaign': _utm_campaign
+              },
+              optional_attributes={
+                'data-cta-type': 'fxa-vpn',
+                'data-cta-text': 'Get Mozilla VPN 12-month',
+                'data-cta-position': 'pricing'
+              })
+            }}
+          </div>
+        </div>
+      </div>
+
+      {% if relay_bundle_available_in_country and ftl_has_messages('vpn-shared-add-firefox-relay', 'vpn-shared-get-vpn-plus-relay') %}
+        <div class="vpn-content-block-container vpn-pricing-add-on-bundle">
+          <div class="vpn-pricing-variable-grid-container">
+            <div class="vpn-pricing-variable-header">
+              <h2 class="vpn-content-block-heading mzp-t-dark">
+                {{ ftl('vpn-shared-add-firefox-relay', class_name='mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay') }}
+              </h2>
+
+              <div class="vpn-pricing-variable-features">
+                <ul class="mzp-u-list-styled vpn-feature-list">
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-relay-email-masking') }}</li>
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-relay-phone-masking') }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="vpn-pricing-variable-cost-detail">
+              <div class="vpn-pricing-variable-cost-detail-container">
+                <p class="vpn-pricing-variable-saving">
+                  {{ vpn_saving(country_code=country_code, lang=LANG, bundle_relay=True, ftl_string='vpn-shared-save-on-relay-premium') }}
+                </p>
+                <p class="vpn-pricing-variable-total">{{ vpn_total_price(country_code=country_code, lang=LANG, bundle_relay=True) }}</p>
+              </div>
+            </div>
+
+            <div class="vpn-pricing-variable-monthly-price">
+              <h3 class="vpn-content-block-sub-heading">
+                {{ vpn_monthly_price(plan='12-month', country_code=country_code, lang=LANG, bundle_relay=True) }}
+              </h3>
+            </div>
+
+            <div class="vpn-pricing-variable-button">
+              {{ vpn_subscribe_link(
+                entrypoint=_utm_source,
+                link_text=ftl('vpn-shared-get-vpn-plus-relay'),
+                plan='12-month',
+                class_name='mzp-c-button mzp-t-secondary mzp-t-xl',
+                country_code=country_code,
+                lang=LANG,
+                bundle_relay=True,
+                optional_parameters={
+                  'utm_campaign': _utm_campaign
+                },
+                optional_attributes={
+                  'data-cta-type': 'fxa-vpn',
+                  'data-cta-text': 'Get VPN plus Relay 12-month',
+                  'data-cta-position': 'pricing'
+                })
+              }}
+            </div>
+          </div>
+        </div>
+
+      {% endif %}
+    {% endcall %}
+
+    {% call vpn_content_block(
+     class_name='vpn-pricing-monthly'
+     ) %}
+      <div class="vpn-pricing-variable-grid-container">
+        <div class="vpn-pricing-variable-header">
+          <h2 class="vpn-content-block-heading t-product-logo">
+            {{ ftl('vpn-shared-pricing-plan-monthly-v2', fallback='vpn-shared-pricing-plan-monthly') }}
+          </h2>
+        </div>
+
+        <div class="vpn-pricing-variable-monthly-price">
+          <h3 class="vpn-content-block-sub-heading">
+            {{ vpn_monthly_price(plan='monthly', country_code=country_code, lang=LANG) }}
+          </h3>
+        </div>
+
+        <div class="vpn-pricing-variable-button">
+          {{ vpn_subscribe_link(
+            entrypoint=_utm_source,
+            link_text=ftl('vpn-shared-pricing-get-monthly'),
+            plan='monthly',
+            class_name='mzp-c-button mzp-t-xl',
+            country_code=country_code,
+            lang=LANG,
+            optional_parameters={
+              'utm_campaign': _utm_campaign
+            },
+            optional_attributes={
+              'data-cta-type': 'fxa-vpn',
+              'data-cta-text': 'Get Mozilla VPN monthly',
+              'data-cta-position': 'pricing'
+            })
+          }}
+        </div>
+
+      </div>
+
+    {% endcall %}
+  </div>
+</div>

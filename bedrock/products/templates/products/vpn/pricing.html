@@ -1,0 +1,92 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_cta_link, vpn_content_media with context %}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_title_full %}{{ ftl('vpn-landing-page-title') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('vpn-landing-page-desc', countries=available_countries) }}{% endblock %}
+
+{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+
+{% block body_id %}mozilla-vpn-pricing{% endblock %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_campaign = 'vpn-pricing-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-vpn-pricing') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_vpn_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav.html' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  {% if vpn_affiliate_attribution_enabled %}
+    {% include 'products/vpn/includes/cookie-notification.html' %}
+  {% endif %}
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    <h1 class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-vpn">{{ ftl('vpn-shared-product-name') }}</h1>
+
+    {% if vpn_available %}
+      {% include 'products/vpn/includes/pricing-basic.html' %}
+    {% else %}
+      {% call vpn_content_media(
+        heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
+        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
+      ) %}
+
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+          {{ ftl('vpn-shared-waitlist-link') }}
+        </a>
+
+        <p class="availability-copy">
+          {{ ftl('vpn-shared-available-countries-v5', fallback='vpn-shared-available-countries-v4') }}
+        </p>
+      {% endcall %}
+    {% endif %}
+  </div>
+
+  <footer class="vpn-footer mzp-l-content mzp-t-content-xl">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
+
+</main>
+
+{% endblock %}
+
+{% block glean %}
+  {% if switch('glean-analytics') %}
+    {{ js_bundle('glean') }}
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {% if vpn_affiliate_attribution_enabled %}
+    {{ js_bundle('mozilla-vpn-affiliate') }}
+  {% else %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+{% endblock %}

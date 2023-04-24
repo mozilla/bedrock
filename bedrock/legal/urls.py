@@ -24,6 +24,8 @@ urlpatterns = (
     page("impressum/", "legal/impressum.html", active_locales=["de"], ftl_files=["mozorg/about/legal"]),
     path("terms/mozilla/", LegalDocView.as_view(template_name="legal/terms/mozilla.html", legal_doc_name="Websites_ToU"), name="legal.terms.mozilla"),
     page("terms/peopleofdeutschland/", "legal/terms/peopleofdeutschland.html", active_locales=["en-US", "de"], ftl_files=["mozorg/about/legal"]),
+    # Builders AI Challenge - Terms and Conditions
+    page("terms/builders-challenge/", "legal/terms/builders-challenge.html"),
     path(
         "terms/firefox/",
         LegalDocView.as_view(template_name="legal/terms/firefox.html", legal_doc_name="firefox_about_rights"),

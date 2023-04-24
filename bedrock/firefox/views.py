@@ -58,7 +58,8 @@ STUB_VALUE_NAMES = [
     ("experiment", "(not set)"),
     ("variation", "(not set)"),
     ("ua", "(not set)"),
-    ("visit_id", "(not set)"),
+    ("client_id", "(not set)"),
+    ("session_id", "(not set)"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
 
@@ -483,7 +484,16 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx110-de-v1.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-de-v2.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx110-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx111-eu.html": ["firefox/whatsnew/whatsnew-111-pdf", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx111-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx111-eu-pdf.html": ["firefox/whatsnew/whatsnew-111-pdf", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx111-eu-translate.uk.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx111-eu-translate.de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx111-eu-translate.fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-en.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx112-en-features.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -500,10 +510,12 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx109-en-features.html",
         "firefox/whatsnew/whatsnew-fx110-en-features-v1.html",
         "firefox/whatsnew/whatsnew-fx110-en-features-v2.html",
+        "firefox/whatsnew/whatsnew-fx112-en.html",
+        "firefox/whatsnew/whatsnew-fx112-en-features.html",
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3"]
+    variations = ["1", "2", "3", "4", "5", "6"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -574,9 +586,35 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
-        elif version.startswith("111.0"):
-            if settings.DEV and locale in ["es-ES", "it", "pl", "pt-PT", "nl"] and ftl_file_is_active("firefox/whatsnew/whatsnew-111-pdf"):
-                template = "firefox/whatsnew/whatsnew-fx111-eu.html"
+        elif version.startswith("112."):
+            if locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html"
+            elif locale.startswith("en-"):
+                if country == "GB" or locale == "en-GB":
+                    template = "firefox/whatsnew/whatsnew-fx112-eu-privacy.uk.html"
+                else:
+                    if variant in ["3", "4", "5", "6"]:
+                        template = "firefox/whatsnew/whatsnew-fx112-en-features.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx112-en.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("111."):
+            if locale in ["es-ES", "it", "pl", "pt-PT", "nl"] and ftl_file_is_active("firefox/whatsnew/whatsnew-111-pdf"):
+                template = "firefox/whatsnew/whatsnew-fx111-eu-pdf.html"
+            elif locale.startswith("en-"):
+                if country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx111-eu-translate.uk.html"
+                elif locale == "en-GB":
+                    template = "firefox/whatsnew/whatsnew-fx111-eu-translate.uk.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx111-en.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx111-eu-translate.de.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx111-eu-translate.fr.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("110.0"):

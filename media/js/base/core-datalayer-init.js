@@ -11,8 +11,6 @@
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = (window.dataLayer = window.dataLayer || []);
-    var firefoxDetailsComplete = false;
-    var fxaDetailsComplete = false;
 
     function sendCoreDataLayer() {
         var dataLayerCore = {
@@ -26,28 +24,14 @@
         dataLayer.push(dataLayerCore);
     }
 
-    function checkSendCoreDataLayer() {
-        if (firefoxDetailsComplete && fxaDetailsComplete) {
-            sendCoreDataLayer();
-        }
-    }
-
     function initCoreDataLayer() {
-        client.getFxaDetails(function (details) {
-            dataLayer.push(analytics.formatFxaDetails(details));
-            fxaDetailsComplete = true;
-            checkSendCoreDataLayer();
-        });
-
         if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
             client.getFirefoxDetails(function (details) {
                 dataLayer.push(details);
-                firefoxDetailsComplete = true;
-                checkSendCoreDataLayer();
+                sendCoreDataLayer();
             });
         } else {
-            firefoxDetailsComplete = true;
-            checkSendCoreDataLayer();
+            sendCoreDataLayer();
         }
 
         analytics.updateDataLayerPush();

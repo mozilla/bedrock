@@ -5,6 +5,7 @@ from django.urls import path, re_path
 
 from bedrock.mozorg.util import page
 from bedrock.newsletter import views
+from bedrock.utils.views import VariationTemplateView
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:
@@ -35,7 +36,14 @@ urlpatterns = (
     page("newsletter/firefox/", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/knowledge-is-power/", "newsletter/knowledge-is-power.html", ftl_files=["mozorg/newsletters"]),
+    path(
+        "newsletter/knowledge-is-power/",
+        VariationTemplateView.as_view(
+            template_name="newsletter/knowledge-is-power.html", template_context_variations=["rise25"], ftl_files=["mozorg/newsletters"]
+        ),
+        name="newsletter.knowledge-is-power",
+    ),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
+    page("newsletter/security-and-privacy/", "newsletter/security-privacy-news.html", ftl_files=["mozorg/newsletters"]),
     path("newsletter/newsletter-strings.json", views.newsletter_strings_json, name="newsletter.strings"),
 )

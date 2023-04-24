@@ -1,0 +1,60 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_112_en') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-112-en', ['en-US', 'en-CA']) and country_code in ['US', 'CA'] %}
+    {{ js_bundle('firefox_whatsnew_112_en_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% if variant == '1' %}
+  {% set referral_id = 'whatsnew-112-en-v1-vpn' %}
+{% else %}
+  {% set referral_id = 'whatsnew-112-en-novariant' %}
+{% endif%}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<div class="wnp-content-main">
+  <div class="window"></div>
+  <div class="content">
+    <div class="mzp-c-logo mzp-t-logo-md mzp-l-logo-center mzp-t-product-vpn">Mozilla VPN</div>
+    <h1 class="wnp-main-title">Privacy beyond<br> your browser</h1>
+    <p class="wnp-main-tagline">Mozilla VPN works in the background to protect your location and web activity, so you can explore the web the way you want without anyone watching.</p>
+    <p class="wnp-main-cta">
+      {{ vpn_product_referral_link(
+        referral_id=referral_id,
+        link_text='Get Mozilla VPN',
+        page_anchor='#pricing',
+        class_name='mzp-t-product mzp-t-lg',
+        optional_attributes= {
+            'data-cta-text' : 'Get Mozilla VPN',
+            'data-cta-type' : 'button'
+        })
+      }}
+    </p>
+  </div>
+</div>
+
+<p class="wnp-sign-off">
+  <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+</p>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

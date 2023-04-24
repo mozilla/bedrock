@@ -26,7 +26,6 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
-from bedrock.pocketfeed.models import PocketArticle
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 
@@ -130,7 +129,6 @@ def home_view(request):
     locale = l10n_utils.get_locale(request)
 
     ctx = {
-        "pocket_articles": PocketArticle.objects.all()[:4],
         "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
         "add_active_locales": ["de", "fr"],
     }
@@ -232,9 +230,12 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
         return cache_page(cache_timeout)(super().as_view(**initkwargs))
 
 
-MIECO_EMAIL_SUBJECT = "MIECO Interest Form"
+MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
 MIECO_EMAIL_SENDER = "Mozilla.com <noreply@mozilla.com>"
-MIECO_EMAIL_TO = ["mieco@mozilla.com"]
+MIECO_EMAIL_TO = {
+    "mieco": ["mieco@mozilla.com"],
+    "innovations": ["innovations@mozilla.com"],
+}
 
 
 @json_view
@@ -265,15 +266,19 @@ def mieco_email_form(request):
             "name": json_data.get("name", ""),
             "interests": json_data.get("interests", ""),
             "description": json_data.get("description", ""),
+            "message_id": json_data.get("message_id", ""),
         }
     )
 
     if not form.is_valid():
         return {"error": 400, "message": "Invalid form data"}, 400, CORS_HEADERS
 
+    message_id = form.cleaned_data.pop("message_id") or "mieco"
+    email_to = MIECO_EMAIL_TO[message_id]
     email_msg = render_to_string("mozorg/emails/mieco-email.txt", {"data": form.cleaned_data}, request=request)
+    email_sub = MIECO_EMAIL_SUBJECT[message_id]
 
-    email = EmailMessage(MIECO_EMAIL_SUBJECT, email_msg, MIECO_EMAIL_SENDER, MIECO_EMAIL_TO)
+    email = EmailMessage(email_sub, email_msg, MIECO_EMAIL_SENDER, email_to)
 
     try:
         email.send()

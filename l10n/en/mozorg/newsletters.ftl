@@ -404,12 +404,6 @@ newsletters-mozilla-learning-network = { -brand-name-mozilla } Learning Network
 newsletters-updates-from-our-global = Updates from our global community, helping people learn the most important skills of our age: the ability to read, write and participate in the digital world.
 
 # Name for the newsletter in Newsletter subscription page
-newsletters-mozilla-labs = { -brand-name-mozilla-labs }
-
-# Description for the newsletter in Newsletter subscription page (Mozilla Labs)
-newsletters-were-building-the-technology = We’re building the technology of the future. Come explore with us.
-
-# Name for the newsletter in Newsletter subscription page
 newsletters-webmaker = { -brand-name-webmaker }
 
 # Description for the newsletter in Newsletter subscription page (Webmaker)
@@ -433,3 +427,12 @@ knowledge-is-power-pocket = { -brand-name-pocket }
 
 # Out of date browser message for newsletter management page.
 newsletters-update-your-browser = Your web browser needs to be updated in order to use this page.
+
+# Name for the newsletter in Newsletter subscription page
+newsletters-security-and-privacy-news = Security & Privacy News
+
+# Description for the newsletter in Newsletter subscription page (Security & Privacy News)
+newsletters-stay-informed-of-the-latest = Stay informed of the latest trends in privacy & security products from { -brand-name-mozilla }, the makers of { -brand-name-firefox }.
+
+# Subtitle for https://www-dev.allizom.org/newsletter/security-and-privacy/
+newsletters-get-security-and-privacy-news-and-tips = Get security and privacy news and product updates from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.

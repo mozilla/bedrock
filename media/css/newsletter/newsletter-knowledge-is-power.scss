@@ -14,6 +14,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-mozilla';
 
 .section-subscribe {
+    .mzp-l-content:first-child {
+        padding-bottom: 0;
+    }
+
     .mozilla-products-list {
         display: flex;
         align-items: center;

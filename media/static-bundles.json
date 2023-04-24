@@ -56,6 +56,12 @@
     },
     {
       "files": [
+        "css/mozorg/social-content-policies.scss"
+      ],
+      "name": "social-content-policies"
+    },
+    {
+      "files": [
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
@@ -293,6 +299,12 @@
     },
     {
       "files": [
+        "css/legal/builders-challenge.scss"
+      ],
+      "name": "builders-challenge"
+    },
+    {
+      "files": [
         "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"
@@ -368,6 +380,12 @@
         "css/newsletter/newsletter-knowledge-is-power.scss"
       ],
       "name": "newsletter-knowledge-is-power"
+    },
+    {
+      "files": [
+        "css/newsletter/newsletter-security-privacy-news.scss"
+      ],
+      "name": "newsletter-security-privacy-news"
     },
     {
       "files": [
@@ -496,6 +514,30 @@
         "css/firefox/whatsnew/whatsnew-111-eu.scss"
       ],
       "name": "firefox_whatsnew_111_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-111-en.scss"
+      ],
+      "name": "firefox_whatsnew_111_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-112-en.scss"
+      ],
+      "name": "firefox_whatsnew_112_en"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-112-en-features.scss"
+      ],
+      "name": "firefox_whatsnew_112_en_features"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-112-eu-privacy.scss"
+      ],
+      "name": "firefox_whatsnew_112_eu_privacy"
     },
     {
       "files": [
@@ -972,10 +1014,20 @@
         "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
+        "css/products/vpn/components/pricing-plus-relay.scss",
         "css/products/vpn/common.scss",
         "css/products/vpn/landing.scss"
       ],
       "name": "mozilla-vpn-landing"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/affiliate.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/components/pricing-basic.scss",
+        "css/products/vpn/common.scss"
+      ],
+      "name": "mozilla-vpn-pricing"
     },
     {
       "files": [
@@ -1172,9 +1224,9 @@
     {
       "files": [
         "css/pocket/style.scss",
-        "css/pocket/components/privacy-tos.scss"
+        "css/pocket/components/legal-pages.scss"
       ],
-      "name": "pocket-privacy-tos"
+      "name": "pocket-legal-pages"
     },
     {
       "files": [
@@ -1236,6 +1288,12 @@
         "css/mozorg/santa-locator.scss"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "css/mozorg/rise25.scss"
+      ],
+      "name": "rise-25"
     }
   ],
   "js": [
@@ -1335,6 +1393,18 @@
         "js/firefox/whatsnew/whatsnew-110-features.js"
       ],
       "name": "firefox_whatsnew_110_features"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-112-experiment-en.es6.js"
+      ],
+      "name": "firefox_whatsnew_112_en_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-112-features.js"
+      ],
+      "name": "firefox_whatsnew_112_features"
     },
     {
       "files": [
@@ -1670,6 +1740,18 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-111-en.js"
+      ],
+      "name": "firefox_whatsnew_111_en"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-112-eu-privacy.js"
+      ],
+      "name": "firefox_whatsnew_112_eu_privacy"
+    },
+    {
+      "files": [
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
@@ -1978,6 +2060,12 @@
         "js/mozorg/santa-locator.js"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "js/mozorg/rise25.js"
+      ],
+      "name": "rise-25"
     }
   ]
 }

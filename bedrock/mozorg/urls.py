@@ -68,6 +68,7 @@ urlpatterns = (
     ),
     page("about/governance/policies/module-ownership/", "mozorg/about/governance/policies/module-ownership.html"),
     page("about/governance/policies/regressions/", "mozorg/about/governance/policies/regressions.html"),
+    page("about/governance/policies/social-content-policies/", "mozorg/about/governance/policies/social-content-policies.html"),
     page("about/policy/transparency/", "mozorg/about/policy/transparency/index.html"),
     page("about/policy/transparency/jan-dec-2015/", "mozorg/about/policy/transparency/jan-dec-2015.html"),
     page("about/policy/transparency/jan-jun-2016/", "mozorg/about/policy/transparency/jan-jun-2016.html"),
@@ -145,6 +146,8 @@ urlpatterns = (
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     page("santalocator/", "mozorg/santa-locator.html"),
+    page("rise25/", "mozorg/rise25/rise25.html"),
+    redirect(r"rise-25/?$", "rise25/"),
 )
 
 if settings.DEV:

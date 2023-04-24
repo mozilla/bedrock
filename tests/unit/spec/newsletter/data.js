@@ -209,21 +209,6 @@ const newsletterData = {
         is_mofo: true,
         order: 12
     },
-    'mozilla-technology': {
-        title: 'Mozilla Labs',
-        description:
-            "We're building the technology of the future. Come explore with us.",
-        show: false,
-        active: true,
-        private: false,
-        indent: false,
-        vendor_id: 'Sub_Mozilla_Tech__c',
-        languages: ['en'],
-        requires_double_optin: true,
-        firefox_confirm: false,
-        is_mofo: false,
-        order: 13
-    },
     'mixed-reality': {
         title: 'Mixed Reality',
         description:
@@ -895,6 +880,11 @@ const stringData = {
             'Get all the knowledge you need to stay safer and smarter online.',
         title: 'Knowledge is Power'
     },
+    'security-privacy-news': {
+        description:
+            'Stay informed of the latest trends in privacy & security products from Mozilla, the makers of Firefox.',
+        title: 'Security & Privacy News from Mozilla'
+    },
     labs: {
         title: 'About Labs'
     },
@@ -946,11 +936,6 @@ const stringData = {
     'mozilla-phone': {
         description: 'Email updates for vouched Mozillians on mozillians.org.',
         title: 'Mozillians'
-    },
-    'mozilla-technology': {
-        description:
-            'We’re building the technology of the future. Come explore with us.',
-        title: 'Mozilla Labs'
     },
     os: {
         description:

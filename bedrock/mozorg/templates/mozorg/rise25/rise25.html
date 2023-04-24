@@ -1,0 +1,169 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# remove VPN CTA #}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Rise 25{% endblock %}
+
+{% block page_image %}{{ static('img/mozorg/rise25/rise25-social-share.jpg') }}{% endblock %}
+
+{% block page_desc %}In honor of our 25th anniversary we’re recognizing 25 rising stars. These are the people we see shaping the future of
+the internet for the better over the next quarter century and beyond. Submit your nominations today.{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('rise-25') }}
+{% endblock %}
+
+
+{% set nomination_cards = [
+  {
+    "title": "Activists",
+    "desc": "We’re recognizing the activists using the internet to drive social and political change. Nominate individuals using the
+    internet to amplify their voices and make a difference in the world.",
+    "href": "https://mozilla.formstack.com/forms/activists",
+  },
+  {
+    "title": "Builders",
+    "desc": "These are the engineers and technical people building the infrastructure of the internet. Nominate the builders shaping
+    the technical side of the web, making it faster, more secure and accessible to everyone.",
+    "href": "https://mozilla.formstack.com/forms/builders",
+  },
+  {
+    "title": "Artists",
+    "desc": "These are the creative forces creating innovative and thought-provoking digital artwork. Nominate artists who use the
+    internet as their canvas to inspire others and rethink what's possible online.",
+    "href": "https://mozilla.formstack.com/forms/artists",
+  },
+  {
+    "title": "Creators",
+    "desc": "These are the content creators using storytelling to build community online. Nominate the filmmakers, educators,
+    comedians and social media creators inspiring their audiences and sparking important conversations.",
+    "href": "https://mozilla.formstack.com/forms/creators",
+  },
+  {
+    "title": "Advocates",
+    "desc": "This category is for the people shaping the policies and regulations governing the internet. Nominate the policymakers,
+    lawyers and advocates who are fighting for an open, free internet.",
+    "href": "https://mozilla.formstack.com/forms/advocates",
+  }
+]%}
+
+{% block content %}
+  <section class="rise25-hero">
+    <a href="#" class="hero-static-container" value="Play video" data-cta-type="button" data-cta-text="Rise25 play video">
+      <div class="hero-text-container mzp-l-content">
+          <img src="/media/img/mozorg/rise25/RISE25.svg" width="171" height="35" alt="Rise 25">
+          <h1>In search of<br> the visionaries<br> and builders of<br> tomorrow</h1>
+          <div class="play-container">
+            <span class="play-button">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.3047 15.0008L10.8493 22.1919L10.8493 7.80973L23.3047 15.0008Z" fill="white" />
+                <circle cx="15" cy="15" r="14.5908" stroke="white" stroke-width="0.818462" />
+              </svg>
+            </span>
+            <p>Play video</p>
+          </div>
+      </div>
+      <div class="rise25-hero-static-image">
+        {{ picture(
+          url='img/mozorg/rise25/r25_hero_432.jpg',
+          sources=[
+            {
+            'media': '(min-width: 1440px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_os.jpg': '',
+                'img/mozorg/rise25/r25_hero_os-2x.jpg': '2x',
+              }
+            },
+            {
+            'media': '(min-width: 982px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_1440.jpg': '',
+                'img/mozorg/rise25/r25_hero_1440-2x.jpg': '2x',
+              }
+            },
+            {
+            'media': '(min-width: 688px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_982.jpg': '',
+                'img/mozorg/rise25/r25_hero_982-2x.jpg': '2x',
+              }
+            },
+            {
+            'media': '(min-width: 432px)',
+              'srcset': {
+                'img/mozorg/rise25/r25_hero_688.jpg': '',
+                'img/mozorg/rise25/r25_hero_688-2x.jpg': '2x',
+            }
+            },
+          ],
+          optional_attributes={
+            'srcset': '/media/img/mozorg/rise25/r25_hero_432-2x.jpg 2x',
+            'class': 'rise25-hero-static-image',
+            'alt': 'Help us find next wave of visionaries'
+          }
+        )}}
+      </div>
+    </a>
+    <div class="video-background">
+      <video muted height="530">
+        <source src="https://www.assets.mozilla.net/rise25/rise25-video.webm" type="video/webm">
+        <source src="https://assets.mozilla.net/rise25/rise25-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+  {% call split(
+    block_class="mzp-l-split-center-on-sm-md gamechanger-section",
+    media_class='mzp-l-split-h-center',
+    media_after=True,
+    image=resp_img(
+      url='img/mozorg/rise25/r25_collage.jpg',
+      srcset={
+        'img/mozorg/rise25/r25_collage-2x.jpg': '2x'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
+  )%}
+    <h2>Enter your nominations now</h2>
+    <p>Help us identify and recognize the next 25 game-changers shaping the future of the internet to be more ethical, responsible and inclusive.</p>
+    {% include "mozorg/rise25/includes/rise25-social-share.html" %}
+  {% endcall %}
+
+  <section class="nomination-section">
+    <div class="mzp-l-content nomination-grid">
+      <div class="nomination-card">
+        <p class="nomination-details">We'll choose five honorees across each of the five categories and celebrate them on all of our platforms later this year.</p>
+        {% include "mozorg/rise25/includes/rise25-social-share.html"%}
+      </div>
+      {% for card in nomination_cards %}
+        <div class="nomination-card">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.desc }}</p>
+          <a class="mzp-c-button" target="_blank" rel="external noopener noreferrer" href="{{ card.href }}">Nominate</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle("rise-25") }}
+{% endblock %}

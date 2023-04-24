@@ -2,106 +2,27 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-monitor';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 @import '../protocol/components/fxa-form';
-
-.c-section-title {
-    @include text-title-md;
-    max-width: $content-sm + $layout-xl;
-    margin: 0 auto $layout-xl;
-    text-align: center;
-}
-
-// * -------------------------------------------------------------------------- */
-// Hero
-
-.c-accounts-hero {
-    padding: $spacing-lg 0;
-    text-align: center;
-
-    .c-accounts-hero-body-signed-in {
-        display: none;
-    }
-
-    .c-accounts-hero-title {
-        @include text-title-lg;
-        margin-bottom: $spacing-xl;
-
-        span {
-            color: $color-red-50;
-        }
-    }
-
-    .c-accounts-hero-desc {
-        @include text-body-lg;
-    }
-
-    .state-fxa-supported-signed-in & {
-        .c-accounts-hero-body-default {
-            display: none;
-        }
-
-        .c-accounts-hero-body-signed-in {
-            display: block;
-        }
-    }
-
-    @media #{$mq-md} {
-        background: transparent url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg') right -720px top no-repeat;
-        @include background-size(1660px 275px);
-
-        .state-fxa-supported-signed-in & {
-            @include background-size(2188px 275px);
-            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
-            background-position: right -960px top -40px;
-        }
-    }
-
-    @media #{$mq-lg} {
-        @include background-size(3441px 570px);
-        @include bidi(((text-align, left, right),));
-        background-position: center top;
-        min-height: 560px;
-
-        .state-fxa-supported-signed-in & {
-            @include background-size(3500px 440px);
-            background-position: center top;
-            min-height: 420px;
-        }
-
-        .c-accounts-hero-body {
-            @include grid-half;
-            @include bidi(((float, left, right),));
-        }
-
-        .c-accounts-hero-title {
-            @include bidi(((background-position, left top, right top),));
-            max-width: 12em;
-        }
-
-        @supports (display: grid) {
-            & > .mzp-l-content {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-column-gap: $spacing-2xl;
-            }
-
-            .c-accounts-hero-body {
-                float: none;
-                width: auto;
-            }
-        }
-    }
-}
 
 // * -------------------------------------------------------------------------- */
 // FxA signup form
 
-.c-accounts-form {
+.l-accounts {
     margin: 0 auto;
     max-width: 330px;
     text-align: center;
+}
 
+.c-accounts-form {
     .mzp-c-form-title {
         @include font-firefox;
         @include text-title-sm;
@@ -124,432 +45,30 @@
     }
 }
 
-// * -------------------------------------------------------------------------- */
-// Products
+.c-manage {
+    display: none;
 
-.c-product-list {
-    margin: $spacing-2xl auto;
-    max-width: $content-sm;
-
-    @media #{$mq-md} {
-        @supports (display: grid) {
-            &.l-columns-two {
-                display: grid;
-                grid-gap: $layout-md;
-                grid-template-columns: repeat(2, 1fr);
-                max-width: $content-md;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        @supports (display: grid) {
-            &.l-columns-three {
-                display: grid;
-                grid-gap: $layout-md;
-                grid-template-columns: repeat(3, 1fr);
-                max-width: $content-lg;
-            }
-        }
-    }
-}
-
-.c-product-list-item {
-    margin: 0 auto $layout-lg;
-    max-width: $content-xs;
-    text-align: center;
-
-    a:link,
-    a:visited {
+    .state-fxa-supported-signed-in & {
         display: block;
-        text-decoration: none;
-
-        .c-product-list-title {
-            color: $color-ink-80;
-        }
-
-        .c-product-list-desc {
-            text-decoration: underline;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            .c-product-list-desc {
-                text-decoration: none;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        @supports (display: grid) {
-            @include bidi(((text-align, left, right),));
-            max-width: none;
-            margin: 0;
-        }
     }
 }
 
-.c-product-list-title {
-    @include image-replaced;
-    @include text-title-sm;
-    background-position: center top;
-    background-repeat: no-repeat;
-    margin: 0 auto $spacing-lg;
-    height: 50px;
-
-    .t-product-firefox & {
-        @include background-size(144px, 50px);
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-hor-stack.svg');
+.accounts-products {
+    h2 {
+        @include text-title-xs;
     }
 
-    .t-product-monitor & {
-        @include background-size(138px, 50px);
-        background-image: url('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack.svg');
+    h4 {
+        margin-top: $layout-sm;
+        margin-bottom: 0;
     }
 
-    .t-product-vpn & {
-        @include background-size(143px, 50px);
-        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack.svg');
-    }
-
-    @media #{$mq-md} {
-        height: 64px;
-        margin: 0 0 $spacing-lg;
-
-        .t-product-firefox & {
-            @include background-size(184px,  64px);
-        }
-
-        .t-product-monitor & {
-            @include background-size(176px, 64px);
-        }
-
-        .t-product-vpn & {
-            @include background-size(184px, 64px);
-        }
-    }
-
-    @media #{$mq-lg} {
-        @supports (display: grid) {
-            @include bidi(((background-position, left top, right top),));
-        }
+    ul {
+        padding-left: 22px;
     }
 }
 
-.c-product-list-desc {
-    @include text-body-lg;
-}
-
-.c-accounts-products-tagline {
-    @include font-size(32px);
+.c-accounts-tagline {
     font-weight: bold;
-    color: $color-red-50;
-    max-width: $content-md;
-    margin: $layout-lg auto;
-    text-align: center;
-}
-
-// * -------------------------------------------------------------------------- */
-// Value propositions
-
-.c-accounts-value {
-    @include text-body-lg;
-    margin-bottom: $layout-lg;
-
-    .c-accounts-value-container {
-        overflow: hidden;
-    }
-
-    .c-accounts-value-content {
-        @include border-box;
-        min-width: $content-xs;
-        padding: $layout-xs;
-    }
-
-    .c-accounts-value-media {
-        @include clearfix;
-        margin-bottom: $spacing-xl;
-        padding: $layout-xs;
-        max-width: 800px;
-    }
-
-    &.l-media-left .c-accounts-value-media {
-        @include bidi((
-            (margin-left, -25%, auto),
-            (margin-right, auto, -25%),
-        ));
-
-        img {
-            @include bidi((
-                (float, left, right),
-                (margin-left, -10%, auto),
-                (margin-right, auto, -10%),
-                (transform, none, scaleX(-1)),
-            ));
-        }
-    }
-
-    &.l-media-right .c-accounts-value-media {
-        @include bidi((
-            (margin-left, auto, -25%),
-            (margin-right, -25%, auto),
-        ));
-
-        img {
-            @include bidi((
-                (float, right, left),
-                (margin-left, auto, -10%),
-                (margin-right, -10%, auto),
-                (transform, none, scaleX(-1)),
-            ));
-        }
-    }
-
-    @media #{$mq-sm} {
-        &.l-media-left .c-accounts-value-media,
-        &.l-media-right .c-accounts-value-media {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
-
-    @media #{$mq-md} {
-        .c-accounts-value-container {
-            margin: 0 auto;
-            max-width: $content-md;
-            padding: 0 $layout-xl;
-        }
-
-        @supports (display: grid) {
-            .c-accounts-value-container {
-                align-items: center;
-                display: grid;
-                grid-column-gap: $layout-lg;
-                grid-template-columns: repeat(2, 1fr);
-                margin: 0;
-                max-width: none;
-                padding: 0;
-            }
-
-            .c-accounts-value-media {
-                grid-row: 1;
-                padding: 0;
-
-                img {
-                    float: none;
-                    width: 800px;
-                }
-            }
-
-            .c-accounts-value-content {
-                grid-row: 1;
-                max-width: ($content-max * 0.5) - $spacing-lg;
-                padding: 0;
-            }
-
-            &.l-media-left {
-                .c-accounts-value-content {
-                    @include bidi((
-                        (padding-left, 0, $layout-lg),
-                        (padding-right, $layout-lg, 0),
-                    ));
-                    grid-column: 2;
-                }
-
-                .c-accounts-value-media {
-                    @include bidi((
-                        (margin-left, -25%, 0),
-                        (margin-right, 0, -25%),
-                    ));
-                    grid-column: 1;
-                    justify-self: end;
-
-                    img {
-                        @include bidi((
-                            (float, right, left),
-                            (transform, none, scaleX(-1)),
-                        ));
-                    }
-                }
-            }
-
-            &.l-media-right {
-                .c-accounts-value-content {
-                    @include bidi((
-                        (padding-right, 0, $layout-lg),
-                        (padding-left, $layout-lg, 0),
-                    ));
-                    grid-column: 1;
-                    justify-self: end;
-                }
-
-                .c-accounts-value-media {
-                    @include bidi((
-                        (margin-left, 0, -25%),
-                        (margin-right, -25%, 0),
-                    ));
-                    grid-column: 2;
-                    justify-self: start;
-
-                    img {
-                        @include bidi((
-                            (float, left, right),
-                            (transform, none, scaleX(-1)),
-                        ));
-                    }
-                }
-            }
-        }
-
-        @media #{$mq-lg} {
-            &.l-media-left .c-accounts-value-content {
-                @include bidi((
-                    (padding-left, 0, $layout-xl),
-                    (padding-right, $layout-xl, 0),
-                ));
-            }
-
-            &.l-media-right .c-accounts-value-content {
-                @include bidi((
-                    (padding-right, 0, $layout-xl),
-                    (padding-left, $layout-xl, 0),
-                ));
-            }
-        }
-    }
-}
-
-.c-accounts-value-title {
-    @include text-title-md;
-}
-
-// * -------------------------------------------------------------------------- */
-// Join the movement
-
-.c-accounts-movement .c-section-title {
-    @include font-size(32px);
-    font-weight: bold;
-    color: $color-red-50;
-    max-width: $content-md;
-    margin: 0 auto $layout-lg;
-    text-align: center;
-}
-
-.c-accounts-movement-container {
-    margin: $layout-xl auto;
-
-    @media #{$mq-md} {
-        @supports (display: grid) {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: 2;
-            grid-column-gap: $layout-lg;
-        }
-    }
-}
-
-.c-accounts-movement-item {
-    @include background-size(50px, 50px);
-    @include border-box;
-    background-position: center top;
-    background-repeat: no-repeat;
-    margin: 0 auto $layout-lg;
-    max-width: $content-sm;
-    padding-top: $layout-lg + 10px;
-    text-align: center;
-
-    &.t-movement-build {
-        background-image: url('/media/img/firefox/accounts/trailhead/icon-experiments.svg');
-    }
-
-    &.t-movement-bigtech {
-        background-image: url('/media/img/firefox/accounts/trailhead/icon-inbox.svg');
-    }
-
-    @media #{$mq-md} {
-        @include bidi((
-            (background-position, left $spacing-sm, right $spacing-sm),
-            (padding-left, $layout-lg + 10px, 0),
-            (padding-right, 0, $layout-lg + 10px),
-            (text-align, left, right),
-        ));
-        padding-top: 0;
-
-        @supports (display: grid) {
-            max-width: none;
-            margin: 0;
-        }
-    }
-}
-
-.c-accounts-movement-title {
-    @include text-title-sm;
-}
-
-.c-accounts-movement-desc {
-    @include text-body-lg;
-}
-
-// * -------------------------------------------------------------------------- */
-// Flip backgrounds for right-to-left languages
-
-[dir='rtl'] {
-    .c-accounts-hero {
-        background-image: none;
-        overflow-x: hidden;
-        position: relative;
-
-        & > .mzp-l-content {
-            z-index: 2;
-        }
-
-        @media #{$mq-md} {
-            &::after {
-                @include background-size(1660px 275px);
-                background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg');
-                background-position: center top;
-                background-repeat: no-repeat;
-                content: '';
-                display: block;
-                height: 275px;
-                left: 10%;
-                margin-left: -830px;
-                position: absolute;
-                top: 0;
-                transform: scaleX(-1);
-                width: 1660px;
-                z-index: 1;
-            }
-        }
-
-        @media #{$mq-lg} {
-            &::after {
-                @include background-size(3441px 570px);
-                height: 570px;
-                left: 50%;
-                margin-left: -1720px;
-                width: 3441px;
-            }
-        }
-    }
-
-    @media #{$mq-md} {
-        .state-fxa-supported-signed-in .c-accounts-hero::after {
-            @include background-size(2188px 275px);
-            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
-            height: 275px;
-            margin-left: -1094px;
-            width: 2188px;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .state-fxa-supported-signed-in .c-accounts-hero::after {
-            @include background-size(3500px 440px);
-            height: 440px;
-            margin-left: -1750px;
-            width: 3500px;
-        }
-    }
+    margin-top: $layout-sm;
 }

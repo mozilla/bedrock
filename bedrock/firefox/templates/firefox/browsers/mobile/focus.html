@@ -83,7 +83,12 @@
   {% endcall %}
 
   {% call split(
-    image=resp_img('img/firefox/browsers/mobile/focus/disappear-your-history.svg', { 'class': 'mzp-c-split-media-asset'}),
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/disappear-your-history.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -92,7 +97,12 @@
   {% endcall %}
 
   {% call split(
-    image=resp_img('img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg', { 'class': 'mzp-c-split-media-asset'}),
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-focus-take-private-mode') }}</h3>
@@ -100,7 +110,12 @@
   {% endcall %}
 
   {% call split(
-    image=resp_img('img/firefox/browsers/mobile/focus/tracking-protection.svg', { 'class': 'mzp-c-split-media-asset'}),
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/tracking-protection.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -109,7 +124,12 @@
   {% endcall %}
 
   {% call split(
-    image=resp_img('img/firefox/browsers/mobile/focus/see-it-all-faster.svg', { 'class': 'mzp-c-split-media-asset'}),
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/see-it-all-faster.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}

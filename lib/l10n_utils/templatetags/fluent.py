@@ -25,6 +25,7 @@ ATTRS_ALLOWED_IN_FLUENT_STRINGS = [
     "id",
     "rel",
     "title",
+    "target",
 ]
 
 

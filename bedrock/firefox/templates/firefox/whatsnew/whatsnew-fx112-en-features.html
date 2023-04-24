@@ -1,0 +1,258 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_112_en_features') }}
+{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-whatsnew112-features-v' + variant %}
+{% set _utm_campaign = 'whatsnew112-features' %}
+{% set params = 'utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-112-en', ['en-US', 'en-CA']) and country_code in ['US', 'CA'] %}
+    {{ js_bundle('firefox_whatsnew_112_en_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}features{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <h1 class="mzp-c-section-heading">Firefox helps you stay private and productive</h1>
+
+  {% if variant == '3' %}
+
+    {# v3 - Pocket in first position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/pocket-discover-high-res.png',
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>Discover the best of the web</h2>
+      <p>Pocket editors comb the web for entertaining and informative reads from trusted publications like Wired, Popular Science, Fast Company and more.</p>
+      <p>
+        {{ pocket_fxa_button(
+          entrypoint=entrypoint,
+          button_text='Activate Pocket in Firefox',
+          class_name='mzp-c-button mzp-t-secondary',
+          is_button_class=False,
+          optional_parameters={
+            's': _entrypoint,
+            'utm_campaign': _utm_campaign,
+            'utm_content': 'signup-fxa-primary'
+          },
+          optional_attributes={
+            'data-cta-text': 'Activate Pocket in Firefox',
+            'data-cta-type': 'button',
+          })
+        }}
+      </p>
+    {% endcall %}
+
+  {% elif variant == '4' %}
+
+    {# v4 - VPN in first position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/privacy-header.jpg',
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>Protect what’s important all year long</h2>
+      <p>Protect your location & activity using Mozilla VPN.</p>
+      <p>With the flip of a switch, Mozilla VPN works in the background to protect your entire device.</p>
+      <p>
+        {{ vpn_product_referral_link(
+          referral_id='whatsnew-112-en-v4-features-vpn-first',
+          link_text='Get Mozilla VPN',
+          class_name='mzp-t-secondary',
+          optional_attributes= {
+              'data-cta-text' : 'Get Mozilla VPN',
+              'data-cta-type' : 'button'
+          })
+        }}
+      </p>
+    {% endcall %}
+
+  {% else %}
+
+    {# v5 or v6 - ETP in first position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/shield.png',
+        srcset={ 'img/firefox/whatsnew/whatsnew112-en/shield-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>See which trackers Firefox blocked for you this week</h2>
+      <p>We use Enhance Tracking Protection to automatically protect your privacy while you browse.</p>
+      <p>
+        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}">
+          View my protections
+        </a>
+      </p>
+    {% endcall %}
+  {% endif %}
+
+  {% if variant == '5' %}
+
+    {# v5 - Pocket in second position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/pocket-discover-high-res.png',
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>Discover the best of the web</h2>
+      <p>Pocket editors comb the web for entertaining and informative reads from trusted publications like Wired, Popular Science, Fast Company and more.</p>
+      <p>
+        {{ pocket_fxa_button(
+          entrypoint=entrypoint,
+          button_text='Activate Pocket in Firefox',
+          class_name='mzp-c-button mzp-t-secondary',
+          is_button_class=False,
+          optional_parameters={
+            's': _entrypoint,
+            'utm_campaign': _utm_campaign,
+            'utm_content': 'signup-fxa-primary'
+          },
+          optional_attributes={
+            'data-cta-text': 'Activate Pocket in Firefox',
+            'data-cta-type': 'button',
+          })
+        }}
+      </p>
+    {% endcall %}
+
+  {% elif variant == '6' %}
+
+    {# v6 - VPN in second position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/privacy-header.jpg',
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>Protect what’s important all year long</h2>
+      <p>Protect your location & activity using Mozilla VPN.</p>
+      <p>With the flip of a switch, Mozilla VPN works in the background to protect your entire device.</p>
+      <p>
+        {{ vpn_product_referral_link(
+          referral_id='whatsnew-112-en-v6-features-vpn-second',
+          link_text='Get Mozilla VPN',
+          class_name='mzp-t-secondary',
+          optional_attributes= {
+              'data-cta-text' : 'Get Mozilla VPN',
+              'data-cta-type' : 'button'
+          })
+        }}
+      </p>
+    {% endcall %}
+
+  {% else %}
+
+    {# v3 or v4 - ETP in second position #}
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+      body_class='mzp-l-split-v-center',
+      media_class='mzp-l-split-h-center',
+      image=resp_img('img/firefox/whatsnew/whatsnew112-en/shield.png',
+        srcset={ 'img/firefox/whatsnew/whatsnew112-en/shield-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+    ) %}
+      <h2>See which trackers Firefox blocked for you this week</h2>
+      <p>We use Enhance Tracking Protection to automatically protect your privacy while you browse.</p>
+      <p>
+        <a class="mzp-c-button mzp-t-secondary js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ params }}">
+          View my protections
+        </a>
+      </p>
+    {% endcall %}
+
+  {% endif %}
+
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md',
+    body_class='mzp-l-split-v-center',
+    media_class='mzp-l-split-h-center',
+    image=resp_img('img/firefox/whatsnew/whatsnew112-en/addon.jpg',
+      srcset={ 'img/firefox/whatsnew/whatsnew112-en/addon-high-res.jpg': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+    ),
+  ) %}
+    <h2>Organize all your open tabs with a magic button</h2>
+    <p>Add OneTab to your browser — and with one click, suddenly all your open tabs become a clean list.</p>
+    <p>
+      <a class="mzp-c-button mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/onetab/?{{ params }}"  data-cta-text="Learn" data-cta-type="button">
+        Learn more
+      </a>
+    </p>
+  {% endcall %}
+
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed',
+    body_class='mzp-l-split-v-center',
+    media_class='mzp-l-split-h-center',
+    image=picture(
+      url="img/firefox/whatsnew/whatsnew112-en/edit-pdfs-light.svg",
+      sources=[
+          {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                  "img/firefox/whatsnew/whatsnew112-en/edit-pdfs-light.svg": "default",
+              }
+          },
+          {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew112-en/edit-pdfs-dark.svg": "default",
+            }
+          }
+      ],
+      optional_attributes={
+        "alt": "Edit PDFs in Firefox",
+      }
+    ),
+  ) %}
+    <h2>Edit PDFs directly in Firefox</h2>
+    <p>No need to print out medical forms, financial documents or contracts — edit and sign any PDF right in Firefox and get back to the fun stuff.</p>
+    <p>
+      <a class="mzp-c-button mzp-t-secondary" href="https://assets.mozilla.net/wnp111-en/wnp-fx111-en.pdf" data-cta-text="Try it now" data-cta-type="button">
+        Try it now
+      </a>
+    </p>
+  {% endcall %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {% if variant in ['3', '5'] %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+  {{ js_bundle('firefox_whatsnew_112_features') }}
+{% endblock %}

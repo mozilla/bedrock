@@ -1,0 +1,130 @@
+# Workflows that run integration tests on live sites
+
+name: Integration tests
+run-name: Integration tests for ${{ inputs.branch }}
+env:
+  SLACK_CHANNEL_ID: CBX0KH5GA # #www-notify in MoCo Slack
+  SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN_FOR_MEAO_NOTIFICATIONS_APP}}
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: The branch of mozilla/bedrock we're testing against - main|stage|prod|run-integration-tests
+        required: true
+      git_sha:
+        description: The git SHA just deployed to the service we want to test
+        required: true
+      mozorg_service_hostname:
+        description: The root URL of the Mozorg service to run tests against
+        required: true
+      pocket_service_hostname:
+        description: The root URL of the Pocket service to run tests against
+        required: true
+jobs:
+  notify-of-test-run-start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Notify via Slack that tests are starting
+        uses: ./.github/actions/slack
+        with:
+          env_name: test
+          label: "Integration tests [${{ inputs.git_sha }}]"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_ID }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ inputs.branch }}
+          message: "Integration tests started"
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: notify-of-test-run-start
+    strategy:
+      matrix:
+        include:
+          - LABEL: test-ie-saucelabs
+            BROWSER_NAME: internet explorer
+            DRIVER: SauceLabs
+            MARK_EXPRESSION: "smoke or sanity"
+            PLATFORM: Windows 10
+            PYTEST_PROCESSES: "8"
+          - LABEL: test-firefox-remote
+            BROWSER_NAME: firefox
+            MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
+            DRIVER: Remote
+            PYTEST_PROCESSES: "auto"
+          - LABEL: test-headless
+            DRIVER: ""
+            MARK_EXPRESSION: headless
+          - LABEL: test-chrome-remote
+            BROWSER_NAME: chrome
+            DRIVER: Remote
+            MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
+            PYTEST_PROCESSES: "auto"
+          # TEMPORARILY DISABLE DOWNLOAD TESTS - may need selectively running
+          # - LABEL: test-download-remote
+          #   BROWSER_NAME: "firefox"
+          #   DRIVER: Remote
+          #   MARK_EXPRESSION: download
+          #   PYTEST_PROCESSES: "auto"
+
+    env:
+      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
+      BASE_POCKET_URL: ${{ github.event.inputs.pocket_service_hostname }}
+      BROWSER_NAME: ${{matrix.BROWSER_NAME}}
+      CI_JOB_ID: ${{github.run_id}}
+      DRIVER: ${{matrix.DRIVER}}
+      LABEL: ${{matrix.LABEL}}
+      MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
+      PLATFORM: ${{matrix.PLATFORM}}
+      PYTEST_PROCESSES: ${{matrix.PYTEST_PROCESSES}}
+      SAUCELABS_API_KEY: ${{secrets.SAUCELABS_API_KEY}}
+      SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
+
+    # Note we use if: always() below to keep things going, rather than
+    # continue-on-error, because that approach falsely marks the overall
+    # test suite as green/passed even if it has some failures.
+
+    steps:
+      - name: Fetch codebase
+        if: always()
+        uses: actions/checkout@v3
+      - name: Sets specific env vars IF we're on testing against dev/main only
+        if: ${{ github.event.inputs.branch == 'main'}}
+        run: |
+          echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
+
+      - name: Run functional integration tests
+        if: always()
+        run: ./bin/integration_tests/functional_tests.sh
+        env:
+          TEST_IMAGE: mozmeao/bedrock_test:${{ github.event.inputs.git_sha }}
+
+      - name: Cleanup after functional integration tests
+        if: always()
+        run: ./bin/integration_tests/cleanup_after_functional_tests.sh
+
+      - name: Store artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: results-${{github.run_id}}-${{matrix.label}}
+          if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
+
+  notify-of-test-run-completion:
+    if: always()
+    runs-on: ubuntu-latest
+    needs: [notify-of-test-run-start, integration-tests]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Notify via Slack of test-run outcome
+        uses: ./.github/actions/slack
+        with:
+          env_name: test
+          label: "Integration tests [${{ inputs.git_sha }}]"
+          status: ${{ needs.integration-tests.result }}
+          channel_id: ${{ env.SLACK_CHANNEL_ID }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ inputs.branch }}
+          message: "Integration tests completed. Status: ${{ needs.integration-tests.result }}"

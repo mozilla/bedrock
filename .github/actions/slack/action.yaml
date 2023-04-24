@@ -1,0 +1,91 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+name: Slack notifications
+description: Slack notifications for Bedrock GHA events
+
+inputs:
+  env_name:
+    description: Name of env involved - one of dev, test, stage or prod
+    required: true
+  label:
+    description: Very brief summary of what this notification is for - e.g. 'Integration tests'
+    required: true
+  status:
+    description: Status of message type to be sent, supported values 'info', 'success', 'failure'
+    required: true
+  channel_id:
+    description: Slack channel id to send messages
+    required: true
+  slack_bot_token:
+    description: Slack bot token oauth secret
+    required: true
+  ref:
+    description: Deployment ref
+    required: false
+  message:
+    description: Message body to send
+    required: true
+    default: ""
+outputs:
+  ts:
+    description: Slack timestamp for updating messages
+    value: ${{ steps.slack-notification.outputs.ts }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: set-build-status-color
+      shell: bash
+      run: >-
+        eval "case ${{ inputs.status }} in
+            info)
+                echo 'STATUS_COLOR=#00FFFF';;
+            success)
+                echo 'STATUS_COLOR=#00FF00';;
+            skipped)
+                echo 'STATUS_COLOR=#FF3333';;
+            failure)
+                echo 'STATUS_COLOR=#FF0000';;
+            *)
+                echo 'STATUS_COLOR=##8128a7';;
+        esac" >> $GITHUB_ENV
+
+    - id: slack-notification
+      uses: slackapi/slack-github-action@v1.23.0
+      env:
+        SLACK_BOT_TOKEN: ${{ inputs.slack_bot_token }}
+      with:
+        channel-id: ${{ inputs.channel_id }}
+        payload: |
+          {
+            "text": "${{ inputs.label }}",
+            "attachments": [
+              {
+                "color": "${{ env.STATUS_COLOR }}",
+                "fallback": "Bedrock ${{ inputs.env_name }} / ${{ inputs.ref }}: ${{ inputs.message }}",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "Bedrock ${{ inputs.env_name }} / ${{ inputs.ref }}:\n${{ inputs.message }}"
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Details",
+                        "emoji": true
+                      },
+                      "value": "click",
+                      "url": "${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}",
+                      "action_id": "button-action"
+                    }
+                  }
+                ]
+              }
+            ]
+          }

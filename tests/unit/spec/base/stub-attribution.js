@@ -12,10 +12,15 @@
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('stub-attribution.js', function () {
-    const GA_VISIT_ID = '1456954538.1610960957';
+    const GA_CLIENT_ID = '1456954538.1610960957';
+    const STUB_SESSION_ID = '1234567890';
 
     beforeEach(function () {
         window.Mozilla.dntEnabled = sinon.stub();
+
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
     });
 
     describe('init', function () {
@@ -29,16 +34,19 @@ describe('stub-attribution.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 utm_content: 'rel-esr',
                 referrer: '',
-                ua: 'chrome'
+                ua: 'chrome',
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
             spyOn(Mozilla.StubAttribution, 'requestAuthentication');
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
+            spyOn(window.dataLayer, 'push');
 
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
-                GA_VISIT_ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
             );
         });
 
@@ -67,6 +75,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).toHaveBeenCalledWith(cookieData);
@@ -92,10 +101,16 @@ describe('stub-attribution.js', function () {
                 Mozilla.StubAttribution,
                 'getAttributionData'
             ).and.returnValue(data);
+
             Mozilla.StubAttribution.init();
+
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).toHaveBeenCalledWith(data);
+            expect(window.dataLayer.push).toHaveBeenCalledWith({
+                event: 'stub-session-id',
+                eLabel: STUB_SESSION_ID
+            });
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -125,6 +140,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -154,6 +170,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -183,6 +200,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -212,6 +230,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -255,7 +274,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -271,7 +291,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -285,7 +306,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -299,7 +321,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -313,7 +336,8 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -329,7 +353,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -343,7 +368,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:cm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -357,7 +383,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -371,7 +398,8 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -389,7 +417,8 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -405,7 +434,8 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -421,7 +451,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -491,12 +522,12 @@ describe('stub-attribution.js', function () {
     describe('waitForGoogleAnalytics', function () {
         beforeEach(function () {
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
-                GA_VISIT_ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
             );
         });
 
-        it('should fire a callback with the GA visit ID', function () {
+        it('should fire a callback when GA client ID and session ID are found', function () {
             const callback = jasmine.createSpy('callback');
 
             Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
@@ -507,8 +538,8 @@ describe('stub-attribution.js', function () {
     describe('getAttributionData', function () {
         beforeEach(function () {
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
-                GA_VISIT_ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
             );
         });
 
@@ -532,7 +563,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String)
             };
             /* eslint-enable camelcase */
 
@@ -562,7 +594,8 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String)
             };
             /* eslint-enable camelcase */
 
@@ -592,7 +625,8 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String)
             };
             /* eslint-enable camelcase */
 
@@ -624,7 +658,8 @@ describe('stub-attribution.js', function () {
                 ua: 'chrome',
                 experiment: 'firefox-new',
                 variation: 1,
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String)
             };
             /* eslint-enable camelcase */
 
@@ -1053,19 +1088,21 @@ describe('stub-attribution.js', function () {
         });
     });
 
-    describe('getGAVisitID', function () {
-        it('should return a valid Google Analytics visit ID', function () {
+    describe('getGAClientID', function () {
+        it('should return a valid Google Analytics client ID', function () {
             window.ga = sinon.stub();
             window.ga.getAll = sinon.stub().returns([
                 {
-                    get: () => GA_VISIT_ID
+                    get: () => GA_CLIENT_ID
                 }
             ]);
 
-            expect(Mozilla.StubAttribution.getGAVisitID()).toEqual(GA_VISIT_ID);
+            expect(Mozilla.StubAttribution.getGAClientID()).toEqual(
+                GA_CLIENT_ID
+            );
         });
 
-        it('should return a null if Google Analytics visit ID is invalid', function () {
+        it('should return a null if Google Analytics client ID is invalid', function () {
             window.ga = sinon.stub();
             window.ga.getAll = sinon.stub().returns([
                 {
@@ -1073,14 +1110,23 @@ describe('stub-attribution.js', function () {
                 }
             ]);
 
-            expect(Mozilla.StubAttribution.getGAVisitID()).toBeNull();
+            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
         });
 
         it('should return a null if accessing Google Analytics object throws an error', function () {
             window.ga = sinon.stub().throws(function () {
                 return new Error();
             });
-            expect(Mozilla.StubAttribution.getGAVisitID()).toBeNull();
+            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
+        });
+    });
+
+    describe('createSessionID', function () {
+        it('should return a 10 digit randomly generated number as a string', function () {
+            const result = Mozilla.StubAttribution.createSessionID();
+
+            expect(typeof result).toEqual('string');
+            expect(/^\d{10}$/.test(result)).toBeTruthy();
         });
     });
 });

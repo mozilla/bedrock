@@ -11,7 +11,7 @@ const PocketAnalytics = {
     loaded: false,
 
     loadGA: () => {
-        // Google Tag Manager used to load GA4 (gtag.js)
+        // Google Tag Manager used to load GA4 (gtm.js)
         const GTM_CONTAINER_ID = document
             .getElementsByTagName('html')[0]
             .getAttribute('data-gtm-container-id');
@@ -21,15 +21,19 @@ const PocketAnalytics = {
         };
 
         if (GTM_CONTAINER_ID) {
-            const gaScript = document.createElement('script');
-            gaScript.async = 'true';
-            gaScript.type = 'text/javascript';
-            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GTM_CONTAINER_ID}`;
-            const pageScript = document.getElementsByTagName('script')[0];
-            pageScript.parentNode.insertBefore(gaScript, pageScript);
-
-            window.gtag('js', new Date());
-            window.gtag('config', GTM_CONTAINER_ID);
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                const f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l !== 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', [GTM_CONTAINER_ID]);
         }
 
         // Google Universal Analytics (analytics.js)
@@ -121,7 +125,7 @@ const PocketAnalytics = {
 
         // https://docs.snowplowanalytics.com/docs/collecting-data/collecting-from-own-applications/javascript-trackers/javascript-tracker/javascript-tracker-v3/tracker-setup/initialization-options/
         window.snowplow('newTracker', 'sp', SNOWPLOW_CONNECT_URL, {
-            SNOWPLOW_APP_ID,
+            appId: SNOWPLOW_APP_ID,
             platform: 'web',
             eventMethod: config.eventMethod,
             respectDoNotTrack: false,

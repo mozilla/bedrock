@@ -83,7 +83,13 @@ class MiecoEmailForm(forms.Form):
     A form class used to validate the data coming from the MIECO site.
     """
 
+    MESSAGE_ID_CHOICES = (
+        ("innovations", "innovations"),
+        ("mieco", "mieco"),
+    )
+
     name = forms.CharField(required=False, max_length=100)
     email = forms.EmailField()
     interests = forms.CharField(required=False, max_length=100)
     description = forms.CharField(required=False, max_length=750)
+    message_id = forms.ChoiceField(required=False, choices=MESSAGE_ID_CHOICES)

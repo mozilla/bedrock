@@ -17,6 +17,10 @@
   {{ css_bundle('newsletter-knowledge-is-power') }}
 {% endblock %}
 
+{% if variation == 'rise25' %}
+  {% set isRise25 = True %}
+{% endif%}
+
 {% block content %}
 <main class= "mzp-t-content-sm">
   <section class="section-subscribe">
@@ -26,19 +30,33 @@
           <li>
             <a href="{{ url('mozorg.home') }}" class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-mozilla">{{ ftl('knowledge-is-power-mozilla') }}</a>
           </li>
-          <li>
-            <a href="{{ url('firefox.browsers.index') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox">{{ ftl('knowledge-is-power-firefox') }}</a>
-          </li>
-          <li>
-            <a href="{{ url('products.vpn.landing') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-vpn">{{ ftl('knowledge-is-power-vpn') }}</a>
-          </li>
-          <li>
-            <a href="{{ url('firefox.pocket') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-pocket">{{ ftl('knowledge-is-power-pocket') }}</a>
-          </li>
+          {% if not isRise25 %}
+            <li>
+              <a href="{{ url('firefox.browsers.index') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox">{{ ftl('knowledge-is-power-firefox') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('products.vpn.landing') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-vpn">{{ ftl('knowledge-is-power-vpn') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('firefox.pocket') }}" class="mzp-c-logo mzp-t-logo-md mzp-t-product-pocket">{{ ftl('knowledge-is-power-pocket') }}</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
-      <h1 class="page-title">{{ self.page_title() }}</h1>
-      <h2 class="section-title">{{ self.page_desc() }}</h2>
+      <h1 class="page-title">
+      {% if isRise25 %}
+        Thanks for submitting your nomination
+      {% else %}
+        {{ self.page_title() }}
+      {% endif %}
+      </h1>
+      <h2 class="section-title">
+      {% if isRise25 %}
+        Love our mission? Stay connected with us. Sign up to get the latest news and tips from Mozilla about everything that makes the web a happier, healthier place to be.
+      {% else %}
+        {{ self.page_desc() }}
+      {% endif %}
+      </h2>
     </header>
     <div class="mzp-l-content mzp-t-content-sm">
       {{ email_newsletter_form(newsletters='knowledge-is-power', include_title=False, spinner_color='#0c99d5') }}

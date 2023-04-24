@@ -41,7 +41,8 @@ The full list of data values we pass to stub attribution is as follows:
 - ``ua`` (simplified browser name parsed from UA string, e.g. ``chrome``, ``safari``, ``firefox``).
 - ``experiment`` (``?experiment=`` query parameter)
 - ``variation`` (``?variation=`` query parameter)
-- ``visit_id`` (``clientId`` from Google Analytics)
+- ``client_id`` (``clientId`` client ID from Google Analytics (GA))
+- ``session_id`` (random 10 digit string identifier used to associate Telemetry data with GA session).
 
 .. Note::
 
@@ -71,7 +72,7 @@ that is used to sign the attribution code must be set via an environment variabl
 
 .. code-block:: html
 
-    STUB_ATTRIBUTION_HMAC_KEY='thedude'
+    STUB_ATTRIBUTION_HMAC_KEY=thedude
 
 .. Note::
 
