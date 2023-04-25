@@ -93,8 +93,8 @@ repos:
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@14.16.1"
-          - "stylelint-config-standard-scss@6.1.0"
+          - "stylelint@15.6.0"
+          - "stylelint-config-standard-scss@9.0.0"
           - "postcss-scss@4.0.2"
           - "postcss@8.3.11"
   - repo: https://github.com/eslint/eslint
