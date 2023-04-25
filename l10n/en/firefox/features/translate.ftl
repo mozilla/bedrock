@@ -17,16 +17,13 @@ features-translate-the-google-translate = The To { -brand-name-google } Translat
 # $attrs (string) - link to https://www.mozilla.org/firefox/all/
 features-translate-the-internet-is = The internet is filled with amazing stuff, but a lot of it is not written in English — making billions of people around the globe need a translator just to use the internet. You can <a { $attrs }>download { -brand-name-firefox } in over 100 languages</a>, so your browser menus, notifications and messages are in your preferred language, but that doesn’t solve the problem of all that amazing content you use your browser to find.
 
-# "Firefox Translations" is a brand name
-features-translate-firefox-translations = { -brand-name-firefox } Translations
+features-translate-firefox-translations = { -brand-name-firefox-translations }
 
 # $attrs (string) - link to https://addons.mozilla.org/firefox/addon/firefox-translations/
-# "Firefox Translations" is a brand name
-features-translate-the-firefox-translations-extension-provides = The <a { $attrs }>{ -brand-name-firefox } Translations extension</a> can automatically translate content from the web pages you visit. Unlike some cloud-based alternatives, this extenstion translates text locally in { -brand-name-firefox }, so the content you’re translating doesn’t leave your machine.
+features-translate-the-firefox-translations-extension-provides = The <a { $attrs }>{ -brand-name-firefox-translations } extension</a> can automatically translate content from the web pages you visit. Unlike some cloud-based alternatives, this extenstion translates text locally in { -brand-name-firefox }, so the content you’re translating doesn’t leave your machine.
 
 # links to https://addons.mozilla.org/firefox/addon/firefox-translations/
-# "Firefox Translations" is a brand name
-features-translate-get-firefox-translations = Get { -brand-name-firefox } Translations
+features-translate-get-firefox-translations = Get { -brand-name-firefox-translations }
 
 features-translate-to-google-translate = To { -brand-name-google } Translate
 
