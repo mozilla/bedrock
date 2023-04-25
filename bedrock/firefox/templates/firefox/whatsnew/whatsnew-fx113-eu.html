@@ -1,0 +1,107 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_whatsnew_113_eu') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<div class="mzp-l-content mzp-t-content-md">
+  <section class="wnp-content-main">
+    <div class="wnp-main-wrapper">
+      <div class="wnp-main-image mzp-c-logo mzp-t-logo-xl mzp-t-product-vpn"></div>
+      <h2 class="wnp-main-title">{{ ftl('welcome-page10-main-heading') }}</h2>
+      <p class="wnp-main-tagline">{{ ftl('welcome-page10-main-description') }}</p>
+
+      <p class="wnp-main-tagline">
+        {% if LANG == 'fr' %}
+          Bénéficiez de 20% de réduction sur un abonnement de 12 mois à Mozilla VPN avec le code de réduction :
+          <strong>VPN20</strong>
+          <small>(à copier-coller en finalisant votre commande)</small>
+        {% elif LANG == 'de' %}
+          Erhalte 20 % Rabatt auf 12 Monate Mozilla VPN mit diesem Code:
+          <strong>VPN20</strong>
+          <small>(Einfach in die Zwischenablage kopieren und beim Checkout einfügen.)</small>
+        {% elif LANG == 'es-ES' %}
+          20 % de descuento en la suscripción de 12 meses a Mozilla VPN con este código descuento:
+          <strong>VPN20</strong>
+          <small>(copiar y pegar al realizar el pago)</small>
+        {% elif LANG == 'it' %}
+          Approfitta del 20% di sconto per 12 mesi su Mozilla VPN con questo codice promozionale:
+          <strong>VPN20</strong>
+          <small>(copia e incolla durante il pagamento)</small>
+        {% elif LANG == 'nl' %}
+          Ontvang 12 maanden lang 20% korting op Mozilla VPN met deze kortingscode:
+          <strong>VPN20</strong>
+          <small>(kopiëren en plakken bij het betalen)</small>
+        {% elif LANG == 'sv-SE' %}
+          Få 20 % rabatt på Mozillla VPN i 12 månader med den här rabattkoden:
+          <strong>VPN20</strong>
+          <small>(kopiera och klistra in vid betalningen)</small>
+        {% elif LANG == 'fi' %}
+          Saat 20 % alennusta 12 kk:n Mozilla VPN-tilauksesta tällä koodilla:
+          <strong>VPN20</strong>
+          <small>(kopioi ja liitä kassalla)</small>
+        {% else %}
+          Take 20% off 12 months of Mozilla VPN with this discount code:
+          <strong>VPN20</strong>
+          <small>(apply at checkout)</small>
+        {% endif %}
+      </p>
+
+      <div class="wnp-main-cta">
+        {{ vpn_product_referral_link(
+          referral_id='whatsnew-113-eu',
+          page_anchor='#pricing',
+          link_text=ftl('welcome-page10-get-mozilla-vpn'),
+          class_name='mzp-t-product mzp-t-xl',
+          optional_attributes= {
+              'data-cta-text' : 'Get Mozilla VPN',
+              'data-cta-type' : 'button'
+          })
+        }}
+      </div>
+    </div>
+  </section>
+
+  <div class="wnp-content-extra">
+    <div class="mzp-l-columns mzp-t-columns-two">
+      <div class="mzp-c-picto">
+        <div class="mzp-c-picto-image">
+          {% include 'firefox/welcome/includes/page10/laptop.svg' %}
+        </div>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-very-fast') }}</h3>
+        <div class="mzp-c-picto-body">
+          <p>{{ ftl('welcome-page10-wireguard-powered') }}</p>
+        </div>
+      </div>
+
+      <div class="mzp-c-picto">
+        <div class="mzp-c-picto-image">
+          {% include 'firefox/welcome/includes/page10/mobile.svg' %}
+        </div>
+        <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-without-trace') }}</h3>
+        <div class="mzp-c-picto-body">
+          <p>{{ ftl('welcome-page10-never-log') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_113_eu') }}
+{% endblock %}
