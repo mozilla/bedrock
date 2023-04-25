@@ -170,8 +170,10 @@ locales = [
     l10n = "{locale}/firefox/welcome/page10.ftl"
     locales = [
         "es-ES",
+        "fi",
         "it",
         "nl",
+        "sv-SE",
     ]
 [[paths]]
     reference = "en/firefox/welcome/page11.ftl"
