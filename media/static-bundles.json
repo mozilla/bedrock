@@ -1052,15 +1052,6 @@
     },
     {
       "files": [
-        "css/products/vpn/components/hero.scss",
-        "css/products/vpn/components/block.scss",
-        "css/products/vpn/common.scss",
-        "css/products/vpn/article.scss"
-      ],
-      "name": "mozilla-vpn-article"
-    },
-    {
-      "files": [
         "css/contentful/mozilla/c-article.scss"
       ],
       "name": "mozilla-c-article"
@@ -1148,16 +1139,6 @@
         "css/contentful/firefox/t-multi-column.scss"
       ],
       "name": "firefox-t-multi-column"
-    },
-    {
-      "files": [
-        "css/products/vpn/components/hero.scss",
-        "css/products/vpn/components/block.scss",
-        "css/products/vpn/common.scss",
-        "css/products/vpn/article.scss",
-        "css/products/vpn/vpn-info.scss"
-      ],
-      "name": "mozilla-vpn-info"
     },
     {
       "files": [
@@ -1958,12 +1939,6 @@
         "js/products/vpn/invite-init.es6.js"
       ],
       "name": "mozilla-vpn-invite"
-    },
-    {
-      "files": [
-        "js/products/vpn/article.js"
-      ],
-      "name": "mozilla-vpn-article"
     },
     {
       "files": [

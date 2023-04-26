@@ -12,3 +12,7 @@
 {% block page_favicon %}{{ static('img/favicons/vpn/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav.html' %}
+{% endblock %}

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if ftl_has_messages('vpn-subnav-whats-a-vpn', 'vpn-subnav-faqs', 'vpn-subnav-get-help') %}
+{% if ftl_has_messages('vpn-subnav-learn-about-vpns', 'vpn-subnav-download-mozilla-vpn') %}
   <nav class="c-sub-navigation">
     <div class="mzp-l-content">
       <div class="c-sub-navigation-content">
@@ -14,27 +14,15 @@
           </a>
         </h2>
         <ul class="c-sub-navigation-list is-details is-closed">
+
           <li class="c-sub-navigation-item">
-            <a href="{{ url('products.vpn.more.what-is-a-vpn') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What’s a VPN?">
-              {{ ftl('vpn-subnav-whats-a-vpn') }}
-            </a>
-          </li>
-          {% if show_relay_promo_block %}
-            <li class="c-sub-navigation-item">
-              <a href="#bundle" data-link-type="nav" data-link-position="subnav" data-link-name="Why bundle?">
-                {{ ftl('vpn-shared-why-bundle') }}
-              </a>
-            </li>
-          {% endif %}
-          <li class="c-sub-navigation-item">
-            {% set faq_link = '#faq' if request.path == '/products/vpn/' else url('products.vpn.landing') + '#faq' %}
-            <a href="{{ faq_link }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQs">
-              {{ ftl('vpn-subnav-faqs') }}
+            <a href="{{ url('products.vpn.resource-center.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn about VPNs">
+              {{ ftl('vpn-subnav-learn-about-vpns') }}
             </a>
           </li>
           <li class="c-sub-navigation-item">
-            <a href="https://support.mozilla.org/products/firefox-private-network-vpn{{ _params }}&utm_content=vpn-sub-nav-link" data-link-type="nav" data-link-position="subnav" data-link-name="Get Help">
-              {{ ftl('vpn-subnav-get-help') }}
+            <a href="{{ url('products.vpn.download') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Download Mozilla VPN">
+              {{ ftl('vpn-subnav-download-mozilla-vpn') }}
             </a>
           </li>
         </ul>

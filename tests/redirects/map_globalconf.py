@@ -1217,5 +1217,13 @@ URLS = flatten(
         url_test("/exp/opt-out/", "/privacy/websites/convert-opt-out/"),
         # issue 12935
         url_test("/privacy/facebook/", "/privacy/archive/facebook/2023-04/"),
+        # Issue #12937 - updating VPN subnav
+        url_test("/products/vpn/more/what-is-an-ip-address/", "/products/vpn/resource-center/what-is-an-ip-address/"),
+        url_test("/products/vpn/more/what-is-a-vpn", "/products/vpn/resource-center/what-is-a-vpn/"),
+        url_test("/products/vpn/more/vpn-or-proxy/", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/"),
+        url_test("/products/vpn/more/when-to-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
+        url_test("/products/vpn/more/why-mozilla-vpn/", "/products/vpn/"),
+        url_test("/products/vpn/more/do-i-need-a-vpn/", "/products/vpn/resource-center/do-you-need-a-vpn-at-home-here-are-5-reasons-you-might/"),
+        url_test("/products/vpn/more/what-is-a-vpn-v2/", "/products/vpn/resource-center/what-is-a-vpn/"),
     )
 )
