@@ -49,8 +49,8 @@
     "karma-webpack": "^5.0.0",
     "prettier": "^2.8.1",
     "sinon": "^15.0.1",
-    "stylelint": "^14.16.1",
-    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard-scss": "^9.0.0",
     "svgo": "^3.0.2",
     "tinypng-cli": "^0.0.7",
     "webpack-dev-server": "^4.11.1"

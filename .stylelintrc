@@ -1,8 +1,6 @@
 {
     "extends": "stylelint-config-standard-scss",
     "rules": {
-        "indentation": 4,
-        "string-quotes": "single",
         "declaration-empty-line-before": "never",
         "declaration-no-important": true,
         "color-function-notation": "legacy",
@@ -33,11 +31,13 @@
                     "grid-column",
                     "grid-gap",
                     "grid-row",
-                    "grid-template"
+                    "grid-template",
+                    "inset"
                 ]
             }
         ],
-        "selector-not-notation": "simple"
+        "selector-not-notation": "simple",
+        "media-feature-range-notation": "prefix"
     },
     "ignoreFiles": ["media/css/libs/**/*", "media/css/careers/*"]
 }
