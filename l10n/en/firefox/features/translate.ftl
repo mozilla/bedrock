@@ -20,7 +20,7 @@ features-translate-the-internet-is = The internet is filled with amazing stuff, 
 features-translate-firefox-translations = { -brand-name-firefox-translations }
 
 # $attrs (string) - link to https://addons.mozilla.org/firefox/addon/firefox-translations/
-features-translate-the-firefox-translations-extension-provides = The <a { $attrs }>{ -brand-name-firefox-translations } extension</a> can automatically translate content from the web pages you visit. Unlike some cloud-based alternatives, this extenstion translates text locally in { -brand-name-firefox }, so the content you’re translating doesn’t leave your machine.
+features-translate-the-firefox-translations-extension-provides = The <a { $attrs }>{ -brand-name-firefox-translations } extension</a> can automatically translate content from the web pages you visit. Unlike some cloud-based alternatives, this extension translates text locally in { -brand-name-firefox }, so the content you’re translating doesn’t leave your machine.
 
 # links to https://addons.mozilla.org/firefox/addon/firefox-translations/
 features-translate-get-firefox-translations = Get { -brand-name-firefox-translations }
