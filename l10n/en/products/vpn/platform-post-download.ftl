@@ -6,21 +6,22 @@
 
 vpn-mac-download-page-title = Download { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
 vpn-windows-download-page-title = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
-vpn-mac-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-mac }
+vpn-mac-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-mac-short }
 vpn-windows-downloading-mozilla-vpn = Downloading { -brand-name-mozilla-vpn } for { -brand-name-windows }
 
 # Variables:
 #   $url (url) - link for either Windows or Mac download, depending on user platform
+#   $id (string) - unique ID for the anchor tag
 # The <br> tag is a line break for the HTML text
-vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> <a href="{ $url }" id="vpn-download-link">click here</a> to download the file, or go back to download for another device.
+vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> <a href="{ $url }" id="{ $id }">restart the download</a>, or go back to download for another device.
 
-vpn-open-the-file = Open the file
+vpn-open-the-file = 1. Open the file
 vpn-mac-go-to-your-downloads = Go to your downloads folder and double click the .pkg file
 vpn-windows-go-to-your-downloads = Go to your downloads folder and double click the .msi file
-vpn-launch-the-app = Launch the app
+vpn-launch-the-app = 2. Launch the app
 vpn-mac-follow-the-steps = Follow the steps outlined in the { -brand-name-mozilla-vpn } installer to start the app
 vpn-windows-a-progress-bar = A progress bar will appear and the installation process will begin
-vpn-login-or-signup = Log in or sign up
+vpn-login-or-signup = 3. Log in or sign up
 vpn-enter-your-email = Enter your email address to log in or sign up and get started
-vpn-turn-on-vpn = Turn on VPN
+vpn-turn-on-vpn = 4. Turn on VPN
 vpn-pick-a-recommended = Pick a recommended location for a fast, stable connection or choose your desired location manually, then switch the toggle ON

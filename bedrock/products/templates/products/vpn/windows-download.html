@@ -26,11 +26,11 @@
           <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
         </div>
         <h1>{{ ftl('vpn-windows-downloading-mozilla-vpn') }}...</h1>
-        <p>{{ ftl('vpn-your-download-should-start', url=windows_download_url) }}</p>
+        <p>{{ ftl('vpn-your-download-should-start', url=windows_download_url, id='vpn-download-link-win') }}</p>
       </div>
     </header>
-    <section class="vpn-download-instructions windows-download-instructions mzp-l-content">
-      <ol class="mzp-l-columns mzp-t-columns-four mzp-t-picto-center">
+    <section class="vpn-download-instructions windows mzp-l-content">
+      <ol class="mzp-l-columns mzp-t-columns-four">
         {% call picto(
           base_el='li',
           title=ftl('vpn-open-the-file'),

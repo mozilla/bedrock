@@ -15,7 +15,7 @@ if (typeof window.Mozilla === 'undefined') {
     var DownloadThanks = {};
 
     /**
-     * Determine if browser should attempt to download Firefox on page load.
+     * Determine if browser should attempt to download Mozilla VPN on page load.
      * @param {String} platform
      * @returns {Boolean}
      */
@@ -30,12 +30,12 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Get the Firefox download link for the appropriate platform.
+     * Get the VPN download link for the appropriate platform.
      * @param {Object} window.site
      * @returns {String} download url
      */
     DownloadThanks.getDownloadURL = function (site) {
-        var prefix = 'thanks-download-button-';
+        var prefix = 'vpn-download-link-';
         var link;
         var url;
 
@@ -44,25 +44,7 @@ if (typeof window.Mozilla === 'undefined') {
                 link = document.getElementById(prefix + 'win');
                 break;
             case 'osx':
-                link = document.getElementById(prefix + 'osx');
-                break;
-            case 'linux':
-                if (site.isARM()) {
-                    // Linux ARM users get SUMO install instructions.
-                    link = null;
-                } else if (site.archSize === 64) {
-                    // Detect 64bit / 32bit builds for Linux.
-                    link = document.getElementById(prefix + 'linux64');
-                } else {
-                    link = document.getElementById(prefix + 'linux');
-                }
-
-                break;
-            case 'android':
-                link = document.getElementById(prefix + 'android');
-                break;
-            case 'ios':
-                link = document.getElementById(prefix + 'ios');
+                link = document.getElementById(prefix + 'mac');
                 break;
         }
 

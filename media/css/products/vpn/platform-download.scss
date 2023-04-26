@@ -24,12 +24,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.windows-download-instructions {
+.vpn-download-instructions {
     .mzp-c-picto {
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
         .mzp-c-picto-img {
             height: 208px;
         }

@@ -17,8 +17,6 @@
     ) {
         downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
 
-        // eslint-disable-next-line no-console
-        console.log(downloadURL);
         if (downloadURL) {
             // Pull download link from the download button and add to the 'Try downloading again' link.
             // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
