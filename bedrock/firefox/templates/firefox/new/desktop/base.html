@@ -6,19 +6,15 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title_prefix %}{{ ftl('firefox-desktop-download-meta-title-prefix') }} — {% endblock %}
-
-{%- block page_title -%}{{ ftl('firefox-desktop-download-meta-title-v2', fallback='firefox-desktop-download-meta-title') }}{%- endblock -%}
-
-{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{# Bug 1438302,  Issue 13019: Avoid duplicate content for English pages. #}
 {%- block page_title_full -%}
-  {% if LANG == 'en-CA' %}
-    Download Firefox for Desktop — from Mozilla (CA)
-  {% elif LANG == 'en-GB' %}
-    Download Firefox for Desktop — from Mozilla (UK)
-  {% else %}
+  {%- if LANG == 'en-US' -%}
+    Get Firefox for desktop — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Download Firefox for Desktop — Mozilla (UK)
+  {%- else -%}
     {{ ftl('firefox-desktop-download-meta-title-v2', fallback='firefox-desktop-download-meta-title') }}
-  {% endif %}
+  {%- endif -%}
 {%- endblock -%}
 
 {% block page_desc %}{{ ftl('firefox-desktop-download-meta-desc-v2', fallback='firefox-desktop-download-meta-desc') }}{% endblock %}

@@ -43,7 +43,17 @@
   {% set s2d_include = 'firefox/browsers/mobile/includes/s2d-android.html' %}
 {% endif %}
 
-{% block page_title %}{{ ftl('mobile-android-firefox-browser-android') }}{% endblock %}
+{# Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Get Firefox for Android — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Download Firefox for Android — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('mobile-android-firefox-browser-android') }} - Mozilla
+  {%- endif -%}
+{%- endblock -%}
+
 {% block page_desc %}{{ ftl('mobile-android-firefox-browser-for') }}{% endblock %}
 
 {% block body_class %}{{ super() }} mobile-android{% endblock %}

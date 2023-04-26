@@ -8,8 +8,16 @@
 {% from "macros.html" import google_play_button, fxa_email_form with context %}
 {% from "macros-protocol.html" import split with context %}
 
-{% block page_title %}{{ ftl('firefox-browsers-page-title', fallback='firefox-browsers-get-the-browsers-that-put') }}{% endblock %}
-{% block page_title_suffix %} — Mozilla{% endblock %}
+{# Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Get Firefox browser — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Download Firefox Browser — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('firefox-browsers-page-title', fallback='firefox-browsers-get-the-browsers-that-put') }} - Mozilla
+  {%- endif -%}
+{%- endblock -%}
 
 {% block page_desc %}{{ ftl('firefox-browsers-page-desc', fallback='firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
 

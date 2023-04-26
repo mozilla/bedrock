@@ -23,7 +23,17 @@
   {% endif %}
 {% endblock %}
 
-{% block page_title %}{{ ftl('mobile-ios-firefox-browser-ios') }}{% endblock %}
+{# Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Get Firefox for iOS (iPhone and iPad) — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Download Firefox for iOS (iPhone and iPad) — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('mobile-ios-firefox-browser-ios') }} - Mozilla
+  {%- endif -%}
+{%- endblock -%}
+
 {% block page_desc %}{{ ftl('mobile-ios-see-your-open-tabs', fallback='mobile-ios-firefox-browser-for') }}{% endblock %}
 
 {% block body_class %}{{ super() }} mobile-ios{% endblock %}
