@@ -495,6 +495,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx112-eu-privacy.fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx112-en.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx112-en-features.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx113-eu.html": ["firefox/welcome/page10", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -513,6 +514,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx110-en-features-v2.html",
         "firefox/whatsnew/whatsnew-fx112-en.html",
         "firefox/whatsnew/whatsnew-fx112-en-features.html",
+        "firefox/whatsnew/whatsnew-fx113-eu.html",
     ]
 
     # place expected ?v= values in this list
@@ -585,6 +587,13 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("113."):
+            if locale == "en-US" and country == "GB":
+                template = "firefox/whatsnew/whatsnew-fx113-eu.html"
+            elif locale in ["en-GB", "fr", "de", "it", "es-ES", "nl", "sv-SE", "fi"] and ftl_file_is_active("firefox/welcome/page10"):
+                template = "firefox/whatsnew/whatsnew-fx113-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("112."):
