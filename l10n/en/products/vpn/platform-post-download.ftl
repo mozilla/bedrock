@@ -25,3 +25,41 @@ vpn-login-or-signup = 3. Log in or sign up
 vpn-enter-your-email = Enter your email address to log in or sign up and get started
 vpn-turn-on-vpn = 4. Turn on VPN
 vpn-pick-a-recommended = Pick a recommended location for a fast, stable connection or choose your desired location manually, then switch the toggle ON
+
+vpn-download-faq-need-help = Need help getting started?
+vpn-download-faq-here-are-some = Here are some of the most common questions about setting up { -brand-name-mozilla-vpn }
+vpn-download-faq-why-use = Why should I use { -brand-name-mozilla-vpn }
+
+# Variables:
+#   $faq (url) - link to https://www.mozilla.org/en-CA/products/vpn/more/what-is-a-vpn/
+vpn-download-faq-as-more-daily = As more of daily life takes place through the internet, online privacy and security become even more important. A { -brand-name-vpn }, <a href="{ $faq}">Virtual Private Network</a>, creates an encrypted tunnel between your devices and the internet, ensuring your connection remains secure and private while protecting you in two important ways:
+
+# Variables:
+#   $ip (url) - link to https://www.mozilla.org/en-CA/products/vpn/more/what-is-an-ip-address/
+vpn-download-faq-concealing-ip = Concealing your true <a href="{ $ip }">IP address</a>: this helps protect your identity and obscures your location from the websites you visit.
+vpn-download-faq-encrypting = Encrypting your internet traffic: so no one on the wire can spy on your online activity.
+
+vpn-download-faq-working = How do I know the { -brand-name-vpn } is working?
+
+# Variables:
+#   $connected (url) - link to https://support.mozilla.org/en-US/kb/how-can-i-tell-if-mozilla-vpn-connected
+vpn-download-faq-visual-indicators = { -brand-name-mozilla-vpn } displays visual indicators of its current status both in the toolbar and the application’s home screen, making it easy to know whether your online activity is protected or not. These indicators allow you to confirm when your navigation is private and secure. Additionally, while connected, you can visit <a href="https://monitor.firefox.com/">https://monitor.firefox.com/</a> to confirm if your IP address is masked. For more details, please see <a href="{ $connected }">How can I tell if { -brand-name-mozilla-vpn } is connected?</a>
+
+vpn-download-faq-add-device = How do I add another device?
+
+# Variables:
+#   $subscription - link to https://support.mozilla.org/en-US/kb/how-add-devices-your-mozilla-vpn-subscription
+vpn-download-faq-adding-another = Adding another device is as simple as downloading and installing the { -brand-name-mozilla-vpn } software and then signing into your existing { -brand-name-firefox } account on the new device. For more details, please see <a href="{ $subscription }">How to add devices to your { -brand-name-mozilla-vpn } subscription </a>
+
+
+vpn-download-faq-best-practices = What are some { -brand-name-vpn } best practices?
+vpn-download-faq-traffic = If your goal is to protect your internet traffic while keeping a fast speed, then it’s always best to choose a server location that is as close as possible to your physical location. This will increase the reliability and speed of your connection as your internet traffic will not need to take a significant detour before arriving at its intended destination on the web.
+vpn-download-faq-experience = If your goal is to experience the internet as if you were in some other part of the world, you can choose a server location there and all websites you visit will display as if you were there.
+vpn-download-faq-protect = If you want to protect yourself even more, you can activate protections against Ads, Ad Trackers and Malware by going to Settings > Privacy features. Please note that this may cause some websites to break or not load, so you might need to temporarily disable these protections if you bump into this issue.
+vpn-download-faq-lastly = Lastly, on supported devices, you can make the VPN even smarter by excluding certain apps (ex. Netflix) from the VPN.
+
+vpn-download-faq-need-more = Need a little more help?
+
+# Variables
+#   $support (url) - link to https://support.mozilla.org/en-US/products/firefox-private-network-vpn
+vpn-download-faq-support = You can contact our support team right from the { -brand-name-mozilla-vpn } Application by clicking Settings > Get Help > Contact Support. You can also contact us <a href="{ $support }">on our support page</a>.

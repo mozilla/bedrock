@@ -35,3 +35,23 @@ $image-path: '/media/protocol/img';
         margin: 63px 0;
     }
 }
+
+.vpn-download-faq {
+    .faq-info {
+        text-align: center;
+        margin-bottom: $layout-lg;
+    }
+
+    details {
+        margin: $spacing-2xl 0;
+    }
+
+    h3 {
+        @include text-title-xs;
+    }
+
+    p,
+    li {
+        @include text-body-lg;
+    }
+}

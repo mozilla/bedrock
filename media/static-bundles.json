@@ -1955,6 +1955,7 @@
     },
     {
       "files": [
+        "protocol/js/protocol-details.js",
         "js/products/vpn/thanks.js",
         "js/products/vpn/thanks-init.js"
       ],
