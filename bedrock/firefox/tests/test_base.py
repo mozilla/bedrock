@@ -1070,6 +1070,15 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx113-eu.html"]
 
+    @override_settings(DEV=True)
+    def test_fx_113_0_0_us(self, render_mock):
+        """Should use whatsnew-fx113-en template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="113.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx113-en.html"]
+
     # end 113.0 whatsnew tests
 
 
