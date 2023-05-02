@@ -2,12 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
 import re
 from html import escape
 
 from django.conf import settings
 from django.contrib import messages
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.cache import never_cache
 
 import basket
@@ -20,6 +21,7 @@ import lib.l10n_utils as l10n_utils
 # utils.get_newsletters in our tests
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
+from bedrock.newsletter.utils import get_newsletters
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
 from .forms import (
@@ -113,8 +115,18 @@ def confirm_thanks(request):
     return l10n_utils.render(request, "newsletter/confirm.html", {"token_error": token_error, "generic_error": generic_error}, ftl_files=FTL_FILES)
 
 
+def newsletter_all_json(request):
+    """Returns a JSON string of all newsletters configured in Basket."""
+    data = {"newsletters": get_newsletters()}
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def newsletter_strings_json(request):
-    return l10n_utils.render(request, "newsletter/includes/newsletter-strings.json", content_type="application/json", ftl_files=FTL_FILES)
+    """Returns a JSON string of newsletter IDs mapped to localized titles and descriptions."""
+    newsletters = json.dumps(get_newsletters())
+    return l10n_utils.render(
+        request, "newsletter/includes/newsletter-strings.json", {"newsletters": newsletters}, content_type="application/json", ftl_files=FTL_FILES
+    )
 
 
 @never_cache
@@ -136,7 +148,7 @@ def existing(request, token=None):
 
     context = {
         "action": f"{settings.BASKET_URL}/news/user/",
-        "newsletters_url": f"{settings.BASKET_URL}/news/newsletters/",
+        "newsletters_url": reverse("newsletter.all"),
         "unsubscribe_url": f"{settings.BASKET_URL}/news/unsubscribe/",
         "strings_url": reverse("newsletter.strings"),
         "updated_url": reverse("newsletter.updated"),

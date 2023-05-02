@@ -5,12 +5,20 @@ import json
 import uuid
 from unittest.mock import patch
 
+from django.http import HttpResponse
+from django.test.client import RequestFactory
+
 import basket
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
-from bedrock.newsletter.views import general_error, invalid_email_address
+from bedrock.newsletter.views import (
+    general_error,
+    invalid_email_address,
+    newsletter_all_json,
+    newsletter_strings_json,
+)
 
 
 class TestConfirmView(TestCase):
@@ -249,3 +257,23 @@ class TestNewsletterSubscribe(TestCase):
         self.assertFalse(doc("#email-form"))
         self.assertIn("privacy", doc("#newsletter-errors").text())
         self.assertFalse(basket_mock.subscribe.called)
+
+
+class TestNewsletterAllJson(TestCase):
+    def test_newsletter_all_json(self):
+        req = RequestFactory().get("/newsletter/newsletter-all.json")
+        req.locale = "en-US"
+        resp = newsletter_all_json(req)
+        self.assertEqual(resp.status_code, 200)
+        data = json.loads(resp.content)
+        self.assertTrue("newsletters" in data)
+
+
+@patch("bedrock.newsletter.views.l10n_utils.render", return_value=HttpResponse())
+class TestNewsletterStringsJson(TestCase):
+    def test_newsletter_strings_json(self, render_mock):
+        req = RequestFactory().get("/newsletter/newsletter-strings.json")
+        req.locale = "en-US"
+        newsletter_strings_json(req)
+        template = render_mock.call_args[0][1]
+        self.assertTrue(template == "newsletter/includes/newsletter-strings.json")
