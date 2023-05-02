@@ -14,7 +14,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% include 'products/relay/includes/subnav.html' %}
 {% endblock %}
 
-{% set product = "{{ ftl('waitlist-bundle-name') }}" %}
+{% set product = ftl('waitlist-bundle-name') %}
 
 
 {% block content %}
@@ -23,7 +23,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <h1>{% block waitlist_heading %}{% endblock %}</h1>
     <p>{% block waitlist_lede %}{% endblock %}</p>
   </div>
-  <form id="newsletter-form" class="mzp-l-content mzp-t-content-md  mzp-t-content-nospace mzp-c-newsletter-form"
+  <form id="newsletter-form" class="mzp-l-content mzp-t-content-md  mzp-t-content-nospace mzp-c-newsletter-form c-waitlist-form"
     action="{{ action }}" method="post">
     <div hidden>
       {{ newsletter_form.newsletters|safe }}
@@ -32,8 +32,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <input type="hidden" name="format" id="format-html" value="H">
 
     <fieldset class="mzp-c-newsletter-content">
-      <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="newsletter-errors">
+      <div class="mzp-c-form-errors hide-from-legacy-ie" id="newsletter-errors">
         <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('waitlist-subscribe-please-enter-a-valid') }}</li>
+          <li class="error-select-country hidden">{{ ftl('waitlist-subscribe-please-select-country') }}</li>
+          <li class="error-select-language hidden">{{ ftl('waitlist-subscribe-please-select-language') }}</li>
           <li class="error-try-again-later hidden">{{ ftl('waitlist-subscribe-error-unknown') }}</li>
         </ul>
       </div>
@@ -73,9 +76,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </fieldset>
   </form>
-  <div id="newsletter-thanks" class="vpn-invite-success hidden">
-    <h3>{{ ftl('vpn-landing-invite-thanks-heading') }}</h3>
-    <p>{{ ftl('vpn-landing-invite-thanks-desc') }}</p>
+  <div id="newsletter-thanks" class="c-waitlist-success hidden">
+    <h3>{{ ftl('waitlist-subscribe-success-title') }}</h3>
+    <p>{{ ftl('waitlist-subscribe-success-desc', product=product) }}</p>
   </div>
 </main>
 {% endblock %}
+
+{% block js %}{{ js_bundle("relay-waitlist")}}{% endblock %}

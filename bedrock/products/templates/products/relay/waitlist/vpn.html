@@ -6,7 +6,7 @@
 
 {% extends "products/relay/includes/waitlist-base.html" %}
 
-{% set product = "{{ ftl('waitlist-bundle-name') }}" %}
+{% set product = ftl('waitlist-bundle-name') %}
 
 {% block waitlist_heading %}{{ ftl('waitlist-heading-bundle') }}{% endblock %}
 {% block waitlist_lede %}{{ ftl('waitlist-lead-bundle') }}{% endblock %}

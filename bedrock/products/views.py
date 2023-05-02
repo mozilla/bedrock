@@ -253,9 +253,8 @@ def relay_vpn_waitlist__page(request):
     ftl_files = ["products/relay/waitlist", "products/relay/shared"]
     locale = l10n_utils.get_locale(request)
     newsletter_form = RelayBundleWaitlistForm(locale)
-    action = "relay-vpn-bundle-waitlist"
 
-    ctx = {"action": action, "newsletter_form": newsletter_form}
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "products/relay/waitlist/vpn.html", ctx, ftl_files=ftl_files)
 
@@ -265,8 +264,7 @@ def relay_phone_waitlist__page(request):
     ftl_files = ["products/relay/waitlist", "products/relay/shared"]
     locale = l10n_utils.get_locale(request)
     newsletter_form = RelayPhoneWaitlistForm(locale)
-    action = "relay-phone-masking-waitlist"
 
-    ctx = {"action": action, "newsletter_form": newsletter_form}
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "products/relay/waitlist/phone.html", ctx, ftl_files=ftl_files)

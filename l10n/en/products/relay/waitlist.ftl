@@ -26,10 +26,14 @@ waitlist-privacy-policy-agree-2 = By clicking “{ waitlist-submit-label-2 }”,
 waitlist-privacy-policy-use = Your information will only be used to notify you about { -brand-name-firefox-relay-premium } availability.
 waitlist-privacy-policy-use-phone = Your information will only be used to notify you when phone masking is available in your area.
 waitlist-privacy-policy-use-bundle = Your information will only be used to notify you about { -brand-name-relay } + { -brand-name-vpn } bundle availability.
+waitlist-subscribe-success-title = Thanks! You're on the list
 # Variables:
 #   $product (string) one of the following three options:
 #      - { -brand-name-firefox-firefox-relay-premium }
-#      - { -brand-name-relay } + { -brand-name-vpn } bundle
-#      - { -brand-name-relay } phone masking
-waitlist-subscribe-success = You’re on the list! Once { $product } becomes available for your region, we’ll email you.
+#      - { waitlist-bundle-name }
+#      - { waitlist-phone-name }
+waitlist-subscribe-success-desc = Once { $product } becomes available for your region, we’ll email you.
+waitlist-subscribe-please-enter-a-valid = Please enter a valid email address
+waitlist-subscribe-please-select-country = Please select a country or region
+waitlist-subscribe-please-select-language = Please select a language
 waitlist-subscribe-error-unknown = There was an error adding you to the waitlist. Please try again.

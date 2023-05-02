@@ -49,5 +49,5 @@ if settings.DEV:
         path("relay/", views.relay_landing_page, name="products.relay.landing"),
         path("relay/invite/", views.relay_invite_page, name="products.relay.invite"),
         path("relay/waitlist/vpn/", view=views.relay_vpn_waitlist__page, name="products.relay.waitlist.vpn"),
-        path("relay/waitlist/phone/", view=views.relay_vpn_waitlist__page, name="products.relay.waitlist.phone"),
+        path("relay/waitlist/phone/", view=views.relay_phone_waitlist__page, name="products.relay.waitlist.phone"),
     )

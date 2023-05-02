@@ -8,12 +8,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/form';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 @import '@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '@mozilla-protocol/core/protocol/css/includes/lib';
-
-.c-waitlist-container {
-    padding-top: $spacing-lg;
-}
 
 .c-waitlist-heading {
     text-align: center;
@@ -23,14 +18,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-waitlist-success {
+    text-align: center;
+}
+
 .mzp-c-form {
     i {
         display: block;
     }
-
-    // input, select {
-    //     width: 100%;
-    // }
 }
 
 .mzp-c-newsletter-form .mzp-c-button {

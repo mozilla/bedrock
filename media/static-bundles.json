@@ -2032,6 +2032,12 @@
         "js/mozorg/santa-locator.js"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "js/products/relay/waitlist.es6.js"
+      ],
+      "name": "relay-waitlist"
     }
   ]
 }
