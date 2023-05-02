@@ -1,0 +1,21 @@
+# Workflow to open a PR on mozilla-l10n/pocket-www-l10n with
+# new strings that exist in Bedrock and need localising
+
+name: Open Fluent PR for Pocket
+
+on:
+  push:
+    paths:
+      - "l10n-pocket/**/*"
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  open_l10n_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run PR opening script
+        shell: bash
+        run: SITE_MODE=Pocket bin/open-ftl-pr.sh

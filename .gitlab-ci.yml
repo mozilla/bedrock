@@ -32,33 +32,35 @@ build-test:
     - bin/build-release-image.sh --push
   retry: 2
 
-update-l10n:
-  stage: update-config
-  tags:
-    - mozmeao
-    - aws
-  only:
-    changes:
-      - "l10n/**/*"
-    refs:
-      - main
-  script:
-    - SITE_MODE=Mozorg bin/open-ftl-pr.sh
-  retry: 2
+# Replaced by GHA - see .github/workflows
+# update-l10n:
+#   stage: update-config
+#   tags:
+#     - mozmeao
+#     - aws
+#   only:
+#     changes:
+#       - "l10n/**/*"
+#     refs:
+#       - main
+#   script:
+#     - SITE_MODE=Mozorg bin/open-ftl-pr.sh
+#   retry: 2
 
-update-pocket-l10n:
-  stage: update-config
-  tags:
-    - mozmeao
-    - aws
-  only:
-    changes:
-      - "l10n-pocket/**/*"
-    refs:
-      - main
-  script:
-    - SITE_MODE=Pocket bin/open-ftl-pr.sh
-  retry: 2
+# Replaced by GHA - see .github/workflows
+# update-pocket-l10n:
+#   stage: update-config
+#   tags:
+#     - mozmeao
+#     - aws
+#   only:
+#     changes:
+#       - "l10n-pocket/**/*"
+#     refs:
+#       - main
+#   script:
+#     - SITE_MODE=Pocket bin/open-ftl-pr.sh
+#   retry: 2
 
 .update-config:
   stage: update-config
