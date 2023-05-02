@@ -11,6 +11,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  FLUENT_REPO_AUTH: ${{ secrets.FLUENT_REPO_AUTH }}
+
 jobs:
   open_l10n_pr:
     runs-on: ubuntu-latest
