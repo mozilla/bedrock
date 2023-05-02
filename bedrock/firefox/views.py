@@ -526,10 +526,9 @@ class WhatsnewView(L10nTemplateView):
         pre_release_channels = ["nightly", "developer", "beta"]
         channel = detect_channel(version)
 
-        # add active_locales for hard-coded locale templates
+        # activate en-GB locale for 113.0 WNP
         locale = l10n_utils.get_locale(self.request)
-        hard_coded_templates = ["id"]
-        if locale in hard_coded_templates and channel not in pre_release_channels:
+        if locale == "en-GB" and version.startswith("113.") and channel not in pre_release_channels:
             ctx["active_locales"] = locale
 
         # add version to context for use in templates
@@ -592,7 +591,7 @@ class WhatsnewView(L10nTemplateView):
         elif version.startswith("113."):
             if locale == "en-US" and country == "GB":
                 template = "firefox/whatsnew/whatsnew-fx113-eu.html"
-            elif locale in ["en-GB", "fr", "de", "it", "es-ES", "nl", "sv-SE", "fi"] and ftl_file_is_active("firefox/welcome/page10"):
+            elif locale in ["en-GB", "fr", "de", "it", "es-ES", "nl", "sv-SE", "fi"]:
                 template = "firefox/whatsnew/whatsnew-fx113-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
