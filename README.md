@@ -6,7 +6,6 @@ awesome, and open source as always. Perhaps even a little more.
 
 [mozilla]: https://www.mozilla.org/
 
-[![Circle CI](https://circleci.com/gh/mozilla/bedrock.svg?style=svg)](https://circleci.com/gh/mozilla/bedrock)
 [![What's deployed on dev,stage,prod?](https://img.shields.io/badge/whatsdeployed-dev,stage,prod-green.svg)](https://whatsdeployed.io/s/RuO/mozilla/bedrock)
 
 Docs
