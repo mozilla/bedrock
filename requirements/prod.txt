@@ -1100,9 +1100,9 @@ tzlocal==4.1 \
     --hash=sha256:0f28015ac68a5c067210400a9197fc5d36ba9bc3f8eaf1da3cbd59acdfed9e09 \
     --hash=sha256:28ba8d9fcb6c9a782d6e0078b4f6627af1ea26aeaa32b4eab5324abc7df4149f
     # via apscheduler
-urllib3==1.26.11 \
-    --hash=sha256:c33ccba33c819596124764c23a97d25f32b28433ba0dedeb77d873a38722c9bc \
-    --hash=sha256:ea6e8fb210b19d950fab93b60c9009226c63a28808bc8386e05301e25883ac0a
+urllib3==2.0.1 \
+    --hash=sha256:2ce66a68134be469f5df5d46d724237489b3cd85b2bba2223dbbee1746548826 \
+    --hash=sha256:d75e5ece05ff170e323303fd924edf29e705f5ae057c489f453a686b639bb68a
     # via
     #   botocore
     #   requests
