@@ -3,13 +3,10 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-{#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
-#}
 
 {% extends "products/vpn/download.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,nofollow">{% endblock %}
 
 {% block page_title_full %}{{ ftl('vpn-windows-download-page-title') }}{% endblock %}
 
@@ -20,10 +17,21 @@
 
 {% block content %}
   <div class="vpn-platform-download">
+    {% if block_download %}
+      <header class="platform-download-header">
+        <div class="mzp-l-content platform-download-blocked">
+        <img src="{{ static('img/products/vpn/download/vpn-unavailable-country.svg') }}" alt="">
+        <h1>{{ ftl('vpn-download-unable-to-download') }}</h1>
+        <p>{{ ftl('vpn-download-not-in-country') }}</p>
+        </div>
+      </header>
+    {% endif %}
+
+    {% if not block_download %}
     <header class="platform-download-header">
       <div class="mzp-l-content platform-download-header-wrapper">
         <div class="vpn-logo">
-          <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
+          <img src="{{ static('img/logos/vpn/vpn-dark-logo.svg') }}" alt="">
         </div>
         <h1>{{ ftl('vpn-windows-downloading-mozilla-vpn') }}</h1>
         <p>{{ ftl('vpn-your-download-should-start', url=windows_download_url, id='vpn-download-link-win') }}</p>
@@ -91,6 +99,7 @@
     </section>
   </div>
   {% include 'products/vpn/includes/download-faq.html' %}
+  {% endif %}
   <footer class="vpn-footer">
       {% include 'products/vpn/includes/footer-legal.html' %}
   </footer>

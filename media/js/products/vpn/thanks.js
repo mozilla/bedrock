@@ -4,56 +4,25 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// Create namespace
-if (typeof window.Mozilla === 'undefined') {
-    window.Mozilla = {};
-}
-
-(function (Mozilla) {
+(function () {
     'use strict';
+    var prefix = 'vpn-download-link-';
+    var link;
 
-    var DownloadThanks = {};
+    // Check for download link on Windows or Mac download pages
+    if (document.getElementById(prefix + 'win') !== null) {
+        link = document.getElementById(prefix + 'win').href;
+    } else if (document.getElementById(prefix + 'mac') !== null) {
+        link = document.getElementById(prefix + 'mac').href;
+    }
 
-    /**
-     * Determine if browser should attempt to download Mozilla VPN on page load.
-     * @param {String} platform
-     * @returns {Boolean}
-     */
-    DownloadThanks.shouldAutoDownload = function (platform) {
-        var supportedPlatforms = ['windows', 'osx'];
+    // Trigger auto-download based on platform page
+    Mozilla.Utils.onDocumentReady(function () {
+        setTimeout(function () {
+            window.location.href = link;
+        }, 1000);
+    });
 
-        if (supportedPlatforms.indexOf(platform) !== -1) {
-            return true;
-        }
-
-        return false;
-    };
-
-    /**
-     * Get the VPN download link for the appropriate platform.
-     * @param {Object} window.site
-     * @returns {String} download url
-     */
-    DownloadThanks.getDownloadURL = function (site) {
-        var prefix = 'vpn-download-link-';
-        var link;
-        var url;
-
-        switch (site.platform) {
-            case 'windows':
-                link = document.getElementById(prefix + 'win');
-                break;
-            case 'osx':
-                link = document.getElementById(prefix + 'mac');
-                break;
-        }
-
-        if (link && link.href) {
-            url = link.href;
-        }
-
-        return url;
-    };
-
-    Mozilla.DownloadThanks = DownloadThanks;
-})(window.Mozilla);
+    // Bug 1354334 - add a hint for test automation that page has loaded.
+    document.getElementsByTagName('html')[0].classList.add('download-ready');
+})();

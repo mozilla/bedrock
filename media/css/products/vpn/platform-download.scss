@@ -9,6 +9,15 @@ $image-path: '/media/protocol/img';
 
 .platform-download-header {
     background-color: $color-marketing-gray-10;
+
+    .platform-download-blocked {
+        @include text-body-xl;
+        text-align: center;
+
+        img {
+            margin-bottom: $spacing-xl;
+        }
+    }
 }
 
 .platform-download-header-wrapper {
@@ -21,18 +30,6 @@ $image-path: '/media/protocol/img';
 
     p {
         @include text-body-xl;
-    }
-}
-
-.vpn-download-instructions {
-    .mzp-c-picto {
-        .mzp-c-picto-img {
-            height: 208px;
-        }
-    }
-
-    .windows-launch-img {
-        margin: 63px 0;
     }
 }
 
@@ -54,4 +51,8 @@ $image-path: '/media/protocol/img';
     li {
         @include text-body-lg;
     }
+}
+
+.vpn-footer {
+    margin-top: $layout-xl;
 }

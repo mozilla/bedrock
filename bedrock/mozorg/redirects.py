@@ -540,8 +540,6 @@ redirectpatterns = (
     redirect(r"^grants(/.*)?$", "mozorg.moss.index"),
     # Issue 9984
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
-    # Issue 10335
-    redirect(r"^vpn/?$", "products.vpn.landing"),
     # Issue 11204
     redirect(
         r"^(truecolou?rs|turningred)/?$",

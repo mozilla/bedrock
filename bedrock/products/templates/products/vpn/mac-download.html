@@ -6,6 +6,8 @@
 
 {% extends "products/vpn/download.html" %}
 
+{% block canonical_urls %}<meta name="robots" content="noindex,nofollow">{% endblock %}
+
 {% block page_title_full %}{{ ftl('vpn-mac-download-page-title') }}{% endblock %}
 
 {% block page_css %}
@@ -15,77 +17,89 @@
 
 {% block content %}
   <div class="vpn-platform-download">
-    <header class="platform-download-header">
-      <div class="mzp-l-content platform-download-header-wrapper">
-        <div class="vpn-logo">
-          <img src="{{ static('img/products/vpn/download/vpn-dark-logo.svg') }}" alt="">
+    {% if block_download %}
+      <header class="platform-download-header">
+        <div class="mzp-l-content platform-download-blocked">
+          <img src="{{ static('img/products/vpn/download/vpn-unavailable-country.svg') }}" alt="">
+          <h1>{{ ftl('vpn-download-unable-to-download') }}</h1>
+          <p>{{ ftl('vpn-download-not-in-country') }}</p>
         </div>
-        <h1>{{ ftl('vpn-mac-downloading-mozilla-vpn') }}</h1>
-        <p>{{ ftl('vpn-your-download-should-start', url=mac_download_url, id='vpn-download-link-mac' ) }}</p>
-      </div>
-    </header>
-    <section class="vpn-download-instructions mzp-l-content">
-      <ol class="mzp-l-columns mzp-t-columns-four">
-        {% call picto(
-          base_el='li',
-          title=ftl('vpn-open-the-file'),
-          image=resp_img(
-            url='img/products/vpn/download/vpn-file-mac.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-          ) %}
-          <p>{{ ftl('vpn-mac-go-to-your-downloads') }}</p>
-        {% endcall %}
-        {% call picto(
-          base_el='li',
-          title=ftl('vpn-launch-the-app'),
-          image=resp_img(
-            url='img/products/vpn/download/mac-installer.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-          ) %}
-          <p>{{ ftl('vpn-mac-follow-the-steps') }}</p>
-        {% endcall %}
-        {% call picto(
-          base_el='li',
-          title=ftl('vpn-login-or-signup'),
-          image=resp_img(
-            url='img/products/vpn/download/vpn-app.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-          ) %}
-          <p>{{ ftl('vpn-enter-your-email') }}</p>
-        {% endcall %}
-        {% call picto(
-          base_el='li',
-          title=ftl('vpn-turn-on-vpn'),
-          image=resp_img(
-            url='img/products/vpn/download/vpn-app-on.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ),
-          body=True,
-          ) %}
-          <p>{{ ftl('vpn-pick-a-recommended') }}</p>
-        {% endcall %}
-      </ol>
-    </section>
-  </div>
-  {% include 'products/vpn/includes/download-faq.html' %}
+      </header>
+    {% endif %}
+
+    {% if not block_download %}
+      <header class="platform-download-header">
+        <div class="mzp-l-content platform-download-header-wrapper">
+          <div class="vpn-logo">
+            <img src="{{ static('img/logos/vpn/vpn-dark-logo.svg') }}" alt="">
+          </div>
+          <h1>{{ ftl('vpn-mac-downloading-mozilla-vpn') }}</h1>
+          <p>{{ ftl('vpn-your-download-should-start', url=mac_download_url, id='vpn-download-link-mac' ) }}</p>
+        </div>
+      </header>
+      <section class="vpn-download-instructions mzp-l-content">
+        <ol class="mzp-l-columns mzp-t-columns-four">
+          {% call picto(
+            base_el='li',
+            title=ftl('vpn-open-the-file'),
+            image=resp_img(
+              url='img/products/vpn/download/vpn-file-mac.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            ) %}
+            <p>{{ ftl('vpn-mac-go-to-your-downloads') }}</p>
+          {% endcall %}
+          {% call picto(
+            base_el='li',
+            title=ftl('vpn-launch-the-app'),
+            image=resp_img(
+              url='img/products/vpn/download/mac-installer.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            ) %}
+            <p>{{ ftl('vpn-mac-follow-the-steps') }}</p>
+          {% endcall %}
+          {% call picto(
+            base_el='li',
+            title=ftl('vpn-login-or-signup'),
+            image=resp_img(
+              url='img/products/vpn/download/vpn-app.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            ) %}
+            <p>{{ ftl('vpn-enter-your-email') }}</p>
+          {% endcall %}
+          {% call picto(
+            base_el='li',
+            title=ftl('vpn-turn-on-vpn'),
+            image=resp_img(
+              url='img/products/vpn/download/vpn-app-on.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            ) %}
+            <p>{{ ftl('vpn-pick-a-recommended') }}</p>
+          {% endcall %}
+        </ol>
+      </section>
+    </div>
+    {% include 'products/vpn/includes/download-faq.html' %}
+  {% endif %}
   <footer class="vpn-footer">
       {% include 'products/vpn/includes/footer-legal.html' %}
   </footer>

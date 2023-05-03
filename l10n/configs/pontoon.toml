@@ -322,5 +322,5 @@ locales = [
     reference = "en/products/vpn/resource-center.ftl"
     l10n = "{locale}/products/vpn/resource-center.ftl"
 [[paths]]
-    reference = "en/products/vpn/download/*.ftl"
+    reference = "en/products/vpn/platform-post-download.ftl"
     l10n = "{locale}/products/vpn/platform-post-download.ftl"
