@@ -226,8 +226,5 @@ latex_documents = [
 man_pages = [("index", "mozilla.org", "mozilla.org Documentation", ["Mozilla"], 1)]
 
 
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"http://docs.python.org/": None}
-
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]

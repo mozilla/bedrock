@@ -1,12 +1,11 @@
-certifi==2022.12.7  # hard-pinned subdep for now until sphinx bump it
 chardet==5.0.0
 fluent.pygments==1.0
 fluent.syntax==0.18.1
 markdown-it-py>=2.2.0
 markupsafe==2.0.1
 myst-parser==1.0.0
-Sphinx==5.1.1
+Sphinx==6.2.0
 sphinx-autobuild==2021.3.14
-sphinx-copybutton==0.5.1
+sphinx-copybutton==0.5.2
 sphinx-rtd-theme==1.2.0
 sphinxcontrib-websupport==1.2.4
