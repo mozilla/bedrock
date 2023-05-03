@@ -48,6 +48,8 @@
     <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endblock %}">
     {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
     {% endblock shared_meta %}
+    {# keep the verification for the previous official mastodon profile #}
+    <link href="https://mastodon.social/@mozilla" rel="me">
 
     {{ l10n_css() }}
 
