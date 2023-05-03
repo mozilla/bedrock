@@ -52,7 +52,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "mozilla.org"
-copyright = "2011, Mozilla"
+copyright = "2011-2023, Mozilla"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
