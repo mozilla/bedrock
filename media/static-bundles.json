@@ -1505,19 +1505,6 @@
     },
     {
       "files": [
-        "js/firefox/browsers/firefox-android-sms-experiment.js"
-      ],
-      "name": "firefox-android-sms-experiment"
-    },
-    {
-      "files": [
-        "js/base/send-to-device-sms.js",
-        "js/firefox/browsers/mobile-sms.js"
-      ],
-      "name": "firefox-browsers-mobile-sms"
-    },
-    {
-      "files": [
         "js/base/send-to-device.es6.js",
         "js/firefox/browsers/mobile-compare.es6.js"
       ],

@@ -574,10 +574,6 @@ class TestFirefoxURL(TestCase):
             {"newsletter_id": "download-firefox-mobile-reco"},
         ),
         (
-            "message_set='fx-mobile-ios-twilio-experiment'",
-            {"newsletter_id": "download-firefox-ios-twilio-experiment"},
-        ),
-        (
             "message_set='fx-whatsnew'",
             {"newsletter_id": "download-firefox-mobile-whatsnew"},
         ),
