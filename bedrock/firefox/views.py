@@ -595,7 +595,7 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx113-eu.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx113-en.html"
-            elif locale in ["en-GB", "fr", "de", "it", "es-ES", "nl", "sv-SE", "fi"] and ftl_file_is_active("firefox/welcome/page10"):
+            elif locale in ["en-GB", "fr", "de", "it", "es-ES", "nl", "sv-SE", "fi"]:
                 template = "firefox/whatsnew/whatsnew-fx113-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
