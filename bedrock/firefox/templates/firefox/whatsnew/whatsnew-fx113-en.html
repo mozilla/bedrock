@@ -1,0 +1,86 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_whatsnew_113_en') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace">
+    <div class="mzp-c-video">
+      <a class="video-play js-video-play" href="https://youtu.be/QD9wwba2lO0" data-id="QD9wwba2lO0" data-video-title="How Firefox keeps YOU safe & organized | #AskFirefox" title="Play the video">
+        <img src="{{ static('img/firefox/whatsnew/whatsnew113-en/video-thumbnail.jpg') }}" alt="" width="1024" height="576">
+      </a>
+    </div>
+
+    <h2 class="wnp-main-title">Pop out this video</h2>
+    <p class="wnp-main-tagline">Got things to do and things to watch? Do both with our freshly updated Picture-in-Picture feature.</p>
+    <p class="wnp-main-tagline has-pip-icon">Try it out with the video above. Press play and hover your cursor over the video. Then click <strong>the Picture-in-Picture button</strong> to pop the video out.</p>
+
+    <p class="wnp-main-cta"><a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Set Firefox as your default browser">Set Firefox as your default browser</a></p>
+  </div>
+</section>
+
+<section class="wnp-content-extra">
+  <div class="mzp-l-content mzp-t-content-lg mzp-t-content-nospace">
+    <h3 class="wnp-extra-title">Ways we’ve been using Picture-in-Picture</h3>
+
+    <div class="mzp-l-columns mzp-t-columns-three">
+      {{ picto(
+        title="Watching a lecture or meeting while you take notes",
+        heading_level=4,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew113-en/pip-lecture.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+
+      {{ picto(
+        title="Keeping a tutorial open with a recipe while you cook or bake",
+        heading_level=4,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew113-en/pip-cook.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+
+      {{ picto(
+        title="Entertaining cats, dogs and kids while you get work done.",
+        heading_level=4,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew113-en/pip-entertain.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_113_en') }}
+{% endblock %}
