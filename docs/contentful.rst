@@ -654,7 +654,7 @@ Using sqlite (with an example query to get some info about en-US pages):
 
     ./manage.py dbshell
 
-.. code-block:: sqlite
+.. code-block::
 
     select id, slug, data from contentful_contentfulentry where locale='en-US';
 
