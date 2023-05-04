@@ -16,8 +16,6 @@ def to_uppercase(url):
 redirectpatterns = (
     # bug 755826, 1222348, 1416798
     redirect(r"^zh-CN/?$", "https://www.firefox.com.cn/", locale_prefix=False, query={"utm_medium": "referral", "utm_source": "mozilla.org"}),
-    # bug 874913, 681572
-    redirect(r"^(products/)?download\.html", "firefox.new", query=""),
     # bug 845580
     redirect(r"^home/?$", "firefox.new"),
     # bug 948605

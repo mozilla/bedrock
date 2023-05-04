@@ -15,7 +15,6 @@ redirectpatterns = (
     redirect(r"^products/vpn/more/why-mozilla-vpn/$", "products.vpn.landing"),
     redirect(r"^products/vpn/more/do-i-need-a-vpn/$", "/products/vpn/resource-center/do-you-need-a-vpn-at-home-here-are-5-reasons-you-might/"),
     redirect(r"^products/vpn/more/what-is-a-vpn-v2/$", "/products/vpn/resource-center/what-is-a-vpn/"),
-    redirect(r"^vpn/download/?$", "products.vpn.download"),
     redirect(r"^vpn/download/windows/?$", "products.vpn.windows-download"),
     redirect(r"^vpn/download/mac/?$", "products.vpn.mac-download"),
 )

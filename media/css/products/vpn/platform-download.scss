@@ -33,6 +33,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.mzp-c-picto {
+    text-align: center;
+
+    .mzp-c-picto-image {
+        height: 230px;
+    }
+}
+
 .vpn-download-faq {
     .faq-info {
         text-align: center;
