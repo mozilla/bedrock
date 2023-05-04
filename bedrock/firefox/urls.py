@@ -75,7 +75,6 @@ urlpatterns = (
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/mobile/get-app/", "firefox/mobile/get-app.html", ftl_files=["firefox/mobile"]),
-    path("firefox/sms-send-to-device-post/", views.sms_send_to_device_ajax, name="firefox.sms-send-to-device-post"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
@@ -175,16 +174,7 @@ urlpatterns = (
     ),
     # Issue 10182
     path("firefox/browsers/mobile/", views.FirefoxMobileView.as_view(), name="firefox.browsers.mobile.index"),
-    path(
-        "firefox/browsers/mobile/android/",
-        VariationTemplateView.as_view(
-            template_name="firefox/browsers/mobile/android.html",
-            template_context_variations=["1", "2", "3"],
-            variation_locales=["en-US"],
-            ftl_files=["firefox/browsers/mobile/android"],
-        ),
-        name="firefox.browsers.mobile.android",
-    ),
+    page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),
     page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
     page("firefox/browsers/mobile/get-ios/", "firefox/browsers/mobile/get-ios.html", ftl_files=["firefox/browsers/mobile/get-ios"]),
     page("firefox/browsers/mobile/focus/", "firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"]),

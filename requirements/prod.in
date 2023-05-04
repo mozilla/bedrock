@@ -39,7 +39,6 @@ Markdown==3.4.3
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 meinheld==1.0.2
 newrelic==8.8.0
-phonenumberslite==8.13.11
 Pillow==9.5.0
 PyGithub==1.58.1
 pyOpenSSL==23.1.1
@@ -54,5 +53,4 @@ sentry-processor==0.0.1
 sqlparse==0.4.4  # Manual pin until Django catches up
 supervisor==4.2.5
 timeago==1.0.16
-twilio==8.1.0
 whitenoise==6.4.0

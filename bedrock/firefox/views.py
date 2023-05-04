@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import hashlib
 import hmac
-import logging
 import re
 from collections import OrderedDict
 from urllib.parse import urlparse
@@ -12,13 +11,10 @@ from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, JsonResponse
 from django.utils.cache import patch_response_headers
 from django.utils.encoding import force_str
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST, require_safe
+from django.views.decorators.http import require_safe
 
 import querystringsafe_base64
 from product_details.version_compare import Version
-from twilio.base.exceptions import TwilioRestException
-from twilio.rest import Client as TwilioClient
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
@@ -29,14 +25,11 @@ from bedrock.firefox.firefox_details import (
     firefox_desktop,
     firefox_ios,
 )
-from bedrock.firefox.forms import SMSSendToDeviceForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, get_translations_native_names
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
-
-logger = logging.getLogger(__name__)
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -63,18 +56,6 @@ STUB_VALUE_NAMES = [
     ("dlsource", "(not set)"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
-
-TWILIO_CLIENT = None
-
-
-def get_twilio_client():
-    global TWILIO_CLIENT
-    if TWILIO_CLIENT is None:
-        # Make sure all TWILIO_* credentials are set.
-        if not all([settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN, settings.TWILIO_MESSAGING_SERVICE_SID]):
-            return None
-        TWILIO_CLIENT = TwilioClient(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    return TWILIO_CLIENT
 
 
 class InstallerHelpView(L10nTemplateView):
@@ -184,42 +165,6 @@ def sign_attribution_codes(codes):
     code = querystringsafe_base64.encode(code.encode())
     sig = hmac.new(key.encode(), code, hashlib.sha256).hexdigest()
     return {"attribution_code": code.decode(), "attribution_sig": sig}
-
-
-@require_POST
-@csrf_exempt
-def sms_send_to_device_ajax(request):
-    client = get_twilio_client()
-    form = SMSSendToDeviceForm(request.POST)
-
-    if not form.is_valid():
-        return JsonResponse({"success": False, "errors": form.errors["phone_number"]})
-
-    to_number = form.cleaned_data["phone_number"]
-
-    # For testing purposes, return success.
-    if to_number == "5555555555":
-        return JsonResponse({"success": True})
-
-    if client is None:
-        return JsonResponse({"success": False, "errors": ["SMS not configured"]})
-
-    # NOTE: If needed, content may differ based on `form.cleaned_data["platform"]`
-
-    # `sms_body` is limited to 1600 characters.
-    sms_body = "Download the Firefox mobile browser for automatic protection on all your devices. https://app.adjust.com/48k9twc"
-
-    try:
-        client.messages.create(
-            to=to_number,
-            body=sms_body,
-            messaging_service_sid=settings.TWILIO_MESSAGING_SERVICE_SID,
-        )
-    except TwilioRestException as err:
-        logger.error(err)
-        return JsonResponse({"success": False, "errors": ["Message failed to send"]})
-
-    return JsonResponse({"success": True})
 
 
 @require_safe
