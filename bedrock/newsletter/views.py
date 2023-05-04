@@ -2,13 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
 import re
 from html import escape
 
 from django.conf import settings
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.cache import never_cache
 
 import basket
@@ -117,16 +116,12 @@ def confirm_thanks(request):
 
 def newsletter_all_json(request):
     """Returns a JSON string of all newsletters configured in Basket."""
-    data = {"newsletters": get_newsletters()}
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return JsonResponse({"newsletters": get_newsletters()})
 
 
 def newsletter_strings_json(request):
     """Returns a JSON string of newsletter IDs mapped to localized titles and descriptions."""
-    newsletters = json.dumps(get_newsletters())
-    return l10n_utils.render(
-        request, "newsletter/includes/newsletter-strings.json", {"newsletters": newsletters}, content_type="application/json", ftl_files=FTL_FILES
-    )
+    return l10n_utils.render(request, "newsletter/includes/newsletter-strings.json", content_type="application/json", ftl_files=FTL_FILES)
 
 
 @never_cache
