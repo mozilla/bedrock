@@ -204,14 +204,6 @@ locales = [
     reference = "en/firefox/whatsnew/whatsnew.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew.ftl"
 [[paths]]
-    reference = "en/firefox/whatsnew/whatsnew-104-default.ftl"
-    l10n = "{locale}/firefox/whatsnew/whatsnew-104-default.ftl"
-    locales = [
-        "es-ES",
-        "it",
-        "pl",
-    ]
-[[paths]]
     reference = "en/firefox/whatsnew/whatsnew-111-pdf.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew-111-pdf.ftl"
     locales = [

@@ -421,72 +421,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-104-default.scss"
-      ],
-      "name": "firefox_whatsnew_104_default"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-104-vpn.scss"
-      ],
-      "name": "firefox_whatsnew_104_vpn"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-105-en.scss"
-      ],
-      "name": "firefox_whatsnew_105_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-105-eu.scss"
-      ],
-      "name": "firefox_whatsnew_105_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-107-en.scss"
-      ],
-      "name": "firefox_whatsnew_107_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-107-eu.scss"
-      ],
-      "name": "firefox_whatsnew_107_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-108.scss"
-      ],
-      "name": "firefox_whatsnew_108"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-108-fr.scss"
-      ],
-      "name": "firefox_whatsnew_108_fr"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-109-eu.scss"
-      ],
-      "name": "firefox_whatsnew_109_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-109-en.scss"
-      ],
-      "name": "firefox_whatsnew_109_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-109-en-features.scss"
-      ],
-      "name": "firefox_whatsnew_109_en_features"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-110-en.scss"
       ],
       "name": "firefox_whatsnew_110_en"
@@ -1360,30 +1294,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-105-uk-experiment.es6.js"
-      ],
-      "name": "firefox_whatsnew_105_uk_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-105-de-experiment.es6.js"
-      ],
-      "name": "firefox_whatsnew_105_de_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-109-experiment-en.es6.js"
-      ],
-      "name": "firefox_whatsnew_109_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-109-features.js"
-      ],
-      "name": "firefox_whatsnew_109_features"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/whatsnew-110-experiment-en.es6.js"
       ],
       "name": "firefox_whatsnew_110_en_experiment"
@@ -1670,42 +1580,6 @@
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew_account"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-104-default.js"
-      ],
-      "name": "firefox_whatsnew_104_default"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-104-vpn-coupon.js"
-      ],
-      "name": "firefox_whatsnew_104_vpn_coupon"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-107-en.js"
-      ],
-      "name": "firefox_whatsnew_107_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-108.es6.js"
-      ],
-      "name": "firefox_whatsnew_108"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-108-experiment-en.es6.js"
-      ],
-      "name": "firefox_whatsnew_108_experiment_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-108-experiment-de.es6.js"
-      ],
-      "name": "firefox_whatsnew_108_experiment_de"
     },
     {
       "files": [
