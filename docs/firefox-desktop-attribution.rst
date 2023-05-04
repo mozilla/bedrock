@@ -38,10 +38,11 @@ Scope and requirements
 How does attribution work?
 --------------------------
 
-See the `Application Logic Flow Chart`_ for a visual representation of the steps below.
+See the `Application Logic Flow Chart`_ for a more detailed visual representation
+of the steps below (Mozilla access only).
 
 #. A user visits a page on www.mozilla.org. On page load, a `JavaScript
-   function`_ collects referral and analytics data about frp, where their visit
+   function`_ collects referral and analytics data about from where their visit
    originated (see the table below for a full list of attribution data we collect).
 #. Once the attribution data is validated, bedrock then generates an attribution
    session ID. This ID is included in the user's attribution data, and is also sent
