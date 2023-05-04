@@ -436,3 +436,5 @@ newsletters-stay-informed-of-the-latest = Stay informed of the latest trends in 
 
 # Subtitle for https://www-dev.allizom.org/newsletter/security-and-privacy/
 newsletters-get-security-and-privacy-news-and-tips = Get security and privacy news and product updates from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
+
+newsletters-opt-out-delay =  It may take 1-2 business days to process your opt-out request during which time you may still receive another email.
