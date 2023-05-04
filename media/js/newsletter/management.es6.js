@@ -357,10 +357,13 @@ const NewsletterManagementForm = {
     renderTableRow: (newsletter, index) => {
         const checked = newsletter.subscribed ? ' checked=""' : '';
         const indent = newsletter.indent ? ' class="indented"' : '';
+        const title = FormUtils.stripHTML(newsletter.title);
+        const desc = FormUtils.stripHTML(newsletter.description);
+
         return `<tr${indent}>
             <th>
-                <h4>${newsletter.title}</h4>
-                <p>${newsletter.description}</p>
+                <h4>${title}</h4>
+                <p>${desc}</p>
             </th>
             <td>
                 <label for="id_form-${index}-subscribed_check">${newsletter.subscribeCopy}</label>
