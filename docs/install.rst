@@ -288,14 +288,6 @@ To test a single app, specify the app by name in the command above. e.g.::
 
     $ py.test bedrock/firefox
 
-.. note::
-
-    If your local tests run fine, but when you submit a pull-request the tests fail in
-    `CircleCI <https://circleci.com/gh/mozilla/bedrock>`_, it could be due to the
-    difference in settings between what you have in ``.env``
-    and what CircleCI uses: ``docker/envfiles/demo.env``. You can run tests as close to Circle
-    as possible by moving your ``.env`` file to another name (e.g. ``.env-backup``), then
-    copying ``docker/envfiles/demo.env`` to ``.env``, and running tests again.
 
 Make it run
 ===========

@@ -9,7 +9,7 @@ Continuous Integration & Deployment
 ===================================
 
 Bedrock runs a series of automated tests as part of continuous integration workflow and
-`Deployment Pipeline`_. You can learn more about each of the individual test suites
+deployment pipeline. You can learn more about each of the individual test suites
 by reading their respective pieces of documentation:
 
 * Python unit tests (see :ref:`run-python-tests`).
@@ -33,16 +33,16 @@ much faster than running the full test suite locally.
 Pull request
 ~~~~~~~~~~~~
 
-Once a pull request is submitted, `CircleCI`_ will run both the Python and JavaScript
+Once a pull request is submitted, a `Unit Tests Github Action`_ will run both the Python and JavaScript
 unit tests, as well as the suite of redirect headless HTTP(s) response checks.
 
 Push to main branch
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Whenever a change is pushed to the main branch, a new image is built and deployed to the
 dev environment, and the full suite of headless and UI tests are run. This is handled by the
-pipeline, and is subject to change according to the settings in the `.gitlab-ci.yml file
-in the www-config repository`_.
+pipeline, and is subject to change according to the settings in the Github Action workflow
+defined in ``bedrock/.github/workflows/integration_tests.yml``.
 
 The tests for the dev environment are currently configured as follows:
 
@@ -52,14 +52,29 @@ The tests for the dev environment are currently configured as follows:
 - Internet Explorer 9 (sanity tests) via `Sauce Labs`_.
 - Headless tests.
 
-If you view a job's `pipeline configuration`_, you will also notice there are manual tests
-that can be run via SauceLabs for Firefox, Chrome, Edge, and Download tests. These tests
-aren't run automatically and will not block a deployment, but they can be useful if you
-want to run an extra set of checks should you see a test failure and want some verification.
-
 Note that now we have Mozorg mode and Pocket mode, we actually stand up two dev, two stage
 and two test deployments and we run the appropriate integration tests against each deployment:
 most tests are written for Mozorg, but there are some for Pocket mode that also get run.
+
+.. note::
+
+    **The deployment workflow runs like this**
+
+    1. A push to the ``main``/``stage``/``prod``/``run-integration-tests`` branch
+    of ``mozilla/bedrock`` triggers a webhook ping to the (private)
+    ``mozilla-sre-deploy/deploy-bedrock`` repo.
+
+    2. A Github Action (GHA) in ``mozilla-sre-deploy/deploy-bedrock`` builds a
+    "release"-ready Bedrock container image, which it stores in a private container
+    registry (private because our infra requires container-image
+    access to be locked down). Using the same commit, the workflow also builds
+    an equivalent set of public Bedrock container images, which are pushed to
+    Docker Hub.
+
+    3. The GHA deploys the relevant container image to the appropriate environment.
+
+    4. The GHA pings a webhook back in ``mozilla/bedrock`` to run integration
+    tests against the environment that has just been deployed.
 
 Push to stage branch
 ~~~~~~~~~~~~~~~~~~~~~
@@ -74,18 +89,19 @@ download tests`.
 Push to prod branch (tagged)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a tagged commit is pushed to the prod branch, a production docker image is built and published
-to `Docker Hub`_ if needed (usually this will have already happened as a result of a push to the stage branch),
-and deployed to each `production`_ deployment. After each deployment is complete, the full suite of UI tests is
-run again (the same as for stage). As with untagged pushes, this is all handled by the pipeline, and is subject
-to change according to the settings in the `.gitlab-ci.yml file in the www-config repository`_.
+When a tagged commit is pushed to the ``prod`` branch, a production container image
+(private, see above) is built, and a set of public images is also built and
+pushed to `Docker Hub`_ if needed (usually this will have already happened as
+a result of a push to the ``main`` or ``stage`` branch). The production image
+is deployed to each `production`_ deployment.
 
 **Push to prod cheat sheet**
 
 #. Check out the ``main`` branch
 #. Make sure the ``main`` branch is up to date with ``mozilla/bedrock main``
 #. Check that dev deployment is green:
-    #. View `deployment pipeline`_ and look at ``main`` branch
+    #. View the `Integration Tests Github Action`_ and look at the run labelled ``Run Integration tests for main``
+#. Check that stage deployment is also green (``Run Integration tests for stage``)
 #. Tag and push the deployment by running ``bin/tag-release.sh --push``
 
 .. note::
@@ -140,24 +156,20 @@ required OS / Browser configuration, so they should not need to be updated or sp
 Adding test runs
 ~~~~~~~~~~~~~~~~
 
-Test runs can be added by creating a new job in the `.gitlab-ci.yml file in the www-config repository`_
-with the desired variables. For example, if you wanted to run the smoke tests in IE10, you could create the
-following clauses:
+Test runs can be added by creating a new job in ``bedrock/.github/workflows/integration_tests.yml``
+with the desired variables and pushing that branch to Github.
+For example, if you wanted to run the smoke tests in IE10 (using Saucelabs) you could add the
+following clause to the matrix:
 
 .. code-block:: yaml
 
-  .ie10:
-    variables:
+    - LABEL: test-ie10-saucelabs
       BROWSER_NAME: internet explorer
       BROWSER_VERSION: "10.0"
+      DRIVER: SauceLabs
+      PYTEST_PROCESSES: "8"
       PLATFORM: Windows 8
       MARK_EXPRESSION: smoke
-
-  test-ie10-saucelabs:
-    extends:
-      - .test
-      - .ie10
-      - .saucelabs
 
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
@@ -177,11 +189,9 @@ may be commits on that branch which aren't in yours – so, if you have the
     $ git push -f mozilla $(git branch --show-current):run-integration-tests
 
 
-.. _Deployment Pipeline: https://gitlab.com/mozmeao/www-config/-/pipelines
-.. _pipeline configuration: https://gitlab.com/mozmeao/www-config/-/pipelines/207024459
-.. _CircleCI: https://circleci.com/
+.. _Unit Tests Github Action: https://github.com/mozilla/bedrock/actions/workflows/pull_request_tests.yml
+.. _Integration Tests Github Action: https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml
 .. _Sauce Labs: https://saucelabs.com/
-.. _.gitlab-ci.yml file in the www-config repository: https://github.com/mozmeao/www-config/tree/main/.gitlab-ci.yml
 .. _test dependencies: https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
