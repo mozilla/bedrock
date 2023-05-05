@@ -61,11 +61,6 @@ jobs:
             DRIVER: Remote
             MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
             PYTEST_PROCESSES: auto
-          - LABEL: download-tests
-            BROWSER_NAME: firefox
-            DRIVER: Remote
-            MARK_EXPRESSION: download
-            PYTEST_PROCESSES: auto
 
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
@@ -94,7 +89,7 @@ jobs:
           echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
 
       - name: Run functional integration tests
-        if: ${{ matrix.LABEL != 'download-tests' || github.events.inputs.branch == 'stage' || github.events.inputs.branch == 'prod' }}
+        if: always()
         run: ./bin/integration_tests/functional_tests.sh
         env:
           TEST_IMAGE: mozmeao/bedrock_test:${{ github.event.inputs.git_sha }}
