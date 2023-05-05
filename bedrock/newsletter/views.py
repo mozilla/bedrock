@@ -20,6 +20,7 @@ import lib.l10n_utils as l10n_utils
 # utils.get_newsletters in our tests
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.urlresolvers import reverse
+from bedrock.newsletter.utils import get_newsletters
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
 from .forms import (
@@ -113,7 +114,13 @@ def confirm_thanks(request):
     return l10n_utils.render(request, "newsletter/confirm.html", {"token_error": token_error, "generic_error": generic_error}, ftl_files=FTL_FILES)
 
 
+def newsletter_all_json(request):
+    """Returns a JSON string of all newsletters configured in Basket."""
+    return JsonResponse({"newsletters": get_newsletters()})
+
+
 def newsletter_strings_json(request):
+    """Returns a JSON string of newsletter IDs mapped to localized titles and descriptions."""
     return l10n_utils.render(request, "newsletter/includes/newsletter-strings.json", content_type="application/json", ftl_files=FTL_FILES)
 
 
@@ -136,7 +143,7 @@ def existing(request, token=None):
 
     context = {
         "action": f"{settings.BASKET_URL}/news/user/",
-        "newsletters_url": f"{settings.BASKET_URL}/news/newsletters/",
+        "newsletters_url": reverse("newsletter.all"),
         "unsubscribe_url": f"{settings.BASKET_URL}/news/unsubscribe/",
         "strings_url": reverse("newsletter.strings"),
         "updated_url": reverse("newsletter.updated"),
