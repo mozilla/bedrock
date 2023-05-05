@@ -717,6 +717,13 @@ POCKET_API_URL = config("POCKET_API_URL", default="https://getpocket.com/v3/fire
 POCKET_CONSUMER_KEY = config("POCKET_CONSUMER_KEY", default="")
 POCKET_ACCESS_TOKEN = config("POCKET_ACCESS_TOKEN", default="")
 
+BRAZE_API_URL_BASE = config("BRAZE_API_URL_BASE", default="https://rest.iad-05.braze.com")
+BRAZE_API_KEY = config("BRAZE_API_KEY", default="")
+BRAZE_API_NEWSLETTERS = {
+    "news": config("BRAZE_API_NEWSLETTER_ID_NEWS", default=""),
+    "hits": config("BRAZE_API_NEWSLETTER_ID_HITS", default=""),
+}
+
 # Contribute numbers
 # TODO: automate these
 CONTRIBUTE_NUMBERS = {
