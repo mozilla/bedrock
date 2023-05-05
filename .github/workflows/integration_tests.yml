@@ -94,7 +94,7 @@ jobs:
           echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
 
       - name: Run functional integration tests
-        if: always()
+        if: ${{ matrix.LABEL != 'download-tests' || github.events.inputs.branch == 'stage' || github.events.inputs.branch == 'prod' }}
         run: ./bin/integration_tests/functional_tests.sh
         env:
           TEST_IMAGE: mozmeao/bedrock_test:${{ github.event.inputs.git_sha }}
