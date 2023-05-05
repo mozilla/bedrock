@@ -7,19 +7,23 @@
 (function () {
     'use strict';
     var prefix = 'vpn-download-link-';
+    var win = document.getElementById(prefix + 'win');
+    var mac = document.getElementById(prefix + 'mac');
     var link;
 
     // Check for download link on Windows or Mac download pages
-    if (document.getElementById(prefix + 'win') !== null) {
-        link = document.getElementById(prefix + 'win').href;
-    } else if (document.getElementById(prefix + 'mac') !== null) {
-        link = document.getElementById(prefix + 'mac').href;
+    if (win) {
+        link = win.href;
+    } else if (mac) {
+        link = mac.href;
     }
 
     // Trigger auto-download based on platform page
     Mozilla.Utils.onDocumentReady(function () {
         setTimeout(function () {
-            window.location.href = link;
+            if (link) {
+                window.location.href = link;
+            }
         }, 1000);
     });
 

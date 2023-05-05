@@ -43,7 +43,16 @@
           base_el='li',
           title=ftl('vpn-open-the-file'),
           image=resp_img(
-            url='img/products/vpn/download/vpn-file-windows.png',
+            url='img/products/vpn/download/vpn-file-windows-700.png',
+            srcset={
+              "img/products/vpn/download/vpn-file-windows-960.png": "960w",
+              "img/products/vpn/download/vpn-file-windows-700.png": "700w",
+              "img/products/vpn/download/vpn-file-windows-500.png": "500w",
+            },
+            sizes={
+              '(min-width: 768px)': '760px',
+              'default': '250px'
+            },
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -57,7 +66,12 @@
           base_el='li',
           title=ftl('vpn-launch-the-app'),
           image=resp_img(
-            url='img/products/vpn/download/windows-installer.png',
+            url='img/products/vpn/download/windows-installer-700.png',
+            srcset={
+              "img/products/vpn/download/windows-installer-960.png": "960w",
+              "img/products/vpn/download/windows-installer-700.png": "700w",
+              "img/products/vpn/download/windows-installer-500.png": "500w",
+            },
             optional_attributes={
               'class': 'mzp-c-picto-image windows-launch-img',
               'loading': 'lazy'
@@ -71,7 +85,12 @@
           base_el='li',
           title=ftl('vpn-login-or-signup'),
           image=resp_img(
-            url='img/products/vpn/download/vpn-app.png',
+            url='img/products/vpn/download/vpn-app-windows-700.png',
+            srcset={
+              "img/products/vpn/download/vpn-app-windows-960.png": "960w",
+              "img/products/vpn/download/vpn-app-windows-700.png": "700w",
+              "img/products/vpn/download/vpn-app-windows-500.png": "500w",
+            },
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -85,7 +104,12 @@
           base_el='li',
           title=ftl('vpn-turn-on-vpn'),
           image=resp_img(
-            url='img/products/vpn/download/vpn-app-on.png',
+            url='img/products/vpn/download/vpn-app-on-windows-700.png',
+            srcset={
+              "img/products/vpn/download/vpn-app-on-windows-960.png": "960w",
+              "img/products/vpn/download/vpn-app-on-windows-700.png": "700w",
+              "img/products/vpn/download/vpn-app-on-windows-500.png": "500w",
+            },
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -106,5 +130,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('vpn_platform_download') }}
+  {% if not block_download %}
+    {{ js_bundle('vpn_platform_download') }}
+  {% endif %}
 {% endblock %}

@@ -43,7 +43,16 @@
             base_el='li',
             title=ftl('vpn-open-the-file'),
             image=resp_img(
-              url='img/products/vpn/download/vpn-file-mac.png',
+              url='img/products/vpn/download/vpn-file-mac-700.png',
+              srcset={
+              "img/products/vpn/download/vpn-file-mac-960.png": "960w",
+              "img/products/vpn/download/vpn-file-mac-700.png": "700w",
+              "img/products/vpn/download/vpn-file-mac-500.png": "500w",
+            },
+            sizes={
+              '(min-width: 768px)': '760px',
+              'default': '250px'
+            },
               optional_attributes={
                 'class': 'mzp-c-picto-image',
                 'loading': 'lazy'
@@ -57,7 +66,16 @@
             base_el='li',
             title=ftl('vpn-launch-the-app'),
             image=resp_img(
-              url='img/products/vpn/download/mac-installer.png',
+              url='img/products/vpn/download/mac-installer-700.png',
+              srcset={
+              "img/products/vpn/download/mac-installer-960.png": "960w",
+              "img/products/vpn/download/mac-installer-700.png": "700w",
+              "img/products/vpn/download/mac-installer-500.png": "500w",
+            },
+            sizes={
+              '(min-width: 768px)': '760px',
+              'default': '250px'
+            },
               optional_attributes={
                 'class': 'mzp-c-picto-image',
                 'loading': 'lazy'
@@ -71,7 +89,16 @@
             base_el='li',
             title=ftl('vpn-login-or-signup'),
             image=resp_img(
-              url='img/products/vpn/download/vpn-app.png',
+              url='img/products/vpn/download/vpn-app-700.png',
+              srcset={
+              "img/products/vpn/download/vpn-app-mac-960.png": "960w",
+              "img/products/vpn/download/vpn-app-mac-700.png": "700w",
+              "img/products/vpn/download/vpn-app-mac-500.png": "500w",
+            },
+            sizes={
+              '(min-width: 768px)': '760px',
+              'default': '250px'
+            },
               optional_attributes={
                 'class': 'mzp-c-picto-image',
                 'loading': 'lazy'
@@ -85,7 +112,16 @@
             base_el='li',
             title=ftl('vpn-turn-on-vpn'),
             image=resp_img(
-              url='img/products/vpn/download/vpn-app-on.png',
+              url='img/products/vpn/download/vpn-app-on-mac-700.png',
+              srcset={
+              "img/products/vpn/download/vpn-app-on-mac-960.png": "960w",
+              "img/products/vpn/download/vpn-app-on-mac-700.png": "700w",
+              "img/products/vpn/download/vpn-app-on-mac-500.png": "500w",
+            },
+            sizes={
+              '(min-width: 768px)': '760px',
+              'default': '250px'
+            },
               optional_attributes={
                 'class': 'mzp-c-picto-image',
                 'loading': 'lazy'
@@ -106,5 +142,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('vpn_platform_download') }}
+  {% if not block_download %}
+    {{ js_bundle('vpn_platform_download') }}
+  {% endif %}
 {% endblock %}

@@ -26,7 +26,7 @@ vpn-mac-follow-the-steps = Follow the steps outlined in the { -brand-name-mozill
 #   $id (string) - unique ID for the anchor tag
 # The <br> tag is a line break for the HTML text
 vpn-download-unable-to-download = Unable to download { -brand-name-mozilla-vpn }
-vpn-download-not-in-country = Sorry, { -brand-name-mozilla-vpn } is not available in your country .
+vpn-download-not-in-country = Sorry, { -brand-name-mozilla-vpn } is not available in your country.
 vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> <a href="{ $url }" id="{ $id }">restart the download</a>, or go back to download for another device.
 
 vpn-open-the-file = 1. Open the file
@@ -44,7 +44,7 @@ vpn-download-faq-why-use = Why should I use { -brand-name-mozilla-vpn }
 
 # Variables:
 #   $faq (url) - link to https://www.mozilla.org/products/vpn/more/what-is-a-vpn/
-vpn-download-faq-as-more-daily = As more of daily life takes place through the internet, online privacy and security become even more important. A VPN, <a href="{ $faq}">Virtual Private Network</a>, creates an encrypted tunnel between your devices and the internet, ensuring your connection remains secure and private while protecting you in two important ways:
+vpn-download-faq-as-more-daily = As more of daily life takes place through the internet, online privacy and security become even more important. A VPN, <a href="{ $faq }">Virtual Private Network</a>, creates an encrypted tunnel between your devices and the internet, ensuring your connection remains secure and private while protecting you in two important ways:
 
 # Variables:
 #   $ip (url) - link to https://www.mozilla.org/products/vpn/more/what-is-an-ip-address/
