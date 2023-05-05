@@ -4,11 +4,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import TrackProductDownload from '../../../base/datalayer-product-download.es6';
 
-    var directDownloadLink = document.getElementById('direct-download-link');
-    var downloadURL;
+(function () {
+    const directDownloadLink = document.getElementById('direct-download-link');
+    let downloadURL;
 
     // Only auto-start the download if a supported platform is detected.
     if (
@@ -18,6 +18,7 @@
         downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
 
         if (downloadURL) {
+            TrackProductDownload.sendEventFromURL(downloadURL);
             // Pull download link from the download button and add to the 'Try downloading again' link.
             // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
             if (directDownloadLink && directDownloadLink.href) {

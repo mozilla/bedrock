@@ -4,25 +4,23 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import TrackProductDownload from '../../../base/datalayer-product-download.es6';
 
-    var timeout;
-    var requestComplete = false;
+(function () {
+    let timeout;
+    let requestComplete = false;
 
     function beginFirefoxDownload() {
-        var directDownloadLink = document.getElementById(
+        const directDownloadLink = document.getElementById(
             'direct-download-link'
         );
-        var downloadURL;
+        let downloadURL;
 
         // Only auto-start the download if a supported platform is detected.
         if (
             Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) &&
             typeof Mozilla.Utils !== 'undefined'
         ) {
-            downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
-
             if (downloadURL) {
                 // Pull download link from the download button and add to the 'Try downloading again' link.
                 // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
@@ -30,10 +28,15 @@
                     directDownloadLink.href = downloadURL;
                 }
 
+                TrackProductDownload.sendDetailsFromHref(downloadURL);
+
                 // Start the platform-detected download a second after DOM ready event.
                 // We don't rely on the window load event as we have third-party tracking pixels.
                 Mozilla.Utils.onDocumentReady(function () {
                     setTimeout(function () {
+                        downloadURL = Mozilla.DownloadThanks.getDownloadURL(
+                            window.site
+                        );
                         window.location.href = downloadURL;
                     }, 1000);
                 });
@@ -90,7 +93,7 @@
     ) {
         // Wait for GA to load so that we can pass along visit ID.
         Mozilla.StubAttribution.waitForGoogleAnalytics(function () {
-            var data = Mozilla.StubAttribution.getAttributionData();
+            const data = Mozilla.StubAttribution.getAttributionData();
 
             // make sure we check referrer for AMO (issue 11467)
             if (

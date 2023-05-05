@@ -1418,14 +1418,14 @@
     {
       "files": [
         "js/firefox/new/common/thanks.js",
-        "js/firefox/new/common/thanks-init.js"
+        "js/firefox/new/common/thanks-init.es6.js"
       ],
       "name": "firefox_new_thanks"
     },
     {
       "files": [
         "js/firefox/new/common/thanks.js",
-        "js/firefox/new/common/thanks-direct.js"
+        "js/firefox/new/common/thanks-direct.es6.js"
       ],
       "name": "firefox_new_thanks_direct"
     },
