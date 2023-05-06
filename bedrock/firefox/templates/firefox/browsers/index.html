@@ -5,7 +5,7 @@
 #}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros.html" import google_play_button, fxa_email_form with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
 {% from "macros-protocol.html" import split with context %}
 
 {# Issue 13019: Avoid duplicate content for English pages. #}
@@ -125,9 +125,7 @@
         {{ google_play_button(href=android_url, id='playStoreLink') }}
       </div>
       <div class="appstore-ios">
-        <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-        </a>
+        {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
       </div>
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-browsers-download-for-mobile') }}</h3>

@@ -113,9 +113,7 @@
     {% if id.startswith('ios') %}
       <ul class="c-download-list">
         <li>
-          <a id="appStoreLink-list-{{ id }}" href="{{ build.platforms.ios.download_url }}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-          </a>
+          {{ apple_app_store_button(href=build.platforms.ios.download_url, id='appStoreLink-list-'+ id) }}
         </li>
         {% if id.endswith('release') %}
           <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="secondary">{{ ftl('firefox-all-product-send-link') }}</a></li>

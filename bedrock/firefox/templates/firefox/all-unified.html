@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 {% from "product-all-unified-macros.html" import build_locale_list, bw, build_link, select_product_list, product_options with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -172,9 +172,7 @@
           <div id="download-ios-primary" data-product="ios_release" class="c-download-button">
             <ul class="c-download-list">
               <li>
-                <a id="appStoreLink-ios" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-                </a>
+                {{ apple_app_store_button(href=ios_url, id='appStoreLink-ios') }}
               </li>
               <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></li>
             </ul>

@@ -3,7 +3,7 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 
 {% extends 'landing/base-landing.html' %}
 
@@ -17,9 +17,7 @@
 {% block header %}Go your own way with Firefox mobile{% endblock %}
 {% block body_copy %}Firefox mobile adapts to you and makes it easier than ever to see all your open tabs, past searches, and favorite sites.{% endblock %}
 {% block ios_badge %}
-  <a class="ios store-badge" id="appStoreLink-primary" href="https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=ios-store" data-link-type="download" data-download-os="iOS">
-    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-  </a>
+  {{ apple_app_store_button(href='https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=ios-store', id='appStoreLink-primary', class_name='ios store-badge') }}
 {% endblock %}
 {% block android_badge %}
   {{ google_play_button(href='https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=android-store', id='playStoreLink-primary', class_name='android store-badge') }}

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 {% from "macros-protocol.html" import split, call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -75,9 +75,11 @@
         {% endif %}
       </li>
       <li class="ios">
-        <a id="appStoreLink-primary" href="{% if variation == 'pb' %}{{ variation_ios_adjust_url}}{% else %}{{ ios_url }}{% endif %}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-        </a>
+        {% if variation == 'pb' %}
+          {{ apple_app_store_button(href=variation_ios_adjust_url, id='appStoreLink-primary') }}
+        {% else %}
+          {{ apple_app_store_button(href=ios_url, id='appStoreLink-primary') }}
+        {% endif %}
       </li>
     </ul>
   {% endcall %}
