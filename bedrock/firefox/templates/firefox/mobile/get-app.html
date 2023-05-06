@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -46,14 +46,13 @@
   </section>
 
   <aside class="mobile-download-buttons-wrapper">
+
     <ul class="mobile-download-buttons">
       <li class="android">
         {{ google_play_button(href=android_url, id='play-store-link') }}
       </li>
       <li class="ios">
-        <a id="app-store-link" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-        </a>
+        {{ apple_app_store_button(href=ios_url, id='app-store-link') }}
       </li>
     </ul>
   </aside>
