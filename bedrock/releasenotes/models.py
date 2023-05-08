@@ -84,10 +84,14 @@ ALLOWED_TAGS = {
 ALLOWED_ATTRS = [
     "alt",
     "class",
+    "height",
     "href",
     "id",
     "src",
+    "srcset",
+    "rel",
     "title",
+    "width",
 ]
 
 
