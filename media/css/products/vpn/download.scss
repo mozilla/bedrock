@@ -32,7 +32,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         }
 
         @media #{$mq-md} {
-            padding: $spacing-lg 0;
+            padding: $spacing-lg 0 0;
             @include text-body-xl;
         }
 
@@ -69,6 +69,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
     grid-template-columns: 1fr;
     grid-row-gap: $spacing-xs;
     grid-column-gap: $spacing-xl;
+    padding-top: 0;
     padding-bottom: $layout-md;
 
     @media #{$vpn-download-mq-2xl} {
