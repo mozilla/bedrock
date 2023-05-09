@@ -37,7 +37,7 @@ jobs:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org/' }} # Mozorg base URL
       BROWSER_NAME: firefox
       CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: Remote
+      DRIVER: ""
       LABEL: test-downloads
       MARK_EXPRESSION: download
       PYTEST_PROCESSES: auto
