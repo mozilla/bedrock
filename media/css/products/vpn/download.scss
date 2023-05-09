@@ -13,6 +13,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
 }
 
 .vpn-download-blocked {
+    @include text-body-xl;
     text-align: center;
 }
 

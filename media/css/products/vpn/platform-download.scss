@@ -1,0 +1,62 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.platform-download-header {
+    background-color: $color-marketing-gray-10;
+
+    .platform-download-blocked {
+        @include text-body-xl;
+        text-align: center;
+
+        img {
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+.platform-download-header-wrapper {
+    .vpn-logo {
+        img {
+            height: 60px;
+            width: 60px;
+        }
+    }
+
+    p {
+        @include text-body-xl;
+    }
+}
+
+.mzp-c-picto {
+    text-align: center;
+}
+
+.vpn-download-faq {
+    .faq-info {
+        text-align: center;
+        margin-bottom: $layout-lg;
+    }
+
+    details {
+        margin: $spacing-2xl 0;
+    }
+
+    h3 {
+        @include text-title-xs;
+    }
+
+    p,
+    li {
+        @include text-body-lg;
+    }
+}
+
+.vpn-footer {
+    margin-top: $layout-xl;
+}

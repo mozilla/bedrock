@@ -1,0 +1,50 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% block content %}
+  <section class="vpn-download-faq mzp-l-content mzp-t-content-lg">
+    <div class="faq-info">
+      <h2>{{ ftl('vpn-download-faq-need-help') }}</h2>
+      <p>{{ ftl('vpn-download-faq-here-are-some') }}</p>
+    </div>
+    <details>
+      <summary>
+        <h3>{{ ftl('vpn-download-faq-why-use') }}</h3>
+      </summary>
+        <p>{{ ftl('vpn-download-faq-as-more-daily',faq=url('products.vpn.resource-center.article', 'what-is-a-vpn')) }}</p>
+        <ol class="mzp-u-list-styled">
+          <li>{{ ftl('vpn-download-faq-concealing-ip', ip=url('products.vpn.resource-center.article', 'what-is-an-ip-address')) }}</li>
+          <li>{{ ftl('vpn-download-faq-encrypting') }}</li>
+        </ol>
+    </details>
+    <details>
+      <summary>
+        <h3>{{ ftl('vpn-download-faq-working') }}</h3>
+      </summary>
+      <p>{{ ftl('vpn-download-faq-visual-indicators', connected='https://support.mozilla.org/kb/how-can-i-tell-if-mozilla-vpn-connected', monitor='https://monitor.firefox.com/') }}</p>
+    </details>
+    <details>
+      <summary>
+        <h3>{{ ftl('vpn-download-faq-add-device') }}</h3>
+      </summary>
+      <p>{{ ftl('vpn-download-faq-adding-another', subscription='https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription') }}</p>
+    </details>
+    <details>
+      <summary>
+        <h3>{{ ftl('vpn-download-faq-best-practices') }}</h3>
+      </summary>
+      <p>{{ ftl('vpn-download-faq-traffic') }}</p>
+      <p>{{ ftl('vpn-download-faq-experience') }}</p>
+      <p>{{ ftl('vpn-download-faq-protect') }}</p>
+      <p>{{ ftl('vpn-download-faq-lastly') }}</p>
+    </details>
+    <details>
+      <summary>
+        <h3>{{ ftl('vpn-download-faq-need-more') }}</h3>
+      </summary>
+      <p>{{ ftl('vpn-download-faq-support', support='https://support.mozilla.org/products/firefox-private-network-vpn') }}</p>
+    </details>
+  </section>
+{% endblock %}

@@ -1050,6 +1050,13 @@
     },
     {
       "files": [
+        "css/products/vpn/common.scss",
+        "css/products/vpn/platform-download.scss"
+      ],
+      "name": "mozilla-vpn-platform-download"
+    },
+    {
+      "files": [
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/common.scss"
@@ -1950,6 +1957,12 @@
         "js/products/vpn/invite-init.es6.js"
       ],
       "name": "mozilla-vpn-invite"
+    },
+    {
+      "files": [
+        "js/products/vpn/thanks.js"
+      ],
+      "name": "vpn_platform_download"
     },
     {
       "files": [

@@ -1225,5 +1225,9 @@ URLS = flatten(
         url_test("/products/vpn/more/why-mozilla-vpn/", "/products/vpn/"),
         url_test("/products/vpn/more/do-i-need-a-vpn/", "/products/vpn/resource-center/do-you-need-a-vpn-at-home-here-are-5-reasons-you-might/"),
         url_test("/products/vpn/more/what-is-a-vpn-v2/", "/products/vpn/resource-center/what-is-a-vpn/"),
+        # Issue 11875 - Adding VPN download pages
+        url_test("/vpn/download/", "/products/vpn/download/"),
+        url_test("/vpn/download/windows/", "/products/vpn/download/windows/thanks/"),
+        url_test("/vpn/download/mac/", "/products/vpn/download/mac/thanks/"),
     )
 )
