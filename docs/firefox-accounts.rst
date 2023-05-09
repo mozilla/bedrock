@@ -253,7 +253,7 @@ button in the main navigation that links to the ``/products/vpn/`` landing page.
 
 In scenarios such as this we want to understand how many people click the link in the
 navigation and go on to signup / subscribe to :abbr:`VPN (Virtual Private Network)`. To achieve this, we have some
-additional logic in ``fxa-utm-referral.js`` that will check for a specific cookie
+additional logic in ``fxa-attribution.js`` that will check for a specific cookie
 that gets set when someone clicks a specific referral link.
 
 To create a Mozilla :abbr:`VPN (Virtual Private Network)` referral link, you can use the ``vpn_product_referral_link`` helper:
@@ -289,7 +289,7 @@ The helper supports the following parameters:
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 When someone clicks the link a cookie gets set with a 1 hour expiry. The
-``fxa-utm-referral.js`` script will then check for the existence of this
+``fxa-attribution.js`` script will then check for the existence of this
 cookie on page load and update the product landing page subscription links
 with utm parameters that attribute where the click came from.
 
@@ -352,7 +352,7 @@ Tracking External Referrers
 If the URL of a bedrock page contains existing :abbr:`UTM (Urchin Tracking Module)` parameters on page load, bedrock will
 attempt to automatically use those values to replace the inline UTM parameters in Firefox Account and Mozilla
 :abbr:`VPN (Virtual Private Network)` links. This is handled using a client side script in the
-site common bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
+site common bundle which can be found in ``/media/js/base/fxa-attribution.js``.
 
 The behavior is as follows:
 

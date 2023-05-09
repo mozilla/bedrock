@@ -4,9 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const FxaUtm = {};
+const FxaAttribution = {};
 
-const allowedList = [
+const _allowedDomains = [
     'https://accounts.firefox.com/',
     'https://accounts.stage.mozaws.net/',
     'https://monitor.firefox.com/',
@@ -16,7 +16,7 @@ const allowedList = [
     'https://guardian-dev.herokuapp.com/'
 ];
 
-const utms = [
+const _allowedUtmParams = [
     'utm_source',
     'utm_campaign',
     'utm_content',
@@ -24,7 +24,7 @@ const utms = [
     'utm_medium'
 ];
 
-const fxaParams = [
+const _allowedFxaParams = [
     'device_id',
     'flow_id',
     'flow_begin_time',
@@ -32,50 +32,28 @@ const fxaParams = [
     'entrypoint_variation'
 ];
 
-const sameSiteParams = ['source'];
-const acceptedParams = utms.concat(fxaParams, sameSiteParams);
-const referralCookieID = 'fxa-product-referral-id';
+const _validParamChars = /^[\w/.%-]+$/;
+const _referralCookieID = 'fxa-product-referral-id';
 
 /**
  * Returns the hostname for a given URL.
  * @param {String} url.
  * @returns {String} hostname.
  */
-FxaUtm.getHostName = (url) => {
+FxaAttribution.getHostName = (url) => {
     const matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
     return matches && matches[0];
 };
 
-/**
- * Detect if a given object contains keys that map to utm parameters.
- * @param {Object} params.
- * @returns {Boolean}.
- */
-FxaUtm.hasUtmParams = (params) => {
-    if (typeof params !== 'object') {
-        return false;
-    }
-
-    for (const param in params) {
-        if (Object.prototype.hasOwnProperty.call(params, param)) {
-            if (param.indexOf('utm_') === 0) {
-                return true;
-            }
-        }
-    }
-    return false;
-};
-
-FxaUtm.getFxALinkReferralData = (params) => {
+FxaAttribution.getFxALinkReferralData = () => {
     const cookiesEnabled =
         typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
-    const allowedChars = /^[\w/.%-]+$/;
     let data;
 
-    if (cookiesEnabled && FxaUtm.hasFxALinkReferralCookie()) {
-        const campaign = FxaUtm.getFxALinkReferralCookie();
+    if (cookiesEnabled && FxaAttribution.hasFxALinkReferralCookie()) {
+        const campaign = FxaAttribution.getFxALinkReferralCookie();
 
-        if (typeof campaign === 'string' && allowedChars.test(campaign)) {
+        if (typeof campaign === 'string' && _validParamChars.test(campaign)) {
             let utmSource = 'www.mozilla.org';
 
             if (campaign.indexOf('whatsnew') !== -1) {
@@ -95,16 +73,14 @@ FxaUtm.getFxALinkReferralData = (params) => {
         }
     }
 
-    if (data && params && typeof params === 'object') {
-        return Object.assign(params, data);
-    } else if (data) {
+    if (data) {
         return data;
     }
 
     return null;
 };
 
-FxaUtm.getSearchReferralData = (params, ref) => {
+FxaAttribution.getSearchReferralData = (ref) => {
     const referrer = typeof ref === 'string' ? ref : document.referrer;
     const google = /^https?:\/\/www\.google\.\w{2,3}(\.\w{2})?\/?/;
     const bing = /^https?:\/\/www\.bing\.com\/?/;
@@ -144,26 +120,22 @@ FxaUtm.getSearchReferralData = (params, ref) => {
             data = null;
     }
 
-    if (data && params && typeof params === 'object') {
-        return Object.assign(params, data);
-    }
-
     return data;
 };
 
-FxaUtm.hasFxALinkReferralCookie = () => {
-    return Mozilla.Cookies.hasItem(referralCookieID);
+FxaAttribution.hasFxALinkReferralCookie = () => {
+    return Mozilla.Cookies.hasItem(_referralCookieID);
 };
 
-FxaUtm.getFxALinkReferralCookie = () => {
-    return Mozilla.Cookies.getItem(referralCookieID);
+FxaAttribution.getFxALinkReferralCookie = () => {
+    return Mozilla.Cookies.getItem(_referralCookieID);
 };
 
-FxaUtm.setFxALinkReferralCookie = (id) => {
+FxaAttribution.setFxALinkReferralCookie = (id) => {
     const cookiesEnabled =
         typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
-    if (id && cookiesEnabled && !FxaUtm.hasFxALinkReferralCookie()) {
+    if (id && cookiesEnabled && !FxaAttribution.hasFxALinkReferralCookie()) {
         const date = new Date();
         date.setTime(date.getTime() + 1 * 3600 * 1000); // expiry in 1 hour.
         const expires = date.toUTCString();
@@ -180,7 +152,7 @@ FxaUtm.setFxALinkReferralCookie = (id) => {
     }
 };
 
-FxaUtm.onFxALinkReferralClick = (e) => {
+FxaAttribution.onFxALinkReferralClick = (e) => {
     const newTab = e.target.target === '_blank' || e.metaKey || e.ctrlKey;
     const referralId = e.target.getAttribute('data-referral-id');
 
@@ -188,41 +160,35 @@ FxaUtm.onFxALinkReferralClick = (e) => {
         e.preventDefault();
     }
 
-    FxaUtm.setFxALinkReferralCookie(referralId);
+    FxaAttribution.setFxALinkReferralCookie(referralId);
 
     if (!newTab) {
         window.location.href = e.target.href;
     }
 };
 
-FxaUtm.bindFxALinkReferrals = () => {
+FxaAttribution.bindFxALinkReferrals = () => {
     const ctaLinks = document.querySelectorAll('.js-fxa-product-referral-link');
 
     for (let i = 0; i < ctaLinks.length; i++) {
         ctaLinks[i].addEventListener(
             'click',
-            FxaUtm.onFxALinkReferralClick,
+            FxaAttribution.onFxALinkReferralClick,
             false
         );
     }
 };
 
-/**
- * Fetch and validate accepted params from the page URL for FxA referral.
- * https://mozilla.github.io/ecosystem-platform/docs/relying-parties/metrics-for-relying-parties#metrics-related-query-parameters
- * @returns {Object} if params are valid, else {null}.
- */
-FxaUtm.getAttributionData = (params) => {
-    const allowedChars = /^[\w/.%-]+$/;
-    const finalParams = {};
+FxaAttribution.filterParams = (params, allowList) => {
+    const filteredParams = {};
 
-    for (let i = 0; i < acceptedParams.length; i++) {
-        const acceptedParam = acceptedParams[i];
-        if (Object.prototype.hasOwnProperty.call(params, acceptedParam)) {
+    for (let i = 0; i < allowList.length; i++) {
+        const param = allowList[i];
+        if (Object.prototype.hasOwnProperty.call(params, param)) {
             try {
-                const foundParam = decodeURIComponent(params[acceptedParam]);
-                if (allowedChars.test(foundParam)) {
-                    finalParams[acceptedParam] = foundParam;
+                const foundParam = decodeURIComponent(params[param]);
+                if (_validParamChars.test(foundParam)) {
+                    filteredParams[param] = foundParam;
                 }
             } catch (e) {
                 // silently drop malformed parameter values (issue #10897)
@@ -230,55 +196,55 @@ FxaUtm.getAttributionData = (params) => {
         }
     }
 
-    /**
-     * Some experiments may redirect people back to the landing page from in-product (e.g. VPN Issue 10209).
-     * In cases like this we want to support passing through FxA flow params to keep track of the funnel.
-     */
+    return filteredParams;
+};
+
+FxaAttribution.getUtmData = (params) => {
+    const finalParams = FxaAttribution.filterParams(params, _allowedUtmParams);
+
+    // Both `utm_source` and `utm_campaign` are considered required, so only pass through UTM data if the both are both present.
     if (
-        !Object.prototype.hasOwnProperty.call(
-            finalParams,
-            'entrypoint_experiment'
-        ) ||
-        !Object.prototype.hasOwnProperty.call(
-            finalParams,
-            'entrypoint_variation'
-        )
-    ) {
-        if (Object.prototype.hasOwnProperty.call(finalParams, 'device_id')) {
-            delete finalParams['device_id'];
-        }
-
-        if (Object.prototype.hasOwnProperty.call(finalParams, 'flow_id')) {
-            delete finalParams['flow_id'];
-        }
-
-        if (
-            Object.prototype.hasOwnProperty.call(finalParams, 'flow_begin_time')
-        ) {
-            delete finalParams['flow_begin_time'];
-        }
-    }
-
-    // Both utm_source and utm_campaign are considered required, so only pass through referral data if they exist.
-    // Alternatively, pass through entrypoint_experiment and entrypoint_variation independently.
-    if (
-        (Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') &&
-            Object.prototype.hasOwnProperty.call(
-                finalParams,
-                'utm_campaign'
-            )) ||
-        (Object.prototype.hasOwnProperty.call(
-            finalParams,
-            'entrypoint_experiment'
-        ) &&
-            Object.prototype.hasOwnProperty.call(
-                finalParams,
-                'entrypoint_variation'
-            ))
+        Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') &&
+        Object.prototype.hasOwnProperty.call(finalParams, 'utm_campaign')
     ) {
         return finalParams;
     }
 
+    return null;
+};
+
+FxaAttribution.getExperimentData = (params) => {
+    const finalParams = FxaAttribution.filterParams(params, _allowedFxaParams);
+
+    // Pass through `entrypoint_experiment` and `entrypoint_variation` only if both are present.
+    if (
+        Object.prototype.hasOwnProperty.call(
+            finalParams,
+            'entrypoint_experiment'
+        ) &&
+        Object.prototype.hasOwnProperty.call(
+            finalParams,
+            'entrypoint_variation'
+        )
+    ) {
+        return finalParams;
+    }
+
+    return null;
+};
+
+FxaAttribution.getCouponData = (params) => {
+    if (typeof params !== 'object') {
+        return null;
+    }
+
+    for (const param in params) {
+        if (Object.prototype.hasOwnProperty.call(params, param)) {
+            if (param === 'coupon' && _validParamChars.test(params[param])) {
+                return { coupon: params[param] };
+            }
+        }
+    }
     return null;
 };
 
@@ -289,7 +255,7 @@ FxaUtm.getAttributionData = (params) => {
  * @param {Object} data object consisting of one or more parameters.
  * @returns {String} URL containing updated parameters.
  */
-FxaUtm.appendToDownloadURL = (url, data) => {
+FxaAttribution.appendToProductURL = (url, data) => {
     let finalParams;
     let linkParams;
 
@@ -304,8 +270,8 @@ FxaUtm.appendToDownloadURL = (url, data) => {
             Object.prototype.hasOwnProperty.call(data, 'utm_source') &&
             Object.prototype.hasOwnProperty.call(data, 'utm_campaign')
         ) {
-            for (let i = 0; i < utms.length; i++) {
-                const utmParam = utms[i];
+            for (let i = 0; i < _allowedUtmParams.length; i++) {
+                const utmParam = _allowedUtmParams[i];
                 if (
                     Object.prototype.hasOwnProperty.call(linkParams, utmParam)
                 ) {
@@ -323,8 +289,8 @@ FxaUtm.appendToDownloadURL = (url, data) => {
             ) &&
             Object.prototype.hasOwnProperty.call(data, 'entrypoint_variation')
         ) {
-            for (let j = 0; j < fxaParams.length; j++) {
-                const fxaParam = fxaParams[j];
+            for (let j = 0; j < _allowedFxaParams.length; j++) {
+                const fxaParam = _allowedFxaParams[j];
                 if (
                     Object.prototype.hasOwnProperty.call(linkParams, fxaParam)
                 ) {
@@ -334,6 +300,14 @@ FxaUtm.appendToDownloadURL = (url, data) => {
         }
 
         finalParams = Object.assign(linkParams, data);
+
+        // Only append coupons to FxA /subscribe/ links.
+        if (
+            Object.prototype.hasOwnProperty.call(finalParams, 'coupon') &&
+            url.indexOf('/subscriptions/') === -1
+        ) {
+            delete finalParams['coupon'];
+        }
     } else {
         finalParams = data;
     }
@@ -345,36 +319,66 @@ FxaUtm.appendToDownloadURL = (url, data) => {
     );
 };
 
+FxaAttribution.getAttributionData = (urlParams) => {
+    let params = {};
+    const utmData = FxaAttribution.getUtmData(urlParams);
+    const experimentData = FxaAttribution.getExperimentData(urlParams);
+    const couponData = FxaAttribution.getCouponData(urlParams);
+
+    // If there are UTM params in the page URL, then
+    // validate those as referral data.
+    if (utmData) {
+        params = Object.assign(params, utmData);
+    } else {
+        // Check to see if there's a referral cookie.
+        const linkData = FxaAttribution.getFxALinkReferralData();
+
+        if (linkData) {
+            params = Object.assign(params, linkData);
+        } else {
+            // Check to for search engine referral data.
+            const searchData = FxaAttribution.getSearchReferralData();
+
+            if (searchData) {
+                params = Object.assign(params, searchData);
+            }
+        }
+    }
+
+    // Always pass along experiment data.
+    if (experimentData) {
+        params = Object.assign(params, experimentData);
+    }
+
+    // Always pass a coupon when present as a parameter.
+    if (couponData) {
+        params = Object.assign(params, couponData);
+    }
+
+    return params;
+};
+
 /**
  * If there are validated referral params on the page URL, query the
  * DOM and update Firefox Account links with the new param data.
  */
-FxaUtm.init = (urlParams) => {
+FxaAttribution.init = (urlParams) => {
     // feature detect support for object modification.
     if (typeof Object.assign !== 'function') {
         return;
     }
 
-    let params = FxaUtm.getAttributionData(urlParams);
     const ctaLinks = document.querySelectorAll(
         '.js-fxa-cta-link, .js-vpn-cta-link'
     );
 
     // Track CTA clicks for FxA link referrals.
-    FxaUtm.bindFxALinkReferrals();
+    FxaAttribution.bindFxALinkReferrals();
 
-    // If there a no utm params on the page URL, then assume this could have been a
-    // same-site page navigation and check to see if there's a referral cookie.
-    if (!FxaUtm.hasUtmParams(params)) {
-        params = FxaUtm.getFxALinkReferralData(params);
+    const params = FxaAttribution.getAttributionData(urlParams);
 
-        if (!params) {
-            params = FxaUtm.getSearchReferralData(params);
-        }
-    }
-
-    // If there are is still no referral data, then do nothing.
-    if (!params) {
+    // If there is no referral data, then do nothing.
+    if (Object.keys(params).length === 0) {
         return;
     }
 
@@ -385,11 +389,11 @@ FxaUtm.init = (urlParams) => {
             : null;
 
         if (oldAccountsLink) {
-            const hostName = FxaUtm.getHostName(oldAccountsLink);
-            // check if link is in the FxA referral allowedList list.
-            if (hostName && allowedList.indexOf(hostName) !== -1) {
+            const hostName = FxaAttribution.getHostName(oldAccountsLink);
+            // check if link is in the FxA referral _allowedDomains list.
+            if (hostName && _allowedDomains.indexOf(hostName) !== -1) {
                 // append our new UTM param data to create new FxA links.
-                const newAccountsLink = FxaUtm.appendToDownloadURL(
+                const newAccountsLink = FxaAttribution.appendToProductURL(
                     oldAccountsLink,
                     params
                 );
@@ -401,4 +405,4 @@ FxaUtm.init = (urlParams) => {
     }
 };
 
-export default FxaUtm;
+export default FxaAttribution;
