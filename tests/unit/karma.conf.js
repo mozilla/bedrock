@@ -44,7 +44,7 @@ module.exports = function (config) {
             'tests/unit/spec/base/experiment-utils.js',
             'tests/unit/spec/base/fxa-form.js',
             'tests/unit/spec/base/fxa-link.js',
-            'tests/unit/spec/base/fxa-utm.js',
+            'tests/unit/spec/base/fxa-attribution.js',
             'tests/unit/spec/base/mozilla-banner.js',
             'tests/unit/spec/base/mozilla-client.js',
             'tests/unit/spec/base/fxa-product-button.js',

@@ -4,13 +4,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FxALink from './fxa-link.es6.js';
-import FxAUtm from './fxa-utm.es6.js';
+import FxaLink from './fxa-link.es6.js';
+import FxaAttribution from './fxa-attribution.es6.js';
 
 const urlParams = new window._SearchParams();
 
 // Track external URL parameter referrals for Firefox Account links.
-FxAUtm.init(urlParams.params);
+FxaAttribution.init(urlParams.params);
 
 // Configure Firefox Account links for Sync on desktop.
-FxALink.init();
+FxaLink.init();

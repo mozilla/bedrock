@@ -1673,7 +1673,7 @@
     {
       "files": [
         "js/base/fxa-link.es6.js",
-        "js/base/fxa-utm.es6.js",
+        "js/base/fxa-attribution.es6.js",
         "js/base/fxa-bundle-init.es6.js"
       ],
       "name": "fxa"
