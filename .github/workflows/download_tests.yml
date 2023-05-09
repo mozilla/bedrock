@@ -50,12 +50,12 @@ jobs:
       - name: Fetch codebase
         uses: actions/checkout@v3
 
-      - name: Run functional integration tests
+      - name: Run functional download tests
         run: ./bin/integration_tests/functional_tests.sh
         env:
           TEST_IMAGE: mozmeao/bedrock_test:${{ github.sha }}
 
-      - name: Cleanup after functional integration tests
+      - name: Cleanup after functional download tests
         run: ./bin/integration_tests/cleanup_after_functional_tests.sh
 
       - name: Store artifacts
