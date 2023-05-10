@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       mozorg_service_hostname:
-        description: The root URL of the Mozorg service to run tests against. eg 'https://www.mozilla.org/'
+        description: The root URL of the Mozorg service to run tests against. eg 'https://www.mozilla.org'
         required: true
 
 concurrency:
@@ -45,7 +45,7 @@ jobs:
           - LABEL: "Prod-only CDN Tests"
             MARK_EXPRESSION: cdnprod
     env:
-      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org/' }} # Mozorg base URL
+      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org' }} # Mozorg base URL
       BROWSER_NAME: firefox
       CI_JOB_ID: ${{ github.run_id }}
       DRIVER: ""
