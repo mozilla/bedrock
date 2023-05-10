@@ -72,6 +72,8 @@
       data-recovery-url="{{ recovery_url }}"
       data-unsubscribe-url="{{ unsubscribe_url }}">
 
+      <input type="hidden" name="source_url" value="{{ source_url|absolute_url }}">
+
       {# noscript warning to enable JavaScript #}
       <noscript>
         <div class="mzp-c-notification-bar mzp-t-error">

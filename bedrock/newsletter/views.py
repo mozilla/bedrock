@@ -142,6 +142,7 @@ def existing(request, token=None):
         "updated_url": reverse("newsletter.updated"),
         "recovery_url": reverse("newsletter.recovery"),
         "did_confirm": request.GET.get("confirm") == "1",
+        "source_url": reverse("newsletter.existing.token", kwargs={"token": ""}),
         "form": form,
     }
 

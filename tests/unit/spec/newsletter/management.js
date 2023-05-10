@@ -32,6 +32,7 @@ describe('management.es6.js', function () {
                 </div>
             </header>
             <form method="post" action="https://basket.mozilla.org/news/user/" class="newsletter-management-form" data-newsletters-url="https://basket.mozilla.org/news/newsletters/" data-strings-url="/en-US/newsletter/newsletter-strings.json" data-updated-url="/en-US/newsletter/updated/" data-recovery-url="/en-US/newsletter/recovery/" data-unsubscribe-url="https://basket.mozilla.org/news/unsubscribe/">
+                <input type="hidden" name="source_url" value="https://www.mozilla.org/en-US/newsletter/existing/">
                 <div class="loading-spinner hidden"></div>
                 <div class="mzp-c-form-errors hidden">
                     <ul class="mzp-u-list-styled"></ul>
@@ -1003,7 +1004,7 @@ describe('management.es6.js', function () {
                     `https://basket.mozilla.org/news/user/${TOKEN_MOCK}/`
                 );
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1024,7 +1025,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1047,7 +1048,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y'
+                    'format=H&country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,

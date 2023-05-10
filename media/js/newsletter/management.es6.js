@@ -648,8 +648,12 @@ const NewsletterManagementForm = {
         const newsletters = encodeURIComponent(
             NewsletterManagementForm.getCheckedNewsletters().join(',')
         );
+        // Source URL (hidden field)
+        const sourceUrl = encodeURIComponent(
+            _form.querySelector('input[name="source_url"]').value
+        );
 
-        return `format=${format}&country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y`;
+        return `format=${format}&country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y&source_url=${sourceUrl}`;
     },
 
     /**
