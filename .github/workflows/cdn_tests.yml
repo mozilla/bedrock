@@ -52,6 +52,8 @@ jobs:
       LABEL: ${{ matrix.LABEL }}
       MARK_EXPRESSION: ${{ matrix.MARK_EXPRESSION }}
       PYTEST_PROCESSES: auto
+      SAUCELABS_API_KEY: ""
+      SAUCELABS_USERNAME: ""
 
     # Note we use if: always() below to keep things going, rather than
     # continue-on-error, because that approach falsely marks the overall
