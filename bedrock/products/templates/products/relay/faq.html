@@ -1,0 +1,214 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/relay/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('relay-faq') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/relay/includes/subnav.html' %}
+{% endblock %}
+
+{% block content %}
+  <main class="c-relay-faq-wrapper mzp-t-dark">
+    <div class="mzp-l-content">
+      <h1>{{ ftl('faq-headline') }}</h1>
+      <div class="column-wrapper">
+        <div class="column">
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-what-is-question-2') }}</h3>
+            <p> {{ ftl('faq-question-what-is-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-missing-emails-question-2') }}</h3>
+            <p> {{ ftl('faq-question-missing-emails-answer-a-2') }} </p>
+            <ul class="mzp-u-list-styled">
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-spam') }}</li>
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-blocked-2') }}</li>
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-size') }}</li>
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-not-accepted-2') }}</li>
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-turned-off-2') }}</li>
+              <li>{{ ftl('faq-question-missing-emails-answer-reason-delay') }}</li>
+            </ul>
+            <p>{{ ftl('faq-question-missing-emails-answer-support-site-html', url='https://support.mozilla.org/products/relay', attrs='target="_blank" rel="noopener noreferrer"') }}</p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-use-cases-question-2') }}</h3>
+            <p> {{ ftl('faq-question-use-cases-answer-part1-2') }} </p>
+            <p> {{ ftl('faq-question-use-cases-answer-part2-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-2-question-2') }}</h3>
+            <p> {{ ftl('faq-question-2-answer-v4') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-1-question') }}</h3>
+            <p> {{ ftl('faq-question-1-answer-a-2') }} </p>
+            <p>{{ ftl('faq-question-1-answer-b-2-html', url='https://addons.mozilla.org/firefox/addon/private-relay/', attrs='target="_blank" rel="noopener noreferrer"') }}</p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-availability-question') }}</h3>
+            <p> {{ ftl('faq-question-availability-answer-v2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-4-question-2') }}</h3>
+            <p> {{ ftl('faq-question-4-answer-v4') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-subdomain-characters-question') }}</h3>
+            <p> {{ ftl('faq-question-subdomain-characters-answer-v2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-browser-support-question') }}</h3>
+            <p> {{ ftl('faq-question-browser-support-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-longevity-question') }}</h3>
+            <p> {{ ftl('faq-question-longevity-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-mozmail-question-2') }}</h3>
+            <p> {{ ftl('faq-question-mozmail-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-attachments-question') }}</h3>
+            <p> {{ ftl('faq-question-attachments-answer-v2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-unsubscribe-domain-question-2') }}</h3>
+            <p> {{ ftl('faq-question-unsubscribe-domain-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-8-question') }}</h3>
+            <p> {{ ftl('faq-question-8-answer-3-html', url=url('privacy.notices.subscription-services')) }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-email-storage-question') }}</h3>
+            <p> {{ ftl('faq-question-email-storage-answer') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-acceptable-use-question') }}</h3>
+            <p> {{ ftl('faq-question-acceptable-use-answer-a-html', url=url('legal.terms.acceptable-use')) }}</p>
+            <ul class="mzp-u-list-styled">
+              <li>{{ ftl('faq-question-acceptable-use-answer-measure-account') }}</li>
+              <li>{{ ftl('faq-question-acceptable-use-answer-measure-unlimited-payment-2') }}</li>
+              <li>{{ ftl('faq-question-acceptable-use-answer-measure-rate-limit-2') }}</li>
+            </ul>
+            <p>{{ ftl('faq-question-acceptable-use-answer-b-html', url=url('legal.terms.subscription-services')) }}</p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-promotional-email-blocking-question') }}</h3>
+            <p> {{ ftl('faq-question-promotional-email-blocking-answer') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-detect-promotional-question') }}</h3>
+            <p> {{ ftl('faq-question-detect-promotional-answer') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-disable-trackerremoval-question') }}</h3>
+            <p> {{ ftl('faq-question-disable-trackerremoval-answer') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-bulk-trackerremoval-question') }}</h3>
+            <p> {{ ftl('faq-question-bulk-trackerremoval-answer') }} </p>
+          </section>
+        </div>
+        <div class="column">
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-bulk-trackerremoval-question') }}</h3>
+            <p> {{ ftl('faq-question-bulk-trackerremoval-answer') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('faq-question-trackerremoval-breakage-question') }}</h3>
+            <p> {{ ftl('faq-question-trackerremoval-breakage-answer-2') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-what-is') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-what-is') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-where-is') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-where-is') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-how-many') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-how-many') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-change-phone-mask') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-change-phone-mask') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-reply') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-reply') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-forwarded-texts') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-forwarded-texts') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-pictures') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-pictures') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-historical') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-historical') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-i-send') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-i-send') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-limit') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-limit') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-call-length') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-call-length') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-i-call') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-i-call') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-i-see') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-i-see') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-i-block') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-i-block') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-spam') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-spam') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-disable-logging') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-disable-logging') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-can-i-share') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-can-i-share') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-how-i-save-card') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-how-i-save-card') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-install-app') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-install-app') }} </p>
+          </section>
+          <section class="mzp-c-details">
+            <h3> {{ ftl('phone-masking-faq-question-data') }}</h3>
+            <p> {{ ftl('phone-masking-faq-answer-data', url=url('privacy.notices.subscription-services')) }} </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
