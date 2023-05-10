@@ -47,12 +47,12 @@ jobs:
             DRIVER: SauceLabs
             MARK_EXPRESSION: "smoke or sanity"
             PLATFORM: Windows 10
-            PYTEST_PROCESSES: "8"
+            PYTEST_PROCESSES: 8
           - LABEL: test-firefox-remote
             BROWSER_NAME: firefox
             MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
             DRIVER: Remote
-            PYTEST_PROCESSES: "auto"
+            PYTEST_PROCESSES: auto
           - LABEL: test-headless
             DRIVER: ""
             MARK_EXPRESSION: headless
@@ -60,26 +60,20 @@ jobs:
             BROWSER_NAME: chrome
             DRIVER: Remote
             MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
-            PYTEST_PROCESSES: "auto"
-          # TEMPORARILY DISABLE DOWNLOAD TESTS - may need selectively running
-          # - LABEL: test-download-remote
-          #   BROWSER_NAME: "firefox"
-          #   DRIVER: Remote
-          #   MARK_EXPRESSION: download
-          #   PYTEST_PROCESSES: "auto"
+            PYTEST_PROCESSES: auto
 
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
       BASE_POCKET_URL: ${{ github.event.inputs.pocket_service_hostname }}
-      BROWSER_NAME: ${{matrix.BROWSER_NAME}}
-      CI_JOB_ID: ${{github.run_id}}
-      DRIVER: ${{matrix.DRIVER}}
-      LABEL: ${{matrix.LABEL}}
-      MARK_EXPRESSION: ${{matrix.MARK_EXPRESSION}}
-      PLATFORM: ${{matrix.PLATFORM}}
-      PYTEST_PROCESSES: ${{matrix.PYTEST_PROCESSES}}
-      SAUCELABS_API_KEY: ${{secrets.SAUCELABS_API_KEY}}
-      SAUCELABS_USERNAME: ${{secrets.SAUCELABS_USERNAME}}
+      BROWSER_NAME: ${{ matrix.BROWSER_NAME }}
+      CI_JOB_ID: ${{ github.run_id }}
+      DRIVER: ${{ matrix.DRIVER }}
+      LABEL: ${{ matrix.LABEL }}
+      MARK_EXPRESSION: ${{ matrix.MARK_EXPRESSION }}
+      PLATFORM: ${{ matrix.PLATFORM }}
+      PYTEST_PROCESSES: ${{ matrix.PYTEST_PROCESSES }}
+      SAUCELABS_API_KEY: ${{ secrets.SAUCELABS_API_KEY }}
+      SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
 
     # Note we use if: always() below to keep things going, rather than
     # continue-on-error, because that approach falsely marks the overall
