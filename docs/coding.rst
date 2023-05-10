@@ -900,6 +900,8 @@ valid variation were given in the URL.
     a mixin that implements this pattern that should work with most views:
     ``bedrock.utils.views.VariationMixin``.
 
+.. _geo-location:
+
 Geo Template View
 ~~~~~~~~~~~~~~~~~
 

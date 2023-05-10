@@ -43,5 +43,6 @@ Contents
    analytics
    firefox-desktop-attribution
    vpn-affiliate-attribution
+   vpn-subscriptions
    architectural-decisions
    browser-support
