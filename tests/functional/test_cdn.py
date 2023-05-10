@@ -79,7 +79,7 @@ def test_locale_redirect(url, base_url):
 @pytest.mark.parametrize(
     "url",
     (
-        # only in s3
+        # only in the GCS bucket
         "/media/contentcards/img/home-en/card_2/card_2.73be009fe44e.jpg",
         # comes from bedrock
         "/media/protocol/img/logos/mozilla/black.40d1af88c248.svg",
@@ -87,13 +87,13 @@ def test_locale_redirect(url, base_url):
 )
 @pytest.mark.nondestructive
 def test_media(url, base_url):
-    """Verify that media is well cached and loaded from s3"""
+    """Verify that media is well cached and loaded from GCS"""
     url = f"{base_url}{url}"
     resp = requests.head(url)
     assert resp.status_code == 200
     assert resp.headers["cache-control"] == "max-age=315360000, public, immutable"
-    # this means it came from s3
-    assert "x-amz-version-id" in resp.headers
+    # this means it came from GCS
+    assert "x-goog-hash" in resp.headers
 
 
 @pytest.mark.cdn
