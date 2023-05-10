@@ -13,8 +13,8 @@ GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mo
 # key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
 GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + quote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
 
-# Bug 1264843: link to China build of Fx4A, for display within Fx China repack
-GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK_UTMS.replace("org.mozilla.firefox", "cn.mozilla.firefox")
+# Bug 1264843, Issue 13108: link to China build of Fx4A, for display within Fx China repack
+GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = "https://www.firefox.com.cn/mobile/get-app/"
 
 # Link to Firefox for iOS on the Apple App Store with Google Analytics campaign
 # patameters. Each implementation should add a "ct" parameter for analytics.
@@ -112,9 +112,6 @@ GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK = "https://play.google.com/store/apps/details?i
 
 # Link to Firefox for Fire TV on Amazon Store.
 AMAZON_FIREFOX_FIRE_TV_LINK = "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD"
-
-# Link to Firefox Lite on the Google Play Store.
-GOOGLE_PLAY_FIREFOX_LITE_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.rocket"
 
 # Link to Firefox Send on the Google Play Store.
 GOOGLE_PLAY_FIREFOX_SEND_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
