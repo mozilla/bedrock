@@ -299,33 +299,6 @@
   },
   {
     "@type": "Product",
-    "@id": "{{ structured_data_id('firefoxlite') }}",
-    "url": "https://support.mozilla.org/{{ LANG }}/kb/get-started-firefox-lite",
-    "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-lite.png') }}{% endfilter %}",
-    "image": [
-      "{% filter absolute_url %}{{ static('img/structured-data/browser-lite-1.jpg') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/browser-lite-2.jpg') }}{% endfilter %}",
-      "{% filter absolute_url %}{{ static('img/structured-data/browser-lite-3.jpg') }}{% endfilter %}"
-    ],
-    "name": "Firefox Lite",
-    "brand":
-    {
-      "@id": "{{ structured_data_id('firefoxbrand') }}"
-    },
-    "sameAs": [
-      "{{ play_store_url('firefox_lite')|safe }}"
-    ],
-    "offers":
-    {
-      "@type": "Offer",
-      "url": "{{ play_store_url('firefox_lite')|safe }}",
-      "priceCurrency": "USD",
-      "price": "0",
-      "availability": "https://schema.org/InStock"
-    }
-  },
-  {
-    "@type": "Product",
     "@id": "{{ structured_data_id('firefoxmac') }}",
     "url": "{% filter absolute_url %}{{ url('firefox.mac') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('img/structured-data/logo-firefox-browser.png') }}{% endfilter %}",

@@ -73,11 +73,6 @@
     "name": "Firefox Browser Fire TV"
   },
   {
-    "@id": "{{ structured_data_id('firefoxlite') }}",
-    "url": "https://support.mozilla.org/{{ LANG }}/kb/get-started-firefox-lite",
-    "name": "Firefox Lite"
-  },
-  {
     "@id": "{{ structured_data_id('firefoxnightly') }}",
     "url": "{% filter absolute_url %}{{ url('firefox.channel.desktop') }}{% endfilter %}",
     "name": "Firefox Browser Nightly"
