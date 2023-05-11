@@ -196,6 +196,7 @@ all support the same standard parameters:
     which accepts the values ``signup``, ``signin``, and ``email`` for
     configuring the type of authentication flow.
 
+.. _vpn-helpers:
 
 Mozilla :abbr:`VPN (Virtual Private Network)` Links
 ---------------------------------------------------
