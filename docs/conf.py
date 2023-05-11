@@ -32,6 +32,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.coverage",
     "sphinx_copybutton",
+    "sphinxcontrib.jquery",
     "myst_parser",
 ]
 

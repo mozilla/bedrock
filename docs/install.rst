@@ -172,7 +172,7 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
     $ brew install pyenv-virtualenv
 
 2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the
-``pyenv-virtualenv``project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_,
+``pyenv-virtualenv`` project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_,
 in more detail. The following will slot in a command that will work as long as you have
 pyenv-virtualenv installed::
 
