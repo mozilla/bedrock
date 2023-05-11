@@ -21,12 +21,13 @@ vpn-mac-follow-the-steps = Follow the steps outlined in the { -brand-name-mozill
 
 ## Shared strings
 
+vpn-download-unable-to-download = Unable to download { -brand-name-mozilla-vpn }
+vpn-download-not-in-country = Sorry, { -brand-name-mozilla-vpn } is not available in your country.
+
+# The <br> tag is a line break for the HTML text
 # Variables:
 #   $url (url) - link for either Windows or Mac download, depending on user platform
 #   $id (string) - unique ID for the anchor tag
-# The <br> tag is a line break for the HTML text
-vpn-download-unable-to-download = Unable to download { -brand-name-mozilla-vpn }
-vpn-download-not-in-country = Sorry, { -brand-name-mozilla-vpn } is not available in your country.
 vpn-your-download-should-start = Your { -brand-name-mozilla-vpn } download should start automatically. If it doesn’t, <br> <a href="{ $url }" id="{ $id }">restart the download</a>, or go back to download for another device.
 
 vpn-open-the-file = 1. Open the file
