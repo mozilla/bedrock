@@ -560,13 +560,24 @@ String extraction
 -----------------
 
 The string extraction process for both new .ftl content and updates to existing .ftl
-content is handled through automation. On each commit to main a command is run that
-looks for changes to the ``l10n/`` directory. If a change is detected, it will copy
+content is handled through automation. On each commit to ``main`` a command is run that
+looks for changes to the ``l10n/`` and ``l10n-pocket/`` directories. If a change is
+detected, it will copy
 those files into a new branch in `mozilla-l10n/www-l10n`_ and then a bot will open a
 pull request containing those changes. Once the pull request has been reviewed and
 merged by the L10n team, everything is done.
 
+To view the state of the latest automated attempt to open an L10N PR, see:
+
+* `Mozorg L10N PR action`_
+* `Pocket L10N PR action`_
+
+(We also just try to open L10N PRs every 3 hours, to catch any failed jobs that
+are triggered by a commit to ``main``)
+
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
+.. _Mozorg L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_mozorg_fluent_strings_to_l10n_org.yml
+.. _Pocket L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_pocket_fluent_strings_to_l10n_org.yml
 
 CSS
 ---
