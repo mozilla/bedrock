@@ -10,17 +10,17 @@ Mozilla VPN Subscriptions
 
 The `Mozilla VPN landing page`_ displays both pricing and currency information that
 is dependant on someone's physical location in the world (using geo-location). If
-someone is in the United States they should see pricing in $USD, and if someone is
+someone is in the United States, they should see pricing in $USD, and if someone is
 in Germany they should see pricing in Euros. The page is also available in multiple
 languages, which can be viewed independently of someone's physical location. So
 someone who lives in Switzerland, but is viewing the page in German, should still
 see pricing and currency displayed in Swiss Francs (CHF).
 
-Additionally, it is important that we render the correct subscription links, as
-purchasing requires a credit card that is registered to each specific country where
-we have a plan available. We are also legally obligated to prevent both purchasing
-and/or downloading of Mozilla VPN in certain countries. In countries where VPN is not
-yet available, we also rely on geo-location to hide subscription links, and instead to
+Additionally, it is important that we render location specific subscription links, as
+purchasing requires a credit card that is registered to each country where we have a
+plan available. We are also legally obligated to prevent both purchasing and/or
+downloading of Mozilla VPN in certain countries. In countries where VPN is not yet
+available, we also rely on geo-location to hide subscription links, and instead to
 display a *call to action* to encourage prospective customers to sign up to the
 `VPN wait list`_.
 
@@ -28,6 +28,24 @@ To facilitate all of the above, we rely on our CDN to return an appropriate coun
 code that relates to where a visitor's request originated from (see :ref:`geo-location`).
 We use that country code in our helpers and view logic for the VPN landing page to
 decide what to display in the pricing section of the page (see :ref:`vpn-helpers`).
+
+Server architecture
+-------------------
+
+Bedrock is configured so that when ``dev=True``, VPN subscription links will point to
+the Firefox Accounts (FxA) staging environment. When ``dev=False``, they will point to
+the Fxa production environment.
+
+So our different environments are mapped like so:
+
+- ``http://localhost:8000`` -> ``https://accounts.stage.mozaws.net/``
+- ``https://www-dev.allizom.org/products/vpn/`` -> ``https://accounts.stage.mozaws.net/``
+- ``https://www.allizom.or/products/vpn/`` -> ``https://accounts.firefox.com/``
+- ``https://www.mozilla.org/products/vpn`` -> ``https://accounts.firefox.com/``
+
+This allows the product and QA teams to routinely test changes and new VPN client
+releases on https://www-dev.allizom.org/products/vpn/, prior to being available in
+production.
 
 Adding new countries for VPN
 ----------------------------
@@ -57,9 +75,10 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
 
 1. Add new pricing plan configs to ``VPN_PLAN_ID_MATRIX`` for any new countries that
    require newly created plan IDs (these will be provided by the VPN team). Separate plan
-   IDs for both dev and prod are required for each new currency / language combination.
-   Meta data such as price, total price and saving for each plan / currency should also
-   be provided.
+   IDs for both dev and prod are required for each new currency / language combination
+   (this is because the product QA team need differently configured plans on dev to routinely
+   test things like renewal and cancellation flows). Meta data such as price, total price
+   and saving for each plan / currency should also be provided.
 
    Example pricing plan config for $USD / English containing both 12-month and monthly plans:
 
@@ -98,9 +117,9 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
             # repeat for other country codes.
         }
 
-3. Once every new country has a mapping to a pricing plan, next add new each new
-   country code to the list of supported countries  in ``VPN_COUNTRY_CODES``.
-   Because new countries need to be added behind a feature switch, you may want to
+3. Once every new country has a mapping to a pricing plan, add each new country
+   code to the list of supported countries  in ``VPN_COUNTRY_CODES``. Because
+   new countries need to be added behind a feature switch, you may want to
    create a new variable temporarily for this until launched, such as
    ``VPN_COUNTRY_CODES_WAVE_VI``. You can then add these to ``VPN_COUNTRY_CODES`` in
    ``products/views.py`` using a simple function like so:
@@ -177,6 +196,15 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
 
 7. After things are launched in production and QA has verified that all is well, don't forget
    to file an issue to tidy up the temporary variables and switch logic.
+
+Excluded countries
+------------------
+
+For a list of country codes where we are legally obligated to prevent purchasing VPN,
+see ``VPN_EXCLUDED_COUNTRY_CODES`` in ``bedrock/settings/base.py``.
+
+For a list of country codes where we are also required to prevent downloading the VPN
+client, see ``VPN_BLOCK_DOWNLOAD_COUNTRY_CODES``.
 
 .. _Mozilla VPN landing page: https://www.mozilla.org/en-US/products/vpn/
 .. _VPN wait list: https://www.mozilla.org/en-US/products/vpn/invite/
