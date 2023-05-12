@@ -39,5 +39,5 @@
         "selector-not-notation": "simple",
         "media-feature-range-notation": "prefix"
     },
-    "ignoreFiles": ["media/css/libs/**/*", "media/css/careers/*"]
+    "ignoreFiles": ["media/css/libs/**/*"]
 }
