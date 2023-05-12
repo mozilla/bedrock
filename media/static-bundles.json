@@ -1151,6 +1151,13 @@
     {
       "files": [
         "css/pocket/style.scss",
+        "css/pocket/components/updates-signup.scss"
+      ],
+      "name": "pocket-updates-signup"
+    },
+    {
+      "files": [
+        "css/pocket/style.scss",
         "css/pocket/components/jobs.scss"
       ],
       "name": "pocket-jobs"

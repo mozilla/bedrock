@@ -107,6 +107,11 @@ urlpatterns = (
         "pocket/license-ios.html",
         url_name="pocket.opensource_licenses_ios",
     ),
+    page(
+        "updates-signup/",
+        "pocket/updates-signup.html",
+        url_name="pocket.updates-signup",
+    ),
     path(
         "privacy/",
         LegalDocView.as_view(
