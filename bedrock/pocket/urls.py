@@ -108,9 +108,9 @@ urlpatterns = (
         url_name="pocket.opensource_licenses_ios",
     ),
     page(
-        "updates-signup/",
+        "pocket-updates-signup/pilot/",
         "pocket/updates-signup.html",
-        url_name="pocket.updates-signup",
+        url_name="pocket.updates-signup-pilot",
     ),
     path(
         "privacy/",

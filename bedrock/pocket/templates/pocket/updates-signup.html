@@ -20,23 +20,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="pocket-updates">
-
-  {% call split(
-    block_class='mzp-l-split-center-on-sm-md',
-    media_class='mzp-l-split-h-center mzp-l-split-media-overflow',
-    media_after=True,
-    image=resp_img(
-      url='img/pocket/pocket-update-signup.png',
-      optional_attributes={
-        'class': 'mzp-c-split-media-asset'
-      }
+  <div class="pocket-updates">
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      media_class='mzp-l-split-h-center mzp-l-split-media-overflow',
+      media_after=True,
+      image=resp_img(
+        url='img/pocket/pocket-update-signup.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
       ),
-      ) %}
+    ) %}
         <h1>Keep up with Pocket</h1>
         <p>To learn about future Pocket updates and how you can be involved, please reach out to <a href="mailto:press@pocket.com">press@pocket.com</a>.</p>
-      {% endcall %}
-    </div>
+    {% endcall %}
+  </div>
 {% endblock %}
 
 {% block footer %}
