@@ -741,7 +741,7 @@ class TestPicture(TestCase):
             "<picture>"
             '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
             '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
-            '<img src="/media/img/panda-mobile.png" alt="Red Panda" loading="lazy" class="panda-hero">'
+            '<img loading="lazy" src="/media/img/panda-mobile.png" alt="Red Panda" class="panda-hero">'
             "</picture>"
         )
         markup = self._render(
