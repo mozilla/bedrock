@@ -5,6 +5,7 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
+@use '~@mozilla-protocol/core/protocol/css/includes/forms';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/form';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
@@ -29,7 +30,7 @@ main {
     }
 
     .mzp-c-field {
-        padding-bottom: $label-v-spacing;
+        padding-bottom: forms.$label-v-spacing;
     }
 }
 

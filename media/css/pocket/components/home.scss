@@ -29,7 +29,7 @@
 
         p {
             align-self: center;
-            font-family: $font-sans;
+            font-family: variables.$font-sans;
             font-weight: 600;
             margin: 0 $spacing-md;
         }
@@ -61,7 +61,7 @@
 
     p {
         margin: 0;
-        font-family: $font-sans;
+        font-family: variables.$font-sans;
     }
 
     @media #{$mq-md} {

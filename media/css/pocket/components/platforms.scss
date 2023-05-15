@@ -49,7 +49,7 @@
 
     .bookmarklet {
         @include text-body-sm;
-        color: $color-text-grey;
+        color: variables.$color-text-grey;
         text-decoration: none;
 
         &::after {

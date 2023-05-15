@@ -2,13 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
 
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '../includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@use '../includes/lib';
 
 // * -------------------------------------------------------------------------- */
 // Pricing Blocks
@@ -102,7 +100,7 @@ main {
 
     .vpn-pricing-variable-plan-tag {
         @include border-box;
-        background: $color-vpn-brand-purple;
+        background: lib.$color-vpn-brand-purple;
         color: $color-white;
         font-weight: bold;
         left: 0;
@@ -123,7 +121,7 @@ main {
 
     .vpn-pricing-variable-saving {
         @include text-title-2xs;
-        color: $color-vpn-brand-purple;
+        color: lib.$color-vpn-brand-purple;
         font-weight: bold;
         margin-bottom: $spacing-sm;
     }
