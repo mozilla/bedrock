@@ -10,14 +10,9 @@ $image-path: '/media/protocol/img';
 .c-relay-faq-wrapper {
     background-color: #09204d;
 
-    .column-wrapper {
-        display: grid;
-        grid-template-columns: 1fr;
+    .column {
+        columns: 2 432px;
         column-gap: $layout-lg;
-
-        @media #{$mq-lg} {
-            grid-template-columns: 1fr 1fr;
-        }
     }
 
     .is-summary {

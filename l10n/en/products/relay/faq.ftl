@@ -4,7 +4,6 @@
 
 ### URL: https://www-dev.allizom.org/products/relay/
 
-
 ## FAQ Page
 
 faq-headline = Frequently Asked Questions
