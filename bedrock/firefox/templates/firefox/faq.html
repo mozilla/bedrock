@@ -114,13 +114,14 @@
         <p>{{ ftl('firefoxs-default-search',
               url='https://support.mozilla.org/kb/change-your-default-search-settings-firefox/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo') }}</p>
       </li>
+      {% if ftl_has_messages('firefox-does-not-v2') %}
       <li>
         <h2>{{ ftl('does-firefox-have') }}</h2>
-        <p>{{ ftl('firefox-does-not',
-              url='https://fpn.firefox.com/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo',
-              url2=url('products.vpn.landing')) }}</p>
+        <p>{{ ftl('firefox-does-not-v2',
+              url=url('products.vpn.landing')) }}</p>
         <small>{{ ftl('related-questions-ip') }}</small>
       </li>
+      {% endif %}
       <li>
         <h2>{{ ftl('who-owns-firefox') }}</h2>
         <p>{{ ftl('firefox-is-made', url='https://foundation.mozilla.org/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo', url2=url('foundation.moco')) }}</p>
