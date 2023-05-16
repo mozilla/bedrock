@@ -10,14 +10,15 @@ def newsletter_choices():
     choices = []
     for key in settings.BRAZE_API_NEWSLETTERS.keys():
         choices.append((key, key))
+    return choices
 
 
 class NewsletterForm(forms.Form):
-    email = forms.EmailField(required=True)
-    newsletter = forms.ChoiceField(choices=newsletter_choices, required=True)
-    subscriber_campaign = forms.CharField(max_length=100)
-    subscriber_medium = forms.CharField(max_length=100)
-    subscriber_source = forms.CharField(max_length=100)
-    subscriber_language = forms.CharField(max_length=5)
-    subscriber_country = forms.CharField(max_length=2)
-    subscriber_form_source = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    newsletter = forms.ChoiceField(choices=newsletter_choices)
+    subscriber_campaign = forms.CharField(max_length=100, required=False)
+    subscriber_medium = forms.CharField(max_length=100, required=False)
+    subscriber_source = forms.CharField(max_length=100, required=False)
+    subscriber_language = forms.CharField(max_length=5, required=False)
+    subscriber_country = forms.CharField(max_length=2, required=False)
+    subscriber_form_source = forms.CharField(max_length=100, required=False)
