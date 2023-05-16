@@ -4,6 +4,7 @@
 
 import json
 
+from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
@@ -29,7 +30,7 @@ def newsletter_subscribe(request):
     except Exception:
         return JsonResponse({"error": "Error parsing JSON data"}, status_code=400)
 
-    external_id = request.COOKIES.get("a95b4b6") or None
+    external_id = request.COOKIES.get(settings.BRAZE_POCKET_COOKIE_NAME, None)
 
     form = NewsletterForm(data)
     if form.is_valid():
