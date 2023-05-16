@@ -34,13 +34,17 @@ def newsletter_subscribe(request):
 
     form = NewsletterForm(data)
     if form.is_valid():
-        clean_data = form.cleaned_data
+        email = form.cleaned_data.pop("email")
+        newsletter = form.cleaned_data.pop("newsletter")
+        clean_data = {}
     else:
         error_string = f"{ {k:v for k,v in form.errors.items()} }"
         return JsonResponse({"error": f"Invalid form data: {error_string}"}, status=400)
 
-    email = clean_data.pop("email")
-    newsletter = clean_data.pop("newsletter")
+    # Drop out any fields with empty strings as their values
+    for fieldname, value in form.cleaned_data.items():
+        if value != "":
+            clean_data[fieldname] = value
     try:
         braze_client.subscribe(email, newsletter, external_id=external_id, **clean_data)
     except Exception:

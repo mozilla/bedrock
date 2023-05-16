@@ -102,12 +102,6 @@ def test_newsletter_subscribe__happyish_path(mock_braze_subscribe, client):
         "test@example.com",
         "news",
         external_id=None,  # NB: None is explicitly set if the cookie is not present (vs '')
-        campaign="",
-        medium="",
-        source="",
-        language="",
-        country="",
-        form_source="",
     )
 
 
