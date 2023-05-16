@@ -431,6 +431,10 @@ fluent-syntax==0.19.0 \
     #   -r requirements/prod.txt
     #   compare-locales
     #   fluent-runtime
+freezegun==1.2.2 \
+    --hash=sha256:cd22d1ba06941384410cd967d8a99d5ae2442f57dfafeff2fda5de8dc5c05446 \
+    --hash=sha256:ea1b963b993cb9ea195adbd893a48d573fda951b0da64f60883d7e988b606c9f
+    # via -r requirements/dev.in
 glean-parser==6.2.1 \
     --hash=sha256:672689a97fe458d38f230b5f8d2e2f8e5c582ce98dd31e38363a6b437639d56c \
     --hash=sha256:daa4b7b127a432118733f0ddc77c95bdd7a8b78ac9a4f3254f68b45a25ccb32e
@@ -1038,6 +1042,7 @@ python-dateutil==2.8.2 \
     #   botocore
     #   contentful
     #   faker
+    #   freezegun
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
