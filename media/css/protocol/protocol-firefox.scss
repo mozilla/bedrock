@@ -7,6 +7,7 @@
 // Individual pages may include additional component styles as needed.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($brand-theme: 'firefox', $type-scale: 'standard', $font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/includes/themes';
 @use '~@mozilla-protocol/core/protocol/css/components/forms/form';
 
 // Fonts
