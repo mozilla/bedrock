@@ -74,7 +74,7 @@ repos:
     hooks:
       - id: isort
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.258
+    rev: v0.0.267
     hooks:
       - id: ruff
   - repo: https://github.com/pre-commit/mirrors-prettier
