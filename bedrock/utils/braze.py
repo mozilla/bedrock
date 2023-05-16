@@ -15,7 +15,7 @@ class BrazeClient:
         self.api_key = api_key
         self.track_user_api_url = f"{api_url_base}/users/track"
 
-    def subscribe(self, email, newsletter_id="news", external_id=None, **kwargs):
+    def subscribe(self, email, newsletter_id, external_id=None, **kwargs):
         if newsletter_id not in settings.BRAZE_API_NEWSLETTERS:
             raise RuntimeError("Invalid Newsletter ID")
 
