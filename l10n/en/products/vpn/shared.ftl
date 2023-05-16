@@ -12,7 +12,10 @@ vpn-shared-sign-in-link = Already a subscriber?
 # Outdated string
 vpn-shared-available-countries-v4 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Canada, France, Germany, Ireland, Italy, Malaysia, the Netherlands, New Zealand, Singapore, Spain, Switzerland, the UK, and the US.
 
+# Outdated string
 vpn-shared-available-countries-v5 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Canada, Finland, France, Germany, Ireland, Italy, Malaysia, the Netherlands, New Zealand, Singapore, Spain, Sweden, Switzerland, the UK, and the US.
+
+vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Bulgaria, Canada, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malaysia, Malta, the Netherlands, New Zealand, Poland, Portugal, Romania, Singapore, Slovenia, Slovakia, Spain, Sweden, Switzerland, the UK, and the US.
 
 # This is a standalone string that is typically displayed underneath a "Get Mozilla VPN" button.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee

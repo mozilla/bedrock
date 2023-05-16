@@ -63,7 +63,11 @@
         </a>
 
         <p class="availability-copy">
+        {% if switch('vpn-wave-vi') %}
+          {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v6') }}
+        {% else %}
           {{ ftl('vpn-shared-available-countries-v5', fallback='vpn-shared-available-countries-v4') }}
+        {% endif %}
         </p>
       {% endcall %}
     {% endif %}
