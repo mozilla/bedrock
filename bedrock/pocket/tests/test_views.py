@@ -53,12 +53,12 @@ def test_newsletter_subscribe__happiest_path(mock_braze_subscribe, client):
             {
                 "email": "test@example.com",
                 "newsletter": "news",
-                "subscriber_campaign": "test",
-                "subscriber_medium": "unit-tests",
-                "subscriber_source": "testland",
-                "subscriber_language": "en-GB",
-                "subscriber_country": "GB",
-                "subscriber_form_source": "word-of-mouth",
+                "campaign": "test",
+                "medium": "unit-tests",
+                "source": "testland",
+                "language": "en-GB",
+                "country": "GB",
+                "form_source": "word-of-mouth",
             }
         ),
         content_type="application/json",
@@ -70,12 +70,12 @@ def test_newsletter_subscribe__happiest_path(mock_braze_subscribe, client):
         "test@example.com",
         "news",
         external_id="test-external-id-123",
-        subscriber_campaign="test",
-        subscriber_medium="unit-tests",
-        subscriber_source="testland",
-        subscriber_language="en-GB",
-        subscriber_country="GB",
-        subscriber_form_source="word-of-mouth",
+        campaign="test",
+        medium="unit-tests",
+        source="testland",
+        language="en-GB",
+        country="GB",
+        form_source="word-of-mouth",
     )
 
 
@@ -102,12 +102,12 @@ def test_newsletter_subscribe__happyish_path(mock_braze_subscribe, client):
         "test@example.com",
         "news",
         external_id=None,  # NB: None is explicitly set if the cookie is not present (vs '')
-        subscriber_campaign="",
-        subscriber_medium="",
-        subscriber_source="",
-        subscriber_language="",
-        subscriber_country="",
-        subscriber_form_source="",
+        campaign="",
+        medium="",
+        source="",
+        language="",
+        country="",
+        form_source="",
     )
 
 
