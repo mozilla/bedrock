@@ -137,5 +137,9 @@ urlpatterns = (
             permanent=False,
         ),
     ),
-    path("_newsletter_subscribe_post/", newsletter_subscribe, name="pocket.newsletter-subscribe-post"),
+    path(
+        "_newsletter_subscribe/",
+        newsletter_subscribe,
+        name="pocket.newsletter-subscribe",
+    ),
 )
