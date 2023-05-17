@@ -32,9 +32,25 @@
         }
       ),
     ) %}
-        <h1>Keep up with Pocket</h1>
-        <p>To learn about future Pocket updates and how you can be involved, please reach out to <a href="mailto:press@pocket.com">press@pocket.com</a>.</p>
-    {% endcall %}
+      <h1>Keep up with Pocket</h1>
+      <p>Join our mailing list to stay on top of improvements, tips, and product updates.</p>
+        <form action="#" class="mzp-c-newsletter-form pocket-updates-form" id="newsletter-form">
+          <label for="email" class="visually-hidden">Your email address</label>
+          <input type="email" name="email" id="email" placeholder="Your email address" required aria-required="true">
+          <button type="submit" class="mzp-c-button">Subscribe</button>
+        </form>
+        <div class="legal-links">
+
+            <p>
+              <a href="{{url('pocket.privacy')}}">Privacy</a>
+            </p>
+            <p aria-hidden="true" class="separator">⸱</p>
+            <p>
+              <a href="{{url('pocket.tos')}}">Terms</a>
+            </p>
+
+        </div>
+      {% endcall %}
   </div>
 {% endblock %}
 

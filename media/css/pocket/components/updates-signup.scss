@@ -3,12 +3,18 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-$image-path: '/media/protocol/img';
+@use 'sass:color';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/forms';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+
 
 .pocket-updates {
     h1,
@@ -24,10 +30,68 @@ $image-path: '/media/protocol/img';
 
     p {
         @include text-body-lg;
+    }
+}
 
-        a {
-            color: $color-action-primary;
+    .pocket-updates-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        label {
+            @include visually-hidden;
+        }
+
+        .mzp-c-button {
+            background-color: $color-button-red;
+            border: 0;
+            height: 40px;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: color.adjust($color-button-red, $lightness: -10%);
+                color: $color-white;
+            }
+        }
+
+        @media (min-width: 870px) {
+            flex-direction: row;
+
+            input[type="email"] {
+                flex-grow: 2;
+                margin-right: 30px;
+                margin-bottom: 0;
+            }
         }
     }
 
+.legal-links {
+    display: flex;
+    justify-content: center;
+
+    p {
+        @include text-body-sm;
+    }
+
+    p:first-of-type {
+        margin-right: $spacing-xs;
+    }
+
+    p:last-of-type {
+        margin-left: $spacing-xs;
+    }
+
+    .separator {
+        @include text-body-md;
+    }
+
+    a {
+        color: $color-black;
+    }
+
+    @media (min-width: 870px) {
+        justify-content: flex-end;
+    }
 }
