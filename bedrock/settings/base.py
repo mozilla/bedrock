@@ -724,7 +724,7 @@ BRAZE_API_NEWSLETTERS = {
     "news": config("BRAZE_API_NEWSLETTER_ID_NEWS", default=""),
     "hits": config("BRAZE_API_NEWSLETTER_ID_HITS", default=""),
 }
-BRAZE_POCKET_COOKIE_NAME = "a95b4b6"
+BRAZE_POCKET_COOKIE_NAME = config("BRAZE_POCKET_COOKIE_NAME", default="a95b4b6")
 
 # Contribute numbers
 # TODO: automate these
