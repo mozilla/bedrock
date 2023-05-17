@@ -7,6 +7,7 @@ from django.views.generic.base import RedirectView
 
 from bedrock.legal_docs.views import LegalDocView
 from bedrock.mozorg.util import page
+from bedrock.pocket.views import newsletter_subscribe
 
 urlpatterns = (
     page(
@@ -135,5 +136,10 @@ urlpatterns = (
             pattern_name="pocket.updates-signup-pilot",
             permanent=False,
         ),
+    ),
+    path(
+        "_newsletter_subscribe/",
+        newsletter_subscribe,
+        name="pocket.newsletter-subscribe",
     ),
 )
