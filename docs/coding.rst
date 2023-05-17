@@ -967,9 +967,8 @@ Coding Style
 Bedrock uses the following open source tools to follow coding styles and conventions,
 as well as applying automatic code formatting:
 
-* `ruff <https://beta.ruff.rs/docs/>`_ for Python style and code quality rules.
+* `ruff <https://beta.ruff.rs/docs/>`_ for Python style, code quality rules, and import ordering.
 * `black <https://black.readthedocs.io/>`_ for Python code formatting.
-* `isort <https://pycqa.github.io/isort/>`_ for Python import ordering consistency.
 * `Prettier <https://prettier.io/>`_ for JavaScript code formatting.
 * `ESLint <https://eslint.org/>`_ for JavaScript code quality rules.
 * `Stylelint <https://stylelint.io/>`_ for Sass/CSS style and code quality rules.

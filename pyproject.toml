@@ -9,8 +9,7 @@ select = [
     "DJ", # flake8-django errors.
     "E", # pycodestyle errors
     "F", # pyflakes errors
-    # TODO: Currently ruff doesn't have the ability to sort Django imports together.
-    # "I", # import sorting
+    "I", # import sorting
     "Q", # flake8-quotes errors
     "W", # pycodestyle warnings
 ]
@@ -21,16 +20,15 @@ extend-exclude = ["__pycache__", "docs", "assets", "static", "bedrock/externalfi
 [tool.ruff.per-file-ignores]
 "bedrock/settings/__init__.py" = ["F405"]
 
+[tool.ruff.isort]
+known-first-party = ["bedrock", "lib", "pages"]
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+combine-as-imports = true
+
+[tool.ruff.isort.sections]
+django = ["django"]
+
 [tool.black]
 line-length = 150  # To match flake8
 target-version = ['py39']
 include = '\.pyi?$'
-
-[tool.isort]
-combine_as_imports = true
-default_section = 'THIRDPARTY'
-include_trailing_comma = true
-known_django = 'django'
-known_first_party = 'bedrock,lib,pages'
-profile = 'black'
-sections = 'FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER'

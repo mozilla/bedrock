@@ -909,8 +909,6 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
 # Google Play and Apple App Store settings
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa: E402, F401
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa: E402, F401
 from .appstores import (  # noqa: E402, F401
     ADJUST_FIREFOX_URL,
     ADJUST_FOCUS_URL,
@@ -926,6 +924,8 @@ from .appstores import (  # noqa: E402, F401
     APPLE_APPSTORE_POCKET_LINK,
     GOOGLE_PLAY_FIREFOX_BETA_LINK,
     GOOGLE_PLAY_FIREFOX_LINK,
+    GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,
+    GOOGLE_PLAY_FIREFOX_LINK_UTMS,
     GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
     GOOGLE_PLAY_FIREFOX_SEND_LINK,
     GOOGLE_PLAY_FOCUS_LINK,
