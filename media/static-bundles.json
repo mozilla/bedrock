@@ -1265,6 +1265,12 @@
         "css/mozorg/rise25.scss"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "css/firefox/challenge-the-default/index.scss"
+      ],
+      "name": "challenge-the-default"
     }
   ],
   "js": [
@@ -1973,6 +1979,12 @@
         "js/mozorg/rise25.js"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "js/firefox/challenge-the-default/challenge-the-default.es6.js"
+      ],
+      "name": "challenge-the-default"
     }
   ]
 }

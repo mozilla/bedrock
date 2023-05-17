@@ -1,0 +1,123 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+$font-path: '/media/protocol/fonts';
+
+@use "./toggle";
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+
+.c-ctd-hero {
+    .hero-wrapper {
+        position: relative;
+        max-width: 1274px;
+        margin: 0 auto;
+    }
+
+    .c-hero-image {
+        display: block;
+        width: 100%;
+    }
+
+    .c-hero-text {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        max-width: 70%;
+        margin-left: $layout-lg;
+        justify-content: center;
+        height: 100%;
+        max-height: 100%;
+
+        h1 {
+            @include font-size(72px);
+            color: $color-black;
+        }
+
+        p {
+            @include font-size(24px);
+            color: $color-black;
+        }
+
+        .mzp-c-button {
+            width: max-content;
+        }
+    }
+}
+
+.c-ctd-credentials {
+    h2 {
+        @include font-size(90px);
+        text-align: center;
+    }
+
+    .mzp-c-details {
+        border-bottom: 1px solid $color-black;
+        margin-top: $spacing-lg;
+    }
+}
+
+.c-ctd-toggles {
+    background-color: black;
+
+    .toggle-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        column-gap: $spacing-xl;
+        row-gap: $layout-lg;
+
+        @media #{$mq-lg} {
+             grid-template-columns: repeat(7, 1fr);
+        }
+    }
+}
+
+.c-ctd-features {
+    background-color: #FF6A75;
+}
+
+.c-ctd-comparison {
+    background-color: $color-black;
+
+    .mzp-u-data-table.comparison-table {
+        width: 100%;
+
+        th {
+            max-width: 150px;
+            border: 1px solid $color-white;
+
+            &[scope='col'] {
+                text-align: center;
+                padding: $spacing-md;
+            }
+        }
+
+        td {
+            text-align: center;
+            border: 1px solid $color-white;
+        }
+
+        .empty {
+            border: none;
+        }
+
+        thead tr th, td {
+            &:nth-child(2) {
+                color: $color-black;
+                background-color: #FFBDC5;
+            }
+
+            &:nth-child(4) {
+                background-color: #3C3C3B;
+            }
+        }
+    }
+
+    .comparison-cta {
+        text-align: center;
+    }
+}

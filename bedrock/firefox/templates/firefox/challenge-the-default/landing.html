@@ -1,0 +1,267 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% from "macros-protocol.html" import split, picto with context %}
+
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
+{% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
+
+{% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('firefox-home-firefox-is-more-than') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-master') }}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('challenge-the-default') }}
+
+  {% if show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
+  {% endif %}
+{% endblock %}
+
+
+{% block sub_navigation %}
+  {% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-faq', 'sub-navigation-learn-more') %}
+    <nav class="c-sub-navigation">
+      <div class="mzp-l-content">
+        <div class="c-sub-navigation-content">
+          <h2 class="c-sub-navigation-title is-summary">
+            <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24"
+              height="24" alt="">
+            {{ ftl('sub-navigation-firefox') }}
+          </h2>
+          <ul class="c-sub-navigation-list is-details is-closed">
+            <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav"
+                data-link-position="subnav" data-link-name="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
+            <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav"
+                data-link-position="subnav" data-link-name="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main class="firefox-home">
+  <section class="c-ctd-hero mzp-l-content">
+    <div class="hero-wrapper">
+      <img class="c-hero-image" src="{{ static('img/firefox/challenge-the-default/hero-mask.svg') }}">
+      <div class="c-hero-text">
+        <img src="{{ static('img/firefox/challenge-the-default/ctd-icon.svg') }}" width="249" height="66">
+        <h1>Der Browser, den du selber wählst</h1>
+        <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
+        Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
+        <a class="mzp-c-button mzp-t-product">Switch to Firefox</a>
+      </div>
+    </div>
+  </section>
+  <div class="c-ctd-credentials mzp-l-content mzp-t-content-md">
+    <h2>Our creds</h2>
+    <details class="mzp-c-details">
+      <summary>
+        <h3>Built to shake things up</h3>
+      </summary>
+      <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
+    </details>
+    <details class="mzp-c-details">
+      <summary>
+        <h3>The answer to your privacy concerns</h3>
+      </summary>
+      <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
+    </details>
+    <details class="mzp-c-details">
+      <summary>
+        <h3>Pioneering a better tech</h3>
+      </summary>
+      <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
+    </details>
+    <details class="mzp-c-details">
+      <summary>
+        <h3>Practicing ethical advertising</h3>
+      </summary>
+      <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
+    </details>
+    <details class="mzp-c-details">
+      <summary>
+        <h3>Backed by a Non-Profit</h3>
+      </summary>
+      <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
+    </details>
+  </div>
+  <section class="c-ctd-toggles">
+    <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
+      <div class="toggle-grid"></div>
+    </div>
+  </section>
+  {% call split(
+    block_class='c-ctd-snaps mzp-l-split-center-on-sm-md',
+    image=resp_img(
+      url='img/firefox/challenge-the-default/snaps.png',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
+    media_after=True
+  ) %}
+    <h2>Snaps to those who make a difference</h2>
+    <p>Join the movement for change #challengethedefault</p>
+  {% endcall %}
+  <section class="mzp-l-content c-ctd-features">
+    <h2>Feel good features</h2>
+    <ul class="mzp-l-columns mzp-t-columns-four">
+      {% call picto(
+        base_el='li',
+        title='Seamless browsing',
+        image=resp_img(
+          url='img/firefox/challenge-the-default/cursor.png',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>Find your open tabs or passwords on any device</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title='Multi-tasking made easy',
+        image=resp_img(
+          url='img/firefox/challenge-the-default/screen.png',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>Watch videos in pop up windows while you browse</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title='Easy PDF editing',
+        image=resp_img(
+          url='img/firefox/challenge-the-default/toggle.png',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>You can edit PDFs directly on Firefox. Do we need to say more?</p>
+      {% endcall %}
+      {% call picto(
+        base_el='li',
+        title='A new privacy standard',
+        image=resp_img(
+          url='img/firefox/challenge-the-default/input.png',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>The safest privacy settings are on by default</p>
+      {% endcall %}
+    </ul>
+  </section>
+  <section class="c-ctd-comparison mzp-t-dark">
+    <div class="mzp-l-content">
+      <h2>Firefox sets the bar for the competition</h2>
+      <p>Firefox has no business doing your data dirty. Because our only shareholders are you.</p>
+      <table class="mzp-u-data-table comparison-table">
+        <thead>
+          <tr>
+            <td class="empty"></td>
+            <th scope="col" class="firefox">Firefox</th>
+            <th scope="col">Safari</th>
+            <th scope="col">Chrome</th>
+            <th scope="col">Edge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Auto-fill passwords</th>
+            <td class="firefox">&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+          </tr>
+          <tr>
+            <th scope="row">Search engine options</th>
+            <td class="firefox">&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+          </tr>
+          <tr>
+            <th scope="row">Syncs across devices</th>
+            <td class="firefox">&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+            <td>&#x2713;</td>
+          </tr>
+          <tr>
+            <th scope="row">Blocks third-party racking cookies by default</th>
+            <td class="firefox">&#x2713;</td>
+            <td>&#x2713;</td>
+            <td></td>
+            <td>&#x2713;</td>
+          </tr>
+          <tr>
+            <th scope="row">Backed by a non-profit</th>
+            <td class="firefox">&#x2713;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Never does your data dirty</th>
+            <td class="firefox">&#x2713;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Has no shareholders lording over us</th>
+            <td class="firefox">&#x2713;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Lives life with such passion</th>
+            <td class="firefox">&#x2713;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comparison-cta">
+        <h3>Challenge the Default</h3>
+        <a class="mzp-c-button mzp-t-product">Switch to Firefox</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle('challenge-the-default') }}
+{% endblock %}
