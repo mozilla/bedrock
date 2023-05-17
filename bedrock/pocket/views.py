@@ -30,18 +30,18 @@ def newsletter_subscribe(request):
     except Exception:
         return JsonResponse({"error": "Error parsing JSON data"}, status=400)
 
-    external_id = request.COOKIES.get(settings.BRAZE_POCKET_COOKIE_NAME, None)
+    external_id = request.COOKIES.get(settings.BRAZE_POCKET_COOKIE_NAME) or None
 
     form = NewsletterForm(data)
     if form.is_valid():
         email = form.cleaned_data.pop("email")
         newsletter = form.cleaned_data.pop("newsletter")
-        clean_data = {}
     else:
         error_string = f"{ {k:v for k,v in form.errors.items()} }"
         return JsonResponse({"error": f"Invalid form data: {error_string}"}, status=400)
 
     # Drop out any fields with empty strings as their values
+    clean_data = {}
     for fieldname, value in form.cleaned_data.items():
         if value != "":
             clean_data[fieldname] = value
