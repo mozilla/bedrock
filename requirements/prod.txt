@@ -230,9 +230,9 @@ django-watchman==1.3.0 \
     --hash=sha256:33b5fc734d689b83cb96fc17beda624ae2955f4cede0856897d990c363eac962 \
     --hash=sha256:5f04300bd7fbdd63b8a883b2730ed1e4d9b0f9991133b33a1281134b81f466eb
     # via -r requirements/prod.in
-docutils==0.18 \
-    --hash=sha256:a31688b2ea858517fa54293e5d5df06fbb875fb1f7e4c64529271b77781ca8fc \
-    --hash=sha256:c1d5dab2b11d16397406a282e53953fe495a46d69ae329f55aa98a5c4e3c5fbb
+docutils==0.20.1 \
+    --hash=sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6 \
+    --hash=sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b
     # via -r requirements/prod.in
 envcat==0.1.1 \
     --hash=sha256:3659c6bad8f47cd3c2691d754a5659c1953480c066718c8a1d87367b03f11bc8 \
