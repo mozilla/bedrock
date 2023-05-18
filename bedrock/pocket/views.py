@@ -28,7 +28,7 @@ def newsletter_subscribe(request):
     try:
         data = json.loads(request.body)
     except Exception:
-        return JsonResponse({"error": "Error parsing JSON data"}, status=400)
+        return JsonResponse({"status": "error", "detail": "Error parsing JSON data"}, status=400)
 
     external_id = request.COOKIES.get(settings.BRAZE_POCKET_COOKIE_NAME) or None
 
@@ -37,8 +37,7 @@ def newsletter_subscribe(request):
         email = form.cleaned_data.pop("email")
         newsletter = form.cleaned_data.pop("newsletter")
     else:
-        error_string = f"{ {k:v for k,v in form.errors.items()} }"
-        return JsonResponse({"error": f"Invalid form data: {error_string}"}, status=400)
+        return JsonResponse({"status": "error", "detail": form.errors}, status=400)
 
     # Drop out any fields with empty strings as their values
     clean_data = {}
@@ -48,6 +47,6 @@ def newsletter_subscribe(request):
     try:
         braze_client.subscribe(email, newsletter, external_id=external_id, **clean_data)
     except Exception:
-        return JsonResponse({"error": "Error contacting subscription provider"}, status=500)
+        return JsonResponse({"status": "error", "detail": "Error contacting subscription provider"}, status=500)
 
     return JsonResponse({"status": "success"})
