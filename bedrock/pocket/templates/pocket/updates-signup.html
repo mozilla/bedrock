@@ -57,20 +57,22 @@
             </ul>
           </div>
 
-          <label for="email" class="visually-hidden">
-            {{ ftl('pocket-udpates-your-email-address') }}
-          </label>
-          <input type="email" name="email" id="email" placeholder="{{ ftl('pocket-updates-your-email-address') }}" required aria-required="true">
+          <fieldset>
+            <label for="email" class="visually-hidden">
+              {{ ftl('pocket-udpates-your-email-address') }}
+            </label>
+            <input type="email" name="email" id="email" placeholder="{{ ftl('pocket-updates-your-email-address') }}" required aria-required="true">
 
-          <input type="hidden" name="newsletter" id="newsletter" value="news" required aria-required="true">
-          <input type="hidden" name="campaign" id="campaign">
-          <input type="hidden" name="medium" id="medium">
-          <input type="hidden" name="source" id="source">
-          <input type="hidden" name="language" id="language" value="{{LANG}}">
-          <input type="hidden" name="country" id="country" value="{{country_code}}">
-          <input type="hidden" name="form_source" id="form_source" value="{{request.path}}">
+            <input type="hidden" name="newsletter" id="newsletter" value="news" required aria-required="true">
+            <input type="hidden" name="campaign" id="campaign">
+            <input type="hidden" name="medium" id="medium">
+            <input type="hidden" name="source" id="source">
+            <input type="hidden" name="language" id="language" value="{{LANG}}">
+            <input type="hidden" name="country" id="country" value="{{country_code}}">
+            <input type="hidden" name="form_source" id="form_source" value="{{request.path}}">
 
-          <button type="submit" class="mzp-c-button">{{ ftl('pocket-updates-subscribe') }}</button>
+            <button type="submit" class="mzp-c-button">{{ ftl('pocket-updates-subscribe') }}</button>
+          </fieldset>
         </form>
         <div class="legal-links">
             <p>

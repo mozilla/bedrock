@@ -47,35 +47,51 @@
 }
 
     .pocket-updates-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        .mzp-u-list-styled {
+            margin: 8px;
+            padding: 0;
 
+            li {
+                margin: 0;
+            }
+        }
 
-        label {
-            @include visually-hidden;
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            label {
+                @include visually-hidden;
+            }
+
+            @media (min-width: 870px) {
+                flex-direction: row;
+
+                input[type="email"] {
+                    flex-grow: 2;
+                    margin-right: 30px;
+                    margin-bottom: 0;
+                }
+            }
         }
 
         .mzp-c-form-errors {
             max-width: $content-md;
-            margin: 0 auto $spacing-lg;
+
+            &:last-child {
+               margin: 0 auto $spacing-lg;
+            }
         }
 
         @media #{$mq-lg} {
             .mzp-c-form-errors {
-                margin-bottom: $spacing-2xl;
+                &:last-child {
+                    margin-bottom: $spacing-2xl;
+                }
             }
         }
 
-        @media (min-width: 870px) {
-            flex-direction: row;
-
-            input[type="email"] {
-                flex-grow: 2;
-                margin-right: 30px;
-                margin-bottom: 0;
-            }
-        }
     }
 
 .legal-links {
