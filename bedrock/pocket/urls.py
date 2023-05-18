@@ -118,6 +118,7 @@ urlpatterns = (
         "pocket-updates-signup/pilot/",
         "pocket/updates-signup.html",
         url_name="pocket.updates-signup-pilot",
+        ftl_files=["pocket/updates-signup"],
     ),
     path(
         "privacy/",
