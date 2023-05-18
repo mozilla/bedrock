@@ -8,6 +8,8 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
+from sentry_sdk import capture_exception
+
 from bedrock.pocket.forms import NewsletterForm
 from bedrock.utils.braze import client as braze_client
 from lib import l10n_utils
@@ -27,7 +29,8 @@ def page_not_found_view(request, exception=None, template_name="pocket/404.html"
 def newsletter_subscribe(request):
     try:
         data = json.loads(request.body)
-    except Exception:
+    except Exception as ex:
+        capture_exception(ex)
         return JsonResponse({"status": "error", "detail": "Error parsing JSON data"}, status=400)
 
     external_id = request.COOKIES.get(settings.BRAZE_POCKET_COOKIE_NAME) or None
@@ -46,7 +49,9 @@ def newsletter_subscribe(request):
             clean_data[fieldname] = value
     try:
         braze_client.subscribe(email, newsletter, external_id=external_id, **clean_data)
-    except Exception:
+    except Exception as ex:
+        capture_exception(ex)
         return JsonResponse({"status": "error", "detail": "Error contacting subscription provider"}, status=500)
 
+    return JsonResponse({"status": "success"})
     return JsonResponse({"status": "success"})
