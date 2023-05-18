@@ -8,13 +8,12 @@
 Mozilla accounts attribution
 ============================
 
-For products such as Mozilla VPN, Relay, and Monitor, we use Mozilla
-account as an authentication and subscription service. In addition to
-Google Analytics for basic conversion tracking, we attribute web page
-visits and clicks and through to actual subscriptions and installs by
-passing a specific allow-list of known query parameters through to the
-subscription platform. This is accomplished by adding referral data as
-parameters to sign up links on product landing pages.
+For products such as Mozilla VPN, Relay, and Monitor, we use Mozilla accounts
+as an authentication and subscription service. In addition to Google Analytics
+for basic conversion tracking, we attribute web page visits and clicks through
+to actual subscriptions and installs, by passing a specific allow-list of known
+query parameters through to the subscription platform. This is accomplished by
+adding referral data as parameters to sign up links on product landing pages.
 
 How does attribution work?
 --------------------------
@@ -78,36 +77,76 @@ the steps below (Mozilla access only).
 #. A website visitor loads a product landing page in their web browser.
 #. A `JavaScript function`_ then checks for and validates attribution
    data via a list of known URL parameters (see tables above).
-#. If there are UTM parameters in the referral data, then those are used
-   to replace the default values in each sign up link. Additionally if ``coupon``
-   or ``entrypoint_experiment`` params found, those are also appended.
-#. If no UTM params exist, but there is a referrer cookie set, then the
-   cookie value is used for ``utm_campaign`` and ``utm_source`` is set to
-   ``www.mozilla.org``. This cookie is often set when we display a
+#. If there is a ``coupon`` parameter in the page URL, we add it to
+   ``sessionStorage`` so we can automatically apply it at checkout.
+#. We check to see if the visitor has opted out of first-party data
+   attribution. If they have, then all we add to account subscription
+   links is the coupon (if present). If they have not opted out, then we
+   continue with the steps below.
+#. We next run a check to see if the visitor has any existing
+   attribution data in ``sessionStorage``. If they do, then we add that
+   data to account sign-up links. If not, then we continue with the steps
+   below.
+#. If there are UTM parameters in the current page URL data, then those
+   are added to our attribution data. Additionally if any
+   ``entrypoint_experiment`` params found, those are also added.
+#. If no UTM params exist, but there is a link referrer cookie set, then
+   the cookie value is used for ``utm_campaign`` and ``utm_source`` is
+   set to ``www.mozilla.org``. This cookie is often set when we display a
    “Get Mozilla VPN” promo on another mozorg page, such as ``/whatsnew``.
-#. If there’s no referrer cookie, we next look at ``document.referrer`` to
-   see if the visitor came from a search engine. If found, we set
+#. If there’s no link referrer cookie, we next look at ``document.referrer``
+   to see if the visitor came from a search engine. If found, we set
    ``utm_medium`` as ``organic`` and ``utm_source`` as the search engine
    name.
-#. Next, an `metrics function`_ makes a flow API request to the
-   Mozilla accounts authentication server. The request returns a series
-   of metrics parameters that are used to track progress through the
-   sign-up process. These “flow” parameters are also appended to each
-   sign up link in addition to the existing attribution data.
-#. When someone clicks through and completes the sign up process,
-   attribution data we passed through is emitted as event logs. This
+#. Once processed, our finalized attribution data is then kept in
+   ``sessionStorage``. This will persist throughout the lifetime of the
+   current tab / session, and will be added to account sign-up links
+   automatically whenever the visitor is on a landing / pricing page.
+#. When someone clicks through and completes the sign-up process,
+   the attribution data we passed through is emitted as event logs. This
    data is then joined to a person’s Mozilla account data during the Data
    Science team’s ETL process (Extract, Transform, Load), where data
    is then brought together in Big Query.
 
 .. Note::
 
-        UTM parameters on sign up links will only be replaced if the page
-        URL contains both a valid ``utm_source`` and ``utm_campaign``
-        parameter. All other UTM parameters are considered optional,
-        but will still be passed through, as long as the required
-        parameters exist. This is to avoid mixing referral data from
-        different campaigns.
+    Default UTM parameters on account sign-up links will only be replaced
+    if the page URL contains both a valid ``utm_source`` and ``utm_campaign``
+    parameter. All other UTM parameters are considered optional, but will
+    still be passed through, as long as the required  parameters exist.
+    This is to avoid mixing referral data from different campaigns.
+
+In addition to the above attribution process, there is also a separate
+`metrics function`_ that is responsible for making a flow API request
+to the Mozilla accounts authentication server. The request returns a
+series of metrics parameters that are used to track progress through
+the sign-up process. These “flow” parameters are also appended to each
+subscription link in addition to the existing attribution data. It's
+important to note that the metrics parameters are not stored or
+persisted like we do for attribution data. They are instead randomly
+generated on each page load.
+
+Session Storage
+---------------
+
+The following ``sessionStorage`` items are used for attribution:
+
++-----------------------+----------------------------------------------------------------+
+| Name                  | Value                                                          |
++=======================+================================================================+
+| ``moz-coupon-code``   | JSON stringified coupon key / value pair                       |
++-----------------------+----------------------------------------------------------------+
+| ``moz-referral-data`` | JSON stringified UTM / attribution parameter key / value pairs |
++-----------------------+----------------------------------------------------------------+
+
+How can visitors opt out?
+-------------------------
+
+Website visitors can opt out of account attribution by visiting the first
+party `data preferences page`_, which is linked to in the
+`websites privacy notice`_. Clicking opt-out will set a cookie which we
+then check for before storing any session-based attribution data that
+can associate the visitor with a particular source or campaign.
 
 Attribution referrer cookie
 ---------------------------
@@ -233,3 +272,5 @@ in Mozilla account links, please use the :ref:`analytics<analytics>` documentati
 .. _Application Logic Flow Chart: https://www.figma.com/file/etj3w6Sv2QLXIPH5rdTW4U/Firefox-Account-Referrals---Attribution-Flow?node-id=0%3A1&t=OGAxLbRzT99Op8op-1
 .. _JavaScript function: https://github.com/mozilla/bedrock/blob/main/media/js/base/fxa-attribution.es6.js
 .. _metrics function: https://github.com/mozilla/bedrock/blob/main/media/js/base/fxa-product-button.es6.js
+.. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
+.. _websites privacy notice: https://www.mozilla.org/privacy/websites/

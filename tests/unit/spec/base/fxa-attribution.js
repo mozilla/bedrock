@@ -12,8 +12,22 @@
 import FxaAttribution from '../../../../media/js/base/fxa-attribution.es6.js';
 
 describe('fxa-attribution.js', function () {
-    beforeEach(function () {
-        window.Mozilla.dntEnabled = sinon.stub();
+    afterEach(function () {
+        window.sessionStorage.clear();
+    });
+
+    describe('isAttributionPermitted', function () {
+        it('should return true if cookie does not exist', function () {
+            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
+            const result = FxaAttribution.isAttributionPermitted();
+            expect(result).toBeTrue();
+        });
+
+        it('should return false if cookie does exist', function () {
+            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
+            const result = FxaAttribution.isAttributionPermitted();
+            expect(result).toBeFalse();
+        });
     });
 
     afterEach(function () {
@@ -120,9 +134,10 @@ describe('fxa-attribution.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
-                device_id: 123456789,
-                flow_id: 987654321,
-                flow_begin_time: 1234567899
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
             };
 
             const validData = {
@@ -133,9 +148,10 @@ describe('fxa-attribution.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
-                device_id: '123456789',
-                flow_id: '987654321',
-                flow_begin_time: '1234567899'
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
             };
 
             expect(FxaAttribution.getAttributionData(validObj)).toEqual(
@@ -150,9 +166,10 @@ describe('fxa-attribution.js', function () {
                 utm_medium: 'referral',
                 utm_term: 4242,
                 utm_campaign: 'F100_4242_otherstuff_in_here',
-                device_id: 123456789,
-                flow_id: 987654321,
-                flow_begin_time: 1234567899
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
             };
 
             const validData = {
@@ -272,6 +289,127 @@ describe('fxa-attribution.js', function () {
 
             expect(FxaAttribution.getAttributionData(encodedData)).toEqual(
                 encodedSource
+            );
+        });
+
+        it('should drop parameter values that exceed 100 chars in length', function () {
+            const encodedData = {
+                utm_source: 'email',
+                utm_campaign: 'fxa',
+                utm_content: 'test'.repeat(26)
+            };
+
+            const encodedSource = {
+                utm_source: 'email',
+                utm_campaign: 'fxa'
+            };
+
+            expect(FxaAttribution.getAttributionData(encodedData)).toEqual(
+                encodedSource
+            );
+        });
+
+        it('should not return attribution data if the visitor has opted out of data collection', function () {
+            spyOn(FxaAttribution, 'isAttributionPermitted').and.returnValue(
+                false
+            );
+
+            const validObj = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: 4242,
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                entrypoint_experiment: 'test-id',
+                entrypoint_variation: 'test-variation',
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
+            };
+
+            expect(FxaAttribution.getAttributionData(validObj)).toEqual({});
+        });
+
+        it('should return coupon data even if the visitor has opted out of data collection', function () {
+            spyOn(FxaAttribution, 'isAttributionPermitted').and.returnValue(
+                false
+            );
+
+            const validObj = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: 4242,
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                entrypoint_experiment: 'test-id',
+                entrypoint_variation: 'test-variation',
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435',
+                coupon: 'test'
+            };
+
+            expect(FxaAttribution.getAttributionData(validObj)).toEqual({
+                coupon: 'test'
+            });
+        });
+
+        it('should return referral data from storage if it exists', function () {
+            const validObj = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: 4242,
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                entrypoint_experiment: 'test-id',
+                entrypoint_variation: 'test-variation',
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
+            };
+
+            FxaAttribution.setReferralStorage(validObj);
+
+            expect(FxaAttribution.getAttributionData({})).toEqual(validObj);
+        });
+
+        it('should return coupon data from storage if it exists', function () {
+            const validObj = {
+                coupon: 'test'
+            };
+
+            FxaAttribution.setCouponStorage(validObj);
+
+            expect(FxaAttribution.getAttributionData({})).toEqual(validObj);
+        });
+
+        it('should return both coupon and referral data from storage together', function () {
+            const validObj1 = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: 4242,
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                entrypoint_experiment: 'test-id',
+                entrypoint_variation: 'test-variation',
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
+            };
+
+            const validObj2 = {
+                coupon: 'test'
+            };
+
+            FxaAttribution.setReferralStorage(validObj1);
+            FxaAttribution.setCouponStorage(validObj2);
+
+            expect(FxaAttribution.getAttributionData({})).toEqual(
+                Object.assign(validObj1, validObj2)
             );
         });
     });
@@ -558,7 +696,6 @@ describe('fxa-attribution.js', function () {
 
     describe('setFxALinkReferralCookie', function () {
         it('should set a referral cookie as expected', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
             spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(
@@ -579,7 +716,6 @@ describe('fxa-attribution.js', function () {
         });
 
         it('should not set a referral cookie if one already exists', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
             spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(

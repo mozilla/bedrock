@@ -32,8 +32,25 @@ const _allowedFxaParams = [
     'entrypoint_variation'
 ];
 
-const _validParamChars = /^[\w/.%-]+$/;
+const _validParamChars = /^[\w/.%-]{1,100}$/;
 const _referralCookieID = 'fxa-product-referral-id';
+const _mozCouponStorageID = 'moz-coupon-code';
+const _mozReferralStorageID = 'moz-referral-data';
+
+/**
+ * Returns true / false depending on if user has opted out of
+ * 1st party data collection.
+ * @returns {Boolean}
+ */
+FxaAttribution.isAttributionPermitted = () => {
+    if (
+        typeof window.Mozilla.Cookies !== 'undefined' &&
+        window.Mozilla.Cookies.enabled()
+    ) {
+        return !window.Mozilla.Cookies.hasItem('moz-1st-party-data-opt-out');
+    }
+    return true;
+};
 
 /**
  * Returns the hostname for a given URL.
@@ -243,7 +260,7 @@ FxaAttribution.getExperimentData = (params) => {
     return null;
 };
 
-FxaAttribution.getCouponData = (params) => {
+FxaAttribution.getCouponParam = (params) => {
     if (typeof params !== 'object') {
         return null;
     }
@@ -256,6 +273,52 @@ FxaAttribution.getCouponData = (params) => {
         }
     }
     return null;
+};
+
+FxaAttribution.getCouponStorage = () => {
+    try {
+        return JSON.parse(window.sessionStorage.getItem(_mozCouponStorageID));
+    } catch (e) {
+        return false;
+    }
+};
+
+FxaAttribution.setCouponStorage = (coupon) => {
+    if (!coupon) {
+        return;
+    }
+
+    try {
+        window.sessionStorage.setItem(
+            _mozCouponStorageID,
+            JSON.stringify(coupon)
+        );
+    } catch (e) {
+        // fail silently.
+    }
+};
+
+FxaAttribution.getReferralStorage = () => {
+    try {
+        return JSON.parse(window.sessionStorage.getItem(_mozReferralStorageID));
+    } catch (e) {
+        return false;
+    }
+};
+
+FxaAttribution.setReferralStorage = (data) => {
+    if (!data) {
+        return;
+    }
+
+    try {
+        window.sessionStorage.setItem(
+            _mozReferralStorageID,
+            JSON.stringify(data)
+        );
+    } catch (e) {
+        // fail silently.
+    }
 };
 
 /**
@@ -329,38 +392,59 @@ FxaAttribution.appendToProductURL = (url, data) => {
     );
 };
 
-FxaAttribution.getAttributionData = (urlParams) => {
+FxaAttribution.getAttributionData = (urlObject) => {
+    const urlParams = urlObject ? urlObject : {};
     let params = {};
-    const utmData = FxaAttribution.getUtmData(urlParams);
-    const experimentData = FxaAttribution.getExperimentData(urlParams);
-    const couponData = FxaAttribution.getCouponData(urlParams);
+    const couponParam = FxaAttribution.getCouponParam(urlParams);
 
-    // If there are UTM params in the page URL, then
-    // validate those as referral data.
-    if (utmData) {
-        params = Object.assign(params, utmData);
-    } else {
-        // Check to see if there's a referral cookie.
-        const linkData = FxaAttribution.getFxALinkReferralData();
+    // Always pass a coupon when present as a parameter.
+    if (couponParam) {
+        FxaAttribution.setCouponStorage(couponParam);
+    }
 
-        if (linkData) {
-            params = Object.assign(params, linkData);
+    // Make sure the visitor hasn't opted out of attribution
+    if (FxaAttribution.isAttributionPermitted()) {
+        const referralData = FxaAttribution.getReferralStorage();
+
+        if (referralData) {
+            params = referralData;
         } else {
-            // Check to for search engine referral data.
-            const searchData = FxaAttribution.getSearchReferralData();
+            const utmData = FxaAttribution.getUtmData(urlParams);
+            const experimentData = FxaAttribution.getExperimentData(urlParams);
 
-            if (searchData) {
-                params = Object.assign(params, searchData);
+            // If there are UTM params in the page URL, then
+            // validate those as referral data.
+            if (utmData) {
+                params = Object.assign(params, utmData);
+            } else {
+                // Check to see if there's a referral cookie.
+                const linkData = FxaAttribution.getFxALinkReferralData();
+
+                if (linkData) {
+                    params = Object.assign(params, linkData);
+                } else {
+                    // Check to for search engine referral data.
+                    const searchData = FxaAttribution.getSearchReferralData();
+
+                    if (searchData) {
+                        params = Object.assign(params, searchData);
+                    }
+                }
+            }
+
+            // Pass along experiment data.
+            if (experimentData) {
+                params = Object.assign(params, experimentData);
+            }
+
+            if (Object.keys(params).length > 0) {
+                FxaAttribution.setReferralStorage(params);
             }
         }
     }
 
-    // Always pass along experiment data.
-    if (experimentData) {
-        params = Object.assign(params, experimentData);
-    }
+    const couponData = FxaAttribution.getCouponStorage();
 
-    // Always pass a coupon when present as a parameter.
     if (couponData) {
         params = Object.assign(params, couponData);
     }
