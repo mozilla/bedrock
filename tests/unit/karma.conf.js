@@ -64,6 +64,7 @@ module.exports = function (config) {
             'tests/unit/spec/firefox/family/fx-is-default.js',
             'tests/unit/spec/pocket/analytics.js',
             'tests/unit/spec/pocket/mobile-nav.js',
+            'tests/unit/spec/pocket/updates-signup.js',
             'tests/unit/spec/glean/elements.js',
             'tests/unit/spec/glean/page.js',
             'tests/unit/spec/glean/utils.js',

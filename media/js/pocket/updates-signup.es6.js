@@ -90,11 +90,16 @@ const UpdatesForm = {
         );
     },
 
+    getSearchParams: () => {
+        // isolated to make easier to mock in tests
+        return new URL(window.location.href).searchParams;
+    },
+
     populateFromQuerystring: () => {
         const soughtParams = ['campaign', 'medium', 'source'];
         // Grab the UTM params for the hidden form fields, if we can, set them
         // as default form values
-        for (const [key, value] of new URL(window.location.href).searchParams) {
+        for (const [key, value] of UpdatesForm.getSearchParams()) {
             const strippedKey = key.replace('utm_', '');
             if (soughtParams.includes(strippedKey)) {
                 form.elements[strippedKey].value = value;
