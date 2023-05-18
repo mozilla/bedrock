@@ -31,6 +31,19 @@
     p {
         @include text-body-lg;
     }
+
+    .mzp-c-button {
+        background-color: $color-button-red;
+        border: 0;
+        height: 40px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: color.adjust($color-button-red, $lightness: -10%);
+            color: $color-white;
+        }
+    }
 }
 
     .pocket-updates-form {
@@ -43,16 +56,14 @@
             @include visually-hidden;
         }
 
-        .mzp-c-button {
-            background-color: $color-button-red;
-            border: 0;
-            height: 40px;
+        .mzp-c-form-errors {
+            max-width: $content-md;
+            margin: 0 auto $spacing-lg;
+        }
 
-            &:hover,
-            &:focus,
-            &:active {
-                background-color: color.adjust($color-button-red, $lightness: -10%);
-                color: $color-white;
+        @media #{$mq-lg} {
+            .mzp-c-form-errors {
+                margin-bottom: $spacing-2xl;
             }
         }
 
