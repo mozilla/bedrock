@@ -40,9 +40,7 @@ Contents
    firefox-accounts
    funnelcake
    abtest
-   analytics
-   firefox-desktop-attribution
-   vpn-affiliate-attribution
    vpn-subscriptions
+   attribution
    architectural-decisions
    browser-support

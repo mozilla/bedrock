@@ -2,30 +2,25 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.. _firefox-accounts:
+.. _firefox-accounts-helpers:
 
-==========================
-Firefox Accounts Referrals
-==========================
+========================
+Firefox Accounts Helpers
+========================
 
 Marketing pages often promote the creation of a `Firefox Account`_ (FxA) as a common *call to action*
-(CTA). This is typically accomplished using either a signup form, or a prominent link/button. Other
+(CTA). This is typically accomplished using either a sign-up form, or a prominent link/button. Other
 products such as `Mozilla VPN`_ use similar Firefox Account auth flows to manage subscriptions. To
 accomplish these tasks, bedrock templates can take advantage of a series of Python helpers which can
 be used to standardize product referrals, and make supporting these auth flows easier.
 
 .. Note::
 
-    The helpers below can typically be shown to all browsers, but some also feature logic specific
-    to desktop Firefox, such as signing users into `Sync`_.
+    See the attribution docs (:ref:`firefox-accounts-attribution`) for more a detailed description of
+    the analytics functions these helpers provide.
 
-.. _Firefox Account: https://accounts.firefox.com
-.. _Mozilla VPN: https://www.mozilla.org/products/vpn/
-.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer
-
-
-Firefox Account Signup Form
----------------------------
+Firefox Account Sign-up Form
+----------------------------
 
 Use the ``fxa_email_form`` macro to display a Firefox Account signup form on a page.
 
@@ -69,12 +64,12 @@ directly in a template:
     @import '../path/to/fxa-form';
 
 The JavaScript files will automatically handle things such as adding metrics parameters
-for Firefox desktop browsers. The CSS file contains some default styling for the signup form.
+for Firefox desktop browsers. The CSS file contains some default styling for the sign-up form.
 
 Configuration
 ~~~~~~~~~~~~~
 
-The signup form macro accepts the following parameters (* indicates a required parameter)
+The sign-up form macro accepts the following parameters (* indicates a required parameter)
 
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
 |    Parameter name          |                                                       Definition                                                           |                          Format                          |                    Example                      |
@@ -110,6 +105,11 @@ Invoking the macro will automatically include a set of default :abbr:`UTM (Urchi
 - ``utm_campaign`` is automatically set as the value of ``fxa-embedded-form``. This can be prefixed with a custom value by passing a ``utm_campaign`` value to the macro. For example, ``utm_campaign='trailhead'`` would result in a value of ``trailhead-fxa-embedded-form``.
 - ``utm_medium`` is automatically set as the value of ``referral``.
 
+.. Note::
+
+    When signing into FxA using this form on a Firefox Desktop browser, it will also
+    activate the `Sync`_ feature.
+
 
 Firefox Account Links
 ---------------------
@@ -127,6 +127,11 @@ Usage
 
     There is also a ``fxa_link_fragment`` helper which will construct a valid ``href``
     property. This is useful when constructing an inline link inside a paragraph, for example.
+
+.. Note::
+
+    When signing into FxA using this link on a Firefox Desktop browser, it will also
+    activate the `Sync`_ feature.
 
 For more information on the available parameters, read the "Common FxA Parameters"
 section further below.
@@ -172,23 +177,23 @@ Common :abbr:`FxA (Firefox Account)` Parameters
 The ``fxa_button``, ``pocket_fxa_button``, and ``monitor_fxa_button`` helpers
 all support the same standard parameters:
 
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                              |                          Format                          |                                                Example                                                 |
-+============================+===============================================================================================================================+==========================================================+========================================================================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.              | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    button_text*            | The button copy to be used in the call to action.                                                                             | Localizable string                                       | 'Try Pocket Now'                                                                                       |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                                      | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    is_button_class         | A boolean value that dictates if the :abbr:`CTA (Call To Action)` should be styled as a button or a link. Defaults to 'True'. | Boolean                                                  | True or False                                                                                          |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    include_metrics         | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.                   | Boolean                                                  | True or False                                                                                          |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                                     | Dictionary                                               | {'s': 'ffpocket'}                                                                                      |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optional_attributes     | An dictionary of key value pairs containing additional data attributes to include in the button.                              | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
-+----------------------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| Parameter name      | Definition                                                                                                                    | Format                            | Example                                                                                                |
++=====================+===============================================================================================================================+===================================+========================================================================================================+
+| entrypoint*         | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.              | 'mozilla.org-firefox-pocket'      | 'mozilla.org-firefox-pocket'                                                                           |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| button_text*        | The button copy to be used in the call to action.                                                                             | Localizable string                | 'Try Pocket Now'                                                                                       |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| class_name          | A class name to be applied to the link (typically for styling with CSS).                                                      | String of one or more class names | 'pocket-main-cta-button'                                                                               |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| is_button_class     | A boolean value that dictates if the :abbr:`CTA (Call To Action)` should be styled as a button or a link. Defaults to 'True'. | Boolean                           | True or False                                                                                          |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| include_metrics     | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.                   | Boolean                           | True or False                                                                                          |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href.                                     | Dictionary                        | {'s': 'ffpocket'}                                                                                      |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
+| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button.                              | Dictionary                        | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------+
 
 .. Note::
 
@@ -244,139 +249,6 @@ The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to suppor
 |    plan                    | Subscription plan ID. Defaults to 12-month plan.                                                                       | '12-month'                                               | '12-month' or 'monthly'                                                                                |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
-Tracking Same-Site Links for Mozilla :abbr:`VPN (Virtual Private Network)`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Often we promote Mozilla :abbr:`VPN (Virtual Private Network)` on different pages via the use of same-site referral
-links to the product landing page. For example, we display a "Get Mozilla VPN"
-button in the main navigation that links to the ``/products/vpn/`` landing page.
-
-In scenarios such as this we want to understand how many people click the link in the
-navigation and go on to signup / subscribe to :abbr:`VPN (Virtual Private Network)`. To achieve this, we have some
-additional logic in ``fxa-attribution.js`` that will check for a specific cookie
-that gets set when someone clicks a specific referral link.
-
-To create a Mozilla :abbr:`VPN (Virtual Private Network)` referral link, you can use the ``vpn_product_referral_link`` helper:
-
-.. code-block:: jinja
-
-    {{ vpn_product_referral_link(
-        referral_id='navigation',
-        link_text='Get Mozilla VPN',
-        class_name='mzp-t-secondary mzp-t-md',
-        page_anchor='#pricing',
-        optional_attributes= {
-            'data-cta-text' : 'Get Mozilla VPN',
-            'data-cta-type' : 'button',
-            'data-cta-position' : 'navigation',
-        }
-    ) }}
-
-The helper supports the following parameters:
-
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
-+============================+========================================================================================================================+==========================================================+========================================================================================================+
-|    referral_id*            | The ID for the referring page / component. This serves as a value for 'utm_campaign'.                                  | String                                                   | 'navigation'                                                                                           |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    link_text*              | The link copy to be used in the call to action.                                                                        | Localizable string                                       | 'Get Mozilla VPN'                                                                                      |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'mzp-t-secondary mzp-t-md'                                                                             |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    page_anchor             | An optional page anchor for the link destination.                                                                      | String                                                   | '#pricing'                                                                                             |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optional_attributes     | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'button', 'data-cta-position': 'navigation'}     |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-
-When someone clicks the link a cookie gets set with a 1 hour expiry. The
-``fxa-attribution.js`` script will then check for the existence of this
-cookie on page load and update the product landing page subscription links
-with utm parameters that attribute where the click came from.
-
-For example, a referral cookie with the ID ``navigation`` would result
-in the following utm parameters being set:
-
-  - ``utm_source=www.mozilla.org``.
-  - ``utm_campaign=navigation``.
-  - ``utm_medium=referral``.
-
-.. Note::
-
-    The above attribution will only be applied if there are not already
-    utm parameters on the product landing page URL. We will also respect
-    privacy and only set the cookie if :abbr:`DNT (Do Not Track)` is disabled.
-
-
-Link Metrics
-------------
-
-When using any of the :abbr:`FxA (Firefox Account)` or :abbr:`VPN (Virtual Private Network)` helpers that link directly to FxA,
-a templates's respective JavaScript bundle should also import and
-initialize the ``FxaProductButton`` script.
-
-.. code-block:: javascript
-
-    import FxaProductButton from './path/to/fxa-product-button.es6.js';
-
-    FxaProductButton.init();
-
-The above JS is also available as a pre-compiled bundle, which can
-be included directly in a template:
-
-.. code-block:: jinja
-
-    {{ js_bundle('fxa_product_button') }}
-
-This script automatically adds metrics parameters to the button ``href``:
-
-- ``deviceId``
-- ``flowId``
-- ``flowBeginTime``
-
-These are values are fetched from an API endpoint, and are instered back into
-the destination link along with the other standard referral parameters.
-
-.. Important::
-
-    Requests to metrics API endpoints should only be made when an associated :abbr:`CTA (Call To Action)` is
-    visibly displayed on a page. For example, if a page contains both a Firefox Accounts
-    signup form and a Firefox Monitor button, but only one :abbr:`CTA (Call To Action)` is displayed at any one
-    time, then only the metrics request associated with that :abbr:`CTA (Call To Action)` should occur. For links
-    generated using the ``fxa_link_fragment`` helper, you will also need to manually
-    add a CSS class of ``js-fxa-product-button`` to trigger the script.
-
-
-Tracking External Referrers
----------------------------
-
-If the URL of a bedrock page contains existing :abbr:`UTM (Urchin Tracking Module)` parameters on page load, bedrock will
-attempt to automatically use those values to replace the inline UTM parameters in Firefox Account and Mozilla
-:abbr:`VPN (Virtual Private Network)` links. This is handled using a client side script in the
-site common bundle which can be found in ``/media/js/base/fxa-attribution.js``.
-
-The behavior is as follows:
-
-- :abbr:`UTM (Urchin Tracking Module)` paramters will only be replaced if the page URL contains both a valid ``utm_source`` and ``utm_campaign`` parameter. All other UTM parameters are considered optional, but will still be passed as long as the required parameters exist.
-- If the above criteria is satisfied, then :abbr:`UTM (Urchin Tracking Module)` parameters on :abbr:`FxA (Firefox Account)` links will be replaced in their entirety with the UTM parameters from the page URL. This is to avoid mixing referral data from different campaigns.
-
-.. Important::
-
-    Links generated by the :abbr:`FxA (Firefox Account)` button helpers will automatically be covered by this
-    script. For links generated using the ``fxa_link_fragment`` helper, you will
-    need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the behavior.
-
-
-URL Parameter Conventions
--------------------------
-
-When choosing URL parameter values, the following conventions help to support uniformity in code and
-predictability in retroactive analysis.
-
-* Use lower case characters in parameter values.
-* Separate words in parameter values with hyphens.
-* Follow parameter naming patterns established in previous iterations of a page.
-
-
 Firefox Sync and UITour
 -----------------------
 
@@ -420,7 +292,6 @@ For Mozilla :abbr:`VPN (Virtual Private Network)` links you can also set:
     which will also apply to demo servers. You may only need to configure
     your ``.env`` file if you wish to change a setting to something else.
 
-Google Analytics Guidelines
----------------------------
-
-For :abbr:`GTM (Google Tag Manager)` datalayer attribute values in :abbr:`FxA (Firefox Account)` links, please use the :ref:`analytics<analytics>` documentation.
+.. _Firefox Account: https://accounts.firefox.com
+.. _Mozilla VPN: https://www.mozilla.org/products/vpn/
+.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer

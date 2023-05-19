@@ -5,7 +5,7 @@
 .. _firefox_desktop_attribution:
 
 ===========================
-Firefox Desktop Attribution
+Firefox desktop attribution
 ===========================
 
 Firefox Desktop Attribution (often referred to as Stub Attribution) is a system
@@ -30,10 +30,6 @@ Scope and requirements
 - Attribution will only be passed if a website visitor has their
   `Do Not Track (DNT)`_ preference disabled in their browser. Visitors can opt-out
   by enabling DNT. This is covered in our `privacy policy`_.
-
-.. _Telemetry: https://telemetry.mozilla.org/
-.. _Do Not Track (DNT): https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature
-.. _privacy policy: https://www.mozilla.org/privacy/websites/
 
 How does attribution work?
 --------------------------
@@ -71,37 +67,34 @@ of the steps below (Mozilla access only).
 #. During analysis, the download token can be used to join Telemetry data
    with the corresponding GA data in the server logs.
 
-.. _Application Logic Flow Chart: https://www.figma.com/file/q5mJpicWBpzAYuQ3fV00ix/Firefox-Stub-Attribution-Flow?node-id=0%3A1&t=EFe91WQzQ7cXHSiB-1
-.. _JavaScript function: https://github.com/mozilla/bedrock/blob/main/media/js/base/stub-attribution.js
-
 Attribution data
 ----------------
 
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| Name                       | Description                                                                              | Example                         |
-+============================+==========================================================================================+=================================+
-| ``utm_source``             | Query param identifying the referring site which sent the visitor.                       | ``utm_source=google``           |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``utm_medium``             | Query param identifying the type of link, such as referral, cost per click, or email.    | ``utm_medium=cpc``              |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``utm_campaign``           | Query param identifying the specific marketing campaign that was seen.                   | ``utm_campaign=fast``           |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``utm_content``            | Query param identifying the specific element that was clicked.                           | ``utm_content=getfirefox``      |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``referrer``               | The domain of the referring site when the link was clicked.                              | ``google.com``                  |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``ua``                     | Simplified browser name parsed from the visitor's User Agent string.                     | ``chrome``                      |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``experiment``             | Query param identifying an experiment name that visitor was a cohort of.                 | ``taskbar``                     |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``variation``              | Query param identifying the experiment variation that was seen by the visitor.           | ``[a|b]``                       |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``client_id``              | Google Analytics Client ID.                                                              | ``1715265578.1681917481``       |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``session_id``             | A random 10 digit string identifier used to associate attribution data with GA session.  | ``9770365798``                  |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
-| ``dlsource``               | A hard-coded string ID used to distinguish mozorg downloads from archive downloads       | ``mozorg``                      |
-+----------------------------+------------------------------------------------------------------------------------------+---------------------------------+
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| Name             | Description                                                                             | Example                    |
++==================+=========================================================================================+============================+
+| ``utm_source``   | Query param identifying the referring site which sent the visitor.                      | ``utm_source=google``      |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``utm_medium``   | Query param identifying the type of link, such as referral, cost per click, or email.   | ``utm_medium=cpc``         |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``utm_campaign`` | Query param identifying the specific marketing campaign that was seen.                  | ``utm_campaign=fast``      |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``utm_content``  | Query param identifying the specific element that was clicked.                          | ``utm_content=getfirefox`` |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``referrer``     | The domain of the referring site when the link was clicked.                             | ``google.com``             |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``ua``           | Simplified browser name parsed from the visitor's User Agent string.                    | ``chrome``                 |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``experiment``   | Query param identifying an experiment name that visitor was a cohort of.                | ``taskbar``                |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``variation``    | Query param identifying the experiment variation that was seen by the visitor.          |                            |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``client_id``    | Google Analytics Client ID.                                                             | ``1715265578.1681917481``  |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``session_id``   | A random 10 digit string identifier used to associate attribution data with GA session. | ``9770365798``             |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
+| ``dlsource``     | A hard-coded string ID used to distinguish mozorg downloads from archive downloads      | ``mozorg``                 |
++------------------+-----------------------------------------------------------------------------------------+----------------------------+
 
 .. Note::
 
@@ -163,8 +156,12 @@ RTAMO initially worked for only a limited subset of addons recommended by Mozill
 functionality was recently expanded by the AMO team to cover all publically listed addons,
 under a project called `Extended RTAMO (ERTAMO)`.
 
-.. _AMO: https://addons.mozilla.org/firefox/
-.. _Return to AMO: https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO
+How can visitors opt out?
+-------------------------
+
+Visitors to the website can opt-out of desktop attribution on our
+website by enabling `Do Not Track (DNT)`_ in their web browser. We
+facilitate this by using a `DNT helper`_ that our team maintains.
 
 Local testing
 -------------
@@ -181,3 +178,12 @@ that is used to sign the attribution code must be set via an environment variabl
     This value can be anything if all you need to do is test the bedrock functionality.
     It only needs to match the value used to verify data passed to the stub installer
     for full end-to-end testing via Telemetry.
+
+.. _Telemetry: https://telemetry.mozilla.org/
+.. _privacy policy: https://www.mozilla.org/privacy/websites/
+.. _Application Logic Flow Chart: https://www.figma.com/file/q5mJpicWBpzAYuQ3fV00ix/Firefox-Stub-Attribution-Flow?node-id=0%3A1&t=EFe91WQzQ7cXHSiB-1
+.. _JavaScript function: https://github.com/mozilla/bedrock/blob/main/media/js/base/stub-attribution.js
+.. _AMO: https://addons.mozilla.org/firefox/
+.. _Return to AMO: https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO
+.. _Do Not Track (DNT): https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature
+.. _DNT helper: https://github.com/mozmeao/dnt-helper
