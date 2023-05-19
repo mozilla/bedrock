@@ -26,20 +26,22 @@
     <h1 class="mzp-c-article-title">{{ ftl('data-preferences-page-title') }}</h1>
 
     <p>
-      {{ ftl('data-preferences-your-privacy',
+      {{ ftl('data-preferences-your-privacy-v2',
+      fallback='data-preferences-your-privacy',
         glean='https://docs.telemetry.mozilla.org/concepts/glean/glean.html',
         lean_data=url('mozorg.about.policy.lean-data.index'))
       }}
     </p>
     <p>
-      {{ ftl('data-preferences-mozilla-uses',
+      {{ ftl('data-preferences-mozilla-uses-v2',
+        fallback='data-preferences-mozilla-uses',
         dictionary='https://dictionary.telemetry.mozilla.org/',
         privacy_notice=url('privacy.notices.websites'))
       }}
     </p>
 
     <p>
-      {{ ftl('data-preferences-if-you-still-want-to') }}
+      {{ ftl('data-preferences-if-you-still-want-to-v2', fallback='data-preferences-if-you-still-want-to') }}
     </p>
 
     <p id="data-preference-status" class="data-preference-status">
