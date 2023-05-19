@@ -233,29 +233,12 @@ To push to launch a demo on Heroku:
   $ git push -f mozilla my-demo-branch:demo/1
 
 
-Dev
-```
-- *URL:* http://www-dev.allizom.org/
-- *Bedrock locales:* dev repo
-- *Bedrock Git branch:* main, deployed on git push
-
-Staging
-```````
-- *URL:* http://www.allizom.org/
-- *Bedrock locales:* prod repo
-- *Bedrock Git branch:* prod, deployed on git push with date-tag
-
-Production
-``````````
-- *URL:* http://www.mozilla.org/
-- *Bedrock locales:* prod repo
-- *Bedrock Git branch:* prod, deployed on git push with date-tag
-
-You can check the currently deployed git commit by checking https://www.mozilla.org/revision.txt.
-
 Pushing to production
----------------------
+`````````````````````
+
 We're doing pushes as soon as new work is ready to go out.
+
+Code flows automatically to Dev, amd manually to Stage and to Production. See :ref:`pipeline` for details.
 
 After doing a push, those who are responsible for implementing changes need to update
 the bugs that have been pushed with a quick message stating that the code was deployed.

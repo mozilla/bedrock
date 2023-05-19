@@ -17,6 +17,36 @@ by reading their respective pieces of documentation:
 * Redirect tests (see :ref:`testing-redirects`).
 * Functional tests (see :ref:`testing`).
 
+Deployed site URLs
+------------------
+
+Note that a deployment of Bedrock will actually trigger two separate deployments:
+one serving all of ``mozilla.org`` and another serving certain parts of ``getpocket.com``
+
+Dev
+```
+- *Mozorg URL:* https://www-dev.allizom.org/
+- *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
+- *Bedrock locales:* dev repo
+- *Bedrock Git branch:* main, deployed on git push
+
+Staging
+```````
+- *Mozorg URL:* https://www.allizom.org/
+- *Pocket Marketing pages URL:* https://www.tekcopteg.com/
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* stage, deployed on git push
+
+Production
+``````````
+- *Mozorg URL:* https://www.mozilla.org/
+- *Pocket Marketing pages URL:* https://getpocket.com/
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* prod, deployed on git push with date-tag
+
+You can check the currently deployed git commit by checking /revision.txt on any of these URLs.
+
+
 Tests in the lifecycle of a change
 ----------------------------------
 
