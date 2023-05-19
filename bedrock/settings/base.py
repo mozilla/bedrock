@@ -1190,7 +1190,7 @@ VPN_PRODUCT_ID = config("VPN_PRODUCT_ID", default="prod_FiJ42WCzZNRSbS" if DEV e
 # VPN variable subscription plan IDs by currency/language.
 VPN_PLAN_ID_MATRIX = {
     "bgn": {  # Bulgarian lev
-        "en": {
+        "en": {  # English
             "12-month": {
                 "id": "price_1N7OdmKb9q6OnNsLO0Rf6LUt" if DEV else "price_1N7PGEJNcmPzuWtRzTe85nzw",
                 "price": "10 лв",
@@ -1206,7 +1206,7 @@ VPN_PLAN_ID_MATRIX = {
         },
     },
     "chf": {  # Swiss franc
-        "de": {
+        "de": {  # German
             "12-month": {
                 "id": "price_1J4sAUKb9q6OnNsLfYDKbpdY" if DEV else "price_1J5JssJNcmPzuWtR616BH4aU",
                 "price": "CHF 5.99",
@@ -1220,7 +1220,7 @@ VPN_PLAN_ID_MATRIX = {
                 "saving": None,
             },
         },
-        "fr": {
+        "fr": {  # French
             "12-month": {
                 "id": "price_1J4sM2Kb9q6OnNsLsGLZwTP9" if DEV else "price_1J5JunJNcmPzuWtRo9dLxn6M",
                 "price": "CHF 5.99",
@@ -1234,7 +1234,7 @@ VPN_PLAN_ID_MATRIX = {
                 "saving": None,
             },
         },
-        "it": {
+        "it": {  # Italian
             "12-month": {
                 "id": "price_1J4sWMKb9q6OnNsLkrTo2uUW" if DEV else "price_1J5JwWJNcmPzuWtRgrx5fjOc",
                 "price": "CHF 5.99",
@@ -1250,7 +1250,7 @@ VPN_PLAN_ID_MATRIX = {
         },
     },
     "czk": {  # Czech koruna
-        "cz": {
+        "cz": {  # Czech
             "12-month": {
                 "id": "price_1N7ObPKb9q6OnNsLf9okHbUl" if DEV else "price_1N7PDwJNcmPzuWtR1IxSkZ0c",
                 "price": "119 Kč",
@@ -1510,8 +1510,8 @@ VPN_VARIABLE_PRICING = {
         "it": VPN_PLAN_ID_MATRIX["chf"]["it"],
     },
     "CY": {  # Cyprus
-        "default": VPN_PLAN_ID_MATRIX["euro"]["el"],
-        "en": VPN_PLAN_ID_MATRIX["euro"]["en"],
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+        "el": VPN_PLAN_ID_MATRIX["euro"]["el"],
     },
     "CZ": {  # Czech Republic
         "default": VPN_PLAN_ID_MATRIX["czk"]["cz"],
