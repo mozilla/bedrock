@@ -9,6 +9,11 @@ from bedrock.legal_docs.views import LegalDocView
 from bedrock.mozorg.util import page
 from bedrock.pocket.views import newsletter_subscribe
 
+# IMPORTANT: URLs added here will work fine locally and on Demo servers, but
+# to make them visible on tekcopteg.com or getpocket.com you need to
+# also add to the configuration for the Pocket "dotcom gateway" router:
+# https://github.com/Pocket/dotcom-gateway/blob/main/lambda/src/config/behaviors/marketing.ts#L32
+
 urlpatterns = (
     page(
         "",
@@ -143,3 +148,5 @@ urlpatterns = (
         name="pocket.newsletter-subscribe",
     ),
 )
+
+# IMPORTANT: URLs added here need to be added to Pocket's dotcom gateway. See the comment above.
