@@ -998,12 +998,37 @@
     },
     {
       "files": [
+        "css/products/vpn/common-refresh.scss"
+      ],
+      "name": "mozilla-vpn-common-refresh"
+    },
+    {
+      "files": [
+        "css/products/vpn/landing-refresh.scss"
+      ],
+      "name": "mozilla-vpn-landing-refresh"
+    },
+    {
+      "files": [
+        "css/products/vpn/features.scss"
+      ],
+      "name": "mozilla-vpn-features"
+    },
+    {
+      "files": [
         "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-basic.scss",
         "css/products/vpn/common.scss"
       ],
       "name": "mozilla-vpn-pricing"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/affiliate.scss",
+        "css/products/vpn/pricing-refresh.scss"
+      ],
+      "name": "mozilla-vpn-pricing-refresh"
     },
     {
       "files": [

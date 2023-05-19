@@ -1,0 +1,64 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import 'includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+.c-features-main-header {
+    text-align: center;
+
+    .mzp-c-wordmark.mzp-t-product-vpn {
+        background-position: top center;
+        margin: 0 auto $spacing-xl;
+    }
+}
+
+.c-feature-title {
+    @include text-title-2xs;
+}
+
+.c-feature-block {
+    margin-bottom: $spacing-2xl;
+
+    img {
+        display: block;
+        margin: 0 auto $spacing-lg;
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
+        grid-column-gap: $layout-md;
+        grid-template-columns: 120px 1fr;
+    }
+}
+
+.c-secure {
+    background: $color-marketing-gray-20;
+
+    li {
+        margin-bottom: $spacing-xl;
+    }
+
+    @media #{$mq-md} {
+        li {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.c-trust {
+    .mzp-c-picto img {
+        display: block;
+        margin: 0 auto $spacing-xl;;
+    }
+
+    .mzp-c-picto-heading {
+        @include text-title-2xs;
+    }
+}

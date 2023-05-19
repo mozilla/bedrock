@@ -21,9 +21,17 @@ from bedrock.products import views
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
-    def test_vpn_landing_page_template(self, render_mock):
+    def test_vpn_landing_page_template_us(self, render_mock):
         req = RequestFactory().get("/products/vpn/")
         req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing-refresh.html"
+
+    def test_vpn_landing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/")
+        req.locale = "de"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
@@ -124,9 +132,17 @@ class TestVPNLandingPage(TestCase):
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNPricingPage(TestCase):
-    def test_vpn_pricing_page_template(self, render_mock):
+    def test_vpn_pricing_page_template_us(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/")
         req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/pricing-refresh.html"
+
+    def test_vpn_pricing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/")
+        req.locale = "de"
         view = views.vpn_pricing_page
         view(req)
         template = render_mock.call_args[0][1]

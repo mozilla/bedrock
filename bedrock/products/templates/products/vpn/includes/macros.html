@@ -117,6 +117,25 @@
   {% endif %}
 {%- endmacro %}
 
+{% macro vpn_conditional_cta_refresh(position) -%}
+  <div class="c-aside {{ position }} mzp-l-content mzp-t-content-xl">
+    {% if vpn_available %}
+      <p>
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.pricing') }}" data-cta-type="button" data-cta-text="View VPN pricing">
+          Get Mozilla VPN
+        </a>
+      </p>
+      <p class="c-guarantee">30-day money-back guarantee</p>
+    {% else %}
+      <p>
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+          Join the Waitlist
+        </a>
+      </p>
+    {% endif %}
+  </div>
+{%- endmacro %}
+
 {% macro vpn_nav_cta(link_text, alt_link_text, download_link_text, utm_source, utm_campaign) -%}
   <div class="vpn-nav-cta">
     {% if vpn_available %}
@@ -131,10 +150,18 @@
   </div>
 {%- endmacro %}
 
-{% macro vpn_nav_cta_link() -%}
-<div class="vpn-nav-cta">
-  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary mzp-t-md">{{ ftl('vpn-shared-subscribe-link') }}</a>
-</div>
+{% macro vpn_nav_cta_refresh() -%}
+  <div class="vpn-nav-cta">
+    {% if vpn_available %}
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.pricing') }}" data-cta-type="button" data-cta-text="View VPN pricing" data-cta-position="navigation">
+        Get Mozilla VPN
+      </a>
+    {% else %}
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+        Join the Waitlist
+      </a>
+    {% endif %}
+  </div>
 {%- endmacro %}
 
 {% macro vpn_content_block(class_name=None, use_custom_body=False) -%}

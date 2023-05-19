@@ -1,0 +1,191 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import 'includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+// * -------------------------------------------------------------------------- */
+// Horizontal pricing (default)
+
+.c-pricing-main-header {
+    margin-bottom: $layout-xl;
+    text-align: center;
+
+    .mzp-c-wordmark.mzp-t-product-vpn {
+        background-position: top center;
+        margin: 0 auto $spacing-xl;
+    }
+}
+
+.c-pricing-details-heading {
+    @include text-title-xs;
+    margin-bottom: $spacing-xl;
+}
+
+.c-pricing-block {
+    background: $color-marketing-gray-20;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: $spacing-2xl;
+    padding: $spacing-lg;
+}
+
+.c-pricing-block-header {
+    position: relative;
+}
+
+.c-pricing-block-tag {
+    @include text-body-sm;
+    background: $color-vpn-brand-refresh-purple-20;
+    border-radius: $border-radius-md;
+    color: $color-white;
+    display: inline-block;
+    font-weight: bold;
+    padding: $spacing-xs $spacing-md;
+
+    html[lang^='en'] & {
+        text-transform: uppercase;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((left, 0, right, auto),));
+        position: absolute;
+        top: 0;
+    }
+}
+
+.c-pricing-block-heading {
+    @include text-title-md;
+    border-bottom: 2px solid $color-black;
+    padding-bottom: $spacing-xl;
+
+    @media #{$mq-lg} {
+        padding-top: $spacing-2xl;
+    }
+}
+
+.c-pricing-block-detail {
+    .mzp-c-button {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.c-pricing-block-sub-heading {
+    @include text-title-xs;
+    margin-bottom: $spacing-2xl;
+}
+
+.c-pricing-block-saving {
+    @include text-title-xs;
+    color: $color-vpn-brand-refresh-blue;
+    font-weight: bold;
+    margin-bottom: $spacing-sm;
+}
+
+.c-pricing-block-total {
+    color: $color-vpn-brand-refresh-gray;
+    font-weight: bold;
+    margin-bottom: $spacing-2xl;
+}
+
+.c-pricing-block-horizontal {
+    @media #{$mq-lg} {
+        .mzp-l-columns {
+            grid-gap: get-theme('v-grid-sm') get-theme('h-grid-sm');
+            gap: get-theme('v-grid-sm') get-theme('h-grid-sm');
+        }
+    }
+
+    @media #{$mq-xl} {
+        .mzp-l-columns {
+            grid-gap: get-theme('v-grid-lg') get-theme('h-grid-xl');
+            gap: get-theme('v-grid-lg') get-theme('h-grid-xl');
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Vertical pricing (variation v=2)
+
+.c-pricing-block-vertical {
+    @media #{$mq-lg} {
+        .c-pricing-details {
+            margin-bottom: $spacing-2xl;
+        }
+
+        .c-pricing-block-tag {
+            position: static;
+        }
+
+        .c-pricing-block-heading {
+            padding-top: 0;
+        }
+
+        .c-pricing-block-sub-heading {
+            margin-bottom: 0;
+        }
+
+        .c-pricing-block-detail {
+            @include bidi(((text-align, right, left),));
+            align-self: flex-end;
+        }
+
+        .c-pricing-block-detail-highlight {
+            @include bidi(((
+                border-right, 8px solid $color-vpn-brand-refresh-blue,
+                border-left, none),
+            ));
+            @include bidi(((
+                padding-right, $spacing-xl,
+                padding-left, 0),
+            ));
+            margin-top: -$spacing-xl;
+        }
+    }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// FAQ Section
+
+.c-faq-section-heading {
+    @include text-title-md;
+    margin-bottom: $layout-xl;
+    text-align: center;
+}
+
+.c-faq-item {
+    border: 1px solid $color-black;
+    margin-bottom: $spacing-xl;
+    padding: $spacing-xl;
+}
+
+.c-faq-item-heading {
+    &:hover {
+        cursor: pointer;
+    }
+
+    h3 {
+        margin-bottom: 0;
+        @include bidi((
+            (text-align, left, right),
+        ));
+        @include text-title-xs;
+    }
+}
+
+.c-faq-item-detail {
+    @include bidi((
+        (padding-right, $spacing-xl, padding-left, 0),
+    ));
+    margin: $spacing-xl 0 0;
+}

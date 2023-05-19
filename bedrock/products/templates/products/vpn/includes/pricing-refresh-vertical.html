@@ -1,0 +1,85 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="c-pricing-block-vertical">
+  <div class="c-pricing-details">
+    <h2 class="c-pricing-details-heading">Included in subscription:</h2>
+
+    <ul class="mzp-u-list-styled">
+      <li>Connect up to {{ connect_devices }} devices</li>
+      <li>Access {{connect_servers }}+ servers in {{connect_countries }}+ countries</li>
+      <li>30-day money-back guarantee (for first-time customers only)</li>
+    </ul>
+  </div>
+  <div class="c-pricing-block">
+    <header class="c-pricing-block-header">
+      <p class="c-pricing-block-tag">{{ ftl('vpn-shared-pricing-recommended-offer') }}</p>
+
+      <h2 class="c-pricing-block-heading">
+        Annual
+      </h2>
+
+      <h3 class="c-pricing-block-sub-heading">
+        {{ vpn_monthly_price(plan='12-month', country_code=country_code, lang=LANG) }}
+      </h3>
+    </header>
+
+    <div class="c-pricing-block-detail">
+      <div class="c-pricing-block-detail-highlight">
+        <p class="c-pricing-block-saving">{{ vpn_saving(country_code=country_code, lang=LANG) }}</p>
+        <p class="c-pricing-block-total">{{ vpn_total_price(country_code=country_code, lang=LANG) }}</p>
+      </div>
+
+      {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text='Get annual subscription',
+        plan='12-month',
+        class_name='mzp-c-button mzp-t-xl',
+        country_code=country_code,
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Get Mozilla VPN 12-month',
+          'data-cta-position': 'pricing'
+        })
+      }}
+    </div>
+  </div>
+
+  <div class="c-pricing-block">
+    <header class="c-pricing-block-header">
+      <h2 class="c-pricing-block-heading">
+        Monthly
+      </h2>
+
+      <h3 class="c-pricing-block-sub-heading">
+        {{ vpn_monthly_price(plan='monthly', country_code=country_code, lang=LANG) }}
+      </h3>
+    </header>
+
+    <div class="c-pricing-block-detail">
+      {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text='Get monthly subscription',
+        plan='monthly',
+        class_name='mzp-c-button mzp-t-xl',
+        country_code=country_code,
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Get Mozilla VPN monthly',
+          'data-cta-position': 'pricing'
+        })
+      }}
+    </div>
+  </div>
+</div>

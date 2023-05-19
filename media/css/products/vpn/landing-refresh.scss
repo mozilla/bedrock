@@ -1,0 +1,107 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import 'includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Hero section
+
+.c-main-cta {
+    display: inline-block;
+    text-align: center;
+
+    small {
+        @include text-body-sm;
+        display: block;
+        margin-top: $spacing-sm;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// How a VPN helps
+
+.c-how-vpn-helps {
+    background: $color-marketing-gray-20;
+
+    .c-reason-title {
+        @include text-title-2xs;
+    }
+
+    .c-section-main-img {
+        display: block;
+        margin: -$spacing-2xl auto 0;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Features section
+
+.c-features {
+    padding-bottom: 0;
+    padding-top: 0;
+
+    .c-section-title {
+        @include bidi(((text-align, left, right),));
+    }
+
+    &.mzp-t-dark {
+        background: $color-vpn-brand-refresh-purple-10;
+    }
+}
+
+.c-feature-block {
+    border: 1px solid $color-black;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+
+    img {
+        align-self: center;
+        display: block;
+        margin: 0 auto $spacing-lg;
+    }
+
+    .c-feature-title {
+        @include text-title-2xs;
+    }
+
+    .c-feature-block-detail p {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        grid-column-gap: $layout-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Learn more section
+
+.c-learn-more {
+    margin-top: $spacing-2xl * 2;
+
+    .c-section-title {
+        margin-bottom: $spacing-2xl * 2;
+    }
+
+    .mzp-c-picto img {
+        display: block;
+        margin: 0 auto $spacing-xl;
+    }
+
+    .c-learn-more-heading {
+        @include text-body-lg;
+        font-weight: normal;
+
+        a:link,
+        a:visited {
+            color: $color-black;
+        }
+    }
+}
