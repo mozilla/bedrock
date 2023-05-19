@@ -1290,7 +1290,7 @@ VPN_PLAN_ID_MATRIX = {
                 "saving": 50,
             },
             "monthly": {
-                "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
+                "id": "price_1N9CInKb9q6OnNsLQYotCVpd" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
@@ -1340,13 +1340,13 @@ VPN_PLAN_ID_MATRIX = {
         },
         "fr": {  # French
             "12-month": {
-                "id": "price_1IXw5oKb9q6OnNsLPMkWOid7" if DEV else "price_1IgnlcJNcmPzuWtRjrNa39W4",
+                "id": "price_1N9CFcKb9q6OnNsL1r7W4EiX" if DEV else "price_1IgnlcJNcmPzuWtRjrNa39W4",
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
             },
             "monthly": {
-                "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
+                "id": "price_1N9CHBKb9q6OnNsLlYDTJ3px" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
