@@ -37,7 +37,7 @@ def vpn_available(request):
 
 @require_safe
 def vpn_landing_page(request):
-    template_name = "products/vpn/landing.html"
+    template_name = "products/vpn/landing-refresh.html" if request.locale == "en-US" else "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
@@ -64,13 +64,18 @@ def vpn_landing_page(request):
 
 @require_safe
 def vpn_pricing_page(request):
-    template_name = "products/vpn/pricing.html"
+    template_name = "products/vpn/pricing-refresh.html" if request.locale == "en-US" else "products/vpn/pricing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
+    variant = request.GET.get("v", None)
+
+    # ensure variant matches pre-defined value
+    if variant not in ["1", "2"]:
+        variant = None
 
     if switch("vpn-wave-vi"):
         available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
@@ -82,9 +87,25 @@ def vpn_pricing_page(request):
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
+        "variant": variant,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def vpn_features_page(request):
+    template_name = "products/vpn/features.html"
+    vpn_available_in_country = vpn_available(request)
+
+    context = {
+        "vpn_available": vpn_available_in_country,
+        "connect_servers": settings.VPN_CONNECT_SERVERS,
+        "connect_countries": settings.VPN_CONNECT_COUNTRIES,
+        "connect_devices": settings.VPN_CONNECT_DEVICES,
+    }
+
+    return l10n_utils.render(request, template_name, context)
 
 
 @require_safe

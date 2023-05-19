@@ -1,0 +1,118 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "products/vpn/includes/macros.html" import vpn_content_media with context %}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_title_full %}Pricing - Mozilla VPN{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}TODO{% endblock %}
+
+{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+
+{% block body_id %}mozilla-vpn-pricing{% endblock %}
+
+{# TODO: should this noindex remain in place? #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_campaign = 'vpn-pricing-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('mozilla-vpn-common-refresh') }}
+  {{ css_bundle('mozilla-vpn-pricing-refresh') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_vpn_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav-refresh.html' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  {% if vpn_affiliate_attribution_enabled %}
+    {% include 'products/vpn/includes/cookie-notification.html' %}
+  {% endif %}
+
+  <section class="mzp-l-content mzp-t-content-xl">
+
+
+    {% if vpn_available %}
+      <header class="c-pricing-main-header">
+        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
+        <h2 class="c-section-title">One subscription for all your devices</h2>
+      </header>
+
+      {% if variant == '2' %}
+        {% include 'products/vpn/includes/pricing-refresh-vertical.html' %}
+      {% else %}
+        {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
+      {% endif %}
+
+    {% else %}
+      <header class="c-pricing-main-header">
+        <h1 class="c-section-title">Mozilla VPN is not yet available in your country</h1>
+
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+          {{ ftl('vpn-shared-waitlist-link') }}
+        </a>
+      </header>
+    {% endif %}
+  </section>
+
+  {% include 'products/vpn/includes/press.html' %}
+
+  <section class="c-faq t-content-body mzp-l-content mzp-t-content-lg">
+    <h2 class="c-section-title">FAQs</h2>
+
+    <details id="faq-refunds" class="c-faq-item mzp-is-anchor-link">
+      <summary class="c-faq-item-heading">
+        <h3>What is Mozilla VPN’s refund policy?</h3>
+      </summary>
+        <p class="c-faq-item-detail">The first time you subscribe to Mozilla VPN through Mozilla’s website, if you cancel your account within the first 30 days, you may request a refund and Mozilla will refund your first subscription term.</p>
+        <p class="c-faq-item-detail">If you purchase your subscription through in-app purchase from the Apple App Store or the Google Play Store, your payment is subject to the terms and conditions of the App Store. You must direct any billing and refund inquiries for such purchases to Apple or Google, as appropriate.</p>
+    </details>
+
+    <details id="faq-information" class="c-faq-item mzp-is-anchor-link">
+      <summary class="c-faq-item-heading">
+        <h3>What information does Mozilla VPN keep?</h3>
+      </summary>
+        <p class="c-faq-item-detail">We adhere strictly to Mozilla’s <a href="{{ url('privacy.principles') }}">Data Privacy Principles</a> and we collect the data required to keep the VPN operational and to improve the product over time. We also track campaign and referral data on our mobile app to help Mozilla understand the effectiveness of our marketing campaigns. Read more in our <a href="{{ url('privacy.notices.subscription-services') }}">Privacy Notice</a>.</p>
+    </details>
+
+    <details id="faq-subscriptions" class="c-faq-item mzp-is-anchor-link">
+      <summary class="c-faq-item-heading">
+        <h3>How do I manage my subscription and change my plan?</h3>
+      </summary>
+      {% set manage_url = 'https://vpn.mozilla.org/r/vpn/subscription' + _params %}
+      <p class="c-faq-item-detail">If you’re already subscribed to Mozilla VPN, you can change your plan or <a href="{{ manage_url }}">manage your subscription</a> anytime.</p>
+    </details>
+
+  </section>
+</main>
+
+{% endblock %}
+
+{% block js %}
+  {% if vpn_affiliate_attribution_enabled %}
+    {{ js_bundle('mozilla-vpn-affiliate') }}
+  {% else %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+{% endblock %}
