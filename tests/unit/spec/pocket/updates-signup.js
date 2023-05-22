@@ -119,13 +119,13 @@ describe('updates-signup.es6.js', function () {
     });
 
     describe('Form boostrapping with querystrings present - XSS check', function () {
-        it('Should pull data from querystrings when available', function () {
+        it('Should pull data from querystrings when available and clean', function () {
             spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
                 new URLSearchParams(
                     'utm_source=test-source' +
                         '&utm_medium=test-medium<script>alert("xss");</script>' +
                         '&utm_noise=test-noise-to-be-ignored' +
-                        '&utm_campaign=%3Cscript%3Ealert(%22xss%22)%3B%3C%2Fscript%3E'
+                        '&utm_campaign=%3Cscript%3Ealert%28%22xss%22%29%3B%3C%2Fscript%3E'
                 )
             );
 

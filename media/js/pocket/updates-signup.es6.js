@@ -105,8 +105,7 @@ const UpdatesForm = {
             if (soughtParams.includes(strippedKey)) {
                 // We only pre-populate the field if the value matches the regex
                 if (value.search(allowableRegex) !== -1) {
-                    form.elements[strippedKey].value =
-                        encodeURIComponent(value);
+                    form.elements[strippedKey].value = encodeURI(value);
                 }
             }
         }
