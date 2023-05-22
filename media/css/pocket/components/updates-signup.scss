@@ -44,7 +44,6 @@
             color: $color-white;
         }
     }
-}
 
     .pocket-updates-form {
         .mzp-u-list-styled {
@@ -94,31 +93,32 @@
 
     }
 
-.legal-links {
-    display: flex;
-    justify-content: center;
+    .legal-links {
+        display: flex;
+        justify-content: center;
 
-    p {
-        @include text-body-sm;
-    }
+        p {
+            @include text-body-sm;
+        }
 
-    p:first-of-type {
-        margin-right: $spacing-xs;
-    }
+        p:first-of-type {
+            margin-right: $spacing-xs;
+        }
 
-    p:last-of-type {
-        margin-left: $spacing-xs;
-    }
+        p:last-of-type {
+            margin-left: $spacing-xs;
+        }
 
-    .separator {
-        @include text-body-md;
-    }
+        .separator {
+            @include text-body-md;
+        }
 
-    a {
-        color: $color-black;
-    }
+        a {
+            color: $color-black;
+        }
 
-    @media (min-width: 870px) {
-        justify-content: flex-end;
+        @media (min-width: 870px) {
+            justify-content: flex-end;
+        }
     }
 }
