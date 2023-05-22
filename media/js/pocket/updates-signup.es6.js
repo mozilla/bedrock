@@ -102,7 +102,7 @@ const UpdatesForm = {
         for (const [key, value] of UpdatesForm.getSearchParams()) {
             const strippedKey = key.replace('utm_', '');
             if (soughtParams.includes(strippedKey)) {
-                form.elements[strippedKey].value = value;
+                form.elements[strippedKey].value = encodeURIComponent(value);
             }
         }
     },

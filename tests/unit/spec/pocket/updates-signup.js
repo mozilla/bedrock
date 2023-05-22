@@ -100,7 +100,7 @@ describe('updates-signup.es6.js', function () {
                     'utm_source=test-source' +
                         '&utm_medium=test-medium' +
                         '&utm_noise=test-noise-to-be-ignored' +
-                        '&utm_campaign=test-campaign'
+                        '&utm_campaign=<script>alert("xss");</script>'
                 )
             );
 
@@ -111,7 +111,7 @@ describe('updates-signup.es6.js', function () {
             UpdatesForm.init();
 
             expect(document.getElementById('campaign').value).toBe(
-                'test-campaign'
+                '%3Cscript%3Ealert(%22xss%22)%3B%3C%2Fscript%3E'
             );
             expect(document.getElementById('medium').value).toBe('test-medium');
             expect(document.getElementById('source').value).toBe('test-source');
