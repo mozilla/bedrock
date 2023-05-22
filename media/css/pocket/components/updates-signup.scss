@@ -111,6 +111,7 @@
 
         .separator {
             @include text-body-md;
+            line-height: 1;
         }
 
         a {
