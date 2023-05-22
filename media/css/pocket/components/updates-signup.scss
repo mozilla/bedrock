@@ -64,7 +64,7 @@
                 @include visually-hidden;
             }
 
-            @media (min-width: 870px) {
+            @media (min-width: 960px) {
                 flex-direction: row;
 
                 input[type="email"] {
