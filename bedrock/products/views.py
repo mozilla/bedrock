@@ -24,16 +24,29 @@ from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 
 
+def vpn_available(request):
+    country = get_country_from_request(request)
+    country_list = settings.VPN_COUNTRY_CODES
+
+    if switch("vpn-wave-vi"):
+        country_list = settings.VPN_COUNTRY_CODES + settings.VPN_COUNTRY_CODES_WAVE_VI
+
+    return country in country_list
+
+
 @require_safe
 def vpn_landing_page(request):
     template_name = "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
-    vpn_available_in_country = country in settings.VPN_COUNTRY_CODES
+    vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
+
+    if switch("vpn-wave-vi"):
+        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -54,9 +67,12 @@ def vpn_pricing_page(request):
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
-    vpn_available_in_country = country in settings.VPN_COUNTRY_CODES
+    vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
+
+    if switch("vpn-wave-vi"):
+        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
 
     context = {
         "vpn_available": vpn_available_in_country,
