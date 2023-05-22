@@ -101,7 +101,7 @@ const UpdatesForm = {
         // as default form values
         for (const [key, value] of UpdatesForm.getSearchParams()) {
             const strippedKey = key.replace('utm_', '');
-            const allowableRegex = RegExp(/^[\w\d/.%-_]{1,100}$/);
+            const allowableRegex = RegExp(/^[\w/.%-]{1,100}$/);
             if (soughtParams.includes(strippedKey)) {
                 // We only pre-populate the field if the value matches the regex
                 if (value.search(allowableRegex) !== -1) {
