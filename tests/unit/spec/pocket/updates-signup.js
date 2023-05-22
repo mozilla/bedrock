@@ -100,7 +100,7 @@ describe('updates-signup.es6.js', function () {
                     'utm_source=test-source' +
                         '&utm_medium=test-medium' +
                         '&utm_noise=test-noise-to-be-ignored' +
-                        '&utm_campaign=<script>alert("xss");</script>'
+                        '&utm_campaign=test-campaign'
                 )
             );
 
@@ -111,9 +111,32 @@ describe('updates-signup.es6.js', function () {
             UpdatesForm.init();
 
             expect(document.getElementById('campaign').value).toBe(
-                '%3Cscript%3Ealert(%22xss%22)%3B%3C%2Fscript%3E'
+                'test-campaign'
             );
             expect(document.getElementById('medium').value).toBe('test-medium');
+            expect(document.getElementById('source').value).toBe('test-source');
+        });
+    });
+
+    describe('Form boostrapping with querystrings present - XSS check', function () {
+        it('Should pull data from querystrings when available', function () {
+            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
+                new URLSearchParams(
+                    'utm_source=test-source' +
+                        '&utm_medium=test-medium<script>alert("xss");</script>' +
+                        '&utm_noise=test-noise-to-be-ignored' +
+                        '&utm_campaign=%3Cscript%3Ealert(%22xss%22)%3B%3C%2Fscript%3E'
+                )
+            );
+
+            expect(document.getElementById('campaign').value).toBe('');
+            expect(document.getElementById('medium').value).toBe('');
+            expect(document.getElementById('source').value).toBe('');
+
+            UpdatesForm.init();
+
+            expect(document.getElementById('campaign').value).toBe('');
+            expect(document.getElementById('medium').value).toBe('');
             expect(document.getElementById('source').value).toBe('test-source');
         });
     });
