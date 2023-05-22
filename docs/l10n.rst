@@ -41,7 +41,9 @@ own local flair to the ideas.
 
     Much of this documentation also applies to the use of Fluent with Pocket templates,
     with the main differences being that:
-    * the English Pocket Fluent directory is called ``l10n-pocket/``.
+
+    * the English Pocket Fluent directory is called ``l10n-pocket/``
+    * there are no activation-threshold checks for Pocket templates - we expect all strings to be translated in one go, because they are done via a vendor
 
 
 .. _Project Fluent: https://projectfluent.org/
@@ -766,7 +768,7 @@ operation can have its own distinct Fluent files and translation strategy.
 As of Summer 2022, there are two separate L10N integrations within Bedrock:
 
 * Mozilla.org ("Mozorg mode")
-* Pocket Marketing Pages ("Pocket mode" - intended for getpocket.com but not yet live)
+* Pocket Marketing Pages ("Pocket mode")
 
 These integrations are similar in their approach, but not identical in how they run.
 They use different translations strategies, which requires slightly different data flows.
