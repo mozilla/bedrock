@@ -57,9 +57,6 @@ describe('updates-signup.es6.js', function () {
                                 <input type="email" name="email" id="email" placeholder="Your email address" required aria-required="true">
 
                                 <input type="hidden" name="newsletter" id="newsletter" value="news" required aria-required="true">
-                                <input type="hidden" name="campaign" id="campaign">
-                                <input type="hidden" name="medium" id="medium">
-                                <input type="hidden" name="source" id="source">
                                 <input type="hidden" name="language" id="language" value="en">
                                 <input type="hidden" name="country" id="country" value="US">
                                 <input type="hidden" name="form_source" id="form_source" value="/en/pocket-updates-signup/pilot/">
@@ -93,73 +90,7 @@ describe('updates-signup.es6.js', function () {
         node.parentNode.removeChild(node);
     });
 
-    describe('Form boostrapping with querystrings present', function () {
-        it('Should pull data from querystrings when available', function () {
-            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
-                new URLSearchParams(
-                    'utm_source=test-source' +
-                        '&utm_medium=test-medium' +
-                        '&utm_noise=test-noise-to-be-ignored' +
-                        '&utm_campaign=test-campaign'
-                )
-            );
-
-            expect(document.getElementById('campaign').value).toBe('');
-            expect(document.getElementById('medium').value).toBe('');
-            expect(document.getElementById('source').value).toBe('');
-
-            UpdatesForm.init();
-
-            expect(document.getElementById('campaign').value).toBe(
-                'test-campaign'
-            );
-            expect(document.getElementById('medium').value).toBe('test-medium');
-            expect(document.getElementById('source').value).toBe('test-source');
-        });
-    });
-
-    describe('Form boostrapping with querystrings present - XSS check', function () {
-        it('Should pull data from querystrings when available and clean', function () {
-            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
-                new URLSearchParams(
-                    'utm_source=test-source' +
-                        '&utm_medium=test-medium<script>alert("xss");</script>' +
-                        '&utm_noise=test-noise-to-be-ignored' +
-                        '&utm_campaign=%3Cscript%3Ealert%28%22xss%22%29%3B%3C%2Fscript%3E'
-                )
-            );
-
-            expect(document.getElementById('campaign').value).toBe('');
-            expect(document.getElementById('medium').value).toBe('');
-            expect(document.getElementById('source').value).toBe('');
-
-            UpdatesForm.init();
-
-            expect(document.getElementById('campaign').value).toBe('');
-            expect(document.getElementById('medium').value).toBe('');
-            expect(document.getElementById('source').value).toBe('test-source');
-        });
-    });
-
-    describe('Form boostrapping without querystrings present', function () {
-        it('should find no data to pull data from querystrings', function () {
-            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
-                new URLSearchParams('')
-            );
-
-            expect(document.getElementById('campaign').value).toBe('');
-            expect(document.getElementById('medium').value).toBe('');
-            expect(document.getElementById('source').value).toBe('');
-
-            UpdatesForm.init();
-
-            expect(document.getElementById('campaign').value).toBe('');
-            expect(document.getElementById('medium').value).toBe('');
-            expect(document.getElementById('source').value).toBe('');
-        });
-    });
-
-    describe('Form submission flows', function () {
+    describe('Form submission', function () {
         let xhr;
         let xhrRequests = [];
 
@@ -175,7 +106,7 @@ describe('updates-signup.es6.js', function () {
             xhrRequests = [];
         });
 
-        it('should handle success', function () {
+        it('should handle success (no querystrings in URL)', function () {
             spyOn(UpdatesForm, 'handleFormSuccess').and.callThrough();
             UpdatesForm.init();
             expect(document.getElementById('newsletter').value).toBe('news');
@@ -185,6 +116,10 @@ describe('updates-signup.es6.js', function () {
                 200,
                 { 'Content-Type': 'application/json' },
                 '{"status": "success"}'
+            );
+            expect(xhrRequests[0]['requestBody']).toBe(
+                '{"email":"fox@example.com","newsletter":"news","language":"en",' +
+                    '"country":"US","form_source":"/en/pocket-updates-signup/pilot/"}'
             );
             expect(UpdatesForm.handleFormSuccess).toHaveBeenCalled();
             expect(
@@ -197,6 +132,48 @@ describe('updates-signup.es6.js', function () {
                     .getElementById('pocket-updates-form-wrapper')
                     .classList.contains('hidden')
             ).toBeTrue();
+        });
+
+        it('should sucessfully draw data from querystrings when present', function () {
+            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
+                new URLSearchParams(
+                    'utm_source=test-source' +
+                        '&utm_medium=test-medium' +
+                        '&utm_noise=test-noise-to-be-ignored' +
+                        '&utm_campaign=test-campaign'
+                )
+            );
+            spyOn(UpdatesForm, 'handleFormSuccess').and.callThrough();
+            UpdatesForm.init();
+            expect(document.getElementById('newsletter').value).toBe('news');
+            document.getElementById('email').value = 'fox@example.com';
+            document.getElementById('updates-form-submit').click();
+            expect(xhrRequests[0]['requestBody']).toBe(
+                '{"email":"fox@example.com","newsletter":"news","language":"en",' +
+                    '"country":"US","form_source":"/en/pocket-updates-signup/pilot/",' +
+                    '"source":"test-source","medium":"test-medium","campaign":"test-campaign"}'
+            );
+        });
+
+        it('should sanitise away inappropriate querystring args', function () {
+            spyOn(UpdatesForm, 'getSearchParams').and.returnValue(
+                new URLSearchParams(
+                    'utm_source=test-source-that_will_be_ok-123' +
+                        '&utm_medium=test-medium<script>alert("xss");</script>' +
+                        '&utm_noise=test-noise-to-be-ignored' +
+                        '&utm_campaign=%3Cscript%3Ealert%28%22xss%22%29%3B%3C%2Fscript%3E'
+                )
+            );
+            spyOn(UpdatesForm, 'handleFormSuccess').and.callThrough();
+            UpdatesForm.init();
+            expect(document.getElementById('newsletter').value).toBe('news');
+            document.getElementById('email').value = 'fox@example.com';
+            document.getElementById('updates-form-submit').click();
+            expect(xhrRequests[0]['requestBody']).toBe(
+                '{"email":"fox@example.com","newsletter":"news","language":"en",' +
+                    '"country":"US","form_source":"/en/pocket-updates-signup/pilot/",' +
+                    '"source":"test-source-that_will_be_ok-123"}' // campaign and medium sanitised away
+            );
         });
 
         it('should handle invalid email', function () {

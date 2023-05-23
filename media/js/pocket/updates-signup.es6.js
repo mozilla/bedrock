@@ -68,8 +68,32 @@ const UpdatesForm = {
         xhr.send(JSON.stringify(payload));
     },
 
+    extractUTMsFromQuerystring: () => {
+        const utms = {};
+        const soughtParams = ['campaign', 'medium', 'source'];
+        // Grab the UTM params for the hidden form fields and sanitise
+        let key, value;
+        for ([key, value] of UpdatesForm.getSearchParams()) {
+            value = decodeURIComponent(value);
+            const strippedKey = key.replace('utm_', '');
+            const allowableRegex = RegExp(/^[\w/.%-]{1,100}$/);
+            if (soughtParams.includes(strippedKey)) {
+                // We only use the param if its value matches the regex
+                if (value.search(allowableRegex) !== -1) {
+                    utms[strippedKey] = encodeURIComponent(value);
+                }
+            }
+        }
+        return utms;
+    },
+
     subscribe: (e) => {
-        const payload = Object.fromEntries(new FormData(form).entries());
+        // Start with the payload from the form, but then also
+        // populate campaign, medium and source keys from the URL
+        const formPayload = Object.fromEntries(new FormData(form).entries());
+        const utms = UpdatesForm.extractUTMsFromQuerystring();
+
+        const completePayload = Object.assign(formPayload, utms);
         const url = form.getAttribute('action');
 
         e.preventDefault();
@@ -83,7 +107,7 @@ const UpdatesForm = {
 
         // Submit to the server
         UpdatesForm.postToBackend(
-            payload,
+            completePayload,
             url,
             UpdatesForm.handleFormSuccess,
             UpdatesForm.handleFormError
@@ -95,29 +119,12 @@ const UpdatesForm = {
         return new URL(window.location.href).searchParams;
     },
 
-    populateFromQuerystring: () => {
-        const soughtParams = ['campaign', 'medium', 'source'];
-        // Grab the UTM params for the hidden form fields, if we can, set them
-        // as default form values
-        for (const [key, value] of UpdatesForm.getSearchParams()) {
-            const strippedKey = key.replace('utm_', '');
-            const allowableRegex = RegExp(/^[\w/.%-]{1,100}$/);
-            if (soughtParams.includes(strippedKey)) {
-                // We only pre-populate the field if the value matches the regex
-                if (value.search(allowableRegex) !== -1) {
-                    form.elements[strippedKey].value = encodeURI(value);
-                }
-            }
-        }
-    },
-
     init: () => {
         form = document.getElementById('updates-form');
         if (!form) {
             return;
         }
         form.addEventListener('submit', UpdatesForm.subscribe, false);
-        UpdatesForm.populateFromQuerystring();
     }
 };
 
