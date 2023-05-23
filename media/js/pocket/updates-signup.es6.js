@@ -80,7 +80,7 @@ const UpdatesForm = {
             if (soughtParams.includes(strippedKey)) {
                 // We only use the param if its value matches the regex
                 if (value.search(allowableRegex) !== -1) {
-                    utms[strippedKey] = encodeURIComponent(value);
+                    utms[strippedKey] = value;
                 }
             }
         }

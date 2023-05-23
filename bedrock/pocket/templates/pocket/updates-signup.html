@@ -46,7 +46,7 @@
         <p>{{ ftl('pocket-updates-signup-join-our-mailing-list') }}</p>
         <form action="{{ url('pocket.newsletter-subscribe') }}" class="mzp-c-newsletter-form pocket-updates-form" id="updates-form">
 
-          <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="subscribe-errors">
+          <div class="mzp-c-form-errors hidden" id="subscribe-errors">
             <ul class="mzp-u-list-styled">
               <li class="error-email-invalid hidden">
                 {{ ftl('pocket-updates-form-please-enter-a-valid') }}
@@ -61,8 +61,8 @@
             <label for="email" class="visually-hidden">
               {{ ftl('pocket-udpates-your-email-address') }}
             </label>
-            <input type="email" name="email" id="email" placeholder="{{ ftl('pocket-updates-your-email-address') }}" required aria-required="true">
-            <input type="hidden" name="newsletter" id="newsletter" value="news" required aria-required="true">
+            <input type="email" name="email" id="email" placeholder="{{ ftl('pocket-updates-your-email-address') }}" required>
+            <input type="hidden" name="newsletter" id="newsletter" value="news">
             <input type="hidden" name="language" id="language" value="{{LANG}}">
             <input type="hidden" name="country" id="country" value="{{country_code}}">
             <input type="hidden" name="form_source" id="form_source" value="{{request.path}}">

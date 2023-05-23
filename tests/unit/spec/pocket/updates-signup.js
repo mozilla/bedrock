@@ -39,7 +39,7 @@ describe('updates-signup.es6.js', function () {
                         <p>Join our mailing list to stay on top of improvements, tips and product updates.</p>
                         <form action="/en/_newsletter_subscribe/" class="mzp-c-newsletter-form pocket-updates-form" id="updates-form" novalidate>
 
-                            <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="subscribe-errors">
+                            <div class="mzp-c-form-errors hidden" id="subscribe-errors">
                                 <ul class="mzp-u-list-styled">
                                 <li class="error-email-invalid hidden">
                                     Please enter a valid email address.
@@ -54,9 +54,9 @@ describe('updates-signup.es6.js', function () {
                                 <label for="email" class="visually-hidden">
                                 pocket-udpates-your-email-address
                                 </label>
-                                <input type="email" name="email" id="email" placeholder="Your email address" required aria-required="true">
+                                <input type="email" name="email" id="email" placeholder="Your email address" required>
 
-                                <input type="hidden" name="newsletter" id="newsletter" value="news" required aria-required="true">
+                                <input type="hidden" name="newsletter" id="newsletter" value="news">
                                 <input type="hidden" name="language" id="language" value="en">
                                 <input type="hidden" name="country" id="country" value="US">
                                 <input type="hidden" name="form_source" id="form_source" value="/en/pocket-updates-signup/pilot/">
