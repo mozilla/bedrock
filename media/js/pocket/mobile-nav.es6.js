@@ -105,9 +105,9 @@ export const addMediaQueryListeners = function () {
                 init();
             }
         });
-    } else if (typeof mobileMenuQuery.addListener === 'function') {
+    } else if (typeof mobileMenuQuery.addEventListener === 'function') {
         // IE fallback
-        mobileMenuQuery.addListener(function (event) {
+        mobileMenuQuery.addEventListener(function (event) {
             if (event.matches) {
                 init();
             }
