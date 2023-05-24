@@ -121,3 +121,42 @@ $font-path: '/media/protocol/fonts';
         text-align: center;
     }
 }
+
+.c-ctd-modal-section {
+    background: url('/media/img/firefox/challenge-the-default/modal-grid.png');
+    background-repeat: repeat;
+    background-size: 175px;
+    background-position: 50%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+
+    .mzp-l-content {
+        height: 300px;
+    }
+
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.modal-btn {
+    background: none;
+    box-shadow: none;
+    outline: 0;
+    border: 0;
+    position: relative;;
+}
+
+.agree-all {
+    border: 1px solid $color-black;
+    background: #D1FFEE;
+    width: max-content;
+    height: max-content;
+    padding: $spacing-sm $spacing-md;
+}
