@@ -6,8 +6,6 @@
 
 import MzpSupports from '@mozilla-protocol/core/protocol/js/supports';
 import MzpUtils from '@mozilla-protocol/core/protocol/js/utils';
-import MzpDetails from '@mozilla-protocol/core/protocol/js/details';
 
 window.MzpSupports = MzpSupports;
 window.MzpUtils = MzpUtils;
-window.MzpDetails = MzpDetails;

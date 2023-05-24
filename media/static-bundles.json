@@ -1641,7 +1641,6 @@
     },
     {
       "files": [
-        "js/base/globals.js",
         "js/libs/classlist.js",
         "js/libs/array-from.js",
         "js/base/search-params.js",
@@ -1649,12 +1648,13 @@
         "js/base/mozilla-run.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "js/base/protocol-globals.es6.js"
+        "js/base/protocol/utils.es6.js"
       ],
       "name": "lib"
     },
     {
       "files": [
+        "js/base/protocol/init-details.es6.js",
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
