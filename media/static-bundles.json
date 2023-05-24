@@ -1733,6 +1733,13 @@
     },
     {
       "files": [
+        "js/pocket/updates-signup.es6.js",
+        "js/pocket/updates-signup-init.es6.js"
+      ],
+      "name": "pocket-updates-signup"
+    },
+    {
+      "files": [
         "js/firefox/enterprise/landing.js"
       ],
       "name": "firefox-enterprise"

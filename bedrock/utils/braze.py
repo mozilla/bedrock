@@ -42,8 +42,10 @@ class BrazeClient:
         event = {
             "name": "newsletter_signup",
             "time": f"{datetime.utcnow().isoformat()}Z",
-            "newsletter": newsletter_braze_id,
-            "subscriber_form_type": "website",
+            "properties": {
+                "newsletter": newsletter_braze_id,
+                "subscriber_form_type": "website",
+            },
         }
         if external_id:
             event["external_id"] = external_id
@@ -55,7 +57,7 @@ class BrazeClient:
 
         for name, value in kwargs.items():
             if name in self.ALLOWED_PARAMS:
-                event[f"subscriber_{name}"] = value
+                event["properties"][f"subscriber_{name}"] = value
 
         data = {"attributes": [attributes], "events": [event]}
         headers = {"Authorization": f"Bearer {self.api_key}"}

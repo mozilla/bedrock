@@ -58,9 +58,11 @@ def test_braze_subscribe__external_id_present(mock_requests_post, braze_client):
                 {
                     "name": "newsletter_signup",
                     "time": "2023-01-02T12:34:56.123456Z",
-                    "newsletter": "99887766test",
-                    "subscriber_form_type": "website",
                     "external_id": "test1234",
+                    "properties": {
+                        "newsletter": "99887766test",
+                        "subscriber_form_type": "website",
+                    },
                 }
             ],
         },
@@ -97,11 +99,13 @@ def test_braze_subscribe__no_external_id(mock_requests_post, braze_client):
                 {
                     "name": "newsletter_signup",
                     "time": "2023-01-02T12:34:56.123456Z",
-                    "newsletter": "99887766test",
-                    "subscriber_form_type": "website",
                     "user_alias": {
                         "alias_name": "test@example.com",
                         "alias_label": "email",
+                    },
+                    "properties": {
+                        "newsletter": "99887766test",
+                        "subscriber_form_type": "website",
                     },
                 }
             ],
@@ -151,18 +155,20 @@ def test_braze_subscribe__allowed_params_processing(mock_requests_post, braze_cl
                 {
                     "name": "newsletter_signup",
                     "time": "2023-01-02T12:34:56.123456Z",
-                    "newsletter": "99887766test",
-                    "subscriber_form_type": "website",
                     "user_alias": {
                         "alias_name": "test@example.com",
                         "alias_label": "email",
                     },
-                    "subscriber_campaign": "test",
-                    "subscriber_medium": "unit-tests",
-                    "subscriber_source": "testland",
-                    "subscriber_language": "en-GB",
-                    "subscriber_country": "GB",
-                    "subscriber_form_source": "word-of-mouth",
+                    "properties": {
+                        "newsletter": "99887766test",
+                        "subscriber_form_type": "website",
+                        "subscriber_campaign": "test",
+                        "subscriber_medium": "unit-tests",
+                        "subscriber_source": "testland",
+                        "subscriber_language": "en-GB",
+                        "subscriber_country": "GB",
+                        "subscriber_form_source": "word-of-mouth",
+                    },
                 }
             ],
         },

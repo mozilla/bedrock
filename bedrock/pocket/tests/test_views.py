@@ -118,7 +118,10 @@ def test_newsletter_subscribe__bad_data(client):
         },
     )
     assert resp.status_code == HTTPStatus.BAD_REQUEST
-    assert json.loads(resp.content) == {"error": "Error parsing JSON data"}
+    assert json.loads(resp.content) == {
+        "status": "error",
+        "detail": "Error parsing JSON data",
+    }
 
 
 @pytest.mark.parametrize(
@@ -158,7 +161,7 @@ def test_newsletter_subscribe__invalid_form_data(bad_payload, client):
     assert resp.status_code == HTTPStatus.BAD_REQUEST
 
     response_data = json.loads(resp.content)
-    assert response_data["error"].startswith("Invalid form data: ")
+    assert response_data["status"] == "error"
 
 
 @override_settings(ROOT_URLCONF="bedrock.urls.pocket_mode")
@@ -174,4 +177,7 @@ def test_newsletter_subscribe__braze_error(mock_braze_subscribe, client):
         content_type="application/json",
     )
     assert resp.status_code == HTTPStatus.INTERNAL_SERVER_ERROR
-    assert json.loads(resp.content) == {"error": "Error contacting subscription provider"}
+    assert json.loads(resp.content) == {
+        "status": "error",
+        "detail": "Error contacting subscription provider",
+    }

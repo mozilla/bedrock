@@ -3,17 +3,26 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-$image-path: '/media/protocol/img';
+@use 'sass:color';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../utils/variables';
 @import '../includes/nav';
 @import '../includes/footer';
 
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/base/elements/forms';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+
+
 .pocket-updates {
     h1,
     p {
-        text-align: left;
+        text-align: center;
+        @media (min-width: 960px) {
+            text-align: left;
+        }
     }
 
     h1 {
@@ -24,10 +33,96 @@ $image-path: '/media/protocol/img';
 
     p {
         @include text-body-lg;
+    }
 
-        a {
-            color: $color-action-primary;
+    .mzp-c-button {
+        background-color: $color-button-red;
+        border: 0;
+        height: 40px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: color.adjust($color-button-red, $lightness: -10%);
+            color: $color-white;
         }
     }
 
+    .pocket-updates-form {
+        .mzp-u-list-styled {
+            margin: 8px;
+            padding: 0;
+
+            li {
+                margin: 0;
+            }
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            label {
+                @include visually-hidden;
+            }
+
+            @media (min-width: 960px) {
+                flex-direction: row;
+
+                input[type="email"] {
+                    flex-grow: 2;
+                    margin-right: 30px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .mzp-c-form-errors {
+            max-width: $content-md;
+
+            &:last-child {
+               margin: 0 auto $spacing-lg;
+            }
+        }
+
+        @media #{$mq-lg} {
+            .mzp-c-form-errors {
+                &:last-child {
+                    margin-bottom: $spacing-2xl;
+                }
+            }
+        }
+
+    }
+
+    .legal-links {
+        display: flex;
+        justify-content: center;
+
+        p {
+            @include text-body-sm;
+        }
+
+        p:first-of-type {
+            margin-right: $spacing-xs;
+        }
+
+        p:last-of-type {
+            margin-left: $spacing-xs;
+        }
+
+        .separator {
+            @include text-body-md;
+            line-height: 1;
+        }
+
+        a {
+            color: $color-black;
+        }
+
+        @media (min-width: 960px) {
+            justify-content: flex-end;
+        }
+    }
 }
