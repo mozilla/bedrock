@@ -132,7 +132,11 @@ def vpn_subscribe_link(
     product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
 
     if "analytics" in selected_plan:
+        if class_name is None:
+            class_name = ""
         class_name += " ga-begin-checkout"
+        if optional_attributes is None:
+            optional_attributes = {}
         optional_attributes["data-ga-item"] = _vpn_get_ga_data(selected_plan)
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)

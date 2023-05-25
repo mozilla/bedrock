@@ -26,7 +26,6 @@ module.exports = function (config) {
             'media/js/base/mozilla-run.js',
             'media/js/base/core-datalayer-page-id.js',
             'media/js/base/core-datalayer.js',
-            'media/js/base/datalayer-begincheckout.es6.js',
             'media/js/base/experiment-utils.es6.js',
             'media/js/base/mozilla-fxa.js',
             'media/js/base/mozilla-pixel.js',
