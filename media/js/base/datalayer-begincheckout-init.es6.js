@@ -9,8 +9,12 @@ import TrackBeginCheckout from './datalayer-begincheckout.es6';
 (function () {
     const buttons = document.querySelectorAll('.ga-begin-checkout');
     for (let i = 0; i < buttons.length; ++i) {
-        buttons[i].addEventListener('click', function (event) {
-            TrackBeginCheckout.handleLinkWithItemData(event);
-        });
+        buttons[i].addEventListener(
+            'click',
+            function (event) {
+                TrackBeginCheckout.handleLinkWithItemData(event);
+            },
+            false
+        );
     }
 })();
