@@ -42,9 +42,9 @@ bleach[css]==6.0.0 \
     --hash=sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414 \
     --hash=sha256:33c16e3353dbd13028ab4799a0f89a83f113405c766e9c122df8a06f5b85b3f4
     # via -r requirements/prod.in
-boto3==1.26.137 \
-    --hash=sha256:b6d729beec0462ac1ae4a83a0fb04a62061a9f1f406d3151b45345daa9d1a5bc \
-    --hash=sha256:cac699fc46b43c10ca12aa6ea087c0b979613c5e3570aea11d86891652cb581e
+boto3==1.26.141 \
+    --hash=sha256:152def2fcc9854dcc42383d2b53e2ed2c9ccb5ff6cc0f3ada20f1ab54418ede4 \
+    --hash=sha256:a5d6fdcaec863bc7ad2f8133ff9a926d6f06468b83b5fb631cd90bd33b709c45
     # via -r requirements/prod.in
 botocore==1.29.141 \
     --hash=sha256:b01d156c42765f3f437959e01a8c7f3cb0e29b24aa0b8f373498133408b2e3c7 \
