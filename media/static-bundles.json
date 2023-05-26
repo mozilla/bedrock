@@ -1259,6 +1259,12 @@
         "css/products/relay/faq.scss"
       ],
       "name": "relay-faq"
+    },
+    {
+      "files": [
+        "css/products/relay/waitlist.scss"
+      ],
+      "name": "relay-waitlist"
     }
   ],
   "js": [
@@ -1955,6 +1961,12 @@
         "js/mozorg/rise25.js"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "js/products/relay/waitlist.es6.js"
+      ],
+      "name": "relay-waitlist"
     }
   ]
 }
