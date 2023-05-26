@@ -23,7 +23,7 @@ firefox-channel-all-languages-and-builds = All Languages and Builds
 
 # Variables:
 #   $link (url) - link to https://www.mozilla.org/privacy/firefox/#pre-release
-firefox-channel-beta-is-an-unstable-testing = { -brand-name-beta } is an unstable testing and development platform. By default, { -brand-name-beta } sends data to { -brand-name-mozilla } — and sometimes our partners — to help us handle problems and try ideas. <a href="{ $link }">Learn what is shared</a>.
+firefox-channel-beta-is-an-unstable-testing = { -brand-name-beta } is an unstable testing and development platform. By default, { -brand-name-beta } sends data to { -brand-name-mozilla } — and sometimes our partners — to help us handle problems and try ideas. <a href="{ $link }">Learn what is shared</a>.<br><p>NOTE :- The app will be updated approximately once a day.</p>
 
 firefox-channel-firefox-beta-automatically = { -brand-name-firefox-beta } automatically sends feedback to { -brand-name-mozilla }.
 
