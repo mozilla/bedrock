@@ -1275,6 +1275,12 @@
     },
     {
       "files": [
+        "css/products/relay/faq.scss"
+      ],
+      "name": "relay-faq"
+    },
+    {
+      "files": [
         "css/products/relay/waitlist.scss"
       ],
       "name": "relay-waitlist"
