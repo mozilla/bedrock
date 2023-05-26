@@ -5,8 +5,12 @@
  */
 
 import '@mozilla-protocol/core/protocol/js/details';
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
 const toggleGrid = document.querySelector('.toggle-grid');
+// beacuse of the way the modal grid is set up, there are multiple modal buttons in the DOM
+const modalButtons = document.querySelectorAll('.modal-btn');
+const content = document.querySelector('.mzp-u-modal-content');
 
 function debounce(func, wait, immediate) {
     let timeout;
@@ -69,3 +73,19 @@ window.addEventListener(
 );
 
 fillGrid();
+
+for (let index = 0; index < modalButtons.length; index++) {
+    const button = modalButtons[index];
+    button.addEventListener(
+        'click',
+        (e) => {
+            e.preventDefault();
+            MzpModal.createModal(e.target, content, {
+                title: 'Von Anfang an für alle',
+                className: 'ctd-modal',
+                closeText: 'Close modal'
+            });
+        },
+        false
+    );
+}

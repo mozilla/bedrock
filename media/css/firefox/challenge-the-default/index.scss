@@ -7,6 +7,7 @@ $font-path: '/media/protocol/fonts';
 
 @use "./toggle";
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
 .c-ctd-hero {
@@ -171,4 +172,12 @@ $font-path: '/media/protocol/fonts';
     background: #D1FFEE;
     padding: $spacing-sm $spacing-md;
     width: max-content;
+}
+
+.ctd-modal .mzp-c-modal-inner {
+    max-width: 500px;
+
+    h2 {
+        color: $color-white;
+    }
 }
