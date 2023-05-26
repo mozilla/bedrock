@@ -48,4 +48,5 @@ if settings.DEV:
     urlpatterns += (
         path("relay/", views.relay_landing_page, name="products.relay.landing"),
         path("relay/invite/", views.relay_invite_page, name="products.relay.invite"),
+        page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
     )

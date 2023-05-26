@@ -1272,6 +1272,12 @@
         "css/products/relay/landing.scss"
       ],
       "name": "relay-landing"
+    },
+    {
+      "files": [
+        "css/products/relay/faq.scss"
+      ],
+      "name": "relay-faq"
     }
   ],
   "js": [
