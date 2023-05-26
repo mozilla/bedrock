@@ -3,7 +3,7 @@ babis==0.2.4
 basket-client==1.0.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
-boto3==1.26.135
+boto3==1.26.137
 chardet==5.1.0
 commonware==0.6.0
 contentful==2.1.1
@@ -46,7 +46,7 @@ python-memcached==1.59
 PyYAML==6.0
 qrcode==7.4.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
-requests==2.30.0
+requests==2.31.0
 rich-text-renderer==0.2.7
 sentry-sdk==1.23.1
 sentry-processor==0.0.1
