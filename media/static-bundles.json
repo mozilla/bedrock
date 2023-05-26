@@ -1278,6 +1278,12 @@
         "css/products/relay/faq.scss"
       ],
       "name": "relay-faq"
+    },
+    {
+      "files": [
+        "css/products/relay/waitlist.scss"
+      ],
+      "name": "relay-waitlist"
     }
   ],
   "js": [
@@ -2032,6 +2038,12 @@
         "js/mozorg/santa-locator.js"
       ],
       "name": "santa_locator"
+    },
+    {
+      "files": [
+        "js/products/relay/waitlist.es6.js"
+      ],
+      "name": "relay-waitlist"
     }
   ]
 }

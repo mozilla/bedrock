@@ -20,7 +20,11 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
-from bedrock.products.forms import VPNWaitlistForm
+from bedrock.products.forms import (
+    RelayBundleWaitlistForm,
+    RelayPhoneWaitlistForm,
+    VPNWaitlistForm,
+)
 from lib import l10n_utils
 
 
@@ -242,3 +246,25 @@ def relay_invite_page(request):
     ctx = {"action": "action", "newsletter_form": "newsletter_form"}
 
     return l10n_utils.render(request, "products/relay/invite.html", ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_vpn_waitlist__page(request):
+    ftl_files = ["products/relay/waitlist", "products/relay/shared"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = RelayBundleWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
+
+    return l10n_utils.render(request, "products/relay/waitlist/vpn.html", ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_phone_waitlist__page(request):
+    ftl_files = ["products/relay/waitlist", "products/relay/shared"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = RelayPhoneWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
+
+    return l10n_utils.render(request, "products/relay/waitlist/phone.html", ctx, ftl_files=ftl_files)
