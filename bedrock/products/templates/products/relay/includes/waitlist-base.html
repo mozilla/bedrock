@@ -1,0 +1,86 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/relay/base.html" %}
+
+{% block page_css %}
+{{ css_bundle('relay-waitlist') }}
+{% endblock %}
+
+{% block sub_navigation %}
+{% include 'products/relay/includes/subnav.html' %}
+{% endblock %}
+
+{% set product = ftl('waitlist-bundle-name') %}
+
+
+{% block content %}
+<main class="mzp-l-content c-waitlist-container">
+  <div class="c-waitlist-heading">
+    <h1>{% block waitlist_heading %}{% endblock %}</h1>
+    <p>{% block waitlist_lede %}{% endblock %}</p>
+  </div>
+  <form id="newsletter-form" class="mzp-l-content mzp-t-content-md  mzp-t-content-nospace mzp-c-newsletter-form c-waitlist-form"
+    action="{{ action }}" method="post">
+    <div hidden>
+      {{ newsletter_form.newsletters|safe }}
+    </div>
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+    <input type="hidden" name="format" id="format-html" value="H">
+
+    <fieldset class="mzp-c-newsletter-content">
+      <div class="mzp-c-form-errors hide-from-legacy-ie" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('waitlist-subscribe-please-enter-a-valid') }}</li>
+          <li class="error-select-country hidden">{{ ftl('waitlist-subscribe-please-select-country') }}</li>
+          <li class="error-select-language hidden">{{ ftl('waitlist-subscribe-please-select-language') }}</li>
+          <li class="error-try-again-later hidden">{{ ftl('waitlist-subscribe-error-unknown') }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <label for="id_email">
+          {{ ftl('waitlist-control-email-label') }}
+          <em class="mzp-c-fieldnote">{{ ftl('waitlist-control-required') }}</em>
+        </label>
+        <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true"
+          placeholder="{{ ftl('waitlist-control-email-placeholder') }}">
+      </div>
+
+      <div id="newsletter-details">
+        <label for="id_country">
+          {{ ftl('waitlist-control-country-label-2') }}
+          <em class="mzp-c-fieldnote">{{ ftl('waitlist-control-required') }}</em>
+        </label>
+        {{ newsletter_form.country|safe }}
+
+        <label for="id_lang">
+          {{ ftl('waitlist-control-locale-label') }}
+          <em class="mzp-c-fieldnote">{{ ftl('waitlist-control-required') }}</em>
+        </label>
+        {{ newsletter_form.lang|safe }}
+      </div>
+
+      <p class="mzp-c-form-submit">
+        <button class="mzp-c-button mzp-t-product mzp-t-xl" id="newsletter-submit" type="submit">{{
+          ftl('waitlist-submit-label-2')}}</button>
+      </p>
+
+      <div class="c-waitlist-privacy">
+        <p>{{ ftl('waitlist-privacy-policy-agree-2', url=url('privacy.notices.subscription-services')) }}</p>
+
+        <p>{% block waitlist_privacy %}{% endblock %}</p>
+      </div>
+    </fieldset>
+  </form>
+  <div id="newsletter-thanks" class="c-waitlist-success hidden">
+    <h3>{{ ftl('waitlist-subscribe-success-title') }}</h3>
+    <p>{{ ftl('waitlist-subscribe-success-desc', product=product) }}</p>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}{{ js_bundle("relay-waitlist")}}{% endblock %}
