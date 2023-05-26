@@ -260,9 +260,29 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     </div>
   </section>
   <section class="c-ctd-modal-section">
-    <button class="modal-btn">
-      <img src="{{ static('img/firefox/challenge-the-default/ctd-cta.svg') }}" alt="Challenge the default" width="261" height="93" />
-    </button>
+  {# To get the design to work there will be three grids that will only be shown with specific breakpoints #}
+    <div class="modal-grid small">
+      {% for element in range(7) %}
+      <span class="agree-all">Alles akzeptieren</span>
+      {% endfor %}
+      <button class="modal-btn">
+        <img src="{{ static('img/firefox/challenge-the-default/ctd-cta.svg') }}" alt="Challenge the default" width="261" height="93" />
+      </button>
+      {% for element in range(7) %}
+        <span class="agree-all">Alles akzeptieren</span>
+      {% endfor %}
+    </div>
+    <div class="modal-grid medium">
+      {% for element in range(12) %}
+        <span class="agree-all">Alles akzeptieren</span>
+      {% endfor %}
+      <button class="modal-btn">
+        <img src="{{ static('img/firefox/challenge-the-default/ctd-cta.svg') }}" alt="Challenge the default" width="261" height="93" />
+      </button>
+      {% for element in range(12) %}
+        <span class="agree-all">Alles akzeptieren</span>
+      {% endfor %}
+    </div>
   </section>
 </main>
 {% endblock %}

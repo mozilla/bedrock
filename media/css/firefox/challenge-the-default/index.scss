@@ -122,27 +122,33 @@ $font-path: '/media/protocol/fonts';
     }
 }
 
-.c-ctd-modal-section {
-    background: url('/media/img/firefox/challenge-the-default/modal-grid.png');
-    background-repeat: repeat;
-    background-size: 175px;
-    background-position: 50%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-
-    .mzp-l-content {
-        height: 300px;
-    }
-
-}
 
 .modal-grid {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
+    gap: $spacing-md;
     justify-items: center;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    &.small {
+        display: grid;
+    }
+
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(5, 1fr);
+
+        &.small {
+            display: none;
+        }
+
+        &.medium {
+            display: grid;
+        }
+    }
 }
 
 .modal-btn {
@@ -150,13 +156,19 @@ $font-path: '/media/protocol/fonts';
     box-shadow: none;
     outline: 0;
     border: 0;
-    position: relative;;
+    position: relative;
+    grid-column: 2;
+    grid-row: 3;
+    cursor: pointer;
+
+    @media #{$mq-md} {
+        grid-column: 3
+    }
 }
 
 .agree-all {
     border: 1px solid $color-black;
     background: #D1FFEE;
-    width: max-content;
-    height: max-content;
     padding: $spacing-sm $spacing-md;
+    width: max-content;
 }
