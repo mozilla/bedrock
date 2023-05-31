@@ -11,6 +11,5 @@ premium-promo-hero-body-2-html = With { -brand-name-firefox-relay-premium }, you
 # Variables:
 #   $monthly_price (string) - the monthly cost (including currency symbol) for Relay Premium. Examples: $0.99, 0,99 €
 premium-promo-hero-body-3 = With { -brand-name-firefox-relay-premium }, you get unlimited custom email masks that forward only the emails you want to your true email address.
-premium-promo-hero-cta = Upgrade now
 
 premium-promo-availability-warning-3 = { -brand-name-relay-premium } is available in Austria, Belgium, Canada, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malaysia, Malta, Netherlands, New Zealand, Portugal, Singapore, Slovakia, Slovenia, Spain, Sweden, Switzerland, United Kingdom, and the United States.

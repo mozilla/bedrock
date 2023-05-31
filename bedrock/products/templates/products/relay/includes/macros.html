@@ -1,0 +1,69 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+
+{% macro waitlist(product) -%}
+  {% if product == 'relay-bundle' %}
+    {% set link = url('products.relay.waitlist.bundle') %}
+  {% elif product == 'relay-phone' %}
+    {% set link = url('products.relay.waitlist.phone') %}
+  {% else %}
+    {% set link = url('products.relay.waitlist.premium') %}
+  {% endif %}
+  <a href="{{ link }}" class="mzp-c-button mzp-t-product mzp-t-secondary c-matrix-footer-waitlist">{{ ftl('plan-matrix-join-waitlist')}}</a>
+{%- endmacro %}
+
+{% macro toggle(position, product) -%}
+  {% set group = 'plan-{position}-{product}'.format(position=position, product=product) %}
+
+      <span class="c-toggle-track"></span>
+      <input type="radio" name="{{ group }}" value="monthly" id="{{ group }}-monthly" class="c-toggle-input c-toggle-input-monthly">
+      <label for="{{ group }}-monthly" class="c-toggle-label c-toggle-label-monthly">
+        <span>{{ ftl('plan-matrix-price-period-monthly') }}</span>
+      </label>
+      <input type="radio" name="{{ group }}" value="yearly" id="{{ group }}-yearly" class="c-toggle-input c-toggle-input-yearly" checked>
+      <label for="{{ group }}-yearly" class="c-toggle-label c-toggle-label-yearly">
+        <span>{{ ftl('plan-matrix-price-period-yearly') }}</span>
+      </label>
+
+      <em class="c-toggle-price c-toggle-price-monthly">{{ relay_monthly_price(plan='monthly', country_code=country_code, lang=LANG, product=product) }}</em>
+      <small class="c-matrix-footer-period c-matrix-footer-period-monthly">{{ ftl('plan-matrix-price-period-monthly-footnote-1') }}</small>
+      {{ relay_subscribe_link(
+        entrypoint=_utm_source,
+        link_text=ftl('plan-matrix-sign-up'),
+        product=product,
+        plan='monthly',
+        class_name='mzp-c-button mzp-t-product mzp-t-lg c-matrix-footer-button c-matrix-footer-button-monthly',
+        country_code=country_code,
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-relay',
+          'data-cta-position': 'matrix'
+        })
+      }}
+
+      <em class="c-toggle-price c-toggle-price-yearly">{{ relay_monthly_price(plan='yearly', country_code=country_code, lang=LANG, product=product) }}</em>
+      <small class="c-matrix-footer-period c-matrix-footer-period-yearly">{{ ftl('plan-matrix-price-period-yearly-footnote-1') }}</small>
+      {{ relay_subscribe_link(
+        entrypoint=_utm_source,
+        link_text=ftl('plan-matrix-sign-up'),
+        product=product,
+        plan='yearly',
+        class_name='mzp-c-button mzp-t-product mzp-t-lg c-matrix-footer-button c-matrix-footer-button-yearly',
+        country_code=country_code,
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-relay',
+          'data-cta-position': 'matrix'
+        })
+      }}
+{%- endmacro %}

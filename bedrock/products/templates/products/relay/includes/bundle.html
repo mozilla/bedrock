@@ -4,11 +4,15 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+
+{% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+
+{% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+
 <div class="mzp-l-content">
   <div class="mzp-c-emphasis-box mzp-t-dark t-bundle">
-
-    <h2 class="mzp-u-title-sm">{{ ftl('bundle-banner-header-2', monthly_price="TKTK") }}</h2>
-    <p>{{ ftl('bundle-banner-body-3', savings="TKTK") }}</p>
+    <h2 class="mzp-u-title-sm">{{ ftl('bundle-banner-header-2', monthly_price=monthly_price) }}</h2>
+    <p>{{ ftl('bundle-banner-body-3', savings=savings) }}</p>
     <h3 class="c-bundle-list-heading">{{ ftl('bundle-banner-plan-header-2') }}</h3>
     <ul class="c-bundle-list">
       <li>{% include 'products/relay/includes/email.svg' %} {{ ftl('bundle-banner-plan-modules-email-masking') }}</li>
@@ -19,8 +23,24 @@
       <li class="c-bundle-stat">{{ ftl('bundle-feature-three') }}</li>
     </ul>
     <div>
-      <button>{{ ftl('bundle-banner-cta') }}</button>
-      <small>{{ ftl('bundle-banner-money-back-guarantee-2', days_guarantee="TKTK") }}</small>
+      {{ vpn_subscribe_link(
+        entrypoint=_utm_source,
+        link_text=ftl('bundle-banner-cta'),
+        plan='12-month',
+        class_name='mzp-c-button mzp-t-primary mzp-t-dark mzp-t-lg',
+        country_code=country_code,
+        lang=LANG,
+        bundle_relay=True,
+        optional_parameters={
+          'utm_campaign': _utm_campaign
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-vpn',
+          'data-cta-text': 'Get VPN plus Relay 12-month',
+          'data-cta-position': 'pricing'
+        })
+      }}
+      <small>{{ ftl('bundle-banner-money-back-guarantee-2', days_guarantee=settings.RELAY_VPN_BUNDLE_GUARANTEE) }}</small>
     </div>
   </div>
 </div>

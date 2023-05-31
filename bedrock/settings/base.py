@@ -1719,6 +1719,8 @@ VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
     "SY",  # Syria
 ]
 
+# VPN / RELAY BUNDLE ============================================================================
+
 # Product ID for VPN & Relay bundle subscriptions.
 VPN_RELAY_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
 
@@ -1730,7 +1732,7 @@ VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
                 "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
                 "price": "US$6.99",
                 "total": "US$83.88",
-                "saving": 50,
+                "saving": 40,
                 "analytics": {
                     "brand": "vpn",
                     "plan": "vpn + relay",
@@ -1760,12 +1762,372 @@ VPN_RELAY_BUNDLE_COUNTRY_CODES = [
     "US",  # United States of America
 ]
 
-# RELAY ==============================================================
+# RELAY =========================================================================================
 
 # Relay email mask domain
 RELAY_MAIL_DOMAIN = "mozmail.com"
 
-# Relay stats
+# Relay, number of email addresses include in the free plan
 RELAY_MAX_NUM_FREE_ALIASES = 5
-RELAY_BUNDLE_VPN_SERVERS = 400
-RELAY_BUNDLE_VPN_COUNTRIES = 30
+
+# URL for Mozilla Relay subscription links
+# ***This URL *MUST* end in a traling slash!***
+RELAY_SUBSCRIPTION_URL = config("RELAY_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+
+# Product ID for Relay subscriptions
+RELAY_EMAIL_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_KEq0LXqs7vysQT" if DEV else "prod_KGizMiBqUJdYoY")
+RELAY_PHONE_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_LviM2I0paxH1DZ" if DEV else "prod_KGizMiBqUJdYoY")
+
+# Relay subscription plan IDs by currency/language.
+RELAY_EMAIL_PLAN_ID_MATRIX = {
+    "chf": {  # Swiss franc
+        "de": {  # German
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCqOJNcmPzuWtRuIXpQRxi",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCqyJNcmPzuWtR3Um5qDPu",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCvpJNcmPzuWtRq9ci2gXi",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCwMJNcmPzuWtRm6ebmq2N",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCiBJNcmPzuWtRxtI8D5Uy",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYClxJNcmPzuWtRWjslDdkG",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+    },
+    "euro": {  # Euro
+        "de": {  # German
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYC79JNcmPzuWtRU7Q238yL",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYC7xJNcmPzuWtRcdKXCVZp",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "es": {  # Spanish
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCWmJNcmPzuWtRtopZog9E",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCXNJNcmPzuWtRu586XOFf",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYBuLJNcmPzuWtRn58XQcky",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYBwcJNcmPzuWtRpgoWcb03",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCMrJNcmPzuWtRTP9vD8wY",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCN2JNcmPzuWtRtWz7yMno",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "nl": {  # Dutch
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCdLJNcmPzuWtR0J1EHoJ0",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCdtJNcmPzuWtRVm4jLzq2",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "ga": {  # Irish
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LhdrkJNcmPzuWtRvCc4hsI2",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LhdprJNcmPzuWtR7HqzkXTS",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "sv": {  # Sweedish
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYBblJNcmPzuWtRGRHIoYZ5",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYBeMJNcmPzuWtRT5A931WH",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "fi": {  # Finnish
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYBn9JNcmPzuWtRI3nvHgMi",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYBq1JNcmPzuWtRmyEa08Wv",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+    },
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LXUcnJNcmPzuWtRpbNOajYS",
+                "price": 1.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
+                "price": 0.99,
+                "currency": "USD",
+            },
+        },
+        "gb": {
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1LYCHpJNcmPzuWtRhrhSYOKB",
+                "price": 1.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1LYCIlJNcmPzuWtRQtYLA92j",
+                "price": 0.99,
+                "currency": "USD",
+            },
+        },
+    },
+}
+RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
+    # Austria
+    "AT": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Belgium
+    "BE": {
+        "fr": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+        "de": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Switzerland
+    "CH": {
+        "fr": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["fr"],
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["de"],
+        "it": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["it"],
+    },
+    # Germany
+    "DE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Spain
+    "ES": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["es"],
+    },
+    # France
+    "FR": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+    },
+    # Ireland
+    "IE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["ga"],
+    },
+    # Italy
+    "IT": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["it"],
+    },
+    # Netherlands
+    "NL": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Sweden
+    "SE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["sv"],
+    },
+    # Finland
+    "FI": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fi"],
+    },
+    # USA
+    "US": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # Great Britian
+    "GB": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Canada
+    "CA": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # New Zealand
+    "NZ": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Malaysia
+    "MY": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Singapore
+    "SG": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+}
+
+# Countries where Relay Email Masking is available.
+RELAY_EMAIL_COUNTRY_CODES = [
+    "CA",  # Canada
+    "MY",  # Malaysia
+    "NZ",  # New Zealand
+    "SG",  # Singapore
+    # United Kingdom + "Territories"
+    "GB",  # United Kingdom of Great Britain and Northern Island
+    "GG",  # Guernsey (a British Crown dependency)
+    "IM",  # Isle of Man (a British Crown dependency)
+    "IO",  # British Indian Ocean Territory
+    "JE",  # Jersey (a British Crown dependency)
+    "UK",  # United Kingdom
+    "VG",  # Virgin Islands (British)
+    # USA + "Territories"
+    "AS",  # American Samoa
+    "MP",  # Northern Mariana Islands
+    "PR",  # Puerto Rico
+    "UM",  # United States Minor Outlying Islands
+    "US",  # United States of America
+    "VI",  # Virgin Islands (U.S.)
+    # EU Countries
+    "AT",  # Austria
+    "BE",  # Belgium
+    "CH",  # Switzerland
+    "DE",  # Germany
+    "ES",  # Spain
+    "FI",  # Finland
+    "FR",  # France
+    "IE",  # Ireland
+    "IT",  # Italy
+    "NL",  # Netherlands
+    "SE",  # Sweden
+]
+
+RELAY_PHONE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "TKTK" if DEV else "price_1Li0w8JNcmPzuWtR2rGU80P3",
+                "price": 4.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "TKTK" if DEV else "price_1Li15WJNcmPzuWtRIh0F4VwP",
+                "price": 3.99,
+                "currency": "USD",
+            },
+        },
+    },
+}
+
+RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where Relay Phone Masking is available.
+RELAY_PHONE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+
+# RELAY / VPN BUNDLE ============================================================================
+
+# Bundle guarantee period
+RELAY_VPN_BUNDLE_GUARANTEE = 30
+
+# Product ID for VPN & Relay bundle subscriptions.
+RELAY_VPN_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
+
+# VPN & Relay bundle plan IDs by currency/language.
+RELAY_VPN_BUNDLE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "yearly": {
+                "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
+                "price": "6.99",
+                "currency": "USD",
+                "saving": 0.4,
+                "analytics": {
+                    "brand": "vpn",
+                    "name": "vpn-relay",
+                    "currency": "USD",
+                    "discount": "83.88",
+                    "price": "83.88",
+                    "variant": "yearly",
+                },
+            },
+        }
+    },
+}
+
+RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where VPN & Relay bundle is available.
+# Phone masking is only supported in these countries.
+RELAY_VPN_BUNDLE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
