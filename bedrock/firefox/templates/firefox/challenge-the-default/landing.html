@@ -57,8 +57,16 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block content %}
 <main class="firefox-home">
   <section class="c-ctd-hero mzp-l-content">
+    <svg class="svg" width="0" height="0">
+      <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
+        <path d="M0.88,0.022 L0.011,0 L0,0.01 V0.108 L0.011,0.99 L0.972,1 L1,0.666 V0.022 H0.88"></path>
+      </clipPath>
+      <clipPath id="features-clip-path" clipPathUnits="objectBoundingBox">
+        <path d="M0.763,0 H0 V0.453 L0.037,0.958 L0.444,1 L1,0.965 V0.819 L0.971,0.352 L0.984,0.033 L0.763,0"></path>
+      </clipPath>
+    </svg>
     <div class="hero-wrapper">
-      <img class="c-hero-image" src="{{ static('img/firefox/challenge-the-default/hero-mask.svg') }}">
+      {# <img class="c-hero-image" src="{{ static('img/firefox/challenge-the-default/hero-mask.svg') }}"> #}
       <div class="c-hero-text">
         <img src="{{ static('img/firefox/challenge-the-default/ctd-icon.svg') }}" width="249" height="66">
         <h1>Der Browser, den du selber wählst</h1>
