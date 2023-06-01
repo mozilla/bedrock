@@ -257,11 +257,6 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
 
 
 @library.global_function
-def relay_mozmail():
-    return settings.RELAY_MAIL_DOMAIN
-
-
-@library.global_function
 def relay_free_addresses():
     return settings.RELAY_MAX_NUM_FREE_ALIASES
 

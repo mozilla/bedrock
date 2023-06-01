@@ -304,9 +304,7 @@ def relay_landing_page(request):
     template_name = "products/relay/landing.html"
     ftl_files = ["products/relay/shared", "products/relay/landing", "products/relay/bundle", "products/relay/matrix", "products/relay/faq"]
 
-    context = {}
-
-    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+    return l10n_utils.render(request, template_name, ftl_files=ftl_files)
 
 
 @require_safe
@@ -314,9 +312,7 @@ def relay_premium_page(request):
     template_name = "products/relay/premium.html"
     ftl_files = ["products/relay/shared", "products/relay/landing", "products/relay/premium", "products/relay/bundle", "products/relay/matrix"]
 
-    context = {}
-
-    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+    return l10n_utils.render(request, template_name, ftl_files=ftl_files)
 
 
 @require_safe

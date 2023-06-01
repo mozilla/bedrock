@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/products/relay/
+### URL: https://www-dev.allizom.org/products/relay/faq/
 
 ## FAQ Page
 
@@ -153,9 +153,3 @@ phone-masking-faq-question-data = What kinds of data does { -brand-name-relay } 
 #   $url (url) - link to Firefox Relay's Privacy Policy, i.e. https://www.mozilla.org/privacy/firefox-relay/
 #   $attrs (string) - specific attributes added to external links
 phone-masking-faq-answer-data = Please see the <a href="{ $url }" { $attrs }>{ -brand-name-firefox-relay } Privacy Policy</a>.
-
-
-# Deprecated
-faq-question-trackerremoval-breakage-answer = Sometimes removing trackers may cause your email to look broken, because the trackers are often contained within images. When the tracker is removed, the email looks like it’s been formatted wrong because images are missing. This can’t be fixed for emails you’ve already received. If this is preventing you from reading your emails properly, turn off tracker removal.
-phone-masking-faq-answer-forwarded-texts-2 = Only text messages can be forwarded. MMS texts that include photos, videos, etc. will not be forwarded.
-phone-masking-faq-answer-pictures-2 = No, only text messages can be forwarded or sent as replies.

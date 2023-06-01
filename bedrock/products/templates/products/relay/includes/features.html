@@ -23,7 +23,7 @@
       image='<img src="' + static('img/products/relay/landing/features/features-block-promotional-emails.svg') + '" alt="" loading="lazy">'
     ) %}
       <h3 class="mzp-u-title-2xs">{{ ftl('highlighted-features-section-masks-on-the-go-headline') }}</h3>
-      <p>{{ ftl('highlighted-features-section-masks-on-the-go-body', mozmail=relay_mozmail()) }}</p>
+      <p>{{ ftl('highlighted-features-section-masks-on-the-go-body', mozmail=settings.RELAY_MAIL_DOMAIN) }}</p>
     {% endcall %}
 
 

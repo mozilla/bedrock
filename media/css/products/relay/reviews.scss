@@ -9,6 +9,10 @@ $brand-theme: 'firefox';
 // * -------------------------------------------------------------------------- */
 // reviews
 
+.t-reviews {
+    padding-bottom: 0;
+}
+
 .c-reviews {
     display: grid;
     gap: $layout-md;
@@ -40,17 +44,16 @@ $brand-theme: 'firefox';
 }
 
 .c-review-amo-browser {
-    &::before {
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: contain;
-        content: '';
-        display: block;
-        height: 80px;
-        margin-bottom: $spacing-xs;
-        width: 100%;
-    }
+    @include image-replaced;
+    background-image: url('/media/protocol/img/logos/firefox/browser/logo-word-ver-white.svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: 100px;
+    margin-bottom: $spacing-xs;
+    width: 100%;
 }
 
 .c-review-amo-title {

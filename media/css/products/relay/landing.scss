@@ -8,9 +8,9 @@ $brand-theme: 'firefox';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
 
 @import 'phone';
 @import 'bundle';
@@ -25,13 +25,24 @@ $brand-theme: 'firefox';
     @include visually-hidden;
 }
 
+// Temporary override until Relay logo is updated
+// https://github.com/mozilla/protocol-assets/issues/87
+.mzp-c-wordmark.mzp-t-product-relay.mzp-t-wordmark-md {
+    background-image: url('/media/img/logos/relay/logo-firefox-relay.svg');
+}
+
+.mzp-c-wordmark.mzp-t-product-premium.mzp-t-wordmark-md {
+    background-image: url('/media/img/logos/relay/logo-firefox-premium-relay.svg');
+    width: 370px;
+}
+
 // * -------------------------------------------------------------------------- */
 // hero
 
 .t-hero {
-    background-color: $color-marketing-gray-10;
+    background-color: $color-light-gray-20;
 
-    .mzp-l-split-pop {
+    .mzp-c-split {
         @media #{$mq-md} {
             padding-top: $layout-lg;
         }
@@ -41,11 +52,25 @@ $brand-theme: 'firefox';
     }
 }
 
-.c-brands {
+.c-hero-title {
+    @include text-title-md;
+}
+
+.c-hero-body {
+    @include text-body-lg;
+}
+
+.c-hero-brands {
+    @include text-body-sm;
     border-bottom: 1px solid $color-marketing-gray-20;
     border-top: 1px solid $color-marketing-gray-20;
-    margin-top: $spacing-lg;
+    margin-top: $layout-sm;
     padding: $spacing-lg 0;
+}
+
+.c-hero-availability {
+    @include text-body-sm;
+
 }
 
 // * -------------------------------------------------------------------------- */
@@ -53,7 +78,19 @@ $brand-theme: 'firefox';
 
 .c-works-item {
     max-width: 400px;
-    margin: 0 auto;
+    margin: $layout-lg auto 0 auto;
+
+    &:first-child {
+        margin-top: $spacing-md;
+    }
+
+    @media #{$mq-md} {
+        margin-top: 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
 
     @media #{$mq-lg} {
         max-width: 100%;
@@ -68,27 +105,11 @@ $brand-theme: 'firefox';
 // * -------------------------------------------------------------------------- */
 
 .t-odd {
-    background-color: $color-marketing-gray-10;
+    background-color: $color-light-gray-20
 }
 
 // * -------------------------------------------------------------------------- */
 // pricing
-
-.c-pricing {
-    padding-top: get-theme('v-grid-xs');
-
-    @media #{$mq-md} {
-        padding-top: get-theme('v-grid-md');
-    }
-
-    @media #{$mq-xl} {
-        padding-top: get-theme('v-grid-xl');
-    }
-
-    .mzp-l-content + & {
-        padding-top: 0;
-    }
-}
 
 .c-pricing-sub {
     max-width: $content-lg;
@@ -97,9 +118,18 @@ $brand-theme: 'firefox';
 }
 
 .c-pricing-intro {
-    max-width: $content-md;
     margin: 0 auto;
+    max-width: $content-md;
+    padding-bottom: get-theme('v-grid-xs');
     text-align: center;
+
+    @media #{$mq-md} {
+        padding-bottom: get-theme('v-grid-md');
+    }
+
+    @media #{$mq-xl} {
+        padding-bottom: get-theme('v-grid-xl');
+    }
 }
 
 // * -------------------------------------------------------------------------- */

@@ -8,16 +8,7 @@
   <div class="c-phone">
     {% include 'products/relay/includes/phone-outline.svg' %}
     <img class="c-phone-far" src="{{ static('img/products/relay/landing/phone/blurry.svg') }}" alt="" width="575" height="575">
-
-    {% if LANG == "de" %}
-      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen-premium-de.png') }}" alt="" width="255" height="532">
-      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg-de.svg') }}" alt="" width="509" height="575">
-    {% elif LANG == "fr" %}
-      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen-premium-fr.png') }}" alt="" width="255" height="532">
-      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg-fr.svg') }}" alt="" width="509" height="575">
-    {% else %}
-      <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen.png') }}" alt="" width="255" height="532">
-      <img class="c-phone-fg" src="{{ static('img/products/relay/landing/phone/fg.svg') }}" alt="" width="509" height="575">
-    {% endif %}
+    <img class="c-phone-screen" src="{{ static('img/products/relay/landing/phone/screen.png') }}" alt="" width="255" height="532">
+    <img class="c-phone-fg" src="{{ l10n_img('img/products/relay/phone/fg.svg') }}" alt="" width="509" height="575">
   </div>
 </div>

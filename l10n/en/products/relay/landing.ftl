@@ -14,31 +14,27 @@ hero-section-body = Our secure, easy-to-use email and phone masks help keep your
     private so you can sign up for new accounts anonymously, stop spam texts and junk calls, and
     get only the emails you want in your inbox.
 hero-section-cta = Get started
-
+# Context: This describes the various websites and magazines who have mentioned Firefox Relay.
+# Example: "As seen in FORBES magainze and LifeHacker website"
+hero-section-social-proof = As seen in
 
 ## HOW IT WORKS SECTION
 
 how-it-works-section-title = How { -brand-name-relay } email & phone masking works
 
-# Item 1
-
 how-it-works-section-extension-headline = Use { -brand-name-relay } email masks and phone masks everywhere
 how-it-works-section-extension-body = Get secure, random email masks and a unique, masked phone number to use any time a website, app, store, or restaurant asks for your information.
 
-# Item 2
-
 how-it-works-section-forward-headline = We’ll forward emails, phone calls, and texts to you
 how-it-works-section-forward-body = Rest assured, senders will never know your real email address or real number. You can even reply to texts and emails without sharing your real identity.
-
-# Item 3
 
 how-it-works-section-manage-headline = Manage your masks from your { -brand-name-relay } dashboard
 how-it-works-section-manage-body = Sign in to your { -brand-name-relay } dashboard to create new masks, label existing masks, and  block calls, texts, or emails from masks that get too much spam.
 
 ## REVIEWS SECTION
 
+relay-landing-brand-addons = { -brand-name-addons }
 landing-reviews-title = Reviews
-landing-reviews-add-ons = Add-ons
 landing-reviews-logo-title = { -brand-name-firefox-browser }
 # Do not localize addons.mozilla.org
 landing-reviews-details-source = Source: addons.mozilla.org
@@ -61,9 +57,6 @@ landing-review-user-four-review-list-4 = { -brand-name-firefox-relay } works won
 highlighted-features-section-title = Secure, simple features to help protect your identity
 highlighted-features-section-bottom-title = Protect your identity (and your inbox) with { -brand-name-firefox-relay }
 highlighted-features-section-bottom-cta = Get started
-highlighted-features-section-new-item = New!
-
-# Item 1
 
 highlighted-features-section-unlimited-masks-headline = Create unlimited email masks
 # Variables:
@@ -72,8 +65,6 @@ highlighted-features-section-unlimited-masks-body = Everyone gets { $mask_limit 
     But with { -brand-name-relay-premium }, you can generate as many masks as you need to help protect your email inbox
     from spammers, hackers, and online trackers.
 
-# Item 2
-
 highlighted-features-section-masks-on-the-go-headline = Instantly create masks on the go
 # Variables:
 #   $mozmail (string): domain used by Relay masks (mozmail.com)
@@ -81,20 +72,14 @@ highlighted-features-section-masks-on-the-go-body = { -brand-name-relay-premium 
     create new masks anywhere you are. Simply add any word or phrase before the @ symbol. At a restaurant? Use restaurant@yourdomain.{ $mozmail }.
     Shopping? Try shop@yourdomain.{ $mozmail }.
 
-# Item 3
-
 highlighted-features-section-replying-headline = Reply to emails & texts anonymously
 highlighted-features-section-replying-body = { -brand-name-relay-premium } lets you respond to emails from your
     masked email account, so senders will never know your real email address. With phone masking, you can reply
     to texts from your masked phone number to protect your real number.
 
-# Item 4
-
 highlighted-features-section-block-promotions-headline = Block promotional emails
 highlighted-features-section-block-promotions-body = With { -brand-name-relay-premium }, you can block promotional emails from reaching your
     inbox while still receiving emails like receipts or shipping information.
-
-# Item 5
 
 highlighted-features-section-remove-trackers-headline = Remove email trackers
 highlighted-features-section-remove-trackers-body = { -brand-name-relay } can remove common email trackers from any emails forwarded to you, helping

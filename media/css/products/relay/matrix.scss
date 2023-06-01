@@ -34,7 +34,7 @@ $brand-theme: 'firefox';
     td:not(:first-child) {
         background-color: $color-white;
         text-align: center;
-        border-inline: 8px solid $color-marketing-gray-10;
+        border-inline: 8px solid $color-light-gray-20;
     }
 
     thead th {
@@ -45,7 +45,7 @@ $brand-theme: 'firefox';
         min-width: 180px;
 
         &:first-child {
-            color: $color-light-gray-70;
+            color: $color-violet-70;
             font-weight: normal;
             vertical-align: bottom;
         }
@@ -122,6 +122,11 @@ $brand-theme: 'firefox';
         display: flex;
         justify-content: space-between;
         padding-bottom: $spacing-sm;
+    }
+
+    img {
+        height: 16px;
+        width: 16px;
     }
 }
 
