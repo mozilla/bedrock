@@ -8,7 +8,7 @@ import '@mozilla-protocol/core/protocol/js/details';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
 const toggleGrid = document.querySelector('.toggle-grid');
-// beacuse of the way the modal grid is set up, there are multiple modal buttons in the DOM
+// because of the way the modal grid is set up, there are multiple modal buttons in the DOM
 const modalButtons = document.querySelectorAll('.modal-btn');
 const content = document.querySelector('.mzp-u-modal-content');
 

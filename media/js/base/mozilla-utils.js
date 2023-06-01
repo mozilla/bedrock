@@ -154,5 +154,23 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
+    // check support for the IntersectionObserver API
+    Utils.supportsIntersectionObserver = function () {
+        return (
+            'IntersectionObserver' in window &&
+            'IntersectionObserverEntry' in window &&
+            'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
+            'NodeList' in window &&
+            'forEach' in NodeList.prototype
+        );
+    };
+
+    Utils.allowsMotion = function () {
+        return (
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+        );
+    };
+
     window.Mozilla.Utils = Utils;
 })();
