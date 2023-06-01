@@ -253,7 +253,7 @@ following command:
 This will discover the currently deployed git hash, and open a compare URL at github
 to the latest main. Look at ``open-compare.py -h`` for more options.
 
-We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
+We automate pushing to production via tagged commits (see :ref:`pipeline`)
 
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
