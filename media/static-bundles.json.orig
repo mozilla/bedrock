@@ -487,6 +487,7 @@
     },
     {
       "files": [
+<<<<<<< HEAD
         "css/firefox/whatsnew/whatsnew-114-eu.scss"
       ],
       "name": "firefox_whatsnew_114_eu"
@@ -496,12 +497,11 @@
         "css/firefox/whatsnew/whatsnew-114-na.scss"
       ],
       "name": "firefox_whatsnew_114_na"
-    },
-    {
-      "files": [
+=======
         "css/firefox/whatsnew/whatsnew-115-eu-vpn.scss"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
+>>>>>>> bd147bd64 (Add WNP for Firefox 115 for VPN expansion [fix #13215])
     },
     {
       "files": [
@@ -1644,12 +1644,6 @@
         "js/firefox/whatsnew/whatsnew-115-eu-vpn.js"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-115-experiment-eu-vpn.es6.js"
-      ],
-      "name": "firefox_whatsnew_115_experiment_eu_vpn"
     },
     {
       "files": [

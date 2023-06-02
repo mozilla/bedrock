@@ -1,0 +1,98 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('protocol-picto') }}
+{{ css_bundle('firefox_whatsnew_115_eu_vpn') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-115-eu-vpn') %}
+    {{ js_bundle('firefox_whatsnew_115_experiment_eu_vpn') }}
+  {% endif %}
+{% endblock %}
+
+{% if variant == '2' %}
+  {% set coupon_code = 'VPN' %}
+{% else %}
+  {% set coupon_code = 'WELCOME' %}
+{% endif %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="wnp-main-image">
+      {% include 'firefox/whatsnew/includes/fx115-eu-vpn/vpn-header.svg' %}
+    </div>
+
+    <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace">
+      <h2 class="wnp-main-title">{{ ftl('whatsnew-115-vpn-title') }}</h2>
+      <p class="wnp-main-tagline">{{ ftl('whatsnew-115-vpn-mozilla-vpn-is-now-available') }}</p>
+      <p class="wnp-main-tagline">{{ ftl('whatsnew-115-vpn-surfing-streaming-gaming-and') }}</p>
+
+      <div class="c-coupon-container">
+        <p>{{ ftl('whatsnew-115-vpn-take-20-off-12-months-of') }}</p>
+        <strong class="c-coupon-code">{{ coupon_code }}</strong>
+        <button type="button" class="c-coupon-copy" id="code-copy" data-code="{{ coupon_code }}" data-success="{{ ftl('whatsnew-115-vpn-code-copied') }}">{{ ftl('whatsnew-115-vpn-copy-code') }}</button>
+        <p class="c-coupon-note">({{ ftl('whatsnew-115-vpn-apply-at-checkout') }})</p>
+      </div>
+
+      <div class="wnp-main-cta qa-main-cta-vpn">
+        {{ vpn_product_referral_link(
+            referral_id='whatsnew-115-eu-vpn',
+            link_text=ftl('whatsnew-115-vpn-cta'),
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+        ) }}
+      </div>
+
+      <div class="wnp-content-extra">
+        <div class="mzp-l-columns mzp-t-columns-two">
+          <div class="mzp-c-picto">
+            <div class="mzp-c-picto-image">
+              {% include 'firefox/whatsnew/includes/fx115-eu-vpn/laptop.svg' %}
+            </div>
+            <h3 class="mzp-c-picto-title">{{ ftl('whatsnew-115-vpn-very-fast') }}</h3>
+            <div class="mzp-c-picto-body">
+              <p>{{ ftl('whatsnew-115-vpn-wireguard-powered') }}</p>
+            </div>
+          </div>
+
+          <div class="mzp-c-picto">
+            <div class="mzp-c-picto-image">
+              {% include 'firefox/whatsnew/includes/fx115-eu-vpn/mobile.svg' %}
+            </div>
+            <h3 class="mzp-c-picto-title">{{ ftl('whatsnew-115-vpn-without-trace') }}</h3>
+            <div class="mzp-c-picto-body">
+              <p>{{ ftl('whatsnew-115-vpn-never-log') }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_115_eu_vpn') }}
+{% endblock %}
