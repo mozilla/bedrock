@@ -42,3 +42,11 @@ vpn-windows-speed-copy = Stream, game, shop and explore the web at blazing-fast 
 
 vpn-windows-log-headline = Your privacy is our priority
 vpn-windows-log-copy = { -brand-name-mozilla } will never stop working towards a better internet that puts your privacy first. That’s why the { -brand-name-mozilla-vpn } doesn’t collect any data on you or log your online activity — none of our products do.
+
+
+vpn-windows-page-title-v2 = Get a VPN for { -brand-name-windows } from { -brand-name-mozilla }
+vpn-windows-page-description-v2 = Protect your { -brand-name-windows } device with a VPN. { -brand-name-mozilla-vpn } is backed by a non-for-profit company. Learn about how a VPN protects you and why you should trust { -brand-name-mozila } with your privacy and security.
+
+vpn-windows-hero-headline-v2 = Get a VPN for { -brand-name-windows } from { -brand-name-mozilla }
+
+subscribe-to-vpn = Subscribe to { -brand-name-mozilla-vpn }
