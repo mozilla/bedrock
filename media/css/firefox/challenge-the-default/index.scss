@@ -9,11 +9,85 @@ $font-path: '/media/protocol/fonts';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+
+$campaign-red: #ff6a75;
 
 .c-ctd-hero {
+    background: $campaign-red;
+
+    .c-hero-top {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 4px solid $campaign-red;
+        height: 70px;
+        padding: $spacing-md;
+
+        &-images {
+            display: flex;
+            align-items: center;
+
+            img {
+                max-height: 100%;
+                margin-right: $spacing-md;
+            }
+        }
+
+        &-controls {
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-left: $spacing-md;
+            }
+        }
+
+        .minimize {
+            width: 30px;
+            height: 30px;
+            border-bottom: 3px solid $campaign-red;
+            display: block;
+        }
+
+        .expand {
+            width: 24px;
+            height: 24px;
+            border: 3px solid $campaign-red;
+            display: block;
+        }
+
+        .close {
+            width: 36px;
+            height: 36px;
+            position: relative;
+
+            &::before {
+                content: "";
+                height: 36px;
+                width: 3px;
+                position: absolute;
+                transform: rotate(-45deg);
+                right: 12px;
+                top: 0;
+                background: $campaign-red;
+            }
+
+            &::after {
+                content: "";
+                height: 36px;
+                width: 3px;
+                position: absolute;
+                transform: rotate(45deg);
+                right: 12px;
+                top: 0;
+                background: $campaign-red;
+            }
+        }
+    }
+
     .hero-wrapper {
         position: relative;
-        background: #FF6A75;
+        background: white;
         clip-path: url("#hero-clip-path");
     }
 
@@ -23,28 +97,28 @@ $font-path: '/media/protocol/fonts';
     }
 
     .c-hero-text {
-        padding: $layout-lg 0 $layout-lg $layout-lg;
-        max-width: 70%;
-        margin-left: $layout-lg;
+        padding: $layout-xl 0;
+        margin: 0 $layout-xl;
         justify-content: center;
 
         h1 {
+            @include font-firefox;
             @include font-size(72px);
             color: $color-black;
+            max-width: 650px;
         }
 
         p {
             @include font-size(24px);
             color: $color-black;
-        }
-
-        .mzp-c-button {
-            width: max-content;
+            max-width: 650px;
         }
     }
 }
 
 .c-ctd-credentials {
+    background: $color-black;
+
     h2 {
         @include font-size(90px);
         text-align: center;
@@ -73,19 +147,36 @@ $font-path: '/media/protocol/fonts';
 }
 
 .c-ctd-features {
-    background-color: #FF6A75;
+    background-color: $color-white;
     clip-path: url("#features-clip-path");
+
+    h2 {
+        @include font-firefox;
+        @include font-size(76px);
+        margin-bottom: $layout-lg;
+    }
 }
 
 .c-ctd-comparison {
-    background-color: $color-black;
+    .c-ctd-comparison-text {
+        margin-bottom: $layout-lg;
+
+        h2 {
+            @include font-firefox;
+            @include font-size(60px);
+            margin-bottom: $spacing-lg;
+        }
+
+    }
+
 
     .mzp-u-data-table.comparison-table {
         width: 100%;
+        margin-bottom: $layout-lg;
 
         th {
             max-width: 150px;
-            border: 1px solid $color-white;
+            border: 1px solid $color-black;
 
             &[scope='col'] {
                 text-align: center;
@@ -95,7 +186,7 @@ $font-path: '/media/protocol/fonts';
 
         td {
             text-align: center;
-            border: 1px solid $color-white;
+            border: 1px solid $color-black;
         }
 
         .empty {
@@ -107,15 +198,15 @@ $font-path: '/media/protocol/fonts';
                 color: $color-black;
                 background-color: #FFBDC5;
             }
-
-            &:nth-child(4) {
-                background-color: #3C3C3B;
-            }
         }
     }
 
     .comparison-cta {
         text-align: center;
+
+        h3 {
+            margin-bottom: $layout-md;
+        }
     }
 }
 
