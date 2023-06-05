@@ -6,6 +6,8 @@ $image-path: '/media/protocol/img';
 $font-path: '/media/protocol/fonts';
 
 @use "./toggle";
+@use "./animations";
+
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
@@ -121,12 +123,23 @@ $campaign-red: #ff6a75;
 
     h2 {
         @include font-size(90px);
+        color: #D1FFEE;
         text-align: center;
     }
 
     .mzp-c-details {
-        border-bottom: 1px solid $color-black;
+        background-color: $color-white;
+        padding: $spacing-xl $spacing-md;
+        border-radius: $border-radius-lg;
         margin-top: $spacing-lg;
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin-top: $spacing-xl;
+        }
     }
 }
 
@@ -140,8 +153,20 @@ $campaign-red: #ff6a75;
         column-gap: $spacing-xl;
         row-gap: $layout-lg;
 
+        &.large {
+            display: none;
+        }
+
         @media #{$mq-lg} {
              grid-template-columns: repeat(7, 1fr);
+
+             &.large {
+                display: grid;
+             }
+
+             &.small {
+                display: none;
+             }
         }
     }
 }
@@ -154,6 +179,12 @@ $campaign-red: #ff6a75;
         @include font-firefox;
         @include font-size(76px);
         margin-bottom: $layout-lg;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .mzp-c-picto {
+            opacity: 0;
+        }
     }
 }
 
@@ -210,61 +241,30 @@ $campaign-red: #ff6a75;
     }
 }
 
+.c-animated-button {
+    background-color: #2AC3A2;
+    text-align: center;
 
-.modal-grid {
-    display: none;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: $spacing-md;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
-    &.small {
-        display: grid;
-    }
-
-
-    @media #{$mq-md} {
-        grid-template-columns: repeat(5, 1fr);
-
-        &.small {
-            display: none;
-        }
-
-        &.medium {
-            display: grid;
-        }
+    .animated-button {
+        background: none;
+        border: 0;
+        cursor: pointer;
     }
 }
 
-.modal-btn {
-    background: none;
-    box-shadow: none;
-    outline: 0;
-    border: 0;
-    position: relative;
-    grid-column: 2;
-    grid-row: 3;
-    cursor: pointer;
+.c-ctd-footer {
+    text-align: center;
 
-    @media #{$mq-md} {
-        grid-column: 3
+    h3 {
+        @include font-size(60px);
     }
-}
 
-.agree-all {
-    border: 1px solid $color-black;
-    background: #D1FFEE;
-    padding: $spacing-sm $spacing-md;
-    width: max-content;
-}
+    p {
+        @include font-size(24px);
+    }
 
-.ctd-modal .mzp-c-modal-inner {
-    max-width: 500px;
-
-    h2 {
-        color: $color-white;
+    .text-bottom {
+        @include font-size(14px);
+        margin-top: $layout-xl;
     }
 }

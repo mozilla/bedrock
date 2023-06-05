@@ -11,6 +11,12 @@
   flex-wrap: wrap;
   position: relative;
   padding-bottom: 0;
+  transform: rotate(0);
+
+  &.animate-slide {
+    transform: rotate(-30deg);
+    transition: transform 250ms 250ms ease-in
+  }
 }
 
 .toggle-display {

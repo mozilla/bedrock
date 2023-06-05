@@ -162,7 +162,41 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
     <section class="c-ctd-toggles">
       <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
-        <div class="toggle-grid"></div>
+        <div class="toggle-grid small">
+            {% for element in range(4) %}
+              <label class="toggle" for="toggle-top-{{ loop.index }}">
+                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+                <span class="toggle-display"></span>
+              </label>
+            {% endfor%}
+            <label class="toggle middle" for="toggle-middle">
+              <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
+              <span class="toggle-display"></span>
+            </label>
+            {% for element in range(4) %}
+              <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+                <span class="toggle-display"></span>
+              </label>
+            {% endfor%}
+        </div>
+        <div class="toggle-grid large">
+          {% for element in range(10) %}
+          <label class="toggle" for="toggle-top-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor%}
+          <label class="toggle middle" for="toggle-middle">
+            <input type="checkbox" name="toggle-middle" id="toggle-middle" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% for element in range(10) %}
+          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor%}
       </div>
     </section>
 
@@ -248,93 +282,55 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-  <div class="c-ctd-credentials">
+  <section class="c-ctd-credentials">
     <div class="mzp-l-content mzp-t-content-md">
       <h2>Das ist Firefox</h2>
       <details class="mzp-c-details">
         <summary>
-          <h3>Built to shake things up</h3>
+          <h3>Kompromisslos privat</h3>
         </summary>
         <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>The answer to your privacy concerns</h3>
+          <h3>Non-Profit Rückenwind</h3>
         </summary>
         <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>Pioneering a better tech</h3>
+          <h3>Verändern statt beschweren</h3>
         </summary>
         <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>Practicing ethical advertising</h3>
+          <h3>Zusammen ist man weniger allein</h3>
         </summary>
         <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
       </details>
-      <details class="mzp-c-details">
-        <summary>
-          <h3>Backed by a Non-Profit</h3>
-        </summary>
-        <p>Since 2002 we just make sure that there’s always a different choice available... like Firefox.</p>
-      </details>
-    </div>
-  </div>
-
-
-  {% call split(
-    block_class='c-ctd-snaps mzp-l-split-center-on-sm-md',
-    image=resp_img(
-      url='img/firefox/challenge-the-default/snaps.png',
-      optional_attributes={
-        'class': 'mzp-c-split-media-asset'
-      }
-    ),
-    media_after=True
-  ) %}
-    <h2>Snaps to those who make a difference</h2>
-    <p>Join the movement for change #challengethedefault</p>
-  {% endcall %}
-
-
-
-
-
-  <section class="c-ctd-modal-section">
-  {# To get the design to work there will be three grids that will only be shown with specific breakpoints #}
-    <div class="modal-grid small">
-      {% for element in range(7) %}
-      <span class="agree-all">Alles akzeptieren</span>
-      {% endfor %}
-      <button class="modal-btn">
-        <img src="{{ static('img/firefox/challenge-the-default/ctd-cta.svg') }}" alt="Challenge the default" width="261" height="93" />
-      </button>
-      {% for element in range(7) %}
-        <span class="agree-all">Alles akzeptieren</span>
-      {% endfor %}
-    </div>
-    <div class="modal-grid medium">
-      {% for element in range(12) %}
-        <span class="agree-all">Alles akzeptieren</span>
-      {% endfor %}
-      <button class="modal-btn">
-        <img src="{{ static('img/firefox/challenge-the-default/logo-ctd.svg') }}" alt="Challenge the default" width="261" height="93" />
-      </button>
-      {% for element in range(12) %}
-        <span class="agree-all">Alles akzeptieren</span>
-      {% endfor %}
     </div>
   </section>
-</main>
-<div class="mzp-u-modal-content">
-  <p>Bis 1999 hatte der Internet Explorer ungefähr 99 % Marktanteil. In der Überzeugung, dass ein Browser-Monopol weder für
-  Menschen, noch für das Internet etwas Gutes ist, gründete Netscape die Non-Profit-Organisation Mozilla und machte seinen
-  Browser Source-Code der Öffentlichkeit zugänglich. Von da an entwickelte die Mozilla Community Firefox, um
-  sicherzustellen, dass es immer einen offenen und transparenten Weg ins Web gibt.</p>
-</div>
+
+  <section class="c-animated-button">
+    <div class="mzp-l-content">
+        <button class="animated-button">
+            {{ resp_img(
+              url='img/firefox/challenge-the-default/logo-ctd.svg',
+              optional_attributes={
+              'loading': 'eager'
+              })
+            }}
+        </button>
+    </div>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
+    <h3>Mach mit!</h3>
+    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="http://mozilla.org">werde Teil unserer Community</a>.</p>
+    <a class="mzp-c-button mzp-t-product">Jetzt Firefox wählen</a>
+    <p class="text-bottom">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
+  </section>
 {% endblock %}
 
 {% block js %}
