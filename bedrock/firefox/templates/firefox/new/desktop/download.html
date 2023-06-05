@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, fxa_email_form with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
 
 {% extends "firefox/new/desktop/base.html" %}
 
@@ -214,9 +214,9 @@
                   <tr>
                     <th></th>
                     <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="Firefox"></th>
-                    <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" loading="lazy" alt="Chrome"></th>
-                    <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" loading="lazy" alt="Microsoft Edge"></th>
-                    <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" loading="lazy" alt="Safari"></th>
+                    <th scope="col"><img loading="lazy" src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="Chrome"></th>
+                    <th scope="col"><img loading="lazy" src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="Microsoft Edge"></th>
+                    <th scope="col"><img loading="lazy" src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="Safari"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -307,9 +307,7 @@
                 {{ google_play_button() }}
               </li>
               <li class="ios">
-                <a href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45" loading="lazy">
-                </a>
+                {{ apple_app_store_button(href=ios_url) }}
               </li>
             </ul>
           </div>
@@ -542,9 +540,7 @@
             {{ google_play_button() }}
           </div>
           <div class="show-ios">
-            <a href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-            </a>
+            {{ apple_app_store_button(href=ios_url) }}
           </div>
         </div>
       </div>

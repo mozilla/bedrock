@@ -63,7 +63,11 @@
         </a>
 
         <p class="availability-copy">
-          {{ ftl('vpn-shared-available-countries-v5', fallback='vpn-shared-available-countries-v4') }}
+        {% if switch('vpn-wave-vi') %}
+          {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
+        {% else %}
+          {{ ftl('vpn-shared-available-countries-v5') }}
+        {% endif %}
         </p>
       {% endcall %}
     {% endif %}
@@ -89,4 +93,6 @@
   {% else %}
     {{ js_bundle('fxa_product_button') }}
   {% endif %}
+
+  {{ js_bundle('data_begincheckout') }}
 {% endblock %}

@@ -10,7 +10,25 @@ from pages.products.vpn.pricing import VPNPricingPage
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(
     "country",
-    [("us"), ("ca"), ("my"), ("nz"), ("sg"), ("gb"), ("de"), ("fr"), ("at"), ("be"), ("ch"), ("es"), ("it"), ("ie"), ("nl"), ("se"), ("fi")],
+    [
+        ("us"),
+        ("ca"),
+        ("my"),
+        ("nz"),
+        ("sg"),
+        ("gb"),
+        ("de"),
+        ("fr"),
+        ("at"),
+        ("be"),
+        ("ch"),
+        ("es"),
+        ("it"),
+        ("ie"),
+        ("nl"),
+        ("se"),
+        ("fi"),
+    ],
 )
 def test_vpn_pricing_available_in_country(country, base_url, selenium):
     page = VPNPricingPage(selenium, base_url, params=f"?geo={country}").open()

@@ -487,6 +487,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-114-eu.scss"
+      ],
+      "name": "firefox_whatsnew_114_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-114-na.scss"
+      ],
+      "name": "firefox_whatsnew_114_na"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1151,6 +1163,13 @@
     {
       "files": [
         "css/pocket/style.scss",
+        "css/pocket/components/updates-signup.scss"
+      ],
+      "name": "pocket-updates-signup"
+    },
+    {
+      "files": [
+        "css/pocket/style.scss",
         "css/pocket/components/jobs.scss"
       ],
       "name": "pocket-jobs"
@@ -1634,7 +1653,6 @@
     },
     {
       "files": [
-        "js/base/globals.js",
         "js/libs/classlist.js",
         "js/libs/array-from.js",
         "js/base/search-params.js",
@@ -1642,12 +1660,13 @@
         "js/base/mozilla-run.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "js/base/protocol-globals.es6.js"
+        "js/base/protocol/utils.es6.js"
       ],
       "name": "lib"
     },
     {
       "files": [
+        "js/base/protocol/init-details.es6.js",
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
@@ -1672,6 +1691,12 @@
         "js/base/core-datalayer-init.js"
       ],
       "name": "data"
+    },
+    {
+      "files": [
+        "js/base/datalayer-begincheckout-init.es6.js"
+      ],
+      "name": "data_begincheckout"
     },
     {
       "files": [
@@ -1723,6 +1748,13 @@
         "js/pocket/analytics.es6.js"
       ],
       "name": "pocket-analytics"
+    },
+    {
+      "files": [
+        "js/pocket/updates-signup.es6.js",
+        "js/pocket/updates-signup-init.es6.js"
+      ],
+      "name": "pocket-updates-signup"
     },
     {
       "files": [

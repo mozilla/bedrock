@@ -230,10 +230,15 @@ def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None
     final_sizes = ""
     final_srcset = ""
     l10n = False
+    loading = ""
 
     if optional_attributes:
         l10n = optional_attributes.pop("l10n", False)
         alt = optional_attributes.pop("alt", "")
+
+        # Put `loading` before `src` to avoid a bug in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=1647077)
+        if "loading" in optional_attributes:
+            loading = f'loading="{optional_attributes.pop("loading", "")}" '
 
         if optional_attributes:
             attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
@@ -262,7 +267,7 @@ def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None
 
     srcset_str = f'srcset="{final_srcset}" ' if final_srcset else ""
     sizes_str = f'sizes="{final_sizes}" ' if final_sizes else ""
-    markup = f'<img src="{url}" {srcset_str}{sizes_str}alt="{alt}"{attrs}>'
+    markup = f'<img {loading}src="{url}" {srcset_str}{sizes_str}alt="{alt}"{attrs}>'
 
     return Markup(markup)
 
@@ -274,10 +279,15 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
     attrs = ""
     final_sources = []
     l10n = False
+    loading = ""
 
     if optional_attributes:
         l10n = optional_attributes.pop("l10n", False)
         alt = optional_attributes.pop("alt", "")
+
+        # Put `loading` before `src` to avoid a bug in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=1647077)
+        if "loading" in optional_attributes:
+            loading = f'loading="{optional_attributes.pop("loading", "")}" '
 
         if optional_attributes:
             attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
@@ -325,7 +335,7 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
         source_markup = f"<source{media_markup}{type_markup}{srcset_markup}{sizes_markup}>"
         final_sources.append(source_markup)
 
-    markup = f'<picture>{"".join(final_sources)}<img src="{url}" alt="{alt}"{attrs}></picture>'
+    markup = f'<picture>{"".join(final_sources)}<img {loading}src="{url}" alt="{alt}"{attrs}></picture>'
 
     return Markup(markup)
 

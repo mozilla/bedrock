@@ -218,12 +218,12 @@ $image-path: '/media/protocol/img';
 
 .enterprise-download-title {
     @include bidi((
-        (padding-left, $layout-lg, 0),
-        (padding-right, 0, $layout-lg),
+        (padding-left, $layout-md, 0),
+        (padding-right, 0, $layout-md),
     ));
-    @include text-title-sm;
+    @include text-title-xs;
     margin-bottom: $spacing-lg;
-    min-height: 48px;
+    min-height: 40px;
     position: relative;
 
     &::before {
@@ -232,25 +232,25 @@ $image-path: '/media/protocol/img';
         background-repeat: no-repeat;
         content: '';
         display: block;
-        height: 48px;
+        height: 40px;
         position: absolute;
         top: -8px;
-        width: 48px;
+        width: 40px;
     }
 
     .platform-win64 &::before {
         background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
-        background-size: 39px 40px;
+        background-size: 35px 36px;
     }
 
     .platform-mac &::before {
         background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
-        background-size: 32px 40px;
+        background-size: 29px 36px;
     }
 
     .platform-win32 &::before {
         background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
-        background-size: 39px 40px;
+        background-size: 35px 36px;
     }
 }
 

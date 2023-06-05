@@ -519,10 +519,10 @@ class TestRespImg(TestCase):
     def test_resp_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         expected = (
-            '<img src="/media/img/panda-500.png" '
+            '<img loading="lazy" src="/media/img/panda-500.png" '
             'srcset="/media/img/panda-500.png 500w,/media/img/panda-1000.png 1000w" '
             'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
-            'alt="Red Panda" class="panda-hero" loading="lazy">'
+            'alt="Red Panda" class="panda-hero">'
         )
         markup = self._render(
             "img/panda-500.png",
@@ -563,10 +563,10 @@ class TestRespImg(TestCase):
     def test_resp_img_with_l10n_and_optional_attributes(self):
         """Should return expected markup with l10n image path"""
         expected = (
-            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            '<img loading="lazy" src="/media/img/l10n/en-US/panda-500.png" '
             'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
             'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
-            'alt="Red Panda" class="panda-hero" loading="lazy">'
+            'alt="Red Panda" class="panda-hero">'
         )
         markup = self._render(
             "img/panda-500.png",
@@ -741,7 +741,7 @@ class TestPicture(TestCase):
             "<picture>"
             '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
             '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
-            '<img src="/media/img/panda-mobile.png" alt="Red Panda" loading="lazy" class="panda-hero">'
+            '<img loading="lazy" src="/media/img/panda-mobile.png" alt="Red Panda" class="panda-hero">'
             "</picture>"
         )
         markup = self._render(

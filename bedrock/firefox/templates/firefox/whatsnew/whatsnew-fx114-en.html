@@ -1,0 +1,63 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_114_na') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl wnp-content-main',
+    media_class='mzp-l-split-v-start',
+    media_after=True,
+    image=resp_img('img/firefox/whatsnew/whatsnew114/firefox-mobile.jpg',
+      srcset={
+        "img/firefox/whatsnew/whatsnew114/firefox-mobile-high-res.jpg": "1.5x"
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'width': '600',
+        'height': '600',
+      }
+    ),
+  ) %}
+    <h2 class="wnp-main-title">Your privacy,<br> your rules</h2>
+    <p class="wnp-main-tagline">Block trackers, manage passwords and easily customize<br> your privacy settings with Firefox on your phone.</p>
+
+    <div class="c-qr-container">
+      <p class="c-qr-label">Get the<br> Firefox app</p>
+      <img class="c-qr-code" src="{{ static('img/firefox/whatsnew/whatsnew114/qr-code.png') }}" alt="Scan this QR code to get Firefox for iOS or Android" width="90" height="90">
+    </div>
+
+    <ul class="c-store-badges">
+      <li class="c-store-badge-google">
+        {{ google_play_button(href='https://app.adjust.com/10mpolq5', id='playStoreLink') }}
+      </li>
+      <li class="c-store-badge-apple">
+        {{ apple_app_store_button(href='https://app.adjust.com/10mpolq5', id='appStoreLink') }}
+      </li>
+    </ul>
+
+    <p class="wnp-sign-off">
+      <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+    </p>
+  {% endcall %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

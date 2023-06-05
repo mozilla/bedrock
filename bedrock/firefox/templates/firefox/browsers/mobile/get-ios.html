@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import apple_app_store_button with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -32,10 +34,8 @@
     {{ ftl('get-ios-firefox-mobile-adapts') }}
   </p>
   <p class="c-cta">
-      <a href="https://nn8g.adj.st/?adjust_t=ucunb4r" data-link-type="download" data-download-os="iOS">
-        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-      </a>
-    </p>
+    {{ apple_app_store_button(href='https://nn8g.adj.st/?adjust_t=ucunb4r') }}
+  </p>
 </div>
 
 {% endblock %}

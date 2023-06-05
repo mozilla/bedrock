@@ -5,20 +5,16 @@
 #}
 
 {% extends "firefox/releases/notes.html" %}
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 
 {% if release.product == 'Firefox for iOS' %}
   {% set page_id = 'data-gtm-page-id="/firefox/ios/releasenotes/"' %}
   {% set product_name = release.product %}
   {% set download_button_primary %}
-    <a id="download-ios-primary" rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-    </a>
+    {{ apple_app_store_button(href=firefox_ios_url('mozorg-releasenotes_page-appstore-button'), id='download-ios-primary') }}
   {% endset %}
   {% set download_button_secondary %}
-    <a id="download-ios-secondary" rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-    </a>
+    {{ apple_app_store_button(href=firefox_ios_url('mozorg-releasenotes_page-appstore-button'), id='download-ios-secondary') }}
   {% endset %}
 {% elif release.product == 'Firefox for Android' %}
   {% set page_id = 'data-gtm-page-id="/firefox/android/releasenotes/"' %}

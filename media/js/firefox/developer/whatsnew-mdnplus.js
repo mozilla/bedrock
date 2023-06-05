@@ -26,7 +26,6 @@
             // Stop animating after five minutes
             stopAnimTimeout = setTimeout(function () {
                 mandalaElement.classList.remove('animated');
-                document.title = 'timeout';
             }, 300000);
         }
     }

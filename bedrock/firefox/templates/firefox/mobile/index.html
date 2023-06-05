@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 {% from "macros-protocol.html" import split, call_out_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -76,9 +76,7 @@
             {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
           </li>
           <li class="ios">
-            <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-            </a>
+            {{ apple_app_store_button(href=ios_url, id='appStoreLink-primary') }}
           </li>
         </ul>
       </div>
@@ -175,9 +173,7 @@
               {{ google_play_button(href=android_url, id='playStoreLink-secondary') }}
             </li>
             <li class="ios">
-              <a id="appStoreLink-secondary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-              </a>
+              {{ apple_app_store_button(href=ios_url, id='appStoreLink-secondary') }}
             </li>
           </ul>
         </div>

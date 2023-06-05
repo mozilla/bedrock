@@ -32,7 +32,6 @@ help:
 	@echo "  compile-requirements       - update Python requirements files using pip-compile"
 	@echo "  check-requirements         - get a report on stale/old Python dependencies in use"
 	@echo "  install-local-python-deps  - install Python dependencies for local development"
-	@echo "  install-local-docs-deps  	- install Python dependencies for documentation building"
 	@echo "  preflight  				- refresh installed dependencies and fetch latest DB ahead of local dev"
 	@echo "  clean-local-deps  			- remove all local installed Python dependencies"
 
@@ -174,9 +173,6 @@ install-local-python-deps:
 	pip install -r requirements/prod.txt
 	pip install -r requirements/dev.txt
 
-install-local-docs-deps:
-	pip install -r requirements/docs.txt
-
 preflight:
 	${MAKE} install-local-python-deps
 	$ npm install
@@ -185,4 +181,4 @@ preflight:
 clean-local-deps:
 	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps install-local-docs-deps preflight clean-local-deps
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps

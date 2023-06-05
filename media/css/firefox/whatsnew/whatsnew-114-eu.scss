@@ -1,0 +1,46 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import 'includes/dark-mode';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+
+@font-face {
+    font-family: Metropolis;
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    src:
+        url('/media/fonts/whatsnew114/Metropolis-BoldItalic.woff2') format('woff2'),
+        url('/media/fonts/whatsnew114/Metropolis-BoldItalic.woff') format('woff');
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: $color-black;
+}
+
+.wnp-sign-off {
+    color: $color-black;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .wnp-main-tagline,
+    .wnp-sign-off {
+        color: $color-white;
+    }
+
+    .mzp-c-wordmark.mzp-t-wordmark-sm.mzp-t-product-pocket {
+        background-image: url('/media/protocol/img/logos/pocket/logo-word-hor-white.svg');
+    }
+}

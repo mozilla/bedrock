@@ -4,8 +4,10 @@ fluent.syntax==0.18.1
 markdown-it-py>=2.2.0
 markupsafe==2.0.1
 myst-parser==1.0.0
-Sphinx==6.2.0
+requests==2.31.0  # hard-pin to bring it up to a secure version
+Sphinx==6.2.1
 sphinx-autobuild==2021.3.14
 sphinx-copybutton==0.5.2
-sphinx-rtd-theme==1.2.0
+sphinx-rtd-theme==1.2.1
 sphinxcontrib-websupport==1.2.4
+tornado==6.3.2  # hard-pin to bring it up to a secure version

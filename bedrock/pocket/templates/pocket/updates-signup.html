@@ -1,0 +1,94 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "pocket/base-platform.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block pocket_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('pocket-updates-signup') }}
+{% endblock %}
+
+{% block page_title %}Sign up for updates{% endblock page_title %}
+
+{% block header %}
+  {% include 'pocket/includes/nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <div class="pocket-updates">
+    {% call split(
+      block_class='mzp-l-split-center-on-sm-md',
+      media_class='mzp-l-split-h-center mzp-l-split-media-overflow',
+      media_after=True,
+      image=resp_img(
+        url='img/pocket/pocket-update-signup.png',
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      ),
+    ) %}
+      <div id="pocket-updates-thanks" class="pocket-updates-success hidden">
+        <h1>Done! Keep an eye out for messages from us.</h1>
+        <p>Until then, why not read something interesting?</p>
+        <a class="mzp-c-button" href="/{{LANG}}/explore">
+          Discover must-read articles
+        </a>
+      </div>
+
+
+      <div id="pocket-updates-form-wrapper">
+        <h1>Keep up with Pocket</h1>
+        <p>Join our mailing list to stay on top of improvements, tips and product updates.</p>
+        <form action="{{ url('pocket.newsletter-subscribe') }}" class="mzp-c-newsletter-form pocket-updates-form" id="updates-form">
+
+          <div class="mzp-c-form-errors hidden" id="subscribe-errors">
+            <ul class="mzp-u-list-styled">
+              <li class="error-email-invalid hidden">
+                Please enter a valid email address.
+              </li>
+              <li class="error-try-again-later hidden">
+                We are sorry, but there was a problem with our system. Please try again later.
+              </li>
+            </ul>
+          </div>
+
+          <fieldset>
+            <label for="email" class="visually-hidden">
+              Your email address
+            </label>
+            <input type="email" name="email" id="email" placeholder="Your email address" required>
+            <input type="hidden" name="newsletter" id="newsletter" value="news">
+            <input type="hidden" name="language" id="language" value="{{LANG}}">
+            <input type="hidden" name="country" id="country" value="{{country_code}}">
+            <input type="hidden" name="form_source" id="form_source" value="{{request.path}}">
+
+            <button type="submit" id="updates-form-submit" class="mzp-c-button">Subscribe</button>
+          </fieldset>
+        </form>
+        <div class="legal-links">
+            <p>
+              <a href="{{url('pocket.privacy')}}">Privacy</a>
+            </p>
+            <p aria-hidden="true" class="separator">•</p>
+            <p>
+              <a href="{{url('pocket.tos')}}">Terms</a>
+            </p>
+        </div>
+      </div>
+
+      {% endcall %}
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include 'pocket/includes/footer.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('pocket-updates-signup') }}
+{% endblock %}

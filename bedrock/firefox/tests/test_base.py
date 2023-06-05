@@ -700,6 +700,55 @@ class TestWhatsNew(TestCase):
 
     # end 113.0 whatsnew tests
 
+    # begin 114.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_114_0_0_gb(self, render_mock):
+        """Should use whatsnew-fx113-en-gb template for en-GB locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="114.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx114-en-gb.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_114_0_0_us_gb(self, render_mock):
+        """Should use whatsnew-fx114-en-gb template for en-US locale in UK"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="GB")
+        req.locale = "en-US"
+        self.view(req, version="114.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx114-en-gb.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_114_0_0_de(self, render_mock):
+        """Should use whatsnew-fx114-de template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="114.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx114-de.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_114_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx114-fr template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="114.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx114-fr.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_114_0_0_us(self, render_mock):
+        """Should use whatsnew-fx114-en template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="114.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx114-en.html"]
+
+    # end 114.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
