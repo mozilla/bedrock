@@ -49,3 +49,9 @@
     </div>
   </main>
 {% endblock %}
+
+{% block experiments %}
+    {% if switch('experiment-convert-firefox-flashback', ['en-US']) %}
+        {{ js_bundle('convert') }}
+    {% endif %}
+{% endblock %}
