@@ -560,4 +560,6 @@ redirectpatterns = (
     redirect(r"^/exp/firefox/new/?$", "firefox.new"),
     redirect(r"^/exp/firefox/accounts/?$", "firefox.accounts"),
     redirect(r"^/exp/opt-out/?$", "privacy.convert-opt-out"),
+    # Issue 13211
+    redirect(r"^/en/$", "/en-US/", permanent=True),
 )
