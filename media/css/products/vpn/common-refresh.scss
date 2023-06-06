@@ -11,20 +11,70 @@ $image-path: '/media/protocol/img';
 main {
     h1, h2, h3, h4, h5, h6 {
         @include font-base;
+        line-height: $vpn-title-line-height;
+    }
+
+    .u-title-lg {
+        @include font-size($vpn-title-md-size);
         line-height: 1.2;
+
+        @media #{$mq-md} {
+            @include font-size($vpn-title-lg-size);
+        }
+    }
+
+    .u-title-md {
+        @include font-size($vpn-title-sm-size);
+        line-height: 1.2;
+
+        @media #{$mq-md} {
+            @include font-size($vpn-title-md-size);
+        }
+    }
+
+    .u-body-lg {
+        @include text-body-lg;
+    }
+}
+
+.c-page-title {
+    @include font-size($vpn-title-xl-size);
+    line-height: 1.2;
+
+    @media #{$mq-md} {
+        @include font-size($vpn-title-2xl-size);
     }
 }
 
 .c-section-title {
+    @include font-size($vpn-title-md-size);
     text-align: center;
     margin-bottom: $spacing-2xl;
 
-    &.t-large {
-        @include text-title-lg;
+    @media #{$mq-md} {
+        @include font-size($vpn-title-lg-size);
     }
 
     &.t-small {
-        @include text-title-sm;
+        @include font-size($vpn-title-xs-size);
+
+        @media #{$mq-md} {
+            @include font-size($vpn-title-sm-size);
+        }
+    }
+
+    #mozilla-vpn-features & {
+        color: $color-violet-60;
+    }
+}
+
+.c-section-more {
+    @include font-size($vpn-title-xs-size);
+    font-weight: bold;
+    text-align: center;
+
+    @media #{$mq-md} {
+        @include font-size($vpn-title-sm-size);
     }
 }
 
@@ -45,7 +95,7 @@ main {
         &:hover,
         &:active,
         &:focus {
-            color: black;
+            color: $color-black;
             text-decoration: none;
         }
     }
@@ -55,16 +105,24 @@ main {
 // Press section
 
 .c-press {
-    background: $color-vpn-brand-refresh-purple-10;
+    background: $color-green-30;
+    text-align: center;
+    padding-top: $layout-md;
+    padding-bottom: $layout-md;
 
     blockquote {
         @include font-base;
         border: none;
         padding: 0;
+        margin-bottom: $layout-lg;
 
         p {
             @include text-body-xl;
             font-weight: normal;
+        }
+
+        @media #{$mq-lg} {
+            margin-bottom: 0;
         }
     }
 }

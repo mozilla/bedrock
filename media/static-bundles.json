@@ -1921,6 +1921,12 @@
     },
     {
       "files": [
+        "js/products/vpn/landing-refresh-experiment.es6.js"
+      ],
+      "name": "mozilla-vpn-landing-refresh-exp"
+    },
+    {
+      "files": [
         "js/products/vpn/affiliate-init.es6.js"
       ],
       "name": "mozilla-vpn-affiliate"

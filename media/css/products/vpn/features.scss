@@ -14,16 +14,38 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .mzp-c-wordmark.mzp-t-product-vpn {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor.svg');
         background-position: top center;
         margin: 0 auto $spacing-xl;
     }
 }
 
 .c-feature-title {
-    @include text-title-2xs;
+    @include font-size($vpn-title-2xs-size);
+    line-height: 1.2;
+
+    @media #{$mq-md} {
+        @include font-size($vpn-title-xs-size);
+    }
+}
+
+.mzp-c-split-body {
+    h2 {
+        @include font-size($vpn-title-sm-size);
+        line-height: 1.2;
+
+        @media #{$mq-md} {
+            @include font-size($vpn-title-md-size);
+        }
+    }
+
+    p {
+        @include text-body-lg;
+    }
 }
 
 .c-feature-block {
+    text-align: center;
     margin-bottom: $spacing-2xl;
 
     img {
@@ -31,15 +53,27 @@ $image-path: '/media/protocol/img';
         margin: 0 auto $spacing-lg;
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-sm} {
         display: grid;
         grid-column-gap: $layout-md;
-        grid-template-columns: 120px 1fr;
+        grid-template-columns: 100px 1fr;
+        text-align: start;
+    }
+
+    @media #{$mq-md} {
+        display: block;
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
     }
 }
 
+.c-trust,
 .c-secure {
     background: $color-marketing-gray-20;
+    padding-top: $layout-md;
+    padding-bottom: $layout-md;
 
     li {
         margin-bottom: $spacing-xl;
@@ -50,15 +84,18 @@ $image-path: '/media/protocol/img';
             margin-bottom: 0;
         }
     }
-}
 
-.c-trust {
     .mzp-c-picto img {
         display: block;
         margin: 0 auto $spacing-xl;;
     }
 
     .mzp-c-picto-heading {
-        @include text-title-2xs;
+        @include font-size($vpn-title-2xs-size);
+        line-height: 1.2;
     }
+}
+
+.c-secure {
+    margin-bottom: $layout-xl;
 }

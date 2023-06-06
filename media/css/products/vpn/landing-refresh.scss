@@ -6,6 +6,7 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import 'includes/lib';
+@import 'pricing-refresh';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // * -------------------------------------------------------------------------- */
@@ -22,11 +23,22 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-powered-by {
+    @include text-body-sm;
+    text-align: center;
+
+    @media #{$mq-xl} {
+        margin-top: -$layout-sm;
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // How a VPN helps
 
 .c-how-vpn-helps {
     background: $color-marketing-gray-20;
+    padding-top: $layout-md;
+    padding-bottom: $layout-md;
 
     .c-reason-title {
         @include text-title-2xs;
@@ -34,7 +46,7 @@ $image-path: '/media/protocol/img';
 
     .c-section-main-img {
         display: block;
-        margin: -$spacing-2xl auto 0;
+        margin: 0 auto $layout-md;
     }
 }
 
@@ -42,41 +54,60 @@ $image-path: '/media/protocol/img';
 // Features section
 
 .c-features {
+    border-top: 2px solid $color-light-gray-30;
     padding-bottom: 0;
-    padding-top: 0;
 
-    .c-section-title {
-        @include bidi(((text-align, left, right),));
-    }
+    .mzp-l-columns {
+        max-width: $content-lg;
+        margin: $layout-sm auto;
 
-    &.mzp-t-dark {
-        background: $color-vpn-brand-refresh-purple-10;
+        @media #{$mq-md} {
+            margin-bottom: $layout-lg;
+        }
     }
 }
 
 .c-feature-block {
-    border: 1px solid $color-black;
-    padding: $spacing-lg;
-    margin-bottom: $spacing-2xl;
+    margin: 0 auto $layout-md;
+    text-align: center;
 
     img {
-        align-self: center;
-        display: block;
-        margin: 0 auto $spacing-lg;
+        display: none;
+
+        @media #{$mq-md} {
+            display: block;
+        }
     }
 
     .c-feature-title {
-        @include text-title-2xs;
+        @include font-size($vpn-title-2xs-size);
+
+        @media #{$mq-md} {
+            @include font-size($vpn-title-xs-size);
+            font-weight: normal;
+        }
     }
 
-    .c-feature-block-detail p {
+    @media #{$mq-md} {
         margin-bottom: 0;
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         display: grid;
-        grid-template-columns: 60px 1fr;
-        grid-column-gap: $layout-md;
+        grid-column-gap: $layout-xs;
+        grid-template-columns: 40px 1fr;
+        margin: 0;
+        max-width: none;
+        text-align: start;
+    }
+}
+
+.c-brand-trust {
+    padding-top: 0;
+
+    .mzp-c-split-container {
+        padding-top: $layout-lg;
+        border-top: 2px solid $color-light-gray-30;
     }
 }
 
@@ -84,10 +115,16 @@ $image-path: '/media/protocol/img';
 // Learn more section
 
 .c-learn-more {
-    margin-top: $spacing-2xl * 2;
-
     .c-section-title {
         margin-bottom: $spacing-2xl * 2;
+    }
+
+    .mzp-l-columns {
+        margin-bottom: $layout-sm;
+
+        @media #{$mq-md} {
+            margin-bottom: $layout-lg;
+        }
     }
 
     .mzp-c-picto img {
