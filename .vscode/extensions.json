@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "EditorConfig.EditorConfig",
+    "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
@@ -11,6 +11,8 @@
     "ms-python.vscode-pylance",
     "samuelcolvin.jinjahtml",
     "streetsidesoftware.code-spell-checker",
-    "trond-snekvik.simple-rst"
+    "trond-snekvik.simple-rst",
+    "charliermarsh.ruff",
+    "ms-python.black-formatter"
   ]
 }
