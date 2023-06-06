@@ -10,7 +10,7 @@ from django.http import Http404
 from django.shortcuts import render as django_render
 from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
@@ -200,15 +200,10 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
     * doc_name: The name of the file in the webvision repo.
     * doc_context_name: (default 'doc') template variable name for doc.
 
-    This view automatically adds the `cache_page` decorator. The default timeout
-    is 10 minutes, configurable by setting the `WEBVISION_DOCS_CACHE_TIMEOUT` setting to change
-    the default for all views, or the `cache_timeout` property for an single instance.
-
     """
 
     doc_name = None
     doc_context_name = "doc"
-    cache_timeout = settings.WEBVISION_DOCS_CACHE_TIMEOUT
 
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
@@ -223,11 +218,6 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context[self.doc_context_name] = doc.content
         return context
-
-    @classmethod
-    def as_view(cls, **initkwargs):
-        cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
-        return cache_page(cache_timeout)(super().as_view(**initkwargs))
 
 
 MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
