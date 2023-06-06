@@ -3,8 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import re
 
-from django.views.decorators.cache import cache_page
-
 from bs4 import BeautifulSoup
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
@@ -84,7 +82,6 @@ subscription_services = PrivacyDocView.as_view(
 )
 
 
-@cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):
     doc = load_legal_doc("mozilla_privacy_policy", l10n_utils.get_locale(request))
 

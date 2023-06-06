@@ -110,51 +110,10 @@ class TestLegalDocView(TestCase):
         req.locale = "de"
         view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists")
         resp = view(req)
-        assert resp["cache-control"] == f"max-age={views.CACHE_TIMEOUT!s}"
+        assert "cache-control" not in resp  # This view is no longer cached at the Bedrock level
         assert resp.content.decode("utf-8") == doc_value
         assert render_mock.call_args[0][2]["doc"] == doc_value
         lld_mock.assert_called_with("the_dude_exists", "de")
-
-    @patch.object(views, "load_legal_doc")
-    @patch.object(views.l10n_utils, "render")
-    def test_cache_settings(self, render_mock, lld_mock):
-        """Should use the cache_timeout value from view."""
-        doc_value = "Donny, you're out of your element!"
-        lld_mock.return_value = {
-            "content": doc_value,
-            "active_locales": ["es-ES", "en-US"],
-        }
-        good_resp = HttpResponse(doc_value)
-        render_mock.return_value = good_resp
-        req = RequestFactory().get("/dude/exists/cached/")
-        req.locale = "es-ES"
-        view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists", cache_timeout=10)
-        resp = view(req)
-        assert resp["cache-control"] == "max-age=10"
-
-    @patch.object(views, "load_legal_doc")
-    @patch.object(views.l10n_utils, "render")
-    def test_cache_class_attrs(self, render_mock, lld_mock):
-        """Should use the cache_timeout value from view class."""
-        doc_value = "Donny, you're out of your element!"
-        lld_mock.return_value = {
-            "content": doc_value,
-            "active_locales": ["es-ES", "en-US"],
-        }
-        good_resp = HttpResponse(doc_value)
-        render_mock.return_value = good_resp
-        req = RequestFactory().get("/dude/exists/cached/2/")
-        req.locale = "es-ES"
-
-        class DocTestView(views.LegalDocView):
-            cache_timeout = 20
-            template_name = "base.html"
-            legal_doc_name = "the_dude_abides"
-
-        view = DocTestView.as_view()
-        resp = view(req)
-        assert resp["cache-control"] == "max-age=20"
-        lld_mock.assert_called_with("the_dude_abides", "es-ES")
 
 
 class TestFilePathData(TestCase):
