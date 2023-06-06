@@ -41,9 +41,10 @@
 <main>
   <header class="c-features-main-header mzp-l-content mzp-t-content-xl">
     <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
-    <h2 class="c-section-title t-large">Features that protect <br>your life online</h2>
+    <h2 class="c-page-title t-large">Features that protect <br>your life online</h2>
   </header>
-  <section class="c-convenient mzp-l-content mzp-t-content-xl">
+
+  <section class="c-convenient t-content-body mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">Convenient</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-two">
@@ -51,12 +52,12 @@
         <img src="{{ static('img/products/vpn/features/icons/location.svg') }}" width="120" alt="">
         <div class="c-feature-block-detail">
           <h3 class="c-feature-title">
-            Over {{ connect_servers }} servers in {{ connect_countries }}+ countries
+            More than {{ connect_servers }} servers in {{ connect_countries }}+ countries
           </h3>
           <p>
-            <a class="c-feature-cta-link" href="https://mullvad.net/servers/">
-              See our list of servers
-            </a>.
+            <a href="https://mullvad.net/servers/" rel="external noopener" target="_blank">
+              See our list of servers.
+            </a>
           </p>
         </div>
       </li>
@@ -89,64 +90,118 @@
             Fast network speeds even while gaming
           </h3>
           <p>
-            Mozilla VPN uses Wireguard™, one of the most performant VPN protocols.
-            <a href="https://mullvad.net/help/why-wireguard/">Learn more about Wireguard</a>.
+            Mozilla VPN uses <a href="https://mullvad.net/help/why-wireguard/" rel="external noopener" target="_blank">Wireguard</a>™,
+            one of the most performant VPN protocols.
           </p>
         </div>
       </li>
     </ul>
   </section>
 
-  <section class="c-secure mzp-l-content mzp-t-content-xl">
+  <section class="c-secure t-content-body mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">Secure</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-three">
-      <li>
-        <h3 class="c-feature-title">
-          Block advertisers from targeting you
-        </h3>
+      {% call picto(
+        title='Block advertisers from targeting you',
+        image=resp_img(
+          url='img/products/vpn/features/icons/adblock.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
         <p>
           Mozilla VPN helps you automatically block ads and ad trackers from seeing
           your online activity.
         </p>
-      </li>
-      <li>
-        <h3 class="c-feature-title">
-          Encrypt all your internet traffic
-        </h3>
+      {% endcall %}
+
+      {% call picto(
+        title='Encrypt all your internet traffic',
+        image=resp_img(
+          url='img/products/vpn/features/icons/encrypt.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '88',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
         <p>
-          Mozilla VPN encrypts all traffic from your device, not just your browser activity.
-          <a href="#TODO">Learn how your computer or mobile device is protected</a>.
+          Mozilla VPN protects all of the apps on your device, not just your browser.
         </p>
-      </li>
-      <li>
-        <h3 class="c-feature-title">
-          Stronger malware protection
-        </h3>
+      {% endcall %}
+
+      {% call picto(
+        title='Stronger malware protection',
+        image=resp_img(
+          url='img/products/vpn/features/icons/malware.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '70',
+            'height': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
         <p>
           Mozilla VPN prevents you from downloading malware from known unsafe sources.
         </p>
-      </li>
-      <li>
-        <h3 class="c-feature-title">
-          Super-private mode: route traffic through two locations
-        </h3>
+      {% endcall %}
+
+      {% call picto(
+        title='Super-private mode: route traffic through two locations',
+        image=resp_img(
+          url='img/products/vpn/features/icons/multihop.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
         <p>
-          Our multi-hop feature gives you an extra security boost.
-          <a href="#TODO">Learn more about multi-hop</a>.
+          Our <a href="https://support.mozilla.org/kb/multi-hop-encrypt-your-data-twice-enhanced-security{{ _params }}" rel="external noopener" target="_blank">multi-hop feature</a> gives you an extra security boost.
         </p>
-      </li>
-      <li>
-        <h3 class="c-feature-title">
-          Support for custom DNS
-        </h3>
+      {% endcall %}
+
+      {% call picto(
+        title='Support for custom DNS',
+        image=resp_img(
+          url='img/products/vpn/features/icons/dns.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
         <p>
           With Mozilla VPN, you can keep your traffic protected and still route your DNS
-          queries wherever you prefer. <a href="#TODO">Learn more about custom DNS support</a>.
+          queries wherever you prefer. <a href="https://support.mozilla.org/kb/how-do-i-change-my-dns-settings{{ _params }}" rel="external noopener" target="_blank">Learn more about custom DNS support</a>.
         </p>
-      </li>
+      {% endcall %}
     </ul>
   </section>
+
+  <h2 class="c-section-title">Flexible</h2>
 
   {% call split(
     block_class='t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
@@ -174,8 +229,8 @@
     <h2>Personalized server location recommendations</h2>
 
     <p>
-      Get recommendations for the best servers near you to ensure a fast and reliable
-      internet connection. <a href="#TODO">See how we know</a>.
+      We’ll suggest which servers near you will ensure the fastest, most reliable
+      internet connection.
     </p>
   {% endcall %}
 
@@ -233,11 +288,12 @@
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
-    <h2>Set different locations in each browser tab</h2>
+    <h2>Set different locations for each tab in Firefox</h2>
 
     <p>
       Combine Mozilla VPN with the Multi-Account Containers Firefox extension and
-      set different VPN locations per Firefox tab. <a href="#TODO">Learn how</a>.
+      set different VPN locations per Firefox tab.
+      <a href="https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn{{ _params }}" rel="external noopener" target="_blank">Learn how</a>.
     </p>
   {% endcall %}
 
@@ -265,7 +321,7 @@
       {% endcall %}
 
       {% call picto(
-        title='We never log, track, or share your network data',
+        title='We never log, track or share your network data',
         image=resp_img(
           url='img/products/vpn/features/icons/eye.svg',
           optional_attributes={
@@ -301,8 +357,8 @@
       ) %}
         <p>
           Mozilla VPN is made with open-source code, meaning that all the
-          code is publicly accessible. Check out our
-          <a href="https://github.com/mozilla-mobile/mozilla-vpn-client">
+          code is publicly accessible. See our
+          <a href="https://github.com/mozilla-mobile/mozilla-vpn-client" rel="external noopener" target="_blank">
           Github repository</a>.
         </p>
       {% endcall %}
@@ -323,7 +379,7 @@
       ) %}
         <p>
           We’ve been audited by Cure53, a leading cybersecurity auditing firm.
-          <a href="#TODO">See the report here</a>.
+          <a href="https://blog.mozilla.org/en/mozilla/news/mozilla-vpn-completes-independent-security-audit-by-cure53/{{ _params }}" rel="external noopener" target="_blank">See the report here</a>.
         </p>
       {% endcall %}
 
@@ -342,8 +398,8 @@
         base_el='li'
       ) %}
         <p>
-          We’re backed by the Mozilla Foundation, a non-profit fighting to
-          keep the web open and healthy for all people
+          We’re backed by the <a href="https://foundation.mozilla.org{{ _params }}" rel="external noopener" target="_blank">Mozilla Foundation</a>,
+          a non-profit fighting to keep the web open and healthy for all people.
         </p>
       {% endcall %}
     </ul>

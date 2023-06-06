@@ -19,14 +19,19 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .mzp-c-wordmark.mzp-t-product-vpn {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor.svg');
         background-position: top center;
         margin: 0 auto $spacing-xl;
     }
 }
 
 .c-pricing-details-heading {
-    @include text-title-xs;
+    @include font-size($vpn-title-2xs-size);
     margin-bottom: $spacing-xl;
+
+    @media #{$mq-md} {
+        @include font-size($vpn-title-xs-size);
+    }
 }
 
 .c-pricing-block {

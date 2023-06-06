@@ -31,7 +31,7 @@ from pages.products.vpn.landing_refresh import VPNLandingPage
     ],
 )
 def test_vpn_available_in_country(country, base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params=f"?geo={country}").open()
+    page = VPNLandingPage(selenium, base_url, params=f"?geo={country}&entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2").open()
     # Navigation
     assert not page.is_join_waitlist_navigation_button_displayed
     assert page.is_get_vpn_navigation_button_displayed
@@ -48,6 +48,10 @@ def test_vpn_available_in_country(country, base_url, selenium):
     assert not page.is_join_waitlist_tertiary_button_displayed
     assert page.is_get_vpn_tertiary_button_displayed
 
+    # Pricing section
+    assert page.is_get_vpn_monthly_button_displayed
+    assert page.is_get_vpn_12_months_button_displayed
+
     # Footer
     assert not page.is_join_waitlist_footer_button_displayed
     assert page.is_get_vpn_footer_button_displayed
@@ -55,7 +59,7 @@ def test_vpn_available_in_country(country, base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_vpn_not_available_in_country(base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params="?geo=cn").open()
+    page = VPNLandingPage(selenium, base_url, params="?geo=cn&entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2").open()
     # Navigation
     assert page.is_join_waitlist_navigation_button_displayed
     assert not page.is_get_vpn_navigation_button_displayed
@@ -71,6 +75,10 @@ def test_vpn_not_available_in_country(base_url, selenium):
     # Tertiary
     assert page.is_join_waitlist_tertiary_button_displayed
     assert not page.is_get_vpn_tertiary_button_displayed
+
+    # Pricing section
+    assert not page.is_get_vpn_monthly_button_displayed
+    assert not page.is_get_vpn_12_months_button_displayed
 
     # Footer
     assert page.is_join_waitlist_footer_button_displayed

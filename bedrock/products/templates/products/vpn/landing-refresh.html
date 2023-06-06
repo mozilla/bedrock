@@ -12,7 +12,13 @@
 {% block page_title_full %}Get Mozilla VPN  — Mozilla (US){% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}TODO{% endblock %}
+{% block page_desc %}Use Mozilla VPN for full-device protection for all apps. With servers in { $countries }+ countries, you can connect to anywhere, from anywhere.{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-vpn-landing-refresh', ['en-US']) %}
+    {{ js_bundle('mozilla-vpn-landing-refresh-exp') }}
+  {% endif %}
+{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
@@ -42,11 +48,11 @@
   {% call split(
     block_class='c-hero mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
-      url='img/products/vpn/landing-refresh/vpn-ui-400.png',
+      url='img/products/vpn/landing-refresh/vpn-hero-400.png',
       srcset={
-        'img/products/vpn/landing-refresh/vpn-ui-400.png': '400w',
-        'img/products/vpn/landing-refresh/vpn-ui-600.png': '600w',
-        'img/products/vpn/landing-refresh/vpn-ui-800.png': '800w',
+        'img/products/vpn/landing-refresh/vpn-hero-400.png': '400w',
+        'img/products/vpn/landing-refresh/vpn-hero-600.png': '600w',
+        'img/products/vpn/landing-refresh/vpn-hero-800.png': '800w',
       },
       sizes={
         '(min-width: 1312px)': '400px',
@@ -66,7 +72,7 @@
 
     {% if vpn_available %}
       <p class="c-main-cta">
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.pricing') }}" data-cta-type="button" data-cta-text="View VPN pricing" data-cta-position="primary">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary">
           {{ vpn_saving(country_code=country_code, lang=LANG, bundle_relay=True, ftl_string='vpn-shared-save-percent-on') }}
         </a>
         <small>
@@ -75,36 +81,47 @@
       </p>
 
     {% else %}
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="primary">
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="primary">
         {{ ftl('vpn-shared-waitlist-link') }}
       </a>
     {% endif %}
   {% endcall %}
 
-  <aside class="c-aside">
-    <p>Powered by Mozilla. Fighting for your right to privacy since 1998.</p>
+  <aside class="c-powered-by mzp-l-content mzp-t-content-nospace">
+    <p><strong>Powered by Mozilla.</strong> Fighting for your right to privacy since 1998.</p>
   </aside>
 
   {% call split(
-    block_class='t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    block_class='c-what-vpn mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
-      'img/products/vpn/landing-refresh/padlock.svg',
+      url='img/products/vpn/landing-refresh/vpn-select-400.png',
+      srcset={
+        'img/products/vpn/landing-refresh/vpn-select-400.png': '400w',
+        'img/products/vpn/landing-refresh/vpn-select-600.png': '600w',
+        'img/products/vpn/landing-refresh/vpn-select-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
       optional_attributes={
+        'height': '396',
+        'width': '400',
         'class': 'mzp-c-split-media-asset',
-        'loading': 'lazy'
       }
     ),
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
-    <h2>What’s a VPN?</h2>
+    <h2 class="u-title-lg">What’s a VPN?</h2>
 
-    <p>
+    <p class="u-body-lg">
       A virtual private network protects your connection to the internet,
-      keeping your location and what you do online safer across your devices.
+      keeping your location and what you do online more private across your devices.
     </p>
 
-    <p>
+    <p class="u-body-lg">
       <a href="{{ url('products.vpn.features') }}">See all the ways Mozilla VPN protects you.</a>
     </p>
   {% endcall %}
@@ -112,30 +129,28 @@
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">How a VPN helps you</h2>
 
-    <img class="c-section-main-img" loading="lazy" src="{{ static('img/products/vpn/landing-refresh/padlock.svg') }}" width="452" height="452" alt="">
+    <img class="c-section-main-img" loading="lazy" src="{{ static('img/products/vpn/landing-refresh/travel-padlock.svg') }}" width="726" height="280" alt="">
 
     <ul class="mzp-l-columns mzp-t-columns-three">
       <li>
-        <h3 class="c-reason-title">Keep data safe on public wifi</h3>
+        <h3 class="c-reason-title">Keeps your data safe on public Wi-Fi</h3>
         <p>
-          Block hackers from taking advantage of unsecured wifi networks
-          (like at airports and cafes), so you can log into your bank or
-          doctor’s portal with peace of mind.
+          Log into your bank or doctor’s office from the airport, cafe or
+          anywhere, with peace of mind.
         </p>
       </li>
       <li>
-        <h3 class="c-reason-title">Block advertisers from targeting you</h3>
+        <h3 class="c-reason-title">Blocks advertisers from targeting you</h3>
         <p>
-          Mozilla VPN’s settings help you hide your activity from internet
-          providers, trackers and malware, so you can shop online without
-          being followed.
+          Hide your activity from trackers and malware so you can shop without
+          being watched.
         </p>
       </li>
       <li>
-        <h3 class="c-reason-title">Access content from other countries</h3>
+        <h3 class="c-reason-title">Helps you access global content</h3>
         <p>
-          While traveling abroad, you can connect to your home country to
-          access sites that may not be available in other countries.
+          Check out foreign shows, websites and live-streams while you’re
+          traveling or at home.
         </p>
       </li>
     </ul>
@@ -143,46 +158,24 @@
 
   {{ vpn_conditional_cta_refresh('secondary') }}
 
-  <section class="c-features t-content-body mzp-l-content mzp-t-content-xl">
+  <section class="c-features mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title t-large">Features</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-two">
       <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/shield.svg') }}" width="60" alt="">
+        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/devices.svg') }}" width="60" alt="">
         <div class="c-feature-block-detail">
           <h3 class="c-feature-title">
             Connect up to 5 devices
           </h3>
-          <p>
-            Supported on Windows, macOS, Android, iOS and Linux
-            operating systems.
-          </p>
         </div>
       </li>
       <li class="c-feature-block">
         <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/globe.svg') }}" width="60" alt="">
         <div class="c-feature-block-detail">
           <h3 class="c-feature-title">
-            Over {{ connect_servers}} servers in {{ connect_countries }}+ countries
+            More than {{ connect_servers}} servers in {{ connect_countries }}+ countries
           </h3>
-          <p>
-            <a href="https://mullvad.net/servers/">
-              See our full list of servers.
-            </a>
-          </p>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/stop.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            We never log, track, or share your network data
-          </h3>
-          <p>
-            We partner with Mullvad VPN to offer industry-leading
-            privacy practices. <a href="{{ url('privacy.notices.subscription-services') }}">
-            Here’s our privacy policy.</a>
-          </p>
         </div>
       </li>
       <li class="c-feature-block">
@@ -191,16 +184,78 @@
           <h3 class="c-feature-title">
             Fast network speeds even while gaming
           </h3>
-          <p>
-            We’re built using Wireguard™, one of the most performant VPN protocols.
-            <a href="https://mullvad.net/help/why-wireguard/">Learn more about Wireguard.</a>
-          </p>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/no-spy.svg') }}" width="60" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            No logging, tracking or sharing of network data
+          </h3>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/stop.svg') }}" width="60" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            No bandwidth restrictions or throttling
+          </h3>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/shield.svg') }}" width="60" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            Extra security: whole device protection, multi-hop routing & more
+          </h3>
         </div>
       </li>
     </ul>
+    <p class="c-section-more"><a href="{{ url('products.vpn.features') }}">See all features</a></p>
   </section>
 
   {{ vpn_conditional_cta_refresh('tertiary') }}
+
+  {% call split(
+    block_class='c-brand-trust mzp-l-split-center-on-sm-md mzp-t-content-lg',
+    image=resp_img(
+      'img/products/vpn/landing-refresh/heart.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'loading': 'lazy',
+        'width': '260',
+        'height': '260',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+    <h2 class="u-title-lg">From a brand you can trust</h2>
+
+    <p>
+      Mozilla is a non-profit-backed internet company that’s been fighting
+      for a healthy web since 1998.
+    </p>
+  {% endcall %}
+
+  <section id="pricing" class="mzp-l-content mzp-t-content-xl">
+    {% if vpn_available %}
+      <header class="c-pricing-main-header">
+        <h3 class="c-section-title">One subscription for all your devices</h3>
+      </header>
+
+      {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
+
+    {% else %}
+      <header class="c-pricing-main-header">
+        <h2 class="c-section-title">Mozilla VPN is not yet available in your country</h2>
+
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+          {{ ftl('vpn-shared-waitlist-link') }}
+        </a>
+      </header>
+    {% endif %}
+  </section>
 
   {% include 'products/vpn/includes/press.html' %}
 
@@ -265,28 +320,20 @@
         </h3>
       {% endcall %}
     </ul>
+
+    <p class="c-section-more"><a href="{{ url('products.vpn.resource-center.landing') }}">See more resources</a></p>
   </section>
-
-  {% call split(
-    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
-    image=resp_img(
-      'img/products/vpn/landing-refresh/heart.svg',
-      optional_attributes={
-        'class': 'mzp-c-split-media-asset',
-        'loading': 'lazy'
-      }
-    ),
-    media_class='mzp-l-split-h-center',
-    media_after=True
-  ) %}
-    <h2>From a brand you can trust</h2>
-
-    <p>
-      Mozilla is a non-profit-backed internet company that’s been fighting
-      for a healthy web since 1998.
-    </p>
-  {% endcall %}
 
   {{ vpn_conditional_cta_refresh('footer') }}
 </main>
+{% endblock %}
+
+{% block js %}
+  {% if vpn_affiliate_attribution_enabled %}
+    {{ js_bundle('mozilla-vpn-affiliate') }}
+  {% else %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+
+  {{ js_bundle('data_begincheckout') }}
 {% endblock %}

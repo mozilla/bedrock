@@ -26,6 +26,11 @@ class VPNLandingPage(BasePage):
     _get_vpn_tertiary_button_locator = (By.CSS_SELECTOR, '.c-aside.tertiary .mzp-c-button[data-cta-text="Get Mozilla VPN"]')
     _join_waitlist_tertiary_button_locator = (By.CSS_SELECTOR, '.c-aside.tertiary .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
+    # Pricing section
+    _get_vpn_monthly_button_locator = (By.CSS_SELECTOR, '.c-pricing-block .mzp-c-button[data-cta-text="Get Mozilla VPN monthly"]')
+    _get_vpn_12_months_button_locator = (By.CSS_SELECTOR, '.c-pricing-block .mzp-c-button[data-cta-text="Get Mozilla VPN 12-month"]')
+    _join_waitlist_button_locator = (By.CSS_SELECTOR, '.c-pricing-main-header .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
+
     # Footer
     _get_vpn_footer_button_locator = (By.CSS_SELECTOR, '.c-aside.footer .mzp-c-button[data-cta-text="Get Mozilla VPN"]')
     _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, '.c-aside.footer .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
@@ -60,7 +65,7 @@ class VPNLandingPage(BasePage):
     def is_join_waitlist_secondary_button_displayed(self):
         return self.is_element_displayed(*self._join_waitlist_secondary_button_locator)
 
-    # Secondary
+    # Tertiary
 
     @property
     def is_get_vpn_tertiary_button_displayed(self):
@@ -69,6 +74,16 @@ class VPNLandingPage(BasePage):
     @property
     def is_join_waitlist_tertiary_button_displayed(self):
         return self.is_element_displayed(*self._join_waitlist_tertiary_button_locator)
+
+    # Pricing section
+
+    @property
+    def is_get_vpn_monthly_button_displayed(self):
+        return self.is_element_displayed(*self._get_vpn_monthly_button_locator)
+
+    @property
+    def is_get_vpn_12_months_button_displayed(self):
+        return self.is_element_displayed(*self._get_vpn_12_months_button_locator)
 
     # Footer
 
