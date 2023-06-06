@@ -14,18 +14,20 @@ import TrackBeginCheckout from '../../../../media/js/base/datalayer-begincheckou
 describe('datalayer-begincheckout.es6.js', function () {
     const expectedObj = {
         event: 'begin_checkout',
-        currency: 'USD',
-        value: '11.88',
-        items: [
-            {
-                item_id: 'testid',
-                item_name: 'email',
-                item_category: 'relay',
-                item_variant: 'yearly',
-                price: '11.88',
-                discount: '12.00'
-            }
-        ]
+        ecommerce: {
+            currency: 'USD',
+            value: '11.88',
+            items: [
+                {
+                    item_id: 'testid',
+                    item_name: 'email',
+                    item_category: 'relay',
+                    item_variant: 'yearly',
+                    price: '11.88',
+                    discount: '12.00'
+                }
+            ]
+        }
     };
 
     describe('TrackBeginCheckout.getEventObject', function () {
