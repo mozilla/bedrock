@@ -12,10 +12,11 @@
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}{{ ftl('vpn-windows-page-title-v2') }}{% endblock %}
+{% block page_title_full %}Get a VPN for Windows from Mozilla{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-windows-page-description-v2') }}{% endblock %}
+{% block page_desc %}Protect your Windows device with a VPN. Mozilla VPN is backed by a non-for-profit company. Learn about how a VPN
+protects you and why you should trust Mozilla with your privacy and security.{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-windows{% endblock %}
 
@@ -45,7 +46,7 @@ date, creating unique and strong passwords, and using Relay masks to keep your e
 your location from the websites you visit. This helps to prevent third parties and network spies from learning things
 about you that they don’t need to know.</p>
 <h3>What are the benefits of downloading Mozilla VPN on my Windows device?</h3>
-<ul>
+<ul class="mzp-u-list-styled">
   <li>Avoid your online activity from being collected and shared with third-parties or advertisers.</li>
   <li>If you’re a heavy user of online video or music streaming, you can potentially avoid having your bandwidth restricted or throttled by your internet service provider by using a VPN.</li>
   <li>You can exclude certain apps with the split tunneling feature. This lets you have some apps running through the VPN
@@ -56,5 +57,5 @@ about you that they don’t need to know.</p>
 
 <h3>How do I configure VPN for my Windows device?</h3>
 <p>Mozilla VPN is supported on Windows 10 and Windows 11 and you can use it on up to five devices. To get started, you can
-subscribe at mozilla.org and download the app on your Windows device.</p>
+<a href=" {{ url('products.vpn.landing') }}">subscribe at mozilla.org</a> and download the app on your Windows device.</p>
 {% endblock %}

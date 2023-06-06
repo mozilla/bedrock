@@ -1,0 +1,69 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}VPN for iOS/iPad from Mozilla{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}Looking for a VPN to protect your iPad? Mozilla VPN is backed by a non-for-profit company. Learn how a VPN protects you
+and why you should trust Mozilla for your privacy and security.{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-ios{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-ios-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
+
+{% set subheading = 'VPN for iOS/iPad from Mozilla' %}
+{% set desc = self.page_desc() %}
+
+{% block site_header %}
+{% with
+custom_nav_cta=vpn_nav_platform_cta(
+alt_link_text='vpn-shared-platform-cta-button',
+)
+%}
+{% include 'includes/protocol/navigation/navigation.html' %}
+{% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>If you own an iPad, you probably use it for a lot of things: browsing the web, watching videos, playing games, reading
+books, and more. But whether you’re at home or on the go, your internet connection can expose your personal data and
+location to hackers, advertisers, and other third parties who can use cookies and your IP to track you.</p>
+<p>That’s why you need Mozilla VPN, a fast, reliable, and easy-to-use VPN service that keeps your online activity away from
+prying eyes.</p>
+<h3>What is Mozilla VPN?</h3>
+<p>Mozilla VPN is a virtual private network service that encrypts your internet traffic and hides your IP address.</p>
+<p>With Mozilla VPN you can get:</p>
+<ul class="mzp-u-list-styled">
+  <li><strong>Protection for up to 5 devices:</strong>Use Mozilla VPN on your iPad and up to four other devices with one subscription. You can also use it on Windows, Mac,
+  Linux, iPhone, and Android.</li>
+  <li><strong>Access to servers in 30+ countries:</strong> You can choose from over 500 servers in more than 30 countries worldwide to connect
+  to the internet. This gives you more options and flexibility to access the content you want.</li>
+  <li><strong>Device-level traffic encryption:</strong> Mozilla VPN encrypts all your traffic before it leaves your device, not just your
+  browser’s, but also apps, games, and streaming services. You can also use Mozilla VPN to block ads and trackers that can
+  compromise your privacy.</li>
+  <li><strong>No online activity logs:</strong> Mozilla doesn't log which websites you visit or inspect your communications.</li>
+  <li><strong>Feel safe using public Wi-Fi:</strong> When you connect to a public Wi-Fi network, such as at a coffee shop or airport, your data
+  might be able to be intercepted by hackers or malicious actors. With Mozilla VPN, your data is encrypted to prevent
+  anyone from snooping on your online activity.</li>
+</ul>
+<p>Mozilla VPN is backed by Mozilla Foundation, the not-for-profit backing Firefox, one of the most popular and
+privacy-focused browsers in the world. By choosing Mozilla VPN, you’re supporting our mission to keep the internet open
+and accessible for everyone.</p>
+{% endblock %}

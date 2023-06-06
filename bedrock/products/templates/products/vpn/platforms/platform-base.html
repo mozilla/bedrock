@@ -4,7 +4,7 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_nav_cta_link, vpn_content_block, with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_nav_cta_link with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -25,6 +25,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
 {% block content %}
+<main>
   {% block hero %}
     {% call vpn_platform_hero(
       heading=ftl('vpn-shared-product-name'),
@@ -40,24 +41,16 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% endblock %}
 
 
-  <div class="mzp-l-content mzp-t-content-md">
+  <div class="mzp-l-content mzp-t-content-md platform-article">
     <article class="mzp-c-article">
       {% block article %}{% endblock %}
     </article>
   </div>
 
-  <div class="mzp-l-content mzp-t-content-lg">
-    {% call vpn_content_block(
-      class_name='t-highlight t-center'
-      ) %}
-      <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-shared-product-name') }}</h1>
-      <h3 class="vpn-content-well-title">{{ ftl('vpn-shared-subscribe-link') }}</h3>
-      <div class="vpn-content-well-desc">
-        <p><a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">{{
-            ftl('vpn-shared-platform-cta-button') }}</a></p>
-        <p class="guarantee-copy"><a href="{{ url('products.vpn.landing') }}#faq-refunds">{{
-            ftl('vpn-shared-money-back-guarantee') }}</a></p>
-      </div>
-    {% endcall %}
+  <div class="mzp-l-content mzp-t-content-lg c-vpn-platform-footer">
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-shared-product-name') }}</div>
+      <p><a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">Subscribe to Mozilla VPN</a></p>
+      <p class="guarantee-copy"><a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ftl('vpn-shared-money-back-guarantee') }}</a></p>
   </div>
+  </main>
 {% endblock %}

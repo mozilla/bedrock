@@ -4,15 +4,15 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
 
-{% extends "products/vpn/base.html" %}
+{% extends "products/vpn/platforms/platform-base.html" %}
 
 {% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}{{ ftl('vpn-linux-page-title') }}{% endblock %}
+{% block page_title_full %}Mozilla VPN on Linux{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}{{ ftl('vpn-linux-page-description') }}{% endblock %}
@@ -23,9 +23,8 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% block page_css %}
-  {{ css_bundle('mozilla-vpn-platforms') }}
-{% endblock %}
+{% set subheading = 'Mozilla VPN on Linux for a More Private and Secure Internet' %}
+{% set desc = self.page_title_full() %}
 
 {% block site_header %}
   {% with
@@ -37,113 +36,38 @@
   {% endwith %}
 {% endblock %}
 
-{% block content %}
-<main>
-  {% block hero %}
-    {% call vpn_platform_hero(
-      heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-linux-hero-headline'),
-      desc=ftl('vpn-linux-page-description'),
-      image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
-    ) %}
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-      <p class="guarantee-copy">
-        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-      </p>
-    {% endcall %}
-  {% endblock %}
+{% block article %}
+<p>Linux is free, open-source, and customizable, but it’s not immune to online security and privacy issues. Just like users
+of other operating systems, Linux users face censorship, surveillance, and hacking.</p>
+<h3>What is Mozilla VPN?</h3>
+<p>Mozilla VPN is a virtual private network service that uses open-source state-of-the-art encryption and does not log,
+track or share any of your network activity. It allows you to connect to over 500 servers in 30+ countries.</p>
+<h3>Why Choose Mozilla VPN for Linux?</h3>
+<ul class="mzp-u-list-styled">
+  <li><strong>Fast and reliable:</strong> Mozilla VPN uses the WireGuard® protocol, which offers better performance and stability than other
+  VPN protocols</li>
+  <li><strong>No logs:</strong>Mozilla VPN does not keep any logs of your network activity; we don’t record which websites you visit or inspect your
+  traffic.</li>
+  <li><strong>Additional security features:</strong>We use DNS blocking to block ads, trackers, and malware. While a browser can prevent only websites from giving you
+  malware and tracking you.</li>
+  <li><strong>Device-level encryption:</strong>Unlike VPNs that only encrypt your browser traffic, Mozilla VPN encrypts all your device’s traffic, including all your
+  applications and games.</li>
+  <li><strong>Multi-hop routing:</strong>For added protection, Mozilla VPN can encrypt your traffic and route it through two locations instead of one, making it
+  harder for anyone to trace your online activity.</li>
+  <li><strong>Simple and intuitive interface:</strong>Connect to a server with one click. You can also customize your settings and preferences according to your needs.</li>
+  <li><strong>It helps restore net neutrality:</strong>Mozilla VPN helps you take back control of your online activities by preventing internet providers from throttling your bandwidth, or from blocking websites or services that they don’t like, or that compete with their own offerings.</li>
+  <li><strong>GUI client:</strong>Mozilla VPN has a GUI client (graphical user interface), whereas some VPN providers only provide a CLI version (command
+  line).</li>
+</ul>
+<p>By using Mozilla VPN, you can take back control of your online activities and protect your privacy and data. Download
+Mozilla VPN today and enjoy a 30-day money-back guarantee with no logs, no hassle, and no risk.</p>
 
-  <div class="mzp-l-content mzp-t-content-xl">
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-privacy-promise'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
-      class_name='vpn-content-media-right-half',
-      has_outline=True,
-      loading='eager'
-    ) %}
-      <p>{{ ftl('vpn-linux-ability') }}</p>
-      <p>{{ ftl('vpn-linux-maker-of-firefox') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-what-youll-get'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
-      class_name='vpn-content-media-left-half'
-    ) %}
-      <ul class="mzp-u-list-styled vpn-feature-list">
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-access-countries', countries=vpn_countries) }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
-      </ul>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-wifi-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
-      class_name='vpn-content-media-right-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-wifi-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-privacy-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
-      class_name='vpn-content-media-left-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-privacy-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-servers-headline', servers=vpn_servers, countries=vpn_countries),
-      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
-      class_name='vpn-content-media-right-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-servers-copy', countries=vpn_countries) }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-devices-headline', devices=vpn_devices),
-      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
-      class_name='vpn-content-media-left-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-devices-copy', devices=vpn_devices) }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-speed-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
-      class_name='vpn-content-media-right-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-speed-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-linux-log-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
-      class_name='vpn-content-media-left-half'
-    ) %}
-      <p>{{ ftl('vpn-linux-log-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_block(
-      class_name='t-highlight t-center'
-    ) %}
-      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
-      <div class="vpn-content-well-desc">
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-        <p class="guarantee-copy">
-          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-        </p>
-      </div>
-    {% endcall %}
-
-  </div>
-
-  <footer class="vpn-footer mzp-l-content">
-    {% include 'products/vpn/includes/footer-legal.html' %}
-  </footer>
-
-</main>
+<h3>How to install Mozilla VPN on Linux</h3>
+<p>If you use one of the supported Ubuntu releases, there are two ways to install mozillavpn official packages hosted on
+<a href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer" target="_blank">launchpad:</a></p>
+<ol class="mzp-u-list-styled">
+  <li><strong>Ubuntu command line mode:</strong>For detailed instructions on how to install Mozilla VPN using command line mode tools, check out <a href="https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer" rel="external noopener noreferrer" target="_blank">How to install Mozilla VPN on a Linux computer<a></a>.</li>
+  <li><strong>Ubuntu graphical user interface:</strong> Visit <a href="https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29" rel="external noopener noreferrer" target="_blank">this article</a> and follow the instructions in the Adding personal package archives section.</li>
+</ol>
+<p>Additionally, for unsupported Linux distributions, you can take and compile the source code from the <a href="https://github.com/mozilla-mobile/mozilla-vpn-client/" rel="external noopener noreferrer" target="_blank">official GitHub repository</a>.</p>
 {% endblock %}
