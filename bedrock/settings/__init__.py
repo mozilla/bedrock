@@ -184,7 +184,7 @@ else:
         "adservice.google.de",
         "adservice.google.dk",
         "creativecommons.org",
-        "cdn-3.convertexperiments.com",
+        "cdn-4.convertexperiments.com",
         "logs.convertexperiments.com",
         "images.ctfassets.net",
     ]
@@ -199,7 +199,7 @@ else:
         "tagmanager.google.com",
         "www.youtube.com",
         "s.ytimg.com",
-        "cdn-3.convertexperiments.com",
+        "cdn-4.convertexperiments.com",
         "app.convert.com",
         "data.track.convertexperiments.com",
         "1003350.track.convertexperiments.com",
