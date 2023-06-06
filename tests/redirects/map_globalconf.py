@@ -13,8 +13,7 @@ URLS = flatten(
     (
         # bug 832348 **/index.html -> **/
         url_test("/any/random/url/with/index.html", "/any/random/url/with/"),
-        # bug 774675
-        url_test("/en/", "/en-US/", status_code=requests.codes.found),
+        # bug 774675 + also see Issue 13211 for why /en/ isn't included here any more
         url_test("/es/", "/es-ES/", status_code=requests.codes.found),
         url_test("/pt/", "/pt-BR/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
