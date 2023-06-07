@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="550px" height="709px" viewBox="0 0 1100 1300" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+<svg width="550px" height="709px" viewBox="0 0 1100 1300" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="filter0_d" x="0.686523" y="0.486328" width="367.377" height="656.513" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>

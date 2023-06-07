@@ -14,9 +14,9 @@ hero-section-body = Our secure, easy-to-use email and phone masks help keep your
     private so you can sign up for new accounts anonymously, stop spam texts and junk calls, and
     get only the emails you want in your inbox.
 hero-section-cta = Get started
-# Context: This describes the various websites and magazines who have mentioned Firefox Relay.
-# Example: "As seen in FORBES magainze and LifeHacker website"
-hero-section-social-proof = As seen in
+# Context: This lists the various websites and magazines who have mentioned Firefox Relay.
+# Example: "As seen in: FORBES magainze and LifeHacker"
+hero-section-social-proof = As seen in:
 
 ## HOW IT WORKS SECTION
 

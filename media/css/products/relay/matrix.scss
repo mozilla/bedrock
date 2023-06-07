@@ -96,20 +96,30 @@ $brand-theme: 'firefox';
         align-items: center;
         background-color: #fff;
         border-radius: $border-radius-md;
-        flex-direction: column;
-        flex: 1 0 265px;
+        flex: 1 0 230px;
         gap: $spacing-md;
-        max-width: 100%;
-        padding: $spacing-md;
+        max-width: 450px;
+        padding: 0 $spacing-md $spacing-md $spacing-md;
+        margin: 0 auto;
+
+        @media #{$mq-md} {
+            flex: 1 0 250px;
+        }
     }
 }
 
 .c-matrix-plan {
     display: grid;
-    grid-template-rows: min-content auto min-content;
+    grid-template-rows: minmax(min-content, 5em) auto min-content;
 
     h3 {
-        padding: $spacing-sm;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        margin: 0 $spacing-md * -1;
+        padding: $spacing-md ;
         text-align: center;
     }
 }
@@ -127,6 +137,11 @@ $brand-theme: 'firefox';
     img {
         height: 16px;
         width: 16px;
+        margin-left: $spacing-md;
+    }
+
+    span {
+        margin-left: $spacing-md;
     }
 }
 
@@ -135,11 +150,6 @@ $brand-theme: 'firefox';
         background-color: $color-violet-70;
         border-radius: $border-radius-md $border-radius-md 0 0;
         color: $color-white;
-        margin: $spacing-md * -1;
-    }
-
-    ul {
-        margin-top: $spacing-lg;
     }
 }
 

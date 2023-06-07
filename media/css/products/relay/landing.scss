@@ -61,9 +61,9 @@ $brand-theme: 'firefox';
 }
 
 .c-hero-brands {
-    @include text-body-sm;
-    border-bottom: 1px solid $color-marketing-gray-20;
-    border-top: 1px solid $color-marketing-gray-20;
+    @include text-body-md;
+    border-bottom: 1px solid $color-marketing-gray-30;
+    border-top: 1px solid $color-marketing-gray-30;
     margin-top: $layout-sm;
     padding: $spacing-lg 0;
 }
