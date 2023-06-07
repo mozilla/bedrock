@@ -1,0 +1,65 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}Get a VPN for Mobile from Mozilla{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}Looking for a VPN to protect your mobile device? Mozilla VPN is backed by a non-for-profit company.
+Learn about how a
+VPN protects you and why you should trust Mozilla with your privacy and security.
+{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-mobile{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-mobile-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
+
+{% set subheading = 'VPN for Mobile from Mozilla' %}
+{% set desc = self.page_title_full() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>In today’s mobile-focused world, we rely on our mobile phones and devices for communication, entertainment and work.
+  However, without a VPN, your personal information may be vulnerable to several security and privacy risks.</p>
+<h3>Why do I need a VPN for Mobile?</h3>
+<ul class="mzp-u-list-styled">
+  <li>The Mozilla VPN mobile app is small, so it doesn’t use up too much of your memory, and it won’t slow down your
+    phone or
+    burn through your battery.</li>
+  <li>Your internet service provider (ISP) may throttle your bandwidth if they know you are watching movies, listening
+    to
+    music, or streaming</li>
+  <li>Your ISP may block websites or services that they don’t like or which compete with their own</li>
+  <li>Hackers can steal your personal data when you are using public wifi, such as in cafes or airports</li>
+</ul>
+<p>A VPN works across your device, not just your browser, therefore across your mobile apps too. And unlike free VPNs or
+  proxy sites, which may pay for their servers by spying on you and selling your information, Mozilla does not keep
+  records of where you go and what you do.
+</p>
+
+{% endblock %}

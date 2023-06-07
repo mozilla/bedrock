@@ -4,20 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
 
-{% extends "products/vpn/platforms/platform-base.html" %}
+{% extends "products/vpn/base.html" %}
 
 {% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}VPN for iPhone from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-ios-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Looking for a VPN for your iPhone? Mozilla’s VPN services ensure you are protected online every time you login to your
-device. Keep reading to learn more about how to keep your iPhone protected from cyber attacks with Mozilla VPN for
-iPhone.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-ios-page-description') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-ios{% endblock %}
 
@@ -29,9 +27,6 @@ iPhone.{% endblock %}
   {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% set subheading = 'VPN for iPhone from Mozilla' %}
-{% set desc = self.page_desc() %}
-
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_platform_cta(
@@ -42,27 +37,113 @@ iPhone.{% endblock %}
   {% endwith %}
 {% endblock %}
 
-{% block article %}
-<p>iPhones are great at protecting your privacy, but they can’t shield you from all online dangers. That’s why you need
-Mozilla VPN, a service for iPhone that encrypts your internet traffic and hides your location. In this article, we’ll
-explain how to use Mozilla VPN for iPhone, what benefits it offers, and how it compares to other VPNs.</p>
-<h3>What is Mozilla VPN?</h3>
-<p>Mozilla VPN is a virtual private network service that encrypts your internet traffic and hides your IP address from
-prying eyes.</p>
-<h3>Why Use Mozilla VPN for iPhone?</h3>
-<p>There are many reasons why you might want to use Mozilla VPN for iPhone, such as:</p>
-<ul class="mzp-u-list-styled">
-  <li><strong>Protecting your personal data:</strong> When you connect to a public Wi-Fi network, such as at a coffee shop or airport, your
-  network traffic can be intercepted and inspected by hackers or malicious actors. With Mozilla VPN, you can encrypt your
-  data and prevent anyone from snooping on your online activity.</li>
-  <li><strong>Enhancing your browsing experience:</strong> Mozilla VPN offers fast and reliable connections that can improve your browsing
-  speed and performance. You can also use Mozilla VPN to block ads and trackers that can slow down your device and
-  compromise your privacy.</li>
-</ul>
-<h3>Why Choose Mozilla VPN?</h3>
-<p>Mozilla VPN is a VPN service that’s backed by a trusted and respected organization that has been fighting for online
-privacy and security for decades. Mozilla is the company behind Firefox, one of the most popular and privacy-focused
-browsers in the world, and backed by the non-profit Mozilla Foundation. By choosing Mozilla VPN, you’re supporting our
-mission to keep the internet open and accessible for everyone.</p>
-<p>Ready to try Mozilla VPN for your iPhone? Download it today and enjoy a 30-day money-back guarantee. No logs, no hassle, no risk.</p>
+{% block content %}
+<main>
+  {% block hero %}
+    {% call vpn_platform_hero(
+      heading=ftl('vpn-shared-product-name'),
+      subheading=ftl('vpn-ios-hero-headline'),
+      desc=ftl('vpn-ios-page-description'),
+      image_url='img/products/vpn/platforms/vpn-hero-mobile.png'
+    ) %}
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+      <p class="guarantee-copy">
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+      </p>
+    {% endcall %}
+  {% endblock %}
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-privacy-promise'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+      class_name='vpn-content-media-right-half',
+      has_outline=True,
+      loading='eager'
+    ) %}
+      <p>{{ ftl('vpn-ios-ability') }}</p>
+      <p>{{ ftl('vpn-ios-maker-of-firefox') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-what-youll-get'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <ul class="mzp-u-list-styled vpn-feature-list">
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-access-countries', countries=vpn_countries) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
+      </ul>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-wifi-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-mobile.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-wifi-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-privacy-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-privacy-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-servers-headline', servers=vpn_servers),
+      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-servers-copy', countries=vpn_countries) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-devices-headline', devices=vpn_devices),
+      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-devices-copy', devices=vpn_devices) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-speed-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-speed-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-ios-log-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-ios-log-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_block(
+      class_name='t-highlight t-center'
+    ) %}
+      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
+      <div class="vpn-content-well-desc">
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+        <p class="guarantee-copy">
+          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+        </p>
+      </div>
+    {% endcall %}
+
+  </div>
+
+  <footer class="vpn-footer mzp-l-content">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
+
+</main>
 {% endblock %}

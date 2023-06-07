@@ -4,20 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
 
-{% extends "products/vpn/platforms/platform-base.html" %}
+{% extends "products/vpn/base.html" %}
 
 {% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}Get a VPN for Mobile from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-mobile-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Looking for a VPN to protect your mobile device? Mozilla VPN is backed by a non-for-profit company. Learn about how a
-VPN protects you and why you should trust Mozilla with your privacy and security.
-{% endblock %}
+{% block page_desc %}{{ ftl('vpn-mobile-page-description') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-mobile{% endblock %}
 
@@ -29,9 +27,6 @@ VPN protects you and why you should trust Mozilla with your privacy and security
   {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% set subheading = 'VPN for Mobile from Mozilla' %}
-{% set desc = self.page_title_full() %}
-
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_platform_cta(
@@ -42,21 +37,113 @@ VPN protects you and why you should trust Mozilla with your privacy and security
   {% endwith %}
 {% endblock %}
 
-{% block article %}
-<p>In today’s mobile-focused world, we rely on our mobile phones and devices for communication, entertainment and work.
-However, without a VPN, your personal information may be vulnerable to several security and privacy risks.</p>
-<h3>Why do I need a VPN for Mobile?</h3>
-<ul class="mzp-u-list-styled">
-  <li>The Mozilla VPN mobile app is small, so it doesn’t use up too much of your memory, and it won’t slow down your phone or
-  burn through your battery.</li>
-  <li>Your internet service provider (ISP) may throttle your bandwidth if they know you are watching movies, listening to
-  music, or streaming</li>
-  <li>Your ISP may block websites or services that they don’t like or which compete with their own</li>
-  <li>Hackers can steal your personal data when you are using public wifi, such as in cafes or airports</li>
-</ul>
-<p>A VPN works across your device, not just your browser, therefore across your mobile apps too. And unlike free VPNs or
-proxy sites, which may pay for their servers by spying on you and selling your information, Mozilla does not keep
-records of where you go and what you do.
-</p>
+{% block content %}
+<main>
+  {% block hero %}
+    {% call vpn_platform_hero(
+      heading=ftl('vpn-shared-product-name'),
+      subheading=ftl('vpn-mobile-hero-headline'),
+      desc=ftl('vpn-mobile-page-description'),
+      image_url='img/products/vpn/platforms/vpn-hero-mobile.png'
+    ) %}
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+      <p class="guarantee-copy">
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+      </p>
+    {% endcall %}
+  {% endblock %}
 
+  <div class="mzp-l-content mzp-t-content-xl">
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-privacy-promise'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+      class_name='vpn-content-media-right-half',
+      has_outline=True,
+      loading='eager'
+    ) %}
+      <p>{{ ftl('vpn-mobile-maker-of-firefox') }}</p>
+      <p>{{ ftl('vpn-mobile-ability', devices=vpn_devices) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-what-youll-get'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <ul class="mzp-u-list-styled vpn-feature-list">
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-access-countries', countries=vpn_countries) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
+      </ul>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-wifi-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-mobile.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-wifi-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-privacy-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-privacy-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-servers-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-devices-headline', devices=vpn_devices),
+      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-devices-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-speed-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+      class_name='vpn-content-media-right-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-speed-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-mobile-log-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+      class_name='vpn-content-media-left-half'
+    ) %}
+      <p>{{ ftl('vpn-mobile-log-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_block(
+      class_name='t-highlight t-center'
+    ) %}
+      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
+      <div class="vpn-content-well-desc">
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+        <p class="guarantee-copy">
+          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+        </p>
+      </div>
+    {% endcall %}
+
+  </div>
+
+  <footer class="vpn-footer mzp-l-content">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
+
+</main>
 {% endblock %}

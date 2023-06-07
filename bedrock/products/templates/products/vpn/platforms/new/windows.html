@@ -1,0 +1,53 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}{{ ftl('vpn-windows-get-a-vpn') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('vpn-windows-protect-your-windows') }}{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-windows{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-windows-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% set subheading = self.page_title_full() %}
+{% set desc = ftl('vpn-windows-stay-safe') %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>{{ ftl('vpn-windows-windows-is-one') }}</p>
+<p>{{ ftl('vpn-windows-a-vpn-creates') }}</p>
+<h3>{{ ftl('vpn-windows-what-are-the-benefits') }}</h3>
+<ul class="mzp-u-list-styled">
+  <li>{{ ftl('vpn-windows-avoid-your-online') }}</li>
+  <li>{{ ftl('vpn-windows-if-youre') }}</li>
+  <li>{{ ftl('vpn-windows-you-can-exclude') }}</li>
+  <li>{{ ftl('vpn-windows-using-a-windows') }}</li>
+</ul>
+<p>{{ ftl('vpn-windows-the-mozilla') }}</p>
+
+<h3>{{ ftl('vpn-windows-the-mozilla') }}</h3>
+<p>{{ ftl('vpn-windows-mozilla-vpn')}}</p>
+{% endblock %}

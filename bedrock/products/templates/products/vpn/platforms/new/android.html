@@ -1,0 +1,73 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}Ease Security Fears with Mozilla VPN for Android{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}Looking for a VPN to protect your Android device? Mozilla VPN is backed by a non-for-profit
+company. Learn about how a
+VPN protects you and why you should trust Mozilla with your privacy and security.{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-android{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-android-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
+
+{% set subheading = 'VPN for Android from Mozilla' %}
+{% set desc = self.page_title_full() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>Whether you’re at home, at work, or making up a funny name for your coffee order at the register, protecting your
+  online
+  security is a top priority for Mozilla. Like many smart technology products, Android devices have built-in protection
+  features that safeguards your device. With VPN for Android from Mozilla, you can take security further with just a tap
+  of your finger.</p>
+<p>Using the fast and secure Wireguard VPN protocol, our VPN is able to encrypt the internet traffic between your device
+  and the VPN network of servers. This helps us keep your web traffic protected when you are on the go. It’s like the
+  lid protecting your green tea with honey from the fly buzzing around the table.</p>
+<h3>How does a VPN protect my Android device?</h3>
+<p>VPNs help prevent:</p>
+<ul class="mzp-u-list-styled">
+  <li>Your internet activity from being viewable, and then sold or shared with advertisers.</li>
+  <li>Low video streaming quality due to slower and restricted bandwidth from your internet service provider (ISP)</li>
+  <li>Your personal data being stolen when using a public wi-fi network.</li>
+</ul>
+<h3>Why should I download Mozilla VPN for Android?</h3>
+<ul class="mzp-u-list-styled">
+  <li>Browse the internet without giving away your location.</li>
+  <li>Be more comfortable using public wi-fi in cafes, airports, and more.</li>
+  <li>Avoid intrusive location-based advertising.</li>
+</ul>
+<p>The Mozilla VPN mobile app is small, so it doesn’t use up too much of your memory, and it won’t slow down your phone
+  or burn through your battery.</p>
+<p>Unlike free VPNs or proxy sites, which may pay for their servers by spying on you and selling your information,
+  Mozilla
+  does not keep records of where you go and what you do.</p>
+<h3></h3>
+{% endblock %}

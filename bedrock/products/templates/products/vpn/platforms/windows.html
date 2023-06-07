@@ -1,22 +1,22 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block,
+vpn_nav_platform_cta with context %}
 
-{% extends "products/vpn/platforms/platform-base.html" %}
+{% extends "products/vpn/base.html" %}
 
 {% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}Get a VPN for Windows from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-windows-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Protect your Windows device with a VPN. Mozilla VPN is backed by a non-for-profit company. Learn about how a VPN
-protects you and why you should trust Mozilla with your privacy and security.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-windows-page-description') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-windows{% endblock %}
 
@@ -24,38 +24,128 @@ protects you and why you should trust Mozilla with your privacy and security.{% 
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% set subheading = 'Get a VPN for Windows from Mozilla' %}
-{% set desc = 'Stay safe and secure on your Windows device with a VPN' %}
-
-{% block site_header %}
-  {% with
-    custom_nav_cta=vpn_nav_platform_cta(
-      alt_link_text='vpn-shared-platform-cta-button',
-    )
-  %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% block article %}
-<p>Windows is one of the most popular operating systems in the world. As a result, Windows devices are usually highly
-targeted by hackers and may be especially vulnerable if you don’t take proper precautions. You can protect your digital
-life by using a VPN to encrypt your online activity, as well as some other steps such as, keeping your software up to
-date, creating unique and strong passwords, and using Relay masks to keep your email protected.</p>
-<p>A VPN creates an encrypted “tunnel” for your internet data between your Windows computer and the internet, and masks
-your location from the websites you visit. This helps to prevent third parties and network spies from learning things
-about you that they don’t need to know.</p>
-<h3>What are the benefits of downloading Mozilla VPN on my Windows device?</h3>
-<ul class="mzp-u-list-styled">
-  <li>Avoid your online activity from being collected and shared with third-parties or advertisers.</li>
-  <li>If you’re a heavy user of online video or music streaming, you can potentially avoid having your bandwidth restricted or throttled by your internet service provider by using a VPN.</li>
-  <li>You can exclude certain apps with the split tunneling feature. This lets you have some apps running through the VPN
-  while leaving others outside of the tunnel.</li>
-  <li>Using a Windows device on a public, unsecured wi-fi network makes your internet traffic information more vulnerable to network spies, and a VPN can help you keep your data private by adding a strong layer of protection.</li>
-</ul>
-<p>The Mozilla VPN app won’t use up too much of your Windows’ devices memory, slow down your computer, or waste your battery life.</p>
+{% block site_header %}
+{% with
+custom_nav_cta=vpn_nav_platform_cta(
+alt_link_text='vpn-shared-platform-cta-button',
+)
+%}
+{% include 'includes/protocol/navigation/navigation.html' %}
+{% endwith %}
+{% endblock %}
 
-<h3>How do I configure VPN for my Windows device?</h3>
-<p>Mozilla VPN is supported on Windows 10 and Windows 11 and you can use it on up to five devices. To get started, you can
-<a href=" {{ url('products.vpn.landing') }}">subscribe at mozilla.org</a> and download the app on your Windows device.</p>
+{% block content %}
+<main>
+  {% block hero %}
+  {% call vpn_platform_hero(
+  heading=ftl('vpn-shared-product-name'),
+  subheading=ftl('vpn-windows-hero-headline'),
+  desc=ftl('vpn-windows-page-description'),
+  image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+  ) %}
+  <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button')
+    }}</a>
+  <p class="guarantee-copy">
+    <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+  </p>
+  {% endcall %}
+  {% endblock %}
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    {% call vpn_content_media(
+    heading=ftl('vpn-shared-platform-privacy-promise'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+    class_name='vpn-content-media-right-half',
+    has_outline=True,
+    loading='eager'
+    ) %}
+    <p>{{ ftl('vpn-windows-ability') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-shared-platform-what-youll-get'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+    class_name='vpn-content-media-left-half'
+    ) %}
+    <ul class="mzp-u-list-styled vpn-feature-list">
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-strong-servers', countries=vpn_countries) }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-connect', devices=vpn_devices) }}</li>
+    </ul>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-wifi-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+    class_name='vpn-content-media-right-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-wifi-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-privacy-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+    class_name='vpn-content-media-left-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-privacy-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-servers-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+    class_name='vpn-content-media-right-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-devices-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+    class_name='vpn-content-media-left-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-devices-copy', devices=vpn_devices) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-speed-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+    class_name='vpn-content-media-right-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-speed-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+    heading=ftl('vpn-windows-log-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+    class_name='vpn-content-media-left-half'
+    ) %}
+    <p>{{ ftl('vpn-windows-log-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_block(
+    class_name='t-highlight t-center'
+    ) %}
+    <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
+    <div class="vpn-content-well-desc">
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button')
+        }}</a>
+      <p class="guarantee-copy">
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+      </p>
+    </div>
+    {% endcall %}
+
+  </div>
+
+  <footer class="vpn-footer mzp-l-content">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
+
+</main>
 {% endblock %}

@@ -4,21 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
 
-{% extends "products/vpn/platforms/platform-base.html" %}
-
+{% extends "products/vpn/base.html" %}
 
 {% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}VPN for PC or laptop from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-desktop-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}If you are looking for a VPN to protect your laptop or PC, check out Mozilla VPN. Mozilla VPN is backed by a
-non-for-profit company. Learn about how a VPN protects you and why you should trust Mozilla with your privacy and
-security.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-desktop-page-description') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-desktop{% endblock %}
 
@@ -30,9 +27,6 @@ security.{% endblock %}
   {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% set subheading = 'VPN for PC or Laptop from Mozilla' %}
-{% set desc = self.page_desc() %}
-
 {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_platform_cta(
@@ -43,18 +37,113 @@ security.{% endblock %}
   {% endwith %}
 {% endblock %}
 
-{% block article %}
-  <p>VPNs can provide an additional layer of security for your laptop or PC and help protect you from hacking attempts,
-  phishing attacks, and other online threats. VPNs encrypt your data and location by creating a “tunnel” between your
-  computer and the internet. If your laptop or PC isn’t using a VPN, hackers and third parties might be able to intercept
-  your traffic, putting your privacy at risk.</p>
-  <h3>How does a VPN protect my laptop or PC?</h3>
-  <p>There are several reasons why you should use a VPN to protect yourself when using your laptop or PC:</p>
-  <ul class="mzp-u-list-styled">
-    <li><strong>Stronger privacy:</strong> Because a VPN masks your IP address, you can browse the internet more privately, knowing that your
-    activity can’t be stitched together by data collectors using your IP as a unique identifier.</li>
-    <li><strong>Safer against spying:</strong> Encrypting your data through a VPN makes it virtually impossible for anybody snooping on your
-    network connection to know what and with whom you are communicating.</li>
-  </ul>
+{% block content %}
+<main>
+  {% block hero %}
+    {% call vpn_platform_hero(
+      heading=ftl('vpn-shared-product-name'),
+      subheading=ftl('vpn-desktop-hero-headline'),
+      desc=ftl('vpn-desktop-page-description'),
+      image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+    ) %}
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+      <p class="guarantee-copy">
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+      </p>
+    {% endcall %}
+  {% endblock %}
 
+  <div class="mzp-l-content mzp-t-content-xl">
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-privacy-promise'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+      class_name='vpn-content-media-right-half',
+      has_outline=True,
+      loading='eager'
+    ) %}
+      <p>{{ ftl('vpn-desktop-ability', devices=vpn_devices) }}</p>
+      <p>{{ ftl('vpn-desktop-maker-of-firefox') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-shared-platform-what-youll-get'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+      class_name='vpn-content-media-left-half',
+    ) %}
+      <ul class="mzp-u-list-styled vpn-feature-list">
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-access-countries', countries=vpn_countries) }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
+      </ul>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-wifi-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+      class_name='vpn-content-media-right-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-wifi-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-privacy-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+      class_name='vpn-content-media-left-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-privacy-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-servers-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+      class_name='vpn-content-media-right-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-servers-copy-updated', fallback='vpn-desktop-servers-copy', servers=vpn_servers) }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-devices-headline', devices=vpn_devices),
+      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+      class_name='vpn-content-media-left-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-devices-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-speed-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+      class_name='vpn-content-media-right-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-speed-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_media(
+      heading=ftl('vpn-desktop-log-headline'),
+      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+      class_name='vpn-content-media-left-half',
+    ) %}
+      <p>{{ ftl('vpn-desktop-log-copy') }}</p>
+    {% endcall %}
+
+    {% call vpn_content_block(
+      class_name='t-highlight t-center'
+    ) %}
+      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
+      <div class="vpn-content-well-desc">
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
+        <p class="guarantee-copy">
+          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+        </p>
+      </div>
+    {% endcall %}
+
+  </div>
+
+  <footer class="vpn-footer mzp-l-content">
+    {% include 'products/vpn/includes/footer-legal.html' %}
+  </footer>
+
+</main>
 {% endblock %}

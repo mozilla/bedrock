@@ -1,0 +1,73 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}VPN for iPhone from Mozilla{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}Looking for a VPN for your iPhone? Mozilla’s VPN services ensure you are protected online every
+time you login to your
+device. Keep reading to learn more about how to keep your iPhone protected from cyber attacks with Mozilla VPN for
+iPhone.{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-ios{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-ios-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
+
+{% set subheading = 'VPN for iPhone from Mozilla' %}
+{% set desc = self.page_desc() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>iPhones are great at protecting your privacy, but they can’t shield you from all online dangers. That’s why you need
+  Mozilla VPN, a service for iPhone that encrypts your internet traffic and hides your location. In this article, we’ll
+  explain how to use Mozilla VPN for iPhone, what benefits it offers, and how it compares to other VPNs.</p>
+<h3>What is Mozilla VPN?</h3>
+<p>Mozilla VPN is a virtual private network service that encrypts your internet traffic and hides your IP address from
+  prying eyes.</p>
+<h3>Why Use Mozilla VPN for iPhone?</h3>
+<p>There are many reasons why you might want to use Mozilla VPN for iPhone, such as:</p>
+<ul class="mzp-u-list-styled">
+  <li><strong>Protecting your personal data:</strong> When you connect to a public Wi-Fi network, such as at a coffee
+    shop or airport, your
+    network traffic can be intercepted and inspected by hackers or malicious actors. With Mozilla VPN, you can encrypt
+    your
+    data and prevent anyone from snooping on your online activity.</li>
+  <li><strong>Enhancing your browsing experience:</strong> Mozilla VPN offers fast and reliable connections that can
+    improve your browsing
+    speed and performance. You can also use Mozilla VPN to block ads and trackers that can slow down your device and
+    compromise your privacy.</li>
+</ul>
+<h3>Why Choose Mozilla VPN?</h3>
+<p>Mozilla VPN is a VPN service that’s backed by a trusted and respected organization that has been fighting for online
+  privacy and security for decades. Mozilla is the company behind Firefox, one of the most popular and privacy-focused
+  browsers in the world, and backed by the non-profit Mozilla Foundation. By choosing Mozilla VPN, you’re supporting our
+  mission to keep the internet open and accessible for everyone.</p>
+<p>Ready to try Mozilla VPN for your iPhone? Download it today and enjoy a 30-day money-back guarantee. No logs, no
+  hassle, no risk.</p>
+{% endblock %}
