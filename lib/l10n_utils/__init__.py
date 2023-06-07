@@ -15,7 +15,7 @@ from product_details import product_details
 
 from bedrock.base.urlresolvers import _get_language_map, split_path
 
-from .fluent import fluent_l10n, get_active_locales as ftl_active_locales
+from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
 
 def template_source_url(template):
@@ -263,6 +263,7 @@ def get_translations_native_names(locales):
 class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
 
+    old_template_name = None
     active_locales = None
     add_active_locales = None
     # a list of ftl files to use or a single ftl filename
@@ -301,6 +302,17 @@ class LangFilesMixin:
             activation_files=self.activation_files,
             **response_kwargs,
         )
+
+    def get_template_names(self):
+        template_names = super().get_template_names()
+        if self.old_template_name is None:
+            return template_names
+
+        ftl_files = self.get_ftl_files(template_names)
+        if ftl_file_is_active(ftl_files[0]):
+            return template_names
+
+        return [self.old_template_name]
 
 
 class RequireSafeMixin:
