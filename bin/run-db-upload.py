@@ -6,11 +6,12 @@
 
 import os
 import sys
+from pathlib import Path
 from time import time
 
 import boto3
 from boto3.exceptions import Boto3Error
-from db_s3_utils import (
+from db_utils import (
     DB_FILE,
     JSON_DATA_FILE,
     JSON_DATA_FILE_NAME,
@@ -19,10 +20,22 @@ from db_s3_utils import (
     get_prev_db_data,
     set_db_data,
 )
+from google.cloud import storage
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config  # noqa
 
 CACHE = {}
-BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_S3_REGION", "us-west-2")
+BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
+REGION_NAME = config("AWS_DB_S3_REGION", default="us-west-2")
+UPLOAD_TO_GCS = config("UPLOAD_TO_GCS", parser=bool, default="false")
 
 
 # Requires setting some environment variables:
@@ -39,6 +52,15 @@ def s3_client():
         CACHE["s3_client"] = s3
 
     return s3
+
+
+def gcs_client():
+    gcs = CACHE.get("gcs_client")
+    if not gcs:
+        gcs = storage.Client()
+        CACHE["gcs_client"] = gcs
+
+    return gcs
 
 
 def delete_s3_obj(filename):
@@ -62,6 +84,18 @@ def upload_db_data(db_data):
         s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE_NAME, ExtraArgs={"ACL": "public-read"})
     except Boto3Error:
         return f"ERROR: Failed to upload the new database info file: {db_data}"
+
+    if UPLOAD_TO_GCS:
+        gcs = gcs_client()
+        bucket = gcs.bucket(BUCKET_NAME)
+
+        # upload the database
+        db_file = bucket.blob(db_data["file_name"])
+        db_file.upload_from_filename(DB_FILE, predefined_acl="public-read")
+
+        # upload the json metadata
+        db_file_info = bucket.blob(JSON_DATA_FILE_NAME)
+        db_file_info.upload_from_filename(JSON_DATA_FILE, predefined_acl="public-read")
 
     return 0
 
