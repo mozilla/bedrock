@@ -32,7 +32,7 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
     """
 
     # dict of country codes to template names
-    geo_template_names = None
+    geo_template_names = {}
 
     def get_template_names(self):
         country_code = get_country_from_request(self.request)
