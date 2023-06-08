@@ -25,7 +25,6 @@ const FirefoxDefault = {
         if (!FirefoxDefault.isSupported()) {
             return;
         }
-
         return new window.Promise(function (resolve) {
             FirefoxDefault.isDefaultBrowser()
                 .then(function () {

@@ -33,65 +33,71 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
 {% block sub_navigation %}
-  {% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-faq', 'sub-navigation-learn-more') %}
-    <nav class="c-sub-navigation">
-      <div class="mzp-l-content">
-        <div class="c-sub-navigation-content">
-          <h2 class="c-sub-navigation-title is-summary">
-            <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24"
-              height="24" alt="">
-            {{ ftl('sub-navigation-firefox') }}
-          </h2>
-          <ul class="c-sub-navigation-list is-details is-closed">
-            <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav"
-                data-link-position="subnav" data-link-name="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
-            <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav"
-                data-link-position="subnav" data-link-name="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  {% endif %}
 {% endblock %}
 
 {% block content %}
 <main class="firefox-home">
-  <section class="c-ctd-hero mzp-l-content">
-    <svg class="svg" width="0" height="0">
-      <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
-        <path d="M0.011,0.985 L0,0 L1,0.02 V0.663 L0.968,1 L0.011,0.985"></path>
-      </clipPath>
-      <clipPath id="features-clip-path" clipPathUnits="objectBoundingBox">
-        <path d="M0.763,0 H0 V0.453 L0.037,0.958 L0.444,1 L1,0.965 V0.819 L0.971,0.352 L0.984,0.033 L0.763,0"></path>
-      </clipPath>
-    </svg>
-    <div class="hero-wrapper">
-      <div class="c-hero-top">
-        <div class="c-hero-top-images">
-            {{ resp_img(
-              url='img/firefox/challenge-the-default/logo-firefox.svg',
-              optional_attributes={
-                'loading': 'eager'
-              })
-            }}
-            {{ resp_img(
-              url='img/firefox/challenge-the-default/logo-ctd.svg',
-              optional_attributes={
-                'loading': 'eager'
-              })
-            }}
+  <div class="ctd-mobile-banner">
+    {{ resp_img(
+      url='img/firefox/challenge-the-default/logo-firefox.svg',
+        optional_attributes={
+          'loading': 'eager',
+          'height': '24',
+          'class': 'ctd-sub-nav-image',
+          'alt': 'Firefox'
+      })
+    }}
+    {{ resp_img(
+      url='img/firefox/challenge-the-default/logo-ctd.svg',
+        optional_attributes={
+          'loading': 'eager',
+          'height': '24',
+          'class': 'ctd-sub-nav-image mobile',
+          'alt': 'Challenge the default'
+      })
+    }}
+  </div>
+  <section class="ctd-hero-wrapper">
+    <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
+      <svg class="svg" width="0" height="0">
+        <clipPath id="hero-clip-path-mobile" clipPathUnits="objectBoundingBox">
+          <path d="M0.121, 0.978 L0.99,1 L1,0.99 L1,0.892 L0.99,0.01 L0.03,0.015 e-05, L0.002,0.334 L0.002,0.978 L0.121,0.978"></path>
+        </clipPath>
+        <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
+          <path d="M0.011,0.985 L0,0 L1,0.02 V0.663 L0.968,1 L0.011,0.985"></path>
+        </clipPath>
+        <clipPath id="features-clip-path" clipPathUnits="objectBoundingBox">
+          <path d="M0.763,0 H0 V0.453 L0.037,0.958 L0.444,1 L1,0.965 V0.819 L0.971,0.352 L0.984,0.033 L0.763,0"></path>
+        </clipPath>
+      </svg>
+      <div class="hero-wrapper">
+        <div class="c-hero-top">
+          <div class="c-hero-top-images">
+              {{ resp_img(
+                url='img/firefox/challenge-the-default/logo-firefox.svg',
+                optional_attributes={
+                  'loading': 'eager'
+                })
+              }}
+              {{ resp_img(
+                url='img/firefox/challenge-the-default/logo-ctd.svg',
+                optional_attributes={
+                  'loading': 'eager'
+                })
+              }}
+          </div>
+          <div class="c-hero-top-controls">
+              <span class="minimize"></span>
+              <span class="expand"></span>
+              <span class="close"></span>
+          </div>
         </div>
-        <div class="c-hero-top-controls">
-            <span class="minimize"></span>
-            <span class="expand"></span>
-            <span class="close"></span>
+        <div class="c-hero-text">
+          <h1>Der Browser, den du selber wählst</h1>
+          <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
+          Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
+          <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
         </div>
-      </div>
-      <div class="c-hero-text">
-        <h1>Der Browser, den du selber wählst</h1>
-        <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
-        Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
-        <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
       </div>
     </div>
   </section>
@@ -206,72 +212,80 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <h2>Firefox macht den Unterschied</h2>
           <p>Kein Fan von viel Text? Kein Problem! Hier siehst du auf einen Blick, warum Firefox die richtige Wahl für dich ist.</p>
         </div>
-        <table class="mzp-u-data-table comparison-table">
+
+        <table class="mzp-u-data-table comparison-table" data-selected-browser="chrome">
           <thead>
             <tr>
               <td class="empty"></td>
               <th scope="col" class="firefox">Firefox</th>
-              <th scope="col">Safari</th>
-              <th scope="col">Chrome</th>
-              <th scope="col">Edge</th>
+              <th scope="col" class="safari">Safari</th>
+              <th scope="col" class="chrome">Chrome</th>
+              <th scope="col" class="edge">Edge</th>
+              <th scope="col" class="mobile-select-wrapper">
+                <select class="mobile-select">
+                  <option value="chrome">Chrome</option>
+                  <option value="safari">Safari</option>
+                  <option value="edge">Edge</option>
+                </select>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Automatisches Ausfüllen von Passwörtern</th>
               <td class="firefox">&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
+              <td class="safari">&#x2713;</td>
+              <td class="chrome">&#x2713;</td>
+              <td class="edge">&#x2713;</td>
             </tr>
             <tr>
-              <th scope="row">Suchmaschinenoptionen</th>
+              <th scope="row" class="break-word">Suchmaschinenoptionen</th>
               <td class="firefox">&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
+              <td class="safari">&#x2713;</td>
+              <td class="chrome">&#x2713;</td>
+              <td class="edge">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Synchronisieren zwischen Geräten</th>
               <td class="firefox">&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
-              <td>&#x2713;</td>
+              <td class="safari">&#x2713;</td>
+              <td class="chrome">&#x2713;</td>
+              <td class="edge">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
               <td class="firefox">&#x2713;</td>
-              <td>&#x2713;</td>
-              <td></td>
-              <td>&#x2713;</td>
+              <td class="safari">&#x2713;</td>
+              <td class="chrome"></td>
+              <td class="edge">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Von einer Non-Profit unterstützt</th>
               <td class="firefox">&#x2713;</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Sorgt sich um deine Privatsphäre</th>
               <td class="firefox">&#x2713;</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Hat keine Shareholder mit eigenen Interessen</th>
               <td class="firefox">&#x2713;</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Liebt das Internet und hat ein süßes Logo</th>
               <td class="firefox">&#x2713;</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
             </tr>
           </tbody>
         </table>

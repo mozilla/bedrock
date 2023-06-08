@@ -15,23 +15,49 @@ $font-path: '/media/protocol/fonts';
 
 $campaign-red: #ff6a75;
 
+
+.ctd-mobile-banner {
+    padding: $spacing-sm $spacing-lg;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+.ctd-sub-nav-image {
+    height: 40px;
+    width: auto;
+}
+
+.ctd-hero-wrapper {
+    background: $campaign-red;
+}
+
 .c-ctd-hero {
     background: $campaign-red;
 
     .c-hero-top {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         border-bottom: 4px solid $campaign-red;
         height: 70px;
         padding: $spacing-md;
 
         &-images {
-            display: flex;
             align-items: center;
+            display: none;
 
             img {
                 max-height: 100%;
                 margin-right: $spacing-md;
+            }
+        }
+
+        @media #{$mq-md} {
+            justify-content: space-between;
+
+            &-images {
+                display: flex;
             }
         }
 
@@ -90,7 +116,10 @@ $campaign-red: #ff6a75;
     .hero-wrapper {
         position: relative;
         background: white;
-        clip-path: url("#hero-clip-path");
+
+        @media #{$mq-md} {
+            clip-path: url("#hero-clip-path");
+        }
     }
 
     .c-hero-image {
@@ -99,23 +128,39 @@ $campaign-red: #ff6a75;
     }
 
     .c-hero-text {
-        padding: $layout-xl 0;
-        margin: 0 $layout-xl;
+        padding: $spacing-lg 0;
+        margin: 0 $spacing-lg 0 $spacing-2xl;
         justify-content: center;
 
         h1 {
             @include font-firefox;
-            @include font-size(72px);
+            @include font-size(36px);
             color: $color-black;
-            max-width: 650px;
         }
 
         p {
-            @include font-size(24px);
+            @include font-size(16px);
             color: $color-black;
-            max-width: 650px;
+        }
+        @media #{$mq-md} {
+            padding: $layout-xl 0;
+            margin: 0 $layout-xl;
+
+             h1 {
+
+                @include font-size(72px);
+                color: $color-black;
+                max-width: 650px;
+            }
+
+             p {
+                @include font-size(24px);
+                color: $color-black;
+                max-width: 650px;
+            }
         }
     }
+
 }
 
 .c-ctd-credentials {
@@ -177,8 +222,19 @@ $campaign-red: #ff6a75;
 
     h2 {
         @include font-firefox;
-        @include font-size(76px);
-        margin-bottom: $layout-lg;
+        @include font-size(40px);
+        word-break: break-word;
+        margin-bottom: $spacing-lg;
+        hyphens: auto;
+    }
+
+    @media #{$mq-md} {
+        h2 {
+            hyphens: none;
+            word-break: normal;
+            margin-bottom: $layout-lg;
+            @include font-size(76px);
+        }
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -194,25 +250,74 @@ $campaign-red: #ff6a75;
 
         h2 {
             @include font-firefox;
-            @include font-size(60px);
+            @include font-size(40px);
             margin-bottom: $spacing-lg;
         }
 
+        @media #{$mq-md} {
+            h2 {
+                @include font-size(60px);
+            }
+        }
     }
 
 
     .mzp-u-data-table.comparison-table {
         width: 100%;
+        max-width: 100%;
         margin-bottom: $layout-lg;
+
+        .safari, .edge, .chrome {
+            display: none;
+        }
+
+        &[data-selected-browser='safari'] {
+            td.safari {
+                display: table-cell;
+            }
+        }
+
+        &[data-selected-browser='chrome'] {
+            td.chrome {
+                display: table-cell;
+            }
+        }
+
+        &[data-selected-browser='edge'] {
+            td.edge {
+                display: table-cell;
+            }
+        }
 
         th {
             max-width: 150px;
             border: 1px solid $color-black;
+            font-size: 14px;
+
+            &[scope='row'].break-word {
+                word-break: break-all;
+                hyphens: manual;
+            }
 
             &[scope='col'] {
                 text-align: center;
                 padding: $spacing-md;
             }
+        }
+
+        th.mobile-select-wrapper {
+            padding: 0;
+
+            @media #{$mq-md} {
+                display: none;
+            }
+        }
+
+        .mobile-select {
+            margin-bottom: 0;
+            max-width: 100%;
+            min-width: 0;
+            border: 0;
         }
 
         td {
@@ -228,6 +333,12 @@ $campaign-red: #ff6a75;
             &:nth-child(2) {
                 color: $color-black;
                 background-color: #FFBDC5;
+            }
+        }
+
+        @media #{$mq-md} {
+            .safari, .edge, .chrome {
+                display: table-cell;
             }
         }
     }
