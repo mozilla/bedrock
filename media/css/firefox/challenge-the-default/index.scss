@@ -115,7 +115,9 @@ $campaign-red: #ff6a75;
 
     .hero-wrapper {
         position: relative;
-        background: white;
+        background: $color-white;
+        clip-path: url("#hero-clip-path-mobile");
+        opacity: 0;
 
         @media #{$mq-md} {
             clip-path: url("#hero-clip-path");

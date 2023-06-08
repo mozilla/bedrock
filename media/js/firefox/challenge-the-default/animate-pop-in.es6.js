@@ -22,6 +22,8 @@ function createObserver() {
                         entry.target.classList.add('animate-slide');
                         input.checked = true;
                     }, 250);
+                } else {
+                    entry.target.classList.add('animate-pop-in');
                 }
             }
         });
@@ -44,6 +46,10 @@ function init() {
         document.querySelectorAll('.toggle.middle').forEach(function (toggle) {
             observer.observe(toggle);
         });
+
+        // add hero section (will this work? who knows!)
+        const hero = document.querySelector('.hero-wrapper');
+        observer.observe(hero);
     }
 }
 
