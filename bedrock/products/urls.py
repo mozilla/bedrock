@@ -22,7 +22,7 @@ urlpatterns = (
     path("vpn/mobile/", views.VPNMobileView.as_view(), name="products.vpn.mobile"),
     path("vpn/mobile/ios/", views.VPNIosView.as_view(), name="products.vpn.mobile.ios"),
     path("vpn/mobile/android/", views.VPNAndroidView.as_view(), name="products.vpn.mobile.android"),
-    page("vpn/ipad", "products/vpn/platforms/ipad", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
+    page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",

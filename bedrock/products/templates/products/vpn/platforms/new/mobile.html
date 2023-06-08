@@ -12,13 +12,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}Get a VPN for Mobile from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-mobile-get-a-vpn') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Looking for a VPN to protect your mobile device? Mozilla VPN is backed by a non-for-profit company.
-Learn about how a
-VPN protects you and why you should trust Mozilla with your privacy and security.
-{% endblock %}
+{% block page_desc %}{{ ftl('vpn-mobile-looking-for-a') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-mobile{% endblock %}
 
@@ -30,7 +27,7 @@ VPN protects you and why you should trust Mozilla with your privacy and security
 {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% set subheading = 'VPN for Mobile from Mozilla' %}
+{% set subheading = ftl('vpn-mobile-vpn-for-mobile') %}
 {% set desc = self.page_title_full() %}
 
 {% block site_header %}
@@ -44,22 +41,15 @@ VPN protects you and why you should trust Mozilla with your privacy and security
 {% endblock %}
 
 {% block article %}
-<p>In today’s mobile-focused world, we rely on our mobile phones and devices for communication, entertainment and work.
-  However, without a VPN, your personal information may be vulnerable to several security and privacy risks.</p>
-<h3>Why do I need a VPN for Mobile?</h3>
+<p>{{ ftl('vpn-mobile-in-todays') }}</p>
+<h3>{{ ftl('vpn-mobile-why-do-i') }}</h3>
 <ul class="mzp-u-list-styled">
-  <li>The Mozilla VPN mobile app is small, so it doesn’t use up too much of your memory, and it won’t slow down your
-    phone or
-    burn through your battery.</li>
-  <li>Your internet service provider (ISP) may throttle your bandwidth if they know you are watching movies, listening
-    to
-    music, or streaming</li>
-  <li>Your ISP may block websites or services that they don’t like or which compete with their own</li>
-  <li>Hackers can steal your personal data when you are using public wifi, such as in cafes or airports</li>
+  <li>{{ ftl('vpn-mobile-the-mozilla-vpn') }}</li>
+  <li>{{ ftl('vpn-mobile-your-internet') }}</li>
+  <li>{{ ftl('vpn-mobile-your-isp') }}</li>
+  <li>{{ ftl('vpn-mobile-hackers-can-steal') }}</li>
 </ul>
-<p>A VPN works across your device, not just your browser, therefore across your mobile apps too. And unlike free VPNs or
-  proxy sites, which may pay for their servers by spying on you and selling your information, Mozilla does not keep
-  records of where you go and what you do.
+<p>{{ ftl('vpn-mobile-a-vpn-works') }}
 </p>
 
 {% endblock %}

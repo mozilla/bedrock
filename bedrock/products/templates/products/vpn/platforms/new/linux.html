@@ -12,10 +12,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}Mozilla VPN on Linux{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-linux-mozilla-vpn') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-linux-page-description') }}{% endblock %}
+{{ ftl('vpn-linux-') }}
+
+{% block page_desc %}{{ ftl('vpn-linux-looking-for') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-linux{% endblock %}
 
@@ -23,7 +25,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% set subheading = 'Mozilla VPN on Linux for a More Private and Secure Internet' %}
+{% set subheading = ftl('vpn-linux-mozilla-vpn-on-linux') %}
 {% set desc = self.page_title_full() %}
 
 {% block site_header %}
@@ -37,56 +39,26 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% block article %}
-<p>Linux is free, open-source, and customizable, but it’s not immune to online security and privacy issues. Just like
-  users
-  of other operating systems, Linux users face censorship, surveillance, and hacking.</p>
-<h3>What is Mozilla VPN?</h3>
-<p>Mozilla VPN is a virtual private network service that uses open-source state-of-the-art encryption and does not log,
-  track or share any of your network activity. It allows you to connect to over 500 servers in 30+ countries.</p>
-<h3>Why Choose Mozilla VPN for Linux?</h3>
+<p>{{ ftl('vpn-linux-linux-is-free') }}</p>
+<h3>{{ ftl('vpn-shared-platform-what-is') }}</h3>
+<p>{{ ftl('vpn-linux-mozilla-vpn-is-a') }}</p>
+<h3>{{ ftl('vpn-linux-why-choose') }}</h3>
 <ul class="mzp-u-list-styled">
-  <li><strong>Fast and reliable:</strong> Mozilla VPN uses the WireGuard® protocol, which offers better performance and
-    stability than other
-    VPN protocols</li>
-  <li><strong>No logs:</strong>Mozilla VPN does not keep any logs of your network activity; we don’t record which
-    websites you visit or inspect your
-    traffic.</li>
-  <li><strong>Additional security features:</strong>We use DNS blocking to block ads, trackers, and malware. While a
-    browser can prevent only websites from giving you
-    malware and tracking you.</li>
-  <li><strong>Device-level encryption:</strong>Unlike VPNs that only encrypt your browser traffic, Mozilla VPN encrypts
-    all your device’s traffic, including all your
-    applications and games.</li>
-  <li><strong>Multi-hop routing:</strong>For added protection, Mozilla VPN can encrypt your traffic and route it through
-    two locations instead of one, making it
-    harder for anyone to trace your online activity.</li>
-  <li><strong>Simple and intuitive interface:</strong>Connect to a server with one click. You can also customize your
-    settings and preferences according to your needs.</li>
-  <li><strong>It helps restore net neutrality:</strong>Mozilla VPN helps you take back control of your online activities
-    by preventing internet providers from throttling your bandwidth, or from blocking websites or services that they
-    don’t like, or that compete with their own offerings.</li>
-  <li><strong>GUI client:</strong>Mozilla VPN has a GUI client (graphical user interface), whereas some VPN providers
-    only provide a CLI version (command
-    line).</li>
+  <li>{{ ftl('vpn-linux-fast-and') }}</li>
+  <li>{{ ftl('vpn-linux-no-logs') }}</li>
+  <li>{{ ftl('vpn-linux-additional-security') }}</li>
+  <li>{{ ftl('vpn-linux-device-level') }}</li>
+  <li>{{ ftl('vpn-linux-multi-hop') }}</li>
+  <li>{{ ftl('vpn-linux-simple-and') }}</li>
+  <li>{{ ftl('vpn-linux-it-helps-restore') }}</li>
+  <li>{{ ftl('vpn-linux-gui-client') }}</li>
 </ul>
-<p>By using Mozilla VPN, you can take back control of your online activities and protect your privacy and data. Download
-  Mozilla VPN today and enjoy a 30-day money-back guarantee with no logs, no hassle, and no risk.</p>
-
-<h3>How to install Mozilla VPN on Linux</h3>
-<p>If you use one of the supported Ubuntu releases, there are two ways to install mozillavpn official packages hosted on
-  <a href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer"
-    target="_blank">launchpad:</a>
-</p>
+<p>{{ ftl('vpn-linux-by-using') }}</p>
+<h3>{{ ftl('vpn-linux-how-to-install') }}</h3>
+<p>{{ ftl('vpn-linux-if-you-use', url='https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn') }}</p>
 <ol class="mzp-u-list-styled">
-  <li><strong>Ubuntu command line mode:</strong>For detailed instructions on how to install Mozilla VPN using command
-    line mode tools, check out <a href="https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer"
-      rel="external noopener noreferrer" target="_blank">How to install Mozilla VPN on a Linux computer<a></a>.</li>
-  <li><strong>Ubuntu graphical user interface:</strong> Visit <a
-      href="https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29"
-      rel="external noopener noreferrer" target="_blank">this article</a> and follow the instructions in the Adding
-    personal package archives section.</li>
+  <li>{{ ftl('vpn-linux-ubuntu-command', url='https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer') }}</li>
+  <li>{{ ftl('vpn-linux-ubuntu-graphical', url='https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29') }}</li>
 </ol>
-<p>Additionally, for unsupported Linux distributions, you can take and compile the source code from the <a
-    href="https://github.com/mozilla-mobile/mozilla-vpn-client/" rel="external noopener noreferrer"
-    target="_blank">official GitHub repository</a>.</p>
+<p>{{ ftl('vpn-linux-additionally', url='https://github.com/mozilla-mobile/mozilla-vpn-client/') }}</p>
 {% endblock %}

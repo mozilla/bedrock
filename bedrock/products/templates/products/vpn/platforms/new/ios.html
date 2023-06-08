@@ -12,13 +12,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}VPN for iPhone from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-ios-vpn-for-iphone') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Looking for a VPN for your iPhone? Mozilla’s VPN services ensure you are protected online every
-time you login to your
-device. Keep reading to learn more about how to keep your iPhone protected from cyber attacks with Mozilla VPN for
-iPhone.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-ios-looking-for-a') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-ios{% endblock %}
 
@@ -30,7 +27,7 @@ iPhone.{% endblock %}
 {{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
-{% set subheading = 'VPN for iPhone from Mozilla' %}
+{% set subheading = self.page_title_full() %}
 {% set desc = self.page_desc() %}
 
 {% block site_header %}
@@ -44,30 +41,16 @@ iPhone.{% endblock %}
 {% endblock %}
 
 {% block article %}
-<p>iPhones are great at protecting your privacy, but they can’t shield you from all online dangers. That’s why you need
-  Mozilla VPN, a service for iPhone that encrypts your internet traffic and hides your location. In this article, we’ll
-  explain how to use Mozilla VPN for iPhone, what benefits it offers, and how it compares to other VPNs.</p>
-<h3>What is Mozilla VPN?</h3>
-<p>Mozilla VPN is a virtual private network service that encrypts your internet traffic and hides your IP address from
-  prying eyes.</p>
-<h3>Why Use Mozilla VPN for iPhone?</h3>
-<p>There are many reasons why you might want to use Mozilla VPN for iPhone, such as:</p>
-<ul class="mzp-u-list-styled">
-  <li><strong>Protecting your personal data:</strong> When you connect to a public Wi-Fi network, such as at a coffee
-    shop or airport, your
-    network traffic can be intercepted and inspected by hackers or malicious actors. With Mozilla VPN, you can encrypt
-    your
-    data and prevent anyone from snooping on your online activity.</li>
-  <li><strong>Enhancing your browsing experience:</strong> Mozilla VPN offers fast and reliable connections that can
-    improve your browsing
-    speed and performance. You can also use Mozilla VPN to block ads and trackers that can slow down your device and
-    compromise your privacy.</li>
-</ul>
-<h3>Why Choose Mozilla VPN?</h3>
-<p>Mozilla VPN is a VPN service that’s backed by a trusted and respected organization that has been fighting for online
-  privacy and security for decades. Mozilla is the company behind Firefox, one of the most popular and privacy-focused
-  browsers in the world, and backed by the non-profit Mozilla Foundation. By choosing Mozilla VPN, you’re supporting our
-  mission to keep the internet open and accessible for everyone.</p>
-<p>Ready to try Mozilla VPN for your iPhone? Download it today and enjoy a 30-day money-back guarantee. No logs, no
-  hassle, no risk.</p>
+  <p>{{ ftl('vpn-ios-iphones-are-great') }}</p>
+  <h3>{{ ftl('vpn-shared-platform-what-is') }}</h3>
+  <p>{{ ftl('vpn-ios-mozilla-vpn-is') }}</p>
+  <h3></h3>
+  <p>{{ ftl('vpn-ios-there-are-many') }}</p>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('vpn-ios-protecting-your-personal') }}</li>
+    <li>{{ ftl('vpn-ios-enhancing-your') }}</li>
+  </ul>
+  <h3>{{ ftl('vpn-shared-platfrom-why-choose') }}</h3>
+  <p>{{ ftl('vpn-ios-mozilla-vpn-is-a-vpn') }}</p>
+  <p>{{ ftl('vpn-ios-ready-to-try') }}</p>
 {% endblock %}

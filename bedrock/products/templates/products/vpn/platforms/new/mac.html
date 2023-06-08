@@ -12,11 +12,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}Get a VPN for Mac from Mozilla{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-mac-get-a-vpn') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Looking for a VPN to protect your Mac? Mozilla VPN is backed by a non-for-profit company. Learn how
-a VPN protects you and why you should trust Mozilla with your privacy and security when using your MAC{% endblock %}
+{% block page_desc %}{{ ftl('vpn-mac-looking-for') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-mac{% endblock %}
 
@@ -24,7 +23,7 @@ a VPN protects you and why you should trust Mozilla with your privacy and securi
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% set subheading = 'Protect Your Mac with Mozilla VPN' %}
+{% set subheading = ftl('vpn-mac-protect-your-mac') %}
 {% set desc = self.page_title_full() %}
 
 {% block site_header %}
@@ -38,28 +37,18 @@ a VPN protects you and why you should trust Mozilla with your privacy and securi
 {% endblock %}
 
 {% block article %}
-<p>A VPN (virtual private network) is a must-have for your online privacy and security when you use your Mac. Hackers,
-  and internet providers can spy on your online activity, or steal your personal data.</p>
-<p>But finding a good VPN can be tricky. Some are slow, unreliable, and even keep logs of your online activity. That’s
-  why we built Mozilla VPN, a fast, secure, and trustworthy VPN from the people that brought you Firefox.</p>
-<h3>With Mozilla VPN you can:</h3>
+<p>{{ ftl('vpn-mac-a-vpn-is') }}</p>
+<p>{{ ftl('vpn-mac-but-finding') }}</p>
+<h3>{{ ftl('vpn-mac-with-mozilla-vpn') }}</h3>
 <ul class="mzp-u-list-styled">
-  <li>Get one-click privacy with a simple and user-friendly interface.</li>
-  <li>Connect up to 5 different devices with one subscription, including Mac, but also iOS, Windows, Linux, and Android.
-  </li>
-  <li>Use our VPN as much as you want. Unlike some VPNs, which only protect a certain amount of data per month, we do
-    not cap your traffic. No matter how much data you use, it will always be protected.</li>
-  <li>Get device-level encryption for your traffic. Unlike other solutions, that only encrypt your browser traffic,
-    Mozilla VPN encrypts it all, protecting your internet traffic no matter which application is involved.</li>
-  <li>Prevent internet providers from throttling or blocking websites or services that they don’t like, or that compete
-    with their own offerings. For more information, you can read about Net Neutrality.</li>
+  <li>{{ ftl('vpn-mac-get-one-click') }}</li>
+  <li>{{ ftl('vpn-mac-connect-up-to') }}</li>
+  <li>{{ ftl('vpn-mac-use-our-vpn') }}</li>
+  <li>{{ ftl('vpn-mac-get-device-level') }}</li>
+  <li>{{ ftl('vpn-mac-prevent-internet') }}</li>
 </ul>
-<h3>Why Choose Mozilla VPN?</h3>
-<p>Mozilla is an organization that works to keep the Internet open and accessible for everyone, and we’re backed by a
-  non-profit. When you use Mozilla VPN, you’re not only protecting yourself online but also supporting Mozilla’s
-  mission.
-  Mozilla VPN is secure, open source, and it’s developed by the security experts and creators of Firefox.</p>
-<p>Mozilla doesn't log which websites you visit or inspect your communications.We also have a 30-day money-back
-  guarantee: no hassle, no risk.</p>
+<h3>{{ ftl('vpn-shared-platfrom-why-choose') }}</h3>
+<p>{{ ftl('vpn-mac-mozilla-is-an') }}</p>
+<p>{{ ftl('vpn-mac-mozilla-doesnt-log') }}</p>
 
 {% endblock %}

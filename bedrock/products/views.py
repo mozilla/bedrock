@@ -22,7 +22,7 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils import L10nSwitchingTemplateView
+from lib.l10n_utils import L10nTemplateView
 
 
 def vpn_available(request):
@@ -156,9 +156,9 @@ def vpn_invite_page(request):
     return l10n_utils.render(request, "products/vpn/invite.html", ctx, ftl_files=ftl_files)
 
 
-class VPNWindowsView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/windows"
-    old_template_name = "products/vpn/platform/windows"
+class VPNWindowsView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/windows.html"
+    old_template_name = "products/vpn/platforms/windows.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/windows", "products/vpn/shared"],
@@ -166,9 +166,9 @@ class VPNWindowsView(L10nSwitchingTemplateView):
     }
 
 
-class VPNLinuxView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/linux"
-    old_template_name = "products/vpn/platform/linux"
+class VPNLinuxView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/linux.html"
+    old_template_name = "products/vpn/platforms/linux.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/linux", "products/vpn/shared"],
@@ -176,9 +176,9 @@ class VPNLinuxView(L10nSwitchingTemplateView):
     }
 
 
-class VPNDesktopView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/desktop"
-    old_template_name = "products/vpn/platform/desktop"
+class VPNDesktopView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/desktop.html"
+    old_template_name = "products/vpn/platforms/desktop.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/desktop", "products/vpn/shared"],
@@ -186,9 +186,9 @@ class VPNDesktopView(L10nSwitchingTemplateView):
     }
 
 
-class VPNMacView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new//mac"
-    old_template_name = "products/vpn/platform/mac"
+class VPNMacView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/mac.html"
+    old_template_name = "products/vpn/platforms/mac.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/mac", "products/vpn/shared"],
@@ -196,9 +196,9 @@ class VPNMacView(L10nSwitchingTemplateView):
     }
 
 
-class VPNMobileView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/mobile"
-    old_template_name = "products/vpn/platform/mobile"
+class VPNMobileView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/mobile.html"
+    old_template_name = "products/vpn/platforms/mobile.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/mobile", "products/vpn/shared"],
@@ -206,9 +206,9 @@ class VPNMobileView(L10nSwitchingTemplateView):
     }
 
 
-class VPNIosView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/ios"
-    old_template_name = "products/vpn/platform/ios"
+class VPNIosView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/ios.html"
+    old_template_name = "products/vpn/platforms/ios.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/ios", "products/vpn/shared"],
@@ -216,9 +216,9 @@ class VPNIosView(L10nSwitchingTemplateView):
     }
 
 
-class VPNAndroidView(L10nSwitchingTemplateView):
-    template_name = "products/vpn/platform/new/android"
-    old_template_name = "products/vpn/platform/android"
+class VPNAndroidView(L10nTemplateView):
+    template_name = "products/vpn/platforms/new/android.html"
+    old_template_name = "products/vpn/platforms/android.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/android", "products/vpn/shared"],
