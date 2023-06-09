@@ -254,3 +254,18 @@ def vpn_product_referral_link(ctx, referral_id="", page_anchor="", link_text=Non
     markup = f'<a href="{href}{page_anchor}" class="{css_class}" {attrs}>{link_text}</a>'
 
     return Markup(markup)
+
+
+@library.global_function
+def relay_free_addresses():
+    return settings.RELAY_MAX_NUM_FREE_ALIASES
+
+
+@library.global_function
+def relay_bundle_servers():
+    return settings.RELAY_BUNDLE_VPN_SERVERS
+
+
+@library.global_function
+def relay_bundle_countries():
+    return settings.RELAY_BUNDLE_VPN_COUNTRIES
