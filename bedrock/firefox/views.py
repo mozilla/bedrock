@@ -418,6 +418,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx114-en-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html": ["firefox/whatsnew/whatsnew-115-vpn", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -428,6 +429,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx112-en.html",
         "firefox/whatsnew/whatsnew-fx112-en-features.html",
         "firefox/whatsnew/whatsnew-fx113-eu.html",
+        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html",
     ]
 
     # place expected ?v= values in this list
@@ -499,6 +501,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("115."):
+            if switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI and ftl_file_is_active("firefox/whatsnew/whatsnew-115-vpn"):
+                template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("114."):

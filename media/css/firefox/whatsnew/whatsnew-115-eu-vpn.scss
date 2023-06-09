@@ -1,0 +1,144 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+@import 'includes/dark-mode';
+
+// * -------------------------------------------------------------------------- */
+// Main content
+
+.wnp-content-main {
+    color: $color-black;
+    padding: 0;
+    text-align: center;
+}
+
+.wnp-main-image {
+    max-width: $content-md;
+    margin: 0 auto;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+}
+
+.wnp-main-cta {
+    margin-top: $spacing-2xl;
+}
+
+.c-coupon-container {
+    margin: $spacing-xl 0;
+
+    .c-coupon-code {
+        @include text-body-xl;
+        display: inline-block;
+    }
+
+    .c-coupon-copy {
+        @include text-body-sm;
+        appearance: none;
+        background: transparent none;
+        border: 0;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    .c-coupon-note {
+        margin-top: $spacing-sm;
+    }
+}
+
+.wnp-content-extra {
+    margin-top: $layout-xl;
+}
+
+.mzp-c-picto {
+    max-width: $content-sm;
+    text-align: center;
+
+    .mzp-c-picto-heading {
+        @include text-title-xs;
+    }
+
+    @media #{$mq-md} {
+        text-align: left;
+    }
+}
+
+.mzp-c-picto-image {
+    margin: 0 auto;
+}
+
+// * -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main,
+    .c-coupon-copy,
+    .wnp-main-title,
+    .mzp-c-picto-title {
+        color: $color-white;
+    }
+
+    .wnp-main-image {
+        .line {
+            fill: #fff;
+        }
+
+        .globe,
+        .magnifying-glass,
+        .credit-card {
+            fill: none;
+        }
+
+        .screen {
+            fill: #000;
+        }
+
+        .wheel,
+        .cloud {
+            fill: #a577ff;
+        }
+
+        .signal {
+            fill: #c4c6fc;
+        }
+
+        .marker {
+            fill: #2b2a33;
+        }
+    }
+
+    .mzp-c-picto {
+        .line,
+        .circle {
+            fill: #fff;
+        }
+
+        .card {
+            fill: none;
+            stroke: #fff;
+        }
+
+        .fill-line {
+            fill: #fff;
+        }
+    }
+
+    .mzp-c-picto-body {
+        @include light-links;
+    }
+}
