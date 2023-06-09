@@ -20,7 +20,7 @@
         var newScriptTag = document.createElement('script');
         var target = document.getElementsByTagName('script')[0];
         newScriptTag.src =
-            'https://cdn-3.convertexperiments.com/js/' +
+            'https://cdn-4.convertexperiments.com/js/' +
             CONVERT_PROJECT_ID +
             '.js';
         target.parentNode.insertBefore(newScriptTag, target);
