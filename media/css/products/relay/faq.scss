@@ -7,6 +7,12 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+.mzp-c-details {
+    border-bottom: 1px solid rgba($color-white, 0.2);
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
 .c-relay-faq-wrapper {
     background-color: #09204d;
 
@@ -17,6 +23,9 @@ $image-path: '/media/protocol/img';
 
     .is-summary {
         @include font-size(24px);
+        margin: 0;
+        padding-top: $layout-sm;
+        padding-bottom: $layout-sm;
 
         button::before {
             background: $url-image-expand-white top left no-repeat;

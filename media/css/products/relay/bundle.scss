@@ -1,0 +1,191 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.t-bundle {
+    margin-top: $layout-sm;
+    padding-top: 220px;
+    position: relative;
+
+    &.mzp-t-dark {
+        background-color: $color-violet-80;
+    }
+
+    &::before {
+        background-image: url('/media/img/products/relay/landing/bundle/bg-mobile.png');
+        background-position: top right;
+        background-repeat: no-repeat;
+        background-size: auto 390px;
+        border-top-right-radius: 50px;
+        border-top-left-radius: 50px;
+        content: '';
+        display: block;
+        height: 200px;
+        width: 316px;
+        max-width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &::after {
+        background-image: url('/media/img/products/relay/landing/bundle/woman-400w.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-bottom: 2px solid $color-violet-20;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 200px;
+        left: 0;
+        padding-top: $layout-sm;
+        position: absolute;
+        right: 0;
+        top: $layout-sm * -1;
+        width: 100%;
+    }
+
+    small {
+        display: block;
+        font-size: 12px;
+        margin-top: $spacing-sm;
+    }
+}
+
+.c-bundle-list-heading {
+    @include text-title-3xs;
+    margin-bottom: $spacing-md;
+    margin-top: $layout-sm;
+}
+
+.c-bundle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: $layout-sm;
+
+    li {
+        align-items: center;
+        background: rgba($color-white, 0.1);
+        border-radius: 50px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        padding: $spacing-sm $spacing-md;
+    }
+}
+
+li.c-bundle-stat {
+    display: none;
+}
+
+@media #{$mq-md} {
+    .t-bundle {
+        padding-top: 320px;
+        margin-top: 0;
+
+        &::before {
+            background-image: url('/media/img/products/relay/landing/bundle/bg-mobile.png');
+            background-size: auto 590px;
+            height: 300px;
+            width: 476px;
+        }
+
+        &::after {
+            top: $layout-xl * -1;
+            padding-top: $layout-xl;
+            height: 300px;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .t-bundle {
+        background-image: url('/media/img/products/relay/landing/bundle/bg.png');
+        background-repeat: no-repeat;
+        background-position: top left -220px;
+        margin-top: $layout-lg * -1;
+        padding-left: $layout-sm;
+        padding-top: $layout-md;
+
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            background-image: url('/media/img/products/relay/landing/bundle/woman-1280w.png'); // TODO: load appropriate size
+            background-position: bottom left;
+            border: 0;
+            bottom: 0;
+            height: 500px;
+            left: 0;
+            right: auto;
+            top: auto;
+            width: 506px;
+            max-width: 50%;
+        }
+
+        > * {
+            margin-left: 50%;
+        }
+    }
+}
+
+@media #{$mq-xl} {
+    .t-bundle {
+        background-position: top left;
+    }
+
+    .c-bundle-list {
+        flex-direction: row;
+    }
+
+    li.c-bundle-stat {
+        @include bidi((
+            (padding, $spacing-sm $spacing-md $spacing-sm (36px + $spacing-md), $spacing-sm (36px + $spacing-md) $spacing-sm $spacing-md),
+            (background-position, top $spacing-sm left $spacing-sm, top $spacing-sm right $spacing-sm ),
+        ));
+        align-items: center;
+        background-image: url('#{$image-path}/icons/brand/violet/devices.svg');
+        background-repeat: no-repeat;
+        background-color: $color-white;
+        background-size: 36px;
+        border-radius: $border-radius-md;
+        color: $color-black;
+        display: flex;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1;
+        max-width: 12ch;
+        min-height: 36px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+
+        &:nth-child(4) {
+            top: 64px;
+            right: 55%;
+        }
+
+        &:nth-child(5) {
+            top: 245px;
+            right: 60%;
+            background-image: url('#{$image-path}/icons/brand/violet/mountain.svg');
+        }
+
+        &:nth-child(6) {
+            background-image: url('#{$image-path}/icons/brand/violet/speedometer.svg');
+            bottom: $layout-sm * 2;
+            left: $layout-sm;
+            right: auto;
+            top: auto;
+        }
+    }
+}
