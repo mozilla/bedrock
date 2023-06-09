@@ -1,0 +1,229 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-matrix-desktop {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    display: none;
+
+    @media #{$mq-xl} {
+        display: table;
+    }
+
+    th,
+    td {
+        border-top: 2px solid $color-light-gray-30;
+        padding: $spacing-md;
+        vertical-align: middle;
+    }
+
+    th:first-child {
+        text-align: left;
+        width: 432px;
+    }
+
+    th:not(:first-child),
+    td:not(:first-child) {
+        background-color: $color-white;
+        text-align: center;
+        border-inline: 8px solid $color-light-gray-20;
+    }
+
+    thead th {
+        border-top-width: 0;
+        border-top-left-radius: $border-radius-md;
+        border-top-right-radius: $border-radius-md;
+        color: $color-violet-70;
+        min-width: 180px;
+
+        &:first-child {
+            color: $color-violet-70;
+            font-weight: normal;
+            vertical-align: bottom;
+        }
+    }
+
+    tbody th {
+        font-weight: normal;
+    }
+
+    tfoot td {
+        border-bottom-left-radius: $border-radius-md;
+        border-bottom-right-radius: $border-radius-md;
+        vertical-align: bottom;
+    }
+
+    tfoot th:first-child div {
+        @include visually-hidden;
+    }
+
+    small {
+        display: block;
+        font-size: 12px;
+    }
+
+    th.t-matrix-desktop-bundle {
+        background-color: $color-violet-70;
+        color: $color-white;
+        border-bottom-color: $color-violet-70;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+
+.c-matrix-mobile {
+
+    @media #{$mq-xl} {
+        display: none;
+    }
+
+    > ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $layout-xs;
+        list-style-type: none;
+    }
+
+    > ul > li {
+        align-items: center;
+        background-color: #fff;
+        border-radius: $border-radius-md;
+        flex: 1 0 230px;
+        gap: $spacing-md;
+        max-width: 450px;
+        padding: 0 $spacing-md $spacing-md $spacing-md;
+        margin: 0 auto;
+
+        @media #{$mq-md} {
+            flex: 1 0 250px;
+        }
+    }
+}
+
+.c-matrix-plan {
+    display: grid;
+    grid-template-rows: minmax(min-content, 5em) auto min-content;
+
+    h3 {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        margin: 0 $spacing-md * -1;
+        padding: $spacing-md ;
+        text-align: center;
+    }
+}
+
+.c-matrix-features {
+    align-self: start;
+    width: 100%;
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: $spacing-sm;
+    }
+
+    img {
+        height: 16px;
+        width: 16px;
+        margin-left: $spacing-md;
+    }
+
+    span {
+        margin-left: $spacing-md;
+    }
+}
+
+.t-matrix-mobile-bundle {
+    h3 {
+        background-color: $color-violet-70;
+        border-radius: $border-radius-md $border-radius-md 0 0;
+        color: $color-white;
+    }
+}
+
+.c-matrix-footer {
+    text-align: center;
+
+    small {
+        display: block;
+    }
+}
+
+@media #{$mq-md} {
+    .c-matrix-mobile {
+        > ul {
+            gap: $layout-md;
+        }
+    }
+}
+
+.c-toggle {
+    background-color: $color-marketing-gray-20;
+    border-radius: $border-radius-lg + 2px;
+    display: flex;
+    margin-bottom: 4em; // making space for one line of text, units scale with text site
+    padding: $spacing-xs;
+    position: relative;
+
+    > input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &:nth-child(2n+1) {
+            left: 50%;
+        }
+    }
+
+    > label {
+        @include text-body-sm;
+        border: 2px solid transparent;
+        color: $color-marketing-gray-80;
+        cursor: pointer;
+        font-weight: 500;
+        padding: $spacing-xs $spacing-sm;
+        text-align: center;
+        width: 50%;
+
+        em {
+            @include text-body-lg;
+            display: none;
+            font-weight: bold;
+            left: 0;
+            padding: $spacing-md $spacing-sm;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 100%;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    > input:focus + label {
+        border: 2px solid $color-blue-50;
+    }
+
+    > input:checked + label {
+        background-color: $color-white;
+        border-radius: $border-radius-lg;
+        color: $color-blue-50;
+
+        em {
+            display: block;
+        }
+    }
+}

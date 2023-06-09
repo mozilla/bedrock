@@ -12,6 +12,7 @@ from lib.l10n_utils import fluent
 TAGS_ALLOWED_IN_FLUENT_STRINGS = {
     "a",
     "abbr",
+    "b",
     "br",
     "em",
     "i",
