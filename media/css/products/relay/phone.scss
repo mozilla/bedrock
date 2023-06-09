@@ -1,0 +1,32 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'firefox';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-phone {
+    height: 709px; // match height of placeholder SVG
+    width: 550px;
+    position: relative;
+    text-align: center;
+
+    img {
+        display: block;
+        left: 50%;
+        margin: 0 auto;
+        position: absolute;
+        top: 32px;
+        transform: translateX(-50%);
+    }
+}
+
+img.c-phone-screen {
+    top: 114px;
+    left: 153px;
+    transform: none;
+    border-radius: 10px 10px 30px 30px;
+}
