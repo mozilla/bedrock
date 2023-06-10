@@ -16,9 +16,9 @@ TrackBeginCheckout.handleLinkWithItemData = (event) => {
         item = JSON.parse(item);
         TrackBeginCheckout.getEventObjectAndSend(
             item.id,
-            item.category,
-            item.name,
-            item.variant,
+            item.brand,
+            item.plan,
+            item.period,
             item.price,
             item.currency,
             item.discount
@@ -30,9 +30,9 @@ TrackBeginCheckout.handleLinkWithItemData = (event) => {
 
 /**
  * Create the begin_checkout GA event object
- * @param {string} id // this is the FxA parameter that starts with "price_"
+ * @param {string} id // Stripe plan ID  - this is the FxA parameter that starts with "price_"
+ * @param {string} brand // example: relay
  * @param {string} plan // example: email
- * @param {string} product // example: relay
  * @param {string} period // monthly or yearly
  * @param {int} price
  * @param {string} currency
@@ -41,7 +41,7 @@ TrackBeginCheckout.handleLinkWithItemData = (event) => {
  */
 TrackBeginCheckout.getEventObject = (
     item_id,
-    product,
+    brand,
     plan,
     period,
     price,
@@ -50,8 +50,8 @@ TrackBeginCheckout.getEventObject = (
 ) => {
     const itemObj = {};
     itemObj['item_id'] = item_id;
+    itemObj['item_brand'] = brand;
     itemObj['item_name'] = plan;
-    itemObj['item_category'] = product;
     itemObj['item_variant'] = period;
     itemObj['price'] = price;
     itemObj['discount'] = discount;
@@ -74,21 +74,21 @@ TrackBeginCheckout.getEventObject = (
  */
 TrackBeginCheckout.getEventObjectAndSend = (
     item_id,
-    product,
+    brand,
     plan,
     period,
     price,
-    discount,
-    currency
+    currency,
+    discount
 ) => {
     const eventObject = TrackBeginCheckout.getEventObject(
         item_id,
-        product,
+        brand,
         plan,
         period,
         price,
-        discount,
-        currency
+        currency,
+        discount
     );
     TrackBeginCheckout.sendEvent(eventObject);
 };

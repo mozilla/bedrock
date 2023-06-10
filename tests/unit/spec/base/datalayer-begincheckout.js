@@ -20,8 +20,8 @@ describe('datalayer-begincheckout.es6.js', function () {
             items: [
                 {
                     item_id: 'testid',
+                    item_brand: 'relay',
                     item_name: 'email',
-                    item_category: 'relay',
                     item_variant: 'yearly',
                     price: '11.88',
                     discount: '12.00'
