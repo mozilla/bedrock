@@ -92,12 +92,14 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
                         "price": "US$4.99",
                         "total": "US$59.88",
                         "saving": 50,
+                        "analytics": {"category": "vpn", "name": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "variant": "yearly"},
                     },
                     "monthly": {
                         "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
                         "price": "US$9.99",
                         "total": None,
                         "saving": None,
+                        "analytics": {"category": "vpn", "name": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "variant": "monthly"},
                     },
                 }
             },
