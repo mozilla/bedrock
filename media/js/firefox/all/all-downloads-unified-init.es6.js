@@ -4,18 +4,23 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import TrackProductDownload from '../../base/datalayer-productdownload.es6';
+import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
+import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
+
 (function (Mozilla) {
-    'use strict';
-
-    var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
-    var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
-
     function onLoad() {
-        var browserHelpContent = document.getElementById('browser-help');
-        var browserHelpIcon = document.getElementById('icon-browser-help');
-        var installerHelpContent = document.getElementById('installer-help');
-        var installerHelpIcon = document.querySelectorAll(
+        const browserHelpContent = document.getElementById('browser-help');
+        const browserHelpIcon = document.getElementById('icon-browser-help');
+        const installerHelpContent = document.getElementById('installer-help');
+        const installerHelpIcon = document.querySelectorAll(
             '.icon-installer-help'
+        );
+        const downloadButton = document.getElementById(
+            'download-button-primary'
+        );
+        const mobileDownloadButtons = document.querySelectorAll(
+            '.ga-product-download'
         );
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
@@ -50,7 +55,7 @@
         );
 
         // Installer help modal.
-        for (var i = 0; i < installerHelpIcon.length; i++) {
+        for (let i = 0; i < installerHelpIcon.length; i++) {
             installerHelpIcon[i].addEventListener(
                 'click',
                 function (e) {
@@ -61,6 +66,25 @@
                         e.target.textContent,
                         'Get Installer Help'
                     );
+                },
+                false
+            );
+        }
+
+        // event tracking for GA4
+        downloadButton.addEventListener(
+            'click',
+            function (event) {
+                TrackProductDownload.linkHandler(event);
+            },
+            false
+        );
+
+        for (let i = 0; i < mobileDownloadButtons.length; i++) {
+            mobileDownloadButtons[i].addEventListener(
+                'click',
+                function (event) {
+                    TrackProductDownload.linkHandler(event);
                 },
                 false
             );

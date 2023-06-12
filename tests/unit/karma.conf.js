@@ -42,6 +42,7 @@ module.exports = function (config) {
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/datalayer-begincheckout.js',
+            'tests/unit/spec/base/datalayer-productdownload.js',
             'tests/unit/spec/base/experiment-utils.js',
             'tests/unit/spec/base/fxa-form.js',
             'tests/unit/spec/base/fxa-link.js',
