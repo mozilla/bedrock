@@ -171,7 +171,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="toggle-grid small">
             {% for element in range(4) %}
               <label class="toggle" for="toggle-top-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" checked />
                 <span class="toggle-display"></span>
               </label>
             {% endfor%}
@@ -181,7 +181,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </label>
             {% for element in range(4) %}
               <label class="toggle" for="toggle-bottom-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" checked />
                 <span class="toggle-display"></span>
               </label>
             {% endfor%}
@@ -254,7 +254,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </tr>
             <tr>
               <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
-              <td class="firefox">&#x2713;</td>
+              <td class="firefox cookie-button-wrapper"><button class="cookie-button">&#x2713;</button></td>
               <td class="safari">&#x2713;</td>
               <td class="chrome"></td>
               <td class="edge">&#x2713;</td>
@@ -293,6 +293,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <h3>Du entscheidest, was Standard ist</h3>
           <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
         </div>
+      </div>
+      <div class="mzp-u-modal-content cookie-modal">
+        <figure>
+          <!-- media could be an image or video -->
+          <figcaption>
+            A description with a maximum of 100 characters.
+            That usually means only one or two sentences. <a href="#">Learn more.</a>
+          </figcaption>
+        </figure>
       </div>
     </section>
 

@@ -98,7 +98,8 @@
 
   &::before {
     background: url('/media/img/firefox/challenge-the-default/smile.svg');
-    background-size: cover;
+    background-size: calc(var(--diameter) * 1.2);
+    background-position: center;
     background-repeat: no-repeat;
     transform: translate(100%, -50%); /* 1 */
 

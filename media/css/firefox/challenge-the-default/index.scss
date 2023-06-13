@@ -338,6 +338,30 @@ $campaign-red: #ff6a75;
             }
         }
 
+        // needed this rule to allow button to take up 100% of the td
+        tr {
+            height: 100%;
+        }
+
+        .cookie-button-wrapper {
+            padding: 0;
+            height: 100%;
+        }
+
+        .cookie-button {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            border-radius: 0;
+            transition: background 200ms ease-in-out;
+
+            &:hover {
+                background: #2AC3A2;
+            }
+        }
+
         @media #{$mq-md} {
             .safari, .edge, .chrome {
                 display: table-cell;
