@@ -12,14 +12,14 @@
 {% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
 {% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
 
-{% block page_title_full %}{{ ftl('vpn-windows-page-title') }}{% endblock %}
+{% block page_title_full %}{{ ftl('vpn-mac-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-windows-page-description') }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-mac-page-description') }}{% endblock %}
 
-{% block body_id %}mozilla-vpn-platforms-windows{% endblock %}
+{% block body_id %}mozilla-vpn-platforms-mac{% endblock %}
 
-{% set _utm_source = 'www.mozilla.org-vpn-windows-page' %}
+{% set _utm_source = 'www.mozilla.org-vpn-mac-page' %}
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
@@ -42,8 +42,8 @@
   {% block hero %}
     {% call vpn_platform_hero(
       heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-windows-hero-headline'),
-      desc=ftl('vpn-windows-page-description'),
+      subheading=ftl('vpn-mac-hero-headline'),
+      desc=ftl('vpn-mac-page-description'),
       image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
     ) %}
       <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
@@ -61,7 +61,7 @@
       has_outline=True,
       loading='eager'
     ) %}
-      <p>{{ ftl('vpn-windows-ability') }}</p>
+      <p>{{ ftl('vpn-mac-ability') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
@@ -79,51 +79,51 @@
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-wifi-headline'),
+      heading=ftl('vpn-mac-wifi-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
       class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-wifi-copy') }}</p>
+      <p>{{ ftl('vpn-mac-wifi-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-privacy-headline'),
+      heading=ftl('vpn-mac-privacy-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
       class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-privacy-copy') }}</p>
+      <p>{{ ftl('vpn-mac-privacy-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-servers-headline'),
+      heading=ftl('vpn-mac-servers-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
       class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
+      <p>{{ ftl('vpn-mac-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-devices-headline'),
+      heading=ftl('vpn-mac-devices-headline', devices=vpn_devices),
       image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
       class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-devices-copy', devices=vpn_devices) }}</p>
+      <p>{{ ftl('vpn-mac-devices-copy', devices=vpn_devices) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-speed-headline'),
+      heading=ftl('vpn-mac-speed-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
       class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-speed-copy') }}</p>
+      <p>{{ ftl('vpn-mac-speed-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-log-headline'),
+      heading=ftl('vpn-mac-log-headline'),
       image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
       class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-log-copy') }}</p>
+      <p>{{ ftl('vpn-mac-log-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_block(
