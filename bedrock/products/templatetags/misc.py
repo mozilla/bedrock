@@ -26,18 +26,18 @@ def _vpn_get_ga_data(selected_plan):
     ga_data = (
         "{"
         "'id' : '%s',"
-        "'category' : '%s',"
-        "'name' : '%s',"
-        "'variant' : '%s',"
+        "'brand' : '%s',"
+        "'plan' : '%s',"
+        "'period' : '%s',"
         "'price' : '%s',"
         "'discount' : '%s',"
         "'currency' : '%s'"
         "}"
         % (
             id,
-            analytics.get("category"),
-            analytics.get("name"),
-            analytics.get("variant"),
+            analytics.get("brand"),
+            analytics.get("plan"),
+            analytics.get("period"),
             analytics.get("price"),
             analytics.get("discount"),
             analytics.get("currency"),
