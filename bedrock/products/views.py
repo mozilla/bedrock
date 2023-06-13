@@ -157,72 +157,72 @@ def vpn_invite_page(request):
 
 
 class VPNWindowsView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/windows.html"
+    template_name = "products/vpn/platforms/v2/windows.html"
     old_template_name = "products/vpn/platforms/windows.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/windows", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/windows_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/windows_v2", "products/vpn/shared"],
     }
 
 
 class VPNLinuxView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/linux.html"
+    template_name = "products/vpn/platforms/v2/linux.html"
     old_template_name = "products/vpn/platforms/linux.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/linux", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/linux_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/linux_v2", "products/vpn/shared"],
     }
 
 
 class VPNDesktopView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/desktop.html"
+    template_name = "products/vpn/platforms/v2/desktop.html"
     old_template_name = "products/vpn/platforms/desktop.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/desktop", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/desktop_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/desktop_v2", "products/vpn/shared"],
     }
 
 
 class VPNMacView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/mac.html"
+    template_name = "products/vpn/platforms/v2/mac.html"
     old_template_name = "products/vpn/platforms/mac.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/mac", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/mac_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/mac_v2", "products/vpn/shared"],
     }
 
 
 class VPNMobileView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/mobile.html"
+    template_name = "products/vpn/platforms/v2/mobile.html"
     old_template_name = "products/vpn/platforms/mobile.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/mobile", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/mobile_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/mobile_v2", "products/vpn/shared"],
     }
 
 
 class VPNIosView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/ios.html"
+    template_name = "products/vpn/platforms/v2/ios.html"
     old_template_name = "products/vpn/platforms/ios.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/ios", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/ios_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/ios_v2", "products/vpn/shared"],
     }
 
 
 class VPNAndroidView(L10nTemplateView):
-    template_name = "products/vpn/platforms/new/android.html"
+    template_name = "products/vpn/platforms/v2/android.html"
     old_template_name = "products/vpn/platforms/android.html"
 
     ftl_files_map = {
         old_template_name: ["products/vpn/platforms/android", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/android_new", "products/vpn/shared"],
+        template_name: ["products/vpn/platforms/android_v2", "products/vpn/shared"],
     }
 
 
