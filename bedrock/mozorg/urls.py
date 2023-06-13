@@ -148,6 +148,7 @@ urlpatterns = (
     page("santalocator/", "mozorg/santa-locator.html"),
     page("rise25/", "mozorg/rise25/rise25.html"),
     redirect(r"rise-25/?$", "rise25/"),
+    page("advertising/", "mozorg/advertising.html"),
 )
 
 if settings.DEV:
