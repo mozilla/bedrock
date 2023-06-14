@@ -238,7 +238,7 @@ describe('linkHandler', function () {
         document.getElementById('download-button-primary').remove();
     });
 
-    it('should the full chain of functions', function () {
+    it('should call the full chain of functions', function () {
         spyOn(TrackProductDownload, 'linkHandler').and.callThrough();
         spyOn(TrackProductDownload, 'sendEventFromURL').and.callThrough();
         spyOn(TrackProductDownload, 'isValidDownloadURL').and.callThrough();
