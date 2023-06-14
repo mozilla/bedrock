@@ -1,0 +1,54 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}{{ ftl('vpn-mac-get-a-vpn') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('vpn-mac-looking-for') }}{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-mac{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-mac-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% set subheading = ftl('vpn-mac-protect-your-mac') %}
+{% set desc = self.page_title_full() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>{{ ftl('vpn-mac-a-vpn-is') }}</p>
+<p>{{ ftl('vpn-mac-but-finding') }}</p>
+<h3>{{ ftl('vpn-mac-with-mozilla-vpn') }}</h3>
+<ul class="mzp-u-list-styled">
+  <li>{{ ftl('vpn-mac-get-one-click') }}</li>
+  <li>{{ ftl('vpn-mac-connect-up-to') }}</li>
+  <li>{{ ftl('vpn-mac-use-our-vpn') }}</li>
+  <li>{{ ftl('vpn-mac-get-device-level') }}</li>
+  <li>{{ ftl('vpn-mac-prevent-internet') }}</li>
+</ul>
+<h3>{{ ftl('vpn-shared-platfrom-why-choose') }}</h3>
+<p>{{ ftl('vpn-mac-mozilla-is-an') }}</p>
+<p>{{ ftl('vpn-mac-mozilla-doesnt-log') }}</p>
+
+{% endblock %}

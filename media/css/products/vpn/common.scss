@@ -7,6 +7,9 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
 
 // * -------------------------------------------------------------------------- */
 // Guarantee / Availability Copy
@@ -179,5 +182,22 @@ main .mzp-c-button.mzp-t-xl {
     a:link,
     a:visited {
         @include text-body-xs;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Platform pages
+
+.platform-article {
+    padding-top: 0;
+}
+
+.c-vpn-platform-footer {
+    text-align: center;
+
+    .mzp-c-wordmark {
+        margin-left: auto;
+        margin-right: auto;
+        background-position: center;
     }
 }

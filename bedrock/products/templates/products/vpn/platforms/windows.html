@@ -1,10 +1,11 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
+{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block,
+vpn_nav_platform_cta with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -24,118 +25,120 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block page_css %}
-  {{ css_bundle('mozilla-vpn-platforms') }}
+{{ css_bundle('mozilla-vpn-platforms') }}
 {% endblock %}
 
 {% block site_header %}
-  {% with
-    custom_nav_cta=vpn_nav_platform_cta(
-      alt_link_text='vpn-shared-platform-cta-button',
-    )
-  %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
+{% with
+custom_nav_cta=vpn_nav_platform_cta(
+alt_link_text='vpn-shared-platform-cta-button',
+)
+%}
+{% include 'includes/protocol/navigation/navigation.html' %}
+{% endwith %}
 {% endblock %}
 
 {% block content %}
 <main>
   {% block hero %}
-    {% call vpn_platform_hero(
-      heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-windows-hero-headline'),
-      desc=ftl('vpn-windows-page-description'),
-      image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
-    ) %}
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-      <p class="guarantee-copy">
-        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-      </p>
-    {% endcall %}
+  {% call vpn_platform_hero(
+  heading=ftl('vpn-shared-product-name'),
+  subheading=ftl('vpn-windows-hero-headline'),
+  desc=ftl('vpn-windows-page-description'),
+  image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+  ) %}
+  <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button')
+    }}</a>
+  <p class="guarantee-copy">
+    <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+  </p>
+  {% endcall %}
   {% endblock %}
 
   <div class="mzp-l-content mzp-t-content-xl">
     {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-privacy-promise'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
-      class_name='vpn-content-media-right-half',
-      has_outline=True,
-      loading='eager'
+    heading=ftl('vpn-shared-platform-privacy-promise'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+    class_name='vpn-content-media-right-half',
+    has_outline=True,
+    loading='eager'
     ) %}
-      <p>{{ ftl('vpn-windows-ability') }}</p>
+    <p>{{ ftl('vpn-windows-ability') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-what-youll-get'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
-      class_name='vpn-content-media-left-half'
+    heading=ftl('vpn-shared-platform-what-youll-get'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+    class_name='vpn-content-media-left-half'
     ) %}
-      <ul class="mzp-u-list-styled vpn-feature-list">
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-strong-servers', countries=vpn_countries) }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-connect', devices=vpn_devices) }}</li>
-      </ul>
+    <ul class="mzp-u-list-styled vpn-feature-list">
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-strong-servers', countries=vpn_countries) }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
+      <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-connect', devices=vpn_devices) }}</li>
+    </ul>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-wifi-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
-      class_name='vpn-content-media-right-half'
+    heading=ftl('vpn-windows-wifi-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+    class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-wifi-copy') }}</p>
+    <p>{{ ftl('vpn-windows-wifi-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-privacy-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
-      class_name='vpn-content-media-left-half'
+    heading=ftl('vpn-windows-privacy-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+    class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-privacy-copy') }}</p>
+    <p>{{ ftl('vpn-windows-privacy-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-servers-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
-      class_name='vpn-content-media-right-half'
+    heading=ftl('vpn-windows-servers-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+    class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
+    <p>{{ ftl('vpn-windows-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-devices-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
-      class_name='vpn-content-media-left-half'
+    heading=ftl('vpn-windows-devices-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+    class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-devices-copy', devices=vpn_devices) }}</p>
+    <p>{{ ftl('vpn-windows-devices-copy', devices=vpn_devices) }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-speed-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
-      class_name='vpn-content-media-right-half'
+    heading=ftl('vpn-windows-speed-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+    class_name='vpn-content-media-right-half'
     ) %}
-      <p>{{ ftl('vpn-windows-speed-copy') }}</p>
+    <p>{{ ftl('vpn-windows-speed-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
-      heading=ftl('vpn-windows-log-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
-      class_name='vpn-content-media-left-half'
+    heading=ftl('vpn-windows-log-headline'),
+    image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+    class_name='vpn-content-media-left-half'
     ) %}
-      <p>{{ ftl('vpn-windows-log-copy') }}</p>
+    <p>{{ ftl('vpn-windows-log-copy') }}</p>
     {% endcall %}
 
     {% call vpn_content_block(
-      class_name='t-highlight t-center'
+    class_name='t-highlight t-center'
     ) %}
-      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
-      <div class="vpn-content-well-desc">
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-        <p class="guarantee-copy">
-          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-        </p>
-      </div>
+    <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
+    <div class="vpn-content-well-desc">
+      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button')
+        }}</a>
+      <p class="guarantee-copy">
+        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+      </p>
+    </div>
     {% endcall %}
 
   </div>

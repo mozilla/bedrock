@@ -366,6 +366,26 @@ locale, you can use the `activation_files` parameter. This should be a list of :
 be used when determining the full list of translations for the URL. Bedrock will gather the full list for each
 file and combine them into a single list so that the footer language switcher works properly.
 
+Another common case is that you want to keep using an old template for locales that haven't yet translated
+the strings for a new one. In that case you can provide an ``old_template_name`` to the class and include
+both that template and ``template_name`` in the ``ftl_files_map``. Once you do this the view will use the
+template in ``template_name`` only for requests for an active locale for the FTL files you provided in the map.
+
+.. code-block:: python
+
+    from lib.l10n_utils import L10nTemplateView
+
+    class AboutView(L10nTemplateView):
+        template_name = 'about_new.html'
+        old_template_name = "about.html"
+        ftl_files_map = {
+            "about_new.html": ["about_new", "about_shared"],
+            "about.html": ["about", "about_shared"],
+        }
+
+In this example when the ``about_new`` FTL file is active for a locale, the ``about_new.html`` template will be
+rendered. Otherwise the ``about.html`` template would be used.
+
 Using in a view function
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

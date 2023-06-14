@@ -218,6 +218,22 @@ class TestL10nTemplateView(TestCase):
         view(self.req)
         render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files=None, activation_files=None)
 
+    @patch.object(l10n_utils, "ftl_file_is_active")
+    def test_old_template_name(self, is_active_mock, render_mock):
+        is_active_mock.return_value = True
+        view = l10n_utils.L10nTemplateView.as_view(
+            template_name="dude.html", old_template_name="old_dude.html", ftl_files_map={"dude.html": "dude", "old_dude.html": "old_dude"}
+        )
+        view(self.req)
+        render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files="dude", activation_files=None)
+        # when not active should use old template
+        is_active_mock.return_value = False
+        view = l10n_utils.L10nTemplateView.as_view(
+            template_name="dude.html", old_template_name="old_dude.html", ftl_files_map={"dude.html": "dude", "old_dude.html": "old_dude"}
+        )
+        view(self.req)
+        render_mock.assert_called_with(self.req, ["old_dude.html"], ANY, ftl_files="old_dude", activation_files=None)
+
     def test_ftl_activations(self, render_mock):
         view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", ftl_files="dude", activation_files=["dude", "donny"])
         view(self.req)

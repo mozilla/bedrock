@@ -1,0 +1,64 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}{{ ftl('vpn-linux-mozilla-vpn') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{{ ftl('vpn-linux-') }}
+
+{% block page_desc %}{{ ftl('vpn-linux-looking-for') }}{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-linux{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-linux-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% set subheading = ftl('vpn-linux-mozilla-vpn-on-linux') %}
+{% set desc = self.page_title_full() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+<p>{{ ftl('vpn-linux-linux-is-free') }}</p>
+<h3>{{ ftl('vpn-shared-platform-what-is') }}</h3>
+<p>{{ ftl('vpn-linux-mozilla-vpn-is-a') }}</p>
+<h3>{{ ftl('vpn-linux-why-choose') }}</h3>
+<ul class="mzp-u-list-styled">
+  <li>{{ ftl('vpn-linux-fast-and') }}</li>
+  <li>{{ ftl('vpn-linux-no-logs') }}</li>
+  <li>{{ ftl('vpn-linux-additional-security') }}</li>
+  <li>{{ ftl('vpn-linux-device-level') }}</li>
+  <li>{{ ftl('vpn-linux-multi-hop') }}</li>
+  <li>{{ ftl('vpn-linux-simple-and') }}</li>
+  <li>{{ ftl('vpn-linux-it-helps-restore') }}</li>
+  <li>{{ ftl('vpn-linux-gui-client') }}</li>
+</ul>
+<p>{{ ftl('vpn-linux-by-using') }}</p>
+<h3>{{ ftl('vpn-linux-how-to-install') }}</h3>
+<p>{{ ftl('vpn-linux-if-you-use', attrs='href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer" target="_blank"') }}</p>
+<ol class="mzp-u-list-styled">
+  <li>{{ ftl('vpn-linux-ubuntu-command', attrs='href="https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer" rel="external noopener noreferrer" target="_blank"') }}</li>
+  <li>{{ ftl('vpn-linux-ubuntu-graphical', attrs='href="https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29" rel="external noopener noreferrer" target="_blank"') }}</li>
+</ol>
+<p>{{ ftl('vpn-linux-additionally', attrs='href="https://github.com/mozilla-mobile/mozilla-vpn-client/" rel="external noopener noreferrer" target="_blank"') }}</p>
+{% endblock %}
