@@ -75,7 +75,7 @@ describe('datalayer-begincheckout.es6.js', function () {
         });
 
         afterEach(function () {
-            delete window.dataLayer;
+            window.dataLayer = [];
         });
 
         it('will append the begin_checkout event to the dataLayer', function () {

@@ -5,6 +5,9 @@
  */
 
 const TrackBeginCheckout = {};
+if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+}
 
 /**
  */

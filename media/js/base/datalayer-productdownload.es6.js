@@ -10,6 +10,10 @@ const stageURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
 const appStoreURL = /^https:\/\/itunes.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
 
+if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+}
+
 /**
  * Validate we got a link to download.mozilla.org with the correct parameters
  * @param {URL}
