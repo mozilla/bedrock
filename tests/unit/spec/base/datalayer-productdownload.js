@@ -11,7 +11,7 @@
 
 import TrackProductDownload from '../../../../media/js/base/datalayer-productdownload.es6.js';
 
-describe('isValidDownloadURL', function () {
+describe('TrackProductDownload.isValidDownloadURL', function () {
     it('should recognize downloads.m.o as a valid URL', function () {
         let testDownloadURL = TrackProductDownload.isValidDownloadURL(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
@@ -50,7 +50,7 @@ describe('isValidDownloadURL', function () {
     });
 });
 
-describe('getEventObject', function () {
+describe('TrackProductDownload.getEventObject', function () {
     it('should insert parameters into the proper place in the event object', function () {
         let testFullEventExpectedObject = {
             event: 'product_download',
@@ -83,7 +83,7 @@ describe('getEventObject', function () {
     });
 });
 
-describe('getEventFromUrl', function () {
+describe('TrackProductDownload.getEventFromUrl', function () {
     // product
     it('should identify product for Firefox Desktop', function () {
         let testProductDesktop = TrackProductDownload.getEventFromUrl(
@@ -216,10 +216,12 @@ describe('getEventFromUrl', function () {
     });
 });
 
-describe('linkHandler', function () {
+describe('TrackProductDownload.linkHandler', function () {
     const download_button = `<a href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64&amp;lang=en-CA" id="download-button-primary" class="mzp-c-button mzp-t-product c-download-button">Download Now</a>`;
 
     beforeEach(function () {
+        window.dataLayer = [];
+
         document.body.insertAdjacentHTML('beforeend', download_button);
         const downloadButton = document.getElementById(
             'download-button-primary'
@@ -236,6 +238,7 @@ describe('linkHandler', function () {
 
     afterEach(function () {
         document.getElementById('download-button-primary').remove();
+        window.dataLayer = [];
     });
 
     it('should call the full chain of functions', function () {
