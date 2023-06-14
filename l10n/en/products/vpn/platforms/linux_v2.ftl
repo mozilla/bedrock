@@ -23,17 +23,17 @@ vpn-linux-how-to-install = How to install { -brand-name-mozilla-vpn } on { -bran
 
 # Variables:
 #   $url (string) - https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn
-# 'mozillavpn' should not be translated as it is the propername of the package
-vpn-linux-if-you-use = If you use one of the supported {-brand-name-ubuntu } releases, there are two ways to install mozillavpn official packages hosted on <a href="{ $url }" rel="external noopener noreferrer"target="_blank">launchpad:</a>
+# 'mozillavpn' should not be translated as it is the proper name of the package
+vpn-linux-if-you-use = If you use one of the supported {-brand-name-ubuntu } releases, there are two ways to install mozillavpn official packages hosted on <a { $attrs }>launchpad:</a>
 
 # Variables:
-#   $url (string) - https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer
-vpn-linux-ubuntu-command = <strong>Ubuntu command line mode:</strong>For detailed instructions on how to install { -brand-name-mozilla-vpn } using command line mode tools, check out <a href="{ $url }" rel="external noopener noreferrer" target="_blank">How to install { -brand-name-mozilla-vpn } on a { -brand-name-linux } computer</a>.
+#   $attrs (string) includes url - https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer
+vpn-linux-ubuntu-command = <strong>Ubuntu command line mode:</strong>For detailed instructions on how to install { -brand-name-mozilla-vpn } using command line mode tools, check out <a { $attrs }>How to install { -brand-name-mozilla-vpn } on a { -brand-name-linux } computer</a>.
 
 # Variables:
-#   $url (string) - https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29
-vpn-linux-ubuntu-graphical = <strong>Ubuntu graphical user interface:</strong> Visit <a href="{ $url }" rel="external noopener noreferrer" target="_blank">this article</a> and follow the instructions in the Adding personal package archives section.
+#   $attrs (string) includes url - https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29
+vpn-linux-ubuntu-graphical = <strong>Ubuntu graphical user interface:</strong> Visit <a { $attrs } >this article</a> and follow the instructions in the Adding personal package archives section.
 
 # Variables:
-#   $url (string) - https://github.com/mozilla-mobile/mozilla-vpn-client/
-vpn-linux-additionally = Additionally, for unsupported { -brand-name-linux } distributions, you can take and compile the source code from the <a href="{ $url }" rel="external noopener noreferrer" target="_blank">official { -brand-name-github } repository</a>.
+#   $attrs (string) includes url - https://github.com/mozilla-mobile/mozilla-vpn-client/
+vpn-linux-additionally = Additionally, for unsupported { -brand-name-linux } distributions, you can take and compile the source code from the <a { $attrs }">official { -brand-name-github } repository</a>.
