@@ -1,0 +1,103 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros-protocol.html" import picto, call_out with context %}
+
+{% block page_title %}Advertise with Mozilla{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('mozilla-ads') }}
+{% endblock %}
+
+{% block content %}
+
+<header class="mzp-c-call-out mzp-t-dark ads-header">
+    <div class="mzp-l-content">
+      <h1>Find hard-to-reach audiences with Mozilla Ads</h1>
+      <p>Reach unique audiences while protecting your brand’s safety and your customer’s privacy</p>
+      <a href="https://mozilla.formstack.com/forms/advertising" class="mzp-c-button mzp-t-dark">Contact us</a>
+    </div>
+</header>
+
+<section class="ads-info mzp-l-content mzp-l-columns mzp-t-columns-two">
+  {% call picto(
+    base_el='div',
+    title='Hard-to-reach customers',
+    image=resp_img(
+          url='img/mozorg/advertising/mountain.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+    body=True,
+  ) %}
+    <p>
+      Mozilla Ads can reach audiences that are hard to access. This includes privacy-minded and intellectually curious consumers, and a global network of software developers.
+    </p>
+  {% endcall %}
+  {% call picto(
+    base_el='div',
+    title='Brand safety',
+    image=resp_img(
+          url='img/mozorg/advertising/badge.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+    body=True,
+  ) %}
+    <p>
+      With Mozilla’s <a href="https://blog.mozilla.org/en/mozilla/mozilla-social-mastodon-private-beta-announcement/" target="_blank" rel="external noopener noreferrer">commitment to creating safe spaces online</a>, you can feel confident that your brand is safe and your ads will not run alongside problematic content.
+    </p>
+  {% endcall %}
+  {% call picto(
+    base_el='div',
+    title='Privacy preserving',
+    image=resp_img(
+          url='img/mozorg/advertising/mask.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+    body=True,
+  ) %}
+    <p>
+      Most ad networks rely on privacy-invasive targeting and attribution methods. Mozilla ads will have an effective but ethical advertising approach that ensures ads are context-based, free from tracking pixels, and don't involve sharing personally identifying data.
+    </p>
+  {% endcall %}
+  {% call picto(
+    base_el='div',
+    title='Our offering',
+    image=resp_img(
+          url='img/mozorg/advertising/addon.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+    body=True,
+  ) %}
+    <p>
+      Ad placements available across a growing number of products including the Firefox browser, Pocket, and the Mozilla Developer Network.
+    </p>
+  {% endcall %}
+</section>
+
+<section class="mzp-c-call-out ads-purple-callout">
+  <div class="mzp-l-content">
+    <h2>Learn more about advertising on Mozilla</h2>
+    <a href="https://mozilla.formstack.com/forms/advertising" class="mzp-c-button mzp-t-dark">Contact us</a>
+  </div>
+</section>
+
+{% endblock %}

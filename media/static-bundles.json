@@ -1208,6 +1208,12 @@
     },
     {
       "files":[
+        "css/mozorg/advertising.scss"
+      ],
+      "name": "mozilla-ads"
+    },
+    {
+      "files":[
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
