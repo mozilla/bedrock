@@ -14,6 +14,9 @@ $font-path: '/media/protocol/fonts';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 
 $campaign-red: #ff6a75;
+$campaign-pink: #ffbdc5;
+$campaign-mint: #d1ffee;
+$campaign-green: #2ac3a2;
 
 
 .ctd-mobile-banner {
@@ -34,6 +37,7 @@ $campaign-red: #ff6a75;
 }
 
 .c-ctd-hero {
+    @include font-firefox;
     background: $campaign-red;
 
     .c-hero-top {
@@ -65,8 +69,12 @@ $campaign-red: #ff6a75;
             display: flex;
             align-items: center;
 
-            span {
+            .hero-control-btn {
                 margin-left: $spacing-md;
+                background: none;
+                border: 0;
+                display: block;
+                cursor: pointer;
             }
         }
 
@@ -74,14 +82,13 @@ $campaign-red: #ff6a75;
             width: 30px;
             height: 30px;
             border-bottom: 3px solid $campaign-red;
-            display: block;
+
         }
 
         .expand {
             width: 24px;
             height: 24px;
             border: 3px solid $campaign-red;
-            display: block;
         }
 
         .close {
@@ -118,48 +125,68 @@ $campaign-red: #ff6a75;
         background: $color-white;
         clip-path: url("#hero-clip-path-mobile");
         opacity: 0;
+        transition: opacity 1s;
 
         @media #{$mq-md} {
             clip-path: url("#hero-clip-path");
         }
+
+        &.closed {
+            opacity: 0;
+        }
+    }
+
+    .hero-content-wrapper {
+        padding: $spacing-md 0;
+        margin: 0 $spacing-lg 0 $spacing-2xl;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: $spacing-xl;
+
+        @media #{$mq-lg} {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            padding: $layout-lg 0;
+            margin: 0 $layout-xl;
+        }
     }
 
     .c-hero-image {
-        display: block;
-        width: 100%;
+        justify-self: center;
+        grid-row: 1;
+        grid-column: auto;
+        margin-top: 0;
+        clip-path: url('#hero-image-clip-path');
+
+        @media #{$mq-lg} {
+            margin-top: $spacing-xl;
+            grid-column: 2;
+        }
     }
 
     .c-hero-text {
-        padding: $spacing-lg 0;
-        margin: 0 $spacing-lg 0 $spacing-2xl;
         justify-content: center;
+        min-width: 440px;
 
         h1 {
             @include font-firefox;
             @include font-size(36px);
             color: $color-black;
+            margin-bottom: $spacing-md;
         }
 
         p {
             @include font-size(16px);
-            color: $color-black;
+            color: $color-marketing-gray-70;
         }
+
         @media #{$mq-md} {
-            padding: $layout-xl 0;
-            margin: 0 $layout-xl;
-
-             h1 {
-
-                @include font-size(72px);
-                color: $color-black;
-                max-width: 650px;
+            h1 {
+                @include font-size(64px);
             }
 
-             p {
-                @include font-size(24px);
-                color: $color-black;
-                max-width: 650px;
-            }
+
         }
     }
 
@@ -170,7 +197,7 @@ $campaign-red: #ff6a75;
 
     h2 {
         @include font-size(90px);
-        color: #D1FFEE;
+        color: $color-white;
         text-align: center;
     }
 
@@ -191,7 +218,11 @@ $campaign-red: #ff6a75;
 }
 
 .c-ctd-toggles {
-    background-color: black;
+    background-color: $color-black;
+
+    &.all-checked {
+        background-color: $campaign-green;
+    }
 
     .toggle-grid {
         display: grid;
@@ -267,7 +298,7 @@ $campaign-red: #ff6a75;
     .mzp-u-data-table.comparison-table {
         width: 100%;
         max-width: 100%;
-        margin-bottom: $layout-lg;
+        margin-bottom: $spacing-sm;
 
         .safari, .edge, .chrome {
             display: none;
@@ -334,7 +365,7 @@ $campaign-red: #ff6a75;
         thead tr th, td {
             &:nth-child(2) {
                 color: $color-black;
-                background-color: #FFBDC5;
+                background-color: $campaign-pink;
             }
         }
 
@@ -343,24 +374,6 @@ $campaign-red: #ff6a75;
             height: 100%;
         }
 
-        .cookie-button-wrapper {
-            padding: 0;
-            height: 100%;
-        }
-
-        .cookie-button {
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            border-radius: 0;
-            transition: background 200ms ease-in-out;
-
-            &:hover {
-                background: #2AC3A2;
-            }
-        }
 
         @media #{$mq-md} {
             .safari, .edge, .chrome {
@@ -369,17 +382,74 @@ $campaign-red: #ff6a75;
         }
     }
 
+    .kitten-button {
+        background: none;
+        border: 0;
+        display: block;
+        margin-left: auto;
+        color: $color-link;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: $color-link-hover;
+        }
+    }
+
     .comparison-cta {
+        margin-top: $layout-lg;
         text-align: center;
 
         h3 {
-            margin-bottom: $layout-md;
+            margin-bottom: $spacing-lg;
+        }
+    }
+}
+
+.kitten-modal-overlay {
+    .mzp-c-modal-inner {
+        padding: 0;
+        max-width: 688px;
+        background-color: $campaign-green;
+
+        header {
+            padding: $spacing-md;
+            border-bottom: 2px solid $color-black;
+        }
+
+        .mzp-c-modal-close {
+            right: 0;
+            top: 0;
+
+            .mzp-c-modal-button-close {
+                background-image: url('#{$image-path}/icons/close.svg')
+            }
+        }
+
+        .kitten-modal {
+            padding: $spacing-xl;
+        }
+
+        .kitten-modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: $spacing-lg;
+
+            h2 {
+                @include font-size(60px);
+                color: $color-black;
+            }
+
+            img {
+                align-self: center;
+                clip-path: url('#kitten-clip-path');
+            }
         }
     }
 }
 
 .c-animated-button {
-    background-color: #2AC3A2;
+    background-color: $campaign-green;
     text-align: center;
 
     .animated-button {

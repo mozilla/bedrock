@@ -60,14 +60,20 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   <section class="ctd-hero-wrapper">
     <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
       <svg class="svg" width="0" height="0">
-          <clipPath id="hero-clip-path-mobile" clipPathUnits="objectBoundingBox">
-            <path d="M0.028,0 H0.992 L1,1 L0,0.973 V0.329 L0.028,0"></path>
-          </clipPath>
+        <clipPath id="hero-image-clip-path" clipPathUnits="objectBoundingBox">
+          <path d="M1,0.201 L0.919,0 L0,0.027 V0.951 L0.124,1 L1,0.951 L0.951,0.582 L1,0.201"></path>
+        </clipPath>
+        <clipPath id="hero-clip-path-mobile" clipPathUnits="objectBoundingBox">
+          <path d="M0.028,0 H0.992 L1,1 L0,0.973 V0.329 L0.028,0"></path>
+        </clipPath>
         <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
           <path d="M0.011,0.985 L0,0 L1,0.02 V0.663 L0.968,1 L0.011,0.985"></path>
         </clipPath>
         <clipPath id="features-clip-path" clipPathUnits="objectBoundingBox">
           <path d="M0.763,0 H0 V0.453 L0.037,0.958 L0.444,1 L1,0.965 V0.819 L0.971,0.352 L0.984,0.033 L0.763,0"></path>
+        </clipPath>
+        <clipPath id="kitten-clip-path" clipPathUnits="objectBoundingBox">
+          <path d="M0.326,0.056 H0.032 L0,0.306 L0.032,0.944 L1,1 V0.794 L0.937,0.056 L0.326,0 V0.056"></path>
         </clipPath>
       </svg>
       <div class="hero-wrapper">
@@ -87,29 +93,38 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               }}
           </div>
           <div class="c-hero-top-controls">
-              <span class="minimize"></span>
-              <span class="expand"></span>
-              <span class="close"></span>
+              <button class="hero-control-btn minimize"></button>
+              <button class="hero-control-btn expand"></button>
+              <button class="hero-control-btn close"></button>
           </div>
         </div>
-        <div class="c-hero-text">
-          <h1>Der Browser, den du selber wählst</h1>
-          <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
-          Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
-          <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+        <div class="hero-content-wrapper">
+          <div class="c-hero-text">
+            <h1>Der Browser, den du selber wählst</h1>
+            <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
+            Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
+            <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+          </div>
+          {{ resp_img(
+              url='img/firefox/challenge-the-default/hero-image.png',
+              optional_attributes={
+                'loading': 'eager',
+                'class': 'c-hero-image'
+              }
+          )}}
         </div>
       </div>
     </div>
   </section>
 
-    <section class="mzp-l-content c-ctd-features">
+    <section class="mzp-l-content mzp-t-content-xl c-ctd-features">
       <h2>Unsere <br>Lieblingsfeatures</h2>
       <ul class="mzp-l-columns mzp-t-columns-four">
         {% call picto(
           base_el='li',
           title='Nahtloses Browsen',
           image=resp_img(
-          url='img/firefox/challenge-the-default/cursor.png',
+          url='img/firefox/challenge-the-default/cursor.svg',
           optional_attributes={
             'class': 'mzp-c-picto-image',
             'loading': 'lazy'
@@ -123,7 +138,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           base_el='li',
           title='Einfaches Multitasking',
           image=resp_img(
-            url='img/firefox/challenge-the-default/screen.png',
+            url='img/firefox/challenge-the-default/screen.svg',
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -137,7 +152,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           base_el='li',
           title='Non-Profit-Power*',
           image=resp_img(
-            url='img/firefox/challenge-the-default/toggle.png',
+            url='img/firefox/challenge-the-default/toggle.svg',
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -153,7 +168,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           base_el='li',
           title='Schnelles Bearbeiten von PDFs',
           image=resp_img(
-            url='img/firefox/challenge-the-default/input.png',
+            url='img/firefox/challenge-the-default/input.svg',
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -171,7 +186,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="toggle-grid small">
             {% for element in range(4) %}
               <label class="toggle" for="toggle-top-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" checked />
+                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
                 <span class="toggle-display"></span>
               </label>
             {% endfor%}
@@ -181,7 +196,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </label>
             {% for element in range(4) %}
               <label class="toggle" for="toggle-bottom-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" checked />
+                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
                 <span class="toggle-display"></span>
               </label>
             {% endfor%}
@@ -254,7 +269,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </tr>
             <tr>
               <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
-              <td class="firefox cookie-button-wrapper"><button class="cookie-button">&#x2713;</button></td>
+              <td class="firefox">&#x2713;</td>
               <td class="safari">&#x2713;</td>
               <td class="chrome"></td>
               <td class="edge">&#x2713;</td>
@@ -289,21 +304,25 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </tr>
           </tbody>
         </table>
+        <button class="kitten-button">=^._.^=</button>
         <div class="comparison-cta">
           <h3>Du entscheidest, was Standard ist</h3>
           <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
         </div>
       </div>
-      <div class="mzp-u-modal-content cookie-modal">
-        <figure>
-          <!-- media could be an image or video -->
-          <figcaption>
-            A description with a maximum of 100 characters.
-            That usually means only one or two sentences. <a href="#">Learn more.</a>
-          </figcaption>
-        </figure>
-      </div>
     </section>
+      <div class="mzp-u-modal-content kitten-modal">
+        <div class="kitten-modal-grid">
+          <h2>Nicht alle Wege führen nach Chrome</h2>
+          {{ resp_img(
+              url="img/firefox/challenge-the-default/kitten-modal-image.png",
+              optional_attributes={
+                'loading': 'lazy',
+                'alt': 'kitten surprise'
+              }
+          )}}
+        </div>
+      </div>
 
   <section class="c-ctd-credentials">
     <div class="mzp-l-content mzp-t-content-md">
