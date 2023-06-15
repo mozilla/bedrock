@@ -54,7 +54,14 @@ for (let index = 0; index < toggles.length; index++) {
 }
 
 heroClose.addEventListener('click', function () {
-    document.querySelector('.hero-wrapper').classList.toggle('closed');
+    const heroWrapper = document.querySelector('.hero-wrapper');
+    heroWrapper.classList.add('animate-close');
+    heroWrapper.classList.remove('animate-pop-in');
+
+    setTimeout(() => {
+        heroWrapper.classList.add('animate-pop-in');
+        heroWrapper.classList.remove('animate-close');
+    }, 3000);
 });
 
 // check toggle state on page load

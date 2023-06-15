@@ -124,15 +124,10 @@ $campaign-green: #2ac3a2;
         position: relative;
         background: $color-white;
         clip-path: url("#hero-clip-path-mobile");
-        opacity: 0;
         transition: opacity 1s;
 
         @media #{$mq-md} {
             clip-path: url("#hero-clip-path");
-        }
-
-        &.closed {
-            opacity: 0;
         }
     }
 
@@ -271,9 +266,9 @@ $campaign-green: #2ac3a2;
     }
 
     @media (prefers-reduced-motion: no-preference) {
-        .mzp-c-picto {
-            opacity: 0;
-        }
+         .mzp-c-picto {
+             opacity: 0;
+         }
     }
 }
 

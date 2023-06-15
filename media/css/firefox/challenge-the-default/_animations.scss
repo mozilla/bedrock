@@ -7,6 +7,7 @@
 
         @keyframes pop-in {
             0% {
+                opacity: 0;
                 transform: scale(0.3);
             }
 
@@ -37,8 +38,31 @@
             }
         }
 
+        @keyframes close {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                  transform: scale(0.7);
+            }
+
+            100% {
+                opacity: 0;
+                 transform: scale(0.3);
+            }
+        }
+
+        .animate-close {
+            animation: .5s ease-out 0s 1 normal forwards running close;
+        }
+
         .animate-pop-in {
             animation: .5s ease-out 0s 1 normal forwards running pop-in;
         }
     }
+
+
 }
