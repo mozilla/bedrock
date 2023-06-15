@@ -1,0 +1,42 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.t-pocket-promo {
+    background-color: #FFF0E3db;
+
+    .mzp-c-split-container {
+        display: block;
+
+        @media #{$mq-lg} {
+            display: grid;
+            text-align: left;
+        }
+
+        @media (max-width: 1023px) {
+            padding: 0;
+
+            .mzp-c-split-body {
+                margin-top: $layout-md;
+                padding: $spacing-lg;
+                text-align: center;
+
+                .mzp-c-wordmark {
+                    background-position: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+
+    h2 {
+        font-family: 'Graphik Web', 'Helvetica Neue', helvetica, arial, sans-serif;
+    }
+
+    p {
+        @include text-body-lg;
+    }
+}

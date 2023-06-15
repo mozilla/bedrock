@@ -239,6 +239,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/pocket-promo.scss"
+      ],
+      "name": "home-pocket-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-management.scss"
       ],
       "name": "newsletter-management"
