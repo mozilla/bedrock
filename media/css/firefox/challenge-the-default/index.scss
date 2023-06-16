@@ -5,8 +5,9 @@
 $image-path: '/media/protocol/img';
 $font-path: '/media/protocol/fonts';
 
-@use "./toggle";
-@use "./animations";
+@import "./toggle";
+@import "./animations";
+@import "./hero";
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
@@ -32,183 +33,36 @@ $campaign-green: #2ac3a2;
     width: auto;
 }
 
-.ctd-hero-wrapper {
-    background: $campaign-red;
-}
-
-.c-ctd-hero {
-    @include font-firefox;
-    background: $campaign-red;
-
-    .c-hero-top {
-        display: flex;
-        justify-content: flex-end;
-        border-bottom: 4px solid $campaign-red;
-        height: 70px;
-        padding: $spacing-md;
-
-        &-images {
-            align-items: center;
-            display: none;
-
-            img {
-                max-height: 100%;
-                margin-right: $spacing-md;
-            }
-        }
-
-        @media #{$mq-md} {
-            justify-content: space-between;
-
-            &-images {
-                display: flex;
-            }
-        }
-
-        &-controls {
-            display: flex;
-            align-items: center;
-
-            .hero-control-btn {
-                margin-left: $spacing-md;
-                background: none;
-                border: 0;
-                display: block;
-                cursor: pointer;
-            }
-        }
-
-        .minimize {
-            width: 30px;
-            height: 30px;
-            border-bottom: 3px solid $campaign-red;
-
-        }
-
-        .expand {
-            width: 24px;
-            height: 24px;
-            border: 3px solid $campaign-red;
-        }
-
-        .close {
-            width: 36px;
-            height: 36px;
-            position: relative;
-
-            &::before {
-                content: "";
-                height: 36px;
-                width: 3px;
-                position: absolute;
-                transform: rotate(-45deg);
-                right: 12px;
-                top: 0;
-                background: $campaign-red;
-            }
-
-            &::after {
-                content: "";
-                height: 36px;
-                width: 3px;
-                position: absolute;
-                transform: rotate(45deg);
-                right: 12px;
-                top: 0;
-                background: $campaign-red;
-            }
-        }
-    }
-
-    .hero-wrapper {
-        position: relative;
-        background: $color-white;
-        clip-path: url("#hero-clip-path-mobile");
-        transition: opacity 1s;
-
-        @media #{$mq-md} {
-            clip-path: url("#hero-clip-path");
-        }
-    }
-
-    .hero-content-wrapper {
-        padding: $spacing-md 0;
-        margin: 0 $spacing-lg 0 $spacing-2xl;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-gap: $spacing-xl;
-
-        @media #{$mq-lg} {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr;
-            padding: $layout-lg 0;
-            margin: 0 $layout-xl;
-        }
-    }
-
-    .c-hero-image {
-        justify-self: center;
-        grid-row: 1;
-        grid-column: auto;
-        margin-top: 0;
-        clip-path: url('#hero-image-clip-path');
-
-        @media #{$mq-lg} {
-            margin-top: $spacing-xl;
-            grid-column: 2;
-        }
-    }
-
-    .c-hero-text {
-        justify-content: center;
-        min-width: 440px;
-
-        h1 {
-            @include font-firefox;
-            @include font-size(36px);
-            color: $color-black;
-            margin-bottom: $spacing-md;
-        }
-
-        p {
-            @include font-size(16px);
-            color: $color-marketing-gray-70;
-        }
-
-        @media #{$mq-md} {
-            h1 {
-                @include font-size(64px);
-            }
-
-
-        }
-    }
-
-}
-
-.c-ctd-credentials {
-    background: $color-black;
+.c-ctd-features {
+    background-color: $color-white;
+    clip-path: url("#features-clip-path");
 
     h2 {
-        @include font-size(90px);
-        color: $color-white;
-        text-align: center;
+        @include font-firefox;
+        @include font-size(40px);
+        word-break: break-word;
+        margin-bottom: $spacing-lg;
+        hyphens: auto;
     }
 
-    .mzp-c-details {
-        background-color: $color-white;
-        padding: $spacing-xl $spacing-md;
-        border-radius: $border-radius-lg;
-        margin-top: $spacing-lg;
+    p {
+        color: $color-marketing-gray-70;
+        font-weight: 600;
+    }
 
-        h3 {
-            margin-bottom: 0;
+    @media #{$mq-md} {
+        h2 {
+            hyphens: none;
+            word-break: normal;
+            margin-bottom: $layout-lg;
+            @include font-size(76px);
         }
+    }
 
-        p {
-            margin-top: $spacing-xl;
-        }
+    @media (prefers-reduced-motion: no-preference) {
+         .mzp-c-picto {
+             opacity: 0;
+         }
     }
 }
 
@@ -244,31 +98,34 @@ $campaign-green: #2ac3a2;
     }
 }
 
-.c-ctd-features {
-    background-color: $color-white;
-    clip-path: url("#features-clip-path");
+.c-ctd-credentials {
+    background: $color-black;
 
     h2 {
-        @include font-firefox;
-        @include font-size(40px);
-        word-break: break-word;
-        margin-bottom: $spacing-lg;
-        hyphens: auto;
-    }
+        @include font-size(72px);
+        color: $color-white;
+        text-align: center;
 
-    @media #{$mq-md} {
-        h2 {
-            hyphens: none;
-            word-break: normal;
-            margin-bottom: $layout-lg;
-            @include font-size(76px);
+        @media #{$mq-md} {
+             @include font-size(90px);
         }
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-         .mzp-c-picto {
-             opacity: 0;
-         }
+    .mzp-c-details {
+        background-color: $color-white;
+        padding: $spacing-xl $spacing-md $spacing-xl $spacing-2xl;
+        border-radius: $border-radius-lg;
+        margin-top: $spacing-lg;
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        p {
+            color: $color-marketing-gray-70;
+            font-weight: 600;
+            margin-top: $spacing-xl;
+        }
     }
 }
 
@@ -280,6 +137,11 @@ $campaign-green: #2ac3a2;
             @include font-firefox;
             @include font-size(40px);
             margin-bottom: $spacing-lg;
+        }
+
+        p {
+            color: $color-marketing-gray-70;
+            font-weight: 600;
         }
 
         @media #{$mq-md} {
@@ -319,7 +181,7 @@ $campaign-green: #2ac3a2;
 
         th {
             max-width: 150px;
-            border: 1px solid $color-black;
+            border: 2px solid $color-black;
             font-size: 14px;
 
             &[scope='row'].break-word {
@@ -328,6 +190,8 @@ $campaign-green: #2ac3a2;
             }
 
             &[scope='col'] {
+                @include font-size(16px);
+                font-weight: bold;
                 text-align: center;
                 padding: $spacing-md;
             }
@@ -346,11 +210,14 @@ $campaign-green: #2ac3a2;
             max-width: 100%;
             min-width: 0;
             border: 0;
+            font-weight: bold;
         }
 
         td {
+            @include font-size(24px);
             text-align: center;
-            border: 1px solid $color-black;
+            border: 2px solid $color-black;
+            padding: 0;
         }
 
         .empty {
@@ -397,6 +264,13 @@ $campaign-green: #2ac3a2;
 
         h3 {
             margin-bottom: $spacing-lg;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 12ch;
+
+            @media #{$mq-md} {
+                max-width: none;
+            }
         }
     }
 }
@@ -427,15 +301,25 @@ $campaign-green: #2ac3a2;
 
         .kitten-modal-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: $spacing-lg;
+            grid-template-rows: auto;
+            grid-template-columns: 1fr;
+            grid-gap: $spacing-lg;
+
+            @media #{$mq-md} {
+                grid-template-columns: 1fr 1fr;
+            }
 
             h2 {
-                @include font-size(60px);
+                @include font-size(36px);
                 color: $color-black;
+
+                @media #{$mq-md} {
+                    @include font-size(60px);
+                }
             }
 
             img {
+                grid-row: 1;
                 align-self: center;
                 clip-path: url('#kitten-clip-path');
             }

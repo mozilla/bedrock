@@ -1,0 +1,165 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+$campaign-red: #ff6a75;
+
+.ctd-hero-wrapper {
+    background: $campaign-red;
+}
+
+.c-ctd-hero {
+    @include font-firefox;
+    background: $campaign-red;
+
+    .c-hero-top {
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 4px solid $campaign-red;
+        max-height: 60px;
+        padding: $spacing-md $spacing-md $spacing-sm;
+
+        &-images {
+            align-items: center;
+            display: none;
+
+            img {
+                max-height: 100%;
+                margin-right: $spacing-md;
+            }
+        }
+
+        @media #{$mq-md} {
+            justify-content: space-between;
+
+            &-images {
+                display: flex;
+            }
+        }
+
+        &-controls {
+            display: flex;
+            align-items: center;
+
+            .hero-control-btn {
+                margin-left: $spacing-md;
+                background: none;
+                border: 0;
+                display: block;
+                cursor: pointer;
+            }
+        }
+
+        .minimize {
+            width: 30px;
+            height: 30px;
+            border-bottom: 3px solid $campaign-red;
+
+        }
+
+        .expand {
+            width: 24px;
+            height: 24px;
+            border: 3px solid $campaign-red;
+        }
+
+        .close {
+            width: 36px;
+            height: 36px;
+            position: relative;
+
+            &::before {
+                content: "";
+                height: 36px;
+                width: 3px;
+                position: absolute;
+                transform: rotate(-45deg);
+                right: 12px;
+                top: 0;
+                background: $campaign-red;
+            }
+
+            &::after {
+                content: "";
+                height: 36px;
+                width: 3px;
+                position: absolute;
+                transform: rotate(45deg);
+                right: 12px;
+                top: 0;
+                background: $campaign-red;
+            }
+        }
+    }
+
+    .hero-wrapper {
+        position: relative;
+        background: $color-white;
+        clip-path: url("#hero-clip-path-mobile");
+        transition: opacity 1s;
+
+        @media #{$mq-md} {
+            clip-path: url("#hero-clip-path");
+        }
+    }
+
+    .hero-content-wrapper {
+        padding: $spacing-md 0 $spacing-2xl;
+        margin: 0 $spacing-lg 0 $spacing-2xl;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-gap: $spacing-xl;
+
+        @media #{$mq-lg} {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            padding: $layout-md 0 $layout-xl;
+            margin: 0 $layout-xl;
+        }
+    }
+
+    .c-hero-image {
+        grid-row: 1;
+        grid-column: auto;
+        margin-top: 0;
+        clip-path: url('#hero-image-clip-path');
+
+        @media #{$mq-lg} {
+            grid-column: 2;
+        }
+    }
+
+    .c-hero-text {
+        justify-content: center;
+
+        @media #{$mq-md} {
+            min-width: 440px;
+        }
+
+        h1 {
+            @include font-firefox;
+            @include font-size(36px);
+            color: $color-black;
+            line-height: 1;
+            margin-bottom: $spacing-md;
+        }
+
+        p {
+            @include font-size(16px);
+            font-weight: 600;
+            color: $color-marketing-gray-70;
+            margin-bottom: $layout-sm;
+        }
+
+        @media #{$mq-md} {
+            h1 {
+                @include font-size(64px);
+            }
+
+
+        }
+    }
+
+}
