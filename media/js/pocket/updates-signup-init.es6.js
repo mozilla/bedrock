@@ -4,9 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// This file should be able to be deleted once Protocol is
-// updated to incude https://github.com/mozilla/protocol/issues/687
+import UpdatesForm from './updates-signup.es6';
 
-if (typeof window.Mzp === 'undefined') {
-    window.Mzp = {};
-}
+UpdatesForm.init();

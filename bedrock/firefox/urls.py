@@ -195,6 +195,7 @@ urlpatterns = (
     page("firefox/privacy/products/", "firefox/privacy/products.html", ftl_files=["firefox/privacy-hub"]),
     page("firefox/privacy/safe-passwords/", "firefox/privacy/passwords.html", ftl_files=["firefox/privacy-hub", "firefox/privacy/passwords"]),
     # Issue 8432
+    # Issue 13253: Ensure that Firefox can continue to refer to this URL.
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
     # Default browser campaign
     path(

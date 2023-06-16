@@ -487,6 +487,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-114-eu.scss"
+      ],
+      "name": "firefox_whatsnew_114_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-114-na.scss"
+      ],
+      "name": "firefox_whatsnew_114_na"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-eu-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_115_eu_vpn"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1190,6 +1208,12 @@
     },
     {
       "files":[
+        "css/mozorg/advertising.scss"
+      ],
+      "name": "mozilla-ads"
+    },
+    {
+      "files":[
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
@@ -1545,7 +1569,7 @@
     {
       "files": [
         "js/firefox/all/all-downloads-unified.js",
-        "js/firefox/all/all-downloads-unified-init.js"
+        "js/firefox/all/all-downloads-unified-init.es6.js"
       ],
       "name": "firefox_all_unified"
     },
@@ -1623,6 +1647,18 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-115-eu-vpn.js"
+      ],
+      "name": "firefox_whatsnew_115_eu_vpn"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-115-experiment-eu-vpn.es6.js"
+      ],
+      "name": "firefox_whatsnew_115_experiment_eu_vpn"
+    },
+    {
+      "files": [
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
@@ -1641,7 +1677,6 @@
     },
     {
       "files": [
-        "js/base/globals.js",
         "js/libs/classlist.js",
         "js/libs/array-from.js",
         "js/base/search-params.js",
@@ -1649,12 +1684,13 @@
         "js/base/mozilla-run.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "js/base/protocol-globals.es6.js"
+        "js/base/protocol/utils.es6.js"
       ],
       "name": "lib"
     },
     {
       "files": [
+        "js/base/protocol/init-details.es6.js",
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
@@ -1679,6 +1715,12 @@
         "js/base/core-datalayer-init.js"
       ],
       "name": "data"
+    },
+    {
+      "files": [
+        "js/base/datalayer-begincheckout-init.es6.js"
+      ],
+      "name": "data_begincheckout"
     },
     {
       "files": [
@@ -1730,6 +1772,13 @@
         "js/pocket/analytics.es6.js"
       ],
       "name": "pocket-analytics"
+    },
+    {
+      "files": [
+        "js/pocket/updates-signup.es6.js",
+        "js/pocket/updates-signup-init.es6.js"
+      ],
+      "name": "pocket-updates-signup"
     },
     {
       "files": [

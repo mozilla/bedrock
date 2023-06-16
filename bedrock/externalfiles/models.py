@@ -12,3 +12,6 @@ class ExternalFile(models.Model):
 
     class Meta:
         app_label = "externalfiles"
+
+    def __str__(self):
+        return f"{self.name}"

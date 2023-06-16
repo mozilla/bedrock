@@ -69,9 +69,9 @@ class SitemapURL(models.Model):
         else:
             return self.path
 
+    def get_absolute_url(self):
+        return f"{settings.CANONICAL_URL}{self}"
+
     @property
     def has_locale(self):
         return self.locale != NO_LOCALE
-
-    def get_absolute_url(self):
-        return f"{settings.CANONICAL_URL}{self}"

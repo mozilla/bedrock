@@ -19,6 +19,34 @@ VPN_12_MONTH_PLAN = "12-month"
 TAX_NOT_INCLUDED = ["US", "CA"]
 
 
+def _vpn_get_ga_data(selected_plan):
+    id = selected_plan.get("id")
+    analytics = selected_plan.get("analytics")
+
+    ga_data = (
+        "{"
+        "'id' : '%s',"
+        "'brand' : '%s',"
+        "'plan' : '%s',"
+        "'period' : '%s',"
+        "'price' : '%s',"
+        "'discount' : '%s',"
+        "'currency' : '%s'"
+        "}"
+        % (
+            id,
+            analytics.get("brand"),
+            analytics.get("plan"),
+            analytics.get("period"),
+            analytics.get("price"),
+            analytics.get("discount"),
+            analytics.get("currency"),
+        )
+    )
+
+    return ga_data
+
+
 def _vpn_get_available_plans(country_code, lang, bundle_relay=False):
     """
     Get subscription plan IDs using country_code and page language.
@@ -102,6 +130,14 @@ def vpn_subscribe_link(
     plan_id = selected_plan.get("id")
 
     product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
+
+    if "analytics" in selected_plan:
+        if class_name is None:
+            class_name = ""
+        class_name += " ga-begin-checkout"
+        if optional_attributes is None:
+            optional_attributes = {}
+        optional_attributes["data-ga-item"] = _vpn_get_ga_data(selected_plan)
 
     return _vpn_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 

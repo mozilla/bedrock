@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.urls import path
-from django.views.generic.base import RedirectView
 
 from bedrock.legal_docs.views import LegalDocView
 from bedrock.mozorg.util import page
@@ -115,9 +114,9 @@ urlpatterns = (
         url_name="pocket.opensource_licenses_ios",
     ),
     page(
-        "pocket-updates-signup/pilot/",
+        "pocket-updates-signup/",
         "pocket/updates-signup.html",
-        url_name="pocket.updates-signup-pilot",
+        url_name="pocket.updates-signup",
     ),
     path(
         "privacy/",
@@ -134,13 +133,6 @@ urlpatterns = (
             legal_doc_name="pocket_tos",
         ),
         name="pocket.tos",
-    ),
-    path(
-        "pocket-updates-signup/",
-        RedirectView.as_view(
-            pattern_name="pocket.updates-signup-pilot",
-            permanent=False,
-        ),
     ),
     path(
         "_newsletter_subscribe/",

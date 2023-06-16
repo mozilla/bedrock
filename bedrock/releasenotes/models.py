@@ -244,6 +244,17 @@ class ProductRelease(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        if self.product == "Firefox for Android":
+            urlname = "firefox.android.releasenotes"
+        elif self.product == "Firefox for iOS":
+            urlname = "firefox.ios.releasenotes"
+        else:
+            urlname = "firefox.desktop.releasenotes"
+
+        prefix = "aurora" if self.channel == "Aurora" else "release"
+        return reverse(urlname, args=[self.version, prefix])
+
     @cached_property
     def major_version(self):
         return str(self.version_obj.major)
@@ -259,17 +270,6 @@ class ProductRelease(models.Model):
     @property
     def is_latest(self):
         return self == get_latest_release(self.product, self.channel)
-
-    def get_absolute_url(self):
-        if self.product == "Firefox for Android":
-            urlname = "firefox.android.releasenotes"
-        elif self.product == "Firefox for iOS":
-            urlname = "firefox.ios.releasenotes"
-        else:
-            urlname = "firefox.desktop.releasenotes"
-
-        prefix = "aurora" if self.channel == "Aurora" else "release"
-        return reverse(urlname, args=[self.version, prefix])
 
     def get_sysreq_url(self):
         if self.product == "Firefox for Android":

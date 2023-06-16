@@ -19,7 +19,7 @@ help:
 	@echo "  fresh-data                 - pull the latest database and update all external data"
 	@echo "  clean                      - remove all build, test, coverage and Python artifacts"
 	@echo "  rebuild                    - force a rebuild of all of the docker images"
-	@echo "  lint                       - check style with Flake8, ESlint, Stylelint, and Prettier"
+	@echo "  lint                       - check style with Ruff, ESlint, Stylelint, and Prettier"
 	@echo "  format                     - format front-end code using Stylelint and Prettier"
 	@echo "  test                       - run tests against local files"
 	@echo "  test-image                 - run tests against files in docker image"
@@ -32,7 +32,6 @@ help:
 	@echo "  compile-requirements       - update Python requirements files using pip-compile"
 	@echo "  check-requirements         - get a report on stale/old Python dependencies in use"
 	@echo "  install-local-python-deps  - install Python dependencies for local development"
-	@echo "  install-local-docs-deps  	- install Python dependencies for documentation building"
 	@echo "  preflight  				- refresh installed dependencies and fetch latest DB ahead of local dev"
 	@echo "  clean-local-deps  			- remove all local installed Python dependencies"
 
@@ -110,7 +109,7 @@ clean:
 	git clean -d -f
 
 lint: .docker-build-pull
-	${DC} run test flake8
+	${DC} run test ruff
 	${DC} run assets npm run lint
 
 format: .docker-build-pull
@@ -174,9 +173,6 @@ install-local-python-deps:
 	pip install -r requirements/prod.txt
 	pip install -r requirements/dev.txt
 
-install-local-docs-deps:
-	pip install -r requirements/docs.txt
-
 preflight:
 	${MAKE} install-local-python-deps
 	$ npm install
@@ -185,4 +181,4 @@ preflight:
 clean-local-deps:
 	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps install-local-docs-deps preflight clean-local-deps
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps

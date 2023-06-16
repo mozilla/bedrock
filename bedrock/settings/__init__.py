@@ -5,7 +5,7 @@
 import logging.config
 import sys
 
-from .base import *  # noqa
+from .base import *  # noqa: F403, F405
 
 # This file:
 # 1. Handles setting specific settings based on the site Bedrock is serving - currently Mozorg or Pocket
@@ -184,7 +184,7 @@ else:
         "adservice.google.de",
         "adservice.google.dk",
         "creativecommons.org",
-        "cdn-3.convertexperiments.com",
+        "cdn-4.convertexperiments.com",
         "logs.convertexperiments.com",
         "images.ctfassets.net",
     ]
@@ -199,7 +199,7 @@ else:
         "tagmanager.google.com",
         "www.youtube.com",
         "s.ytimg.com",
-        "cdn-3.convertexperiments.com",
+        "cdn-4.convertexperiments.com",
         "app.convert.com",
         "data.track.convertexperiments.com",
         "1003350.track.convertexperiments.com",

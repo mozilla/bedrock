@@ -909,8 +909,6 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
 # Google Play and Apple App Store settings
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa: E402, F401
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa: E402, F401
 from .appstores import (  # noqa: E402, F401
     ADJUST_FIREFOX_URL,
     ADJUST_FOCUS_URL,
@@ -926,6 +924,8 @@ from .appstores import (  # noqa: E402, F401
     APPLE_APPSTORE_POCKET_LINK,
     GOOGLE_PLAY_FIREFOX_BETA_LINK,
     GOOGLE_PLAY_FIREFOX_LINK,
+    GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,
+    GOOGLE_PLAY_FIREFOX_LINK_UTMS,
     GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
     GOOGLE_PLAY_FIREFOX_SEND_LINK,
     GOOGLE_PLAY_FOCUS_LINK,
@@ -1040,12 +1040,10 @@ LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
 LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
 LEGAL_DOCS_DMS_URL = config("LEGAL_DOCS_DMS_URL", default="")
-LEGAL_DOCS_CACHE_TIMEOUT = config("LEGAL_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
 
 WEBVISION_DOCS_PATH = DATA_PATH / "webvisions"
 WEBVISION_DOCS_REPO = config("WEBVISION_DOCS_REPO", default="https://github.com/mozilla/webvision.git")
 WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
-WEBVISION_DOCS_CACHE_TIMEOUT = config("WEBVISION_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
 
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
 MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")
@@ -1212,12 +1210,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "CHF 5.99",
                 "total": "CHF 71.88",
                 "saving": 45,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sC2Kb9q6OnNsLIgz3DDu8" if DEV else "price_1J5Ju3JNcmPzuWtR3GpNYSWj",
                 "price": "CHF 10.99",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
         "fr": {  # French
@@ -1226,12 +1226,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "CHF 5.99",
                 "total": "CHF 71.88",
                 "saving": 45,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sNGKb9q6OnNsLl3OEuKqT" if DEV else "price_1J5JvjJNcmPzuWtR3wwy1dcR",
                 "price": "CHF 10.99",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
         "it": {  # Italian
@@ -1240,12 +1242,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "CHF 5.99",
                 "total": "CHF 71.88",
                 "saving": 45,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sXWKb9q6OnNsLVoGiXcW5" if DEV else "price_1J5JxGJNcmPzuWtRrp5e1SUB",
                 "price": "CHF 10.99",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
     },
@@ -1256,12 +1260,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "119 Kč",
                 "total": "1,428 Kč",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "1416", "price": "1428", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7Oc2Kb9q6OnNsLkYPFVHtx" if DEV else "price_1N7PESJNcmPzuWtRTgmv8Ve4",
                 "price": "237 Kč",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "0", "price": "237", "period": "monthly"},
             },
         },
     },
@@ -1272,12 +1278,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "kr. 37",
                 "total": "kr. 444",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "456", "price": "444", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OapKb9q6OnNsLTvIbY6DY" if DEV else "price_1N7PCsJNcmPzuWtRXIMBFQbq",
                 "price": "kr. 75",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "0", "price": "75", "period": "monthly"},
             },
         },
     },
@@ -1288,12 +1296,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N9CInKb9q6OnNsLQYotCVpd" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "el": {  # Greek
@@ -1302,12 +1312,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OrgKb9q6OnNsLk5xS9DYr" if DEV else "price_1N7PQIJNcmPzuWtR2BQdQbtL",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "en": {  # English
@@ -1316,12 +1328,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "es": {  # Spanish
@@ -1330,12 +1344,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4pFSKb9q6OnNsLEyiFLbvB" if DEV else "price_1J5JDgJNcmPzuWtRqQtIbktk",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "fr": {  # French
@@ -1344,12 +1360,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N9CHBKb9q6OnNsLlYDTJ3px" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "it": {  # Italian
@@ -1358,12 +1376,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4p6wKb9q6OnNsLTb6kCDsC" if DEV else "price_1J5J6iJNcmPzuWtRK5zfoguV",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "nl": {  # Dutch
@@ -1372,12 +1392,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4s0MKb9q6OnNsLS19LMKBb" if DEV else "price_1J5JSkJNcmPzuWtR54LPH2zi",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "pt": {  # Portuguese
@@ -1386,12 +1408,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OUEKb9q6OnNsLXlaW6Ovc" if DEV else "price_1N7PBsJNcmPzuWtRzS5kTc5B",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "sk": {  # Slovak
@@ -1400,12 +1424,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OkVKb9q6OnNsL5Vzz6X9D" if DEV else "price_1N7PKyJNcmPzuWtROTKgdgW0",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
         "sl": {  # Slovenian
@@ -1414,12 +1440,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "4,99 €",
                 "total": "59,88 €",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OmiKb9q6OnNsLvXqreUUk" if DEV else "price_1N7PN6JNcmPzuWtRpN8HAr7L",
                 "price": "9,99 €",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
     },
@@ -1430,12 +1458,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "1,850 Ft",
                 "total": "22,200 Ft",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "HUF", "discount": "22200", "price": "22200", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OdBKb9q6OnNsLJENr3u8W" if DEV else "price_1N7PFbJNcmPzuWtRlVNtHvgG",
                 "price": "3,700 Ft",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "HUF", "discount": "0", "price": "3700", "period": "monthly"},
             },
         },
     },
@@ -1446,12 +1476,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "22 zł",
                 "total": "264 zł",
                 "saving": 48,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "276", "price": "264", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OQWKb9q6OnNsLMLHUFggO" if DEV else "price_1N7P98JNcmPzuWtRbUaI24OH",
                 "price": "45 zł",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "0", "price": "45", "period": "monthly"},
             },
         },
     },
@@ -1462,12 +1494,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "lei 25",
                 "total": "lei 300",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "RON", "discount": "300", "price": "300", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1N7OS5Kb9q6OnNsLA2BVYqTG" if DEV else "price_1N7PAmJNcmPzuWtR1zOoPIao",
                 "price": "lei 50",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "RON", "discount": "0", "price": "50", "period": "monthly"},
             },
         },
     },
@@ -1478,12 +1512,14 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "US$4.99",
                 "total": "US$59.88",
                 "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
                 "price": "US$9.99",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         }
     },
@@ -1696,6 +1732,14 @@ VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
                 "price": "US$6.99",
                 "total": "US$83.88",
                 "saving": 50,
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn + relay",
+                    "currency": "USD",
+                    "discount": "83.88",
+                    "price": "83.88",
+                    "period": "yearly",
+                },
             },
         }
     },

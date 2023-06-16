@@ -50,7 +50,13 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "euro": {  # Euro
         "de": {  # German
             "12-month": {"id": "price_1IgwblJNcmPzuWtRynC7dqQa", "price": "4,99 €", "total": "59,88 €", "saving": 50},
-            "monthly": {"id": "price_1IgwZVJNcmPzuWtRg9Wssh2y", "price": "9,99 €", "total": None, "saving": None},
+            "monthly": {
+                "id": "price_1IgwZVJNcmPzuWtRg9Wssh2y",
+                "price": "9,99 €",
+                "total": None,
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
         },
         "el": {  # Greek
             "12-month": {"id": "price_1N7PPyJNcmPzuWtRkUbirJmB", "price": "4,99 €", "total": "59,88 €", "saving": 50},
@@ -109,7 +115,13 @@ TEST_VPN_PLAN_ID_MATRIX = {
     },
     "usd": {  # US dollar
         "en": {  # English
-            "12-month": {"id": "price_1Iw85dJNcmPzuWtRyhMDdtM7", "price": "US$4.99", "total": "US$59.88", "saving": 50},
+            "12-month": {
+                "id": "price_1Iw85dJNcmPzuWtRyhMDdtM7",
+                "price": "US$4.99",
+                "total": "US$59.88",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
             "monthly": {"id": "price_1Iw7qSJNcmPzuWtRMUZpOwLm", "price": "US$9.99", "total": None, "saving": None},
         }
     },
@@ -267,17 +279,52 @@ class TestVPNSubscribeLink(TestCase):
         """Should return expected markup for variable 12-month plan link"""
         markup = self._render(
             plan="12-month",
+            country_code="DE",
+            lang="de",
+            optional_parameters={"utm_campaign": "vpn-product-page"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwblJNcmPzuWtRynC7dqQa'
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
+            '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN yearly" data-cta-type="fxa-vpn" '
+            'data-cta-position="primary">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_subscribe_link_variable_12_month_with_analytics(self):
+        """Should return expected markup for variable 12-month plan link with analytics"""
+        markup = self._render(
+            plan="12-month",
             country_code="US",
             lang="en-US",
             optional_parameters={"utm_campaign": "vpn-product-page"},
-            optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
         )
         expected = (
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
-            'data-cta-position="primary">Get Mozilla VPN</a>'
+            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
+            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
+            "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_subscribe_link_variable_12_month_no_options_with_analytics(self):
+        """Should return expected markup for variable 12-month plan link with analytics"""
+        markup = self._render(
+            plan="12-month",
+            country_code="US",
+            lang="en-US",
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
+            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button '
+            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
+            "'price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -296,6 +343,25 @@ class TestVPNSubscribeLink(TestCase):
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_subscribe_link_variable_monthly_with_analytics(self):
+        """Should return expected markup for variable monthly plan link including analytics"""
+        markup = self._render(
+            plan="monthly",
+            country_code="DE",
+            lang="de",
+            optional_parameters={"utm_campaign": "vpn-product-page"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y'
+            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
+            '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
+            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1IgwZVJNcmPzuWtRg9Wssh2y','brand' : 'vpn',"
+            "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'EUR'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
 

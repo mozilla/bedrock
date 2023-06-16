@@ -70,6 +70,7 @@ Code changes
 ~~~~~~~~~~~~
 
 Reference: officially assigned list of `ISO country codes`_.
+Reference: list of `ISO 4217 currency codes`_`
 
 The majority of config changes need to happen in ``bedrock/settings/base.py``:
 
@@ -92,12 +93,14 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
                         "price": "US$4.99",
                         "total": "US$59.88",
                         "saving": 50,
+                        "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
                     },
                     "monthly": {
                         "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
                         "price": "US$9.99",
                         "total": None,
                         "saving": None,
+                        "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "period": "monthly"},
                     },
                 }
             },
@@ -209,4 +212,5 @@ client, see ``VPN_BLOCK_DOWNLOAD_COUNTRY_CODES``.
 .. _Mozilla VPN landing page: https://www.mozilla.org/en-US/products/vpn/
 .. _VPN wait list: https://www.mozilla.org/en-US/products/vpn/invite/
 .. _ISO country codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+.. _ISO 4217 currency codes: https://en.wikipedia.org/wiki/ISO_4217#Active_codes
 .. _unit tests: https://github.com/mozilla/bedrock/blob/main/bedrock/products/tests/test_helper_misc.py
