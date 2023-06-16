@@ -1,0 +1,93 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Privacy Notice for Firefox for Fire TV and Firefox for Echo Show — Archived, June 16, 2023{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block body_class %}{{ super() }} format-paragraphs{% endblock %}
+
+{% block article_header_logo %}{{ static('img/privacy/logo-firefox.png') }}{% endblock %}
+
+{% block title %}Privacy Notice for Firefox for Fire TV and Firefox for Echo Show{% endblock %}
+
+{% block time %}<span class="archived">Archived, June 16, 2023</span>{% endblock %}
+
+{% block lead_in %}
+  <p>
+    <time datetime="2018-10-11" itemprop="dateModified">Version 1.0.1, October 11, 2018</time>
+  </p>
+  <p>
+    At Mozilla, we design products with your privacy in mind. This privacy notice explains what
+    data we collect in Firefox for Fire TV and Firefox for Echo Show, why we collect that
+    information, and your choices.
+  </p>
+  <p>
+    To learn more about how we receive and handle information, read the
+    <a href="{{ url('privacy') }}">Mozilla Privacy Policy</a>.
+  </p>
+{% endblock %}
+
+{% block sections %}
+<section>
+  <h2>Things you should know</h2>
+  <p class="summary">
+    Mozilla receives data by default to help us improve Firefox.
+  </p>
+  <ul class="mzp-u-list-styled">
+    <li>
+      <p>
+        <strong>Technical Data</strong>: We receive basic information about your device and Firefox,
+        such as OS and browser version, basic information about crashes and errors, and system
+        timezone and locale.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Interaction Data</strong>: We receive information about how often you use Firefox and
+        interact with certain features and prompts. For example when you start a new browsing session,
+        how often you search in Firefox, and which features in the Settings screen are enabled.
+      </p>
+      <p>
+        Read the documentation or learn how to <a href="https://support.mozilla.org/kb/send-usage-data-firefox-mobile-devices">opt-out</a>
+        of this data collection.
+      </p>
+    </li>
+  </ul>
+  <p class="summary">
+    Mozilla also receives data to display relevant content.
+  </p>
+  <ul class="mzp-u-list-styled">
+    <li>
+      <p>
+        <strong>Language/Region</strong>: Firefox receives your designated language/region from Amazon
+        to suggest relevant content, including Pocket Recommendations.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Technical & Interaction data</strong>: Firefox sends Mozilla data such as the the number
+        of times suggested content is displayed or clicked. The suggested tiles on the Firefox home screen
+        sometimes uses Amazon CloudFront to direct the user to the optimized version of the requested content.
+      </p>
+    </li>
+  </ul>
+  <p class="summary">
+    Voice commands use Amazon’s Alexa.
+  </p>
+  <ul class="mzp-u-list-styled">
+    <li>
+      <strong>Voice Commands</strong>: When you use voice commands to control Firefox, Amazon receives and
+      interprets your voice data to carry out your instructions. Amazon’s Alexa has its own privacy notice,
+      which you can find <a href="https://www.alexa.com/help/privacy">here</a>.
+    </li>
+  </ul>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}

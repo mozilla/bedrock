@@ -15,4 +15,7 @@ redirectpatterns = (
     redirect(r"^about/legal/terms/(mozilla-vpn|vpn)/?$", "legal.terms.subscription-services"),
     # issue 12156
     redirect(r"^about/legal/terms/firefox-relay/?$", "legal.terms.subscription-services"),
+    # issue 13272
+    redirect(r"^about/legal/terms/firefox-private-network/", "privacy.archive.firefox-private-network-tos-2023-06"),
+    redirect(r"^about/legal/terms/firefox-reality/", "privacy.archive.firefox-reality-tos-2023-06"),
 )

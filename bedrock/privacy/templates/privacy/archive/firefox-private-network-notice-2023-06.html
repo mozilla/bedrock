@@ -1,0 +1,90 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox Private Network Browser Extension (Beta) Privacy Notice — Archived, June 16, 2023{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block body_class %}{{ super() }} format-headings{% endblock %}
+
+{% block article_header_logo %}{{ static('img/privacy/logo-firefox.png') }}{% endblock %}
+
+{% block title %}Firefox Private Network Browser Extension (Beta) Privacy Notice{% endblock %}
+
+{% block time %}<span class="archived">Archived, June 16, 2023</span>{% endblock %}
+
+{% block lead_in %}
+  <p><time datetime="2020-07-07" itemprop="dateModified">Version 3.0, effective July 7, 2020</time></p>
+  <p>At Mozilla, we design products with your privacy in mind.</p>
+  <p>
+    Firefox Private Network (FPN) protects your device’s web connections. Mozilla partners with Cloudflare
+    to privately and securely encrypt your web traffic within Firefox.
+  </p>
+  <p>
+    This privacy notice explains what data FPN collects, shares, and why. We also adhere to the
+    <a href="{{ url('privacy') }}">Mozilla Privacy Policy</a> for how we receive, handle, and share information.
+  </p>
+{% endblock %}
+
+{% block sections %}
+  <section>
+    <h2>Things you should know:</h2>
+    <section>
+      <h3 class="summary">Information we collect</h3>
+      <p>
+        <strong>Firefox Account Information.</strong> This service requires a Firefox Account, which sends FPN
+        your email address, locale, and IP address. Learn more about <a href="{{ url('privacy.notices.firefox') }}#firefox-accounts">
+        Firefox Account data practices</a>.</p><p><strong>Location information.</strong> Firefox FPN receives
+        your IP address from your Firefox Account when you sign up for and use the service. We use the IP
+        address in order to approximate your location because FPN is currently only available in the United
+        States.
+      </p>
+      <p>
+        <strong>Technical data.</strong> Mozilla receives basic information from FPN about your mobile and
+        desktop app version and device, including device operating system and hardware configuration. When
+        FPN sends data to us, your IP address is temporarily collected as part of our server logs.
+      </p>
+      <p><strong>Interaction data.</strong> Mozilla receives data about your interactions with FPN, such as
+        when you enable and disable the proxy and the amount of bandwidth you use when the proxy is enabled.
+      </p>
+      <p>
+        Read the technical and interaction data collection documentation <a href="https://github.com/mozilla/secure-proxy/blob/master/docs/metrics.md">here</a>.
+        We use the data we collect to improve performance and stability for our users, and to measure FPN’s
+        performance.
+      </p>
+    </section>
+    <section>
+      <h3 class="summary">Information we share</h3>
+      <p>
+        FPN shares data with certain third parties in order to provide the service to you. Mozilla has written
+        agreements in place with these companies contractually obligating them to protect your information.
+        Here’s who we use:
+      </p>
+      <p>
+        <strong>Cloudflare.</strong> As you browse, Firefox will encrypt the data you send to websites and send
+        it to Cloudflare. Cloudflare will also receive your computer’s IP address, the IP address of the site
+        you are browsing to, the timestamp, and a unique identifier. Cloudflare does not share this data with
+        others and deletes this after 24 hours unless necessary for its security or legal obligations. Learn
+        more at <a href="https://www.cloudflare.com/mozilla/firefox-private-network-privacy-notice/">Cloudflare’s
+        Privacy Notice</a>.
+      </p>
+      <p>
+        <strong>Stripe.</strong> Mozilla uses Stripe to process your payment information. Mozilla receives a record
+        of your subscription and information about the status of your account’s subscription and payment. Mozilla
+        does not receive or store your payment card details. You can learn more about Stripe’s data practices by
+        reading their <a href="https://stripe.com/privacy">Global Privacy Policy</a>.
+      </p>
+    </section>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}
+
+{% block js %}
+  {{ js_bundle('privacy_protocol') }}
+{% endblock %}
