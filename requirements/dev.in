@@ -13,7 +13,7 @@ pytest==7.3.2  # Included because we use it directly, but also a subdep of pytes
 pytest-cov==4.1.0
 pytest-datadir==1.4.1
 pytest-django==4.5.2
-pytest-mock==3.10.0
+pytest-mock==3.11.1
 pytest-parallel==0.1.1
 pytest-rerunfailures==11.1.2
 pytest-selenium==2.0.1
