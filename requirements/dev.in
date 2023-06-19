@@ -5,7 +5,7 @@ bpython==0.24
 braceexpand==0.1.7
 factory-boy==3.2.1
 freezegun==1.2.2
-pipdeptree==2.9.0
+pipdeptree==2.9.3
 py==1.11.0
 PyPOM==2.2.4
 pyquery==2.0.0
