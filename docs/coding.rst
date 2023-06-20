@@ -675,25 +675,6 @@ Images that have translatable text can be handled with ``l10n_img()``:
 
 The images referenced by ``l10n_img()`` must exist in ``media/img/l10n/``, so for above example, the images could include ``media/img/l10n/en-US/firefox/os/have-it-all/messages.jpg`` and ``media/img/l10n/es-ES/firefox/os/have-it-all/messages.jpg``.
 
-platform_img()
-^^^^^^^^^^^^^^
-
-Finally, for outputting an image that differs depending on the platform being used, the ``platform_img()`` function will automatically display the image for the user's browser:
-
-.. code-block:: python
-
-    platform_img("img/firefox/new/browser.png", {"alt": "Firefox screenshot"})
-
-``platform_img()`` will automatically look for the images ``browser-mac.png``, ``browser-win.png``, ``browser-linux.png``, etc. Platform image also supports hi-res images by adding ``'high-res': True`` to the list of optional attributes.
-
-``platform_img()`` supports localized images by setting the ``'l10n'`` parameter to ``True``:
-
-.. code-block:: python
-
-    platform_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox screenshot"})
-
-When using localization, ``platform_img()`` will look for images in the appropriate locale folder. In the above example, for the ``es-ES`` locale, all platform versions of the image should be located at ``media/img/l10n/es-ES/firefox/new/``.
-
 qrcode()
 ^^^^^^^^
 
