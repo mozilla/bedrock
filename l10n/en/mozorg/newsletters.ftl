@@ -419,7 +419,7 @@ newsletters-get-tips-from-mozilla = Get tips from { -brand-name-mozilla } on how
 newsletters-welcome-emails = Welcome emails
 
 # Description for the newsletter in Newsletter subscription page (Welcome emails)
-newsletter-welcome-emails-that-get-you = Welcome emails that get you started using our products & services.
+newsletter-welcome-emails-that-get-you = Welcome emails that get you started using our products and services.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-android = { -brand-name-android }
