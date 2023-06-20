@@ -2,6 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$campaign-red: #ff6a75;
+$campaign-pink: #ffbdc5;
+$campaign-mint: #d1ffee;
+$campaign-green: #2ac3a2;
+
 .js {
     @media (prefers-reduced-motion: no-preference) {
 
@@ -55,6 +60,38 @@
             }
         }
 
+        @keyframes wednesday-circles-mint {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%, 100% {
+                fill: $campaign-mint;
+            }
+        }
+
+        @keyframes wednesday-circles-red {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%, 100% {
+                fill: $campaign-red;
+            }
+        }
+        @keyframes wednesday-circles-pink {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%, 100% {
+                fill: $campaign-pink;
+            }
+        }
+
+
+
+
         .animate-close {
             animation: .5s ease-out 0s 1 normal forwards running close;
         }
@@ -62,7 +99,23 @@
         .animate-pop-in {
             animation: .5s ease-out 0s 1 normal forwards running pop-in;
         }
+
+        .animate-wednesday {
+            .wednesday-circle {
+                &.circle3 {
+                    animation: wednesday-circles-mint 5s alternate infinite;
+                }
+
+                &.circle2 {
+                    animation: wednesday-circles-red 5s ease-in alternate infinite;
+                    animation-delay: 500ms;
+                }
+
+                &.circle1 {
+                    animation: wednesday-circles-pink 5s ease-in alternate infinite;
+                    animation-delay: 1000ms;
+                }
+            }
+        }
     }
-
-
 }

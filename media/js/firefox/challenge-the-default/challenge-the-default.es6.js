@@ -13,7 +13,14 @@ const kittenButton = document.querySelector('.kitten-button');
 const kittenModal = document.querySelector('.kitten-modal');
 const toggles = document.querySelectorAll('.toggle input');
 const heroClose = document.querySelector('.close');
+const animatedButton = document.querySelector('.animated-button');
 let toggleWrapper;
+
+// Update site based on if on firefox, if on firefox and set as default or using a separate browser
+
+// function updateMessaging() {
+//     //
+// }
 
 compareSelect.addEventListener('change', function (e) {
     compareTable.dataset.selectedBrowser = e.target.value || 'chrome';
@@ -62,6 +69,26 @@ heroClose.addEventListener('click', function () {
         heroWrapper.classList.add('animate-pop-in');
         heroWrapper.classList.remove('animate-close');
     }, 3000);
+});
+
+// On click, animate the "It's Wednesday Dudes" screen
+animatedButton.addEventListener('click', function () {
+    let lizardImage;
+    const wednesdayWrapper = document.querySelector('.c-animated-button');
+    wednesdayWrapper.classList.add('animate-wednesday');
+
+    const isWednesday = new Date().getDay() === 3;
+
+    if (isWednesday) {
+        lizardImage = wednesdayWrapper.querySelector('.is-wednesday');
+    } else {
+        lizardImage = wednesdayWrapper.querySelector('.not-wednesday');
+    }
+    lizardImage.style.display = 'block';
+    setTimeout(function () {
+        lizardImage.style.display = 'none';
+        wednesdayWrapper.classList.remove('animate-wednesday');
+    }, 5000);
 });
 
 // check toggle state on page load

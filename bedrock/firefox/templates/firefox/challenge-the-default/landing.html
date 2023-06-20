@@ -359,15 +359,38 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   </section>
 
   <section class="c-animated-button">
-    <div class="mzp-l-content">
-        <button class="animated-button">
-            {{ resp_img(
-              url='img/firefox/challenge-the-default/logo-ctd.svg',
-              optional_attributes={
-              'loading': 'eager'
-              })
-            }}
-        </button>
+    <div class="mzp-l-content mzp-t-content-nospace">
+      <svg class="wednesday-bg" width="1440" height="246" viewBox="0 0 1440 246" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="719.993" cy="123.001" rx="797.262" ry="785.044" fill="#2AC3A2" />
+        <ellipse class="wednesday-circle pink circle1" cx="719.996" cy="123" rx="604" ry="595" fill="#FFBDC5" />
+        <circle class="wednesday-circle red circle2" cx="719.996" cy="123" r="476" fill="#FF6A75" />
+        <circle class="wednesday-circle light-green circle3" cx="719.996" cy="123" r="372" fill="#D1FFEE" />
+        <circle cx="719.996" cy="123" r="283" fill="#2AC3A2" />
+      </svg>
+      <button class="animated-button">
+          {{ resp_img(
+            url='img/firefox/challenge-the-default/logo-ctd.svg',
+            optional_attributes={
+              'loading': 'eager',
+              'width': '263',
+              'height': '96'
+            })
+          }}
+      </button>
+      {{ resp_img(
+          url='img/firefox/challenge-the-default/is-wednesday.svg',
+          optional_attributes={
+            'class': 'wednesday-lizard is-wednesday',
+            'alt': "It's Wednesday my dudes"
+          }
+      )}}
+      {{ resp_img(
+          url='img/firefox/challenge-the-default/is-wednesday.svg',
+          optional_attributes={
+            'class': 'wednesday-lizard not-wednesday',
+            'alt': "It's Wednesday my dudes"
+          }
+      )}}
     </div>
   </section>
 

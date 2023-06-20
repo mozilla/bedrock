@@ -330,11 +330,43 @@ $campaign-green: #2ac3a2;
 .c-animated-button {
     background-color: $campaign-green;
     text-align: center;
+    position: relative;
+    height: 246px;
+
+    .mzp-l-content {
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
     .animated-button {
         background: none;
         border: 0;
         cursor: pointer;
+        position: absolute;
+    }
+
+    svg {
+        position: absolute;
+        inset: 0;
+
+        .wednesday-circle {
+            fill: $campaign-green;
+        }
+    }
+
+    .wednesday-lizard {
+        display: none;
+        position: absolute;
+    }
+
+    &.animate-wednesday {
+        .animated-button {
+            display: none;
+        }
     }
 }
 
