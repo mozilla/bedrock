@@ -3,7 +3,7 @@ babis==0.2.4
 basket-client==1.0.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
-boto3==1.26.152
+boto3==1.26.155
 chardet==5.1.0
 commonware==0.6.0
 contentful==2.1.1
@@ -11,7 +11,7 @@ contextlib2==21.6.0
 cryptography==41.0.1
 dirsync==2.2.5
 django-allow-cidr==0.6.0
-django-cors-headers==4.0.0
+django-cors-headers==4.1.0
 django-crum==0.7.9
 django-csp==3.7
 django-extensions==3.2.3
@@ -53,4 +53,4 @@ sentry-processor==0.0.1
 sqlparse==0.4.4  # Manual pin until Django catches up
 supervisor==4.2.5
 timeago==1.0.16
-whitenoise==6.4.0
+whitenoise==6.5.0

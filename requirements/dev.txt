@@ -88,13 +88,13 @@ blessed==1.20.0 \
     --hash=sha256:0c542922586a265e699188e52d5f5ac5ec0dd517e5a1041d90d2bbf23f906058 \
     --hash=sha256:2cdd67f8746e048f00df47a2880f4d6acbcdb399031b604e34ba8f71d5787680
     # via curtsies
-boto3==1.26.152 \
-    --hash=sha256:a2778c5729d3dc0b3688c9f0d103543d7ec5ff44a4fd0e84d0d542e2dff05e62 \
-    --hash=sha256:ee0b8f8d238d4e1cf50fa6a185e4e066955b6105e9838a80b1b6582cd327dfdf
+boto3==1.26.155 \
+    --hash=sha256:2d4095e2029ce5ceccb25591f13e55aa5b8ba17794de09963654bd9ced45158f \
+    --hash=sha256:dd15823e8c0554d98c18584d9a6a0342c67611c1114ef61495934c2e560f632c
     # via -r requirements/prod.txt
-botocore==1.29.152 \
-    --hash=sha256:02a3205cc8579d4be6d537e63d72aebbf3f70f3aedcf40b3cae9dc2e24c774d0 \
-    --hash=sha256:f6319ecdbe3d325878f837cac2874e461b4d90691bb2d2186f980bce3b3cfcc8
+botocore==1.29.155 \
+    --hash=sha256:32d5da68212e10c060fd484f41df4f7048fc7731ccd16fd00e37b11b6e841142 \
+    --hash=sha256:7fbb7ebba5f645c9750fe557b1ea789d40017a028cdaa2c22fcbf06d4a4d3c1d
     # via
     #   -r requirements/prod.txt
     #   boto3
@@ -350,9 +350,9 @@ django-allow-cidr==0.6.0 \
     --hash=sha256:24b71f70257e97bab9fdb5ad8342c96eeea1d45bc06a36332978574252219401 \
     --hash=sha256:6709f4581dfd2a00476a134741a738a7f67714ec4f8596c55b22cf3b2ac5a12e
     # via -r requirements/prod.txt
-django-cors-headers==4.0.0 \
-    --hash=sha256:a971cd4c75b29974068cc36b5c595698822f1e0edd5f1b32ea42ea37326ad4aa \
-    --hash=sha256:e3cbd247a1a835da4cf71a70d4214378813ea7e08337778b82cb2c1bc19d28d6
+django-cors-headers==4.1.0 \
+    --hash=sha256:36a8d7a6dee6a85f872fe5916cc878a36d0812043866355438dfeda0b20b6b78 \
+    --hash=sha256:88a4bfae24b6404dd0e0640203cb27704a2a57fd546a429e5d821dfa53dd1acf
     # via -r requirements/prod.txt
 django-crum==0.7.9 \
     --hash=sha256:037cc8b822975bb1d41cd24269b59a512cc77448fadc3f34ab9a17b229b4b471 \
@@ -851,9 +851,9 @@ pillow==9.5.0 \
     --hash=sha256:fe7e1c262d3392afcf5071df9afa574544f28eac825284596ac6db56e6d11062 \
     --hash=sha256:fed1e1cf6a42577953abbe8e6cf2fe2f566daebde7c34724ec8803c4c0cda579
     # via -r requirements/prod.txt
-pipdeptree==2.9.0 \
-    --hash=sha256:b2e89d19b832f40c19e124a81857c1a4c313cd601e32300ea837ba4797ef9af3 \
-    --hash=sha256:fe9f16e8b15c2a6b6e314d52c3abe72e1dab8ef4815f173f587ccaab8937d252
+pipdeptree==2.9.3 \
+    --hash=sha256:b4c56f455c9fd0aa7c281dc9b3ddff8bd8918f6bb8ca5aa50cec1c2764d64c86 \
+    --hash=sha256:d0049795a78c600bce97663a4d0ae3ebc212f7ccc2f1bd3efef910b7e8bf4591
     # via -r requirements/dev.in
 platformdirs==2.5.1 \
     --hash=sha256:7535e70dfa32e84d4b34996ea99c5e432fa29a708d0f4e394bbcb2a8faa4f16d \
@@ -993,9 +993,9 @@ pytest-metadata==1.11.0 \
     --hash=sha256:576055b8336dd4a9006dd2a47615f76f2f8c30ab12b1b1c039d99e834583523f \
     --hash=sha256:71b506d49d34e539cc3cfdb7ce2c5f072bea5c953320002c95968e0238f8ecf1
     # via pytest-html
-pytest-mock==3.10.0 \
-    --hash=sha256:f4c973eeae0282963eb293eb173ce91b091a79c1334455acfac9ddee8a1c784b \
-    --hash=sha256:fbbdb085ef7c252a326fd8cdcac0aa3b1333d8811f131bdcc701002e1be7ed4f
+pytest-mock==3.11.1 \
+    --hash=sha256:21c279fff83d70763b05f8874cc9cfb3fcacd6d354247a976f9529d19f9acf39 \
+    --hash=sha256:7f6b125602ac6d743e523ae0bfa71e1a697a2f5534064528c6ff84c2f7c2fc7f
     # via -r requirements/dev.in
 pytest-parallel==0.1.1 \
     --hash=sha256:9aac3fc199a168c0a8559b60249d9eb254de7af58c12cee0310b54d4affdbfab \
@@ -1219,9 +1219,9 @@ tomli==1.2.3 \
     #   black
     #   coverage
     #   pytest
-translate-toolkit==3.9.0 \
-    --hash=sha256:85c239ddef769d814fa69bae0651d0849545538fcbfb09347ea503bbc406a115 \
-    --hash=sha256:9c305dbf98d1c732509055d3b929dd51e5d3d5e9b611c5bfeba1c8b0f7976df2
+translate-toolkit==3.9.1 \
+    --hash=sha256:df5a8b8832c723fe3d09c79db66245f1ff05d1c61527f60a695093cb800ca57b \
+    --hash=sha256:e8e259af935b96f6d1e468e01341ccf05a8bca21df76f30cc0b1d9c47bb78c12
     # via -r requirements/dev.in
 trio==0.20.0 \
     --hash=sha256:670a52d3115d0e879e1ac838a4eb999af32f858163e3a704fe4839de2a676070 \
@@ -1280,9 +1280,9 @@ webencodings==0.5.1 \
     #   bleach
     #   html5lib
     #   tinycss2
-whitenoise==6.4.0 \
-    --hash=sha256:599dc6ca57e48929dfeffb2e8e187879bfe2aed0d49ca419577005b7f2cc930b \
-    --hash=sha256:a02d6660ad161ff17e3042653c8e3f5ecbb2a2481a006bde125b9efb9a30113a
+whitenoise==6.5.0 \
+    --hash=sha256:15fe60546ac975b58e357ccaeb165a4ca2d0ab697e48450b8f0307ca368195a8 \
+    --hash=sha256:16468e9ad2189f09f4a8c635a9031cc9bb2cdbc8e5e53365407acf99f7ade9ec
     # via -r requirements/prod.txt
 wrapt==1.14.0 \
     --hash=sha256:00108411e0f34c52ce16f81f1d308a571df7784932cc7491d1e94be2ee93374b \
