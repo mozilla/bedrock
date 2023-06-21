@@ -585,7 +585,7 @@ describe('fxa-attribution.js', function () {
                     <a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>
                     <a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Firefox Monitor</a>
                     <a id="test-third-expected" class="js-fxa-cta-link" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral">Activate Pocket</a>
-                    <a id="test-subscription" class="js-vpn-cta-link" href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&amp;entrypoint=www.mozilla.org-vpn-product-page&amp;form_type=button&amp;service=e6eb0d1e856335fc&amp;utm_source=www.mozilla.org-vpn-product-page&amp;utm_medium=referral&amp;utm_campaign=vpn-product-page&amp;data_cta_position=pricing">Get Mozilla VPN</a>
+                    <a id="test-subscription" class="js-fxa-product-cta-link" href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&amp;entrypoint=www.mozilla.org-vpn-product-page&amp;form_type=button&amp;service=e6eb0d1e856335fc&amp;utm_source=www.mozilla.org-vpn-product-page&amp;utm_medium=referral&amp;utm_campaign=vpn-product-page&amp;data_cta_position=pricing">Get Mozilla VPN</a>
                 </div>`;
 
             document.body.insertAdjacentHTML('beforeend', links);
@@ -596,7 +596,7 @@ describe('fxa-attribution.js', function () {
             content.parentNode.removeChild(content);
         });
 
-        it('should update UTM parameters on links with class js-fxa-cta-link and js-vpn-cta-link', function () {
+        it('should update UTM parameters on links with class js-fxa-cta-link and js-fxa-product-cta-link', function () {
             const data = {
                 utm_source: 'source-two',
                 utm_content: 'content-two',
