@@ -15,12 +15,6 @@ TEST_VPN_PRODUCT_ID = "prod_FvnsFHIfezy3ZI"
 TEST_VPN_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
 
 TEST_VPN_PLAN_ID_MATRIX = {
-    "bgn": {  # Bulgarian lev
-        "en": {  # English
-            "12-month": {"id": "price_1N7PGEJNcmPzuWtRzTe85nzw", "price": "10 лв", "total": "120 лв", "saving": 50},
-            "monthly": {"id": "price_1N7PHRJNcmPzuWtRjZ8D8kwx", "price": "20 лв", "total": None, "saving": None},
-        },
-    },
     "chf": {  # Swiss franc
         "de": {  # German
             "12-month": {"id": "price_1J5JssJNcmPzuWtR616BH4aU", "price": "CHF 5.99", "total": "CHF 71.88", "saving": 45},
@@ -36,7 +30,7 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
     },
     "czk": {  # Czech koruna
-        "cz": {  # Czech
+        "cs": {  # Czech
             "12-month": {"id": "price_1N7PDwJNcmPzuWtR1IxSkZ0c", "price": "119 Kč", "total": "1,428 Kč", "saving": 50},
             "monthly": {"id": "price_1N7PESJNcmPzuWtRTgmv8Ve4", "price": "237 Kč", "total": None, "saving": None},
         },
@@ -48,6 +42,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
     },
     "euro": {  # Euro
+        "bg": {  # Bulgarian
+            "12-month": {"id": "price_1N7PGEJNcmPzuWtRzTe85nzw", "price": "4,99 €", "total": "59,88 €", "saving": 50},
+            "monthly": {"id": "price_1N7PHRJNcmPzuWtRjZ8D8kwx", "price": "9,99 €", "total": None, "saving": None},
+        },
         "de": {  # German
             "12-month": {"id": "price_1IgwblJNcmPzuWtRynC7dqQa", "price": "4,99 €", "total": "59,88 €", "saving": 50},
             "monthly": {
@@ -74,6 +72,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
             "12-month": {"id": "price_1IgnlcJNcmPzuWtRjrNa39W4", "price": "4,99 €", "total": "59,88 €", "saving": 50},
             "monthly": {"id": "price_1IgowHJNcmPzuWtRzD7SgAYb", "price": "9,99 €", "total": None, "saving": None},
         },
+        "hu": {  # Hungarian
+            "12-month": {"id": "price_1N7PF1JNcmPzuWtRujxNI9yh", "price": "4,99 €", "total": "59,88 €", "saving": 50},
+            "monthly": {"id": "price_1N7PFbJNcmPzuWtRlVNtHvgG", "price": "9,99 €", "total": None, "saving": None},
+        },
         "it": {  # Italian
             "12-month": {"id": "price_1J4owvJNcmPzuWtRomVhWQFq", "price": "4,99 €", "total": "59,88 €", "saving": 50},
             "monthly": {"id": "price_1J5J6iJNcmPzuWtRK5zfoguV", "price": "9,99 €", "total": None, "saving": None},
@@ -95,22 +97,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
             "monthly": {"id": "price_1N7PN6JNcmPzuWtRpN8HAr7L", "price": "9,99 €", "total": None, "saving": None},
         },
     },
-    "huf": {  # Hungarian forint
-        "hu": {  # Hungarian
-            "12-month": {"id": "price_1N7PF1JNcmPzuWtRujxNI9yh", "price": "1,850 Ft", "total": "22,200 Ft", "saving": 50},
-            "monthly": {"id": "price_1N7PFbJNcmPzuWtRlVNtHvgG", "price": "3,700 Ft", "total": None, "saving": None},
-        },
-    },
     "pln": {  # Polish złoty
         "en": {  # English
             "12-month": {"id": "price_1N7P8TJNcmPzuWtRI7pI29bO", "price": "22 zł", "total": "264 zł", "saving": 48},
             "monthly": {"id": "price_1N7P98JNcmPzuWtRbUaI24OH", "price": "45 zł", "total": None, "saving": None},
-        },
-    },
-    "ron": {  # Romanian leu
-        "en": {  # English
-            "12-month": {"id": "price_1N7PADJNcmPzuWtRxHjlrDiy", "price": "lei 25", "total": "lei 300", "saving": 50},
-            "monthly": {"id": "price_1N7PAmJNcmPzuWtR1zOoPIao", "price": "lei 50", "total": None, "saving": None},
         },
     },
     "usd": {  # US dollar
@@ -132,7 +122,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
     "BG": {  # Bulgaria
-        "default": TEST_VPN_PLAN_ID_MATRIX["bgn"]["en"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "BE": {  # Belgium
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["nl"],
@@ -149,7 +139,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "el": TEST_VPN_PLAN_ID_MATRIX["euro"]["el"],
     },
     "CZ": {  # Czech Republic
-        "default": TEST_VPN_PLAN_ID_MATRIX["czk"]["cz"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["czk"]["cs"],
     },
     "DE": {  # Germany
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["de"],
@@ -173,7 +163,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "HU": {  # Hungary
-        "default": TEST_VPN_PLAN_ID_MATRIX["huf"]["hu"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["hu"],
     },
     "IE": {  # Ireland
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
@@ -204,7 +194,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["pt"],
     },
     "RO": {  # Romania
-        "default": TEST_VPN_PLAN_ID_MATRIX["ron"]["en"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "SE": {  # Sweden
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
@@ -734,7 +724,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="BG",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PGEJNcmPzuWtRzTe85nzw", markup)
+        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
 
     def test_vpn_subscribe_link_variable_monthly_bg_en(self):
         """Should contain expected monthly plan ID (BG / en-US)"""
@@ -743,7 +733,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="BG",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PHRJNcmPzuWtRjZ8D8kwx", markup)
+        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
     def test_vpn_subscribe_link_variable_12_month_cy_el(self):
         """Should contain expected 12-month plan ID (CY / el)"""
@@ -781,21 +771,21 @@ class TestVPNSubscribeLink(TestCase):
         )
         self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
-    def test_vpn_subscribe_link_variable_12_month_cz_cz(self):
-        """Should contain expected 12-month plan ID (CZ / cz)"""
+    def test_vpn_subscribe_link_variable_12_month_cz_cs(self):
+        """Should contain expected 12-month plan ID (CZ / cs)"""
         markup = self._render(
             plan="12-month",
             country_code="CZ",
-            lang="cz",
+            lang="cs",
         )
         self.assertIn("?plan=price_1N7PDwJNcmPzuWtR1IxSkZ0c", markup)
 
-    def test_vpn_subscribe_link_variable_monthly_cz_cz(self):
-        """Should contain expected monthly plan ID (CZ / cz)"""
+    def test_vpn_subscribe_link_variable_monthly_cz_cs(self):
+        """Should contain expected monthly plan ID (CZ / cs)"""
         markup = self._render(
             plan="monthly",
             country_code="CZ",
-            lang="cz",
+            lang="cs",
         )
         self.assertIn("?plan=price_1N7PESJNcmPzuWtRTgmv8Ve4", markup)
 
@@ -860,7 +850,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="RO",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PADJNcmPzuWtRxHjlrDiy", markup)
+        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
 
     def test_vpn_subscribe_link_variable_monthly_ro_en(self):
         """Should contain expected monthly plan ID (RO / en-US)"""
@@ -869,7 +859,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="RO",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PAmJNcmPzuWtR1zOoPIao", markup)
+        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
     def test_vpn_subscribe_link_variable_12_month_ee_en(self):
         """Should contain expected 12-month plan ID (EE / en-US)"""
@@ -1055,18 +1045,6 @@ class TestVPNMonthlyPrice(TestCase):
         expected = '<span class="vpn-monthly-price-display">CHF 5.99<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
-    def test_vpn_monthly_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="BG", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">20 лв<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="BG", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">10 лв<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
     def test_vpn_monthly_price_czk(self):
         """Should return expected markup"""
         markup = self._render(plan="monthly", country_code="CZ", lang="en-US")
@@ -1091,18 +1069,6 @@ class TestVPNMonthlyPrice(TestCase):
         expected = '<span class="vpn-monthly-price-display">kr. 37<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
-    def test_vpn_monthly_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="HU", lang="hu")
-        expected = '<span class="vpn-monthly-price-display">3,700 Ft<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="HU", lang="hu")
-        expected = '<span class="vpn-monthly-price-display">1,850 Ft<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
     def test_vpn_monthly_price_pln(self):
         """Should return expected markup"""
         markup = self._render(plan="monthly", country_code="PL", lang="en-US")
@@ -1113,18 +1079,6 @@ class TestVPNMonthlyPrice(TestCase):
         """Should return expected markup"""
         markup = self._render(plan="12-month", country_code="PL", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">22 zł<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_monthly_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="RO", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">lei 50<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="RO", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">lei 25<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
 
@@ -1164,15 +1118,9 @@ class TestVPNTotalPrice(TestCase):
         expected = "CHF 71.88 total"
         self.assertEqual(markup, expected)
 
-    def test_vpn_12_month_total_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="BG", lang="en-US")
-        expected = "120 лв total"
-        self.assertEqual(markup, expected)
-
     def test_vpn_12_month_total_price_czk(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CZ", lang="cz")
+        markup = self._render(country_code="CZ", lang="cs")
         expected = "1,428 Kč total"
         self.assertEqual(markup, expected)
 
@@ -1182,22 +1130,10 @@ class TestVPNTotalPrice(TestCase):
         expected = "kr. 444 total"
         self.assertEqual(markup, expected)
 
-    def test_vpn_12_month_total_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="HU", lang="hu")
-        expected = "22,200 Ft total"
-        self.assertEqual(markup, expected)
-
     def test_vpn_12_month_total_price_pln(self):
         """Should return expected markup"""
         markup = self._render(country_code="PL", lang="en-US")
         expected = "264 zł total"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_total_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="RO", lang="en-US")
-        expected = "lei 300 total"
         self.assertEqual(markup, expected)
 
     def test_vpn_relay_bundle_12_month_total_price_usd(self):
