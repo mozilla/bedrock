@@ -6,7 +6,6 @@
 
 import '@mozilla-protocol/core/protocol/js/details';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
-
 const compareSelect = document.querySelector('.mobile-select');
 const compareTable = document.querySelector('.comparison-table');
 const kittenButton = document.querySelector('.kitten-button');
@@ -15,12 +14,6 @@ const toggles = document.querySelectorAll('.toggle input');
 const heroClose = document.querySelector('.close');
 const animatedButton = document.querySelector('.animated-button');
 let toggleWrapper;
-
-// Update site based on if on firefox, if on firefox and set as default or using a separate browser
-
-// function updateMessaging() {
-//     //
-// }
 
 compareSelect.addEventListener('change', function (e) {
     compareTable.dataset.selectedBrowser = e.target.value || 'chrome';
@@ -90,6 +83,20 @@ animatedButton.addEventListener('click', function () {
         wednesdayWrapper.classList.remove('animate-wednesday');
     }, 5000);
 });
+
+const dismissButtons = document.querySelectorAll(
+    '.mzp-c-notification-bar-button'
+);
+
+for (let i = 0; i < dismissButtons.length; i++) {
+    dismissButtons[i].addEventListener(
+        'click',
+        function (e) {
+            e.currentTarget.parentNode.remove();
+        },
+        false
+    );
+}
 
 // check toggle state on page load
 checkToggles();

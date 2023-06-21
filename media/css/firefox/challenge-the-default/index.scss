@@ -11,6 +11,7 @@ $font-path: '/media/protocol/fonts';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 
@@ -18,6 +19,44 @@ $campaign-red: #ff6a75;
 $campaign-pink: #ffbdc5;
 $campaign-mint: #d1ffee;
 $campaign-green: #2ac3a2;
+
+// show buttons depending on if they are using firefox and if firefox is already the default browser
+
+.is-not-firefox {
+    display: inline;
+}
+
+.mzp-c-button.is-firefox, .mzp-c-button.is-default {
+    display: none;
+}
+
+html.is-firefox {
+    .is-not-firefox {
+        display: none;
+    }
+
+    main.set-default-supported {
+        .mzp-c-button.is-not-default {
+            display: inline;
+        }
+
+        &.is-firefox-default {
+            .mzp-c-button.is-not-default {
+                display: none;
+            }
+
+            .mzp-c-button.is-default {
+                display: inline;
+            }
+        }
+    }
+
+    main:not(.set-default-supported) {
+        .mzp-c-button.is-default {
+                display: inline;
+        }
+    }
+}
 
 
 .ctd-mobile-banner {

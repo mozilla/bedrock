@@ -82,13 +82,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               {{ resp_img(
                 url='img/firefox/challenge-the-default/logo-firefox.svg',
                 optional_attributes={
-                  'loading': 'eager'
+                  'loading': 'eager',
+                  'alt': 'Firefox'
                 })
               }}
               {{ resp_img(
                 url='img/firefox/challenge-the-default/logo-ctd.svg',
                 optional_attributes={
-                  'loading': 'eager'
+                  'loading': 'eager',
+                  'alt': 'Challenge the default'
                 })
               }}
           </div>
@@ -102,14 +104,17 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="c-hero-text">
             <h1>Der Browser, den du selber wählst</h1>
             <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
-            Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
-            <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+          Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
+            <button class="is-not-default mzp-c-button mzp-t-lg mzp-js-notification-trigger">Jetzt Firefox wählen</button>
+            <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</button>
+            <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
           </div>
           {{ resp_img(
               url='img/firefox/challenge-the-default/hero-image.png',
               optional_attributes={
                 'loading': 'eager',
-                'class': 'c-hero-image'
+                'class': 'c-hero-image',
+                'alt': 'Image of a seagull sitting on a no birds allowed sign'
               }
           )}}
         </div>
@@ -307,7 +312,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <button class="kitten-button">=^._.^=</button>
         <div class="comparison-cta">
           <h3>Du entscheidest, was Standard ist</h3>
-          <a class="mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+          <button class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</button>
+          <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem
+            Mobile Browser</button>
+          <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
         </div>
       </div>
     </section>
@@ -397,7 +405,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>Mach mit!</h3>
     <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="http://mozilla.org">werde Teil unserer Community</a>.</p>
-    <a class="mzp-c-button mzp-t-product">Jetzt Firefox wählen</a>
+    <button class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</button>
+    <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</button>
+    <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
     <p class="text-bottom">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
   </section>
 {% endblock %}
