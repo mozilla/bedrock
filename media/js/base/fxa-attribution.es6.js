@@ -369,7 +369,7 @@ FxaAttribution.init = (urlParams) => {
     }
 
     const ctaLinks = document.querySelectorAll(
-        '.js-fxa-cta-link, .js-vpn-cta-link'
+        '.js-fxa-cta-link, .js-fxa-product-cta-link'
     );
 
     // Track CTA clicks for FxA link referrals.

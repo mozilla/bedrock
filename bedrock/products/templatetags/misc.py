@@ -71,7 +71,7 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
         params = "&".join(f"{param}={val}" for param, val in optional_parameters.items())
         href += f"&{params}"
 
-    css_class = "js-vpn-cta-link js-fxa-product-button"
+    css_class = "js-fxa-product-cta-link js-fxa-product-button"
     attrs = ""
 
     if optional_attributes:
