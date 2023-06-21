@@ -46,18 +46,17 @@ html.is-firefox {
             }
 
             .mzp-c-button.is-default {
-                display: inline;
+                display: inline-block;
             }
         }
     }
 
     main:not(.set-default-supported) {
         .mzp-c-button.is-default {
-                display: inline;
+                display: inline-block;
         }
     }
 }
-
 
 .ctd-mobile-banner {
     padding: $spacing-sm $spacing-lg;
@@ -169,6 +168,11 @@ html.is-firefox {
 }
 
 .c-ctd-comparison {
+    .mzp-l-content {
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+    }
+
     .c-ctd-comparison-text {
         margin-bottom: $layout-lg;
 
@@ -391,6 +395,7 @@ html.is-firefox {
     svg {
         position: absolute;
         inset: 0;
+        width: 100%;
 
         .wednesday-circle {
             fill: $campaign-green;

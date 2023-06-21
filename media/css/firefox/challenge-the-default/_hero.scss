@@ -7,6 +7,33 @@ $campaign-red: #ff6a75;
 
 .ctd-hero-wrapper {
     background: $campaign-red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-easter-egg {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 440px;
+
+    img {
+        margin-bottom: $spacing-2xl;
+    }
+
+    p {
+        @include font-size(30px);
+        color: $color-white;
+        text-align: center;
+    }
+
+    &.hidden {
+        display: none;
+    }
 }
 
 .c-ctd-hero {

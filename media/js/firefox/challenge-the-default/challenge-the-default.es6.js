@@ -13,6 +13,7 @@ const kittenModal = document.querySelector('.kitten-modal');
 const toggles = document.querySelectorAll('.toggle input');
 const heroClose = document.querySelector('.close');
 const animatedButton = document.querySelector('.animated-button');
+const heroEasterEgg = document.querySelector('.hero-easter-egg');
 let toggleWrapper;
 
 compareSelect.addEventListener('change', function (e) {
@@ -57,11 +58,13 @@ heroClose.addEventListener('click', function () {
     const heroWrapper = document.querySelector('.hero-wrapper');
     heroWrapper.classList.add('animate-close');
     heroWrapper.classList.remove('animate-pop-in');
+    heroEasterEgg.classList.toggle('hidden');
 
     setTimeout(() => {
         heroWrapper.classList.add('animate-pop-in');
         heroWrapper.classList.remove('animate-close');
-    }, 3000);
+        heroEasterEgg.classList.toggle('hidden');
+    }, 6000);
 });
 
 // On click, animate the "It's Wednesday Dudes" screen
