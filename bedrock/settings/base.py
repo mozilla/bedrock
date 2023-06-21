@@ -1770,6 +1770,9 @@ RELAY_MAIL_DOMAIN = "mozmail.com"
 # Relay, number of email addresses include in the free plan
 RELAY_MAX_NUM_FREE_ALIASES = 5
 
+# VPN client ID for referral parameter tracking (issue 10811)
+RELAY_CLIENT_ID = "9ebfe2c2f9ea3c58"
+
 # URL for Mozilla Relay subscription links
 # ***This URL *MUST* end in a traling slash!***
 RELAY_SUBSCRIPTION_URL = config("RELAY_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
@@ -2021,24 +2024,11 @@ RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
 # Countries where Relay Email Masking is available.
 RELAY_EMAIL_COUNTRY_CODES = [
     "CA",  # Canada
+    "GB",  # United Kingdom of Great Britain and Northern Island
     "MY",  # Malaysia
     "NZ",  # New Zealand
     "SG",  # Singapore
-    # United Kingdom + "Territories"
-    "GB",  # United Kingdom of Great Britain and Northern Island
-    "GG",  # Guernsey (a British Crown dependency)
-    "IM",  # Isle of Man (a British Crown dependency)
-    "IO",  # British Indian Ocean Territory
-    "JE",  # Jersey (a British Crown dependency)
-    "UK",  # United Kingdom
-    "VG",  # Virgin Islands (British)
-    # USA + "Territories"
-    "AS",  # American Samoa
-    "MP",  # Northern Mariana Islands
-    "PR",  # Puerto Rico
-    "UM",  # United States Minor Outlying Islands
     "US",  # United States of America
-    "VI",  # Virgin Islands (U.S.)
     # EU Countries
     "AT",  # Austria
     "BE",  # Belgium

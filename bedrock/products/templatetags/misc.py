@@ -312,14 +312,14 @@ def _relay_get_plans(country_code, lang, product):
 
 def _relay_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     separator = "&" if "?" in product_url else "?"
-    client_id = settings.VPN_CLIENT_ID
+    client_id = settings.RELAY_CLIENT_ID
     href = f"{product_url}{separator}entrypoint={entrypoint}&form_type=button&service={client_id}&utm_source={entrypoint}&utm_medium=referral"
 
     if optional_parameters:
         params = "&".join(f"{param}={val}" for param, val in optional_parameters.items())
         href += f"&{params}"
 
-    css_class = "js-vpn-cta-link js-fxa-product-button"
+    css_class = "js-fxa-product-cta-link js-fxa-product-button"
     attrs = ""
 
     if optional_attributes:
@@ -462,7 +462,7 @@ def relay_total_price(ctx, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=Non
 @jinja2.pass_context
 def relay_bundle_savings(ctx, country_code=None, lang=None, product="relay-bundle"):
     """
-    Render a localized string displaying VPN total plan price.
+    Render a localized string displaying the VPN/Relay bundle savings as a percent
 
     Examples
     ========

@@ -386,7 +386,14 @@ def resource_center_article_view(request, slug):
 @require_safe
 def relay_landing_page(request):
     template_name = "products/relay/landing.html"
-    ftl_files = ["products/relay/shared", "products/relay/landing", "products/relay/bundle", "products/relay/matrix", "products/relay/faq"]
+    ftl_files = [
+        "products/relay/landing",
+        "products/relay/features",
+        "products/relay/matrix",
+        "products/relay/faq",
+        "products/relay/bundle",
+        "products/relay/shared",
+    ]
     relay_email_available_in_country = relay_available("relay-email", request)
     relay_phone_available_in_country = relay_available("relay-phone", request)
     vpn_available_in_country = vpn_available(request)
@@ -405,7 +412,7 @@ def relay_landing_page(request):
 @require_safe
 def relay_premium_page(request):
     template_name = "products/relay/premium.html"
-    ftl_files = ["products/relay/shared", "products/relay/landing", "products/relay/premium", "products/relay/bundle", "products/relay/matrix"]
+    ftl_files = ["products/relay/premium", "products/relay/features", "products/relay/matrix", "products/relay/bundle", "products/relay/shared"]
     relay_email_available_in_country = relay_available("relay-email", request)
     relay_phone_available_in_country = relay_available("relay-phone", request)
     vpn_available_in_country = vpn_available(request)
