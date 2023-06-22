@@ -1,0 +1,43 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_115_eu_mobile') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='mzp-l-split-body-wide mzp-l-split-center-on-sm-md mzp-t-content-xl wnp-content-main',
+    body_class='mzp-l-split-v-center',
+    media_class='mzp-l-split-v-center',
+    media_after=True,
+    media_include='firefox/whatsnew/includes/fx115-eu/qr-uk.html',
+  ) %}
+    <h2 class="wnp-main-title">Did you choose your mobile browser?</h2>
+    <p class="wnp-main-tagline">
+      Make sure you don’t settle for the default browser your mobile offers if it doesn’t work for you.
+      Firefox mobile lets you find everything you did and saved on desktop on your phone in real time.
+    </p>
+  {% endcall %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

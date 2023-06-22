@@ -517,6 +517,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-115-eu-ctd.scss"
+      ],
+      "name": "firefox_whatsnew_115_eu_ctd"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-eu-mobile.scss"
+      ],
+      "name": "firefox_whatsnew_115_eu_mobile"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
