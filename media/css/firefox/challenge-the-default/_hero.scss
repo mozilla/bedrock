@@ -28,6 +28,7 @@ $campaign-red: #ff6a75;
     p {
         @include font-size(30px);
         color: $color-white;
+        font-weight: 600;
         text-align: center;
     }
 
@@ -168,6 +169,7 @@ $campaign-red: #ff6a75;
             @include font-firefox;
             @include font-size(36px);
             color: $color-black;
+            font-weight: 800;
             line-height: 1;
             margin-bottom: $spacing-md;
         }

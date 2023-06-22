@@ -22,6 +22,28 @@ $campaign-pink: #ffbdc5;
 $campaign-mint: #d1ffee;
 $campaign-green: #2ac3a2;
 
+// fonts to be included for CTD and should be removed when the page is no longer live
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: 600;
+    src:
+        url('/media/fonts/challenge-the-default/Metropolis-SemiBold.woff2') format('woff2'),
+        url('#/media/fonts/challenge-the-default/Metropolis-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: 800;
+    src:
+        url('/media/fonts/challenge-the-default/Metropolis-ExtraBold.woff2') format('woff2'),
+        url('/media/fonts/challenge-the-default/Metropolis-ExtraBold.woff') format('woff');
+}
+
+
 // show buttons depending on browser state:
 // - If using firefox:
 //   - if set as default: show link to download the mobile browser
@@ -105,6 +127,7 @@ html.is-firefox {
     h2 {
         @include font-firefox;
         @include font-size(40px);
+        font-weight: 800;
         word-break: break-word;
         margin-bottom: $spacing-lg;
         hyphens: auto;
@@ -168,6 +191,7 @@ html.is-firefox {
 
     h2 {
         @include font-size(72px);
+        font-weight: 800;
         color: $color-white;
         text-align: center;
 
@@ -244,10 +268,12 @@ html.is-firefox {
 
     h3 {
         @include font-size(60px);
+        font-weight: 800;
     }
 
     p {
         @include font-size(24px);
+        font-weight: 600;
     }
 
     .text-bottom {

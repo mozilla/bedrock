@@ -36,7 +36,7 @@ function detectDevice() {
     }
 }
 const browser = detectDevice();
-compareTable.dataset.selectedBrowser = browser;
+compareTable.dataset.selectedBrowser = browser || 'chrome';
 
 function isDefaultBrowser() {
     return new window.Promise(function (resolve, reject) {
