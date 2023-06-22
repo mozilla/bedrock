@@ -48,8 +48,8 @@
     "title": "{{ ftl('newsletters-drumbeat-newsgroup')|striptags }}"
   },
   "firefox-accounts-journey": {
-    "description": "{{ ftl('newsletters-get-the-most-firefox-account')|striptags }}",
-    "title": "{{ ftl('newsletters-firefox-accounts-tips')|striptags }}"
+    "description": "{{ ftl('newsletters-welcome-emails', fallback='newsletters-get-the-most-firefox-account')|striptags }}",
+    "title": "{{ ftl('newsletter-welcome-emails-that-get-you', fallback='newsletters-firefox-accounts-tips')|striptags }}"
   },
   "firefox-desktop": {
     "description": "{{ ftl('newsletters-dont-miss-the-latest')|striptags }}",
@@ -119,6 +119,10 @@
   "mobile": {
     "description": "{{ ftl('newsletters-keep-up-with-releases')|striptags }}",
     "title": "{{ ftl('newsletters-firefox-for-android')|striptags }}"
+  },
+  "mozilla-accounts": {
+    "description": "{{ ftl('newsletters-get-tips-from-mozilla')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-accounts')|striptags }}"
   },
   "mozilla-and-you": {
     "description": "{{ ftl('newsletters-get-how-tos')|striptags }}",
