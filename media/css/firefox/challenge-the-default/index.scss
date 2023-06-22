@@ -319,6 +319,12 @@ html.is-firefox {
 }
 
 .kitten-modal-overlay {
+    .mzp-c-modal-window {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .mzp-c-modal-inner {
         padding: 0;
         max-width: 688px;
@@ -344,27 +350,56 @@ html.is-firefox {
 
         .kitten-modal-grid {
             display: grid;
-            grid-template-rows: auto;
+            grid-template-rows: 250px 1fr;
             grid-template-columns: 1fr;
             grid-gap: $spacing-lg;
+            justify-items: center;
 
             @media #{$mq-md} {
                 grid-template-columns: 1fr 1fr;
+                 grid-template-rows: auto;
             }
 
             h2 {
                 @include font-size(36px);
+                font-weight: 800;
                 color: $color-black;
+                z-index: 2;
 
                 @media #{$mq-md} {
                     @include font-size(60px);
                 }
             }
 
-            img {
+            .cat-wrapper {
+                position: relative;
+                height: 100%;
                 grid-row: 1;
-                align-self: center;
-                clip-path: url('#kitten-clip-path');
+
+                @media #{$mq-md} {
+                    grid-column: 2;
+                    position: absolute;
+                }
+            }
+
+            picture {
+                grid-row: 1;
+
+                @media #{$mq-md} {
+                    grid-column: 2;
+                    position: absolute;
+                }
+            }
+
+            .laser-cat {
+                width: 100%;
+                max-width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+
+                @media #{$mq-md} {
+                    max-width: max-content;
+                }
             }
         }
     }
@@ -405,6 +440,7 @@ html.is-firefox {
     .wednesday-lizard {
         display: none;
         position: absolute;
+        max-width: 300px;
     }
 
     &.animate-wednesday {

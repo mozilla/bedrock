@@ -72,9 +72,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     </div>
     <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
       <svg class="svg" width="0" height="0">
-        <clipPath id="hero-image-clip-path" clipPathUnits="objectBoundingBox">
-          <path d="M1,0.201 L0.919,0 L0,0.027 V0.951 L0.124,1 L1,0.951 L0.951,0.582 L1,0.201"></path>
-        </clipPath>
         <clipPath id="hero-clip-path-mobile" clipPathUnits="objectBoundingBox">
           <path d="M0.028,0 H0.992 L1,1 L0,0.973 V0.329 L0.028,0"></path>
         </clipPath>
@@ -95,7 +92,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 url='img/firefox/challenge-the-default/logo-firefox.svg',
                 optional_attributes={
                   'loading': 'eager',
-                  'alt': 'Firefox'
+                  'alt': 'Firefox',
                 })
               }}
               {{ resp_img(
@@ -121,8 +118,22 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</button>
             <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
           </div>
-          {{ resp_img(
-              url='img/firefox/challenge-the-default/hero-image.png',
+          {{ picture(
+              url='img/firefox/challenge-the-default/hero-image-mobile.png',
+              sources=[
+                {
+                  'media': '(max-width: 1023px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/hero-image-mobile.png': 'default'
+                  }
+                },
+                {
+                  'media': '(min-width: 1024px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/hero-image-desktop.png': 'default'
+                  }
+                },
+              ],
               optional_attributes={
                 'loading': 'eager',
                 'class': 'c-hero-image',
@@ -334,13 +345,27 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <div class="mzp-u-modal-content kitten-modal">
         <div class="kitten-modal-grid">
           <h2>Nicht alle Wege führen nach Chrome</h2>
-          {{ resp_img(
-              url="img/firefox/challenge-the-default/kitten-modal-image.png",
+
+            {{ picture(
+              url='img/firefox/challenge-the-default/laser-cat-mobile.png',
+              sources=[
+                {
+                  'media': '(max-width: 767px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/laser-cat-mobile.png': 'default'
+                  }
+                },
+                {
+                  'media': '(min-width: 768px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/laser-cat-desktop.png': 'default'
+                  }
+                },
+              ],
               optional_attributes={
-                'loading': 'lazy',
-                'alt': 'kitten surprise'
+                'class': 'laser-cat'
               }
-          )}}
+            )}}
         </div>
       </div>
 
@@ -398,17 +423,17 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           }}
       </button>
       {{ resp_img(
-          url='img/firefox/challenge-the-default/is-wednesday.svg',
+          url='img/firefox/challenge-the-default/is-wednesday.png',
           optional_attributes={
             'class': 'wednesday-lizard is-wednesday',
             'alt': "It's Wednesday my dudes"
           }
       )}}
       {{ resp_img(
-          url='img/firefox/challenge-the-default/is-wednesday.svg',
+          url='img/firefox/challenge-the-default/is-not-wednesday.png',
           optional_attributes={
             'class': 'wednesday-lizard not-wednesday',
-            'alt': "It's Wednesday my dudes"
+            'alt': "It's not Wednesday my dudes"
           }
       )}}
     </div>

@@ -147,11 +147,10 @@ $campaign-red: #ff6a75;
         }
     }
 
-    .c-hero-image {
+    picture {
         grid-row: 1;
         grid-column: auto;
         margin-top: 0;
-        clip-path: url('#hero-image-clip-path');
 
         @media #{$mq-lg} {
             grid-column: 2;
@@ -184,8 +183,6 @@ $campaign-red: #ff6a75;
             h1 {
                 @include font-size(64px);
             }
-
-
         }
     }
 
