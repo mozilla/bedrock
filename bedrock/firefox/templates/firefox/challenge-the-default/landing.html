@@ -6,7 +6,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% extends "base-protocol.html" %}
 
-{% from "macros-protocol.html" import split, picto with context %}
+{% from "macros-protocol.html" import picto with context %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
@@ -22,7 +22,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block page_css %}
   {{ css_bundle('firefox-master') }}
-  {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('challenge-the-default') }}
 
@@ -78,12 +77,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
           <path d="M0.011,0.985 L0,0 L1,0.02 V0.663 L0.968,1 L0.011,0.985"></path>
         </clipPath>
-        <clipPath id="features-clip-path" clipPathUnits="objectBoundingBox">
-          <path d="M0.763,0 H0 V0.453 L0.037,0.958 L0.444,1 L1,0.965 V0.819 L0.971,0.352 L0.984,0.033 L0.763,0"></path>
-        </clipPath>
-        <clipPath id="kitten-clip-path" clipPathUnits="objectBoundingBox">
-          <path d="M0.326,0.056 H0.032 L0,0.306 L0.032,0.944 L1,1 V0.794 L0.937,0.056 L0.326,0 V0.056"></path>
-        </clipPath>
       </svg>
       <div class="hero-wrapper">
         <div class="c-hero-top">
@@ -103,10 +96,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 })
               }}
           </div>
-          <div class="c-hero-top-controls">
-              <button class="hero-control-btn minimize"></button>
-              <button class="hero-control-btn expand"></button>
-              <button class="hero-control-btn close"></button>
+          <div class="c-hero-top-controls" aria-hidden="true">
+              <span type="button" class="hero-control-btn minimize"></span>
+              <span type="button" class="hero-control-btn expand"></span>
+              <button type="button" class="hero-control-btn close">close</button>
           </div>
         </div>
         <div class="hero-content-wrapper">
@@ -114,9 +107,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h1>Der Browser, den du selber wählst</h1>
             <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
           Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
-            <button class="is-not-default mzp-c-button mzp-t-lg mzp-js-notification-trigger">Jetzt Firefox wählen</button>
-            <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</button>
-            <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+            <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg mzp-js-notification-trigger">Jetzt Firefox wählen</a>
+            <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</a>
+            {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen') }}
           </div>
           {{ picture(
               url='img/firefox/challenge-the-default/hero-image-mobile.png',
@@ -209,7 +202,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </ul>
     </section>
 
-    <section class="c-ctd-toggles">
+    <section class="c-ctd-toggles" aria-hidden="true">
       <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
         <div class="toggle-grid small">
             {% for element in range(4) %}
@@ -217,7 +210,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
                 <span class="toggle-display"></span>
               </label>
-            {% endfor%}
+            {% endfor %}
             <label class="toggle middle" for="toggle-middle">
               <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
               <span class="toggle-display"></span>
@@ -227,7 +220,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
                 <span class="toggle-display"></span>
               </label>
-            {% endfor%}
+            {% endfor %}
         </div>
         <div class="toggle-grid large">
           {% for element in range(10) %}
@@ -235,7 +228,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
             <span class="toggle-display"></span>
           </label>
-          {% endfor%}
+          {% endfor %}
           <label class="toggle middle" for="toggle-middle">
             <input type="checkbox" name="toggle-middle" id="toggle-middle" class="toggle-input" />
             <span class="toggle-display"></span>
@@ -245,7 +238,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
             <span class="toggle-display"></span>
           </label>
-          {% endfor%}
+          {% endfor %}
+        </div>
       </div>
     </section>
 
@@ -276,63 +270,65 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <tbody>
             <tr>
               <th scope="row">Automatisches Ausfüllen von Passwörtern</th>
-              <td class="firefox">&#x2713;</td>
-              <td class="safari">&#x2713;</td>
-              <td class="chrome">&#x2713;</td>
-              <td class="edge">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row" class="break-word">Suchmaschinenoptionen</th>
-              <td class="firefox">&#x2713;</td>
-              <td class="safari">&#x2713;</td>
-              <td class="chrome">&#x2713;</td>
-              <td class="edge">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Synchronisieren zwischen Geräten</th>
-              <td class="firefox">&#x2713;</td>
-              <td class="safari">&#x2713;</td>
-              <td class="chrome">&#x2713;</td>
-              <td class="edge">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
-              <td class="firefox">&#x2713;</td>
-              <td class="safari">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
               <td class="chrome"></td>
-              <td class="edge">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
               <th scope="row">Von einer Non-Profit unterstützt</th>
-              <td class="firefox">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Sorgt sich um deine Privatsphäre</th>
-              <td class="firefox">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Hat keine Shareholder mit eigenen Interessen</th>
-              <td class="firefox">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">Liebt das Internet und hat ein süßes Logo</th>
-              <td class="firefox">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
           </tbody>
         </table>
-        <button class="kitten-button">=^._.^=</button>
+        <div aria-hidden="true">
+          <button class="kitten-button">=^._.^=</button>
+        </div>
         <div class="comparison-cta">
           <h3>Du entscheidest, was Standard ist</h3>
           <button class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</button>
@@ -403,7 +399,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     </div>
   </section>
 
-  <section class="c-animated-button">
+  <section class="c-animated-button" arai-hidden="true">
     <div class="mzp-l-content mzp-t-content-nospace">
       <svg class="wednesday-bg" width="1440" height="246" viewBox="0 0 1440 246" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="719.993" cy="123.001" rx="797.262" ry="785.044" fill="#2AC3A2" />
@@ -441,7 +437,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>Mach mit!</h3>
-    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="http://mozilla.org">werde Teil unserer Community</a>.</p>
+    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="{{ url('mozorg.home') }}">werde Teil unserer Community</a>.</p>
     <button class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</button>
     <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</button>
     <a href="{{ url('firefox.new') }}" class="is-not-firefox mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
@@ -450,5 +446,5 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% block js %}
-{{ js_bundle('challenge-the-default') }}
+  {{ js_bundle('challenge-the-default') }}
 {% endblock %}

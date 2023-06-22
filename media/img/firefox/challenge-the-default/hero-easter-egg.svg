@@ -1,12 +1,1 @@
-<svg width="196" height="196" viewBox="0 0 196 196" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1.27953" y="13.7093" width="181.107" height="181.107" rx="20.0966" transform="rotate(-3.93538 1.27953 13.7093)" fill="#2AC3A2" stroke="black" stroke-width="2.4"/>
-<line x1="17.6676" y1="56.523" x2="170.992" y2="45.9753" stroke="black" stroke-width="2.4"/>
-<line x1="23.9723" y1="148.159" x2="177.297" y2="137.611" stroke="black" stroke-width="2.4"/>
-<line x1="174.285" y1="93.8878" x2="20.9607" y2="104.436" stroke="black" stroke-width="2.4"/>
-<circle cx="120.442" cy="50.3546" r="21.9131" transform="rotate(-3.93538 120.442 50.3546)" fill="#D1FFEE" stroke="black" stroke-width="2.4"/>
-<circle cx="126.746" cy="141.99" r="21.9131" transform="rotate(-3.93538 126.746 141.99)" fill="#D1FFEE" stroke="black" stroke-width="2.4"/>
-<circle cx="71.5114" cy="100.056" r="21.9131" transform="rotate(176.065 71.5114 100.056)" fill="#D1FFEE" stroke="black" stroke-width="2.4"/>
-<circle cx="115.006" cy="45.6141" r="1.80102" transform="rotate(-3.93538 115.006 45.6141)" fill="black"/>
-<circle cx="124.584" cy="44.9547" r="1.80102" transform="rotate(-3.93538 124.584 44.9547)" fill="black"/>
-<path d="M133.652 45.5346C134.175 53.1425 128.432 59.7342 120.824 60.2576C113.217 60.7809 106.625 55.0378 106.102 47.4299" stroke="black" stroke-width="2.4"/>
-</svg>
+<svg width="196" height="196" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.28" y="13.709" width="181.107" height="181.107" rx="20.097" transform="rotate(-3.935 1.28 13.71)" fill="#2AC3A2" stroke="#000" stroke-width="2.4"/><path stroke="#000" stroke-width="2.4" d="m17.668 56.523 153.324-10.548M23.972 148.159l153.325-10.548m-3.012-43.723L20.961 104.436"/><circle cx="120.442" cy="50.355" r="21.913" transform="rotate(-3.935 120.442 50.355)" fill="#D1FFEE" stroke="#000" stroke-width="2.4"/><circle cx="126.746" cy="141.99" r="21.913" transform="rotate(-3.935 126.746 141.99)" fill="#D1FFEE" stroke="#000" stroke-width="2.4"/><circle cx="71.511" cy="100.056" r="21.913" transform="rotate(176.065 71.511 100.056)" fill="#D1FFEE" stroke="#000" stroke-width="2.4"/><circle cx="115.006" cy="45.614" r="1.801" transform="rotate(-3.935 115.006 45.614)" fill="#000"/><circle cx="124.584" cy="44.955" r="1.801" transform="rotate(-3.935 124.584 44.955)" fill="#000"/><path d="M133.652 45.535c.523 7.608-5.22 14.2-12.828 14.723-7.607.523-14.199-5.22-14.722-12.828" stroke="#000" stroke-width="2.4"/></svg>

@@ -21,19 +21,23 @@
 
 .toggle-display {
   --offset: 0.25em;
-  --diameter: 2.5em;
+  --diameter: 2em;
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: calc(var(--diameter) * 2 + var(--offset) * 2);
   height: calc(var(--diameter) + var(--offset) * 2);
-  border: 1px solid $color-white; /* 3 */
+  border: 1px solid $color-white;
   position: relative;
   border-radius: 100vw;
   background-color: transparent;
   transition: 250ms;
   cursor: pointer;
   pointer-events: none;
+
+  @media #{$mq-md} {
+    --diameter: 2.5em;
+  }
 }
 
 /**
@@ -102,6 +106,5 @@
     background-position: center;
     background-repeat: no-repeat;
     transform: translate(100%, -50%); /* 1 */
-
   }
 }

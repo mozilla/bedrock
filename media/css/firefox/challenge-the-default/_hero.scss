@@ -74,7 +74,6 @@ $campaign-red: #ff6a75;
                 background: none;
                 border: 0;
                 display: block;
-                cursor: pointer;
             }
         }
 
@@ -82,7 +81,6 @@ $campaign-red: #ff6a75;
             width: 30px;
             height: 30px;
             border-bottom: 3px solid $campaign-red;
-
         }
 
         .expand {
@@ -92,9 +90,11 @@ $campaign-red: #ff6a75;
         }
 
         .close {
+            @include image-replaced;
             width: 36px;
             height: 36px;
             position: relative;
+            cursor: pointer;
 
             &::before {
                 content: "";
@@ -173,7 +173,7 @@ $campaign-red: #ff6a75;
         }
 
         p {
-            @include font-size(16px);
+            @include font-size(18px);
             font-weight: 600;
             color: $color-marketing-gray-70;
             margin-bottom: $layout-sm;
@@ -185,5 +185,4 @@ $campaign-red: #ff6a75;
             }
         }
     }
-
 }

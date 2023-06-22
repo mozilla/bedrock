@@ -8,8 +8,10 @@ $font-path: '/media/protocol/fonts';
 @import "./toggle";
 @import "./animations";
 @import "./hero";
+@import "./compare-table";
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
@@ -20,24 +22,50 @@ $campaign-pink: #ffbdc5;
 $campaign-mint: #d1ffee;
 $campaign-green: #2ac3a2;
 
-// show buttons depending on if they are using firefox and if firefox is already the default browser
+// show buttons depending on browser state:
+// - If using firefox:
+//   - if set as default: show link to download the mobile browser
+//   -  if not set as default: link to set-as-default/thanks
+// if not firefox:
+//   - show download_button_thanks
 
-.is-not-firefox {
-    display: inline;
-}
-
-.mzp-c-button.is-firefox, .mzp-c-button.is-default {
+.mzp-c-button.is-not-default, .mzp-c-button.is-default {
     display: none;
 }
 
+// have to re-define the default styles from protocol since mzp-t-product is baked into the download-thanks template
+.c-button-download-thanks .mzp-c-button.not-firefox {
+    background-color: $color-black;
+     border: 2px solid $color-black;
+
+    &:focus {
+        border-color: $button-border-color-focus;
+        box-shadow: $field-focus-ring;
+        outline-offset: 1px;
+    }
+
+    &:hover {
+        background-color: $color-marketing-gray-20;
+        border-color: $color-black;
+        box-shadow: none;
+        color: $color-black;
+    }
+
+    &:active {
+        background-color: $color-marketing-gray-20;
+        border-color: $color-marketing-gray-70;
+        color: $color-black;
+    }
+}
+
 html.is-firefox {
-    .is-not-firefox {
+    .c-button-download-thanks {
         display: none;
     }
 
     main.set-default-supported {
         .mzp-c-button.is-not-default {
-            display: inline;
+            display: inline-block;
         }
 
         &.is-firefox-default {
@@ -73,7 +101,6 @@ html.is-firefox {
 
 .c-ctd-features {
     background-color: $color-white;
-    clip-path: url("#features-clip-path");
 
     h2 {
         @include font-firefox;
@@ -93,7 +120,7 @@ html.is-firefox {
             hyphens: none;
             word-break: normal;
             margin-bottom: $layout-lg;
-            @include font-size(76px);
+            @include font-size(64px);
         }
     }
 
@@ -163,244 +190,6 @@ html.is-firefox {
             color: $color-marketing-gray-70;
             font-weight: 600;
             margin-top: $spacing-xl;
-        }
-    }
-}
-
-.c-ctd-comparison {
-    .mzp-l-content {
-        padding-left: $spacing-sm;
-        padding-right: $spacing-sm;
-    }
-
-    .c-ctd-comparison-text {
-        margin-bottom: $layout-lg;
-
-        h2 {
-            @include font-firefox;
-            @include font-size(40px);
-            margin-bottom: $spacing-lg;
-        }
-
-        p {
-            color: $color-marketing-gray-70;
-            font-weight: 600;
-        }
-
-        @media #{$mq-md} {
-            h2 {
-                @include font-size(60px);
-            }
-        }
-    }
-
-
-    .mzp-u-data-table.comparison-table {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: $spacing-sm;
-
-        .safari, .edge, .chrome {
-            display: none;
-        }
-
-        &[data-selected-browser='safari'] {
-            td.safari {
-                display: table-cell;
-            }
-        }
-
-        &[data-selected-browser='chrome'] {
-            td.chrome {
-                display: table-cell;
-            }
-        }
-
-        &[data-selected-browser='edge'] {
-            td.edge {
-                display: table-cell;
-            }
-        }
-
-        th {
-            max-width: 150px;
-            border: 2px solid $color-black;
-            font-size: 14px;
-
-            &[scope='row'].break-word {
-                word-break: break-all;
-                hyphens: manual;
-            }
-
-            &[scope='col'] {
-                @include font-size(16px);
-                font-weight: bold;
-                text-align: center;
-                padding: $spacing-md;
-            }
-        }
-
-        th.mobile-select-wrapper {
-            padding: 0;
-
-            @media #{$mq-md} {
-                display: none;
-            }
-        }
-
-        .mobile-select {
-            margin-bottom: 0;
-            max-width: 100%;
-            min-width: 0;
-            border: 0;
-            font-weight: bold;
-        }
-
-        td {
-            @include font-size(24px);
-            text-align: center;
-            border: 2px solid $color-black;
-            padding: 0;
-        }
-
-        .empty {
-            border: none;
-        }
-
-        thead tr th, td {
-            &:nth-child(2) {
-                color: $color-black;
-                background-color: $campaign-pink;
-            }
-        }
-
-        // needed this rule to allow button to take up 100% of the td
-        tr {
-            height: 100%;
-        }
-
-
-        @media #{$mq-md} {
-            .safari, .edge, .chrome {
-                display: table-cell;
-            }
-        }
-    }
-
-    .kitten-button {
-        background: none;
-        border: 0;
-        display: block;
-        margin-left: auto;
-        color: $color-link;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-            color: $color-link-hover;
-        }
-    }
-
-    .comparison-cta {
-        margin-top: $layout-lg;
-        text-align: center;
-
-        h3 {
-            margin-bottom: $spacing-lg;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 12ch;
-
-            @media #{$mq-md} {
-                max-width: none;
-            }
-        }
-    }
-}
-
-.kitten-modal-overlay {
-    .mzp-c-modal-window {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .mzp-c-modal-inner {
-        padding: 0;
-        max-width: 688px;
-        background-color: $campaign-green;
-
-        header {
-            padding: $spacing-md;
-            border-bottom: 2px solid $color-black;
-        }
-
-        .mzp-c-modal-close {
-            right: 0;
-            top: 0;
-
-            .mzp-c-modal-button-close {
-                background-image: url('#{$image-path}/icons/close.svg')
-            }
-        }
-
-        .kitten-modal {
-            padding: $spacing-xl;
-        }
-
-        .kitten-modal-grid {
-            display: grid;
-            grid-template-rows: 250px 1fr;
-            grid-template-columns: 1fr;
-            grid-gap: $spacing-lg;
-            justify-items: center;
-
-            @media #{$mq-md} {
-                grid-template-columns: 1fr 1fr;
-                 grid-template-rows: auto;
-            }
-
-            h2 {
-                @include font-size(36px);
-                font-weight: 800;
-                color: $color-black;
-                z-index: 2;
-
-                @media #{$mq-md} {
-                    @include font-size(60px);
-                }
-            }
-
-            .cat-wrapper {
-                position: relative;
-                height: 100%;
-                grid-row: 1;
-
-                @media #{$mq-md} {
-                    grid-column: 2;
-                    position: absolute;
-                }
-            }
-
-            picture {
-                grid-row: 1;
-
-                @media #{$mq-md} {
-                    grid-column: 2;
-                    position: absolute;
-                }
-            }
-
-            .laser-cat {
-                width: 100%;
-                max-width: 250px;
-                margin-left: auto;
-                margin-right: auto;
-
-                @media #{$mq-md} {
-                    max-width: max-content;
-                }
-            }
         }
     }
 }

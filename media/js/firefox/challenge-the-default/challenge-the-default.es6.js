@@ -16,16 +16,24 @@ const animatedButton = document.querySelector('.animated-button');
 const heroEasterEgg = document.querySelector('.hero-easter-egg');
 let toggleWrapper;
 
-compareSelect.addEventListener('change', function (e) {
-    compareTable.dataset.selectedBrowser = e.target.value || 'chrome';
-});
+compareSelect.addEventListener(
+    'change',
+    function (e) {
+        compareTable.dataset.selectedBrowser = e.target.value || 'chrome';
+    },
+    false
+);
 
-kittenButton.addEventListener('click', function (e) {
-    MzpModal.createModal(e.target, kittenModal, {
-        closeText: 'Close modal',
-        className: 'kitten-modal-overlay'
-    });
-});
+kittenButton.addEventListener(
+    'click',
+    function (e) {
+        MzpModal.createModal(e.target, kittenModal, {
+            closeText: 'Close modal',
+            className: 'kitten-modal-overlay'
+        });
+    },
+    false
+);
 
 function allTogglesChecked() {
     // check which toggle wrapper is active
@@ -51,55 +59,49 @@ function checkToggles() {
 // whenever a toggle is switched, check to see if all of the toggles are switched to true
 for (let index = 0; index < toggles.length; index++) {
     const element = toggles[index];
-    element.addEventListener('change', checkToggles);
+    element.addEventListener('change', checkToggles, false);
 }
 
-heroClose.addEventListener('click', function () {
-    const heroWrapper = document.querySelector('.hero-wrapper');
-    heroWrapper.classList.add('animate-close');
-    heroWrapper.classList.remove('animate-pop-in');
-    heroEasterEgg.classList.toggle('hidden');
-
-    setTimeout(() => {
-        heroWrapper.classList.add('animate-pop-in');
-        heroWrapper.classList.remove('animate-close');
+heroClose.addEventListener(
+    'click',
+    function () {
+        const heroWrapper = document.querySelector('.hero-wrapper');
+        heroWrapper.classList.add('animate-close');
+        heroWrapper.classList.remove('animate-pop-in');
         heroEasterEgg.classList.toggle('hidden');
-    }, 6000);
-});
 
-// On click, animate the "It's Wednesday Dudes" screen
-animatedButton.addEventListener('click', function () {
-    let lizardImage;
-    const wednesdayWrapper = document.querySelector('.c-animated-button');
-    wednesdayWrapper.classList.add('animate-wednesday');
-
-    const isWednesday = new Date().getDay() === 3;
-
-    if (isWednesday) {
-        lizardImage = wednesdayWrapper.querySelector('.is-wednesday');
-    } else {
-        lizardImage = wednesdayWrapper.querySelector('.not-wednesday');
-    }
-    lizardImage.style.display = 'block';
-    setTimeout(function () {
-        lizardImage.style.display = 'none';
-        wednesdayWrapper.classList.remove('animate-wednesday');
-    }, 5000);
-});
-
-const dismissButtons = document.querySelectorAll(
-    '.mzp-c-notification-bar-button'
+        setTimeout(() => {
+            heroWrapper.classList.add('animate-pop-in');
+            heroWrapper.classList.remove('animate-close');
+            heroEasterEgg.classList.toggle('hidden');
+        }, 6000);
+    },
+    false
 );
 
-for (let i = 0; i < dismissButtons.length; i++) {
-    dismissButtons[i].addEventListener(
-        'click',
-        function (e) {
-            e.currentTarget.parentNode.remove();
-        },
-        false
-    );
-}
+// On click, animate the "It's Wednesday Dudes" screen
+animatedButton.addEventListener(
+    'click',
+    function () {
+        let lizardImage;
+        const wednesdayWrapper = document.querySelector('.c-animated-button');
+        wednesdayWrapper.classList.add('animate-wednesday');
+
+        const isWednesday = new Date().getDay() === 3;
+
+        if (isWednesday) {
+            lizardImage = wednesdayWrapper.querySelector('.is-wednesday');
+        } else {
+            lizardImage = wednesdayWrapper.querySelector('.not-wednesday');
+        }
+        lizardImage.style.display = 'block';
+        setTimeout(function () {
+            lizardImage.style.display = 'none';
+            wednesdayWrapper.classList.remove('animate-wednesday');
+        }, 5000);
+    },
+    false
+);
 
 // check toggle state on page load
 checkToggles();

@@ -13,16 +13,16 @@ $campaign-green: #2ac3a2;
         @keyframes pop-in {
             0% {
                 opacity: 0;
-                transform: scale(0.3);
+                transform: scale(0);
             }
 
             35% {
                 opacity: 1;
-                transform: scale(0.3);
+                transform: scale(0.2);
             }
 
             50% {
-                transform: scale(0.7);
+                transform: scale(0.5);
             }
 
             65% {
@@ -30,7 +30,7 @@ $campaign-green: #2ac3a2;
             }
 
             80% {
-                transform: scale(1.1);
+                transform: scale(0.9);
             }
 
             90% {
@@ -49,14 +49,28 @@ $campaign-green: #2ac3a2;
                 transform: scale(1);
             }
 
+            25% {
+                opacity: 0.75;
+                transform: scale(0.9);
+            }
+
             50% {
                 opacity: 0.5;
-                  transform: scale(0.7);
+                transform: scale(0.7);
+            }
+
+            65% {
+                transform: scale(0.5)
+            }
+
+            80% {
+                opacity: 0.3;
+                transform: scale(0.3);
             }
 
             100% {
                 opacity: 0;
-                 transform: scale(0.3);
+                transform: scale(0);
             }
         }
 
@@ -89,11 +103,8 @@ $campaign-green: #2ac3a2;
             }
         }
 
-
-
-
         .animate-close {
-            animation: .5s ease-out 0s 1 normal forwards running close;
+            animation: .3s ease-out 0s 1 normal forwards running close;
         }
 
         .animate-pop-in {

@@ -5,10 +5,10 @@
  */
 
 let observer;
-let chain = Promise.resolve();
 
 function createObserver() {
     return new IntersectionObserver(function (entries) {
+        let chain = Promise.resolve();
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 if (entry.target.classList.contains('mzp-c-picto')) {
@@ -31,8 +31,10 @@ function createObserver() {
 }
 
 function init() {
-    const { Utils } = window.Mozilla;
-    if (Utils.supportsIntersectionObserver() && Utils.allowsMotion()) {
+    if (
+        window.MzpSupports.intersectionObserver &&
+        window.Mozilla.Utils.allowsMotion()
+    ) {
         observer = createObserver();
 
         //add picto observers
