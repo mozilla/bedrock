@@ -1,0 +1,49 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block extrahead %}
+  {% if switch('firefox-whatsnew-115-migrate-win7', ['en']) %}
+    {{ js_bundle('firefox_whatsnew_115_na_win7') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_115_na_addons') }}
+{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <div class="wnp-main-image" role="presentation">
+        {% include 'firefox/whatsnew/includes/fx115/addons.svg' %}
+      </div>
+
+      <h2 class="wnp-main-title">Top tools to help you focus</h2>
+
+      <p class="wnp-main-tagline">Bring some organizational zen to your digital life with Firefox extensions.</p>
+      <p class="wnp-main-cta"><a class="mzp-c-button mzp-t-product" href="https://blog.mozilla.org/en/products/firefox/extensions-addons/extensions-for-cleaning-up-a-chaotic-desktop/?{{ utm_params }}">Read more about our top picks</a></p>
+
+      <p class="wnp-sign-off">
+        <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

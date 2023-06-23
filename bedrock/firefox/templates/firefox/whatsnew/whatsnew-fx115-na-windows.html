@@ -1,0 +1,61 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_115_na_windows') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="wnp-main-title">Using Windows 7<br> or older?</h2>
+
+      <div class="wnp-main-image">
+        {{ resp_img("img/firefox/whatsnew/whatsnew115-na/sync.png",
+            srcset={
+              "img/firefox/whatsnew/whatsnew115-na/sync-high-res.png": "2x"
+            },
+            optional_attributes={
+              'width': '341',
+              'height': '220',
+            }
+          ) }}
+        </div>
+
+      <p class="wnp-main-tagline">Microsoft has ended support for your operating
+        system. As a result, this is the last Firefox update you will receive
+        outside of security updates.
+        <a href="https://support.mozilla.org/kb/firefox-users-windows-7-8-and-81-moving-extended-support?{{ utm_params }}">Visit Firefox support</a>
+        for more information.</p>
+
+      <p class="wnp-main-tagline"> Moving to a new device? Follow a few simple
+        steps to bring your bookmarks, history and passwords with you.</p>
+
+      <p class="wnp-main-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://support.mozilla.org/kb/switching-devices?{{ utm_params }}">How to back up your data</a>
+      </p>
+
+      <p class="wnp-sign-off">
+        <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

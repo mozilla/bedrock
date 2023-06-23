@@ -752,6 +752,24 @@ class TestWhatsNew(TestCase):
     # begin 115.0 whatsnew tests
 
     @override_settings(DEV=True)
+    def test_fx_115_0_0_en_us(self, render_mock):
+        """Should use whatsnew-fx115-na-addons template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="115.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx115-na-addons.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_115_0_0_en_us_windows(self, render_mock):
+        """Should use whatsnew-fx115-na-windows template for en-US locale with xv=windows"""
+        req = self.rf.get("/firefox/whatsnew/?xv=windows")
+        req.locale = "en-US"
+        self.view(req, version="115.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx115-na-windows.html"]
+
+    @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_VPN_WAVE_VI="True")
     def test_fx_115_0_0_en_bg_switch_on(self, render_mock):
         """Should use whatsnew-fx115-eu-vpn template for en-US locale in Bulgaria if switch is on"""
@@ -764,12 +782,12 @@ class TestWhatsNew(TestCase):
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_VPN_WAVE_VI="False")
     def test_fx_115_0_0_en_bg_switch_off(self, render_mock):
-        """Should use standard template for en-US locale in Bulgaria if switch is off"""
+        """Should use whatsnew-fx115-na-addons template for en-US locale in Bulgaria if switch is off"""
         req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="BG")
         req.locale = "en-US"
         self.view(req, version="115.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx115-na-addons.html"]
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_VPN_WAVE_VI="False")
@@ -827,12 +845,12 @@ class TestWhatsNew(TestCase):
     @patch.dict(os.environ, SWITCH_VPN_WAVE_VI="False")
     @patch.object(fx_views, "ftl_file_is_active", lambda *x: True)
     def test_fx_115_0_0_en_hu_switch_off(self, render_mock):
-        """Should use standard template for en-US locale in Hungary if switch is off"""
+        """Should use whatsnew-fx115-na-addons template for en-US locale in Hungary if switch is off"""
         req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="HU")
         req.locale = "en-US"
         self.view(req, version="115.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx115-na-addons.html"]
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_VPN_WAVE_VI="True")

@@ -21,6 +21,10 @@
 {% endblock %}
 
 {% block experiments %}
+  {% if switch('firefox-whatsnew-115-migrate-win7', ['en']) %}
+    {{ js_bundle('firefox_whatsnew_115_na_win7') }}
+  {% endif %}
+
   {% if switch('experiment-firefox-whatsnew-115-eu-vpn') %}
     {{ js_bundle('firefox_whatsnew_115_experiment_eu_vpn') }}
   {% endif %}
