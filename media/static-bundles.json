@@ -245,6 +245,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/ctd-promo-de.scss"
+      ],
+      "name": "ctd-promo"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-management.scss"
       ],
       "name": "newsletter-management"
