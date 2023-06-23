@@ -34,8 +34,9 @@ const _allowedFxaParams = [
 
 const _validParamChars = /^[\w/.%-]{1,100}$/;
 const _referralCookieID = 'fxa-product-referral-id';
-const _mozCouponStorageID = 'moz-coupon-code';
-const _mozReferralStorageID = 'moz-referral-data';
+const _mozCouponStorageID = 'moz-fxa-coupon-code';
+const _mozReferralStorageID = 'moz-fxa-referral-data';
+const _mozExperimentStorageID = 'moz-fxa-exp-data';
 
 /**
  * Returns true / false depending on if user has opted out of
@@ -226,7 +227,7 @@ FxaAttribution.filterParams = (params, allowList) => {
     return filteredParams;
 };
 
-FxaAttribution.getUtmData = (params) => {
+FxaAttribution.getUtmParams = (params) => {
     const finalParams = FxaAttribution.filterParams(params, _allowedUtmParams);
 
     // Both `utm_source` and `utm_campaign` are considered required, so only pass through UTM data if the both are both present.
@@ -240,7 +241,7 @@ FxaAttribution.getUtmData = (params) => {
     return null;
 };
 
-FxaAttribution.getExperimentData = (params) => {
+FxaAttribution.getExperimentParams = (params) => {
     const finalParams = FxaAttribution.filterParams(params, _allowedFxaParams);
 
     // Pass through `entrypoint_experiment` and `entrypoint_variation` only if both are present.
@@ -279,7 +280,7 @@ FxaAttribution.getCouponStorage = () => {
     try {
         return JSON.parse(window.sessionStorage.getItem(_mozCouponStorageID));
     } catch (e) {
-        return false;
+        return null;
     }
 };
 
@@ -302,7 +303,7 @@ FxaAttribution.getReferralStorage = () => {
     try {
         return JSON.parse(window.sessionStorage.getItem(_mozReferralStorageID));
     } catch (e) {
-        return false;
+        return null;
     }
 };
 
@@ -314,6 +315,31 @@ FxaAttribution.setReferralStorage = (data) => {
     try {
         window.sessionStorage.setItem(
             _mozReferralStorageID,
+            JSON.stringify(data)
+        );
+    } catch (e) {
+        // fail silently.
+    }
+};
+
+FxaAttribution.getExperimentStorage = () => {
+    try {
+        return JSON.parse(
+            window.sessionStorage.getItem(_mozExperimentStorageID)
+        );
+    } catch (e) {
+        return null;
+    }
+};
+
+FxaAttribution.setExperimentStorage = (data) => {
+    if (!data) {
+        return;
+    }
+
+    try {
+        window.sessionStorage.setItem(
+            _mozExperimentStorageID,
             JSON.stringify(data)
         );
     } catch (e) {
@@ -392,12 +418,20 @@ FxaAttribution.appendToProductURL = (url, data) => {
     );
 };
 
+/**
+ * Gets attribution data types from sessionStorage. If none exist,
+ * then fetches attribution data from the page URL to save in
+ * sessionStorage. Returns a concatenated object of all available
+ * attribution data.
+ * @param {Object} urlObject URL parameter key value pairs
+ * @returns {Object} of all attribution key value pairs.
+ */
 FxaAttribution.getAttributionData = (urlObject) => {
     const urlParams = urlObject ? urlObject : {};
     let params = {};
     const couponParam = FxaAttribution.getCouponParam(urlParams);
 
-    // Always pass a coupon when present as a parameter.
+    // Always store coupon when present as a parameter.
     if (couponParam) {
         FxaAttribution.setCouponStorage(couponParam);
     }
@@ -405,17 +439,25 @@ FxaAttribution.getAttributionData = (urlObject) => {
     // Make sure the visitor hasn't opted out of attribution
     if (FxaAttribution.isAttributionPermitted()) {
         const referralData = FxaAttribution.getReferralStorage();
+        const experimentData = FxaAttribution.getExperimentStorage();
+        let referralParams = {};
+        let experimentParams = {};
 
-        if (referralData) {
-            params = referralData;
+        // Get existing referral data from storage.
+        if (typeof referralData === 'object') {
+            referralParams = Object.assign(referralParams, referralData);
+        }
+
+        // If there's referral data in sessionStorage use that,
+        // else fetch from the current page URL.
+        if (Object.keys(referralParams).length > 0) {
+            params = Object.assign(params, referralParams);
         } else {
-            const utmData = FxaAttribution.getUtmData(urlParams);
-            const experimentData = FxaAttribution.getExperimentData(urlParams);
+            const utmParams = FxaAttribution.getUtmParams(urlParams);
 
-            // If there are UTM params in the page URL, then
-            // validate those as referral data.
-            if (utmData) {
-                params = Object.assign(params, utmData);
+            // Check for UTM campaign params.
+            if (utmParams) {
+                params = Object.assign(params, utmParams);
             } else {
                 // Check to see if there's a referral cookie.
                 const linkData = FxaAttribution.getFxALinkReferralData();
@@ -423,7 +465,7 @@ FxaAttribution.getAttributionData = (urlObject) => {
                 if (linkData) {
                     params = Object.assign(params, linkData);
                 } else {
-                    // Check to for search engine referral data.
+                    // Check for search engine referral data.
                     const searchData = FxaAttribution.getSearchReferralData();
 
                     if (searchData) {
@@ -432,13 +474,29 @@ FxaAttribution.getAttributionData = (urlObject) => {
                 }
             }
 
-            // Pass along experiment data.
-            if (experimentData) {
-                params = Object.assign(params, experimentData);
-            }
-
+            // Add referral data to storage for next page load.
             if (Object.keys(params).length > 0) {
                 FxaAttribution.setReferralStorage(params);
+            }
+        }
+
+        // Get existing experiment data from storage.
+        if (typeof experimentData === 'object') {
+            experimentParams = Object.assign(experimentParams, experimentData);
+        }
+
+        // If there's experiment data in sessionStorage use that,
+        // else fetch from the current page URL.
+        if (Object.keys(experimentParams).length > 0) {
+            params = Object.assign(params, experimentParams);
+        } else {
+            // Also add experimental params to storage.
+            const experimentParams =
+                FxaAttribution.getExperimentParams(urlParams);
+
+            if (experimentParams) {
+                FxaAttribution.setExperimentStorage(experimentParams);
+                params = Object.assign(params, experimentParams);
             }
         }
     }

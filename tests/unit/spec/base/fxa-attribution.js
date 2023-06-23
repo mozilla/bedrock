@@ -66,7 +66,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
@@ -88,7 +88,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation'
@@ -130,7 +130,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'vpn-client',
                 utm_content: 'download-first-experiment',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
@@ -164,7 +164,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
                 flow_id:
@@ -219,7 +219,7 @@ describe('fxa-attribution.js', function () {
             const data = {
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
@@ -318,7 +318,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'vpn-client',
                 utm_content: 'download-first-experiment',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
@@ -340,7 +340,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'vpn-client',
                 utm_content: 'download-first-experiment',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
@@ -356,13 +356,22 @@ describe('fxa-attribution.js', function () {
             });
         });
 
-        it('should return referral data from storage if it exists', function () {
+        it('should return UTM referral data from storage if it exists', function () {
             const validObj = {
                 utm_source: 'vpn-client',
                 utm_content: 'download-first-experiment',
                 utm_medium: 'referral',
-                utm_term: 4242,
-                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_term: '4242',
+                utm_campaign: 'F100_4242_otherstuff_in_here'
+            };
+
+            FxaAttribution.setReferralStorage(validObj);
+
+            expect(FxaAttribution.getAttributionData({})).toEqual(validObj);
+        });
+
+        it('should return experiment data from storage if it exists', function () {
+            const validObj = {
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
                 device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
@@ -386,13 +395,20 @@ describe('fxa-attribution.js', function () {
             expect(FxaAttribution.getAttributionData({})).toEqual(validObj);
         });
 
-        it('should return both coupon and referral data from storage together', function () {
+        it('should return coupon, experiment and referral data from storage together', function () {
             const validObj1 = {
                 utm_source: 'vpn-client',
                 utm_content: 'download-first-experiment',
                 utm_medium: 'referral',
-                utm_term: 4242,
-                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_term: '4242',
+                utm_campaign: 'F100_4242_otherstuff_in_here'
+            };
+
+            const validObj2 = {
+                coupon: 'test'
+            };
+
+            const validObj3 = {
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation',
                 device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
@@ -401,15 +417,60 @@ describe('fxa-attribution.js', function () {
                 flow_begin_time: '1684417308435'
             };
 
+            FxaAttribution.setReferralStorage(validObj1);
+            FxaAttribution.setCouponStorage(validObj2);
+            FxaAttribution.setExperimentStorage(validObj3);
+
+            expect(FxaAttribution.getAttributionData({})).toEqual(
+                Object.assign(validObj1, validObj2, validObj3)
+            );
+        });
+
+        it('should add experiment data if there is already UTM referral data in storage', function () {
+            const validObj1 = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: '4242',
+                utm_campaign: 'F100_4242_otherstuff_in_here'
+            };
+
             const validObj2 = {
+                entrypoint_experiment: 'test-id',
+                entrypoint_variation: 'test-variation',
+                device_id: '45de19d8bc6845b1b7c121da2cb1cde2',
+                flow_id:
+                    'd35341efcc26739b9f36d84410e4b49946071a7cdbee192d0e5707710052fe82',
+                flow_begin_time: '1684417308435'
+            };
+
+            spyOn(FxaAttribution, 'getReferralStorage').and.returnValue(
+                validObj1
+            );
+
+            expect(FxaAttribution.getAttributionData(validObj2)).toEqual(
+                Object.assign(validObj1, validObj2)
+            );
+        });
+
+        it('should always use the coupon value from the page URL, irrespective of what is in storage', function () {
+            const validObj1 = {
                 coupon: 'test'
             };
 
-            FxaAttribution.setReferralStorage(validObj1);
-            FxaAttribution.setCouponStorage(validObj2);
+            const validObj2 = {
+                utm_source: 'vpn-client',
+                utm_content: 'download-first-experiment',
+                utm_medium: 'referral',
+                utm_term: '4242',
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                coupon: 'test2'
+            };
 
-            expect(FxaAttribution.getAttributionData({})).toEqual(
-                Object.assign(validObj1, validObj2)
+            FxaAttribution.setCouponStorage(validObj1);
+
+            expect(FxaAttribution.getAttributionData(validObj2)).toEqual(
+                validObj2
             );
         });
     });
@@ -420,7 +481,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             };
 
@@ -509,7 +570,7 @@ describe('fxa-attribution.js', function () {
                 utm_source: 'desktop-snippet',
                 utm_content: 'rel-esr',
                 utm_medium: 'referral',
-                utm_term: 4242,
+                utm_term: '4242',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 entrypoint_experiment: 'test-id',
                 entrypoint_variation: 'test-variation'

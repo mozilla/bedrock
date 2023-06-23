@@ -74,47 +74,67 @@ Attribution logic
 See the `Application Logic Flow Chart`_ for a visual representation of
 the steps below (Mozilla access only).
 
+
 #. A website visitor loads a product landing page in their web browser.
-#. A `JavaScript function`_ then checks for and validates attribution
-   data via a list of known URL parameters (see tables above).
+#. A `JavaScript function`_ then checks for a list of known URL parameters
+   and if present in the page URL, performs some basic validation on their
+   values to make sure they meet formats we expect.
 #. If there is a ``coupon`` parameter in the page URL, we add it to
-   ``sessionStorage`` so we can automatically apply it at checkout.
-#. We check to see if the visitor has opted out of first-party data
-   attribution. If they have, then all we add to account subscription
-   links is the coupon (if present). If they have not opted out, then we
-   continue with the steps below.
-#. We next run a check to see if the visitor has any existing
-   attribution data in ``sessionStorage``. If they do, then we add that
-   data to account sign-up links. If not, then we continue with the steps
-   below.
-#. If there are UTM parameters in the current page URL data, then those
-   are added to our attribution data. Additionally if any
-   ``entrypoint_experiment`` params found, those are also added.
-#. If no UTM params exist, but there is a link referrer cookie set, then
-   the cookie value is used for ``utm_campaign`` and ``utm_source`` is
-   set to ``www.mozilla.org``. This cookie is often set when we display a
-   “Get Mozilla VPN” promo on another mozorg page, such as ``/whatsnew``.
-#. If there’s no link referrer cookie, we next look at ``document.referrer``
-   to see if the visitor came from a search engine. If found, we set
-   ``utm_medium`` as ``organic`` and ``utm_source`` as the search engine
-   name.
-#. Once processed, our finalized attribution data is then kept in
-   ``sessionStorage``. This will persist throughout the lifetime of the
-   current tab / session, and will be added to account sign-up links
-   automatically whenever the visitor is on a landing / pricing page.
-#. When someone clicks through and completes the sign-up process,
-   the attribution data we passed through is emitted as event logs. This
-   data is then joined to a person’s Mozilla account data during the Data
-   Science team’s ETL process (Extract, Transform, Load), where data
-   is then brought together in Big Query.
+   ``sessionStorage`` so we can try and automatically apply it at checkout
+   (will only work if valid, else fail silently).
+#. Before doing any kind of referral attribution, we first check to see
+   if the visitor has opted out of first-party data collection. If they have,
+   then we don't store or pass along any session based referral data. If they
+   have not opted out, then we continue with the steps below.
+#. Next, we next run a check to see if the visitor has any existing
+   UTM referral data in ``sessionStorage``. If they do, then we use that
+   data for attribution by replacing the default UTM parameters on account
+   sign-up links with the values from ``sessionStorage``. If not, then we
+   process new data from the current page URL to use instead, via following
+   steps:
+
+   #. If there are UTM parameters in the page URL data, then those
+      are fetched as the first touch point of attribution.
+   #. If no UTM params exist, but there is a ``fxa-product-referral-id``
+      cookie set, then the cookie value is set for ``utm_campaign`` and
+      ``utm_source`` is set to ``www.mozilla.org`` (this cookie is often
+      set when we display a “Get Mozilla VPN” promo on another mozorg page,
+      such as ``/whatsnew``).
+   #. If there’s no cookie either, we next look at ``document.referrer``
+      to see if the visitor came from a search engine. If found, we set
+      ``utm_medium`` as ``organic`` and ``utm_source`` as the search engine
+      name.
+   #. The newly processed UTM data is then saved in ``sessionStorage``
+      for a later page navigation.
+
+#. Next, we check to see if any experiment attribution params are present
+   in ``sessionStorage``. If found, we then add them to account sign-up links.
+   If not, then we fetch those from the page URL (if present) and add them to
+   ``sessionStorage`` like we do for UTM data.
+#. The final attribution query string we create (combining coupon, UTM, and
+   experiment data) is added automatically to each account sign-up link on page
+   load. Default UTM values on each sign-up link are replaced with the newly
+   attributed values.
+#. When someone clicks a sign-up link, the attribution data parameters we add
+   to the link are passed along to the subscription platform, where they are
+   then emitted as event logs upon successful conversion. This data is then
+   joined to a person’s account data during the Data Science team’s ETL process
+   (Extract, Transform, Load), The data is then joined together in Big Query.
 
 .. Note::
 
-    Default UTM parameters on account sign-up links will only be replaced
-    if the page URL contains both a valid ``utm_source`` and ``utm_campaign``
-    parameter. All other UTM parameters are considered optional, but will
-    still be passed through, as long as the required  parameters exist.
-    This is to avoid mixing referral data from different campaigns.
+   The data we save in ``sessionStorage`` will persist throughout the lifetime
+   of the current browser tab / session, and will be added to subscription links
+   automatically whenever the visitor is on a landing / pricing page. Closing
+   the browser tab will cause the data in ``sessionStorage`` to expire.
+
+.. Note::
+
+    Default UTM parameters on account links will only be replaced if attribution
+    data contains both a valid ``utm_source`` and ``utm_campaign`` value. All
+    other UTM parameters are considered optional, but will still be passed
+    through, as long as the required UTM parameters exist. This is to avoid
+    mixing referral data from different campaigns.
 
 In addition to the above attribution process, there is also a separate
 `metrics function`_ that is responsible for making a flow API request
@@ -131,13 +151,15 @@ Session Storage
 
 The following ``sessionStorage`` items are used for attribution:
 
-+-----------------------+----------------------------------------------------------------+
-| Name                  | Value                                                          |
-+=======================+================================================================+
-| ``moz-coupon-code``   | JSON stringified coupon key / value pair                       |
-+-----------------------+----------------------------------------------------------------+
-| ``moz-referral-data`` | JSON stringified UTM / attribution parameter key / value pairs |
-+-----------------------+----------------------------------------------------------------+
++---------------------------+----------------------------------------------------------------+-------------------+
+| Name                      | Value                                                          | Expiry            |
++---------------------------+----------------------------------------------------------------+-------------------+
+| ``moz-fxa-coupon-code``   | JSON stringified coupon key / value pair                       | Browser tab close |
++---------------------------+----------------------------------------------------------------+-------------------+
+| ``moz-fxa-referral-data`` | JSON stringified UTM / attribution parameter key / value pairs | Browser tab close |
++---------------------------+----------------------------------------------------------------+-------------------+
+| ``moz-fxa-exp-data``      | JSON stringified experiment parameter key / value pairs        | Browser tab close |
++---------------------------+----------------------------------------------------------------+-------------------+
 
 How can visitors opt out?
 -------------------------
