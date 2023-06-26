@@ -14,7 +14,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% include 'products/relay/includes/subnav.html' %}
 {% endblock %}
 
-{% set product = ftl('waitlist-bundle-name') %}
+{% set product = product|default(ftl('waitlist-premium-name')) %}
 
 
 {% block content %}
