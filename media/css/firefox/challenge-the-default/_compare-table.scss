@@ -61,7 +61,7 @@
 
         th {
             max-width: 150px;
-            border: 2px solid $color-black;
+            border: 2.5px solid $color-black;
             font-size: 14px;
 
             &[scope='row'].break-word {
@@ -96,7 +96,7 @@
         td {
             @include font-size(24px);
             text-align: center;
-            border: 2px solid $color-black;
+            border: 2.5px solid $color-black;
             padding: 0;
         }
 

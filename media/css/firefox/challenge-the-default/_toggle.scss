@@ -92,10 +92,7 @@
   outline: 0; /* 1 */
 }
 
-/**
- * 1. When the input is checked, change the display background color to a
- *    pale green instead.
- */
+
 .toggle-input:checked + .toggle-display {
   background-color: $color-white; /* 1 */
   border: none;

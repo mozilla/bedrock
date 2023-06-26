@@ -8,8 +8,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% from "macros-protocol.html" import picto with context %}
 
-{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
-
 {% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
 
 {% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
@@ -25,13 +23,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox-master') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('challenge-the-default') }}
-
-  {% if show_firefox_app_store_banner %}
-    {{ css_bundle('firefox-app-store-banner') }}
-  {% endif %}
 {% endblock %}
 
 
@@ -39,7 +32,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% set cta_group %}
-  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg mzp-js-notification-trigger">Jetzt Firefox wählen</a>
+  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
   <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem Mobile Browser</a>
   {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen') }}
 {% endset %}
@@ -140,8 +133,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               }}
           </div>
           <div class="c-hero-top-controls" aria-hidden="true">
-              <span type="button" class="hero-control-btn minimize"></span>
-              <span type="button" class="hero-control-btn expand"></span>
+              <span class="hero-control-btn minimize"></span>
+              <span class="hero-control-btn expand"></span>
               <button type="button" class="hero-control-btn close">close</button>
           </div>
         </div>
@@ -475,7 +468,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>Mach mit!</h3>
-    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="{{ url('mozorg.home') }}">werde Teil unserer Community</a>.</p>
+    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="https://community.mozilla.org/en/" target="_blank" rel="noopener noreferrer">werde Teil unserer Community</a>.</p>
     {{ cta_group }}
     <p class="text-bottom">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
   </section>

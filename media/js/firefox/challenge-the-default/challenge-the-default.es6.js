@@ -59,7 +59,18 @@ function checkToggles() {
 // whenever a toggle is switched, check to see if all of the toggles are switched to true
 for (let index = 0; index < toggles.length; index++) {
     const element = toggles[index];
-    element.addEventListener('change', checkToggles, false);
+    element.addEventListener(
+        'change',
+        function (e) {
+            // check if the click was on the middle input, and if so remove the animation class
+            const input = e.target;
+            if (input.parentElement.classList.contains('middle')) {
+                input.parentElement.classList.toggle('animate-slide');
+            }
+            checkToggles();
+        },
+        false
+    );
 }
 
 heroClose.addEventListener(

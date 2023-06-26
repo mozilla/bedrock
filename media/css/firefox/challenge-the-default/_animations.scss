@@ -118,16 +118,19 @@ $campaign-green: #2ac3a2;
         .animate-wednesday {
             .wednesday-circle {
                 &.circle3 {
-                    animation: wednesday-circles-mint 2s alternate infinite;
+                    animation: wednesday-circles-mint 1s infinite;
+                    animation-direction: alternate;
                 }
 
                 &.circle2 {
-                    animation: wednesday-circles-red 2s ease-in alternate infinite;
+                    animation: wednesday-circles-red 1s infinite;
+                    animation-direction: alternate;
                     animation-delay: 200ms;
                 }
 
                 &.circle1 {
-                    animation: wednesday-circles-pink 2s ease-in alternate infinite;
+                    animation: wednesday-circles-pink 1s infinite;
+                    animation-direction: alternate;
                     animation-delay: 400ms;
                 }
             }

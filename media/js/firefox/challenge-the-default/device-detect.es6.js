@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import FirefoxDefault from '../family/fx-is-default.es6';
+
 const compareTable = document.querySelector('.comparison-table');
 
 function detectDevice() {
@@ -38,29 +40,5 @@ function detectDevice() {
 const browser = detectDevice();
 compareTable.dataset.selectedBrowser = browser || 'chrome';
 
-function isDefaultBrowser() {
-    return new window.Promise(function (resolve, reject) {
-        Mozilla.UITour.getConfiguration('appinfo', function (details) {
-            if (details.defaultBrowser) {
-                resolve();
-            } else {
-                reject();
-            }
-        });
-    });
-}
-
-// Pulled A lot of the functions here from firefox/set-as-default/thanks.js
-// but needed to use them slightly differently
-function isSupported() {
-    return Mozilla.Client.isFirefoxDesktop && 'Promise' in window;
-}
-
-// check if firefox is already the default browser
-if (isSupported()) {
-    const main = document.querySelector('main');
-    main.classList.add('set-default-supported');
-    isDefaultBrowser().then(function () {
-        main.classList.add('is-firefox-default');
-    });
-}
+// check if firefox is set to default on startup
+FirefoxDefault.init();
