@@ -4,9 +4,9 @@
 
 ### URL: https://www-dev.allizom.org/products/relay/waitlist/[vpn|phone].html
 
+waitlist-premium-name = { -brand-name-relay-premium }
 waitlist-bundle-name = { -brand-name-relay } + { -brand-name-vpn } bundle
 waitlist-phone-name = { -brand-name-relay } phone masking
-## old variables
 waitlist-heading-2 = Join the { -brand-name-relay-premium } waitlist
 waitlist-heading-phone = Join the { -brand-name-relay } phone masking waitlist
 waitlist-heading-bundle = Join the waitlist for the { -brand-name-relay } + { -brand-name-vpn } bundle
@@ -29,7 +29,7 @@ waitlist-privacy-policy-use-bundle = Your information will only be used to notif
 waitlist-subscribe-success-title = Thanks! You're on the list
 # Variables:
 #   $product (string) one of the following three options:
-#      - { -brand-name-firefox-firefox-relay-premium }
+#      - { -brand-name-relay-premium }
 #      - { waitlist-bundle-name }
 #      - { waitlist-phone-name }
 waitlist-subscribe-success-desc = Once { $product } becomes available for your region, we’ll email you.

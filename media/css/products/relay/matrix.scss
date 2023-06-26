@@ -80,7 +80,6 @@ $brand-theme: 'firefox';
 // * -------------------------------------------------------------------------- */
 
 .c-matrix-mobile {
-
     @media #{$mq-xl} {
         display: none;
     }
@@ -138,6 +137,7 @@ $brand-theme: 'firefox';
         height: 16px;
         width: 16px;
         margin-left: $spacing-md;
+        border-top: 3px solid transparent; // 3px look best ¯\_(ツ)_/¯
     }
 
     span {
@@ -153,14 +153,6 @@ $brand-theme: 'firefox';
     }
 }
 
-.c-matrix-footer {
-    text-align: center;
-
-    small {
-        display: block;
-    }
-}
-
 @media #{$mq-md} {
     .c-matrix-mobile {
         > ul {
@@ -169,61 +161,172 @@ $brand-theme: 'firefox';
     }
 }
 
-.c-toggle {
-    background-color: $color-marketing-gray-20;
-    border-radius: $border-radius-lg + 2px;
-    display: flex;
-    margin-bottom: 4em; // making space for one line of text, units scale with text site
-    padding: $spacing-xs;
+// * -------------------------------------------------------------------------- */
+
+.c-matrix-footer {
+    display: grid;
+    gap: $spacing-xs;
+    grid-template-areas:
+        "toggle"
+        "price"
+        "button"
+        "period";
+    grid-template-rows: 2rem 3rem min-content 1.4rem;
     position: relative;
+    width: 100%;
+    text-align: center;
+}
 
-    > input {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
+.c-matrix-footer-free {
+    @include text-body-lg;
+    align-self: end;
+    color: $color-blue-50;
+    font-weight: bold;
+    grid-area: price;
+}
 
-        &:nth-child(2n+1) {
-            left: 50%;
-        }
+.c-matrix-footer-savings {
+    align-self: end;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    span {
+        font-weight: bold;
+        display: block;
     }
+}
 
-    > label {
-        @include text-body-sm;
-        border: 2px solid transparent;
-        color: $color-marketing-gray-80;
-        cursor: pointer;
-        font-weight: 500;
-        padding: $spacing-xs $spacing-sm;
-        text-align: center;
-        width: 50%;
+small.c-matrix-footer-period {
+    grid-area: period;
+    display: grid;
+    align-items: center;
+}
 
-        em {
-            @include text-body-lg;
-            display: none;
-            font-weight: bold;
-            left: 0;
-            padding: $spacing-md $spacing-sm;
-            position: absolute;
-            right: 0;
-            text-align: center;
-            top: 100%;
-            cursor: default;
-            pointer-events: none;
-        }
+.c-matrix-footer .mzp-c-button {
+    grid-area: button;
+}
+
+.c-matrix-footer .c-matrix-footer-waitlist {
+    align-self: end;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+
+// * -------------------------------------------------------------------------- */
+
+.c-toggle-track,
+.c-toggle-input,
+.c-toggle-label {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+
+.c-toggle-track {
+    background-color: $color-marketing-gray-20;
+    border-radius: $border-radius-lg;
+    border: 4px solid $color-marketing-gray-20;
+    box-sizing: border-box;
+    padding: 2px 0;
+    width: 100%;
+
+    // adding text styled the same way as the labels we're trying to contain
+    // this replicates the height
+    &::after {
+        content: '.';
+        color: $color-marketing-gray-30;
     }
+}
 
-    > input:focus + label {
-        border: 2px solid $color-blue-50;
-    }
+.c-toggle-input {
+    height: 2rem;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 45%;
+    z-index: 4;
+}
 
-    > input:checked + label {
-        background-color: $color-white;
+.c-toggle-input-yearly {
+    left: auto;
+    position: absolute;
+    right: 0;
+}
+
+
+.c-toggle-label {
+    width: 100%;
+    padding: 0;
+
+    span {
         border-radius: $border-radius-lg;
-        color: $color-blue-50;
+        border: 2px solid transparent;
+        color: $color-marketing-gray-70;
+        font-weight: normal;
+        left: 3px;
+        padding: 2px 0;
+        position: absolute;
+        top: 3px;
+        white-space: nowrap;
+        width: 50%;
+        z-index: 3;
+    }
 
-        em {
-            display: block;
-        }
+    &.c-toggle-label-yearly span {
+        left: auto;
+        position: absolute;
+        right: 3px;
+        top: 3px;
+    }
+}
+
+.c-toggle-price {
+    @include text-body-lg;
+    align-self: end;
+    color: $color-blue-50;
+    font-weight: bold;
+    grid-area: price;
+    text-align: center;
+    visibility: hidden;
+}
+
+.c-toggle-input ~ {
+    small.c-matrix-footer-period,
+    .c-matrix-footer-button {
+        visibility: hidden;
+    }
+}
+
+.c-toggle-input:hover + .c-toggle-label span {
+    color: $color-blue-50;
+}
+
+.c-toggle-input:focus + .c-toggle-label span {
+    border: 2px solid $color-blue-50;
+}
+
+.c-toggle-input:checked + .c-toggle-label span {
+    background-color: $color-white;
+    color: $color-blue-50;
+}
+
+.c-toggle-input-yearly:checked ~ {
+    .c-toggle-price-yearly,
+    small.c-matrix-footer-period-yearly,
+    .c-matrix-footer-button-yearly {
+        visibility: visible;
+        z-index: 2;
+    }
+}
+
+.c-toggle-input-monthly:checked ~ {
+    .c-toggle-price-monthly,
+    small.c-matrix-footer-period-monthly,
+    .c-matrix-footer-button-monthly {
+        visibility: visible;
+        z-index: 2;
     }
 }

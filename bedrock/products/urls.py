@@ -41,8 +41,9 @@ urlpatterns = (
 if settings.DEV:
     urlpatterns += (
         path("relay/", views.relay_landing_page, name="products.relay.landing"),
-        path("relay/waitlist/vpn/", view=views.relay_vpn_waitlist__page, name="products.relay.waitlist.vpn"),
+        path("relay/waitlist/", view=views.relay_premium_waitlist__page, name="products.relay.waitlist.premium"),
         path("relay/waitlist/phone/", view=views.relay_phone_waitlist__page, name="products.relay.waitlist.phone"),
+        path("relay/waitlist/bundle/", view=views.relay_bundle_waitlist__page, name="products.relay.waitlist.bundle"),
         page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
         path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
     )
