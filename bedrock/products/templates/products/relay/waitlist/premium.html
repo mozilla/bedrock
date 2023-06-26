@@ -1,0 +1,15 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/relay/includes/waitlist-base.html" %}
+
+{% block page_title %}{{ ftl('waitlist-heading-2') }}{% endblock %}
+
+{% set product = ftl('waitlist-premium-name') %}
+
+{% block waitlist_heading %}{{ ftl('waitlist-heading-2') }}{% endblock %}
+{% block waitlist_lede %}{{ ftl('waitlist-lead-2') }}{% endblock %}
+{% block waitlist_privacy %}{{ ftl('waitlist-privacy-policy-use') }}{% endblock %}
