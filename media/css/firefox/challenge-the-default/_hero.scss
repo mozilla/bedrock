@@ -21,7 +21,9 @@ $campaign-red: #ff6a75;
     align-items: center;
     max-width: 440px;
 
-    img {
+    .toggle-easter-egg {
+        height: 225px;
+        width: 225px;
         margin-bottom: $spacing-2xl;
     }
 

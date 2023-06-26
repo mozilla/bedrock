@@ -79,7 +79,8 @@ $campaign-green: #2ac3a2;
                 fill: $campaign-green;
             }
 
-            25%, 100% {
+            25%,
+            100% {
                 fill: $campaign-mint;
             }
         }
@@ -89,16 +90,19 @@ $campaign-green: #2ac3a2;
                 fill: $campaign-green;
             }
 
-            25%, 100% {
+            25%,
+            100% {
                 fill: $campaign-red;
             }
         }
+
         @keyframes wednesday-circles-pink {
             0% {
                 fill: $campaign-green;
             }
 
-            25%, 100% {
+            25%,
+            100% {
                 fill: $campaign-pink;
             }
         }
@@ -114,19 +118,133 @@ $campaign-green: #2ac3a2;
         .animate-wednesday {
             .wednesday-circle {
                 &.circle3 {
-                    animation: wednesday-circles-mint 5s alternate infinite;
+                    animation: wednesday-circles-mint 2s alternate infinite;
                 }
 
                 &.circle2 {
-                    animation: wednesday-circles-red 5s ease-in alternate infinite;
-                    animation-delay: 500ms;
+                    animation: wednesday-circles-red 2s ease-in alternate infinite;
+                    animation-delay: 200ms;
                 }
 
                 &.circle1 {
-                    animation: wednesday-circles-pink 5s ease-in alternate infinite;
-                    animation-delay: 1000ms;
+                    animation: wednesday-circles-pink 2s ease-in alternate infinite;
+                    animation-delay: 400ms;
                 }
             }
         }
+    }
+}
+
+.toggle-1 {
+    animation: toggle-1-animation 3000ms linear 1 normal forwards
+}
+
+@keyframes toggle-1-animation {
+    0% {
+        transform: translate(98px, 96px);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    10.3% {
+        transform: translate(98px, 89px);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    39.3%, 100% {
+        transform: translate(98px, 98px)
+    }
+}
+
+.toggle-2 {
+    animation: toggle-2-animation 3000ms linear 1 normal forwards
+}
+
+@keyframes toggle-2-animation {
+    0% {
+        transform: translate(98px, 98px) rotate(14deg);
+        animation-timing-function: cubic-bezier(0.915, 0.02, 0.13, 0.985)
+    }
+
+    10% {
+        transform: translate(98px, 98px) rotate(17deg);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    33.333333% {
+        transform: translate(98px, 98px) rotate(4deg)
+    }
+
+    100% {
+        transform: translate(98px, 98px) rotate(4deg)
+    }
+}
+
+.toggle-3 {
+    animation: toggle-3-animation 3000ms linear 1 normal forwards
+}
+
+@keyframes toggle-3-animation {
+    0% {
+        transform: translate(46px, 54px);
+        animation-timing-function: cubic-bezier(0.92, -0.01, 0.03, 0.99)
+    }
+
+    36.666667% {
+        transform: translate(136px, 48px)
+    }
+
+    100% {
+        transform: translate(136px, 48px)
+    }
+}
+
+.toggle-group {
+    animation: toggle-group-animation 3000ms linear 1 normal forwards
+}
+
+@keyframes toggle-group-animation {
+    0% {
+        transform: translate(120px, 52px) rotate(33deg)
+    }
+
+    19% {
+        transform: translate(120px, 52px) rotate(33deg);
+        animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99)
+    }
+
+    30% {
+        transform: translate(120px, 52px) rotate(-18deg);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    }
+
+    41.666667% {
+        transform: translate(120px, 52px) rotate(2.5deg)
+    }
+
+    100% {
+        transform: translate(120px, 52px) rotate(2.5deg)
+    }
+}
+
+.toggle-face {
+    animation: toggle-face-animation 3000ms linear 1 normal forwards
+}
+
+@keyframes toggle-face-animation {
+    0% {
+        opacity: 0
+    }
+
+    23.666667% {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995)
+    }
+
+    31% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 1
     }
 }

@@ -14,8 +14,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
 
-{% block page_desc %}{{ ftl('firefox-home-firefox-is-more-than') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+{% block page_desc %}
+  Du hast eine Wahl, wenn es um Browser geht! Vorinstalliert ist gut, ausgewählt ist besser.
+  Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine
+  Non-Profit im Rücken.
+{% endblock %}
+{% block page_image %}{{ static('img/firefox/challenge-the-default/ctd-social.png') }}{% endblock %}
 {% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
@@ -64,16 +68,49 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   </div>
   <section class="ctd-hero-wrapper">
     <div class="hidden hero-easter-egg">
-      {{ resp_img(
-        url="img/firefox/challenge-the-default/hero-easter-egg.svg",
-        optional_attributes={
-          'alt': "",
-          'loading': "lazy",
-          'height': '196',
-          'width': '196'
-        })
-      }}
-        <p>Hier gibt es nichts zu sehen. Also … wirklich gar nichts</p>
+      <svg class="toggle-easter-egg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="-17 -17 230 230" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+        <g class="toggle-1" transform="translate(98.00007,96.099044)">
+          <g transform="translate(-98.00007,-98.000055)">
+            <g class="toggle-2" transform="translate(97.999979,98) rotate(14.346138)">
+              <g transform="translate(-98.000017,-97.833804)">ß
+                <g transform="matrix(.99505-.099378 0.099378 0.99505-9.072486 10.20687)">
+                  <rect width="181.107" height="181.107" rx="20.0966" ry="20.0966"
+                    transform="matrix(.997642-.068631 0.068631 0.997642 1.279533 13.708624)" fill="#2ac3a2" stroke="#000"
+                    stroke-width="2.4" />
+                  <line x1="17.6598" y1="56.5235" x2="170.985" y2="45.9758" transform="translate(.000003 0.000024)"
+                    fill="none" stroke="#000" stroke-width="2.4" />
+                  <line x1="23.9645" y1="148.158" x2="177.289" y2="137.611" transform="translate(.259053-.035321)" fill="none"
+                    stroke="#000" stroke-width="2.4" />
+                  <line x1="174.282" y1="93.8886" x2="20.9568" y2="104.436" transform="translate(.000003 0.000024)"
+                    fill="none" stroke="#000" stroke-width="2.4" />
+                  <circle r="21.9131" transform="matrix(.997642-.068631 0.068631 0.997642 127.002056 141.954703)"
+                    fill="#d1ffee" stroke="#000" stroke-width="2.4" />
+                  <circle r="21.9131" transform="matrix(-.997643 0.068625-.068625-.997643 71.507399 100.05502)" fill="#d1ffee"
+                    stroke="#000" stroke-width="2.4" />
+                  <g class="toggle-3" transform="translate(46.506363,54.640314)">
+                    <g transform="translate(-120.438008,-50.353203)">
+                      <circle r="21.9131" transform="matrix(.997642-.068631 0.068631 0.997642 120.438 50.3532)" fill="#d1ffee"
+                        stroke="#000" stroke-width="2.4" />
+                      <g class="toggle-group" transform="translate(119.898091,51.813541) rotate(33.095676)">
+                        <g class="toggle-face" transform="translate(-119.898091,-51.813541)" opacity="0">
+                          <g>
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 115.0115 45.704278)" />
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 124.5935 45.046078)" />
+                            <path d="M133.644,45.5344c.524,7.6079-5.219,14.1995-12.827,14.7229s-14.2-5.2197-14.723-12.8276"
+                              transform="translate(.0125 0.091678)" fill="none" stroke="#000" stroke-width="2.4" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <p>Du gehst den Dingen auf den Grund. Gut so!</p>
     </div>
     <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
       <svg class="svg" width="0" height="0">
