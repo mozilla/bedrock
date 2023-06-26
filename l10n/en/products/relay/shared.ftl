@@ -13,3 +13,5 @@ relay-shared-subnav-faq = { -brand-name-relay } FAQs
 
 # Page description
 meta-description-2 = { -brand-name-firefox-relay } makes it easy to create email masks that forward your messages to your true inbox. Use them to protect your online accounts from hackers and unwanted messages.
+
+hero-section-cta = Get started

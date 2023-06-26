@@ -15,7 +15,6 @@ bundle-banner-plan-modules-email-masking = Email masking
 bundle-banner-plan-modules-phone-masking = Phone masking
 bundle-banner-plan-modules-mozilla-vpn = { -brand-name-mozilla-vpn }
 bundle-banner-cta = Get { -brand-name-mozilla-vpn } + { -brand-name-relay }
-bundle-banner-alt = { -brand-name-mozilla-vpn } and { -brand-name-relay }
 # Variables:
 #   $days_guarantee (string) - the number of days for money-back guarantee. Examples: 30, 90
 bundle-banner-money-back-guarantee-2 = { $days_guarantee }-day money back guarantee for first time subscribers

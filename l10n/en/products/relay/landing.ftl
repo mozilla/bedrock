@@ -13,7 +13,6 @@ hero-section-title = Protect your identity with secure phone and email masking
 hero-section-body = Our secure, easy-to-use email and phone masks help keep your identity
     private so you can sign up for new accounts anonymously, stop spam texts and junk calls, and
     get only the emails you want in your inbox.
-hero-section-cta = Get started
 # Context: This lists the various websites and magazines who have mentioned Firefox Relay.
 # Example: "As seen in: FORBES magainze and LifeHacker"
 hero-section-social-proof = As seen in:
@@ -51,39 +50,6 @@ landing-review-user-four-review-list-1 = Gives peace of mind when surfing the in
 landing-review-user-four-review-list-2 = Protects ones identity from trackers through generation of aliases where one does not want to share the real email address for various reasons.
 landing-review-user-four-review-list-3 = Email inbox data is safe in the hands of { -brand-name-firefox-relay }.
 landing-review-user-four-review-list-4 = { -brand-name-firefox-relay } works wonders, try it!!!
-
-## HIGHLIGHTED FEATURES SECTION
-
-highlighted-features-section-title = Secure, simple features to help protect your identity
-highlighted-features-section-bottom-title = Protect your identity (and your inbox) with { -brand-name-firefox-relay }
-highlighted-features-section-bottom-cta = Get started
-
-highlighted-features-section-unlimited-masks-headline = Create unlimited email masks
-# Variables:
-#   $mask_limit (number) - the number of masks included with a particular plan
-highlighted-features-section-unlimited-masks-body = Everyone gets { $mask_limit } email masks for free.
-    But with { -brand-name-relay-premium }, you can generate as many masks as you need to help protect your email inbox
-    from spammers, hackers, and online trackers.
-
-highlighted-features-section-masks-on-the-go-headline = Instantly create masks on the go
-# Variables:
-#   $mozmail (string): domain used by Relay masks (mozmail.com)
-highlighted-features-section-masks-on-the-go-body = { -brand-name-relay-premium } gives you a unique { -brand-name-relay } email domain so you can instantly
-    create new masks anywhere you are. Simply add any word or phrase before the @ symbol. At a restaurant? Use restaurant@yourdomain.{ $mozmail }.
-    Shopping? Try shop@yourdomain.{ $mozmail }.
-
-highlighted-features-section-replying-headline = Reply to emails & texts anonymously
-highlighted-features-section-replying-body = { -brand-name-relay-premium } lets you respond to emails from your
-    masked email account, so senders will never know your real email address. With phone masking, you can reply
-    to texts from your masked phone number to protect your real number.
-
-highlighted-features-section-block-promotions-headline = Block promotional emails
-highlighted-features-section-block-promotions-body = With { -brand-name-relay-premium }, you can block promotional emails from reaching your
-    inbox while still receiving emails like receipts or shipping information.
-
-highlighted-features-section-remove-trackers-headline = Remove email trackers
-highlighted-features-section-remove-trackers-body = { -brand-name-relay } can remove common email trackers from any emails forwarded to you, helping
-    you stay invisible to trackers and advertisers.
 
 ## FAQ SECTION
 
