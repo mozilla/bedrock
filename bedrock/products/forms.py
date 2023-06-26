@@ -18,3 +18,8 @@ class RelayBundleWaitlistForm(NewsletterFooterForm):
 class RelayPhoneWaitlistForm(NewsletterFooterForm):
     def __init__(self, locale, data=None, *args, **kwargs):
         super().__init__("relay-phone-masking-waitlist", locale, data, *args, **kwargs)
+
+
+class RelayPremiumWaitlistForm(NewsletterFooterForm):
+    def __init__(self, locale, data=None, *args, **kwargs):
+        super().__init__("relay-waitlist", locale, data, *args, **kwargs)

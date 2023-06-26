@@ -31,8 +31,7 @@ plan-matrix-feature-promo-email-blocking = Block promotional emails
 plan-matrix-feature-email-subdomain = { -brand-name-relay } email domain to create masks on-the-go
 plan-matrix-feature-email-reply = Reply to emails anonymously
 plan-matrix-feature-phone-mask = Phone mask to protect your real phone number
-plan-matrix-feature-vpn = { -brand-name-mozilla-vpn }
-plan-matrix-feature-list-email-masks-unlimited = Unlimited email masks
+plan-matrix-feature-mozvpn = { -brand-name-mozilla-vpn }
 
 ## Feature Breakdowns Mobile (Shorter than desktop strings)
 
@@ -43,7 +42,7 @@ plan-matrix-feature-mobile-promo-email-blocking = Block promotional emails
 plan-matrix-feature-mobile-email-subdomain = Unique { -brand-name-relay } email domain
 plan-matrix-feature-mobile-email-reply = Reply to emails anonymously
 plan-matrix-feature-mobile-phone-mask = Protect your real phone number
-plan-matrix-feature-mobile-vpn = Access to { -brand-name-mozilla-vpn }
+plan-matrix-feature-mobile-mozvpn = { -brand-name-mozilla-vpn }
 
 ## Plan Details
 
@@ -60,7 +59,7 @@ plan-matrix-price-free = Free
 plan-matrix-price-monthly-calculated = { $monthly_price }/mo.
 plan-matrix-price-period-yearly = Yearly
 plan-matrix-price-period-monthly = Monthly
-plan-matrix-price-period-yearly-footnote-1 = Billed annually
+plan-matrix-price-period-yearly-footnote-1 = Billed yearly
 plan-matrix-price-period-monthly-footnote-1 = Billed monthly
 plan-matrix-price-vpn-discount-promo = <span>Save { $savings }</span> on regular { -brand-name-vpn } price
 
