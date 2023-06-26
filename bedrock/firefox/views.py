@@ -753,7 +753,7 @@ def ios_testflight(request):
 
 
 class FirefoxHomeView(L10nTemplateView):
-    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"], "firefox/challenge-the-default/landing.html": ["firefox/home"]}
+    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"], "firefox/challenge-the-default/landing-switch.html": ["firefox/home"]}
 
     # place expected ?v= values in this list
     variations = []
@@ -779,7 +779,7 @@ class FirefoxHomeView(L10nTemplateView):
             variant = None
 
         if locale == "de":
-            template_name = "firefox/challenge-the-default/landing.html"
+            template_name = "firefox/challenge-the-default/landing-switch.html"
         else:
             template_name = "firefox/home/index-master.html"
 
