@@ -16,7 +16,19 @@
         media_class='mzp-l-split-h-center mzp-l-split-v-center',
         media_after=False,
         image=resp_img(
-            url='img/home/2023/ctd-onboarding.png',)
+            url='img/home/2023/ctd-onboarding.png',
+            srcset={
+              'img/home/2023/ctd-onboarding.png': '768w',
+              'img/home/2023/ctd-onboarding-mobile.png': '767w'
+            },
+            sizes={
+            "(max-width: 767px)": "50vw",
+            "default": "calc(100vw)"
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'width': '610',
+          },)
         ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-family">
       Firefox
@@ -39,7 +51,19 @@
         media_class='mzp-l-split-h-center mzp-l-split-v-center',
         media_after=False,
         image=resp_img(
-            url='img/home/2023/ctd-onboarding.png',)
+            url='img/home/2023/ctd-onboarding.png',
+            srcset={
+              'img/home/2023/ctd-onboarding.png': '768w',
+              'img/home/2023/ctd-onboarding-mobile.png': '767w'
+            },
+            sizes={
+            "(max-width: 767px)": "50vw",
+            "default": "calc(100vw)"
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'width': '610',
+          },)
         ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-family">
       Firefox

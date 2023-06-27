@@ -26,10 +26,28 @@ $image-path: '/media/protocol/img';
             margin-right: auto;
         }
 
+
+        .mzp-c-split-container {
+            padding: 0;
+        }
+
+        .mzp-c-split-body {
+            padding: $spacing-lg;
+        }
+
         @media #{$mq-md} {
             .mzp-c-wordmark {
                 background-position: top left;
                 margin-left: unset
+            }
+
+            .mzp-c-split-container {
+                padding: $spacing-lg;
+            }
+
+            .mzp-c-split-body {
+                // Unsetting mobile padding
+                padding: 0;
             }
         }
     }
