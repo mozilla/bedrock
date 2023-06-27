@@ -11,6 +11,9 @@
 
     .c-ctd-comparison-text {
         margin-bottom: $layout-lg;
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
+
 
         h2 {
             @include font-firefox;
@@ -20,14 +23,21 @@
         }
 
         p {
+            @include font-firefox;
             color: $color-marketing-gray-70;
             font-weight: 600;
         }
 
         @media #{$mq-md} {
+            width: 60%;
+            min-width: 550px;
+
+
             h2 {
                 @include font-size(60px);
             }
+
+
         }
     }
 
@@ -60,6 +70,7 @@
         }
 
         th {
+            @include font-firefox;
             max-width: 150px;
             border: 2.5px solid $color-black;
             font-size: 14px;
@@ -166,7 +177,7 @@
     .mzp-c-modal-inner {
         padding: 0;
         max-width: 688px;
-        background-color: $campaign-green;
+        background-color: $campaign-mint;
 
         header {
             padding: $spacing-md;

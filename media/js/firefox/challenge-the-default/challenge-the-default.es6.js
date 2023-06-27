@@ -36,9 +36,15 @@ kittenButton.addEventListener(
 );
 
 function allTogglesChecked() {
+    const small = document.querySelector('.toggle-grid.small');
+    const medium = document.querySelector('.toggle-grid.medium');
     // check which toggle wrapper is active
     toggleWrapper = document.querySelector('.toggle-grid.small');
-    if (getComputedStyle(toggleWrapper).display === 'none') {
+    if (getComputedStyle(small).display === 'grid') {
+        toggleWrapper = small;
+    } else if (getComputedStyle(medium).display === 'grid') {
+        toggleWrapper = medium;
+    } else {
         toggleWrapper = document.querySelector('.toggle-grid.large');
     }
     const currentToggles = toggleWrapper.querySelectorAll('.toggle input');
@@ -85,7 +91,7 @@ heroClose.addEventListener(
             heroWrapper.classList.add('animate-pop-in');
             heroWrapper.classList.remove('animate-close');
             heroEasterEgg.classList.toggle('hidden');
-        }, 6000);
+        }, 4500);
     },
     false
 );

@@ -9,7 +9,7 @@ $campaign-red: #ff6a75;
     background: $campaign-red;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero-easter-egg {
@@ -20,15 +20,16 @@ $campaign-red: #ff6a75;
     flex-direction: column;
     align-items: center;
     max-width: 440px;
+    margin-top: 110px;
 
     .toggle-easter-egg {
-        height: 225px;
-        width: 225px;
-        margin-bottom: $spacing-2xl;
+        height: 180;
+        width: 180px;
+        margin-bottom: $spacing-md;
     }
 
     p {
-        @include font-size(30px);
+        @include font-size(24px);
         color: $color-white;
         font-weight: 600;
         text-align: center;
@@ -42,13 +43,14 @@ $campaign-red: #ff6a75;
 .c-ctd-hero {
     @include font-firefox;
     background: $campaign-red;
+    padding: 6px 24px 24px;
 
     .c-hero-top {
         display: flex;
         justify-content: flex-end;
-        border-bottom: 4px solid $campaign-red;
-        max-height: 60px;
-        padding: $spacing-md $spacing-md $spacing-sm;
+        border-bottom: 2.5px solid $campaign-red;
+        max-height: 65px;
+        padding: 10px $spacing-md;
 
         &-images {
             align-items: center;
@@ -56,15 +58,19 @@ $campaign-red: #ff6a75;
 
             img {
                 max-height: 100%;
-                margin-right: $spacing-md;
+                margin-right: 20px;
             }
         }
 
         @media #{$mq-md} {
             justify-content: space-between;
+            padding: 0;
+            border-bottom-width: 3px;
 
             &-images {
                 display: flex;
+                height: 50px;
+                padding: 10px $spacing-md;
             }
         }
 
@@ -72,54 +78,42 @@ $campaign-red: #ff6a75;
             display: flex;
             align-items: center;
 
+
             .hero-control-btn {
-                margin-left: $spacing-md;
+                margin-left: $spacing-sm;
                 background: none;
                 border: 0;
                 display: block;
+                background-size: cover;
+                width: 20px;
+                height: 20px;
             }
+              @media #{$mq-md} {
+                padding: 10px 16px 0;
+                height: 60px;
+
+                    .hero-control-btn {
+                        width: 26px;
+                        height: 26px;
+                        margin-left: 12px;
+                    }
+                }
+
         }
 
         .minimize {
-            width: 30px;
-            height: 30px;
-            border-bottom: 3px solid $campaign-red;
+            background-image: url('/media/img/firefox/challenge-the-default/minimize.svg');
         }
 
         .expand {
-            width: 24px;
-            height: 24px;
-            border: 3px solid $campaign-red;
+             background-image: url('/media/img/firefox/challenge-the-default/open.svg');
         }
 
         .close {
             @include image-replaced;
-            width: 36px;
-            height: 36px;
-            position: relative;
             cursor: pointer;
+            background-image: url('/media/img/firefox/challenge-the-default/close.svg');
 
-            &::before {
-                content: "";
-                height: 36px;
-                width: 3px;
-                position: absolute;
-                transform: rotate(-45deg);
-                right: 12px;
-                top: 0;
-                background: $campaign-red;
-            }
-
-            &::after {
-                content: "";
-                height: 36px;
-                width: 3px;
-                position: absolute;
-                transform: rotate(45deg);
-                right: 12px;
-                top: 0;
-                background: $campaign-red;
-            }
         }
     }
 
@@ -136,11 +130,12 @@ $campaign-red: #ff6a75;
 
     .hero-content-wrapper {
         padding: $spacing-md 0 $spacing-2xl;
-        margin: 0 $spacing-lg 0 $spacing-2xl;
+        margin: 0 $spacing-lg;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-gap: $spacing-xl;
+
 
         @media #{$mq-lg} {
             grid-template-columns: 1fr 1fr;
@@ -155,6 +150,12 @@ $campaign-red: #ff6a75;
         grid-column: auto;
         margin-top: 0;
 
+        @media #{$mq-md} {
+            img {
+                width: 475px;
+            }
+        }
+
         @media #{$mq-lg} {
             grid-column: 2;
         }
@@ -165,7 +166,10 @@ $campaign-red: #ff6a75;
 
         @media #{$mq-md} {
             min-width: 440px;
+            max-width: 80%;
         }
+
+
 
         h1 {
             @include font-firefox;
@@ -183,10 +187,23 @@ $campaign-red: #ff6a75;
             margin-bottom: $layout-sm;
         }
 
+        .mzp-c-button {
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .mzp-c-button-download-privacy-link {
+            text-align: left;
+        }
+
         @media #{$mq-md} {
             h1 {
                 @include font-size(64px);
             }
+
+            .mzp-c-button {
+                text-align: left;
+             }
         }
     }
 }
