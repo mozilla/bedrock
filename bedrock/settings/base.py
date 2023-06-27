@@ -1776,6 +1776,9 @@ RELAY_CLIENT_ID = "9ebfe2c2f9ea3c58"
 # URL for Mozilla Relay subscription links
 # ***This URL *MUST* end in a traling slash!***
 RELAY_SUBSCRIPTION_URL = config("RELAY_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+RELAY_PRODUCT_URL = config(
+    "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
+)
 
 # Product ID for Relay subscriptions
 RELAY_EMAIL_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_KEq0LXqs7vysQT" if DEV else "prod_KGizMiBqUJdYoY")
