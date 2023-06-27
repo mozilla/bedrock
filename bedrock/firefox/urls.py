@@ -131,6 +131,15 @@ urlpatterns = (
     page("firefox/welcome/12/", "firefox/welcome/page12.html", active_locales=["en-US", "en-CA", "en-GB"]),
     page("firefox/welcome/13/", "firefox/welcome/page13.html", ftl_files=["firefox/welcome/page13"]),
     page("firefox/welcome/14/", "firefox/welcome/page14.html", ftl_files=["firefox/welcome/page14"]),
+    path(
+        "firefox/welcome/15/",
+        VariationTemplateView.as_view(
+            template_name="firefox/welcome/page15/page15.html",
+            active_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
+            variation_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
+            template_context_variations=["1", "2"],
+        ),
+    ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     # Issue 6604, SEO firefox/new pages

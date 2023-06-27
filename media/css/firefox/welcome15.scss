@@ -1,0 +1,160 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Masthead
+
+.c-page-header {
+    .mzp-l-content {
+        padding-bottom: $spacing-md;
+        padding-top: $spacing-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Primary content
+
+.c-main {
+    text-align: center;
+}
+
+.c-main-logo {
+    border-radius: 100%;
+    margin: 0 auto $layout-md;
+    padding: $spacing-lg;
+}
+
+.c-main-title {
+    @include text-title-md;
+    color: get-theme('title-text-color');
+}
+
+.c-main-tagline {
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md;
+
+    .variation-1 & {
+        margin-top: $spacing-2xl;
+        max-width: $content-md - ($spacing-2xl * 2);
+        text-align: left;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Secondary content
+
+.page-body .mzp-l-content {
+    padding-top: 0;
+}
+
+.mzp-c-picto-image {
+    align-items: center;
+    display: flex;
+    min-height: 210px;
+
+    picture {
+        display: inline-block;
+        margin: 0 auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Utilities
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    padding-bottom: $layout-xl;
+    text-align: center;
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+
+@media (prefers-color-scheme: dark) {
+    #outer-wrapper {
+        background: $color-dark-gray-60;
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .c-main-title,
+    .mzp-c-picto-title {
+        color: get-theme('title-text-color-inverse');
+    }
+
+    .c-main-logo {
+        background-color: $color-white;
+    }
+
+    .c-utilities {
+        @include white-links;
+    }
+
+    .mzp-c-footer.mzp-t-light {
+        @include white-links;
+        background: $color-dark-gray-60;
+        color: $color-white;
+
+        .mzp-c-footer-sections {
+            border-color: $color-dark-gray-30;
+
+            a:hover,
+            a:focus,
+            a:active {
+                text-decoration: underline;
+            }
+        }
+
+        .mzp-c-footer-links-social li {
+            a.twitter {
+                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+            }
+
+            a.mastodon {
+                background-image: url('/media/img/logos/social/mastodon-white.svg');
+            }
+
+            a.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+
+            // bedrock override until icons are added to protocol-assets
+            // https://github.com/mozilla/protocol-assets/issues/84
+            a.linkedin {
+                background-image: url('/media/img/logos/social/linkedin-white.svg');
+            }
+
+            a.tiktok {
+                background-image: url('/media/img/logos/social/tiktok-white.svg');
+            }
+
+            a.spotify {
+                background-image: url('/media/img/logos/social/spotify-white.svg');
+            }
+
+            a:hover,
+            a:focus,
+            a:active {
+                outline-color: $color-white;
+            }
+        }
+
+        .mzp-c-footer-primary-logo a {
+            background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
+        }
+
+        .mzp-c-footer-heading.is-summary button::before {
+            background: $url-image-expand-white top left no-repeat;
+        }
+    }
+}
