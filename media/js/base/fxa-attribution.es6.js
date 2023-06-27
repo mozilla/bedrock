@@ -12,7 +12,7 @@ const _allowedDomains = [
     'https://monitor.firefox.com/',
     'https://getpocket.com/',
     'https://vpn.mozilla.org/',
-    'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
+    'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
     'https://guardian-dev.herokuapp.com/'
 ];
 

@@ -1176,7 +1176,7 @@ CONVERT_PROJECT_ID = "10039-1003350" if DEV else "10039-1003343"
 
 # URL for Mozilla VPN sign-in links
 # ***This URL *MUST* end in a traling slash!***
-VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
+VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
 
 # URL for Mozilla VPN subscription links
 # ***This URL *MUST* end in a traling slash!***

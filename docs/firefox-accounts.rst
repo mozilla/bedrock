@@ -283,7 +283,7 @@ For Mozilla :abbr:`VPN (Virtual Private Network)` links you can also set:
 
 .. code-block:: text
 
-    VPN_ENDPOINT=https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/
+    VPN_ENDPOINT=https://stage.guardian.nonprod.cloudops.mozgcp.net/
     VPN_SUBSCRIPTION_URL=https://accounts.stage.mozaws.net/
 
 .. Note::
