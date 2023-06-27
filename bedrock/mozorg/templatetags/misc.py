@@ -943,9 +943,9 @@ def relay_fxa_button(
     In Template
     -----------
 
-        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
+        {{ relay_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
     """
-    product_url = "https://relay.firefox.com/accounts/fxa/login/?process=login"
+    product_url = settings.RELAY_PRODUCT_URL + "accounts/fxa/login/?process=login"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )
