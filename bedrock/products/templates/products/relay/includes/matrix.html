@@ -85,7 +85,7 @@
         <td>
           <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
-            <a href="https://relay.firefox.com/accounts/fxa/login/?process=login" rel="external noopener" class="mzp-c-button mzp-t-product mzp-t-lg">{{ ftl('plan-matrix-get-relay-cta') }}</a>
+            {{ relay_fxa_button(entrypoint='mozilla.org-relay-landing', button_text=ftl('plan-matrix-get-relay-cta'), class_name="mzp-c-button mzp-t-product mzp-t-lg") }}
           </div>
         </td>
         <td>
@@ -150,7 +150,7 @@
         </ul>
         <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
-            <a href="https://relay.firefox.com/accounts/fxa/login/?process=login" rel="external noopener" class="mzp-c-button mzp-t-product mzp-t-lg">{{ ftl('plan-matrix-get-relay-cta') }}</a>
+            {{ relay_fxa_button(entrypoint='mozilla.org-relay-landing', button_text=ftl('plan-matrix-get-relay-cta'), class_name="mzp-c-button mzp-t-product mzp-t-lg") }}
         </div>
       </li>
       <li class="c-matrix-plan">

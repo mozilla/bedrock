@@ -1150,6 +1150,7 @@ class TestPocketAdjustUrl(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(DEV=False)
 class TestRelayFxAButton(TestCase):
     rf = RequestFactory()
 
