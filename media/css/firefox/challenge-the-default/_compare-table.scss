@@ -74,6 +74,11 @@
             max-width: 150px;
             border: 2.5px solid $color-black;
             font-size: 14px;
+            word-break: break-all;
+
+            @media (min-width: 374px) {
+                word-break: none;
+            }
 
             &[scope='row'].break-word {
                 word-break: break-all;
