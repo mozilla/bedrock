@@ -1,0 +1,387 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$campaign-red: #ff6a75;
+$campaign-pink: #ffbdc5;
+$campaign-mint: #d1ffee;
+$campaign-green: #2ac3a2;
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+
+        @keyframes pop-in {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            35% {
+                opacity: 1;
+                transform: scale(0.2);
+            }
+
+            50% {
+                transform: scale(0.5);
+            }
+
+            65% {
+                transform: scale(0.7);
+            }
+
+            80% {
+                transform: scale(0.9);
+            }
+
+            90% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes close {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            25% {
+                opacity: 0.75;
+                transform: scale(0.9);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.7);
+            }
+
+            65% {
+                transform: scale(0.5)
+            }
+
+            80% {
+                opacity: 0.3;
+                transform: scale(0.3);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes wednesday-circles-mint {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-mint;
+            }
+        }
+
+        @keyframes wednesday-circles-red {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-red;
+            }
+        }
+
+        @keyframes wednesday-circles-pink {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-pink;
+            }
+        }
+
+        .animate-close {
+            animation: .3s ease-out 0s 1 normal forwards running close;
+        }
+
+        .animate-pop-in {
+            animation: .5s ease-out 0s 1 normal forwards running pop-in;
+        }
+
+        .animate-wednesday {
+            .wednesday-circle {
+                &.circle3 {
+                    animation: wednesday-circles-mint 1s infinite;
+                    animation-direction: alternate;
+                }
+
+                &.circle2 {
+                    animation: wednesday-circles-red 1s infinite;
+                    animation-direction: alternate;
+                    animation-delay: 200ms;
+                }
+
+                &.circle1 {
+                    animation: wednesday-circles-pink 1s infinite;
+                    animation-direction: alternate;
+                    animation-delay: 400ms;
+                }
+            }
+        }
+    }
+}
+
+// This CSS animation comes from the studio, that they got from an outside contractor. Thats why it's pretty messy
+
+
+.toggle-1 {
+    animation: toggle-1-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-1-animation {
+    0% {
+        transform: translate(98px, 96px);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    10.333333% {
+        transform: translate(98px, 89px);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    39.333333%,
+    100% {
+        transform: translate(98px, 98px)
+    }
+}
+
+.toggle-2 {
+    animation: toggle-2-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-2-animation {
+    0% {
+        transform: translate(98px, 98px) rotate(14deg);
+        animation-timing-function: cubic-bezier(0.915, 0.02, 0.13, 0.985)
+    }
+
+    10% {
+        transform: translate(98px, 98px) rotate(17deg);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    33.333333%,
+    100% {
+        transform: translate(98px, 98px) rotate(4.7deg)
+    }
+}
+
+.toggle-3 {
+    animation: toggle-3-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-3-animation {
+    0% {
+        transform: translate(-84px, 12px)
+    }
+
+    10% {
+        transform: translate(-84px, 12px);
+        animation-timing-function: cubic-bezier(0.915, 0.015, 0.255, 1.455)
+    }
+
+    33%,
+    100% {
+        transform: translate(-15px, 7px)
+    }
+}
+
+.toggle-4 {
+    animation: toggle-4-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-4-animation {
+    0% {
+        transform: translate(127px, 195px)
+    }
+
+    20% {
+        transform: translate(127px, 195px);
+        animation-timing-function: cubic-bezier(0.915, 0.015, 0.255, 1.455)
+    }
+
+    40% {
+        transform: translate(155px, 195px);
+        animation-timing-function: cubic-bezier(0.99, 0.005, 1, 1)
+    }
+
+    60%,
+    100% {
+        transform: translate(155px, 195px)
+    }
+}
+
+.toggle-5 {
+    animation: toggle-5-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-5-animation {
+    0% {
+        transform: translate(46px, 54px);
+        animation-timing-function: cubic-bezier(0.92, -0.01, 0.03, 0.99)
+    }
+
+    36.666667%,
+    100% {
+        transform: translate(136px, 48px)
+    }
+}
+
+.toggle-6 {
+    animation: toggle-6-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-6-animation {
+    0% {
+        transform: translate(104px, 144px) rotate(33deg)
+    }
+
+    30% {
+        transform: translate(104px, 144px) rotate(33deg);
+        animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99)
+    }
+
+    33.333333% {
+        transform: translate(104px, 144px) rotate(-18deg);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    }
+
+    45%,
+    100% {
+        transform: translate(104px, 144px) rotate(2deg)
+    }
+
+}
+
+.toggle-7 {
+    animation: toggle-7-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-7-animation {
+    0% {
+        opacity: 0
+    }
+
+    33.333333% {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995)
+    }
+
+    34.333333%,
+    100% {
+        opacity: 1
+    }
+}
+
+.toggle-8 {
+    animation: toggle-8-animation 3000ms linear infinite normal forwards
+}
+
+@keyframes toggle-8-animation {
+    0% {
+        transform: translate(60px, 104px) rotate(33deg)
+    }
+
+    33.333333% {
+        transform: translate(60px, 104px) rotate(33deg);
+        animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99)
+    }
+
+    36.666667% {
+        transform: translate(60px, 104px) rotate(-18deg);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    }
+
+    48.333333%,
+    100% {
+        transform: translate(60px, 104px) rotate(2deg)
+    }
+}
+
+.toggle-9 {
+    animation: toggle-9-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-9-animation {
+    0% {
+        opacity: 0
+    }
+
+    36.666667% {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995)
+    }
+
+    37.666667%,
+    100% {
+        opacity: 1
+    }
+}
+
+.toggle-10 {
+    animation: toggle-10-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-10-animation {
+    0% {
+        transform: translate(120px, 52px) rotate(33deg);
+    }
+
+    19% {
+        transform: translate(120px, 52px) rotate(33deg);
+        animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99)
+    }
+
+    30% {
+        transform: translate(120px, 52px) rotate(-18deg);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    }
+
+    41.666667% {
+        transform: translate(120px, 52px) rotate(2deg)
+    }
+
+    100% {
+        transform: translate(120px, 52px) rotate(2deg)
+    }
+}
+
+.toggle-11 {
+    animation: toggle-11-animation 3000ms linear normal forwards
+}
+
+@keyframes toggle-11-animation {
+    0% {
+        opacity: 0
+    }
+
+    23.666667% {
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995)
+    }
+
+    31% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 1
+    }
+}

@@ -1,0 +1,522 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
+
+{% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
+
+{% block page_desc %}
+  Du hast eine Wahl, wenn es um Browser geht! Vorinstalliert ist gut, ausgewählt ist besser.
+  Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine
+  Non-Profit im Rücken.
+{% endblock %}
+{% block page_image %}{{ static('img/firefox/challenge-the-default/ctd-share.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('challenge-the-default') }}
+{% endblock %}
+
+
+{% block sub_navigation %}
+{% endblock %}
+
+{% set cta_group %}
+  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg">Jetzt Firefox wählen</a>
+  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem <br> Mobile Browser</a>
+  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen') }}
+{% endset %}
+
+{% block content %}
+<main class="firefox-home">
+  <div class="ctd-mobile-banner">
+    {{ resp_img(
+      url='img/firefox/challenge-the-default/logo-firefox.svg',
+        optional_attributes={
+          'loading': 'eager',
+          'height': '24',
+          'class': 'ctd-sub-nav-image',
+          'alt': 'Firefox'
+      })
+    }}
+    {{ resp_img(
+      url='img/firefox/challenge-the-default/logo-ctd.svg',
+        optional_attributes={
+          'loading': 'eager',
+          'height': '24',
+          'class': 'ctd-sub-nav-image mobile',
+          'alt': 'Challenge the default'
+      })
+    }}
+  </div>
+  <section class="ctd-hero-wrapper">
+    <div class="hidden hero-easter-egg">
+      <svg class="toggle-easter-egg" id="elBstU1fviJ1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="-17 -17 230 230" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+        <g class="toggle-1" transform="translate(98.00007,96.099044)">
+          <g transform="translate(-98.00007,-98.000055)">
+            <g class="toggle-2" transform="translate(97.999979,98) rotate(14.346138)">
+              <g transform="translate(-98.000017,-97.833804)">
+                <g transform="matrix(.99505-.099378 0.099378 0.99505-9.072467 10.206868)">
+                  <rect width="181.107" height="181.107" rx="20.0966" ry="20.0966"
+                    transform="matrix(.997642-.068631 0.068631 0.997642 1.279533 13.708624)" fill="#2ac3a2" stroke="#000"
+                    stroke-width="2.4" />
+                  <line x1="17.6598" y1="56.5235" x2="170.985" y2="45.9758" transform="translate(.000003 0.000024)"
+                    fill="none" stroke="#000" stroke-width="2.4" />
+                  <line x1="23.9645" y1="148.158" x2="177.289" y2="137.611" transform="translate(.259053-.035321)" fill="none"
+                    stroke="#000" stroke-width="2.4" />
+                  <line x1="174.282" y1="93.8886" x2="20.9568" y2="104.436" transform="translate(.000003 0.000024)"
+                    fill="none" stroke="#000" stroke-width="2.4" />
+                  <g class="toggle-3" transform="translate(-84.259661,12.676931)">
+                    <circle r="21.9131" transform="rotate(-3.93538) translate(126.743,141.99)" fill="#d1ffee" stroke="#000"
+                      stroke-width="2.4" />
+                  </g>
+                  <g class="toggle-4" transform="translate(127.223245,195.169663)">
+                    <circle r="21.9131" transform="rotate(176.065003) translate(71.5074,100.055)" fill="#d1ffee" stroke="#000"
+                      stroke-width="2.4" />
+                  </g>
+                  <g class="toggle-5" transform="translate(46.506363,54.640314)">
+                    <g transform="translate(-120.438008,-50.353203)">
+                      <circle r="21.9131" transform="matrix(.997642-.068631 0.068631 0.997642 120.438 50.3532)" fill="#d1ffee"
+                        stroke="#000" stroke-width="2.4" />
+                      <g class="toggle-6" transform="translate(104.782829,144.81797) rotate(33.095676)">
+                        <g class="toggle-7" transform="translate(-119.898091,-51.813541)" opacity="0">
+                          <g>
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 115.0115 45.704278)" />
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 124.5935 45.046078)" />
+                            <path d="M133.644,45.5344c.524,7.6079-5.219,14.1995-12.827,14.7229s-14.2-5.2197-14.723-12.8276"
+                              transform="translate(.0125 0.091678)" fill="none" stroke="#000" stroke-width="2.4" />
+                          </g>
+                        </g>
+                      </g>
+                      <g class="toggle-8" transform="translate(60.739709,104.407171) rotate(33.095676)">
+                        <g class="toggle-9" transform="translate(-119.898091,-51.813541)" opacity="0">
+                          <g>
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 115.0115 45.704278)" />
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 124.5935 45.046078)" />
+                            <path d="M133.644,45.5344c.524,7.6079-5.219,14.1995-12.827,14.7229s-14.2-5.2197-14.723-12.8276"
+                              transform="translate(.0125 0.091678)" fill="none" stroke="#000" stroke-width="2.4" />
+                          </g>
+                        </g>
+                      </g>
+                      <g class="toggle-10"transform="translate(119.898091,51.813541) rotate(33.095676)">
+                        <g class="toggle-11" transform="translate(-119.898091,-51.813541)" opacity="0">
+                          <g>
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 115.0115 45.704278)" />
+                            <circle r="1.80102" transform="matrix(.997642-.068631 0.068631 0.997642 124.5935 45.046078)" />
+                            <path d="M133.644,45.5344c.524,7.6079-5.219,14.1995-12.827,14.7229s-14.2-5.2197-14.723-12.8276"
+                              transform="translate(.0125 0.091678)" fill="none" stroke="#000" stroke-width="2.4" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <p>Du gehst den Dingen auf den Grund. Gut so!</p>
+    </div>
+    <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
+      <svg class="svg" width="0" height="0">
+        <clipPath id="hero-clip-path-mobile" clipPathUnits="objectBoundingBox">
+          <path d="M0.028,0 H0.992 L1,1 L0,0.973 V0.329 L0.028,0"></path>
+        </clipPath>
+        <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox">
+          <path d="M0.011,0.985 L0,0 L1,0.02 V0.663 L0.968,1 L0.011,0.985"></path>
+        </clipPath>
+      </svg>
+      <div class="hero-wrapper">
+        <div class="c-hero-top">
+          <div class="c-hero-top-images">
+              {{ resp_img(
+                url='img/firefox/challenge-the-default/logo-firefox.svg',
+                optional_attributes={
+                  'loading': 'eager',
+                  'alt': 'Firefox',
+                })
+              }}
+              {{ resp_img(
+                url='img/firefox/challenge-the-default/logo-ctd.svg',
+                optional_attributes={
+                  'loading': 'eager',
+                  'alt': 'Challenge the default'
+                })
+              }}
+          </div>
+          <div class="c-hero-top-controls" aria-hidden="true">
+              <span class="hero-control-btn minimize"></span>
+              <span class="hero-control-btn expand"></span>
+              <button type="button" class="hero-control-btn close">close</button>
+          </div>
+        </div>
+        <div class="hero-content-wrapper">
+          <div class="c-hero-text">
+            <h1>Der Browser, den du selber wählst</h1>
+            <p>Wenn du Firefox wählst, triffst du eine bewusste Entscheidung, anstatt einfach das Erstbeste zu nehmen. Besserer
+          Datenschutz, mehr Transparenz, und ein gesünderes Web – deine Entscheidung.</p>
+          {{ cta_group }}
+          </div>
+          {{ picture(
+              url='img/firefox/challenge-the-default/hero-image-mobile.png',
+              sources=[
+                {
+                  'media': '(max-width: 1023px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/hero-image-mobile.png': 'default'
+                  }
+                },
+                {
+                  'media': '(min-width: 1024px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/hero-image-desktop.png': 'default'
+                  }
+                },
+              ],
+              optional_attributes={
+                'loading': 'eager',
+                'class': 'c-hero-image',
+                'alt': 'Image of a seagull sitting on a no birds allowed sign'
+              }
+          )}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="mzp-l-content mzp-t-content-xl c-ctd-features">
+      <h2>Unsere <br>Lieblingsfeatures</h2>
+      <ul class="mzp-l-columns mzp-t-columns-four">
+        {% call picto(
+          base_el='li',
+          title='Nahtloses Browsen',
+          image=resp_img(
+          url='img/firefox/challenge-the-default/cursor.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+            }
+          ),
+          body=True,
+        ) %}
+          <p>Hab offene Tabs und Passwörter griffbereit auf all deinen Geräten – wenn du das willst.</p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title='Einfaches Multitasking',
+          image=resp_img(
+            url='img/firefox/challenge-the-default/screen.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+        ) %}
+          <p>Schaue Videos in einem Pop-up-Fenster einfach weiter, während du browst.</p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title='Non-Profit-Power*',
+          image=resp_img(
+            url='img/firefox/challenge-the-default/toggle.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+        )%}
+          <p>Firefox wird von der Mozilla Foundation unterstützt und stellt Menschen über Profite.</p>
+          <small>*Wir wissen, dass das kein Feature ist, aber hier machen wir die Regeln. :)</small>
+          </p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title='Schnelles Bearbeiten von PDFs',
+          image=resp_img(
+            url='img/firefox/challenge-the-default/input.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+        )%}
+          <p>Bearbeite PDFs ohne Umwege direkt im Browser.</p>
+        {% endcall %}
+      </ul>
+    </section>
+
+    <section class="c-ctd-toggles" aria-hidden="true">
+      <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
+        <div class="toggle-grid small">
+            {% for element in range(4) %}
+              <label class="toggle" for="toggle-top-{{ loop.index }}">
+                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+                <span class="toggle-display"></span>
+              </label>
+            {% endfor %}
+            <label class="toggle middle" for="toggle-middle">
+              <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
+              <span class="toggle-display"></span>
+            </label>
+            {% for element in range(4) %}
+              <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+                <span class="toggle-display"></span>
+              </label>
+            {% endfor %}
+        </div>
+        <div class="toggle-grid medium">
+          {% for element in range(7) %}
+          <label class="toggle" for="toggle-top-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor %}
+          <label class="toggle middle" for="toggle-middle">
+            <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% for element in range(7) %}
+          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor %}
+        </div>
+        <div class="toggle-grid large">
+          {% for element in range(10) %}
+          <label class="toggle" for="toggle-top-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor %}
+          <label class="toggle middle" for="toggle-middle">
+            <input type="checkbox" name="toggle-middle" id="toggle-middle" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% for element in range(10) %}
+          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="c-ctd-comparison">
+      <div class="mzp-l-content mzp-t-content-lg">
+        <div class="c-ctd-comparison-text">
+          <h2>Firefox macht den Unterschied</h2>
+          <p>Kein Fan von viel Text? Kein Problem! Hier siehst du auf einen Blick, warum Firefox die richtige Wahl für dich ist.</p>
+        </div>
+
+        <table class="mzp-u-data-table comparison-table" data-selected-browser="chrome">
+          <thead>
+            <tr>
+              <td class="empty"></td>
+              <th scope="col" class="firefox">Firefox</th>
+              <th scope="col" class="safari">Safari</th>
+              <th scope="col" class="chrome">Chrome</th>
+              <th scope="col" class="edge">Edge</th>
+              <th scope="col" class="mobile-select-wrapper">
+                <select class="mobile-select">
+                  <option value="chrome">Chrome</option>
+                  <option value="safari">Safari</option>
+                  <option value="edge">Edge</option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Automatisches Ausfüllen von Passwörtern</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
+            </tr>
+            <tr>
+              <th scope="row" class="break-word">Suchmaschinenoptionen</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
+            </tr>
+            <tr>
+              <th scope="row">Synchronisieren zwischen Geräten</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
+            </tr>
+            <tr>
+              <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="chrome"></td>
+              <td class="edge" aria-label="checkmark">&#x2713;</td>
+            </tr>
+            <tr>
+              <th scope="row">Von einer Non-Profit unterstützt</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
+            </tr>
+            <tr>
+              <th scope="row">Sorgt sich um deine Privatsphäre</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
+            </tr>
+            <tr>
+              <th scope="row">Hat keine Shareholder mit eigenen Interessen</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
+            </tr>
+            <tr>
+              <th scope="row">Liebt das Internet und hat ein süßes Logo</th>
+              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="safari"></td>
+              <td class="chrome"></td>
+              <td class="edge"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div aria-hidden="true">
+          <button class="kitten-button">=^._.^=</button>
+        </div>
+        <div class="comparison-cta">
+          <h3>Du entscheidest, was Standard ist</h3>
+          {{ cta_group }}
+        </div>
+      </div>
+    </section>
+      <div class="mzp-u-modal-content kitten-modal">
+        <div class="kitten-modal-grid">
+          <h2>Nicht alle Wege führen nach Chrome</h2>
+
+            {{ picture(
+              url='img/firefox/challenge-the-default/laser-cat-mobile.png',
+              sources=[
+                {
+                  'media': '(max-width: 767px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/laser-cat-mobile.png': 'default'
+                  }
+                },
+                {
+                  'media': '(min-width: 768px)',
+                  'srcset': {
+                    'img/firefox/challenge-the-default/laser-cat-desktop.png': 'default'
+                  }
+                },
+              ],
+              optional_attributes={
+                'class': 'laser-cat'
+              }
+            )}}
+        </div>
+      </div>
+
+  <section class="c-ctd-credentials">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2>Das ist Firefox</h2>
+      <details class="mzp-c-details">
+        <summary>
+          <h3>Kompromisslos privat</h3>
+        </summary>
+        <p>Deine Daten gehören dir. Und mit Firefox bleibt das auch so. Wir verkaufen deine persönlichen Daten nicht und vieles
+        speichern wir nicht mal.</p>
+      </details>
+      <details class="mzp-c-details">
+        <summary>
+          <h3>Non-Profit Rückenwind</h3>
+        </summary>
+        <p>Firefox wird von der Mozilla Foundation unterstützt und folgt der Mission, das Internet besser zu machen, statt hohen
+        Profiten hinterher zu jagen.</p>
+      </details>
+      <details class="mzp-c-details">
+        <summary>
+          <h3>Verändern statt beschweren</h3>
+        </summary>
+        <p>Wir setzen uns für eine bessere Gesetzgebung ein und arbeiten mit Regierungsorganisationen zusammen daran, dass Menschen
+        geschützt werden und die Branche fair bleibt.</p>
+      </details>
+      <details class="mzp-c-details">
+        <summary>
+          <h3>Zusammen ist man weniger allein</h3>
+        </summary>
+        <p>Firefox arbeitet mit einer globalen Community zusammen, die uns dabei unterstützt, unsere Produkte besser und das
+        Internet sicherer und schöner für alle zu machen.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="c-animated-button" aria-hidden="true">
+    <div class="mzp-l-content mzp-t-content-nospace">
+      <svg class="wednesday-bg" width="1440" height="246" viewBox="0 0 1440 246" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="719.993" cy="123.001" rx="797.262" ry="785.044" fill="#2AC3A2" />
+        <ellipse class="wednesday-circle pink circle1" cx="719.996" cy="123" rx="604" ry="595" fill="#FFBDC5" />
+        <circle class="wednesday-circle red circle2" cx="719.996" cy="123" r="476" fill="#FF6A75" />
+        <circle class="wednesday-circle light-green circle3" cx="719.996" cy="123" r="372" fill="#D1FFEE" />
+        <circle cx="719.996" cy="123" r="283" fill="#2AC3A2" />
+      </svg>
+      <button class="animated-button">
+          {{ resp_img(
+            url='img/firefox/challenge-the-default/logo-ctd.svg',
+            optional_attributes={
+              'loading': 'eager',
+              'width': '263',
+              'height': '96'
+            })
+          }}
+      </button>
+      {{ resp_img(
+          url='img/firefox/challenge-the-default/is-wednesday.png',
+          optional_attributes={
+            'class': 'wednesday-lizard is-wednesday',
+            'alt': "It's Wednesday my dudes"
+          }
+      )}}
+      {{ resp_img(
+          url='img/firefox/challenge-the-default/is-not-wednesday.png',
+          optional_attributes={
+            'class': 'wednesday-lizard not-wednesday',
+            'alt': "It's not Wednesday my dudes"
+          }
+      )}}
+    </div>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
+    <h3>Mach mit!</h3>
+    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer">werde Teil unserer Community</a>.</p>
+    {{ cta_group }}
+    <p class="text-bottom mobile">Powered by Mozilla <br>Aus Liebe zum Web seit 1998</p>
+    <p class="text-bottom desktop">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('challenge-the-default') }}
+{% endblock %}

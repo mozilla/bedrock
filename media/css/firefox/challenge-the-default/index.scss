@@ -1,0 +1,328 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+$font-path: '/media/protocol/fonts';
+
+@import "./toggle";
+@import "./animations";
+@import "./hero";
+@import "./compare-table";
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+
+$campaign-red: #ff6a75;
+$campaign-pink: #ffbdc5;
+$campaign-mint: #d1ffee;
+$campaign-green: #2ac3a2;
+
+// fonts to be included for CTD and should be removed when the page is no longer live
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: 600;
+    src:
+        url('/media/fonts/challenge-the-default/Metropolis-SemiBold.woff2') format('woff2'),
+        url('/media/fonts/challenge-the-default/Metropolis-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: 800;
+    src:
+        url('/media/fonts/challenge-the-default/Metropolis-ExtraBold.woff2') format('woff2'),
+        url('/media/fonts/challenge-the-default/Metropolis-ExtraBold.woff') format('woff');
+}
+
+
+// show buttons depending on browser state:
+// - If using firefox:
+//   - if set as default: show link to download the mobile browser
+//   -  if not set as default: link to set-as-default/thanks
+// if not firefox:
+//   - show download_button_thanks
+
+.mzp-c-button.is-not-default, .mzp-c-button.is-default {
+    display: none;
+}
+
+// have to re-define the default styles from protocol since mzp-t-product is baked into the download-thanks template
+.c-button-download-thanks .mzp-c-button.not-firefox {
+    background-color: $color-black;
+     border: 2px solid $color-black;
+
+    &:focus {
+        border-color: $button-border-color-focus;
+        box-shadow: $field-focus-ring;
+        outline-offset: 1px;
+    }
+
+    &:hover {
+        background-color: $color-marketing-gray-20;
+        border-color: $color-black;
+        box-shadow: none;
+        color: $color-black;
+    }
+
+    &:active {
+        background-color: $color-marketing-gray-20;
+        border-color: $color-marketing-gray-70;
+        color: $color-black;
+    }
+}
+
+html.is-firefox {
+    .c-button-download-thanks {
+        display: none;
+    }
+
+    main.set-default-supported {
+        .mzp-c-button.is-not-default {
+            display: inline-block;
+        }
+
+        &.is-firefox-default {
+            .mzp-c-button.is-not-default {
+                display: none;
+            }
+
+            .mzp-c-button.is-default {
+                display: inline-block;
+            }
+        }
+    }
+
+    main:not(.set-default-supported) {
+        .mzp-c-button.is-default {
+                display: inline-block;
+        }
+    }
+}
+
+.ctd-mobile-banner {
+    padding: $spacing-sm $spacing-lg;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+.ctd-sub-nav-image {
+    height: 40px;
+    width: auto;
+}
+
+.c-ctd-features {
+    background-color: $color-white;
+
+    h2 {
+        @include font-firefox;
+        @include font-size(40px);
+        font-weight: 800;
+        word-break: break-word;
+        margin-bottom: $spacing-lg;
+        hyphens: auto;
+    }
+
+    p {
+        @include font-firefox;
+        color: $color-marketing-gray-70;
+        font-weight: 600;
+    }
+
+    @media #{$mq-md} {
+        h2 {
+            hyphens: none;
+            word-break: normal;
+            margin-bottom: $layout-lg;
+            @include font-size(64px);
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+         .mzp-c-picto {
+             opacity: 0;
+         }
+    }
+}
+
+.c-ctd-toggles {
+    background-color: $color-black;
+
+    &.all-checked {
+        background-color: $campaign-green;
+    }
+
+    .toggle-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        column-gap: $spacing-xl;
+        row-gap: $layout-lg;
+
+        &.large, &.medium {
+            display: none;
+        }
+
+        @media #{$mq-md} {
+            grid-template-columns: repeat(5, 1fr);
+
+            &.medium {
+                display: grid;
+            }
+
+            &.small, &.large {
+                display: none;
+            }
+        }
+
+        @media #{$mq-lg} {
+             grid-template-columns: repeat(7, 1fr);
+
+             &.large {
+                display: grid;
+             }
+
+             &.small, &.medium {
+                display: none;
+             }
+        }
+    }
+}
+
+.c-ctd-credentials {
+    background: $color-black;
+
+    h2 {
+        @include font-size(46px);
+        font-weight: 800;
+        color: $color-white;
+        text-align: center;
+
+        @media #{$mq-md} {
+             @include font-size(90px);
+        }
+    }
+
+    .mzp-c-details {
+        background-color: $color-white;
+        padding: $spacing-lg $spacing-md $spacing-lg $spacing-lg;
+        border-radius: $border-radius-lg;
+        margin-top: $spacing-lg;
+
+        h3 {
+            margin-bottom: 0;
+            @include font-size(18px);
+
+            @media #{$mq-md} {
+                @include font-size(22px);
+            }
+        }
+
+        p {
+            @include font-firefox;
+            color: $color-marketing-gray-70;
+            font-weight: 600;
+            margin-top: $spacing-xl;
+
+        }
+    }
+}
+
+.c-animated-button {
+    background-color: $campaign-green;
+    text-align: center;
+    position: relative;
+    height: 246px;
+
+    .mzp-l-content {
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .animated-button {
+        background: none;
+        border: 0;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+
+        .wednesday-circle {
+            fill: $campaign-green;
+        }
+    }
+
+    .wednesday-lizard {
+        display: none;
+        position: absolute;
+        max-width: 90%;
+
+
+        @media #{$mq-md} {
+            max-width: 440px;
+        }
+    }
+
+    &.animate-wednesday {
+        .animated-button {
+            display: none;
+        }
+    }
+}
+
+.c-ctd-footer {
+    text-align: center;
+    padding-top: $layout-lg;
+
+    h3 {
+        @include font-size(60px);
+        font-weight: 800;
+        margin-bottom: $spacing-md;
+    }
+
+    p {
+        @include font-firefox;
+        @include font-size(20px);
+        font-weight: 600;
+        max-width: 475px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .text-bottom {
+        @include font-size(14px);
+        margin-top: $layout-xl;
+
+        &.desktop {
+            display: none;
+        }
+
+        @media #{$mq-lg} {
+            &.mobile {
+                display: none;
+            }
+
+            &.desktop {
+                display: block;
+            }
+        }
+    }
+}
