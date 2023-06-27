@@ -111,9 +111,10 @@ $campaign-red: #ff6a75;
 
         .close {
             @include image-replaced;
-            cursor: pointer;
             background-image: url('/media/img/firefox/challenge-the-default/close.svg');
-
+            background-repeat: no-repeat;
+            background-size: contain;
+            cursor: pointer;
         }
     }
 

@@ -128,7 +128,7 @@ html.is-firefox {
         @include font-firefox;
         @include font-size(40px);
         font-weight: 800;
-        word-break: break-word;
+        white-space: nowrap;
         margin-bottom: $spacing-lg;
         hyphens: auto;
     }
