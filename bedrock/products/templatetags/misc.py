@@ -365,7 +365,7 @@ def relay_subscribe_link(
         {{ relay_subscribe_link(
             entrypoint=_utm_source,
             link_text=ftl('plan-matrix-sign-up'),
-            product=product,
+            product='relay-email',
             plan='monthly',
             class_name='mzp-c-button mzp-t-product mzp-t-lg c-matrix-footer-button c-matrix-footer-button-monthly',
             country_code=country_code,
@@ -406,7 +406,7 @@ def relay_subscribe_link(
 
 @library.global_function
 @jinja2.pass_context
-def relay_monthly_price(ctx, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None, product=RELAY_PRODUCT):
+def relay_monthly_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
     """
     Render a localized string displaying a Relay plan's monthly plan.
 
@@ -416,9 +416,10 @@ def relay_monthly_price(ctx, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=N
     In Template
     -----------
 
-        {{ relay_monthly_price(country_code=country_code,
+        {{ relay_monthly_price( product='relay-email',
+                             country_code=country_code,
                              lang=LANG,
-                             product='relay-email') }}
+                            ) }}
     """
 
     available_plans = _relay_get_plans(country_code, lang, product)
@@ -433,7 +434,7 @@ def relay_monthly_price(ctx, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=N
 
 @library.global_function
 @jinja2.pass_context
-def relay_total_price(ctx, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None, product=RELAY_PRODUCT):
+def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
     """
     Render a localized string displaying a Relay plan's total price.
 
