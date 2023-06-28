@@ -1770,6 +1770,9 @@ RELAY_MAIL_DOMAIN = "mozmail.com"
 # Relay, number of email addresses include in the free plan
 RELAY_MAX_NUM_FREE_ALIASES = 5
 
+# Bundle guarantee period
+RELAY_VPN_BUNDLE_GUARANTEE = 30
+
 # VPN client ID for referral parameter tracking (issue 10811)
 RELAY_CLIENT_ID = "9ebfe2c2f9ea3c58"
 
@@ -1783,8 +1786,9 @@ RELAY_PRODUCT_URL = config(
 # Product ID for Relay subscriptions
 RELAY_EMAIL_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_KEq0LXqs7vysQT" if DEV else "prod_KGizMiBqUJdYoY")
 RELAY_PHONE_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_LviM2I0paxH1DZ" if DEV else "prod_KGizMiBqUJdYoY")
+RELAY_VPN_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
 
-# Relay subscription plan IDs by currency/language.
+# Relay email subscription plan IDs by currency/language
 RELAY_EMAIL_PLAN_ID_MATRIX = {
     "chf": {  # Swiss franc
         "de": {  # German
@@ -1949,6 +1953,8 @@ RELAY_EMAIL_PLAN_ID_MATRIX = {
         },
     },
 }
+
+# Relay email map countries to languages
 RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
     # Austria
     "AT": {
@@ -2024,7 +2030,7 @@ RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
     },
 }
 
-# Countries where Relay Email Masking is available.
+# Countries where Relay Email Masking is available
 RELAY_EMAIL_COUNTRY_CODES = [
     "CA",  # Canada
     "GB",  # United Kingdom of Great Britain and Northern Island
@@ -2046,6 +2052,7 @@ RELAY_EMAIL_COUNTRY_CODES = [
     "SE",  # Sweden
 ]
 
+# Relay phone subscription plan IDs by currency/language
 RELAY_PHONE_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
@@ -2063,6 +2070,7 @@ RELAY_PHONE_PLAN_ID_MATRIX = {
     },
 }
 
+# Relay phone subscription map countries to languages
 RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING = {
     "US": {
         "default": RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
@@ -2072,22 +2080,13 @@ RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING = {
     },
 }
 
-# Countries where Relay Phone Masking is available.
+# Countries where Relay Phone Masking is available
 RELAY_PHONE_COUNTRY_CODES = [
     "CA",  # Canada
     "US",  # United States of America
 ]
 
-
-# RELAY / VPN BUNDLE ============================================================================
-
-# Bundle guarantee period
-RELAY_VPN_BUNDLE_GUARANTEE = 30
-
-# Product ID for VPN & Relay bundle subscriptions.
-RELAY_VPN_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
-
-# VPN & Relay bundle plan IDs by currency/language.
+# Relay VPN bundle plan IDs by currency/language
 RELAY_VPN_BUNDLE_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
@@ -2096,19 +2095,12 @@ RELAY_VPN_BUNDLE_PLAN_ID_MATRIX = {
                 "price": "6.99",
                 "currency": "USD",
                 "saving": 0.4,
-                "analytics": {
-                    "brand": "vpn",
-                    "name": "vpn-relay",
-                    "currency": "USD",
-                    "discount": "83.88",
-                    "price": "83.88",
-                    "variant": "yearly",
-                },
             },
         }
     },
 }
 
+# Relay VPN bundle map countries to languages
 RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING = {
     "US": {
         "default": RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
@@ -2118,8 +2110,7 @@ RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING = {
     },
 }
 
-# Countries where VPN & Relay bundle is available.
-# Phone masking is only supported in these countries.
+# Countries where Relay & VPN bundle is available
 RELAY_VPN_BUNDLE_COUNTRY_CODES = [
     "CA",  # Canada
     "US",  # United States of America
