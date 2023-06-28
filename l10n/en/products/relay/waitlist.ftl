@@ -26,7 +26,7 @@ waitlist-privacy-policy-agree-2 = By clicking “{ waitlist-submit-label-2 }”,
 waitlist-privacy-policy-use = Your information will only be used to notify you about { -brand-name-firefox-relay-premium } availability.
 waitlist-privacy-policy-use-phone = Your information will only be used to notify you when phone masking is available in your area.
 waitlist-privacy-policy-use-bundle = Your information will only be used to notify you about { -brand-name-relay } + { -brand-name-vpn } bundle availability.
-waitlist-subscribe-success-title = Thanks! You're on the list
+waitlist-subscribe-success-title = Thanks! You’re on the list
 # Variables:
 #   $product (string) one of the following three options:
 #      - { -brand-name-relay-premium }
