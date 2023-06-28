@@ -1689,6 +1689,24 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-115-na-win7.js"
+      ],
+      "name": "firefox_whatsnew_115_na_win7"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-na-windows.scss"
+      ],
+      "name": "firefox_whatsnew_115_na_windows"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-na-addons.scss"
+      ],
+      "name": "firefox_whatsnew_115_na_addons"
+    },
+    {
+      "files": [
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
