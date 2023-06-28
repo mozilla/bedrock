@@ -55,6 +55,8 @@ $campaign-green: #2ac3a2;
     display: none;
 }
 
+
+
 // have to re-define the default styles from protocol since mzp-t-product is baked into the download-thanks template
 .c-button-download-thanks .mzp-c-button.not-firefox {
     background-color: $color-black;
@@ -85,6 +87,16 @@ html.is-firefox {
         display: none;
     }
 
+    .c-hero-text {
+        p.is-firefox {
+            display: block;
+        }
+
+        p.not-firefox {
+            display: none;
+        }
+    }
+
     main.set-default-supported {
         .mzp-c-button.is-not-default {
             display: inline-block;
@@ -104,6 +116,18 @@ html.is-firefox {
     main:not(.set-default-supported) {
         .mzp-c-button.is-default {
                 display: inline-block;
+        }
+    }
+}
+
+html:not(.is-firefox) {
+     .c-hero-text {
+        p.is-firefox {
+            display: none;
+        }
+
+        p.not-firefox {
+            display: block;
         }
     }
 }
@@ -258,6 +282,8 @@ html.is-firefox {
         border: 0;
         cursor: pointer;
         position: absolute;
+        width: 400px;
+        height: 200px;
     }
 
     svg {

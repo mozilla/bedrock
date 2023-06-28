@@ -58,7 +58,11 @@ $campaign-red: #ff6a75;
 
             img {
                 max-height: 100%;
-                margin-right: 20px;
+                margin-right: -20px;
+            }
+
+            .ctd-animated-logo {
+                width: 200px;
             }
         }
 

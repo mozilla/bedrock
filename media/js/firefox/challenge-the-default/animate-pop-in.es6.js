@@ -22,9 +22,18 @@ function createObserver() {
                         entry.target.classList.add('animate-slide');
                         input.checked = true;
                     }, 250);
+                } else if (
+                    entry.target.classList.contains('ctd-animated-logo')
+                ) {
+                    entry.target.classList.add('animate-active');
                 } else {
                     entry.target.classList.add('animate-pop-in');
                 }
+            } else if (
+                !entry.isIntersecting &&
+                entry.target.classList.contains('ctd-animated-logo')
+            ) {
+                entry.target.classList.remove('animate-active');
             }
         });
     });
@@ -52,6 +61,13 @@ function init() {
         // add hero section (will this work? who knows!)
         const hero = document.querySelector('.hero-wrapper');
         observer.observe(hero);
+
+        document
+            .querySelectorAll('.ctd-animated-logo')
+            .forEach(function (logo) {
+                observer.observe(logo);
+            });
+        // add animated logo to only animate while in view
     }
 }
 
