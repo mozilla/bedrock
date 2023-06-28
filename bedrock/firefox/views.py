@@ -418,7 +418,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx114-en-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-115-vpn"],
         "firefox/whatsnew/whatsnew-fx115-eu-ctd-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-eu-mobile-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html": ["firefox/whatsnew/whatsnew"],
@@ -510,9 +510,13 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("115."):
-            if locale in ["en-US", "en-CA"]:
+            if locale.startswith("en-"):
                 if experience == "windows":
                     template = "firefox/whatsnew/whatsnew-fx115-na-windows.html"
+                elif locale == "en-GB":
+                    template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
+                elif country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
                 elif switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI:
                     template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
                 else:
@@ -523,10 +527,6 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/whatsnew-fx115-eu-ctd-de.html"
             elif locale == "fr":
                 template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-fr.html"
-            elif locale == "en-GB":
-                template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
-            elif locale.startswith("en-") and country == "GB":
-                template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("114."):
