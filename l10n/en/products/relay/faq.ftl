@@ -44,7 +44,7 @@ faq-question-subdomain-characters-question = What characters can I use to create
 faq-question-subdomain-characters-answer-v2 = You can only use lower-case English letters, numbers, and hyphens to create a subdomain.
 faq-question-browser-support-question = Can I use { -brand-name-relay } on other browsers or my mobile device?
 faq-question-browser-support-answer-2 = Yes, you can generate { -brand-name-relay } masks on other browsers or mobile devices simply by logging in to your { -brand-name-relay } dashboard.
-faq-question-longevity-question = What happens if Mozilla shuts down the { -brand-name-firefox-relay } service?
+faq-question-longevity-question = What happens if { -brand-name-mozilla } shuts down the { -brand-name-firefox-relay } service?
 faq-question-longevity-answer-2 = We will give you advance notice that you need to change the email address of any accounts that are using { -brand-name-relay } email masks.
 faq-question-mozmail-question-2 = Why did my email masks start to use the domain “mozmail.com?”
 faq-question-mozmail-answer-2 = We made the switch from “relay.firefox.com” to “mozmail.com” in order to make it possible to get a custom email subdomain, such as mask@yourdomain.mozmail.com. Custom email subdomains, available to { -brand-name-relay-premium } subscribers, allow you to generate easier-to-remember email masks.
@@ -80,8 +80,8 @@ faq-question-bulk-trackerremoval-answer = You can only turn tracker removal on a
 faq-question-trackerremoval-breakage-question = Why do my emails look broken?
 faq-question-trackerremoval-breakage-answer-2 = Sometimes removing trackers may cause your email to look broken because the trackers are often contained within images and links. When the tracker is removed, the email looks like it’s been formatted wrong because images are missing. This can’t be fixed for emails you’ve already received. If this is preventing you from reading your emails properly, turn off tracker removal.
 
-
 ## Frequently Asked Questions about Phone plans
+
 phone-masking-faq-question-what-is = What is a phone number mask?
 phone-masking-faq-answer-what-is = Similar to an email mask, a phone number mask is a phone number that can forward texts and calls to your true phone number without revealing what your true number is to the person calling or texting you.
 
