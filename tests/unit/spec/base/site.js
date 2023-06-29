@@ -118,7 +118,7 @@ describe('site.js', function () {
         });
 
         it('should identify iPadOS', function () {
-            window.navigator.standalone = sinon.stub();
+            window.ontouchstart = sinon.stub();
             expect(window.site.getPlatform('foo', 'MacIntel')).toBe('ios');
         });
 
