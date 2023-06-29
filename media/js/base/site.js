@@ -27,7 +27,7 @@
                 pf.indexOf('iPhone') !== -1 ||
                 pf.indexOf('iPad') !== -1 ||
                 pf.indexOf('iPod') !== -1 ||
-                (pf.indexOf('MacIntel') !== -1 && 'standalone' in navigator)
+                (pf.indexOf('MacIntel') !== -1 && 'ontouchstart' in window)
             ) {
                 // iPadOS
                 return 'ios';
