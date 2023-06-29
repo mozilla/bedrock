@@ -956,6 +956,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome15.scss"
+      ],
+      "name": "firefox_welcome_page15"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -1350,6 +1356,12 @@
         "js/firefox/welcome/welcome14.js"
       ],
       "name": "firefox_welcome_page14"
+    },
+    {
+      "files": [
+        "js/firefox/welcome/welcome15-experiment.es6.js"
+      ],
+      "name": "firefox_welcome_page15_experiment"
     },
     {
       "files": [

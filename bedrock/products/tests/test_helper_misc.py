@@ -1231,12 +1231,14 @@ class TestVPNSaving(TestCase):
 class TestVPNProductReferralLink(TestCase):
     rf = RequestFactory()
 
-    def _render(self, referral_id, page_anchor, link_text, class_name, optional_attributes):
+    def _render(self, referral_id="", link_to_pricing_page=False, page_anchor="", link_text=None, class_name=None, optional_attributes=None):
         with self.activate("en-US"):
             req = self.rf.get("/")
             req.locale = "en-US"
+
             return render(
-                f"{{{{ vpn_product_referral_link('{referral_id}', '{page_anchor}', '{link_text}', '{class_name}', {optional_attributes}) }}}}",
+                f"""{{{{ vpn_product_referral_link('{referral_id}', {link_to_pricing_page}, '{page_anchor}',
+                                                   '{link_text}', '{class_name}', {optional_attributes}) }}}}""",
                 {"request": req},
             )
 
@@ -1251,6 +1253,22 @@ class TestVPNProductReferralLink(TestCase):
         )
         expected = (
             '<a href="/en-US/products/vpn/#pricing" class="mzp-c-button js-fxa-product-referral-link '
+            'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
+            'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_product_referral_link_pricing_page(self):
+        """Should return expected markup when linking to pricing page"""
+        markup = self._render(
+            referral_id="navigation",
+            link_to_pricing_page=True,
+            link_text="Get Mozilla VPN",
+            class_name="mzp-t-product mzp-t-secondary mzp-t-md",
+            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
+        )
+        expected = (
+            '<a href="/en-US/products/vpn/pricing/" class="mzp-c-button js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
             'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
         )
