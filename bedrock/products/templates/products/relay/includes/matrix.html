@@ -92,8 +92,9 @@
                 optional_attributes={
                   'data-cta-type': 'cta: fxa-relay',
                   'data-cta-text': 'Sign Up - relay-free',
-                  'data-cta-position': 'matrix - table'}
-              ) }}
+                  'data-cta-position': 'matrix - table'
+                }
+            ) }}
           </div>
         </td>
         <td>
@@ -134,8 +135,8 @@
                     'data-cta-type': 'fxa-vpn',
                     'data-cta-text': 'Sign Up',
                     'data-cta-position': 'pricing'
-                  })
-                }}
+                  }
+                )}}
             {% else %}
               {{ waitlist("relay-bundle") }}
             {% endif %}
@@ -165,8 +166,9 @@
               optional_attributes={
                 'data-cta-type': 'cta: fxa-relay',
                 'data-cta-text': 'Sign Up - relay-free',
-                'data-cta-position': 'matrix - mobile'}
-            ) }}
+                'data-cta-position': 'matrix - mobile'
+              }
+            )}}
         </div>
       </li>
       <li class="c-matrix-plan">
@@ -237,8 +239,8 @@
               'data-cta-type': 'fxa-vpn',
               'data-cta-text': 'Sign Up',
               'data-cta-position': 'pricing'
-            })
-          }}
+            }
+          )}}
         {% else %}
           {{ waitlist("relay-bundle") }}
         {% endif %}
