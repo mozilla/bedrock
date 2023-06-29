@@ -85,7 +85,16 @@
         <td>
           <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
-            {{ relay_fxa_button(entrypoint='mozilla.org-relay-landing', button_text=ftl('plan-matrix-get-relay-cta'), class_name="mzp-c-button mzp-t-product mzp-t-lg") }}
+            {{ relay_fxa_button(
+                entrypoint='mozilla.org-relay-landing',
+                button_text=ftl('plan-matrix-get-relay-cta'),
+                class_name="mzp-c-button mzp-t-product mzp-t-lg",
+                optional_attributes={
+                  'data-cta-type': 'cta: fxa-relay',
+                  'data-cta-text': 'Sign Up - relay-free',
+                  'data-cta-position': 'matrix - table'
+                }
+            ) }}
           </div>
         </td>
         <td>
@@ -126,8 +135,8 @@
                     'data-cta-type': 'fxa-vpn',
                     'data-cta-text': 'Sign Up',
                     'data-cta-position': 'pricing'
-                  })
-                }}
+                  }
+                )}}
             {% else %}
               {{ waitlist("relay-bundle") }}
             {% endif %}
@@ -150,7 +159,16 @@
         </ul>
         <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
-            {{ relay_fxa_button(entrypoint='mozilla.org-relay-landing', button_text=ftl('plan-matrix-get-relay-cta'), class_name="mzp-c-button mzp-t-product mzp-t-lg") }}
+            {{ relay_fxa_button(
+              entrypoint='mozilla.org-relay-landing',
+              button_text=ftl('plan-matrix-get-relay-cta'),
+              class_name="mzp-c-button mzp-t-product mzp-t-lg",
+              optional_attributes={
+                'data-cta-type': 'cta: fxa-relay',
+                'data-cta-text': 'Sign Up - relay-free',
+                'data-cta-position': 'matrix - mobile'
+              }
+            )}}
         </div>
       </li>
       <li class="c-matrix-plan">
@@ -221,8 +239,8 @@
               'data-cta-type': 'fxa-vpn',
               'data-cta-text': 'Sign Up',
               'data-cta-position': 'pricing'
-            })
-          }}
+            }
+          )}}
         {% else %}
           {{ waitlist("relay-bundle") }}
         {% endif %}
