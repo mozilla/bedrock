@@ -21,7 +21,7 @@
 {% set _utm_campaign = 'welcome-15-vpn' %}
 
 {% block experiments %}
-  {% if switch('welcome-15-experiment', ['en-US', 'de', 'fr']) %}
+  {% if switch('welcome-15-experiment', ['en', 'de', 'fr']) %}
     {{ js_bundle('firefox_welcome_page15_experiment') }}
   {% endif %}
 {% endblock %}
@@ -58,9 +58,9 @@
     {% if variation == '2' %}
       <div class="c-main variation-2 mzp-l-content mzp-t-content-lg">
         <img class="c-main-logo" src="/media/protocol/img/logos/mozilla/vpn/logo-flat.svg" width="60" alt="">
-        <h1 class="c-main-title">{{ var_1_main_title }}</h1>
+        <h1 class="c-main-title">{{ var_2_main_title }}</h1>
         <p class="c-main-tagline">
-          {{ var_1_main_tagline }}
+          {{ var_2_main_tagline }}
         </p>
         {{ vpn_product_referral_link(
           referral_id='welcome-page15-v2',
@@ -76,7 +76,7 @@
     {% else %}
       <div class="c-main variation-1 mzp-l-content mzp-t-content-md">
         <img class="c-main-logo" src="/media/protocol/img/logos/mozilla/vpn/logo-flat.svg" width="60" alt="">
-        <h1 class="c-main-title">{{ var_2_main_title }}</h1>
+        <h1 class="c-main-title">{{ var_1_main_title }}</h1>
 
         <div class="c-main-image">
           {{ picture(
@@ -103,7 +103,7 @@
           ) }}
         </div>
         <p class="c-main-tagline">
-          {{ var_2_main_tagline }}
+          {{ var_1_main_tagline }}
         </p>
         {{ vpn_product_referral_link(
           referral_id='welcome-page15-v1',
