@@ -50,6 +50,46 @@
       <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
+
+    {% if channel == 'beta' %}
+      {% set channel_name = 'Firefox Beta' %}
+    {% elif channel == 'alpha' %}
+      {% set channel_name = 'Firefox Developer Edition' %}
+    {% elif channel == 'nightly' %}
+      {% set channel_name = 'Firefox Nightly' %}
+    {% else %}
+      {% set channel_name = 'Firefox' %}
+    {% endif %}
+
+    <div class="fx-unsupported-message win" data-nosnippet="true">
+      <p><strong>{{ ftl('download-button-unsupported-platform', channel_name=channel_name, help_url='https://support.mozilla.org/kb/firefox-users-macos-1012-1013-1014-moving-to-extended-support', os_version='Windows 8.1') }}</strong></p>
+      <p>{{ ftl('download-button-please-download-esr') }}</p>
+      <ul class="download-platform-list">
+        <li>
+          <a class="mzp-c-button mzp-t-product download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox Extended Support Release">
+            {{ ftl('download-firefox-esr-64') }}
+          </a>
+        </li>
+        <li>
+          <a class="mzp-c-button mzp-t-product download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox Extended Support Release">
+            {{ ftl('download-firefox-esr-32') }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="fx-unsupported-message mac" data-nosnippet="true">
+      <p><strong>{{ ftl('download-button-unsupported-platform', channel_name=channel_name, help_url='https://support.mozilla.org/kb/firefox-users-windows-7-8-and-81-moving-extended-support', os_version='macOS 10.14') }}</strong></p>
+      <p>{{ ftl('download-button-please-download-esr') }}</p>
+
+      <ul class="download-platform-list">
+        <li>
+          <a class="mzp-c-button mzp-t-product download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox Extended Support Release">
+            {{ ftl('download-firefox-esr') }}
+          </a>
+        </li>
+      </ul>
+    </div>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}

@@ -400,17 +400,15 @@ describe('site.js', function () {
             expect(window.site.getWindowsVersionClientHint(12)).toBe('10.0.0');
         });
 
-        it('should return undefined for unknown Windows versions', function () {
+        it('should return fallback to using UA string for unknown Windows versions', function () {
+            spyOn(window.site, 'getPlatformVersion').and.returnValue('8.1');
+
             expect(window.site.getWindowsVersionClientHint('0.0.0')).toBe(
-                undefined
+                '8.1'
             );
-            expect(window.site.getWindowsVersionClientHint(0.0)).toBe(
-                undefined
-            );
-            expect(window.site.getWindowsVersionClientHint('0')).toBe(
-                undefined
-            );
-            expect(window.site.getWindowsVersionClientHint('')).toBe(undefined);
+            expect(window.site.getWindowsVersionClientHint(0.0)).toBe('8.1');
+            expect(window.site.getWindowsVersionClientHint('0')).toBe('8.1');
+            expect(window.site.getWindowsVersionClientHint('')).toBe('8.1');
         });
     });
 

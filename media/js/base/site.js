@@ -69,7 +69,8 @@
                 return '10.0.0';
             } else {
                 // Might be any Windows version less than 10, who knows.
-                return undefined;
+                // Rather than return undefined here, fallback to UA string.
+                return site.getPlatformVersion();
             }
         },
 
@@ -145,19 +146,33 @@
 
     function updateHTML() {
         var h = document.documentElement;
+        var _version = window.site.platformVersion
+            ? parseFloat(window.site.platformVersion)
+            : 0;
 
         if (window.site.platform === 'windows') {
             // Detect Windows 10 "and up" to display installation
             // messaging on the /firefox/download/thanks/ page.
-            var _version = window.site.platformVersion
-                ? parseFloat(window.site.platformVersion)
-                : 0;
 
             if (_version >= 10.0) {
                 h.className += ' windows-10-plus';
             }
+
+            // Add fx-unsupported class name for Windows 8.1 and below
+            // https://github.com/mozilla/bedrock/issues/13317
+            if (_version <= 6.3) {
+                h.className += ' fx-unsupported';
+            }
         } else {
             h.className = h.className.replace('windows', window.site.platform);
+        }
+
+        if (window.site.platform === 'osx') {
+            // Add fx-unsupported class name for macOS 10.14 and below
+            // https://github.com/mozilla/bedrock/issues/13317
+            if (_version <= 10.14) {
+                h.className += ' fx-unsupported';
+            }
         }
 
         // Used to display a custom installation message and

@@ -109,6 +109,35 @@ ul.download-list {
     display: block !important;
 }
 
+// Hide pre-release Firefox download buttons on unsupported
+// operating system versions (issue #13317)
+.windows.fx-unsupported .download-button-beta.download-button-desktop .download-list,
+.windows.fx-unsupported .download-button-alpha.download-button-desktop .download-list,
+.windows.fx-unsupported .download-button-nightly.download-button-desktop .download-list,
+.osx.fx-unsupported .download-button-beta.download-button-desktop .download-list,
+.osx.fx-unsupported .download-button-alpha.download-button-desktop .download-list,
+.osx.fx-unsupported .download-button-nightly.download-button-desktop .download-list {
+    display: none !important;
+}
+
+.fx-unsupported-message {
+    @include bidi(((text-align, left, right),));
+    display: none !important;
+
+    .download-platform-list {
+        text-align: center;
+
+        li {
+            margin-bottom: $spacing-lg;
+        }
+    }
+}
+
+.windows.fx-unsupported .fx-unsupported-message.win,
+.osx.fx-unsupported .fx-unsupported-message.mac {
+    display: block !important;
+}
+
 .android .download-button-desktop,
 .ios .download-button-desktop,
 .no-js .download-button {
