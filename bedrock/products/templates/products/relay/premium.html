@@ -40,7 +40,7 @@
     <h1 class="c-hero-title">{{ ftl('premium-promo-hero-headline') }}</h1>
     {% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
     <p class="c-hero-body">{{ ftl('premium-promo-hero-body-2-html', monthly_price=monthly_price, fallback='premium-promo-hero-body-3') }}</p>
-    <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started">{{ ftl('hero-section-cta') }}</a></p>
+    <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started" data-cta-position="primary">{{ ftl('hero-section-cta') }}</a></p>
     <p class="c-hero-availability">{{ ftl('premium-promo-availability-warning-3') }}</p>
   {% endcall %}
 
@@ -62,8 +62,9 @@
   </div>
 </section>
 
-
 {% endblock %}
 
-
-{{ js_bundle('fxa_product_button') }}
+{% block js %}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('data_begincheckout') }}
+{% endblock %}
