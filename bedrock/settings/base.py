@@ -1793,36 +1793,36 @@ RELAY_EMAIL_PLAN_ID_MATRIX = {
     "chf": {  # Swiss franc
         "de": {  # German
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCqOJNcmPzuWtRuIXpQRxi",
+                "id": "price_1LYCqOJNcmPzuWtRuIXpQRxi",
                 "price": 2.00,
                 "currency": "CHF",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCqyJNcmPzuWtR3Um5qDPu",
+                "id": "price_1LYCqyJNcmPzuWtR3Um5qDPu",
                 "price": 1.00,
                 "currency": "CHF",
             },
         },
         "fr": {  # French
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCvpJNcmPzuWtRq9ci2gXi",
+                "id": "price_1LYCvpJNcmPzuWtRq9ci2gXi",
                 "price": 2.00,
                 "currency": "CHF",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCwMJNcmPzuWtRm6ebmq2N",
+                "id": "price_1LYCwMJNcmPzuWtRm6ebmq2N",
                 "price": 1.00,
                 "currency": "CHF",
             },
         },
         "it": {  # Italian
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCiBJNcmPzuWtRxtI8D5Uy",
+                "id": "price_1LYCiBJNcmPzuWtRxtI8D5Uy",
                 "price": 2.00,
                 "currency": "CHF",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYClxJNcmPzuWtRWjslDdkG",
+                "id": "price_1LYClxJNcmPzuWtRWjslDdkG",
                 "price": 1.00,
                 "currency": "CHF",
             },
@@ -1831,96 +1831,96 @@ RELAY_EMAIL_PLAN_ID_MATRIX = {
     "euro": {  # Euro
         "de": {  # German
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYC79JNcmPzuWtRU7Q238yL",
+                "id": "price_1LYC79JNcmPzuWtRU7Q238yL",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYC7xJNcmPzuWtRcdKXCVZp",
+                "id": "price_1LYC7xJNcmPzuWtRcdKXCVZp",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "es": {  # Spanish
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCWmJNcmPzuWtRtopZog9E",
+                "id": "price_1LYCWmJNcmPzuWtRtopZog9E",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCXNJNcmPzuWtRu586XOFf",
+                "id": "price_1LYCXNJNcmPzuWtRu586XOFf",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "fr": {  # French
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYBuLJNcmPzuWtRn58XQcky",
+                "id": "price_1LYBuLJNcmPzuWtRn58XQcky",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYBwcJNcmPzuWtRpgoWcb03",
+                "id": "price_1LYBwcJNcmPzuWtRpgoWcb03",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "it": {  # Italian
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCMrJNcmPzuWtRTP9vD8wY",
+                "id": "price_1LYCMrJNcmPzuWtRTP9vD8wY",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCN2JNcmPzuWtRtWz7yMno",
+                "id": "price_1LYCN2JNcmPzuWtRtWz7yMno",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "nl": {  # Dutch
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCdLJNcmPzuWtR0J1EHoJ0",
+                "id": "price_1LYCdLJNcmPzuWtR0J1EHoJ0",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCdtJNcmPzuWtRVm4jLzq2",
+                "id": "price_1LYCdtJNcmPzuWtRVm4jLzq2",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "ga": {  # Irish
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LhdrkJNcmPzuWtRvCc4hsI2",
+                "id": "price_1LhdrkJNcmPzuWtRvCc4hsI2",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LhdprJNcmPzuWtR7HqzkXTS",
+                "id": "price_1LhdprJNcmPzuWtR7HqzkXTS",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "sv": {  # Sweedish
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYBblJNcmPzuWtRGRHIoYZ5",
+                "id": "price_1LYBblJNcmPzuWtRGRHIoYZ5",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYBeMJNcmPzuWtRT5A931WH",
+                "id": "price_1LYBeMJNcmPzuWtRT5A931WH",
                 "price": 0.99,
                 "currency": "EUR",
             },
         },
         "fi": {  # Finnish
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYBn9JNcmPzuWtRI3nvHgMi",
+                "id": "price_1LYBn9JNcmPzuWtRI3nvHgMi",
                 "price": 1.99,
                 "currency": "EUR",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYBq1JNcmPzuWtRmyEa08Wv",
+                "id": "price_1LYBq1JNcmPzuWtRmyEa08Wv",
                 "price": 0.99,
                 "currency": "EUR",
             },
@@ -1929,24 +1929,24 @@ RELAY_EMAIL_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LXUcnJNcmPzuWtRpbNOajYS",
+                "id": "price_1LiMjeKb9q6OnNsLzwixHuRz" if DEV else "price_1LXUcnJNcmPzuWtRpbNOajYS",
                 "price": 1.99,
                 "currency": "USD",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
+                "id": "price_1LiMlBKb9q6OnNsL7tvrtI7y" if DEV else "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
                 "price": 0.99,
                 "currency": "USD",
             },
         },
         "gb": {
             "monthly": {
-                "id": "TKTK" if DEV else "price_1LYCHpJNcmPzuWtRhrhSYOKB",
+                "id": "price_1LYCHpJNcmPzuWtRhrhSYOKB",
                 "price": 1.99,
                 "currency": "USD",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1LYCIlJNcmPzuWtRQtYLA92j",
+                "id": "price_1LYCIlJNcmPzuWtRQtYLA92j",
                 "price": 0.99,
                 "currency": "USD",
             },
@@ -2057,12 +2057,12 @@ RELAY_PHONE_PLAN_ID_MATRIX = {
     "usd": {
         "en": {
             "monthly": {
-                "id": "TKTK" if DEV else "price_1Li0w8JNcmPzuWtR2rGU80P3",
+                "id": "price_1LDqw3Kb9q6OnNsL6XIDst28" if DEV else "price_1Li0w8JNcmPzuWtR2rGU80P3",
                 "price": 4.99,
                 "currency": "USD",
             },
             "yearly": {
-                "id": "TKTK" if DEV else "price_1Li15WJNcmPzuWtRIh0F4VwP",
+                "id": "price_1Lhd35Kb9q6OnNsL9bAxjUGq" if DEV else "price_1Li15WJNcmPzuWtRIh0F4VwP",
                 "price": 3.99,
                 "currency": "USD",
             },
