@@ -40,7 +40,7 @@
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay">{{ ftl('relay-shared-firefox-relay') }}</div>
     <h1 class="c-hero-title">{{ ftl('hero-section-title') }}</h1>
     <p class="c-hero-body">{{ ftl('hero-section-body') }}</p>
-    <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started">{{ ftl('hero-section-cta') }}</a></p>
+    <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started" data-cta-position="primary">{{ ftl('hero-section-cta') }}</a></p>
     <div class="c-hero-brands">
       <div>{{ ftl('hero-section-social-proof') }}</div>
       <img class="c-brands" src="{{ static('img/products/relay/landing/brands.svg') }}" alt="Forbes, ZD Net, Life Hacker, PC MAG" width="480" height="54">
@@ -112,7 +112,7 @@
 
   <section class="mzp-l-content u-center">
     <h2 class="mzp-c-section-heading">{{ ftl('highlighted-features-section-bottom-title') }}</h2>
-    <p><a href="#pricing" class="mzp-c-button mzp-t-product mzp-t-primary">{{ ftl('highlighted-features-section-bottom-cta') }}</a></p>
+    <p><a href="#pricing" class="mzp-c-button mzp-t-product mzp-t-primary" data-cta-type="button" data-cta-text="Get Started" data-cta-position="secondary">{{ ftl('highlighted-features-section-bottom-cta') }}</a></p>
   </section>
 
 </div>
@@ -147,4 +147,7 @@
 
 {% endblock %}
 
-{{ js_bundle('fxa_product_button') }}
+{% block js %}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('data_begincheckout') }}
+{% endblock %}

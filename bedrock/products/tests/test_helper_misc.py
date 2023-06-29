@@ -1274,6 +1274,7 @@ class TestVPNProductReferralLink(TestCase):
         )
         self.assertEqual(markup, expected)
 
+
 # RELAY ################################################################
 
 TEST_RELAY_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
@@ -1281,7 +1282,6 @@ TEST_RELAY_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
 TEST_RELAY_EMAIL_PRODUCT_ID = "prod_KGizMiBqUJdYoY"
 TEST_RELAY_PHONE_PRODUCT_ID = "prod_KGizMiBqUJdYoY"
 TEST_RELAY_VPN_BUNDLE_PRODUCT_ID = "prod_MIex7Q079igFZJ"
-
 
 # Relay email subscription plan IDs by currency/language
 TEST_RELAY_EMAIL_PLAN_ID_MATRIX = {
@@ -1329,6 +1329,14 @@ TEST_RELAY_EMAIL_PLAN_ID_MATRIX = {
                 "id": "price_1LYC79JNcmPzuWtRU7Q238yL",
                 "price": 1.99,
                 "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
             },
             "yearly": {
                 "id": "price_1LYC7xJNcmPzuWtRcdKXCVZp",
@@ -1432,6 +1440,14 @@ TEST_RELAY_EMAIL_PLAN_ID_MATRIX = {
                 "id": "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
                 "price": 0.99,
                 "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
             },
         },
         "gb": {
@@ -1661,6 +1677,44 @@ class TestRelayEmailSubscribeLink(TestCase):
         )
         self.assertEqual(markup, expected)
 
+    def test_relay_subscribe_link_email_yearly_with_analytics(self):
+        """Should return expected markup for yearly email subscription link with analytics"""
+        markup = self._render(
+            link_text="Get Relay email yearly",
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email yearly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay',"
+            "'plan' : 'relay-email','period' : 'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Relay email yearly</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_yearly_no_options_with_analytics(self):
+        """Should return expected markup for yearly email subscription link with analytics"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
+            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay','plan' : 'relay-email','period' : "
+            "'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Started</a>"
+        )
+        self.assertEqual(markup, expected)
+
     def test_relay_subscribe_link_email_monthly(self):
         """Should return expected markup for monthly email subscription link"""
         markup = self._render(
@@ -1678,6 +1732,27 @@ class TestRelayEmailSubscribeLink(TestCase):
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay email monthly" data-cta-type="fxa-relay" '
             'data-cta-position="primary">Get Relay email monthly</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_monthly_with_analytics(self):
+        """Should return expected markup for monthly email subscription link including analytics"""
+        markup = self._render(
+            link_text="Get Relay email monthly",
+            product="relay-email",
+            plan="monthly",
+            country_code="DE",
+            lang="de",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email monthly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LYC79JNcmPzuWtRU7Q238yL'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email monthly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LYC79JNcmPzuWtRU7Q238yL','brand' : 'relay',"
+            "'plan' : 'relay-email','period' : 'monthly','price' : '1.99','discount' : '0','currency' : 'EUR'}\">Get Relay email monthly</a>"
         )
         self.assertEqual(markup, expected)
 
