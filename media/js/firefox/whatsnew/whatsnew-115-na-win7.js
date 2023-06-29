@@ -33,7 +33,7 @@
     if (
         redirect &&
         window.site.platform === 'windows' &&
-        window.site.platformVersion <= 6.1
+        window.site.platformVersion <= 6.3 // Windows 8.1 and lower
     ) {
         window.location.href = redirect;
     } else {
