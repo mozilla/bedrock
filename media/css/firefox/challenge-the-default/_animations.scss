@@ -604,18 +604,28 @@ $campaign-green: #2ac3a2;
     }
 }
 
+.laser-cat.mobile.active {
+    .mobile-laser-1 {
+            animation: mobile-laser-animation-1 3200ms linear 1 normal forwards
+    }
+
+    .mobile-laser-2 {
+        animation: mobile-laser-animation-2 3200ms linear 1 normal forwards
+    }
+}
+
 
 @keyframes laser-1-animation {
     0% {
         transform: translate(2048px, -240px);
     }
 
-    21.875% {
+    22% {
         transform: translate(2048px, -240px);
         animation-timing-function: cubic-bezier(0.92, 0.01, 0.085, 1)
     }
 
-    43.75% {
+    44% {
         transform: translate(668px, 560px)
     }
 
@@ -629,7 +639,7 @@ $campaign-green: #2ac3a2;
         transform: translate(2048px, -240px);
     }
 
-    3.125% {
+    3% {
         transform: translate(2048px, -240px);
         animation-timing-function: cubic-bezier(0.92, 0.01, 0.085, 1)
     }
@@ -640,5 +650,43 @@ $campaign-green: #2ac3a2;
 
     100% {
         transform: translate(-659px, 1355px);
+    }
+}
+
+@keyframes mobile-laser-animation-1 {
+    0% {
+        transform: translate(682px, -415px);
+    }
+
+    22% {
+        transform: translate(682px, -415px);
+        animation-timing-function: cubic-bezier(1, 0.005, 0, 1);
+    }
+
+    44% {
+        transform: translate(306px, 692px);
+    }
+
+    100% {
+        transform: translate(306px, 692px);
+    }
+}
+
+@keyframes mobile-laser-animation-2 {
+    0% {
+        transform: translate(682px, -415px)
+    }
+
+    3% {
+        transform: translate(682px, -415px);
+        animation-timing-function: cubic-bezier(1, 0.005, 0, 1)
+    }
+
+    25% {
+        transform: translate(-62px, 1788px)
+    }
+
+    100% {
+        transform: translate(-62px, 1788px)
     }
 }

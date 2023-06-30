@@ -206,11 +206,16 @@
 
         .kitten-modal {
             padding: $spacing-xl;
+            padding-bottom: 0;
+
+            @media #{$mq-md} {
+                padding-bottom: $spacing-xl;
+            }
         }
 
         .kitten-modal-grid {
             display: grid;
-            grid-template-rows: 250px 1fr;
+            grid-template-rows: 360px;
             grid-template-columns: 1fr;
             grid-gap: $spacing-lg;
             justify-items: center;
@@ -225,9 +230,11 @@
                 font-weight: 800;
                 color: $color-black;
                 z-index: 2;
+                align-self: flex-end;
 
                 @media #{$mq-md} {
                     @include font-size(60px);
+                    align-self: initial;
                 }
             }
 
@@ -245,10 +252,14 @@
 
             .laser-cat {
                 width: 100%;
-                max-width: 250px;
-                margin-left: auto;
-                margin-right: auto;
-                grid-row: 1;
+                position: absolute;
+
+
+                &.mobile {
+                    max-width: 300px;
+                    height: 390px;
+                    top: 50px;
+                }
 
                 &.desktop {
                     display: none;
@@ -261,7 +272,6 @@
 
                     &.desktop {
                         grid-column: 2;
-                        position: absolute;
                         max-width: none;
                         width: 112%;
                         right: 5px;

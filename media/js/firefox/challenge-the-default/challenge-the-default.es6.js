@@ -34,20 +34,17 @@ kittenButton.addEventListener(
                 document
                     .querySelector('.kitten-modal-overlay')
                     .addEventListener('animationend', () => {
-                        document
-                            .querySelector('.laser-cat.desktop')
-                            .classList.add('active');
+                        const cats = document.querySelectorAll('.laser-cat');
+                        for (let index = 0; index < cats.length; index++) {
+                            const cat = cats[index];
+                            cat.classList.add('active');
+                        }
                     });
             }
         });
     },
     false
 );
-
-// after the modal is opened and the animation finishes, add a class to the laser cat to start its own animation
-document.querySelector('.kitten-modal').addEventListener('animationend', () => {
-    document.querySelector('.laser-cat.desktop').classList.add('active');
-});
 
 function allTogglesChecked() {
     const small = document.querySelector('.toggle-grid.small');
