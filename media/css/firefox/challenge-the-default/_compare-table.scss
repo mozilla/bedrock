@@ -47,7 +47,9 @@
         max-width: 100%;
         margin-bottom: $spacing-sm;
 
-        .safari, .edge, .chrome {
+        .safari,
+        .edge,
+        .chrome {
             display: none;
         }
 
@@ -120,7 +122,8 @@
             border: none;
         }
 
-        thead tr th, td {
+        thead tr th,
+        td {
             &:nth-child(2) {
                 color: $color-black;
                 background-color: $campaign-pink;
@@ -134,7 +137,9 @@
 
 
         @media #{$mq-md} {
-            .safari, .edge, .chrome {
+            .safari,
+            .edge,
+            .chrome {
                 display: table-cell;
             }
         }
@@ -183,6 +188,7 @@
         padding: 0;
         max-width: 688px;
         background-color: $campaign-mint;
+        overflow: hidden;
 
         header {
             padding: $spacing-md;
@@ -211,7 +217,7 @@
 
             @media #{$mq-md} {
                 grid-template-columns: 1fr 1fr;
-                 grid-template-rows: auto;
+                grid-template-rows: auto;
             }
 
             h2 {
@@ -236,23 +242,31 @@
                 }
             }
 
-            picture {
-                grid-row: 1;
-
-                @media #{$mq-md} {
-                    grid-column: 2;
-                    position: absolute;
-                }
-            }
 
             .laser-cat {
                 width: 100%;
                 max-width: 250px;
                 margin-left: auto;
                 margin-right: auto;
+                grid-row: 1;
+
+                &.desktop {
+                    display: none;
+                }
 
                 @media #{$mq-md} {
-                    max-width: max-content;
+                    &.mobile {
+                        display: none;
+                    }
+
+                    &.desktop {
+                        grid-column: 2;
+                        position: absolute;
+                        max-width: none;
+                        width: 112%;
+                        right: 5px;
+                        display: block;
+                    }
                 }
             }
         }

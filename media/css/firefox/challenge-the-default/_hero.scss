@@ -75,6 +75,18 @@ $campaign-red: #ff6a75;
                 display: flex;
                 height: 50px;
                 padding: 10px $spacing-md;
+                transition: all .25s ease-in-out;
+
+
+                &.active {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                @media (prefers-reduced-motion: no-preference) {
+                    transform: scale(0.25);
+                    opacity: 0;
+                }
             }
         }
 
@@ -92,16 +104,17 @@ $campaign-red: #ff6a75;
                 width: 20px;
                 height: 20px;
             }
-              @media #{$mq-md} {
+
+            @media #{$mq-md} {
                 padding: 10px 16px 0;
                 height: 60px;
 
-                    .hero-control-btn {
-                        width: 26px;
-                        height: 26px;
-                        margin-left: 12px;
-                    }
+                .hero-control-btn {
+                    width: 26px;
+                    height: 26px;
+                    margin-left: 12px;
                 }
+            }
 
         }
 
@@ -110,7 +123,7 @@ $campaign-red: #ff6a75;
         }
 
         .expand {
-             background-image: url('/media/img/firefox/challenge-the-default/open.svg');
+            background-image: url('/media/img/firefox/challenge-the-default/open.svg');
         }
 
         .close {
@@ -208,7 +221,7 @@ $campaign-red: #ff6a75;
 
             .mzp-c-button {
                 text-align: left;
-             }
+            }
         }
     }
 }

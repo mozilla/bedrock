@@ -5,6 +5,7 @@
  */
 
 let observer;
+let heroSection;
 
 function createObserver() {
     return new IntersectionObserver(function (entries) {
@@ -22,6 +23,18 @@ function createObserver() {
                         entry.target.classList.add('animate-slide');
                         input.checked = true;
                     }, 250);
+                } else if (heroSection.contains(entry.target)) {
+                    const heroWrapper =
+                        entry.target.querySelector('.hero-wrapper');
+                    const ctdLogo =
+                        entry.target.querySelector('.ctd-animated-logo');
+                    const imageWrapper =
+                        entry.target.querySelector('.c-hero-top-images');
+                    heroWrapper.classList.add('animate-pop-in');
+                    heroWrapper.addEventListener('animationend', function () {
+                        imageWrapper.classList.add('active');
+                        ctdLogo.classList.add('animate-active');
+                    });
                 } else if (
                     entry.target.classList.contains('ctd-animated-logo')
                 ) {
@@ -44,6 +57,7 @@ function init() {
         window.MzpSupports.intersectionObserver &&
         window.Mozilla.Utils.allowsMotion()
     ) {
+        heroSection = document.querySelector('.c-ctd-hero');
         observer = createObserver();
 
         //add picto observers
@@ -58,15 +72,13 @@ function init() {
             observer.observe(toggle);
         });
 
-        // add hero section (will this work? who knows!)
-        const hero = document.querySelector('.hero-wrapper');
-        observer.observe(hero);
+        observer.observe(heroSection);
 
-        document
-            .querySelectorAll('.ctd-animated-logo')
-            .forEach(function (logo) {
-                observer.observe(logo);
-            });
+        const logo = document.querySelector(
+            '.c-animated-button .ctd-animated-logo'
+        );
+
+        observer.observe(logo);
         // add animated logo to only animate while in view
     }
 }

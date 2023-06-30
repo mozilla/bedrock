@@ -29,11 +29,25 @@ kittenButton.addEventListener(
     function (e) {
         MzpModal.createModal(e.target, kittenModal, {
             closeText: 'Close modal',
-            className: 'kitten-modal-overlay'
+            className: 'kitten-modal-overlay',
+            onCreate: () => {
+                document
+                    .querySelector('.kitten-modal-overlay')
+                    .addEventListener('animationend', () => {
+                        document
+                            .querySelector('.laser-cat.desktop')
+                            .classList.add('active');
+                    });
+            }
         });
     },
     false
 );
+
+// after the modal is opened and the animation finishes, add a class to the laser cat to start its own animation
+document.querySelector('.kitten-modal').addEventListener('animationend', () => {
+    document.querySelector('.laser-cat.desktop').classList.add('active');
+});
 
 function allTogglesChecked() {
     const small = document.querySelector('.toggle-grid.small');
