@@ -58,7 +58,11 @@ $campaign-red: #ff6a75;
 
             img {
                 max-height: 100%;
-                margin-right: 20px;
+                margin-right: -20px;
+            }
+
+            .ctd-animated-logo {
+                width: 200px;
             }
         }
 
@@ -71,6 +75,25 @@ $campaign-red: #ff6a75;
                 display: flex;
                 height: 50px;
                 padding: 10px $spacing-md;
+
+                &.active {
+                    .firefox-logo, .ctd-animated-logo {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+
+                    .ctd-animated-logo {
+                        transition-delay: .25s;
+                    }
+                }
+
+                @media (prefers-reduced-motion: no-preference) {
+                    .firefox-logo, .ctd-animated-logo {
+                        transform: scale(0.25);
+                        opacity: 0;
+                        transition: all .25s ease-in-out;
+                    }
+                }
             }
         }
 
@@ -88,16 +111,17 @@ $campaign-red: #ff6a75;
                 width: 20px;
                 height: 20px;
             }
-              @media #{$mq-md} {
+
+            @media #{$mq-md} {
                 padding: 10px 16px 0;
                 height: 60px;
 
-                    .hero-control-btn {
-                        width: 26px;
-                        height: 26px;
-                        margin-left: 12px;
-                    }
+                .hero-control-btn {
+                    width: 26px;
+                    height: 26px;
+                    margin-left: 12px;
                 }
+            }
 
         }
 
@@ -106,7 +130,7 @@ $campaign-red: #ff6a75;
         }
 
         .expand {
-             background-image: url('/media/img/firefox/challenge-the-default/open.svg');
+            background-image: url('/media/img/firefox/challenge-the-default/open.svg');
         }
 
         .close {
@@ -204,7 +228,7 @@ $campaign-red: #ff6a75;
 
             .mzp-c-button {
                 text-align: left;
-             }
+            }
         }
     }
 }

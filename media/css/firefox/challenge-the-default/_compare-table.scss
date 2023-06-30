@@ -47,7 +47,9 @@
         max-width: 100%;
         margin-bottom: $spacing-sm;
 
-        .safari, .edge, .chrome {
+        .safari,
+        .edge,
+        .chrome {
             display: none;
         }
 
@@ -120,7 +122,8 @@
             border: none;
         }
 
-        thead tr th, td {
+        thead tr th,
+        td {
             &:nth-child(2) {
                 color: $color-black;
                 background-color: $campaign-pink;
@@ -134,7 +137,9 @@
 
 
         @media #{$mq-md} {
-            .safari, .edge, .chrome {
+            .safari,
+            .edge,
+            .chrome {
                 display: table-cell;
             }
         }
@@ -183,6 +188,7 @@
         padding: 0;
         max-width: 688px;
         background-color: $campaign-mint;
+        overflow: hidden;
 
         header {
             padding: $spacing-md;
@@ -200,18 +206,23 @@
 
         .kitten-modal {
             padding: $spacing-xl;
+            padding-bottom: 0;
+
+            @media #{$mq-md} {
+                padding-bottom: $spacing-xl;
+            }
         }
 
         .kitten-modal-grid {
             display: grid;
-            grid-template-rows: 250px 1fr;
+            grid-template-rows: 360px;
             grid-template-columns: 1fr;
             grid-gap: $spacing-lg;
             justify-items: center;
 
             @media #{$mq-md} {
                 grid-template-columns: 1fr 1fr;
-                 grid-template-rows: auto;
+                grid-template-rows: auto;
             }
 
             h2 {
@@ -219,9 +230,11 @@
                 font-weight: 800;
                 color: $color-black;
                 z-index: 2;
+                align-self: flex-end;
 
                 @media #{$mq-md} {
                     @include font-size(60px);
+                    align-self: initial;
                 }
             }
 
@@ -236,23 +249,34 @@
                 }
             }
 
-            picture {
-                grid-row: 1;
-
-                @media #{$mq-md} {
-                    grid-column: 2;
-                    position: absolute;
-                }
-            }
 
             .laser-cat {
                 width: 100%;
-                max-width: 250px;
-                margin-left: auto;
-                margin-right: auto;
+                position: absolute;
+
+
+                &.mobile {
+                    max-width: 300px;
+                    height: 390px;
+                    top: 50px;
+                }
+
+                &.desktop {
+                    display: none;
+                }
 
                 @media #{$mq-md} {
-                    max-width: max-content;
+                    &.mobile {
+                        display: none;
+                    }
+
+                    &.desktop {
+                        grid-column: 2;
+                        max-width: none;
+                        width: 112%;
+                        right: 5px;
+                        display: block;
+                    }
                 }
             }
         }

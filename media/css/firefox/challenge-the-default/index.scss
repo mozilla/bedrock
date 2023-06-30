@@ -43,6 +43,12 @@ $campaign-green: #2ac3a2;
         url('/media/fonts/challenge-the-default/Metropolis-ExtraBold.woff') format('woff');
 }
 
+// stagger the CTA animation in the nav bar with the animation in the hero
+
+.nav-button-is-ready .c-navigation-shoulder .mzp-c-button {
+    animation-delay: 2s;
+}
+
 
 // show buttons depending on browser state:
 // - If using firefox:
@@ -54,6 +60,8 @@ $campaign-green: #2ac3a2;
 .mzp-c-button.is-not-default, .mzp-c-button.is-default {
     display: none;
 }
+
+
 
 // have to re-define the default styles from protocol since mzp-t-product is baked into the download-thanks template
 .c-button-download-thanks .mzp-c-button.not-firefox {
@@ -85,6 +93,16 @@ html.is-firefox {
         display: none;
     }
 
+    .c-hero-text {
+        p.is-firefox {
+            display: block;
+        }
+
+        p.not-firefox {
+            display: none;
+        }
+    }
+
     main.set-default-supported {
         .mzp-c-button.is-not-default {
             display: inline-block;
@@ -108,8 +126,28 @@ html.is-firefox {
     }
 }
 
+html:not(.is-firefox) {
+     .c-hero-text {
+        p.is-firefox {
+            display: none;
+        }
+
+        p.not-firefox {
+            display: block;
+        }
+    }
+}
+
 .ctd-mobile-banner {
     padding: $spacing-sm $spacing-lg;
+
+    .ctd-animated-logo {
+        height: 75px;
+        width: 200px;
+        position: absolute;
+        left: 35px;
+        top: 58px;
+    }
 
     @media #{$mq-md} {
         display: none;
@@ -258,6 +296,8 @@ html.is-firefox {
         border: 0;
         cursor: pointer;
         position: absolute;
+        width: 400px;
+        height: 200px;
     }
 
     svg {

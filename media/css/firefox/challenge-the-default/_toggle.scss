@@ -5,75 +5,122 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-  padding-bottom: 0;
-  transform: rotate(0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 0;
 
-  &.animate-slide {
-    transform: rotate(-30deg);
-    transition: transform 250ms 250ms ease-in
-  }
+    &.animate-slide {
+        animation: animate-toggle 400ms 1 linear forwards;
+    }
+}
+
+
+
+@keyframes animate-toggle {
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(-12deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes animate-toggle-rotate {
+    0% {
+        transform: translate(0, -50%) rotate(0deg);
+
+    }
+
+    25% {
+        transform: translate(25%, -50%) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(50%, -50%) rotate(-10deg);
+    }
+
+    75% {
+        transform: translate(75%, -50%) rotate(-20deg);
+    }
+
+    100% {
+        transform: translate(100%, -50%) rotate(0);
+    }
 }
 
 .toggle-display {
-  --offset: 0.25em;
-  --diameter: 2.5em;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: calc(var(--diameter) * 2 + var(--offset) * 2);
-  height: calc(var(--diameter) + var(--offset) * 2);
-  border: 1px solid $color-white;
-  position: relative;
-  border-radius: 100vw;
-  background-color: transparent;
-  transition: 250ms;
-  cursor: pointer;
-  pointer-events: none;
+    --offset: 0.25em;
+    --diameter: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: calc(var(--diameter) * 2 + var(--offset) * 2);
+    height: calc(var(--diameter) + var(--offset) * 2);
+    border: 1px solid $color-white;
+    position: relative;
+    border-radius: 100vw;
+    background-color: transparent;
+    transition: 400ms;
+    cursor: pointer;
+    pointer-events: none;
 
-  @media #{$mq-md} {
-    --diameter: 3em;
-  }
+    @media #{$mq-md} {
+        --diameter: 3em;
+    }
 
-  @media #{$mq-lg} {
-    --diameter: 3.5em
-  }
+    @media #{$mq-lg} {
+        --diameter: 3.5em
+    }
 }
 
 /**
  * Size the round handle according to the diameter custom property.
  */
 .toggle-display::before {
-  content: '';
-  width: var(--diameter);
-  height: var(--diameter);
-  border-radius: 50%;
-  box-sizing: border-box;
-  border: 1px solid $color-white;
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: var(--offset);
-  transform: translate(0, -50%);
-  background-color: transparent;
-  transition: inherit;
+    content: '';
+    width: var(--diameter);
+    height: var(--diameter);
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1px solid $color-white;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: var(--offset);
+    transform: translate(0, -50%);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toggle-display {
-    transition-duration: 0ms;
-  }
+    .toggle-display {
+        transition-duration: 0ms;
+    }
 }
 
 .toggle-input {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /**
@@ -81,9 +128,9 @@
  *    styles from the browser to mimic a native control. This can be
  *    customised to have a custom focus outline.
  */
-.toggle-input:focus + .toggle-display {
-  outline: 1px dotted #212121;
-  outline: 1px auto -webkit-focus-ring-color;
+.toggle-input:focus+.toggle-display {
+    outline: 1px dotted #212121;
+    outline: 1px auto -webkit-focus-ring-color;
 }
 
 /**
@@ -92,20 +139,21 @@
  *    remove the focus outline. This is the native checkbox’s behaviour where
  *    the focus is not visible when clicking it.
  */
-.toggle-input:focus:not(:focus-visible) + .toggle-display {
-  outline: 0; /* 1 */
+.toggle-input:focus:not(:focus-visible)+.toggle-display {
+    outline: 0;
 }
 
 
-.toggle-input:checked + .toggle-display {
-  background-color: $color-white; /* 1 */
-  border: none;
+.toggle-input:checked+.toggle-display {
+    background-color: $color-white;
+    border: none;
 
-  &::before {
-    background: url('/media/img/firefox/challenge-the-default/smile.svg');
-    background-size: calc(var(--diameter) * 1.2);
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: translate(100%, -50%); /* 1 */
-  }
+    &::before {
+        background: url('/media/img/firefox/challenge-the-default/smile.svg');
+        background-size: calc(var(--diameter) * 1.2);
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: translate(100%, -50%);
+        animation: animate-toggle-rotate 400ms 1 linear forwards;
+    }
 }

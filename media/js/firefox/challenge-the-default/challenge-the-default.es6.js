@@ -29,7 +29,18 @@ kittenButton.addEventListener(
     function (e) {
         MzpModal.createModal(e.target, kittenModal, {
             closeText: 'Close modal',
-            className: 'kitten-modal-overlay'
+            className: 'kitten-modal-overlay',
+            onCreate: () => {
+                document
+                    .querySelector('.kitten-modal-overlay')
+                    .addEventListener('animationend', () => {
+                        const cats = document.querySelectorAll('.laser-cat');
+                        for (let index = 0; index < cats.length; index++) {
+                            const cat = cats[index];
+                            cat.classList.add('active');
+                        }
+                    });
+            }
         });
     },
     false
@@ -97,28 +108,28 @@ heroClose.addEventListener(
 );
 
 // On click, animate the "It's Wednesday Dudes" screen
-animatedButton.addEventListener(
-    'click',
-    function () {
-        let lizardImage;
-        const wednesdayWrapper = document.querySelector('.c-animated-button');
-        wednesdayWrapper.classList.add('animate-wednesday');
+animatedButton.addEventListener('click', isWednesday, false);
 
-        const isWednesday = new Date().getDay() === 3;
+animatedButton.addEventListener('mouseenter', isWednesday, false);
 
-        if (isWednesday) {
-            lizardImage = wednesdayWrapper.querySelector('.is-wednesday');
-        } else {
-            lizardImage = wednesdayWrapper.querySelector('.not-wednesday');
-        }
-        lizardImage.style.display = 'block';
-        setTimeout(function () {
-            lizardImage.style.display = 'none';
-            wednesdayWrapper.classList.remove('animate-wednesday');
-        }, 5000);
-    },
-    false
-);
+function isWednesday() {
+    let lizardImage;
+    const wednesdayWrapper = document.querySelector('.c-animated-button');
+    wednesdayWrapper.classList.add('animate-wednesday');
+
+    const isWednesday = new Date().getDay() === 3;
+
+    if (isWednesday) {
+        lizardImage = wednesdayWrapper.querySelector('.is-wednesday');
+    } else {
+        lizardImage = wednesdayWrapper.querySelector('.not-wednesday');
+    }
+    lizardImage.style.display = 'block';
+    setTimeout(function () {
+        lizardImage.style.display = 'none';
+        wednesdayWrapper.classList.remove('animate-wednesday');
+    }, 5000);
+}
 
 // check toggle state on page load
 checkToggles();
