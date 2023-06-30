@@ -45,4 +45,5 @@ if settings.DEV:
         path("relay/waitlist/bundle/", view=views.relay_bundle_waitlist__page, name="products.relay.waitlist.bundle"),
         page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
         path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
+        path("relay/pricing/", views.relay_pricing_page, name="products.relay.pricing"),
     )
