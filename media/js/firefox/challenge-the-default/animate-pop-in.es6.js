@@ -22,7 +22,7 @@ function createObserver() {
                     setTimeout(() => {
                         entry.target.classList.add('animate-slide');
                         input.checked = true;
-                    }, 250);
+                    }, 600);
                 } else if (heroSection.contains(entry.target)) {
                     const heroWrapper =
                         entry.target.querySelector('.hero-wrapper');
@@ -78,8 +78,13 @@ function init() {
             '.c-animated-button .ctd-animated-logo'
         );
 
-        observer.observe(logo);
+        const mobileLogo = document.querySelector(
+            '.ctd-mobile-banner .ctd-animated-logo'
+        );
+
         // add animated logo to only animate while in view
+        observer.observe(logo);
+        observer.observe(mobileLogo);
     }
 }
 

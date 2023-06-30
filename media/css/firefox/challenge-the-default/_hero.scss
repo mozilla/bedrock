@@ -75,17 +75,24 @@ $campaign-red: #ff6a75;
                 display: flex;
                 height: 50px;
                 padding: 10px $spacing-md;
-                transition: all .25s ease-in-out;
-
 
                 &.active {
-                    opacity: 1;
-                    transform: scale(1);
+                    .firefox-logo, .ctd-animated-logo {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+
+                    .ctd-animated-logo {
+                        transition-delay: .25s;
+                    }
                 }
 
                 @media (prefers-reduced-motion: no-preference) {
-                    transform: scale(0.25);
-                    opacity: 0;
+                    .firefox-logo, .ctd-animated-logo {
+                        transform: scale(0.25);
+                        opacity: 0;
+                        transition: all .25s ease-in-out;
+                    }
                 }
             }
         }

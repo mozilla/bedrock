@@ -13,7 +13,7 @@
     padding-bottom: 0;
 
     &.animate-slide {
-        animation: animate-toggle 800ms 1 linear forwards;
+        animation: animate-toggle 400ms 1 linear forwards;
     }
 }
 
@@ -76,7 +76,7 @@
     position: relative;
     border-radius: 100vw;
     background-color: transparent;
-    transition: 800ms;
+    transition: 400ms;
     cursor: pointer;
     pointer-events: none;
 
@@ -154,6 +154,6 @@
         background-position: center;
         background-repeat: no-repeat;
         transform: translate(100%, -50%);
-        animation: animate-toggle-rotate 880ms 1 linear forwards;
+        animation: animate-toggle-rotate 400ms 1 linear forwards;
     }
 }

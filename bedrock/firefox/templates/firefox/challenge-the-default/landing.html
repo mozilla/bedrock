@@ -33,7 +33,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% set cta_group %}
   <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg">Firefox als Standardbrowser festlegen</a>
-  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Ich will lieber zu eurem <br> Mobile Browser</a>
+  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Firefox fürs Handy entdecken</a>
   {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen') }}
 {% endset %}
 
@@ -82,15 +82,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           'alt': 'Firefox'
       })
     }}
-    {{ resp_img(
-      url='img/firefox/challenge-the-default/logo-ctd.svg',
-        optional_attributes={
-          'loading': 'eager',
-          'height': '24',
-          'class': 'ctd-sub-nav-image mobile',
-          'alt': 'Challenge the default'
-      })
-    }}
+    {{ ctd_logo }}
   </div>
   <section class="ctd-hero-wrapper">
     <div class="hidden hero-easter-egg">
@@ -179,6 +171,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 optional_attributes={
                   'loading': 'eager',
                   'alt': 'Firefox',
+                  'class': 'firefox-logo'
                 })
               }}
               {{ ctd_logo }}
