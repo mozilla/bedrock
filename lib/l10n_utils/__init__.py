@@ -113,6 +113,11 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     ftl_files = ftl_files or context.get("ftl_files")
     locale = get_locale(request)
 
+    # is this a request to change language from a non-javascript user? 
+    if request.GET.get('lang'):
+        locale = request.GET.get('lang')
+        request.META['QUERY_STRING'] = ''
+
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
     non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
