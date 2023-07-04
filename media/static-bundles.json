@@ -1245,9 +1245,9 @@
     },
     {
       "files":[
-        "css/mozorg/diversity/2021/diversity-2021.scss"
+        "css/mozorg/diversity/diversity.scss"
       ],
-      "name": "diversity-2021"
+      "name": "diversity"
     },
     {
       "files":[

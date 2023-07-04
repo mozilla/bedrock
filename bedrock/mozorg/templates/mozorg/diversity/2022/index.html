@@ -1,0 +1,93 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros.html" import sub_nav with context %}
+
+{% block page_title %}Diversity & Inclusion at Mozilla: 2021 Results{% endblock %}
+{% block page_desc %}Mozilla strives to ensure that who we are, what we build, and how we engage the world around us reflect our commitment to diversity, equity, and inclusion.{% endblock %}
+{% block page_image %}{{ static('img/mozorg/diversity/2021/card-images/dni-2021-meta.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('diversity') }}
+{% endblock %}
+
+{% block sub_navigation %}
+{{ sub_nav(
+  title={
+    'text': "Diversity & Inclusion 2022"
+  },
+  links=[
+  {
+    'text': "Overview",
+    'href': url('mozorg.diversity.2022.index'),
+    'cta_name': "Diversity and inclusion overview"
+  },
+  {
+    'text': "Foundation data",
+    'href': url('mozorg.diversity.2021.mofo-data'),
+    'cta_name': "Mozilla Foundation data"
+  },
+  {
+    'text': "Corporation data",
+    'href': url('mozorg.diversity.2021.moco-data'),
+    'cta_name': "Mozilla Corporation data"
+  }]
+) }}
+{% endblock %}
+
+{% block content %}
+
+  <main>
+    <header class="c-hero-banner">
+    <div class="mzp-l-content">
+      <div class="c-banner-content">
+        <div class="c-header-container">
+          <h1>
+            Diversity & Inclusion at Mozilla: 2022 Results
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="mzp-l-content">
+    <div class="c-section-wrapper">
+      <!-- Introduction -->
+      <h2><span class="highlight violet">Introduction</span></h2>
+      <p><strong>As an ever-expanding organization with employees, volunteers and community members spanning the globe, we strive to continue the journey in our commitment to fostering an equitable and inclusive culture — while also maintaining alignment to our core organizational values of transparency and accountability. We encourage you all to join our movement.</strong></p>
+      <p>At Mozilla we operate cohesively under five separate but unified entities: the Foundation (MoFo), Corporation (MoCo), MZLA, Mozilla Ventures, and Mozilla.ai. Our annual disclosure gives us a unified opportunity as ‘One Mozilla’ to both reflect on our ambitious vision of fostering an equitable culture that enables inclusion, and to remain activated in our core organizational values of transparency and accountability around the commitments we’ve made. Historically, we have reported information on the Foundation and Corporation and are aiming to begin including information on our newest entities in future reports. This year's report will continue to focus on the Foundation and Corporation.</p>
+      <p>In 2022, on the Corporation side, we re-oriented ourselves foundationally and strategically formalized our new Inclusion, Diversity, Equity and Accountability (IDEA) team which sits within our broader Social and Environmental Impact (SEI) team. This created a strategic runway for us to continue building on the momentum from 2021.</p>
+      <p>Each year we aim to account for our progress and challenges in advancing our commitment to being a diverse, equitable and inclusive organization driven by accountability. This 2023 disclosure captures our progress through 2022. This year, we are pleased to continue providing data that captures the intersectional experiences of our employees in recognition of the complexity of our identities.</p>
+      <p>Lastly, as a growing global organization, we acknowledge that the racial and ethnic representation data we’re disclosing is specific to the United States. We are looking to develop better global reporting that is reflective of our Mozillians <em>(for contextual reference, at MoCo 64% of our employee population is based in the U.S., while only 40% of our MoFo employees are based in the U.S.)</em>, and also complies with global privacy and employment laws while providing more representative data and insights. We’ve made strides in some areas of representation and remained stagnant in other areas. There are useful lessons to be learned from the goals we met and missed, and we are eager to continue our journey.</p>
+    </div>
+    <div class="c-section-wrapper">
+      <h3><span class="highlight black">Looking back: progress across Mozilla</span></h3>
+      <p>Since reporting our representation metrics in 2018, we continue to monitor positive progress in advancing gender and racial/ethnic diversity. In 2022, women represented 38% of Mozilla Corporation’s employee population — an almost 9-point increase from 2018. At the Mozilla Foundation, the progress continues with women representing more than 70% of the total employee population amounting to an almost 6-point increase in women from 2018.</p>
+      <p>When we look at the racial and ethnic representation over the last five years, we have made progress and also recognize opportunities for hiring and retention. Mozilla Corporation saw a 5.2 percentage point increase in Black/African American representation from 2018, and the Mozilla Foundation saw a 12.1 percentage point increase in Black/African American representation from 2018.</p>
+      <div class="c-section-graphs">
+        <h4>Mozilla Corporation global gender diversity, 2018 to 2022</h4>
+        <figure><img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-gender-all.png') }}" alt="" width="600" height="371"></figure>
+        </div>
+        <div class="c-section-graphs">
+        <h4>Mozilla Foundation global gender diversity, 2018 to 2022</h4>
+        <figure><img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-gender-all.png') }}" alt="" width="600" height="371"></figure>
+        </div>
+        <div class="c-section-graphs">
+        <h4>Mozilla Corporation racial and ethnic diversity, 2018 to 2022 (U.S. Only)</h4>
+        <figure><img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-gender-all.png') }}" alt="" width="600" height="371"></figure>
+        </div>
+        <div class="c-section-graphs">
+        <h4>Mozilla Foundation racial and ethnic diversity, 2018 to 2022 (U.S. Only)</h4>
+        <figure><img src="{{ static('img/mozorg/diversity/2021/graphs/mofo-gender-all.png') }}" alt="" width="600" height="371"></figure>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+{% endblock %}

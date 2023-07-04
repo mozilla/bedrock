@@ -16,8 +16,7 @@ $image-path: '/media/protocol/img';
 .c-hero-banner {
     background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
     background-size: contain;
-    margin-bottom: $spacing-lg;
-    padding-top: $spacing-lg;
+    margin-bottom: $spacing-lg;    padding-top: $spacing-lg;
 
     .l-highlight {
         background: $color-green-40;
@@ -349,6 +348,12 @@ $image-path: '/media/protocol/img';
 
     .c-subtitle {
         text-align: center;
+    }
+
+     p {
+        strong {
+            @include text-body-lg;
+        }
     }
 }
 
