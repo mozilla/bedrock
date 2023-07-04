@@ -6,7 +6,6 @@
 
 import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
-import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
 
 (function (Mozilla) {
     function onLoad() {
@@ -34,7 +33,6 @@ import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
         }
 
         Mozilla.FirefoxDownloader.init();
-        MzpSideMenu.init();
 
         // Browser help modal.
         browserHelpIcon.addEventListener(
