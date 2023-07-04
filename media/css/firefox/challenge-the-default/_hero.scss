@@ -58,7 +58,7 @@ $campaign-red: #ff6a75;
 
             img {
                 max-height: 100%;
-                margin-right: -20px;
+                margin-right: $spacing-md;
             }
 
             .ctd-animated-logo {
@@ -77,18 +77,18 @@ $campaign-red: #ff6a75;
                 padding: 10px $spacing-md;
 
                 &.active {
-                    .firefox-logo, .ctd-animated-logo {
+                    .firefox-logo, .ctd-logo {
                         opacity: 1;
                         transform: scale(1);
                     }
 
-                    .ctd-animated-logo {
+                    .ctd-logo {
                         transition-delay: .25s;
                     }
                 }
 
                 @media (prefers-reduced-motion: no-preference) {
-                    .firefox-logo, .ctd-animated-logo {
+                    .firefox-logo, .ctd-logo {
                         transform: scale(0.25);
                         opacity: 0;
                         transition: all .25s ease-in-out;

@@ -26,14 +26,11 @@ function createObserver() {
                 } else if (heroSection.contains(entry.target)) {
                     const heroWrapper =
                         entry.target.querySelector('.hero-wrapper');
-                    const ctdLogo =
-                        entry.target.querySelector('.ctd-animated-logo');
                     const imageWrapper =
                         entry.target.querySelector('.c-hero-top-images');
                     heroWrapper.classList.add('animate-pop-in');
                     heroWrapper.addEventListener('animationend', function () {
                         imageWrapper.classList.add('active');
-                        ctdLogo.classList.add('animate-active');
                     });
                 } else if (
                     entry.target.classList.contains('ctd-animated-logo')
@@ -73,18 +70,6 @@ function init() {
         });
 
         observer.observe(heroSection);
-
-        const logo = document.querySelector(
-            '.c-animated-button .ctd-animated-logo'
-        );
-
-        const mobileLogo = document.querySelector(
-            '.ctd-mobile-banner .ctd-animated-logo'
-        );
-
-        // add animated logo to only animate while in view
-        observer.observe(logo);
-        observer.observe(mobileLogo);
     }
 }
 
