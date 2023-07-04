@@ -44,7 +44,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 <p>{{ ftl('vpn-linux-mozilla-vpn-is-a') }}</p>
 <h3>{{ ftl('vpn-linux-why-choose') }}</h3>
 <ul class="mzp-u-list-styled">
-  <li>{{ ftl('vpn-linux-fast-and') }}</li>
+  <li>
+    {% if ftl_has_messages('vpn-linux-fast-and-v2') %}
+      {{ ftl('vpn-linux-fast-and-v2') }}
+    {% else %}
+      {{ ftl('vpn-linux-fast-and') }}
+    {% endif %}
+  </li>
   <li>{{ ftl('vpn-linux-no-logs') }}</li>
   <li>{{ ftl('vpn-linux-additional-security') }}</li>
   <li>{{ ftl('vpn-linux-device-level') }}</li>
@@ -55,7 +61,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 </ul>
 <p>{{ ftl('vpn-linux-by-using') }}</p>
 <h3>{{ ftl('vpn-linux-how-to-install') }}</h3>
-<p>{{ ftl('vpn-linux-if-you-use', attrs='href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer" target="_blank"') }}</p>
+<p>
+  {% if ftl_has_messages('vpn-linux-if-you-use-v2') %}
+    {{ ftl('vpn-linux-if-you-use-v2', attrs='href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer" target="_blank"') }}
+  {% else %}
+    {{ ftl('vpn-linux-if-you-use', attrs='href="https://launchpad.net/~mozillacorp/+archive/ubuntu/mozillavpn" rel="external noopener noreferrer" target="_blank"') }}
+  {% endif %}
+</p>
 <ol class="mzp-u-list-styled">
   <li>{{ ftl('vpn-linux-ubuntu-command', attrs='href="https://support.mozilla.org/en-US/kb/how-install-mozilla-vpn-linux-computer" rel="external noopener noreferrer" target="_blank"') }}</li>
   <li>{{ ftl('vpn-linux-ubuntu-graphical', attrs='href="https://help.ubuntu.com/community/Repositories/Ubuntu#Adding_Personal_Package_Archives_.28PPAs.29" rel="external noopener noreferrer" target="_blank"') }}</li>
