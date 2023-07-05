@@ -408,6 +408,25 @@ $image-path: '/media/protocol/img';
         justify-content: center;
     }
 
+    &.t-2022 {
+         margin: $layout-md 0;
+
+        .c-graph-heading {
+            @include font-firefox;
+            @include text-body-lg;
+            margin: 0 auto;
+            font-weight: 700;
+        }
+
+        figure {
+            margin-bottom: $layout-lg;
+        }
+
+        img {
+            // width: 800px;
+        }
+    }
+
     figure {
         border: 1px solid $color-marketing-gray-30;
         margin: $spacing-md auto;
@@ -423,6 +442,8 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         justify-content: space-between;
     }
+
+
 }
 
 .commitments-table {
