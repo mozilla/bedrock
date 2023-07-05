@@ -55,22 +55,29 @@
         },
 
         // Madness from https://docs.microsoft.com/microsoft-edge/web-platform/how-to-detect-win11
+        // and https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform-version
         getWindowsVersionClientHint: function (version) {
             var fullPlatformVersion = version ? version.toString() : '0';
-            var majorPlatformVersion = parseInt(
-                fullPlatformVersion.split('.')[0],
-                10
-            );
-            if (majorPlatformVersion >= 13) {
+            var platformVersion = parseFloat(fullPlatformVersion);
+
+            if (platformVersion >= 13.0) {
                 // Windows 11 or later.
-                return '11.0.0';
-            } else if (majorPlatformVersion > 0) {
+                return '11.0';
+            } else if (platformVersion >= 1.0 && platformVersion < 13.0) {
                 // Windows 10
-                return '10.0.0';
+                return '10.0';
+            } else if (platformVersion === 0.3) {
+                // Windows 8.1
+                return '6.3';
+            } else if (platformVersion === 0.2) {
+                // Windows 8
+                return '6.2';
+            } else if (platformVersion === 0.1) {
+                // Windows 7
+                return '6.1';
             } else {
-                // Might be any Windows version less than 10, who knows.
-                // Rather than return undefined here, fallback to UA string.
-                return site.getPlatformVersion();
+                // Windows versions older than 7 are not reported, so return zero.
+                return '0';
             }
         },
 

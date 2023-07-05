@@ -14,6 +14,12 @@ describe('site.js', function () {
         it('should identify Windows', function () {
             expect(
                 window.site.getPlatform(
+                    'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+                    'Win64'
+                )
+            ).toBe('windows');
+            expect(
+                window.site.getPlatform(
                     'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727)',
                     'Win64'
                 )
@@ -375,40 +381,91 @@ describe('site.js', function () {
     describe('getWindowsVersionClientHint', function () {
         it('should identify 13 and up as Windows 11 or later', function () {
             expect(window.site.getWindowsVersionClientHint('13.0.0')).toBe(
-                '11.0.0'
+                '11.0'
             );
             expect(window.site.getWindowsVersionClientHint('14.0.0')).toBe(
-                '11.0.0'
+                '11.0'
             );
         });
 
         it('should identify 1 through 12 as Windows 10', function () {
             expect(window.site.getWindowsVersionClientHint('12.0.0')).toBe(
-                '10.0.0'
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('12.1.0')).toBe(
+                '10.0'
             );
             expect(window.site.getWindowsVersionClientHint('11.0.0')).toBe(
-                '10.0.0'
+                '10.0'
             );
             expect(window.site.getWindowsVersionClientHint('10.0.0')).toBe(
-                '10.0.0'
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('9.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('8.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('7.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('6.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('5.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('4.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('3.0.0')).toBe(
+                '10.0'
+            );
+            expect(window.site.getWindowsVersionClientHint('2.0.0')).toBe(
+                '10.0'
             );
             expect(window.site.getWindowsVersionClientHint('1.0.0')).toBe(
-                '10.0.0'
+                '10.0'
             );
-            expect(window.site.getWindowsVersionClientHint('1')).toBe('10.0.0');
-            expect(window.site.getWindowsVersionClientHint(1.0)).toBe('10.0.0');
-            expect(window.site.getWindowsVersionClientHint(12)).toBe('10.0.0');
         });
 
-        it('should return fallback to using UA string for unknown Windows versions', function () {
-            spyOn(window.site, 'getPlatformVersion').and.returnValue('8.1');
-
-            expect(window.site.getWindowsVersionClientHint('0.0.0')).toBe(
-                '8.1'
+        it('should identify 0.3 as Windows 8.1', function () {
+            expect(window.site.getWindowsVersionClientHint('0.3')).toBe('6.3');
+            expect(window.site.getWindowsVersionClientHint('0.3.1')).toBe(
+                '6.3'
             );
-            expect(window.site.getWindowsVersionClientHint(0.0)).toBe('8.1');
-            expect(window.site.getWindowsVersionClientHint('0')).toBe('8.1');
-            expect(window.site.getWindowsVersionClientHint('')).toBe('8.1');
+        });
+
+        it('should identify 0.2 as Windows 8', function () {
+            expect(window.site.getWindowsVersionClientHint('0.2')).toBe('6.2');
+            expect(window.site.getWindowsVersionClientHint('0.2.0')).toBe(
+                '6.2'
+            );
+        });
+
+        it('should identify 0.1 as Windows 7', function () {
+            expect(window.site.getWindowsVersionClientHint('0.1')).toBe('6.1');
+            expect(window.site.getWindowsVersionClientHint('0.1.2')).toBe(
+                '6.1'
+            );
+        });
+
+        it('should identify 0.1 as Windows 7', function () {
+            expect(window.site.getWindowsVersionClientHint('0.1')).toBe('6.1');
+            expect(window.site.getWindowsVersionClientHint('0.1.2')).toBe(
+                '6.1'
+            );
+        });
+
+        it('should return anything else as zero / unknown', function () {
+            expect(window.site.getWindowsVersionClientHint('0.9')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.8')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.7')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.6')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.5')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.4')).toBe('0');
+            expect(window.site.getWindowsVersionClientHint('0.0.1')).toBe('0');
         });
     });
 
