@@ -66,49 +66,13 @@ describe('site.js', function () {
         it('should identify old-Mac', function () {
             expect(
                 window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; ja-jp) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; nl-nl) AppleWebKit/533.16 (KHTML, like Gecko) Version/4.1 Safari/533.16',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
                     'Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)',
                     'foo'
                 )
             ).toBe('other');
             expect(
                 window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
                     'Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/538.10.3 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
-                    'foo'
-                )
-            ).toBe('other');
-            expect(
-                window.site.getPlatform(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
                     'foo'
                 )
             ).toBe('other');
@@ -144,6 +108,42 @@ describe('site.js', function () {
             expect(
                 window.site.getPlatform(
                     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; ja-jp) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; nl-nl) AppleWebKit/533.16 (KHTML, like Gecko) Version/4.1 Safari/533.16',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/538.10.3 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1',
+                    'foo'
+                )
+            ).toBe('osx');
+            expect(
+                window.site.getPlatform(
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
                     'foo'
                 )
             ).toBe('osx');
@@ -486,6 +486,158 @@ describe('site.js', function () {
             expect(window.site.isARM('')).toBeFalse();
             expect(window.site.isARM(null)).toBeFalse();
             expect(window.site.isARM(undefined)).toBeFalse();
+        });
+    });
+
+    describe('getPlatformClass', function () {
+        beforeEach(function () {
+            document.documentElement.className = 'windows no-js';
+            window.site.fxSupported = true;
+        });
+
+        afterEach(function () {
+            document.documentElement.className = '';
+            window.site.fxSupported = true;
+        });
+
+        it('should return the appropriate HTML class for Windows 10', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'windows',
+                10.0,
+                32
+            );
+            expect(classString).toEqual(
+                'windows js windows-10-plus is-modern-browser'
+            );
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for macOS 10.15', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass('osx', 10.15, 32);
+            expect(classString).toEqual('osx js is-modern-browser');
+        });
+
+        it('should return the appropriate HTML class for Linux', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'linux',
+                undefined,
+                32
+            );
+            expect(classString).toEqual('linux js is-modern-browser');
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for Android', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'android',
+                '4.1',
+                64
+            );
+            expect(classString).toEqual('android js x64 is-modern-browser');
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for iOS', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'ios',
+                undefined,
+                64
+            );
+            expect(classString).toEqual('ios js x64 is-modern-browser');
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for unknown platforms', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'other',
+                undefined,
+                32
+            );
+            expect(classString).toEqual('other js is-modern-browser');
+            expect(window.site.fxSupported).toBeTrue; // we don't know for sure here to say false.
+        });
+
+        it('should return the appropriate HTML class for outdated browsers', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'windows',
+                10.0,
+                32
+            );
+            expect(classString).toEqual('windows js windows-10-plus');
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for Firefox browsers', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(true);
+            const classString = window.site.getPlatformClass(
+                'windows',
+                10.0,
+                64
+            );
+            expect(classString).toEqual(
+                'windows js windows-10-plus x64 is-firefox is-modern-browser'
+            );
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for ARM based CPUs', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
+            spyOn(window.site, 'isARM').and.returnValue(true);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'windows',
+                10.0,
+                32
+            );
+            expect(classString).toEqual(
+                'windows js windows-10-plus arm is-modern-browser'
+            );
+            expect(window.site.fxSupported).toBeTrue;
+        });
+
+        it('should return the appropriate HTML class for outdated Windows operating systems', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass(
+                'windows',
+                6.3,
+                32
+            );
+            expect(classString).toEqual('windows js fx-unsupported');
+            expect(window.site.fxSupported).toBeFalse;
+        });
+
+        it('should return the appropriate HTML class for outdated macOS operating systems', function () {
+            spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
+            spyOn(window.site, 'isARM').and.returnValue(false);
+            spyOn(window.site, 'isFirefox').and.returnValue(false);
+            const classString = window.site.getPlatformClass('osx', 10.14, 64);
+            expect(classString).toEqual('osx js fx-unsupported x64');
+            expect(window.site.fxSupported).toBeFalse;
         });
     });
 });

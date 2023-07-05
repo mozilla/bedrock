@@ -36,6 +36,11 @@ $brand-theme: 'firefox';
             color: $color-marketing-gray-50;
         }
     }
+
+    // issue 13317
+    .fx-unsupported & .menu-desktop {
+        display: none;
+    }
 }
 
 // ------------------------------------------------------------------------------

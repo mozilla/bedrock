@@ -54,12 +54,6 @@
 
 {% block content %}
 <main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
-
-  {# Show unsupported notification to IE 6/7 visitors on Windows XP/Vista #}
-  <!--[if lt IE 8]>
-  <div class="mzp-c-notification-bar mzp-t-warning" data-nosnippet="true">{{ ftl('firefox-new-mozilla-no-longer-provides', fallback='firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</div>
-  <![endif]-->
-
   {% call split(
     block_class='mzp-l-split-center-on-sm-md t-split-hero',
     media_class='mzp-l-split-media-overflow',

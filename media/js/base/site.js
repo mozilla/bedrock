@@ -32,10 +32,7 @@
                 // iPadOS
                 return 'ios';
             }
-            if (
-                ua.indexOf('Mac OS X') !== -1 &&
-                !/Mac OS X 10.(1[0-1]|[1-9])\D/.test(ua)
-            ) {
+            if (ua.indexOf('Mac OS X') !== -1) {
                 return 'osx';
             }
 
@@ -145,75 +142,91 @@
             );
         },
 
+        // Add class to reflect if user agent is Firefox. Cherry-picked from mozilla-client.js.
+        isFirefox: function () {
+            return (
+                /\s(Firefox|FxiOS)/.test(navigator.userAgent) &&
+                !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(
+                    navigator.userAgent
+                )
+            );
+        },
+
+        getPlatformClass: function (platform, platformVersion, archSize) {
+            var classString = document.documentElement.className;
+            var _version = platformVersion ? parseFloat(platformVersion) : 0;
+
+            if (platform === 'windows') {
+                // Detect Windows 10 "and up" to display installation
+                // messaging on the /firefox/download/thanks/ page.
+
+                if (_version >= 10.0) {
+                    classString += ' windows-10-plus';
+                }
+
+                // Add fx-unsupported class name for Windows 8.1 and below
+                // https://github.com/mozilla/bedrock/issues/13317
+                if (_version <= 6.3) {
+                    classString += ' fx-unsupported';
+                    window.site.fxSupported = false;
+                }
+            } else {
+                classString = classString.replace('windows', platform);
+            }
+
+            if (platform === 'osx') {
+                // Add fx-unsupported class name for macOS 10.14 and below
+                // https://github.com/mozilla/bedrock/issues/13317
+                if (_version <= 10.14) {
+                    classString += ' fx-unsupported';
+                    window.site.fxSupported = false;
+                }
+            }
+
+            // Used to display a custom installation message and
+            // SUMO link on the /firefox/download/thanks/ page.
+            if (window.site.isARM()) {
+                classString += ' arm';
+            }
+
+            // Used for 64bit download link on Linux and Firefox Beta on Windows.
+            if (archSize === 64) {
+                classString += ' x64';
+            }
+
+            if (window.site.isFirefox()) {
+                classString += ' is-firefox';
+            }
+
+            // Add class to reflect browsers that get 1st class JS & CSS support.
+            var isModernBrowser = (window.site.isModernBrowser =
+                window.site.cutsTheMustard());
+
+            if (isModernBrowser) {
+                classString += ' is-modern-browser';
+            }
+
+            // Add class to reflect javascript availability for CSS
+            classString = classString.replace(/\bno-js\b/, 'js');
+
+            return classString;
+        },
+
         platform: 'other',
         platformVersion: undefined,
         archType: 'x64',
-        archSize: 32
+        archSize: 32,
+        fxSupported: true
     };
 
     function updateHTML() {
-        var h = document.documentElement;
-        var _version = window.site.platformVersion
-            ? parseFloat(window.site.platformVersion)
-            : 0;
-
-        if (window.site.platform === 'windows') {
-            // Detect Windows 10 "and up" to display installation
-            // messaging on the /firefox/download/thanks/ page.
-
-            if (_version >= 10.0) {
-                h.className += ' windows-10-plus';
-            }
-
-            // Add fx-unsupported class name for Windows 8.1 and below
-            // https://github.com/mozilla/bedrock/issues/13317
-            if (_version <= 6.3) {
-                h.className += ' fx-unsupported';
-            }
-        } else {
-            h.className = h.className.replace('windows', window.site.platform);
-        }
-
-        if (window.site.platform === 'osx') {
-            // Add fx-unsupported class name for macOS 10.14 and below
-            // https://github.com/mozilla/bedrock/issues/13317
-            if (_version <= 10.14) {
-                h.className += ' fx-unsupported';
-            }
-        }
-
-        // Used to display a custom installation message and
-        // SUMO link on the /firefox/download/thanks/ page.
-        if (window.site.isARM()) {
-            h.className += ' arm';
-        }
-
-        // Used for 64bit download link on Linux and Firefox Beta on Windows.
-        if (window.site.archSize === 64) {
-            h.className += ' x64';
-        }
-
-        // Add class to reflect if user agent is Firefox. Cherry-picked from mozilla-client.js.
-        var isFirefox =
-            /\s(Firefox|FxiOS)/.test(navigator.userAgent) &&
-            !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(
-                navigator.userAgent
-            );
-
-        if (isFirefox) {
-            h.className += ' is-firefox';
-        }
-
-        // Add class to reflect browsers that get 1st class JS & CSS support.
-        var isModernBrowser = (window.site.isModernBrowser =
-            window.site.cutsTheMustard());
-
-        if (isModernBrowser) {
-            h.className += ' is-modern-browser';
-        }
-
-        // Add class to reflect javascript availability for CSS
-        h.className = h.className.replace(/\bno-js\b/, 'js');
+        var html = document.documentElement;
+        var classString = window.site.getPlatformClass(
+            window.site.platform,
+            window.site.platformVersion,
+            window.site.archSize
+        );
+        html.className = classString;
     }
 
     function getHighEntropyFromUAString() {

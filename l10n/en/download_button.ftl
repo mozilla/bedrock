@@ -54,3 +54,4 @@ download-button-please-download-esr = Please download { -brand-name-firefox-esr 
 download-firefox-esr = Download { -brand-name-firefox-esr }
 download-firefox-esr-32 = Download { -brand-name-firefox-esr } 32-bit
 download-firefox-esr-64 = Download { -brand-name-firefox-esr } 64-bit
+download-a-different-build = Download a different build

@@ -14,12 +14,6 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Call out / page header
 
-
-// Fx unsupported message issue #13317
-.mzp-c-call-out .fx-unsupported-message {
-    text-align: center;
-}
-
 .mzp-c-call-out.mzp-t-product-firefox,
 .mzp-c-call-out.mzp-t-product-beta {
     background: $color-marketing-gray-20;

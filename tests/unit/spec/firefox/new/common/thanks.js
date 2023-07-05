@@ -13,25 +13,37 @@ describe('thanks.js', function () {
     describe('shouldAutoDownload', function () {
         it('should return true for supported platforms', function () {
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('windows')
+                Mozilla.DownloadThanks.shouldAutoDownload('windows', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('osx')
+                Mozilla.DownloadThanks.shouldAutoDownload('osx', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('linux')
+                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('android')
+                Mozilla.DownloadThanks.shouldAutoDownload('android', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('ios')
+                Mozilla.DownloadThanks.shouldAutoDownload('ios', true)
             ).toBeTruthy();
         });
 
         it('should return false for unknown platforms', function () {
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('other')
+                Mozilla.DownloadThanks.shouldAutoDownload('other', true)
+            ).toBeFalsy();
+        });
+
+        it('should return false for non-supported Windows versions', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('windows', false)
+            ).toBeFalsy();
+        });
+
+        it('should return false for non-supported macOS versions', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('osx', false)
             ).toBeFalsy();
         });
     });

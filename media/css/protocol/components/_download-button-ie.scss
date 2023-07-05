@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'fx-unsupported-ie';
 
 // download button and related containers
 ul.download-list {
@@ -39,33 +40,6 @@ ul.download-list {
 // Show Firefox Android / iOS download buttons
 .download-button-android .download-list .os_android,
 .download-button-ios .download-list .os_ios {
-    display: block !important;
-}
-
-// Hide pre-release Firefox download buttons on unsupported
-// operating system versions (issue #13317)
-.download-button-beta.download-button-desktop .download-list,
-.download-button-alpha.download-button-desktop .download-list,
-.download-button-nightly.download-button-desktop .download-list {
-    display: none !important;
-}
-
-.fx-unsupported-message {
-    @include bidi(((text-align, left, right),));
-    display: none !important;
-
-    .download-platform-list {
-        text-align: center;
-
-        li {
-            margin-bottom: $spacing-lg;
-        }
-    }
-}
-
-.download-button-beta .fx-unsupported-message.win,
-.download-button-alpha .fx-unsupported-message.win,
-.download-button-nightly .fx-unsupported-message.win {
     display: block !important;
 }
 

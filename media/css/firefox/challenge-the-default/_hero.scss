@@ -194,8 +194,6 @@ $campaign-red: #ff6a75;
             max-width: 80%;
         }
 
-
-
         h1 {
             @include font-firefox;
             @include font-size(36px);
@@ -230,5 +228,10 @@ $campaign-red: #ff6a75;
                 text-align: left;
             }
         }
+    }
+
+    // issue 13317
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
     }
 }

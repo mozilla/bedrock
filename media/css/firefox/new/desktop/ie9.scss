@@ -6,6 +6,7 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../../../protocol/components/fx-unsupported-ie';
 
 .c-menu-item .c-menu-item-desc {
     display: none;
