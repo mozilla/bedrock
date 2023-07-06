@@ -329,7 +329,7 @@ $image-path: '/media/protocol/img';
     max-width: $content-lg;
 
     h2 {
-        @include text-title-lg;
+        @include text-title-md;
         font-weight: 100;
         text-align: center;
     }
@@ -353,6 +353,12 @@ $image-path: '/media/protocol/img';
      p {
         strong {
             @include text-body-lg;
+        }
+    }
+
+    @media #{$mq-sm} {
+        h2 {
+            @include text-title-lg;
         }
     }
 }
@@ -420,11 +426,14 @@ $image-path: '/media/protocol/img';
 
         figure {
             margin-bottom: $layout-lg;
+
+            .enlarged-img {
+                width: 680px;
+            }
         }
 
-        img {
-            // width: 800px;
-        }
+
+
     }
 
     figure {
