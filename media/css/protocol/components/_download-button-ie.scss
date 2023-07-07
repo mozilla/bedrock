@@ -63,7 +63,9 @@ ul.download-list {
     }
 }
 
-.fx-unsupported-message.win {
+.download-button-beta .fx-unsupported-message.win,
+.download-button-alpha .fx-unsupported-message.win,
+.download-button-nightly .fx-unsupported-message.win {
     display: block !important;
 }
 
