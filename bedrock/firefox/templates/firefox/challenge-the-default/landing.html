@@ -34,7 +34,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set cta_group %}
   <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg">Firefox als Standardbrowser festlegen</a>
   <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Firefox fürs Handy entdecken</a>
-  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen') }}
+  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen', locale_in_transition=True) }}
 {% endset %}
 
 {% block content %}
