@@ -414,8 +414,16 @@ $image-path: '/media/protocol/img';
         justify-content: center;
     }
 
+    &.single-column {
+        flex-direction: column;
+
+        .c-graph-wrapper {
+            align-self: center;
+        }
+    }
+
     &.t-2022 {
-         margin: $layout-md 0;
+        margin: $layout-md 0;
 
         .c-graph-heading {
             @include font-firefox;
@@ -429,11 +437,12 @@ $image-path: '/media/protocol/img';
 
             .enlarged-img {
                 width: 680px;
+
+                &.xl {
+                    width: 800px;
+                }
             }
         }
-
-
-
     }
 
     figure {
@@ -451,8 +460,6 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         justify-content: space-between;
     }
-
-
 }
 
 .commitments-table {
