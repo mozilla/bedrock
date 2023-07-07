@@ -49,6 +49,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale="fr",
+                    platform="desktop",
                 ),
                 call(
                     "beta",
@@ -57,6 +58,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale="fr",
+                    platform="desktop",
                 ),
                 call(
                     "alpha",
@@ -92,6 +94,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale=None,
+                    platform="desktop",
                 ),
                 call(
                     "beta",
@@ -100,6 +103,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale=None,
+                    platform="desktop",
                 ),
                 call(
                     "alpha",
@@ -140,6 +144,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale=None,
+                    platform="desktop",
                 ),
                 call(
                     "beta",
@@ -148,6 +153,7 @@ class TestInstallerHelp(TestCase):
                     force_direct=True,
                     force_full_installer=True,
                     locale=None,
+                    platform="desktop",
                 ),
                 call(
                     "alpha",
@@ -181,7 +187,13 @@ class TestInstallerHelp(TestCase):
             },
         )
         self.button_mock.assert_called_once_with(
-            "beta", alt_copy=Markup("Download Now"), button_class="mzp-t-md", force_direct=True, force_full_installer=True, locale=None
+            "beta",
+            alt_copy=Markup("Download Now"),
+            button_class="mzp-t-md",
+            force_direct=True,
+            force_full_installer=True,
+            locale=None,
+            platform="desktop",
         )
 
 

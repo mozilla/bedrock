@@ -133,8 +133,12 @@ ul.download-list {
     }
 }
 
-.windows.fx-unsupported .fx-unsupported-message.win,
-.osx.fx-unsupported .fx-unsupported-message.mac {
+.windows.fx-unsupported .download-button-beta .fx-unsupported-message.win,
+.windows.fx-unsupported .download-button-alpha .fx-unsupported-message.win,
+.windows.fx-unsupported .download-button-nightly .fx-unsupported-message.win,
+.osx.fx-unsupported .download-button-beta .fx-unsupported-message.mac,
+.osx.fx-unsupported .download-button-alpha .fx-unsupported-message.mac,
+.osx.fx-unsupported .download-button-nightly .fx-unsupported-message.mac {
     display: block !important;
 }
 
