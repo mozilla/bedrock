@@ -10,34 +10,34 @@
 
 {% block page_title %}Diversity & Inclusion at Mozilla: 2022 Results{% endblock %}
 {% block page_desc %}Mozilla strives to ensure that who we are, what we build, and how we engage the world around us reflect our commitment to diversity, equity, and inclusion.{% endblock %}
-{% block page_image %}{{ static('img/mozorg/diversity/2021/card-images/dni-2021-meta.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/diversity/2022/dni-2022-meta.png') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('diversity') }}
 {% endblock %}
 
 {% block sub_navigation %}
-{{ sub_nav(
-  title={
-    'text': "Diversity & Inclusion 2022"
-  },
-  links=[
-  {
-    'text': "Overview",
-    'href': url('mozorg.diversity.2022.index'),
-    'cta_name': "Diversity and inclusion overview"
-  },
-  {
-    'text': "Foundation data",
-    'href': url('mozorg.diversity.2022.mofo-data'),
-    'cta_name': "Mozilla Foundation data"
-  },
-  {
-    'text': "Corporation data",
-    'href': url('mozorg.diversity.2022.moco-data'),
-    'cta_name': "Mozilla Corporation data"
-  }]
-) }}
+  {{ sub_nav(
+    title={
+      'text': "Diversity & Inclusion 2022"
+    },
+    links=[
+    {
+      'text': "Overview",
+      'href': url('mozorg.diversity.2022.index'),
+      'cta_name': "Diversity and inclusion overview"
+    },
+    {
+      'text': "Foundation data",
+      'href': url('mozorg.diversity.2022.mofo-data'),
+      'cta_name': "Mozilla Foundation data"
+    },
+    {
+      'text': "Corporation data",
+      'href': url('mozorg.diversity.2022.moco-data'),
+      'cta_name': "Mozilla Corporation data"
+    }]
+  ) }}
 {% endblock %}
 
 {% block content %}

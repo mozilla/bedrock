@@ -1,0 +1,97 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.highlight {
+    @include box-decoration-break(clone);
+    line-height: 1.3;
+    padding: 0 $spacing-sm;
+
+    &.black {
+        background: $color-black;
+        color: $color-white;
+    }
+}
+
+header {
+    text-align: center;
+
+    &.mzp-l-content {
+        padding-bottom: 0;
+    }
+
+    h2 {
+        @include text-title-xs;
+        @include font-mozilla;
+        font-weight: 500;
+    }
+}
+
+.c-section-wrapper {
+    margin: 0 auto;
+    padding-top: $layout-sm;
+    max-width: $content-lg;
+
+    h2 {
+        @include text-title-md;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    h3 {
+        @include text-title-sm;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    h4 {
+        @include text-title-xs;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .c-subtitle {
+        text-align: center;
+    }
+
+     p {
+        strong {
+            @include text-body-lg;
+        }
+    }
+
+    @media #{$mq-sm} {
+        h2 {
+            @include text-title-lg;
+        }
+    }
+
+    blockquote {
+        @include text-body-lg;
+        @include font-firefox;
+
+        cite {
+            @include text-body-lg;
+        }
+}
+
+    .emphasis {
+        @include text-title-sm;
+        color: $color-purple-70;
+        text-align: center;
+        margin: $layout-lg;
+    }
+}
+
+.c-graph-wrapper {
+    text-align: center;
+
+    img {
+        width: 550px;
+    }
+}

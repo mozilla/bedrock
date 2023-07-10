@@ -178,7 +178,7 @@ $image-path: '/media/protocol/img';
     }
 
     &.black {
-        background: black;
+        background: $color-black;
         color: $color-white;
     }
 

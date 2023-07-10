@@ -1,0 +1,89 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros.html" import sub_nav with context %}
+
+{% block page_title %}Sustainability at Mozilla{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('sustainability') }}
+{% endblock %}
+
+
+{% block sub_navigation %}
+{{ sub_nav(
+  title={
+    'text': "Sustainability Report 2023"
+  },
+  links=[
+  {
+    'text': "Overview",
+    'href': url('mozorg.diversity.2022.index'),
+    'cta_name': "Diversity and inclusion overview"
+  }]
+) }}
+{% endblock %}
+
+{% block content %}
+
+  <main>
+    <header class="mzp-l-content mzp-t-content-md">
+      <h1>The 2023 Mozilla Sustainability Report</h1>
+      <h2>Supporting a sustainable future for all</h2>
+    </header>
+
+    <!-- Introduction -->
+    <section class="mzp-l-content mzp-t-content-lg">
+      <div class="c-section-wrapper">
+        <blockquote>
+            <p>“In these disruptive, crises-ridden times, our attention is often captured by the immediate political and technical challenges right in front of us. Facing the climate crisis and ensuring that there is a habitable planet for us and future generations to continue fighting these fights is not something that can be pushed to the back seat. I, and Mozilla, are committed to protecting the environment.”</p>
+            <cite>Mitchell Baker, CEO</cite>
+        </blockquote>
+        <p>Mozilla recognizes the importance and urgency of taking action on climate change. Our <a href="{{ url('mozorg.about.manifesto') }}">Manifesto</a> articulates our belief that an open internet is the most effective communication and collaboration resource, and that it can help to solve some of the world's most pressing issues, such as climate change.</p>
+      </div>
+
+      <div class="c-section-wrapper">
+        <h3><span class="highlight black">Sustainability at Mozilla</span></h3>
+        <p>The <strong>vision</strong> of Mozilla’s Sustainability Program is to support a sustainable future for all. The <strong>mission</strong> is to ensure Mozilla is a responsible and trusted environmental steward, to empower Mozillians to build sustainability into their work, and to support a healthy, sustainable internet.</p>
+
+        <p>Our Sustainability Program has three strategic pillars in support of this vision and mission:</p>
+
+        <div class="c-graph-wrapper">
+          <figure><img src="{{ static('img/mozorg/sustainability/sustainability-zenn-diagram.png') }}" alt="Zenn diagram showing the three pillars of sustainability at Mozilla. The top circle, with the words 'Ensure Mozilla is a responsible and trusted environment steward'. The bottom-left circle with the words 'Empower Mozillians to build sustainability into their work. The bottom-right circle with the words 'Enable a healthy sustainable internet"></figure>
+        </div>
+
+        <p class="emphasis">The vision of Mozilla’s Sustainability Program is to support a sustainable future for all</p>
+
+        <p>The first strategic pillar is <strong>to ensure Mozilla is a responsible and trusted environmental steward</strong>. We understand that if we are to be stewards of our planet, we must first address our own impacts. This includes credibly measuring and reporting Mozilla’s environmental impact and taking meaningful steps to reduce our carbon footprint.</p>
+
+        <p>The second strategic pillar is to <strong>empower Mozillians to build sustainability into their work</strong>. To embed sustainability into the operations at any organization, an organizational transformation is required, and a critical component of this is ensuring that everyone is empowered to build with sustainability in mind. A key example of this is Mozilla’s <a href="https://blog.mozilla.org/en/mozilla/sustainability-needs-culture-change-introducing-environmental-champions/">Environmental Champions program</a> in which Mozillians dedicate a portion of their time to supporting sustainability efforts, pushing forward sustainability initiatives and priorities at Mozilla, and setting positive examples on their respective teams.</p>
+
+        <p>The third strategic pillar is to <strong>enable a healthy, sustainable internet</strong>. In order to truly have an impact, sustainability must extend beyond the four walls of Mozilla’s immediate operations, and we look forward to exploring opportunities to build momentum on climate action in our products and partnerships. One example of this includes curating environmental collections in Pocket, <a href="https://blog.getpocket.com/2020/04/marking-earth-day-during-a-pandemic/" target="_blank" rel="noopener noreferrer">including during Earth Day in 2020</a>, to build awareness and inspire action. Another example is our partnership with the Ford Foundation and Ariadne to explore how technology-focused funders could respond to the climate crisis and allocate resources, which has grown into the larger <a href="https://www.ariadne-network.eu/green-screen-coalition-awards/" target="_blank" rel="noopener noreferrer">Green Screen Coalition</a> and enabled new research <a href="https://foundation.mozilla.org/en/blog/intersections-of-digital-rights-and-environmental-and-climate-justice/">on the intersections of digital rights and environmental and climate justice</a>.</p>
+
+        <p>We acknowledge that we are still in the early stages of Mozilla’s sustainability journey. There is much work to be completed to reduce our operational impact while also supporting larger movements that drive the change we want to see in the world. We welcome these opportunities, will share what we learn along the way and are confident that we will learn from partners, too.</p>
+
+        <h4>Additional resources on sustainability at Mozilla</h4>
+        <ul class="mzp-u-list-styled">
+          <li>Our 2019 <a href="https://blog.mozilla.org/en/mozilla/release-mozillas-greenhouse-gas-emissions-baseline/">greenhouse gas emissions summary</a> and <a href="https://blog.mozilla.org/wp-content/blogs.dir/278/files/2021/02/Mozillas-2019-Greenhouse-Gas-emissions-baseline_2020-11-18.pdf">full report</a></li>
+          <li>Research on the <a href="https://foundation.mozilla.org/en/blog/intersections-of-digital-rights-and-environmental-and-climate-justice/">Intersections of Digital Rights and Environmental and Climate Justice</a></li>
+          <li>Pocket Collections
+            <ul class="mzp-u-list-styled">
+              <li><a href="https://blog.getpocket.com/2020/04/marking-earth-day-during-a-pandemic/" target="_blank" rel="noopener noreferrer">2020 Earth Day Collections</a></li>
+              <li><a href="https://getpocket.com/collections/how-to-help-the-planet-environment" target="_blank" rel="noopener noreferrer">2023 Earth Day Collections</a></li>
+            </ul>
+          </li>
+          <li><a href="https://blog.mozilla.org/en/mozilla/sustainability-needs-culture-change-introducing-environmental-champions/">Introduction to Mozilla’s Environmental Champions</a></li>
+          <li><a href="https://blog.mozilla.org/en/mozilla/virtual-tours-of-the-museum-of-the-fossilized-internet/">Virtual tours of the museum of the fossilized internet</a></li>
+        </ul>
+      </div>
+
+
+    </section>
+  </main>
+
+{% endblock %}
