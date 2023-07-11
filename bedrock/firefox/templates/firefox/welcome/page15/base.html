@@ -105,8 +105,9 @@
         <p class="c-main-tagline">
           {{ var_1_main_tagline }}
         </p>
+        {% set referral_id = 'welcome-page15-v1' if variation == '1' else 'welcome-page15' %}
         {{ vpn_product_referral_link(
-          referral_id='welcome-page15-v1',
+          referral_id=referral_id,
           link_to_pricing_page=True,
           link_text=cta_text,
           class_name='mzp-t-product mzp-t-xl',
