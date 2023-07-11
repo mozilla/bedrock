@@ -12,6 +12,11 @@ $image-path: '/media/protocol/img';
     line-height: 1.3;
     padding: 0 $spacing-sm;
 
+    &.green {
+        background: $color-green-60;
+        color: $color-black;
+    }
+
     &.black {
         background: $color-black;
         color: $color-white;
@@ -36,6 +41,8 @@ header {
     margin: 0 auto;
     padding-top: $layout-sm;
     max-width: $content-lg;
+
+    // overflow: scroll; //placed to make data table scrollable in mobile
 
     h2 {
         @include text-title-md;
@@ -80,18 +87,124 @@ header {
         }
 }
 
-    .emphasis {
-        @include text-title-sm;
-        color: $color-purple-70;
+
+}
+
+.emphasis {
+    margin: $layout-lg;
+
+    p {
+        @include text-title-xs;
         text-align: center;
-        margin: $layout-lg;
+    }
+}
+
+.c-image-wrapper {
+    text-align: center;
+    margin: $spacing-xl 0;
+
+    &.carbon-neutral {
+        img {
+            width: 320px;
+        }
     }
 }
 
 .c-graph-wrapper {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: $spacing-xl ;
 
-    img {
-        width: 550px;
+
+    figure {
+        margin: $spacing-md;
+
+        figcaption {
+            @include font-base;
+            @include text-body-lg;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        img {
+            border: 2px solid $color-marketing-gray-30;
+            border-radius: 6px;
+            width: 800px;
+        }
+    }
+}
+
+.c-emissions {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: $spacing-2xl;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+
+        h5 {
+            @include text-title-2xs;
+            color: $color-green-80;
+            font-weight: 500;
+        }
+
+        p {
+            @include text-body-lg;
+            font-weight: 700;
+        }
+    }
+}
+
+
+.c-table-wrapper {
+    margin: $layout-lg 0;
+
+    .c-table {
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+
+        tr {
+            &.ghg-percentage {
+                background: $color-light-gray-20;
+
+                th {
+                    font-weight: 500;
+                }
+            }
+
+            &.c-total {
+                background: $color-green-10;
+
+                td {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        &.table-2 {
+            .scope {
+                width: 200px;
+            }
+
+            .subrow {
+                font-weight: 500;
+            }
+
+            .scope-total {
+                td {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        @media #{$mq-md} {
+            overflow: auto;
+        }
     }
 }

@@ -136,6 +136,8 @@ urlpatterns = (
     page("diversity/2022/mozilla-corporation-data", "mozorg/diversity/2022/moco-data.html"),
     # Sustainability pages
     page("sustainability/", "mozorg/sustainability/index.html"),
+    page("sustainability/carbon-neutral", "mozorg/sustainability/carbon-neutral.html"),
+    page("sustainability/greenhouse-gas-data", "mozorg/sustainability/greenhouse-data.html"),
     # Webvision
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
     path(

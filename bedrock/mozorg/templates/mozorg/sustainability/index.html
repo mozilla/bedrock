@@ -8,7 +8,7 @@
 
 {% from "macros.html" import sub_nav with context %}
 
-{% block page_title %}Sustainability at Mozilla{% endblock %}
+{% block page_title %}Mozilla is CarbonNeutralⓇ certified{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('sustainability') }}
@@ -23,9 +23,20 @@
   links=[
   {
     'text': "Overview",
-    'href': url('mozorg.diversity.2022.index'),
-    'cta_name': "Diversity and inclusion overview"
-  }]
+    'href': url('mozorg.sustainability.index'),
+    'cta_name': "Sustainability overview"
+  },
+  {
+    'text': "CarbonNeutralⓇ certified",
+    'href': url('mozorg.sustainability.carbon-neutral'),
+    'cta_name': "Carbon neutral"
+  },
+  {
+    'text': "Greenhouse inventory data",
+    'href': url('mozorg.sustainability.greenhouse-data'),
+    'cta_name': "Greenhouse gas data"
+  }
+  ]
 ) }}
 {% endblock %}
 
@@ -40,6 +51,7 @@
     <!-- Introduction -->
     <section class="mzp-l-content mzp-t-content-lg">
       <div class="c-section-wrapper">
+        <h2><span class="highlight green">Introduction</span></h2>
         <blockquote>
             <p>“In these disruptive, crises-ridden times, our attention is often captured by the immediate political and technical challenges right in front of us. Facing the climate crisis and ensuring that there is a habitable planet for us and future generations to continue fighting these fights is not something that can be pushed to the back seat. I, and Mozilla, are committed to protecting the environment.”</p>
             <cite>Mitchell Baker, CEO</cite>
@@ -57,7 +69,11 @@
           <figure><img src="{{ static('img/mozorg/sustainability/sustainability-zenn-diagram.png') }}" alt="Zenn diagram showing the three pillars of sustainability at Mozilla. The top circle, with the words 'Ensure Mozilla is a responsible and trusted environment steward'. The bottom-left circle with the words 'Empower Mozillians to build sustainability into their work. The bottom-right circle with the words 'Enable a healthy sustainable internet"></figure>
         </div>
 
-        <p class="emphasis">The vision of Mozilla’s Sustainability Program is to support a sustainable future for all</p>
+        <div class="emphasis">
+           <blockquote >
+            <p>“The vision of Mozilla’s Sustainability Program is to support a sustainable future for all”</p>
+        </blockquote>
+        </div>
 
         <p>The first strategic pillar is <strong>to ensure Mozilla is a responsible and trusted environmental steward</strong>. We understand that if we are to be stewards of our planet, we must first address our own impacts. This includes credibly measuring and reporting Mozilla’s environmental impact and taking meaningful steps to reduce our carbon footprint.</p>
 
