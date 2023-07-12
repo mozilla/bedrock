@@ -57,7 +57,8 @@
   <div class="mzp-l-content">
     <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
     <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
-    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body') }}</p>
+    {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body', savings=savings) }}</p>
     {% include 'products/relay/includes/matrix.html' %}
   </div>
 </section>

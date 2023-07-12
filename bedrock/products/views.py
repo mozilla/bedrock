@@ -467,6 +467,25 @@ def relay_premium_page(request):
 
 
 @require_safe
+def relay_pricing_page(request):
+    template_name = "products/relay/pricing.html"
+    ftl_files = ["products/relay/matrix", "products/relay/shared"]
+    relay_email_available_in_country = relay_available("relay-email", request)
+    relay_phone_available_in_country = relay_available("relay-phone", request)
+    vpn_available_in_country = vpn_available(request)
+    country = get_country_from_request(request)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+
+    context = {
+        "email_available": relay_email_available_in_country,
+        "phone_available": relay_phone_available_in_country,
+        "bundle_available": relay_bundle_available_in_country,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
 def relay_premium_waitlist__page(request):
     ftl_files = ["products/relay/waitlist", "products/relay/shared"]
     locale = l10n_utils.get_locale(request)
