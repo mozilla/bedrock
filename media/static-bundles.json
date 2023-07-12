@@ -1559,13 +1559,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-pixel.js",
-        "js/base/mozilla-pixel-init.js"
-      ],
-      "name": "firefox_new_pixel"
-    },
-    {
-      "files": [
         "js/base/gtm-snippet.js"
       ],
       "name": "gtm-snippet"
