@@ -55,10 +55,18 @@ const NewsletterForm = {
         document.getElementById('newsletter-thanks').classList.remove('hidden');
 
         if (window.dataLayer) {
+            // UA
             window.dataLayer.push({
                 event: 'newsletter-signup-success',
                 newsletter: newsletters
             });
+            // GA4
+            for (let i = 0; i < newsletters.length; ++i) {
+                window.dataLayer.push({
+                    event: 'newsletter_subscribe',
+                    newsletter_id: newsletters[i]
+                });
+            }
         }
     },
 
