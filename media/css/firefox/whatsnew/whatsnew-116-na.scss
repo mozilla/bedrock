@@ -1,0 +1,372 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+:root {
+    --main-bg-color: #{$color-violet-05};
+    --eyesore-bg-color: rgba(255, 255, 255, 0.8);
+    --eyesore-text-color: #{$color-violet-05};
+}
+
+.wnp-content-main {
+    color: $color-black;
+    margin-top: $spacing-md;
+    overflow: hidden;
+    text-align: center;
+}
+
+// Show a placeholder until we can detect default browser
+.cta-holder {
+    text-align: center;
+
+    span {
+        display: block;
+        height: 2.5rem;
+        margin: 0 auto;
+    }
+
+    &.hide {
+        display: none;
+    }
+}
+
+.fx-is-default,
+.fx-not-default {
+    &.show {
+        display: block;
+    }
+
+    &.hide {
+        display: none;
+    }
+}
+
+// Assuming JS is available, show no content until we can detect default browser
+.js {
+    .fx-is-default,
+    .fx-not-default {
+        display: none;
+
+        &.show {
+            animation: fade-in 150ms ease forwards;
+            display: block;
+        }
+    }
+}
+
+// Fall back to the is-default content if JS fails
+.no-js {
+    .cta-holder,
+    .fx-not-default {
+        display: none;
+    }
+
+    .fx-is-default {
+        display: block;
+    }
+}
+
+// Hide the eyesores on mobile
+.wnp-grid-head,
+.wnp-grid-col1,
+.wnp-grid-col2 {
+    display: none;
+}
+
+.wnp-main-title {
+    @include text-title-xl;
+    padding-top: $layout-lg;
+    position: relative;
+
+    &::before {
+        background: transparent url("/media/img/firefox/whatsnew/whatsnew116-na/reader-icon.svg") center top / contain no-repeat;
+        content: "";
+        display: block;
+        height: 40px;
+        left: 50%;
+        margin-left: -20px;
+        position: absolute;
+        top: 0;
+        width: 40px;
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: $color-black;
+}
+
+.has-reader-icon strong {
+    @include image-replaced;
+    @include background-size(2ex, 2ex);
+    background-image: url("/media/img/firefox/whatsnew/whatsnew116-na/reader-icon.svg");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 2ex;
+    margin-bottom: -0.25ex;
+    width: 2ex;
+}
+
+// ---------------------------------------------------------------------------*/
+// All the bells and whistles
+
+@media #{$mq-md} and (prefers-reduced-motion: no-preference) {
+    .wnp-grid {
+        display: grid;
+        grid-gap: $spacing-md;
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 90px 1fr 90px;
+    }
+
+    .wnp-sign-off {
+        grid-column: 1 / span 3;
+        grid-row: 3;
+    }
+
+    .wnp-grid-body {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0 auto;
+        padding: $spacing-2xl $spacing-lg;
+    }
+
+    .wnp-grid-head {
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .wnp-grid-col1 {
+        display: grid;
+        grid-column: 1;
+        grid-gap: $spacing-md;
+        grid-row: 1 / span 2;
+        grid-template-rows: 1fr 2fr 1.5fr;
+    }
+
+    .wnp-grid-col2 {
+        display: grid;
+        grid-column: 3;
+        grid-gap: $spacing-md;
+        grid-row: 1 / span 2;
+        grid-template-rows: 2fr 1fr;
+    }
+
+    .wnp-content-main {
+        animation: mainbg 500ms 3250ms ease-in forwards;
+        background-color: var(--main-bg-color);
+    }
+
+    .wnp-main-title {
+        margin-top: -$layout-lg;
+
+        &::before {
+            animation: fade-in 300ms 3200ms ease-in forwards, pop 400ms 3200ms ease-in forwards;
+            transform: scale(0.9);
+            opacity: 0;
+        }
+    }
+
+    .eyesore {
+        background-color: var(--eyesore-bg-color);
+        box-sizing: border-box;
+        color: var(--eyesore-text-color);
+        padding: $spacing-md $spacing-lg;
+        position: relative;
+        text-align: start;
+    }
+
+    .eyesore-one {
+        animation: eyesore-one 1000ms 2500ms ease-in forwards, fade-out 500ms 3500ms ease-out forwards;
+        min-height: 90px;
+
+        span {
+            left: $spacing-lg;
+            max-width: 60%;
+            position: absolute;
+            top: $spacing-md;
+
+            &::before {
+                @include box-decoration-break(clone);
+                background: var(--eyesore-text-color);
+                color: transparent;
+                content: "The 91 best clickbait listicles of the week so far. Number 36 will shock you!";
+                display: inline;
+                font-size: 12px;
+            }
+        }
+
+        &::after {
+            background: var(--eyesore-text-color);
+            border-radius: $border-radius-sm;
+            content: "";
+            height: 2em;
+            position: absolute;
+            right: $spacing-lg;
+            width: 20%;
+        }
+    }
+
+    .eyesore-two,
+    .eyesore-three,
+    .eyesore-five {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        &::before {
+            @include text-title-xs;
+            content: "Ad";
+            font-weight: bold;
+        }
+    }
+
+    .eyesore-two {
+        animation: eyesore-two 1000ms 2200ms ease-in forwards, fade-out 500ms 3500ms ease-in forwards;
+    }
+
+    .eyesore-three {
+        animation: eyesore-three 1000ms 2750ms ease-in forwards, fade-out 500ms 3500ms ease-in forwards;
+    }
+
+    .eyesore-four {
+        animation: eyesore-four 1000ms 2400ms ease-in forwards, fade-out 500ms 3500ms ease-in forwards;
+
+        span {
+            left: $spacing-lg;
+            max-width: 60%;
+            position: absolute;
+            top: $spacing-md;
+
+            &::before {
+                @include box-decoration-break(clone);
+                background: var(--eyesore-text-color);
+                color: transparent;
+                content: "Lose weight fast by emptying your wallet!";
+                display: inline;
+                font-size: 12px;
+            }
+        }
+
+        &::after {
+            background: var(--eyesore-text-color);
+            border-radius: $border-radius-sm;
+            bottom: $spacing-md;
+            content: "";
+            display: block;
+            height: 1.5em;
+            position: absolute;
+            right: $spacing-lg;
+            width: 50%;
+        }
+    }
+
+    .eyesore-five {
+        animation: eyesore-five 1000ms 2880ms ease-in forwards, fade-out 500ms 3500ms ease-in forwards;
+
+        &::after {
+            background: var(--eyesore-text-color);
+            border-radius: $border-radius-sm;
+            bottom: $spacing-md;
+            content: "";
+            display: block;
+            height: 1.5em;
+            left: $spacing-lg;
+            position: absolute;
+            right: $spacing-lg;
+        }
+    }
+
+    .eyesore-six {
+        animation: eyesore-six 1000ms 2220ms ease-in forwards, fade-out 500ms 3500ms ease-in forwards;
+
+        &::before {
+            background: var(--eyesore-text-color);
+            content: "";
+            display: block;
+            height: 50%;
+            width: 100%;
+        }
+
+        &::after {
+            background: var(--eyesore-text-color);
+            border-radius: $border-radius-sm;
+            bottom: $spacing-md;
+            content: "";
+            display: block;
+            height: 1.5em;
+            left: $spacing-lg;
+            position: absolute;
+            right: $spacing-lg;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------*/
+// Animations
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.9); }
+    25% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes eyesore-one {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    50% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(25deg); }
+}
+
+@keyframes eyesore-two {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    50% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(-16deg); }
+}
+
+@keyframes eyesore-three {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    52% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(-20deg); }
+}
+
+@keyframes eyesore-four {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    48% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(16deg); }
+}
+
+@keyframes eyesore-five {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    50% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(22deg); }
+}
+
+@keyframes eyesore-six {
+    15% { transform: translateY(2px); }
+    30% { transform: translateY(-5px) scale(1.02); }
+    54% { transform: translateY(-5px) scale(1.02); }
+    100% { transform: translateY(150vh) scale(1.02) rotate(-18deg); }
+}
+
+@keyframes mainbg {
+    to { background-color: transparent; }
+}

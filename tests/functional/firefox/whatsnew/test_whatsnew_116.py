@@ -9,7 +9,7 @@ from pages.firefox.whatsnew.whatsnew_116 import FirefoxWhatsNew116Page
 
 @pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", [("de"), ("fr"), ("en-GB")])
+@pytest.mark.parametrize("locale", [("de"), ("fr"), ("en-GB"), ("en-US")])
 def test_firefox_default_button_displayed(locale, base_url, selenium):
     page = FirefoxWhatsNew116Page(selenium, base_url, locale=locale).open()
     assert page.is_firefox_default_button_displayed

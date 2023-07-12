@@ -424,6 +424,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-na-windows.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-na-addons.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx116-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx116-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx116-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx116-fr.html": ["firefox/whatsnew/whatsnew"],
@@ -517,7 +518,7 @@ class WhatsnewView(L10nTemplateView):
                 if locale == "en-GB" or country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx116-uk.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    template = "firefox/whatsnew/whatsnew-fx116-na.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx116-de.html"
             elif locale == "fr":
