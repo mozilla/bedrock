@@ -28,6 +28,8 @@ header {
 
     &.mzp-l-content {
         padding-bottom: 0;
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
     }
 
     h2 {
@@ -35,14 +37,17 @@ header {
         @include font-mozilla;
         font-weight: 500;
     }
+
+    @media #{$mq-md} {
+        padding-left: $spacing-lg;
+        padding-right: $spacing-lg;
+    }
 }
 
 .c-section-wrapper {
     margin: 0 auto;
     padding-top: $layout-sm;
     max-width: $content-lg;
-
-    // overflow: scroll; //placed to make data table scrollable in mobile
 
     h2 {
         @include text-title-md;
@@ -91,11 +96,16 @@ header {
 }
 
 .emphasis {
-    margin: $layout-lg;
+    margin: $layout-lg 0;
 
     p {
-        @include text-title-xs;
-        text-align: center;
+        @include text-body-xl;
+    }
+
+    @media #{$mq-md} {
+        p {
+            @include text-title-xs;
+        }
     }
 }
 
@@ -114,11 +124,10 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: $spacing-xl ;
-
+    margin: $spacing-xl 0;
 
     figure {
-        margin: $spacing-md;
+        margin: $spacing-md 0;
 
         figcaption {
             @include font-base;
@@ -131,6 +140,8 @@ header {
             border: 2px solid $color-marketing-gray-30;
             border-radius: 6px;
             width: 800px;
+            display: block;
+            margin: 0 auto;
         }
     }
 }
@@ -148,9 +159,8 @@ header {
         text-align: center;
 
         h5 {
-            @include text-title-2xs;
+            @include font-size(26px);
             color: $color-green-80;
-            font-weight: 500;
         }
 
         p {
@@ -169,13 +179,24 @@ header {
         flex-direction: column;
         overflow: scroll;
 
+        thead {
+            th {
+                text-align: center;
+            }
+        }
+
         tr {
             &.ghg-percentage {
                 background: $color-light-gray-20;
 
                 th {
                     font-weight: 500;
+
                 }
+            }
+
+             td {
+                text-align: center;
             }
 
             &.c-total {
@@ -188,12 +209,20 @@ header {
         }
 
         &.table-2 {
+            thead {
+                th {
+                    width: 10px;
+                }
+            }
+
+
             .scope {
-                width: 200px;
+                width: 50px;
             }
 
             .subrow {
                 font-weight: 500;
+                width: 120px;
             }
 
             .scope-total {
