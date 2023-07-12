@@ -86,9 +86,12 @@
           <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
             {{ relay_fxa_button(
-                entrypoint='mozilla.org-relay-landing',
+                entrypoint=_utm_source,
                 button_text=ftl('plan-matrix-get-relay-cta'),
                 class_name="mzp-c-button mzp-t-product mzp-t-lg",
+                optional_parameters={
+                  'utm_campaign': _utm_campaign
+                },
                 optional_attributes={
                   'data-cta-type': 'cta: fxa-relay',
                   'data-cta-text': 'Sign Up - relay-free',
@@ -160,9 +163,12 @@
         <div class="c-matrix-footer">
             <em class="c-matrix-footer-free">{{ ftl('plan-matrix-price-free') }}</em>
             {{ relay_fxa_button(
-              entrypoint='mozilla.org-relay-landing',
+              entrypoint=_utm_source,
               button_text=ftl('plan-matrix-get-relay-cta'),
               class_name="mzp-c-button mzp-t-product mzp-t-lg",
+              optional_parameters={
+                'utm_campaign': _utm_campaign
+              },
               optional_attributes={
                 'data-cta-type': 'cta: fxa-relay',
                 'data-cta-text': 'Sign Up - relay-free',
