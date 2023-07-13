@@ -96,7 +96,7 @@ def vpn_download_page(request):
     mac_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/mac"
     linux_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/linux"
     android_download_url = "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn"
-    ios_download_url = "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738"
+    ios_download_url = "https://apps.apple.com/us/app/mozilla-vpn/id1489407738"
     block_download = country in settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES
 
     context = {
