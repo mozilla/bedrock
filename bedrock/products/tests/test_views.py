@@ -209,7 +209,7 @@ class TestVPNDownloadPage(TestCase):
         self.assertEqual(ctx["mac_download_url"], "https://vpn.mozilla.org/r/vpn/download/mac")
         self.assertEqual(ctx["linux_download_url"], "https://vpn.mozilla.org/r/vpn/download/linux")
         self.assertEqual(ctx["android_download_url"], "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn")
-        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738")
+        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/mozilla-vpn/id1489407738")
 
 
 class TestVPNResourceCenterHelpers(TestCase):
