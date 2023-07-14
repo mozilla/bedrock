@@ -41,14 +41,8 @@
 
   {% if switch('homepage-pocket-promo', ['en-US']) %}
     {{ css_bundle('home-pocket-promo') }}
-  {% elif switch('homepage-ijustine-promo', ['en-US']) %}
-    {{ css_bundle('home-ijustine-promo') }}
-  {% elif switch('homepage-vpn-beautiful', ['en']) %}
-    {{ css_bundle('home-vpn-beautiful') }}
   {% elif switch('homepage-firefox-mr106-promo') %}
     {{ css_bundle('home-firefox-mr106-promo') }}
-  {% elif switch('homepage-firefox-family-promo') %}
-    {{ css_bundle('home-firefox-family-promo') }}
   {% else %}
     {{ css_bundle('home-mr2-promo') }}
   {% endif %}
@@ -88,14 +82,8 @@
 
   {% if switch('homepage-pocket-promo', ['en-US']) %}
     {% include 'mozorg/home/includes/pocket-promo.html' %}
-  {% elif switch('homepage-ijustine-promo', ['en-US']) %}
-    {% include 'mozorg/home/includes/ijustine-promo.html' %}
-  {% elif switch('homepage-vpn-beautiful', ['en']) %}
-    {% include 'mozorg/home/includes/vpn-beautiful.html' %}
   {% elif switch('homepage-firefox-mr106-promo') %}
     {% include 'mozorg/home/includes/firefox-mr106-promo.html' %}
-  {% elif switch("homepage-firefox-family-promo") %}
-    {% include 'mozorg/home/includes/firefox-family-promo.html' %}
   {% else %}
     {% include 'mozorg/home/includes/mr2-promo.html' %}
   {% endif %}
@@ -140,10 +128,6 @@
   {{ js_bundle('protocol-modal') }}
   {{ js_bundle('home-contentful') }}
   {{ js_bundle('newsletter') }}
-
-  {% if switch('homepage-ijustine-promo', ['en-US']) %}
-    {{ js_bundle ('ijustine-promo')}}
-  {% endif %}
 
   {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner') }}
