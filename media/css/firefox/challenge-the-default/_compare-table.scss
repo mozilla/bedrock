@@ -76,14 +76,14 @@
             max-width: 150px;
             border: 2.5px solid $color-black;
             font-size: 14px;
-            word-break: break-all;
+            word-break: break-word;
 
             @media (min-width: 374px) {
                 word-break: none;
             }
 
             &[scope='row'].break-word {
-                word-break: break-all;
+                word-break: break-word;
                 hyphens: manual;
             }
 
@@ -182,6 +182,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100%;
     }
 
     .mzp-c-modal-inner {

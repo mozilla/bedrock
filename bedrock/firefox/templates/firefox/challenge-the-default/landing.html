@@ -46,18 +46,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           'loading': 'eager',
           'height': '24',
           'class': 'ctd-sub-nav-image',
-          'alt': 'Firefox'
+          'alt': 'Firefox - Challenge the Default'
       })
     }}
-    {{ resp_img(
-        url='img/firefox/challenge-the-default/logo-ctd.svg',
-        optional_attributes={
-          'loading': 'eager',
-          'height': '24',
-          'class': 'ctd-sub-nav-image',
-          'alt': 'Challenge the Default'
-        }
-    ) }}
+    <div class="ctd-logo-sprite"></div>
   </div>
   <section class="ctd-hero-wrapper">
     <div class="hidden hero-easter-egg">
@@ -145,18 +137,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 url='img/firefox/challenge-the-default/logo-firefox.svg',
                 optional_attributes={
                   'loading': 'eager',
-                  'alt': 'Firefox',
-                  'class': 'firefox-logo'
+                  'alt': 'Firefox - Challenge the Default',
+                  'class': 'firefox-logo',
+                  'width': '50px'
                 })
               }}
-              {{ resp_img(
-                url='img/firefox/challenge-the-default/logo-ctd.svg',
-                optional_attributes={
-                  'loading': 'eager',
-                  'alt': 'Challenge the default',
-                  'class': 'ctd-logo'
-                })
-              }}
+              <div class="ctd-logo-sprite"></div>
           </div>
           <div class="c-hero-top-controls" aria-hidden="true">
               <span class="hero-control-btn minimize"></span>
@@ -407,9 +393,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </tr>
           </tbody>
         </table>
-        <div aria-hidden="true">
-          <button class="kitten-button">=^._.^=</button>
-        </div>
+        <section aria-hidden="true">
+          <button type="button" class="kitten-button">=^._.^=</button>
+        </section>
         <div class="comparison-cta">
           <h3>Du entscheidest, was Standard ist</h3>
           {{ cta_group }}
@@ -467,15 +453,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <circle class="wednesday-circle light-green circle3" cx="719.996" cy="123" r="372" fill="#D1FFEE" />
         <circle cx="719.996" cy="123" r="283" fill="#2AC3A2" />
       </svg>
-      <button class="animated-button">
-          {{ resp_img(
-            url='img/firefox/challenge-the-default/logo-ctd.svg',
-            optional_attributes={
-              'loading': 'lazy',
-              'alt': 'Challenge the default'
-           })
-          }}
-      </button>
+      <button class="animated-button ctd-logo-sprite">Challenge the default</button>
       {{ resp_img(
           url='img/firefox/challenge-the-default/is-wednesday.png',
           optional_attributes={

@@ -138,16 +138,64 @@ html:not(.is-firefox) {
     }
 }
 
+
+.ctd-logo-sprite {
+    @include image-replaced;
+    animation: ctd-sprite 1.25s steps(25);
+    animation-delay: 1s;
+    background: transparent url('/media/img/firefox/challenge-the-default/ctd-sprite-100.png');
+    background-size: 3150px 50px;
+    background-position: -3024px;
+    height: 50px;
+    width: 126px;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        background-position: -3024px;
+    }
+}
+
+.c-animated-button .ctd-logo-sprite {
+    cursor: pointer;
+    background: transparent url('/media/img/firefox/challenge-the-default/ctd-sprite-100.png');
+    animation: ctd-sprite-medium 1.25s steps(25);
+    height: 100px;
+    width: 250px;
+    background-size: 6250px 100px;
+    background-position: -6000px;
+    position: absolute;
+    border: none;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        background-position: -6000px;
+    }
+}
+
+@keyframes ctd-sprite {
+    from {
+        background-position: 3150px;
+    }
+
+    to {
+        background-position: 0;
+    }
+}
+
+@keyframes ctd-sprite-medium {
+    from {
+        background-position: 6250px;
+    }
+
+    to {
+        background-position: 0;
+    }
+}
+
 .ctd-mobile-banner {
     padding: $spacing-sm $spacing-lg;
+    display: flex;
 
-    .ctd-animated-logo {
-        height: 75px;
-        width: 200px;
-        position: absolute;
-        left: 35px;
-        top: 58px;
-    }
 
     @media #{$mq-md} {
         display: none;
@@ -155,7 +203,7 @@ html:not(.is-firefox) {
 }
 
 .ctd-sub-nav-image {
-    height: 40px;
+    height: 50px;
     width: auto;
 }
 
@@ -289,15 +337,6 @@ html:not(.is-firefox) {
         justify-content: center;
         align-items: center;
         overflow: hidden;
-    }
-
-    .animated-button {
-        background: none;
-        border: 0;
-        cursor: pointer;
-        position: absolute;
-        width: 400px;
-        height: 200px;
     }
 
     svg {
