@@ -162,8 +162,6 @@ if IS_POCKET_MODE:
         "assets.getpocket.com",
     ]
 
-    _available_tracking_pixels = {}
-
 else:
     # Mozorg mode
     ROOT_URLCONF = "bedrock.urls.mozorg_mode"
@@ -180,9 +178,6 @@ else:
         "mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
-        "adservice.google.com",
-        "adservice.google.de",
-        "adservice.google.dk",
         "creativecommons.org",
         "cdn-4.convertexperiments.com",
         "logs.convertexperiments.com",
@@ -239,13 +234,6 @@ else:
         "'self'",
     ]
 
-    _available_tracking_pixels = {
-        "doubleclick": (
-            "https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;"
-            "tag_for_child_directed_treatment=;tfua=;npa=;ord=1"
-        ),
-    }
-
 sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
 
 # 2. TEST-SPECIFIC SETTINGS
@@ -290,15 +278,6 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_FONT_SRC = _csp_font_src
-
-# Bug 1331069 - Double Click tracking pixel for download page.
-AVAILABLE_TRACKING_PIXELS = _available_tracking_pixels
-ENABLED_PIXELS = config("ENABLED_PIXELS", default="doubleclick", parser=ListOf(str))
-TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
-
-if config("SWITCH_TRACKING_PIXEL", default=str(DEV), parser=bool):
-    if "doubleclick" in ENABLED_PIXELS:
-        CSP_IMG_SRC += ("ad.doubleclick.net",)
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
 if DEV:

@@ -77,18 +77,18 @@ $campaign-red: #ff6a75;
                 padding: 10px $spacing-md;
 
                 &.active {
-                    .firefox-logo, .ctd-logo {
+                    .firefox-logo, .ctd-logo-sprite {
                         opacity: 1;
                         transform: scale(1);
                     }
 
-                    .ctd-logo {
+                    .ctd-logo-sprite {
                         transition-delay: .25s;
                     }
                 }
 
                 @media (prefers-reduced-motion: no-preference) {
-                    .firefox-logo, .ctd-logo {
+                    .firefox-logo, .ctd-logo-sprite {
                         transform: scale(0.25);
                         opacity: 0;
                         transition: all .25s ease-in-out;

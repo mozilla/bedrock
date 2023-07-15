@@ -5,15 +5,11 @@
 .. _analytics:
 
 =================
-Website analytics
+Mozorg analytics
 =================
 
-***********
-Mozorg Mode
-***********
-
 Google Tag Manager (GTM)
-------------------------
+************************
 
 In mozorg mode, bedrock uses `Google Tag Manager (GTM)`_ to manage and organize
 its `Google Analytics`_ solution.
@@ -30,7 +26,7 @@ does not allow for the injection of custom HTML or JavaScript but all tags use
 built in templates to minimize any chance of introducing a bug into Bedrock.
 
 The GTM DataLayer
-~~~~~~~~~~~~~~~~~
+-----------------
 
 How an application communicates with GTM is via the ``dataLayer`` object, which
 is  a simple JavaScript array GTM instantiates on the page. Bedrock will send
@@ -43,7 +39,7 @@ The only reserved key in an object pushed to the ``dataLayer`` is ``event`` whic
 will cause GTM to evaluate the firing conditions for all tag triggers.
 
 DataLayer push example
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 If we wanted to track clicks on a carousel and capture what the image was that
 was clicked, we might write a dataLayer push like this:
@@ -65,7 +61,7 @@ In GTM, a tag could be setup to fire when the event ``carousel-click`` is pushed
 to the dataLayer and could consume the image value to pass on what image was clicked.
 
 The Core DataLayer object
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 For the passing of contextual data on the user and page to GTM, we've created what we
 call the Core DataLayer Object. This object passes as soon as all required API calls
@@ -73,8 +69,63 @@ for contextual data have completed. Unless there is a significant delay to when 
 will be available, please pass all contextual or meta data on the user or page here
 that you want to make available to GTM.
 
+
+Conditional banners
+~~~~~~~~~~~~~~~~~~~
+
+When a banner is shown:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Impression',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-impression': '1',
+        'event': 'non-interaction'
+    });
+
+When an element in the banner is clicked:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Clickthrough',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-click': '1',
+        'event': 'in-page-interaction'
+    });
+
+When a banner is dismissed:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Dismissal',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-dismissal': '1',
+        'event': 'in-page-interaction'
+    });
+
+
+A/B tests
+~~~~~~~~~
+
+.. code-block:: javascript
+
+    if(href.indexOf('v=a') !== -1) {
+        window.dataLayer.push({
+            'data-ex-variant': 'de-page',
+            'data-ex-name': 'Berlin-Campaign-Landing-Page'
+        });
+    } else if (href.indexOf('v=b') !== -1) {
+        window.dataLayer.push({
+            'data-ex-variant': 'campaign-page',
+            'data-ex-name': 'Berlin-Campaign-Landing-Page'
+        });
+    }
+
 GTM listeners & data attributes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 GTM also uses click and form submit listeners to gather context on what is happening
 on the page. Listeners push to the dataLayer data on the specific element that
@@ -135,78 +186,113 @@ For all links to accounts.firefox.com use these data attributes (* indicates a r
 | ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)                                                                                                                                                      |
 +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For all conditional banners, add the following calls.
 
-When a banner is shown:
+**Old data-cta structure**
 
-.. code-block:: javascript
+Do not use. Included here because some old pages still use it.
 
-    dataLayer.push({
-        'eLabel': 'Banner Impression',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-impression': '1',
-        'event': 'non-interaction'
-    });
-
-When an element in the banner is clicked:
-
-.. code-block:: javascript
-
-    dataLayer.push({
-        'eLabel': 'Banner Clickthrough',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-click': '1',
-        'event': 'in-page-interaction'
-    });
-
-When a banner is dismissed:
-
-.. code-block:: javascript
-
-    dataLayer.push({
-        'eLabel': 'Banner Dismissal',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-dismissal': '1',
-        'event': 'in-page-interaction'
-    });
-
-
-When doing a/b tests configure something like the following.
-
-.. code-block:: javascript
-
-    if(href.indexOf('v=a') !== -1) {
-        window.dataLayer.push({
-            'data-ex-variant': 'de-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
-    } else if (href.indexOf('v=b') !== -1) {
-        window.dataLayer.push({
-            'data-ex-variant': 'campaign-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
-    }
-
-
-Some notes on how this looks in GA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``data-cta-type=""`` and ``data-cta-name=""`` trigger a generic link / buton
+``data-cta-type=""`` and ``data-cta-name=""`` trigger a generic link / button
 click with the following structure:
 
 - Event Category: ``{{page ID}} Interactions``
 - Event Action: ``{{data-cta-type}} click``
 - Event Label: ``{{data-cta-name}}``
 
+
+GA4
+---
+
+.. Note::
+
+    The migration to GA4 has begun but is incomplete.
+
+Enhanced Event Measurement
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pageviews, video events, and external link clicks are being collected using GA4's
+`enhanced event measurement`_.
+
+Some form submissions are also being collected but newsletter signups are not.
+`(See Bug #13348)`_
+
+
+Begin Checkout
+~~~~~~~~~~~~~~
+
+We are using GA4's recommended eCommerce event `begin_checkout`_ for VPN and Relay
+referrals to the FxA Subscription Platform with purchase intent.
+
+.. Note::
+
+    Any link to Firefox Accounts should also be using :ref:`firefox accounts attribution<firefox-accounts-attribution>`
+
+
+``datalayer-begincheckout.es6.js`` contains generic functions
+that can be called on to push the appropriate information to the dataLayer. The
+script is expecting the following values:
+
+- item_id: Stripe Plan ID
+- brand: ``relay``, ``vpn``, or ``monitor``
+- plan:
+   - ``vpn-monthly``
+   - ``vpn-yearly``
+   - ``vpn-relay-yearly``
+   - ``relay-email-monthly``
+   - ``relay-email-yearly``
+   - ``relay-phone-monthly``
+   - ``relay-phone-yearly``
+   - ``monitor-monthly``
+   - ``monitor-yearly``
+- period: ``monthly`` or ``yearly``
+- price: cost displayed at checkout, pre tax (example: 119.88)
+- currency: in `3-letter ISO 4217 format`_ (examples: USD, EUR)
+- discount: value of the discount in the same currency as price (example: 60.00)
+
+
+There are two ways to use TrackBeginCheckout:
+
+1) Call the function passing the values directly.
+
+.. code-block:: javascript
+
+    TrackBeginCheckout.getEventObjectAndSend(item_id, brand, plan, period, price, currency, discount)
+
+2) Pass the values as a data attribute.
+
+The ``vpn_subscribe_link`` and ``relay_subscribe_link`` will automatically generate a ``data-ga-item`` object
+and add the ``ga-begin-checkout`` class to links they create -- as long as there is analytics information
+associated with the plan in its lookup table.
+
+To use this method you will need to include ``datalayer-begincheckout-init.es6.js`` in the page bundle.
+
+.. code-block:: html
+
+    <a href="{{ fxa link }}"
+        class="ga-begin-checkout"
+        data-ga-item="{
+            'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm',
+            'brand' : 'vpn',
+            'plan' : 'vpn',
+            'period' : 'monthly',
+            'price' : '9.99',
+            'discount' : '0',
+            'currency' : 'USD'
+        }"
+    >
+        Get monthly plan
+    </a>
+
+
 How can visitors opt out of GA?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Visitors to the website can opt-out of loading Google Analytics on our
 website by enabling `Do Not Track (DNT)`_ in their web browser. We
 facilitate this by using a `DNT helper`_ that our team maintains.
 
+
 Glean
------
+*****
 
 Currently in an evaluation phase, bedrock is now capable of running a parallel
 first-party analytics implementation alongside :abbr:`GTM (Google Tag Manager)`,
@@ -222,7 +308,7 @@ you add for :abbr:`GTM (Google Tag Manager)` should also be captured by Glean
 automatically.
 
 Debugging pings
-~~~~~~~~~~~~~~~
+---------------
 
 For all non-production environments, bedrock will automatically set a debug
 view tag for all pings. This means that when running on localhost, on a demo,
@@ -232,7 +318,7 @@ be used to test that pings are working correctly. All bedrock debug pings will
 register in the debug dashboard with the tag name ``bedrock``.
 
 Logging pings in the console
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 When running bedrock locally, you can also set the following environment variable
 in your ``.env``` file to automatically log pings in the browser's web console.
@@ -243,7 +329,7 @@ This can be especially useful when making updates to analytics code.
     GLEAN_LOG_PINGS=True
 
 Defining metrics and pings
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 All of the data we send to the Glean pipeline is defined in
 :abbr:`YAML (Yet Another Markup Language)` schema files in the ``./glean/``
@@ -275,7 +361,7 @@ It will also first lint the schema files.
     to these files, those changes should also undergo review.
 
 Using Glean pings in individual page bundles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 All of our analytics code for Glean lives in a single bundle in the base template,
 which is intended to be shared across all web pages. There may be times where we
@@ -307,7 +393,7 @@ For non-interaction events that are not user initiated:
     }
 
 How can visitors opt out of Glean?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 Website visitors can opt out of Glean by visiting the first party `data preferences page`_,
 which is linked to in the `websites privacy notice`_. Clicking opt-out will set a
@@ -315,77 +401,13 @@ cookie which Glean checks for before initializing on page load. In production, t
 cookie that is set applies for all ``.mozilla.org`` domains, so other sites such as
 ``developer.mozilla.org`` can also make use of the opt-out mechanism.
 
-***********
-Pocket mode
-***********
-
-Google Tag Manager (GTM)
-------------------------
-
-In pocket mode, bedrock also uses Google Tag Manager (GTM) to manage and organize
-its Google Analytics (GA4) solution. This is mostly for marketing's own use, and
-is not used by the Pocket organization.
-
-In contrast to mozorg mode, GA in Pocket is mostly used for measuring a few key
-events, such as sign ups and logged-in / logged-out page views. Most of this event
-and triggering logic exists entirely inside GTM, as opposed to in bedrock code.
-
-Snowplow
---------
-
-`Snowplow`_ is the analytics tool used by the Pocket organization, which is something
-marketing has limited access to. Snowplow is mostly used for tracking events in the
-Pocket web application, although we do also load it on the logged-out marketing
-pages that are hosted by bedrock.
-
-How can visitors opt out of Pocket analytics?
----------------------------------------------
-
-Pocket website visitors can opt-out of both GA and Snowplow by changing their
-preferences in the `One Trust Cookie Banner`_ we display on page load. If someone
-opts-out of analytics cookies, we do not load GA, however we do still load Snowplow
-in a more privacy reserved mode.
-
-Snowplow configuration with cookie consent (default):
-
-.. code-block:: javascript
-
-    {
-        appId: SNOWPLOW_APP_ID,
-        platform: 'web',
-        eventMethod: 'beacon',
-        respectDoNotTrack: false,
-        stateStorageStrategy: 'cookieAndLocalStorage',
-        contexts: {
-            webPage: true,
-            performanceTiming: true
-        },
-        anonymousTracking: false
-    }
-
-Snowplow configuration without cookie consent:
-
-.. code-block:: javascript
-
-    {
-        appId: SNOWPLOW_APP_ID,
-        platform: 'web',
-        eventMethod: 'post',
-        respectDoNotTrack: false,
-        stateStorageStrategy: 'none',
-        contexts: {
-            webPage: true,
-            performanceTiming: true
-        },
-        anonymousTracking: {
-            withServerAnonymisation: true
-        }
-    }
-
-See our `Pocket analytics code`_ for more details.
 
 .. _Google Tag Manager (GTM): https://tagmanager.google.com/
 .. _Google Analytics: https://analytics.google.com/
+.. _enhanced event measurement: https://support.google.com/analytics/answer/9216061
+.. _begin_checkout: https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#begin_checkout
+.. _3-letter ISO 4217 format: https://en.wikipedia.org/wiki/ISO_4217#Active_codes
+.. _(See Bug #13348): https://github.com/mozilla/bedrock/issues/13348
 .. _Do Not Track (DNT): https://support.mozilla.org/en-US/kb/how-do-i-turn-do-not-track-feature
 .. _DNT helper: https://github.com/mozmeao/dnt-helper
 .. _Glean: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
@@ -394,9 +416,5 @@ See our `Pocket analytics code`_ for more details.
 .. _data review: https://wiki.mozilla.org/Data_Collection
 .. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
 .. _websites privacy notice: https://www.mozilla.org/privacy/websites/
-.. _Snowplow: https://snowplow.io/
-.. _One Trust Cookie Banner: https://www.onetrust.com/
-.. _Pocket analytics code: https://github.com/mozilla/bedrock/blob/main/media/js/pocket/analytics.es6.js
-
 
 

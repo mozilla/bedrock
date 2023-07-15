@@ -14,7 +14,23 @@ const toggles = document.querySelectorAll('.toggle input');
 const heroClose = document.querySelector('.close');
 const animatedButton = document.querySelector('.animated-button');
 const heroEasterEgg = document.querySelector('.hero-easter-egg');
+const animatedLogos = document.querySelectorAll('.ctd-logo-sprite');
 let toggleWrapper;
+
+for (let index = 0; index < animatedLogos.length; index++) {
+    const logo = animatedLogos[index];
+    logo.addEventListener(
+        'animationend',
+        () => {
+            // when animation finishes, add a 1.5s delay in between cycles of the animation
+            logo.style.animation = 'null';
+            setTimeout(() => {
+                logo.style.animation = '';
+            }, 4500);
+        },
+        false
+    );
+}
 
 compareSelect.addEventListener(
     'change',
@@ -27,6 +43,7 @@ compareSelect.addEventListener(
 kittenButton.addEventListener(
     'click',
     function (e) {
+        e.preventDefault();
         MzpModal.createModal(e.target, kittenModal, {
             closeText: 'Close modal',
             className: 'kitten-modal-overlay',
@@ -40,6 +57,9 @@ kittenButton.addEventListener(
                             cat.classList.add('active');
                         }
                     });
+            },
+            onDestroy: () => {
+                kittenButton.focus();
             }
         });
     },
@@ -93,6 +113,9 @@ for (let index = 0; index < toggles.length; index++) {
 heroClose.addEventListener(
     'click',
     function () {
+        if (!window.Mozilla.Utils.allowsMotion()) {
+            return;
+        }
         const heroWrapper = document.querySelector('.hero-wrapper');
         heroWrapper.classList.add('animate-close');
         heroWrapper.classList.remove('animate-pop-in');
@@ -109,8 +132,6 @@ heroClose.addEventListener(
 
 // On click, animate the "It's Wednesday Dudes" screen
 animatedButton.addEventListener('click', isWednesday, false);
-
-animatedButton.addEventListener('mouseenter', isWednesday, false);
 
 function isWednesday() {
     let lizardImage;

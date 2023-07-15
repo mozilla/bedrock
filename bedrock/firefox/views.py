@@ -418,7 +418,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx114-en-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx114-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html": ["firefox/whatsnew/whatsnew", "firefox/whatsnew/whatsnew-115-vpn"],
+        "firefox/whatsnew/whatsnew-fx115-eu-vpn.html": ["firefox/whatsnew/whatsnew-115-vpn", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-eu-ctd-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-eu-mobile-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html": ["firefox/whatsnew/whatsnew"],
@@ -521,7 +521,7 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx115-na-addons.html"
-            elif switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI and ftl_file_is_active("firefox/whatsnew/whatsnew-115-vpn"):
+            elif switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI:
                 template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx115-eu-ctd-de.html"

@@ -215,27 +215,9 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-firefox-family-promo.scss"
-      ],
-      "name": "home-firefox-family-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/home-firefox-mr106-promo.scss"
       ],
       "name": "home-firefox-mr106-promo"
-    },
-    {
-      "files": [
-        "css/mozorg/home/vpn-beautiful.scss"
-      ],
-      "name": "home-vpn-beautiful"
-    },
-    {
-      "files": [
-        "css/mozorg/home/ijustine-promo.scss"
-      ],
-      "name": "home-ijustine-promo"
     },
     {
       "files": [
@@ -1559,13 +1541,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-pixel.js",
-        "js/base/mozilla-pixel-init.js"
-      ],
-      "name": "firefox_new_pixel"
-    },
-    {
-      "files": [
         "js/base/gtm-snippet.js"
       ],
       "name": "gtm-snippet"
@@ -1973,12 +1948,6 @@
         "js/mozorg/diversity/2021/diversity-2021.es6.js"
       ],
       "name": "diversity-2021"
-    },
-    {
-      "files": [
-        "js/mozorg/home/includes/ijustine-modal-video.js"
-      ],
-      "name": "ijustine-promo"
     },
     {
       "files": [
