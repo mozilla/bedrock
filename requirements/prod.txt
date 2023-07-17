@@ -30,9 +30,9 @@ babis==0.2.4 \
     --hash=sha256:a901e8c27a47dfe22077f60c3f2daf324909a9f3f9838ecfa4100af346703fff \
     --hash=sha256:c33bc3c754a0bacfe09179b5c4d1a2a3b5c6ddd453cd1050251fcbf9c0bd1473
     # via -r requirements/prod.in
-basket-client==1.0.0 \
-    --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c \
-    --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1
+basket-client==1.1.0 \
+    --hash=sha256:3e637824891cc7ff5262d3d57dc744c265becb295edfbec30223262e5544228d \
+    --hash=sha256:6477d29337d4a3a8843d88e25f679a348c8a26341370c508173548da9799c19d
     # via -r requirements/prod.in
 beautifulsoup4==4.12.2 \
     --hash=sha256:492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da \
