@@ -140,7 +140,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
  * - sends it along for tracking
  * @param {Event}
  */
-TrackProductDownload.linkHandler = (event) => {
+TrackProductDownload.handleLink = (event) => {
     let el = event.target;
     // If the node isn't a link traverse up
     // but closest is not supported in IE
