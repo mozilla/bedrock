@@ -16,7 +16,8 @@ $image-path: '/media/protocol/img';
 .c-hero-banner {
     background: url('/media/img/foundation/annualreport/2019/pixel-mobile-bg.svg') right center no-repeat;
     background-size: contain;
-    margin-bottom: $spacing-lg;    padding-top: $spacing-lg;
+    margin-bottom: $spacing-lg;
+    padding-top: $spacing-lg;
 
     .l-highlight {
         background: $color-green-40;
@@ -425,15 +426,19 @@ $image-path: '/media/protocol/img';
     &.t-2022 {
         margin: $layout-md 0;
 
-        .c-graph-heading {
-            @include font-firefox;
-            @include text-body-lg;
-            margin: 0 auto;
-            font-weight: 700;
+        .c-graph-wrapper {
+            margin: 0 auto
         }
 
         figure {
             margin-bottom: $layout-lg;
+
+            figcaption {
+                @include font-firefox;
+                @include text-body-lg;
+                text-align: center;
+                font-weight: 700;
+            }
 
             .enlarged-img {
                 width: 680px;
@@ -446,10 +451,10 @@ $image-path: '/media/protocol/img';
     }
 
     figure {
-        border: 1px solid $color-marketing-gray-30;
         margin: $spacing-md auto;
 
         img {
+            border: 1px solid $color-marketing-gray-30;
             display: block;
             width: 420px;
             max-width: 100%;
