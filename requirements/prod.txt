@@ -189,9 +189,9 @@ django-allow-cidr==0.6.0 \
     --hash=sha256:24b71f70257e97bab9fdb5ad8342c96eeea1d45bc06a36332978574252219401 \
     --hash=sha256:6709f4581dfd2a00476a134741a738a7f67714ec4f8596c55b22cf3b2ac5a12e
     # via -r requirements/prod.in
-django-cors-headers==4.1.0 \
-    --hash=sha256:36a8d7a6dee6a85f872fe5916cc878a36d0812043866355438dfeda0b20b6b78 \
-    --hash=sha256:88a4bfae24b6404dd0e0640203cb27704a2a57fd546a429e5d821dfa53dd1acf
+django-cors-headers==4.2.0 \
+    --hash=sha256:9ada212b0e2efd4a5e339360ffc869cb21ac5605e810afe69f7308e577ea5bde \
+    --hash=sha256:f9749c6410fe738278bc2b6ef17f05195bc7b251693c035752d8257026af024f
     # via -r requirements/prod.in
 django-crum==0.7.9 \
     --hash=sha256:037cc8b822975bb1d41cd24269b59a512cc77448fadc3f34ab9a17b229b4b471 \
