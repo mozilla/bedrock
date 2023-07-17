@@ -4,9 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
+import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 
 (function (Mozilla) {
     function onLoad() {
