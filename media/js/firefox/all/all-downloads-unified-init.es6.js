@@ -75,7 +75,7 @@ import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
         downloadButton.addEventListener(
             'click',
             function (event) {
-                TrackProductDownload.linkHandler(event);
+                TrackProductDownload.handleLink(event);
             },
             false
         );
@@ -84,7 +84,7 @@ import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
             mobileDownloadButtons[i].addEventListener(
                 'click',
                 function (event) {
-                    TrackProductDownload.linkHandler(event);
+                    TrackProductDownload.handleLink(event);
                 },
                 false
             );
