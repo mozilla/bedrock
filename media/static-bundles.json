@@ -998,6 +998,7 @@
     },
     {
       "files": [
+        "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/common-refresh.scss"
       ],
       "name": "mozilla-vpn-common-refresh"
@@ -1025,7 +1026,6 @@
     },
     {
       "files": [
-        "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/pricing-refresh.scss"
       ],
       "name": "mozilla-vpn-pricing-refresh"

@@ -19,7 +19,8 @@
           </a>
         </li>
         <li class="c-sub-navigation-item">
-          <a href="{{ url('products.vpn.landing') }}#pricing" data-link-type="nav" data-link-position="subnav" data-link-name="View VPN pricing">
+          {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
+          <a href="{{ pricing_url }}" data-link-type="nav" data-link-position="subnav" data-link-name="View VPN pricing">
             Pricing
           </a>
         </li>
