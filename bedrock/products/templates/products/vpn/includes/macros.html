@@ -121,7 +121,8 @@
   <div class="c-aside {{ position }} mzp-l-content mzp-t-content-xl">
     {% if vpn_available %}
       <p>
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="{{ position }}">
+        {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ pricing_url }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="{{ position }}">
           Get Mozilla VPN
         </a>
       </p>
@@ -153,7 +154,8 @@
 {% macro vpn_nav_cta_refresh() -%}
   <div class="vpn-nav-cta">
     {% if vpn_available %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.pricing') }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation">
+      {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ pricing_url }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation">
         Get Mozilla VPN
       </a>
     {% else %}
