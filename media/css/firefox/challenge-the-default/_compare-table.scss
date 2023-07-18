@@ -228,10 +228,11 @@
 
             h2 {
                 @include font-size(36px);
-                font-weight: 800;
-                color: $color-black;
-                z-index: 2;
                 align-self: flex-end;
+                color: $color-black;
+                font-weight: 800;
+                margin-bottom: 0;
+                z-index: 2;
 
                 @media #{$mq-md} {
                     @include font-size(60px);
@@ -239,45 +240,24 @@
                 }
             }
 
-            .cat-wrapper {
-                position: relative;
-                height: 100%;
-                grid-row: 1;
-
-                @media #{$mq-md} {
-                    grid-column: 2;
-                    position: absolute;
-                }
-            }
-
-
             .laser-cat {
-                width: 100%;
+                display: block;
+                height: 390px;
+                left: 50%;
+                margin-left: -130px;
                 position: absolute;
-
-
-                &.mobile {
-                    max-width: 300px;
-                    height: 390px;
-                    top: 50px;
-                }
-
-                &.desktop {
-                    display: none;
-                }
+                top: 75px;
+                width: 260px;
 
                 @media #{$mq-md} {
-                    &.mobile {
-                        display: none;
-                    }
-
-                    &.desktop {
-                        grid-column: 2;
-                        max-width: none;
-                        width: 112%;
-                        right: 5px;
-                        display: block;
-                    }
+                    bottom: -10px;
+                    grid-column: 2;
+                    left: auto;
+                    margin-left: 0;
+                    max-width: none;
+                    right: 5px;
+                    top: auto;
+                    width: 100%;
                 }
             }
         }
