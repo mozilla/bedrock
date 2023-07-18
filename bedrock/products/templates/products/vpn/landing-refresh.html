@@ -12,7 +12,7 @@
 {% block page_title_full %}Get Mozilla VPN  — Mozilla (US){% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Use Mozilla VPN for full-device protection for all apps. With servers in { $countries }+ countries, you can connect to anywhere, from anywhere.{% endblock %}
+{% block page_desc %}Use Mozilla VPN for full-device protection for all apps. With servers in {{ connect_countries }}+ countries, you can connect to anywhere, from anywhere.{% endblock %}
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
 
