@@ -134,14 +134,10 @@
       <div id="test-menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-browser') }}</h5>
         <ul class="mzp-c-menu-list-list" id="menu-browsers">
-          {# Direct legacy IE users to the /new/ page where they can read EOL messaging see issue 13317 #}
-          <!--[if IE]>
-            <li class="mzp-c-menu-list-item menu-desktop"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-home-desktop') }}</a></li>
-          <![endif]-->
-          <!--[if !IE]><!-->
-            {# Download link should be locale neutral see issue 7982 #}
-            <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-name="Trackers">{{ ftl('firefox-home-desktop') }}</a></li>
-          <!--<![endif]-->
+          {# Direct users on unsupported OSes to the /new/ page, where they can read EOL messaging (see issue 13317) #}
+          <li class="mzp-c-menu-list-item menu-desktop-unsupported"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-home-desktop') }}</a></li>
+          {# Download link should be locale neutral see issue 7982 #}
+          <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-name="Trackers">{{ ftl('firefox-home-desktop') }}</a></li>
           <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-link-name="Trackers"> {{ ftl('firefox-home-android') }}</a></li>
           <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-link-name="Trackers">{{ ftl('firefox-home-ios') }}</a></li>
         </ul>

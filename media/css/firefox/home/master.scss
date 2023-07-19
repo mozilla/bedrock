@@ -38,8 +38,16 @@ $brand-theme: 'firefox';
     }
 
     // issue 13317
+    .menu-desktop-unsupported {
+        display: none;
+    }
+
     .fx-unsupported & .menu-desktop {
         display: none;
+    }
+
+    .fx-unsupported & .menu-desktop-unsupported {
+        display: block;
     }
 }
 
