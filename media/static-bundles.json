@@ -209,6 +209,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/home-old.scss"
+      ],
+      "name": "home-old"
+    },
+    {
+      "files": [
         "css/mozorg/home/home-mr2-promo.scss"
       ],
       "name": "home-mr2-promo"

@@ -133,7 +133,7 @@ def home_view(request):
         "add_active_locales": ["de", "fr"],
     }
 
-    if locale.startswith("en-"):
+    if locale.startswith("xs-"):
         if switch("contentful-homepage-en"):
             try:
                 template_name = "mozorg/home/home-contentful.html"

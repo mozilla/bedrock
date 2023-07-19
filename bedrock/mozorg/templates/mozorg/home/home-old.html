@@ -1,0 +1,220 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split, billboard, picto with context %}
+
+{% extends "mozorg/home/base.html" %}
+
+{% block page_title %}{{ ftl('home-internet-for-people-not-profit') }}{% endblock %}
+{% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
+
+{% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
+{% set show_mr2_promo = switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
+
+{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('home') }}
+
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
+  {% endif %}
+
+  {% if show_mr2_promo %}
+    {{ css_bundle('home-mr2-promo') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main>
+  {% if show_mr2_promo %}
+    {% include 'mozorg/home/includes/mr2-promo.html' %}
+  {% else %}
+    {% call split(
+      image=resp_img(
+        url='img/home/laptop.png',
+        srcset={
+          'img/home/laptop-high-res.png': '2x'
+        },
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      ),
+      block_class='c-home-hero mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      body_class=None,
+      media_after=True,
+    ) %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('home-firefox-browser') }}</div>
+      <h2 class="c-home-hero-title">{{ ftl('home-fast-for-good') }}</h2>
+
+      <p class="c-home-hero-desc">
+        {{ ftl('home-with-2x-the-speed-built-in') }}
+      </p>
+
+      {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
+    {% endcall %}
+  {% endif %}
+
+  <div class="mzp-l-content mzp-t-mozilla">
+    {{ billboard(
+      title=ftl('home-we-make-the-internet-safer'),
+      desc=ftl('home-mozilla-is-the-not-for-profit'),
+      image=resp_img('img/home/dino.svg', optional_attributes={"width": "346"})
+    )}}
+    <section class="c-column-container">
+      <div class="c-column">
+        <div class="c-column-content">
+          <h2>{{ ftl('home-our-impact') }}</h2>
+          <p>{{ ftl('home-when-you-use-firefox-you-help') }}</p>
+
+          <ul class="mzp-u-list-styled">
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/08/08/mozilla-information-trust-initiative-building-movement-fight-misinformation-online/{{ referrals }}">{{ ftl('home-mozilla-information-trust-initiative') }}</a>
+            </li>
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/foundation-archive/mozilla-learning/new-partnership-with-un-women-to-teach-key-digital-skills-to-women/{{ referrals }}">{{ ftl('home-empowering-women-online') }}</a>
+            </li>
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://blog.mozilla.org/blog/2017/09/06/mozilla-washington-post-reinventing-online-comments/{{ referrals }}">{{ ftl('home-the-coral-project') }}</a>
+            </li>
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://internethealthreport.org/{{ referrals }}">{{ ftl('home-read-our-internet-health-report') }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="c-column">
+        <div class="c-column-content">
+          <h2>{{ ftl('home-our-innovations') }}</h2>
+          <p>
+            {{ ftl('home-using-the-web-as-the-platform') }}
+          </p>
+
+          <ul class="mzp-u-list-styled">
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://voice.mozilla.org/{{ referrals }}">{{ ftl('home-common-voice') }}</a>
+            </li>
+            <li>
+              <a class="mzp-c-cta-link" rel="external" href="https://vr.mozilla.org/{{ referrals }}">{{ ftl('home-virtual-reality-platform') }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="externals">
+      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+          {% call picto(
+            image=resp_img(
+              url='img/home/extensions.png',
+              srcset={
+                'img/home/extensions-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://addons.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-extensions') }}</h2>
+            </a>
+            <p>{{ ftl('home-personalize-firefox-with-your') }}</p>
+          {% endcall %}
+
+          {% call picto(
+            image=resp_img(
+              url='img/home/careers.png',
+              srcset={
+                'img/home/careers-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="{{ url('careers.home') }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-careers') }}</h2>
+            </a>
+            <p>{{ ftl('home-learn-about-the-benefits-of') }}</p>
+          {% endcall %}
+
+          {% call picto(
+            image=resp_img(
+              url='img/home/help.png',
+              srcset={
+                'img/home/help-high-res.png': '2x'
+              },
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'width': '100',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+            base_el='li'
+          ) %}
+            <a class="mzp-c-cta-link" rel="external" href="https://support.mozilla.org/{{ referrals }}">
+              <h2 class="mzp-c-picto-heading">{{ ftl('home-need-help') }}</h2>
+            </a>
+            <p>{{ ftl('home-get-answers-to-your-questions') }} </p>
+          {% endcall %}
+      </ul>
+    </section>
+
+    <aside class="mzp-c-newsletter">
+      <div class="mzp-c-newsletter-image">
+        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+      </div>
+
+      <div class="newsletter-content">
+        {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+          {{ email_newsletter_form(
+            newsletters='mozilla-foundation, mozilla-and-you',
+            button_class='button-dark'
+          )}}
+        {% else %}
+          {{ email_newsletter_form(
+            button_class='button-dark',
+            submit_text=ftl('newsletter-form-sign-up-now')
+          )}}
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
+  {% endif %}
+{% endblock %}

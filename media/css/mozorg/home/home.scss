@@ -5,81 +5,181 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
-@import '~@mozilla-protocol/core/protocol/css/components/billboard';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-family';
 
-.mzp-c-split .mzp-u-title-md {
-    @include font-firefox;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+header {
+    .c-header-wrapper {
+        text-align: center;
+
+        p {
+            @include font-mozilla;
+            @include font-size(28px);
+        }
+    }
 }
 
-// * -------------------------------------------------------------------------- */
-// Billboard
-.mzp-c-billboard {
-    margin-top: get-theme('v-grid-xl');
+
+.c-homepage {
+    h2 {
+        @include font-mozilla;
+        font-weight: 500;
+        text-align: center;
+
+        @media #{$mq-xs} {
+            @include font-size(35px);
+        }
+
+        @media #{$mq-md} {
+                @include font-size(40px);
+        }
+    }
+}
+
+.c-quote {
+    &.mitchell {
+         background-image: linear-gradient(to right, #dad9e9, #d8def0, #d4e3f6, #d0e9fa, #cceefc, #cbf1fa, #cbf3f8, #ccf5f5, #cef5f0, #d1f5ec, #d5f5e8, #d9f4e4);
+        }
+
+    &.politico {
+        background-image: linear-gradient(to right, #caf5fb, #cbf0fc, #cfebfa, #d2e5f7, #d6e0f2, #d5e0f2, #d3e1f1, #d2e1f1, #cde7f2, #ccecf0, #d0f1eb, #d9f4e4);
+    }
+
+    .c-quote-wrapper {
+        &.mzp-l-content{
+            padding-top: $layout-md;
+            padding-bottom: $layout-md;
+        }
+
+        blockquote,
+        cite {
+            @include font-firefox;
+            text-align: center;
+        }
+
+        blockquote {
+            @include text-title-xs;
+            border: 0;
+            font-weight: normal;
+        }
+
+        cite {
+            @include text-body-xl;
+            font-weight:  bold;
+            font-style: normal ;
+
+            &::before {
+                content: none;
+            }
+        }
+    }
+}
+
+.c-products {
+    text-align: center;
+
+    ul {
+        margin-top: $layout-lg;
+
+        .mzp-c-picto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: $layout-lg;
+
+            .mzp-c-picto-image {
+                margin-bottom: $spacing-md;
+            }
+        }
+    }
+
+    h3 {
+        @include font-firefox;
+        @include text-body-xl;
+        font-weight: normal;
+    }
 
     @media #{$mq-md} {
-        margin-top: 0;
-    }
-}
-
-// offset image override
-.mzp-c-billboard .mzp-c-billboard-image-container {
-    @media #{$mq-lg} {
-        margin: 0;
-        padding: $spacing-lg $spacing-sm;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// Picto
-
-.externals {
-    .mzp-l-content {
-        padding-bottom: 0;
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-picto-heading {
-            @include text-title-sm;
-        }
-
-        .mzp-c-picto-body {
-            max-width: $content-xs;
-            margin: 0 auto;
+        ul {
+            .mzp-c-picto {
+                margin-bottom: 0;
+            }
         }
     }
 }
 
-// * -------------------------------------------------------------------------- */
-// Two column section
-
-.c-column-container {
-    @include clearfix;
+.c-mission,
+.c-about,
+.mzp-c-newsletter {
+    p {
+        @include text-body-lg;
+    }
 }
 
-.c-column {
-    box-sizing: border-box;
-    display: block;
-    padding: $spacing-xl 0;
-
-    @media #{$mq-lg} {
-        float: left;
-        padding: 0 $spacing-2xl;
-        width: 50%;
-
-        &:first-child {
-            border-right: 1px solid rgba(0, 0, 0, 0.2);
-        }
+.c-mission {
+    h2 {
+        text-align: center;
     }
 
-    .c-column-content {
-        @include bidi(((text-align, left, right),));
-
+    @media #{$mq-md} {
         h2 {
-            margin-bottom: $spacing-xl;
+            text-align: left;
+        }
+    }
+}
+
+.c-about {
+    background-color: $color-light-gray-20;
+
+    .c-about-wrapper {
+        position: relative;
+    }
+
+    .c-about-cta {
+        text-align: center;
+    }
+
+    .c-dino {
+        width: 100px;
+        height: auto;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}
+
+.c-newsletter-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .c-newsletter-info {
+        text-align: center;
+        margin-bottom: $layout-sm;
+    }
+
+    .c-newsletter-content {
+        header {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+
+        .c-newsletter-info {
+            width: 45%;
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        .c-newsletter-content {
+            width: 50%;
+            margin-left: $layout-lg;
         }
     }
 }
