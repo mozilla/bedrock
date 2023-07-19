@@ -47,17 +47,6 @@ kittenButton.addEventListener(
         MzpModal.createModal(e.target, kittenModal, {
             closeText: 'Close modal',
             className: 'kitten-modal-overlay',
-            onCreate: () => {
-                document
-                    .querySelector('.kitten-modal-overlay')
-                    .addEventListener('animationend', () => {
-                        const cats = document.querySelectorAll('.laser-cat');
-                        for (let index = 0; index < cats.length; index++) {
-                            const cat = cats[index];
-                            cat.classList.add('active');
-                        }
-                    });
-            },
             onDestroy: () => {
                 kittenButton.focus();
             }

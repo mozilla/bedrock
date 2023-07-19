@@ -405,8 +405,27 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <div class="mzp-u-modal-content kitten-modal">
         <div class="kitten-modal-grid">
           <h2>Nicht alle Wege führen nach Chrome</h2>
-            {% include 'firefox/challenge-the-default/includes/laser-cat-mobile.html' %}
-            {% include 'firefox/challenge-the-default/includes/laser-cat.html' %}
+          {{ picture(
+            url='img/firefox/challenge-the-default/laser-cat-mobile.png',
+            sources=[
+              {
+                'media': '(max-width: 768px)',
+                'srcset': {
+                  'img/firefox/challenge-the-default/laser-cat-mobile.png': 'default'
+                }
+              },
+              {
+                'media': '(min-width: 769px)',
+                'srcset': {
+                  'img/firefox/challenge-the-default/laser-cat-desktop.png': 'default'
+                }
+              },
+            ],
+            optional_attributes={
+              'loading': 'lazy',
+              'class': 'laser-cat'
+            }
+        )}}
         </div>
       </div>
 
