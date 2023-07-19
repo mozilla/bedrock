@@ -7,3 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../../../protocol/components/navigation-ie';
+@import '../../../protocol/components/fx-unsupported-ie';
+
+@media #{$mq-md} {
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
+    }
+}

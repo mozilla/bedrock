@@ -31,6 +31,18 @@ $image-path: '/media/protocol/img';
         .show-auto-download-notification {
             display: block !important;
         }
+
+        // issue 13317
+        &.fx-unsupported {
+            .show-mac,
+            .show-auto-download-notification {
+                display: none !important;
+            }
+
+            .show-unknown {
+                display: block !important;
+            }
+        }
     }
 
     &.windows {
@@ -41,6 +53,18 @@ $image-path: '/media/protocol/img';
 
         &.windows-10-plus {
             .show-windows-10-plus {
+                display: block !important;
+            }
+        }
+
+        // issue 13317
+        &.fx-unsupported {
+            .show-windows,
+            .show-auto-download-notification {
+                display: none !important;
+            }
+
+            .show-unknown {
                 display: block !important;
             }
         }

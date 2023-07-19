@@ -17,12 +17,13 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Determine if browser should attempt to download Firefox on page load.
      * @param {String} platform
+     * @param {Boolean} fxSupported
      * @returns {Boolean}
      */
-    DownloadThanks.shouldAutoDownload = function (platform) {
+    DownloadThanks.shouldAutoDownload = function (platform, fxSupported) {
         var supportedPlatforms = ['windows', 'osx', 'linux', 'android', 'ios'];
 
-        if (supportedPlatforms.indexOf(platform) !== -1) {
+        if (fxSupported && supportedPlatforms.indexOf(platform) !== -1) {
             return true;
         }
 

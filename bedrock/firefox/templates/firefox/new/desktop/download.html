@@ -61,12 +61,6 @@
 {% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
 <main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
-
-  {# Show unsupported notification to IE 6/7 visitors on Windows XP/Vista #}
-  <!--[if lt IE 8]>
-  <div class="mzp-c-notification-bar mzp-t-warning" data-nosnippet="true">{{ ftl('firefox-desktop-download-mozilla-no-longer-provides', fallback='firefox-desktop-download-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</div>
-  <![endif]-->
-
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
       <div class="c-block-body">

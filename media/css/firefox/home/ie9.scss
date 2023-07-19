@@ -35,3 +35,14 @@ $image-path: '/media/protocol/img';
         text-align: center;
     }
 }
+
+// issue 13317
+#menu-browsers {
+    .menu-desktop {
+        display: none;
+    }
+
+    .menu-desktop-unsupported {
+        display: block;
+    }
+}

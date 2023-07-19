@@ -18,7 +18,10 @@
 
         // Only auto-start the download if a supported platform is detected.
         if (
-            Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) &&
+            Mozilla.DownloadThanks.shouldAutoDownload(
+                window.site.platform,
+                window.site.fxSupported
+            ) &&
             typeof Mozilla.Utils !== 'undefined'
         ) {
             downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);

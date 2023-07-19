@@ -296,6 +296,16 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
+// issue 13317
+.fx-unsupported .cta-download[data-download-os="Desktop"]{
+    display: none;
+}
+
+// issue 13317
+.fx-unsupported .menu-desktop {
+    display: none;
+}
+
 // * -------------------------------------------------------------------------- */
 // Mobile download links, show app store links when user is on mobile
 

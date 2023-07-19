@@ -109,37 +109,126 @@ ul.download-list {
     display: block !important;
 }
 
-// Hide pre-release Firefox download buttons on unsupported
+// Conditional Firefox download buttons on unsupported
 // operating system versions (issue #13317)
-.windows.fx-unsupported .download-button-beta.download-button-desktop .download-list,
-.windows.fx-unsupported .download-button-alpha.download-button-desktop .download-list,
-.windows.fx-unsupported .download-button-nightly.download-button-desktop .download-list,
-.osx.fx-unsupported .download-button-beta.download-button-desktop .download-list,
-.osx.fx-unsupported .download-button-alpha.download-button-desktop .download-list,
-.osx.fx-unsupported .download-button-nightly.download-button-desktop .download-list {
+.fx-unsupported-message {
     display: none !important;
+    text-align: center;
+
+    .fx-unsupported-message-all-link {
+        @include text-body-xs;
+        display: block;
+        margin-top: $spacing-md;
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .download-link {
+        text-align: center;
+    }
 }
 
-.fx-unsupported-message {
-    @include bidi(((text-align, left, right),));
-    display: none !important;
+// Split component styling
+.fx-unsupported .mzp-c-split {
+    .fx-unsupported-message,
+    .fx-privacy-link,
+    .mzp-c-button-download-privacy-link {
+        @include bidi(((text-align, left, right),));
+    }
+}
 
-    .download-platform-list {
+.fx-unsupported .mzp-c-split.mzp-l-split-center-on-sm-md {
+    .fx-unsupported-message,
+    .fx-privacy-link,
+    .mzp-c-button-download-privacy-link {
         text-align: center;
+    }
 
-        li {
-            margin-bottom: $spacing-lg;
+    @media #{$mq-md} {
+        .fx-unsupported-message,
+        .fx-privacy-link,
+        .mzp-c-button-download-privacy-link {
+            @include bidi(((text-align, left, right),));
         }
     }
 }
 
-.windows.fx-unsupported .download-button-beta .fx-unsupported-message.win,
-.windows.fx-unsupported .download-button-alpha .fx-unsupported-message.win,
-.windows.fx-unsupported .download-button-nightly .fx-unsupported-message.win,
-.osx.fx-unsupported .download-button-beta .fx-unsupported-message.mac,
-.osx.fx-unsupported .download-button-alpha .fx-unsupported-message.mac,
-.osx.fx-unsupported .download-button-nightly .fx-unsupported-message.mac {
-    display: block !important;
+// Callout styling
+.fx-unsupported .mzp-c-call-out-compact {
+    .fx-unsupported-message,
+    .fx-privacy-link,
+    .mzp-c-button-download-privacy-link {
+        @include bidi(((text-align, left, right),));
+    }
+}
+
+.windows.fx-unsupported,
+.osx.fx-unsupported {
+    // Hide Firefox desktop download buttons
+    .c-button-download-thanks-link,
+    .download-button .download-list {
+        display: none !important;
+    }
+
+    // Keep showing Firefox mobile download buttons
+    .download-button-android .download-list,
+    .download-button-ios .download-list {
+        display: block !important;
+    }
+
+    // Hide Firefox download button in the navigation as there's
+    // too little space to display messaging.
+    .c-navigation .c-navigation-shoulder .c-button-download-thanks {
+        display: none !important;
+    }
+
+    // Hide Firefox Win64 ESR download button by default.
+    .fx-unsupported-message.win .download-link.os_win64 {
+        display: none !important;
+    }
+}
+
+.windows.fx-unsupported {
+    // Show unsupported message with Firefox ESR download button.
+    .download-button .fx-unsupported-message.win,
+    .c-button-download-thanks .fx-unsupported-message.win {
+        display: block !important;
+    }
+
+    // Show Firefox Win32 ESR download buttons for 64-bit CPUs.
+    .fx-unsupported-message.win .download-link.os_win {
+        display: inline-block !important;
+    }
+
+    &.x64 {
+        // Show Firefox Win64 ESR download buttons for 64-bit CPUs.
+        .fx-unsupported-message.win .download-link.os_win64 {
+            display: inline-block !important;
+        }
+
+        // Hide Firefox Win32 ESR download buttons for 64-bit CPUs.
+        .fx-unsupported-message.win .download-link.os_win {
+            display: none !important;
+        }
+    }
+}
+
+.osx.fx-unsupported {
+    // Show unsupported message with Firefox ESR download button.
+    .download-button .fx-unsupported-message.mac,
+    .c-button-download-thanks .fx-unsupported-message.mac {
+        display: block !important;
+    }
 }
 
 .android .download-button-desktop,
