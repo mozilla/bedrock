@@ -24,21 +24,21 @@ Note that a deployment of Bedrock will actually trigger two separate deployments
 one serving all of ``mozilla.org`` and another serving certain parts of ``getpocket.com``
 
 Dev
-```
+~~~
 - *Mozorg URL:* https://www-dev.allizom.org/
 - *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
 
 Staging
-```````
+~~~~~~~
 - *Mozorg URL:* https://www.allizom.org/
 - *Pocket Marketing pages URL:* https://www.tekcopteg.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* stage, deployed on git push
 
 Production
-``````````
+~~~~~~~~~~
 - *Mozorg URL:* https://www.mozilla.org/
 - *Pocket Marketing pages URL:* https://getpocket.com/
 - *Bedrock locales:* prod repo
@@ -154,7 +154,7 @@ is deployed to each `production`_ deployment.
 
 
 What Is Currently Deployed?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 You can look at the git log of the ``main`` branch to find the last commit with a date-tag on it (e.g. 2022-05-05):
 this commit will be the last one that was deployed to production. You can also use the whatsdeployed.io service to get
@@ -165,7 +165,7 @@ a nice view of what is actually currently deployed to Dev, Stage, and Prod:
 
 
 Instance Configuration & Switches
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 We have a `separate repo <https://github.com/mozmeao/www-config>`_ for configuring our primary instances (dev, stage, and prod).
 The `docs for updating configurations <https://mozmeao.github.io/www-config/>`_ in that repo are on their own page,
@@ -176,7 +176,7 @@ version of the database in use, the git revision of the bedrock code, and how lo
 a change to one of these repos and are curious if the changes have made it to production, this is the URL you should check.
 
 Updating Selenium
-~~~~~~~~~~~~~~~~~
+-----------------
 
 There are several components for Selenium, which are independently versioned. The first is the Python client,
 and this can be updated via the `test dependencies`_. The other components are the Selenium versions used in
@@ -184,7 +184,7 @@ both SauceLabs and the local Selenium grid. These versions are selected automati
 required OS / Browser configuration, so they should not need to be updated or specified independently.
 
 Adding test runs
-~~~~~~~~~~~~~~~~
+----------------
 
 Test runs can be added by creating a new job in ``bedrock/.github/workflows/integration_tests.yml``
 with the desired variables and pushing that branch to Github.
@@ -204,7 +204,7 @@ following clause to the matrix:
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
 Pushing to the integration tests branch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 If you have commit rights to our Github repo (mozilla/bedrock) you can simply push
 your branch to the branch named ``run-integration-tests``, and the app will be deployed
