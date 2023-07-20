@@ -19,9 +19,6 @@ import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
         const downloadButton = document.getElementById(
             'download-button-primary'
         );
-        const mobileDownloadButtons = document.querySelectorAll(
-            '.ga-product-download'
-        );
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
             MzpModal.createModal(this, modalContent, {
@@ -79,16 +76,6 @@ import MzpSideMenu from '@mozilla-protocol/core/protocol/js/sidemenu';
             },
             false
         );
-
-        for (let i = 0; i < mobileDownloadButtons.length; i++) {
-            mobileDownloadButtons[i].addEventListener(
-                'click',
-                function (event) {
-                    TrackProductDownload.handleLink(event);
-                },
-                false
-            );
-        }
     }
 
     Mozilla.run(onLoad);
