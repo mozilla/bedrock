@@ -671,11 +671,11 @@ describe('stub-attribution.js', function () {
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
             );
-            spyOn(window._SearchParams.prototype, 'get').and.callFake(function (
-                key
-            ) {
-                return key === 'experiment' ? 'firefox-new' : 1;
-            });
+            spyOn(window._SearchParams.prototype, 'get').and.callFake(
+                function (key) {
+                    return key === 'experiment' ? 'firefox-new' : 1;
+                }
+            );
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue(
                 'chrome'
             );
