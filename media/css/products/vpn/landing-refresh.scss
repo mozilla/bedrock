@@ -76,42 +76,45 @@ html {
             margin-bottom: $layout-lg;
         }
     }
-}
 
-.c-feature-block {
-    margin: 0 auto $layout-md;
-    text-align: center;
+    .mzp-t-picto-side {
+        .mzp-c-picto {
+            text-align: center;
+            font-weight: bold;
+            padding: 0;
 
-    img {
-        display: none;
+            .mzp-c-picto-image {
+                display: none;
+            }
 
-        @media #{$mq-md} {
-            display: block;
+            .c-feature-title {
+                @include font-size($vpn-title-2xs-size);
+                line-height: 1.2;
+            }
+
+            @media #{$mq-md} {
+                @include bidi((
+                    (text-align, left, right),
+                    (padding-left, $layout-lg, 0),
+                    (padding-right, 0, $layout-lg),
+                ));
+                font-weight: normal;
+
+                .mzp-c-picto-image {
+                    display: inline;
+                    width: 40px;
+                }
+
+                .c-feature-title {
+                    @include font-size($vpn-title-xs-size);
+                }
+            }
         }
     }
-
-    .c-feature-title {
-        @include font-size($vpn-title-2xs-size);
-
-        @media #{$mq-md} {
-            @include font-size($vpn-title-xs-size);
-            font-weight: normal;
-        }
-    }
-
-    @media #{$mq-md} {
-        margin-bottom: 0;
-    }
-
-    @media #{$mq-md} {
-        display: grid;
-        grid-column-gap: $layout-xs;
-        grid-template-columns: 40px 1fr;
-        margin: 0;
-        max-width: none;
-        text-align: start;
-    }
 }
+
+// * -------------------------------------------------------------------------- */
+// Trusted brand section
 
 .c-brand-trust {
     padding-top: 0;

@@ -17,7 +17,6 @@
 
 {% block body_id %}mozilla-vpn-pricing{% endblock %}
 
-{# TODO: should this noindex remain in place? #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
@@ -66,7 +65,7 @@
       <header class="c-pricing-main-header">
         <h1 class="c-section-title">Mozilla VPN is not yet available in your country</h1>
 
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </header>

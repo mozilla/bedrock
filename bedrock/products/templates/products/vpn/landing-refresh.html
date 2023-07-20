@@ -166,55 +166,108 @@
   <section class="c-features mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title t-large">Features</h2>
 
-    <ul class="mzp-l-columns mzp-t-columns-two">
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/devices.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            Connect up to 5 devices
-          </h3>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/globe.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            More than {{ connect_servers}} servers in {{ connect_countries }}+ countries
-          </h3>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/speed.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            Fast network speeds even while gaming
-          </h3>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/no-spy.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            No logging, tracking or sharing of network data
-          </h3>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/stop.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            No bandwidth restrictions or throttling
-          </h3>
-        </div>
-      </li>
-      <li class="c-feature-block">
-        <img loading="lazy" src="{{ static('img/products/vpn/landing-refresh/icons/shield.svg') }}" width="60" alt="">
-        <div class="c-feature-block-detail">
-          <h3 class="c-feature-title">
-            Extra security: whole device protection, multi-hop routing & more
-          </h3>
-        </div>
-      </li>
+    <ul class="mzp-l-columns mzp-t-columns-two mzp-t-picto-side">
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/devices.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          Connect up to 5 devices
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/globe.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          More than {{ connect_servers}} servers in {{ connect_countries }}+ countries
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/speed.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          Fast network speeds even while gaming
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/no-spy.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          No logging, tracking or sharing of network data
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/stop.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          No bandwidth restrictions or throttling
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        image=resp_img(
+          url='img/products/vpn/landing-refresh/icons/shield.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '40',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p class="c-feature-title">
+          Extra security: whole device protection, multi-hop routing & more
+        </p>
+      {% endcall %}
     </ul>
     <p class="c-section-more"><a href="{{ url('products.vpn.features') }}">See all features</a></p>
   </section>
@@ -255,7 +308,7 @@
       <header class="c-pricing-main-header">
         <h2 class="c-section-title">Mozilla VPN is not yet available in your country</h2>
 
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </header>
