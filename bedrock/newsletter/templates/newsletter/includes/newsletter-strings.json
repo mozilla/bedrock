@@ -165,7 +165,7 @@
       "title": "{{ ftl('newsletters-take-action')|striptags }}"
   },
   "test-pilot": {
-      "description": "{{ ftl('newsletters-help-us-make-a-better')|striptags }}",
+      "description": "{{ ftl('newsletters-help-us-make-a-better-v2', 'newsletters-help-us-make-a-better')|striptags }}",
       "title": "{{ ftl('newsletters-new-product-testing')|striptags }}"
   },
   "webmaker": {
