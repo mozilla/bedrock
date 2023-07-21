@@ -19,6 +19,7 @@ extend-exclude = ["__pycache__", "docs", "assets", "static", "bedrock/externalfi
 
 [tool.ruff.per-file-ignores]
 "bedrock/settings/__init__.py" = ["F405"]
+"bedrock/contentful/tests/data.py" = ["E501"]
 
 [tool.ruff.isort]
 known-first-party = ["bedrock", "lib", "pages"]
