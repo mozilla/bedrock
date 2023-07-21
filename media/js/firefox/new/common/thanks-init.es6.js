@@ -6,48 +6,50 @@
 
 import TrackProductDownload from '../../../base/datalayer-productdownload.es6';
 
-(function () {
-    const directDownloadLink = document.getElementById('direct-download-link');
-    let downloadURL;
+const directDownloadLink = document.getElementById('direct-download-link');
+let downloadURL;
 
-    // Only auto-start the download if a supported platform is detected.
-    if (
-        Mozilla.DownloadThanks.shouldAutoDownload(
-            window.site.platform,
-            window.site.fxSupported
-        ) &&
-        typeof Mozilla.Utils !== 'undefined'
-    ) {
-        downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
+// Only auto-start the download if a supported platform is detected.
+if (
+    Mozilla.DownloadThanks.shouldAutoDownload(
+        window.site.platform,
+        window.site.fxSupported
+    ) &&
+    typeof Mozilla.Utils !== 'undefined'
+) {
+    downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
 
-        if (downloadURL) {
-            // Pull download link from the download button and add to the 'Try downloading again' link.
-            // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
-            if (directDownloadLink && directDownloadLink.href) {
-                directDownloadLink.href = downloadURL;
-                directDownloadLink.addEventListener('click', function (event) {
+    if (downloadURL) {
+        // Pull download link from the download button and add to the 'Try downloading again' link.
+        // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
+        if (directDownloadLink && directDownloadLink.href) {
+            directDownloadLink.href = downloadURL;
+            directDownloadLink.addEventListener(
+                'click',
+                (event) => {
                     try {
                         TrackProductDownload.handleLink(event);
                     } catch (error) {
                         return;
                     }
-                });
-            }
-
-            // Start the platform-detected download a second after DOM ready event.
-            Mozilla.Utils.onDocumentReady(function () {
-                try {
-                    TrackProductDownload.sendEventFromURL(downloadURL);
-                } catch (error) {
-                    return;
-                }
-                setTimeout(function () {
-                    window.location.href = downloadURL;
-                }, 1000);
-            });
+                },
+                false
+            );
         }
-    }
 
-    // Bug 1354334 - add a hint for test automation that page has loaded.
-    document.getElementsByTagName('html')[0].classList.add('download-ready');
-})();
+        // Start the platform-detected download a second after DOM ready event.
+        Mozilla.Utils.onDocumentReady(function () {
+            try {
+                TrackProductDownload.sendEventFromURL(downloadURL);
+            } catch (error) {
+                return;
+            }
+            setTimeout(function () {
+                window.location.href = downloadURL;
+            }, 1000);
+        });
+    }
+}
+
+// Bug 1354334 - add a hint for test automation that page has loaded.
+document.getElementsByTagName('html')[0].classList.add('download-ready');
