@@ -163,7 +163,7 @@ module.exports = function (config) {
 
         // Supress console logs triggered in code.
         client: {
-            captureConsole: false
+            captureConsole: true
         },
 
         // Continuous Integration mode

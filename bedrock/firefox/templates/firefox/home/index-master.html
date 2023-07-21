@@ -279,12 +279,6 @@
   {% include '/includes/sticky-promo.html' %}
 {% endblock %}
 
-{% block glean %}
-  {% if switch('glean-analytics') %}
-    {{ js_bundle('glean') }}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('firefox-master') }}

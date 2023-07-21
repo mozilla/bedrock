@@ -66,6 +66,22 @@ describe('utilsjs', function () {
         });
     });
 
+    describe('hasValidURLScheme', function () {
+        it('should return true for non secure URLs', function () {
+            expect(Utils.hasValidURLScheme('http://localhost:8000')).toBeTrue();
+        });
+
+        it('should return true for secure URLs', function () {
+            expect(
+                Utils.hasValidURLScheme('https://www.mozilla.org')
+            ).toBeTrue();
+        });
+
+        it('should return false for file URLs', function () {
+            expect(Utils.hasValidURLScheme('file://C:/Users/')).toBeFalse();
+        });
+    });
+
     describe('isTelemetryEnabled', function () {
         it('should return true if opt out cookie does not exist', function () {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);

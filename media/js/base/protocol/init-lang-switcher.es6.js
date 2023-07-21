@@ -15,12 +15,4 @@ MzpLangSwitcher.init(function (previousLanguage, newLanguage) {
         languageSelected: newLanguage,
         previousLanguage: previousLanguage
     });
-
-    // Track event in Glean.
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEventPing({
-            label: 'Language Selected: ' + newLanguage,
-            type: 'Change Language'
-        });
-    }
 });

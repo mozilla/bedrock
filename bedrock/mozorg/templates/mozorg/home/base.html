@@ -22,9 +22,3 @@
 {% block structured_data %}
   {% include 'includes/structured-data/organizations/mozilla-corporation-organisation.json' %}
 {% endblock %}
-
-{% block glean %}
-  {% if switch('glean-analytics') %}
-    {{ js_bundle('glean') }}
-  {% endif %}
-{% endblock %}

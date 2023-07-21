@@ -81,12 +81,6 @@
 
 {% endblock %}
 
-{% block glean %}
-  {% if switch('glean-analytics') %}
-    {{ js_bundle('glean') }}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {% if vpn_affiliate_attribution_enabled %}
     {{ js_bundle('mozilla-vpn-affiliate') }}
