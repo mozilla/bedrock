@@ -23,6 +23,19 @@
             {{ ftl('relay-shared-subnav-faq') }}
           </a>
         </li>
+        <li class="c-sub-navigation-item">
+          {{ relay_fxa_button(
+            entrypoint=_utm_source,
+            button_text=ftl('nav-profile-sign-in'),
+            is_button_class=False,
+            class_name="mzp-c-button mzp-t-sm relay-subnav-signin",
+            optional_attributes={
+              'data-cta-type': 'cta: fxa-relay',
+              'data-cta-text': 'Sign in',
+              'data-cta-position': 'subnav'
+            }
+          ) }}
+        </li>
       </ul>
     </div>
   </div>

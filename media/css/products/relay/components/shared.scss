@@ -1,0 +1,16 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@use '~@mozilla-protocol/core/protocol/css/components/button' as MzpButton;
+
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:link {
+    color: $color-white;
+}
+
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin {
+    @include MzpButton.default-states;
+}

@@ -10,6 +10,8 @@ $image-path: '/media/protocol/img';
 @import '@mozilla-protocol/core/protocol/css/components/newsletter-form';
 @import '@mozilla-protocol/core/protocol/css/includes/lib';
 
+@import 'components/shared';
+
 .c-waitlist-heading {
     text-align: center;
 
