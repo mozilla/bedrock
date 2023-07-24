@@ -5,12 +5,14 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
-@use '~@mozilla-protocol/core/protocol/css/components/button' as MzpButton;
 
-.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:link {
+// https://github.com/mozilla/protocol/issues/842
+
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:link,
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:visited {
     color: $color-white;
 }
 
-.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin {
-    @include MzpButton.default-states;
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:hover {
+    color: $color-black;
 }

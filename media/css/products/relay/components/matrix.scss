@@ -187,9 +187,9 @@ $brand-theme: 'firefox';
 }
 
 .c-matrix-footer-vpn-savings {
-    line-height: 1;
-    font-size: 14px;
+    @include font-size(14px);
     align-self: end;
+    line-height: 1;
     margin-bottom: 0;
 
     span {
