@@ -125,6 +125,7 @@ $brand-theme: 'firefox';
 
 .c-matrix-features {
     align-self: start;
+    margin-bottom: 0;
     width: 100%;
 
     li {
@@ -171,7 +172,7 @@ $brand-theme: 'firefox';
         "price"
         "button"
         "period";
-    grid-template-rows: 2rem 3rem min-content 1.4rem;
+    grid-template-rows: 2.2rem 2.8rem min-content 1.4rem;
     position: relative;
     width: 100%;
     text-align: center;
@@ -185,15 +186,24 @@ $brand-theme: 'firefox';
     grid-area: price;
 }
 
-.c-matrix-footer-savings {
+.c-matrix-footer-vpn-savings {
+    line-height: 1;
+    font-size: 14px;
     align-self: end;
-    grid-row-start: 1;
-    grid-row-end: 3;
+    margin-bottom: 0;
 
     span {
         font-weight: bold;
         display: block;
     }
+}
+
+.c-matrix-footer-vpn-price {
+    @include text-body-lg;
+    align-self: end;
+    color: $color-blue-50;
+    font-weight: bold;
+    grid-area: price;
 }
 
 small.c-matrix-footer-period {

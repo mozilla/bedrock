@@ -121,7 +121,9 @@
         <td>
           <div class="c-matrix-footer">
             {% if bundle_available %}
-              <p class="c-matrix-footer-savings">{{ ftl('plan-matrix-price-vpn-discount-promo', savings=savings) }}</p>
+              {% set vpn_monthly_price_yearly = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+              <p class="c-matrix-footer-vpn-savings">{{ ftl('plan-matrix-price-vpn-discount-promo', savings=savings) }}</p>
+              <em class="c-matrix-footer-vpn-price">{{ ftl('plan-matrix-price-monthly-calculated', monthly_price=vpn_monthly_price_yearly) }}</em>
               <small class="c-matrix-footer-period">{{ ftl('plan-matrix-price-period-yearly-footnote-1') }}</small>
                 {{ vpn_subscribe_link(
                   entrypoint=_utm_source,
@@ -148,8 +150,6 @@
       </tr>
     </tfoot>
   </table>
-
-
 
   <div class="c-matrix-mobile">
     <ul>
@@ -228,7 +228,9 @@
         </ul>
       <div class="c-matrix-footer">
         {% if bundle_available %}
-          <p class="c-matrix-footer-savings">{{ ftl('plan-matrix-price-vpn-discount-promo', savings=savings) }}</p>
+          {% set vpn_monthly_price_yearly = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+          <p class="c-matrix-footer-vpn-savings">{{ ftl('plan-matrix-price-vpn-discount-promo', savings=savings) }}</p>
+          <em class="c-matrix-footer-vpn-price">{{ ftl('plan-matrix-price-monthly-calculated', monthly_price=vpn_monthly_price_yearly) }}</em>
           <small class="c-matrix-footer-period">{{ ftl('plan-matrix-price-period-yearly-footnote-1') }}</small>
           {{ vpn_subscribe_link(
             entrypoint=_utm_source,
