@@ -12,10 +12,11 @@ $brand-theme: 'firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
 
-@import 'phone';
-@import 'bundle';
-@import 'reviews';
-@import 'matrix';
+@import 'components/phone';
+@import 'components/bundle';
+@import 'components/reviews';
+@import 'components/matrix';
+@import 'components/shared';
 
 .u-center {
     text-align: center;

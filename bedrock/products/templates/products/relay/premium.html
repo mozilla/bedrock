@@ -39,9 +39,9 @@
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-premium">{{ ftl('relay-shared-firefox-relay') }}</div>
     <h1 class="c-hero-title">{{ ftl('premium-promo-hero-headline') }}</h1>
     {% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
-    <p class="c-hero-body">{{ ftl('premium-promo-hero-body-2-html', monthly_price=monthly_price, fallback='premium-promo-hero-body-3') }}</p>
+    <p class="c-hero-body">{{ ftl('premium-promo-hero-body-3') }}</p>
     <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started" data-cta-position="primary">{{ ftl('hero-section-cta') }}</a></p>
-    <p class="c-hero-availability">{{ ftl('premium-promo-availability-warning-3') }}</p>
+    <p class="c-hero-availability">{{ ftl('premium-promo-availability-warning-4') }}</p>
   {% endcall %}
 
   {% if bundle_available %}

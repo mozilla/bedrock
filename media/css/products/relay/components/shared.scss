@@ -1,0 +1,18 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+
+// https://github.com/mozilla/protocol/issues/842
+
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:link,
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:visited {
+    color: $color-white;
+}
+
+.c-sub-navigation .c-sub-navigation-item a.relay-subnav-signin:hover {
+    color: $color-black;
+}
