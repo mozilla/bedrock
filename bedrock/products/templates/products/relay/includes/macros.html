@@ -29,7 +29,8 @@
     <span>{{ ftl('plan-matrix-price-period-yearly') }}</span>
   </label>
 
-  <em class="c-toggle-price c-toggle-price-monthly">{{ relay_monthly_price(plan='monthly', country_code=country_code, lang=LANG, product=product) }}</em>
+  {% set monthly_price_monthly = relay_monthly_price(plan='monthly', country_code=country_code, lang=LANG, product=product) %}
+  <em class="c-toggle-price c-toggle-price-monthly">{{ ftl('plan-matrix-price-monthly-calculated', monthly_price=monthly_price_monthly) }}</em>
   <small class="c-matrix-footer-period c-matrix-footer-period-monthly">{{ ftl('plan-matrix-price-period-monthly-footnote-1') }}</small>
   {{ relay_subscribe_link(
     entrypoint=_utm_source,
@@ -49,7 +50,8 @@
     })
   }}
 
-  <em class="c-toggle-price c-toggle-price-yearly">{{ relay_monthly_price(plan='yearly', country_code=country_code, lang=LANG, product=product) }}</em>
+  {% set monthly_price_yearly = relay_monthly_price(plan='yearly', country_code=country_code, lang=LANG, product=product) %}
+  <em class="c-toggle-price c-toggle-price-yearly">{{ ftl('plan-matrix-price-monthly-calculated', monthly_price=monthly_price_yearly) }}</em>
   <small class="c-matrix-footer-period c-matrix-footer-period-yearly">{{ ftl('plan-matrix-price-period-yearly-footnote-1') }}</small>
   {{ relay_subscribe_link(
     entrypoint=_utm_source,
