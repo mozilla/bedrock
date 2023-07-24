@@ -127,6 +127,10 @@ one of those URLs, push it to the specified branch on ``github.com/mozilla/bedro
    - Branch ``mozorg-demo-3`` -> https://www-demo3.allizom.org/
    - Branch ``mozorg-demo-4`` -> https://www-demo4.allizom.org/
    - Branch ``mozorg-demo-5`` -> https://www-demo5.allizom.org/
+   - Branch ``mozorg-demo-6`` -> https://www-demo6.allizom.org/
+   - Branch ``mozorg-demo-7`` -> https://www-demo7.allizom.org/
+   - Branch ``mozorg-demo-8`` -> https://www-demo8.allizom.org/
+   - Branch ``mozorg-demo-9`` -> https://www-demo9.allizom.org/
 
 - *Pocket:*
    - Branch ``pocket-demo-1`` -> https://www-demo1.tekcopteg.com/
