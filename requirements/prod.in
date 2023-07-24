@@ -1,17 +1,17 @@
 APScheduler==3.10.1
 babis==0.2.4
-basket-client==1.0.0
+basket-client==1.1.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
-boto3==1.28.1
+boto3==1.28.3
 chardet==5.1.0
 commonware==0.6.0
 contentful==2.1.1
 contextlib2==21.6.0
-cryptography==41.0.1
+cryptography==41.0.2
 dirsync==2.2.5
-django-allow-cidr==0.6.0
-django-cors-headers==4.1.0
+django-allow-cidr==0.7.1
+django-cors-headers==4.2.0
 django-crum==0.7.9
 django-csp==3.7
 django-extensions==3.2.3
@@ -34,7 +34,7 @@ honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.2  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.4.1
-lxml==4.9.2  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
+lxml==4.9.3  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
 Markdown==3.4.3
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 meinheld==1.0.2
@@ -48,7 +48,7 @@ qrcode==7.4.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests==2.31.0
 rich-text-renderer==0.2.7
-sentry-sdk==1.27.1
+sentry-sdk==1.28.1
 sentry-processor==0.0.1
 sqlparse==0.4.4  # Manual pin until Django catches up
 supervisor==4.2.5
