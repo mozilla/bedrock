@@ -32,7 +32,8 @@ how-it-works-section-manage-body = Sign in to your { -brand-name-relay } dashboa
 
 ## REVIEWS SECTION
 
-relay-landing-brand-addons = { -brand-name-addons }
+landing-reviews-add-ons = Add-ons
+landing-reviews-logo-title = { -brand-name-firefox-browser }
 landing-reviews-title = Reviews
 landing-reviews-logo-title = { -brand-name-firefox-browser }
 # Do not localize addons.mozilla.org
