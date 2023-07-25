@@ -283,6 +283,50 @@ To use this method you will need to include ``datalayer-begincheckout-init.es6.j
     </a>
 
 
+Product Download
+~~~~~~~~~~~~~~~~
+
+.. Important::
+
+    Only Firefox and Pocket are currently supported. VPN support has not been added.
+
+We are using a the custom event `product_download` to track product downloads and app store referrals
+for Firefox, Pocket, and VPN. We are not using the default GA4 event file_download for a combination of reasons:
+it does not trigger for the Firefox file types, we would like to collect more information than is included with
+the default events, and we would like to treat product downloads as goals but not all file downloads are goals.
+
+.. Note::
+
+    Most apps listed in *appstores.py* are supported but you may still want to check that the URL
+    you are tracking is identified as valid in ```isValidDownloadURL``` and will be recognized by ```getEventFromUrl``.
+
+Properties for use with `product_download` (not all products will have all options):
+
+- product (example: firefox)
+- platform (example: win64)
+- method (store, direct, or adjust)
+- link_url
+- release_channel (example: nightly)
+- download_language (example: en-CA)
+
+There are two ways to use TrackProductDownload:
+
+1) Call the function, passing it the same URL you are sending the user to:
+
+.. code-block:: javascript
+
+    TrackProductDownload.sendEventFromURL(downloadURL);
+
+2) Add a class to the link:
+
+.. code-block:: html
+
+    <a href="{{ link }}" class="ga-product-download">Link text</a>
+
+You do NOT need to include ``datalayer-productdownload-init.es6.js`` in the page bundle, it is already included
+in the site bundle.
+
+
 How can visitors opt out of GA?
 -------------------------------
 
