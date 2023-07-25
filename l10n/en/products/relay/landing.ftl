@@ -32,10 +32,9 @@ how-it-works-section-manage-body = Sign in to your { -brand-name-relay } dashboa
 
 ## REVIEWS SECTION
 
-landing-reviews-add-ons = Add-ons
-landing-reviews-logo-title = { -brand-name-firefox-browser }
 landing-reviews-title = Reviews
 landing-reviews-logo-title = { -brand-name-firefox-browser }
+landing-reviews-add-ons = Add-ons
 # Do not localize addons.mozilla.org
 landing-reviews-details-source = Source: addons.mozilla.org
 # This string is displayed in a smaller font under a big number representing the average review score (e.g. "4.2").
