@@ -85,21 +85,26 @@
     <tr>
       <td>Highest Impact
         <ul class="mzp-u-list-styled">
-          <li>UXSS<sup>0</sup></li>
-          <li>Sandbox Escape<sup>1</sup></li>
-          <li>Bypassing WebExtension install prompts<sup>2</sup></li>
+          <li>Sandbox Escape<sup>0</sup></li>
+          <li>Bypassing WebExtension install prompts<sup>1</sup></li>
         </ul>
       </td>
       <td>$20,000</td>
       <td>$18,000</td>
     </tr>
     <tr>
+      <td>Higher Impact
+        <ul class="mzp-u-list-styled">
+          <li>UXSS<sup>2</sup></li>
+        </ul>
+      </td>
+      <td>$10,000</td>
+      <td>$8,000</td>
+    </tr>
+    <tr>
       <td>High Impact
         <ul class="mzp-u-list-styled">
-          <li>Memory Corruption</li>
-          <li>Same Origin Bypass leaking high-impact user data</li>
-          <li>Obtaining the user’s IP address if a proxy is configured</li>
-          <li>Other vulnerabilities not fitting 'Highest Impact', but still receiving a <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-high rating</a></li>
+          <li>Vulnerabilities not fitting 'Higher' or 'Highest Impact', but still receiving a <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">sec-high rating</a></li>
         </ul>
       </td>
       <td>$5,000</td>
@@ -117,11 +122,11 @@
     </tr>
   </tbody>
   </table>
-  <p><sup>0</sup>UXSS is defined as the ability to execute privileged JavaScript in a way that allows you access to data from arbitrary origins or to affect Firefox preferences or settings.</p>
+  <p><sup>0</sup>A sandbox escape is defined as a method to run arbitrary attacker code with full user privileges in the parent process or natively on the user's computer. This can be achieved either through memory corruption or Javascript-based vulnerabilities. Vulnerabilities that assume arbitrary code execution in the content process - such as invoking an IPC method with attacker-controlled parameters - do qualify for Highest Impact.</p>
 
-  <p><sup>1</sup>Sandbox escapes that assume arbitrary code execution in the content process - such as invoking an IPC method with attacker-controlled parameters - do qualify for Highest Impact.</p>
+  <p><sup>1</sup> For Highest Impact, bypassing WebExtension Install Prompts excludes local attacks.</p>
 
-  <p><sup>2</sup> For Highest Impact, bypassing WebExtension Install Prompts excludes local attacks.</p>
+  <p><sup>2</sup>UXSS is defined as the ability to execute JavaScript in an arbitrary cross-origin context. As mentioned above, complex user interaction or limited capabilities of the vulnerability (such as only being able to inject into a cross-origin domain, but not an arbitrary cross-origin domain) may decrease the bounty award.</p>
 
   <p><sup>3</sup> Denial of Service issues that merely crash the browser are not eligible for a bounty.</p>
 
