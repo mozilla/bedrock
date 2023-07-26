@@ -190,14 +190,14 @@ describe('fxa-form.js', function () {
             spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
                 '80.0'
             );
-            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(function (
-                callback
-            ) {
-                callback({
-                    accurate: true,
-                    distribution: undefined
-                });
-            });
+            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(
+                function (callback) {
+                    callback({
+                        accurate: true,
+                        distribution: undefined
+                    });
+                }
+            );
             spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
             /* eslint-disable camelcase */
             spyOn(FxaForm, 'getUTMParams').and.returnValue({
