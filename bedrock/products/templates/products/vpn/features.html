@@ -97,6 +97,8 @@
     </ul>
   </section>
 
+  {{ vpn_conditional_cta_refresh('post-convenient') }}
+
   <section class="c-secure t-content-body mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">Secure</h2>
 
@@ -200,10 +202,12 @@
     </ul>
   </section>
 
+  {{ vpn_conditional_cta_refresh('post-secure') }}
+
   <h2 class="c-section-title">Flexible</h2>
 
   {% call split(
-    block_class='t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    block_class='c-server-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
       url='img/products/vpn/features/server-locations-400.png',
       srcset={
@@ -234,7 +238,7 @@
   {% endcall %}
 
   {% call split(
-    block_class='t-content-body mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    block_class='c-choose-apps t-content-body mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
       url='img/products/vpn/features/apps-400.png',
       srcset={
@@ -265,7 +269,7 @@
   {% endcall %}
 
   {% call split(
-    block_class='t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    block_class='c-tab-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
       url='img/products/vpn/features/containers-400.png',
       srcset={
@@ -295,6 +299,8 @@
       <a href="https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn{{ _params }}" rel="external noopener" target="_blank">Learn how</a>.
     </p>
   {% endcall %}
+
+  {{ vpn_conditional_cta_refresh('post-flexible') }}
 
   <section class="c-trust t-content-body mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">Trustworthy</h2>

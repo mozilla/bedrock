@@ -96,6 +96,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-secure {
-    margin-bottom: $layout-xl;
+.c-convenient,
+.c-tab-locations {
+    padding-bottom: 0;
 }
