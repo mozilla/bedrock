@@ -43,3 +43,7 @@ home-learn-more-about-mozilla = Learn more about { -brand-name-mozilla }
 
 home-get-good-news = Get (good) { -brand-name-mozilla } news
 home-get-news-and-tips = Get news and tips from Mozilla to stay safe and informed on everything that makes the web a healthier place.
+
+# VPN Feature
+home-featured-product = Featured product
+home-feature-blur-your-location = Blur your location & activity using <span>{ -brand-name-mozilla-vpn }</span>

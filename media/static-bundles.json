@@ -233,6 +233,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/featured-vpn.scss"
+      ],
+      "name": "home-featured-vpn"
+    },
+    {
+      "files": [
         "css/mozorg/home/ctd-promo-de.scss"
       ],
       "name": "ctd-promo"

@@ -1,0 +1,73 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.vpn-feature {
+    @include font-firefox;
+
+    .feature-wrapper {
+        border-radius: $border-radius-md;
+        background: $color-violet-05;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-xl;
+    }
+
+    small {
+        @include text-body-md;
+        text-transform: uppercase;
+        color: $color-violet-60;
+        font-weight: bold;
+        margin: $spacing-md 0;
+        display: block;
+        text-align: center
+    }
+
+    h2 {
+        @include font-firefox;
+        @include text-title-xs;
+        font-weight: bold;
+        text-align: center;
+        margin: $spacing-lg 0;
+
+        span {
+            color: $color-violet-60;
+        }
+    }
+
+    a {
+        @include text-body-lg;
+        text-align: center;
+    }
+
+    @media #{$mq-md} {
+        .feature-wrapper {
+            flex-direction: row;
+
+            .feature-info {
+                padding: $spacing-xl;
+            }
+
+            small {
+                @include text-body-lg;
+                margin-top: 0;
+                text-align: left;
+            }
+
+            h2 {
+                @include font-size(28px);
+                text-align: left;
+                margin: 0;
+            }
+        }
+    }
+}

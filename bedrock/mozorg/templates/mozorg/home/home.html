@@ -16,6 +16,7 @@
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home') }}
+  {{ css_bundle('home-featured-vpn') }}
 {% endblock %}
 
 {% block content %}
@@ -112,7 +113,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('products.vpn.landing') }}" rel="external noopener" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-vpn') }}</a>
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
     </ul>
   </section>
@@ -167,6 +168,8 @@
     {% endcall %}
   </section>
 
+  {% include 'mozorg/home/includes/featured-vpn.html' %}
+
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">
       <h2>{{ ftl('home-that-one-time') }}</h2>
@@ -177,7 +180,7 @@
         <a href="{{ url('mozorg.about.index') }}" class="mzp-c-button">{{ ftl('home-learn-more-about-mozilla') }}</a>
       </div>
       <div class="c-dino">
-        <img src="{{ static('img/home/2023/mozilla-dino.svg') }}" class="c-dino" alt="">
+        <img src="{{ static('img/home/2023/mozilla-dino.svg') }}" alt="">
       </div>
     </div>
   </section>

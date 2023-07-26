@@ -144,10 +144,17 @@ header {
         width: 100px;
         height: auto;
         position: absolute;
-        bottom: -10px;
+        bottom: -6px;
         left: 0;
         right: 0;
         margin: auto;
+
+        img {
+            width: 115px;
+            height: 95px;
+            object-fit: scale-down;
+            object-position: 4px 16px;
+        }
     }
 }
 
