@@ -21,10 +21,9 @@ const errorList = {
     REASON_ERROR: 'Reason not selected'
 };
 
-let _userToken;
-
 const FormUtils = {
     errorList,
+    userToken: '',
 
     /**
      * Really primitive validation (e.g a@a)
@@ -71,6 +70,11 @@ const FormUtils = {
             if (!token) {
                 reject();
             } else {
+                // always store token as a local variable in memory, so the
+                // form still works if left open long enough for cookie to
+                // expire: see issue 13324.
+                FormUtils.userToken = token;
+
                 resolve();
             }
         });
@@ -122,10 +126,10 @@ const FormUtils = {
         const cookiesEnabled =
             typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
-        if (cookiesEnabled) {
+        if (cookiesEnabled && Mozilla.Cookies.hasItem(BASKET_COOKIE_ID)) {
             token = Mozilla.Cookies.getItem(BASKET_COOKIE_ID);
         } else {
-            token = _userToken;
+            token = FormUtils.userToken;
         }
 
         if (FormUtils.isValidToken(token)) {
@@ -268,9 +272,12 @@ const FormUtils = {
                     false,
                     'lax'
                 );
-            } else {
-                _userToken = token;
             }
+
+            // always store token as a local variable in memory, so the
+            // form still works if left open long enough for cookie to
+            // expire: see issue 13324.
+            FormUtils.userToken = token;
         }
     },
 

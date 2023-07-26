@@ -43,8 +43,19 @@ describe('getURLToken', function () {
 });
 
 describe('getUserToken', function () {
+    afterEach(function () {
+        FormUtils.userToken = '';
+    });
+
     it('should return a UUID token from cookie', function () {
+        spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
         spyOn(Mozilla.Cookies, 'getItem').and.returnValue(TOKEN_MOCK);
+        expect(FormUtils.getUserToken()).toEqual(TOKEN_MOCK);
+    });
+
+    it('should return a token from local memory if cookie has expired', function () {
+        spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
+        FormUtils.userToken = TOKEN_MOCK;
         expect(FormUtils.getUserToken()).toEqual(TOKEN_MOCK);
     });
 
@@ -151,6 +162,10 @@ describe('removeTokenFromURL', function () {
 });
 
 describe('setUserToken', function () {
+    afterEach(function () {
+        FormUtils.userToken = '';
+    });
+
     it('should set a cookie with a valid UUID token', function () {
         spyOn(Mozilla.Cookies, 'setItem');
         FormUtils.setUserToken(TOKEN_MOCK);
@@ -163,6 +178,7 @@ describe('setUserToken', function () {
             false,
             'lax'
         );
+        expect(FormUtils.userToken).toEqual(TOKEN_MOCK);
     });
 
     it('should not set a cookie if token is invalid', function () {
