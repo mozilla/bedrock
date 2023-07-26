@@ -31,9 +31,13 @@ $image-path: '/media/protocol/img';
 
 .c-main-title {
     @include text-title-md;
-    color: get-theme('title-text-color');
+    color: $title-text-color;
     margin-left: auto;
     margin-right: auto;
+
+    @supports (--css: variables) {
+        color: var(--title-text-color);
+    }
 
     strong {
         color: $color-violet-50;
@@ -89,12 +93,20 @@ $image-path: '/media/protocol/img';
 
     #outer-wrapper {
         background: $color-dark-gray-60;
-        color: get-theme('title-text-color-inverse');
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+        }
     }
 
     .c-main-title,
     .mzp-c-picto-title {
-        color: get-theme('title-text-color-inverse');
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
     }
 
     .c-main-image {

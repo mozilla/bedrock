@@ -49,7 +49,11 @@
 }
 
 .mzp-c-newsletter-details legend {
-    font-family: get-theme('body-font-family');
+    font-family: $body-font-family;
+
+    @supports (--css:variables) {
+        font-family: var(--body-font-family);
+    }
 }
 
 #newsletter-submit + .mzp-c-fieldnote {
