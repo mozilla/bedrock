@@ -14,14 +14,8 @@
       </h2>
       <ul class="c-sub-navigation-list is-details is-closed">
         <li class="c-sub-navigation-item">
-          <a href="{{ url('products.vpn.resource-center.article', 'what-is-a-vpn') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What’s a VPN?">
-            What’s a VPN?
-          </a>
-        </li>
-        <li class="c-sub-navigation-item">
-          {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
-          <a href="{{ pricing_url }}" data-link-type="nav" data-link-position="subnav" data-link-name="View VPN pricing">
-            Pricing
+          <a href="{{ url('products.vpn.resource-center.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn about VPNs">
+            {{ ftl('vpn-subnav-learn-about-vpns') }}
           </a>
         </li>
         <li class="c-sub-navigation-item">
@@ -30,8 +24,8 @@
           </a>
         </li>
         <li class="c-sub-navigation-item">
-          <a href="https://support.mozilla.org/products/firefox-private-network-vpn?{{ _params }}" data-link-type="nav" data-link-position="subnav" data-link-name="Get Help">
-            Get Help
+          <a href="{{ url('products.vpn.download') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Download Mozilla VPN">
+            {{ ftl('vpn-subnav-download-mozilla-vpn') }}
           </a>
         </li>
       </ul>

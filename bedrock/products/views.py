@@ -130,6 +130,7 @@ def vpn_pricing_page(request):
 @require_safe
 def vpn_features_page(request):
     template_name = "products/vpn/features.html"
+    ftl_files = ["products/vpn/shared"]
     vpn_available_in_country = vpn_available(request)
 
     context = {
@@ -139,7 +140,7 @@ def vpn_features_page(request):
         "connect_devices": settings.VPN_CONNECT_DEVICES,
     }
 
-    return l10n_utils.render(request, template_name, context)
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
 
 @require_safe
