@@ -356,10 +356,18 @@ Debugging pings
 
 For all non-production environments, bedrock will automatically set a debug
 view tag for all pings. This means that when running on localhost, on a demo,
-or on a staging environment, ping data will not be sent to the production data
-pipeline. Instead, it will be sent to the `Glean debug dashboard`_ which can
-be used to test that pings are working correctly. All bedrock debug pings will
-register in the debug dashboard with the tag name ``bedrock``.
+or on a staging environment, ping data will be viewable in the
+`Glean debug dashboard`_ which can be used to test that pings are working
+correctly. All bedrock debug pings will register in the debug dashboard with
+the tag name ``bedrock``.
+
+Filtering out non-production pings
+----------------------------------
+
+Bedrock will also set an ``app_channel`` tag with a value of either ``prod`` or
+``non-prod``, depending on the environment. This is present in all pings in the
+``client_info`` section, and is useful for filtering out non-production data
+in telemetry dashboards.
 
 Logging pings in the console
 ----------------------------
@@ -410,7 +418,7 @@ Using Glean pings in individual page bundles
 All of our analytics code for Glean lives in a single bundle in the base template,
 which is intended to be shared across all web pages. There may be times where we
 want to send a ping from some JavaScript that exists only in a certain page
-specific bundle however. For instances like this, there is a global ``pageEventPing``
+specific bundle however. For instances like this, there is a global ``ping``
 helper available, which you can call from inside any custom event handler you write.
 
 For user initiated events, such as clicks:
@@ -418,7 +426,7 @@ For user initiated events, such as clicks:
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEventPing({
+        window.Mozilla.Glean.ping({
             label: 'Newsletters: mozilla-and-you',
             type: 'Newsletter Signup Success'
         });
@@ -429,7 +437,7 @@ For non-interaction events that are not user initiated:
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEventPing({
+        window.Mozilla.Glean.ping({
             label: 'Auto Play',
             type: 'Video'
             nonInteraction: true

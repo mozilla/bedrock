@@ -79,7 +79,7 @@ page:
       - utm_medium
       - utm_content
       - entrypoint_experiment
-      - entrypoing_variation
+      - entrypoint_variation
       - experiment
       - variation
       - v

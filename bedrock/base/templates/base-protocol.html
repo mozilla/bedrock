@@ -145,7 +145,11 @@
     {% endblock %}
 
     <!--[if !IE]><!-->
-    {% block glean %}{% endblock %}
+    {% block glean %}
+      {% if switch('glean-analytics') %}
+        {{ js_bundle('glean') }}
+      {% endif %}
+    {% endblock %}
 
     {% block js %}{% endblock %}
 

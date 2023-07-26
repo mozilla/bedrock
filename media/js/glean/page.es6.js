@@ -12,18 +12,18 @@ import {
     nonInteraction as nonInteractionPing
 } from '../libs/glean/pings.js';
 
-const validParams = [
-    'utm_source',
-    'utm_campaign',
-    'utm_medium',
-    'utm_content',
-    'entrypoint_experiment',
-    'entrypoint_variation',
-    'experiment',
-    'variation',
-    'v', // short param for 'variation'
-    'xv' // short param for 'experience version'.
-];
+const defaultParams = {
+    utm_source: '',
+    utm_campaign: '',
+    utm_medium: '',
+    utm_content: '',
+    entrypoint_experiment: '',
+    entrypoint_variation: '',
+    experiment: '',
+    variation: '',
+    v: '', // short param for 'variation'
+    xv: '' // short param for 'experience version'.
+};
 
 function initPageView() {
     page.viewed.set();
@@ -32,21 +32,23 @@ function initPageView() {
     page.referrer.set(Utils.getReferrer());
 
     const params = Utils.getQueryParamsFromURL();
+    const finalParams = {};
 
-    if (params) {
-        // validate only known & trusted query params
-        // for inclusion in Glean metrics.
-        for (const param in validParams) {
+    // validate only known & trusted query params
+    // for inclusion in Glean metrics.
+    for (const param in defaultParams) {
+        if (Object.prototype.hasOwnProperty.call(defaultParams, param)) {
             const allowedChars = /^[\w/.%-]+$/;
-            const p = validParams[param];
-            let v = params.get(p);
+            let v = params.get(param);
 
             if (v) {
                 v = decodeURIComponent(v);
-                if (allowedChars.test(v)) {
-                    page.queryParams[p].set(v);
-                }
+                finalParams[param] = allowedChars.test(v) ? v : '';
+            } else {
+                finalParams[param] = '';
             }
+
+            page.queryParams[param].set(finalParams[param]);
         }
     }
 

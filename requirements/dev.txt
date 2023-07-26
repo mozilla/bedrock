@@ -431,9 +431,9 @@ freezegun==1.2.2 \
     --hash=sha256:cd22d1ba06941384410cd967d8a99d5ae2442f57dfafeff2fda5de8dc5c05446 \
     --hash=sha256:ea1b963b993cb9ea195adbd893a48d573fda951b0da64f60883d7e988b606c9f
     # via -r requirements/dev.in
-glean-parser==6.2.1 \
-    --hash=sha256:672689a97fe458d38f230b5f8d2e2f8e5c582ce98dd31e38363a6b437639d56c \
-    --hash=sha256:daa4b7b127a432118733f0ddc77c95bdd7a8b78ac9a4f3254f68b45a25ccb32e
+glean-parser==7.2.1 \
+    --hash=sha256:11496ac004fe421b914c7fbdc9a1d620e4821d56e1d9f65523d3858cdb907bbd \
+    --hash=sha256:651cfee34422ea1db90bbf1cb03732bd8c598773bf95daa289a62addeaf10295
     # via -r requirements/prod.txt
 greenlet==0.4.17 \
     --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
@@ -795,10 +795,7 @@ parsimonious==0.8.1 \
 pathspec==0.9.0 \
     --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
     --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
-    # via
-    #   -r requirements/prod.txt
-    #   black
-    #   yamllint
+    # via black
 pillow==10.0.0 \
     --hash=sha256:00e65f5e822decd501e374b0650146063fbb30a7264b4d2744bdd7b913e0cab5 \
     --hash=sha256:040586f7d37b34547153fa383f7f9aed68b738992380ac911447bb78f2abe530 \
@@ -1089,7 +1086,6 @@ pyyaml==6.0 \
     #   -r requirements/prod.txt
     #   glean-parser
     #   responses
-    #   yamllint
 qrcode==7.4.2 \
     --hash=sha256:581dca7a029bcb2deef5d01068e39093e80ef00b4a61098a2182eac59d01643a \
     --hash=sha256:9dd969454827e127dbd93696b20747239e6d540e082937c90f14ac95b30f5845
@@ -1361,11 +1357,6 @@ wsproto==1.1.0 \
     --hash=sha256:2218cb57952d90b9fca325c0dcfb08c3bda93e8fd8070b0a17f048e2e47a521b \
     --hash=sha256:a2e56bfd5c7cd83c1369d83b5feccd6d37798b74872866e62616e0ecf111bda8
     # via trio-websocket
-yamllint==1.26.3 \
-    --hash=sha256:3934dcde484374596d6b52d8db412929a169f6d9e52e20f9ade5bf3523d9b96e
-    # via
-    #   -r requirements/prod.txt
-    #   glean-parser
 zipp==3.7.0 \
     --hash=sha256:9f50f446828eb9d45b267433fd3e9da8d801f614129124863f9c51ebceafb87d \
     --hash=sha256:b47250dd24f92b7dd6a0a8fc5244da14608f3ca90a5efcd37a3b1642fac9a375

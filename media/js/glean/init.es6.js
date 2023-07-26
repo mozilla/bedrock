@@ -7,10 +7,16 @@
 import Glean from '@mozilla/glean/web';
 
 import { initPageView, pageEventPing } from './page.es6';
-import { bindElementClicks } from './elements.es6';
 import Utils from './utils.es6';
 
+const shouldInitialize = Utils.hasValidURLScheme(window.location.href);
+
 function initGlean() {
+    const channel =
+        window.location.href.indexOf('https://www.mozilla.org/') === -1
+            ? 'non-prod'
+            : 'prod';
+
     // Automatically console.log() pings.
     // eslint-disable-next-line no-undef
     if (process.env.GLEAN_LOG_PINGS === 'True') {
@@ -19,7 +25,7 @@ function initGlean() {
 
     // Enable debug view for all non-production environments.
     // https://debug-ping-preview.firebaseapp.com/
-    if (window.location.href.indexOf('https://www.mozilla.org/') === -1) {
+    if (channel === 'non-prod') {
         Glean.setDebugViewTag('bedrock');
     }
 
@@ -30,6 +36,7 @@ function initGlean() {
     }
 
     Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
+        channel: channel,
         maxEvents: 1 // Set max events to 1 so pings are sent as soon as registered.
     });
 }
@@ -40,10 +47,18 @@ function initPageEventHelper() {
     }
 
     // Create a global for external bundles to fire interaction pings.
-    window.Mozilla.Glean = { pageEventPing };
+    window.Mozilla.Glean = {
+        ping: (obj) => {
+            if (shouldInitialize) {
+                pageEventPing(obj);
+            }
+        }
+    };
 }
 
-initGlean();
-initPageView();
+if (shouldInitialize) {
+    initGlean();
+    initPageView();
+}
+
 initPageEventHelper();
-bindElementClicks();
