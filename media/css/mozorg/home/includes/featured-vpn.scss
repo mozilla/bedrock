@@ -9,8 +9,24 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+#home-feature-vpn-banner {
+    &.c-banner {
+        // hide by default if JS is available to avoid flicker
+        // (if visitor previously dismissed)
+        .js & {
+            display: none;
+        }
+
+        // conditional class used to display the banner.
+        &.c-banner-is-visible {
+            display: block;
+        }
+    }
+}
+
 .vpn-feature {
     @include font-firefox;
+    position: relative;
 
     .feature-wrapper {
         border-radius: $border-radius-md;
@@ -69,5 +85,42 @@ $image-path: '/media/protocol/img';
                 margin: 0;
             }
         }
+    }
+}
+
+.c-banner-close {
+    @include background-size(20px 20px);
+    @include image-replaced;
+    background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
+    align-self: baseline;
+    border: none;
+    display: none;
+    height: 42px;
+    position: relative;
+    min-width: 0;
+    padding: 0;
+    top: $spacing-sm;
+    width: 42px;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        @include transition(transform 100ms ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus {
+        outline: 1px dotted $color-white;
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
     }
 }

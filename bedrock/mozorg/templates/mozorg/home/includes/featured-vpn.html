@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="vpn-feature mzp-l-content">
+<aside class="c-banner hide-from-legacy-ie vpn-feature mzp-l-content" id="home-feature-vpn-banner">
   <div class="feature-wrapper">
     <img src="{{ static('img/home/2023/vpn-on.svg') }}" alt="">
     <div class="feature-info">
@@ -12,5 +12,6 @@
       <h2>{{ ftl('home-feature-blur-your-location') }}</h2>
     </div>
     <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button">{{ ftl('home-cta-get-vpn') }}</a>
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
   </div>
-</section>
+</aside>

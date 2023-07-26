@@ -1435,6 +1435,13 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
+        "js/mozorg/home/feature-vpn-banner-init.js"
+      ],
+      "name": "home-vpn-feature"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
         "js/base/banners/mozilla-connect-banner-init.js"
       ],
       "name": "mozilla-connect-banner"
