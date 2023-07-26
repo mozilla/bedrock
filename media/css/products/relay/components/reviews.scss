@@ -57,10 +57,14 @@ $brand-theme: 'firefox';
 }
 
 .c-review-amo-title {
-    @include text-display-sm;
     font-weight: bold;
+    line-height: 1;
     padding-bottom: $spacing-lg;
     text-transform: uppercase;
+
+    html[lang^='en'] & {
+        @include text-display-sm;
+    }
 }
 
 .c-review-rating {
