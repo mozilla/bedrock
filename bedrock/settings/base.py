@@ -450,6 +450,7 @@ NOINDEX_URLS = [
     r"^newsletter/opt-out-confirmation/",
     r"^newsletter/country/success/",
     r"^products/vpn/invite/waitlist/",
+    r"^products/relay/invite/waitlist/",
     r"/system-requirements/$",
     r".*/(firstrun|thanks)/$",
     r"^readiness/$",
@@ -1174,6 +1175,8 @@ SENTRY_FRONTEND_DSN = config(
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = "10039-1003350" if DEV else "10039-1003343"
 
+# VPN ==========================================================================================
+
 # URL for Mozilla VPN sign-in links
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
@@ -1716,6 +1719,8 @@ VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
     "SY",  # Syria
 ]
 
+# VPN / RELAY BUNDLE ============================================================================
+
 # Product ID for VPN & Relay bundle subscriptions.
 VPN_RELAY_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
 
@@ -1727,7 +1732,7 @@ VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
                 "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
                 "price": "US$6.99",
                 "total": "US$83.88",
-                "saving": 50,
+                "saving": 40,
                 "analytics": {
                     "brand": "vpn",
                     "plan": "vpn + relay",
@@ -1753,6 +1758,592 @@ VPN_RELAY_BUNDLE_PRICING = {
 # Countries where VPN & Relay bundle is available.
 # Phone masking is only supported in these countries.
 VPN_RELAY_BUNDLE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+# RELAY =========================================================================================
+
+# Relay email mask domain
+RELAY_MAIL_DOMAIN = "mozmail.com"
+
+# Relay, number of email addresses include in the free plan
+RELAY_MAX_NUM_FREE_ALIASES = 5
+
+# Bundle guarantee period
+RELAY_VPN_BUNDLE_GUARANTEE = 30
+
+# VPN client ID for referral parameter tracking (issue 10811)
+RELAY_CLIENT_ID = "9ebfe2c2f9ea3c58"
+
+# URL for Mozilla Relay subscription links
+# ***This URL *MUST* end in a traling slash!***
+RELAY_SUBSCRIPTION_URL = config("RELAY_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+RELAY_PRODUCT_URL = config(
+    "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
+)
+
+# Product ID for Relay subscriptions
+RELAY_EMAIL_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_KEq0LXqs7vysQT" if DEV else "prod_KGizMiBqUJdYoY")
+RELAY_PHONE_PRODUCT_ID = config("RELAY_PRODUCT_ID", default="prod_LviM2I0paxH1DZ" if DEV else "prod_KGizMiBqUJdYoY")
+RELAY_VPN_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
+
+# Relay email subscription plan IDs by currency/language
+RELAY_EMAIL_PLAN_ID_MATRIX = {
+    "chf": {  # Swiss franc
+        "de": {  # German
+            "monthly": {
+                "id": "price_1LYCqOJNcmPzuWtRuIXpQRxi",
+                "price": 2.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "2.00",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCqyJNcmPzuWtR3Um5qDPu",
+                "price": 1.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "6.00",
+                    "price": "12.00",
+                    "period": "yearly",
+                },
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "price_1LYCvpJNcmPzuWtRq9ci2gXi",
+                "price": 2.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "2.00",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCwMJNcmPzuWtRm6ebmq2N",
+                "price": 1.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "6.00",
+                    "price": "12.00",
+                    "period": "yearly",
+                },
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "price_1LYCiBJNcmPzuWtRxtI8D5Uy",
+                "price": 2.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "2.00",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYClxJNcmPzuWtRWjslDdkG",
+                "price": 1.00,
+                "currency": "CHF",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "CHF",
+                    "discount": "6.00",
+                    "price": "12.00",
+                    "period": "yearly",
+                },
+            },
+        },
+    },
+    "euro": {  # Euro
+        "de": {  # German
+            "monthly": {
+                "id": "price_1LYC79JNcmPzuWtRU7Q238yL",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYC7xJNcmPzuWtRcdKXCVZp",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "es": {  # Spanish
+            "monthly": {
+                "id": "price_1LYCWmJNcmPzuWtRtopZog9E",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCXNJNcmPzuWtRu586XOFf",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "price_1LYBuLJNcmPzuWtRn58XQcky",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYBwcJNcmPzuWtRpgoWcb03",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "price_1LYCMrJNcmPzuWtRTP9vD8wY",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCN2JNcmPzuWtRtWz7yMno",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "nl": {  # Dutch
+            "monthly": {
+                "id": "price_1LYCdLJNcmPzuWtR0J1EHoJ0",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCdtJNcmPzuWtRVm4jLzq2",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "ga": {  # Irish
+            "monthly": {
+                "id": "price_1LhdrkJNcmPzuWtRvCc4hsI2",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LhdprJNcmPzuWtR7HqzkXTS",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "sv": {  # Sweedish
+            "monthly": {
+                "id": "price_1LYBblJNcmPzuWtRGRHIoYZ5",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYBeMJNcmPzuWtRT5A931WH",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "fi": {  # Finnish
+            "monthly": {
+                "id": "price_1LYBn9JNcmPzuWtRI3nvHgMi",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYBq1JNcmPzuWtRmyEa08Wv",
+                "price": 0.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+    },
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "price_1LiMjeKb9q6OnNsLzwixHuRz" if DEV else "price_1LXUcnJNcmPzuWtRpbNOajYS",
+                "price": 1.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LiMlBKb9q6OnNsL7tvrtI7y" if DEV else "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
+                "price": 0.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "gb": {
+            "monthly": {
+                "id": "price_1LYCHpJNcmPzuWtRhrhSYOKB",
+                "price": 1.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYCIlJNcmPzuWtRQtYLA92j",
+                "price": 0.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+    },
+}
+
+# Relay email map countries to languages
+RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
+    # Austria
+    "AT": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Belgium
+    "BE": {
+        "fr": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+        "de": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Switzerland
+    "CH": {
+        "fr": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["fr"],
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["de"],
+        "it": RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["it"],
+    },
+    # Germany
+    "DE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Spain
+    "ES": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["es"],
+    },
+    # France
+    "FR": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+    },
+    # Ireland
+    "IE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["ga"],
+    },
+    # Italy
+    "IT": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["it"],
+    },
+    # Netherlands
+    "NL": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Sweden
+    "SE": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["sv"],
+    },
+    # Finland
+    "FI": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fi"],
+    },
+    # USA
+    "US": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # Great Britian
+    "GB": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Canada
+    "CA": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # New Zealand
+    "NZ": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Malaysia
+    "MY": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Singapore
+    "SG": {
+        "default": RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+}
+
+# Countries where Relay Email Masking is available
+RELAY_EMAIL_COUNTRY_CODES = [
+    "CA",  # Canada
+    "GB",  # United Kingdom of Great Britain and Northern Island
+    "MY",  # Malaysia
+    "NZ",  # New Zealand
+    "SG",  # Singapore
+    "US",  # United States of America
+    # EU Countries
+    "AT",  # Austria
+    "BE",  # Belgium
+    "CH",  # Switzerland
+    "DE",  # Germany
+    "ES",  # Spain
+    "FI",  # Finland
+    "FR",  # France
+    "IE",  # Ireland
+    "IT",  # Italy
+    "NL",  # Netherlands
+    "SE",  # Sweden
+]
+
+# Relay phone subscription plan IDs by currency/language
+RELAY_PHONE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "price_1LDqw3Kb9q6OnNsL6XIDst28" if DEV else "price_1Li0w8JNcmPzuWtR2rGU80P3",
+                "price": 4.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-phone",
+                    "currency": "USD",
+                    "discount": "0",
+                    "price": "4.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1Lhd35Kb9q6OnNsL9bAxjUGq" if DEV else "price_1Li15WJNcmPzuWtRIh0F4VwP",
+                "price": 3.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-phone",
+                    "currency": "USD",
+                    "discount": "12.00",
+                    "price": "47.88",
+                    "period": "monthly",
+                },
+            },
+        },
+    },
+}
+
+# Relay phone subscription map countries to languages
+RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where Relay Phone Masking is available
+RELAY_PHONE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+# Relay VPN bundle plan IDs by currency/language
+RELAY_VPN_BUNDLE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "yearly": {
+                "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
+                "price": "6.99",
+                "currency": "USD",
+                "saving": 0.4,
+                "analytics": {
+                    "brand": "relay",
+                    "name": "relay-vpn",
+                    "currency": "USD",
+                    "discount": "55.92",
+                    "price": "83.88",
+                    "variant": "yearly",
+                },
+            },
+        }
+    },
+}
+
+# Relay VPN bundle map countries to languages
+RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where Relay & VPN bundle is available
+RELAY_VPN_BUNDLE_COUNTRY_CODES = [
     "CA",  # Canada
     "US",  # United States of America
 ]

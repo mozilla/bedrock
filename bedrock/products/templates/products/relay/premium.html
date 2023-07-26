@@ -1,0 +1,71 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/relay/base.html" %}
+{% from "macros-protocol.html" import split with context %}
+
+{% block page_title_full %}{{ ftl('relay-shared-subnav-premium') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_id %}{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-relay-premium-page' %}
+{% set _utm_campaign = 'relay-premium-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('relay-landing') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/relay/includes/subnav.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="t-hero">
+  {% call split(
+    block_class='mzp-l-split-pop mzp-l-split-hide-media-on-sm-md',
+    theme_class='',
+    media_class='',
+    media_include='products/relay/includes/phone-premium.html'
+  ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-premium">{{ ftl('relay-shared-firefox-relay') }}</div>
+    <h1 class="c-hero-title">{{ ftl('premium-promo-hero-headline') }}</h1>
+    {% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+    <p class="c-hero-body">{{ ftl('premium-promo-hero-body-3') }}</p>
+    <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started" data-cta-position="primary">{{ ftl('hero-section-cta') }}</a></p>
+    <p class="c-hero-availability">{{ ftl('premium-promo-availability-warning-4') }}</p>
+  {% endcall %}
+
+  {% if bundle_available %}
+    {% include 'products/relay/includes/bundle.html' %}
+  {% endif %}
+</div>
+
+<section class="c-features-premium">
+  {% include 'products/relay/includes/features.html' %}
+</div>
+
+<section class="t-odd c-pricing" id="pricing">
+  <div class="mzp-l-content">
+    <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
+    <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
+    {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body', savings=savings) }}</p>
+    {% include 'products/relay/includes/matrix.html' %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('data_begincheckout') }}
+{% endblock %}
