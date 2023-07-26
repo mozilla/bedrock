@@ -6,6 +6,10 @@
 
 ## FAQ Page
 
+# String used to display the attachment limit, e.g. 10 KB
+# Variables:
+#  $size (number): maximum size for attachments in KB
+faq-email-size-limit-kb = {$size} KB
 faq-headline = Frequently Asked Questions
 faq-question-what-is-question-2 = What is a { -brand-name-relay } email mask?
 faq-question-what-is-answer-2 = Email masks are masked, or private, email addresses that forward messages to your true email address. These masks allow you to share an address with third parties which will mask your true email address and forward messages to it.
@@ -13,7 +17,7 @@ faq-question-missing-emails-question-2 = I’m not getting messages from my emai
 faq-question-missing-emails-answer-a-2 = There are a few reasons you might not be receiving emails forwarded through your masks. These reasons include:
 faq-question-missing-emails-answer-reason-spam = Messages are going into spam
 faq-question-missing-emails-answer-reason-blocked-2 = Your email provider is blocking your email masks
-faq-question-missing-emails-answer-reason-size = The email forwarded has an attachment larger than { email-size-limit }
+faq-question-missing-emails-answer-reason-size = The email forwarded has an attachment larger than { faq-email-size-limit-kb }
 faq-question-missing-emails-answer-reason-not-accepted-2 = The site doesn’t accept email masks
 faq-question-missing-emails-answer-reason-turned-off-2 = The mask might have forwarding turned off
 faq-question-missing-emails-answer-reason-delay = { -brand-name-relay } might be taking longer than usual to forward your messages
@@ -49,7 +53,7 @@ faq-question-longevity-answer-2 = We will give you advance notice that you need 
 faq-question-mozmail-question-2 = Why did my email masks start to use the domain “mozmail.com?”
 faq-question-mozmail-answer-2 = We made the switch from “relay.firefox.com” to “mozmail.com” in order to make it possible to get a custom email subdomain, such as mask@yourdomain.mozmail.com. Custom email subdomains, available to { -brand-name-relay-premium } subscribers, allow you to generate easier-to-remember email masks.
 faq-question-attachments-question = Will { -brand-name-firefox-relay } forward emails with attachments?
-faq-question-attachments-answer-v2 = We now support attachment forwarding. However, there is a { email-size-limit } limit for email forwarding using { -brand-name-relay }. Any emails larger than { email-size-limit } will not be forwarded.
+faq-question-attachments-answer-v2 = We now support attachment forwarding. However, there is a { faq-email-size-limit-kb } limit for email forwarding using { -brand-name-relay }. Any emails larger than { faq-email-size-limit-kb } will not be forwarded.
 faq-question-unsubscribe-domain-question-2 = What happens to my custom subdomain if I unsubscribe from { -brand-name-relay-premium }?
 faq-question-unsubscribe-domain-answer-2 = If you downgrade from { -brand-name-relay-premium }, you’ll still receive emails forwarded through your custom email masks, but you’ll no longer be able to create new masks using that subdomain. If you have more than five masks in total, you will not be able to create any more. You’ll also lose the ability to reply to forwarded messages. You can resubscribe to { -brand-name-relay-premium } and regain access to these features.
 faq-question-8-question = What data does { -brand-name-firefox-relay } collect?

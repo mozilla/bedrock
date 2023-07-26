@@ -18,8 +18,8 @@
       <li>{% include 'products/relay/includes/email.svg' %} {{ ftl('bundle-banner-plan-modules-email-masking') }}</li>
       <li>{% include 'products/relay/includes/phone.svg' %}{{ ftl('bundle-banner-plan-modules-phone-masking') }}</li>
       <li>{% include 'products/relay/includes/vpn.svg' %}{{ ftl('bundle-banner-plan-modules-mozilla-vpn') }}</li>
-      <li class="c-bundle-stat">{{ ftl('bundle-feature-one', num_vpn_servers=relay_bundle_servers()) }}</li>
-      <li class="c-bundle-stat">{{ ftl('bundle-feature-two', num_vpn_countries=relay_bundle_countries()) }}</li>
+      <li class="c-bundle-stat">{{ ftl('bundle-feature-more-than-servers', num_vpn_servers=relay_bundle_servers()) }}</li>
+      <li class="c-bundle-stat">{{ ftl('bundle-feature-more-than-countries', num_vpn_countries=relay_bundle_countries()) }}</li>
       <li class="c-bundle-stat">{{ ftl('bundle-feature-three') }}</li>
     </ul>
     <div>

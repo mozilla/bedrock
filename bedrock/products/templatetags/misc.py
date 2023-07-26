@@ -5,7 +5,7 @@
 from django.conf import settings
 
 import jinja2
-from babel.numbers import format_currency, format_percent
+from babel.numbers import format_currency
 from django_jinja import library
 from markupsafe import Markup
 
@@ -465,7 +465,7 @@ def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, coun
 @jinja2.pass_context
 def relay_bundle_savings(ctx, country_code=None, lang=None, product="relay-bundle"):
     """
-    Render a localized string displaying the VPN/Relay bundle savings as a percent
+    The VPN/Relay bundle savings as a number representing a percent. Example: 50
 
     Examples
     ========
@@ -479,7 +479,6 @@ def relay_bundle_savings(ctx, country_code=None, lang=None, product="relay-bundl
     available_plans = _relay_get_plans(country_code, lang, product)
     selected_plan = available_plans.get(RELAY_12_MONTH_PLAN)
     saving = float(selected_plan.get("saving"))
-    saving_locale = lang.replace("-", "_")
-    saving = format_percent(saving, locale=saving_locale)
+    saving = int(saving * 100)
     markup = f"{saving}"
     return Markup(markup)
