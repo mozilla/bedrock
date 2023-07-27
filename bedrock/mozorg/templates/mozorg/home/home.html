@@ -19,6 +19,12 @@
   {{ css_bundle('home-featured-vpn') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('home-vpn-feature-experiment') %}
+      {{ js_bundle('home-vpn-feature-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 <header>
   <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
@@ -134,9 +140,6 @@
         block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace',
         image=resp_img(
           url='img/home/2023/mofo-split.png',
-          srcset={
-            'img/firefox/browsers/quantum/browser-high-res.jpg': '2x'
-          },
           optional_attributes={
             'class': 'mzp-c-split-media-asset'
           }
@@ -153,9 +156,6 @@
         block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
         image=resp_img(
           url='img/home/2023/contribute-split.png',
-          srcset={
-            'img/firefox/browsers/quantum/browser-high-res.jpg': '2x'
-          },
           optional_attributes={
             'class': 'mzp-c-split-media-asset'
           }
@@ -168,7 +168,10 @@
     {% endcall %}
   </section>
 
-  {% include 'mozorg/home/includes/featured-vpn.html' %}
+  <!-- VPN promo experiment -->
+  {% if variation == '2' %}
+    {% include 'mozorg/home/includes/featured-vpn.html' %}
+  {% endif %}
 
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">
@@ -206,7 +209,4 @@
 
 {% block js %}
   {{ js_bundle('newsletter') }}
-
-    {{ js_bundle('home-vpn-feature') }}
-
 {% endblock %}

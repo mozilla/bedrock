@@ -2,10 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# This Source Code Form is subject to the terms of the { -brand-name-mozilla } Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 ### URL: https://www-dev.allizom.org/ (Global locales)
 
 home-internet-for-people-not-profit = Internet for people, not profit
@@ -39,8 +35,8 @@ home-join-the-fight = Join the fight for a healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.
 home-volunteer-with-mozilla = Volunteer with { -brand-name-mozilla }
 
-home-that-one-time = That one time when we gave away our source-code…
-home-the-mozilla-project = The { -brand-name-mozilla } project was founded in San Francisco in 1998, when the Netscape browser made the radical decision to give away its program code to the public to build on and improve. At that time, one company had a virtual monopoly on how people experienced the internet.
+home-that-one-time = That one time we <br> gave away our source-code…
+home-the-mozilla-project = The { -brand-name-mozilla } project was founded in San Francisco in 1998, when the { -brand-name-netscape } browser made the radical decision to give away its program code to the public to build on and improve. At that time, one company had a virtual monopoly on how people experienced the internet.
 home-eventually-the-open = Eventually, the open-source { -brand-name-mozilla } project morphed into the wildly popular first version of { -brand-name-firefox }.
 home-today-mozilla-continues = Today, { -brand-name-mozilla } continues its movement toward a better internet with millions of active community members spanning the globe, advocating for ethical tech, trustworthy AI and producing privacy-first products that give more power to the people.
 home-learn-more-about-mozilla = Learn more about { -brand-name-mozilla }

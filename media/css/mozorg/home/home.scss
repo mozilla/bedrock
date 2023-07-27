@@ -53,7 +53,7 @@ header {
 
         blockquote,
         cite {
-            @include font-firefox;
+            @include font-base;
             text-align: center;
         }
 
@@ -95,7 +95,7 @@ header {
     }
 
     h3 {
-        @include font-firefox;
+        @include font-base;
         @include text-body-xl;
         font-weight: normal;
     }
@@ -133,6 +133,7 @@ header {
     background-color: $color-light-gray-20;
 
     .c-about-wrapper {
+        padding-bottom: $layout-xl;
         position: relative;
     }
 

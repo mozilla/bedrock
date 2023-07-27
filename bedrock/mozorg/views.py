@@ -128,10 +128,12 @@ def namespaces(request, namespace):
 def home_view(request):
     locale = l10n_utils.get_locale(request)
 
-    ctx = {
-        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
-        "add_active_locales": ["de", "fr"],
-    }
+    variation = request.GET.get("v", None)
+
+    if variation not in ["1", "2"]:
+        variation = None
+
+    ctx = {"ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"], "add_active_locales": ["de", "fr"], "variation": variation}
 
     if locale.startswith("xs-"):
         if switch("contentful-homepage-en"):

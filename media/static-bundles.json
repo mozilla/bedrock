@@ -1434,10 +1434,9 @@
     },
     {
       "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/feature-vpn-banner-init.js"
+        "js/mozorg/home/feature-vpn-experiment.es6.js"
       ],
-      "name": "home-vpn-feature"
+      "name": "home-vpn-feature-experiment"
     },
     {
       "files": [
