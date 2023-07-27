@@ -50,6 +50,8 @@ function init() {
 
         defaultFalse();
     });
+
+    Mozilla.UITour.forceShowReaderIcon();
 }
 
 if (

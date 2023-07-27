@@ -277,6 +277,10 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
+    Mozilla.UITour.forceShowReaderIcon = function () {
+        _sendEvent('forceShowReaderIcon');
+    };
+
     Mozilla.UITour.ping = function (callback) {
         var data = {};
         if (callback) {
