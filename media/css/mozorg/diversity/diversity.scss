@@ -179,7 +179,7 @@ $image-path: '/media/protocol/img';
     }
 
     &.black {
-        background: black;
+        background: $color-black;
         color: $color-white;
     }
 
@@ -330,7 +330,7 @@ $image-path: '/media/protocol/img';
     max-width: $content-lg;
 
     h2 {
-        @include text-title-lg;
+        @include text-title-md;
         font-weight: 100;
         text-align: center;
     }
@@ -349,6 +349,18 @@ $image-path: '/media/protocol/img';
 
     .c-subtitle {
         text-align: center;
+    }
+
+     p {
+        strong {
+            @include text-body-lg;
+        }
+    }
+
+    @media #{$mq-sm} {
+        h2 {
+            @include text-title-lg;
+        }
     }
 }
 
@@ -403,11 +415,46 @@ $image-path: '/media/protocol/img';
         justify-content: center;
     }
 
+    &.single-column {
+        flex-direction: column;
+
+        .c-graph-wrapper {
+            align-self: center;
+        }
+    }
+
+    &.t-2022 {
+        margin: $layout-md 0;
+
+        .c-graph-wrapper {
+            margin: 0 auto
+        }
+
+        figure {
+            margin-bottom: $layout-lg;
+
+            figcaption {
+                @include font-firefox;
+                @include text-body-lg;
+                text-align: center;
+                font-weight: 700;
+            }
+
+            .enlarged-img {
+                width: 680px;
+
+                &.xl {
+                    width: 800px;
+                }
+            }
+        }
+    }
+
     figure {
-        border: 1px solid $color-marketing-gray-30;
         margin: $spacing-md auto;
 
         img {
+            border: 1px solid $color-marketing-gray-30;
             display: block;
             width: 420px;
             max-width: 100%;

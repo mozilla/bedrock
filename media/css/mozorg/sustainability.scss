@@ -1,0 +1,239 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.highlight {
+    @include box-decoration-break(clone);
+    line-height: 1.3;
+    padding: 0 $spacing-sm;
+
+    &.green {
+        background: $color-green-60;
+        color: $color-black;
+    }
+
+    &.black {
+        background: $color-black;
+        color: $color-white;
+    }
+}
+
+header {
+    text-align: center;
+
+    &.mzp-l-content {
+        padding-bottom: 0;
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
+    }
+
+    h2 {
+        @include text-title-xs;
+        @include font-mozilla;
+        font-weight: 500;
+    }
+
+    @media #{$mq-md} {
+        padding-left: $spacing-lg;
+        padding-right: $spacing-lg;
+    }
+}
+
+.c-section-wrapper {
+    margin: 0 auto;
+    padding-top: $layout-sm;
+    max-width: $content-lg;
+
+    h2 {
+        @include text-title-md;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    h3 {
+        @include text-title-sm;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    h4 {
+        @include text-title-xs;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .c-subtitle {
+        text-align: center;
+    }
+
+     p {
+        strong {
+            @include text-body-lg;
+        }
+    }
+
+    @media #{$mq-sm} {
+        h2 {
+            @include text-title-lg;
+        }
+    }
+
+    blockquote {
+        @include text-body-lg;
+        @include font-firefox;
+
+        cite {
+            @include text-body-lg;
+        }
+}
+
+
+}
+
+.emphasis {
+    margin: $layout-lg 0;
+
+    p {
+        @include text-body-xl;
+    }
+
+    @media #{$mq-md} {
+        p {
+            @include text-title-xs;
+        }
+    }
+}
+
+.c-image-wrapper {
+    text-align: center;
+    margin: $spacing-xl 0;
+
+    &.carbon-neutral {
+        img {
+            width: 320px;
+        }
+    }
+}
+
+.c-graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: $spacing-xl 0;
+
+    figure {
+        margin: $spacing-md 0;
+
+        figcaption {
+            @include font-base;
+            @include text-body-lg;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        img {
+            border: 2px solid $color-marketing-gray-30;
+            border-radius: 6px;
+            width: 800px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+.c-emissions {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: $spacing-2xl;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+
+        h5 {
+            @include font-size(26px);
+            color: $color-green-80;
+        }
+
+        p {
+            @include text-body-lg;
+            font-weight: 700;
+        }
+    }
+}
+
+
+.c-table-wrapper {
+    margin: $layout-lg 0;
+
+    .c-table {
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+
+        thead {
+            th {
+                text-align: center;
+            }
+        }
+
+        tr {
+            &.ghg-percentage {
+                background: $color-light-gray-20;
+
+                th {
+                    font-weight: 500;
+
+                }
+            }
+
+             td {
+                text-align: center;
+            }
+
+            &.c-total {
+                background: $color-green-10;
+
+                td {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        &.table-2 {
+            thead {
+                th {
+                    width: 10px;
+                }
+            }
+
+
+            .scope {
+                width: 50px;
+            }
+
+            .subrow {
+                font-weight: 500;
+                width: 120px;
+            }
+
+            .scope-total {
+                td {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        @media #{$mq-md} {
+            overflow: auto;
+        }
+    }
+}
