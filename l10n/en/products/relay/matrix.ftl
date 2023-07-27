@@ -11,7 +11,7 @@ plan-matrix-title = Pricing
 plan-matrix-offer-title = Choose a level of protection that’s right for you
 # Variables:
 #   $savings (string) - the percentage saved for a given plan, not including the % Examples: 50, 70
-plan-matrix-offer-body = { -brand-name-firefox-relay } protects your identity and your inbox with unique email masks. Add on even more security with { -brand-name-relay } phone masking, and save { $savings } by adding { -brand-name-vpn } protection.
+plan-matrix-offer-body-v2 = { -brand-name-firefox-relay } protects your identity and your inbox with unique email masks. Add on even more security with { -brand-name-relay } phone masking, and save { $savings }% by adding { -brand-name-vpn } protection.
 
 ## Top Row Labels
 
@@ -64,7 +64,7 @@ plan-matrix-price-period-yearly-footnote-1 = Billed yearly
 plan-matrix-price-period-monthly-footnote-1 = Billed monthly
 # Variables:
 #   $savings (string) - the percentage saved for a given plan, not including the % Examples: 50, 70
-plan-matrix-price-vpn-discount-promo = <span>Save { $savings }</span> on regular { -brand-name-vpn } price
+plan-matrix-price-vpn-discount-promo-v2 = <span>Save { $savings }%</span> on regular { -brand-name-vpn } price
 
 ## Plan CTAs
 

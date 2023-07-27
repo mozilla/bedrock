@@ -13,7 +13,7 @@ highlighted-features-section-bottom-cta = Get started
 highlighted-features-section-unlimited-masks-headline = Create unlimited email masks
 # Variables:
 #   $mask_limit (number) - the number of masks included with a particular plan
-highlighted-features-section-unlimited-masks-blurb = { $mask_limit ->
+highlighted-features-section-unlimited-masks-body-v2 = { $mask_limit ->
   [one] Everyone gets { $mask_limit } email mask for free. But with { -brand-name-relay-premium }, you can generate as many masks as you need to help protect your email inbox from spammers, hackers, and online trackers.
   *[other] Everyone gets { $mask_limit } email masks for free. But with { -brand-name-relay-premium }, you can generate as many masks as you need to help protect your email inbox from spammers, hackers, and online trackers.
 }

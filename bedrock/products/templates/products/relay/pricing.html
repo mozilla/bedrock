@@ -31,7 +31,7 @@
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay mzp-l-wordmark-center">{{ ftl('relay-shared-firefox-relay') }}</div>
     <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
     {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
-    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body', savings=savings) }}</p>
+    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body-v2', savings=savings) }}</p>
     {% include 'products/relay/includes/matrix.html' %}
   </div>
 </section>
