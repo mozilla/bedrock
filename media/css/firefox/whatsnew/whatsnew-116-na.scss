@@ -77,6 +77,11 @@
     display: none;
 }
 
+.wnp-grid-body {
+    max-width: $content-sm;
+    margin: 0 auto;
+}
+
 .wnp-main-title {
     @include text-title-xl;
     padding-top: $layout-lg;
@@ -130,7 +135,7 @@
     .wnp-grid-body {
         grid-column: 2;
         grid-row: 2;
-        margin: 0 auto;
+        max-width: none;
         padding: $spacing-2xl $spacing-lg;
     }
 
