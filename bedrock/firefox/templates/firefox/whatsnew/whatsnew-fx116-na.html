@@ -1,0 +1,93 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_116_na') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_header %}
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
+      {# aside is used to hide notification content from reader mode #}
+      <aside class="c-page-header-notification">
+        <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+          <p>{{ ftl('whatsnew-up-to-date-notification-v2', fallback='whatsnew-up-to-date-notification') }}</p>
+        </div>
+        <div class="mzp-c-notification-bar out-of-date">
+          {% if ftl_has_messages('whatsnew-out-of-date-notification-v3') %}
+            <p>{{ ftl('whatsnew-out-of-date-notification-v3', url='https://support.mozilla.org/kb/update-firefox-latest-release?' + utm_params) }}</p>
+          {% else %}
+            <p>{{ ftl('whatsnew-out-of-date-notification-v2') }}</p>
+          {% endif %}
+        </div>
+      </aside>
+    </div>
+  </header>
+{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="wnp-grid mzp-l-content mzp-t-content-lg">
+      <div class="wnp-grid-body">
+        <h2 class="wnp-main-title">Webpages, simplified.</h2>
+
+        <p class="wnp-main-tagline has-reader-icon">Click the little <strong>Reader View</strong> icon in Firefox’s address
+          bar, and boom. No more ads, buttons, background colors or videos on whatever
+          webpage you’re viewing.</p>
+
+        <p class="cta-holder"><span></span></p>
+
+        <p class="wnp-main-cta fx-not-default">
+          <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Always use Firefox">
+            Always use Firefox
+          </a>
+        </p>
+
+        <p class="wnp-main-cta fx-is-default">
+          <a class="mzp-c-button mzp-t-product" href="https://support.mozilla.org/kb/firefox-reader-view-clutter-free-web-pages" data-cta-text="Learn more" data-cta-type="button">
+            Learn more
+          </a>
+        </p>
+      </div>
+
+      <p class="wnp-sign-off">
+        <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+      </p>
+
+      <div class="wnp-grid-head">
+        <div class="eyesore eyesore-one" role="presentation"><span></span></div>
+      </div>
+
+      <div class="wnp-grid-col1">
+        <div class="eyesore eyesore-two" role="presentation"></div>
+        <div class="eyesore eyesore-three" role="presentation"></div>
+        <div class="eyesore eyesore-four" role="presentation"><span></span></div>
+      </div>
+
+      <div class="wnp-grid-col2">
+        <div class="eyesore eyesore-five" role="presentation"></div>
+        <div class="eyesore eyesore-six" role="presentation"></div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_116_na') }}
+{% endblock %}
