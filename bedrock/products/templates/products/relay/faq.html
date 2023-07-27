@@ -33,7 +33,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('faq-question-missing-emails-answer-reason-spam') }}</li>
             <li>{{ ftl('faq-question-missing-emails-answer-reason-blocked-2') }}</li>
-            <li>{{ ftl('faq-question-missing-emails-answer-reason-size') }}</li>
+            <li>{{ ftl('faq-question-missing-emails-answer-reason-size', size=settings.RELAY_EMAIL_SIZE_LIMIT_KB) }}</li>
             <li>{{ ftl('faq-question-missing-emails-answer-reason-not-accepted-2') }}</li>
             <li>{{ ftl('faq-question-missing-emails-answer-reason-turned-off-2') }}</li>
             <li>{{ ftl('faq-question-missing-emails-answer-reason-delay') }}</li>
@@ -80,7 +80,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </section>
         <section class="mzp-c-details">
           <h3> {{ ftl('faq-question-attachments-question') }}</h3>
-          <p> {{ ftl('faq-question-attachments-answer-v2') }} </p>
+          <p> {{ ftl('faq-question-attachments-answer-v2', size=settings.RELAY_EMAIL_SIZE_LIMIT_KB) }} </p>
         </section>
         <section class="mzp-c-details">
           <h3> {{ ftl('faq-question-unsubscribe-domain-question-2') }}</h3>
