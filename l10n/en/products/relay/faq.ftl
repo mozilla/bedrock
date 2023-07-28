@@ -15,7 +15,7 @@ faq-question-missing-emails-answer-reason-spam = Messages are going into spam
 faq-question-missing-emails-answer-reason-blocked-2 = Your email provider is blocking your email masks
 # Variables:
 #  $size (number): maximum size for attachments in MB
-faq-question-missing-emails-answer-reason-size = The email forwarded has an attachment larger than { size } MB
+faq-question-missing-emails-answer-reason-size = The email forwarded has an attachment larger than { $size } MB
 faq-question-missing-emails-answer-reason-not-accepted-2 = The site doesn’t accept email masks
 faq-question-missing-emails-answer-reason-turned-off-2 = The mask might have forwarding turned off
 faq-question-missing-emails-answer-reason-delay = { -brand-name-relay } might be taking longer than usual to forward your messages
@@ -53,7 +53,7 @@ faq-question-mozmail-answer-2 = We made the switch from “relay.firefox.com” 
 faq-question-attachments-question = Will { -brand-name-firefox-relay } forward emails with attachments?
 # Variables:
 #  $size (number): maximum size for attachments in MB
-faq-question-attachments-answer-v2 = We now support attachment forwarding. However, there is a { size } MB limit for email forwarding using { -brand-name-relay }. Any emails larger than { size } MB will not be forwarded.
+faq-question-attachments-answer-v2 = We now support attachment forwarding. However, there is a { $size } MB limit for email forwarding using { -brand-name-relay }. Any emails larger than { $size } MB will not be forwarded.
 faq-question-unsubscribe-domain-question-2 = What happens to my custom subdomain if I unsubscribe from { -brand-name-relay-premium }?
 faq-question-unsubscribe-domain-answer-2 = If you downgrade from { -brand-name-relay-premium }, you’ll still receive emails forwarded through your custom email masks, but you’ll no longer be able to create new masks using that subdomain. If you have more than five masks in total, you will not be able to create any more. You’ll also lose the ability to reply to forwarded messages. You can resubscribe to { -brand-name-relay-premium } and regain access to these features.
 faq-question-8-question = What data does { -brand-name-firefox-relay } collect?
