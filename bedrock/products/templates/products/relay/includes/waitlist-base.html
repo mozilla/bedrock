@@ -14,7 +14,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% include 'products/relay/includes/subnav.html' %}
 {% endblock %}
 
-{% set product = product|default(ftl('waitlist-premium-name')) %}
+{% set product_name = product_name|default(ftl('waitlist-premium-name')) %}
 
 
 {% block content %}
@@ -78,7 +78,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   </form>
   <div id="newsletter-thanks" class="c-waitlist-success hidden">
     <h3>{{ ftl('waitlist-subscribe-success-title') }}</h3>
-    <p>{{ ftl('waitlist-subscribe-success-desc', product=product) }}</p>
+
+    {% if product == 'relay-email' %}
+      <p>{{ ftl('waitlist-subscribe-success-email-desc') }}</p>
+    {% elif  product == 'relay-phone'  %}
+      <p>{{ ftl('waitlist-subscribe-success-phone-desc') }}</p>
+    {% elif  product == 'relay-bundle'  %}
+      <p>{{ ftl('waitlist-subscribe-success-bundle-desc') }}</p>
+    {% endif %}
+
   </div>
 </main>
 {% endblock %}

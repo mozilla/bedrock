@@ -1767,8 +1767,8 @@ VPN_RELAY_BUNDLE_COUNTRY_CODES = [
 # Relay email mask domain
 RELAY_MAIL_DOMAIN = "mozmail.com"
 
-# Relay email size limit (in KBs)
-RELAY_EMAIL_SIZE_LIMIT_KB = 150
+# Relay email size limit (in MBs)
+RELAY_EMAIL_SIZE_LIMIT_MB = 10
 
 # Relay, number of email addresses include in the free plan
 RELAY_MAX_NUM_FREE_ALIASES = 5

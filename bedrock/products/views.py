@@ -492,7 +492,7 @@ def relay_premium_waitlist__page(request):
     locale = l10n_utils.get_locale(request)
     newsletter_form = RelayPremiumWaitlistForm(locale)
 
-    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-email"}
 
     return l10n_utils.render(request, "products/relay/waitlist/premium.html", ctx, ftl_files=ftl_files)
 
@@ -503,7 +503,7 @@ def relay_bundle_waitlist__page(request):
     locale = l10n_utils.get_locale(request)
     newsletter_form = RelayBundleWaitlistForm(locale)
 
-    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-bundle"}
 
     return l10n_utils.render(request, "products/relay/waitlist/bundle.html", ctx, ftl_files=ftl_files)
 
@@ -514,6 +514,6 @@ def relay_phone_waitlist__page(request):
     locale = l10n_utils.get_locale(request)
     newsletter_form = RelayPhoneWaitlistForm(locale)
 
-    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form}
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-phone"}
 
     return l10n_utils.render(request, "products/relay/waitlist/phone.html", ctx, ftl_files=ftl_files)

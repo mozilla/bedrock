@@ -32,7 +32,9 @@ waitlist-subscribe-success-title = Thanks! You’re on the list
 #      - { -brand-name-relay-premium }
 #      - { waitlist-bundle-name }
 #      - { waitlist-phone-name }
-waitlist-subscribe-success-desc = Once { $product } becomes available for your region, we’ll email you.
+waitlist-subscribe-success-email-desc = Once { -brand-name-relay-premium } becomes available for your region, we’ll email you.
+waitlist-subscribe-success-phone-desc = Once { -brand-name-relay } phone masking becomes available for your region, we’ll email you.
+waitlist-subscribe-success-bundle-desc = Once { -brand-name-relay } + { -brand-name-vpn } becomes available for your region, we’ll email you.
 waitlist-subscribe-please-enter-a-valid = Please enter a valid email address
 waitlist-subscribe-please-select-country = Please select a country or region
 waitlist-subscribe-please-select-language = Please select a language
