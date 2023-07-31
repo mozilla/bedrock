@@ -199,6 +199,7 @@ else:
         "data.track.convertexperiments.com",
         "1003350.track.convertexperiments.com",
         "1003343.track.convertexperiments.com",
+        "js.stripe.com",
     ]
     _csp_style_src = [
         # TODO fix things so that we don't need this
@@ -214,6 +215,7 @@ else:
         "accounts.firefox.com",
         "accounts.firefox.com.cn",
         "www.youtube.com",
+        "js.stripe.com",
     ]
     _csp_connect_src = [
         "www.googletagmanager.com",
