@@ -16,7 +16,18 @@
 <div class="gallery">
   <article class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mitchell-baker.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/mitchell-baker.jpg',
+        srcset={
+          'img/mozorg/about/leadership/mitchell-baker-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Mitchell Baker</h4></figcaption>
     </figure>
     <div class="person-info">
@@ -98,7 +109,18 @@
 
   <article id="karim-lakhani" data-id="karim-lakhani" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/karim-lakhani.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/karim-lakhani.jpg',
+        srcset={
+          'img/mozorg/about/leadership/karim-lakhani-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Karim Lakhani</h4></figcaption>
     </figure>
 
@@ -143,7 +165,18 @@
 
   <article id="bob-lisbonne" data-id="bob-lisbonne" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/bob-lisbonne.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/bob-lisbonne.jpg',
+        srcset={
+          'img/mozorg/about/leadership/bob-lisbonne-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Bob Lisbonne, Chair</h4></figcaption>
     </figure>
 
@@ -221,7 +254,18 @@
 
   <article id="kristin-skogen-lund" data-id="kristin-skogen-lund" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/kristin-skogen-lund.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/kristin-skogen-lund.jpg',
+        srcset={
+          'img/mozorg/about/leadership/kristin-skogen-lund-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Kristin Skogen Lund</h4></figcaption>
     </figure>
 
@@ -255,14 +299,36 @@
 <div class="gallery">
   <article class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mitchell-baker.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/mitchell-baker.jpg',
+        srcset={
+          'img/mozorg/about/leadership/mitchell-baker-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Mitchell Baker, Chair</h4></figcaption>
     </figure>
   </article>
 
   <article id="brian-behlendorf" data-id="brian-behlendorf" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/brian-behlendorf.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/brian-behlendorf.jpg',
+        srcset={
+          'img/mozorg/about/leadership/brian-behlendorf-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Brian Behlendorf</h4></figcaption>
     </figure>
 
@@ -291,21 +357,54 @@
 
   <article id="amy-keating" data-id="amy-keating" class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/amy-keating.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/amy-keating.jpg',
+        srcset={
+          'img/mozorg/about/leadership/amy-keating-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Amy Keating</h4></figcaption>
     </figure>
   </article>
 
   <article class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mark-surman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/mark-surman.jpg',
+        srcset={
+          'img/mozorg/about/leadership/mark-surman-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Mark Surman</h4></figcaption>
     </figure>
   </article>
 
   <article id="helen-turvey" data-id="helen-turvey" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/helen-turvey.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/helen-turvey.jpg',
+        srcset={
+          'img/mozorg/about/leadership/helen-turvey-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Helen Turvey</h4></figcaption>
     </figure>
 
@@ -382,7 +481,18 @@
 
   <li class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/julie-hanna.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/julie-hanna.jpg',
+        srcset={
+          'img/mozorg/about/leadership/julie-hanna-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Julie Hanna</h4></figcaption>
     </figure>
   </li>
@@ -410,27 +520,71 @@
 
   <li id="navrina-singh" class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/navrina-singh.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/navrina-singh.jpg',
+        srcset={
+          'img/mozorg/about/leadership/navrina-singh-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Navrina Singh</h4></figcaption>
     </figure>
   </li>
 
   <li id="wambui-kinya" class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/wambui-kinya.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/wambui-kinya.jpg',
+        srcset={
+          'img/mozorg/about/leadership/wambui-kinya-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Wambui Kinya</h4></figcaption>
     </figure>
   </li>
 
   <li class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/ronaldo-lemos.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/ronaldo-lemos.jpg',
+        srcset={
+          'img/mozorg/about/leadership/ronaldo-lemos-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Ronaldo Lemos</h4></figcaption>
     </figure>
   </li>
   <li class="vcard" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mohamed-nanabhay.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image', 'title': 'Photo by Joi Ito'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/mohamed-nanabhay.jpg',
+        srcset={
+          'img/mozorg/about/leadership/mohamed-nanabhay-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Mohamed Nanabhay</h4></figcaption>
     </figure>
   </li>

@@ -67,7 +67,16 @@
       </p>
     </div>
     <div class="intro-image">
-      {{ high_res_img('img/firefox/developer/hero-screenshot.png', {'alt': '', 'width': '1200', 'height': '337'}) }}
+      {{ resp_img(
+        url='img/firefox/developer/hero-screenshot.png',
+        srcset={
+          'img/firefox/developer/hero-screenshot-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '1200',
+          'height': '337'
+        }
+      ) }}
     </div>
   </section>
 

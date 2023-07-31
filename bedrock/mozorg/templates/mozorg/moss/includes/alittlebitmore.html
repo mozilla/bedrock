@@ -10,7 +10,15 @@
 
     <ul class="moss-list moss-list-half">
       <li>
-        {{ high_res_img('img/mozorg/moss/selection-committee.jpg', {'width': '450'}) }}
+        {{ resp_img(
+          url='img/mozorg/moss/selection-committee.jpg',
+          srcset={
+            'img/mozorg/moss/selection-committee-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'width': '450'
+          }
+        ) }}
 
         <h3 class="moss-section-subhead">Selection Committee</h3>
 
@@ -22,7 +30,15 @@
         </p>
       </li>
       <li>
-        {{ high_res_img('img/mozorg/moss/past-recipients.jpg', {'width': '450'}) }}
+        {{ resp_img(
+          url='img/mozorg/moss/past-recipients.jpg',
+          srcset={
+            'img/mozorg/moss/past-recipients-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'width': '450'
+          }
+        ) }}
 
         <h3 class="moss-section-subhead">Past Recipients</h3>
 

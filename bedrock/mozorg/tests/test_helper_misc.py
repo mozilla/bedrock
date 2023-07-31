@@ -348,55 +348,6 @@ class TestMozillaInstagramUrl(TestCase):
 
 
 @override_settings(STATIC_URL="/media/")
-class TestHighResImg(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, url, optional_attributes=None):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ high_res_img('{url}', {optional_attributes}) }}}}", {"request": req})
-
-    def _render_l10n(self, url):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
-
-    def test_high_res_img_no_optional_attributes(self):
-        """Should return expected markup without optional attributes"""
-        expected = '<img class="" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x">'
-        markup = self._render("img/test.png")
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_optional_attributes(self):
-        """Should return expected markup with optional attributes"""
-        markup = self._render("img/test.png", {"data-test-attr": "test", "class": "logo"})
-        expected = '<img class="logo" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x" ' 'data-test-attr="test">'
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_l10n(self):
-        """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
-        self.assertEqual(markup, expected)
-
-        l10n_url = self._render_l10n("img/test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_l10n_and_optional_attributes(self):
-        """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True, "data-test-attr": "test"})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x" data-test-attr="test">'
-        self.assertEqual(markup, expected)
-
-
-@override_settings(STATIC_URL="/media/")
 class TestRespImg(TestCase):
     rf = RequestFactory()
 

@@ -54,7 +54,17 @@
     {% else %}
       {% call vpn_content_media(
         heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        image=resp_img(
+          url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+          srcset={
+            'img/products/vpn/landing/vpn-cntwell-05-v2-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '480',
+            'height': '480',
+            'loading': 'lazy'
+          }
+        ),
         class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
       ) %}
 

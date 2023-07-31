@@ -18,7 +18,16 @@
   <div class="mzp-l-content mzp-t-content-xl pocket-jobs-wrapper">
     <h1>Join the Pocket Team</h1>
     <figure>
-      {{ high_res_img('img/pocket/jobs/jobs-team.jpg', {'alt': '', 'width': '745', 'height': '408'}) }}
+      {{ resp_img(
+        url='img/pocket/jobs/jobs-team.jpg',
+        srcset={
+          'img/pocket/jobs/jobs-team-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '745',
+          'height': '408'
+        }
+      ) }}
       <figcaption>Photo by Gaurang Katre</figcaption>
     </figure>
     <p>We invite you to become a vital part of our small team in San Francisco. We’re building a company that enables people to save and consume content that is worthy of both their time and attention. By doing so, we want to make it easier to spend time with more high-quality content, no matter how noisy it gets.</p>
@@ -31,10 +40,28 @@
       <a href="https://www.mozilla.org/en-US/careers/listings/?team=Core%20Product-Pocket" target="_blank" rel="external noopener">See our latest job openings</a>
       <figure class="figure-group" role="group">
         <figure>
-          {{ high_res_img('img/pocket/jobs/jobs-chat.jpg', {'alt': '', 'width': '360', 'height': '240'}) }}
+          {{ resp_img(
+            url='img/pocket/jobs/jobs-chat.jpg',
+            srcset={
+              'img/pocket/jobs/jobs-chat-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'width': '360',
+              'height': '240'
+            }
+          ) }}
         </figure>
         <figure>
-          {{ high_res_img('img/pocket/jobs/jobs-planning.jpg', {'alt': '', 'width': '360', 'height': '240'}) }}
+          {{ resp_img(
+            url='img/pocket/jobs/jobs-planning.jpg',
+            srcset={
+              'img/pocket/jobs/jobs-planning-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'width': '360',
+              'height': '240'
+            }
+          ) }}
         </figure>
         <figcaption>Photo by <a href="http://www.themogli.com/" target="_blank" rel="external noopener">Mogli</a></figcaption>
       </figure>

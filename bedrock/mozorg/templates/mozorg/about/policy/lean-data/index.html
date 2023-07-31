@@ -64,7 +64,16 @@
     <div class="mzp-c-card mzp-has-aspect-1-1">
       <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.stay-lean') }}">
         <div class="mzp-c-card-media-wrapper">
-          {{ high_res_img('img/mozorg/about/lean-data/stay-lean-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+          {{ resp_img(
+            url='img/mozorg/about/lean-data/stay-lean-hero.png',
+            srcset={
+              'img/mozorg/about/lean-data/stay-lean-hero-high-res.png': '2x'
+            },
+            optional_attributes={
+              'width': '424',
+              'height': '424'
+            }
+          ) }}
         </div>
         <div class="mzp-c-card-content">
           <h3 class="mzp-c-card-title">Stay Lean</h3>
@@ -76,7 +85,16 @@
     <div class="mzp-c-card mzp-has-aspect-1-1">
       <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.build-security') }}">
         <div class="mzp-c-card-media-wrapper">
-          {{ high_res_img('img/mozorg/about/lean-data/build-security-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+          {{ resp_img(
+            url='img/mozorg/about/lean-data/build-security-hero.png',
+            srcset={
+              'img/mozorg/about/lean-data/build-security-hero-high-res.png': '2x'
+            },
+            optional_attributes={
+              'width': '424',
+              'height': '424'
+            }
+          ) }}
         </div>
         <div class="mzp-c-card-content">
           <h3 class="mzp-c-card-title">Build Security</h3>
@@ -88,7 +106,16 @@
     <div class="mzp-c-card mzp-has-aspect-1-1">
       <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.engage-users') }}">
         <div class="mzp-c-card-media-wrapper">
-          {{ high_res_img('img/mozorg/about/lean-data/engage-users-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+          {{ resp_img(
+            url='img/mozorg/about/lean-data/engage-users-hero.png',
+            srcset={
+              'img/mozorg/about/lean-data/engage-users-hero-high-res.png': '2x'
+            },
+            optional_attributes={
+              'width': '424',
+              'height': '424'
+            }
+          ) }}
         </div>
         <div class="mzp-c-card-content">
           <h3 class="mzp-c-card-title">Engage Your Users</h3>

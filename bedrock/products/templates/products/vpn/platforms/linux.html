@@ -44,7 +44,16 @@
       heading=ftl('vpn-shared-product-name'),
       subheading=ftl('vpn-linux-hero-headline'),
       desc=ftl('vpn-linux-page-description'),
-      image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-hero-desktop.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-hero-desktop-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480'
+        }
+      )
     ) %}
       <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
       <p class="guarantee-copy">
@@ -56,10 +65,18 @@
   <div class="mzp-l-content mzp-t-content-xl">
     {% call vpn_content_media(
       heading=ftl('vpn-shared-platform-privacy-promise'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-privacy-promise-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480'
+        }
+      ),
       class_name='vpn-content-media-right-half',
-      has_outline=True,
-      loading='eager'
+      has_outline=True
     ) %}
       <p>{{ ftl('vpn-linux-ability') }}</p>
       <p>{{ ftl('vpn-linux-maker-of-firefox') }}</p>
@@ -67,7 +84,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-shared-platform-what-youll-get'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-check-mark-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-left-half'
     ) %}
       <ul class="mzp-u-list-styled vpn-feature-list">
@@ -81,7 +108,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-wifi-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-right-half'
     ) %}
       <p>{{ ftl('vpn-linux-wifi-copy') }}</p>
@@ -89,7 +126,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-privacy-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-one-click-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-left-half'
     ) %}
       <p>{{ ftl('vpn-linux-privacy-copy') }}</p>
@@ -97,7 +144,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-servers-headline', servers=vpn_servers, countries=vpn_countries),
-      image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-globe-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-right-half'
     ) %}
       <p>{{ ftl('vpn-linux-servers-copy', countries=vpn_countries) }}</p>
@@ -105,7 +162,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-devices-headline', devices=vpn_devices),
-      image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-devices-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-left-half'
     ) %}
       <p>{{ ftl('vpn-linux-devices-copy', devices=vpn_devices) }}</p>
@@ -113,7 +180,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-speed-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-speed-guage-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-right-half'
     ) %}
       <p>{{ ftl('vpn-linux-speed-copy') }}</p>
@@ -121,7 +198,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-linux-log-headline'),
-      image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-cntwell-privacy-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-left-half'
     ) %}
       <p>{{ ftl('vpn-linux-log-copy') }}</p>

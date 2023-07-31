@@ -44,7 +44,18 @@
     <p>{{ ftl('misinformation-disinformation') }}</p>
     <p>{{ ftl('misinformation-ultimately-harmful') }}</p>
 
-    {{ high_res_img('img/firefox/more/misinformation/false-info.png', {'class': 'misinformation-article-block-img', 'alt': '', 'width': '688', 'height': '375', 'loading': 'lazy'}) }}
+    {{ resp_img(
+      url='img/firefox/more/misinformation/false-info.png',
+      srcset={
+        'img/firefox/more/misinformation/false-info-high-res.png': '2x'
+      },
+      optional_attributes={
+        'class': 'misinformation-article-block-img',
+        'width': '688',
+        'height': '375',
+        'loading': 'lazy'
+      }
+    ) }}
 
     <h2>{{ ftl('misinformation-false-info-heading') }}</h2>
 

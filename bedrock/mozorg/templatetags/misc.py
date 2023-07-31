@@ -157,32 +157,6 @@ def field_with_attrs(bfield, **kwargs):
 
 @library.global_function
 @jinja2.pass_context
-def high_res_img(ctx, url, optional_attributes=None):
-    if optional_attributes and optional_attributes.pop("l10n", False) is True:
-        url = _strip_img_prefix(url)
-        url_high_res = convert_to_high_res(url)
-        url = l10n_img(ctx, url)
-        url_high_res = l10n_img(ctx, url_high_res)
-    else:
-        url_high_res = convert_to_high_res(url)
-        url = static(url)
-        url_high_res = static(url_high_res)
-
-    if optional_attributes:
-        class_name = optional_attributes.pop("class", "")
-        attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
-    else:
-        class_name = ""
-        attrs = ""
-
-    # Use native srcset attribute for high res images
-    markup = f'<img class="{class_name}" src="{url}" srcset="{url_high_res} 1.5x"{attrs}>'
-
-    return Markup(markup)
-
-
-@library.global_function
-@jinja2.pass_context
 def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None):
     alt = ""
     attrs = ""

@@ -93,7 +93,12 @@
   <div class="mzp-l-content">
     <aside class="mzp-c-newsletter">
       <div class="mzp-c-newsletter-image">
-        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        {{ resp_img(
+          url='img/home/2018/newsletter-graphic.png',
+          srcset={
+            'img/home/2018/newsletter-graphic-high-res.png': '2x'
+          }
+        ) }}
       </div>
 
       <div class="newsletter-content">

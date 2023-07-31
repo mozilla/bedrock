@@ -272,7 +272,18 @@
           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          {{ high_res_img('img/firefox/new/desktop/block-mr1.jpg', {'width': '504', 'height': '343', 'alt': '', 'loading': 'lazy', 'class': 'c-block-media-img' }) }}
+          {{ resp_img(
+            url='img/firefox/new/desktop/block-mr1.jpg',
+            srcset={
+              'img/firefox/new/desktop/block-mr1-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'width': '504',
+              'height': '343',
+              'loading': 'lazy',
+              'class': 'c-block-media-img'
+            }
+          ) }}
         </div>
       </div>
     </div>
@@ -307,7 +318,18 @@
           </div>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          {{ high_res_img('img/firefox/new/desktop/devices.jpg', {'width': '483', 'height': '491', 'loading': 'lazy', 'class': 'c-block-media-img', 'alt': '' }) }}
+          {{ resp_img(
+            url='img/firefox/new/desktop/devices.jpg',
+            srcset={
+              'img/firefox/new/desktop/devices-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'width': '483',
+              'height': '491',
+              'loading': 'lazy',
+              'class': 'c-block-media-img'
+             }
+          ) }}
         </div>
       </div>
     </div>
@@ -423,7 +445,17 @@
       </svg>
       <!--<![endif]-->
       <div class="c-screenshot">
-        {{ high_res_img('img/firefox/new/desktop/screen-mr1.png', {'width': '1040', 'height': '412', 'loading': 'lazy', 'alt': ''}) }}
+        {{ resp_img(
+          url='img/firefox/new/desktop/screen-mr1.png',
+          srcset={
+            'img/firefox/new/desktop/screen-mr1-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '1040',
+            'height': '412',
+            'loading': 'lazy'
+          }
+        ) }}
       </div>
     </div>
 
@@ -451,14 +483,34 @@
 
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/new/desktop/person-mozilla.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': '' }) }}
+        {{ resp_img(
+          url='img/firefox/new/desktop/person-mozilla.jpg',
+          srcset={
+            'img/firefox/new/desktop/person-mozilla-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'width': '436',
+            'height': '463',
+            'loading': 'lazy'
+          }
+        ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-challenging-the-status') }}</h3>
         {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
         <p>{{ ftl('firefox-desktop-download-firefox-was-created', attrs=created_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/new/desktop/person-privacy.jpg', {'width': '436', 'height': '463', 'loading': 'lazy', 'alt': '' }) }}
+        {{ resp_img(
+          url='img/firefox/new/desktop/person-privacy.jpg',
+          srcset={
+            'img/firefox/new/desktop/person-privacy-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'width': '436',
+            'height': '463',
+            'loading': 'lazy'
+          }
+        ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-your-privacy-comes') }}</h3>
         {% set internet_attrs = 'href="%s" data-cta-type="link" data-cta-text="Personal Data Promise"'|safe|format(url('firefox.privacy.index')) %}
         <p>{{ ftl('firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>

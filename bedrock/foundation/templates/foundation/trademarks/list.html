@@ -118,7 +118,17 @@ established in any of its products, features, service names, or logos.</p>
     </tr>
     <tr>
       <td>
-        {{ high_res_img('img/trademarks/lightbeam-logo.png', { 'alt': 'Lightbeam logo', 'width': '100', 'height': '100' }) }}
+        {{ resp_img(
+          url='img/trademarks/lightbeam-logo.png',
+          srcset={
+            'img/trademarks/lightbeam-logo-high-res.png': '2x'
+          },
+          optional_attributes={
+            'alt': 'Lightbeam logo',
+            'width': '100',
+            'height': '100'
+          }
+        ) }}
       </td>
       <th>Lightbeam</th>
     </tr>
@@ -140,7 +150,17 @@ established in any of its products, features, service names, or logos.</p>
     </tr>
     <tr>
       <td>
-        {{ high_res_img('img/trademarks/logo-wordmark-webmaker.png', { 'alt': 'Webmaker logo', 'width': '100', 'height': '100' }) }}
+        {{ resp_img(
+          url='img/trademarks/logo-wordmark-webmaker.png',
+          srcset={
+            'img/trademarks/logo-wordmark-webmaker-high-res.png': '2x'
+          },
+          optional_attributes={
+            'alt': 'Webmaker logo',
+            'width': '100',
+            'height': '100'
+          }
+        ) }}
       </td>
       <th>Webmaker</th>
     </tr>

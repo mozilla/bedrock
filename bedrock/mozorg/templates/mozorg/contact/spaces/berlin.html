@@ -36,7 +36,16 @@
         </ul>
 
         <figure class="feature-img">
-          {{ high_res_img('img/contact/osm/spaces/berlin-small.png', {'alt': '', 'width': '460', 'height': '250'}) }}
+          {{ resp_img(
+            url='img/contact/osm/spaces/berlin-small.png',
+            srcset={
+              'img/contact/osm/spaces/berlin-small-high-res.png': '2x'
+            },
+            optional_attributes={
+              'width': '460',
+              'height': '250'
+            }
+          ) }}
         </figure>
       </div>
 

@@ -75,7 +75,17 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '247'}) }}
+      {{ resp_img(
+        url='img/firefox/products/browsers.jpg',
+        srcset={
+          'img/firefox/products/browsers-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '247'
+        }
+      ) }}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox-browsers') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
       <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
