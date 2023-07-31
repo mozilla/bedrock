@@ -415,72 +415,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-110-en.scss"
-      ],
-      "name": "firefox_whatsnew_110_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-en-features.scss"
-      ],
-      "name": "firefox_whatsnew_110_en_features"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-eu.scss"
-      ],
-      "name": "firefox_whatsnew_110_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-de.scss"
-      ],
-      "name": "firefox_whatsnew_110_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-111-eu.scss"
-      ],
-      "name": "firefox_whatsnew_111_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-111-en.scss"
-      ],
-      "name": "firefox_whatsnew_111_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-en.scss"
-      ],
-      "name": "firefox_whatsnew_112_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-en-features.scss"
-      ],
-      "name": "firefox_whatsnew_112_en_features"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-eu-privacy.scss"
-      ],
-      "name": "firefox_whatsnew_112_eu_privacy"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-113-eu.scss"
-      ],
-      "name": "firefox_whatsnew_113_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-113-en.scss"
-      ],
-      "name": "firefox_whatsnew_113_en"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-114-eu.scss"
       ],
       "name": "firefox_whatsnew_114_eu"
@@ -1401,30 +1335,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-110-experiment-en.es6.js"
-      ],
-      "name": "firefox_whatsnew_110_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-features.js"
-      ],
-      "name": "firefox_whatsnew_110_features"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-experiment-en.es6.js"
-      ],
-      "name": "firefox_whatsnew_112_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-features.js"
-      ],
-      "name": "firefox_whatsnew_112_features"
-    },
-    {
-      "files": [
         "js/firefox/sticky-promo.es6.js",
         "js/firefox/new/desktop/download.js"
       ],
@@ -1666,48 +1576,6 @@
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew_account"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-en.js"
-      ],
-      "name": "firefox_whatsnew_110_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-eu.js"
-      ],
-      "name": "firefox_whatsnew_110_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-experiment-de.es6.js"
-      ],
-      "name": "firefox_whatsnew_110_experiment_de"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-111-en.js"
-      ],
-      "name": "firefox_whatsnew_111_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-eu-privacy.js"
-      ],
-      "name": "firefox_whatsnew_112_eu_privacy"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-113-eu.js"
-      ],
-      "name": "firefox_whatsnew_113_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-113-en.js"
-      ],
-      "name": "firefox_whatsnew_113_en"
     },
     {
       "files": [
