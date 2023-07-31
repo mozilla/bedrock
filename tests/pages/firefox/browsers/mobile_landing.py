@@ -6,11 +6,10 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 from pages.regions.menu_list import MenuList
-from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxMobilePage(BasePage):
-    _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/{params}"
+    _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/"
 
     _android_download_link_locator = (By.ID, "android-download")
     _ios_download_link_locator = (By.ID, "ios-download")
@@ -20,10 +19,6 @@ class FirefoxMobilePage(BasePage):
     def focus_menu_list(self):
         el = self.find_element(*self._focus_menu_list_locator)
         return MenuList(self, root=el)
-
-    @property
-    def send_to_device(self):
-        return SendToDevice(self)
 
     @property
     def is_android_download_link_displayed(self):

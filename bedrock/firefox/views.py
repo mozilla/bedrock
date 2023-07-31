@@ -951,27 +951,6 @@ def firefox_features_translate(request):
     return l10n_utils.render(request, template_name, context, ftl_files=["firefox/features/shared", "firefox/features/translate"])
 
 
-class FirefoxMobileView(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/mobile/index.html": ["firefox/mobile"],
-        "firefox/browsers/mobile/index.html": ["firefox/browsers/mobile/index"],
-    }
-    activation_files = [
-        "firefox/mobile",
-        "firefox/browsers/mobile/index",
-    ]
-
-    def get_template_names(self):
-        experience = self.request.GET.get("xv", None)
-
-        if ftl_file_is_active("firefox/browsers/mobile/index") and experience != "legacy":
-            template = "firefox/browsers/mobile/index.html"
-        else:
-            template = "firefox/mobile/index.html"
-
-        return [template]
-
-
 class FirefoxContentful(L10nTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

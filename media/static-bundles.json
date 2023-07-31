@@ -719,13 +719,6 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/mobile.scss"
-      ],
-      "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/browsers/mobile.scss"
       ],
       "name": "firefox-browsers-mobile"
@@ -1524,13 +1517,6 @@
         "js/privacy/privacy-protocol.js"
       ],
       "name": "privacy_protocol"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
-        "js/firefox/mobile/mobile.es6.js"
-      ],
-      "name": "firefox-mobile"
     },
     {
       "files": [
