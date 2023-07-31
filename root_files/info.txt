@@ -3,12 +3,12 @@
 
 url: mozilla.org/
 site_owner: Mozilla Corporation
-address1: 331 E. Evelyn Avenue
-address2:
-city: Mountain View
+address1: 149 New Montgomery Street
+address2: 4th floor
+city: San Francisco
 state: CA
 country: US
-postal_code: 94041
+postal_code: 94105
 phone_number:  1 650 903 0800
 display_email: webmaster@mozilla.org
 site_name:
