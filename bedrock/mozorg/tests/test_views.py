@@ -99,21 +99,16 @@ class TestHomePage(TestCase):
     (
         (
             "abc",
-            {"page_type": "pageHome", "info": {"theme": "mozilla"}},
-            "mozorg/home/home-contentful.html",
-        ),
-        (
-            "def",
             {"page_type": "pagePageResourceCenter", "info": {"theme": "mozilla"}},
             "products/vpn/resource-center/article.html",
         ),
         (
-            "ghi",
+            "def",
             {"page_type": "OTHER", "info": {"theme": "firefox"}},
             "firefox/contentful-all.html",
         ),
         (
-            "jkl",
+            "ghi",
             {"page_type": "OTHER", "info": {"theme": "mozilla"}},
             "mozorg/contentful-all.html",
         ),

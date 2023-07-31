@@ -64,7 +64,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-firefox') }}</a>
+        <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
 
 
@@ -83,7 +83,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://getpocket.com" target="_blank" rel="noopener noreferrer" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-pocket') }}</a>
+        <a href="https://getpocket.com" target="_blank" rel="noopener noreferrer" class="mzp-c-button mzp-t-secondary" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
       <!-- Relay -->
@@ -101,7 +101,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://relay.firefox.com" rel="external noopener" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-relay') }}</a>
+        <a href="https://relay.firefox.com" rel="external noopener" class="mzp-c-button mzp-t-secondary" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
       {% endcall %}
 
       <!-- VPN -->
@@ -119,7 +119,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary">{{ ftl('home-cta-get-vpn') }}</a>
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
     </ul>
   </section>
