@@ -58,9 +58,10 @@ header {
         }
 
         blockquote {
-            @include text-title-xs;
+            @include font-size(26px);
             border: 0;
             font-weight: normal;
+            line-height: 130%;
         }
 
         cite {
@@ -97,7 +98,7 @@ header {
     h3 {
         @include font-base;
         @include text-body-xl;
-        font-weight: normal;
+        font-weight: bold;
     }
 
     @media #{$mq-md} {

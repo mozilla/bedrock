@@ -263,12 +263,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-contentful.scss"
-      ],
-      "name": "home-contentful"
-    },
-    {
-      "files": [
         "css/base/banners/fundraiser.scss"
       ],
       "name": "fundraising-banner"
@@ -1412,12 +1406,6 @@
         "js/mozorg/home/youtube.js"
       ],
       "name": "home"
-    },
-    {
-      "files": [
-        "js/mozorg/home/youtube.js"
-      ],
-      "name": "home-contentful"
     },
     {
       "files": [

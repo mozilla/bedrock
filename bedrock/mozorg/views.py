@@ -4,7 +4,6 @@
 
 import json
 
-from django.conf import settings
 from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
@@ -17,12 +16,9 @@ from django.views.generic import TemplateView
 from commonware.decorators import xframe_allow
 from jsonview.decorators import json_view
 from product_details import product_details
-from sentry_sdk import capture_exception
 
-from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
-from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
@@ -133,33 +129,11 @@ def home_view(request):
     if variation not in ["1", "2"]:
         variation = None
 
-    ctx = {"ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"], "add_active_locales": ["de", "fr"], "variation": variation}
+    ctx = {"ftl_files": ["mozorg/home-new", "mozorg/home-mr2-promo"], "add_active_locales": ["de", "fr"], "variation": variation}
 
-    if locale.startswith("xs-"):
-        if switch("contentful-homepage-en"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                # TODO: use a better system to get the pages than the ID
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["en-US"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the rest-of-world home page
-                template_name = "mozorg/home/home.html"
-        else:
-            template_name = "mozorg/home/home.html"
-    elif locale == "de":
-        if switch("contentful-homepage-de"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["de"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the old page
-                template_name = "mozorg/home/home-de.html"
-                ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-        else:
-            template_name = "mozorg/home/home-de.html"
-            ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
+    if locale == "de":
+        template_name = "mozorg/home/home-de.html"
+        ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
     elif locale == "fr":
         template_name = "mozorg/home/home-fr.html"
         ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
@@ -181,9 +155,7 @@ class ContentfulPreviewView(L10nTemplateView):
     def render_to_response(self, context, **response_kwargs):
         page_type = context["page_type"]
         theme = context["info"]["theme"]
-        if page_type == "pageHome":
-            template = "mozorg/home/home-contentful.html"
-        elif page_type == "pagePageResourceCenter":
+        if page_type == "pagePageResourceCenter":
             template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"

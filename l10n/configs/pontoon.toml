@@ -222,11 +222,11 @@ locales = [
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
-    reference = "en/mozorg/home-old.ftl"
-    l10n = "{locale}/mozorg/home-old.ftl"
-[[paths]]
     reference = "en/mozorg/home.ftl"
     l10n = "{locale}/mozorg/home.ftl"
+[[paths]]
+    reference = "en/mozorg/home-new.ftl"
+    l10n = "{locale}/mozorg/home-new.ftl"
 [[paths]]
     reference = "en/mozorg/home-mr2-promo.ftl"
     l10n = "{locale}/mozorg/home-mr2-promo.ftl"
