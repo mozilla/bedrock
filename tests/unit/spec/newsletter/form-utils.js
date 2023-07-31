@@ -61,6 +61,7 @@ describe('getUserToken', function () {
 
     it('should return an empty string if token is invalid', function () {
         const token = 'some invalid string';
+        spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
         spyOn(Mozilla.Cookies, 'getItem').and.returnValue(token);
         expect(FormUtils.getUserToken()).toEqual('');
     });
