@@ -531,37 +531,6 @@ class TestFirefoxWelcomePage1(TestCase):
         render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
 
 
-@override_settings(DEV=False)
-@patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
-class TestFirefoxMobile(TestCase):
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_landing_template(self, render_mock):
-        req = RequestFactory().get("/firefox/browsers/mobile/")
-        req.locale = "en-US"
-        view = views.FirefoxMobileView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/browsers/mobile/index.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: False)
-    def test_legacy_template(self, render_mock):
-        req = RequestFactory().get("/firefox/browsers/mobile/")
-        req.locale = "en-US"
-        view = views.FirefoxMobileView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/mobile/index.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_legacy_template_param(self, render_mock):
-        req = RequestFactory().get("/firefox/browsers/mobile/?xv=legacy")
-        req.locale = "en-US"
-        view = views.FirefoxMobileView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/mobile/index.html"]
-
-
 # Issue 13253: Ensure that Firefox can continue to refer to this URL.
 class TestFirefoxSetAsDefaultThanks(TestCase):
     def test_firefox_set_as_default_thanks(self):

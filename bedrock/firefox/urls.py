@@ -182,7 +182,7 @@ urlpatterns = (
         ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
     ),
     # Issue 10182
-    path("firefox/browsers/mobile/", views.FirefoxMobileView.as_view(), name="firefox.browsers.mobile.index"),
+    page("firefox/browsers/mobile/", "firefox/browsers/mobile/index.html", ftl_files=["firefox/browsers/mobile/index"]),
     page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),
     page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
     page("firefox/browsers/mobile/get-ios/", "firefox/browsers/mobile/get-ios.html", ftl_files=["firefox/browsers/mobile/get-ios"]),
