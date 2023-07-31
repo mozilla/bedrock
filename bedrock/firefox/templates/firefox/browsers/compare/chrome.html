@@ -45,7 +45,17 @@
 
         <p>{{ ftl('compare-chrome-and-so-here-we-are-the-browser') }}</p>
 
-        {{ high_res_img('img/firefox/compare/compare-browser-chrome.png', {'alt': '', 'width': '541', 'height': '424', 'class': 'compare-details-image'}) }}
+        {{ resp_img(
+          url='img/firefox/compare/compare-browser-chrome.png',
+          srcset={
+            'img/firefox/compare/compare-browser-chrome-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '541',
+            'height': '424',
+            'class': 'compare-details-image'
+          }
+        ) }}
     </section>
 
     <section class="compare-section-privacy">

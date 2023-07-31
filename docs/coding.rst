@@ -617,34 +617,6 @@ Like ``resp_img()``, the ``picture()`` helper also supports L10n images and othe
         }
     )
 
-high_res_img() (deprecated)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note::
-
-    The ``high_res_img()`` helper is now deprecated in favor of ``resp_img()``. If an image is large enough that it gets
-    scaled down at smaller viewport sizes, then you should probably be serving a responsive image. For cases where you
-    only really want to serve a high resolution alternative, then you can still do this using ``resp_img()`` (see the
-    example in the docs above).
-
-For images that include a high-resolution alternative for displays with a high pixel density, use the ``high_res_img()`` function:
-
-.. code-block:: python
-
-    high_res_img("img/firefox/new/firefox-logo.png", {"alt": "Firefox", "width": "200", "height": "100"})
-
-The ``high_res_img()`` function will automatically look for the image in the URL parameter suffixed with
-``'-high-res'``, e.g. ``img/firefox/new/firefox-logo-high-res.png`` and switch to it if the display has high pixel density.
-
-``high_res_img()`` supports localized images by setting the ``'l10n'`` parameter to ``True```:
-
-.. code-block:: python
-
-    high_res_img("img/firefox/new/firefox-logo.png", {"l10n": True, "alt": "Firefox", "width": "200", "height": "100"})
-
-When using localization, ``high_res_img()`` will look for images in the appropriate locale folder. In the above example,
-for the `de` locale, both standard and high-res versions of the image should be located at ``media/img/l10n/de/firefox/new/``.
-
 Which image helper should you use?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

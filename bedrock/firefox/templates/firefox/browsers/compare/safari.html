@@ -41,7 +41,17 @@
     <section class="compare-details-section-summary">
       <p class="compare-details-section-intro">{{ ftl('compare-safari-if-you-use-a-mac-or-have-updated', fallback='compare-safari-if-you-use-a-mac-or-have') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-safari.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-safari.png',
+        srcset={
+          'img/firefox/compare/compare-browser-safari-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '544',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">

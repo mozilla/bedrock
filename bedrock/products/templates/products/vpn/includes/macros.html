@@ -74,7 +74,7 @@
 </section>
 {%- endmacro %}
 
-{% macro vpn_platform_hero(heading, subheading, desc, image_url) -%}
+{% macro vpn_platform_hero(heading, subheading, desc, image) -%}
 <section class="vpn-hero">
   <div class="mzp-l-content mzp-t-content-xl">
     <div class="vpn-hero-container">
@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="vpn-hero-image">
-        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480'}) }}
+        {{ image }}
       </div>
     </div>
   </div>
@@ -178,11 +178,11 @@
 </div>
 {%- endmacro %}
 
-{% macro vpn_content_media(heading, image_url, class_name=None, has_outline=False, loading='lazy') -%}
+{% macro vpn_content_media(heading, image, class_name=None, has_outline=False) -%}
   <section class="vpn-content-media {% if has_outline %}has-outline{% endif %} {% if class_name %}{{ class_name }}{% endif %}">
     <div class="vpn-content-media-image-container">
       <div class="vpn-content-media-image">
-        {{ high_res_img(image_url, {'alt': image_alt, 'width': '480', 'height': '480', 'loading': loading}) }}
+        {{ image }}
       </div>
     </div>
 

@@ -43,7 +43,17 @@
 
       <p>{{ ftl('compare-ie-here-well-compare-our-firefox') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-ie.png', {'alt': '', 'width': '543', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-ie.png',
+        srcset={
+          'img/firefox/compare/compare-browser-ie-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '543',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">

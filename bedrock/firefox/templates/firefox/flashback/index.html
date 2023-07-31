@@ -44,7 +44,17 @@
       <div class="mzp-l-content">
         <h3>Thanks for sticking with us.</h3>
         <!-- thank you Mathias Appel https://www.flickr.com/photos/mathiasappel/21694230388/ -->
-        {{ high_res_img('img/firefox/flashback/panda.jpg', {'alt': 'Happy looking red panda walking up a tree branch.', 'width': '1024', 'height': '679'}) }}
+        {{ resp_img(
+          url='img/firefox/flashback/panda.jpg',
+          srcset={
+            'img/firefox/flashback/panda-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'alt': 'Happy looking red panda walking up a tree branch.',
+            'width': '1024',
+            'height': '679'
+          }
+        ) }}
       </div>
     </div>
   </main>
