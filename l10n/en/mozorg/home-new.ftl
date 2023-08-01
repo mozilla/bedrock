@@ -8,7 +8,7 @@ home-internet-for-people-not-profit = Internet for people, not profit
 home-did-you-know-mozilla-the-maker = Did you know? { -brand-name-mozilla } — the maker of { -brand-name-firefox } — fights to keep the internet a global public resource, open and accessible to all.
 
 home-mission-driven = Mission-driven. People-powered.
-home-were-not-normal = We’re not a normal tech company. The things we create prioritize people and their privacy over profits. We exist to make the internet a healthier,  happier place for everyone.
+home-were-not-normal = We’re not a normal tech company. The things we create prioritize people and their privacy over profits. We exist to make the internet a healthier, happier place for everyone.
 
 # Quotes around string to represent it being a quote by Mitchell Baker
 home-the-health-of = “The health of the internet and online life is why we exist.”
@@ -31,7 +31,7 @@ home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a no
 home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla } Corporation is wholly owned by the non-profit 501(c) { -brand-name-mozilla } Foundation. Which means we aren’t beholden to any shareholders — only to our mission.
 home-learn-about-mofo = Learn about the { -brand-name-mozilla } Foundation
 
-home-join-the-fight = Join the fight for a healthy internet
+home-join-the-fight = Join the fight for a <br>healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.
 home-volunteer-with-mozilla = Volunteer with { -brand-name-mozilla }
 

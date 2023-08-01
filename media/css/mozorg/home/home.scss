@@ -15,6 +15,9 @@ header {
         p {
             @include font-mozilla;
             @include font-size(28px);
+            max-width: 710px;
+            margin: 0 auto;
+            line-height: 1.3;
         }
     }
 }
@@ -58,10 +61,15 @@ header {
         }
 
         blockquote {
-            @include font-size(26px);
+            @include font-size(24px);
             border: 0;
             font-weight: normal;
             line-height: 130%;
+            margin-top: 0;
+
+            p {
+                margin-bottom: $spacing-sm;
+            }
         }
 
         cite {
@@ -89,9 +97,14 @@ header {
             justify-content: space-between;
             margin-bottom: $layout-lg;
 
+            &:last-child {
+                margin-bottom: 0;
+            }
+
             .mzp-c-picto-image {
                 margin-bottom: $spacing-md;
             }
+
         }
     }
 
@@ -99,6 +112,8 @@ header {
         @include font-base;
         @include text-body-xl;
         font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: $spacing-lg;
     }
 
     @media #{$mq-md} {
@@ -119,11 +134,23 @@ header {
 }
 
 .c-mission {
+    .mzp-c-split-container {
+        padding: 0;
+    }
+
     h2 {
         text-align: center;
     }
 
+    hr {
+        border-width: 1px;
+    }
+
     @media #{$mq-md} {
+        .mzp-c-split-container {
+            padding: 0 80px;
+        }
+
         h2 {
             text-align: left;
         }
@@ -136,6 +163,10 @@ header {
     .c-about-wrapper {
         padding-bottom: $layout-xl;
         position: relative;
+
+        h2 {
+            text-align: left;
+        }
     }
 
     .c-about-cta {
@@ -156,6 +187,14 @@ header {
             height: 95px;
             object-fit: scale-down;
             object-position: 4px 16px;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-about-wrapper {
+            h2 {
+                text-align: center;
+            }
         }
     }
 }
