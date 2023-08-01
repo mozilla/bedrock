@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 
 .vpn-feature {
     @include font-base;
-    position: relative;
+    padding-top: 0;
 
     .feature-wrapper {
         border-radius: $border-radius-md;
@@ -20,7 +20,7 @@ $image-path: '/media/protocol/img';
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: $spacing-2xl;
+        padding: $spacing-lg $spacing-2xl;
     }
 
     img {
@@ -51,7 +51,7 @@ $image-path: '/media/protocol/img';
 
     a {
         @include text-body-lg;
-        text-align: center;
+        white-space: nowrap;
     }
 
     @media #{$mq-md} {
@@ -65,17 +65,13 @@ $image-path: '/media/protocol/img';
             small {
                 @include text-body-lg;
                 margin-top: 0;
-                text-align: center;
+                text-align: left;
             }
 
             h2 {
                 @include font-size(28px);
-                text-align: center;
+                text-align: left;
                 margin: 0;
-            }
-
-            a {
-                white-space: nowrap;
             }
         }
     }
