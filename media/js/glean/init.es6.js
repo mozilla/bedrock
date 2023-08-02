@@ -12,6 +12,7 @@ import Utils from './utils.es6';
 const shouldInitialize = Utils.hasValidURLScheme(window.location.href);
 
 function initGlean() {
+    const endpoint = 'https://www.mozilla.org';
     const channel =
         window.location.href.indexOf('https://www.mozilla.org/') === -1
             ? 'non-prod'
@@ -37,7 +38,8 @@ function initGlean() {
 
     Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
         channel: channel,
-        maxEvents: 1 // Set max events to 1 so pings are sent as soon as registered.
+        maxEvents: 1, // Set max events to 1 so pings are sent as soon as registered.
+        serverEndpoint: endpoint
     });
 }
 
