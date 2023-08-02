@@ -1328,14 +1328,14 @@ VPN_PLAN_ID_MATRIX = {
         "en": {  # English
             "12-month": {
                 "id": "price_1JcuArKb9q6OnNsLXAnkCSUE" if DEV else "price_1JcdvBJNcmPzuWtROLbEH9d2",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "price": "4.99 €",
+                "total": "59.88 €",
                 "saving": 50,
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
-                "price": "9,99 €",
+                "price": "9.99 €",
                 "total": None,
                 "saving": None,
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
