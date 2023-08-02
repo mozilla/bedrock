@@ -52,6 +52,18 @@ function init() {
     });
 
     Mozilla.UITour.forceShowReaderIcon();
+
+    // show reader mode icon again on visibility change
+    // see https://github.com/mozilla/bedrock/issues/13484
+    document.addEventListener(
+        'visibilitychange',
+        () => {
+            if (!document.hidden) {
+                Mozilla.UITour.forceShowReaderIcon();
+            }
+        },
+        false
+    );
 }
 
 if (
