@@ -457,6 +457,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-117-eu-reader-view.scss"
+      ],
+      "name": "firefox_whatsnew_117_eu_reader_view"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1618,6 +1624,18 @@
         "js/firefox/whatsnew/whatsnew-116-na.js"
       ],
       "name": "firefox_whatsnew_116_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-117-eu-reader-view.js"
+      ],
+      "name": "firefox_whatsnew_117_eu_reader_view"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-117-experiment-eu-reader-view.es6.js"
+      ],
+      "name": "firefox_whatsnew_117_eu_reader_view_experiment"
     },
     {
       "files": [
