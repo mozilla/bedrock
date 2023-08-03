@@ -17,7 +17,6 @@ from commonware.decorators import xframe_allow
 from jsonview.decorators import json_view
 from product_details import product_details
 
-from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
@@ -122,23 +121,14 @@ def namespaces(request, namespace):
 
 @require_safe
 def home_view(request):
-    locale = l10n_utils.get_locale(request)
-
     variation = request.GET.get("v", None)
 
     if variation not in ["1", "2"]:
         variation = None
 
-    ctx = {"ftl_files": ["mozorg/home-new", "mozorg/home-mr2-promo"], "add_active_locales": ["de", "fr"], "variation": variation}
+    ctx = {"ftl_files": ["mozorg/home-new", "mozorg/home-mr2-promo"], "variation": variation}
 
-    if locale == "de":
-        template_name = "mozorg/home/home-de.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-    elif locale == "fr":
-        template_name = "mozorg/home/home-fr.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
-    else:
-        template_name = "mozorg/home/home.html"
+    template_name = "mozorg/home/home.html"
 
     return l10n_utils.render(request, template_name, ctx)
 

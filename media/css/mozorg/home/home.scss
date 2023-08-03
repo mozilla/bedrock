@@ -19,13 +19,11 @@ header {
         p {
             @include font-mozilla;
             @include font-size(30px);
-            max-width: 710px;
             margin: 0 auto;
             line-height: 1.4;
         }
     }
 }
-
 
 .c-homepage {
     h2 {
@@ -64,7 +62,7 @@ header {
         }
 
         blockquote {
-            @include font-size(22px);
+            @include font-size(20px);
             border: 0;
             line-height: 130%;
             margin-top: 0;
@@ -76,7 +74,7 @@ header {
         }
 
         cite {
-            @include font-size(19px);
+            @include font-size(18px);
             font-weight: bold;
             font-style: normal ;
 
