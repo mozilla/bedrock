@@ -179,7 +179,11 @@ main {
         &:hover,
         &:focus,
         &:active {
-            color: get-theme('link-color-hover');
+            color: $link-color-hover;
+
+            @supports (--css: variables) {
+                color: var(--link-color-hover);
+            }
         }
     }
 

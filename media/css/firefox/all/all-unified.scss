@@ -8,7 +8,7 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms';
 @import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
