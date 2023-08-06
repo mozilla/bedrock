@@ -193,10 +193,6 @@ h4 {
     position: relative;
     text-align: center;
     z-index: 2;
-
-    p {
-        margin-bottom: 0;
-    }
 }
 
 .c-secondary-cta-title {
@@ -229,6 +225,17 @@ h4 {
 
     .c-secondary-cta-title {
         background-position: left 35px;
+    }
+
+    .fx-unsupported .c-secondary-cta {
+        .fx-unsupported-message {
+            @include bidi(((text-align, left, right),));
+        }
+
+        .fx-privacy-link,
+        .mzp-c-button-download-privacy-link {
+            @include bidi(((text-align, left, right),));
+        }
     }
 }
 

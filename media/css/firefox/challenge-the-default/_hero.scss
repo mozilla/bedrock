@@ -1,0 +1,237 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+$campaign-red: #ff6a75;
+
+.ctd-hero-wrapper {
+    background: $campaign-red;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-easter-egg {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 440px;
+    margin-top: 110px;
+
+    .toggle-easter-egg {
+        height: 180;
+        width: 180px;
+        margin-bottom: $spacing-md;
+    }
+
+    p {
+        @include font-size(24px);
+        color: $color-white;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.c-ctd-hero {
+    @include font-firefox;
+    background: $campaign-red;
+    padding: 6px 24px 24px;
+
+    .c-hero-top {
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 2.5px solid $campaign-red;
+        max-height: 65px;
+        padding: 10px $spacing-md;
+
+        &-images {
+            align-items: center;
+            display: none;
+
+            img {
+                max-height: 100%;
+                margin-right: $spacing-md;
+            }
+
+            .ctd-animated-logo {
+                width: 200px;
+            }
+        }
+
+        @media #{$mq-md} {
+            justify-content: space-between;
+            padding: 0;
+            border-bottom-width: 3px;
+
+            &-images {
+                display: flex;
+                height: 50px;
+                padding: 10px $spacing-md;
+
+                &.active {
+                    .firefox-logo, .ctd-logo-sprite {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+
+                    .ctd-logo-sprite {
+                        transition-delay: .25s;
+                    }
+                }
+
+                @media (prefers-reduced-motion: no-preference) {
+                    .firefox-logo, .ctd-logo-sprite {
+                        transform: scale(0.25);
+                        opacity: 0;
+                        transition: all .25s ease-in-out;
+                    }
+                }
+            }
+        }
+
+        &-controls {
+            display: flex;
+            align-items: center;
+
+
+            .hero-control-btn {
+                margin-left: $spacing-sm;
+                background: none;
+                border: 0;
+                display: block;
+                background-size: cover;
+                width: 20px;
+                height: 20px;
+            }
+
+            @media #{$mq-md} {
+                padding: 10px 16px 0;
+                height: 60px;
+
+                .hero-control-btn {
+                    width: 26px;
+                    height: 26px;
+                    margin-left: 12px;
+                }
+            }
+
+        }
+
+        .minimize {
+            background-image: url('/media/img/firefox/challenge-the-default/minimize.svg');
+        }
+
+        .expand {
+            background-image: url('/media/img/firefox/challenge-the-default/open.svg');
+        }
+
+        .close {
+            @include image-replaced;
+            background-image: url('/media/img/firefox/challenge-the-default/close.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            cursor: pointer;
+        }
+    }
+
+    .hero-wrapper {
+        position: relative;
+        background: $color-white;
+        clip-path: url("#hero-clip-path-mobile");
+        transition: opacity 1s;
+
+        @media #{$mq-md} {
+            clip-path: url("#hero-clip-path");
+        }
+    }
+
+    .hero-content-wrapper {
+        padding: $spacing-md 0 $spacing-2xl;
+        margin: 0 $spacing-lg;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-gap: $spacing-xl;
+
+
+        @media #{$mq-lg} {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            padding: $layout-md 0 $layout-xl;
+            margin: 0 $layout-xl;
+        }
+    }
+
+    picture {
+        grid-row: 1;
+        grid-column: auto;
+        margin-top: 0;
+
+        @media #{$mq-md} {
+            img {
+                width: 475px;
+            }
+        }
+
+        @media #{$mq-lg} {
+            grid-column: 2;
+        }
+    }
+
+    .c-hero-text {
+        justify-content: center;
+
+        @media #{$mq-md} {
+            min-width: 440px;
+            max-width: 80%;
+        }
+
+        h1 {
+            @include font-firefox;
+            @include font-size(36px);
+            color: $color-black;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: $spacing-md;
+        }
+
+        p {
+            @include font-size(18px);
+            font-weight: 600;
+            color: $color-marketing-gray-70;
+            margin-bottom: $layout-sm;
+        }
+
+        .mzp-c-button {
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .mzp-c-button-download-privacy-link {
+            text-align: left;
+        }
+
+        @media #{$mq-md} {
+            h1 {
+                @include font-size(64px);
+            }
+
+            .mzp-c-button {
+                text-align: left;
+            }
+        }
+    }
+
+    // issue 13317
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
+    }
+}

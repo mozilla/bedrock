@@ -126,6 +126,7 @@ describe('management.es6.js', function () {
     afterEach(function () {
         const form = document.getElementById('newsletter-management-test-form');
         form.parentNode.removeChild(form);
+        FormUtils.userToken = '';
     });
 
     describe('isFxALocale', function () {

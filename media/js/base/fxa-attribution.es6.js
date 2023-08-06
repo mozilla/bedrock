@@ -12,7 +12,7 @@ const _allowedDomains = [
     'https://monitor.firefox.com/',
     'https://getpocket.com/',
     'https://vpn.mozilla.org/',
-    'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
+    'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
     'https://guardian-dev.herokuapp.com/'
 ];
 
@@ -369,7 +369,7 @@ FxaAttribution.init = (urlParams) => {
     }
 
     const ctaLinks = document.querySelectorAll(
-        '.js-fxa-cta-link, .js-vpn-cta-link'
+        '.js-fxa-cta-link, .js-fxa-product-cta-link'
     );
 
     // Track CTA clicks for FxA link referrals.

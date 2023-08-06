@@ -27,6 +27,12 @@
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-vpn-landing-refresh', ['en-US']) %}
+    {{ js_bundle('mozilla-vpn-landing-refresh-exp') }}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
@@ -75,17 +81,35 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-privacy-heading'),
-      image_url='img/products/vpn/landing/vpn-cntwell-01.png',
+      image=resp_img(
+        url='img/products/vpn/landing/vpn-cntwell-01.png',
+        srcset={
+          'img/products/vpn/landing/vpn-cntwell-01-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480'
+        }
+      ),
       class_name='vpn-content-media-right-half',
-      has_outline=True,
-      loading='eager'
+      has_outline=True
     ) %}
       <p>{{ ftl('vpn-landing-privacy-desc') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-fast-secure-heading'),
-      image_url='img/products/vpn/landing/vpn-cntwell-02.png',
+      image=resp_img(
+        url='img/products/vpn/landing/vpn-cntwell-02.png',
+        srcset={
+          'img/products/vpn/landing/vpn-cntwell-02-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-left-half'
     ) %}
       <p>
@@ -99,7 +123,17 @@
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-brand-trust-heading'),
-      image_url='img/products/vpn/landing/vpn-cntwell-03.png',
+      image=resp_img(
+        url='img/products/vpn/landing/vpn-cntwell-03.png',
+        srcset={
+          'img/products/vpn/landing/vpn-cntwell-03-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480',
+          'loading': 'lazy'
+        }
+      ),
       class_name='vpn-content-media-right-half',
       has_outline=True
     ) %}
@@ -109,7 +143,17 @@
     {% if vpn_available %}
       {% call vpn_content_media(
         heading=ftl('vpn-shared-features-server-countries', servers=connect_servers, countries=connect_countries),
-        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        image=resp_img(
+          url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+          srcset={
+            'img/products/vpn/landing/vpn-cntwell-05-v2-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '480',
+            'height': '480',
+            'loading': 'lazy'
+          }
+        ),
         class_name='vpn-content-media-left-half vpn-connect-to-countries-and-servers'
       ) %}
         <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
@@ -125,7 +169,17 @@
     {% else %}
       {% call vpn_content_media(
         heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        image=resp_img(
+          url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+          srcset={
+            'img/products/vpn/landing/vpn-cntwell-05-v2-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '480',
+            'height': '480',
+            'loading': 'lazy'
+          }
+        ),
         class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
       ) %}
 
@@ -147,7 +201,17 @@
       <div id="bundle">
         {% call vpn_content_media(
           heading=ftl('vpn-shared-increase-your-privacy'),
-          image_url='img/products/vpn/landing/vpn-cntwell-06.png',
+          image=resp_img(
+            url='img/products/vpn/landing/vpn-cntwell-06.png',
+            srcset={
+              'img/products/vpn/landing/vpn-cntwell-06-high-res.png': '2x'
+            },
+            optional_attributes={
+              'width': '480',
+              'height': '480',
+              'loading': 'lazy'
+            }
+          ),
           class_name='vpn-content-media-right-half vpn-content-block-relay-bundle-promo'
         ) %}
           <p>
@@ -343,12 +407,6 @@
 
 </main>
 
-{% endblock %}
-
-{% block glean %}
-  {% if switch('glean-analytics') %}
-    {{ js_bundle('glean') }}
-  {% endif %}
 {% endblock %}
 
 {% block js %}

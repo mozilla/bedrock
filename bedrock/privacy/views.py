@@ -49,15 +49,7 @@ class FirefoxPrivacyDocView(PrivacyDocView):
 
 firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice")
 
-firefox_betterweb_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-betterweb.html", legal_doc_name="better_web_privacy")
-
-firefox_fire_tv_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-fire-tv.html", legal_doc_name="Firefox_FireTV_Privacy_Notice")
-
 firefox_focus_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-focus.html", legal_doc_name="focus_privacy_notice")
-
-firefox_reality_notices = PrivacyDocView.as_view(
-    template_name="privacy/notices/firefox-reality.html", legal_doc_name="firefox_reality_privacy_notice"
-)
 
 hubs_notices = PrivacyDocView.as_view(template_name="privacy/notices/hubs.html", legal_doc_name="hubs_privacy_notice")
 
@@ -66,10 +58,6 @@ thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thun
 websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/websites.html", legal_doc_name="websites_privacy_notice")
 
 firefox_monitor_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-monitor.html", legal_doc_name="firefox_monitor_terms_privacy")
-
-firefox_private_network = PrivacyDocView.as_view(
-    template_name="privacy/notices/firefox-private-network.html", legal_doc_name="Firefox_Private_Network_Beta_Privacy_Notice"
-)
 
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 

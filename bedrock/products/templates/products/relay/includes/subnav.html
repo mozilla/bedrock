@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title is-summary">
+        <a href="{{ url('products.relay.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Relay">
+          {{ ftl('relay-shared-subnav-title') }}
+        </a>
+      </h2>
+      <ul class="c-sub-navigation-list is-details is-closed">
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('products.relay.premium') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Relay Premium">
+            {{ ftl('relay-shared-subnav-premium') }}
+          </a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a href="{{ url('products.relay.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Relay Premium">
+            {{ ftl('relay-shared-subnav-faq') }}
+          </a>
+        </li>
+        <li class="c-sub-navigation-item">
+          {{ relay_fxa_button(
+            entrypoint=_utm_source,
+            button_text=ftl('nav-profile-sign-in'),
+            is_button_class=False,
+            class_name="mzp-c-button mzp-t-sm relay-subnav-signin",
+            optional_attributes={
+              'data-cta-type': 'cta: fxa-relay',
+              'data-cta-text': 'Sign in',
+              'data-cta-position': 'subnav'
+            }
+          ) }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

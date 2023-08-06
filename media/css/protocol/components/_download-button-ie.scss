@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'fx-unsupported-ie';
 
 // download button and related containers
 ul.download-list {
@@ -31,7 +32,15 @@ ul.download-list {
     }
 }
 
+// Show Firefox Windows download buttons
 .download-button .download-list .os_win {
     display: block !important;
 }
+
+// Show Firefox Android / iOS download buttons
+.download-button-android .download-list .os_android,
+.download-button-ios .download-list .os_ios {
+    display: block !important;
+}
+
 /* stylelint-enable */

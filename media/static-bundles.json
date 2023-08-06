@@ -215,27 +215,21 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-firefox-family-promo.scss"
-      ],
-      "name": "home-firefox-family-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/home-firefox-mr106-promo.scss"
       ],
       "name": "home-firefox-mr106-promo"
     },
     {
       "files": [
-        "css/mozorg/home/vpn-beautiful.scss"
+        "css/mozorg/home/includes/pocket-promo.scss"
       ],
-      "name": "home-vpn-beautiful"
+      "name": "home-pocket-promo"
     },
     {
       "files": [
-        "css/mozorg/home/ijustine-promo.scss"
+        "css/mozorg/home/ctd-promo-de.scss"
       ],
-      "name": "home-ijustine-promo"
+      "name": "ctd-promo"
     },
     {
       "files": [
@@ -421,72 +415,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-110-en.scss"
-      ],
-      "name": "firefox_whatsnew_110_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-en-features.scss"
-      ],
-      "name": "firefox_whatsnew_110_en_features"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-eu.scss"
-      ],
-      "name": "firefox_whatsnew_110_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-110-de.scss"
-      ],
-      "name": "firefox_whatsnew_110_de"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-111-eu.scss"
-      ],
-      "name": "firefox_whatsnew_111_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-111-en.scss"
-      ],
-      "name": "firefox_whatsnew_111_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-en.scss"
-      ],
-      "name": "firefox_whatsnew_112_en"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-en-features.scss"
-      ],
-      "name": "firefox_whatsnew_112_en_features"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-112-eu-privacy.scss"
-      ],
-      "name": "firefox_whatsnew_112_eu_privacy"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-113-eu.scss"
-      ],
-      "name": "firefox_whatsnew_113_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-113-en.scss"
-      ],
-      "name": "firefox_whatsnew_113_en"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-114-eu.scss"
       ],
       "name": "firefox_whatsnew_114_eu"
@@ -502,6 +430,30 @@
         "css/firefox/whatsnew/whatsnew-115-eu-vpn.scss"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-eu-ctd.scss"
+      ],
+      "name": "firefox_whatsnew_115_eu_ctd"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-eu-mobile.scss"
+      ],
+      "name": "firefox_whatsnew_115_eu_mobile"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-116-eu.scss"
+      ],
+      "name": "firefox_whatsnew_116_eu"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-116-na.scss"
+      ],
+      "name": "firefox_whatsnew_116_na"
     },
     {
       "files": [
@@ -697,13 +649,6 @@
         "css/mozorg/moss.scss"
       ],
       "name": "moss"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/mobile.scss"
-      ],
-      "name": "firefox-mobile"
     },
     {
       "files": [
@@ -932,6 +877,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome15.scss"
+      ],
+      "name": "firefox_welcome_page15"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -987,11 +938,36 @@
     {
       "files": [
         "css/products/vpn/components/affiliate.scss",
+        "css/products/vpn/common-refresh.scss"
+      ],
+      "name": "mozilla-vpn-common-refresh"
+    },
+    {
+      "files": [
+        "css/products/vpn/landing-refresh.scss"
+      ],
+      "name": "mozilla-vpn-landing-refresh"
+    },
+    {
+      "files": [
+        "css/products/vpn/features.scss"
+      ],
+      "name": "mozilla-vpn-features"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/affiliate.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-basic.scss",
         "css/products/vpn/common.scss"
       ],
       "name": "mozilla-vpn-pricing"
+    },
+    {
+      "files": [
+        "css/products/vpn/pricing-refresh.scss"
+      ],
+      "name": "mozilla-vpn-pricing-refresh"
     },
     {
       "files": [
@@ -1202,9 +1178,15 @@
     },
     {
       "files":[
-        "css/mozorg/diversity/2021/diversity-2021.scss"
+        "css/mozorg/diversity/diversity.scss"
       ],
-      "name": "diversity-2021"
+      "name": "diversity"
+    },
+    {
+      "files":[
+        "css/mozorg/sustainability.scss"
+      ],
+      "name": "sustainability"
     },
     {
       "files":[
@@ -1259,6 +1241,30 @@
         "css/mozorg/rise25.scss"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "css/firefox/challenge-the-default/index.scss"
+      ],
+      "name": "challenge-the-default"
+    },
+    {
+      "files": [
+        "css/products/relay/landing.scss"
+      ],
+      "name": "relay-landing"
+    },
+    {
+      "files": [
+        "css/products/relay/faq.scss"
+      ],
+      "name": "relay-faq"
+    },
+    {
+      "files": [
+        "css/products/relay/waitlist.scss"
+      ],
+      "name": "relay-waitlist"
     }
   ],
   "js": [
@@ -1323,27 +1329,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-110-experiment-en.es6.js"
+        "js/firefox/welcome/welcome15-experiment.es6.js"
       ],
-      "name": "firefox_whatsnew_110_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-features.js"
-      ],
-      "name": "firefox_whatsnew_110_features"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-experiment-en.es6.js"
-      ],
-      "name": "firefox_whatsnew_112_en_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-features.js"
-      ],
-      "name": "firefox_whatsnew_112_features"
+      "name": "firefox_welcome_page15_experiment"
     },
     {
       "files": [
@@ -1443,13 +1431,6 @@
     {
       "files": [
         "js/base/send-to-device.es6.js",
-        "js/firefox/mobile/mobile.es6.js"
-      ],
-      "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
         "js/firefox/browsers/mobile.es6.js"
       ],
       "name": "firefox-browsers-mobile"
@@ -1514,13 +1495,6 @@
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "js/base/mozilla-pixel.js",
-        "js/base/mozilla-pixel-init.js"
-      ],
-      "name": "firefox_new_pixel"
     },
     {
       "files": [
@@ -1605,48 +1579,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-110-en.js"
-      ],
-      "name": "firefox_whatsnew_110_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-eu.js"
-      ],
-      "name": "firefox_whatsnew_110_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-110-experiment-de.es6.js"
-      ],
-      "name": "firefox_whatsnew_110_experiment_de"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-111-en.js"
-      ],
-      "name": "firefox_whatsnew_111_en"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-112-eu-privacy.js"
-      ],
-      "name": "firefox_whatsnew_112_eu_privacy"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-113-eu.js"
-      ],
-      "name": "firefox_whatsnew_113_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-113-en.js"
-      ],
-      "name": "firefox_whatsnew_113_en"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/whatsnew-115-eu-vpn.js"
       ],
       "name": "firefox_whatsnew_115_eu_vpn"
@@ -1656,6 +1588,36 @@
         "js/firefox/whatsnew/whatsnew-115-experiment-eu-vpn.es6.js"
       ],
       "name": "firefox_whatsnew_115_experiment_eu_vpn"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-115-na-win7.js"
+      ],
+      "name": "firefox_whatsnew_115_na_win7"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-na-windows.scss"
+      ],
+      "name": "firefox_whatsnew_115_na_windows"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-115-na-addons.scss"
+      ],
+      "name": "firefox_whatsnew_115_na_addons"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-116-eu.js"
+      ],
+      "name": "firefox_whatsnew_116_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-116-na.js"
+      ],
+      "name": "firefox_whatsnew_116_na"
     },
     {
       "files": [
@@ -1861,6 +1823,12 @@
     },
     {
       "files": [
+        "js/products/vpn/landing-refresh-experiment.es6.js"
+      ],
+      "name": "mozilla-vpn-landing-refresh-exp"
+    },
+    {
+      "files": [
         "js/products/vpn/affiliate-init.es6.js"
       ],
       "name": "mozilla-vpn-affiliate"
@@ -1916,12 +1884,6 @@
     },
     {
       "files": [
-        "js/mozorg/home/includes/ijustine-modal-video.js"
-      ],
-      "name": "ijustine-promo"
-    },
-    {
-      "files": [
         "js/privacy/data-preferences-cookie.es6.js",
         "js/privacy/data-preferences-init.es6.js"
       ],
@@ -1967,6 +1929,20 @@
         "js/mozorg/rise25.js"
       ],
       "name": "rise-25"
+    },
+    {
+      "files": [
+        "js/firefox/challenge-the-default/challenge-the-default.es6.js",
+        "js/firefox/challenge-the-default/animate-pop-in.es6.js",
+        "js/firefox/challenge-the-default/device-detect.es6.js"
+      ],
+      "name": "challenge-the-default"
+    },
+    {
+      "files": [
+        "js/products/relay/waitlist.es6.js"
+      ],
+      "name": "relay-waitlist"
     }
   ]
 }

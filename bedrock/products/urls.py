@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.urls import path
 
 from bedrock.mozorg.util import page
@@ -10,6 +11,7 @@ from bedrock.products import views
 urlpatterns = (
     path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
     path("vpn/pricing/", views.vpn_pricing_page, name="products.vpn.pricing"),
+    path("vpn/features/", views.vpn_features_page, name="products.vpn.features"),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
     # Pages that do not use allowed_countries or default_monthly_price contexts
     path("vpn/desktop/", views.VPNDesktopView.as_view(), name="products.vpn.platforms.desktop"),
@@ -35,3 +37,14 @@ urlpatterns = (
         name="products.vpn.resource-center.article",
     ),
 )
+
+if settings.DEV:
+    urlpatterns += (
+        path("relay/", views.relay_landing_page, name="products.relay.landing"),
+        path("relay/waitlist/", view=views.relay_premium_waitlist__page, name="products.relay.waitlist.premium"),
+        path("relay/waitlist/phone/", view=views.relay_phone_waitlist__page, name="products.relay.waitlist.phone"),
+        path("relay/waitlist/bundle/", view=views.relay_bundle_waitlist__page, name="products.relay.waitlist.bundle"),
+        page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
+        path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
+        path("relay/pricing/", views.relay_pricing_page, name="products.relay.pricing"),
+    )

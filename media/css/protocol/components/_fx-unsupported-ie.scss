@@ -1,0 +1,73 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+/* !important used for strict download link enforcement */
+/* stylelint-disable declaration-no-important, selector-class-pattern  */
+
+// Conditional Firefox download buttons on unsupported
+// operating system versions (issue #13317)
+.fx-unsupported-message {
+    display: none !important;
+    text-align: center;
+
+    .fx-unsupported-message-all-link {
+        @include text-body-xs;
+        display: block;
+        margin-top: $spacing-md;
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .download-link {
+        text-align: center;
+    }
+}
+
+// Hide Firefox desktop download buttons
+.c-button-download-thanks-link,
+.download-button .download-list {
+    display: none !important;
+}
+
+// Keep showing Firefox mobile download buttons
+.download-button-android .download-list,
+.download-button-ios .download-list {
+    display: block !important;
+}
+
+// Hide Firefox download button in the navigation as there's
+// too little space to display messaging.
+.c-navigation .c-navigation-shoulder .c-button-download-thanks {
+    display: none !important;
+}
+
+// Hide Firefox Win64 ESR download button by default.
+.fx-unsupported-message.win .download-link.os_win64 {
+    display: none !important;
+}
+
+// Show unsupported message with Firefox ESR download button.
+.download-button .fx-unsupported-message.win,
+.c-button-download-thanks .fx-unsupported-message.win {
+    display: block !important;
+}
+
+// Show Firefox Win32 ESR download buttons for 64-bit CPUs.
+.fx-unsupported-message.win .download-link.os_win {
+    display: inline-block !important;
+}
+
+/* stylelint-enable */

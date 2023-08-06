@@ -25,4 +25,9 @@ redirectpatterns = (
     redirect(r"^privacy/(mozilla-vpn|firefox-relay)/?$", "privacy.notices.subscription-services"),
     # issue 12935
     redirect(r"^privacy/facebook/?$", "privacy.archive.facebook-2023-04"),
+    # issue 13272
+    redirect(r"^privacy/firefox-private-network/?$", "privacy.archive.firefox-private-network-notice-2023-06"),
+    redirect(r"^privacy/betterweb/?$", "privacy.archive.firefox-betterweb-2023-06"),
+    redirect(r"^privacy/firefox-fire-tv/?$", "privacy.archive.firefox-fire-tv-2023-06"),
+    redirect(r"^privacy/firefox-reality/?$", "privacy.archive.firefox-reality-notice-2023-06"),
 )

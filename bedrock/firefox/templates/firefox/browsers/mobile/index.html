@@ -72,7 +72,17 @@
 
   <section class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile/index/firefox-android.png', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '263'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/mobile/index/firefox-android.png',
+        srcset={
+          'img/firefox/browsers/mobile/index/firefox-android-high-res.png': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '263'
+        }
+      ) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.android') }}" data-cta-type="link" data-cta-text="Firefox for Android">{{ ftl('browsers-mobile-firefox-for-android') }}</a></h2>
       <p>{{ ftl('browsers-mobile-infinitely-customizable-private') }}</p>
 
@@ -84,7 +94,17 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile/index/firefox-ios.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '218'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/mobile/index/firefox-ios.jpg',
+        srcset={
+          'img/firefox/browsers/mobile/index/firefox-ios-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '218'
+        }
+      ) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-type="link" data-cta-text="Firefox for iOS">{{ ftl('browsers-mobile-firefox-for-ios') }}</a></h2>
       <p>{{ ftl('browsers-mobile-get-enhanced-tracking-protection') }}</p>
 
@@ -96,7 +116,17 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile/index/firefox-focus.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '218'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/mobile/index/firefox-focus.jpg',
+        srcset={
+          'img/firefox/browsers/mobile/index/firefox-focus-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '218'
+        }
+      ) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Firefox Focus">{{ ftl('browsers-mobile-firefox-focus') }}</a></h2>
       <p>{{ ftl('browsers-mobile-looking-for-a-streamlined') }}</p>
 

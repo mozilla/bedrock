@@ -80,14 +80,34 @@
 
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/browsers/chromebook/mobile.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '436', 'height': '464'}) }}
+        {{ resp_img(
+          url='img/firefox/browsers/chromebook/mobile.png',
+          srcset={
+            'img/firefox/browsers/chromebook/mobile-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-billboard-image',
+            'width': '436',
+            'height': '464'
+          }
+        ) }}
 
         <p>{{ ftl('browsers-chromebook-install-firefox-from') }}</p>
         {{ google_play_button(href=android_url, id='playStoreLink') }}
       </div>
 
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/browsers/chromebook/addon.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '436', 'height': '464'}) }}
+        {{ resp_img(
+          url='img/firefox/browsers/chromebook/addon.png',
+          srcset={
+            'img/firefox/browsers/chromebook/addon-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-billboard-image',
+            'width': '436',
+            'height': '464'
+          }
+        ) }}
 
         <p>{{ ftl('browsers-chromebook-install-firefox-as', url='href="https://support.mozilla.org/kb/run-firefox-chromeos?utm_source=www.mozilla.org-firefox-browsers-chromebook&amp;utm_medium=referral&amp;utm_campaign=seo" rel="external noopener" data-cta-text="Install Firefox for Chromebook" data-cta-type="link"'|safe) }}</p>
       </div>

@@ -266,6 +266,9 @@ newsletters-add-your-voice = Add your voice to petitions, events and initiatives
 newsletters-new-product-testing = New Product Testing
 
 # Description for the newsletter in Newsletter subscription page (New Product Testing)
+newsletters-help-us-make-a-better-v2 = Help us make a better { -brand-name-mozilla } for you by test-driving our latest products and features.
+
+# Obsolete string
 newsletters-help-us-make-a-better = Help us make a better { -brand-name-firefox } for you by test-driving our latest products and features.
 
 # Name for the newsletter in Newsletter subscription page
@@ -408,6 +411,18 @@ newsletters-webmaker = { -brand-name-webmaker }
 
 # Description for the newsletter in Newsletter subscription page (Webmaker)
 newsletters-special-announcements-helping-you = Special announcements helping you get the most out of { -brand-name-webmaker }.
+
+# Name for the newsletter in Newsletter subscription page (Firefox Accounts)
+newsletters-firefox-accounts = { -brand-name-firefox-accounts }
+
+# Description for the newsletter in Newsletter subscription page (Firefox Accounts)
+newsletters-get-tips-from-mozilla = Get tips from { -brand-name-mozilla } on how to get the most out of your account.
+
+# Name for the newsletter in Newsletter subscription page (Welcome emails)
+newsletters-welcome-emails = Welcome emails
+
+# Description for the newsletter in Newsletter subscription page (Welcome emails)
+newsletter-welcome-emails-that-get-you = Welcome emails that get you started using our products and services.
 
 # Name for the newsletter in Newsletter subscription page
 newsletters-android = { -brand-name-android }

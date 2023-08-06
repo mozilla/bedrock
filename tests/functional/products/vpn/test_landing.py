@@ -31,7 +31,7 @@ from pages.products.vpn.landing import VPNLandingPage
     ],
 )
 def test_vpn_available_in_country(country, base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params=f"?geo={country}").open()
+    page = VPNLandingPage(selenium, base_url, locale="de", params=f"?geo={country}").open()
     # Hero
     assert not page.is_join_waitlist_hero_button_displayed
     assert page.is_get_vpn_hero_button_displayed
@@ -65,7 +65,7 @@ def test_vpn_available_in_country(country, base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_vpn_not_available_in_country(base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params="?geo=cn").open()
+    page = VPNLandingPage(selenium, base_url, locale="de", params="?geo=cn").open()
     # Hero
     assert page.is_join_waitlist_hero_button_displayed
     assert not page.is_get_vpn_hero_button_displayed

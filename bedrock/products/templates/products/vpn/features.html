@@ -1,0 +1,416 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import picto, split with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_cta_refresh, vpn_conditional_cta_refresh with context %}
+
+{% extends "products/vpn/base.html" %}
+
+{% block page_title_full %}Features - Mozilla VPN{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_desc %}{% endblock %}
+
+{% block body_id %}mozilla-vpn-features{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_campaign = 'vpn-features-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto')}}
+  {{ css_bundle('mozilla-vpn-common-refresh') }}
+  {{ css_bundle('mozilla-vpn-features') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with custom_nav_cta=vpn_nav_cta_refresh() %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'products/vpn/includes/subnav-refresh.html' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <header class="c-features-main-header mzp-l-content mzp-t-content-xl">
+    <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
+    <h2 class="c-page-title t-large">Features that protect <br>your life online</h2>
+  </header>
+
+  <section class="c-convenient t-content-body mzp-l-content mzp-t-content-xl">
+    <h2 class="c-section-title">Convenient</h2>
+
+    <ul class="mzp-l-columns mzp-t-columns-two">
+      <li class="c-feature-block">
+        <img src="{{ static('img/products/vpn/features/icons/location.svg') }}" width="120" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            More than {{ connect_servers }} servers in {{ connect_countries }}+ countries
+          </h3>
+          <p>
+            <a href="https://mullvad.net/servers/" rel="external noopener" target="_blank">
+              See our list of servers.
+            </a>
+          </p>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img src="{{ static('img/products/vpn/features/icons/devices.svg') }}" width="120" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            Connect up to {{ connect_devices }} devices
+          </h3>
+          <p>
+            Supported on Windows, macOS, Android, iOS and Linux operating systems.
+          </p>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img src="{{ static('img/products/vpn/features/icons/restrictions.svg') }}" width="120" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            No bandwidth restrictions or throttling
+          </h3>
+          <p>
+            Including no data cap or speed limit.
+          </p>
+        </div>
+      </li>
+      <li class="c-feature-block">
+        <img src="{{ static('img/products/vpn/features/icons/speed.svg') }}" width="120" alt="">
+        <div class="c-feature-block-detail">
+          <h3 class="c-feature-title">
+            Fast network speeds even while gaming
+          </h3>
+          <p>
+            Mozilla VPN uses <a href="https://mullvad.net/help/why-wireguard/" rel="external noopener" target="_blank">Wireguard</a>™,
+            one of the most performant VPN protocols.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  {{ vpn_conditional_cta_refresh('post-convenient') }}
+
+  <section class="c-secure t-content-body mzp-l-content mzp-t-content-xl">
+    <h2 class="c-section-title">Secure</h2>
+
+    <ul class="mzp-l-columns mzp-t-columns-three">
+      {% call picto(
+        title='Block advertisers from targeting you',
+        image=resp_img(
+          url='img/products/vpn/features/icons/adblock.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Mozilla VPN helps you automatically block ads and ad trackers from seeing
+          your online activity.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Encrypt all your internet traffic',
+        image=resp_img(
+          url='img/products/vpn/features/icons/encrypt.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '88',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Mozilla VPN protects all of the apps on your device, not just your browser.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Stronger malware protection',
+        image=resp_img(
+          url='img/products/vpn/features/icons/malware.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '70',
+            'height': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Mozilla VPN prevents you from downloading malware from known unsafe sources.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Super-private mode: route traffic through two locations',
+        image=resp_img(
+          url='img/products/vpn/features/icons/multihop.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Our <a href="https://support.mozilla.org/kb/multi-hop-encrypt-your-data-twice-enhanced-security{{ _params }}" rel="external noopener" target="_blank">multi-hop feature</a> gives you an extra security boost.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Support for custom DNS',
+        image=resp_img(
+          url='img/products/vpn/features/icons/dns.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '72',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          With Mozilla VPN, you can keep your traffic protected and still route your DNS
+          queries wherever you prefer. <a href="https://support.mozilla.org/kb/how-do-i-change-my-dns-settings{{ _params }}" rel="external noopener" target="_blank">Learn more about custom DNS support</a>.
+        </p>
+      {% endcall %}
+    </ul>
+  </section>
+
+  {{ vpn_conditional_cta_refresh('post-secure') }}
+
+  <h2 class="c-section-title">Flexible</h2>
+
+  {% call split(
+    block_class='c-server-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    image=resp_img(
+      url='img/products/vpn/features/server-locations-400.png',
+      srcset={
+        'img/products/vpn/features/server-locations-400.png': '400w',
+        'img/products/vpn/features/server-locations-600.png': '600w',
+        'img/products/vpn/features/server-locations-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '401',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+    <h2>Personalized server location recommendations</h2>
+
+    <p>
+      We’ll suggest which servers near you will ensure the fastest, most reliable
+      internet connection.
+    </p>
+  {% endcall %}
+
+  {% call split(
+    block_class='c-choose-apps t-content-body mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    image=resp_img(
+      url='img/products/vpn/features/apps-400.png',
+      srcset={
+        'img/products/vpn/features/apps-400.png': '400w',
+        'img/products/vpn/features/apps-600.png': '600w',
+        'img/products/vpn/features/apps-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '401',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+    <h2>Personalize which apps get VPN protection</h2>
+
+    <p>
+      Easily exclude apps from VPN protection — no need to disconnect your device
+      from Mozilla VPN. Available in Windows, Android and Linux devices.
+    </p>
+  {% endcall %}
+
+  {% call split(
+    block_class='c-tab-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    image=resp_img(
+      url='img/products/vpn/features/containers-400.png',
+      srcset={
+        'img/products/vpn/features/containers-400.png': '400w',
+        'img/products/vpn/features/containers-600.png': '600w',
+        'img/products/vpn/features/containers-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '401',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+    <h2>Set different locations for each tab in Firefox</h2>
+
+    <p>
+      Combine Mozilla VPN with the Multi-Account Containers Firefox extension and
+      set different VPN locations per Firefox tab.
+      <a href="https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn{{ _params }}" rel="external noopener" target="_blank">Learn how</a>.
+    </p>
+  {% endcall %}
+
+  {{ vpn_conditional_cta_refresh('post-flexible') }}
+
+  <section class="c-trust t-content-body mzp-l-content mzp-t-content-xl">
+    <h2 class="c-section-title">Trustworthy</h2>
+
+    <ul class="mzp-l-columns mzp-t-columns-three">
+      {% call picto(
+        title='30-day money-back guarantee',
+        image=resp_img(
+          url='img/products/vpn/features/icons/guarantee.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '51',
+            'height': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Plus 24/7 customer support.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='We never log, track or share your network data',
+        image=resp_img(
+          url='img/products/vpn/features/icons/eye.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '72',
+            'height': '55',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Simply put, we don’t collect your personal browsing information.
+          Here’s our <a href="{{ url('privacy.notices.subscription-services') }}">
+          easy-to-read privacy policy</a>.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Built transparently in open source',
+        image=resp_img(
+          url='img/products/vpn/features/icons/source.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '58',
+            'height': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          Mozilla VPN is made with open-source code, meaning that all the
+          code is publicly accessible. See our
+          <a href="https://github.com/mozilla-mobile/mozilla-vpn-client" rel="external noopener" target="_blank">
+          Github repository</a>.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='Reviewed by 3rd-party security experts',
+        image=resp_img(
+          url='img/products/vpn/features/icons/reviewed.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '46',
+            'height': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          We’ve been audited by Cure53, a leading cybersecurity auditing firm.
+          <a href="https://blog.mozilla.org/en/mozilla/news/mozilla-vpn-completes-independent-security-audit-by-cure53/{{ _params }}" rel="external noopener" target="_blank">See the report here</a>.
+        </p>
+      {% endcall %}
+
+      {% call picto(
+        title='People over profits',
+        image=resp_img(
+          url='img/products/vpn/features/icons/people.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '66',
+            'height': '62',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+        base_el='li'
+      ) %}
+        <p>
+          We’re backed by the <a href="https://foundation.mozilla.org{{ _params }}" rel="external noopener" target="_blank">Mozilla Foundation</a>,
+          a non-profit fighting to keep the web open and healthy for all people.
+        </p>
+      {% endcall %}
+    </ul>
+  </section>
+
+  {{ vpn_conditional_cta_refresh('footer') }}
+
+</main>
+{% endblock %}

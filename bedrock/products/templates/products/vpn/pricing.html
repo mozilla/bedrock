@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_nav_cta_link, vpn_content_media with context %}
+{% from "products/vpn/includes/macros.html" import vpn_content_media with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -54,7 +54,17 @@
     {% else %}
       {% call vpn_content_media(
         heading=ftl('vpn-shared-countries-coming-soon', countries=available_countries),
-        image_url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+        image=resp_img(
+          url='img/products/vpn/landing/vpn-cntwell-05-v2.png',
+          srcset={
+            'img/products/vpn/landing/vpn-cntwell-05-v2-high-res.png': '2x'
+          },
+          optional_attributes={
+            'width': '480',
+            'height': '480',
+            'loading': 'lazy'
+          }
+        ),
         class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
       ) %}
 
@@ -79,12 +89,6 @@
 
 </main>
 
-{% endblock %}
-
-{% block glean %}
-  {% if switch('glean-analytics') %}
-    {{ js_bundle('glean') }}
-  {% endif %}
 {% endblock %}
 
 {% block js %}

@@ -81,7 +81,18 @@
           <ul class="mzp-c-inline-list">
             <li id="topic-firefox"><img src="{{ static('img/foundation/annualreport/2011/logo-firefox.png') }}" alt="" width="162" height="162">Firefox</li>
             <li id="topic-firefoxos"><img src="{{ static('img/foundation/annualreport/2011/logo-firefoxos.png') }}" alt="" width="200" height="185">Firefox OS</li>
-            <li id="topic-webmaker">{{ high_res_img('img/foundation/annualreport/2011/logo-webmaker.png', {'alt': '', 'width': '170', 'height': '170'}) }}Webmaker</li>
+            <li id="topic-webmaker">
+              {{ resp_img(
+                url='img/foundation/annualreport/2011/logo-webmaker.png',
+                srcset={
+                  'img/foundation/annualreport/2011/logo-webmaker-high-res.png': '2x'
+                },
+                optional_attributes={
+                  'width': '170',
+                  'height': '170'
+                }
+              ) }}Webmaker
+            </li>
           </ul>
 
           <div class="overlay">

@@ -21,9 +21,33 @@ from bedrock.products import views
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
-    def test_vpn_landing_page_template(self, render_mock):
+    def test_vpn_landing_page_template_us(self, render_mock):
         req = RequestFactory().get("/products/vpn/")
         req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing.html"
+
+    def test_vpn_landing_page_variant_1_template(self, render_mock):
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=1")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing.html"
+
+    def test_vpn_landing_page_variant_2_template(self, render_mock):
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing-refresh.html"
+
+    def test_vpn_landing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/")
+        req.locale = "de"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
@@ -124,9 +148,17 @@ class TestVPNLandingPage(TestCase):
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNPricingPage(TestCase):
-    def test_vpn_pricing_page_template(self, render_mock):
+    def test_vpn_pricing_page_template_us(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/")
         req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/pricing-refresh.html"
+
+    def test_vpn_pricing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/")
+        req.locale = "de"
         view = views.vpn_pricing_page
         view(req)
         template = render_mock.call_args[0][1]
@@ -209,7 +241,7 @@ class TestVPNDownloadPage(TestCase):
         self.assertEqual(ctx["mac_download_url"], "https://vpn.mozilla.org/r/vpn/download/mac")
         self.assertEqual(ctx["linux_download_url"], "https://vpn.mozilla.org/r/vpn/download/linux")
         self.assertEqual(ctx["android_download_url"], "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn")
-        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738")
+        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/mozilla-vpn/id1489407738")
 
 
 class TestVPNResourceCenterHelpers(TestCase):

@@ -92,10 +92,6 @@
     position: relative;
     text-align: center;
     z-index: 2;
-
-    p {
-        margin-bottom: 0;
-    }
 }
 
 .c-secondary-cta-title {
@@ -129,6 +125,17 @@
     .c-secondary-cta-title {
         @include font-firefox;
         background-position: left 35px;
+    }
+
+    .fx-unsupported .c-secondary-cta {
+        .fx-unsupported-message {
+            @include bidi(((text-align, left, right),));
+        }
+
+        .fx-privacy-link,
+        .mzp-c-button-download-privacy-link {
+            @include bidi(((text-align, left, right),));
+        }
     }
 }
 

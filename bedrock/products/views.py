@@ -20,7 +20,12 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
-from bedrock.products.forms import VPNWaitlistForm
+from bedrock.products.forms import (
+    RelayBundleWaitlistForm,
+    RelayPhoneWaitlistForm,
+    RelayPremiumWaitlistForm,
+    VPNWaitlistForm,
+)
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 
@@ -35,9 +40,20 @@ def vpn_available(request):
     return country in country_list
 
 
+def relay_available(product, request):
+    country = get_country_from_request(request)
+    if product == "relay-bundle":
+        country_list = settings.VPN_COUNTRY_CODES
+    elif product == "relay-phone":
+        country_list = settings.RELAY_PHONE_COUNTRY_CODES
+    else:
+        country_list = settings.RELAY_EMAIL_COUNTRY_CODES
+
+    return country in country_list
+
+
 @require_safe
 def vpn_landing_page(request):
-    template_name = "products/vpn/landing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
@@ -45,6 +61,24 @@ def vpn_landing_page(request):
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
+
+    entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
+    entrypoint_variation = request.GET.get("entrypoint_variation", None)
+
+    # ensure experiment parameters matches pre-defined values
+    if entrypoint_variation not in ["1", "2"]:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != "vpn-landing-refresh":
+        entrypoint_variation = None
+
+    if request.locale == "en-US" and entrypoint_experiment:
+        if entrypoint_variation == "2":
+            template_name = "products/vpn/landing-refresh.html"
+        else:
+            template_name = "products/vpn/landing.html"
+    else:
+        template_name = "products/vpn/landing.html"
 
     if switch("vpn-wave-vi"):
         available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
@@ -64,13 +98,18 @@ def vpn_landing_page(request):
 
 @require_safe
 def vpn_pricing_page(request):
-    template_name = "products/vpn/pricing.html"
+    template_name = "products/vpn/pricing-refresh.html" if request.locale == "en-US" else "products/vpn/pricing.html"
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
+    variant = request.GET.get("v", None)
+
+    # ensure variant matches pre-defined value
+    if variant not in ["1", "2"]:
+        variant = None
 
     if switch("vpn-wave-vi"):
         available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
@@ -82,6 +121,23 @@ def vpn_pricing_page(request):
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
+        "variant": variant,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def vpn_features_page(request):
+    template_name = "products/vpn/features.html"
+    ftl_files = ["products/vpn/shared"]
+    vpn_available_in_country = vpn_available(request)
+
+    context = {
+        "vpn_available": vpn_available_in_country,
+        "connect_servers": settings.VPN_CONNECT_SERVERS,
+        "connect_countries": settings.VPN_CONNECT_COUNTRIES,
+        "connect_devices": settings.VPN_CONNECT_DEVICES,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
@@ -96,7 +152,7 @@ def vpn_download_page(request):
     mac_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/mac"
     linux_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/linux"
     android_download_url = "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn"
-    ios_download_url = "https://apps.apple.com/us/app/firefox-private-network-vpn/id1489407738"
+    ios_download_url = "https://apps.apple.com/us/app/mozilla-vpn/id1489407738"
     block_download = country in settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES
 
     context = {
@@ -364,3 +420,100 @@ def resource_center_article_view(request, slug):
             "products/vpn/shared",
         ],
     )
+
+
+@require_safe
+def relay_landing_page(request):
+    template_name = "products/relay/landing.html"
+    ftl_files = [
+        "products/relay/landing",
+        "products/relay/features",
+        "products/relay/matrix",
+        "products/relay/faq",
+        "products/relay/bundle",
+        "products/relay/shared",
+    ]
+    relay_email_available_in_country = relay_available("relay-email", request)
+    relay_phone_available_in_country = relay_available("relay-phone", request)
+    vpn_available_in_country = vpn_available(request)
+    country = get_country_from_request(request)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+
+    context = {
+        "email_available": relay_email_available_in_country,
+        "phone_available": relay_phone_available_in_country,
+        "bundle_available": relay_bundle_available_in_country,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_premium_page(request):
+    template_name = "products/relay/premium.html"
+    ftl_files = ["products/relay/premium", "products/relay/features", "products/relay/matrix", "products/relay/bundle", "products/relay/shared"]
+    relay_email_available_in_country = relay_available("relay-email", request)
+    relay_phone_available_in_country = relay_available("relay-phone", request)
+    vpn_available_in_country = vpn_available(request)
+    country = get_country_from_request(request)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+
+    context = {
+        "email_available": relay_email_available_in_country,
+        "phone_available": relay_phone_available_in_country,
+        "bundle_available": relay_bundle_available_in_country,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_pricing_page(request):
+    template_name = "products/relay/pricing.html"
+    ftl_files = ["products/relay/matrix", "products/relay/shared"]
+    relay_email_available_in_country = relay_available("relay-email", request)
+    relay_phone_available_in_country = relay_available("relay-phone", request)
+    vpn_available_in_country = vpn_available(request)
+    country = get_country_from_request(request)
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+
+    context = {
+        "email_available": relay_email_available_in_country,
+        "phone_available": relay_phone_available_in_country,
+        "bundle_available": relay_bundle_available_in_country,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_premium_waitlist__page(request):
+    ftl_files = ["products/relay/waitlist", "products/relay/shared"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = RelayPremiumWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-email"}
+
+    return l10n_utils.render(request, "products/relay/waitlist/premium.html", ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_bundle_waitlist__page(request):
+    ftl_files = ["products/relay/waitlist", "products/relay/shared"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = RelayBundleWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-bundle"}
+
+    return l10n_utils.render(request, "products/relay/waitlist/bundle.html", ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def relay_phone_waitlist__page(request):
+    ftl_files = ["products/relay/waitlist", "products/relay/shared"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = RelayPhoneWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-phone"}
+
+    return l10n_utils.render(request, "products/relay/waitlist/phone.html", ctx, ftl_files=ftl_files)

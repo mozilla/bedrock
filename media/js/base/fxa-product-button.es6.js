@@ -14,7 +14,7 @@ const allowedList = [
     'https://guardian-dev.herokuapp.com/',
     'https://monitor.firefox.com/',
     'https://relay.firefox.com/',
-    'https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/',
+    'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
     'https://vpn.mozilla.org/'
 ];
 

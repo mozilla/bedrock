@@ -22,7 +22,9 @@ privacy-faq-the-following-questions-and = The following questions and answers sh
 privacy-faq-i-use-firefox-for-almost-everything = I use { -brand-name-firefox } for almost everything on the web. You folks at { -brand-name-mozilla } must know a ton of stuff about me, right?
 privacy-faq-firefox-the-web-browser-that = { -brand-name-firefox }, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information stays on your device. { -brand-name-mozilla }, the company that makes { -brand-name-firefox }, doesn’t collect it (unless you ask us to).
 privacy-faq-really-you-dont-collect-my-browsing = Really, you don’t collect my browsing history?
+privacy-faq-mozilla-doesnt-know-as-much-v2 = { -brand-name-mozilla } doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, which allow interested users to give us insight into their web browsing. If you sync your browsing history across { -brand-name-firefox } installations, we don’t know what that history is — because it’s encrypted by your device.
 
+# Outdated string
 # Variables:
 #   $link (url) - link to https://addons.mozilla.org/firefox/addon/firefox-pioneer/
 privacy-faq-mozilla-doesnt-know-as-much = { -brand-name-mozilla } doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, such as <a href="{ $link }">{ -brand-name-firefox } Pioneer</a>, which allows interested users to give us insight into their web browsing. If you sync your browsing history across { -brand-name-firefox } installations, we don’t know what that history is — because it’s encrypted by your device.

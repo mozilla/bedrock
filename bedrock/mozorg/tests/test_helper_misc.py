@@ -196,84 +196,6 @@ class TestVideoTag(TestCase):
         assert extensions == [".webm", ".ogv"]
 
 
-@override_settings(STATIC_URL="/media/")
-@patch("bedrock.mozorg.templatetags.misc.find_static", return_value=True)
-class TestPlatformImg(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, url, optional_attributes=None):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ platform_img('{url}', {optional_attributes}) }}}}", {"request": req})
-
-    def _render_l10n(self, url):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
-
-    def test_platform_img_no_optional_attributes(self, find_static):
-        """Should return expected markup without optional attributes"""
-        markup = self._render("test.png")
-        self.assertIn('data-src-windows="/media/test-windows.png"', markup)
-        self.assertIn('data-src-mac="/media/test-mac.png"', markup)
-        markup = self._render("img/test.png")
-        self.assertIn('data-src-windows="/media/img/test-windows.png"', markup)
-        self.assertIn('data-src-mac="/media/img/test-mac.png"', markup)
-
-    def test_platform_img_with_optional_attributes(self, find_static):
-        """Should return expected markup with optional attributes"""
-        markup = self._render("test.png", {"data-test-attr": "test"})
-        self.assertIn('data-test-attr="test"', markup)
-
-    def test_platform_img_with_high_res(self, find_static):
-        """Should return expected markup with high resolution image attrs"""
-        markup = self._render("test.png", {"high-res": True})
-        self.assertIn('data-src-windows-high-res="/media/test-windows-high-res.png"', markup)
-        self.assertIn('data-src-mac-high-res="/media/test-mac-high-res.png"', markup)
-        self.assertIn('data-high-res="true"', markup)
-        markup = self._render("img/test.png", {"high-res": True})
-        self.assertIn('data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
-        self.assertIn('data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
-        self.assertIn('data-high-res="true"', markup)
-
-    def test_platform_img_with_l10n(self, find_static):
-        """Should return expected markup with l10n image path"""
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        markup = self._render("test.png", {"l10n": True})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-        markup = self._render("/img/test.png", {"l10n": True})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-
-    def test_platform_img_with_l10n_and_optional_attributes(self, find_static):
-        """
-        Should return expected markup with l10n image path and optional
-        attributes
-        """
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        markup = self._render("test.png", {"l10n": True, "data-test-attr": "test"})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-        self.assertIn('data-test-attr="test"', markup)
-
-    def test_platform_img_with_l10n_and_high_res(self, find_static):
-        """
-        Should return expected markup with l10n image path and high resolution
-        attributes
-        """
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_hr_url_win = misc.convert_to_high_res(l10n_url_win)
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        l10n_hr_url_mac = misc.convert_to_high_res(l10n_url_mac)
-        markup = self._render("test.png", {"l10n": True, "high-res": True})
-        self.assertIn('data-src-windows-high-res="' + l10n_hr_url_win + '"', markup)
-        self.assertIn('data-src-mac-high-res="' + l10n_hr_url_mac + '"', markup)
-        self.assertIn('data-high-res="true"', markup)
-
-
 class TestPressBlogUrl(TestCase):
     rf = RequestFactory()
 
@@ -423,55 +345,6 @@ class TestMozillaInstagramUrl(TestCase):
     def test_mozilla_instagram_url_other_locale(self):
         """No account for locale, fallback to default account"""
         assert self._render("es-AR") == "https://www.instagram.com/mozilla/"
-
-
-@override_settings(STATIC_URL="/media/")
-class TestHighResImg(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, url, optional_attributes=None):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ high_res_img('{url}', {optional_attributes}) }}}}", {"request": req})
-
-    def _render_l10n(self, url):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
-
-    def test_high_res_img_no_optional_attributes(self):
-        """Should return expected markup without optional attributes"""
-        expected = '<img class="" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x">'
-        markup = self._render("img/test.png")
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_optional_attributes(self):
-        """Should return expected markup with optional attributes"""
-        markup = self._render("img/test.png", {"data-test-attr": "test", "class": "logo"})
-        expected = '<img class="logo" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x" ' 'data-test-attr="test">'
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_l10n(self):
-        """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
-        self.assertEqual(markup, expected)
-
-        l10n_url = self._render_l10n("img/test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
-        self.assertEqual(markup, expected)
-
-    def test_high_res_img_with_l10n_and_optional_attributes(self):
-        """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True, "data-test-attr": "test"})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x" data-test-attr="test">'
-        self.assertEqual(markup, expected)
 
 
 @override_settings(STATIC_URL="/media/")
@@ -1228,6 +1101,7 @@ class TestPocketAdjustUrl(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(DEV=False)
 class TestRelayFxAButton(TestCase):
     rf = RequestFactory()
 

@@ -1,0 +1,43 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+@import 'components/shared';
+
+.mzp-c-details {
+    border-bottom: 1px solid rgba($color-white, 0.2);
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.c-relay-faq-wrapper {
+    background-color: #09204d;
+
+    .columns {
+        columns: 2 432px;
+        column-gap: $layout-lg;
+    }
+
+    .is-summary {
+        @include font-size(24px);
+        margin: 0;
+        padding-top: $layout-sm;
+        padding-bottom: $layout-sm;
+
+        button::before {
+            background: $url-image-expand-white top left no-repeat;
+            @include background-size(24px, 24px);
+            @include bidi(((right, 8px, left, auto),));
+            @include transition(transform 100ms ease-in-out);
+            content: '';
+            height: 24px;
+            margin-top: -12px;
+            width: 24px;
+        }
+    }
+}

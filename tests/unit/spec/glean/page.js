@@ -161,15 +161,15 @@ describe('page.js', function () {
 
         const ping = pageViewPing.testBeforeNextSubmit(async function () {
             const source = await page.queryParams['utm_source'].testGetValue();
-            expect(source).toBeUndefined();
+            expect(source).toEqual('');
 
             const campaign = await page.queryParams[
                 'utm_campaign'
             ].testGetValue();
-            expect(campaign).toBeUndefined();
+            expect(campaign).toEqual('');
 
             const medium = await page.queryParams['utm_medium'].testGetValue();
-            expect(medium).toBeUndefined();
+            expect(medium).toEqual('');
 
             const content = await page.queryParams[
                 'utm_content'
@@ -179,7 +179,7 @@ describe('page.js', function () {
             const experiment = await page.queryParams[
                 'experiment'
             ].testGetValue();
-            expect(experiment).toBeUndefined();
+            expect(experiment).toEqual('');
         });
 
         initPageView();

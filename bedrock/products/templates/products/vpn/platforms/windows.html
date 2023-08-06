@@ -45,7 +45,16 @@ alt_link_text='vpn-shared-platform-cta-button',
   heading=ftl('vpn-shared-product-name'),
   subheading=ftl('vpn-windows-hero-headline'),
   desc=ftl('vpn-windows-page-description'),
-  image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+  image=resp_img(
+    url='img/products/vpn/platforms/vpn-hero-desktop.png',
+    srcset={
+      'img/products/vpn/platforms/vpn-hero-desktop-high-res.png': '2x'
+    },
+    optional_attributes={
+      'width': '480',
+      'height': '480'
+    }
+  )
   ) %}
   <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button')
     }}</a>
@@ -58,17 +67,35 @@ alt_link_text='vpn-shared-platform-cta-button',
   <div class="mzp-l-content mzp-t-content-xl">
     {% call vpn_content_media(
     heading=ftl('vpn-shared-platform-privacy-promise'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-privacy-promise-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480'
+      }
+    ),
     class_name='vpn-content-media-right-half',
-    has_outline=True,
-    loading='eager'
+    has_outline=True
     ) %}
     <p>{{ ftl('vpn-windows-ability') }}</p>
     {% endcall %}
 
     {% call vpn_content_media(
     heading=ftl('vpn-shared-platform-what-youll-get'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-check-mark-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-left-half'
     ) %}
     <ul class="mzp-u-list-styled vpn-feature-list">
@@ -82,7 +109,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-wifi-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-public-wifi-desktop-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-right-half'
     ) %}
     <p>{{ ftl('vpn-windows-wifi-copy') }}</p>
@@ -90,7 +127,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-privacy-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-one-click-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-left-half'
     ) %}
     <p>{{ ftl('vpn-windows-privacy-copy') }}</p>
@@ -98,7 +145,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-servers-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-globe.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-globe-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-right-half'
     ) %}
     <p>{{ ftl('vpn-windows-servers-copy', servers=vpn_servers, countries=vpn_countries) }}</p>
@@ -106,7 +163,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-devices-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-devices.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-devices-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-left-half'
     ) %}
     <p>{{ ftl('vpn-windows-devices-copy', devices=vpn_devices) }}</p>
@@ -114,7 +181,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-speed-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-speed-guage-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-right-half'
     ) %}
     <p>{{ ftl('vpn-windows-speed-copy') }}</p>
@@ -122,7 +199,17 @@ alt_link_text='vpn-shared-platform-cta-button',
 
     {% call vpn_content_media(
     heading=ftl('vpn-windows-log-headline'),
-    image_url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+    image=resp_img(
+      url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
+      srcset={
+        'img/products/vpn/platforms/vpn-cntwell-privacy-high-res.png': '2x'
+      },
+      optional_attributes={
+        'width': '480',
+        'height': '480',
+        'loading': 'lazy'
+      }
+    ),
     class_name='vpn-content-media-left-half'
     ) %}
     <p>{{ ftl('vpn-windows-log-copy') }}</p>

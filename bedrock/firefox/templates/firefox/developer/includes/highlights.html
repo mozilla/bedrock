@@ -9,7 +9,16 @@
     {% if ftl_has_messages('firefox-developer-new-tools', 'firefox-developer-firefox-devtools-now-grays-out') %}
       <div class="c-gallery-item" id="devtools">
         <a href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools" rel="external" width="416" height="208">
-          {{ high_res_img('img/firefox/developer/hero-inactive-css.png', {'alt': ftl('firefox-developer-inactive-css'), 'class': 'highlight-image'}) }}
+          {{ resp_img(
+            url='img/firefox/developer/hero-inactive-css.png',
+            srcset={
+              'img/firefox/developer/hero-inactive-css-high-res.png': '2x'
+            },
+            optional_attributes={
+              'alt': ftl('firefox-developer-inactive-css'),
+              'class': 'highlight-image'
+            }
+          ) }}
         </a>
         <h2 class="c-title">{{ ftl('firefox-developer-new-tools') }}</h2>
         <h3 class="c-subtitle">{{ ftl('firefox-developer-inactive-css') }}</h3>

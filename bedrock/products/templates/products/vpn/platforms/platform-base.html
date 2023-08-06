@@ -31,7 +31,16 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       heading=ftl('vpn-shared-product-name'),
       subheading=subheading,
       desc=desc,
-      image_url='img/products/vpn/platforms/vpn-hero-desktop.png'
+      image=resp_img(
+        url='img/products/vpn/platforms/vpn-hero-desktop.png',
+        srcset={
+          'img/products/vpn/platforms/vpn-hero-desktop-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '480',
+          'height': '480'
+        }
+      )
       ) %}
       <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-subscribe-link')}}</a>
       <p class="guarantee-copy">

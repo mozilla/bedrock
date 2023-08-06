@@ -48,8 +48,8 @@
     "title": "{{ ftl('newsletters-drumbeat-newsgroup')|striptags }}"
   },
   "firefox-accounts-journey": {
-    "description": "{{ ftl('newsletters-get-the-most-firefox-account')|striptags }}",
-    "title": "{{ ftl('newsletters-firefox-accounts-tips')|striptags }}"
+    "description": "{{ ftl('newsletter-welcome-emails-that-get-you', fallback='newsletters-get-the-most-firefox-account')|striptags }}",
+    "title": "{{ ftl('newsletters-welcome-emails', fallback='newsletters-firefox-accounts-tips')|striptags }}"
   },
   "firefox-desktop": {
     "description": "{{ ftl('newsletters-dont-miss-the-latest')|striptags }}",
@@ -120,6 +120,10 @@
     "description": "{{ ftl('newsletters-keep-up-with-releases')|striptags }}",
     "title": "{{ ftl('newsletters-firefox-for-android')|striptags }}"
   },
+  "mozilla-accounts": {
+    "description": "{{ ftl('newsletters-get-tips-from-mozilla')|striptags }}",
+    "title": "{{ ftl('newsletters-firefox-accounts')|striptags }}"
+  },
   "mozilla-and-you": {
     "description": "{{ ftl('newsletters-get-how-tos')|striptags }}",
     "title": "{{ ftl('newsletters-firefox-news')|striptags }}"
@@ -161,7 +165,7 @@
       "title": "{{ ftl('newsletters-take-action')|striptags }}"
   },
   "test-pilot": {
-      "description": "{{ ftl('newsletters-help-us-make-a-better')|striptags }}",
+      "description": "{{ ftl('newsletters-help-us-make-a-better-v2', 'newsletters-help-us-make-a-better')|striptags }}",
       "title": "{{ ftl('newsletters-new-product-testing')|striptags }}"
   },
   "webmaker": {

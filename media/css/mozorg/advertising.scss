@@ -10,13 +10,13 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 
-.ads-header {
+.c-header {
     p {
         @include text-body-lg;
     }
 }
 
-.ads-purple-callout {
+.c-purple-callout {
     background-color: $color-purple-90;
 
     h2 {

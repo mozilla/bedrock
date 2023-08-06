@@ -39,7 +39,17 @@
     <section class="compare-details-section-summary">
       <p class="compare-details-section-intro">{{ ftl('compare-brave-just-like-the-firefox-browser') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-brave.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-brave.png',
+        srcset={
+          'img/firefox/compare/compare-browser-brave-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '544',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -164,7 +174,7 @@
             <tr>
               <th scope="row">{{ ftl('compare-shared-in-browser-screenshot-tool') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
         </tbody>
       </table>

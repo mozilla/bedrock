@@ -14,12 +14,23 @@
 <div class="gallery mgmt-foundation">
   <article id="mark-surman" data-id="mark-surman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mark-surman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/mark-surman.jpg',
+        srcset={
+          'img/mozorg/about/leadership/mark-surman-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Mark Surman</h4></figcaption>
     </figure>
 
     <div class="person-info">
-      <p class="title" itemprop="jobTitle">President and Executive Director</p>
+      <p class="title" itemprop="jobTitle">President</p>
 
       <ul class="elsewhere">
         <li><a class="url twitter" itemprop="url" rel="me external" href="https://twitter.com/msurman">@msurman</a></li>
@@ -33,10 +44,10 @@
     </div>
 
     <div class="person-bio">
-      <p>The internet is one of our most valuable public resources -- it’s Mark
+      <p>The internet is one of our most valuable public resources – it’s Mark
         Surman’s job to keep it healthy.</p>
 
-      <p>Mark is Executive Director of Mozilla Foundation, the global nonprofit that
+      <p>Mark is President of Mozilla Foundation, the global nonprofit that
         does everything from making Firefox to standing up for issues like online
         privacy. Mark is focused on fueling the broader internet health movement by
         working with citizens, technologists and civic leaders around the world.
@@ -74,12 +85,23 @@
 
   <article id="j-bob-alotta" data-id="j-bob-alotta" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/bob-alotta.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/bob-alotta.jpg',
+        srcset={
+          'img/mozorg/about/leadership/bob-alotta-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">J. Bob Alotta</h4></figcaption>
     </figure>
 
     <div class="person-info">
-      <p class="title" itemprop="jobTitle">VP of Global Programs</p>
+      <p class="title" itemprop="jobTitle">Senior Vice President, Global Programs</p>
 
       <ul class="utility">
         <li><a class="link" href="{{ url('mozorg.about.leadership.mofo') }}#j-bob-alotta">Link to this bio</a></li>
@@ -87,41 +109,57 @@
     </div>
 
     <div class="person-bio">
-      <p>J. Bob Alotta is a veteran movement builder and nonprofit executive working
-        at the intersection of technology and communities.</p>
+
+      <p>J. Bob Alotta is a veteran movement builder and executive working at the
+        intersection of technology and communities.</p>
 
       <p>Prior to joining Mozilla, Bob led the Astraea Lesbian Foundation for Justice,
         a global foundation based in New York City that provides critical resources
-        to LGBTQI+ organizations and individuals around the world. Over eight years,
-        Bob quintupled the global footprint of the organization which makes more
-        grants in the global south and east than any other funder in their sector.
-        She built a funding program aimed specifically at strengthening movements
-        by adding extra support for digital security, data use, and internet freedom
-        to otherwise “non-tech” grants. Bob worked with major funders to bring
-        money into Astraea — and to influence what else these funders invested in
-        worldwide. And, Bob built bridges between the LGBTQI+ and digital rights
-        worlds.</p>
+        to LGBTQI+ activists and artists around the world. Over eight years, they
+        quintupled the global footprint of the organization which makes more grants
+        in the global majority than any other funder in their sector. Bob specifically
+        strengthened movements by adding extra support for digital security, data
+        use, and internet freedom to otherwise “non-tech” grants. As chair of the
+        Global Philanthropy Project, Bob helped secure the largest bilateral and
+        multilateral investments to date for LGBTQI+ communities worldwide. Bob
+        was an early architect of the “feminist internet” and the creator of
+        CommsLabs, bringing queer human rights defenders and technologists together.
+        Bob builds bridges between the LGBTQI+ and digital rights worlds.</p>
 
-      <p>It was through this last bit of work that Bob met Mozilla: At MozFest and
-        as a Mozilla fellowship host organization. Now serving as Vice President,
-        Global Programs at Mozilla Foundation, Bob brings their experience both
-        building movements, and building bridges across movements. Bob works with
-        allies across the movement to develop clear goals and real momentum on
-        issues like trustworthy AI; helps Mozilla fellows and awardees become
-        stronger community organizers and leaders; and grows the diversity and
-        geographical scope across our programs, with an emphasis on expanding our
-        work outside North America.</p>
+      <p>Now serving as Senior Vice President of Global Programs at Mozilla
+        Foundation, Bob brings their experience as a movement strategist to leverage
+        the organizations’ programs to shift power back to people instead of “big”
+        tech. Through the lens of trustworthy AI, Bob has launched the African
+        Innovation Mradi, the Data Futures Lab, the Mozilla Technology Fund, the
+        Creative Media Awards, and a second phase of the Responsible Computing
+        Challenge, as well as myriad fellowship and grant-making cycles. Bob helps
+        Mozilla fellows and awardees become stronger community organizers and
+        leaders; and grows the diversity and geographical scope across our
+        programs, with an emphasis on expanding our work outside North America.
+        Bob serves as the executive producer for both MozFest and of the
+        award-winning podcast, IRL</p>
     </div>
   </article>
 
   <article id="ashley-boyd" data-id="ashley-boyd" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/ashley-boyd.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/ashley-boyd.jpg',
+        srcset={
+          'img/mozorg/about/leadership/ashley-boyd-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Ashley Boyd</h4></figcaption>
     </figure>
 
     <div class="person-info">
-      <p class="title" itemprop="jobTitle">VP of Advocacy</p>
+      <p class="title" itemprop="jobTitle">Senior Vice President of Global Advocacy</p>
 
       <ul class="elsewhere">
         <li><a class="url twitter" itemprop="url" rel="me external" href="https://twitter.com/ashleyboyd">@ashleyboyd</a></li>
@@ -140,23 +178,24 @@
         as centralization, surveillance, exclusion and other online threats
         proliferate, we need a movement to keep the web a global public resource.</p>
 
-      <p>Ashley works with other teams within Mozilla, with ally organizations and
-        with digital citizens around the world through advocacy campaigns and public
-        education initiatives.</p>
+      <p>Ashley works with other teams within Mozilla, with ally organizations
+        and with digital citizens around the world through advocacy campaigns
+        and public education initiatives.</p>
 
-      <p>Prior to joining Mozilla, Ashley was Vice President &amp; Chief Field Officer
+      <p>Prior to joining Mozilla, Ashley was Vice President & Chief Field Officer
         for MomsRising, a national grassroots organization in the U.S. As a founding
         staff member, she was instrumental in building MomsRising into an organization
         of one million grassroots supporters, 200 partner organizations and over
         20 funding partners.</p>
 
-      <p>Ashley has over two decades of experience in public interest advocacy, with
-        a specialization in effective uses of technology and public engagement. During
-        her career, she has worked with leading public interest advocacy organizations
-        in the U.S. and India including M&amp;R Strategic Services, the Advocacy
-        Institute, the Self Employed Women’s Association (India) and AmericaSpeaks.
-        She has led multi-state organizing efforts around the issues of health reform,
-        paid family leave, social security reform and the national budget.</p>
+      <p>Ashley has over two decades of experience in public interest advocacy,
+        with a specialization in effective uses of technology and public engagement.
+        During her career, she has worked with leading public interest advocacy
+        organizations in the U.S. and India including M&R Strategic Services, the
+        Advocacy Institute, the Self Employed Women’s Association (India) and
+        AmericaSpeaks. She has led multi-state organizing efforts around the
+        issues of health reform, paid family leave, social security reform and
+        the national budget.</p>
 
       <p>Ashley has a Master’s Degree in Rhetoric from the University of Maryland,
         College Park.</p>
@@ -165,12 +204,23 @@
 
   <article id="angela-plohman" data-id="angela-plohman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/angela-plohman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/angela-plohman.jpg',
+        srcset={
+          'img/mozorg/about/leadership/angela-plohman-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Angela Plohman</h4></figcaption>
     </figure>
 
     <div class="person-info">
-      <p class="title" itemprop="jobTitle">Executive Vice President</p>
+      <p class="title" itemprop="jobTitle">Chief Operating Officer</p>
 
       <ul class="elsewhere">
         <li><a class="url twitter" itemprop="url" rel="me external" href="https://twitter.com/angelaplohman">@angelaplohman</a></li>
@@ -183,29 +233,31 @@
     </div>
 
     <div class="person-bio">
-      <p>Angela Plohman is an experienced nonprofit executive and strategic operations
-        professional with a long track record of building and growing nonprofit
-        organizations and programs. She has spent close to two decades playing key
-        leadership roles in the fields of art, culture and open source technology.
-        She joined Mozilla, one of the world’s most recognizable tech-for-good
-        organizations, in 2012.</p>
+      <p>Angela Plohman is Chief Operating Officer of the Mozilla Foundation, one
+        of the world’s most recognizable tech-for-good organizations. She is an
+        experienced nonprofit executive and strategic operations professional
+        with a long track record of building and growing nonprofit organizations
+        and programs.</p>
 
-      <p>As Executive Vice President, Operations, Angela has been critical in
-        evolving the Mozilla Foundation into an advocacy and education organization;
-        more than doubling the size of the Foundation’s staff and revenue; and
-        leading the growth of its operational infrastructure. Angela also co-leads
-        Mozilla’s diversity and inclusion initiatives, and serves as Secretary on
-        the Foundation’s board of directors.</p>
+      <p>Based in Montreal, she has spent over twenty years playing key leadership
+        roles in the fields of arts and culture, community building, and technology
+        in the U.S., Canada and Europe.</p>
 
-      <p>Prior to Mozilla, she was Director of Baltan Laboratories, a laboratory
-        for art and technology based in Eindhoven, the Netherlands. Angela also
-        served in key roles at the European Cultural Foundation in Amsterdam, the
-        Blender Foundation in Amsterdam, and the Daniel Langlois Foundation for
-        Art, Science and Technology in Montreal, among others. She has written and
-        spoken extensively on art and the importance of research and production
-        spaces for artists and professionals working creatively with technology.
-        Angela holds a B.A. from the University of Winnipeg and an M.A. from
-        Concordia University.</p>
+      <p>Angela joined Mozilla in 2012. She has played many critical roles since,
+        eventually building up a team that serves as the bedrock of all of Mozilla
+        Foundation’s work. Over the last few years, she has: developed a strategy
+        and a team aimed at helping Mozilla Foundation become an effective, healthy
+        and sustainable movement building organization; and, at the same time,
+        she has played a role in supporting the Board and executive leadership
+        in growing the scope of Mozilla’s efforts. Angela also plays a critical
+        role as the Secretary and Treasurer of multiple Mozilla Boards.</p>
+
+      <p>Since 2019, she has also served on the Board of OpenMedia, a community-driven
+        organization that works to keep the Internet open, affordable, and
+        surveillance-free. She serves on the Board of the Toronto Biennial of
+        Art, and is also the President of the Board of Le Livart, a non-profit
+        organization whose mission is to democratize access to art and culture,
+        located in a former presbytery in Montreal.</p>
     </div>
   </article>
 </div>

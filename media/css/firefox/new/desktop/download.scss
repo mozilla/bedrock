@@ -619,6 +619,10 @@ button.mzp-c-cta-link {
         max-width: $content-xl + $layout-xl * 2;
     }
 
+    .c-block-body > p {
+        margin-bottom: $v-grid-md;
+    }
+
     [lang='ar'] & h2 {
         @include font-size(40px);
     }
@@ -627,8 +631,9 @@ button.mzp-c-cta-link {
         margin-bottom: $v-grid-md;
     }
 
-    p {
-        margin-bottom: $v-grid-md;
+    // issue 13317
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
     }
 }
 
@@ -936,7 +941,7 @@ button.mzp-c-cta-link {
         @include text-body-sm;
         @include bidi((
             (border-left, 1px solid $color-marketing-gray-20, border-right, 0),
-            (text-align, center, center), // needs higher specificity for RTL
+            (text-align, center, center), /* needs higher specificity for RTL*/
         ));
         border-top: 1px solid $color-marketing-gray-20;
         font-weight: normal;
@@ -1193,10 +1198,6 @@ button.mzp-c-cta-link {
             margin: 0 0 $spacing-lg;
             text-align: left;
         }
-    }
-
-    p {
-        margin-bottom: 0;
     }
 }
 

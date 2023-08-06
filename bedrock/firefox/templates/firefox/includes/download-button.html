@@ -50,6 +50,9 @@
       <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
+
+    {# ESR download buttons to display on unsupported systems: issue 13317 #}
+    {% include 'firefox/includes/download-unsupported.html' %}
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}

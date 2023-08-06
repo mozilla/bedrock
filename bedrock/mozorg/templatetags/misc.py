@@ -157,73 +157,6 @@ def field_with_attrs(bfield, **kwargs):
 
 @library.global_function
 @jinja2.pass_context
-def platform_img(ctx, url, optional_attributes=None):
-    optional_attributes = optional_attributes or {}
-    img_urls = {}
-    platforms = optional_attributes.pop("platforms", ALL_FX_PLATFORMS)
-    add_high_res = optional_attributes.pop("high-res", False)
-    is_l10n = optional_attributes.pop("l10n", False)
-
-    for platform in platforms:
-        img_urls[platform] = add_string_to_image_url(url, platform)
-        if add_high_res:
-            img_urls[platform + "-high-res"] = convert_to_high_res(img_urls[platform])
-
-    img_attrs = {}
-    for platform, image in img_urls.items():
-        if is_l10n:
-            image = l10n_img_file_name(ctx, _strip_img_prefix(image))
-
-        if find_static(image):
-            key = "data-src-" + platform
-            img_attrs[key] = static(image)
-
-    if add_high_res:
-        img_attrs["data-high-res"] = "true"
-
-    img_attrs.update(optional_attributes)
-    attrs = " ".join(f'{attr}="{val}"' for attr, val in img_attrs.items())
-
-    # Don't download any image until the javascript sets it based on
-    # data-src so we can do platform detection. If no js, show the
-    # windows version.
-    markup = (
-        '<img class="platform-img js" src="" data-processed="false" {attrs}>'
-        '<noscript><img class="platform-img win" src="{win_src}" {attrs}>'
-        "</noscript>"
-    ).format(attrs=attrs, win_src=img_attrs["data-src-windows"])
-
-    return Markup(markup)
-
-
-@library.global_function
-@jinja2.pass_context
-def high_res_img(ctx, url, optional_attributes=None):
-    if optional_attributes and optional_attributes.pop("l10n", False) is True:
-        url = _strip_img_prefix(url)
-        url_high_res = convert_to_high_res(url)
-        url = l10n_img(ctx, url)
-        url_high_res = l10n_img(ctx, url_high_res)
-    else:
-        url_high_res = convert_to_high_res(url)
-        url = static(url)
-        url_high_res = static(url_high_res)
-
-    if optional_attributes:
-        class_name = optional_attributes.pop("class", "")
-        attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
-    else:
-        class_name = ""
-        attrs = ""
-
-    # Use native srcset attribute for high res images
-    markup = f'<img class="{class_name}" src="{url}" srcset="{url_high_res} 1.5x"{attrs}>'
-
-    return Markup(markup)
-
-
-@library.global_function
-@jinja2.pass_context
 def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None):
     alt = ""
     attrs = ""
@@ -984,9 +917,9 @@ def relay_fxa_button(
     In Template
     -----------
 
-        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
+        {{ relay_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
     """
-    product_url = "https://relay.firefox.com/accounts/fxa/login/?process=login"
+    product_url = settings.RELAY_PRODUCT_URL + "accounts/fxa/login/?process=login"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )

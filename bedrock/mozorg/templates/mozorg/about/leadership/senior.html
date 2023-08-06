@@ -15,7 +15,18 @@
 <div class="gallery mgmt-corp">
   <article id="brandon-borrman" data-id="brandon-borrman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/brandon-borrman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/brandon-borrman.jpg',
+        srcset={
+          'img/mozorg/about/leadership/brandon-borrman-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Brandon Borrman</h4></figcaption>
     </figure>
 
@@ -57,7 +68,18 @@
 
   <article id="katherine-bose" data-id="katherine-bose" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/katherine-bose.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/katherine-bose.jpg',
+        srcset={
+          'img/mozorg/about/leadership/katherine-bose-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Katherine Bose</h4></figcaption>
     </figure>
 
@@ -96,9 +118,46 @@
     </div>
   </article>
 
+  <article id="ian-carmichael" data-id="ian-carmichael" class="vcard" itemscope itemtype="http://schema.org/Person">
+    <figure class="headshot">
+      {{ resp_img(
+        url='img/mozorg/about/leadership/ian-carmichael.jpg',
+        srcset={
+          'img/mozorg/about/leadership/ian-carmichael-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
+      <figcaption><h4 class="fn" itemprop="name">Ian Carmichael</h4></figcaption>
+    </figure>
+
+    <div class="person-info">
+      <p class="title" itemprop="jobTitle">SVP of Firefox</p>
+
+      <ul class="utility">
+        <li><a class="link" href="{{ url('mozorg.about.leadership.senior') }}#ian-carmichael">Link to this bio</a></li>
+      </ul>
+    </div>
+  </article>
+
   <article id="vicky-chin" data-id="vicky-chin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/vicky-chin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/vicky-chin.jpg',
+        srcset={
+          'img/mozorg/about/leadership/vicky-chin-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Vicky Chin</h4></figcaption>
     </figure>
 
@@ -132,42 +191,20 @@
     </div>
   </article>
 
-  <article id="mardi-douglass" data-id="mardi-douglass" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-    <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/mardi-douglass.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-      <figcaption><h4 class="fn" itemprop="name">Mardi Douglass</h4></figcaption>
-    </figure>
-
-    <div class="person-info">
-      <p class="title" itemprop="jobTitle">VP of Employee Experience</p>
-
-      <ul class="utility">
-        <li><a class="link" href="{{ url('mozorg.about.leadership.senior') }}#mardi-douglass">Link to this bio</a></li>
-      </ul>
-    </div>
-
-    <div class="person-bio">
-      <p>In her role as Mozilla’s VP of Employee Experience, Mardi will leverage
-        the collective impact of our People Business Partners, Learning, Internal
-        Communications, and Events and Workplace Experience teams to set and drive
-        an employee experience agenda aimed at enabling and inspiring our diverse,
-        multi-generational, global team of Mozillians to do their very best work.</p>
-
-      <p>Mardi joined Mozilla in June of 2012 with over a decade of experience in
-        HR operations and communications. She’s a curious and tenacious systems
-        thinker who believes deeply that 90% of the work lies in problem
-        identification.</p>
-
-      <p>Prior to Mozilla, Mardi led HR Operations, Benefits and Immigration at
-        the creative agency Razorfish. She’s based in Seattle, Washington, and is
-        an every-day-without-fail runner, dog park visitor, and very proud mama
-        of two.</p>
-    </div>
-  </article>
-
   <article id="nicholas-grammater" data-id="nicholas-grammater" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/nicholas-grammater.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/nicholas-grammater.jpg',
+        srcset={
+          'img/mozorg/about/leadership/nicholas-grammater-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Nicholas Grammater</h4></figcaption>
     </figure>
 
@@ -202,7 +239,18 @@
 
   <article id="linda-griffin" data-id="linda-griffin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/linda-griffin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/linda-griffin.jpg',
+        srcset={
+          'img/mozorg/about/leadership/linda-griffin-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Linda Griffin</h4></figcaption>
     </figure>
 
@@ -231,12 +279,25 @@
         She began her career in public policy consulting as an advisor to Kofi
         Annan’s Africa Progress Panel, governments including UAE and Singapore,
         and other clients.</p>
+
+        <p>At Mozilla, Linda is responsible for developing and rolling out our work on public policy across all of our organizations, spanning topics from platform accountability to artificial intelligence.</p>
     </div>
   </article>
 
   <article id="robin-karakash" data-id="robin-karakash" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/robin-karakash.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/robin-karakash.jpg',
+        srcset={
+          'img/mozorg/about/leadership/robin-karakash-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Robin Karakash</h4></figcaption>
     </figure>
 
@@ -266,53 +327,6 @@
       <p>Robin majored in Political Science and American Studies at the Goethe-Universität
         Frankfurt, Germany and holds a Coaching Certification from INSEAD. He lives
         with his husband Guido in the ever-transforming Berlin, Germany.</p>
-    </div>
-  </article>
-
-
-  <article id="matt-koidin" data-id="matt-koidin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-    <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/matt-koidin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-      <figcaption><h4 class="fn" itemprop="name">Matt Koidin</h4></figcaption>
-    </figure>
-
-    <div class="person-info">
-      <p class="title" itemprop="jobTitle">VP and General Manager, Pocket</p>
-
-      <ul class="utility">
-        <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla-matt-koidin.zip">Download photos</a></li>
-        <li><a class="link" href="{{ url('mozorg.about.leadership.senior') }}#matt-koidin">Link to this bio</a></li>
-      </ul>
-    </div>
-
-    <div class="person-bio">
-      <p>As the VP and General Manager of Pocket, Matt Koidin is responsible for
-        the Pocket platform.</p>
-
-      <p>Pocket is a platform that lets people discover, capture, and spend time
-        with the stories that fascinate and fuel them. Pocket recommends best-of-web
-        content across its properties, including the recommendations on Firefox
-        New Tab. Within the Pocket app, users have a home to absorb stories they’ve
-        saved without the distractions of the web. Pocket is used by millions of
-        people around the world, has won ten Webby Awards and is consistently
-        featured in Google Play and the App Store as an editor’s choice, top-rated
-        app experience.</p>
-
-      <p>Matt was a member of the founding team of Pocket, joining in 2011 as CTO
-        and Head of Operations. He has been an integral part of the team and leader
-        through every step of Pocket’s journey. Mozilla acquired Pocket in 2017.</p>
-
-      <p>Matt joined the entrepreneur ranks while still an undergraduate at Stanford
-        University, founding a company called Justarrive, one of the first e-ticket
-        companies focused on sports. That experience hooked Matt on being an
-        entrepreneur and since then his journey has included stints at four startups,
-        Microsoft, an MBA from the Fuqua School of Business (Duke University) and
-        strategy consulting with Deloitte.</p>
-
-      <p>Matt is a recipient of the Fuqua Alumni Impact Award for his role as co-chair
-        of the Duke Global Entrepreneurship Network and recently completed a six year
-        term as chair of the board for the Presidio Knolls School. Matt lives in San
-        Francisco with his wife, Christine, and two daughters, Maile and Lauren.</p>
     </div>
   </article>
 
@@ -359,7 +373,18 @@
 
   <article id="dan-mckinley" data-id="dan-mckinley" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/dan-mckinley.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/dan-mckinley.jpg',
+        srcset={
+          'img/mozorg/about/leadership/dan-mckinley-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Dan McKinley</h4></figcaption>
     </figure>
 
@@ -389,7 +414,18 @@
 
   <article id="oscar-murillo" data-id="oscar-murillo" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/oscar-murillo.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/oscar-murillo.jpg',
+        srcset={
+          'img/mozorg/about/leadership/oscar-murillo-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Oscar Murillo</h4></figcaption>
     </figure>
 
@@ -440,7 +476,18 @@
 
   <article id="andrew-overholt" data-id="andrew-overholt" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
     <figure class="headshot">
-      {{ high_res_img('img/mozorg/about/leadership/andrew-overholt.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+      {{ resp_img(
+        url='img/mozorg/about/leadership/andrew-overholt.jpg',
+        srcset={
+          'img/mozorg/about/leadership/andrew-overholt-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '160',
+          'height': '160',
+          'class': 'photo',
+          'itemprop': 'image'
+        }
+      ) }}
       <figcaption><h4 class="fn" itemprop="name">Andrew Overholt</h4></figcaption>
     </figure>
 

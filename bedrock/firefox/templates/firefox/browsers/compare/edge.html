@@ -41,7 +41,17 @@
 
       <p>{{ ftl('compare-edge-here-well-compare-our-firefox') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-edge.png', {'alt': '', 'width': '545', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-edge.png',
+        srcset={
+          'img/firefox/compare/compare-browser-edge-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '545',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">

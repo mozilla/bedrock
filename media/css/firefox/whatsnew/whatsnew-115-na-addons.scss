@@ -1,0 +1,94 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+@keyframes jump {
+    10% { transform: translateY(2px); }
+    60% { transform: translateY(-10px); }
+    80% { transform: translateY(0); }
+    90% { transform: translateY(-2px); }
+    100% { transform: none; }
+}
+
+@keyframes puzzle {
+    to { fill: $color-violet-40; }
+}
+
+@keyframes heart {
+    to { fill: $color-red-50; }
+}
+
+@keyframes smile {
+    to { fill: $color-yellow-20; }
+}
+
+.content-wrapper {
+    background-color: $color-violet-05;
+}
+
+.wnp-content-main {
+    color: $color-black;
+    text-align: center;
+}
+
+.c-utilities {
+    color: $color-black;
+}
+
+.c-page-header {
+    background: $color-white;
+    padding-bottom: $layout-sm;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    padding: 0 $layout-xl;
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+
+    #heart,
+    #puzzle,
+    #smile {
+        animation: jump 600ms cubic-bezier(0.6, -1.2, 0.8, 1.1) forwards;
+    }
+
+    #heart {
+        animation-delay: 1200ms;
+
+        .fill {
+            animation: heart 150ms 1600ms ease-in forwards;
+        }
+    }
+
+    #puzzle {
+        animation-delay: 1700ms;
+
+        .fill {
+            animation: puzzle 150ms 2000ms ease-in forwards;
+        }
+    }
+
+    #smile {
+        animation-delay: 2100ms;
+
+        .fill {
+            animation: smile 150ms 2400ms ease-in forwards;
+        }
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-xl;
+}
+
+.wnp-sign-off {
+    color: $color-black;
+}

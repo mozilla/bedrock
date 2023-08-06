@@ -15,12 +15,6 @@ TEST_VPN_PRODUCT_ID = "prod_FvnsFHIfezy3ZI"
 TEST_VPN_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
 
 TEST_VPN_PLAN_ID_MATRIX = {
-    "bgn": {  # Bulgarian lev
-        "en": {  # English
-            "12-month": {"id": "price_1N7PGEJNcmPzuWtRzTe85nzw", "price": "10 лв", "total": "120 лв", "saving": 50},
-            "monthly": {"id": "price_1N7PHRJNcmPzuWtRjZ8D8kwx", "price": "20 лв", "total": None, "saving": None},
-        },
-    },
     "chf": {  # Swiss franc
         "de": {  # German
             "12-month": {"id": "price_1J5JssJNcmPzuWtR616BH4aU", "price": "CHF 5.99", "total": "CHF 71.88", "saving": 45},
@@ -36,7 +30,7 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
     },
     "czk": {  # Czech koruna
-        "cz": {  # Czech
+        "cs": {  # Czech
             "12-month": {"id": "price_1N7PDwJNcmPzuWtR1IxSkZ0c", "price": "119 Kč", "total": "1,428 Kč", "saving": 50},
             "monthly": {"id": "price_1N7PESJNcmPzuWtRTgmv8Ve4", "price": "237 Kč", "total": None, "saving": None},
         },
@@ -48,6 +42,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
     },
     "euro": {  # Euro
+        "bg": {  # Bulgarian
+            "12-month": {"id": "price_1N7PGEJNcmPzuWtRzTe85nzw", "price": "4,99 €", "total": "59,88 €", "saving": 50},
+            "monthly": {"id": "price_1N7PHRJNcmPzuWtRjZ8D8kwx", "price": "9,99 €", "total": None, "saving": None},
+        },
         "de": {  # German
             "12-month": {"id": "price_1IgwblJNcmPzuWtRynC7dqQa", "price": "4,99 €", "total": "59,88 €", "saving": 50},
             "monthly": {
@@ -63,8 +61,8 @@ TEST_VPN_PLAN_ID_MATRIX = {
             "monthly": {"id": "price_1N7PQIJNcmPzuWtR2BQdQbtL", "price": "9,99 €", "total": None, "saving": None},
         },
         "en": {  # English
-            "12-month": {"id": "price_1JcdvBJNcmPzuWtROLbEH9d2", "price": "4,99 €", "total": "59,88 €", "saving": 50},
-            "monthly": {"id": "price_1JcdsSJNcmPzuWtRGF9Y5TMJ", "price": "9,99 €", "total": None, "saving": None},
+            "12-month": {"id": "price_1JcdvBJNcmPzuWtROLbEH9d2", "price": "4.99 €", "total": "59.88 €", "saving": 50},
+            "monthly": {"id": "price_1JcdsSJNcmPzuWtRGF9Y5TMJ", "price": "9.99 €", "total": None, "saving": None},
         },
         "es": {  # Spanish
             "12-month": {"id": "price_1J5JCdJNcmPzuWtRrvQMFLlP", "price": "4,99 €", "total": "59,88 €", "saving": 50},
@@ -73,6 +71,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
         "fr": {  # French
             "12-month": {"id": "price_1IgnlcJNcmPzuWtRjrNa39W4", "price": "4,99 €", "total": "59,88 €", "saving": 50},
             "monthly": {"id": "price_1IgowHJNcmPzuWtRzD7SgAYb", "price": "9,99 €", "total": None, "saving": None},
+        },
+        "hu": {  # Hungarian
+            "12-month": {"id": "price_1N7PF1JNcmPzuWtRujxNI9yh", "price": "4,99 €", "total": "59,88 €", "saving": 50},
+            "monthly": {"id": "price_1N7PFbJNcmPzuWtRlVNtHvgG", "price": "9,99 €", "total": None, "saving": None},
         },
         "it": {  # Italian
             "12-month": {"id": "price_1J4owvJNcmPzuWtRomVhWQFq", "price": "4,99 €", "total": "59,88 €", "saving": 50},
@@ -95,22 +97,10 @@ TEST_VPN_PLAN_ID_MATRIX = {
             "monthly": {"id": "price_1N7PN6JNcmPzuWtRpN8HAr7L", "price": "9,99 €", "total": None, "saving": None},
         },
     },
-    "huf": {  # Hungarian forint
-        "hu": {  # Hungarian
-            "12-month": {"id": "price_1N7PF1JNcmPzuWtRujxNI9yh", "price": "1,850 Ft", "total": "22,200 Ft", "saving": 50},
-            "monthly": {"id": "price_1N7PFbJNcmPzuWtRlVNtHvgG", "price": "3,700 Ft", "total": None, "saving": None},
-        },
-    },
     "pln": {  # Polish złoty
         "en": {  # English
             "12-month": {"id": "price_1N7P8TJNcmPzuWtRI7pI29bO", "price": "22 zł", "total": "264 zł", "saving": 48},
             "monthly": {"id": "price_1N7P98JNcmPzuWtRbUaI24OH", "price": "45 zł", "total": None, "saving": None},
-        },
-    },
-    "ron": {  # Romanian leu
-        "en": {  # English
-            "12-month": {"id": "price_1N7PADJNcmPzuWtRxHjlrDiy", "price": "lei 25", "total": "lei 300", "saving": 50},
-            "monthly": {"id": "price_1N7PAmJNcmPzuWtR1zOoPIao", "price": "lei 50", "total": None, "saving": None},
         },
     },
     "usd": {  # US dollar
@@ -132,7 +122,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
     "BG": {  # Bulgaria
-        "default": TEST_VPN_PLAN_ID_MATRIX["bgn"]["en"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "BE": {  # Belgium
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["nl"],
@@ -149,7 +139,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "el": TEST_VPN_PLAN_ID_MATRIX["euro"]["el"],
     },
     "CZ": {  # Czech Republic
-        "default": TEST_VPN_PLAN_ID_MATRIX["czk"]["cz"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["czk"]["cs"],
     },
     "DE": {  # Germany
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["de"],
@@ -173,7 +163,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "HU": {  # Hungary
-        "default": TEST_VPN_PLAN_ID_MATRIX["huf"]["hu"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["hu"],
     },
     "IE": {  # Ireland
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
@@ -204,7 +194,7 @@ TEST_VPN_VARIABLE_PRICING = {
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["pt"],
     },
     "RO": {  # Romania
-        "default": TEST_VPN_PLAN_ID_MATRIX["ron"]["en"],
+        "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
     "SE": {  # Sweden
         "default": TEST_VPN_PLAN_ID_MATRIX["euro"]["en"],
@@ -288,7 +278,7 @@ class TestVPNSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwblJNcmPzuWtRynC7dqQa'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN yearly" data-cta-type="fxa-vpn" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN yearly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)
@@ -306,7 +296,7 @@ class TestVPNSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
             "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
             "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
@@ -322,7 +312,7 @@ class TestVPNSubscribeLink(TestCase):
         expected = (
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
-            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-vpn-cta-link js-fxa-product-button mzp-c-button '
+            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
             "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
             "'price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
@@ -341,7 +331,7 @@ class TestVPNSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Mozilla VPN monthly" data-cta-type="fxa-vpn" '
             'data-cta-position="primary">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)
@@ -359,7 +349,7 @@ class TestVPNSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y'
             "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-vpn-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
             "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1IgwZVJNcmPzuWtRg9Wssh2y','brand' : 'vpn',"
             "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'EUR'}\">Get Mozilla VPN</a>"
         )
@@ -734,7 +724,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="BG",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PGEJNcmPzuWtRzTe85nzw", markup)
+        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
 
     def test_vpn_subscribe_link_variable_monthly_bg_en(self):
         """Should contain expected monthly plan ID (BG / en-US)"""
@@ -743,7 +733,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="BG",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PHRJNcmPzuWtRjZ8D8kwx", markup)
+        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
     def test_vpn_subscribe_link_variable_12_month_cy_el(self):
         """Should contain expected 12-month plan ID (CY / el)"""
@@ -781,21 +771,21 @@ class TestVPNSubscribeLink(TestCase):
         )
         self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
-    def test_vpn_subscribe_link_variable_12_month_cz_cz(self):
-        """Should contain expected 12-month plan ID (CZ / cz)"""
+    def test_vpn_subscribe_link_variable_12_month_cz_cs(self):
+        """Should contain expected 12-month plan ID (CZ / cs)"""
         markup = self._render(
             plan="12-month",
             country_code="CZ",
-            lang="cz",
+            lang="cs",
         )
         self.assertIn("?plan=price_1N7PDwJNcmPzuWtR1IxSkZ0c", markup)
 
-    def test_vpn_subscribe_link_variable_monthly_cz_cz(self):
-        """Should contain expected monthly plan ID (CZ / cz)"""
+    def test_vpn_subscribe_link_variable_monthly_cz_cs(self):
+        """Should contain expected monthly plan ID (CZ / cs)"""
         markup = self._render(
             plan="monthly",
             country_code="CZ",
-            lang="cz",
+            lang="cs",
         )
         self.assertIn("?plan=price_1N7PESJNcmPzuWtRTgmv8Ve4", markup)
 
@@ -860,7 +850,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="RO",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PADJNcmPzuWtRxHjlrDiy", markup)
+        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
 
     def test_vpn_subscribe_link_variable_monthly_ro_en(self):
         """Should contain expected monthly plan ID (RO / en-US)"""
@@ -869,7 +859,7 @@ class TestVPNSubscribeLink(TestCase):
             country_code="RO",
             lang="en-US",
         )
-        self.assertIn("?plan=price_1N7PAmJNcmPzuWtR1zOoPIao", markup)
+        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
 
     def test_vpn_subscribe_link_variable_12_month_ee_en(self):
         """Should contain expected 12-month plan ID (EE / en-US)"""
@@ -1021,13 +1011,19 @@ class TestVPNMonthlyPrice(TestCase):
 
     def test_vpn_monthly_price_euro(self):
         """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="DE", lang="de")
+        markup = self._render(plan="monthly", country_code="DE", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">9,99 €<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_euro_fi(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="FI", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">9.99 €<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
     def test_vpn_monthly_price_chf(self):
         """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="CH", lang="de")
+        markup = self._render(plan="monthly", country_code="CH", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">CHF 10.99<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
@@ -1045,26 +1041,20 @@ class TestVPNMonthlyPrice(TestCase):
 
     def test_vpn_12_month_price_euro(self):
         """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="DE", lang="de")
+        markup = self._render(plan="12-month", country_code="DE", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">4,99 €<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_euro_fi(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="FI", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">4.99 €<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_price_chf(self):
         """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="CH", lang="de")
+        markup = self._render(plan="12-month", country_code="CH", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">CHF 5.99<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_monthly_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="BG", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">20 лв<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="BG", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">10 лв<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
     def test_vpn_monthly_price_czk(self):
@@ -1081,26 +1071,14 @@ class TestVPNMonthlyPrice(TestCase):
 
     def test_vpn_monthly_price_dkk(self):
         """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="DK", lang="da")
+        markup = self._render(plan="monthly", country_code="DK", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">kr. 75<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_price_dkk(self):
         """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="DK", lang="da")
+        markup = self._render(plan="12-month", country_code="DK", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">kr. 37<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_monthly_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="HU", lang="hu")
-        expected = '<span class="vpn-monthly-price-display">3,700 Ft<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="HU", lang="hu")
-        expected = '<span class="vpn-monthly-price-display">1,850 Ft<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
     def test_vpn_monthly_price_pln(self):
@@ -1113,18 +1091,6 @@ class TestVPNMonthlyPrice(TestCase):
         """Should return expected markup"""
         markup = self._render(plan="12-month", country_code="PL", lang="en-US")
         expected = '<span class="vpn-monthly-price-display">22 zł<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_monthly_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(plan="monthly", country_code="RO", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">lei 50<span>/month</span></span>'
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(plan="12-month", country_code="RO", lang="en-US")
-        expected = '<span class="vpn-monthly-price-display">lei 25<span>/month</span></span>'
         self.assertEqual(markup, expected)
 
 
@@ -1154,50 +1120,38 @@ class TestVPNTotalPrice(TestCase):
 
     def test_vpn_12_month_total_price_euro(self):
         """Should return expected markup"""
-        markup = self._render(country_code="DE", lang="de")
+        markup = self._render(country_code="DE", lang="en-US")
         expected = "59,88 € total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_euro_fi(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="FI", lang="en-US")
+        expected = "59.88 € total"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price_chf(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CH", lang="de")
+        markup = self._render(country_code="CH", lang="en-US")
         expected = "CHF 71.88 total"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_total_price_bgn(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="BG", lang="en-US")
-        expected = "120 лв total"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price_czk(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CZ", lang="cz")
+        markup = self._render(country_code="CZ", lang="en-US")
         expected = "1,428 Kč total"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price_dkk(self):
         """Should return expected markup"""
-        markup = self._render(country_code="DK", lang="da")
+        markup = self._render(country_code="DK", lang="en-US")
         expected = "kr. 444 total"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_total_price_huf(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="HU", lang="hu")
-        expected = "22,200 Ft total"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_total_price_pln(self):
         """Should return expected markup"""
         markup = self._render(country_code="PL", lang="en-US")
         expected = "264 zł total"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_12_month_total_price_ron(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="RO", lang="en-US")
-        expected = "lei 300 total"
         self.assertEqual(markup, expected)
 
     def test_vpn_relay_bundle_12_month_total_price_usd(self):
@@ -1208,7 +1162,7 @@ class TestVPNTotalPrice(TestCase):
 
     def test_vpn_relay_bundle_12_month_total_price_ca(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CA", lang="en-CA", bundle_relay=True)
+        markup = self._render(country_code="CA", lang="en-US", bundle_relay=True)
         expected = "US$83.88 total + tax"
         self.assertEqual(markup, expected)
 
@@ -1233,13 +1187,13 @@ class TestVPNSaving(TestCase):
 
     def test_vpn_12_month_saving_euro(self):
         """Should return expected markup"""
-        markup = self._render(country_code="DE", lang="de")
+        markup = self._render(country_code="DE", lang="en-US")
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving_chf(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CH", lang="de")
+        markup = self._render(country_code="CH", lang="en-US")
         expected = "Save 45%"
         self.assertEqual(markup, expected)
 
@@ -1251,19 +1205,19 @@ class TestVPNSaving(TestCase):
 
     def test_vpn_12_month_saving_czk(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CZ", lang="cz")
+        markup = self._render(country_code="CZ", lang="en-US")
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving_dkk(self):
         """Should return expected markup"""
-        markup = self._render(country_code="DK", lang="da")
+        markup = self._render(country_code="DK", lang="en-US")
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving_huf(self):
         """Should return expected markup"""
-        markup = self._render(country_code="HU", lang="hu")
+        markup = self._render(country_code="HU", lang="en-US")
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
@@ -1287,7 +1241,7 @@ class TestVPNSaving(TestCase):
 
     def test_vpn_relay_bundle_12_month_saving_ca(self):
         """Should return expected markup"""
-        markup = self._render(country_code="CA", lang="en-CA", bundle_relay=True)
+        markup = self._render(country_code="CA", lang="en-US", bundle_relay=True)
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
@@ -1295,12 +1249,14 @@ class TestVPNSaving(TestCase):
 class TestVPNProductReferralLink(TestCase):
     rf = RequestFactory()
 
-    def _render(self, referral_id, page_anchor, link_text, class_name, optional_attributes):
+    def _render(self, referral_id="", link_to_pricing_page=False, page_anchor="", link_text=None, class_name=None, optional_attributes=None):
         with self.activate("en-US"):
             req = self.rf.get("/")
             req.locale = "en-US"
+
             return render(
-                f"{{{{ vpn_product_referral_link('{referral_id}', '{page_anchor}', '{link_text}', '{class_name}', {optional_attributes}) }}}}",
+                f"""{{{{ vpn_product_referral_link('{referral_id}', {link_to_pricing_page}, '{page_anchor}',
+                                                   '{link_text}', '{class_name}', {optional_attributes}) }}}}""",
                 {"request": req},
             )
 
@@ -1317,5 +1273,1189 @@ class TestVPNProductReferralLink(TestCase):
             '<a href="/en-US/products/vpn/#pricing" class="mzp-c-button js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
             'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_product_referral_link_pricing_page(self):
+        """Should return expected markup when linking to pricing page"""
+        markup = self._render(
+            referral_id="navigation",
+            link_to_pricing_page=True,
+            link_text="Get Mozilla VPN",
+            class_name="mzp-t-product mzp-t-secondary mzp-t-md",
+            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
+        )
+        expected = (
+            '<a href="/en-US/products/vpn/pricing/" class="mzp-c-button js-fxa-product-referral-link '
+            'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
+            'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+        )
+        self.assertEqual(markup, expected)
+
+
+# RELAY ################################################################
+
+TEST_RELAY_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
+
+TEST_RELAY_EMAIL_PRODUCT_ID = "prod_KGizMiBqUJdYoY"
+TEST_RELAY_PHONE_PRODUCT_ID = "prod_KGizMiBqUJdYoY"
+TEST_RELAY_VPN_BUNDLE_PRODUCT_ID = "prod_MIex7Q079igFZJ"
+
+# Relay email subscription plan IDs by currency/language
+TEST_RELAY_EMAIL_PLAN_ID_MATRIX = {
+    "chf": {  # Swiss franc
+        "de": {  # German
+            "monthly": {
+                "id": "price_1LYCqOJNcmPzuWtRuIXpQRxi",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "price_1LYCqyJNcmPzuWtR3Um5qDPu",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "price_1LYCvpJNcmPzuWtRq9ci2gXi",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "price_1LYCwMJNcmPzuWtRm6ebmq2N",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "price_1LYCiBJNcmPzuWtRxtI8D5Uy",
+                "price": 2.00,
+                "currency": "CHF",
+            },
+            "yearly": {
+                "id": "price_1LYClxJNcmPzuWtRWjslDdkG",
+                "price": 1.00,
+                "currency": "CHF",
+            },
+        },
+    },
+    "euro": {  # Euro
+        "de": {  # German
+            "monthly": {
+                "id": "price_1LYC79JNcmPzuWtRU7Q238yL",
+                "price": 1.99,
+                "currency": "EUR",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "1.99",
+                    "period": "monthly",
+                },
+            },
+            "yearly": {
+                "id": "price_1LYC7xJNcmPzuWtRcdKXCVZp",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "es": {  # Spanish
+            "monthly": {
+                "id": "price_1LYCWmJNcmPzuWtRtopZog9E",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYCXNJNcmPzuWtRu586XOFf",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "fr": {  # French
+            "monthly": {
+                "id": "price_1LYBuLJNcmPzuWtRn58XQcky",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYBwcJNcmPzuWtRpgoWcb03",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "it": {  # Italian
+            "monthly": {
+                "id": "price_1LYCMrJNcmPzuWtRTP9vD8wY",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYCN2JNcmPzuWtRtWz7yMno",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "nl": {  # Dutch
+            "monthly": {
+                "id": "price_1LYCdLJNcmPzuWtR0J1EHoJ0",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYCdtJNcmPzuWtRVm4jLzq2",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "ga": {  # Irish
+            "monthly": {
+                "id": "price_1LhdrkJNcmPzuWtRvCc4hsI2",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LhdprJNcmPzuWtR7HqzkXTS",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "sv": {  # Sweedish
+            "monthly": {
+                "id": "price_1LYBblJNcmPzuWtRGRHIoYZ5",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYBeMJNcmPzuWtRT5A931WH",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+        "fi": {  # Finnish
+            "monthly": {
+                "id": "price_1LYBn9JNcmPzuWtRI3nvHgMi",
+                "price": 1.99,
+                "currency": "EUR",
+            },
+            "yearly": {
+                "id": "price_1LYBq1JNcmPzuWtRmyEa08Wv",
+                "price": 0.99,
+                "currency": "EUR",
+            },
+        },
+    },
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "price_1LXUcnJNcmPzuWtRpbNOajYS",
+                "price": 1.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "price_1LXUdlJNcmPzuWtRKTYg7mpZ",
+                "price": 0.99,
+                "currency": "USD",
+                "analytics": {
+                    "brand": "relay",
+                    "plan": "relay-email",
+                    "currency": "USD",
+                    "discount": "12.00",
+                    "price": "11.88",
+                    "period": "yearly",
+                },
+            },
+        },
+        "gb": {
+            "monthly": {
+                "id": "price_1LYCHpJNcmPzuWtRhrhSYOKB",
+                "price": 1.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "price_1LYCIlJNcmPzuWtRQtYLA92j",
+                "price": 0.99,
+                "currency": "USD",
+            },
+        },
+    },
+}
+
+# Relay email map countries to languages
+TEST_RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING = {
+    # Austria
+    "AT": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Belgium
+    "BE": {
+        "fr": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+        "de": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Switzerland
+    "CH": {
+        "fr": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["fr"],
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["de"],
+        "it": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["chf"]["it"],
+    },
+    # Germany
+    "DE": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    # Spain
+    "ES": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["es"],
+    },
+    # France
+    "FR": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fr"],
+    },
+    # Ireland
+    "IE": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["ga"],
+    },
+    # Italy
+    "IT": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["it"],
+    },
+    # Netherlands
+    "NL": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["nl"],
+    },
+    # Sweden
+    "SE": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["sv"],
+    },
+    # Finland
+    "FI": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["euro"]["fi"],
+    },
+    # USA
+    "US": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # Great Britian
+    "GB": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Canada
+    "CA": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    # New Zealand
+    "NZ": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Malaysia
+    "MY": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+    # Singapore
+    "SG": {
+        "default": TEST_RELAY_EMAIL_PLAN_ID_MATRIX["usd"]["gb"],
+    },
+}
+
+# Countries where Relay Email Masking is available
+TEST_RELAY_EMAIL_COUNTRY_CODES = [
+    "CA",  # Canada
+    "GB",  # United Kingdom of Great Britain and Northern Island
+    "MY",  # Malaysia
+    "NZ",  # New Zealand
+    "SG",  # Singapore
+    "US",  # United States of America
+    # EU Countries
+    "AT",  # Austria
+    "BE",  # Belgium
+    "CH",  # Switzerland
+    "DE",  # Germany
+    "ES",  # Spain
+    "FI",  # Finland
+    "FR",  # France
+    "IE",  # Ireland
+    "IT",  # Italy
+    "NL",  # Netherlands
+    "SE",  # Sweden
+]
+
+# Relay phone subscription plan IDs by currency/language
+TEST_RELAY_PHONE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "monthly": {
+                "id": "price_1Li0w8JNcmPzuWtR2rGU80P3",
+                "price": 4.99,
+                "currency": "USD",
+            },
+            "yearly": {
+                "id": "price_1Li15WJNcmPzuWtRIh0F4VwP",
+                "price": 3.99,
+                "currency": "USD",
+            },
+        },
+    },
+}
+
+# Relay phone subscription map countries to languages
+TEST_RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": TEST_RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": TEST_RELAY_PHONE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where Relay Phone Masking is available
+TEST_RELAY_PHONE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+# Relay VPN bundle plan IDs by currency/language
+TEST_RELAY_VPN_BUNDLE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "yearly": {
+                "id": "price_1LwoSDJNcmPzuWtR6wPJZeoh",
+                "price": "6.99",
+                "currency": "USD",
+                "saving": 0.4,
+            },
+        },
+    }
+}
+
+# Relay VPN bundle map countries to languages
+TEST_RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING = {
+    "US": {
+        "default": TEST_RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+    "CA": {
+        "default": TEST_RELAY_VPN_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where Relay & VPN bundle is available
+TEST_RELAY_VPN_BUNDLE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+
+@override_settings(
+    FXA_ENDPOINT=TEST_FXA_ENDPOINT,
+    RELAY_SUBSCRIPTION_URL=TEST_RELAY_SUBSCRIPTION_URL,
+    RELAY_EMAIL_PRODUCT_ID=TEST_RELAY_EMAIL_PRODUCT_ID,
+    RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING=TEST_RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING,
+)
+class TestRelayEmailSubscribeLink(TestCase):
+    rf = RequestFactory()
+
+    def _render(
+        self,
+        entrypoint="www.mozilla.org-relay-product-page",
+        link_text="Get Started",
+        product="relay-email",
+        plan="yearly",
+        class_name="mzp-c-button",
+        country_code=None,
+        lang=None,
+        optional_parameters=None,
+        optional_attributes=None,
+    ):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            f"""{{{{ relay_subscribe_link('{entrypoint}', '{link_text}', '{product}', '{plan}', '{class_name}', '{country_code}',
+                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
+            {"request": req},
+        )
+
+    def test_relay_subscribe_link_email_yearly(self):
+        """Should return expected markup for yearly email subscription link"""
+        markup = self._render(
+            link_text="Get Relay email yearly",
+            product="relay-email",
+            plan="yearly",
+            country_code="DE",
+            lang="de",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LYC7xJNcmPzuWtRcdKXCVZp'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay email yearly" data-cta-type="fxa-relay" '
+            'data-cta-position="primary">Get Relay email yearly</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_yearly_with_analytics(self):
+        """Should return expected markup for yearly email subscription link with analytics"""
+        markup = self._render(
+            link_text="Get Relay email yearly",
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email yearly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay',"
+            "'plan' : 'relay-email','period' : 'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Relay email yearly</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_yearly_no_options_with_analytics(self):
+        """Should return expected markup for yearly email subscription link with analytics"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
+            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay','plan' : 'relay-email','period' : "
+            "'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Started</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_monthly(self):
+        """Should return expected markup for monthly email subscription link"""
+        markup = self._render(
+            link_text="Get Relay email monthly",
+            product="relay-email",
+            plan="monthly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email monthly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUcnJNcmPzuWtRpbNOajYS'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay email monthly" data-cta-type="fxa-relay" '
+            'data-cta-position="primary">Get Relay email monthly</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_monthly_with_analytics(self):
+        """Should return expected markup for monthly email subscription link including analytics"""
+        markup = self._render(
+            link_text="Get Relay email monthly",
+            product="relay-email",
+            plan="monthly",
+            country_code="DE",
+            lang="de",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay email monthly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LYC79JNcmPzuWtRU7Q238yL'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email monthly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LYC79JNcmPzuWtRU7Q238yL','brand' : 'relay',"
+            "'plan' : 'relay-email','period' : 'monthly','price' : '1.99','discount' : '0','currency' : 'EUR'}\">Get Relay email monthly</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_email_yearly_us_en(self):
+        """Should return expected Stripe Product/Plan ID for yearly email subscription link (US / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+        )
+        self.assertIn("/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ", markup)
+
+    def test_relay_subscribe_link_email_monthly_us_en(self):
+        """Should return expected Stripe Product/Plan ID for monthly email subscription link (US / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="US",
+            lang="en-US",
+        )
+        self.assertIn("/prod_KGizMiBqUJdYoY?plan=price_1LXUcnJNcmPzuWtRpbNOajYS", markup)
+
+    def test_relay_subscribe_link_email_yearly_ca_en(self):
+        """Should return expected Stripe Product/Plan ID for yearly email subscription link (CA / en-CA)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CA",
+            lang="en-CA",
+        )
+        self.assertIn("/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ", markup)
+
+    # AT
+
+    def test_relay_subscribe_link_email_monthly_at_de(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (AT / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="AT",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYC79JNcmPzuWtRU7Q238yL", markup)
+
+    def test_relay_subscribe_link_email_yearly_at_de(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (AT / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="AT",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYC7xJNcmPzuWtRcdKXCVZp", markup)
+
+    # BE
+
+    def test_relay_subscribe_link_email_monthly_be_fr(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (BE / fr)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="BE",
+            lang="fr",
+        )
+        self.assertIn("plan=price_1LYBuLJNcmPzuWtRn58XQcky", markup)
+
+    def test_relay_subscribe_link_email_yearly_be_fr(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (BE / fr)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="BE",
+            lang="fr",
+        )
+        self.assertIn("plan=price_1LYBwcJNcmPzuWtRpgoWcb03", markup)
+
+    def test_relay_subscribe_link_email_monthly_be_de(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (BE / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="BE",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYC79JNcmPzuWtRU7Q238yL", markup)
+
+    def test_relay_subscribe_link_email_yearly_be_de(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (BE / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="BE",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYC7xJNcmPzuWtRcdKXCVZp", markup)
+
+    def test_relay_subscribe_link_email_monthly_be_en(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (BE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="BE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCdLJNcmPzuWtR0J1EHoJ0", markup)
+
+    def test_relay_subscribe_link_email_yearly_be_en(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (BE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="BE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCdtJNcmPzuWtRVm4jLzq2", markup)
+
+    # CH
+
+    def test_relay_subscribe_link_email_monthly_ch_fr(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (CH / fr)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CH",
+            lang="fr",
+        )
+        self.assertIn("plan=price_1LYCvpJNcmPzuWtRq9ci2gXi", markup)
+
+    def test_relay_subscribe_link_email_yearly_ch_fr(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (CH / fr)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CH",
+            lang="fr",
+        )
+        self.assertIn("plan=price_1LYCwMJNcmPzuWtRm6ebmq2N", markup)
+
+    def test_relay_subscribe_link_email_monthly_ch_it(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (CH / it)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CH",
+            lang="it",
+        )
+        self.assertIn("plan=price_1LYCiBJNcmPzuWtRxtI8D5Uy", markup)
+
+    def test_relay_subscribe_link_email_yearly_ch_it(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (CH / it)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CH",
+            lang="it",
+        )
+        self.assertIn("plan=price_1LYClxJNcmPzuWtRWjslDdkG", markup)
+
+    def test_relay_subscribe_link_email_monthly_ch_de(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (CH / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CH",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYCqOJNcmPzuWtRuIXpQRxi", markup)
+
+    def test_relay_subscribe_link_email_yearly_ch_de(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (CH / de)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CH",
+            lang="de",
+        )
+        self.assertIn("plan=price_1LYCqyJNcmPzuWtR3Um5qDPu", markup)
+
+    def test_relay_subscribe_link_email_monthly_ch_en(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (CH / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CH",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCqOJNcmPzuWtRuIXpQRxi", markup)
+
+    def test_relay_subscribe_link_email_yearly_ch_en(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (CH / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CH",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCqyJNcmPzuWtR3Um5qDPu", markup)
+
+    # DE
+
+    def test_relay_subscribe_link_email_monthly_de(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (DE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="DE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYC79JNcmPzuWtRU7Q238yL", markup)
+
+    def test_relay_subscribe_link_email_yearly_de(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (DE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="DE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYC7xJNcmPzuWtRcdKXCVZp", markup)
+
+    # ES
+
+    def test_relay_subscribe_link_email_monthly_es(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (ES / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="ES",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCWmJNcmPzuWtRtopZog9E", markup)
+
+    def test_relay_subscribe_link_email_yearly_es(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (ES / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="ES",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCXNJNcmPzuWtRu586XOFf", markup)
+
+    # FR
+
+    def test_relay_subscribe_link_email_monthly_fr(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (FR / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="FR",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBuLJNcmPzuWtRn58XQcky", markup)
+
+    def test_relay_subscribe_link_email_yearly_fr(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (FR / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="FR",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBwcJNcmPzuWtRpgoWcb03", markup)
+
+    # IE
+
+    def test_relay_subscribe_link_email_monthly_ie(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (IE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="IE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LhdrkJNcmPzuWtRvCc4hsI2", markup)
+
+    def test_relay_subscribe_link_email_yearly_ie(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (IE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="IE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LhdprJNcmPzuWtR7HqzkXTS", markup)
+
+    # IT
+
+    def test_relay_subscribe_link_email_monthly_it(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (IT / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="IT",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCMrJNcmPzuWtRTP9vD8wY", markup)
+
+    def test_relay_subscribe_link_email_yearly_it(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (IT / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="IT",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCN2JNcmPzuWtRtWz7yMno", markup)
+
+    # NL
+
+    def test_relay_subscribe_link_email_monthly_nl(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (NL / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="NL",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCdLJNcmPzuWtR0J1EHoJ0", markup)
+
+    def test_relay_subscribe_link_email_yearly_nl(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (NL / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="NL",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCdtJNcmPzuWtRVm4jLzq2", markup)
+
+    # SE
+
+    def test_relay_subscribe_link_email_monthly_se(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (SE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="SE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBblJNcmPzuWtRGRHIoYZ5", markup)
+
+    def test_relay_subscribe_link_email_yearly_se(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (SE / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="SE",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBeMJNcmPzuWtRT5A931WH", markup)
+
+    # FI
+
+    def test_relay_subscribe_link_email_monthly_fi(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (FI / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="FI",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBn9JNcmPzuWtRI3nvHgMi", markup)
+
+    def test_relay_subscribe_link_email_yearly_fi(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (FI / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="FI",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYBq1JNcmPzuWtRmyEa08Wv", markup)
+
+    # US
+
+    def test_relay_subscribe_link_email_monthly_us(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (US / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="US",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LXUcnJNcmPzuWtRpbNOajYS", markup)
+
+    def test_relay_subscribe_link_email_yearly_us(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (US / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ", markup)
+
+    # GB
+
+    def test_relay_subscribe_link_email_monthly_gb(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (GB / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="GB",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCHpJNcmPzuWtRhrhSYOKB", markup)
+
+    def test_relay_subscribe_link_email_yearly_gb(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (GB / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="GB",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCIlJNcmPzuWtRQtYLA92j", markup)
+
+    # CA
+
+    def test_relay_subscribe_link_email_monthly_ca(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (CA / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CA",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LXUcnJNcmPzuWtRpbNOajYS", markup)
+
+    def test_relay_subscribe_link_email_yearly_ca(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (CA / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CA",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ", markup)
+
+    # NZ
+
+    def test_relay_subscribe_link_email_monthly_nz(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (NZ / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="NZ",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCHpJNcmPzuWtRhrhSYOKB", markup)
+
+    def test_relay_subscribe_link_email_yearly_nz(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (NZ / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="NZ",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCIlJNcmPzuWtRQtYLA92j", markup)
+
+    # MY
+
+    def test_relay_subscribe_link_email_monthly_my(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (MY / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="MY",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCHpJNcmPzuWtRhrhSYOKB", markup)
+
+    def test_relay_subscribe_link_email_yearly_my(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (MY / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="MY",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCIlJNcmPzuWtRQtYLA92j", markup)
+
+    # SG
+
+    def test_relay_subscribe_link_email_monthly_sg(self):
+        """Should return expected Stripe Plan ID for monthly email subscription link (SG / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="SG",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCHpJNcmPzuWtRhrhSYOKB", markup)
+
+    def test_relay_subscribe_link_email_yearly_sg(self):
+        """Should return expected Stripe Plan ID for yearly email subscription link (SG / en-US)"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="SG",
+            lang="en-US",
+        )
+        self.assertIn("plan=price_1LYCIlJNcmPzuWtRQtYLA92j", markup)
+
+
+@override_settings(
+    RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING=TEST_RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING,
+)
+class TestRelayEmailMonthlyPrice(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, product, plan, country_code, lang):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ relay_monthly_price('{product}', '{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
+
+    def test_relay_monthly_price_usd(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="monthly", country_code="US", lang="en-US")
+        expected = "$1.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_usd_ca(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="monthly", country_code="CA", lang="en-CA")
+        expected = "US$1.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_euro(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="monthly", country_code="DE", lang="de")
+        expected = "1,99\xa0€"  # \xa0 is a non breaking space
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_chf(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="monthly", country_code="CH", lang="fr")
+        expected = "2,00\xa0CHF"  # \xa0 is a non breaking space
+        self.assertEqual(markup, expected)
+
+    # yearly
+
+    def test_relay_yearly_price_usd(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="yearly", country_code="US", lang="en-US")
+        expected = "$0.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_yearly_price_usd_ca(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="yearly", country_code="CA", lang="en-CA")
+        expected = "US$0.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_yearly_price_euro(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="yearly", country_code="DE", lang="de")
+        expected = "0,99\xa0€"  # \xa0 is a non breaking space
+        self.assertEqual(markup, expected)
+
+    def test_relay_yearly_price_chf(self):
+        """Should return expected markup"""
+        markup = self._render(product="relay-email", plan="yearly", country_code="CH", lang="fr")
+        expected = "1,00\xa0CHF"  # \xa0 is a non breaking space
+        self.assertEqual(markup, expected)
+
+
+@override_settings(
+    FXA_ENDPOINT=TEST_FXA_ENDPOINT,
+    RELAY_SUBSCRIPTION_URL=TEST_RELAY_SUBSCRIPTION_URL,
+    RELAY_PHONE_PRODUCT_ID=TEST_RELAY_PHONE_PRODUCT_ID,
+    RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING=TEST_RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING,
+)
+class TestRelayPhoneSubscribeLink(TestCase):
+    rf = RequestFactory()
+
+    def _render(
+        self,
+        entrypoint="www.mozilla.org-relay-product-page",
+        link_text="Get Started",
+        product="relay-email",
+        plan="yearly",
+        class_name="mzp-c-button",
+        country_code=None,
+        lang=None,
+        optional_parameters=None,
+        optional_attributes=None,
+    ):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            f"""{{{{ relay_subscribe_link('{entrypoint}', '{link_text}', '{product}', '{plan}', '{class_name}', '{country_code}',
+                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
+            {"request": req},
+        )
+
+    def test_relay_subscribe_link_phone_monthly(self):
+        """Should return expected markup for monthly phone subscription link"""
+        markup = self._render(
+            link_text="Get Relay phone monthly",
+            product="relay-phone",
+            plan="monthly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay phone monthly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1Li0w8JNcmPzuWtR2rGU80P3'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay phone monthly" data-cta-type="fxa-relay" '
+            'data-cta-position="primary">Get Relay phone monthly</a>'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_relay_subscribe_link_phone_yearly(self):
+        """Should return expected markup for yearly phone subscription link"""
+        markup = self._render(
+            link_text="Get Relay phone yearly",
+            product="relay-phone",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay phone yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1Li15WJNcmPzuWtRIh0F4VwP'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay phone yearly" data-cta-type="fxa-relay" '
+            'data-cta-position="primary">Get Relay phone yearly</a>'
+        )
+        self.assertEqual(markup, expected)
+
+
+@override_settings(
+    FXA_ENDPOINT=TEST_FXA_ENDPOINT,
+    RELAY_SUBSCRIPTION_URL=TEST_RELAY_SUBSCRIPTION_URL,
+    RELAY_VPN_BUNDLE_PRODUCT_ID=TEST_RELAY_VPN_BUNDLE_PRODUCT_ID,
+    RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING=TEST_RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING,
+)
+class TestRelayBundleSubscribeLink(TestCase):
+    rf = RequestFactory()
+
+    def _render(
+        self,
+        entrypoint="www.mozilla.org-relay-product-page",
+        link_text="Get Started",
+        product="relay-email",
+        plan="yearly",
+        class_name="mzp-c-button",
+        country_code=None,
+        lang=None,
+        optional_parameters=None,
+        optional_attributes=None,
+    ):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            f"""{{{{ relay_subscribe_link('{entrypoint}', '{link_text}', '{product}', '{plan}', '{class_name}', '{country_code}',
+                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
+            {"request": req},
+        )
+
+    def test_relay_subscribe_link_bundle_yearly(self):
+        """Should return expected markup for yearly bundle subscription link"""
+        markup = self._render(
+            link_text="Get Relay bundle yearly",
+            product="relay-bundle",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+            optional_parameters={"utm_campaign": "relay-product-page"},
+            optional_attributes={"data-cta-text": "Get Relay bundle yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
+        )
+        expected = (
+            '<a href="https://accounts.firefox.com/subscriptions/products/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh'
+            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
+            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay bundle yearly" data-cta-type="fxa-relay" '
+            'data-cta-position="primary">Get Relay bundle yearly</a>'
         )
         self.assertEqual(markup, expected)

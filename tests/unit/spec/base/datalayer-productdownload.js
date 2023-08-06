@@ -216,7 +216,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
 });
 
-describe('TrackProductDownload.linkHandler', function () {
+describe('TrackProductDownload.handleLink', function () {
     const download_button = `<a href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64&amp;lang=en-CA" id="download-button-primary" class="mzp-c-button mzp-t-product c-download-button">Download Now</a>`;
 
     beforeEach(function () {
@@ -230,7 +230,7 @@ describe('TrackProductDownload.linkHandler', function () {
             'click',
             function (event) {
                 event.preventDefault();
-                TrackProductDownload.linkHandler(event);
+                TrackProductDownload.handleLink(event);
             },
             false
         );
@@ -242,7 +242,7 @@ describe('TrackProductDownload.linkHandler', function () {
     });
 
     it('should call the full chain of functions', function () {
-        spyOn(TrackProductDownload, 'linkHandler').and.callThrough();
+        spyOn(TrackProductDownload, 'handleLink').and.callThrough();
         spyOn(TrackProductDownload, 'sendEventFromURL').and.callThrough();
         spyOn(TrackProductDownload, 'isValidDownloadURL').and.callThrough();
         spyOn(TrackProductDownload, 'getEventObject').and.callThrough();
@@ -250,7 +250,7 @@ describe('TrackProductDownload.linkHandler', function () {
 
         document.getElementById('download-button-primary').click();
 
-        expect(TrackProductDownload.linkHandler).toHaveBeenCalled();
+        expect(TrackProductDownload.handleLink).toHaveBeenCalled();
         expect(TrackProductDownload.sendEventFromURL).toHaveBeenCalled();
         expect(TrackProductDownload.isValidDownloadURL).toHaveBeenCalled();
         expect(TrackProductDownload.getEventObject).toHaveBeenCalled();

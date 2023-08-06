@@ -1,0 +1,265 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+.c-ctd-comparison {
+    .mzp-l-content {
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+    }
+
+    .c-ctd-comparison-text {
+        margin-bottom: $layout-lg;
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
+
+
+        h2 {
+            @include font-firefox;
+            @include font-size(40px);
+            font-weight: 800;
+            margin-bottom: $spacing-lg;
+        }
+
+        p {
+            @include font-firefox;
+            color: $color-marketing-gray-70;
+            font-weight: 600;
+        }
+
+        @media #{$mq-md} {
+            width: 60%;
+            min-width: 550px;
+
+
+            h2 {
+                @include font-size(60px);
+            }
+
+
+        }
+    }
+
+
+    .mzp-u-data-table.comparison-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: $spacing-sm;
+
+        .safari,
+        .edge,
+        .chrome {
+            display: none;
+        }
+
+        &[data-selected-browser='safari'] {
+            td.safari {
+                display: table-cell;
+            }
+        }
+
+        &[data-selected-browser='chrome'] {
+            td.chrome {
+                display: table-cell;
+            }
+        }
+
+        &[data-selected-browser='edge'] {
+            td.edge {
+                display: table-cell;
+            }
+        }
+
+        th {
+            @include font-firefox;
+            max-width: 150px;
+            border: 2.5px solid $color-black;
+            font-size: 14px;
+            word-break: break-word;
+
+            @media (min-width: 374px) {
+                word-break: none;
+            }
+
+            &[scope='row'].break-word {
+                word-break: break-word;
+                hyphens: manual;
+            }
+
+            &[scope='col'] {
+                @include font-size(16px);
+                font-weight: bold;
+                text-align: center;
+                padding: $spacing-md;
+            }
+        }
+
+        th.mobile-select-wrapper {
+            padding: 0;
+
+            @media #{$mq-md} {
+                display: none;
+            }
+        }
+
+        .mobile-select {
+            margin-bottom: 0;
+            max-width: 100%;
+            min-width: 0;
+            border: 0;
+            font-weight: bold;
+        }
+
+        td {
+            @include font-size(24px);
+            text-align: center;
+            border: 2.5px solid $color-black;
+            padding: 0;
+        }
+
+        .empty {
+            border: none;
+        }
+
+        thead tr th,
+        td {
+            &:nth-child(2) {
+                color: $color-black;
+                background-color: $campaign-pink;
+            }
+        }
+
+        // needed this rule to allow button to take up 100% of the td
+        tr {
+            height: 100%;
+        }
+
+
+        @media #{$mq-md} {
+            .safari,
+            .edge,
+            .chrome {
+                display: table-cell;
+            }
+        }
+    }
+
+    .kitten-button {
+        background: none;
+        border: 0;
+        display: block;
+        margin-left: auto;
+        color: $color-link;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: $color-link-hover;
+        }
+    }
+
+    .comparison-cta {
+        margin-top: $layout-lg;
+        text-align: center;
+
+        h3 {
+            margin-bottom: $spacing-lg;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 12ch;
+            font-weight: 800;
+
+            @media #{$mq-md} {
+                max-width: none;
+            }
+        }
+    }
+}
+
+.kitten-modal-overlay {
+    .mzp-c-modal-window {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .mzp-c-modal-inner {
+        padding: 0;
+        max-width: 688px;
+        background-color: $campaign-mint;
+        overflow: hidden;
+
+        header {
+            padding: $spacing-md;
+            border-bottom: 2px solid $color-black;
+        }
+
+        .mzp-c-modal-close {
+            right: 0;
+            top: 0;
+
+            .mzp-c-modal-button-close {
+                background-image: url('#{$image-path}/icons/close.svg')
+            }
+        }
+
+        .kitten-modal {
+            padding: $spacing-xl;
+            padding-bottom: 0;
+
+            @media #{$mq-md} {
+                padding-bottom: $spacing-xl;
+            }
+        }
+
+        .kitten-modal-grid {
+            display: grid;
+            grid-template-rows: 360px;
+            grid-template-columns: 1fr;
+            grid-gap: $spacing-lg;
+            justify-items: center;
+
+            @media #{$mq-md} {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            h2 {
+                @include font-size(36px);
+                align-self: flex-end;
+                color: $color-black;
+                font-weight: 800;
+                margin-bottom: 0;
+                z-index: 2;
+
+                @media #{$mq-md} {
+                    @include font-size(60px);
+                    align-self: initial;
+                }
+            }
+
+            .laser-cat {
+                display: block;
+                height: 390px;
+                left: 50%;
+                margin-left: -130px;
+                position: absolute;
+                top: 75px;
+                width: 260px;
+
+                @media #{$mq-md} {
+                    bottom: -10px;
+                    grid-column: 2;
+                    left: auto;
+                    margin-left: 0;
+                    max-width: none;
+                    right: 5px;
+                    top: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

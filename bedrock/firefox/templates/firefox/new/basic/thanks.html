@@ -19,10 +19,6 @@
   {{ css_bundle('firefox_new_thanks') }}
 {% endblock %}
 
-{% block string_data %}
-  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
-{% endblock %}
-
 {% block site_header %}
   {% with hide_nav_download_button=True %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -89,8 +85,5 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('tracking-pixel') %}
-    {{ js_bundle('firefox_new_pixel') }}
-  {% endif %}
   {{ js_bundle('firefox_new_thanks') }}
 {% endblock %}

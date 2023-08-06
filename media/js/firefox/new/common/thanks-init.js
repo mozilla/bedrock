@@ -12,7 +12,10 @@
 
     // Only auto-start the download if a supported platform is detected.
     if (
-        Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) &&
+        Mozilla.DownloadThanks.shouldAutoDownload(
+            window.site.platform,
+            window.site.fxSupported
+        ) &&
         typeof Mozilla.Utils !== 'undefined'
     ) {
         downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
@@ -25,7 +28,6 @@
             }
 
             // Start the platform-detected download a second after DOM ready event.
-            // We don't rely on the window load event as we have third-party tracking pixels.
             Mozilla.Utils.onDocumentReady(function () {
                 setTimeout(function () {
                     window.location.href = downloadURL;

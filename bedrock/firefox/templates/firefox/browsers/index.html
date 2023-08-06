@@ -98,7 +98,17 @@
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/desktop.jpg',
+        srcset={
+          'img/firefox/browsers/desktop-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '233'
+        }
+      ) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
       <p>{{ ftl('firefox-browsers-seriously-private-browsing') }}</p>
 
@@ -117,7 +127,17 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/mobile.jpg',
+        srcset={
+          'img/firefox/browsers/mobile-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '233'
+        }
+      ) }}
       <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
       <p>{{ ftl('firefox-browsers-take-the-same-level-of-privacy') }}</p>
 
@@ -139,7 +159,17 @@
     </div>
 
     <div class="c-landing-grid-item">
-      {{ high_res_img('img/firefox/browsers/enterprise.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '350', 'height': '233'}) }}
+      {{ resp_img(
+        url='img/firefox/browsers/enterprise.jpg',
+        srcset={
+          'img/firefox/browsers/enterprise-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'c-landing-grid-img',
+          'width': '350',
+          'height': '233'
+        }
+      ) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
       <p>{{ ftl('firefox-browsers-get-unmatched-data-protection') }}</p>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-type="link" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>

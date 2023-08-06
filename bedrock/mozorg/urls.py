@@ -122,7 +122,7 @@ urlpatterns = (
     path("xbl", views.namespaces, {"namespace": "xbl"}),
     path("locales/", views.locales, name="mozorg.locales"),
     # Diversity and inclusion redirect
-    redirect(r"^diversity/$", "mozorg.diversity.2021.index", name="diversity", locale_prefix=False),
+    redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
     # Main paths
     page("diversity/2021/", "mozorg/diversity/2021/index.html"),
     page("diversity/2021/mozilla-foundation-data/", "mozorg/diversity/2021/mofo-data.html"),
@@ -131,6 +131,13 @@ urlpatterns = (
     page("diversity/2021/what-we-build/", "mozorg/diversity/2021/what-we-build.html"),
     page("diversity/2021/beyond-our-products/", "mozorg/diversity/2021/beyond-products.html"),
     page("diversity/2021/who-we-are/", "mozorg/diversity/2021/who-we-are.html"),
+    page("diversity/2022/", "mozorg/diversity/2022/index.html"),
+    page("diversity/2022/mozilla-foundation-data/", "mozorg/diversity/2022/mofo-data.html"),
+    page("diversity/2022/mozilla-corporation-data/", "mozorg/diversity/2022/moco-data.html"),
+    # Sustainability pages
+    page("sustainability/", "mozorg/sustainability/index.html"),
+    page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
+    page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # Webvision
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
     path(

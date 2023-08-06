@@ -26,25 +26,102 @@ Some website experiences may require us to deviate from these principles -- imag
 marketing campaign page built under timeline pressure to deliver novel functionality to a
 particular locale for a short while* -- but those will be exceptions and rare.
 
-Browser Support Matrix (Updated 2022-07-06)
--------------------------------------------
+Browser Support Matrix
+----------------------
 
-We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
-We deliver degraded support to all other user agents, except legacy IE browsers,
-which get basic support.
+*Last updated: Updated July 19, 2023*
 
-**The following browsers have enhanced support:**
+Firefox
+~~~~~~~
 
-  * All evergreen browsers (Firefox, Firefox ESR, Chrome, Safari, Edge, Opera, etc.)
+It is important for website visitors to be able to download Firefox on a very broad
+range of desktop operating systems. As such, we aim to deliver enhanced support to
+user agents in our browser support matrix below.
 
-**The following browsers have degraded support:**
+**Enhanced support:**
 
-  * Outdated evergreen browser versions.
-  * IE11 & IE10.
+  Windows 11 and above
+    - All evergreen browsers
 
-**The following browsers have basic support:**
+      - Firefox
+      - Firefox ESR
+      - Chrome
+      - Edge
+      - Brave
+      - Opera
 
-  * IE9 and below.
+  Windows 10
+    - All evergreen browsers
+
+  macOS 10.15 and above
+    - All evergreen browsers
+    - Safari
+
+  Linux
+    - All evergreen browsers
+
+**Degraded support:**
+
+Website visitors on slightly older browsers fall under degraded support, which means
+that the website should be fully readable and accessible, but they may not get enhanced
+CSS layout or JS features.
+
+  Windows 10
+    - Internet Explorer 11
+
+  Windows 8.1 and below
+    - Firefox 115
+    - Chrome 109
+    - Internet Explorer 10
+
+  macOS 10.14 and below
+    - Firefox 115
+    - Chrome 114
+    - Safari 12.1
+
+.. Note::
+
+    As of Firefox 116 (released August 1st 2023), support for Firefox has been ended
+    on Windows 8.1 and below, as well as on macOS 10.14 and below. Website visitors
+    on these outdated operating systems now fall under degraded support, and we
+    offer them to download Firefox ESR instead.
+
+**Basic support:**
+
+Website visitors on very old versions of Internet Explorer will get only a very basic
+universal CSS style sheet, and a basic no-JS experience.
+
+  Windows 7
+    - Internet Explorer 9
+    - Internet Explorer 8
+
+**Unsupported:**
+
+Even older versions of Internet Explorer are now unsupported.
+
+  Windows XP / Vista
+    - Internet Explorer 7
+    - Internet Explorer 6
+
+.. Note::
+
+    Firefox ended support for Windows XP and Vista in 2017 with Firefox 53. Since then,
+    we have continued to serve those users Firefox ESR 52 instead. However, since then
+    support for downloading has been discontinued. The SSL certificates on
+    download.mozilla.org no longer support TLS 1.0.
+
+Privacy & security products
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Browser support for our privacy and security products (such as VPN, Relay, Monitor etc)
+is thankfully a simpler story. Since all these product use a Firefox account for
+authentication, we can simply follow the `Firefox Ecosystem Platform`_ browser support
+documentation.
+
+The most notable thing here for bedrock is that Internet Explorer 11 does not need to be
+supported.
+
+.. _Firefox Ecosystem Platform: https://mozilla.github.io/ecosystem-platform/reference/browser-support
 
 Delivering basic support
 ------------------------

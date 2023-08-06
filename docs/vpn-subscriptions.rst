@@ -107,6 +107,9 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
             # repeat for other currency / language configs.
         }
 
+    See the *Begin Checkout* section of the :ref:`analytics docs<analytics>` for more a detailed description of
+    what should be in the analytics objects.
+
 2. Map each new country code to one or more applicable pricing plans in ``VPN_VARIABLE_PRICING``.
 
    Example that maps the ``US`` country code to the pricing plan config above:

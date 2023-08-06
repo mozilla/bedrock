@@ -1228,5 +1228,12 @@ URLS = flatten(
         url_test("/vpn/download/", "/products/vpn/download/"),
         url_test("/vpn/download/windows/", "/products/vpn/download/windows/thanks/"),
         url_test("/vpn/download/mac/", "/products/vpn/download/mac/thanks/"),
+        # Issue 13272
+        url_test("/about/legal/terms/firefox-private-network/", "/privacy/archive/firefox-private-network/tos-2023-06/"),
+        url_test("/privacy/firefox-private-network/", "/privacy/archive/firefox-private-network/notice-2023-06/"),
+        url_test("/privacy/betterweb/", "/privacy/archive/firefox-betterweb/2023-06/"),
+        url_test("/privacy/firefox-fire-tv/", "/privacy/archive/firefox-fire-tv/2023-06/"),
+        url_test("/privacy/firefox-reality/", "/privacy/archive/firefox-reality/notice-2023-06/"),
+        url_test("/about/legal/terms/firefox-reality/", "/privacy/archive/firefox-reality/tos-2023-06/"),
     )
 )
