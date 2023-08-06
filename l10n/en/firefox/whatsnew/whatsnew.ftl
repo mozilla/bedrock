@@ -4,7 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/firefox/60.0/whatsnew/
 
-whatsnew-page-title = What’s new with { -brand-name-firefox } - More privacy, more protections.
+whatsnew-page-title = What’s new with { -brand-name-firefox }.
 whatsnew-page-description = Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.
 whatsnew-firefox = { -brand-name-firefox }
 
