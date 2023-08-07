@@ -15,8 +15,15 @@ jobs:
     name: "Trigger after specific GH label was added"
     if: github.event.label.name == 'Asana'
     steps:
+      - name: Check out bridger repository
+        uses: actions/checkout@v3
+        with:
+          repository: mozmeao/asana-github-bridge
+          ref: v1
+          path: ./.github/actions/asana-bridger
       - id: run-bridger
-        uses: mozmeao/asana-github-bridge/issue_handler@v1
+        name: Build bridge to Asana
+        uses: ./.github/actions/asana-bridger/actions/issue_handler
         with:
             only-react-to: repo-org
             ASANA_PAT: ${{ secrets.ASANA_PAT }}
