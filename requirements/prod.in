@@ -3,12 +3,12 @@ babis==0.2.4
 basket-client==1.1.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
-boto3==1.28.3
+boto3==1.28.20
 chardet==5.1.0
 commonware==0.6.0
 contentful==2.1.1
 contextlib2==21.6.0
-cryptography==41.0.2
+cryptography==41.0.3
 dirsync==2.2.5
 django-allow-cidr==0.7.1
 django-cors-headers==4.2.0
@@ -40,7 +40,7 @@ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibil
 meinheld==1.0.2
 newrelic==8.8.1
 Pillow==10.0.0
-PyGithub==1.59.0
+PyGithub==1.59.1
 pyOpenSSL==23.2.0
 python-memcached==1.59
 PyYAML==6.0
