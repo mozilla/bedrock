@@ -16,7 +16,7 @@ jobs:
     if: github.event.label.name == 'Asana'
     steps:
       - id: run-bridger
-        uses: mozmeao/asana-github-bridge@v1
+        uses: mozmeao/asana-github-bridge/issue_handler@v1
         with:
             only-react-to: repo-org
             ASANA_PAT: ${{ secrets.ASANA_PAT }}
