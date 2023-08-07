@@ -2,13 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$brand-theme: 'firefox';
+$type-scale: 'standard';
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
 
 // These are general styles for elements/components that occur on every page.
 // Individual pages may include additional component styles as needed.
-
-@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($brand-theme: 'firefox', $type-scale: 'standard', $font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
-@use '~@mozilla-protocol/core/protocol/css/includes/themes';
-@use '~@mozilla-protocol/core/protocol/css/components/forms/form';
 
 // Fonts
 @import '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
@@ -49,11 +49,7 @@
 }
 
 .mzp-c-newsletter-details legend {
-    font-family: $body-font-family;
-
-    @supports (--css:variables) {
-        font-family: var(--body-font-family);
-    }
+    font-family: get-theme('body-font-family');
 }
 
 #newsletter-submit + .mzp-c-fieldnote {
@@ -65,8 +61,8 @@
 .errorlist,
 .error-msg {
     @include light-links;
-    background-color: form.$form-red;
-    border-radius: form.$field-border-radius;
+    background-color: $form-red;
+    border-radius: $field-border-radius;
     color: $color-white;
     padding: $spacing-sm;
     margin-bottom: $spacing-xl;

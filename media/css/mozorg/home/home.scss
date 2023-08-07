@@ -18,11 +18,7 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Billboard
 .mzp-c-billboard {
-    margin-top: $v-grid-xl;
-
-    @supports (--css: variables) {
-        margin-top: var(--v-grid-xl);
-    }
+    margin-top: get-theme('v-grid-xl');
 
     @media #{$mq-md} {
         margin-top: 0;

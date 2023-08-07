@@ -69,26 +69,17 @@ dd {
 
 .c-page-header {
     @include text-title-xs;
-    background: $background-color-inverse;
-    color: $body-text-color-inverse;
+    background: get-theme('background-color-inverse');
+    color: get-theme('body-text-color-inverse');
 
     h1 {
-        color: $title-text-color-inverse;
+        color: get-theme('title-text-color-inverse');
     }
 
     span {
         @include text-title-xs;
         display: block;
         margin-top: $spacing-md;
-    }
-
-    @supports (--css: variables) {
-        background: var(--background-color-inverse);
-        color: var(--body-text-color-inverse);
-
-        h1 {
-            color: var(--title-text-color-inverse);
-        }
     }
 }
 

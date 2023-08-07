@@ -34,13 +34,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         .mzp-c-split-body {
-            @include bidi(((padding-left, $h-grid-sm, padding-right, $h-grid-sm),));
-
-            @supports (--css: variables) {
-                // css variables and  sass mixins don't work well together so we need to assign it to a sass variable before passing
-                $grid-sm: #{var(--h-grid-sm)};
-                @include bidi(((padding-left, $grid-sm, padding-right, $grid-sm), ));
-            }
+            @include bidi(((padding-left, get-theme('h-grid-sm'), padding-right, get-theme('h-grid-sm')),));
         }
 
         .c-fxpromo-title {
@@ -66,12 +60,7 @@ $image-path: '/media/protocol/img';
         }
 
         .mzp-c-split-body {
-            @include bidi(((padding-left, $h-grid-md, padding-right, $h-grid-md),));
-
-            @supports (--css: variables) {
-                $grid-md: #{var(--h-grid-md)};
-                @include bidi(((padding-left, $grid-md, padding-right, $grid-md), ));
-            }
+            @include bidi(((padding-left, get-theme('h-grid-md'), padding-right, get-theme('h-grid-md')),));
         }
 
         [lang^='en'] & .c-fxpromo-title {

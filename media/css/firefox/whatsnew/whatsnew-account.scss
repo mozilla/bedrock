@@ -31,11 +31,7 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
-    color: $title-text-color;
-
-    @supports (--css: variables) {
-        color: var(--title-text-color);
-    }
+    color: get-theme('title-text-color');
 }
 
 .wnp-main-tagline {
@@ -72,20 +68,12 @@ $image-path: '/media/protocol/img';
         color: $color-white;
 
         h2.thank-you {
-            color: $title-text-color-inverse;
-
-            @supports (--css: variables) {
-                color: var(--title-text-color-inverse);
-            }
+            color: get-theme('title-text-color-inverse');
         }
     }
 
     .wnp-main-title {
-        color: $title-text-color-inverse;
-
-        @supports (--css: variables) {
-            color: var(--title-text-color-inverse);
-        }
+        color: get-theme('title-text-color-inverse');
 
         strong {
             color: $color-violet-20;

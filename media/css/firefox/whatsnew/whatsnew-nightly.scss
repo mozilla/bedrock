@@ -38,14 +38,10 @@ body {
 
 .mzp-c-emphasis-box {
     @include border-box;
-    color: $body-text-color;
+    color: get-theme('body-text-color');
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
     padding: $spacing-xl;
-
-    @supports (--css: variables) {
-        color: var(--body-text-color);
-    }
 
     a:link,
     a:visited {
@@ -63,11 +59,7 @@ body {
 
     .c-emphasis-box-title {
         @include text-title-sm;
-        color: $title-text-color;
+        color: get-theme('title-text-color');
         text-align: center;
-
-        @supports (--css: variables) {
-            color: var(--title-text-color);
-        }
     }
 }
