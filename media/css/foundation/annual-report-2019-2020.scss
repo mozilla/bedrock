@@ -366,11 +366,7 @@ $image-path: '/media/protocol/img';
         &:hover,
         &:focus,
         &:active {
-            color: $link-color-hover;
-
-            @supports (--css: variables) {
-                color: var(--link-color-hover);
-            }
+            color: get-theme('link-color-hover');
         }
     }
 

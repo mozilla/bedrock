@@ -236,11 +236,7 @@ $image-path: '/media/protocol/img';
 .contribute-banner-gethelp {
     background: $color-ink-80 url('/media/img/contribute/contribute-gethelp-banner-bg.jpg') center top no-repeat;
     background-size: cover;
-    color: $body-text-color-inverse;
-
-    @supports (--css: variables) {
-        color: var(--body-text-color-inverse);
-    }
+    color: get-theme('body-text-color-inverse');
 
     @media #{$mq-lg} {
         margin-bottom: $layout-lg;
@@ -249,12 +245,8 @@ $image-path: '/media/protocol/img';
     .contribute-banner-gethelp-title {
         @include font-firefox;
         @include font-size(24px);
-        color: $title-text-color-inverse;
+        color: get-theme('title-text-color-inverse');
         position: relative;
-
-        @supports (--css: variables) {
-            color: var(--title-text-color-inverse);
-        }
 
         @media #{$mq-lg} {
             @include font-size(40px);
