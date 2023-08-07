@@ -171,9 +171,9 @@ deprecated==1.2.13 \
 dirsync==2.2.5 \
     --hash=sha256:1e3a4cd2b639a2eae5afc03c2b8a003fc43d56a0da5114db579386da9a14a8be
     # via -r requirements/prod.in
-diskcache==5.4.0 \
-    --hash=sha256:8879eb8c9b4a2509a5e633d2008634fb2b0b35c2b36192d89655dbde02419644 \
-    --hash=sha256:af3ec6d7f167bbef7b6c33d9ee22f86d3e8f2dd7131eb7c4703d8d91ccdc0cc4
+diskcache==5.6.1 \
+    --hash=sha256:558c6a2d5d7c721bb00e40711803d6804850c9f76c426ed81ecc627fe9d2ce2d \
+    --hash=sha256:e4c978532feff5814c4cc00fe1e11e40501985946643d73220d41ee7737c72c3
     # via glean-parser
 django==3.2.20 \
     --hash=sha256:a477ab326ae7d8807dc25c186b951ab8c7648a3a23f9497763c37307a2b5ef87 \
