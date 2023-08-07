@@ -409,6 +409,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx116-uk.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx116-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx116-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-de-reader-view.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-fr-reader-view.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -418,18 +421,13 @@ class WhatsnewView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3", "4", "5", "6"]
+    variations = ["1", "2"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         version = self.kwargs.get("version") or ""
         pre_release_channels = ["nightly", "developer", "beta"]
         channel = detect_channel(version)
-
-        # activate en-GB locale for 113.0 WNP
-        locale = l10n_utils.get_locale(self.request)
-        if locale == "en-GB" and version.startswith("113.") and channel not in pre_release_channels:
-            ctx["active_locales"] = locale
 
         # add version to context for use in templates
         match = re.match(r"\d{1,3}", version)
@@ -487,6 +485,18 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("117."):
+            if locale.startswith("en-"):
+                if locale == "en-GB" or country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
+            elif locale == "de":
+                template = "firefox/whatsnew/whatsnew-fx117-de-reader-view.html"
+            elif locale == "fr":
+                template = "firefox/whatsnew/whatsnew-fx117-fr-reader-view.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("116."):
