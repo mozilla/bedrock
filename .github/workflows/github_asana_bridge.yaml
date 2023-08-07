@@ -20,10 +20,10 @@ jobs:
         with:
           repository: mozmeao/asana-github-bridge
           ref: v1
-          path: ./.github/actions/asana-bridger
+          path: ./.github/actions/bridger
       - id: run-bridger
         name: Build bridge to Asana
-        uses: ./.github/actions/asana-bridger/actions/issue_handler
+        uses: ./.github/actions/bridger/issue_handler
         with:
             only-react-to: repo-org
             ASANA_PAT: ${{ secrets.ASANA_PAT }}
