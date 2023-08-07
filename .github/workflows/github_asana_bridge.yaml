@@ -23,7 +23,7 @@ jobs:
           path: ./.github/actions/bridger
       - id: run-bridger
         name: Build bridge to Asana
-        uses: ./.github/actions/bridger/issue_handler
+        uses: ./.github/actions/bridger/.github/actions/issue_handler
         with:
             only-react-to: repo-org
             ASANA_PAT: ${{ secrets.ASANA_PAT }}
