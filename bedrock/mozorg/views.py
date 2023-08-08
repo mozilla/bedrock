@@ -119,18 +119,35 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-@require_safe
-def home_view(request):
-    variation = request.GET.get("v", None)
+# @require_safe
+# def home_view(request):
+#     variation = request.GET.get("v", None)
 
-    if variation not in ["1", "2"]:
-        variation = None
+#     if variation not in ["1", "2"]:
+#         variation = None
 
-    ctx = {"ftl_files": ["mozorg/home-new", "mozorg/home-mr2-promo"], "variation": variation}
+#     ctx = {"ftl_files": ["mozorg/home-new"], "variation": variation}
 
-    template_name = "mozorg/home/home.html"
+#     template_name = "mozorg/home/home-new.html"
 
-    return l10n_utils.render(request, template_name, ctx)
+#     return l10n_utils.render(request, template_name, ctx)
+
+
+class HomeView(L10nTemplateView):
+    template_name = "mozorg/home/home-new.html"
+    old_template_name = "mozorg/home/home-old.html"
+
+    ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
+
+    @require_safe
+    def home_variation(request):
+        variation = request.GET.get("v", None)
+
+        if variation not in ["1", "2"]:
+            variation = None
+        ctx = {"variation": variation}
+
+        return ctx
 
 
 @method_decorator(never_cache, name="dispatch")

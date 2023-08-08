@@ -1,0 +1,239 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+header {
+    .c-header-wrapper {
+        text-align: center;
+
+        h1 {
+            @include font-size(54px);
+        }
+
+        p {
+            @include font-mozilla;
+            @include font-size(30px);
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+    }
+}
+
+.c-homepage {
+    h2 {
+        @include font-mozilla;
+        text-align: center;
+
+        @media #{$mq-xs} {
+            @include font-size(35px);
+        }
+
+        @media #{$mq-md} {
+            @include text-title-sm;
+        }
+    }
+}
+
+.c-quote {
+    &.mitchell {
+        background-image: linear-gradient(to right, #e8e7f2, #e5e9f5, #e2ebf7, #deedf8, #dbeff8, #daf0f7, #daf2f5, #daf3f3, #dcf4f1, #dff5ef, #e2f5ee, #e5f6ec);
+    }
+
+    &.politico {
+        background-image: linear-gradient(to right top, #d8f2f6, #daf0f8, #ddeef8, #e0ecf8, #e4eaf6, #e3eaf6, #e1ebf7, #e0ebf7, #daeef7, #d5f1f4, #d6f3ee, #dbf4e5);
+    }
+
+    .c-quote-wrapper {
+        &.mzp-l-content{
+            padding-top: $layout-md;
+            padding-bottom: $layout-md;
+        }
+
+        blockquote,
+        cite {
+            @include font-base;
+            text-align: center;
+        }
+
+        blockquote {
+            @include font-size(20px);
+            border: 0;
+            line-height: 130%;
+            margin-top: 0;
+            font-weight: normal;
+
+            p {
+                margin-bottom: $spacing-sm;
+            }
+        }
+
+        cite {
+            @include font-size(18px);
+            font-weight: bold;
+            font-style: normal ;
+
+            &::before {
+                content: none;
+            }
+        }
+    }
+}
+
+.c-products {
+    text-align: center;
+
+    ul {
+        margin-top: $layout-lg;
+
+        .mzp-c-picto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: $layout-lg;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .mzp-c-picto-image {
+                margin-bottom: $spacing-md;
+            }
+
+        }
+    }
+
+    h3 {
+        @include font-base;
+        @include font-size(19px);
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: $spacing-lg;
+    }
+
+    @media #{$mq-md} {
+        ul {
+            .mzp-c-picto {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.c-mission,
+.c-about,
+.mzp-c-newsletter {
+    p {
+        @include text-body-lg;
+    }
+}
+
+.c-mission {
+    .mzp-c-split-container {
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    hr {
+        border-width: 1px;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-split-container {
+            padding: 0 80px;
+        }
+
+        h2 {
+            text-align: left;
+        }
+    }
+}
+
+.c-about {
+    background-color: $color-light-gray-20;
+
+    .c-about-wrapper {
+        padding-bottom: $layout-xl;
+        position: relative;
+
+        h2 {
+            text-align: left;
+        }
+    }
+
+    .c-about-cta {
+        text-align: center;
+    }
+
+    .c-dino {
+        width: 100px;
+        height: auto;
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        img {
+            width: 115px;
+            height: 95px;
+            object-fit: scale-down;
+            object-position: 4px 16px;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-about-wrapper {
+            h2 {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.c-newsletter-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .c-newsletter-info {
+        align-self: flex-start;
+        text-align: center;
+        margin-bottom: $layout-sm;
+    }
+
+    .c-newsletter-content {
+        header {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+
+        .c-newsletter-info {
+            width: 45%;
+            text-align: left;
+            margin-bottom: 0;
+
+            h2 {
+                text-align: left;
+            }
+        }
+
+        .c-newsletter-content {
+            width: 50%;
+            margin-left: $layout-lg;
+        }
+    }
+}

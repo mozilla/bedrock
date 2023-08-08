@@ -203,15 +203,15 @@
     },
     {
       "files": [
-        "css/mozorg/home/home.scss"
+        "css/mozorg/home/home-new.scss"
       ],
-      "name": "home"
+      "name": "home-new"
     },
     {
       "files": [
-        "css/mozorg/home/home-old.scss"
+        "css/mozorg/home/home.scss"
       ],
-      "name": "home-old"
+      "name": "home"
     },
     {
       "files": [
