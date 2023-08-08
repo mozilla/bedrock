@@ -21,8 +21,10 @@ from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
+from bedrock.utils.views import VariationTemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
@@ -119,35 +121,18 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-# @require_safe
-# def home_view(request):
-#     variation = request.GET.get("v", None)
-
-#     if variation not in ["1", "2"]:
-#         variation = None
-
-#     ctx = {"ftl_files": ["mozorg/home-new"], "variation": variation}
-
-#     template_name = "mozorg/home/home-new.html"
-
-#     return l10n_utils.render(request, template_name, ctx)
-
-
-class HomeView(L10nTemplateView):
+class HomeView(VariationTemplateView):
     template_name = "mozorg/home/home-new.html"
     old_template_name = "mozorg/home/home-old.html"
+    template_context_variations = ["1", "2"]
 
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
-    @require_safe
-    def home_variation(request):
-        variation = request.GET.get("v", None)
+    def get_template_names(self):
+        if ftl_file_is_active("mozorg/home-new"):
+            return [self.template_name]
 
-        if variation not in ["1", "2"]:
-            variation = None
-        ctx = {"variation": variation}
-
-        return ctx
+        return [self.old_template_name]
 
 
 @method_decorator(never_cache, name="dispatch")

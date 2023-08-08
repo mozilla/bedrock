@@ -1,12 +1,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import json
 import os
 from unittest.mock import ANY, Mock, patch
 
 from django.core import mail
 from django.http.response import HttpResponse
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
@@ -57,6 +59,35 @@ class TestRobots(TestCase):
         self.assertEqual(response.get("Content-Type"), "text/plain")
 
 
+@override_settings(DEV=False)
+@patch("bedrock.mozorg.views.l10n_utils.render", return_value=HttpResponse())
+class TestHomePageLocales(TestCase):
+    def test_post(self, render_mock):
+        req = RequestFactory().post("/")
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        resp = view(req)
+        assert resp.status_code == 405
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template(self, render_mock):
+        req = RequestFactory().get("/")
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template(self, render_mock):
+        req = RequestFactory().get("/")
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
+
+
 @patch("bedrock.mozorg.views.l10n_utils.render")
 class TestHomePage(TestCase):
     def setUp(self):
@@ -65,19 +96,22 @@ class TestHomePage(TestCase):
     def test_home_en_template(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "en-US"
-        views.home_view(req)
+        home_view = views.HomeView.as_view()
+        home_view(req)
         render_mock.assert_called_once_with(req, "mozorg/home/home-new.html", ANY)
 
     def test_home_locale_template(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "es"
-        views.home_view(req)
+        home_view = views.HomeView.as_view()
+        home_view(req)
         render_mock.assert_called_once_with(req, "mozorg/home/home-new.html", ANY)
 
     def test_no_post(self, render_mock):
         req = RequestFactory().post("/")
         req.locale = "en-US"
-        resp = views.home_view(req)
+        home_view = views.HomeView.as_view()
+        resp = home_view(req)
         self.assertEqual(resp.status_code, 405)
 
 
