@@ -383,6 +383,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-monitor-waitlist.scss"
+      ],
+      "name": "newsletter-monitor-waitlist"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-family.scss"
       ],
       "name": "newsletter-family"
