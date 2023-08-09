@@ -4,7 +4,7 @@
 
 import json
 import os
-from unittest.mock import ANY, Mock, patch
+from unittest.mock import Mock, patch
 
 from django.core import mail
 from django.http.response import HttpResponse
@@ -87,25 +87,23 @@ class TestHomePageLocales(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["mozorg/home/home-old.html"]
 
-
-@patch("bedrock.mozorg.views.l10n_utils.render")
-class TestHomePage(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-
-    def test_home_en_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "en-US"
-        home_view = views.HomeView.as_view()
-        home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-new.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
 
-    def test_home_locale_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "es"
-        home_view = views.HomeView.as_view()
-        home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-new.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
 
     def test_no_post(self, render_mock):
         req = RequestFactory().post("/")

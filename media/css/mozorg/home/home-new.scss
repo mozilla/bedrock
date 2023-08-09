@@ -20,6 +20,7 @@ header {
             @include font-mozilla;
             @include font-size(30px);
             margin: 0 auto;
+            max-width: 780px;
             line-height: 1.4;
         }
     }

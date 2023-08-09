@@ -209,9 +209,9 @@
     },
     {
       "files": [
-        "css/mozorg/home/home.scss"
+        "css/mozorg/home/home-old.scss"
       ],
-      "name": "home"
+      "name": "home-old"
     },
     {
       "files": [
