@@ -2,8 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$image-path: '/media/protocol/img';
-
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
 @use './components/hero-text.scss';
 @use './components/hero-video.scss';
 @use './components/home.scss';
@@ -14,12 +13,11 @@ $image-path: '/media/protocol/img';
 @use './components/position.scss';
 @use './components/footer.scss';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
-@import '~@mozilla-protocol/core/protocol/css/components/video';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
-@import '../protocol/components/custom-menu-list';
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/components/video';
+@use '~@mozilla-protocol/core/protocol/css/components/call-out';
+@use '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@use '../protocol/components/custom-menu-list';
 
 .c-careers {
     .c-careers-section-title {

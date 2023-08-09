@@ -2,9 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img', $font-path: '/media/protocol/fonts');
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../includes/lib';
 
 // * -------------------------------------------------------------------------- */
