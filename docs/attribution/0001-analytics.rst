@@ -415,32 +415,46 @@ It will also first lint the schema files.
 Using Glean pings in individual page bundles
 --------------------------------------------
 
-All of our analytics code for Glean lives in a single bundle in the base template,
-which is intended to be shared across all web pages. There may be times where we
-want to send a ping from some JavaScript that exists only in a certain page
-specific bundle however. For instances like this, there is a global ``ping``
-helper available, which you can call from inside any custom event handler you write.
+Our analytics code for Glean lives in a single bundle in the base template,
+which is intended to be shared across all web pages. This bundle automatically
+initializes Glean and records page view pings. It also creates some helpers
+that can be used across different page bundles to record interaction pings
+such as link clicks and form submissions.
 
-For user initiated events, such as clicks:
+The ``Mozilla.Glean.pagePing()`` helper can be used to record pings that are
+specific to a page, such as successful form completions:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.ping({
-            label: 'Newsletters: mozilla-and-you',
-            type: 'Newsletter Signup Success'
+        window.Mozilla.Glean.pagePing({
+            label: 'mozilla-and-you',
+            type: 'Newsletter sign-up success' // type is optional
         });
     }
 
-For non-interaction events that are not user initiated:
+It can also be used to record non-interaction pings that are not directly
+initiated by a visitor:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.ping({
-            label: 'Auto Play',
-            type: 'Video'
+        window.Mozilla.Glean.pagePing({
+            label: 'Firefox default',
             nonInteraction: true
+        });
+    }
+
+The ``Mozilla.Glean.clickPing()`` helper can be used to record click pings
+that are specific to an element in a page, such as a link or button.
+
+.. code-block:: javascript
+
+    if (typeof window.Mozilla.Glean !== 'undefined') {
+        window.Mozilla.Glean.clickPing({
+            label: 'Firefox Download',
+            type: 'macOS, release, en-US', // type is optional
+            position: 'primary' // position is optional
         });
     }
 
