@@ -5,6 +5,7 @@
 from django.conf import settings
 
 import jinja2
+from babel.core import UnknownLocaleError
 from babel.numbers import format_currency
 from django_jinja import library
 from markupsafe import Markup
@@ -21,6 +22,16 @@ VPN_12_MONTH_PLAN = "12-month"
 
 # Show price "+ tax" in countries such as US & Canada.
 TAX_NOT_INCLUDED = ["US", "CA"]
+
+
+def _format_currency(price, currency, currency_locale):
+    # default to en_US if format_currency does not recognize the locale.
+    try:
+        amount = format_currency(price, currency, locale=currency_locale)
+    except UnknownLocaleError:
+        amount = format_currency(price, currency, locale="en_US")
+
+    return amount
 
 
 def _vpn_get_ga_data(selected_plan):
@@ -167,7 +178,7 @@ def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None,
     price = float(selected_plan.get("price"))
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    amount = format_currency(price, currency, locale=currency_locale)
+    amount = _format_currency(price, currency, currency_locale)
 
     if country_code in TAX_NOT_INCLUDED:
         price = ftl("vpn-shared-pricing-monthly-plus-tax", fallback="vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
@@ -199,7 +210,7 @@ def vpn_total_price(ctx, country_code=None, lang=None, bundle_relay=False):
     price = float(selected_plan.get("total"))
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    amount = format_currency(price, currency, locale=currency_locale)
+    amount = _format_currency(price, currency, currency_locale)
 
     if country_code in TAX_NOT_INCLUDED:
         price = ftl("vpn-shared-pricing-total-plus-tax", fallback="vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
@@ -435,7 +446,8 @@ def relay_monthly_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, co
     amount = float(selected_plan.get("price"))
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    price = format_currency(amount, currency, locale=currency_locale)
+    price = _format_currency(amount, currency, currency_locale)
+
     markup = f"{price}"
     return Markup(markup)
 
@@ -462,7 +474,8 @@ def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, coun
     total = amount * period
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    price = format_currency(total, currency, locale=currency_locale)
+    price = _format_currency(total, currency, currency_locale)
+
     markup = f"{price}"
     return Markup(markup)
 

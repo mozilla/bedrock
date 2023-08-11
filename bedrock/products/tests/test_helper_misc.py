@@ -1486,6 +1486,12 @@ class TestVPNTotalPrice(TestCase):
         expected = "US$83.88 total + tax"
         self.assertEqual(markup, expected)
 
+    def test_vpn_12_month_total_price_unknown_locale(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="US", lang="ach")
+        expected = "$59.88 total + tax"
+        self.assertEqual(markup, expected)
+
 
 @override_settings(
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
