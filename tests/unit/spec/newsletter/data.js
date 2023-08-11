@@ -104,6 +104,21 @@ const newsletterData = {
         is_mofo: false,
         order: 6
     },
+    'monitor-waitlist': {
+        title: 'Monitor Waitlist',
+        description:
+            'Sign up to get access to Monitor’s latest upgrade as soon as we launch.',
+        show: false,
+        active: true,
+        private: false,
+        indent: false,
+        vendor_id: 'Sub_monitor_waitlist',
+        languages: ['en'],
+        requires_double_optin: true,
+        firefox_confirm: true,
+        is_mofo: false,
+        order: 6
+    },
     'firefox-sweepstakes': {
         title: 'Firefox Sweepstakes',
         description:
@@ -884,6 +899,11 @@ const stringData = {
         description:
             'Stay informed of the latest trends in privacy & security products from Mozilla, the makers of Firefox.',
         title: 'Security & Privacy News from Mozilla'
+    },
+    'monitor-waitlist': {
+        description:
+            'Sign up to get access to Monitor’s latest upgrade as soon as we launch.',
+        title: 'Monitor Waitlist'
     },
     labs: {
         title: 'About Labs'
