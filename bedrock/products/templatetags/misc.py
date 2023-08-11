@@ -175,7 +175,7 @@ def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None,
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
-    price = float(selected_plan.get("price"))
+    price = selected_plan.get("price")
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
     amount = _format_currency(price, currency, currency_locale)
@@ -207,7 +207,7 @@ def vpn_total_price(ctx, country_code=None, lang=None, bundle_relay=False):
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_relay)
     selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
-    price = float(selected_plan.get("total"))
+    price = selected_plan.get("total")
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
     amount = _format_currency(price, currency, currency_locale)
@@ -443,12 +443,12 @@ def relay_monthly_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, co
 
     available_plans = _relay_get_plans(country_code, lang, product)
     selected_plan = available_plans.get(plan, RELAY_12_MONTH_PLAN)
-    amount = float(selected_plan.get("price"))
+    price = selected_plan.get("price")
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    price = _format_currency(amount, currency, currency_locale)
+    amount = _format_currency(price, currency, currency_locale)
 
-    markup = f"{price}"
+    markup = f"{amount}"
     return Markup(markup)
 
 
@@ -470,13 +470,13 @@ def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, coun
     period = 12 if plan == RELAY_12_MONTH_PLAN else 1
     available_plans = _relay_get_plans(country_code, lang, product)
     selected_plan = available_plans.get(plan, RELAY_12_MONTH_PLAN)
-    amount = float(selected_plan.get("price"))
-    total = amount * period
+    price = float(selected_plan.get("price"))
+    total = price * period
     currency = selected_plan.get("currency")
     currency_locale = lang.replace("-", "_")
-    price = _format_currency(total, currency, currency_locale)
+    amount = _format_currency(total, currency, currency_locale)
 
-    markup = f"{price}"
+    markup = f"{amount}"
     return Markup(markup)
 
 
