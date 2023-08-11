@@ -1,0 +1,78 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('firefox_whatsnew_117_na_relay') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_header %}
+<header class="c-page-header">
+  <div class="mzp-l-content c-page-header-inner">
+    <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
+    {# aside is used to hide notification content from reader mode #}
+    <aside class="c-page-header-notification">
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>{{ ftl('whatsnew-up-to-date-notification-v2', fallback='whatsnew-up-to-date-notification') }}</p>
+      </div>
+      <div class="mzp-c-notification-bar out-of-date">
+        {% if ftl_has_messages('whatsnew-out-of-date-notification-v3') %}
+        <p>{{ ftl('whatsnew-out-of-date-notification-v3',
+          url='https://support.mozilla.org/kb/update-firefox-latest-release?' + utm_params) }}</p>
+        {% else %}
+        <p>{{ ftl('whatsnew-out-of-date-notification-v2') }}</p>
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+</header>
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-sm">
+  <div class="wnp-body">
+    <div class="wnp-relay-animation">
+      <div class="relay-input">
+        <span>Enter your email address</span>
+        <img src="{{ static('img/firefox/whatsnew/whatsnew117-na/check.svg') }}" class="input-check">
+      </div>
+      <div class="relay-dropdown">
+      <img width="32" src="{{ static('img/firefox/whatsnew/whatsnew117-na/relay.svg') }}" class="wnp-relay-logo">
+      Generate relay mask
+      </div>
+    </div>
+    <h2 class="wnp-main-title">Avoiding spam just got easier</h2>
+    <p>New feature alert: Now Firefox Relay subscribers can now access their email masks right in the Firefox Browser.</p>
+    <p>Not using Relay? Let’s fix that.</p>
+    <p class="wnp-main-cta try-relay">
+      <a class="mzp-c-button mzp-t-product"
+        href="https://relay.firefox.com/accounts/profile/?{{ utm_params }}"
+        data-cta-text="Try Relay" data-cta-type="button">
+          Try it out
+      </a>
+    </p>
+  </div>
+  <p class="wnp-sign-off">
+    <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
+  </p>
+</section>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle('firefox_whatsnew_update') }}
+{{ js_bundle('firefox_whatsnew_117_na_relay') }}
+{% endblock %}

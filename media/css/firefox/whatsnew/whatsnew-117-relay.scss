@@ -1,0 +1,140 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+
+.wnp-content-main {
+    background-color: $color-pink-05;
+    text-align: center;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    color: $color-black;
+}
+
+.wnp-body-text {
+    color: $color-black;
+}
+
+.wnp-relay-animation {
+    max-width: max-content;
+    margin: 2em auto;
+    background: $color-white;
+    border-radius: 12px;
+    padding-bottom: 3px;
+    height: 52px;
+    overflow: hidden;
+    animation: 0.5s ease-out 0s 1 normal forwards running pop-in;
+    min-width: 270px;
+
+
+    .relay-input {
+        background-color: $color-white;
+        color: $color-dark-gray-05;
+        justify-content: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        height: 56px;
+
+        .input-check {
+            display: none;
+        }
+
+        &.animation-end{
+            color: $color-black;
+            justify-content: space-around;
+
+            .input-check {
+                display: inline;
+                width: 32px;
+            }
+        }
+
+    }
+
+    .relay-dropdown {
+        background-color: #e0e0e6;
+        border-radius: 12px;
+        color: #000;
+        align-items: center;
+        height: 50px;
+        margin: 0 3px;
+        position: relative;
+        z-index: 1;
+
+        .wnp-relay-logo {
+            margin: 0 16px;
+        }
+    }
+
+    &.click-animation {
+        animation: 0.3s ease-in-out .5s forwards click, 2.5s ease-out 1s forwards drop-down-wrapper;
+
+        .relay-dropdown {
+            display: flex;
+            animation: 0.3s ease-out 2.1s forwards click;
+
+        }
+    }
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes click {
+    0% {
+        transform: scale(1.0);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+@keyframes drop-down-wrapper {
+    0% {
+        height: 52px;
+    }
+
+    10% {
+        height: 52px;
+    }
+
+    40% {
+        height: 105px;
+    }
+
+    70% {
+        height: 105px;
+    }
+
+    100% {
+        height: 52px;
+    }
+}
