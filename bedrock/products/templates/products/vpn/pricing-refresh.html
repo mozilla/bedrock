@@ -12,7 +12,7 @@
 {% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{% endblock %}
 
-{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+{% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
 
 {% block body_id %}mozilla-vpn-pricing{% endblock %}
 
@@ -44,7 +44,7 @@
 {% block content %}
 <main>
   {% if vpn_affiliate_attribution_enabled %}
-    {% include 'products/vpn/includes/cookie-notification.html' %}
+    {% include 'includes/affiliate-banner.html' %}
   {% endif %}
 
   <section class="mzp-l-content mzp-t-content-xl">

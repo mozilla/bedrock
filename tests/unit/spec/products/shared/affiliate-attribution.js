@@ -9,7 +9,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-import AffiliateAttribution from '../../../../../media/js/products/vpn/affiliate-attribution.es6.js';
+import AffiliateAttribution from '../../../../../media/js/products/shared/affiliate-attribution.es6.js';
 import FxaProductButton from '../../../../../media/js/base/fxa-product-button.es6.js';
 
 describe('affiliate-attribution.es6.js', function () {
@@ -89,7 +89,7 @@ describe('affiliate-attribution.es6.js', function () {
                     );
 
                     expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                        'moz-vpn-affiliate',
+                        'moz-cj-affiliate',
                         _cjmsCookieValue,
                         jasmine.any(String),
                         '/',
@@ -153,7 +153,7 @@ describe('affiliate-attribution.es6.js', function () {
                     );
 
                     expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                        'moz-vpn-affiliate',
+                        'moz-cj-affiliate',
                         _cjmsCookieValue,
                         jasmine.any(String),
                         '/',
@@ -217,7 +217,7 @@ describe('affiliate-attribution.es6.js', function () {
                     );
 
                     expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                        'moz-vpn-affiliate',
+                        'moz-cj-affiliate',
                         _cjmsCookieValue,
                         jasmine.any(String),
                         '/',
@@ -493,7 +493,7 @@ describe('affiliate-attribution.es6.js', function () {
                     AffiliateAttribution.removeMarketingCookie
                 ).toHaveBeenCalled();
                 expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                    'moz-pref-vpn-affiliate',
+                    'moz-pref-cj-affiliate',
                     'reject',
                     jasmine.any(String),
                     '/',
@@ -502,7 +502,7 @@ describe('affiliate-attribution.es6.js', function () {
                     'lax'
                 );
                 expect(window.Mozilla.Cookies.removeItem).toHaveBeenCalledWith(
-                    'moz-vpn-affiliate',
+                    'moz-cj-affiliate',
                     '/',
                     null,
                     false,
@@ -522,7 +522,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldInitiateAttributionFlow()
             ).toBeTrue();
             expect(window.Mozilla.Cookies.getItem).toHaveBeenCalledWith(
-                'moz-pref-vpn-affiliate'
+                'moz-pref-cj-affiliate'
             );
         });
 
@@ -535,7 +535,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldInitiateAttributionFlow()
             ).toBeTrue();
             expect(window.Mozilla.Cookies.getItem).toHaveBeenCalledWith(
-                'moz-pref-vpn-affiliate'
+                'moz-pref-cj-affiliate'
             );
         });
 
@@ -548,7 +548,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldInitiateAttributionFlow()
             ).toBeFalse();
             expect(window.Mozilla.Cookies.getItem).toHaveBeenCalledWith(
-                'moz-pref-vpn-affiliate'
+                'moz-pref-cj-affiliate'
             );
         });
 
@@ -584,7 +584,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldShowOptOutNotification()
             ).toBeTrue();
             expect(window.Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-vpn-affiliate'
+                'moz-cj-affiliate'
             );
         });
 
@@ -613,7 +613,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldShowOptOutNotification()
             ).toBeFalse();
             expect(window.Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-pref-vpn-affiliate'
+                'moz-pref-cj-affiliate'
             );
         });
 
@@ -629,7 +629,7 @@ describe('affiliate-attribution.es6.js', function () {
                 AffiliateAttribution.shouldShowOptOutNotification()
             ).toBeFalse();
             expect(window.Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-pref-vpn-affiliate'
+                'moz-pref-cj-affiliate'
             );
         });
     });

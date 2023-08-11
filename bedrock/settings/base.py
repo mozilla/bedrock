@@ -231,6 +231,7 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
+    "affiliate.ftl",
     "banners/firefox-app-store",
     "banners/fundraising",
     "brands",
@@ -908,6 +909,9 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 # Firefox Accounts product links
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+
+# Affiliate micro service (CJMS) endpoint (issue 11212)
+CJMS_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
 
 # Google Play and Apple App Store settings
 from .appstores import (  # noqa: E402, F401
@@ -1682,9 +1686,6 @@ VPN_CONNECT_DEVICES = 5
 
 # VPN client ID for referral parameter tracking (issue 10811)
 VPN_CLIENT_ID = "e6eb0d1e856335fc"
-
-# VNP affiliate micro service (CJMS) endpoint (issue 11212)
-VPN_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
 
 # Countries where we can't legally sell or advertise Mozilla VPN (e.g via /whatsnew)
 # See: https://github.com/mozilla/bedrock/issues/11572

@@ -7,8 +7,8 @@
 import FxaProductButton from '../../base/fxa-product-button.es6.js';
 
 const AffiliateAttribution = {};
-const _marketingCookieID = 'moz-vpn-affiliate';
-const _preferenceCookieID = 'moz-pref-vpn-affiliate';
+const _marketingCookieID = 'moz-cj-affiliate';
+const _preferenceCookieID = 'moz-pref-cj-affiliate';
 
 AffiliateAttribution.hasMarketingCookie = function () {
     return Mozilla.Cookies.hasItem(_marketingCookieID);
@@ -97,7 +97,7 @@ AffiliateAttribution.getCJEventParam = function () {
 AffiliateAttribution.getCJMSEndpoint = function () {
     return document
         .getElementsByTagName('html')[0]
-        .getAttribute('data-vpn-affiliate-endpoint');
+        .getAttribute('data-cj-affiliate-endpoint');
 };
 
 AffiliateAttribution.fetch = function (flowId, cjID, value) {

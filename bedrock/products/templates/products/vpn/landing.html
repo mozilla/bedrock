@@ -25,7 +25,7 @@
 
 {% set show_relay_promo_block = relay_bundle_available_in_country and ftl_has_messages('vpn-shared-increase-your-privacy', 'vpn-add-relay-to-protect', 'vpn-shared-why-bundle') %}
 
-{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+{% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
@@ -58,7 +58,7 @@
 {% block content %}
 <main {% if show_relay_promo_block %}class="has-relay-promo"{% endif %}>
   {% if vpn_affiliate_attribution_enabled %}
-    {% include 'products/vpn/includes/cookie-notification.html' %}
+    {% include 'includes/affiliate-banner.html' %}
   {% endif %}
 
   {% block hero %}
