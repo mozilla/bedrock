@@ -412,6 +412,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx117-de-reader-view.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx117-fr-reader-view.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-na-relay.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -492,7 +493,7 @@ class WhatsnewView(L10nTemplateView):
                 if locale == "en-GB" or country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    template = "firefox/whatsnew/whatsnew-fx117-na-relay.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx117-de-reader-view.html"
             elif locale == "fr":
