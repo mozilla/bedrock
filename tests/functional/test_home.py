@@ -7,39 +7,31 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skip(reason="MR2 promo temporarily hides standard CTA (Issue 10653")
-@pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", ["de", "fr"])
-def test_primary_download_button_is_displayed(locale, base_url, selenium):
+@pytest.mark.parametrize("locale", ["en-US"])
+def test_firefox_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
-    assert page.is_primary_download_button_displayed
+    assert page.is_firefox_download_button_displayed
 
 
-@pytest.mark.skip(reason="MR2 promo temporarily hides standard CTA (Issue 10653")
-@pytest.mark.skip_if_not_firefox(reason="Firefox Accounts CTA is displayed only to Firefox users")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", ["de", "fr"])
-def test_primary_accounts_button_is_displayed(locale, base_url, selenium):
+@pytest.mark.parametrize("locale", ["en-US"])
+def test_pocket_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
-    assert page.is_primary_accounts_button_displayed
-    assert not page.is_primary_download_button_displayed
+    assert page.is_pocket_download_button_displayed
 
 
-@pytest.mark.skip_if_firefox(reason="Download button is displayed only to non-Firefox users")
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", ["en-US", "de", "fr"])
-def test_secondary_download_button_is_displayed(locale, base_url, selenium):
+@pytest.mark.parametrize("locale", ["en-US"])
+def test_relay_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
-    assert page.is_secondary_download_button_displayed
+    assert page.is_relay_download_button_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason="Firefox Accounts CTA is displayed only to Firefox users")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", ["en-US", "de", "fr"])
-def test_secondary_accounts_button_is_displayed_rest_tier_1(locale, base_url, selenium):
+@pytest.mark.parametrize("locale", ["en-US"])
+def test_mozilla_vpn_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
-    assert page.is_secondary_accounts_button_displayed
-    assert not page.is_secondary_download_button_displayed
+    assert page.is_mozilla_vpn_download_button_displayed
