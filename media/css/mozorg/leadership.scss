@@ -68,6 +68,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.leadership-title {
+    @include text-title-lg;
+    border-bottom: 2px solid $color-marketing-gray-30;
+    margin: 1em 0;
+    padding-bottom: 0.75em;
+}
+
+
 // Headshot galleries
 .gallery {
     @include clearfix;
