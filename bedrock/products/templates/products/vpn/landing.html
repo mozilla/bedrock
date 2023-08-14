@@ -351,13 +351,7 @@
           {% endif %}
         </li>
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-linux-v3') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v3', url=url('products.vpn.platforms.linux')) }}
-          {% elif ftl_has_messages('vpn-landing-faq-compatibility-question-desc-linux-v2') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v2', url=url('products.vpn.platforms.linux')) }}
-          {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-linux') }}
-          {% endif %}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v4', fallback='vpn-landing-faq-compatibility-question-desc-linux-v3', url=url('products.vpn.platforms.linux')) }}
         </li>
       </ul>
     </details>
