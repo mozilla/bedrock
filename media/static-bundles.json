@@ -245,12 +245,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-eu.scss"
-      ],
-      "name": "home-eu"
-    },
-    {
-      "files": [
         "css/base/banners/fundraiser.scss"
       ],
       "name": "fundraising-banner"
