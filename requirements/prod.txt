@@ -771,9 +771,9 @@ rich-text-renderer==0.2.7 \
     --hash=sha256:d34f1bfc1a2903e9b087d7550a01089b06867f0be21fa494fdee73b656c80bc7 \
     --hash=sha256:e6fab8d1243dddd29bb65717ade63ca57f10561a3944fc49dac770c4d95ab71c
     # via -r requirements/prod.in
-s3transfer==0.6.0 \
-    --hash=sha256:06176b74f3a15f61f1b4f25a1fc29a4429040b7647133a463da8fa5bd28d5ecd \
-    --hash=sha256:2ed07d3866f523cc561bf4a00fc5535827981b117dd7876f036b0c1aca42c947
+s3transfer==0.6.1 \
+    --hash=sha256:3c0da2d074bf35d6870ef157158641178a4204a6e689e82546083e31e0311346 \
+    --hash=sha256:640bb492711f4c0c0905e1f62b6aaeb771881935ad27884852411f8e9cacbca9
     # via boto3
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
