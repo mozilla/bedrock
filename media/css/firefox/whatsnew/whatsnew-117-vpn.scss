@@ -1,0 +1,138 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$brand-theme: 'firefox';
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+.wnp-content-main {
+    animation: mainbg 200ms 1700ms ease-in forwards;
+    background-color: $color-white;
+    color: $color-black;
+    margin-top: $spacing-md;
+    padding-bottom: $spacing-md;
+    text-align: center;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    padding: 0 $layout-lg;
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-lg;
+}
+
+.wnp-sign-off,
+.c-utilities {
+    color: $color-black;
+}
+
+.toggle {
+    align-items: center;
+    animation: fade-and-zoom 200ms 800ms ease forwards, drop 400ms 1050ms ease-in forwards;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.85);
+    top: -25px;
+}
+
+.toggle-display {
+    --offset: 0.25em;
+    --diameter: 2.5em;
+    align-items: center;
+    animation: toggle-color 100ms 1600ms linear forwards;
+    background-color: $color-pink-40;
+    border-radius: 100vw;
+    border: 2px solid $color-black;
+    display: flex;
+    height: calc(var(--diameter) + var(--offset) * 2);
+    justify-content: space-around;
+    position: relative;
+    width: calc(var(--diameter) * 2 + var(--offset) * 2);
+    transition: background-color 100ms linear;
+
+    @media #{$mq-md} {
+        --diameter: 3em;
+    }
+
+    @media #{$mq-lg} {
+        --diameter: 3.5em
+    }
+
+    &::before {
+        animation: toggle-slide 500ms 1400ms cubic-bezier(.8, -0.75, .5, 1.1) forwards;
+        background: $color-white;
+        border-radius: 50%;
+        border: 2px solid $color-black;
+        box-sizing: border-box;
+        content: '';
+        height: var(--diameter);
+        left: var(--offset);
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        transition: inherit;
+        width: var(--diameter);
+        z-index: 2;
+    }
+}
+
+// Disable animations
+@media (prefers-reduced-motion: reduce) {
+    .wnp-content-main,
+    .toggle,
+    .toggle-display,
+    .toggle-display::before {
+        animation: none;
+    }
+}
+
+// ---------------------------------------------------------------------------*/
+// Animations
+
+@keyframes toggle-slide {
+    from { transform: translate(0, -50%); }
+    to { transform: translate(100%, -50%); }
+}
+
+@keyframes toggle-color {
+    from { background-color: $color-pink-40; }
+    to { background-color: $color-green-40; }
+}
+
+@keyframes mainbg {
+    to { background-color: $color-violet-05; }
+}
+
+@keyframes fade-and-zoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drop {
+    0% { top: -25px; }
+    50% { top: 4px; }
+    70% { top: -8px; }
+    90%, 100% { top: 0; }
+}

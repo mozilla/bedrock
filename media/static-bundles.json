@@ -457,6 +457,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-117-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_117_vpn"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
