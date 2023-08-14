@@ -412,16 +412,19 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx117-de-reader-view.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx117-fr-reader-view.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-vpn.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx117-na-relay.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
     # countries where we can't advertise Mozilla VPN.
     vpn_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx115-eu-vpn.html",
+        "firefox/whatsnew/whatsnew-fx117-vpn.html",
     ]
 
     # place expected ?v= values in this list
-    variations = ["1", "2"]
+    variations = ["1", "2", "3", "4"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -488,11 +491,16 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("117."):
-            if locale.startswith("en-"):
+            if country in WNP117_VPN_EXPANSION_COUNTRIES:
+                template = "firefox/whatsnew/whatsnew-fx117-vpn.html"
+            elif locale.startswith("en-"):
                 if locale == "en-GB" or country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    if variant == "3":
+                        template = "firefox/whatsnew/whatsnew-fx117-na-relay.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx117-vpn.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx117-de-reader-view.html"
             elif locale == "fr":
@@ -555,6 +563,37 @@ class WhatsnewView(L10nTemplateView):
 
         # return a list to conform with original intention
         return [template]
+
+
+WNP117_VPN_EXPANSION_COUNTRIES = [
+    "AT",  # Austria
+    "BE",  # Belgium
+    "BG",  # Bulgaria
+    "CH",  # Switzerland
+    "CY",  # Cyprus
+    "CZ",  # Czech Republic
+    # "DE",  # Germany
+    "DK",  # Denmark
+    "EE",  # Estonia
+    "ES",  # Spain
+    "FI",  # Finland
+    # "FR",  # France
+    "HR",  # Croatia
+    "HU",  # Hungary
+    "IE",  # Ireland
+    "IT",  # Italy
+    "LT",  # Lithuania
+    "LU",  # Luxembourg
+    "LV",  # Latvia
+    "MT",  # Malta
+    "NL",  # Netherlands
+    "PL",  # Poland
+    "PT",  # Portugal
+    "RO",  # Romania
+    "SE",  # Sweden
+    "SI",  # Slovenia
+    "SK",  # Slovakia
+]
 
 
 class DownloadThanksView(L10nTemplateView):
