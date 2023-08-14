@@ -215,18 +215,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-mr2-promo.scss"
-      ],
-      "name": "home-mr2-promo"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-firefox-mr106-promo.scss"
-      ],
-      "name": "home-firefox-mr106-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/includes/pocket-promo.scss"
       ],
       "name": "home-pocket-promo"

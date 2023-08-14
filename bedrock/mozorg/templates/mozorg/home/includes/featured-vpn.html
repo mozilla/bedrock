@@ -4,6 +4,11 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+
+{% block page_css %}
+    {{ css_bundle('home-featured-vpn') }}
+{% endblock %}
+
 <aside class="vpn-feature mzp-l-content">
   <div class="feature-wrapper">
     <img src="{{ static('img/home/2023/vpn-on.svg') }}" alt="">

@@ -154,7 +154,7 @@ header {
         }
 
         h2 {
-            text-align: left;
+            @include bidi(((text-align, left, right),));
         }
     }
 }
@@ -167,7 +167,7 @@ header {
         position: relative;
 
         h2 {
-            text-align: left;
+            @include bidi(((text-align, left, right),));
         }
     }
 
@@ -224,17 +224,17 @@ header {
 
         .c-newsletter-info {
             width: 45%;
-            text-align: left;
+            @include bidi(((text-align, left, right),));
             margin-bottom: 0;
 
             h2 {
-                text-align: left;
+                @include bidi(((text-align, left, right),));
             }
         }
 
         .c-newsletter-content {
             width: 50%;
-            margin-left: $layout-lg;
+            @include bidi(((margin-left, $layout-lg, margin-right, 0),));
         }
     }
 }

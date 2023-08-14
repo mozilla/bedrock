@@ -8,8 +8,23 @@
 
 {% extends "mozorg/home/base.html" %}
 
-{% block page_title %}{{ ftl('home-internet-for-people-not-profit') }}{% endblock %}
+{# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Internet for people, not profit — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Internet for people, not profit — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('home-internet-for-people-not-profit') }}
+  {%- endif -%}
+{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
+
+
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
+
+{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -17,8 +32,19 @@
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
 
-  {% if switch('home-vpn-feature-experiment') %}
-    {{ css_bundle('home-featured-vpn') }}
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
+  {% endif %}
+
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
@@ -27,6 +53,8 @@
       {{ js_bundle('home-vpn-feature-experiment') }}
   {% endif %}
 {% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_campaign=homepage&utm_medium=referral' %}
 
 {% block content %}
 <header>
@@ -67,7 +95,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
+        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
 
 
@@ -86,7 +114,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://getpocket.com" target="_blank" rel="noopener noreferrer" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
       <!-- Relay -->
@@ -104,7 +132,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://relay.firefox.com" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
+        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
       {% endcall %}
 
       <!-- VPN -->
@@ -172,7 +200,7 @@
   </section>
 
   <!-- VPN promo experiment -->
-  {% if variation == '2' %}
+  {% if variation == '2' and switch('home-vpn-feature-experiment') %}
     {% include 'mozorg/home/includes/featured-vpn.html' %}
   {% endif %}
 
@@ -212,4 +240,10 @@
 
 {% block js %}
   {{ js_bundle('newsletter') }}
+
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
+  {% endif %}
 {% endblock %}

@@ -28,8 +28,8 @@ home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the 
 home-politico-cite = Politico
 
 home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a non-profit? Actually, both.
-home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla } Corporation is wholly owned by the non-profit 501(c) { -brand-name-mozilla } Foundation. Which means we aren’t beholden to any shareholders — only to our mission.
-home-learn-about-mofo = Learn about the { -brand-name-mozilla } Foundation
+home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla-corporation } is wholly owned by the non-profit 501(c) { -brand-name-mozilla-foundation }. Which means we aren’t beholden to any shareholders — only to our mission.
+home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
 
 home-join-the-fight = Join the fight for a healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.
