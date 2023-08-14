@@ -755,8 +755,8 @@ qrcode==7.4.2 \
     --hash=sha256:581dca7a029bcb2deef5d01068e39093e80ef00b4a61098a2182eac59d01643a \
     --hash=sha256:9dd969454827e127dbd93696b20747239e6d540e082937c90f14ac95b30f5845
     # via -r requirements/prod.in
-querystringsafe-base64==1.1.1 \
-    --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
+querystringsafe-base64==1.2.0 \
+    --hash=sha256:850913d05558d31a6bdb90711c3ef5ca855d8e1730bf8bc0ca2bcc1ef273c130
     # via -r requirements/prod.in
 requests==2.31.0 \
     --hash=sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f \
