@@ -373,9 +373,9 @@ jq==1.4.1 \
     --hash=sha256:fac91eb91bec60dee28e2325f863c43d12ffc904ee72248522c6d0157ae98a54 \
     --hash=sha256:fc8f67f7b8140e51bd291686055d63f62b60fa3bea861265309f54fd74f5517d
     # via -r requirements/prod.in
-jsonschema==4.5.1 \
-    --hash=sha256:71b5e39324422543546572954ce71c67728922c104902cb7ce252e522235b33f \
-    --hash=sha256:7c6d882619340c3347a1bf7315e147e6d3dae439033ae6383d6acb908c101dfc
+jsonschema==4.19.0 \
+    --hash=sha256:043dc26a3845ff09d20e4420d6012a9c91c9aa8999fa184e7efcfeccb41e32cb \
+    --hash=sha256:6e1e7569ac13be8139b2dd2c21a55d350066ee3f80df06c608b398cdc6f30e8f
     # via glean-parser
 lxml==4.9.3 \
     --hash=sha256:05186a0f1346ae12553d66df1cfce6f251589fea3ad3da4f3ef4e34b2d58c6a3 \
