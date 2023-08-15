@@ -105,16 +105,32 @@ $image-path: '/media/protocol/img';
 .c-pricing-block-horizontal {
     @media #{$mq-lg} {
         .mzp-l-columns {
-            grid-gap: get-theme('v-grid-sm') get-theme('h-grid-sm');
-            gap: get-theme('v-grid-sm') get-theme('h-grid-sm');
+            grid-gap: $v-grid-sm $h-grid-sm;
+            gap: $v-grid-sm $h-grid-sm;
         }
     }
 
     @media #{$mq-xl} {
         .mzp-l-columns {
-            grid-gap: get-theme('v-grid-lg') get-theme('h-grid-xl');
-            gap: get-theme('v-grid-lg') get-theme('h-grid-xl');
+            grid-gap: $v-grid-lg $h-grid-xl;
+            gap: $v-grid-lg $h-grid-xl;
         }
+    }
+
+    @supports (--css: variables) {
+        @media #{$mq-lg} {
+                .mzp-l-columns {
+                    grid-gap: var(--v-grid-sm) var(--h-grid-sm);
+                    gap: var(--v-grid-sm) var(--h-grid-sm);
+                }
+            }
+
+            @media #{$mq-xl} {
+                .mzp-l-columns {
+                    grid-gap: var(--v-grid-lg) var(--h-grid-xl);
+                    gap: var(--v-grid-lg) var(--h-grid-xl);
+                }
+            }
     }
 }
 

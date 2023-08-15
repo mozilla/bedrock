@@ -32,7 +32,11 @@ $image-path: '/media/protocol/img';
 
 .c-main-title {
     @include text-title-md;
-    color: get-theme('title-text-color');
+    color: $title-text-color;
+
+    @supports (--css: variables) {
+        color: var(--title-text-color);
+    }
 }
 
 .c-main-tagline {
@@ -80,12 +84,20 @@ $image-path: '/media/protocol/img';
 @media (prefers-color-scheme: dark) {
     #outer-wrapper {
         background: $color-dark-gray-60;
-        color: get-theme('title-text-color-inverse');
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+            }
     }
 
     .c-main-title,
     .mzp-c-picto-title {
-        color: get-theme('title-text-color-inverse');
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+            }
     }
 
     .c-main-logo {
