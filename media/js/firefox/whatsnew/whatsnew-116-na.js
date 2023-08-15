@@ -4,66 +4,38 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-function defaultTrue() {
-    'use strict';
-
-    document.querySelector('.cta-holder').classList.add('hide');
-    document.querySelector('.fx-not-default').classList.add('hide');
-    document.querySelector('.fx-is-default').classList.add('show');
-
-    window.dataLayer.push({
-        event: 'non-interaction',
-        eAction: 'whatsnew-116-na',
-        eLabel: 'default-true'
-    });
-}
-
-function defaultFalse() {
-    'use strict';
-
-    document.querySelector('.cta-holder').classList.add('hide');
-    document.querySelector('.fx-is-default').classList.add('hide');
-    document.querySelector('.fx-not-default').classList.add('show');
-
-    window.dataLayer.push({
-        event: 'non-interaction',
-        eAction: 'whatsnew-116-na',
-        eLabel: 'default-false'
-    });
-}
-
 function init() {
     'use strict';
 
-    // If UITour is slow to respond, fallback to assuming Fx is not default.
-    const requestTimeout = window.setTimeout(defaultFalse, 2000);
+    Mozilla.UITour.ping(() => {
+        // main CTA toggles reader mode
+        const button = document.querySelector('.wnp-main-cta .mzp-c-button');
 
-    Mozilla.UITour.getConfiguration('appinfo', function (details) {
-        // Clear timeout as soon as we get a response.
-        window.clearTimeout(requestTimeout);
+        button.addEventListener(
+            'click',
+            (e) => {
+                e.preventDefault();
 
-        // If Firefox is already the default, show alternate call to action.
-        if (details.defaultBrowser) {
-            defaultTrue();
-            return;
-        }
+                Mozilla.UITour.toggleReaderMode();
+            },
+            false
+        );
 
-        defaultFalse();
+        // force show reader mode icon in Firefox UI bar
+        Mozilla.UITour.forceShowReaderIcon();
+
+        // show reader mode icon again on visibility change
+        // see https://github.com/mozilla/bedrock/issues/13484
+        document.addEventListener(
+            'visibilitychange',
+            () => {
+                if (!document.hidden) {
+                    Mozilla.UITour.forceShowReaderIcon();
+                }
+            },
+            false
+        );
     });
-
-    Mozilla.UITour.forceShowReaderIcon();
-
-    // show reader mode icon again on visibility change
-    // see https://github.com/mozilla/bedrock/issues/13484
-    document.addEventListener(
-        'visibilitychange',
-        () => {
-            if (!document.hidden) {
-                Mozilla.UITour.forceShowReaderIcon();
-            }
-        },
-        false
-    );
 }
 
 if (
@@ -72,9 +44,4 @@ if (
     window.Mozilla.Client.isFirefoxDesktop
 ) {
     init();
-} else {
-    // Fall back to learn more CTA if other checks fail
-    document.querySelector('.cta-holder').classList.add('hide');
-    document.querySelector('.fx-not-default').classList.add('hide');
-    document.querySelector('.fx-is-default').classList.add('show');
 }

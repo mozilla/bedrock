@@ -22,7 +22,7 @@ RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
 ########
 # assets builder and dev server
 #
-FROM node:16-slim AS assets
+FROM node:18-slim AS assets
 
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app

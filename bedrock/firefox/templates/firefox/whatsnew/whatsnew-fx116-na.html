@@ -6,7 +6,7 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_title %}What’s new with Firefox{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
@@ -50,17 +50,9 @@
           bar, and boom. No more ads, buttons, background colors or videos on whatever
           webpage you’re viewing.</p>
 
-        <p class="cta-holder"><span></span></p>
-
-        <p class="wnp-main-cta fx-not-default">
-          <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Always use Firefox">
-            Always use Firefox
-          </a>
-        </p>
-
-        <p class="wnp-main-cta fx-is-default">
-          <a class="mzp-c-button mzp-t-product" href="https://support.mozilla.org/kb/firefox-reader-view-clutter-free-web-pages" data-cta-text="Learn more" data-cta-type="button">
-            Learn more
+        <p class="wnp-main-cta try-reader-view">
+          <a class="mzp-c-button mzp-t-product" href="https://support.mozilla.org/kb/firefox-reader-view-clutter-free-web-pages?{{ utm_params }}" data-cta-text="Try Reader View" data-cta-type="button">
+            Try Reader View
           </a>
         </p>
       </div>
