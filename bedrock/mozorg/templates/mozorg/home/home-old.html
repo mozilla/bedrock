@@ -12,7 +12,6 @@
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
 {% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
-{% set show_mr2_promo = switch('homepage-mr2-promo') and ftl_has_messages('home-mr2-promo-title', 'home-mr2-promo-cta') %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
 
@@ -27,10 +26,6 @@
   {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
-
-  {% if show_mr2_promo %}
-    {{ css_bundle('home-mr2-promo') }}
-  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -43,9 +38,6 @@
 
 {% block content %}
 <main>
-  {% if show_mr2_promo %}
-    {% include 'mozorg/home/includes/mr2-promo.html' %}
-  {% else %}
     {% call split(
       image=resp_img(
         url='img/home/laptop.png',
@@ -69,7 +61,6 @@
 
       {{ download_firefox_thanks(dom_id='download-primary', download_location='primary cta') }}
     {% endcall %}
-  {% endif %}
 
   <div class="mzp-l-content mzp-t-mozilla">
     {{ billboard(
