@@ -1,0 +1,258 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split, billboard, picto with context %}
+
+{% extends "mozorg/home/base.html" %}
+
+{# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Internet for people, not profit — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Internet for people, not profit — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('home-internet-for-people-not-profit') }}
+  {%- endif -%}
+{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
+
+{% set show_fundraising_banner = switch('fundraising-banner-giving2022') and ftl_has_messages('banner-fundraising-title', 'banner-fundraising-body') %}
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('home-new') }}
+
+
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ css_bundle('firefox-app-store-banner') }}
+  {% endif %}
+
+  {% if switch('home-vpn-feature-experiment') %}
+    {{ css_bundle('home-featured-vpn') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
+    {% include 'includes/banners/mobile/firefox-app-store.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('home-vpn-feature-experiment') %}
+      {{ js_bundle('home-vpn-feature-experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_campaign=homepage&utm_medium=referral' %}
+
+{% block content %}
+<header>
+  <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
+    <h1>{{ ftl('home-mission-driven') }}</h1>
+    <p>{{ ftl('home-were-not-normal') }}</p>
+  </div>
+</header>
+
+<main class="c-homepage">
+  <div class="c-quote mitchell">
+    <div class="c-quote-wrapper mzp-l-content mzp-t-content-lg">
+      <blockquote>
+        <p>{{ ftl('home-the-health-of') }}
+        </p>
+        <cite>{{ ftl('home-mitchell-baker') }}</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <section class="c-products mzp-l-content mzp-t-content-xl">
+    <h2>{{ ftl('home-mozilla-makes-privacy') }}</h2>
+
+    <ul class="mzp-l-columns mzp-t-columns-four">
+
+      <!-- Firefox -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-firefox-browsing'),
+        image=resp_img(
+          url='protocol/img/logos/firefox/browser/logo.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
+      {% endcall %}
+
+
+      <!-- Pocket -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-pocket-articles'),
+        image=resp_img(
+          url='protocol/img/logos/pocket/logo.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+      {% endcall %}
+
+      <!-- Relay -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-relay-masks'),
+        image=resp_img(
+          url='protocol/img/logos/firefox/relay/logo-white.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
+      {% endcall %}
+
+      <!-- VPN -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-vpn-trust'),
+        image=resp_img(
+          url='protocol/img/logos/mozilla/vpn/logo.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
+      {% endcall %}
+    </ul>
+  </section>
+
+  <div class="c-quote politico">
+    <div class="c-quote-wrapper mzp-l-content mzp-t-content-lg">
+      <blockquote>
+        <p>{{ ftl('home-mozilla-takes-bets') }}
+        </p>
+        <cite>{{ ftl('home-politico-cite') }}</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <section class="c-mission mzp-l-content">
+    <!-- Manifesto -->
+    {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace',
+        image=resp_img(
+          url='img/home/2023/mofo-split.png',
+          srcset={
+            'img/home/2023/mofo-split-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
+        media_after=False
+    ) %}
+    <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
+    <p>{{ ftl('home-mozilla-consists-of') }}</p>
+    <a href="{{ url('mozorg.about.manifesto') }}" class="mzp-c-button">{{ ftl('home-learn-about-mofo') }}</a>
+    {% endcall %}
+          <hr>
+    <!-- Contribute -->
+    {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+        image=resp_img(
+          url='img/home/2023/contribute-split.png',
+          srcset={
+            'img/home/2023/contribute-split-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset'
+          }
+        ),
+        media_after=False
+    ) %}
+    <h2 >{{ ftl('home-join-the-fight')}}</h2>
+    <p>{{ ftl('home-your-voice-your-code') }}</p>
+    <a href="{{ url('mozorg.contribute') }}" class="mzp-c-button">{{ ftl('home-volunteer-with-mozilla') }}</a>
+    {% endcall %}
+  </section>
+
+  <!-- VPN promo experiment -->
+  {% if variation == '2' and switch('home-vpn-feature-experiment') %}
+    {% include 'mozorg/home/includes/featured-vpn.html' %}
+  {% endif %}
+
+  <section class="c-about">
+    <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">
+      <h2>{{ ftl('home-that-one-time') }}</h2>
+      <p>{{ ftl('home-the-mozilla-project') }}</p>
+      <p>{{ ftl('home-eventually-the-open') }}</p>
+      <p>{{ ftl('home-today-mozilla-continues') }}</p>
+      <div class="c-about-cta">
+        <a href="{{ url('mozorg.about.index') }}" class="mzp-c-button">{{ ftl('home-learn-more-about-mozilla') }}</a>
+      </div>
+      <div class="c-dino">
+        <img src="{{ static('img/home/2023/mozilla-dino.svg') }}" alt="">
+      </div>
+    </div>
+  </section>
+
+  <aside class="c-newsletter">
+    <div class="c-newsletter-wrapper mzp-l-content mzp-t-content-lg">
+      <div class="c-newsletter-info">
+        <h2>{{ ftl('home-get-good-news') }}</h2>
+        <p>{{ ftl('home-get-news-and-tips') }}</p>
+      </div>
+
+      <div class="c-newsletter-content">
+        {{ email_newsletter_form(
+          newsletters='knowledge-is-power',
+          title=' ',
+          button_class='button-dark',
+          )}}
+        </div>
+      </div>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
+    {{ js_bundle('firefox-app-store-banner') }}
+  {% endif %}
+{% endblock %}

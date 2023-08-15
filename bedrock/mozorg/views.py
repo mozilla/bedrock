@@ -4,7 +4,6 @@
 
 import json
 
-from django.conf import settings
 from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
@@ -17,17 +16,15 @@ from django.views.generic import TemplateView
 from commonware.decorators import xframe_allow
 from jsonview.decorators import json_view
 from product_details import product_details
-from sentry_sdk import capture_exception
 
-from bedrock.base.waffle import switch
-from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
-from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
+from bedrock.utils.views import VariationTemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
@@ -124,47 +121,19 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-@require_safe
-def home_view(request):
-    locale = l10n_utils.get_locale(request)
+class HomeView(VariationTemplateView):
+    template_name = "mozorg/home/home-new.html"
+    old_template_name = "mozorg/home/home-old.html"
+    template_context_variations = ["1", "2"]
+    activation_files = ["mozorg/home-new", "mozorg/home"]
 
-    ctx = {
-        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
-        "add_active_locales": ["de", "fr"],
-    }
+    ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
-    if locale.startswith("en-"):
-        if switch("contentful-homepage-en"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                # TODO: use a better system to get the pages than the ID
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["en-US"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the rest-of-world home page
-                template_name = "mozorg/home/home.html"
-        else:
-            template_name = "mozorg/home/home.html"
-    elif locale == "de":
-        if switch("contentful-homepage-de"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["de"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the old page
-                template_name = "mozorg/home/home-de.html"
-                ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-        else:
-            template_name = "mozorg/home/home-de.html"
-            ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-    elif locale == "fr":
-        template_name = "mozorg/home/home-fr.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
-    else:
-        template_name = "mozorg/home/home.html"
+    def get_template_names(self):
+        if ftl_file_is_active("mozorg/home-new"):
+            return [self.template_name]
 
-    return l10n_utils.render(request, template_name, ctx)
+        return [self.old_template_name]
 
 
 @method_decorator(never_cache, name="dispatch")
@@ -179,9 +148,7 @@ class ContentfulPreviewView(L10nTemplateView):
     def render_to_response(self, context, **response_kwargs):
         page_type = context["page_type"]
         theme = context["info"]["theme"]
-        if page_type == "pageHome":
-            template = "mozorg/home/home-contentful.html"
-        elif page_type == "pagePageResourceCenter":
+        if page_type == "pagePageResourceCenter":
             template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"

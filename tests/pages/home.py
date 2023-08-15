@@ -10,23 +10,23 @@ from pages.base import BasePage
 class HomePage(BasePage):
     _URL_TEMPLATE = "/{locale}/"
 
-    _primary_download_button_locator = (By.CSS_SELECTOR, "#download-primary > .download-link")
-    _secondary_download_button_locator = (By.CSS_SELECTOR, "#download-secondary > .download-link")
-    _primary_accounts_button_locator = (By.ID, "fxa-learn-primary")
-    _secondary_accounts_button_locator = (By.ID, "fxa-learn-secondary")
+    _firefox_download_button_locator = (By.ID, "homepage-get-firefox")
+    _pocket_download_button_locator = (By.ID, "homepage-get-pocket")
+    _relay_download_button_locator = (By.ID, "homepage-get-relay")
+    _mozilla_vpn_download_button_locator = (By.ID, "homepage-get-mozilla-vpn")
 
     @property
-    def is_primary_download_button_displayed(self):
-        return self.is_element_displayed(*self._primary_download_button_locator)
+    def is_firefox_download_button_displayed(self):
+        return self.is_element_displayed(*self._firefox_download_button_locator)
 
     @property
-    def is_primary_accounts_button_displayed(self):
-        return self.is_element_displayed(*self._primary_accounts_button_locator)
+    def is_pocket_download_button_displayed(self):
+        return self.is_element_displayed(*self._pocket_download_button_locator)
 
     @property
-    def is_secondary_download_button_displayed(self):
-        return self.is_element_displayed(*self._secondary_download_button_locator)
+    def is_relay_download_button_displayed(self):
+        return self.is_element_displayed(*self._relay_download_button_locator)
 
     @property
-    def is_secondary_accounts_button_displayed(self):
-        return self.is_element_displayed(*self._secondary_accounts_button_locator)
+    def is_mozilla_vpn_download_button_displayed(self):
+        return self.is_element_displayed(*self._mozilla_vpn_download_button_locator)

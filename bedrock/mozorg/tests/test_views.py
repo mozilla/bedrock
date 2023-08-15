@@ -1,12 +1,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import json
 import os
-from unittest.mock import ANY, Mock, patch
+from unittest.mock import Mock, patch
 
 from django.core import mail
 from django.http.response import HttpResponse
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
@@ -57,39 +59,57 @@ class TestRobots(TestCase):
         self.assertEqual(response.get("Content-Type"), "text/plain")
 
 
-@patch("bedrock.mozorg.views.l10n_utils.render")
-class TestHomePage(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
+@override_settings(DEV=False)
+@patch("bedrock.mozorg.views.l10n_utils.render", return_value=HttpResponse())
+class TestHomePageLocales(TestCase):
+    def test_post(self, render_mock):
+        req = RequestFactory().post("/")
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        resp = view(req)
+        assert resp.status_code == 405
 
-    def test_home_en_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "en-US"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
 
-    def test_home_de_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "de"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-de.html", ANY)
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
 
-    def test_home_fr_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "fr"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-fr.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
 
-    def test_home_locale_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "es"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
 
     def test_no_post(self, render_mock):
         req = RequestFactory().post("/")
         req.locale = "en-US"
-        resp = views.home_view(req)
+        home_view = views.HomeView.as_view()
+        resp = home_view(req)
         self.assertEqual(resp.status_code, 405)
 
 
@@ -99,21 +119,16 @@ class TestHomePage(TestCase):
     (
         (
             "abc",
-            {"page_type": "pageHome", "info": {"theme": "mozilla"}},
-            "mozorg/home/home-contentful.html",
-        ),
-        (
-            "def",
             {"page_type": "pagePageResourceCenter", "info": {"theme": "mozilla"}},
             "products/vpn/resource-center/article.html",
         ),
         (
-            "ghi",
+            "def",
             {"page_type": "OTHER", "info": {"theme": "firefox"}},
             "firefox/contentful-all.html",
         ),
         (
-            "jkl",
+            "ghi",
             {"page_type": "OTHER", "info": {"theme": "mozilla"}},
             "mozorg/contentful-all.html",
         ),

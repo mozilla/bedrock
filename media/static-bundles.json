@@ -203,27 +203,27 @@
     },
     {
       "files": [
-        "css/mozorg/home/home.scss"
+        "css/mozorg/home/home-new.scss"
       ],
-      "name": "home"
+      "name": "home-new"
     },
     {
       "files": [
-        "css/mozorg/home/home-mr2-promo.scss"
+        "css/mozorg/home/home-old.scss"
       ],
-      "name": "home-mr2-promo"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-firefox-mr106-promo.scss"
-      ],
-      "name": "home-firefox-mr106-promo"
+      "name": "home-old"
     },
     {
       "files": [
         "css/mozorg/home/includes/pocket-promo.scss"
       ],
       "name": "home-pocket-promo"
+    },
+    {
+      "files": [
+        "css/mozorg/home/includes/featured-vpn.scss"
+      ],
+      "name": "home-featured-vpn"
     },
     {
       "files": [
@@ -242,18 +242,6 @@
         "css/mozorg/mpl-1-1.scss"
       ],
       "name": "mpl-1-1"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-eu.scss"
-      ],
-      "name": "home-eu"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-contentful.scss"
-      ],
-      "name": "home-contentful"
     },
     {
       "files": [
@@ -1409,12 +1397,6 @@
     },
     {
       "files": [
-        "js/mozorg/home/youtube.js"
-      ],
-      "name": "home-contentful"
-    },
-    {
-      "files": [
         "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
@@ -1425,6 +1407,12 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "js/mozorg/home/feature-vpn-experiment.es6.js"
+      ],
+      "name": "home-vpn-feature-experiment"
     },
     {
       "files": [

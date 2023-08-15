@@ -12,7 +12,7 @@ from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = (
-    path("", views.home_view, name="mozorg.home"),
+    path("", views.HomeView.as_view(), name="mozorg.home"),
     page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
