@@ -29,3 +29,13 @@ relayDropdown.addEventListener(
     },
     false
 );
+
+(function () {
+    Mozilla.Client.getFxaDetails(function (details) {
+        if (details.setup) {
+            document
+                .querySelector('.wnp-content-main')
+                .classList.add('fxa-active');
+        }
+    });
+})();

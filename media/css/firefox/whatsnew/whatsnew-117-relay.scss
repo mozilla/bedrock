@@ -10,6 +10,16 @@
 .wnp-content-main {
     background-color: $color-pink-05;
     text-align: center;
+
+    &.fxa-active {
+        .wnp-main-cta.fxa {
+            display: block;
+        }
+
+        .wnp-main-cta.landing {
+            display: none;
+        }
+    }
 }
 
 .wnp-main-title {
@@ -20,6 +30,12 @@
 .wnp-body-text {
     color: $color-black;
 }
+
+.wnp-main-cta.fxa {
+    display: none;
+}
+
+
 
 .wnp-relay-animation {
     max-width: max-content;
