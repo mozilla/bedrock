@@ -6,7 +6,7 @@
 
 <aside class="mzp-c-notification-bar affiliate-notification hide-from-legacy-ie">
   {% if not affiliate_message %}
-    {% set attrs = 'href="' ~ url('privacy.notices.websites') ~ '" target="_blank" rel="noopener noreferrer"' %}
+    {% set attrs = 'href="' ~ url('privacy.notices.websites') ~ '" target="_blank"' %}
     {{ ftl('affiliate-notification-message', attrs=attrs) }}
   {% else %}
     {{ affiliate_message }}

@@ -10,7 +10,7 @@ Mozilla CJMS affiliate attribution
 
 The CJMS affiliate attribution flow comprises an integration between
 the `Commission Junction (CJ)`_ affiliate marketing event system, bedrock,
-and the VPN product team's `CJ micro service (CJMS)`_.
+and the Security and Privacy team's `CJ micro service (CJMS)`_.
 
 The system allows individuals who partner with Mozilla, via CJ, to share
 referral links for Mozilla with their audiences. When people subscribe

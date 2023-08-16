@@ -231,7 +231,7 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
-    "affiliate.ftl",
+    "affiliate",
     "banners/firefox-app-store",
     "banners/fundraising",
     "brands",
