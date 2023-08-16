@@ -202,7 +202,6 @@ $image-path: '/media/protocol/img';
     }
 
     h3 {
-        @include font-base;
         @include text-title-xs;
         margin-bottom: $layout-sm;
     }
@@ -392,7 +391,6 @@ $image-path: '/media/protocol/img';
     padding: $layout-sm 0;
 
     h2 {
-        @include font-base;
         @include text-body-md;
     }
 
