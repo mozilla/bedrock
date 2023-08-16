@@ -30,6 +30,7 @@ function initPageView() {
     page.path.set(Utils.getPathFromUrl());
     page.locale.set(Utils.getLocaleFromUrl());
     page.referrer.set(Utils.getReferrer());
+    page.httpStatus.set(Utils.getHttpStatus());
 
     const params = Utils.getQueryParamsFromURL();
     const finalParams = {};

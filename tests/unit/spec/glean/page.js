@@ -40,6 +40,9 @@ describe('page.js', function () {
 
             const referrer = await page.referrer.testGetValue();
             expect(referrer).toEqual('https://google.com/');
+
+            const httpStatus = await page.httpStatus.testGetValue();
+            expect(httpStatus).toEqual('200');
         });
 
         initPageView();

@@ -31,6 +31,13 @@ const Utils = {
         return typeof ref === 'string' ? ref : document.referrer;
     },
 
+    getHttpStatus: () => {
+        const pageId = document
+            .getElementsByTagName('html')[0]
+            .getAttribute('data-http-status');
+        return pageId && pageId === '404' ? '404' : '200';
+    },
+
     hasValidURLScheme: (url) => {
         return /^https?:\/\//.test(url);
     },
