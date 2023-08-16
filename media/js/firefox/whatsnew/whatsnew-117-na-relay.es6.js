@@ -9,23 +9,42 @@ const relayDropdown = document.querySelector('.relay-dropdown');
 const relayInput = document.querySelector('.relay-input');
 const inputText = document.querySelector('.relay-input span');
 
-relayAnimationWrapper.addEventListener('animationend', (e) => {
-    if (e.animationName === 'pop-in') {
-        relayAnimationWrapper.classList.add('click-animation');
-    }
-
-    if (e.animationName === 'click' && e.target === relayAnimationWrapper) {
-        inputText.textContent = '';
-    }
-});
-
-relayDropdown.addEventListener(
-    'animationend',
-    (e) => {
-        if (e.animationName === 'click') {
-            relayInput.classList.add('animation-end');
-            inputText.textContent = 'hxty0y40@mozmail.com';
+if (window.Mozilla.Utils.allowsMotion()) {
+    relayAnimationWrapper.addEventListener('animationend', (e) => {
+        if (e.animationName === 'pop-in') {
+            relayAnimationWrapper.classList.add('click-animation');
         }
-    },
-    false
-);
+
+        if (e.animationName === 'click' && e.target === relayAnimationWrapper) {
+            relayDropdown.classList.add('active');
+            setTimeout(() => {
+                inputText.textContent = '';
+            }, 500);
+        }
+    });
+
+    relayDropdown.addEventListener(
+        'animationend',
+        (e) => {
+            if (e.animationName === 'button-press') {
+                relayDropdown.style.opacity = 0;
+                relayInput.classList.add('animation-end');
+                inputText.textContent = 'hxty0y40@mozmail.com';
+            }
+        },
+        false
+    );
+} else {
+    inputText.textContent = 'hxty0y40@mozmail.com';
+    document.querySelector('.wnp-content-main').classList.add('static');
+}
+
+(function () {
+    Mozilla.Client.getFxaDetails(function (details) {
+        if (details.setup) {
+            document
+                .querySelector('.wnp-content-main')
+                .classList.add('fxa-active');
+        }
+    });
+})();
