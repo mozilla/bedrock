@@ -6,6 +6,13 @@
 
 import TrackProductDownload from './datalayer-productdownload.es6';
 
+// Create namespace
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
+}
+
+window.Mozilla.TrackProductDownload = TrackProductDownload;
+
 // init tracking on links
 // other methods of triggering downloads (example: /thanks) are handled separately
 const productLinks = document.querySelectorAll('.ga-product-download');
