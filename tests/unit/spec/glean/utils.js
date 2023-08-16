@@ -29,6 +29,20 @@ describe('utilsjs', function () {
         it('should return original path when there is no locale', function () {
             expect(Utils.getPathFromUrl('/locales/')).toEqual('/locales/');
         });
+
+        it('should exclude tokens from newsletter URLS', function () {
+            expect(
+                Utils.getPathFromUrl(
+                    '/en-US/newsletter/existing/a1a2a3a4-abc1-12ab-a123-12345a12345b/'
+                )
+            ).toEqual('/newsletter/existing/');
+
+            expect(
+                Utils.getPathFromUrl(
+                    '/en-US/newsletter/country/a1a2a3a4-abc1-12ab-a123-12345a12345b/'
+                )
+            ).toEqual('/newsletter/country/');
+        });
     });
 
     describe('getLocaleFromUrl', function () {
