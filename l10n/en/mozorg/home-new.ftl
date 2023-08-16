@@ -25,6 +25,8 @@ home-product-vpn-trust = A VPN you can trust
 home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
 
 home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the world there’s a business to be made with trustworthy AI. That includes putting things like human rights, data protection and transparency at the core of how these complex systems work.”
+
+# Politico is a brand name for a news organization
 home-politico-cite = Politico
 
 home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a non-profit? Actually, both.
@@ -46,4 +48,6 @@ home-get-news-and-tips = Get news and tips from { -brand-name-mozilla } to stay 
 
 # VPN Feature
 home-featured-product = Featured product
+
+# HTML for visual formatting. "Blur" here is used as a metaphor for hiding or obscuring something.
 home-feature-blur-your-location = Blur your location & activity using <span>{ -brand-name-mozilla-vpn }</span>
