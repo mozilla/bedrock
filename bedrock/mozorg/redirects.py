@@ -562,4 +562,9 @@ redirectpatterns = (
     redirect(r"^/exp/opt-out/?$", "privacy.convert-opt-out"),
     # Issue 13211
     redirect(r"^/en/$", "/en-US/", permanent=True),
+    # Issue 13554
+    redirect(r"^about/leadership/senior-leadership/$", "/about/leadership/#senior"),
+    redirect(r"^about/leadership/mozilla-foundation/$", "/about/leadership/#foundation"),
+    redirect(r"^about/leadership/reps-council/$", "/about/leadership/#reps"),
+    redirect(r"^about/leadership/boards-of-directors/$", "/about/leadership/#boards"),
 )

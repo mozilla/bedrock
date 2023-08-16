@@ -5,6 +5,7 @@
 #}
 
 {% from "macros-protocol.html" import sidemenu_lists with context %}
+{% from "macros.html" import sub_nav with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -17,12 +18,22 @@
 
 {% set navigation_bar = [
   (url('mozorg.about.leadership.index'), 'executive-team', 'Leadership'),
-  (url('mozorg.about.leadership.index'), 'executive-team', 'Executive Team'),
-  (url('mozorg.about.leadership.senior'), 'senior-leadership', 'Senior Leadership'),
-  (url('mozorg.about.leadership.mofo'), 'mozilla-foundation', 'Mozilla Foundation'),
-  (url('mozorg.about.leadership.reps'), 'mozilla-reps', 'Mozilla Reps Council'),
-  (url('mozorg.about.leadership.boards'), 'boards', 'Boards of Directors'),
+  ('#executive', 'executive-team', 'Executive Team'),
+  ('#senior', 'senior-leadership', 'Senior Leadership'),
+  ('#foundation', 'mozilla-foundation', 'Mozilla Foundation'),
+  ('#reps', 'mozilla-reps', 'Mozilla Reps Council'),
+  ('#boards', 'boards', 'Boards of Directors'),
 ] -%}
+
+{% block sub_navigation %}
+{{ sub_nav(
+  title={
+    'text': "Mozilla Leadership",
+    'href': url('mozorg.about.leadership.index')
+  }
+) }}
+{% endblock %}
+
 
 {% block content %}
 <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length %} mzp-has-sidebar mzp-l-sidebar-left{% endif %}">
