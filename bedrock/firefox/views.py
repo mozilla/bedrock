@@ -475,6 +475,26 @@ class WhatsnewView(L10nTemplateView):
 
         channel = detect_channel(version)
 
+        # Used by WNP 115
+        vpn_wave_vi_countries = [
+            "BG",  # Bulgaria
+            "CY",  # Cyprus
+            "CZ",  # Czech Republic
+            "DK",  # Denmark
+            "EE",  # Estonia
+            "HR",  # Croatia
+            "HU",  # Hungary
+            "LT",  # Lithuania
+            "LU",  # Luxembourg
+            "LV",  # Latvia
+            "MT",  # Malta
+            "PL",  # Poland
+            "PT",  # Portugal
+            "RO",  # Romania
+            "SI",  # Slovenia
+            "SK",  # Slovakia
+        ]
+
         if channel == "nightly":
             template = "firefox/nightly/whatsnew.html"
         elif channel == "developer":
@@ -519,11 +539,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
                 elif country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx115-eu-mobile-uk.html"
-                elif switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI:
+                elif country in vpn_wave_vi_countries:
                     template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx115-na-addons.html"
-            elif switch("vpn-wave-vi") and country in settings.VPN_COUNTRY_CODES_WAVE_VI:
+            elif country in vpn_wave_vi_countries:
                 template = "firefox/whatsnew/whatsnew-fx115-eu-vpn.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx115-eu-ctd-de.html"

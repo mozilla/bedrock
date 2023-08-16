@@ -1656,9 +1656,6 @@ VPN_COUNTRY_CODES = [
     "NL",  # Netherlands
     "SE",  # Sweden
     "FI",  # Finland
-]
-
-VPN_COUNTRY_CODES_WAVE_VI = [
     "BG",  # Bulgaria
     "CY",  # Cyprus
     "CZ",  # Czech Republic
@@ -1676,10 +1673,9 @@ VPN_COUNTRY_CODES_WAVE_VI = [
     "SI",  # Slovenia
     "SK",  # Slovakia
 ]
-VPN_AVAILABLE_COUNTRIES_WAVE_VI = 33
 
 VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
-VPN_AVAILABLE_COUNTRIES = 17
+VPN_AVAILABLE_COUNTRIES = 33
 VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
