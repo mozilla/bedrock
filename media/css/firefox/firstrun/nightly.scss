@@ -31,11 +31,15 @@ main {
 
 .contribute-title {
     @include text-title-xs;
-    color: get-theme('title-text-color-inverse');
+    color: $title-text-color-inverse;
     font-weight: normal;
     margin: $spacing-lg auto;
     max-width: 580px;
     text-align: center;
+
+    @supports (--css: variables) {
+        color: var(--title-text-color-inverse);
+    }
 }
 
 .contribute-list {

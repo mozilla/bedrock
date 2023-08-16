@@ -121,15 +121,27 @@ $brand-theme: 'firefox';
 .c-pricing-intro {
     margin: 0 auto;
     max-width: $content-md;
-    padding-bottom: get-theme('v-grid-xs');
+    padding-bottom: $v-grid-xs;
     text-align: center;
 
     @media #{$mq-md} {
-        padding-bottom: get-theme('v-grid-md');
+        padding-bottom: $v-grid-md;
     }
 
     @media #{$mq-xl} {
-        padding-bottom: get-theme('v-grid-xl');
+        padding-bottom: $v-grid-xl;
+    }
+
+    @supports (--css: variables) {
+        color: var(--v-grid-xs);
+
+        @media #{$mq-md} {
+            padding-bottom: var(--v-grid-md);
+        }
+
+        @media #{$mq-xl} {
+            padding-bottom: var(--v-grid-xl);
+        }
     }
 }
 
@@ -153,14 +165,26 @@ $brand-theme: 'firefox';
 }
 
 .c-features-premium {
-    padding: get-theme('v-grid-xs') get-theme('h-grid-xs');
+    padding: $v-grid-xs $h-grid-xs;
 
     @media #{$mq-md} {
-        padding: get-theme('v-grid-md') get-theme('h-grid-md');
+        padding: $v-grid-md $h-grid-md;
     }
 
     @media #{$mq-xl} {
-        padding: get-theme('v-grid-xl') get-theme('h-grid-xl');
+        padding: $v-grid-xl $h-grid-xl;
+    }
+
+    @supports (--css: variables) {
+        padding: var(--v-grid-xs) var(--h-grid-xs);
+
+            @media #{$mq-md} {
+                padding: var(--v-grid-md) var(--h-grid-md);
+            }
+
+            @media #{$mq-xl} {
+                padding: var(--v-grid-xl) var(--h-grid-xl);
+            }
     }
 }
 

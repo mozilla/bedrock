@@ -11,10 +11,14 @@ $image-path: '/media/protocol/img';
 
 .c-hero {
     background: $color-purple-90;
-    color: get-theme('body-text-color-inverse');
+    color: $body-text-color-inverse;
     text-align: center;
     min-height: 520px;
     margin-bottom: $spacing-xl;
+
+    @supports (--css: variables) {
+        color: var(--body-text-color-inverse);
+    }
 
     .hero-content {
         padding-top: $layout-xl;
@@ -28,9 +32,13 @@ $image-path: '/media/protocol/img';
         h1 {
             @include font-base;
             @include text-title-lg;
-            color: get-theme('title-text-color-inverse');
+            color: $title-text-color-inverse;
             margin: 0 auto $spacing-2xl;
             max-width: 580px;
+
+            @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+            }
         }
 
         p {
