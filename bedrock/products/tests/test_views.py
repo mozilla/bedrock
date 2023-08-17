@@ -27,23 +27,15 @@ class TestVPNLandingPage(TestCase):
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
-
-    def test_vpn_landing_page_variant_1_template(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=1")
-        req.locale = "en-US"
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
-
-    def test_vpn_landing_page_variant_2_template(self, render_mock):
-        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2")
-        req.locale = "en-US"
-        view = views.vpn_landing_page
-        view(req)
-        template = render_mock.call_args[0][1]
         assert template == "products/vpn/landing-refresh.html"
+
+    def test_vpn_landing_page_template_gb(self, render_mock):
+        req = RequestFactory().get("/products/vpn/")
+        req.locale = "en-GB"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing.html"
 
     def test_vpn_landing_page_template_de(self, render_mock):
         req = RequestFactory().get("/products/vpn/")

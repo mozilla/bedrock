@@ -27,12 +27,6 @@
 
 {% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-vpn-landing-refresh', ['en-US']) %}
-    {{ js_bundle('mozilla-vpn-landing-refresh-exp') }}
-  {% endif %}
-{% endblock %}
-
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
