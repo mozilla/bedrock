@@ -44,7 +44,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
  * Create the product_download event object
  * @param {string} product
  * @param {string} platform
- * @param {string} method - direct, store, or adjust
+ * @param {string} method - site, store, or adjust
  * @param {string} linkUrl
  * @param {string} release_channel - optional, we don't get it for ios downloads
  * @param {string} download_language - optional, we don't get it for mobile downloads
@@ -118,7 +118,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         eventObject = TrackProductDownload.getEventObject(
             product,
             platform,
-            'direct',
+            'site',
             downloadURL,
             releaseChannel,
             params.lang

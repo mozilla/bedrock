@@ -360,7 +360,7 @@ describe('TrackProductDownload.handleLink', function () {
             event: 'product_download',
             product: 'firefox',
             platform: 'win64',
-            method: 'direct',
+            method: 'site',
             link_url:
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-CA',
             release_channel: 'release',
