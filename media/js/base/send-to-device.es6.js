@@ -175,6 +175,14 @@ SendToDevice.prototype.onFormSuccess = function () {
         event: 'send-to-device-success',
         input: 'email-address'
     });
+
+    // Glean
+    if (typeof window.Mozilla.Glean !== 'undefined') {
+        window.Mozilla.Glean.pagePing({
+            label: 'send-to-device-success',
+            type: 'email-address'
+        });
+    }
 };
 
 SendToDevice.prototype.onFormError = function (msg) {

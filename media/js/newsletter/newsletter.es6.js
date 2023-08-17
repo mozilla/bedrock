@@ -68,6 +68,14 @@ const NewsletterForm = {
                 });
             }
         }
+
+        // Glean
+        if (typeof window.Mozilla.Glean !== 'undefined') {
+            window.Mozilla.Glean.pagePing({
+                label: 'newsletter-sign-up-success',
+                type: newsletters.join(', ')
+            });
+        }
     },
 
     serialize: () => {
