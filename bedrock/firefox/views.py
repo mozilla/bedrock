@@ -493,10 +493,10 @@ class WhatsnewView(L10nTemplateView):
             if country in WNP117_VPN_EXPANSION_COUNTRIES:
                 template = "firefox/whatsnew/whatsnew-fx117-vpn.html"
             elif locale.startswith("en-"):
-                if locale in ["en-US", "en-CA"]:
-                    template = "firefox/whatsnew/whatsnew-fx117-na-relay.html"
-                elif locale == "en-GB" or country == "GB":
+                if locale == "en-GB" or country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx117-uk-reader-view.html"
+                elif locale in ["en-US", "en-CA"]:
+                    template = "firefox/whatsnew/whatsnew-fx117-na-relay.html"
             elif locale == "de":
                 template = "firefox/whatsnew/whatsnew-fx117-de-reader-view.html"
             elif locale == "fr":
