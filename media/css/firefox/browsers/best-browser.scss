@@ -32,7 +32,6 @@ $image-path: '/media/protocol/img';
         }
 
         h1 {
-            @include font-base;
             @include text-title-lg;
             color: $title-text-color-inverse;
             margin: 0 auto $spacing-2xl;
@@ -68,7 +67,6 @@ $image-path: '/media/protocol/img';
         margin-bottom: $layout-lg;
 
         h2 {
-            @include font-base;
             @include text-title-md;
         }
     }
