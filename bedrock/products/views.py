@@ -62,21 +62,8 @@ def vpn_landing_page(request):
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
 
-    entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
-    entrypoint_variation = request.GET.get("entrypoint_variation", None)
-
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["1", "2"]:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != "vpn-landing-refresh":
-        entrypoint_variation = None
-
-    if request.locale == "en-US" and entrypoint_experiment:
-        if entrypoint_variation == "2":
-            template_name = "products/vpn/landing-refresh.html"
-        else:
-            template_name = "products/vpn/landing.html"
+    if request.locale == "en-US":
+        template_name = "products/vpn/landing-refresh.html"
     else:
         template_name = "products/vpn/landing.html"
 

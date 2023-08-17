@@ -31,7 +31,7 @@ from pages.products.vpn.landing_refresh import VPNLandingPage
     ],
 )
 def test_vpn_available_in_country(country, base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params=f"?geo={country}&entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2").open()
+    page = VPNLandingPage(selenium, base_url, locale="en-US", params=f"?geo={country}").open()
     # Navigation
     assert not page.is_join_waitlist_navigation_button_displayed
     assert page.is_get_vpn_navigation_button_displayed
@@ -59,7 +59,7 @@ def test_vpn_available_in_country(country, base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_vpn_not_available_in_country(base_url, selenium):
-    page = VPNLandingPage(selenium, base_url, params="?geo=cn&entrypoint_experiment=vpn-landing-refresh&entrypoint_variation=2").open()
+    page = VPNLandingPage(selenium, base_url, locale="en-US", params="?geo=cn").open()
     # Navigation
     assert page.is_join_waitlist_navigation_button_displayed
     assert not page.is_get_vpn_navigation_button_displayed
