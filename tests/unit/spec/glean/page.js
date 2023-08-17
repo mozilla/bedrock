@@ -11,10 +11,7 @@
 
 import * as page from '../../../../media/js/libs/glean/page.js';
 import Utils from '../../../../media/js/glean/utils.es6';
-import {
-    initPageView,
-    pageEventPing
-} from '../../../../media/js/glean/page.es6';
+import { initPageView, pagePing } from '../../../../media/js/glean/page.es6';
 import {
     pageView as pageViewPing,
     interaction as interactionPing,
@@ -196,13 +193,13 @@ describe('page.js', function () {
             const snapshot = await page.pageEvent.testGetValue();
             expect(snapshot.length).toEqual(1);
             const event = snapshot[0];
-            expect(event.extra.label).toEqual('Newsletter: mozilla-and-you');
-            expect(event.extra.type).toEqual('Newsletter Signup Success');
+            expect(event.extra.label).toEqual('mozilla-and-you');
+            expect(event.extra.type).toEqual('Newsletter sign-up success');
         });
 
-        pageEventPing({
-            label: 'Newsletter: mozilla-and-you',
-            type: 'Newsletter Signup Success'
+        pagePing({
+            label: 'mozilla-and-you',
+            type: 'Newsletter sign-up success'
         });
 
         // Wait for the validation to finish.
@@ -214,13 +211,12 @@ describe('page.js', function () {
             const snapshot = await page.pageEvent.testGetValue();
             expect(snapshot.length).toEqual(1);
             const event = snapshot[0];
-            expect(event.extra.label).toEqual('Auto Play');
-            expect(event.extra.type).toEqual('Video');
+            expect(event.extra.label).toEqual('Firefox default');
+            expect(event.extra.type).toEqual('');
         });
 
-        pageEventPing({
-            label: 'Auto Play',
-            type: 'Video',
+        pagePing({
+            label: 'Firefox default',
             nonInteraction: true
         });
 

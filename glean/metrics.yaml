@@ -181,7 +181,8 @@ element:
       type:
         description: |
           The type of element that was clicked.
-          Examples: 'Button', 'Link'.
+          Examples: 'macOS, release, en-US',
+          '12-month plan'.
         type: string
       position:
         description: |

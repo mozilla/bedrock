@@ -56,13 +56,14 @@ function initPageView() {
     pageViewPing.submit();
 }
 
-function pageEventPing(obj) {
+function pagePing(obj) {
     if (typeof obj !== 'object' && typeof obj.label !== 'string') {
         return;
     }
 
     const data = {
-        label: obj.label
+        label: obj.label,
+        type: ''
     };
 
     if (typeof obj.type === 'string') {
@@ -81,4 +82,4 @@ function pageEventPing(obj) {
     }
 }
 
-export { initPageView, pageEventPing };
+export { initPageView, pagePing };
