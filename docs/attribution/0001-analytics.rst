@@ -428,8 +428,8 @@ specific to a page, such as successful form completions:
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
         window.Mozilla.Glean.pagePing({
-            label: 'mozilla-and-you',
-            type: 'Newsletter sign-up success' // type is optional
+            label: 'newsletter-sign-up-success',
+            type: 'mozilla-and-you' // type is optional
         });
     }
 
@@ -440,7 +440,7 @@ initiated by a visitor:
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
         window.Mozilla.Glean.pagePing({
-            label: 'Firefox default',
+            label: 'firefox-default',
             nonInteraction: true
         });
     }
@@ -452,7 +452,7 @@ that are specific to an element in a page, such as a link or button.
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
         window.Mozilla.Glean.clickPing({
-            label: 'Firefox Download',
+            label: 'firefox-download',
             type: 'macOS, release, en-US', // type is optional
             position: 'primary' // position is optional
         });
