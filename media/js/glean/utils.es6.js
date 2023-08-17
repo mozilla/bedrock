@@ -6,8 +6,20 @@
 
 const Utils = {
     getPathFromUrl: (path) => {
-        const pathName = path ? path : document.location.pathname;
-        return pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
+        let pathName = path ? path : document.location.pathname;
+        pathName = pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
+
+        // Ensure we don't include tokens in newsletter page pings
+        // Issue https://github.com/mozilla/bedrock/issues/13583
+        if (pathName.indexOf('/newsletter/existing/') !== -1) {
+            pathName = '/newsletter/existing/';
+        }
+
+        if (pathName.indexOf('/newsletter/country/') !== -1) {
+            pathName = '/newsletter/country/';
+        }
+
+        return pathName;
     },
 
     getLocaleFromUrl: (path) => {
