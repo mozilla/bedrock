@@ -66,6 +66,25 @@ describe('utilsjs', function () {
         });
     });
 
+    describe('getHttpStatus', function () {
+        afterEach(function () {
+            document
+                .getElementsByTagName('html')[0]
+                .removeAttribute('data-http-status');
+        });
+
+        it('should return 200 by default', function () {
+            expect(Utils.getHttpStatus()).toEqual('200');
+        });
+
+        it('should return 404 if matching data-http-status attribute is present in the page', function () {
+            document
+                .getElementsByTagName('html')[0]
+                .setAttribute('data-http-status', '404');
+            expect(Utils.getHttpStatus()).toEqual('404');
+        });
+    });
+
     describe('hasValidURLScheme', function () {
         it('should return true for non secure URLs', function () {
             expect(Utils.hasValidURLScheme('http://localhost:8000')).toBeTrue();
