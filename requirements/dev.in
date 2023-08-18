@@ -5,7 +5,7 @@ bpython==0.24
 braceexpand==0.1.7
 factory-boy==3.2.1
 freezegun==1.2.2
-pipdeptree==2.10.1
+pipdeptree==2.13.0
 py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
