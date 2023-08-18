@@ -35,7 +35,6 @@ if (window.Mozilla.Utils.allowsMotion()) {
         false
     );
 } else {
-    inputText.textContent = 'hxty0y40@mozmail.com';
     document.querySelector('.wnp-content-main').classList.add('static');
 }
 

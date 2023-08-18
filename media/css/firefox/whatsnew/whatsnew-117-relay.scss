@@ -11,6 +11,7 @@
 
 .wnp-content-main {
     background-color: $color-pink-05;
+    margin-top: $spacing-md;
     text-align: center;
 
     .mzp-c-wordmark {
@@ -35,38 +36,27 @@
         }
 
         .wnp-relay-animation {
+            display: none;
             animation: none;
-
-            .relay-input {
-                color: $color-black;
-                font-weight: bold;
-                justify-content: space-around;
-
-                .input-check {
-                    opacity: 1;
-                    width: 32px;
-                }
-            }
         }
     }
 }
 
 .wnp-main-title {
-    @include text-title-md;
+    @include text-title-lg;
     color: $color-black;
 }
 
 .wnp-body-text {
+    @include text-body-lg;
     color: $color-black;
+    margin: 0 auto;
+    max-width: 525px;
 }
 
 .wnp-main-cta.fxa {
     display: none;
 }
-
-
-
-
 
 .wnp-relay-animation {
     --button-border-radius: 12px;
@@ -165,7 +155,7 @@
             opacity: 1;
 
             button {
-               animation: 0.3s ease-in-out .5s forwards button-press;
+               animation: 0.8s ease-in-out .5s forwards button-press;
             }
         }
     }
@@ -186,6 +176,11 @@
     50% {
         transform: scale(0.98);
         background: $color-purple-70;
+    }
+
+    80% {
+        transform: scale(1.0);
+        background: $color-purple-50;
     }
 
 
