@@ -1101,6 +1101,7 @@ class TestPocketAdjustUrl(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(RELAY_PRODUCT_URL="https://relay.firefox.com/")
 @override_settings(DEV=False)
 class TestRelayFxAButton(TestCase):
     rf = RequestFactory()
