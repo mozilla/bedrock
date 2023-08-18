@@ -4,6 +4,7 @@ basket-client==1.1.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
 boto3==1.28.25
+certifi>=2023.7.22  # to bring it up to a secure version
 chardet==5.1.0
 commonware==0.6.0
 contentful==2.1.1
