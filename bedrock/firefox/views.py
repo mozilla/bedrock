@@ -572,12 +572,10 @@ WNP117_VPN_EXPANSION_COUNTRIES = [
     "CH",  # Switzerland
     "CY",  # Cyprus
     "CZ",  # Czech Republic
-    # "DE",  # Germany
     "DK",  # Denmark
     "EE",  # Estonia
     "ES",  # Spain
     "FI",  # Finland
-    # "FR",  # France
     "HR",  # Croatia
     "HU",  # Hungary
     "IE",  # Ireland

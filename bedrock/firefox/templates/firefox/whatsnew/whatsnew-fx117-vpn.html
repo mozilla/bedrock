@@ -173,13 +173,28 @@
 
         <p class="wnp-main-cta">
         {% if variant == "2" %}
-          <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}#pricing" data-cta-text="Get Mozilla VPN" data-cta-type="button">
-            {{ vpn_cta }}
-          </a>
+          {{ vpn_product_referral_link(
+            page_anchor='#pricing',
+            referral_id='whatsnew-117-eu-vpn-pricing',
+            link_text=vpn_cta,
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+          ) }}
         {% else %}
-          <a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') }}" data-cta-text="Get Mozilla VPN" data-cta-type="button">
-            {{ vpn_cta }}
-          </a>
+          {{ vpn_product_referral_link(
+            referral_id='whatsnew-117-eu-vpn',
+            link_text=vpn_cta,
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+          ) }}
         {% endif %}
         </p>
       </div>
