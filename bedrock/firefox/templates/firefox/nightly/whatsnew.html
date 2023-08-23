@@ -42,6 +42,20 @@
   <div class="mzp-l-content">
     <div class="mzp-c-emphasis-box">
       <h2 class="c-emphasis-box-title">{{ self.page_title() }}</h2>
+      {% if LANG == 'es-ES' and country_code == 'ES' %}
+      <section class="mzp-c-call-out  mzp-t-dark  mzp-t-content-xl mzp-l-content-xl">
+          <div class="mzp-l-content">
+              <h4 class="mzp-c-call-out-title">¿Quieres ayudar en España?</h4>
+              <div class="mzp-c-call-out-desc">
+                  <p>El éxito de Mozilla y de Firefox también depende de la existencia e implicación de comunidades locales en todos los aspectos del proyecto.</p>
+                  <p>¿Quieres implicarte en uno de los proyectos open source más importantes en el mundo y ayudarnos a crear una web más abierta para todos?</p>
+              </div>
+
+              <p><a href="https://chat.mozilla.org/#/room/#spain:mozilla.org" class="mzp-c-button mzp-t-dark" type="button" data-cta-type="button" data-cta-text="Join Spain channel">¡Entra en el chat y hablemos!</a></p>
+          </div>
+      </section>
+      <br>
+      {% endif %}
       <p>{{ ftl('nightly-whatsnew-every-4-to-5-weeks', fallback='nightly-whatsnew-every-6-to-8-weeks') }}</p>
 
       <p>{{ ftl('nightly-whatsnew-this-is-a-good') }}</p>
