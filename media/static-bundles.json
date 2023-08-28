@@ -457,6 +457,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-117-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_117_vpn"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-117-relay.scss"
+      ],
+      "name": "firefox_whatsnew_117_na_relay"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1630,6 +1642,18 @@
         "js/firefox/whatsnew/whatsnew-117-experiment-eu-reader-view.es6.js"
       ],
       "name": "firefox_whatsnew_117_eu_reader_view_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-117-na-relay.es6.js"
+      ],
+      "name": "firefox_whatsnew_117_na_relay"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-117-experiment-na-vpn-relay.es6.js"
+      ],
+      "name": "firefox_whatsnew_117_experiment_na_vpn_relay"
     },
     {
       "files": [

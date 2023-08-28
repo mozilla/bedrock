@@ -1,0 +1,211 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_117_vpn') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-whatsnew-117-na-vpn-relay', ['en-US']) %}
+    {{ js_bundle('firefox_whatsnew_117_experiment_na_vpn_relay') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{%- if LANG == "bg": -%}
+  {% set vpn_title = "По-голяма поверителност на един клик разстояние" %}
+  {% set vpn_tagline = "Лятото може да си тръгва, но вашата сигурност трябва винаги да е с вас. С Mozilla VPN вие получавате допълнително спокойствие по всяко време и само с едно кликване." %}
+  {% set vpn_cta = "Вземете VPN от Mozilla" %}
+  {% set vpn_signoff = "<strong>Създадено от Mozilla.</strong> Първо хората, после приходите. От 1998 досега."|safe %}
+
+{%- elif LANG == "cs": -%}
+  {% set vpn_title = "Soukromí na vyšší úrovni je na dosah pouhým kliknutím" %}
+  {% set vpn_tagline = "Léto sice pomalu končí, ale vaše zabezpečení nikoli. Mozilla VPN je řešení, které vám na jedno kliknutí zajistí větší klid po celý rok." %}
+  {% set vpn_cta = "Získejte Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Provozováno společnosti Mozilla.</strong> Upřednostňujeme lidi před ziskem už od roku 1998."|safe %}
+
+{%- elif LANG == "da": -%}
+  {% set vpn_title = "Det næste niveau af privatliv er kun ét klik væk" %}
+  {% set vpn_tagline = "Sommeren lakker mod enden, men det bør din sikkerhed ikke. Mozilla VPN kan give dig ekstra ro i sindet året rundt med kun ét klik." %}
+  {% set vpn_cta = "Få Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Leveret af Mozilla.</strong> Vi har sat mennesker over profit siden 1998."|safe %}
+
+{%- elif LANG == "de": -%}
+  {% set vpn_title = "Mit einem Klick gibt’s Datenschutz der Extraklasse" %}
+  {% set vpn_tagline = "Der Sommer mag sich verabschieden, aber Ihre Sicherheit sollte bleiben. Mozilla VPN ist Ihre One-Click-Lösung für ein gutes Gefühl, das ganze Jahr über." %}
+  {% set vpn_cta = "Holen Sie sich Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Bei uns stehen Menschen seit 1998 über Gewinnen."|safe %}
+
+{%- elif LANG == "el": -%}
+  {% set vpn_title = "Το απόρρητο επόμενου επιπέδου είναι μόλις ένα κλικ μακριά" %}
+  {% set vpn_tagline = "Το καλοκαίρι μπορεί να τελειώνει, αλλά η ασφάλειά σας δεν πρέπει.Το Mozilla VPN είναι η λύση με ένα-κλικ για περισσότερη ηρεμία όλο το χρόνο." %}
+  {% set vpn_cta = "Αποκτήστε το Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Με την υποστήριξη της Mozilla.</strong> Βάζοντας τους ανθρώπους πάνω από το κέρδος από το 1998."|safe %}
+
+{%- elif LANG.startswith("es-"): -%}
+  {% set vpn_title = "La privacidad al máximo nivel está a un solo clic de distancia." %}
+  {% set vpn_tagline = "Aunque el verano afloje, tu seguridad no debería hacerlo.Mozilla VPN es tu solución en un solo clic para disfrutar de tranquilidad extra durante todo el año." %}
+  {% set vpn_cta = "Consigue Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Desarrollado por Mozilla.</strong> Priorizamos a las personas sobre el beneficio desde 1998."|safe %}
+
+{%- elif LANG == "fi": -%}
+  {% set vpn_title = "Seuraavan tason tietosuoja on vain napsautuksen päässä" %}
+  {% set vpn_tagline = "Vaikka päivät lyhenevät, tietoturvan täytyy pysyä töissä. Mozilla VPN on yhden napsautuksen ratkaisu mielenrauhaan kaikkina vuodenaikoina." %}
+  {% set vpn_cta = "Hanki Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Ihmiset etusijalle voitontavoittelun sijaan jo vuodesta 1998."|safe %}
+
+{%- elif LANG == "fr": -%}
+  {% set vpn_title = "La sécurité renforcée à portée de clic" %}
+  {% set vpn_tagline = "L’été touche à sa fin, mais votre sécurité reste importante. En un clic, Mozilla VPN vous protège tout au long de l’année." %}
+  {% set vpn_cta = "Obtenir Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Conçu par Mozilla.</strong> Nous plaçons les personnes avant le profit depuis 1998."|safe %}
+
+{%- elif LANG == "hr": -%}
+  {% set vpn_title = "Viša razina privatnosti dostupna je samo jednim klikom" %}
+  {% set vpn_tagline = "Ljeto je možda na odlasku, ali vaša privatnost ne bi trebala biti. Mozilla VPN je vaše rješenje jednim klikom za dodatnu bezbrižnost tijekom cijele godine." %}
+  {% set vpn_cta = "Uzmite Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Stavljamo ljude ispred profita od 1998."|safe %}
+
+{%- elif LANG == "hu": -%}
+  {% set vpn_title = "A biztonság következő szintje csak egy kattintásra van" %}
+  {% set vpn_tagline = "A nyár ugyan hamarosan lejár, de biztonsága sosem lehet a múlté. A Mozilla VPN egész évben plusz biztonságot nyújt, egyetlen kattintással." %}
+  {% set vpn_cta = "Mozilla VPN letöltése" %}
+  {% set vpn_signoff = "<strong>A Mozilla erejével.</strong> Mi az embereket helyezzük a profit elé – már 1998 óta."|safe %}
+
+{%- elif LANG == "it": -%}
+  {% set vpn_title = "La privacy di livello assoluto a portata di clic" %}
+  {% set vpn_tagline = "L'estate sta finendo, ma la tua sicurezza non può mai andare in vacanza. Mozilla VPN è la tua soluzione a portata di clic per un anno intero di tranquillità." %}
+  {% set vpn_cta = "Scopri Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Creata da Mozilla.</strong> Dal 1998, prima le persone, poi i profitti."|safe %}
+
+{%- elif LANG == "lt": -%}
+  {% set vpn_title = "Aukštesnio lygio privatumas vos vienu spustelėjimu" %}
+  {% set vpn_tagline = "Vasara gal ir baigiasi, tačiau jūsų saugumas neturėtų. „Mozilla VPN“ vos vienu spustelėjimu užtikrins ramybę visiems metams." %}
+  {% set vpn_cta = "Įsigykite „Mozilla VPN“" %}
+  {% set vpn_signoff = "<strong>Teikia „Mozilla“.</strong> Pirmenybė žmonėms, o ne pelnui, nuo 1998 m."|safe %}
+
+{%- elif LANG == "lv": -%}
+  {% set vpn_title = "Nākamā līmeņa privātums ir tikai viena klikšķa attālumā" %}
+  {% set vpn_tagline = "Lai arī vasara tuvojas beigām, jūsu drošībai nevajadzētu beigties. Tikai viens klikšķis, un Mozilla VPN parūpēsies par jūsu sirdsmieru visa gada garumā." %}
+  {% set vpn_cta = "Iegādāties Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Nodrošina Mozilla.</strong> Rūpes par cilvēkiem, nevis peļņu, jau kopš 1998. gada."|safe %}
+
+{%- elif LANG == "nl": -%}
+  {% set vpn_title = "Til uw privacy in één klik naar een hoger niveau" %}
+  {% set vpn_tagline = "De zomer loopt op zijn einde. Hoog tijd om uw veiligheid na te kijken. In één klik biedt Mozilla VPN u extra zekerheid gedurende het hele jaar." %}
+  {% set vpn_cta = "Mozilla VPN downloaden" %}
+  {% set vpn_signoff = "<strong>Mogelijk gemaakt door Mozilla.</strong> De organisatie die mensen belangrijker vindt dan winst, sinds 1998."|safe %}
+
+{%- elif LANG == "pl": -%}
+  {% set vpn_title = "Jedno kliknięcie i wchodzisz na wyższy poziom prywatności" %}
+  {% set vpn_tagline = "Letnie słońce słabnie, Twoje bezpieczeństwo – wręcz przeciwnie. Mozilla VPN to prosty jak kliknięcie myszką sposób na spokojną głowę przez cały rok." %}
+  {% set vpn_cta = "Pobierz Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Wykorzystuje technologię Mozilla.</strong> Tworzymy dla ludzi, nie dla zysku – już od 1998 r."|safe %}
+
+{%- elif LANG.startswith("pt"): -%}
+  {% set vpn_title = "A privacidade mais avançada está a um clique de distância" %}
+  {% set vpn_tagline = "O verão está quase a terminar, mas o mesmo não pode acontecer com a sua segurança. A VPN Mozilla é a sua solução com um só clique que lhe proporciona total tranquilidade durante todo o ano." %}
+  {% set vpn_cta = "Obtenha a VPN Mozilla" %}
+  {% set vpn_signoff = "<strong>Com tecnologia Mozilla.</strong> Colocamos as pessoas à frente dos lucros desde 1998."|safe %}
+
+{%- elif LANG == "ro": -%}
+  {% set vpn_title = "Următorul nivel de confidențialitate este la doar un clic distanță" %}
+  {% set vpn_tagline = "Poate că vara e pe sfârșite, dar securitatea ta nu trebuie să înceteze. Mozilla VPN este soluția ta cu un singur clic pentru a-ți păstra liniștea pe tot parcursul anului." %}
+  {% set vpn_cta = "Ia-ți Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Putting people before profits since 1998."|safe %}
+
+{%- elif LANG == "ru": -%}
+  {% set vpn_title = "Конфиденциальность следующего уровня будет вашей в один клик" %}
+  {% set vpn_tagline = "Лето, может быть, и подходит к концу, но не ваша безопасность.Mozilla VPN — это ваше решение одним кликом для дополнительного душевного спокойствия в течение всего года." %}
+  {% set vpn_cta = "Установить Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>На базе Mozilla.</strong> Ставим людей выше прибыли с 1998 года."|safe %}
+
+{%- elif LANG == "sk": -%}
+  {% set vpn_title = "Súkromie na vyššej úrovni je vzdialené len jedno kliknutie." %}
+  {% set vpn_tagline = "Leto sa síce končí, ale vaša bezpečnosť by sa nemala.VPN Mozilla je vaše riešenie na jedno kliknutie pre špeciálny pocit istoty počas celého roka." %}
+  {% set vpn_cta = "Získajte VPN Mozilla" %}
+  {% set vpn_signoff = "<strong>Podporované spoločnosťou Mozilla.</strong> Ľudí uprednostňujeme pred ziskom už od roku 1998."|safe %}
+
+{%- elif LANG == "sl": -%}
+  {% set vpn_title = "Od napredne stopnje zasebnosti vas loči zgolj en klik." %}
+  {% set vpn_tagline = "Poletje se poslavlja, vaša varnost pa ne. Z rešitvijo Mozilla VPN boste brez skrbi vse leto." %}
+  {% set vpn_cta = "Prenesite Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Rešitev omogoča Mozilla.</strong> Ljudi postavljamo pred dobiček že od leta 1998."|safe %}
+
+{%- elif LANG == "sv-SE": -%}
+  {% set vpn_title = "Ta sekretessen till nästa nivå med bara ett klick" %}
+  {% set vpn_tagline = "Även om sommaren varvar ner, bör inte din säkerhet göra det. Mozilla VPN ger dig sinnesro hela året med bara ett klick." %}
+  {% set vpn_cta = "Skaffa Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Drivs av Mozilla.</strong> Värderar människor mer än vinst sedan 1998."|safe %}
+
+{%- else: -%}
+  {% set vpn_title = "Next-level privacy is just a click away" %}
+  {% set vpn_tagline = "Summer may be winding down, but your security shouldn’t. Mozilla VPN is your one-click solution for extra peace of mind all year long." %}
+  {% set vpn_cta = "Get Mozilla VPN" %}
+  {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Putting people before profits since 1998."|safe %}
+{%- endif -%}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+        <div class="wnp-main-image">
+          <span class="toggle" role="presentation"><span class="toggle-display"></span></span>
+        </div>
+
+        <h2 class="wnp-main-title">{{ vpn_title }}</h2>
+
+        <p class="wnp-main-tagline">
+          {{ vpn_tagline }}
+        </p>
+
+        <p class="wnp-main-cta">
+        {% if variant == "2" %}
+          {{ vpn_product_referral_link(
+            page_anchor='#pricing',
+            referral_id='whatsnew-117-eu-vpn-pricing',
+            link_text=vpn_cta,
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+          ) }}
+        {% else %}
+          {{ vpn_product_referral_link(
+            referral_id='whatsnew-117-eu-vpn',
+            link_text=vpn_cta,
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+          ) }}
+        {% endif %}
+        </p>
+      </div>
+
+      <p class="wnp-sign-off">
+        {{ vpn_signoff }}
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}
