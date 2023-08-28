@@ -10,7 +10,11 @@ learn-more-about = Learn more about { -brand-name-firefox } browsers and product
 learn-more-faq = { -brand-name-firefox } FAQ
 the-history-of = The history of web browsers
 firefox-has-been = { -brand-name-firefox } has been there since almost the beginning.
+
+# Obsolete string
 firefox-rebel-with = { -brand-name-firefox }: Rebel with a cause
+
+# Obsolete string
 firefox-is-independent = { -brand-name-firefox } is independent and backed by the not-for-profit { -brand-name-mozilla }, which fights for your online rights and makes the internet accessible to everyone, everywhere.
 what-is-a = What is a web browser?
 a-web-browser = A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.
@@ -58,7 +62,11 @@ firefox-more-protection = { -brand-name-firefox }: More protection. Less worry.
 were-obsessed-with = We’re obsessed with protecting your privacy. That’s why we’ve made { -brand-name-firefox } Private Browsing more powerful than the others.
 incognito-browser-what = Incognito browser: What it really means
 firefox-calls-it = { -brand-name-firefox } calls it private browsing, { -brand-name-chrome } calls it incognito mode. Both let you browse the web without saving your browsing history.
+
+# Obsolete string
 take-the-stress = Take the stress out of finding a safe browser.
+
+# Obsolete string
 building-a-safe = Building a safe browser is an art and a science because there are no set rules.
 firefox-more-fingerprinter-blocking = Fingerprinter Blocking
 firefox-more-fingerprinting-is-a = Fingerprinting is a type of online tracking that’s more invasive than ordinary cookie-based tracking — that’s why { -brand-name-firefox-browser } blocks it.
@@ -68,3 +76,6 @@ firefox-more-a-guide-to = A guide to safer logins and passwords
 firefox-more-more-and-more = More and more of the sensitive, valuable things in our life are guarded by passwords.
 firefox-more-avoid-misinformation-heading = Avoid misinformation online – { -brand-name-firefox } is here to help
 firefox-more-avoid-misinformation-desc = Check out tips for seeing less misinformation and focusing on what’s important to you.
+
+firefox-more-is-firefox-a-private-browser = Is { -brand-name-firefox } a private browser?
+firefox-more-were-focused-on-your-right-to = We’re focused on your right to privacy. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
