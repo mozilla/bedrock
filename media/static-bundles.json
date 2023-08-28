@@ -190,13 +190,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
-        "css/firefox/features/detail.scss"
-      ],
-      "name": "firefox-features-hub-detail"
-    },
-    {
-      "files": [
         "css/firefox/features/picture-in-picture.scss"
       ],
       "name": "firefox-features-pip"
@@ -566,10 +559,15 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/features/index.scss"
       ],
       "name": "firefox-features-index"
+    },
+    {
+      "files": [
+        "css/firefox/features/article.scss"
+      ],
+      "name": "firefox-features-article"
     },
     {
       "files": [
@@ -722,13 +720,6 @@
     {
       "files": [
         "css/firefox/sticky-promo.scss",
-        "css/firefox/features/adblocker.scss"
-      ],
-      "name": "adblocker"
-    },
-    {
-      "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
@@ -765,13 +756,6 @@
         "css/firefox/browsers/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
-    },
-    {
-      "files": [
-        "css/firefox/sticky-promo.scss",
-        "css/firefox/features/safebrowser.scss"
-      ],
-      "name": "safebrowser"
     },
     {
       "files": [
@@ -917,12 +901,6 @@
         "css/firefox/browsers/chromebook.scss"
       ],
       "name": "chromebook"
-    },
-    {
-      "files": [
-        "css/firefox/sync.scss"
-      ],
-      "name": "sync"
     },
     {
       "files": [
@@ -1412,6 +1390,12 @@
         "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
+    },
+    {
+      "files": [
+        "js/firefox/features/features-article.es6.js"
+      ],
+      "name": "firefox_features_article"
     },
     {
       "files": [

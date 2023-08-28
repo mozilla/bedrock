@@ -6,23 +6,8 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
-
-.c-hero-pretitle {
-    @include text-title-2xs;
-    margin-bottom: $spacing-xl;
-}
-
-.mzp-c-button-download-container {
-    margin-bottom: 0;
-}
-
-.content-extra-title {
-    @include text-title-xs;
-    text-align: center;
-    margin-bottom: $layout-lg;
-    color: $color-purple-60;
-}
 
 // Video
 .video-play {
@@ -65,6 +50,14 @@ $image-path: '/media/protocol/img';
     margin: $layout-lg 0;
 }
 
-.mzp-c-picto-heading {
-    @include text-title-3xs;
+.mzp-t-picto-center {
+    padding-top: $spacing-lg;
+
+    .mzp-c-picto {
+        margin-bottom: $layout-lg;
+    }
+
+    .mzp-c-picto-heading {
+        @include text-title-3xs;
+    }
 }

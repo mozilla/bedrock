@@ -4,82 +4,39 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact, split with context %}
+{% extends "firefox/features/base-article.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
-
-{% block page_title %}{{ ftl('features-fingerprinting-what-is-fingerprinting-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('features-fingerprinting-fingerprinting-is-a-desc') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/features/fingerprinting/og.png') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-call-out') }}
-  {{ css_bundle('protocol-article') }}
-  {{ css_bundle('seo') }}
-{% endblock %}
+{% block article_title_short %}{{ ftl('features-fingerprinting-fingerprint-blocking') }}{% endblock %}
+{% block article_title %}{{ ftl('features-fingerprinting-firefox-blocks-fingerprinting') }}{% endblock %}
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
+{% block article_content %}
+<h2>{{ ftl('features-fingerprinting-what-is-fingerprinting-body') }}</h2>
+<p>{{ ftl('features-fingerprinting-fingerprinting-is-a') }}</p>
+<p>{{ ftl('features-fingerprinting-if-you-have') }}</p>
 
-{% block content %}
-{% call split(
-    block_class='mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
-    theme_class='mzp-t-dark',
-    media_class='mzp-l-split-media-overflow mzp-l-split-media-constrain-height',
-    image=resp_img('img/firefox/features/fingerprinting/fingerprint.png',
-      srcset={ 'img/firefox/features/fingerprinting/fingerprint-high-res.png': '2x' },
-      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
-    )
-  ) %}
-    <span class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></span>
-    <h1 class="mzp-u-title-xl">{{ ftl('features-fingerprinting-firefox-blocks-fingerprinting') }}</h1>
-    <div class="c-hero-desc">
-      <p>{{ ftl('features-fingerprinting-ditch-the-sticky') }}</p>
-    </div>
-    {{ download_firefox(dom_id='features-fingerprinting-download', download_location='primary cta') }}
-{% endcall %}
+<h2>{{ ftl('features-fingerprinting-fingerprinting-is-bad') }}</h2>
 
-<div class="mzp-l-content mzp-t-content-md">
-  <article class="mzp-c-article">
+{% set url_tracked = 'href="https://hal.inria.fr/hal-01652021/document" rel="external noopener" target="_blank"' %}
+{% set url_standards = 'href="https://w3c.github.io/fingerprinting-guidance/" rel="external noopener"' %}
+{% set url_bodies = 'href="https://w3ctag.github.io/unsanctioned-tracking/" rel="external noopener"' %}
+{% set url_browser = 'href="https://www.blog.google/products/chrome/building-a-more-private-web" rel="external noopener"' %}
+{% set url_vendors = 'href="https://www.apple.com/safari/docs/Safari_White_Paper_Nov_2019.pdf" rel="external noopener" target="_blank"' %}
+{% set url_harmful = 'href="https://wiki.mozilla.org/Security/Anti_tracking_policy" rel="external noopener"' %}
+{% set url_has = 'href="https://www.cosic.esat.kuleuven.be/fpdetective/#paper" rel="external noopener"' %}
+{% set url_steadily = 'href="https://webtransparency.cs.princeton.edu/webcensus/" rel="external noopener"' %}
+{% set url_increased = 'href="https://sensor-js.xyz/" rel="external noopener"' %}
 
-    <h2>{{ ftl('features-fingerprinting-what-is-fingerprinting-body') }}</h2>
-    <p>{{ ftl('features-fingerprinting-fingerprinting-is-a') }}</p>
-    <p>{{ ftl('features-fingerprinting-if-you-have') }}</p>
-    <h2>{{ ftl('features-fingerprinting-fingerprinting-is-bad') }}</h2>
+<p>{{ ftl('features-fingerprinting-the-practice-of', url_tracked=url_tracked, url_standards=url_standards, url_bodies=url_bodies, url_browser=url_browser, url_vendors=url_vendors, url_harmful=url_harmful, url_has=url_has, url_steadily=url_steadily, url_increased=url_increased ) }}</p>
 
-    {% set url_tracked = 'href="https://hal.inria.fr/hal-01652021/document" rel="external noopener" target="_blank"' %}
-    {% set url_standards = 'href="https://w3c.github.io/fingerprinting-guidance/" rel="external noopener"' %}
-    {% set url_bodies = 'href="https://w3ctag.github.io/unsanctioned-tracking/" rel="external noopener"' %}
-    {% set url_browser = 'href="https://www.blog.google/products/chrome/building-a-more-private-web" rel="external noopener"' %}
-    {% set url_vendors = 'href="https://www.apple.com/safari/docs/Safari_White_Paper_Nov_2019.pdf" rel="external noopener" target="_blank"' %}
-    {% set url_harmful = 'href="https://wiki.mozilla.org/Security/Anti_tracking_policy" rel="external noopener"' %}
-    {% set url_has = 'href="https://www.cosic.esat.kuleuven.be/fpdetective/#paper" rel="external noopener"' %}
-    {% set url_steadily = 'href="https://webtransparency.cs.princeton.edu/webcensus/" rel="external noopener"' %}
-    {% set url_increased = 'href="https://sensor-js.xyz/" rel="external noopener"' %}
+<h2>{{ ftl('features-fingerprinting-firefox-blocks-fingerprinting') }}</h2>
 
-    <p>{{ ftl('features-fingerprinting-the-practice-of', url_tracked=url_tracked, url_standards=url_standards, url_bodies=url_bodies, url_browser=url_browser, url_vendors=url_vendors, url_harmful=url_harmful, url_has=url_has, url_steadily=url_steadily, url_increased=url_increased ) }}</p>
-    <h2>{{ ftl('features-fingerprinting-firefox-blocks-fingerprinting') }}</h2>
+{% set url_details = 'href="https://blog.mozilla.org/security/2020/01/07/firefox-72-fingerprinting/" rel="external noopener"' %}
+<p>{{ ftl('features-fingerprinting-the-latest-firefox', url_details=url_details) }}</p>
+{% set url_protections='href="%s"'|safe|format(url('firefox.privacy.products')) %}
+<p>{{ ftl('features-fingerprinting-and-its-not', url_protections=url_protections) }}</p>
 
-    {% set url_details = 'href="https://blog.mozilla.org/security/2020/01/07/firefox-72-fingerprinting/" rel="external noopener"' %}
-    <p>{{ ftl('features-fingerprinting-the-latest-firefox', url_details=url_details) }}</p>
-    {% set url_protections='href="%s"'|safe|format(url('firefox.privacy.products')) %}
-    <p>{{ ftl('features-fingerprinting-and-its-not', url_protections=url_protections) }}</p>
-
-    {% set url_download='href="%s"'|safe|format(url('firefox.new')) %}
-    <p>{{ ftl('features-fingerprinting-you-probably-wouldnt', url_download=url_download) }}</p>
-
-  </article>
-</div>
-
-{% call call_out_compact(
-  title=ftl('features-fingerprinting-protect'),
-  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
-) %}
-<div class="download-firefox">
-  {{ download_firefox(dom_id='translate-bottom-download', download_location='secondary cta') }}
-</div>
-{% endcall %}
-
-{% endblock %}
+{% set url_download='href="%s"'|safe|format(url('firefox.new')) %}
+<p>{{ ftl('features-fingerprinting-you-probably-wouldnt', url_download=url_download) }}</p>
+{% endblock article_content %}

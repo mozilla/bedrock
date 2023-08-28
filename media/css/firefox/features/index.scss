@@ -2,54 +2,94 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
-.c-hero-desc {
-    @include text-body-xl;
-    margin-bottom: $layout-md;
+.c-feature-header {
+    background-color: transparent;
+    position: relative;
+
+    &::after {
+        background: $color-marketing-gray-20;
+        bottom: 0;
+        box-shadow: 0 0 2px 0 $color-marketing-gray-60;
+        content: '';
+        display: block;
+        height: 10px;
+        position: absolute;
+        width: 100%;
+    }
+
+    @media #{$mq-lg} {
+        background:
+            url('/media/img/firefox/features/header-left.svg') left -10% top no-repeat,
+            transparent url('/media/img/firefox/features/header-right.svg') right -10% top no-repeat;
+        background-size: auto 100%, contain;
+        padding: $layout-lg 0;
+    }
+
+    @media #{$mq-xl} {
+        background-position: left top, right top;
+    }
 }
 
-// Add bottom margins when pictos stack on mobile.
-// We should probably fix this upstream in Protocol.
-.mzp-l-columns .mzp-c-picto {
-    margin-bottom: $layout-md;
+.mzp-c-call-out.mzp-t-content-md {
+    .mzp-l-content {
+        max-width: $content-md;
+    }
+}
+
+.c-feature-item {
+    margin-bottom: $layout-xs;
+
+    a {
+        color: get-theme('body-text-color');
+        display: block;
+        border: 1px solid $color-light-gray-30;
+        border-radius: $border-radius-md;
+        padding: $spacing-md;
+        text-decoration: none;
+        transition: border-color 150ms ease;
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: get-theme('link-color-hover');
+            color: get-theme('body-text-color');
+
+            .c-feature-item-title {
+                text-decoration: underline;
+            }
+
+            .c-feature-item-cta {
+                color: get-theme('link-color-hover');
+            }
+        }
+    }
 
     @media #{$mq-md} {
+        display: contents;
         margin-bottom: 0;
     }
 }
 
-@media #{$mq-lg} {
-    .main-content {
-        margin-bottom: $layout-lg;
-
-        .mzp-l-columns {
-            row-gap: $layout-lg;
-        }
-    }
+.c-feature-item-title {
+    @include text-title-2xs;
 }
 
-// Secondary content
-.secondary-content {
-    .mzp-c-section-heading {
-        @include text-title-sm;
-    }
+.c-feature-item-cta {
+    margin: 0;
+    color: get-theme('link-color');
+    text-decoration: underline;
 
-    .mzp-t-picto-side .mzp-c-picto {
-        @include bidi((
-            (padding-left, $layout-md, 0),
-            (padding-right, 0, $layout-md),
-        ));
-    }
-
-    .mzp-c-picto-image {
-        width: 24px;
-    }
-
-    .mzp-c-picto-heading {
-        @include text-title-2xs;
+    :visited & {
+        color: get-theme('link-color-visited');
     }
 }

@@ -6,111 +6,89 @@
 
 {% from "macros-protocol.html" import split, picto with context %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% extends "firefox/features/base-article.html" %}
 
 {% block page_title %}{{ ftl('features-pip-firefox-picture-in-picture-get-more') }}{% endblock %}
 {% block page_desc %}{{ ftl('features-pip-got-things-to-do-and-things-to-watch') }}{% endblock %}
-
-{% block page_image %}
-  {{ static('img/firefox/features/pip/pip-hero.jpg') }}
-{% endblock %}
-
-{% block page_og_title %}
-  {{ self.page_title() }}
-{% endblock %}
-
-{% block page_og_desc %}
-  {{ self.page_desc() }}
-{% endblock %}
+{% block page_image %}{{ static('img/firefox/features/pip/pip-hero.jpg') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-split') }}
+  {{ super() }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox-features-pip') }}
 {% endblock %}
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
+{% block article_title_short %}{{ ftl('features-pip-picture-in-picture') }}{% endblock %}
+{% block article_title %}{{ ftl('features-pip-get-more-done-with-pop-out-videos') }}{% endblock %}
 
-{% block content %}
-  {% call split(
-    block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
-    theme_class='mzp-t-dark',
-    media_class='mzp-l-split-media-constrain-height mzp-l-split-media-overflow mzp-l-split-h-center',
-    image=resp_img('img/firefox/features/pip/pip-hero.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    media_after=True,
-  ) %}
-    <h1 class="c-hero-pretitle">{{ ftl('features-pip-new-feature-firefox-multi-picture', fallback='features-pip-cool-feature-picture-in-picture') }}</h1>
-    <h2 class="mzp-u-title-lg">{{ ftl('features-pip-get-more-done-with-pop-out-videos') }}</h2>
-    <p>{{ ftl('features-pip-got-things-to-do-do-both-with') }}</p>
-    {{ download_firefox(dom_id='features-pip-download-primary', download_location='primary cta') }}
-  {% endcall %}
+{% block article_content %}
+<p>{{ ftl('features-pip-got-things-to-do-do-both-with') }}</p>
 
-  {% call split(
-    block_class='mzp-l-split-reversed',
-    media_class='mzp-l-split-h-center',
-    media_include='firefox/features/includes/pip-video.html',
-  ) %}
-    <h3>{{ ftl('features-pip-heres-how-it-works') }}</h3>
-    <ol class="mzp-u-list-styled">
-      <li>{{ ftl('features-pip-play-any-video-in-your-updated', fallback='features-pip-play-any-video-in-your') }}</li>
-      <li class="has-pip-icon">{{ ftl('features-pip-click-the-picture-in-picture-button') }}</li>
-      <li>{{ ftl('features-pip-cruise-around-to-other') }}</li>
-    {% if ftl_has_messages('features-pip-repeat-steps-1-3-to-have') %}
-      <li>{{ ftl('features-pip-repeat-steps-1-3-to-have') }}</li>
+<figure class="c-article-figure">
+  <div class="mzp-c-video">
+    {# YouTube is blocked in China so zh-CN gets an alternative, self-hosted video. #}
+    {% if LANG == 'zh-CN' %}
+      <video preload="metadata" controls poster="{{ static('img/firefox/features/pip/video-poster.jpg') }}" data-video-title="Red Panda Cubs - Firefox + Woodland Park Zoo">
+        <source src="https://assets.mozilla.net/video/red-pandas.webm" type="video/webm">
+      </video>
+    {% else %}
+      <a class="video-play js-video-play" href="https://youtu.be/F-nFQryDB0s" data-id="F-nFQryDB0s" data-video-title="Red Panda Cubs - Firefox + Woodland Park Zoo" title="{{ ftl('features-pip-play-the-video') }}">
+        <img src="{{ static('img/firefox/features/pip/video-poster.jpg') }}" alt="" width="1024" height="576">
+      </a>
     {% endif %}
-    </ol>
-  {% endcall %}
+  </div>
+</figure>
 
-  <section class="content-extra">
-    <div class="mzp-l-content mzp-t-content-lg">
-      <h3 class="content-extra-title">{{ ftl('features-pip-3-more-ways-to-use-picture', fallback='features-pip-3-ways-to-use-picture') }}</h3>
+<h3>{{ ftl('features-pip-heres-how-it-works') }}</h3>
+<ol class="mzp-u-list-styled">
+  <li>{{ ftl('features-pip-play-any-video-in-your-updated') }}</li>
+  <li class="has-pip-icon">{{ ftl('features-pip-click-the-picture-in-picture-button') }}</li>
+  <li>{{ ftl('features-pip-cruise-around-to-other') }}</li>
+  <li>{{ ftl('features-pip-repeat-steps-1-3-to-have') }}</li>
+</ol>
 
-      <div class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
-        {{ picto(
-          title=ftl('features-pip-watch-a-lecture-or-meeting'),
-          heading_level=4,
-          image=resp_img(
-            url='img/firefox/features/pip/pip-lecture.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          )
-        ) }}
-        {{ picto(
-          title=ftl('features-pip-keep-a-tutorial-video-open'),
-          heading_level=4,
-          image=resp_img(
-            url='img/firefox/features/pip/pip-cook.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          )
-        ) }}
-        {{ picto(
-          title=ftl('features-pip-entertain-cats-dogs-and-kids'),
-          heading_level=4,
-          image=resp_img(
-            url='img/firefox/features/pip/pip-entertain.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          )
-        ) }}
-      </div>
+<h3>{{ ftl('features-pip-3-more-ways-to-use-picture', fallback='features-pip-3-ways-to-use-picture') }}</h3>
 
-      <aside class="secondary-cta">
-      {{ download_firefox(dom_id='features-pip-bottom-download-secondary', download_location='secondary cta') }}
-      </aside>
-    </div>
-  </section>
+<div class="mzp-t-picto-center">
+  {{ picto(
+    title=ftl('features-pip-watch-a-lecture-or-meeting'),
+    heading_level=4,
+    image=resp_img(
+      url='img/firefox/features/pip/pip-lecture.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'loading': 'lazy'
+      }
+    )
+  ) }}
 
-{% endblock %}
+  {{ picto(
+    title=ftl('features-pip-keep-a-tutorial-video-open'),
+    heading_level=4,
+    image=resp_img(
+      url='img/firefox/features/pip/pip-cook.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'loading': 'lazy'
+      }
+    )
+  ) }}
+
+  {{ picto(
+    title=ftl('features-pip-entertain-cats-dogs-and-kids'),
+    heading_level=4,
+    image=resp_img(
+      url='img/firefox/features/pip/pip-entertain.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'loading': 'lazy'
+      }
+    )
+  ) }}
+</div>
+{% endblock article_content %}
 
 {% block js %}
+  {{ super() }}
   {{ js_bundle('firefox-features-pip') }}
 {% endblock %}

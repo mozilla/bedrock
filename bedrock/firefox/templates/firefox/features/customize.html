@@ -1,0 +1,57 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% set referrals = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features' %}
+
+{% block article_title %}{{ ftl('features-customize-customize-your-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-customize-choose-how-your-browser-looks') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-customize-firefox-themes-let-you-change') }}</p>
+
+<p>{{ ftl('features-customize-firefox-comes-with-a-default') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/default-themes.jpg",
+    srcset={
+        "img/firefox/features/default-themes-high-res.jpg": "2x"
+    },
+    optional_attributes={
+      "alt": ftl('features-customize-image-of-the-default-themes'),
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>
+  {{ ftl('features-customize-you-can-find-more-free-custom',
+    amo='href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    top='href="https://addons.mozilla.org/firefox/search/?sort=rating&type=statictheme&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    trending='href="https://addons.mozilla.org/firefox/search/?sort=hotness&type=statictheme&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    recommended='href="https://addons.mozilla.org/firefox/search/?promoted=recommended&sort=random&type=statictheme&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    music='href="https://addons.mozilla.org/firefox/themes/category/music/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    seasonal='href="https://addons.mozilla.org/firefox/themes/category/seasonal/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    sports='href="https://addons.mozilla.org/firefox/themes/category/sports/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    nature='href="https://addons.mozilla.org/firefox/themes/category/nature/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"'
+  ) }}
+</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/custom-themes.jpg",
+    srcset={
+        "img/firefox/features/custom-themes-high-res.jpg": "2x"
+    },
+    optional_attributes={
+      "alt": ftl('features-customize-image-of-three-custom-firefox'),
+      "width": "600"
+    }
+  ) }}
+</figure>
+{% endblock article_content %}

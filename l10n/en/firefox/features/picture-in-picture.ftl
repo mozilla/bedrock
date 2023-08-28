@@ -9,6 +9,9 @@ features-pip-firefox-picture-in-picture-get-more = { -brand-name-firefox } Pictu
 
 # HTML page description
 features-pip-got-things-to-do-and-things-to-watch = Got things to do and things to watch? Do both using Picture-in-Picture in { -brand-name-firefox }.
+
+features-pip-picture-in-picture = Picture-in-Picture
+
 features-pip-new-feature-firefox-multi-picture = New feature: { -brand-name-firefox } multi Picture-in-Picture
 features-pip-cool-feature-picture-in-picture = Cool feature: Picture-in-Picture
 features-pip-get-more-done-with-pop-out-videos = Get more done with pop-out videos

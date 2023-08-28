@@ -4,73 +4,31 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import split with context %}
+{% extends "firefox/features/base-article.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% block article_title_short %}{{ ftl('features-private-browsing-private-browsing-mode') }}{% endblock %}
+{% block article_title %}{{ ftl('features-private-browsing-firefox-private-browsing-mode') }}{% endblock %}
 
-{% block page_title %}{{ ftl('features-private-browsing-private-browser') }} | {{ ftl('features-private-browsing-download-firefox') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-private-browsing-firefox-protects') }}{% endblock %}
+{% block article_content %}
+<p>{{ ftl('features-private-browsing-if-you-share-a-computer') }}</p>
 
-{% block page_css %}
-  {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('firefox-features-hub-detail') }}
-{% endblock %}
+<h2>{{ ftl('features-private-browsing-what-does-private-browsing-do') }}</h2>
+<p>{{ ftl('features-private-browsing-private-browsing-mode-opens') }}</p>
 
-{% block body_id %}firefox-features-private{% endblock %}
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/private-browsing.png",
+    srcset={
+        "img/firefox/features/private-browsing-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": ftl('features-private-browsing-a-firefox-window-in-private'),
+      "width": "600"
+    }
+  ) }}
+</figure>
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
-
-{% block content %}
-  <header class="c-hero">
-    <div class="mzp-l-content c-hero-content">
-      <img class="c-hero-icon" src="{{ static('protocol/img/icons/brand/violet/feature-private-browsing-mask.svg')}}" alt="" width="64" height="64">
-      <h1 class="c-hero-title">{{ ftl('features-private-browsing-firefox-more-protection') }}</h1>
-      <p class="c-hero-desc">{{ ftl('features-private-browsing-were-obsessed-with') }}</p>
-      <div class="c-hero-cta">
-        {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-      </div>
-    </div>
-  </header>
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/private/no-trace.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-private-browsing-browse-without') }}</h2>
-    <p>{{ ftl('features-private-browsing-sharing-is-caring') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/private/zero-chill.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-  ) %}
-    <h2>{{ ftl('features-private-browsing-catch-those-hidden') }}</h2>
-    <p>{{ ftl('features-private-browsing-some-websites-and') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/private/baggage.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-private-browsing-shake-off-tracking') }}</h2>
-    <p>{{ ftl('features-private-browsing-not-only-do-trackers') }}</p>
-  {% endcall %}
-
-  {% include "firefox/features/includes/features-content.html" %}
-
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
-{% endblock %}
+<h2>{{ ftl('features-private-browsing-what-private-browsing-doesnt-do') }}</h2>
+<p>{{ ftl('features-private-browsing-private-browsing-mode-will-not', vpn=url('products.vpn.landing')) }}</p>
+<p>{{ ftl('features-private-browsing-compare-firefoxs-private-browsing', chrome=url('firefox.browsers.incognito-browser')) }}</p>
+{% endblock article_content %}

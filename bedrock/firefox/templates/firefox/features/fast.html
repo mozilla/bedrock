@@ -4,73 +4,25 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import split with context %}
+{% extends "firefox/features/base-article.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% block page_image %}{{ static('img/firefox/features/fast-high-res.png') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-fast-firefox-uses-less-memory-than') }}{% endblock %}
 
-{% block page_title %}{{ ftl('features-fast-get-more-done-browse-faster') }} | {{ ftl('brand-name-firefox') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-fast-our-new-powerful-multi-process') }}{% endblock %}
+{% block article_title %}{{ ftl('features-fast-is-firefox-the-fastest-browser') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('firefox-features-hub-detail') }}
-{% endblock %}
+{% block article_content %}
+<h2>{{ ftl('features-fast-browse-faster') }}</h2>
+<p>{{ ftl('features-fast-every-computer-program-you-run') }}</p>
 
-{% block body_id %}firefox-features-fast{% endblock %}
+<h2>{{ ftl('features-fast-multi-tasking-with-multiple-tabs') }}</h2>
+<p>{{ ftl('features-fast-firefox-is-a-multi-process-browser') }}</p>
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
-
-{% block content %}
-  <header class="c-hero">
-    <div class="mzp-l-content c-hero-content">
-      <img class="c-hero-icon" src="{{ static('protocol/img/icons/brand/orange/speedometer.svg')}}" alt="" width="64" height="64">
-      <h1 class="c-hero-title">{{ ftl('features-fast-firefox-is-now-faster-and-leaner') }}</h1>
-      <p class="c-hero-desc">{{ ftl('features-fast-weve-been-working-out-so-you') }}</p>
-      <div class="c-hero-cta">
-        {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-      </div>
-    </div>
-  </header>
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/fast/low-memory.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-fast-use-less-memory') }}</h2>
-    <p>{{ ftl('features-fast-no-one-likes-a-computer-hog') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/fast/multi-tabs.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-  ) %}
-    <h2>{{ ftl('features-fast-get-all-the-tabs-without-lags') }}</h2>
-    <p>{{ ftl('features-fast-multi-tasking-with-multiple') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image=resp_img('img/firefox/features/thumbnails/fast/gaming.jpg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-    block_class='mzp-t-split-nospace',
-    theme_class='mzp-l-split-reversed',
-  ) %}
-    <h2>{{ ftl('features-fast-level-up-browser-gameplay') }}</h2>
-    <p>{{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}</p>
-  {% endcall %}
-
-  {% include "firefox/features/includes/features-content.html" %}
-
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
-{% endblock %}
+<h2>{{ ftl('features-fast-faster-gaming') }}</h2>
+<p>
+{% if ftl_has_messages('features-fast-un-humble-brag-alert') %}
+  <em>{{ ftl('features-fast-un-humble-brag-alert') }}</em>
+{% endif %}
+  {{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}
+</p>
+{% endblock article_content %}
