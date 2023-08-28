@@ -34,9 +34,6 @@ def vpn_available(request):
     country = get_country_from_request(request)
     country_list = settings.VPN_COUNTRY_CODES
 
-    if switch("vpn-wave-vi"):
-        country_list = settings.VPN_COUNTRY_CODES + settings.VPN_COUNTRY_CODES_WAVE_VI
-
     return country in country_list
 
 
@@ -67,9 +64,6 @@ def vpn_landing_page(request):
     else:
         template_name = "products/vpn/landing.html"
 
-    if switch("vpn-wave-vi"):
-        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
-
     context = {
         "vpn_available": vpn_available_in_country,
         "available_countries": available_countries,
@@ -97,9 +91,6 @@ def vpn_pricing_page(request):
     # ensure variant matches pre-defined value
     if variant not in ["1", "2"]:
         variant = None
-
-    if switch("vpn-wave-vi"):
-        available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
 
     context = {
         "vpn_available": vpn_available_in_country,

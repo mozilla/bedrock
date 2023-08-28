@@ -182,11 +182,7 @@
         </a>
 
         <p class="availability-copy">
-        {% if switch('vpn-wave-vi') %}
           {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
-        {% else %}
-          {{ ftl('vpn-shared-available-countries-v5') }}
-        {% endif %}
         </p>
       {% endcall %}
     {% endif %}
@@ -236,11 +232,7 @@
               </a>
 
               <p class="availability-copy">
-              {% if switch('vpn-wave-vi') %}
                 {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
-              {% else %}
-                {{ ftl('vpn-shared-available-countries-v5') }}
-              {% endif %}
               </p>
             </div>
             <div class="l-column-last">
