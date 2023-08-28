@@ -916,7 +916,7 @@
     },
     {
       "files": [
-        "css/products/vpn/components/affiliate.scss",
+        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-plus-relay.scss",
@@ -927,7 +927,7 @@
     },
     {
       "files": [
-        "css/products/vpn/components/affiliate.scss",
+        "css/products/shared/affiliate.scss",
         "css/products/vpn/common-refresh.scss"
       ],
       "name": "mozilla-vpn-common-refresh"
@@ -946,7 +946,7 @@
     },
     {
       "files": [
-        "css/products/vpn/components/affiliate.scss",
+        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-basic.scss",
         "css/products/vpn/common.scss"
@@ -1843,7 +1843,7 @@
     },
     {
       "files": [
-        "js/products/vpn/affiliate-init.es6.js"
+        "js/products/shared/affiliate-init.es6.js"
       ],
       "name": "mozilla-vpn-affiliate"
     },

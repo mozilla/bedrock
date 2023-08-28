@@ -4,17 +4,16 @@
 
 .. _affiliate_attribution:
 
-=================================
-Mozilla VPN affiliate attribution
-=================================
+==================================
+Mozilla CJMS affiliate attribution
+==================================
 
-The affiliate attribution flow for the Mozilla :abbr:`VPN (Virtual Private Network)`
-`landing page`_ comprises an integration between the `Commission Junction (CJ)`_
-affiliate marketing event system, bedrock, and the VPN product team's
-`CJ micro service (CJMS)`_.
+The CJMS affiliate attribution flow comprises an integration between
+the `Commission Junction (CJ)`_ affiliate marketing event system, bedrock,
+and the Security and Privacy team's `CJ micro service (CJMS)`_.
 
 The system allows individuals who partner with Mozilla, via CJ, to share
-referral links for Mozilla VPN with their audiences. When people subscribe
+referral links for Mozilla with their audiences. When people subscribe
 using an affiliate link, the partner can be attributed appropriately in CJ's
 system.
 
@@ -25,15 +24,15 @@ For a more detailed breakdown you can view the `full flow diagram`_ (Mozilla
 access only), but at a high level the logic that bedrock is responsible for is
 as follows:
 
-#. On page load, a `JavaScript function`_ looks for a ``cjevent`` query parameter
-   in the page URL.
+#. On pages which include the script, on page load, a `JavaScript function`_
+   looks for a ``cjevent`` query parameterin the page URL.
 #. If found, we validate the query param value and then ``POST`` it together
    with a Firefox Account ``flow_id`` to the CJMS.
 #. The CJMS responds with an affiliate marketing ID and expiry time, which we
    then set as a first-party cookie. This cookie is used to maintain a
    relationship between the ``cjevent`` value and an individual ``flow_id``,
    so that successful subscriptions can be properly attributed to CJ.
-#. If a website visitor later returns to the landing page with an affiliate
+#. If a website visitor later returns to the page with an affiliate
    marketing cookie already set, then we update the ``flow_id`` and ``cjevent``
    value (if a new one exists) via ``PUT`` on their repeat visit. This ensures
    that the most recent CJ referral is attributed if/when someone decides to
@@ -45,7 +44,7 @@ How can visitors opt out?
 -------------------------
 
 #. To facilitate an opt-out of attribution, we display a cookie notification
-   with an opt-out button at the top of the landing page when the flow initiates.
+   with an opt-out button at the top of the page when the flow initiates.
 #. If someone clicks "Reject" to opt-out, we generate a new ``flow_id``
    (invalidating the existing ``flow_id`` in the CJMS database) and then delete
    the affiliate marketing cookie, replacing it with a "reject" preference
@@ -65,7 +64,7 @@ The affiliate cookie has the following configuration:
 +-----------------------+--------------+---------------------+---------+
 | Cookie name           | Value        | Domain              | Expiry  |
 +=======================+==============+=====================+=========+
-| ``moz-vpn-affiliate`` | Affiliate ID | ``www.mozilla.org`` | 30 days |
+| ``moz-cj-affiliate`` | Affiliate ID | ``www.mozilla.org`` | 30 days |
 +-----------------------+--------------+---------------------+---------+
 
 .. Note::

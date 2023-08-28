@@ -14,7 +14,7 @@
 
 {% block page_desc %}Use Mozilla VPN for full-device protection for all apps. With servers in {{ connect_countries }}+ countries, you can connect to anywhere, from anywhere.{% endblock %}
 
-{% block html_attrs %}{{ super() }} data-vpn-affiliate-endpoint="{{ settings.VPN_AFFILIATE_ENDPOINT }}"{% endblock %}
+{% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
 
 {% block body_id %}mozilla-vpn-landing{% endblock %}
 
@@ -42,7 +42,7 @@
 {% block content %}
 <main>
   {% if vpn_affiliate_attribution_enabled %}
-    {% include 'products/vpn/includes/cookie-notification.html' %}
+    {% include 'includes/affiliate-banner.html' %}
   {% endif %}
   {% call split(
     block_class='c-hero mzp-l-split-center-on-sm-md mzp-t-content-xl',
