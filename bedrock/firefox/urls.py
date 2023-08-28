@@ -38,11 +38,19 @@ urlpatterns = (
     page("firefox/enterprise/", "firefox/enterprise/index.html", ftl_files=["firefox/enterprise"]),
     page("firefox/facebookcontainer/", "firefox/facebookcontainer/index.html", ftl_files=["firefox/facebook_container"]),
     page("firefox/features/", "firefox/features/index.html", ftl_files=["firefox/features/index-2023", "firefox/features/shared"]),
-    page("firefox/features/customize/", "firefox/features/customize.html", ftl_files=["firefox/features/customize", "firefox/features/shared"]),
-    page("firefox/features/add-ons/", "firefox/features/add-ons.html", ftl_files=["firefox/features/add-ons", "firefox/features/shared"]),
-    page("firefox/features/pinned-tabs/", "firefox/features/pinned-tabs.html", ftl_files=["firefox/features/pinned-tabs", "firefox/features/shared"]),
-    page("firefox/features/eyedropper/", "firefox/features/eyedropper.html", ftl_files=["firefox/features/eyedropper", "firefox/features/shared"]),
-    page("firefox/features/pdf-editor/", "firefox/features/pdf-editor.html", ftl_files=["firefox/features/pdf-editor", "firefox/features/shared"]),
+    page("firefox/features/customize/", "firefox/features/customize.html", ftl_files=["firefox/features/customize-2023", "firefox/features/shared"]),
+    page("firefox/features/add-ons/", "firefox/features/add-ons.html", ftl_files=["firefox/features/add-ons-2023", "firefox/features/shared"]),
+    page(
+        "firefox/features/pinned-tabs/",
+        "firefox/features/pinned-tabs.html",
+        ftl_files=["firefox/features/pinned-tabs-2023", "firefox/features/shared"],
+    ),
+    page(
+        "firefox/features/eyedropper/", "firefox/features/eyedropper.html", ftl_files=["firefox/features/eyedropper-2023", "firefox/features/shared"]
+    ),
+    page(
+        "firefox/features/pdf-editor/", "firefox/features/pdf-editor.html", ftl_files=["firefox/features/pdf-editor-2023", "firefox/features/shared"]
+    ),
     page("firefox/features/adblocker/", "firefox/features/adblocker.html", ftl_files=["firefox/features/adblocker", "firefox/features/shared"]),
     page("firefox/features/bookmarks/", "firefox/features/bookmarks.html", ftl_files=["firefox/features/bookmarks-2023", "firefox/features/shared"]),
     page("firefox/features/fast/", "firefox/features/fast.html", ftl_files=["firefox/features/fast-2023", "firefox/features/shared"]),
@@ -59,14 +67,14 @@ urlpatterns = (
     page(
         "firefox/features/private/",
         "firefox/features/private.html",
-        ftl_files=["firefox/features/private", "firefox/features/shared"],
+        ftl_files=["firefox/features/private-2023", "firefox/features/shared"],
     ),
     page(
         "firefox/features/private-browsing/",
         "firefox/features/private-browsing.html",
         ftl_files=["firefox/features/private-browsing-2023", "firefox/features/shared"],
     ),
-    page("firefox/features/sync/", "firefox/features/sync.html", ftl_files=["firefox/features/sync", "firefox/features/shared"]),
+    page("firefox/features/sync/", "firefox/features/sync.html", ftl_files=["firefox/features/sync-2023", "firefox/features/shared"]),
     path("firefox/features/translate/", views.firefox_features_translate, name="firefox.features.translate"),
     page(
         "firefox/features/picture-in-picture/",

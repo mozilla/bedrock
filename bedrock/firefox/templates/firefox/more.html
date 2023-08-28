@@ -142,16 +142,8 @@
     </div>
     <div class="mzp-l-card-third">
       {{ card(
-        title=ftl('firefox-rebel-with'),
-        ga_title="Independent",
-        image=resp_img('img/firefox/more/independent.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-is-independent'),
-        link_url=url('firefox.features.independent')
-      )}}
-
-      {{ card(
         title=ftl('firefox-more-little-book'),
-        ga_title='Features Private Browsing',
+        ga_title='Little Book of Privacy',
         image=resp_img('img/firefox/more/little-book-of-privacy.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc= ftl('firefox-more-you-can-reclaim'),
         link_url=url('firefox.privacy.book')
@@ -163,6 +155,14 @@
         image=resp_img('img/firefox/more/incognito-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('firefox-calls-it'),
         link_url=url('firefox.browsers.incognito-browser')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-is-firefox-a-private-browser'),
+        ga_title='Features Private',
+        image=resp_img('img/firefox/more/private.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-were-focused-on-your-right-to'),
+        link_url=url('firefox.features.private')
       )}}
     </div>
     <div class="mzp-l-card-quarter">
@@ -183,19 +183,19 @@
       )}}
 
       {{ card(
-        title=ftl('take-the-stress'),
-        ga_title='Features Safe Browser',
-        image=resp_img('img/firefox/more/safe-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('building-a-safe'),
-        link_url=url('firefox.features.safebrowser')
-      )}}
-
-      {{ card(
         title=ftl('firefox-more-firefox-sync'),
         ga_title='Features Safe Browser',
         image=resp_img('img/firefox/more/firefox-sync.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('firefox-more-access-your-sync'),
         link_url=url('firefox.features.sync')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-avoid-misinformation-heading'),
+        ga_title='Avoid Misinformation',
+        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-avoid-misinformation-desc'),
+        link_url=url('firefox.more.misinformation')
       )}}
     </div>
     <div class="mzp-l-card-third">
@@ -280,16 +280,6 @@
         desc=ftl('firefox-more-more-and-more'),
         image=resp_img('img/firefox/more/passwords.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url=url('firefox.privacy.passwords')
-      )}}
-    </div>
-
-    <div class="mzp-l-card-quarter">
-      {{ card(
-        title=ftl('firefox-more-avoid-misinformation-heading'),
-        ga_title='Avoid Misinformation',
-        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-avoid-misinformation-desc'),
-        link_url=url('firefox.more.misinformation')
       )}}
     </div>
   </div>
