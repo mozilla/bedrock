@@ -8,6 +8,13 @@ $brand-theme: 'firefox';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+#relay-pricing main {
+    background-color: $color-light-gray-20;
+    border-top: 1px solid transparent;
+}
+
+// * -------------------------------------------------------------------------- */
+
 .c-matrix-desktop {
     border-collapse: collapse;
     border-spacing: 0;
@@ -310,11 +317,12 @@ small.c-matrix-footer-period {
     }
 }
 
-.c-toggle-input:hover + .c-toggle-label span {
+.c-toggle-input:hover + .c-toggle-label span,
+.c-toggle-input:focus + .c-toggle-label span {
     color: $color-blue-50;
 }
 
-.c-toggle-input:focus + .c-toggle-label span {
+.c-toggle-input:checked:focus + .c-toggle-label span {
     border: 2px solid $color-blue-50;
 }
 

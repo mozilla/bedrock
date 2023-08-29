@@ -8,37 +8,46 @@
 
 {% block page_title %}{{ ftl('plan-matrix-title') }}{% endblock %}
 
-{% block body_id %}{% endblock %}
+{% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
+
+{% block body_id %}relay-pricing{% endblock %}
 
 {% set _utm_source = 'www.mozilla.org-relay-pricing-page' %}
 {% set _utm_campaign = 'relay-pricing-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block page_css %}
-  {{ css_bundle('relay-landing') }}
+  {{ css_bundle('relay-pricing') }}
 {% endblock %}
-
-{% block sub_navigation %}
-  {% include 'products/relay/includes/subnav.html' %}
-{% endblock %}
-
 
 {% block content %}
 
-<section class="t-odd c-pricing" id="pricing">
-  <div class="mzp-l-content">
-    <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
-    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay mzp-l-wordmark-center">{{ ftl('relay-shared-firefox-relay') }}</div>
-    <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
-    {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
-    <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body-v2', savings=savings) }}</p>
-    {% include 'products/relay/includes/matrix.html' %}
-  </div>
-</section>
+<main>
+
+{% if switch('relay_affiliate_attribution_enabled') %}
+  {% include 'includes/affiliate-banner.html' %}
+{% endif %}
+
+  <section class="t-odd c-pricing" id="pricing">
+    <div class="mzp-l-content">
+      <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
+      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay mzp-l-wordmark-center">{{ ftl('relay-shared-firefox-relay') }}</div>
+      <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
+      {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+      <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body-v2', savings=savings) }}</p>
+      {% include 'products/relay/includes/matrix.html' %}
+    </div>
+  </section>
+
+</main>
 
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('fxa_product_button') }}
+  {% if switch('relay_affiliate_attribution_enabled') %}
+    {{ js_bundle('mozilla-affiliate') }}
+  {% else %}
+    {{ js_bundle('fxa_product_button') }}
+  {% endif %}
   {{ js_bundle('data_begincheckout') }}
 {% endblock %}

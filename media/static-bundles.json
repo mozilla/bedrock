@@ -1255,6 +1255,13 @@
         "css/products/relay/waitlist.scss"
       ],
       "name": "relay-waitlist"
+    },
+    {
+      "files": [
+        "css/products/relay/landing.scss",
+        "css/products/shared/affiliate.scss"
+      ],
+      "name": "relay-pricing"
     }
   ],
   "js": [
@@ -1845,7 +1852,7 @@
       "files": [
         "js/products/shared/affiliate-init.es6.js"
       ],
-      "name": "mozilla-vpn-affiliate"
+      "name": "mozilla-affiliate"
     },
     {
       "files": [
