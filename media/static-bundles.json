@@ -1868,6 +1868,12 @@
     },
     {
       "files": [
+        "js/products/vpn/experiment-refresh-pricing-layout.es6.js"
+      ],
+      "name": "experiment_vpn_refresh_pricing_layout"
+    },
+    {
+      "files": [
         "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"

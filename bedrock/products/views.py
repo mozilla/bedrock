@@ -58,6 +58,15 @@ def vpn_landing_page(request):
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
+    entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
+    entrypoint_variation = request.GET.get("entrypoint_variation", None)
+
+    # ensure experiment parameters matches pre-defined values
+    if entrypoint_variation not in ["1", "2"]:
+        entrypoint_variation = None
+
+    if entrypoint_experiment != "vpn-refresh-pricing":
+        entrypoint_variation = None
 
     if request.locale == "en-US":
         template_name = "products/vpn/landing-refresh.html"
@@ -72,6 +81,7 @@ def vpn_landing_page(request):
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
         "relay_bundle_available_in_country": relay_bundle_available_in_country,
+        "entrypoint_variation": entrypoint_variation,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
