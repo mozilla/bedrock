@@ -1131,16 +1131,24 @@ DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")  # see cron.py
 
 # SENTRY CONFIG
 SENTRY_DSN = config("SENTRY_DSN", default="")
-
 # Data scrubbing before Sentry
 # https://github.com/laiyongtao/sentry-processor
 SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     "email",
     # "token",  # token is on the default blocklist, which we also use via `with_default_keys`
 ]
+SENTRY_IGNORE_ERRORS = (
+    BrokenPipeError,
+    ConnectionResetError,
+)
 
 
 def before_send(event, hint):
+    if hint and "exc_info" in hint:
+        exc_type, exc_value, tb = hint["exc_info"]
+        if isinstance(exc_value, SENTRY_IGNORE_ERRORS):
+            return None
+
     processor = DesensitizationProcessor(
         with_default_keys=True,
         sensitive_keys=SENSITIVE_FIELDS_TO_MASK_ENTIRELY,
