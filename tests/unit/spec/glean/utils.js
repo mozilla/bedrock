@@ -12,6 +12,10 @@
 import Utils from '../../../../media/js/glean/utils.es6';
 
 describe('utilsjs', function () {
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
+    });
+
     describe('getPathFromUrl', function () {
         it('should return the path from a page URL excluding locale', function () {
             expect(Utils.getPathFromUrl('/en-US/firefox/new/')).toEqual(
@@ -77,6 +81,20 @@ describe('utilsjs', function () {
                 v: 1,
                 xv: 'test-xv'
             });
+        });
+    });
+
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(Utils.getReferrer()).toEqual(expected);
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(Utils.getReferrer(expected)).toEqual(expected);
         });
     });
 

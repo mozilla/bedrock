@@ -24,6 +24,10 @@ describe('stub-attribution.js', function () {
         window.dataLayer.push = sinon.stub();
     });
 
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
+    });
+
     describe('init', function () {
         let data = {};
 
@@ -533,6 +537,22 @@ describe('stub-attribution.js', function () {
 
             Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
             expect(callback).toHaveBeenCalledWith(true);
+        });
+    });
+
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(Mozilla.StubAttribution.getReferrer()).toEqual(expected);
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(Mozilla.StubAttribution.getReferrer(expected)).toEqual(
+                expected
+            );
         });
     });
 

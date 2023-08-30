@@ -15,6 +15,8 @@ if (typeof window.Mozilla === 'undefined') {
     var dataLayer = (window.dataLayer = window.dataLayer || []);
     var Analytics = {};
 
+    Analytics.customReferrer = '';
+
     /** Returns page ID used in Event Category for GA events tracked on page.
      * @param {String} path - URL path name fallback if page ID does not exist.
      * @return {String} GTM page ID.
@@ -68,9 +70,32 @@ if (typeof window.Mozilla === 'undefined') {
             // Traffic Cop sets the referrer to 'direct' if document.referer is empty
             // prior to the redirect, so this value will either be a URL or the string 'direct'.
             dataObj.customReferrer = referrer;
+
+            // make the custom referrer available to other scripts.
+            Analytics.customReferrer = referrer;
         }
 
         return dataObj;
+    };
+
+    /**
+     * Returns custom referrer set by Traffic Cop if exists,
+     * else returns standard referrer.
+     * See https://github.com/mozilla/bedrock/issues/13593
+     * @returns {String} referrer
+     */
+    Analytics.getReferrer = function (ref) {
+        var referrer = typeof ref === 'string' ? ref : document.referrer;
+        var customReferrer = Analytics.customReferrer;
+
+        if (customReferrer) {
+            // If customReferrer is returned from TC as "direct",
+            // return an empty string which is the default value
+            // for document.referrer. Otherwise return customReferrer.
+            return customReferrer === 'direct' ? '' : customReferrer;
+        }
+
+        return referrer;
     };
 
     // Push page ID into dataLayer so it's ready when GTM container loads.

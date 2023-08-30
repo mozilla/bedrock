@@ -16,6 +16,10 @@ describe('fxa-attribution.js', function () {
         window.Mozilla.dntEnabled = sinon.stub();
     });
 
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
+    });
+
     describe('getHostName', function () {
         it('should return a hostname as expected', function () {
             const url1 =
@@ -535,6 +539,20 @@ describe('fxa-attribution.js', function () {
                     expected
                 );
             });
+        });
+    });
+
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(FxaAttribution.getReferrer()).toEqual(expected);
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(FxaAttribution.getReferrer(expected)).toEqual(expected);
         });
     });
 

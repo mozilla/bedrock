@@ -383,6 +383,16 @@ if (typeof window.Mozilla === 'undefined') {
         _checkGA();
     };
 
+    StubAttribution.getReferrer = function (ref) {
+        var referrer = typeof ref === 'string' ? ref : document.referrer;
+
+        if (typeof window.Mozilla.Analytics !== 'undefined') {
+            return Mozilla.Analytics.getReferrer(referrer);
+        }
+
+        return referrer;
+    };
+
     /**
      * Gets utm parameters and referrer information from the web page if they exist.
      * @param {String} ref - Optional referrer to facilitate testing.
@@ -395,7 +405,7 @@ if (typeof window.Mozilla === 'undefined') {
             params.get('experiment') || StubAttribution.experimentName;
         var variation =
             params.get('variation') || StubAttribution.experimentVariation;
-        var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
+        var referrer = StubAttribution.getReferrer(ref);
         var ua = StubAttribution.getUserAgent();
         var clientID = StubAttribution.getGAClientID();
 

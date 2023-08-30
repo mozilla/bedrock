@@ -10,6 +10,10 @@
  */
 
 describe('core-datalayer-page-id.js', function () {
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
+    });
+
     describe('getPageId', function () {
         const html = document.documentElement;
 
@@ -52,11 +56,13 @@ describe('core-datalayer-page-id.js', function () {
 
     describe('buildDataObject', function () {
         it('should contain customReferrer if found in cookie', function () {
+            const expected = 'http://www.google.com';
             spyOn(Mozilla.Analytics, 'getTrafficCopReferrer').and.returnValue(
-                'http://www.google.com'
+                expected
             );
             const obj = Mozilla.Analytics.buildDataObject();
             expect(obj.customReferrer).toBeDefined();
+            expect(Mozilla.Analytics.customReferrer).toEqual(expected);
         });
 
         it('should not contain customReferrer if not found in cookie', function () {
@@ -65,6 +71,26 @@ describe('core-datalayer-page-id.js', function () {
             );
             const obj = Mozilla.Analytics.buildDataObject();
             expect(obj.customReferrer).not.toBeDefined();
+            expect(Mozilla.Analytics.customReferrer).toEqual('');
+        });
+    });
+
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(Mozilla.Analytics.getReferrer()).toEqual(expected);
+        });
+
+        it('should return an empty string if customReferrer is direct', function () {
+            Mozilla.Analytics.customReferrer = 'direct';
+            expect(Mozilla.Analytics.getReferrer()).toEqual('');
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(Mozilla.Analytics.getReferrer(expected)).toEqual(expected);
         });
     });
 });
