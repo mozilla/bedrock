@@ -20,7 +20,7 @@ repos:
         args:
           - --markdown-linebreak-ext=md
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.4.2
+    rev: v1.5.4
     hooks:
     -   id: insert-license
         language: python
@@ -65,7 +65,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.280
+    rev: v0.0.286
     hooks:
       - id: ruff
   - repo: https://github.com/psf/black
