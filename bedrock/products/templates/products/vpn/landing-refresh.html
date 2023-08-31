@@ -29,6 +29,12 @@
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-vpn-refresh-pricing-layout', ['en-US']) %}
+    {{ js_bundle('experiment_vpn_refresh_pricing_layout') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}
   {% with custom_nav_cta=vpn_nav_cta_refresh() %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -296,7 +302,11 @@
         <h3 class="c-section-title">One subscription for all your devices</h3>
       </header>
 
-      {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
+      {% if entrypoint_variation == "2" %}
+        {% include 'products/vpn/includes/pricing-refresh-vertical.html' %}
+      {% else %}
+        {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
+      {% endif %}
 
     {% else %}
       <header class="c-pricing-main-header">
