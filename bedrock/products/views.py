@@ -505,3 +505,14 @@ def relay_phone_waitlist__page(request):
     ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "relay-phone"}
 
     return l10n_utils.render(request, "products/relay/waitlist/phone.html", ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def monitor_landing_page(request):
+    template_name = "products/monitor/landing.html"
+    ftl_files = ["products/monitor/landing", "products/monitor/shared"]
+    breach_scan_url = settings.MONITOR_BREACH_SCAN_URL
+
+    context = {"breach_scan_url": breach_scan_url}
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
