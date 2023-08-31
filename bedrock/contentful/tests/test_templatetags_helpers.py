@@ -54,7 +54,7 @@ def test_external_html(content, expected):
     # light test of our bleaching
     output = external_html(content)
 
-    assert type(content) == str
+    assert isinstance(content, str)
     assert output == Markup(expected)
 
 
