@@ -40,11 +40,13 @@ def vpn_available(request):
 def relay_available(product, request):
     country = get_country_from_request(request)
     if product == "relay-bundle":
-        country_list = settings.VPN_COUNTRY_CODES
+        country_list = settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["bundle"]
     elif product == "relay-phone":
-        country_list = settings.RELAY_PHONE_COUNTRY_CODES
+        country_list = settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["phone"]
+    elif product == "relay-email":
+        country_list = settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["email"]
     else:
-        country_list = settings.RELAY_EMAIL_COUNTRY_CODES
+        raise Exception("Unrecognized product passed to relay_available()")
 
     return country in country_list
 
@@ -421,11 +423,12 @@ def relay_landing_page(request):
         "products/relay/bundle",
         "products/relay/shared",
     ]
+
+    country = get_country_from_request(request)
+    vpn_available_in_country = vpn_available(request)
     relay_email_available_in_country = relay_available("relay-email", request)
     relay_phone_available_in_country = relay_available("relay-phone", request)
-    vpn_available_in_country = vpn_available(request)
-    country = get_country_from_request(request)
-    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["bundle"]
 
     context = {
         "email_available": relay_email_available_in_country,
@@ -440,11 +443,12 @@ def relay_landing_page(request):
 def relay_premium_page(request):
     template_name = "products/relay/premium.html"
     ftl_files = ["products/relay/premium", "products/relay/features", "products/relay/matrix", "products/relay/bundle", "products/relay/shared"]
+
+    country = get_country_from_request(request)
+    vpn_available_in_country = vpn_available(request)
     relay_email_available_in_country = relay_available("relay-email", request)
     relay_phone_available_in_country = relay_available("relay-phone", request)
-    vpn_available_in_country = vpn_available(request)
-    country = get_country_from_request(request)
-    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["bundle"]
 
     context = {
         "email_available": relay_email_available_in_country,
@@ -459,11 +463,12 @@ def relay_premium_page(request):
 def relay_pricing_page(request):
     template_name = "products/relay/pricing.html"
     ftl_files = ["products/relay/matrix", "products/relay/shared"]
+
+    country = get_country_from_request(request)
+    vpn_available_in_country = vpn_available(request)
     relay_email_available_in_country = relay_available("relay-email", request)
     relay_phone_available_in_country = relay_available("relay-phone", request)
-    vpn_available_in_country = vpn_available(request)
-    country = get_country_from_request(request)
-    relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES
+    relay_bundle_available_in_country = vpn_available_in_country and country in settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE["bundle"]
 
     context = {
         "email_available": relay_email_available_in_country,

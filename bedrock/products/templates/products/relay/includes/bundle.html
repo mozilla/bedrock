@@ -5,9 +5,9 @@
 #}
 
 
-{% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+{% set monthly_price = relay_monthly_price_formatted(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
 
-{% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+{% set savings = relay_bundle_savings() %}
 
 <div class="mzp-l-content">
   <div class="mzp-c-emphasis-box mzp-t-dark t-bundle">

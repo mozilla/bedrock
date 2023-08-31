@@ -2002,26 +2002,6 @@ class TestRelayEmailSubscribeLink(TestCase):
         )
 
     def test_relay_subscribe_link_email_yearly(self):
-        """Should return expected markup for yearly email subscription link"""
-        markup = self._render(
-            link_text="Get Relay email yearly",
-            product="relay-email",
-            plan="yearly",
-            country_code="DE",
-            lang="de",
-            optional_parameters={"utm_campaign": "relay-product-page"},
-            optional_attributes={"data-cta-text": "Get Relay email yearly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
-        )
-        expected = (
-            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LYC7xJNcmPzuWtRcdKXCVZp'
-            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
-            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay email yearly" data-cta-type="fxa-relay" '
-            'data-cta-position="primary">Get Relay email yearly</a>'
-        )
-        self.assertEqual(markup, expected)
-
-    def test_relay_subscribe_link_email_yearly_with_analytics(self):
         """Should return expected markup for yearly email subscription link with analytics"""
         markup = self._render(
             link_text="Get Relay email yearly",
@@ -2042,7 +2022,7 @@ class TestRelayEmailSubscribeLink(TestCase):
         )
         self.assertEqual(markup, expected)
 
-    def test_relay_subscribe_link_email_yearly_no_options_with_analytics(self):
+    def test_relay_subscribe_link_email_yearly_no_options(self):
         """Should return expected markup for yearly email subscription link with analytics"""
         markup = self._render(
             product="relay-email",
@@ -2060,26 +2040,6 @@ class TestRelayEmailSubscribeLink(TestCase):
         self.assertEqual(markup, expected)
 
     def test_relay_subscribe_link_email_monthly(self):
-        """Should return expected markup for monthly email subscription link"""
-        markup = self._render(
-            link_text="Get Relay email monthly",
-            product="relay-email",
-            plan="monthly",
-            country_code="US",
-            lang="en-US",
-            optional_parameters={"utm_campaign": "relay-product-page"},
-            optional_attributes={"data-cta-text": "Get Relay email monthly", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
-        )
-        expected = (
-            '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUcnJNcmPzuWtRpbNOajYS'
-            "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
-            '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay email monthly" data-cta-type="fxa-relay" '
-            'data-cta-position="primary">Get Relay email monthly</a>'
-        )
-        self.assertEqual(markup, expected)
-
-    def test_relay_subscribe_link_email_monthly_with_analytics(self):
         """Should return expected markup for monthly email subscription link including analytics"""
         markup = self._render(
             link_text="Get Relay email monthly",
@@ -2096,7 +2056,7 @@ class TestRelayEmailSubscribeLink(TestCase):
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email monthly" '
             "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LYC79JNcmPzuWtRU7Q238yL','brand' : 'relay',"
-            "'plan' : 'relay-email','period' : 'monthly','price' : '1.99','discount' : '0','currency' : 'EUR'}\">Get Relay email monthly</a>"
+            "'plan' : 'relay-email','period' : 'monthly','price' : '1.99','discount' : '0.00','currency' : 'EUR'}\">Get Relay email monthly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2202,7 +2162,7 @@ class TestRelayEmailSubscribeLink(TestCase):
             country_code="BE",
             lang="en-US",
         )
-        self.assertIn("plan=price_1LYCdLJNcmPzuWtR0J1EHoJ0", markup)
+        self.assertIn("plan=price_1LYBuLJNcmPzuWtRn58XQcky", markup)
 
     def test_relay_subscribe_link_email_yearly_be_en(self):
         """Should return expected Stripe Plan ID for yearly email subscription link (BE / en-US)"""
@@ -2212,7 +2172,7 @@ class TestRelayEmailSubscribeLink(TestCase):
             country_code="BE",
             lang="en-US",
         )
-        self.assertIn("plan=price_1LYCdtJNcmPzuWtRVm4jLzq2", markup)
+        self.assertIn("plan=price_1LYBwcJNcmPzuWtRpgoWcb03", markup)
 
     # CH
 
@@ -2284,7 +2244,7 @@ class TestRelayEmailSubscribeLink(TestCase):
             country_code="CH",
             lang="en-US",
         )
-        self.assertIn("plan=price_1LYCqOJNcmPzuWtRuIXpQRxi", markup)
+        self.assertIn("plan=price_1LYCvpJNcmPzuWtRq9ci2gXi", markup)
 
     def test_relay_subscribe_link_email_yearly_ch_en(self):
         """Should return expected Stripe Plan ID for yearly email subscription link (CH / en-US)"""
@@ -2294,7 +2254,7 @@ class TestRelayEmailSubscribeLink(TestCase):
             country_code="CH",
             lang="en-US",
         )
-        self.assertIn("plan=price_1LYCqyJNcmPzuWtR3Um5qDPu", markup)
+        self.assertIn("plan=price_1LYCwMJNcmPzuWtRm6ebmq2N", markup)
 
     # DE
 
@@ -2614,27 +2574,27 @@ class TestRelayEmailMonthlyPrice(TestCase):
     def _render(self, product, plan, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render(f"{{{{ relay_monthly_price('{product}', '{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
+        return render(f"{{{{ relay_monthly_price_formatted('{product}', '{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
 
-    def test_relay_monthly_price_usd(self):
+    def test_relay_monthly_price_formatted_usd(self):
         """Should return expected markup"""
         markup = self._render(product="relay-email", plan="monthly", country_code="US", lang="en-US")
         expected = "$1.99"
         self.assertEqual(markup, expected)
 
-    def test_relay_monthly_price_usd_ca(self):
+    def test_relay_monthly_price_formatted_usd_ca(self):
         """Should return expected markup"""
         markup = self._render(product="relay-email", plan="monthly", country_code="CA", lang="en-CA")
         expected = "US$1.99"
         self.assertEqual(markup, expected)
 
-    def test_relay_monthly_price_euro(self):
+    def test_relay_monthly_price_formatted_euro(self):
         """Should return expected markup"""
         markup = self._render(product="relay-email", plan="monthly", country_code="DE", lang="de")
         expected = "1,99\xa0€"  # \xa0 is a non breaking space
         self.assertEqual(markup, expected)
 
-    def test_relay_monthly_price_chf(self):
+    def test_relay_monthly_price_formatted_chf(self):
         """Should return expected markup"""
         markup = self._render(product="relay-email", plan="monthly", country_code="CH", lang="fr")
         expected = "2,00\xa0CHF"  # \xa0 is a non breaking space
@@ -2711,8 +2671,9 @@ class TestRelayPhoneSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1Li0w8JNcmPzuWtR2rGU80P3'
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay phone monthly" data-cta-type="fxa-relay" '
-            'data-cta-position="primary">Get Relay phone monthly</a>'
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay phone monthly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li0w8JNcmPzuWtR2rGU80P3','brand' : 'relay',"
+            "'plan' : 'relay-phone','period' : 'monthly','price' : '4.99','discount' : '0.00','currency' : 'USD'}\">Get Relay phone monthly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2731,8 +2692,9 @@ class TestRelayPhoneSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1Li15WJNcmPzuWtRIh0F4VwP'
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay phone yearly" data-cta-type="fxa-relay" '
-            'data-cta-position="primary">Get Relay phone yearly</a>'
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay phone yearly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li15WJNcmPzuWtRIh0F4VwP','brand' : 'relay',"
+            "'plan' : 'relay-phone','period' : 'yearly','price' : '47.88','discount' : '12.00','currency' : 'USD'}\">Get Relay phone yearly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2781,7 +2743,180 @@ class TestRelayBundleSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh'
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button" data-cta-text="Get Relay bundle yearly" data-cta-type="fxa-relay" '
-            'data-cta-position="primary">Get Relay bundle yearly</a>'
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay bundle yearly" '
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LwoSDJNcmPzuWtR6wPJZeoh','brand' : 'relay',"
+            "'plan' : 'relay-bundle','period' : 'yearly','price' : '83.88','discount' : '55.92','currency' : 'USD'}\">Get Relay bundle yearly</a>"
         )
+        self.assertEqual(markup, expected)
+
+
+class TestRelayMonthlyPriceFormatted(TestCase):
+    rf = RequestFactory()
+
+    def _render(
+        self,
+        product="relay-email",
+        plan="yearly",
+        country_code=None,
+        lang=None,
+    ):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(
+            f"""{{{{ relay_monthly_price_formatted('{product}', '{plan}', '{country_code}','{lang}') }}}}""",
+            {"request": req},
+        )
+
+    def test_relay_monthly_price_formatted_email_monthly_us_en(self):
+        """Should return price for montly email plan for display in USD in USA"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="US",
+            lang="en-US",
+        )
+        expected = "$1.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_us_en(self):
+        """Should return price for yearly email plan for display in USD in USA"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="US",
+            lang="en-US",
+        )
+        expected = "$0.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_ca_en(self):
+        """Should return price for montly email plan for display in USD in Canada"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CA",
+            lang="en-CA",
+        )
+        expected = "US$1.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_ca_en(self):
+        """Should return price for yearly email plan for display in USD in Canada"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CA",
+            lang="en-CA",
+        )
+        expected = "US$0.99"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_de_de(self):
+        """Should return price for montly email plan for display in German in Germany"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="DE",
+            lang="de",
+        )
+        expected = "1,99\xa0€"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_de_de(self):
+        """Should return price for yearly email plan for display in German in Germany"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="DE",
+            lang="de",
+        )
+        expected = "0,99\xa0€"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_dk_en(self):
+        """Should return price for montly email plan for display in English in Denmark"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="DK",
+            lang="en-US",
+        )
+        expected = "DKK15.00"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_dk_en(self):
+        """Should return price for yearly email plan for display in English in Denmark"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="DK",
+            lang="en-US",
+        )
+        expected = "DKK7.00"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_dk_da(self):
+        """Should return price for montly email plan for display in Danish in Denmark"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="DK",
+            lang="da",
+        )
+        expected = "15,00\xa0kr."
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_dk_da(self):
+        """Should return price for yearly email plan for display in Danish in Denmark"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="DK",
+            lang="da",
+        )
+        expected = "7,00\xa0kr."
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_it_ch(self):
+        """Should return price for montly email plan for display in Italian in Switzerland"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="CH",
+            lang="it",
+        )
+        expected = "2,00\xa0CHF"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_it_ch(self):
+        """Should return price for yearly email plan for display in Italian in Switzerland"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="CH",
+            lang="it",
+        )
+        expected = "1,00\xa0CHF"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_monthly_pl_pl(self):
+        """Should return price for montly email plan for display in Polish in Poland"""
+        markup = self._render(
+            product="relay-email",
+            plan="monthly",
+            country_code="PL",
+            lang="pl",
+        )
+        expected = "8,00\xa0zł"
+        self.assertEqual(markup, expected)
+
+    def test_relay_monthly_price_formatted_email_yearly_pl_pl(self):
+        """Should return price for yearly email plan for display in Polish in Poland"""
+        markup = self._render(
+            product="relay-email",
+            plan="yearly",
+            country_code="PL",
+            lang="pl",
+        )
+        expected = "5,00\xa0zł"
         self.assertEqual(markup, expected)

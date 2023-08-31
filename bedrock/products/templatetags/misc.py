@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from decimal import Decimal
+
 from django.conf import settings
 
 import jinja2
@@ -281,7 +283,7 @@ def vpn_product_referral_link(
 
 # RELAY ================================================================
 
-RELAY_12_MONTH_PLAN = "yearly"
+RELAY_12_MONTH_PLAN = "monthly_when_yearly"
 RELAY_PRODUCT = "relay-email"
 
 
@@ -300,33 +302,84 @@ def relay_bundle_countries():
     return settings.VPN_CONNECT_COUNTRIES
 
 
-# Relay has 4 plans
-# free
-# email
-# phone
-# bundle
-
-# free is available everywhere
-# email is available according to RELAY_EMAIL_COUNTRY_CODES
-# phone is available according to RELAY_PHONE_COUNTRY_CODES
-# bundle is available according to RELAY_VPN_BUNDLE_COUNTRY_CODES
-
-
-def _relay_get_plans(country_code, lang, product):
-    """
-    Get subscription plan IDs using country_code and page language.
-    Defaults to "US" if no matching country code is found.
-    Each country also has a default language if no match is found.
-    """
-
+def _relay_make_ga_data(id, product, country_code, lang, plan):
+    plan = "monthly" if plan == "monthly" else "monthly_when_yearly"
+    currency = _relay_get_currency(product, country_code, lang)
     if product == "relay-bundle":
-        country_plans = settings.RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING.get(country_code, settings.RELAY_VPN_BUNDLE_COUNTRY_LANG_MAPPING["US"])
+        # the bundle doesn't have a monthly price, discount calculated in reverse from % savings
+        yearly_when_yearly = relay_monthly_price("relay-bundle", RELAY_12_MONTH_PLAN, country_code, lang) * 12
+        discount = 55.92
     elif product == "relay-phone":
-        country_plans = settings.RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING.get(country_code, settings.RELAY_PHONE_PLAN_COUNTRY_LANG_MAPPING["US"])
-    else:  # product == 'relay-email'
-        country_plans = settings.RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING.get(country_code, settings.RELAY_EMAIL_PLAN_COUNTRY_LANG_MAPPING["US"])
+        monthly_when_monthly = relay_monthly_price("relay-phone", "monthly", country_code, lang)
+        monthly_when_yearly = relay_monthly_price("relay-phone", RELAY_12_MONTH_PLAN, country_code, lang)
+        yearly_when_yearly = monthly_when_yearly * 12
+        discount = 0 if plan == "monthly" else ((monthly_when_monthly - monthly_when_yearly) * 12)
+    elif product == "relay-email":
+        monthly_when_monthly = relay_monthly_price("relay-email", "monthly", country_code, lang)
+        monthly_when_yearly = relay_monthly_price("relay-email", RELAY_12_MONTH_PLAN, country_code, lang)
+        yearly_when_yearly = monthly_when_yearly * 12
+        discount = 0 if plan == "monthly" else ((monthly_when_monthly - monthly_when_yearly) * 12)
+    price = monthly_when_monthly if plan == "monthly" else float(yearly_when_yearly)
 
-    return country_plans.get(lang, country_plans.get("default"))
+    ga_data = (
+        "{"
+        "'id' : '%s',"
+        "'brand' : '%s',"
+        "'plan' : '%s',"
+        "'period' : '%s',"
+        "'price' : '%s',"
+        "'discount' : '%s',"
+        "'currency' : '%s'"
+        "}" % (id, "relay", product, "monthly" if plan == "monthly" else "yearly", str(format(price, ".2f")), str(format(discount, ".2f")), currency)
+    )
+
+    return ga_data
+
+
+def _relay_get_region(product, country_code, lang):
+    """
+    Return the "region" code for this request
+    """
+
+    lang = lang.split("-")[0]  # i.e. if it's en-US we only want the en part
+
+    product = product.replace("relay-", "")
+    region_langs = settings.RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE[product].get(country_code)
+
+    # get region that matches requested language, or get first region
+    region = region_langs.get(lang, list(region_langs.values())[0])
+
+    return region
+
+
+def _relay_get_product_region_dict(product, region):
+    """
+    Return a dict for the product's region, containing stripe IDs and currency
+    """
+
+    product = product.replace("relay-", "")
+    product_region_dict = settings.RELAY_STRIPE_PLAN_DATA[product]["countries_and_regions"][region]
+
+    return product_region_dict
+
+
+def _relay_get_plan_id(product, country_code, lang, plan):
+    """
+    Return Stripe Plan ID for matching country, language, plan
+    """
+
+    region = _relay_get_region(product, country_code, lang)
+    dict = _relay_get_product_region_dict(product, region)
+    plan = "monthly_id" if plan == "monthly" else "yearly_id"
+
+    return dict[plan]
+
+
+def _relay_get_currency(product, country_code, lang):
+    region = _relay_get_region(product, country_code, lang)
+    dict = _relay_get_product_region_dict(product, region)
+
+    return dict["currency"]
 
 
 def _relay_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
@@ -405,27 +458,26 @@ def relay_subscribe_link(
         product_id = settings.RELAY_PHONE_PRODUCT_ID
     elif product == "relay-bundle":
         product_id = settings.RELAY_VPN_BUNDLE_PRODUCT_ID
+    else:
+        raise Exception("Unrecognized product passed to relay_subscribe_link()")
 
-    available_plans = _relay_get_plans(country_code, lang, product)
-    selected_plan = available_plans.get(plan, RELAY_12_MONTH_PLAN)
-    plan_id = selected_plan.get("id")
+    plan_id = _relay_get_plan_id(product, country_code, lang, plan)
 
     product_url = f"{settings.RELAY_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
 
-    if "analytics" in selected_plan:
-        if class_name is None:
-            class_name = ""
-        class_name += " ga-begin-checkout"
-        if optional_attributes is None:
-            optional_attributes = {}
-        optional_attributes["data-ga-item"] = _vpn_get_ga_data(selected_plan)
+    # analytics data
+    if class_name is None:
+        class_name = ""
+    class_name += " ga-begin-checkout"
+    if optional_attributes is None:
+        optional_attributes = {}
+    optional_attributes["data-ga-item"] = _relay_make_ga_data(plan_id, product, country_code, lang, plan)
 
     return _relay_product_link(product_url, entrypoint, link_text, class_name, optional_parameters, optional_attributes)
 
 
 @library.global_function
-@jinja2.pass_context
-def relay_monthly_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
+def relay_monthly_price(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
     """
     Render a localized string displaying a Relay plan's monthly plan.
 
@@ -435,28 +487,27 @@ def relay_monthly_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, co
     In Template
     -----------
 
-        {{ relay_monthly_price( product='relay-email',
+        {{ relay_monthly_price_formatted( product='relay-email',
                              country_code=country_code,
                              lang=LANG,
                             ) }}
     """
 
-    available_plans = _relay_get_plans(country_code, lang, product)
-    selected_plan = available_plans.get(plan, RELAY_12_MONTH_PLAN)
-    price = selected_plan.get("price")
-    currency = selected_plan.get("currency")
-    currency_locale = lang.replace("-", "_")
-    amount = _format_currency(price, currency, currency_locale)
+    plan = "monthly" if plan == "monthly" else "monthly_when_yearly"
 
-    markup = f"{amount}"
-    return Markup(markup)
+    currency = _relay_get_currency(product, country_code, lang)
+
+    product = product.replace("relay-", "")
+    price = settings.RELAY_STRIPE_PLAN_DATA[product]["prices"][currency][plan]
+
+    price = Decimal(price)
+    return price
 
 
 @library.global_function
-@jinja2.pass_context
-def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
+def relay_monthly_price_formatted(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
     """
-    Render a localized string displaying a Relay plan's total price.
+    Render a localized string displaying a Relay plan's monthly plan.
 
     Examples
     ========
@@ -464,25 +515,27 @@ def relay_total_price(ctx, product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, coun
     In Template
     -----------
 
-        {{ relay_total_price(country_code=country_code, lang=LANG, product='relay-email') }}
+        {{ relay_monthly_price_formatted( product='relay-email',
+                             country_code=country_code,
+                             lang=LANG,
+                            ) }}
     """
 
-    period = 12 if plan == RELAY_12_MONTH_PLAN else 1
-    available_plans = _relay_get_plans(country_code, lang, product)
-    selected_plan = available_plans.get(plan, RELAY_12_MONTH_PLAN)
-    price = float(selected_plan.get("price"))
-    total = price * period
-    currency = selected_plan.get("currency")
+    currency = _relay_get_currency(product, country_code, lang)
+    amount = relay_monthly_price(product, plan, country_code, lang)
     currency_locale = lang.replace("-", "_")
-    amount = _format_currency(total, currency, currency_locale)
+    # default to en_US if format_currency does not recognize the locale.
+    try:
+        price = format_currency(amount, currency, locale=currency_locale)
+    except UnknownLocaleError:
+        price = format_currency(amount, currency, locale="en_US")
 
-    markup = f"{amount}"
+    markup = f"{price}"
     return Markup(markup)
 
 
 @library.global_function
-@jinja2.pass_context
-def relay_bundle_savings(ctx, country_code=None, lang=None, product="relay-bundle"):
+def relay_bundle_savings():
     """
     The VPN/Relay bundle savings as a number representing a percent. Example: 50
 
@@ -495,9 +548,8 @@ def relay_bundle_savings(ctx, country_code=None, lang=None, product="relay-bundl
         {{ relay_bundle_savings(country_code=country_code, lang=LANG) }}
     """
 
-    available_plans = _relay_get_plans(country_code, lang, product)
-    selected_plan = available_plans.get(RELAY_12_MONTH_PLAN)
-    saving = float(selected_plan.get("saving"))
-    saving = int(saving * 100)
+    # there's only one supported region
+    savings = settings.RELAY_STRIPE_PLAN_DATA["bundle"]["prices"]["USD"]["saving"]
+    saving = int(savings)
     markup = f"{saving}"
     return Markup(markup)
