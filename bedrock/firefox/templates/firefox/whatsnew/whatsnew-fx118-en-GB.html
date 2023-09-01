@@ -1,0 +1,60 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_118') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-sm">
+        <aside class="wnp-swap">
+          <div class="wnp-swap-blurb-here">
+            <span class="wnp-swap-text-here" lang="en">hello 🫖</span>
+            {% include 'firefox/whatsnew/includes/fx118/arrow-blue.svg' %}
+          </div>
+          <div class="wnp-swap-blurb-there">
+            <span class="wnp-swap-text-there" lang="fr">bonjour 🥖</span>
+            {% include 'firefox/whatsnew/includes/fx118/arrow-white.svg' %}
+          </div>
+        </aside>
+
+        <h2>Say ‘<span lang="fr">Bonjour</span>’ to Firefox&nbsp;translations</h2>
+
+        <div id="wnp-cta">
+          <div id="cta-try">
+            <p>Translate the web locally, so your data stays safe. Firefox now comes with an integrated translation tool, so you never have to use a third-party app again.</p>
+            <p>Click the {% include 'firefox/whatsnew/includes/fx118/translate-icon.svg' %} in Firefox’s address bar and enjoy content from around the world.</p>
+            <a class="mzp-c-button mzp-t-product" href="https://www.mozilla.org/fr/" data-cta-type="button" data-cta-text="Try it now">Try it now</a>
+          </div>
+
+          <div id="cta-default">
+            <p>Translate the web locally, so your data stays safe. Our translation tool is now integrated in Firefox, so by setting it as your default browser, you’d never have to use another app or website again.</p>
+            <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Set Firefox as your default browser">Set Firefox as your default browser</a>
+          </div>
+        </div>
+
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_118') }}
+{% endblock %}

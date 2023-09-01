@@ -1,0 +1,60 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}What’s new with Firefox{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_118') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-sm">
+        <aside class="wnp-swap">
+          <div class="wnp-swap-blurb-here">
+            <span class="wnp-swap-text-here" lang="en-GB">hello 🫖</span>
+            {% include 'firefox/whatsnew/includes/fx118/arrow-blue.svg' %}
+          </div>
+          <div class="wnp-swap-blurb-there">
+            <span class="wnp-swap-text-there" lang="fr">bonjour 🥖</span>
+            {% include 'firefox/whatsnew/includes/fx118/arrow-white.svg' %}
+          </div>
+        </aside>
+
+        <h2>Dites ‘<span lang="en-GB">Hello</span>’ à Firefox&nbsp;translations</h2>
+
+        <div id="wnp-cta">
+          <div id="cta-try">
+            <p>Traduisez le web localement, pour que vos données restent sécurisées. Firefox est désormais doté d’un outil de traduction intégré, de sorte que vous n'aurez plus jamais besoin d'utiliser d’application tierce.</p>
+            <p>Cliquez sur l'icône {% include 'firefox/whatsnew/includes/fx118/translate-icon.svg' %} dans la barre d'adresse de Firefox et profitez de plus de contenu sur le Web.</p>
+            <a class="mzp-c-button mzp-t-product" href="https://www.mozilla.org/en-GB/" data-cta-type="button" data-cta-text="Try it now">Essayer maintenant</a>
+          </div>
+
+          <div id="cta-default">
+            <p>Traduisez le web localement, pour que vos données restent sécurisées. En faisant de Firefox votre navigateur par défaut, profitez de son outil de traduction intégré sans plus avoir jamais besoin d'utiliser d’application tierce.</p>
+            <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Set Firefox as your default browser">Faire de Firefox votre navigateur par défaut</a>
+          </div>
+        </div>
+
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_118') }}
+{% endblock %}
