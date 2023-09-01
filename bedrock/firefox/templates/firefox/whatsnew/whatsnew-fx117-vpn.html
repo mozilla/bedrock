@@ -158,6 +158,16 @@
   {% set vpn_signoff = "<strong>Powered by Mozilla.</strong> Putting people before profits since 1998."|safe %}
 {%- endif -%}
 
+{% if LANG in ["en-US", "en-CA"] and country_code in ["US", "CA"] %}
+  {% if variant == "2" %}
+    {% set referral_id = "whatsnew-117-na-vpn-pricing" %}
+  {% else %}
+    {% set referral_id = "whatsnew-117-na-vpn" %}
+  {% endif %}
+{% else %}
+  {% set referral_id = "whatsnew-117-eu-vpn" %}
+{% endif %}
+
 {% block wnp_content %}
   <section class="wnp-content-main">
     <div class="mzp-l-content mzp-t-content-md">
@@ -175,7 +185,7 @@
         {% if variant == "2" %}
           {{ vpn_product_referral_link(
             page_anchor='#pricing',
-            referral_id='whatsnew-117-eu-vpn-pricing',
+            referral_id=referral_id,
             link_text=vpn_cta,
             class_name='mzp-t-product mzp-t-xl',
             optional_attributes= {
@@ -186,7 +196,7 @@
           ) }}
         {% else %}
           {{ vpn_product_referral_link(
-            referral_id='whatsnew-117-eu-vpn',
+            referral_id=referral_id,
             link_text=vpn_cta,
             class_name='mzp-t-product mzp-t-xl',
             optional_attributes= {
