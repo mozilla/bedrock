@@ -1215,7 +1215,7 @@ class TestMonitorFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign In to Monitor", "data-cta-type": "fxa-monitor", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://monitor.firefox.com/oauth/init?entrypoint=mozilla.org-firefox-accounts&form_type=button'
+            '<a href="https://monitor.firefox.com/user/dashboard?entrypoint=mozilla.org-firefox-accounts&form_type=button'
             '&utm_source=mozilla.org-firefox-accounts&utm_medium=referral&utm_campaign=skyline" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button '
             'monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '

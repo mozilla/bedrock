@@ -897,7 +897,7 @@ def monitor_fxa_button(
 
         {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
-    product_url = "https://monitor.firefox.com/oauth/init"
+    product_url = "https://monitor.firefox.com/user/dashboard"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )
