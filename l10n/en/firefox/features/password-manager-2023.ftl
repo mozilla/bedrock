@@ -8,13 +8,13 @@
 password-manager-free-password-manager = Free password manager
 
 # HTML page description
-password-manager-firefox-password-manager-saves-all = { -brand-name-firefox } Password Manager saves all your passwords in one place so you can automatically login to sites, or retrieve saved passwords.
+password-manager-firefox-password-manager-saves-all = { -brand-name-firefox } Password Manager saves all your passwords in one place so you can automatically log in to sites, or retrieve saved passwords.
 
 password-manager-firefox-securely-stores-your = { -brand-name-firefox } securely stores your usernames and passwords for accessing websites, automatically fills them in for you the next time you visit a website, and lets you manage your stored logins with its built-in password management feature.
 
 # Variables:
 #   $fxa (url) = link to https://www.mozilla.org/firefox/accounts/
-password-manager-with-a-free-firefox-account = With a <a href="{ $fxa }">free { -brand-name-firefox } account</a> you can securely sync your passwords across all your devices.
+password-manager-with-a-free-firefox-account = With a <a href="{ $fxa }">free { -brand-name-firefox-account }</a> you can securely sync your passwords across all your devices.
 password-manager-password-autofill-for-easy-logins = Password autofill for easy logins
 password-manager-firefox-can-automatically-fill-in = { -brand-name-firefox } can automatically fill in your saved username and password. If you have more than one login for a site, you can just select the account you want and we’ll take it from there.
 

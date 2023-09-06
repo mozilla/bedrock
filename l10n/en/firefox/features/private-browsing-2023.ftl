@@ -25,5 +25,5 @@ features-private-browsing-what-private-browsing-doesnt-do = What private browsin
 features-private-browsing-private-browsing-mode-will-not = Private browsing mode will not delete any new bookmarks you make from a private browsing window, or protect you from malware or viruses. It also doesn’t prevent the websites you visit from seeing where you are physically located or stop your internet service provider from logging what you do. You’ll need a <a href="{ $vpn }">trustworthy VPN</a> for that.
 
 # Variables:
-#   $chrome (url) = link to https://www.mozilla.org/en-US/firefox/browsers/incognito-browser/
+#   $chrome (url) = link to https://www.mozilla.org/firefox/browsers/incognito-browser/
 features-private-browsing-compare-firefoxs-private-browsing = Compare { -brand-name-firefox }’s private browsing with <a href="{ $chrome }">Chrome’s incognito mode</a>.

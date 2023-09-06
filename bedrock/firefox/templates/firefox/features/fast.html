@@ -20,8 +20,8 @@
 
 <h2>{{ ftl('features-fast-faster-gaming') }}</h2>
 <p>
-{% if ftl_has_messages('features-fast-un-humble-brag-alert') %}
-  <em>{{ ftl('features-fast-un-humble-brag-alert') }}</em>
+{% if LANG == "en-US" %}
+  <em>Un-humble brag alert:</em>
 {% endif %}
   {{ ftl('features-fast-we-led-the-tech-to-run-3d-games') }}
 </p>
