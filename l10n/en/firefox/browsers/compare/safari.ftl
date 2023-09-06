@@ -45,6 +45,11 @@ compare-safari-like-safari-firefox-encourages = Like { -brand-name-safari }, { -
 
 # Variables:
 #   $pocket (string) - link to getpocket.com with additional attributes for analytics
+compare-safari-also-when-you-sign-up-for-updated-v2 = Also, when you sign up for a { -brand-name-mozilla-account }, you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
+
+# Obsolete string
+# Variables:
+#   $pocket (string) - link to getpocket.com with additional attributes for analytics
 compare-safari-also-when-you-sign-up-for-updated = Also, when you sign up for a { -brand-name-firefox } account, you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
 
 # Obsolete string
@@ -70,6 +75,12 @@ compare-safari-screenshots-is-another-popular = <a { $attrs }>Screenshots</a> is
 compare-safari-firefox-and-safari-both-provide = { -brand-name-firefox } and { -brand-name-safari } both provide a seamless experience when moving from desktop to mobile browsing or vice versa. For { -brand-name-safari }, one of its main strengths is its continuity features. It syncs your bookmarks, tabs, history and more to iCloud so they’re available on all your devices. That means you can open a tab on your { -brand-name-iphone } and have it also appear on your { -brand-name-mac } laptop with just a click.
 compare-safari-both-browsers-have-a-lot = Both browsers have a lot of crossover features, as well as some unique functions. It’s worth mentioning, if you take a lot of screenshots, you’ll wonder how you ever lived without this handy feature that’s built right into { -brand-name-firefox }. But if you’re just looking for a fast, private browser for surfing and shopping, then you may want to give { -brand-name-firefox } a try — especially if you’ve been exclusively using { -brand-name-safari } because it came preloaded as the default browser on your computer. Eventually, you’ll discover which one is more suited to your needs.
 
+# Variables:
+#   $attrs (string) - link to /firefox/accounts/ with additional attributes for analytics
+compare-safari-firefox-also-offers-a-similar-updated-v2 = { -brand-name-firefox } also offers a similar sync feature when you sign up for a free <a { $attrs }>{ -brand-name-mozilla-account }</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets { -brand-name-firefox } apart from { -brand-name-safari } is that it is available on any desktop or mobile platform, { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows } or { -brand-name-mac }, boosting its portability across any device you may own.
+
+
+# Obsolete string
 # Variables:
 #   $attrs (string) - link to /firefox/accounts/ with additional attributes for analytics
 compare-safari-firefox-also-offers-a-similar-updated = { -brand-name-firefox } also offers a similar sync feature when you sign up for a free <a { $attrs }>{ -brand-name-firefox-account }</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets { -brand-name-firefox } apart from { -brand-name-safari } is that it is available on any desktop or mobile platform, { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows } or { -brand-name-mac }, boosting its portability across any device you may own.

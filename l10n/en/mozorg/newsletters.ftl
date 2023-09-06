@@ -78,6 +78,10 @@ newsletters-text-subscribers-will-receive = Text subscribers will receive an ema
 
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/managing-account-data
+
+newsletters-many-of-our-communications-v2 = Many of our communications are related to an account you’ve signed up for, such as { -brand-name-mozilla-accounts }, { -brand-name-mdn-web-docs }, or Add-on Developer. To manage one of your accounts or see a list of all the accounts, visit our <a href="{ $url }">account management support page</a>.
+
+# Obsolete string
 newsletters-many-of-our-communications = Many of our communications are related to an account you’ve signed up for, such as { -brand-name-firefox-accounts }, { -brand-name-mdn-web-docs }, or Add-on Developer. To manage one of your accounts or see a list of all the accounts, visit our <a href="{ $url }">account management support page</a>.
 
 # Variables:
@@ -413,6 +417,9 @@ newsletters-webmaker = { -brand-name-webmaker }
 newsletters-special-announcements-helping-you = Special announcements helping you get the most out of { -brand-name-webmaker }.
 
 # Name for the newsletter in Newsletter subscription page (Firefox Accounts)
+newsletters-mozilla-accounts = { -brand-name-mozilla-accounts }
+
+# Obsolete string
 newsletters-firefox-accounts = { -brand-name-firefox-accounts }
 
 # Description for the newsletter in Newsletter subscription page (Firefox Accounts)
