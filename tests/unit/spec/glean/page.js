@@ -11,12 +11,7 @@
 
 import * as page from '../../../../media/js/libs/glean/page.js';
 import Utils from '../../../../media/js/glean/utils.es6';
-import { initPageView, pagePing } from '../../../../media/js/glean/page.es6';
-import {
-    pageView as pageViewPing,
-    interaction as interactionPing,
-    nonInteraction as nonInteractionPing
-} from '../../../../media/js/libs/glean/pings.js';
+import { initPageView, pageEvent } from '../../../../media/js/glean/page.es6';
 import { testResetGlean } from '@mozilla/glean/testing';
 
 describe('page.js', function () {
@@ -28,24 +23,19 @@ describe('page.js', function () {
     });
 
     it('should register a page view correctly', async function () {
-        const ping = pageViewPing.testBeforeNextSubmit(async function () {
-            const path = await page.path.testGetValue();
-            expect(path).toEqual('/firefox/new/');
-
-            const locale = await page.locale.testGetValue();
-            expect(locale).toEqual('en-US');
-
-            const referrer = await page.referrer.testGetValue();
-            expect(referrer).toEqual('https://google.com/');
-
-            const httpStatus = await page.httpStatus.testGetValue();
-            expect(httpStatus).toEqual('200');
-        });
-
         initPageView();
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const path = await page.path.testGetValue();
+        expect(path).toEqual('/firefox/new/');
+
+        const locale = await page.locale.testGetValue();
+        expect(locale).toEqual('en-US');
+
+        const referrer = await page.referrer.testGetValue();
+        expect(referrer).toEqual('https://google.com/');
+
+        const httpStatus = await page.httpStatus.testGetValue();
+        expect(httpStatus).toEqual('200');
     });
 
     it('should record specific query parameters in the page view', async function () {
@@ -55,54 +45,41 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        const ping = pageViewPing.testBeforeNextSubmit(async function () {
-            const source = await page.queryParams['utm_source'].testGetValue();
-            expect(source).toEqual('test-source');
-
-            const campaign = await page.queryParams[
-                'utm_campaign'
-            ].testGetValue();
-            expect(campaign).toEqual('test-campaign');
-
-            const medium = await page.queryParams['utm_medium'].testGetValue();
-            expect(medium).toEqual('test-medium');
-
-            const content = await page.queryParams[
-                'utm_content'
-            ].testGetValue();
-            expect(content).toEqual('test-content');
-
-            const entrypointExperiment = await page.queryParams[
-                'entrypoint_experiment'
-            ].testGetValue();
-            expect(entrypointExperiment).toEqual('test_entrypoint_experiment');
-
-            const entrypointVariation = await page.queryParams[
-                'entrypoint_variation'
-            ].testGetValue();
-            expect(entrypointVariation).toEqual('1');
-
-            const experiment = await page.queryParams[
-                'experiment'
-            ].testGetValue();
-            expect(experiment).toEqual('test-experiment');
-
-            const variation = await page.queryParams[
-                'variation'
-            ].testGetValue();
-            expect(variation).toEqual('1');
-
-            const v = await page.queryParams['v'].testGetValue();
-            expect(v).toEqual('1');
-
-            const xv = await page.queryParams['xv'].testGetValue();
-            expect(xv).toEqual('test-xv');
-        });
-
         initPageView();
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const source = await page.queryParams['utm_source'].testGetValue();
+        expect(source).toEqual('test-source');
+
+        const campaign = await page.queryParams['utm_campaign'].testGetValue();
+        expect(campaign).toEqual('test-campaign');
+
+        const medium = await page.queryParams['utm_medium'].testGetValue();
+        expect(medium).toEqual('test-medium');
+
+        const content = await page.queryParams['utm_content'].testGetValue();
+        expect(content).toEqual('test-content');
+
+        const entrypointExperiment = await page.queryParams[
+            'entrypoint_experiment'
+        ].testGetValue();
+        expect(entrypointExperiment).toEqual('test_entrypoint_experiment');
+
+        const entrypointVariation = await page.queryParams[
+            'entrypoint_variation'
+        ].testGetValue();
+        expect(entrypointVariation).toEqual('1');
+
+        const experiment = await page.queryParams['experiment'].testGetValue();
+        expect(experiment).toEqual('test-experiment');
+
+        const variation = await page.queryParams['variation'].testGetValue();
+        expect(variation).toEqual('1');
+
+        const v = await page.queryParams['v'].testGetValue();
+        expect(v).toEqual('1');
+
+        const xv = await page.queryParams['xv'].testGetValue();
+        expect(xv).toEqual('test-xv');
     });
 
     it('should not record unspecified query params in the page view', async function () {
@@ -112,22 +89,15 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        const ping = pageViewPing.testBeforeNextSubmit(async function () {
-            const unspecifiedParam = await page.queryParams[
-                'unspecified_param'
-            ].testGetValue();
-            expect(unspecifiedParam).toBeUndefined();
-
-            const content = await page.queryParams[
-                'utm_content'
-            ].testGetValue();
-            expect(content).toEqual('test-content');
-        });
-
         initPageView();
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const unspecifiedParam = await page.queryParams[
+            'unspecified_param'
+        ].testGetValue();
+        expect(unspecifiedParam).toBeUndefined();
+
+        const content = await page.queryParams['utm_content'].testGetValue();
+        expect(content).toEqual('test-content');
     });
 
     it('should decode known params', async function () {
@@ -136,20 +106,13 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        const ping = pageViewPing.testBeforeNextSubmit(async function () {
-            const source = await page.queryParams['utm_source'].testGetValue();
-            expect(source).toEqual('%');
-
-            const campaign = await page.queryParams[
-                'utm_campaign'
-            ].testGetValue();
-            expect(campaign).toEqual('/');
-        });
-
         initPageView();
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const source = await page.queryParams['utm_source'].testGetValue();
+        expect(source).toEqual('%');
+
+        const campaign = await page.queryParams['utm_campaign'].testGetValue();
+        expect(campaign).toEqual('/');
     });
 
     it('should not record known params that contain bad values', async function () {
@@ -159,68 +122,47 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        const ping = pageViewPing.testBeforeNextSubmit(async function () {
-            const source = await page.queryParams['utm_source'].testGetValue();
-            expect(source).toEqual('');
-
-            const campaign = await page.queryParams[
-                'utm_campaign'
-            ].testGetValue();
-            expect(campaign).toEqual('');
-
-            const medium = await page.queryParams['utm_medium'].testGetValue();
-            expect(medium).toEqual('');
-
-            const content = await page.queryParams[
-                'utm_content'
-            ].testGetValue();
-            expect(content).toEqual('test-content');
-
-            const experiment = await page.queryParams[
-                'experiment'
-            ].testGetValue();
-            expect(experiment).toEqual('');
-        });
-
         initPageView();
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const source = await page.queryParams['utm_source'].testGetValue();
+        expect(source).toEqual('');
+
+        const campaign = await page.queryParams['utm_campaign'].testGetValue();
+        expect(campaign).toEqual('');
+
+        const medium = await page.queryParams['utm_medium'].testGetValue();
+        expect(medium).toEqual('');
+
+        const content = await page.queryParams['utm_content'].testGetValue();
+        expect(content).toEqual('test-content');
+
+        const experiment = await page.queryParams['experiment'].testGetValue();
+        expect(experiment).toEqual('');
     });
 
-    it('should send a page event (interaction)', async function () {
-        const ping = interactionPing.testBeforeNextSubmit(async function () {
-            const snapshot = await page.pageEvent.testGetValue();
-            expect(snapshot.length).toEqual(1);
-            const event = snapshot[0];
-            expect(event.extra.label).toEqual('mozilla-and-you');
-            expect(event.extra.type).toEqual('Newsletter sign-up success');
+    it('should send an interaction event as expected', async function () {
+        pageEvent({
+            label: 'newsletter-signup-success',
+            type: 'mozilla-and-you'
         });
 
-        pagePing({
-            label: 'mozilla-and-you',
-            type: 'Newsletter sign-up success'
-        });
-
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const snapshot = await page.interaction.testGetValue();
+        expect(snapshot.length).toEqual(1);
+        const event = snapshot[0];
+        expect(event.extra.label).toEqual('newsletter-signup-success');
+        expect(event.extra.type).toEqual('mozilla-and-you');
     });
 
-    it('should send a page event (non-interaction)', async function () {
-        const ping = nonInteractionPing.testBeforeNextSubmit(async function () {
-            const snapshot = await page.pageEvent.testGetValue();
-            expect(snapshot.length).toEqual(1);
-            const event = snapshot[0];
-            expect(event.extra.label).toEqual('Firefox default');
-            expect(event.extra.type).toEqual('');
-        });
-
-        pagePing({
-            label: 'Firefox default',
+    it('should send a non-interaction event as expected', async function () {
+        pageEvent({
+            label: 'firefox-default',
             nonInteraction: true
         });
 
-        // Wait for the validation to finish.
-        await expectAsync(ping).toBeResolved();
+        const snapshot = await page.nonInteraction.testGetValue();
+        expect(snapshot.length).toEqual(1);
+        const event = snapshot[0];
+        expect(event.extra.label).toEqual('firefox-default');
+        expect(event.extra.type).toEqual('');
     });
 });

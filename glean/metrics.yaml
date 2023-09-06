@@ -7,8 +7,7 @@ page:
     lifetime: application
     send_in_pings:
       - page-view
-      - interaction
-      - non-interaction
+      - events
     description: |
       The time a page was viewed.
     data_sensitivity:
@@ -25,8 +24,7 @@ page:
     lifetime: application
     send_in_pings:
       - page-view
-      - interaction
-      - non-interaction
+      - events
     description: |
       The URL path of the page that was viewed, excluding locale.
     data_sensitivity:
@@ -43,8 +41,7 @@ page:
     lifetime: application
     send_in_pings:
       - page-view
-      - interaction
-      - non-interaction
+      - events
     description: |
       The locale of the page that was viewed.
     data_sensitivity:
@@ -61,8 +58,7 @@ page:
     lifetime: application
     send_in_pings:
       - page-view
-      - interaction
-      - non-interaction
+      - events
     description: |
       Query parameters associated with the URL of
       the page that was viewed.
@@ -89,8 +85,7 @@ page:
     lifetime: application
     send_in_pings:
       - page-view
-      - interaction
-      - non-interaction
+      - events
     description: |
       The referring URL that linked to the page that was viewed.
     data_sensitivity:
@@ -109,8 +104,7 @@ page:
       lifetime: application
       send_in_pings:
         - page-view
-        - interaction
-        - non-interaction
+        - events
       data_sensitivity:
         - technical
       bugs:
@@ -120,18 +114,28 @@ page:
       notification_emails:
         - marketing-websites-team@mozilla.com
       expires: never
-  page_event:
+  page_hit:
     type: event
     lifetime: ping
-    send_in_pings:
-      - interaction
-      - non-interaction
+    description: |
+      An event which is sent every time a page is loaded.
+    data_sensitivity:
+      - web_activity
+      - technical
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  interaction:
+    type: event
+    lifetime: ping
     description: |
       An event containing metrics related to a page level
-      completion or state that want to measure. This can be
-      sent in either an interaction and non-interaction ping,
-      depending upon the use-case. Examples: form completion,
-      scroll events, banner impressions.
+      user interaction state that we want to measure.
+      Examples: form completion, scroll events.
     data_sensitivity:
       - web_activity
     bugs:
@@ -145,23 +149,49 @@ page:
       label:
         description: |
           The label used to describe the event.
-          Example: 'Newsletters: mozilla-and-you'
+          Example: 'newsletter-sign-up-success'
         type: string
       type:
         description: |
           The type of event.
-          Example: 'Newsletter Signup Success'
+          Example: 'mozilla-and-you'
+        type: string
+  non_interaction:
+    type: event
+    lifetime: ping
+    description: |
+      An event containing metrics related to a page level
+      non-user initiated state that we want to measure.
+      Examples: banner impressions, conditional messaging.
+    data_sensitivity:
+      - web_activity
+      - technical
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          The label used to describe the event.
+          Example: 'banner-impression'
+        type: string
+      type:
+        description: |
+          The type of event.
+          Example: 'get-firefox-banner'
         type: string
 
 element:
   clicked:
     type: event
     lifetime: ping
-    send_in_pings:
-      - interaction
     description: |
-      An event containing metrics related to which element
-      in the page was clicked.
+      An event containing metrics related to an element
+      in the page that was clicked.
     data_sensitivity:
       - web_activity
     bugs:

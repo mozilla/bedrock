@@ -178,7 +178,7 @@ SendToDevice.prototype.onFormSuccess = function () {
 
     // Glean
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pagePing({
+        window.Mozilla.Glean.pageEvent({
             label: 'send-to-device-success',
             type: 'email-address'
         });
