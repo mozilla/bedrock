@@ -16,8 +16,5 @@ features-fast-multi-tasking-with-multiple-tabs = Multi-tasking with multiple tab
 features-fast-firefox-is-a-multi-process-browser = { -brand-name-firefox } is a multi-process browser, which means that your tabs stay fresh and won’t take forever to reload. With 86% less lag time, you can switch quickly between tabs even when your little inner voice says you have waaay too many tabs open.
 features-fast-faster-gaming = Faster gaming
 
-# A "humblebrag" is something that appears to be modest or self-deprecating, but is actually a way of bragging. This is an un-humble brag because we're bragging openly. Ignore this string if there's no adequate translation.
-features-fast-un-humble-brag-alert = Un-humble brag alert:
-
 # Native speed refers to operating speed for games written for platforms such as macOS or Windows.
 features-fast-we-led-the-tech-to-run-3d-games = We led the tech to run 3D games at near-native speeds, and now { -brand-name-firefox } is bringing even better performance to online gaming. Our powerful browser reduces lags, speeds up ping times and optimizes overall gameplay through faster, leaner browsing.

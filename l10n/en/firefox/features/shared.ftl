@@ -5,12 +5,9 @@
 ### URL: https://www-dev.allizom.org/firefox/features/
 
 features-shared-firefox-features = { -brand-name-firefox } Features
-
 features-shared-footer-cta-title = Do more with { -brand-name-firefox }
 features-shared-footer-cta-desc = Get the fast, lightweight, privacy-focused browser that’s backed by a non-profit and works across all your devices.
 features-shared-footer-cta-button = Download { -brand-name-firefox }
-
-
 features-shared-is-firefox-a-fast-browser = Is { -brand-name-firefox } a fast browser?
 features-shared-is-firefox-a-private-browser = Is { -brand-name-firefox } a private browser?
 features-shared-free-password-manager = Password manager
