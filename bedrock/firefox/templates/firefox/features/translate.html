@@ -6,45 +6,55 @@
 
 {% extends "firefox/features/base-article.html" %}
 
-{% block page_title %}{{ ftl('features-translate-translate-the-web-title') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-translate-translate-more-than') }}{% endblock %}
+{% block page_title %}Translate the web - directly in Firefox{% endblock %}
+{% block page_desc %}Translate from more than 100 languages to your language directly in your Firefox browser - easier than ever.{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
 
-{% block article_title_short %}{{ ftl('features-translate-translate-the-web-short') }}{% endblock %}
-{% block article_title %}{{ ftl('features-translate-translate-the-web') }}{% endblock %}
+{% block article_title_short %}Translate the web{% endblock %}
+{% block article_title %}Translate the web with Firefox{% endblock %}
 
 {% block article_content %}
-<p>{{ ftl('features-translate-the-internet-is', attrs='href="%s"'|safe|format(url('firefox.all'))) }}</p>
+<p>The internet is filled with amazing stuff, but a lot of it is not written in
+  English — making billions of people around the globe need a translator just to
+  use the internet. You can <a href="{{ url('firefox.all') }}">download Firefox in over 100 languages</a>,
+  so your browser menus, notifications and messages are in your preferred language,
+  but that doesn’t solve the problem of all that amazing content you use your browser
+  to find.</p>
 
-{% if ftl_has_messages('features-translate-firefox-translations', 'features-translate-the-firefox-translations-extension-provides') %}
-<h2>{{ ftl('features-translate-firefox-translations') }}</h2>
-<p>{{ ftl('features-translate-the-firefox-translations-extension-provides', attrs='href="https://addons.mozilla.org/firefox/addon/firefox-translations/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"') }}</p>
+<h2>Firefox Translations</h2>
+<p>The <a href="https://addons.mozilla.org/firefox/addon/firefox-translations/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Firefox Translations extension</a>
+  can automatically translate content from the web pages you visit. Unlike some
+  cloud-based alternatives, this extension translates text locally in Firefox,
+  so the content you’re translating doesn’t leave your machine.</p>
 <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/firefox-translations/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Get Firefox Translations</a></p>
-{% endif %}
 
-<h2>{{ ftl('features-translate-to-google-translate') }}</h2>
-<p>{{ ftl('features-translate-google-translate-with', attrs='href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"') }}</p>
-<p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">{{ ftl('features-translate-get-to-google-translate') }}</a></p>
-<p>{{ ftl('features-translate-once-installed-simply') }}</p>
+<h2>To Google Translate</h2>
+<p>Google Translate, with over 100 languages* at the ready, is used by millions
+  of people around the world. But moving back and forth between translate.google.com
+  and the page you’re trying to read isn’t an ideal experience. The
+  <a href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">To Google Translate</a> extension makes translating the page you’re
+  on easier than ever.</p>
+<p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Get To Google Translate</a></p>
+<p>Once installed, simply highlight the text you want to translate and right-click to pull up a menu with two options: 1) Takes to you translate.google.com with your selected text automatically entered into the translation field; or 2) Listen to audio pronunciation of the phrase (powered by Google Text-to-Speech), which is helpful if you’re trying to learn a new language.</p>
 
-<h2>{{ ftl('features-translate-switch-languages-in') }}</h2>
-<p>{{ ftl('features-translate-if-you-are', attrs='href="https://support.mozilla.org/kb/use-firefox-another-language?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener" ') }}</p>
+<h2>Switch Languages in Firefox</h2>
+<p>If you are already using Firefox, you can change your browser’s language or add
+  languages to the Firefox interface.
+  <a href="https://support.mozilla.org/kb/use-firefox-another-language?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Learn how here.</a></p>
 
-<p class="footnote">{{ ftl('features-translate-with-the-to', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}</p>
-<p class="footnote">
-{% if LANG.startswith('en-') %}
-  Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Cebuano, Chichewa, Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian Creole, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Kinyarwanda, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Myanmar (Burmese), Nepali, Norwegian, Odia (Oriya), Pashto, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, Samoan, Scots Gaelic, Serbian, Sesotho, Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba and Zulu.
-{% else %}
-  {% for lang in context_test -%}
-    {% set name = context_test[lang] %}
-    {% set par = name.find(' (') %}
-    {% if par > 0 %}
-      {{ name[0:par] }},
-    {% else %}
-      {{ name }},
-    {% endif %}
-  {% endfor %}
-  {{ ftl('features-translate-and-more', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}
-{% endif %}
-</p>
+<p class="footnote">* With the To Google Translate extension, you can currently
+  translate these languages:</p>
+<p class="footnote">Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani,
+  Basque, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Cebuano, Chichewa,
+  Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian,
+  Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati,
+  Haitian Creole, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic,
+  Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer,
+  Kinyarwanda, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish,
+  Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian,
+  Myanmar (Burmese), Nepali, Norwegian, Odia (Oriya), Pashto, Persian, Polish,
+  Portuguese, Punjabi, Romanian, Russian, Samoan, Scots Gaelic, Serbian, Sesotho,
+  Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili,
+  Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Turkish, Turkmen, Ukrainian, Urdu,
+  Uyghur, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba and Zulu.</p>
 {% endblock %}
