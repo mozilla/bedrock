@@ -4,10 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { interaction as interactionPing } from '../libs/glean/pings.js';
 import * as element from '../libs/glean/element.js';
 
-function clickPing(obj) {
+function clickEvent(obj) {
     if (typeof obj !== 'object' && typeof obj.label !== 'string') {
         return;
     }
@@ -28,10 +27,9 @@ function clickPing(obj) {
 
     try {
         element.clicked.record(data);
-        interactionPing.submit();
     } catch (e) {
         //do nothing
     }
 }
 
-export { clickPing };
+export { clickEvent };

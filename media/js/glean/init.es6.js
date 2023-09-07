@@ -6,8 +6,8 @@
 
 import Glean from '@mozilla/glean/web';
 
-import { initPageView, pagePing } from './page.es6';
-import { clickPing } from './elements.es6';
+import { initPageView, pageEvent } from './page.es6';
+import { clickEvent } from './elements.es6';
 import Utils from './utils.es6';
 
 const shouldInitialize = Utils.hasValidURLScheme(window.location.href);
@@ -51,22 +51,14 @@ function initHelpers() {
 
     // Create a global for external bundles to fire interaction pings.
     window.Mozilla.Glean = {
-        pagePing: (obj) => {
+        pageEvent: (obj) => {
             if (shouldInitialize) {
-                try {
-                    pagePing(obj);
-                } catch (e) {
-                    //do nothing
-                }
+                pageEvent(obj);
             }
         },
-        clickPing: (obj) => {
+        clickEvent: (obj) => {
             if (shouldInitialize) {
-                try {
-                    clickPing(obj);
-                } catch (e) {
-                    //do nothing
-                }
+                clickEvent(obj);
             }
         }
     };

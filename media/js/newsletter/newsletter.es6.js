@@ -71,7 +71,7 @@ const NewsletterForm = {
 
         // Glean
         if (typeof window.Mozilla.Glean !== 'undefined') {
-            window.Mozilla.Glean.pagePing({
+            window.Mozilla.Glean.pageEvent({
                 label: 'newsletter-sign-up-success',
                 type: newsletters.join(', ')
             });

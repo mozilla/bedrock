@@ -6,11 +6,7 @@
 
 import * as page from '../libs/glean/page.js';
 import Utils from './utils.es6';
-import {
-    pageView as pageViewPing,
-    interaction as interactionPing,
-    nonInteraction as nonInteractionPing
-} from '../libs/glean/pings.js';
+import { pageView as pageViewPing } from '../libs/glean/pings.js';
 
 const defaultParams = {
     utm_source: '',
@@ -53,10 +49,12 @@ function initPageView() {
         }
     }
 
+    page.hit.record();
+
     pageViewPing.submit();
 }
 
-function pagePing(obj) {
+function pageEvent(obj) {
     if (typeof obj !== 'object' && typeof obj.label !== 'string') {
         return;
     }
@@ -70,16 +68,18 @@ function pagePing(obj) {
         data['type'] = obj.type;
     }
 
-    page.pageEvent.record(data);
-
-    if (
-        typeof obj.nonInteraction === 'boolean' &&
-        obj.nonInteraction === true
-    ) {
-        nonInteractionPing.submit();
-    } else {
-        interactionPing.submit();
+    try {
+        if (
+            typeof obj.nonInteraction === 'boolean' &&
+            obj.nonInteraction === true
+        ) {
+            page.nonInteraction.record(data);
+        } else {
+            page.interaction.record(data);
+        }
+    } catch (e) {
+        //do nothing
     }
 }
 
-export { initPageView, pagePing };
+export { initPageView, pageEvent };

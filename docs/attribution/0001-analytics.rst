@@ -345,11 +345,8 @@ See the `Glean Book`_ for more developer reference documentation.
 
 Glean is currently behind a feature switch called ``SWITCH_GLEAN_ANALYTICS``.
 When the switch is enabled pages will load the Glean JavaScript bundle,
-which will do things like register page views and capture link clicks. Our
-implementation leverages the same HTML data attributes that we use for
-:abbr:`GTM (Google Tag Manager)` when tracking link clicks, so any attributes
-you add for :abbr:`GTM (Google Tag Manager)` should also be captured by Glean
-automatically.
+which will do things like record page hits and link click events that we want
+to measure.
 
 Debugging pings
 ---------------
@@ -386,9 +383,8 @@ Defining metrics and pings
 All of the data we send to the Glean pipeline is defined in
 :abbr:`YAML (Yet Another Markup Language)` schema files in the ``./glean/``
 project root directory. The ``metrics.yaml`` file defines all the different
-metrics types we record, and the ``pings.yaml`` file defines the name of each
-ping event we use to send collections of individual metrics. These are all
-automatically documented in ``./glean/docs/``.
+metrics types and events we record, and the ``pings.yaml`` file defines
+any custom pings we use to send collections of individual metrics.
 
 .. Note::
 
@@ -408,50 +404,50 @@ It will also first lint the schema files.
 
 .. Important::
 
-    All metrics and pings we record using Glean must first undergo a `data review`_
+    All metrics and events we record using Glean must first undergo a `data review`_
     before being made active in production. Therefore anytime we make new additions
     to these files, those changes should also undergo review.
 
-Using Glean pings in individual page bundles
+Using Glean events in individual page bundles
 --------------------------------------------
 
 Our analytics code for Glean lives in a single bundle in the base template,
 which is intended to be shared across all web pages. This bundle automatically
-initializes Glean and records page view pings. It also creates some helpers
-that can be used across different page bundles to record interaction pings
+initializes Glean and records page hit events. It also creates some helpers
+that can be used across different page bundles to record interaction events
 such as link clicks and form submissions.
 
-The ``Mozilla.Glean.pagePing()`` helper can be used to record pings that are
+The ``Mozilla.Glean.pageEvent()`` helper can be used to record events that are
 specific to a page, such as successful form completions:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pagePing({
+        window.Mozilla.Glean.pageEvent({
             label: 'newsletter-sign-up-success',
             type: 'mozilla-and-you' // type is optional
         });
     }
 
-It can also be used to record non-interaction pings that are not directly
+It can also be used to record non-interaction events that are not directly
 initiated by a visitor:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pagePing({
+        window.Mozilla.Glean.pageEvent({
             label: 'firefox-default',
             nonInteraction: true
         });
     }
 
-The ``Mozilla.Glean.clickPing()`` helper can be used to record click pings
+The ``Mozilla.Glean.clickEvent()`` helper can be used to record click events
 that are specific to an element in a page, such as a link or button.
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.clickPing({
+        window.Mozilla.Glean.clickEvent({
             label: 'firefox-download',
             type: 'macOS, release, en-US', // type is optional
             position: 'primary' // position is optional

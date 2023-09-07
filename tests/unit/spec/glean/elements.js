@@ -10,36 +10,28 @@
  */
 
 import { testResetGlean } from '@mozilla/glean/testing';
-import { clickPing } from '../../../../media/js/glean/elements.es6';
+import { clickEvent } from '../../../../media/js/glean/elements.es6';
 import * as element from '../../../../media/js/libs/glean/element.js';
-import { interaction as interactionPing } from '../../../../media/js/libs/glean/pings.js';
 
 describe('elements.js', function () {
     beforeEach(async function () {
         await testResetGlean('moz-bedrock-test');
     });
 
-    describe('clickPing', function () {
-        it('should send an interaction ping when clickPing is called', async function () {
-            const ping = interactionPing.testBeforeNextSubmit(
-                async function () {
-                    const snapshot = await element.clicked.testGetValue();
-                    expect(snapshot.length).toEqual(1);
-                    const click = snapshot[0];
-                    expect(click.extra.label).toEqual('Firefox Download');
-                    expect(click.extra.type).toEqual('macOS, release, en-US');
-                    expect(click.extra.position).toEqual('primary');
-                }
-            );
-
-            clickPing({
+    describe('clickEvent', function () {
+        it('should send an interaction ping when clickEvent is called', async function () {
+            clickEvent({
                 label: 'Firefox Download',
                 type: 'macOS, release, en-US',
                 position: 'primary'
             });
 
-            // Wait for the validation to finish.
-            await expectAsync(ping).toBeResolved();
+            const snapshot = await element.clicked.testGetValue();
+            expect(snapshot.length).toEqual(1);
+            const click = snapshot[0];
+            expect(click.extra.label).toEqual('Firefox Download');
+            expect(click.extra.type).toEqual('macOS, release, en-US');
+            expect(click.extra.position).toEqual('primary');
         });
     });
 });
