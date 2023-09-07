@@ -49,7 +49,7 @@ function initPageView() {
         }
     }
 
-    page.pageHit.record();
+    page.hit.record();
 
     pageViewPing.submit();
 }

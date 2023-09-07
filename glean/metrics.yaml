@@ -114,9 +114,8 @@ page:
       notification_emails:
         - marketing-websites-team@mozilla.com
       expires: never
-  page_hit:
+  hit:
     type: event
-    lifetime: ping
     description: |
       An event which is sent every time a page is loaded.
     data_sensitivity:
@@ -131,7 +130,6 @@ page:
     expires: never
   interaction:
     type: event
-    lifetime: ping
     description: |
       An event containing metrics related to a page level
       user interaction state that we want to measure.
@@ -158,7 +156,6 @@ page:
         type: string
   non_interaction:
     type: event
-    lifetime: ping
     description: |
       An event containing metrics related to a page level
       non-user initiated state that we want to measure.
@@ -188,7 +185,6 @@ page:
 element:
   clicked:
     type: event
-    lifetime: ping
     description: |
       An event containing metrics related to an element
       in the page that was clicked.
