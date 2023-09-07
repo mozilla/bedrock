@@ -928,7 +928,7 @@ def firefox_features_translate(request):
 
     template_name = "firefox/features/translate.html"
 
-    return l10n_utils.render(request, template_name, context, ftl_files=["firefox/features/shared", "firefox/features/translate"])
+    return l10n_utils.render(request, template_name, context, ftl_files=["firefox/features/shared"])
 
 
 class FirefoxContentful(L10nTemplateView):
