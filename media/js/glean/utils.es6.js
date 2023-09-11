@@ -40,7 +40,13 @@ const Utils = {
     },
 
     getReferrer: (ref) => {
-        return typeof ref === 'string' ? ref : document.referrer;
+        const referrer = typeof ref === 'string' ? ref : document.referrer;
+
+        if (typeof window.Mozilla.Analytics !== 'undefined') {
+            return Mozilla.Analytics.getReferrer(referrer);
+        }
+
+        return referrer;
     },
 
     getHttpStatus: () => {
