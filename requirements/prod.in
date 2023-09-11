@@ -43,7 +43,6 @@ newrelic==8.10.0
 Pillow==10.0.0
 PyGithub==1.59.1
 pyOpenSSL==23.2.0
-python-memcached==1.59
 PyYAML==6.0.1
 qrcode==7.4.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
