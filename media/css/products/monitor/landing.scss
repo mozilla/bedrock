@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use 'includes/tokens';
+
+.c-section-get-started {
+    .c-scan-form {
+        margin-top: $spacing-2xl;
+    }
+}
+
+ul.c-list-checked {
+    @include bidi(((text-align, left, right),));
+    margin: $spacing-2xl auto;
+    max-width: $content-sm;
+
+    li {
+        @include bidi(((background-position, left center, right center),));
+        @include bidi(((padding-left, 40px, padding-right, 40px),));
+        background-image: url('/media/img/products/monitor/common/check.svg');
+        background-repeat: no-repeat;
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.c-section-faq {
+    .c-section-faq-title {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .c-section-faq-all-link {
+        margin-bottom: $spacing-2xl;
+    }
+
+    .c-section-faq-summary-title {
+        font-weight: normal;
+    }
+
+    details {
+        @include bidi(((text-align, left, right),));
+        border-bottom: 1px solid $color-light-gray-30;
+        margin-bottom: $spacing-xl;
+        padding-bottom: $spacing-md;
+    }
+
+    summary:hover {
+        cursor: pointer;
+    }
+}
+
+.c-section-control {
+    .c-scan-form {
+        margin-bottom: $spacing-2xl;
+    }
+
+    small {
+        color: #6D6D6E;
+    }
+}

@@ -2396,3 +2396,6 @@ RELAY_VPN_BUNDLE_COUNTRY_CODES = [
     "CA",  # Canada
     "US",  # United States of America
 ]
+
+# Monitor Breach Scan URL
+MONITOR_BREACH_SCAN_URL = config("MONITOR_BREACH_SCAN_URL", default="https://monitor.firefox.com/scan")

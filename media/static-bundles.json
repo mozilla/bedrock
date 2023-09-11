@@ -1255,6 +1255,18 @@
         "css/products/relay/waitlist.scss"
       ],
       "name": "relay-waitlist"
+    },
+    {
+      "files": [
+        "css/products/monitor/common.scss"
+      ],
+      "name": "monitor-common"
+    },
+    {
+      "files": [
+        "css/products/monitor/landing.scss"
+      ],
+      "name": "monitor-landing"
     }
   ],
   "js": [
@@ -1963,6 +1975,12 @@
         "js/products/relay/waitlist.es6.js"
       ],
       "name": "relay-waitlist"
+    },
+    {
+      "files": [
+        "js/products/monitor/common.es6.js"
+      ],
+      "name": "monitor-common"
     }
   ]
 }

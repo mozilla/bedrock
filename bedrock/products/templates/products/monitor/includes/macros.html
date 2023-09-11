@@ -1,0 +1,19 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% macro free_scan(class=None, position=None, params=None, small_copy=False) -%}
+  <form class="c-scan-form{% if class %} {{ class }}{% endif %}" action="https://monitor.firefox.com/scan{% if params %}{{ params }}{% endif %}" {% if position %}data-form-position="{{ position }}"{% endif %}>
+    <div class="c-scan-form-fields">
+      <label class="visually-hidden" for="c-scan-email-address">{{ ftl('monitor-form-enter-email-to-scan') }}</label>
+      <input id="c-scan-email-address" type="email" placeholder="example@example.com" required="" name="email">
+      <button type="submit" class="mzp-c-button mzp-t-product">{{ ftl('monitor-form-get-free-scan') }}</button>
+    </div>
+
+    {% if small_copy %}
+      <p><small>{{ ftl('monitor-form-enter-your-email-address') }}</small></p>
+    {% endif %}
+  </form>
+{%- endmacro %}
