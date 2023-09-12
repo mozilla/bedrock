@@ -36,6 +36,12 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testPlayStoreURL).toBe(true);
     });
+    it('should recognize the Android Market as a valid URL', function () {
+        let testPlayStoreURL = TrackProductDownload.isValidDownloadURL(
+            'market://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
+        );
+        expect(testPlayStoreURL).toBe(true);
+    });
     it('should recognize Adjust as a valid URL', function () {
         let testAdjustURL = TrackProductDownload.isValidDownloadURL(
             'https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&campaign=www.mozilla.org&adgroup=mobile-android-page'

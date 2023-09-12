@@ -10,6 +10,7 @@ const stageURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
 const iTunesURL = /^https:\/\/itunes.apple.com/;
 const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
+const marketURL = /^market:\/\/play.google.com/;
 const adjustURL = /^https:\/\/app.adjust.com/;
 
 if (typeof window.dataLayer === 'undefined') {
@@ -29,6 +30,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
             iTunesURL.test(downloadURL) ||
             appStoreURL.test(downloadURL) ||
             playStoreURL.test(downloadURL) ||
+            marketURL.test(downloadURL) ||
             adjustURL.test(downloadURL)
         ) {
             return true;
@@ -119,7 +121,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             releaseChannel,
             params.lang
         );
-    } else if (playStoreURL.test(downloadURL)) {
+    } else if (playStoreURL.test(downloadURL) || marketURL.test(downloadURL)) {
         const idParam = params.id;
         let androidProduct = 'unrecognized';
         let androidRelease = '';
