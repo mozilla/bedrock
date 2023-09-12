@@ -182,16 +182,15 @@
 
       <p>{{ ftl('compare-safari-like-safari-firefox-encourages', attrs='href="https://addons.mozilla.org" rel="external noopener" data-cta-text="add-ons and extensions" data-cta-type="link"'|safe) }}</p>
 
-
-    {% if ftl_has_messages('compare-safari-also-when-you-sign-up-for-updated-v2', 'compare-safari-firefox-is-also-great-for-video', 'compare-safari-screenshots-is-another-popular') %}
-      <p>{{ ftl('compare-safari-also-when-you-sign-up-for-updated-v2', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}</p>
+      {% if switch('moz-accounts-update') %}
+        <p>{{ ftl('compare-safari-also-when-you-sign-up-for-updated-v2', fallback='compare-safari-also-when-you-sign-up-for-updated', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}</p>
+        {% else %}
+          {{ ftl('compare-safari-also-when-you-sign-up-for-updated', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}
+      {% endif %}
 
       <p>{{ ftl('compare-safari-firefox-is-also-great-for-video') }}</p>
 
       <p>{{ ftl('compare-safari-screenshots-is-another-popular', attrs='href="https://screenshots.firefox.com" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe) }}</p>
-    {% else %}
-      <p>{{ ftl('compare-safari-also-when-you-sign-up-for', fallback='compare-safari-also-when-you-sign-up-for-fallback', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe, send='href="https://send.firefox.com/" rel="external noopener" data-cta-text="Send" data-cta-type="link"'|safe ) }}</p>
-    {% endif %}
 
       <p>{{ ftl('compare-safari-both-browsers-have-a-lot') }}</p>
 
@@ -243,7 +242,11 @@
 
       <p>{{ ftl('compare-safari-firefox-and-safari-both-provide') }}</p>
 
-      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v2', fallback='compare-safari-firefox-also-offers-a-similar', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+      {% if switch('moz-accounts-update') %}
+        <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v2', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+      {% else %}
+        <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+      {% endif %}
 
       <p>{{ ftl('compare-safari-the-firefox-app-for-ios-and', ios='href="%s" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe|format(app_store_url('firefox')),
               android='href="%s" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe|format(play_store_url('firefox'))) }}</p>

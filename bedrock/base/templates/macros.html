@@ -117,7 +117,12 @@
       {% if intro_text %}
         {{ intro_text }}
       {% else %}
-        {{ ftl('fxa-form-enter-your-email') }}
+        {% if switch('moz-accounts-update') %}
+          {{ ftl('fxa-form-enter-your-email-v2', fallback='fxa-form-enter-your-email') }}
+        {% else %}
+          {{ ftl('fxa-form-enter-your-email') }}
+        {% endif %}
+
       {% endif %}
       </p>
     </header>

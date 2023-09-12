@@ -5,6 +5,9 @@
 ### URL: https://www-dev.allizom.org/firefox/accounts/
 
 # HTML page title
+mozilla-accounts-get-a-mozilla-account = Get a { -brand-name-mozilla-account } – Keep your data private, safe and synced
+
+# Obsolete string
 firefox-accounts-get-a-firefox-account = Get a { -brand-name-firefox-account } – Keep your data private, safe and synced
 
 # HTML page description

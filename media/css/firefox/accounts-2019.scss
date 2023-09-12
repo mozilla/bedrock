@@ -24,7 +24,6 @@ $image-path: '/media/protocol/img';
 
 .c-accounts-form {
     .mzp-c-form-title {
-        @include font-firefox;
         @include text-title-sm;
     }
 
@@ -56,6 +55,7 @@ $image-path: '/media/protocol/img';
 .accounts-products {
     h2 {
         @include text-title-xs;
+        @include font-base;
     }
 
     h4 {
