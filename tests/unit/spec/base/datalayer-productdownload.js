@@ -57,7 +57,6 @@ describe('TrackProductDownload.getEventObject', function () {
             product: 'testProduct',
             platform: 'testPlatform',
             method: 'testMethod',
-            link_url: 'linkURL',
             release_channel: 'testReleaseChannel',
             download_language: 'testDownloadLanguage'
         };
@@ -65,7 +64,6 @@ describe('TrackProductDownload.getEventObject', function () {
             'testProduct',
             'testPlatform',
             'testMethod',
-            'linkURL',
             'testReleaseChannel',
             'testDownloadLanguage'
         );
@@ -76,14 +74,12 @@ describe('TrackProductDownload.getEventObject', function () {
             event: 'product_download',
             product: 'testProduct',
             platform: 'testPlatform',
-            method: 'testMethod',
-            link_url: 'linkURL'
+            method: 'testMethod'
         };
         let testShortEventObject = TrackProductDownload.getEventObject(
             'testProduct',
             'testPlatform',
-            'testMethod',
-            'linkURL'
+            'testMethod'
         );
         expect(testShortEventObject).toEqual(testShortEventExpectedObject);
     });
@@ -361,8 +357,6 @@ describe('TrackProductDownload.handleLink', function () {
             product: 'firefox',
             platform: 'win64',
             method: 'site',
-            link_url:
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-CA',
             release_channel: 'release',
             download_language: 'en-CA'
         });

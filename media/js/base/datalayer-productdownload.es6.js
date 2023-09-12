@@ -45,7 +45,6 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
  * @param {string} product
  * @param {string} platform
  * @param {string} method - site, store, or adjust
- * @param {string} linkUrl
  * @param {string} release_channel - optional, we don't get it for ios downloads
  * @param {string} download_language - optional, we don't get it for mobile downloads
  * @returns {Object}
@@ -54,7 +53,6 @@ TrackProductDownload.getEventObject = (
     product,
     platform,
     method,
-    linkUrl,
     release_channel = false,
     download_language = false
 ) => {
@@ -63,7 +61,6 @@ TrackProductDownload.getEventObject = (
     eventObject['product'] = product;
     eventObject['platform'] = platform;
     eventObject['method'] = method;
-    eventObject['link_url'] = linkUrl;
     if (release_channel) {
         eventObject['release_channel'] = release_channel;
     }
@@ -119,7 +116,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             product,
             platform,
             'site',
-            downloadURL,
             releaseChannel,
             params.lang
         );
@@ -156,7 +152,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             androidProduct,
             'android',
             'store',
-            downloadURL,
             androidRelease
         );
     } else if (appStoreURL.test(downloadURL) || iTunesURL.test(downloadURL)) {
@@ -175,7 +170,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             iosProduct,
             'ios',
             'store',
-            downloadURL,
             'release'
         );
     } else if (adjustURL.test(downloadURL)) {
@@ -203,7 +197,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             adjustProduct,
             adjustPlatform,
             'adjust',
-            downloadURL,
             'release'
         );
     }
