@@ -26,14 +26,17 @@ monitor-help-fix-exposures = We’ll help fix your exposures
 
 # Variables:
 #   $privacy (url) - https://www.mozilla.org/privacy/
-monitor-our-mission-is = Our mission is to put control of your personal data back in your hands. We’ll help you resolve data breaches and keep your info private – and we’ll <a href="{ $privacy }">respect your privacy</a> in the process.
+monitor-our-mission-is = Our mission is to put control of your personal data back in your hands. We’ll help you resolve data breaches and keep your info private — and we’ll <a href="{ $privacy }">respect your privacy</a> in the process.
 
 monitor-what-info-could-be = What info could be at risk?
 monitor-data-leaks-are-unfortunately = Data leaks are unfortunately part of our digital lives. Your passwords, contact details, financial information, and other personal info can be exposed, putting you at risk of identity theft.
 monitor-scan-your-email = Scan your email to get started for free
 monitor-trusted-by-10-million = Trusted by 10 million people worldwide
 monitor-since-2018-we-have-helped = Since 2018, we’ve helped people in 237 countries keep their personal information out of the wrong hands.
+
+# This string is followed by a list of media outlets
 monitor-as-seen-in = As seen in
+
 monitor-here-is-how-we-help = Here’s how we help protect you
 monitor-we-believe-in-your-right = We believe in your right to privacy, so data breach monitoring protection is always free.
 monitor-we-will-search-for-you = We’ll search for you in all known data breaches
