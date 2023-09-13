@@ -154,14 +154,6 @@
     {% block js %}{% endblock %}
 
     {% block third_party_js %}{% endblock %}
-
-    {% if self.structured_data()|trim|length %}
-      <script type="application/ld+json">
-    {% endif %}
-    {% block structured_data %}{% endblock %}
-    {% if self.structured_data()|trim|length %}
-      </script>
-    {% endif %}
     <!--<![endif]-->
   </body>
 </html>

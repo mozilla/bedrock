@@ -75,10 +75,6 @@ class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
 
 {% endblock %}
 
-{% block structured_data %}
-{% include 'includes/structured-data/software/firefox-windows-software.json' %}
-{% endblock %}
-
 {% block sticky_promo %}
   {% with non_fx_only=True %}
     {% include '/includes/sticky-promo.html' %}

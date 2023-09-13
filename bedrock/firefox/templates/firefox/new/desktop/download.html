@@ -622,13 +622,3 @@
     {{ js_bundle('firefox_new_desktop_join_modal') }}
   {% endif %}
 {% endblock %}
-
-
-{% block structured_data %}
-  {
-    "@context": "https://schema.org/",
-    "@graph": [
-      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
-    ]
-  }
-{% endblock %}
