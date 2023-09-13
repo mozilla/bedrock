@@ -283,6 +283,7 @@ def vpn_product_referral_link(
 
 # RELAY ================================================================
 
+RELAY_MONTH_PLAN = "monthly"
 RELAY_12_MONTH_PLAN = "monthly_when_yearly"
 RELAY_PRODUCT = "relay-email"
 
@@ -303,34 +304,22 @@ def relay_bundle_countries():
 
 
 def _relay_make_ga_data(id, product, country_code, lang, plan):
-    plan = "monthly" if plan == "monthly" else "monthly_when_yearly"
+    plan = RELAY_MONTH_PLAN if plan == RELAY_MONTH_PLAN else RELAY_12_MONTH_PLAN
     currency = _relay_get_currency(product, country_code, lang)
     if product == "relay-bundle":
         # the bundle doesn't have a monthly price, discount calculated in reverse from % savings
         yearly_when_yearly = relay_monthly_price("relay-bundle", RELAY_12_MONTH_PLAN, country_code, lang) * 12
         discount = 55.92
-    elif product == "relay-phone":
-        monthly_when_monthly = relay_monthly_price("relay-phone", "monthly", country_code, lang)
-        monthly_when_yearly = relay_monthly_price("relay-phone", RELAY_12_MONTH_PLAN, country_code, lang)
+    else:
+        monthly_when_monthly = relay_monthly_price(product, RELAY_MONTH_PLAN, country_code, lang)
+        monthly_when_yearly = relay_monthly_price(product, RELAY_12_MONTH_PLAN, country_code, lang)
         yearly_when_yearly = monthly_when_yearly * 12
-        discount = 0 if plan == "monthly" else ((monthly_when_monthly - monthly_when_yearly) * 12)
-    elif product == "relay-email":
-        monthly_when_monthly = relay_monthly_price("relay-email", "monthly", country_code, lang)
-        monthly_when_yearly = relay_monthly_price("relay-email", RELAY_12_MONTH_PLAN, country_code, lang)
-        yearly_when_yearly = monthly_when_yearly * 12
-        discount = 0 if plan == "monthly" else ((monthly_when_monthly - monthly_when_yearly) * 12)
-    price = monthly_when_monthly if plan == "monthly" else float(yearly_when_yearly)
+        discount = 0 if plan == RELAY_MONTH_PLAN else ((monthly_when_monthly - monthly_when_yearly) * 12)
+    price = monthly_when_monthly if plan == RELAY_MONTH_PLAN else float(yearly_when_yearly)
 
     ga_data = (
-        "{"
-        "'id' : '%s',"
-        "'brand' : '%s',"
-        "'plan' : '%s',"
-        "'period' : '%s',"
-        "'price' : '%s',"
-        "'discount' : '%s',"
-        "'currency' : '%s'"
-        "}" % (id, "relay", product, "monthly" if plan == "monthly" else "yearly", str(format(price, ".2f")), str(format(discount, ".2f")), currency)
+        f"{{'id' : '{id}', 'brand' : 'relay', 'plan' : '{product}', 'period' : '{'monthly' if plan == 'monthly' else 'yearly'}', "
+        f"'price' : '{price:.2f}', 'discount' : '{discount:.2f}', 'currency' : '{currency}'}}"
     )
 
     return ga_data
@@ -370,16 +359,16 @@ def _relay_get_plan_id(product, country_code, lang, plan):
 
     region = _relay_get_region(product, country_code, lang)
     dict = _relay_get_product_region_dict(product, region)
-    plan = "monthly_id" if plan == "monthly" else "yearly_id"
+    plan = "monthly_id" if plan == RELAY_MONTH_PLAN else "yearly_id"
 
     return dict[plan]
 
 
 def _relay_get_currency(product, country_code, lang):
     region = _relay_get_region(product, country_code, lang)
-    dict = _relay_get_product_region_dict(product, region)
+    product_region = _relay_get_product_region_dict(product, region)
 
-    return dict["currency"]
+    return product_region["currency"]
 
 
 def _relay_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
@@ -493,7 +482,7 @@ def relay_monthly_price(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country
                             ) }}
     """
 
-    plan = "monthly" if plan == "monthly" else "monthly_when_yearly"
+    plan = RELAY_MONTH_PLAN if plan == RELAY_MONTH_PLAN else RELAY_12_MONTH_PLAN
 
     currency = _relay_get_currency(product, country_code, lang)
 
@@ -524,14 +513,9 @@ def relay_monthly_price_formatted(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLA
     currency = _relay_get_currency(product, country_code, lang)
     amount = relay_monthly_price(product, plan, country_code, lang)
     currency_locale = lang.replace("-", "_")
-    # default to en_US if format_currency does not recognize the locale.
-    try:
-        price = format_currency(amount, currency, locale=currency_locale)
-    except UnknownLocaleError:
-        price = format_currency(amount, currency, locale="en_US")
+    price = _format_currency(amount, currency, currency_locale)
 
-    markup = f"{price}"
-    return Markup(markup)
+    return Markup(price)
 
 
 @library.global_function
@@ -551,5 +535,5 @@ def relay_bundle_savings():
     # there's only one supported region
     savings = settings.RELAY_STRIPE_PLAN_DATA["bundle"]["prices"]["USD"]["saving"]
     saving = int(savings)
-    markup = f"{saving}"
-    return Markup(markup)
+
+    return Markup(saving)

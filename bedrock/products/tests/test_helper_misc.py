@@ -2017,8 +2017,8 @@ class TestRelayEmailSubscribeLink(TestCase):
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email yearly" '
-            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay',"
-            "'plan' : 'relay-email','period' : 'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Relay email yearly</a>"
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ', 'brand' : 'relay', "
+            "'plan' : 'relay-email', 'period' : 'yearly', 'price' : '11.88', 'discount' : '12.00', 'currency' : 'USD'}\">Get Relay email yearly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2034,8 +2034,8 @@ class TestRelayEmailSubscribeLink(TestCase):
             '<a href="https://accounts.firefox.com/subscriptions/products/prod_KGizMiBqUJdYoY?plan=price_1LXUdlJNcmPzuWtRKTYg7mpZ'
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
-            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ','brand' : 'relay','plan' : 'relay-email','period' : "
-            "'yearly','price' : '11.88','discount' : '12.00','currency' : 'USD'}\">Get Started</a>"
+            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1LXUdlJNcmPzuWtRKTYg7mpZ', 'brand' : 'relay', 'plan' : 'relay-email', 'period' : "
+            "'yearly', 'price' : '11.88', 'discount' : '12.00', 'currency' : 'USD'}\">Get Started</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2055,8 +2055,8 @@ class TestRelayEmailSubscribeLink(TestCase):
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay email monthly" '
-            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LYC79JNcmPzuWtRU7Q238yL','brand' : 'relay',"
-            "'plan' : 'relay-email','period' : 'monthly','price' : '1.99','discount' : '0.00','currency' : 'EUR'}\">Get Relay email monthly</a>"
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LYC79JNcmPzuWtRU7Q238yL', 'brand' : 'relay', "
+            "'plan' : 'relay-email', 'period' : 'monthly', 'price' : '1.99', 'discount' : '0.00', 'currency' : 'EUR'}\">Get Relay email monthly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2672,8 +2672,8 @@ class TestRelayPhoneSubscribeLink(TestCase):
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay phone monthly" '
-            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li0w8JNcmPzuWtR2rGU80P3','brand' : 'relay',"
-            "'plan' : 'relay-phone','period' : 'monthly','price' : '4.99','discount' : '0.00','currency' : 'USD'}\">Get Relay phone monthly</a>"
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li0w8JNcmPzuWtR2rGU80P3', 'brand' : 'relay', "
+            "'plan' : 'relay-phone', 'period' : 'monthly', 'price' : '4.99', 'discount' : '0.00', 'currency' : 'USD'}\">Get Relay phone monthly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2693,8 +2693,8 @@ class TestRelayPhoneSubscribeLink(TestCase):
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay phone yearly" '
-            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li15WJNcmPzuWtRIh0F4VwP','brand' : 'relay',"
-            "'plan' : 'relay-phone','period' : 'yearly','price' : '47.88','discount' : '12.00','currency' : 'USD'}\">Get Relay phone yearly</a>"
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Li15WJNcmPzuWtRIh0F4VwP', 'brand' : 'relay', "
+            "'plan' : 'relay-phone', 'period' : 'yearly', 'price' : '47.88', 'discount' : '12.00', 'currency' : 'USD'}\">Get Relay phone yearly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2744,8 +2744,8 @@ class TestRelayBundleSubscribeLink(TestCase):
             "&entrypoint=www.mozilla.org-relay-product-page&form_type=button&service=9ebfe2c2f9ea3c58&utm_source=www.mozilla.org-relay-product-page"
             '&utm_medium=referral&utm_campaign=relay-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Relay bundle yearly" '
-            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LwoSDJNcmPzuWtR6wPJZeoh','brand' : 'relay',"
-            "'plan' : 'relay-bundle','period' : 'yearly','price' : '83.88','discount' : '55.92','currency' : 'USD'}\">Get Relay bundle yearly</a>"
+            "data-cta-type=\"fxa-relay\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1LwoSDJNcmPzuWtR6wPJZeoh', 'brand' : 'relay', "
+            "'plan' : 'relay-bundle', 'period' : 'yearly', 'price' : '83.88', 'discount' : '55.92', 'currency' : 'USD'}\">Get Relay bundle yearly</a>"
         )
         self.assertEqual(markup, expected)
 
@@ -2763,7 +2763,7 @@ class TestRelayMonthlyPriceFormatted(TestCase):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(
-            f"""{{{{ relay_monthly_price_formatted('{product}', '{plan}', '{country_code}','{lang}') }}}}""",
+            f"""{{{{ relay_monthly_price_formatted('{product}', '{plan}', '{country_code}', '{lang}') }}}}""",
             {"request": req},
         )
 
