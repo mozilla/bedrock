@@ -158,13 +158,13 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         );
     } else if (appStoreURL.test(downloadURL) || iTunesURL.test(downloadURL)) {
         let iosProduct = 'unrecognized';
-        if (downloadURL.includes('/id989804926')) {
+        if (downloadURL.indexOf('/id989804926') !== -1) {
             iosProduct = 'firefox';
-        } else if (downloadURL.includes('/id1055677337')) {
+        } else if (downloadURL.indexOf('/id1055677337') !== -1) {
             iosProduct = 'focus';
-        } else if (downloadURL.includes('/id1073435754')) {
+        } else if (downloadURL.indexOf('/id1073435754') !== -1) {
             iosProduct = 'klar';
-        } else if (downloadURL.includes('/id309601447')) {
+        } else if (downloadURL.indexOf('/id309601447') !== -1) {
             iosProduct = 'pocket';
         }
         // Apple App Store
@@ -177,21 +177,21 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
     } else if (adjustURL.test(downloadURL)) {
         // product
         let adjustProduct = 'unrecognized';
-        if (downloadURL.includes('/2uo1qc')) {
+        if (downloadURL.indexOf('/2uo1qc') !== -1) {
             adjustProduct = 'firefox';
-        } else if (downloadURL.includes('/b8s7qo')) {
+        } else if (downloadURL.indexOf('/b8s7qo') !== -1) {
             adjustProduct = 'focus';
-        } else if (downloadURL.includes('/jfcx5x')) {
+        } else if (downloadURL.indexOf('/jfcx5x') !== -1) {
             adjustProduct = 'klar';
-        } else if (downloadURL.includes('/m54twk')) {
+        } else if (downloadURL.indexOf('/m54twk') !== -1) {
             adjustProduct = 'pocket';
         }
 
         // platform
         let adjustPlatform = 'mobile';
-        if (downloadURL.includes('play.google.com')) {
+        if (downloadURL.indexOf('play.google.com') !== -1) {
             adjustPlatform = 'android';
-        } else if (downloadURL.includes('itunes.apple.com')) {
+        } else if (downloadURL.indexOf('itunes.apple.com') !== -1) {
             adjustPlatform = 'ios';
         }
 
