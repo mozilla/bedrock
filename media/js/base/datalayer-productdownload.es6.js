@@ -179,29 +179,9 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             'release'
         );
     } else if (adjustURL.test(downloadURL)) {
-        // product
-        let adjustProduct = 'unrecognized';
-        if (downloadURL.indexOf('/2uo1qc') !== -1) {
-            adjustProduct = 'firefox';
-        } else if (downloadURL.indexOf('/b8s7qo') !== -1) {
-            adjustProduct = 'focus';
-        } else if (downloadURL.indexOf('/jfcx5x') !== -1) {
-            adjustProduct = 'klar';
-        } else if (downloadURL.indexOf('/m54twk') !== -1) {
-            adjustProduct = 'pocket';
-        }
-
-        // platform
-        let adjustPlatform = 'mobile';
-        if (downloadURL.indexOf('play.google.com') !== -1) {
-            adjustPlatform = 'android';
-        } else if (downloadURL.indexOf('itunes.apple.com') !== -1) {
-            adjustPlatform = 'ios';
-        }
-
         eventObject = TrackProductDownload.getEventObject(
-            adjustProduct,
-            adjustPlatform,
+            params.mz_pr,
+            params.mz_pl,
             'adjust',
             'release'
         );

@@ -696,7 +696,7 @@ def lang_short(ctx):
     return locale.split("-")[0]
 
 
-def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, adgroup, creative=None):
+def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, product, adgroup, creative=None):
     link = adjust_url
     params = "campaign=www.mozilla.org&adgroup=" + adgroup
     redirect_url = None
@@ -715,10 +715,12 @@ def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, local
     if creative:
         params += "&creative=" + creative
 
+    params += "&mz_pr=" + product
+
     if redirect_url:
-        link += "?redirect=" + quote(redirect_url, safe="") + "&" + params
+        link += "?redirect=" + quote(redirect_url, safe="") + "&" + params + "&mz_pl=" + redirect
     else:
-        link += "?" + params
+        link += "?" + params + "&mz_pl=mobile"
 
     return link
 
@@ -742,7 +744,7 @@ def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
     play_store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     locale = getattr(ctx["request"], "locale", "en-US")
 
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "firefox", adgroup, creative)
 
 
 @library.global_function
@@ -764,13 +766,15 @@ def focus_adjust_url(ctx, redirect, adgroup, creative=None):
     app_store_url = settings.APPLE_APPSTORE_FOCUS_LINK
     play_store_url = settings.GOOGLE_PLAY_FOCUS_LINK
     locale = getattr(ctx["request"], "locale", "en-US")
+    product = "focus"
 
     if locale in klar_locales:
         adjust_url = settings.ADJUST_KLAR_URL
         app_store_url = settings.APPLE_APPSTORE_KLAR_LINK
         play_store_url = settings.GOOGLE_PLAY_KLAR_LINK
+        product = "klar"
 
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, product, adgroup, creative)
 
 
 @library.global_function
@@ -792,7 +796,7 @@ def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
     play_store_url = settings.GOOGLE_PLAY_POCKET_LINK
     locale = getattr(ctx["request"], "locale", "en-US")
 
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "pocket", adgroup, creative)
 
 
 @library.global_function
@@ -814,7 +818,7 @@ def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
     play_store_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
     locale = getattr(ctx["request"], "locale", "en-US")
 
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "lockwise", adgroup, creative)
 
 
 def _fxa_product_url(product_url, entrypoint, optional_parameters=None):

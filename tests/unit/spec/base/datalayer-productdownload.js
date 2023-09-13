@@ -113,7 +113,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify product for Firefox with Adjust', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/2uo1qc'
+            'https://app.adjust.com/2uo1qc?mz_pr=firefox&mz_pl=mobile'
         );
         expect(testEvent['product']).toBe('firefox');
     });
@@ -131,7 +131,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify product for Pocket with Adjust', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/m54twk'
+            'https://app.adjust.com/m54twk?mz_pr=pocket&mz_pl=mobile'
         );
         expect(testEvent['product']).toBe('pocket');
     });
@@ -149,7 +149,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify product for Focus with Adjust', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/b8s7qo'
+            'https://app.adjust.com/b8s7qo?mz_pr=focus&mz_pl=android'
         );
         expect(testEvent['product']).toBe('focus');
     });
@@ -167,15 +167,9 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify product for Klar with Adjust', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/jfcx5x'
+            'https://app.adjust.com/jfcx5x?mz_pr=klar&mz_pl=mobile'
         );
         expect(testEvent['product']).toBe('klar');
-    });
-    it('should identify product as unrecognized if Adjust link is not found', function () {
-        let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/aabbcc'
-        );
-        expect(testEvent['product']).toBe('unrecognized');
     });
     it('should identify product as unrecognized if App Store link is not found', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
@@ -234,13 +228,13 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify platform for Adjust link direct to Play Store', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus&campaign=www.mozilla.org&adgroup=mobile-focus-page'
+            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus&campaign=www.mozilla.org&adgroup=mobile-focus-page&mz_pr=focus&mz_pl=android'
         );
         expect(testEvent['platform']).toBe('android');
     });
     it('should identify platform for Adjust link direct to App Store', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337&campaign=www.mozilla.org&adgroup=mobile-focus-page'
+            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337&campaign=www.mozilla.org&adgroup=mobile-focus-page&mz_pr=focus&mz_pl=ios'
         );
         expect(testEvent['platform']).toBe('ios');
     });
@@ -338,7 +332,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should not identify language for an Adjust link', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/2uo1qc'
+            'https://app.adjust.com/2uo1qc?mz_pr=focus&mz_pl=android'
         );
         expect(testEvent['download_language']).toBeFalsy();
     });
