@@ -106,13 +106,17 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         // product is first word of product param
         const product = productSplit[0];
         let platform = params.os;
+        // change platform to macos if it's osx
         platform = platform === 'osx' ? 'macos' : platform;
+        // append 'msi' to platform if msi is in the product parameter
+        platform =
+            productParam.indexOf('msi') !== -1 ? platform + '-msi' : platform;
         // release channel is second word of product param
-        // (except for latest or sub installer - we update those to say release)
-        const releaseChannel =
-            productSplit[1] === ('latest' || 'stub')
-                ? 'release'
-                : productSplit[1];
+        let releaseChannel = productSplit[1];
+        // (except for latest, msi, or sub installer - we update those to say release)
+        if (['latest', 'stub', 'msi'].includes(releaseChannel)) {
+            releaseChannel = 'release';
+        }
 
         eventObject = TrackProductDownload.getEventObject(
             product,

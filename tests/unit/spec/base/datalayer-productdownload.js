@@ -208,6 +208,18 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['platform']).toBe('linux64');
     });
+    it('should identify platform for msi', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['platform']).toBe('win64-msi');
+    });
+    it('should identify platform for esr msi', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['platform']).toBe('win64-msi');
+    });
     it('should identify platform for Firefox in the App Store', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
@@ -260,6 +272,18 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     it('should identify release_channel for Firefox ESR', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr');
+    });
+    it('should identify release_channel for Firefox MSI', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('release');
+    });
+    it('should identify release_channel for Firefox ESR', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US'
         );
         expect(testEvent['release_channel']).toBe('esr');
     });
