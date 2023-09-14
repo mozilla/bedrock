@@ -1233,5 +1233,8 @@ URLS = flatten(
         url_test("/privacy/firefox-fire-tv/", "/privacy/archive/firefox-fire-tv/2023-06/"),
         url_test("/privacy/firefox-reality/", "/privacy/archive/firefox-reality/notice-2023-06/"),
         url_test("/about/legal/terms/firefox-reality/", "/privacy/archive/firefox-reality/tos-2023-06/"),
+        # Issue 13672
+        url_test("/VendorDPA/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
+        url_test("/vendordpa/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
     )
 )
