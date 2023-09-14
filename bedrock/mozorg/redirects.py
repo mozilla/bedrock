@@ -567,4 +567,6 @@ redirectpatterns = (
     redirect(r"^about/leadership/mozilla-foundation/$", "/about/leadership/#foundation"),
     redirect(r"^about/leadership/reps-council/$", "/about/leadership/#reps"),
     redirect(r"^about/leadership/boards-of-directors/$", "/about/leadership/#boards"),
+    # Issue 13672
+    redirect(r"/VendorDPA/?$", "https://assets.mozilla.net/pdf/VendorDPA.pdf", re_flags="i"),
 )
