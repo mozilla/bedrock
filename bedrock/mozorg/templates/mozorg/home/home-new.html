@@ -31,6 +31,9 @@
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
 
+  {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
+    {{ css_bundle('ctd-promo') }}
+  {% endif %}
 
   {% if show_fundraising_banner %}
     {{ css_bundle('fundraising-banner') }}
@@ -60,7 +63,12 @@
 {% set utm_params = '?utm_source=www.mozilla.org&utm_campaign=homepage&utm_medium=referral' %}
 
 {% block content %}
+
 <header>
+    {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
+      {% include 'mozorg/home/includes/ctd-promo-de.html'%}
+    {% endif %}
+
   <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
     <h1>{{ ftl('home-mission-driven') }}</h1>
     <p>{{ ftl('home-were-not-normal') }}</p>
