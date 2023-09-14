@@ -112,17 +112,17 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         platform =
             productParam.indexOf('msi') !== -1 ? platform + '-msi' : platform;
         // release channel is second word of product param
-        let releaseChannel = productSplit[1];
+        let release = productSplit[1];
         // (except for latest, msi, or sub installer - we update those to say release)
-        if (['latest', 'stub', 'msi'].includes(releaseChannel)) {
-            releaseChannel = 'release';
+        if (release === 'latest' || release === 'stub' || release === 'msi') {
+            release = 'release';
         }
 
         eventObject = TrackProductDownload.getEventObject(
             product,
             platform,
             'site',
-            releaseChannel,
+            release,
             params.lang
         );
     } else if (playStoreURL.test(downloadURL) || marketURL.test(downloadURL)) {
