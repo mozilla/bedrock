@@ -39,7 +39,6 @@ function initGlean() {
 
     Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
         channel: channel,
-        maxEvents: 1, // Set max events to 1 so pings are sent as soon as registered.
         serverEndpoint: endpoint
     });
 }
