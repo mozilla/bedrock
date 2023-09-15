@@ -36,11 +36,17 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testPlayStoreURL).toBe(true);
     });
-    it('should not accept Adjust as a valid URL', function () {
+    it('should recognize the Android Market as a valid URL', function () {
+        let testPlayStoreURL = TrackProductDownload.isValidDownloadURL(
+            'market://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
+        );
+        expect(testPlayStoreURL).toBe(true);
+    });
+    it('should recognize Adjust as a valid URL', function () {
         let testAdjustURL = TrackProductDownload.isValidDownloadURL(
             'https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&campaign=www.mozilla.org&adgroup=mobile-android-page'
         );
-        expect(testAdjustURL).toBe(false);
+        expect(testAdjustURL).toBe(true);
     });
     it('should not accept a random link to mozilla.org as a valid URL', function () {
         let testRandomURL = TrackProductDownload.isValidDownloadURL(
@@ -56,12 +62,14 @@ describe('TrackProductDownload.getEventObject', function () {
             event: 'product_download',
             product: 'testProduct',
             platform: 'testPlatform',
+            method: 'testMethod',
             release_channel: 'testReleaseChannel',
             download_language: 'testDownloadLanguage'
         };
         let testFullEventObject = TrackProductDownload.getEventObject(
             'testProduct',
             'testPlatform',
+            'testMethod',
             'testReleaseChannel',
             'testDownloadLanguage'
         );
@@ -72,12 +80,12 @@ describe('TrackProductDownload.getEventObject', function () {
             event: 'product_download',
             product: 'testProduct',
             platform: 'testPlatform',
-            release_channel: '',
-            download_language: ''
+            method: 'testMethod'
         };
         let testShortEventObject = TrackProductDownload.getEventObject(
             'testProduct',
-            'testPlatform'
+            'testPlatform',
+            'testMethod'
         );
         expect(testShortEventObject).toEqual(testShortEventExpectedObject);
     });
@@ -86,133 +94,247 @@ describe('TrackProductDownload.getEventObject', function () {
 describe('TrackProductDownload.getEventFromUrl', function () {
     // product
     it('should identify product for Firefox Desktop', function () {
-        let testProductDesktop = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&_gl=1&234*_ga*ABC'
         );
-        expect(testProductDesktop['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox');
     });
-    it('should identify product for Firefox iOS', function () {
-        let testProductIOS = TrackProductDownload.getEventFromUrl(
+    it('should identify product for Firefox in the App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
         );
-        expect(testProductIOS['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox');
     });
-    it('should identify product for Firefox Android', function () {
-        let testProductAndroid = TrackProductDownload.getEventFromUrl(
+    it('should identify product for Firefox in the Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
         );
-        expect(testProductAndroid['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox');
+    });
+    it('should identify product for Firefox with Adjust', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/2uo1qc?mz_pr=firefox&mz_pl=mobile'
+        );
+        expect(testEvent['product']).toBe('firefox');
+    });
+    it('should identify product for Pocket in the App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://itunes.apple.com/{country}/app/pocket-save-read-grow/id309601447'
+        );
+        expect(testEvent['product']).toBe('pocket');
+    });
+    it('should identify product for Pocket in the Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro'
+        );
+        expect(testEvent['product']).toBe('pocket');
+    });
+    it('should identify product for Pocket with Adjust', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/m54twk?mz_pr=pocket&mz_pl=mobile'
+        );
+        expect(testEvent['product']).toBe('pocket');
+    });
+    it('should identify product for Focus in the App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://itunes.apple.com/{country}/app/firefox-focus-privacy-browser/id1055677337'
+        );
+        expect(testEvent['product']).toBe('focus');
+    });
+    it('should identify product for Focus in the Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://play.google.com/store/apps/details?id=org.mozilla.focus'
+        );
+        expect(testEvent['product']).toBe('focus');
+    });
+    it('should identify product for Focus with Adjust', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/b8s7qo?mz_pr=focus&mz_pl=android'
+        );
+        expect(testEvent['product']).toBe('focus');
+    });
+    it('should identify product for Klar in the App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://itunes.apple.com/{country}/app/klar-by-firefox/id1073435754'
+        );
+        expect(testEvent['product']).toBe('klar');
+    });
+    it('should identify product for Klar in the Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://play.google.com/store/apps/details?id=org.mozilla.klar'
+        );
+        expect(testEvent['product']).toBe('klar');
+    });
+    it('should identify product for Klar with Adjust', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/jfcx5x?mz_pr=klar&mz_pl=mobile'
+        );
+        expect(testEvent['product']).toBe('klar');
+    });
+    it('should identify product as unrecognized if App Store link is not found', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://itunes.apple.com/us/app/49th-parallel-coffee-roasters/id1567407403'
+        );
+        expect(testEvent['product']).toBe('unrecognized');
+    });
+    it('should identify product as unrecognized if Play Store link is not found', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://play.google.com/store/apps/details?id=co.tapcart.app.id_rBugj0qbKV'
+        );
+        expect(testEvent['product']).toBe('unrecognized');
     });
     // platform
-    it('should identify platform for Windows', function () {
-        let testPlatformWindows = TrackProductDownload.getEventFromUrl(
+    it('should identify platform for Firefox for Windows', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&_gl=1&234*_ga*ABC'
         );
-        expect(testPlatformWindows['platform']).toBe('win64');
+        expect(testEvent['platform']).toBe('win64');
     });
-    it('should identify platform for MacOS', function () {
-        let testPlatformMacOS = TrackProductDownload.getEventFromUrl(
+    it('should identify platform for Firefox for MacOS', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
         );
-        expect(testPlatformMacOS['platform']).toBe('macos');
+        expect(testEvent['platform']).toBe('macos');
     });
-    it('should identify platform for Linux', function () {
-        let testPlatformLinux = TrackProductDownload.getEventFromUrl(
+    it('should identify platform for Firefox for Linux', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
         );
-        expect(testPlatformLinux['platform']).toBe('linux64');
+        expect(testEvent['platform']).toBe('linux64');
     });
-    it('should identify platform for iOS', function () {
-        let testPlatformIOS = TrackProductDownload.getEventFromUrl(
+    it('should identify platform for msi', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['platform']).toBe('win64-msi');
+    });
+    it('should identify platform for esr msi', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['platform']).toBe('win64-msi');
+    });
+    it('should identify platform for Firefox in the App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
         );
-        expect(testPlatformIOS['platform']).toBe('ios');
+        expect(testEvent['platform']).toBe('ios');
     });
-    it('should identify platform for Android', function () {
-        let testPlatformAndroid = TrackProductDownload.getEventFromUrl(
+    it('should identify platform for Firefox in the Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
         );
-        expect(testPlatformAndroid['platform']).toBe('android');
+        expect(testEvent['platform']).toBe('android');
+    });
+    it('should identify platform for Adjust link direct to Play Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus&campaign=www.mozilla.org&adgroup=mobile-focus-page&mz_pr=focus&mz_pl=android'
+        );
+        expect(testEvent['platform']).toBe('android');
+    });
+    it('should identify platform for Adjust link direct to App Store', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337&campaign=www.mozilla.org&adgroup=mobile-focus-page&mz_pr=focus&mz_pl=ios'
+        );
+        expect(testEvent['platform']).toBe('ios');
     });
     // release channel
     it('should identify release_channel for Firefox Release', function () {
-        let testReleaseRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&_gl=1&234*_ga*ABC'
         );
-        expect(testReleaseRelease['release_channel']).toBe('release');
+        expect(testEvent['release_channel']).toBe('release');
     });
     it('should identify release_channel for Firefox Beta', function () {
-        let testBetaRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=osx&lang=en-US'
         );
-        expect(testBetaRelease['release_channel']).toBe('beta');
+        expect(testEvent['release_channel']).toBe('beta');
     });
     it('should identify release_channel for Firefox Dev Edition', function () {
-        let testDevRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=osx&lang=en-US'
         );
-        expect(testDevRelease['release_channel']).toBe('devedition');
+        expect(testEvent['release_channel']).toBe('devedition');
     });
     it('should identify release_channel for Firefox Nightly', function () {
-        let testNightlyRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=osx&lang=en-US'
         );
-        expect(testNightlyRelease['release_channel']).toBe('nightly');
+        expect(testEvent['release_channel']).toBe('nightly');
     });
     it('should identify release_channel for Firefox ESR', function () {
-        let testNightlyRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-US'
         );
-        expect(testNightlyRelease['release_channel']).toBe('esr');
+        expect(testEvent['release_channel']).toBe('esr');
+    });
+    it('should identify release_channel for Firefox MSI', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('release');
+    });
+    it('should identify release_channel for Firefox ESR', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr');
     });
     it('should identify release_channel for Firefox iOS', function () {
-        let testIOSRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
         );
-        expect(testIOSRelease['release_channel']).toBe('release');
+        expect(testEvent['release_channel']).toBe('release');
     });
     it('should identify release_channel for Firefox Android Release', function () {
-        let testAndroidRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
         );
-        expect(testAndroidRelease['release_channel']).toBe('release');
+        expect(testEvent['release_channel']).toBe('release');
     });
     it('should identify release_channel for Firefox Android Beta', function () {
-        let testAndroidBetaRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta'
         );
-        expect(testAndroidBetaRelease['release_channel']).toBe('beta');
+        expect(testEvent['release_channel']).toBe('beta');
     });
     it('should identify release_channel for Firefox Android Nightly', function () {
-        let testAndroidNightlyRelease = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.fenix'
         );
-        expect(testAndroidNightlyRelease['release_channel']).toBe('nightly');
+        expect(testEvent['release_channel']).toBe('nightly');
     });
     // language
     it('should identify en-US for Firefox Desktop', function () {
-        let testLanguageDesktop = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&_gl=1&234*_ga*ABC'
         );
-        expect(testLanguageDesktop['download_language']).toBe('en-US');
+        expect(testEvent['download_language']).toBe('en-US');
     });
     it('should identify DE for Firefox Desktop', function () {
-        let testLanguageDesktop = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=de'
         );
-        expect(testLanguageDesktop['download_language']).toBe('de');
+        expect(testEvent['download_language']).toBe('de');
     });
     it('should not identify language for Firefox iOS', function () {
-        let testLanguageIOS = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
         );
-        expect(testLanguageIOS['download_language']).toBeFalsy();
+        expect(testEvent['download_language']).toBeFalsy();
     });
     it('should not identify language for Firefox Android', function () {
-        let testLanguageAndroid = TrackProductDownload.getEventFromUrl(
+        let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
         );
-        expect(testLanguageAndroid['download_language']).toBeFalsy();
+        expect(testEvent['download_language']).toBeFalsy();
+    });
+    it('should not identify language for an Adjust link', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/2uo1qc?mz_pr=focus&mz_pl=android'
+        );
+        expect(testEvent['download_language']).toBeFalsy();
     });
 });
 
@@ -258,6 +380,7 @@ describe('TrackProductDownload.handleLink', function () {
             event: 'product_download',
             product: 'firefox',
             platform: 'win64',
+            method: 'site',
             release_channel: 'release',
             download_language: 'en-CA'
         });

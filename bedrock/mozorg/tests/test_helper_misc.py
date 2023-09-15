@@ -905,7 +905,7 @@ class TestFirefoxAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox&amp;mz_pl=ios"
         )
 
     def test_firefox_ios_adjust_url_invalid_country(self):
@@ -913,7 +913,7 @@ class TestFirefoxAdjustUrl(TestCase):
         assert (
             self._render("zz", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox&amp;mz_pl=ios"
         )
 
     def test_firefox_ios_adjust_url_creative(self):
@@ -921,7 +921,7 @@ class TestFirefoxAdjustUrl(TestCase):
         assert (
             self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/2uo1qc?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=firefox&amp;mz_pl=ios"
         )
 
     def test_firefox_android_adjust_url(self):
@@ -929,12 +929,15 @@ class TestFirefoxAdjustUrl(TestCase):
         assert (
             self._render("en-US", "android", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
             "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox&amp;mz_pl=android"
         )
 
     def test_firefox_no_redirect_adjust_url(self):
         """Firefox for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/2uo1qc?campaign=www.mozilla.org&amp;adgroup=test-page"
+        assert (
+            self._render("en-US", None, "test-page") == "https://app.adjust.com/2uo1qc?"
+            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox&amp;mz_pl=mobile"
+        )
 
 
 class TestFocusAdjustUrl(TestCase):
@@ -954,7 +957,7 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=ios"
         )
 
     def test_focus_ios_adjust_url_invalid_country(self):
@@ -962,7 +965,7 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("zz", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=ios"
         )
 
     def test_focus_ios_adjust_url_creative(self):
@@ -970,7 +973,7 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("fr", "ios", "test-page", "experiment-name") == "https://app.adjust.com/b8s7qo?"
             "redirect=https%3A%2F%2Fitunes.apple.com%2Ffr%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=focus&amp;mz_pl=ios"
         )
 
     def test_focus_android_adjust_url(self):
@@ -978,19 +981,22 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("en-US", "android", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
             "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=android"
         )
 
     def test_focus_no_redirect_adjust_url(self):
         """Firefox Focus for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/b8s7qo?campaign=www.mozilla.org&amp;adgroup=test-page"
+        assert (
+            self._render("en-US", None, "test-page") == "https://app.adjust.com/b8s7qo?"
+            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=mobile"
+        )
 
     def test_klar_ios_adjust_url(self):
         """Firefox Klar with an App Store URL redirect"""
         assert (
             self._render("de", "ios", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fklar-by-firefox%2Fid1073435754"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=klar&amp;mz_pl=ios"
         )
 
     def test_klar_android_adjust_url(self):
@@ -998,7 +1004,7 @@ class TestFocusAdjustUrl(TestCase):
         assert (
             self._render("de", "android", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
             "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.klar"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=klar&amp;mz_pl=android"
         )
 
 
@@ -1019,7 +1025,7 @@ class TestLockwiseAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=ios"
         )
 
     def test_lockwise_ios_adjust_url_invalid_country(self):
@@ -1027,7 +1033,7 @@ class TestLockwiseAdjustUrl(TestCase):
         assert (
             self._render("zz", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=ios"
         )
 
     def test_lockwise_ios_adjust_url_creative(self):
@@ -1035,7 +1041,7 @@ class TestLockwiseAdjustUrl(TestCase):
         assert (
             self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/6tteyjo"
             "?redirect=https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=lockwise&amp;mz_pl=ios"
         )
 
     def test_lockwise_android_adjust_url(self):
@@ -1043,12 +1049,15 @@ class TestLockwiseAdjustUrl(TestCase):
         assert (
             self._render("en-US", "android", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
             "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dmozilla.lockbox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=android"
         )
 
     def test_lockwise_no_redirect_adjust_url(self):
         """Firefox Lockwise for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/6tteyjo?campaign=www.mozilla.org&amp;adgroup=test-page"
+        assert (
+            self._render("en-US", None, "test-page") == "https://app.adjust.com/6tteyjo?"
+            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=mobile"
+        )
 
 
 class TestPocketAdjustUrl(TestCase):
@@ -1068,7 +1077,7 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render("en-US", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=ios"
         )
 
     def test_pocket_ios_adjust_url_invalid_country(self):
@@ -1076,7 +1085,7 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render("zz", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=ios"
         )
 
     def test_pocket_ios_adjust_url_creative(self):
@@ -1084,7 +1093,7 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/m54twk?redirect="
             "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=pocket&amp;mz_pl=ios"
         )
 
     def test_pocket_android_adjust_url(self):
@@ -1092,12 +1101,15 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render("en-US", "android", "test-page") == "https://app.adjust.com/m54twk?redirect="
             "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.ideashower.readitlater.pro"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=android"
         )
 
     def test_pocket_no_redirect_adjust_url(self):
         """Pocket for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/m54twk?campaign=www.mozilla.org&amp;adgroup=test-page"
+        assert (
+            self._render("en-US", None, "test-page") == "https://app.adjust.com/m54twk?"
+            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=mobile"
+        )
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)

@@ -25,11 +25,29 @@
             // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
             if (directDownloadLink && directDownloadLink.href) {
                 directDownloadLink.href = downloadURL;
+                directDownloadLink.addEventListener(
+                    'click',
+                    function (event) {
+                        try {
+                            Mozilla.TrackProductDownload.handleLink(event);
+                        } catch (error) {
+                            return;
+                        }
+                    },
+                    false
+                );
             }
 
             // Start the platform-detected download a second after DOM ready event.
             Mozilla.Utils.onDocumentReady(function () {
                 setTimeout(function () {
+                    try {
+                        Mozilla.TrackProductDownload.sendEventFromURL(
+                            downloadURL
+                        );
+                    } catch (error) {
+                        return;
+                    }
                     window.location.href = downloadURL;
                 }, 1000);
             });

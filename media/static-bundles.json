@@ -1706,7 +1706,8 @@
     {
       "files": [
         "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js"
+        "js/base/core-datalayer-init.js",
+        "js/base/datalayer-productdownload-init.es6.js"
       ],
       "name": "data"
     },

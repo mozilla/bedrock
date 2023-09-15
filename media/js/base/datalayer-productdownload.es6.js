@@ -7,8 +7,11 @@
 const TrackProductDownload = {};
 const prodURL = /^https:\/\/download.mozilla.org/;
 const stageURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
-const appStoreURL = /^https:\/\/itunes.apple.com/;
+const iTunesURL = /^https:\/\/itunes.apple.com/;
+const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
+const marketURL = /^market:\/\/play.google.com/;
+const adjustURL = /^https:\/\/app.adjust.com/;
 
 if (typeof window.dataLayer === 'undefined') {
     window.dataLayer = [];
@@ -21,11 +24,14 @@ if (typeof window.dataLayer === 'undefined') {
  */
 TrackProductDownload.isValidDownloadURL = (downloadURL) => {
     if (typeof downloadURL === 'string') {
-        if (prodURL.test(downloadURL) || stageURL.test(downloadURL)) {
-            return true;
-        } else if (
+        if (
+            prodURL.test(downloadURL) ||
+            stageURL.test(downloadURL) ||
+            iTunesURL.test(downloadURL) ||
             appStoreURL.test(downloadURL) ||
-            playStoreURL.test(downloadURL)
+            playStoreURL.test(downloadURL) ||
+            marketURL.test(downloadURL) ||
+            adjustURL.test(downloadURL)
         ) {
             return true;
         } else {
@@ -40,6 +46,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
  * Create the product_download event object
  * @param {string} product
  * @param {string} platform
+ * @param {string} method - site, store, or adjust
  * @param {string} release_channel - optional, we don't get it for ios downloads
  * @param {string} download_language - optional, we don't get it for mobile downloads
  * @returns {Object}
@@ -47,15 +54,21 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
 TrackProductDownload.getEventObject = (
     product,
     platform,
-    release_channel = '',
-    download_language = ''
+    method,
+    release_channel = false,
+    download_language = false
 ) => {
     const eventObject = {};
     eventObject['event'] = 'product_download';
     eventObject['product'] = product;
     eventObject['platform'] = platform;
-    eventObject['release_channel'] = release_channel;
-    eventObject['download_language'] = download_language;
+    eventObject['method'] = method;
+    if (release_channel) {
+        eventObject['release_channel'] = release_channel;
+    }
+    if (download_language) {
+        eventObject['download_language'] = download_language;
+    }
     return eventObject;
 };
 
@@ -93,40 +106,83 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         // product is first word of product param
         const product = productSplit[0];
         let platform = params.os;
+        // change platform to macos if it's osx
         platform = platform === 'osx' ? 'macos' : platform;
+        // append 'msi' to platform if msi is in the product parameter
+        platform =
+            productParam.indexOf('msi') !== -1 ? platform + '-msi' : platform;
         // release channel is second word of product param
-        // (except for release which says 'latest' but we want 'release')
-        const releaseChannel =
-            productSplit[1] === 'latest' ? 'release' : productSplit[1];
+        let release = productSplit[1];
+        // (except for latest, msi, or sub installer - we update those to say release)
+        if (release === 'latest' || release === 'stub' || release === 'msi') {
+            release = 'release';
+        }
 
         eventObject = TrackProductDownload.getEventObject(
             product,
             platform,
-            releaseChannel,
+            'site',
+            release,
             params.lang
         );
-    } else if (playStoreURL.test(downloadURL)) {
+    } else if (playStoreURL.test(downloadURL) || marketURL.test(downloadURL)) {
         const idParam = params.id;
-        let androidRelease = 'release';
-        // Android Play Store, need to check release, beta, nightly
+        let androidProduct = 'unrecognized';
+        let androidRelease = '';
+
         switch (idParam) {
+            case 'org.mozilla.firefox':
+                androidProduct = 'firefox';
+                androidRelease = 'release';
+                break;
             case 'org.mozilla.fenix':
+                androidProduct = 'firefox';
                 androidRelease = 'nightly';
                 break;
             case 'org.mozilla.firefox_beta':
+                androidProduct = 'firefox';
                 androidRelease = 'beta';
                 break;
+            case 'org.mozilla.focus':
+                androidProduct = 'focus';
+                break;
+            case 'org.mozilla.klar':
+                androidProduct = 'klar';
+                break;
+            case 'com.ideashower.readitlater.pro':
+                androidProduct = 'pocket';
+                break;
         }
+
         eventObject = TrackProductDownload.getEventObject(
-            'firefox',
+            androidProduct,
             'android',
+            'store',
             androidRelease
         );
-    } else if (appStoreURL.test(downloadURL)) {
+    } else if (appStoreURL.test(downloadURL) || iTunesURL.test(downloadURL)) {
+        let iosProduct = 'unrecognized';
+        if (downloadURL.indexOf('/id989804926') !== -1) {
+            iosProduct = 'firefox';
+        } else if (downloadURL.indexOf('/id1055677337') !== -1) {
+            iosProduct = 'focus';
+        } else if (downloadURL.indexOf('/id1073435754') !== -1) {
+            iosProduct = 'klar';
+        } else if (downloadURL.indexOf('/id309601447') !== -1) {
+            iosProduct = 'pocket';
+        }
         // Apple App Store
         eventObject = TrackProductDownload.getEventObject(
-            'firefox',
+            iosProduct,
             'ios',
+            'store',
+            'release'
+        );
+    } else if (adjustURL.test(downloadURL)) {
+        eventObject = TrackProductDownload.getEventObject(
+            params.mz_pr,
+            params.mz_pl,
+            'adjust',
             'release'
         );
     }

@@ -20,7 +20,7 @@
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}"
-               class="download-link mzp-c-button mzp-t-product"
+               class="download-link mzp-c-button mzp-t-product ga-product-download"
                data-link-type="download"
                data-download-version="{{ plat.os }}"
                {% if plat.os == 'android' %}data-download-os="Android"
@@ -57,7 +57,7 @@
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-        <a class="download-link button {{ button_class }} mzp-c-button mzp-t-product"
+        <a class="download-link button {{ button_class }} mzp-c-button mzp-t-product ga-product-download"
            id="{{ id }}-{{ plat.os }}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}

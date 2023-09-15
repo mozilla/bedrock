@@ -304,8 +304,7 @@ Properties for use with `product_download` (not all products will have all optio
 
 - product (example: firefox)
 - platform (example: win64)
-- method (store, direct, or adjust)
-- link_url
+- method (store, site, or adjust)
 - release_channel (example: nightly)
 - download_language (example: en-CA)
 
