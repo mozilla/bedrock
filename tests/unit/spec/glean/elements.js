@@ -15,7 +15,13 @@ import * as element from '../../../../media/js/libs/glean/element.js';
 
 describe('elements.js', function () {
     beforeEach(async function () {
-        await testResetGlean('moz-bedrock-test');
+        /**
+         * note: maxEvents is set to a number greater than 1 here,
+         * to circumvent a bug in Glean's test helper where `snapshot`
+         * will be undefined. This can hopefully be removed in the
+         * next release.
+         */
+        await testResetGlean('moz-bedrock-test', true, { maxEvents: 100 });
     });
 
     describe('clickEvent', function () {

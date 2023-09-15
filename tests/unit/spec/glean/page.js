@@ -16,7 +16,14 @@ import { testResetGlean } from '@mozilla/glean/testing';
 
 describe('page.js', function () {
     beforeEach(async function () {
-        await testResetGlean('moz-bedrock-test');
+        /**
+         * note: maxEvents is set to a number greater than 1 here,
+         * to circumvent a bug in Glean's test helper where `snapshot`
+         * will be undefined. This can hopefully be removed in the
+         * next release.
+         */
+        await testResetGlean('moz-bedrock-test', true, { maxEvents: 100 });
+
         spyOn(Utils, 'getPathFromUrl').and.returnValue('/firefox/new/');
         spyOn(Utils, 'getLocaleFromUrl').and.returnValue('en-US');
         spyOn(Utils, 'getReferrer').and.returnValue('https://google.com/');
