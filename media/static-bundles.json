@@ -1267,6 +1267,12 @@
         "css/products/monitor/landing.scss"
       ],
       "name": "monitor-landing"
+    },
+    {
+      "files": [
+        "css/mozorg/try-picture-in-picture.scss"
+      ],
+      "name": "try-picture-in-picture"
     }
   ],
   "js": [
@@ -1981,6 +1987,12 @@
         "js/products/monitor/common.es6.js"
       ],
       "name": "monitor-common"
+    },
+    {
+      "files": [
+        "js/mozorg/try-picture-in-picture.js"
+      ],
+      "name": "try-picture-in-picture"
     }
   ]
 }

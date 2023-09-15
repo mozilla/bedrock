@@ -1,0 +1,81 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('try-pip-title') }}{% endblock %}
+{% block page_desc %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('try-picture-in-picture') }}
+{% endblock %}
+
+
+{% block content %}
+<section class="try-pip-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace">
+    <div class="mzp-c-video">
+      <a class="video-play js-video-play" href="https://youtu.be/2CT-zB6AO6k" data-id="2CT-zB6AO6k" data-video-title=" Must-have add-ons you’re missing out on | #AskFirefox" title="Play the video">
+        <img src="{{ static('img/mozorg/try-picture-in-picture/video-thumbnail.jpg') }}" alt="" width="1024" height="576">
+      </a>
+    </div>
+
+    <h2 class="try-pip-main-title">{{ ftl('try-pip-pop-out') }}</h2>
+    <p class="try-pip-main-tagline has-pip-icon">{{ ftl('try-pip-pin-a-video') }}</p>
+  </div>
+</section>
+
+<section class="try-pip-content-extra">
+  <div class="mzp-l-content mzp-t-content-lg mzp-t-content-nospace">
+    <h3 class="try-pip-extra-title">{{ ftl('try-pip-ways-to-use') }}</h3>
+
+    <div class="mzp-l-columns mzp-t-columns-three">
+      {{ picto(
+        title=ftl('try-pip-watch-a-meeting'),
+        heading_level=4,
+        image=resp_img(
+          url='img/mozorg/try-picture-in-picture/pip-lecture.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+
+      {{ picto(
+        title=ftl('try-pip-keep-a-tutorial'),
+        heading_level=4,
+        image=resp_img(
+          url='img/mozorg/try-picture-in-picture/pip-cook.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+
+      {{ picto(
+        title=ftl('try-pip-entertain-kids'),
+        heading_level=4,
+        image=resp_img(
+          url='img/mozorg/try-picture-in-picture/pip-entertain.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) }}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('try-picture-in-picture') }}
+{% endblock %}

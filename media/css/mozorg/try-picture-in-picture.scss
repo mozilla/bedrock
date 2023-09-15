@@ -1,0 +1,93 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$brand-theme: "firefox";
+
+@import "../firefox/whatsnew/includes/base";
+@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import "~@mozilla-protocol/core/protocol/css/components/notification-bar";
+@import "~@mozilla-protocol/core/protocol/css/components/video";
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.try-pip-content-main {
+    color: $color-dark-gray-90;
+    padding-top: $spacing-2xl;
+    text-align: center;
+}
+
+.mzp-c-video {
+    margin: 0 auto $spacing-2xl;
+    overflow: visible;
+    position: relative;
+
+    &::before {
+        background: $color-ink-60;
+        border-radius: $border-radius-md;
+        bottom: -14px;
+        content: "";
+        display: block;
+        height: 100%;
+        left: -14px;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.try-pip-main-title {
+    @include text-title-lg;
+}
+
+.try-pip-main-tagline {
+    @include text-body-xl;
+}
+
+.try-pip-content-extra {
+    margin-top: $layout-xl;
+
+    .try-pip-extra-title {
+        @include text-title-sm;
+        margin-bottom: $layout-lg;
+    }
+
+    .mzp-c-picto-heading {
+        @include text-title-2xs;
+    }
+}
+
+// Video
+.video-play {
+    position: absolute;
+    display: block;
+
+    &::after {
+        background: url("/media/img/icons/video-play.svg") top left no-repeat;
+        content: "";
+        height: 100px;
+        left: 50%;
+        margin: -50px 0 0 -50px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 100px;
+        z-index: 2;
+    }
+
+    &:hover::after,
+    &:focus::after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.has-pip-icon strong {
+    @include image-replaced;
+    @include background-size(2.25ex, 2.25ex);
+    background-image: url("/media/img/mozorg/try-picture-in-picture/pip-icon.svg");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 2.25ex;
+    margin-bottom: -0.5ex;
+    width: 2.25ex;
+}

@@ -153,6 +153,7 @@ urlpatterns = (
     page("rise25/", "mozorg/rise25/rise25.html"),
     redirect(r"rise-25/?$", "rise25/"),
     page("advertising/", "mozorg/advertising.html"),
+    page("try-picture-in-picture/", "mozorg/try-picture-in-picture.html", ftl_files=["mozorg/try-picture-in-picture"]),
 )
 
 if settings.DEV:
