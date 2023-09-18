@@ -110,14 +110,3 @@
   </div>
 </section>
 {% endblock %}
-
-{% block structured_data %}
-  {
-    "@context": "https://schema.org/",
-    "@graph": [
-      {% include 'includes/structured-data/software/firefox-beta-software.json' %}
-      ,
-      {% include 'includes/structured-data/software/firefox-nightly-software.json' %}
-    ]
-  }
-{% endblock %}

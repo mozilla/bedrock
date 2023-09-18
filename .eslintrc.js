@@ -9,7 +9,7 @@ module.exports = {
         browser: true,
         commonjs: true
     },
-    extends: ['eslint:recommended', 'plugin:json/recommended', 'prettier'],
+    extends: ['eslint:recommended', 'prettier'],
     ignorePatterns: ['contentful_migrations/migrations/*.cjs'],
     rules: {
         // Require strict mode directive in top level functions

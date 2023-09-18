@@ -91,6 +91,5 @@ repos:
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-plugin-json@3.1.0"
           - "eslint-config-prettier@8.8.0"
   #       Additional excludes in /.eslintignore file

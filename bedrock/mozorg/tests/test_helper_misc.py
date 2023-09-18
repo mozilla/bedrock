@@ -845,33 +845,6 @@ class TestPlayStoreURL(TestCase):
         assert self._render("de") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=de"
 
 
-class TestStructuredDataID(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, domain=None):
-        req = self.rf.get("/")
-        req.locale = locale
-        sd_id = "firefoxbrowser"
-
-        if domain:
-            return render(f"{{{{ structured_data_id('{sd_id}', '{domain}') }}}}", {"request": req})
-
-        return render("{{ structured_data_id('%s') }}" % sd_id, {"request": req})
-
-    def test_structured_data_localized_id(self):
-        """should return localized id"""
-        assert self._render("en-US") == "https://www.mozilla.org/#firefoxbrowser"
-        assert self._render("es-ES") == "https://www.mozilla.org/#firefoxbrowser-es-es"
-        assert self._render("de") == "https://www.mozilla.org/#firefoxbrowser-de"
-
-    def test_structured_data_custom_domain_id(self):
-        """should return id for a custom domain"""
-        domain = "https://foundation.mozilla.org"
-        assert self._render("en-US", domain) == "https://foundation.mozilla.org/#firefoxbrowser"
-        assert self._render("es-ES", domain) == "https://foundation.mozilla.org/#firefoxbrowser-es-es"
-        assert self._render("de", domain) == "https://foundation.mozilla.org/#firefoxbrowser-de"
-
-
 class TestLangShort(TestCase):
     rf = RequestFactory()
 

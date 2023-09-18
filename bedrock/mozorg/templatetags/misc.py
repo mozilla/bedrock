@@ -673,23 +673,6 @@ def play_store_url(ctx, product):
 
 @library.global_function
 @jinja2.pass_context
-def structured_data_id(ctx, id, domain=None):
-    """
-    Returns an identifier for a structured data object based on
-    a supplied id e.g. https://www.mozilla.org/#firefoxbrowser
-    """
-    canonical = settings.CANONICAL_URL if not domain else domain
-    locale = getattr(ctx["request"], "locale", "en-US")
-    suffix = ""
-
-    if locale != "en-US":
-        suffix = "-" + locale.lower()
-
-    return canonical + "/#" + id + suffix
-
-
-@library.global_function
-@jinja2.pass_context
 def lang_short(ctx):
     """Returns a shortened locale code e.g. en."""
     locale = getattr(ctx["request"], "locale", "en-US")
