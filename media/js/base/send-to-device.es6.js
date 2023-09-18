@@ -171,9 +171,16 @@ SendToDevice.prototype.onFormSuccess = function () {
 
     this.enableForm();
 
+    // UA
     window.dataLayer.push({
         event: 'send-to-device-success',
         input: 'email-address'
+    });
+
+    // GA4
+    window.dataLayer.push({
+        event: 'send_to_device',
+        method: 'email'
     });
 
     // Glean
