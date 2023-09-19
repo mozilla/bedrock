@@ -16,6 +16,7 @@ from pathlib import Path
 
 from django.utils.functional import lazy
 
+import markus
 import sentry_sdk
 from everett.manager import ListOf
 from sentry_processor import DesensitizationProcessor
@@ -562,6 +563,7 @@ MIDDLEWARE = [
     "bedrock.redirects.middleware.RedirectsMiddleware",
     "bedrock.base.middleware.LocaleURLMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
+    "bedrock.base.middleware.MetricsStatusMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
@@ -1177,6 +1179,29 @@ SENTRY_FRONTEND_DSN = config(
     "SENTRY_FRONTEND_DSN",
     default=SENTRY_DSN,
 )
+
+# Statsd metrics via markus
+if DEBUG:
+    MARKUS_BACKENDS = [
+        {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
+    ]
+else:
+    STATSD_HOST = config("STATSD_HOST", default=get_default_gateway_linux())
+    STATSD_PORT = config("STATSD_PORT", default="8125", parser=int)
+    STATSD_NAMESPACE = config("APP_NAME", default="bedrock-local")
+
+    MARKUS_BACKENDS = [
+        {
+            "class": "markus.backends.datadog.DatadogMetrics",
+            "options": {
+                "statsd_host": STATSD_HOST,
+                "statsd_port": STATSD_PORT,
+                "statsd_namespace": STATSD_NAMESPACE,
+            },
+        },
+    ]
+
+markus.configure(backends=MARKUS_BACKENDS)
 
 # Django-CSP settings are in settings/__init__.py, where they are
 # set according to site mode

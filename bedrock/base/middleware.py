@@ -13,11 +13,12 @@ from warnings import warn
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
+from bedrock.base import metrics
 from lib.l10n_utils import translation
 
 from . import urlresolvers
@@ -97,3 +98,20 @@ class BasicAuthMiddleware:
 
 class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
     pass
+
+
+class MetricsStatusMiddleware(MiddlewareMixin):
+    """Send status code counts to statsd"""
+
+    def _record(self, status_code):
+        metrics.incr("response.status", tags=[f"status_code:{status_code}"])
+
+    def process_response(self, request, response):
+        self._record(response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        if isinstance(exception, Http404):
+            self._record(404)
+        else:
+            self._record(500)
