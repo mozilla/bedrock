@@ -6,7 +6,6 @@
 
 import * as page from '../libs/glean/page.js';
 import Utils from './utils.es6';
-import { pageView as pageViewPing } from '../libs/glean/pings.js';
 
 const defaultParams = {
     utm_source: '',
@@ -50,8 +49,6 @@ function initPageView() {
     }
 
     page.hit.record();
-
-    pageViewPing.submit();
 }
 
 function pageEvent(obj) {
