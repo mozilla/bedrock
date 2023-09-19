@@ -165,6 +165,10 @@ cryptography==41.0.3 \
     #   -r requirements/prod.in
     #   pyjwt
     #   pyopenssl
+datadog==0.46.0 \
+    --hash=sha256:3d7bcda6177b43be4cdb52e16b4bdd4f9005716c0dd7cfea009e018c36bb7a3d \
+    --hash=sha256:e4fbc92a85e2b0919a226896ae45fc5e4b356c0c57f1c2659659dfbe0789c674
+    # via markus
 deprecated==1.2.13 \
     --hash=sha256:43ac5335da90c31c24ba028af536a91d41d53f9e6901ddb021bcc572ce44e38d \
     --hash=sha256:64756e3e14c8c5eea9795d93c524551432a0be75629f8f29e67ab8caf076c76d
@@ -572,6 +576,10 @@ markupsafe==2.0.1 \
     #   django-jinja-markdown
     #   glean-parser
     #   jinja2
+markus[datadog]==4.2.0 \
+    --hash=sha256:156398b7de56db4e8ef420a80fcce1c49b6d3d41405874a3e128cb209cf4bfd8 \
+    --hash=sha256:9dd41ce53b25a3e806b0d065808fec00c4ec945e80cf5a72431bf9b61b44d7fb
+    # via -r requirements/prod.in
 mdx-outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz \
     --hash=sha256:a78e112f80628246dd45858fe18404aaa8efb8dc81949bb1fbb87e91f9654afa
     # via -r requirements/prod.in
@@ -788,6 +796,7 @@ requests==2.31.0 \
     #   -r requirements/prod.in
     #   basket-client
     #   contentful
+    #   datadog
     #   django-mozilla-product-details
     #   pygithub
 rich-text-renderer==0.2.7 \
