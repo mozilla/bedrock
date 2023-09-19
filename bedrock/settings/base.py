@@ -247,6 +247,7 @@ FLUENT_DEFAULT_FILES = [
     "send_to_device",
     "sub_navigation",
     "ui",
+    "mozilla-account-banner",
 ]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config("FLUENT_DEFAULT_PERCENT_REQUIRED", default="80", parser=int)
