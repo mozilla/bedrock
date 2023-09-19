@@ -9,17 +9,36 @@ const FirefoxDefault = {
         return new window.Promise((resolve, reject) => {
             FirefoxDefault.tourTimeout = setTimeout(function () {
                 // UITour was too slow to reply
-                FirefoxDefault.showAltCTAButton();
                 resolve();
             }, 1000);
             Mozilla.UITour.getConfiguration('appinfo', (details) => {
                 if (details.defaultBrowser) {
                     // UITour reports Firefox is default browser
-                    FirefoxDefault.showAltCTAButton();
+                    // UA
+                    window.dataLayer.push({
+                        event: 'non-interaction',
+                        eAction: 'whatsnew-118',
+                        eLabel: 'firefox-default'
+                    });
+                    // GA4
+                    window.dataLayer.push({
+                        event: 'dimension_set',
+                        firefox_isDefault: true
+                    });
                     resolve();
                 } else {
                     // UITour reports Firefox is not default browser
-                    FirefoxDefault.showSetDefaultButton();
+                    // UA
+                    window.dataLayer.push({
+                        event: 'non-interaction',
+                        eAction: 'whatsnew-118',
+                        eLabel: 'firefox-not-default'
+                    });
+                    // GA4
+                    window.dataLayer.push({
+                        event: 'dimension_set',
+                        firefox_isDefault: false
+                    });
                     reject();
                 }
             });
@@ -33,23 +52,11 @@ const FirefoxDefault = {
     showSetDefaultButton: () => {
         clearTimeout(FirefoxDefault.tourTimeout);
         document.querySelector('main').classList.add('fx-not-default');
-
-        window.dataLayer.push({
-            event: 'non-interaction',
-            eAction: 'whatsnew-118',
-            eLabel: 'firefox-not-default'
-        });
     },
 
     showAltCTAButton: () => {
         clearTimeout(FirefoxDefault.tourTimeout);
         document.querySelector('main').classList.add('is-firefox-default');
-
-        window.dataLayer.push({
-            event: 'non-interaction',
-            eAction: 'whatsnew-118',
-            eLabel: 'firefox-default'
-        });
     },
 
     init: () => {
@@ -58,21 +65,10 @@ const FirefoxDefault = {
             document.querySelector('main').classList.add('fx-not-default');
             return;
         }
-        return new window.Promise(function (resolve, reject) {
-            FirefoxDefault.isDefaultBrowser()
-                .then(
-                    function () {
-                        FirefoxDefault.showAltCTAButton();
-                        resolve();
-                    },
-                    function () {
-                        document;
-                        FirefoxDefault.showSetDefaultButton();
-                        resolve();
-                    }
-                )
-                .catch(() => reject());
-        });
+
+        FirefoxDefault.isDefaultBrowser()
+            .then(FirefoxDefault.showAltCTAButton)
+            .catch(FirefoxDefault.showSetDefaultButton);
     }
 };
 
