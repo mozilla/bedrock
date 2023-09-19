@@ -23,3 +23,8 @@ class RelayPhoneWaitlistForm(NewsletterFooterForm):
 class RelayPremiumWaitlistForm(NewsletterFooterForm):
     def __init__(self, locale, data=None, *args, **kwargs):
         super().__init__("relay-waitlist", locale, data, *args, **kwargs)
+
+
+class MozSocialWaitlistForm(NewsletterFooterForm):
+    def __init__(self, locale, data=None, *args, **kwargs):
+        super().__init__("mozilla-social-waitlist", locale, data, *args, **kwargs)

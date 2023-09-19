@@ -20,12 +20,7 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
-from bedrock.products.forms import (
-    RelayBundleWaitlistForm,
-    RelayPhoneWaitlistForm,
-    RelayPremiumWaitlistForm,
-    VPNWaitlistForm,
-)
+from bedrock.products.forms import MozSocialWaitlistForm, RelayBundleWaitlistForm, RelayPhoneWaitlistForm, RelayPremiumWaitlistForm, VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 
@@ -521,3 +516,15 @@ def monitor_landing_page(request):
     context = {"breach_scan_url": breach_scan_url}
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def mozsocial_waitlist_page(request):
+    template_name = "products/mozsocial/invite.html"
+    ftl_files = ["products/mozsocial/invite"]
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = MozSocialWaitlistForm(locale)
+
+    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "mozilla-social-waitlist"}
+
+    return l10n_utils.render(request, template_name, ctx, ftl_files=ftl_files)
