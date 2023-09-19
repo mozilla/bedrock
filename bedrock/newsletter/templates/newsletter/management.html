@@ -109,7 +109,11 @@
             <small>{{ ftl('newsletters-text-subscribers-will-receive') }}</small>
 
             <aside>
-              <p>{{ ftl('newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
+              {% if switch('moz-accounts-update') %}
+                <p>{{ ftl('newsletters-many-of-our-communications-v2', fallback='newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
+              {% else %}
+                <p>{{ ftl('newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
+              {% endif %}
 
               <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('firefox.accounts')) }}</p>
 

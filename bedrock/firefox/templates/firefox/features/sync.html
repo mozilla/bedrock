@@ -11,7 +11,13 @@
 
 {% block article_content %}
 <p>{{ ftl('features-sync-with-firefox-you-can-pick-up-where') }}</p>
-<p>{{ ftl('features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
+
+  {% if switch('moz-accounts-update') %}
+    <p>{{ ftl('features-sync-sign-up-for-a-free-mozilla-account', fallback='features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
+  {% else %}
+    <p>{{ ftl('features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
+  {% endif %}
+
 
 <figure class="c-article-figure">
   {{ resp_img(

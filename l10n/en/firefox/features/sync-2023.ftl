@@ -13,7 +13,11 @@ features-sync-with-firefox-you-can-pick-up-where = With { -brand-name-firefox },
 
 # Variables:
 #   $fxa (url) = link to https://www.mozilla.org/firefox/accounts/
-features-sync-sign-up-for-a-free-firefox-account = <a href="{ $fxa }">Sign up for a free { -brand-name-firefox-account }</a> and you’ll be able to sync your data everywhere you use your { -brand-name-firefox } browser.
+
+features-sync-sign-up-for-a-free-mozilla-account = <a href="{ $fxa }">Sign up for a free { -brand-name-mozilla-account } </a> and you’ll be able to sync your data everywhere you use your { -brand-name-firefox } browser.
+
+# Obsolete string
+features-sync-sign-up-for-a-free-firefox-account = <a href="{ $fxa }">Sign up for a free { -brand-name-firefox } account</a> and you’ll be able to sync your data everywhere you use your { -brand-name-firefox } browser.
 
 # Variables:
 #   $privacy (url) = link to https://www.mozilla.org/firefox/privacy/

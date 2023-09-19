@@ -29,7 +29,13 @@
       <summary>
         <h3>{{ ftl('vpn-download-faq-add-device') }}</h3>
       </summary>
-      <p>{{ ftl('vpn-download-faq-adding-another-v2', fallback='vpn-download-faq-adding-another', subscription='https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription') }}</p>
+
+      {% if switch('moz-accounts-update') %}
+        <p>{{ ftl('vpn-download-faq-adding-another-v3', fallback='vpn-download-faq-adding-another-v2', subscription='https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription') }}</p>
+      {% else %}
+        <p>{{ ftl('vpn-download-faq-adding-another-v2', fallback='vpn-download-faq-adding-another', subscription='https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription') }}</p>
+      {% endif %}
+
     </details>
     <details>
       <summary>
