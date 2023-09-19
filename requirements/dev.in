@@ -24,4 +24,4 @@ selenium==4.1.3
 translate-toolkit==3.9.2
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
-compare-locales==9.0.1
+compare-locales==9.0.2
