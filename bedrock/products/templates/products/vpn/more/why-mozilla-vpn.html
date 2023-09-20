@@ -1,0 +1,92 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/vpn/more/base-article.html" %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-info') }}
+{% endblock %}
+
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title %} Why Mozilla VPN? {% endblock page_title %}
+{% block page_desc %}
+Learn why you should use a VPN made by Mozilla - a company that has a track record of putting people first and fighting
+for online privacy.
+{% endblock page_desc %}
+
+{% set source = '?source=vpn-info-why-mozilla' %}
+
+{% block article %}
+
+<h3>Privacy should not be optional</h3>
+<p>Hiding your identity and cloaking your web traffic can seem like something only super tech-savvy people do. But
+  privacy is not something that you should treat as optional — it requires vigilance and protection to keep hold of it.
+  Mozilla VPN offers you security, reliability and speed on every device, wherever you are — while supporting privacy
+  and security and freedom online.</p>
+<p><strong><a href="{{ url('mozorg.about.manifesto') }}#principles-04">Mozilla Principle #4:</a> Individuals’ security
+    and privacy on the internet are fundamental and must not be treated as optional.</strong></p>
+
+<h3 class="c-section-heading">Here’s why Mozilla VPN is the best VPN:</h3>
+<ol>
+  <li>
+    <h4 class="c-list-heading">1. It’s safe, secure, and easy to use.</h5>
+      <p class="c-list-content">Having a VPN at your fingertips when you need it is a good idea. Having a VPN as simple
+        to use as Mozilla VPN is even better. Just open up the app on whatever device you’re using, flip the toggle, and
+        you’re ready to go. No settings to fiddle with (unless you want to!). What’s more, our service is built on the
+        WireGuard® protocol — making it your most secure VPN option. In addition, your online activities stay anonymous
+        because we never log or track your network activity data.</p>
+      <p class="vpn-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl">
+          {{ ftl('vpn-shared-subscribe-link') }}
+        </a>
+      </p>
+  </li>
+
+  <li>
+    <h4 class="c-list-heading">2. Mozilla VPN will never track you—unlike some others.</h5>
+      <p class="c-list-content">The most important thing to consider when picking either a VPN or a proxy service is
+        choosing a trustworthy company. Be sure you understand the terms you’re agreeing to. Many claim to be great and
+        focused on privacy, but a large number of
+        them fall short on their promise. Not all proxy and VPN services are secure and private. Some will log your
+        online
+        activities so they can sell your data and information to marketing firms themselves. Other services will try to
+        convince you to install malware on your devices.</p>
+      <p class="c-list-content">We’ve done the legwork to ensure that both the Mozilla VPN and Firefox Private Network
+        proxy extension actually
+        respect your privacy, and it’s something we’re willing to stake our reputation on. Mozilla has a reputation for
+        building
+        products that help you keep your information safe. We follow our easy-to-read, no-nonsense <a
+          href="{{ url('privacy.principles') }}">Data Privacy Principles</a> which allow us to focus only on the
+        information we need to provide a service. And since we are backed by a mission-driven company, you can trust
+        that the dollars you spend for this product will not only ensure you have a top-notch security, but also are
+        making the internet better for everyone.</p>
+      <p class="vpn-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl">
+          {{ ftl('vpn-shared-subscribe-link') }}
+        </a>
+      </p>
+  </li>
+
+  <li>
+    <h4 class="c-list-heading">3. We value people over profit.</h3>
+      <p class="c-list-content">For more than 20 years, we’ve had a track record of putting people first and fighting
+        for online privacy. Backed by a
+        non-profit, we are committed to building a better and healthier internet for all people. Everything we make is
+        part of
+        our mission and follows our principles. We’ve built a VPN you can trust, because we aren’t driven by profit, but
+        by our
+        principles.</p>
+      <p class="vpn-cta">
+        <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl">
+          {{ ftl('vpn-shared-subscribe-link') }}
+        </a>
+      </p>
+  </li>
+</ol>
+
+{% endblock article %}

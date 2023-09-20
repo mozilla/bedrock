@@ -6,6 +6,7 @@ from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_safe
 
@@ -44,6 +45,15 @@ def relay_available(product, request):
         raise Exception("Unrecognized product passed to relay_available()")
 
     return country in country_list
+
+
+def active_locale_available(slug, locale):
+    active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
+        classification=CONTENT_CLASSIFICATION_VPN,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        slug=slug,
+    )
+    return locale in active_locales_for_this_article
 
 
 @require_safe
@@ -550,3 +560,14 @@ def monitor_waitlist_plus_page(request):
     ctx = {"newsletter_id": newsletter_id}
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+@require_safe
+def vpn_resource_center_redirect(request, slug, old_template, ftl_files):
+    locale = l10n_utils.get_locale(request)
+    slug = "what-is-an-ip-address"
+    redirect_link = f"/products/vpn/resource-center/{slug}/"
+    if active_locale_available(slug, locale):
+        return redirect(redirect_link)
+    else:
+        return l10n_utils.render(request, template=old_template, ftl_files=ftl_files)

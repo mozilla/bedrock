@@ -25,6 +25,51 @@ urlpatterns = (
     path("vpn/mobile/ios/", views.VPNIosView.as_view(), name="products.vpn.platforms.ios"),
     path("vpn/mobile/android/", views.VPNAndroidView.as_view(), name="products.vpn.platforms.android"),
     page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
+    # Evergreen SEO articles (issue #10224)
+    path(
+        "vpn/more/what-is-an-ip-address/",
+        views.vpn_resource_center_redirect,
+        {
+            "slug": "what-is-an-ip-address",
+            "old_template": "products/vpn/more/ip-address.html",
+            "ftl_files": ["products/vpn/more/ip-address", "products/vpn/shared"],
+        },
+        name="products.vpn.more.what-is-an-ip-address",
+    ),
+    path(
+        "vpn/more/vpn-or-proxy/",
+        views.vpn_resource_center_redirect,
+        {
+            "slug": "the-difference-between-a-vpn-and-a-web-proxy",
+            "old_template": "products/vpn/more/vpn-or-proxy.html",
+            "ftl_files": ["products/vpn/more/vpn-or-proxy", "products/vpn/shared"],
+        },
+        name="products.vpn.more.vpn-or-proxy",
+    ),
+    path(
+        "vpn/more/what-is-a-vpn/",
+        views.vpn_resource_center_redirect,
+        {
+            "slug": "what-is-a-vpn",
+            "old_template": "products/vpn/more/what-is-a-vpn.html",
+            "ftl_files": ["products/vpn/more/what-is-a-vpn", "products/vpn/shared"],
+        },
+        name="products.vpn.more.what-is-a-vpn",
+    ),
+    path(
+        "vpn/more/when-to-use-a-vpn/",
+        views.vpn_resource_center_redirect,
+        {
+            "slug": "5-reasons-you-should-use-a-vpn",
+            "old_template": "products/vpn/more/when-to-use.html",
+            "ftl_files": ["products/vpn/more/when-to-use-a-vpn", "products/vpn/shared"],
+        },
+        name="products.vpn.more.when-to-use-a-vpn",
+    ),
+    # VPN pages for Product team (issue #10388)
+    page("vpn/more/why-mozilla-vpn/", "products/vpn/more/why-mozilla-vpn.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
+    page("vpn/more/do-i-need-a-vpn/", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
+    page("vpn/more/what-is-a-vpn-v2/", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",

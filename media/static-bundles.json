@@ -1030,6 +1030,25 @@
     },
     {
       "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss"
+      ],
+      "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss",
+        "css/products/vpn/vpn-info.scss"
+      ],
+      "name": "mozilla-vpn-info"
+    },
+    {
+      "files": [
         "css/contentful/mozilla/c-article.scss"
       ],
       "name": "mozilla-c-article"
