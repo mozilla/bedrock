@@ -24,6 +24,9 @@ features-customize-image-of-the-default-themes = Image of the default themes tha
 #   $seasonal (url) - link to https://addons.mozilla.org/firefox/themes/category/seasonal/
 #   $sports (url) - link to https://addons.mozilla.org/firefox/themes/category/sports/
 #   $nature (url) - link to https://addons.mozilla.org/firefox/themes/category/nature/
+features-customize-you-can-find-more-free-custom-v2 = You can find more free custom themes at <a { $amo }>addons.mozilla.org</a>. Browse the <a { $top }>top-rated</a>, <a { $trending }>trending</a> and <a { $recommended }>most recommended</a> themes. Or look for themes by category, including <a { $music }>music</a>, <a { $seasonal }>seasonal</a>, <a { $sports }>sports</a>, and <a { $nature }>nature</a>. Tailor your experience to your tastes. Cute critters, evil robots, beautiful landscapes — there are thousands of options to make { -brand-name-firefox } your own.
+
+# Obsolete string, contains an error
 features-customize-you-can-find-more-free-custom = You can find more free custom themes at <a { $amo }>addons.mozilla.org</a>. Browse the <a { $top }">top-rated</a>, <a { $trending }>trending</a> and <a { $recommended }>most recommended</a> themes. Or look for themes by category, including <a { $music }>music</a>, <a { $seasonal }>seasonal</a>, <a { $sports }>sports</a>, and <a { $nature }>nature</a>. Tailor your experience to your tastes. Cute critters, evil robots, beautiful landscapes — there are thousands of options to make { -brand-name-firefox } your own.
 
 # Used as accessible alternative text for an image
