@@ -27,6 +27,7 @@
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-emphasis-box')}}
   {{ css_bundle('firefox-browsers-products') }}
+  {{ css_bundle('moz-account-banner') }}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -197,7 +198,8 @@
     </div>
   </div> -->
 
-  {% include 'mozorg/includes/mozilla-account-banner.html' %}
+    {% include 'mozorg/includes/mozilla-account-banner.html' %}
+
 </main>
 {% endblock %}
 

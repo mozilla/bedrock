@@ -613,6 +613,12 @@
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-banner.scss"
+      ],
+      "name": "moz-account-banner"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
