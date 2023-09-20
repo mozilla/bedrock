@@ -18,9 +18,15 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testDownloadURL).toBe(true);
     });
-    it('should recognize bouncer as a valid URL', function () {
+    it('should recognize bouncer stage as a valid URL', function () {
         let testBouncerURL = TrackProductDownload.isValidDownloadURL(
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=osx&lang=en-US'
+        );
+        expect(testBouncerURL).toBe(true);
+    });
+    it('should recognize bouncer dev as a valid URL', function () {
+        let testBouncerURL = TrackProductDownload.isValidDownloadURL(
+            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=osx&lang=en-US'
         );
         expect(testBouncerURL).toBe(true);
     });

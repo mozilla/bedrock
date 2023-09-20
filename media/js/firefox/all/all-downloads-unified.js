@@ -344,9 +344,11 @@
     FirefoxDownloader.isValidURL = function (url) {
         var bouncerURL = /^https:\/\/download.mozilla.org/;
         var stagingURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
+        var devURL = /^https:\/\/dev.bouncer.nonprod.webservices.mozgcp.net/;
+
         return (
             typeof url === 'string' &&
-            (bouncerURL.test(url) || stagingURL.test(url))
+            (bouncerURL.test(url) || stagingURL.test(url) || devURL.test(url))
         );
     };
 
