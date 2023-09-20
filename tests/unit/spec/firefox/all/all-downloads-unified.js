@@ -236,6 +236,12 @@ describe('all-downloads-unified.js', function () {
             expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
         });
 
+        it('should return true for bouncer dev links', function () {
+            const url =
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=osx&lang=en-US';
+            expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
+        });
+
         it('should return false for everything else', function () {
             const url =
                 'https://some.other.domain/?product=firefox-latest-ssl&os=osx&lang=en-US';

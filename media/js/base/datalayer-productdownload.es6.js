@@ -7,6 +7,7 @@
 const TrackProductDownload = {};
 const prodURL = /^https:\/\/download.mozilla.org/;
 const stageURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
+const devURL = /^https:\/\/dev.bouncer.nonprod.webservices.mozgcp.net/;
 const iTunesURL = /^https:\/\/itunes.apple.com/;
 const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
@@ -27,6 +28,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
         if (
             prodURL.test(downloadURL) ||
             stageURL.test(downloadURL) ||
+            devURL.test(downloadURL) ||
             iTunesURL.test(downloadURL) ||
             appStoreURL.test(downloadURL) ||
             playStoreURL.test(downloadURL) ||
@@ -99,7 +101,11 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
     }
 
     let eventObject = {};
-    if (prodURL.test(downloadURL) || stageURL.test(downloadURL)) {
+    if (
+        prodURL.test(downloadURL) ||
+        stageURL.test(downloadURL) ||
+        devURL.test(downloadURL)
+    ) {
         // extract the values we need from the parameters
         const productParam = params.product;
         const productSplit = productParam.split('-');
