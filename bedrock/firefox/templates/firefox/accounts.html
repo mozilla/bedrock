@@ -104,9 +104,9 @@
       <div class="accounts-products">
 
         {% if switch('moz-accounts-update') %}
-            <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-account-sign-in-to') }}</h2>
+            <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
           {% else %}
-            <h2>{{ ftl('firefox-account-sign-in-to') }}</h2>
+            <h2>{{ ftl('firefox-accounts-sign-in-to') }}</h2>
           {% endif %}
 
         <a href="{{ url('firefox.browsers.index') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-firefox">{{ ftl('firefox-accounts-firefox-browser') }}</h4></a>
