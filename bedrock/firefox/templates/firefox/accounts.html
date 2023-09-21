@@ -22,7 +22,15 @@
 {%- endblock -%}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
-{% block page_favicon %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endblock %}
+
+{% block page_favicon %}
+  {% if switch('moz-accounts-update') %}
+    {{ static('img/favicons/mozilla/favicon.ico') }}
+  {% else %}
+    {{ static('img/favicons/firefox/favicon.ico') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
@@ -44,10 +52,11 @@
     <div class="c-sub-navigation-content">
       <h2 class="c-sub-navigation-title is-summary">
         <a href="{{ url('firefox.accounts') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Accounts">
-          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/mozilla/logo.svg') }}" width="24" height="24" alt="">
           {% if switch('moz-accounts-update') %}
+          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/mozilla/logo.svg') }}" width="24" height="24" alt="">
             {{ ftl('sub-navigation-mozilla-accounts', fallback='sub-navigation-firefox-accounts') }}
           {% else %}
+            <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
             {{ ftl('sub-navigation-firefox-accounts') }}
           {% endif %}
         </a>
