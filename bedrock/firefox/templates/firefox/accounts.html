@@ -11,25 +11,26 @@
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
 
 {%- block page_title -%}
-  {% if switch('moz-accounts-update') %}
+  {%- if switch('moz-accounts-update') -%}
     {{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}
-  {% else %}
+  {%- else -%}
     {{ ftl('firefox-accounts-get-a-firefox-account') }}
-  {% endif %}
+  {%- endif -%}
 {%- endblock -%}
+
 {%- block page_desc -%}
   {{ ftl('firefox-accounts-securely-sync-your') }}
 {%- endblock -%}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
-{% block page_favicon %}
-  {% if switch('moz-accounts-update') %}
+{%- block page_favicon -%}
+  {%- if switch('moz-accounts-update') -%}
     {{ static('img/favicons/mozilla/favicon.ico') }}
-  {% else %}
+  {%- else -%}
     {{ static('img/favicons/firefox/favicon.ico') }}
-  {% endif %}
-{% endblock %}
+  {%- endif -%}
+{%- endblock -%}
 
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
