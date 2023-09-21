@@ -54,7 +54,6 @@
       <h2 class="c-sub-navigation-title is-summary">
         <a href="{{ url('firefox.accounts') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Accounts">
           {% if switch('moz-accounts-update') %}
-          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/mozilla/logo.svg') }}" width="24" height="24" alt="">
             {{ ftl('sub-navigation-mozilla-accounts', fallback='sub-navigation-firefox-accounts') }}
           {% else %}
             <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
