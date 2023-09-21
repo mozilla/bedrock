@@ -86,7 +86,7 @@ jobs:
       - name: Sets specific env vars IF we're on testing against dev/main only
         if: ${{ github.event.inputs.branch == 'main'}}
         run: |
-          echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
+          echo "BOUNCER_URL=https://dev.bouncer.nonprod.webservices.mozgcp.net/" >> $GITHUB_ENV
 
       - name: Run functional integration tests
         if: always()
