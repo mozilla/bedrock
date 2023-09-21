@@ -58,7 +58,7 @@ firefox-products-join-firefox-and-get-the-most = Join { -brand-name-firefox } an
 # Variables:
 #   $fxa_attr (string) - anchor link url and attributes
 #   $accounts_attr (string) - anchor link url and attributes
-firefox-products-already-have-an-account-sign = Already have an account? <a { $fxa_attr }>Sign in</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
+firefox-products-already-have-an-account-sign = Already have an account? <a { $fxa_attr }>Sign In</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
 
 firefox-products-firefox-focus = { -brand-name-firefox-focus }
 firefox-products-your-dedicated-privacy = Your dedicated privacy browser with automatic tracking protection and ad blocking.
