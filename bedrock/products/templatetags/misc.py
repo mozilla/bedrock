@@ -371,6 +371,20 @@ def _relay_get_currency(product, country_code, lang):
     return product_region["currency"]
 
 
+def relay_monthly_price(product, plan, country_code, lang):
+    """
+    Return a number for monthly cost of matching country, language, plan
+    """
+    plan = RELAY_MONTH_PLAN if plan == RELAY_MONTH_PLAN else RELAY_12_MONTH_PLAN
+    currency = _relay_get_currency(product, country_code, lang)
+    product = product.replace("relay-", "")
+
+    price = settings.RELAY_STRIPE_PLAN_DATA[product]["prices"][currency][plan]
+    price = Decimal(price)
+
+    return price
+
+
 def _relay_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     separator = "&" if "?" in product_url else "?"
     client_id = settings.RELAY_CLIENT_ID
@@ -466,34 +480,6 @@ def relay_subscribe_link(
 
 
 @library.global_function
-def relay_monthly_price(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
-    """
-    Render a localized string displaying a Relay plan's monthly plan.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ relay_monthly_price_formatted( product='relay-email',
-                             country_code=country_code,
-                             lang=LANG,
-                            ) }}
-    """
-
-    plan = RELAY_MONTH_PLAN if plan == RELAY_MONTH_PLAN else RELAY_12_MONTH_PLAN
-
-    currency = _relay_get_currency(product, country_code, lang)
-
-    product = product.replace("relay-", "")
-    price = settings.RELAY_STRIPE_PLAN_DATA[product]["prices"][currency][plan]
-
-    price = Decimal(price)
-    return price
-
-
-@library.global_function
 def relay_monthly_price_formatted(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLAN, country_code=None, lang=None):
     """
     Render a localized string displaying a Relay plan's monthly plan.
@@ -508,6 +494,13 @@ def relay_monthly_price_formatted(product=RELAY_PRODUCT, plan=RELAY_12_MONTH_PLA
                              country_code=country_code,
                              lang=LANG,
                             ) }}
+
+    Output
+    -----------
+
+        country_code=CA, lang=en-CA => US$0.99/mo.
+        country_code=DE, lang=de => 0,99 €/Monat
+
     """
 
     currency = _relay_get_currency(product, country_code, lang)
@@ -534,6 +527,5 @@ def relay_bundle_savings():
 
     # there's only one supported region
     savings = settings.RELAY_STRIPE_PLAN_DATA["bundle"]["prices"]["USD"]["saving"]
-    saving = int(savings)
 
-    return Markup(saving)
+    return Markup(savings)
