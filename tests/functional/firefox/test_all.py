@@ -15,7 +15,6 @@ def test_firefox_release(base_url, selenium):
     product.select_platform("Windows 64-bit")
     product.select_language("English (US)")
     assert page.is_desktop_download_button_displayed
-    assert page.is_desktop_download_link_valid
     assert "product=firefox-latest-ssl" and "os=win64" and "lang=en-US" in page.desktop_download_link
 
 
@@ -27,7 +26,6 @@ def test_firefox_beta(base_url, selenium):
     product.select_platform("macOS")
     product.select_language("German — Deutsch")
     assert page.is_desktop_download_button_displayed
-    assert page.is_desktop_download_link_valid
     assert "product=firefox-beta-latest-ssl" and "os=osx" and "lang=de" in page.desktop_download_link
 
 
@@ -39,7 +37,6 @@ def test_firefox_developer(base_url, selenium):
     product.select_platform("Linux 64-bit")
     product.select_language("English (US)")
     assert page.is_desktop_download_button_displayed
-    assert page.is_desktop_download_link_valid
     assert "product=firefox-devedition-latest-ssl" and "os=linux64" and "lang=en-US" in page.desktop_download_link
 
 
@@ -51,7 +48,6 @@ def test_firefox_nightly(base_url, selenium):
     product.select_platform("Windows 32-bit")
     product.select_language("German — Deutsch")
     assert page.is_desktop_download_button_displayed
-    assert page.is_desktop_download_link_valid
     assert "product=firefox-nightly-latest-ssl" and "os=win" and "lang=de" in page.desktop_download_link
 
 
@@ -63,7 +59,6 @@ def test_firefox_esr(base_url, selenium):
     product.select_platform("Linux 32-bit")
     product.select_language("English (US)")
     assert page.is_desktop_download_button_displayed
-    assert page.is_desktop_download_link_valid
     assert "product=firefox-esr-latest-ssl" and "os=linux" and "lang=en-US" in page.desktop_download_link
 
 

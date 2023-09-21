@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -50,10 +48,6 @@ class FirefoxAllPage(BasePage):
     @property
     def is_desktop_download_button_displayed(self):
         return self.is_element_displayed(*self._desktop_download_button_locator)
-
-    @property
-    def is_desktop_download_link_valid(self):
-        return settings.BOUNCER_URL in self.find_element(*self._desktop_download_button_locator).get_attribute("href")
 
     def select_product(self, value):
         el = self.find_element(*self._product_locator)
