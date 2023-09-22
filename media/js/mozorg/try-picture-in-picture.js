@@ -16,7 +16,9 @@ window.onYouTubeIframeAPIReady = function () {
 
 (function () {
     'use strict';
-
+    var locale =
+        document.getElementsByTagName('html')[0].getAttribute('lang') ||
+        'en-US';
     var videoLink = document.querySelector('.js-video-play');
     var src = 'https://www.youtube.com/iframe_api';
 
@@ -42,12 +44,13 @@ window.onYouTubeIframeAPIReady = function () {
             return;
         }
 
+        var start = locale === 'en' ? 169 : 0;
         new window.YT.Player(videoLink, {
             width: 500,
             height: 281,
             videoId: videoId,
             playerVars: {
-                start: 158,
+                start: start,
                 modestbranding: 1, // hide YouTube logo.
                 rel: 0 // do not show related videos on end.
             },

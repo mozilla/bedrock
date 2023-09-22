@@ -11,6 +11,14 @@
 {% block page_title %}{{ ftl('try-pip-title') }}{% endblock %}
 {% block page_desc %}{% endblock %}
 
+{% if LANG == 'en-US' %}
+  {% set video_link = '2CT-zB6AO6k' %}
+  {% set video_thumbnail = static('img/mozorg/try-picture-in-picture/video-thumbnail.jpg') %}
+{% else %}
+  {% set video_link = 'F-nFQryDB0s' %}
+  {% set video_thumbnail = static('img/mozorg/try-picture-in-picture/video-thumbnail-alt.jpg') %}
+{% endif %}
+
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('try-picture-in-picture') }}
@@ -21,8 +29,8 @@
 <section class="try-pip-content-main">
   <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace">
     <div class="mzp-c-video">
-      <a class="video-play js-video-play" href="https://youtu.be/2CT-zB6AO6k" data-id="2CT-zB6AO6k" data-video-title=" Must-have add-ons you’re missing out on | #AskFirefox" title="Play the video">
-        <img src="{{ static('img/mozorg/try-picture-in-picture/video-thumbnail.jpg') }}" alt="" width="1024" height="576">
+      <a class="video-play js-video-play" href="https://youtu.be/{{ video_link }}" data-id="{{ video_link }}" data-video-title=" Must-have add-ons you’re missing out on | #AskFirefox" title="Play the video">
+        <img src="{{ video_thumbnail }}" alt="" width="1024" height="576">
       </a>
     </div>
 

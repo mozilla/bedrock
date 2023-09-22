@@ -327,3 +327,9 @@ locales = [
 [[paths]]
     reference = "en/products/vpn/platform-post-download.ftl"
     l10n = "{locale}/products/vpn/platform-post-download.ftl"
+[[paths]]
+    reference = "en/mozorg/try-picture-in-picture.ftl.ftl"
+    l10n = "{locale}/mozorg/try-picture-in-picture.ftl.ftl"
+    locales = [
+        "it"
+    ]

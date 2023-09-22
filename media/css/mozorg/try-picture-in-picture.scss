@@ -4,7 +4,6 @@
 
 $brand-theme: "firefox";
 
-@import "../firefox/whatsnew/includes/base";
 @import "~@mozilla-protocol/core/protocol/css/includes/lib";
 @import "~@mozilla-protocol/core/protocol/css/components/notification-bar";
 @import "~@mozilla-protocol/core/protocol/css/components/video";
@@ -43,7 +42,7 @@ $brand-theme: "firefox";
 }
 
 .try-pip-content-extra {
-    margin-top: $layout-xl;
+    margin: $layout-xl 0;
 
     .try-pip-extra-title {
         @include text-title-sm;
