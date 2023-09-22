@@ -4,20 +4,12 @@
 
 import pytest
 
-from pages.firefox.whatsnew.whatsnew_118 import FirefoxWhatsNew118Page
+from pages.firefox.whatsnew.whatsnew_118_eu import FirefoxWhatsNew118EUPage
 
 
 @pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
 @pytest.mark.parametrize("locale", [("de"), ("fr"), ("en-GB")])
 def test_firefox_alt_cta_button_displayed(locale, base_url, selenium):
-    page = FirefoxWhatsNew118Page(selenium, base_url, locale=locale).open()
+    page = FirefoxWhatsNew118EUPage(selenium, base_url, locale=locale).open()
     assert page.is_firefox_alt_cta_button_displayed
-
-
-@pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
-@pytest.mark.nondestructive
-@pytest.mark.parametrize("locale", [("en-US"), ("en-CA")])
-def test_firefox_try_it_button_displayed(locale, base_url, selenium):
-    page = FirefoxWhatsNew118Page(selenium, base_url, locale=locale).open()
-    assert page.is_try_it_button_displayed
