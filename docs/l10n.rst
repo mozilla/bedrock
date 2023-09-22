@@ -130,18 +130,28 @@ Our convention for string ID creation is the following:
 Using brand names
 ~~~~~~~~~~~~~~~~~
 
-Common brand names are stored in a global `brands.ftl`_ file, in the form of `terms`_. Terms are useful for
+Common Mozilla brand names are stored in a global `brands.ftl`_ file, in the form of `terms`_. Terms are useful for
 keeping brand names separated from the rest of the translations, so that they can be managed in a consistent
 way across all translated files, and also updated easily in a global context. In general the brand names in
 this file remain in English and should not be translated, however locales still have the choice and control
 to make adjustments should it suit their particular language.
 
+Only our own brands should be managed this way, other common brands such as Safari should not. If you are concerned
+that the brand is a common word and may be translated, leave a comment for the translators.
+
+.. note::
+
+    We are trying to phase out use of ``{ -brand-name-firefox-browser }`` please use ``{ -brand-name-firefox } browser``.
+
+
 .. code-block:: text
 
     -brand-name = Firefox
 
-    about = About { -brand-name }.
-    update-successful = { -brand-name } has been updated.
+    example-about = About { -brand-name }.
+    example-update-successful = { -brand-name } has been updated.
+    # "Safari" here refers to the competing web browser
+    example-compare = How does { -brand-name } compare to Safari?
 
 .. important::
 
@@ -153,6 +163,59 @@ to make adjustments should it suit their particular language.
 .. _brands.ftl: https://github.com/mozilla/bedrock/blob/main/l10n/en/brands.ftl
 .. _terms: https://projectfluent.org/fluent/guide/terms.html
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
+
+Variables
+~~~~~~~~~
+
+Single hash comments are applied only to the string immediately following them. They should be used to provide
+additional context for the translators including:
+
+1. What the values of variables are.
+2. Context about where string appears on the page if it is not visible or references other elements on the page.
+3. Explanations of English idioms and jargon that may be confusing to non-native speakers.
+
+.. code-block:: fluent
+
+    # Variables:
+    #   $savings (string) - the percentage saved from the regular price, not including the % Examples: 50, 70
+    example-bundle-savings = Buy now for { $savings }% off.
+
+    # Context: Used as an accessible text alternative for an image
+    example-bookmark-manager-alt = The bookmark manager window in { -brand-name-firefox }.
+    # Context: This lists the various websites and magazines who have mentioned Firefox Relay.
+    # Example: "As seen in: FORBES magainze and LifeHacker"
+    example-social-proof = As seen in:
+
+    example-privacy-on-every = Want privacy on every device?
+    # "You got it" here is a casual answer to the previous question, "Want privacy on every device?"
+    example-you-got-it = You got it. Get { -brand-name-firefox } for mobile.
+
+
+HTML with attributes
+********************
+
+When passing HTML tags with attributes into strings for translation, remove as much room for error as possible by
+putting all the attributes and their values in a single variable. (This is most common with links and their href
+attributes but we do occasionally pass classes with other tags.)
+
+.. code-block:: fluent
+
+    # Variables:
+    #   $attrs (attrs) - link to https://www.mozilla.org/about/
+    example-created = { -brand-name-firefox } was created by <a {$attrs}>{ -brand-name-mozilla }</a>.
+
+    # Variables:
+    #   $class (string) - CSS class used to replace brand name with wordmark logo
+    example-firefox-relay = Add <span { $class }">{ -brand-name-firefox-relay }</span>
+
+
+.. code-block:: jinja
+
+    {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
+    <p>{{ ftl('example-created', attrs=created_attrs) }}</p>
+
+    {{ ftl('example-firefox-relay', class_name='class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay"') }}
+
 
 The ``ftl`` helper function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
