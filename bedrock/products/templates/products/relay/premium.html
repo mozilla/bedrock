@@ -38,7 +38,7 @@
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-premium">{{ ftl('relay-shared-firefox-relay') }}</div>
     <h1 class="c-hero-title">{{ ftl('premium-promo-hero-headline') }}</h1>
-    {% set monthly_price = relay_monthly_price(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
+    {% set monthly_price = relay_monthly_price_formatted(product='relay-bundle', plan='yearly', country_code=country_code, lang=LANG) %}
     <p class="c-hero-body">{{ ftl('premium-promo-hero-body-3') }}</p>
     <p><a href="#pricing" class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Get Started" data-cta-position="primary">{{ ftl('hero-section-cta') }}</a></p>
     <p class="c-hero-availability">{{ ftl('premium-promo-availability-warning-4') }}</p>
@@ -57,7 +57,7 @@
   <div class="mzp-l-content">
     <h2 class="u-hidden">{{ ftl('plan-matrix-title') }}</h2>
     <h3 class="c-pricing-sub">{{ ftl('plan-matrix-offer-title') }}</h3>
-    {% set savings = relay_bundle_savings(country_code=country_code, lang=LANG) %}
+    {% set savings = relay_bundle_savings() %}
     <p class="c-pricing-intro">{{ ftl('plan-matrix-offer-body-v2', savings=savings) }}</p>
     {% include 'products/relay/includes/matrix.html' %}
   </div>
