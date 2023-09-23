@@ -84,6 +84,7 @@ bottom of a file, or also have a "not required" group comment. Here's an example
 
     ## Required
     example-page-title = The Page Title
+    # this is a note the applies only to example-page-desc
     example-page-desc = This page is a test.
 
     ##
@@ -136,7 +137,7 @@ way across all translated files, and also updated easily in a global context. In
 this file remain in English and should not be translated, however locales still have the choice and control
 to make adjustments should it suit their particular language.
 
-Only our own brands should be managed this way, other common brands such as Safari should not. If you are concerned
+Only our own brands should be managed this way, brands from other companies should not. If you are concerned
 that the brand is a common word and may be translated, leave a comment for the translators.
 
 .. note::
@@ -144,7 +145,7 @@ that the brand is a common word and may be translated, leave a comment for the t
     We are trying to phase out use of ``{ -brand-name-firefox-browser }`` please use ``{ -brand-name-firefox } browser``.
 
 
-.. code-block:: text
+.. code-block:: fluent
 
     -brand-name = Firefox
 
@@ -215,6 +216,54 @@ attributes but we do occasionally pass classes with other tags.)
     <p>{{ ftl('example-created', attrs=created_attrs) }}</p>
 
     {{ ftl('example-firefox-relay', class_name='class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay"') }}
+
+
+Obsolete strings
+~~~~~~~~~~~~~~~~
+
+When new strings are added to a page sometimes they update or replace old strings. Obsolete strings & IDs should be removed from ftl files
+immediately if they are not being used as a fallback. If they are being kept as a fallback they should be removed after 1-2 months.
+
+
+Fallback
+********
+
+If you need to create a new string for the same place on a page and would like to keep the old one as a fallback, you can add a version
+suffix to the new string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
+
+.. code-block:: fluent
+
+    example-block-title-v2 = Security, reliability and speed — on every device, anywhere you go.
+    # Obsolete string
+    example-block-title = Security, reliability and speed — from name you can trust.
+
+
+The ``ftl`` helper function has the ability to accept a fallback string ID and is described in the next section.
+
+Remove
+******
+
+If the new string is fundamentally different a new string ID should be created and the old one deleted.
+
+For example, if the page is going from talking about the Google Translate extension to promoting our own Firefox Translate feature the old
+strings are not appropriate fall backs.
+
+The old strings and IDs should be deleted:
+
+.. code-block:: fluent
+
+    example-translate-title = The To Google Translate extension makes translating the page you’re on easier than ever.
+    example-translate-content = Google Translate, with over 100 languages* at the ready, is used by millions of people around the world.
+
+
+The new strings should have different IDs and not be versioned:
+
+.. code-block:: fluent
+
+    example-translate-integrated-title = { -brand-name-firefox } now comes with an integrated translation tool.
+    example-translate-integrated-content =  Unlike some cloud-based alternatives, { -brand-name-firefox } translates text locally, so the content you’re translating doesn’t leave your machine.
+
+The ``ftl_has_messages`` jinja helper would be useful here and is described in the next section.
 
 
 The ``ftl`` helper function

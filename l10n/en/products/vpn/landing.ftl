@@ -98,14 +98,14 @@ vpn-landing-faq-compatibility-question-heading = What devices is { -brand-name-m
 #   $desktop (url) - link to https://www.mozilla.org/products/vpn/desktop/
 vpn-landing-faq-compatibility-question-desc-v2 = { -brand-name-mozilla-vpn } is compatible with <a href="{ $mobile }">mobile</a>, tablet, and <a href="{ $desktop }">desktop</a> on:
 
-# Outdated string
+# Obsolete string
 vpn-landing-faq-compatibility-question-desc = { -brand-name-mozilla-vpn } is compatible with:
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/windows/
 vpn-landing-faq-compatibility-question-desc-windows-v3 = <a href="{ $url }">{ -brand-name-windows }</a> 10/11 (64-bit only)
 
-# Outdated string
+# Obsolete string
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/windows/
 vpn-landing-faq-compatibility-question-desc-windows-v2 = <a href="{ $url }">{ -brand-name-windows }</a> 10 (64-bit only)
@@ -114,24 +114,24 @@ vpn-landing-faq-compatibility-question-desc-windows-v2 = <a href="{ $url }">{ -b
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
 vpn-landing-faq-compatibility-question-desc-mac-v3 = <a href="{ $url }">{ -brand-name-mac }</a> (10.14 and up)
 
-# Outdated string
+# Obsolete string
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
 vpn-landing-faq-compatibility-question-desc-mac-v2 = <a href="{ $url }">{ -brand-name-mac }</a> (10.15 and up)
 
-# Outdated string
+# Obsolete string
 vpn-landing-faq-compatibility-question-desc-mac = { -brand-name-mac } (10.15 and up)
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/android/
 vpn-landing-faq-compatibility-question-desc-android-v3 = <a href="{ $url }">{ -brand-name-android }</a> (version 8 and up)
 
-# Outdated string
+# Obsolete string
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/android/
 vpn-landing-faq-compatibility-question-desc-android-v2 = <a href="{ $url }">{ -brand-name-android }</a> (version 6 and up)
 
-# Outdated string
+# Obsolete string
 vpn-landing-faq-compatibility-question-desc-android = { -brand-name-android } (version 6 and up)
 
 # Variables:
@@ -139,7 +139,7 @@ vpn-landing-faq-compatibility-question-desc-android = { -brand-name-android } (v
 #   $version (number) - minimum supported version number
 vpn-landing-faq-compatibility-question-desc-ios-v4 = <a href="{ $url }">{ -brand-name-ios }</a> ({ $version } and up)
 
-# Outdated string
+# Obsolete string
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/ios/
 vpn-landing-faq-compatibility-question-desc-ios-v3 = <a href="{ $url }">{ -brand-name-ios }</a> (12.0 and up)
@@ -148,7 +148,7 @@ vpn-landing-faq-compatibility-question-desc-ios-v3 = <a href="{ $url }">{ -brand
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/linux/
 vpn-landing-faq-compatibility-question-desc-linux-v4 = <a href="{ $url }">Linux</a> (Ubuntu 20.04 and up)
 
-# Outdated string
+# Obsolete string
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/linux/
 vpn-landing-faq-compatibility-question-desc-linux-v3 = <a href="{ $url }">{ -brand-name-linux }</a> ({ -brand-name-ubuntu } 18.04 and up)
 
@@ -158,7 +158,7 @@ vpn-landing-faq-refund-question-desc-v2 = The first time you subscribe to { -bra
 
 vpn-landing-faq-refund-question-additional-desc = If you purchase your subscription through in-app purchase from the { -brand-name-apple } { -brand-name-app-store } or the { -brand-name-google-play } Store, your payment is subject to the terms and conditions of the { -brand-name-app-store }. You must direct any billing and refund inquiries for such purchases to { -brand-name-apple } or { -brand-name-google }, as appropriate.
 
-# Outdated string
+# Obsolete string
 vpn-landing-faq-refund-question-desc = You can get your money back within 30 days of purchasing your subscription. Contact us and submit the refund request by tapping the “Get Help” button in Settings on your { -brand-name-mozilla-vpn } app.
 
 vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscription?
@@ -181,7 +181,7 @@ vpn-landing-invite-page-title = Join the Waitlist: { -brand-name-mozilla-vpn }
 
 vpn-landing-invite-page-desc-v2 = Get notified when { -brand-name-mozilla-vpn } is available for your region.
 
-# Outdated string
+# Obsolete string
 vpn-landing-invite-page-desc = Get notified when { -brand-name-mozilla-vpn } is available for your device and region.
 
 vpn-landing-invite-page-heading = Join the VPN Waitlist
