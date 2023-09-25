@@ -45,9 +45,6 @@ sub-navigation-chromebook = { -brand-name-chromebook }
 # Obsolete string
 sub-navigation-firefox-accounts = { -brand-name-firefox-accounts }
 
-# Obsolete string
-sub-navigation-mozilla-accounts = { -brand-name-mozilla-account }
-
 sub-navigation-mozilla-account = { -brand-name-mozilla-account }
 sub-navigation-sync = { -brand-name-sync }
 sub-navigation-windows = { -brand-name-windows }
