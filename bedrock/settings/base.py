@@ -2128,3 +2128,6 @@ RELAY_PLANS_BY_COUNTRY_AND_LANGUAGE = {
         "US": {"en": "US"},  # United States
     },
 }
+
+# Monitor Breach Scan URL
+MONITOR_BREACH_SCAN_URL = config("MONITOR_BREACH_SCAN_URL", default="https://monitor.firefox.com/scan")
