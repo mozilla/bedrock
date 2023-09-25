@@ -382,8 +382,7 @@ Defining metrics and pings
 All of the data we send to the Glean pipeline is defined in
 :abbr:`YAML (Yet Another Markup Language)` schema files in the ``./glean/``
 project root directory. The ``metrics.yaml`` file defines all the different
-metrics types and events we record, and the ``pings.yaml`` file defines
-any custom pings we use to send collections of individual metrics.
+metrics types and events we record.
 
 .. Note::
 
