@@ -462,6 +462,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-118.scss"
+      ],
+      "name": "firefox_whatsnew_118"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1656,6 +1662,12 @@
         "js/firefox/whatsnew/whatsnew-117-experiment-na-vpn-relay.es6.js"
       ],
       "name": "firefox_whatsnew_117_experiment_na_vpn_relay"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-118.es6.js"
+      ],
+      "name": "firefox_whatsnew_118"
     },
     {
       "files": [
