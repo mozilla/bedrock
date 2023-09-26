@@ -243,7 +243,7 @@
       <p>{{ ftl('compare-safari-firefox-and-safari-both-provide') }}</p>
 
       {% if switch('moz-accounts-update') %}
-        <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v2', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+        <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v3', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link" data-cta-name="Mozilla account"'|safe|format(url('firefox.accounts'))) }}</p>
       {% else %}
         <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
       {% endif %}

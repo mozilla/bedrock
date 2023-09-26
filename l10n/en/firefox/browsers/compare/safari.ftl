@@ -77,8 +77,7 @@ compare-safari-both-browsers-have-a-lot = Both browsers have a lot of crossover 
 
 # Variables:
 #   $attrs (string) - link to /firefox/accounts/ with additional attributes for analytics
-compare-safari-firefox-also-offers-a-similar-updated-v2 = { -brand-name-firefox } also offers a similar sync feature when you sign up for a free <a { $attrs }>{ -brand-name-mozilla-account }</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets { -brand-name-firefox } apart from { -brand-name-safari } is that it is available on any desktop or mobile platform, { -brand-name-ios }, { -brand-name-android }, { -brand-name-windows } or { -brand-name-mac }, boosting its portability across any device you may own.
-
+compare-safari-firefox-also-offers-a-similar-updated-v3 = { -brand-name-firefox } also offers a similar sync feature when you sign up for a free <a { $attrs }>{ -brand-name-mozilla-account }</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets { -brand-name-firefox } apart from Safari is that it is available on any desktop or mobile platform, iOS, Android, Windows or macOS, boosting its portability across any device you may own.
 
 # Obsolete string
 # Variables:

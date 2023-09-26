@@ -115,7 +115,7 @@ firefox-privacy-hub-take-your-privacy-and-bookmarks = Take your privacy and book
 #   $signin (string) - anchor link url and attributes
 #   $class_name (string) - CSS class name for sign in link
 #   $learn_more (url) - link to https://www.mozilla.org/firefox/accounts/
-firefox-privacy-hub-already-have-an-account-v2 = Already have an account? <a { $sign_in } class="{ $class_name }">Sign In</a> or <a href="{ $learn_more }">learn more</a> about joining { -brand-name-mozilla }.
+firefox-privacy-hub-already-have-an-account-v2 = Already have an account? <a { $sign_in } class="{ $class_name }">Sign in</a> or <a href="{ $learn_more }">learn more</a> about joining { -brand-name-mozilla }.
 
 # Obsolete string
 # Variables:
