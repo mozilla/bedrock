@@ -4,20 +4,32 @@
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
+$brand-theme: 'mozilla';
+$banner-mq: 1015px;
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-pocket';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-monitor';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-relay';
+
 
 
 .moz-account-banner {
     background: $color-black;
     border-radius: $border-radius-lg;
     margin-bottom: $layout-lg;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: $layout-lg;
+
+    .banner-product-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        @media (min-width: $banner-mq) {
+            flex-direction: row;
+            text-align: left;
+        }
+    }
 
     h2 {
         @include font-mozilla;
@@ -26,13 +38,64 @@ $image-path: '/media/protocol/img';
 
         .gradient-text {
             background: -webkit-linear-gradient(0deg, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     }
 
+    .fxa-form-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     #fxa-email-form,
-    .fxa-signin {
+    .fxa-signin,
+    .fxa-cta {
         color: $color-white;
+        margin-top: 0;
+    }
+
+    .fxa-cta {
+        margin: 0 auto;
+        margin-top: $spacing-2xl;
+        text-align: center;
+
+        @media (min-width: $banner-mq) {
+            text-align: left;
+            margin: unset;
+        }
+    }
+
+    a {
+        color: $color-white;
+        border-bottom: 1px solid $color-white;
+
+        &:hover {
+            color: $color-white;
+        }
+    }
+
+    .banner-products-list {
+        display: flex;
+        flex-shrink: 0;
+        margin: 0 auto;
+
+        li {
+            margin-left: 20px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            span {
+                @include visually-hidden;
+            }
+        }
+
+        @media (min-width: $banner-mq) {
+            margin-right: 0;
+            margin-left: auto;
+        }
     }
 }

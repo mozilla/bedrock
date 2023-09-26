@@ -16,6 +16,8 @@
   {{ super() }}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox-privacy-products') }}
+
+  {{ css_bundle('moz-account-banner') }}
 {% endblock %}
 
 {% block body_class %}{{ super() }} privacy-products{% endblock %}
@@ -280,6 +282,7 @@
       </div>
     </section>
   </div>
+  {% include 'mozorg/includes/mozilla-account-form-banner.html' %}
 {% endblock %}
 
 {% block js %}

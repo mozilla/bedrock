@@ -31,6 +31,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-master') }}
+  {{ css_bundle('moz-account-banner') }}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -227,57 +228,7 @@
       <a class="mzp-c-cta-link" href="{{ 'https://relay.firefox.com/' + referrals }}" data-link-name="Relay" data-link-type="link">{{ ftl('firefox-home-try-relay') }}</a>
     {% endcall %}
 
-    <div class="c-end mzp-t-dark">
-      <div class="mzp-l-content">
-        <div class="c-showcase t-small">
-            <ul class="c-showcase-list">
-              <li>
-                <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Browsers">
-                  <img alt="" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="40" width="40"><br>
-                  {{ ftl('firefox-home-browsers') }}
-                </a>
-              </li>
-              <li>
-                <a class="mzp-c-cta-link" href="https://monitor.firefox.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Monitor">
-                  <img alt="" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" height="40" width="40"><br>
-                  {{ ftl('firefox-home-monitor') }}
-                </a>
-              </li>
-              <li>
-                <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Mozilla VPN">
-                  <img alt="" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat-white.svg') }}" height="40" width="40"><br>
-                  {{ ftl('firefox-home-mozilla-vpn') }}
-                </a>
-              </li>
-              <li>
-                <a class="mzp-c-cta-link" href="https://getpocket.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
-                  <img alt="" src="{{ static('img/logos/pocket/logo.svg') }}" height="40" width="40"><br>
-                  {{ ftl('firefox-home-pocket') }}
-                </a>
-              </li>
-              <li>
-                <a class="mzp-c-cta-link" href="https://relay.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Relay">
-                  <img alt="" src="{{ static('protocol/img/logos/firefox/relay/logo-white.svg') }}" height="40" width="40"><br>
-                  {{ ftl('firefox-home-relay') }}
-                </a>
-              </li>
-            </ul>
-        </div>
-        <h2 class="c-end-title">{{ ftl('firefox-home-one-login-all-your') }}</h2>
-        <div class="mzp-c-button-download-container">
-          {{ fxa_button(
-            entrypoint='mozilla.org-firefox_home',
-            button_text=ftl('firefox-home-join-firefox'),
-            optional_parameters={'utm_campaign': 'firefox-home', 'utm_content': 'secondary-join-firefox'},
-            optional_attributes={'data-cta-text': 'Join Firefox', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'secondary'}
-          ) }}
-          <small class="mzp-c-button-download-privacy-link">
-            <a href="{{ url('firefox.accounts') }}">{{ ftl('firefox-home-learn-more-about-joining') }}</a>
-          </small>
-        </div>
-
-      </div>
-    </div>
+    {% include 'mozorg/includes/mozilla-account-cta-banner.html' %}
 
 </main>
 {% endblock %}

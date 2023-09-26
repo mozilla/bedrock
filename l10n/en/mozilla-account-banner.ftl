@@ -3,4 +3,15 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 moz-account-banner-title = One login. <br> <span class="gradient-text">Everything</span> { -brand-name-mozilla }.
-moz-account-already-have = Already have an account? <a href="#">Sign in</a> or <a href="#">learn more</a> about { -brand-name-mozilla }
+
+# Variables
+#   $sign_in_url - link to
+#   $learn_more_url - link to https://www.mozilla.org/en-US/firefox/accounts/
+moz-account-already-have = Already have an account? <a { $sign_in_url }>Sign in</a> or <a { $learn_more_url }>learn more</a> about { -brand-name-mozilla }
+moz-account-get-a-mozilla-account = Get a { -brand-name-mozilla-account }
+
+moz-account-product-firefox = { -brand-name-firefox }
+moz-account-product-monitor = { -brand-name-monitor }
+moz-account-product-pocket = { -brand-name-pocket }
+moz-account-product-vpn = { -brand-name-mozilla-vpn }
+moz-account-product-relay = { -brand-name-relay }
