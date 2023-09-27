@@ -23,7 +23,7 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import MozSocialWaitlistForm, RelayBundleWaitlistForm, RelayPhoneWaitlistForm, RelayPremiumWaitlistForm, VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils import L10nTemplateView, ftl_file_is_active
 
 
 def vpn_available(request):
@@ -563,11 +563,36 @@ def monitor_waitlist_plus_page(request):
 
 
 @require_safe
-def vpn_resource_center_redirect(request, slug, old_template, ftl_files):
+def vpn_resource_center_redirect(request, slug):
+    VPNRC_SLUGS = {
+        "what-is-an-ip-address": {
+            "slug": "what-is-an-ip-address",
+            "old_template": "products/vpn/more/ip-address.html",
+            "ftl_files": ["products/vpn/more/ip-address", "products/vpn/shared"],
+        },
+        "vpn-or-proxy": {
+            "slug": "the-difference-between-a-vpn-and-a-web-proxy",
+            "old_template": "products/vpn/more/vpn-or-proxy.html",
+            "ftl_files": ["products/vpn/more/vpn-or-proxy", "products/vpn/shared"],
+        },
+        "what-is-a-vpn": {
+            "slug": "what-is-a-vpn",
+            "old_template": "products/vpn/more/what-is-a-vpn.html",
+            "ftl_files": ["products/vpn/more/what-is-a-vpn", "products/vpn/shared"],
+        },
+        "when-to-use-a-vpn": {
+            "slug": "5-reasons-you-should-use-a-vpn",
+            "old_template": "products/vpn/more/when-to-use.html",
+            "ftl_files": ["products/vpn/more/when-to-use-a-vpn", "products/vpn/shared"],
+        },
+    }
     locale = l10n_utils.get_locale(request)
-    slug = "what-is-an-ip-address"
-    redirect_link = f"/products/vpn/resource-center/{slug}/"
-    if active_locale_available(slug, locale):
+    curr_page = VPNRC_SLUGS[slug]
+    rc_slug = curr_page["slug"]
+    redirect_link = f"{locale}/products/vpn/resource-center/{rc_slug}/"
+    if active_locale_available(rc_slug, locale):
         return redirect(redirect_link)
+    elif ftl_file_is_active(curr_page["ftl_files"][0]):
+        return l10n_utils.render(request, template=curr_page["old_template"], ftl_files=curr_page["ftl_files"])
     else:
-        return l10n_utils.render(request, template=old_template, ftl_files=ftl_files)
+        return redirect(redirect_link)
