@@ -8,7 +8,16 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}{{ ftl('welcome-page1-more-than-a-browser-firefox') }}{% endblock %}
+{% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+
+{%- block page_title -%}
+  {%- if mozilla_monitor -%}
+    {{ ftl('welcome-page1-more-than-a-browser-mozilla', fallback='welcome-page1-more-than-a-browser-firefox') }}
+  {%- else -%}
+    {{ ftl('welcome-page1-more-than-a-browser-firefox') }}
+  {%- endif -%}
+{%- endblock -%}
+
 {% block page_desc %}{{ ftl('welcome-page1-take-the-next-step-to-protect') }}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
@@ -24,10 +33,12 @@
 {% set _utm_campaign = 'welcome-1-monitor' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
-{% set hero_title = ftl('welcome-page1-stay-ahead-of-hackers-check') %}
+{% set hero_title = ftl('welcome-page1-stay-ahead-of-hackers-check-v2', fallback='welcome-page1-stay-ahead-of-hackers-check') if mozilla_monitor else ftl('welcome-page1-stay-ahead-of-hackers-check') %}
+
 {% set _utm_content = 'stay-ahead-hackers' %}
 
 {% block content_intro %}
+
   {% call call_out(
     title=hero_title,
     desc=ftl('welcome-page1-youve-got-the-web-browser'),
@@ -50,10 +61,22 @@
 
 {% block content_primary %}
 <div class="body-primary">
-  <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/firefox/monitor/logo-word-hor.svg') }}" width="256" height="" alt="{{ ftl('welcome-page1-firefox-monitor') }}"></h2>
+  <h2 class="body-primary-title">
+    {% if mozilla_monitor %}
+      <img src="{{ static('img/logos/mozilla/monitor/wordmark.svg') }}" width="256" height="" alt="{{ ftl('welcome-page1-mozilla-monitor') }}">
+    {% else %}
+      <img src="{{ static('protocol/img/logos/firefox/monitor/logo-word-hor.svg') }}" width="256" height="" alt="{{ ftl('welcome-page1-firefox-monitor') }}">
+    {% endif %}
+  </h2>
 
   <div class="body-primary-body">
-    <p>{{ ftl('welcome-page1-firefox-monitor-shows-you') }}</p>
+    <p>
+      {% if mozilla_monitor %}
+        {{ ftl('welcome-page1-mozilla-monitor-shows-you', fallback='welcome-page1-firefox-monitor-shows-you') }}
+      {% else %}
+        {{ ftl('welcome-page1-firefox-monitor-shows-you') }}
+      {% endif %}
+    </p>
   </div>
 </div>
 {% endblock %}

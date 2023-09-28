@@ -76,3 +76,8 @@
 template {
     display: none !important; /* stylelint-disable-line declaration-no-important */
 }
+
+// temporary override for Mozilla Monitor word mark
+.mzp-c-wordmark.t-product-mozilla-monitor {
+    background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
+}

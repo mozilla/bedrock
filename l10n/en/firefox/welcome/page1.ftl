@@ -5,17 +5,32 @@
 ### URL: https://www-dev.allizom.org/firefox/welcome/1/
 
 # HTML page title
+welcome-page1-more-than-a-browser-mozilla = More than a browser - { -brand-name-mozilla-monitor } is your lookout for hackers
+
+# Outdated string
 welcome-page1-more-than-a-browser-firefox = More than a browser - { -brand-name-firefox-monitor } is your lookout for hackers
 
 # HTML page description
 welcome-page1-take-the-next-step-to-protect = Take the next step to protect your privacy online with the { -brand-name-firefox } family of products.
 
+welcome-page1-stay-ahead-of-hackers-check-v2 = Stay ahead of hackers. Check for data breaches with { -brand-name-mozilla-monitor }.
+
+# Obsolete string
 welcome-page1-stay-ahead-of-hackers-check = Stay ahead of hackers. Check for data breaches with { -brand-name-firefox-monitor }.
 welcome-page1-youre-on-track-to-stay-protected = You’re on track to stay protected
 welcome-page1-youve-got-the-web-browser = You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.
 welcome-page1-check-your-breach-report = Check Your Breach Report
+
+welcome-page1-mozilla-monitor = { -brand-name-mozilla-monitor }
+
+# Obsolete string
 welcome-page1-firefox-monitor = { -brand-name-firefox-monitor }
+
+welcome-page1-mozilla-monitor-shows-you = { -brand-name-mozilla-monitor } shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.
+
+# Obsolete string
 welcome-page1-firefox-monitor-shows-you = { -brand-name-firefox-monitor } shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.
+
 welcome-page1-stay-ahead-of-hackers = Stay ahead of hackers
 
 # Variables:

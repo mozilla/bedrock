@@ -59,7 +59,11 @@ firefox-home-relay = { -brand-name-relay }
 ## The strings below are visually hidden in the page and replaced by logo wordmark images. They are still important for a11y and SEO.
 
 firefox-home-firefox-browser = { -brand-name-firefox-browser }
+firefox-home-mozilla-monitor = { -brand-name-mozilla-monitor }
+
+# Obsolete string
 firefox-home-firefox-monitor = { -brand-name-firefox-monitor }
+
 firefox-home-firefox-lockwise = { -brand-name-firefox-lockwise }
 firefox-home-firefox-send = { -brand-name-firefox-send }
 firefox-home-firefox-relay = { -brand-name-firefox-relay }

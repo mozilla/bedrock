@@ -228,7 +228,13 @@
     <ol>
       <li>{{ ftl('privacy-book-search-your-name') }}</li>
       <li>{{ ftl('privacy-book-dont-have-time') }}</li>
-      <li>{{ ftl('privacy-book-breach-alert-if') }}</li>
+      <li>
+        {% if switch('mozilla-monitor-brand-name') %}
+          {{ ftl('privacy-book-breach-alert-if-v2', fallback='privacy-book-breach-alert-if') }}
+        {% else %}
+          {{ ftl('privacy-book-breach-alert-if') }}
+        {% endif %}
+      </li>
     </ol>
   {% endcall %}
 

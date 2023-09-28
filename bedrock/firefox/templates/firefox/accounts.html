@@ -130,7 +130,16 @@
           {% endif %}
         </ul>
 
-        <a href="https://monitor.firefox.com/"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-monitor">{{ ftl('firefox-accounts-firefox-monitor') }}</h4></a>
+        <a href="https://monitor.firefox.com/">
+          {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+          <h4 class="mzp-c-wordmark mzp-t-wordmark-sm {% if mozilla_monitor %}t-product-mozilla-monitor{% else %}mzp-t-product-monitor{% endif %}">
+            {% if mozilla_monitor %}
+              {{ ftl('firefox-accounts-mozilla-monitor', fallback='firefox-accounts-firefox-monitor') }}
+            {% else %}
+              {{ ftl('firefox-accounts-firefox-monitor') }}
+            {% endif %}
+          </h4>
+        </a>
         <ul class="mzp-u-list-styled">
           <li>{{ ftl('firefox-accounts-get-email-alerts', fallback='firefox-accounts-see-if-youve-been') }}</li>
         </ul>
