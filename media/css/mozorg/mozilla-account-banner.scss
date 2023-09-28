@@ -8,8 +8,9 @@ $brand-theme: 'mozilla';
 $banner-mq: 1015px;
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
-
+@import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 
 .moz-account-banner {
     background: $color-black;
@@ -32,7 +33,7 @@ $banner-mq: 1015px;
     }
 
     h2 {
-        @include font-mozilla;
+        @include font-base;
         @include text-title-xl;
         color: $color-white;
 
@@ -43,33 +44,57 @@ $banner-mq: 1015px;
         }
     }
 
-    .fxa-form-cta {
+    .accounts-cta-wrapper {
+        @include font-base;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+
+        #fxa-email-form {
+            color: $color-white;
+            margin-top: $spacing-xl;
+
+            .mzp-c-form-header {
+                display: none;
+            }
+        }
+
+        .mzp-c-field-info,
+        .accounts-signin {
+            @include text-body-xs;
+        }
+
+        @media (min-width: $banner-mq) {
+            align-items: flex-start;
+        }
     }
 
-    #fxa-email-form,
-    .fxa-signin,
-    .fxa-cta {
+
+    .accounts-signin,
+    .accounts-cta {
         color: $color-white;
         margin-top: 0;
     }
 
-    .fxa-cta {
+    .accounts-cta {
         margin: 0 auto;
         margin-top: $spacing-2xl;
         text-align: center;
 
+        small {
+            a {
+                text-decoration: underline;
+            }
+        }
+
         @media (min-width: $banner-mq) {
             text-align: left;
-            margin: unset;
+            margin: 0;
         }
     }
 
     a {
         color: $color-white;
-        border-bottom: 1px solid $color-white;
 
         &:hover {
             color: $color-white;
@@ -96,6 +121,33 @@ $banner-mq: 1015px;
         @media (min-width: $banner-mq) {
             margin-right: 0;
             margin-left: auto;
+        }
+    }
+
+    .fxa-email-field-container {
+        @media (min-width: $banner-mq) {
+            @supports (display:grid) {
+                & {
+                    @include grid-column-gap($spacing-lg);
+                    display: grid;
+                    grid-template-columns: 1fr 100px;
+                }
+
+                .mzp-c-field {
+                    padding-bottom: 0;
+                }
+
+                .mzp-c-button-container {
+                    display: block; // not flex
+
+                    // put in fake form label to push button down height of real form label next to it
+                    &::before {
+                        @include field-label;
+                        content: '.';
+                        visibility: hidden;
+                    }
+                }
+            }
         }
     }
 }

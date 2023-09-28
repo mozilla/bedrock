@@ -37,16 +37,16 @@
         </ul>
     </div>
 
-      <div class="fxa-form-cta">
+      <div class="accounts-cta-wrapper">
         {{ fxa_email_form(
           class_name='fxa-form',
           entrypoint=_entrypoint,
           button_class='mzp-c-button mzp-t-product mzp-t-lg'
           )
         }}
-        <p class="fxa-signin">
+        <p class="accounts-signin">
           {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin') %}
-          {% set sign_in_url = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set sign_in_url = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="Accounts Learn More"'|safe %}
           {% set learn_more_url = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
           {{ ftl('moz-account-already-have', sign_in_url=sign_in_url, learn_more_url=learn_more_url) }}
         </p>
