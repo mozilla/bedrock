@@ -5,6 +5,7 @@
 #}
 
 {% from 'macros-protocol.html' import split %}
+{% from "products/vpn/includes/macros.html" import vpn_resource_center_cta with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -14,6 +15,19 @@
 {% endblock page_css %}
 
 {% block page_title%}{% block article_title %}{% endblock article_title %}{% endblock page_title%}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_resource_center_cta(
+      referral_id='vpn-resource-center-article',
+      link_text=ftl('vpn-shared-subscribe-link'),
+      alt_link_text=ftl('vpn-shared-waitlist-link'),
+      class_name='mzp-c-button mzp-t-secondary mzp-t-md',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block content %}
 <nav class="mzp-c-breadcrumb">
@@ -77,16 +91,12 @@
     block_class='mzp-t-content-lg',
   ) %}
     <h2 class="resource-center-cta-title">{{ ftl('vpn-resource-center-obsessed-with') }}</h2>
-       {{ vpn_product_referral_link(
-          referral_id='vpn-resource-center-article',
-          page_anchor='#pricing',
-          link_text=ftl('vpn-resource-center-get-mozilla-vpn'),
-          class_name='mzp-c-button mzp-t-product',
-          optional_attributes= {
-            'data-cta-text' : 'Get Mozilla VPN',
-            'data-cta-type' : 'button',
-          }
-        ) }}
+      {{ vpn_resource_center_cta(
+        referral_id='vpn-resource-center-article',
+        link_text=ftl('vpn-shared-subscribe-link'),
+        alt_link_text=ftl('vpn-shared-waitlist-link'),
+        class_name='mzp-c-button mzp-t-product',
+      ) }}
   {% endcall %}
 {% endblock content %}
 
