@@ -24,7 +24,10 @@
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-emphasis-box')}}
   {{ css_bundle('firefox-browsers-products') }}
-  {{ css_bundle('moz-account-banner') }}
+
+  {% if switch('moz-accounts-update') %}
+    {{ css_bundle('moz-account-banner') }}
+  {% endif %}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -167,7 +170,31 @@
     </div>
   </section>
 
-  {% include 'mozorg/includes/mozilla-account-form-banner.html' %}
+  <!-- Mozilla accounts banner switch -->
+  {% if switch('moz-accounts-update') %}
+    {% include 'mozorg/includes/mozilla-account-form-banner.html' %}
+  {% else %}
+    <section class="mzp-l-content is-js-dependent">
+      <div class="mzp-c-emphasis-box mzp-t-dark t-account">
+        <div class="fxa-form-cta">
+          {{ fxa_email_form(
+            class_name='fxa-form',
+            entrypoint=_entrypoint,
+            form_title=ftl('browsers-mobile-join-firefox-and-get-the-most'),
+            button_class='mzp-c-button mzp-t-product mzp-t-lg'
+            )
+          }}
+          <p class="fxa-signin">
+            {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': 'browsers-footer'}) %}
+            {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+            {% set accounts_attr = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
+            {{ ftl('browsers-mobile-already-have-an-account-sign', accounts_attr=accounts_attr, fxa_attr=fxa_attr) }}
+          </p>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
 
 </main>
 {% endblock %}
