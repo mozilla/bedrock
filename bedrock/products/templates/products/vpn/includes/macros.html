@@ -136,7 +136,7 @@
 {% macro vpn_nav_cta(link_text, alt_link_text, download_link_text, utm_source, utm_campaign) -%}
   <div class="vpn-nav-cta">
     {% if vpn_available %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="navigation">
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="#pricing" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation">
         {{ ftl('vpn-shared-subscribe-link') }}
       </a>
     {% else %}
@@ -198,5 +198,26 @@
     <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.landing') }}">
       {{ ftl(alt_link_text) }}
     </a>
+  </div>
+{%- endmacro %}
+
+{% macro vpn_resource_center_cta(referral_id, link_text, alt_link_text, class_name) -%}
+  <div class="vpn-nav-cta">
+    {% if vpn_available %}
+      {{ vpn_product_referral_link(
+        referral_id=referral_id,
+        page_anchor='#pricing',
+        link_text=link_text,
+        class_name=class_name,
+        optional_attributes= {
+          'data-cta-text' : 'Get Mozilla VPN',
+          'data-cta-type' : 'button',
+        }
+      ) }}
+    {% else %}
+      <a class="{{ class_name }}" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+        {{ alt_link_text }}
+      </a>
+    {% endif %}
   </div>
 {%- endmacro %}

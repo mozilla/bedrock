@@ -301,6 +301,7 @@ def _filter_articles(articles_list, category):
 def resource_center_landing_view(request):
     ARTICLE_GROUP_SIZE = 6
     template_name = "products/vpn/resource-center/landing.html"
+    vpn_available_in_country = vpn_available(request)
     active_locales = locales_with_available_content(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -337,6 +338,7 @@ def resource_center_landing_view(request):
 
     ctx = {
         "active_locales": active_locales,
+        "vpn_available": vpn_available_in_country,
         "category_list": category_list,
         "first_article_group": first_article_group,
         "second_article_group": second_article_group,
@@ -356,6 +358,7 @@ def resource_center_article_view(request, slug):
 
     template_name = "products/vpn/resource-center/article.html"
     requested_locale = l10n_utils.get_locale(request)
+    vpn_available_in_country = vpn_available(request)
 
     active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
         classification=CONTENT_CLASSIFICATION_VPN,
@@ -392,6 +395,7 @@ def resource_center_article_view(request, slug):
     ctx.update(
         {
             "active_locales": active_locales_for_this_article,
+            "vpn_available": vpn_available_in_country,
             "related_articles": [x.data for x in article.get_related_entries()],
         }
     )
