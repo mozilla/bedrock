@@ -555,4 +555,6 @@ redirectpatterns = (
     redirect(r"^firefox/features/independent/?$", "firefox.features.index"),
     redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
     redirect(r"^firefox/sync/?$", "firefox.features.sync"),
+    # issue 13732
+    redirect(r"^firefox/welcome/3/?$", "firefox.accounts"),
 )

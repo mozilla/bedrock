@@ -127,7 +127,6 @@ urlpatterns = (
     path("firefox/stub_attribution_code/", views.stub_attribution_code, name="firefox.stub_attribution_code"),
     path("firefox/welcome/1/", views.firefox_welcome_page1, name="firefox.welcome.page1"),
     page("firefox/welcome/2/", "firefox/welcome/page2.html", ftl_files=["firefox/welcome/page2"]),
-    page("firefox/welcome/3/", "firefox/welcome/page3.html", ftl_files=["firefox/welcome/page3"]),
     page("firefox/welcome/4/", "firefox/welcome/page4.html", ftl_files=["firefox/welcome/page4"]),
     page("firefox/welcome/6/", "firefox/welcome/page6.html", ftl_files=["firefox/welcome/page6"]),
     page("firefox/welcome/7/", "firefox/welcome/page7.html", ftl_files=["firefox/welcome/page7"]),

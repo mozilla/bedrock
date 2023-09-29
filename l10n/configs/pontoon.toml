@@ -151,9 +151,6 @@ locales = [
     reference = "en/firefox/welcome/page2.ftl"
     l10n = "{locale}/firefox/welcome/page2.ftl"
 [[paths]]
-    reference = "en/firefox/welcome/page3.ftl"
-    l10n = "{locale}/firefox/welcome/page3.ftl"
-[[paths]]
     reference = "en/firefox/welcome/page4.ftl"
     l10n = "{locale}/firefox/welcome/page4.ftl"
 [[paths]]
