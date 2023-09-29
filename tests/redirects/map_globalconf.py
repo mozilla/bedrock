@@ -1238,5 +1238,7 @@ URLS = flatten(
         url_test("/vendordpa/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
         # temporary
         url_test("/privacy/mozilla-accounts/", "/privacy/firefox/#firefox-accounts", status_code=requests.codes.found),
+        # Issue 13732
+        url_test("/firefox/welcome/3/", "/firefox/accounts/"),
     )
 )
