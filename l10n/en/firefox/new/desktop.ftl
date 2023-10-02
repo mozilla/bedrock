@@ -140,9 +140,14 @@ firefox-desktop-download-firefox-was-created = { -brand-name-firefox } was creat
 #   $attrs (attrs) - link to https://www.mozilla.org/firefox/privacy/
 firefox-desktop-download-as-the-internet = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy  — we call it the <a { $attrs }>Personal Data Promise</a>: Take less. Keep it safe. No secrets. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
 
+# Obsolete string
 # Variables:
 #   $attrs (attrs) - link to https://accounts.firefox.com/signin
 firefox-desktop-download-firefox-is-available = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-firefox } account</a>.
+
+# Variables:
+#   $attrs (attrs) - link to https://accounts.firefox.com/signin
+firefox-desktop-download-firefox-is-available-v2 = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-mozilla } account</a> and you’ll get access to syncing and more { -brand-name-mozilla } products.
 
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/firefox-screenshots

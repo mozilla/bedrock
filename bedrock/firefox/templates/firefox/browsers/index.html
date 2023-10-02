@@ -96,8 +96,7 @@
     media_class='mzp-l-split-media-overflow',
     media_after=True
   ) %}
-    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
-    <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
+    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browser-strong', fallback='firefox-browsers-get-the-browsers-strong') }}</h1>
   {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">

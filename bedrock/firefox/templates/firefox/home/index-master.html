@@ -80,13 +80,13 @@
 <main class="firefox-home">
     <div class="c-lead">
       <div class="mzp-l-content">
-        <h1 class="c-lead-title">{{ ftl('firefox-home-the-browser-is-just') }}</h1>
+        <h1 class="c-lead-title">{{ ftl('firefox-home-firefox-is-just',fallback='firefox-home-the-browser-is-just') }}</h1>
       </div>
     </div>
 
     <div class="c-showcase">
       <div class="mzp-l-content">
-        <h2 class="c-showcase-title">{{ ftl('firefox-home-meet-our-family-of') }}</h2>
+        <h2 class="c-showcase-title">{{ ftl('firefox-home-meet-mozillas-family', fallback='firefox-home-meet-our-family-of') }}</h2>
         <ul class="c-showcase-list">
           <li>
             <a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Browsers">
@@ -192,7 +192,7 @@
     ) %}
       <div>
         <h3 class="mzp-has-zap-8">{{ ftl('firefox-home-get-the-respect-you') }}</h3>
-        <p>{{ ftl('firefox-home-every-single-firefox') }}</p>
+        <p>{{ ftl('firefox-home-every-single-mozilla', fallback='firefox-home-every-single-firefox') }}</p>
         <a class="mzp-c-cta-link" href="{{ url('firefox.privacy.index') }}" data-link-name="Promise" data-link-type="link">{{ ftl('ui-learn-more') }}</a>
       </div>
     {% endcall %}

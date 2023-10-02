@@ -10,7 +10,7 @@
 {% extends "firefox/privacy/base.html" %}
 
 {% block page_title_full %}{{ ftl('firefox-privacy-hub-firefox-privacy-by-the') }}{% endblock %}
-{% block page_desc %}{{ ftl('firefox-privacy-hub-firefox-protects-your-privacy') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-privacy-hub-mozilla-protects-your-privacy', fallback= 'firefox-privacy-hub-firefox-protects-your-privacy') }}{% endblock %}
 
 {% block page_css %}
   {{ super() }}
@@ -26,7 +26,7 @@
 {% block hub_content %}
 
   {{ call_out(
-    title=ftl('firefox-privacy-hub-firefox-protects-your-privacy-strong')|safe,
+    title=ftl('firefox-privacy-hub-mozilla-protects-your-privacy-strong', fallback='firefox-privacy-hub-firefox-protects-your-privacy-strong')|safe,
     class='privacy-products-call-out-main',
     heading_level=1)
   }}

@@ -33,11 +33,17 @@
         <div class="show-fxa-supported-signed-out">
           <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
           <h1 class="wnp-main-title">{{ ftl('whatsnew-account-main-headline') }}</h1>
-          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in') }}</p>
+
+          {% if switch('moz-accounts-update') %}
+            <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in-v2', fallback='whatsnew-account-main-lead-in') }}</p>
+          {% else %}
+            <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in') }}</p>
+          {% endif %}
+
           <p class="cta">
             {{ fxa_button(
               entrypoint=entrypoint,
-              button_text=ftl('whatsnew-account-main-button'),
+              button_text=ftl('whatsnew-account-mozilla-cta', fallback='whatsnew-account-main-button'),
               class_name='mzp-t-md',
               optional_parameters={'utm_campaign': campaign},
               optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}

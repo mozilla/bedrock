@@ -38,9 +38,9 @@ $banner-mq: 1015px;
         color: $color-white;
 
         .gradient-text {
-            background: -webkit-linear-gradient(0deg, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(to right, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
+            background-clip: text;
+            color: transparent;
         }
     }
 

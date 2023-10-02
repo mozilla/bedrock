@@ -63,13 +63,22 @@ privacy-passwords-randomness-can-be = Randomness can be a problem, since the sec
 privacy-passwords-get-help-from = Get help from a password manager
 privacy-passwords-now-all-of = Now, all of this sounds pretty intimidating. The human mind isn’t good at coming up with long sequences of random letters, let alone remembering them. That’s where a password manager comes in. Built right into the browser, { -brand-name-firefox } will ask if you want to generate a unique, complex password, then securely save your login information, which you can access anytime in about:logins.
 
+
+# Obsolete string
 #   $url_sumo-manager (string) - link to https://support.mozilla.org/kb/password-manager-remember-delete-edit-logins with additional attributes for analytics
-privacy-passwords-when-youre-logged = When you’re logged into { -brand-name-firefox } with your { -brand-name-firefox } account, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo-manager }>how to use the built-in password manager</a> to the fullest here.
+privacy-passwords-when-youre-logged = When you’re logged into { -brand-name-firefox } with your { -brand-name-firefox } account, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo_manager }>how to use the built-in password manager</a> to the fullest here.
+
+#   $url_sumo-manager (string) - link to https://support.mozilla.org/kb/password-manager-remember-delete-edit-logins with additional attributes for analytics
+privacy-passwords-when-youre-logged-v2 = When you’re logged into { -brand-name-firefox } with your { -brand-name-mozilla-account }, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo_manager }>how to use the built-in password manager to the fullest</a>.
 privacy-passwords-twofactor-authentication-2fa = Two-Factor Authentication (2FA)
 privacy-passwords-2fa-is-a = 2FA is a great way to level-up your security. When setting up a new account, some sites will give you the option to add a “second factor” to the login process. Often, this means linking your phone number to your account, so after you enter your password, you will be prompted to enter a secure code texted directly to you. This way, if a hacker has managed to get your password, they still won’t be able to get into your account, since they don’t have your phone.
 
+# Obsolete string
 #   $url_sumo_2fa (string) - link to https://support.mozilla.org/kb/secure-firefox-account-two-step-authentication with additional attributes for analytics
 privacy-passwords-your-firefox-account = Your { -brand-name-firefox } account, for instance, can be protected with 2FA, <a { $url_sumo_2fa }>which you can learn more about here</a>.
+
+#   $url_sumo_2fa (string) - link to https://support.mozilla.org/kb/secure-firefox-account-two-step-authentication with additional attributes for analytics
+privacy-passwords-your-mozilla-account = Your { -brand-name-mozilla-account }, for example, can be protected with 2FA, <a { $url_sumo_2fa }>which you can learn more about here</a>.
 
 #   $url_2fa (string) - link to https://2fa.directory with additional attributes for analytics
 privacy-passwords-2fa-provides-much = 2FA provides much better security than passwords alone, but not every website supports it. You can find a list of websites that support 2FA at <a { $url_2fa }>https://2fa.directory</a>, as well as a list of sites that don’t support 2FA and ways you can ask them to add support.

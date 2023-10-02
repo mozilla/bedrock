@@ -13,7 +13,7 @@
       {{ download_firefox_thanks(dom_id='sticky-promo', download_location='sticky-promo-box', button_class='mzp-c-button mzp-t-product mzp-t-small') }}
     </div>
     <div class="promo-products">
-      <h3 class="mzp-c-sticky-promo-title">{{ ftl('firefox-sticky-promo-meet-our-family-of') }}</h3>
+      <h3 class="mzp-c-sticky-promo-title">{{ ftl('firefox-sticky-promo-meet-mozillas-family', fallback='firefox-sticky-promo-meet-our-family-of') }}</h3>
       <ul class="promo-products-list">
         <li>
           <a data-link-name="Browsers" data-link-type="link" data-link-position="sticky-promo" class="promo-products-link" href="{{ url('firefox.browsers.index') }}">

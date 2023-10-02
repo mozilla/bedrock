@@ -16,9 +16,12 @@ firefox-browsers-page-desc = Choose from Desktop, { -brand-name-ios }, { -brand-
 # Outdated string
 firefox-browsers-get-the-privacy-you-deserve = Get the privacy you deserve. Enhanced Tracking Protection is automatic in every { -brand-name-firefox } browser.
 
+# Obsolete string
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-browsers-get-the-browsers-strong = Get the <strong>browsers</strong> that put your privacy first — and always have
 
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-browsers-get-the-browser-strong = Get the browser that puts your privacy first — and <strong>always</strong> has
 firefox-browsers-desktop = Desktop
 firefox-browsers-seriously-private-browsing = Seriously private browsing. { -brand-name-firefox } automatically blocks 2000+ online trackers from collecting information about what you do online.
 firefox-browsers-download-for-desktop = Download for Desktop
