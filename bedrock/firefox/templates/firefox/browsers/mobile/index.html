@@ -26,7 +26,7 @@
   {{ css_bundle('firefox-browsers-products') }}
 
   {% if switch('moz-accounts-update') %}
-    {{ css_bundle('moz-account-banner') }}
+    {{ css_bundle('moz-account-promo') }}
   {% endif %}
 
   {% if show_firefox_app_store_banner %}
@@ -172,7 +172,7 @@
 
   <!-- Mozilla accounts banner switch -->
   {% if switch('moz-accounts-update') %}
-    {% include 'mozorg/includes/mozilla-account-form-banner.html' %}
+    {% include 'mozorg/includes/mozilla-account-form-promo.html' %}
   {% else %}
     <section class="mzp-l-content is-js-dependent">
       <div class="mzp-c-emphasis-box mzp-t-dark t-account">

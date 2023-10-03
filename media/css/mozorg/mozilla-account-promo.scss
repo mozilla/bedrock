@@ -5,28 +5,33 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'mozilla';
-$banner-mq: 1015px;
+$promo-md-mq: 1015px;
+$promo-sm-mq: 400px;
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/form';
 @import '~@mozilla-protocol/core/protocol/css/components/forms/field';
 
-.moz-account-banner {
+.moz-account-promo {
     background: $color-black;
     border-radius: $border-radius-lg;
     margin-bottom: $layout-lg;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: $layout-lg;
+    padding: $spacing-xl;
 
-    .banner-product-wrapper {
+    .promo-product-wrapper {
         display: flex;
         flex-direction: column;
         text-align: center;
 
-        @media (min-width: $banner-mq) {
+    }
+    @media (min-width: $promo-md-mq) {
+        padding: $layout-lg;
+
+        .promo-product-wrapper {
             flex-direction: row;
             text-align: left;
         }
@@ -41,6 +46,11 @@ $banner-mq: 1015px;
             background: linear-gradient(to right, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
             background-clip: text;
             color: transparent;
+        }
+
+        @media (max-width: $promo-sm-mq) {
+            @include text-title-md;
+            margin-bottom: $layout-sm;
         }
     }
 
@@ -62,13 +72,13 @@ $banner-mq: 1015px;
         .mzp-c-field-info,
         .accounts-signin {
             @include text-body-xs;
+            text-align: center;
         }
 
-        @media (min-width: $banner-mq) {
+        @media (min-width: $promo-md-mq) {
             align-items: flex-start;
         }
     }
-
 
     .accounts-signin,
     .accounts-cta {
@@ -87,7 +97,7 @@ $banner-mq: 1015px;
             }
         }
 
-        @media (min-width: $banner-mq) {
+        @media (min-width: $promo-md-mq) {
             text-align: left;
             margin: 0;
         }
@@ -101,13 +111,13 @@ $banner-mq: 1015px;
         }
     }
 
-    .banner-products-list {
+    .products-list {
         display: flex;
-        flex-shrink: 0;
         margin: 0 auto;
 
         li {
             margin-left: 20px;
+            flex: 1 0;
 
             &:first-child {
                 margin-left: 0;
@@ -118,36 +128,41 @@ $banner-mq: 1015px;
             }
         }
 
-        @media (min-width: $banner-mq) {
+        @media (min-width: $promo-md-mq) {
             margin-right: 0;
             margin-left: auto;
         }
     }
 
     .fxa-email-field-container {
-        @media (min-width: $banner-mq) {
-            @supports (display:grid) {
-                & {
-                    @include grid-column-gap($spacing-lg);
-                    display: grid;
-                    grid-template-columns: 1fr 100px;
-                }
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        #fxa-email-field {
+            width: 100%;
+            min-width: 230px;
+            max-width: 100%;
+        }
+
+        .mzp-c-button-container {
+            margin-bottom: 0;
+
+            &.mzp-l-stretch {
+                align-items: center;
+            }
+        }
+
+        @media (min-width: $promo-md-mq) {
+            flex-direction: row;
 
                 .mzp-c-field {
                     padding-bottom: 0;
                 }
 
                 .mzp-c-button-container {
-                    display: block; // not flex
-
-                    // put in fake form label to push button down height of real form label next to it
-                    &::before {
-                        @include field-label;
-                        content: '.';
-                        visibility: hidden;
-                    }
+                    margin-left: $spacing-lg;
                 }
             }
         }
     }
-}

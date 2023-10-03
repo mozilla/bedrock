@@ -41,13 +41,23 @@
           {% endif %}
 
           <p class="cta">
+          {% if switch('moz-accounts-update') %}
             {{ fxa_button(
               entrypoint=entrypoint,
               button_text=ftl('whatsnew-account-mozilla-cta', fallback='whatsnew-account-main-button'),
               class_name='mzp-t-md',
               optional_parameters={'utm_campaign': campaign},
-              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+              optional_attributes={'data-cta-text': 'Get a Mozilla account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
             ) }}
+          {% else %}
+              {{ fxa_button(
+              entrypoint=entrypoint,
+              button_text=ftl('whatsnew-account-main-button'),
+              class_name='mzp-t-md',
+              optional_parameters={'utm_campaign': campaign},
+              optional_attributes={'data-cta-text': 'Get a Mozilla account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+            ) }}
+          {% endif %}
           </p>
         </div>
 

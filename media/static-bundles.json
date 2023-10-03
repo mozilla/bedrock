@@ -613,9 +613,9 @@
     },
     {
       "files": [
-        "css/mozorg/mozilla-account-banner.scss"
+        "css/mozorg/mozilla-account-promo.scss"
       ],
-      "name": "moz-account-banner"
+      "name": "moz-account-promo"
     },
     {
       "files": [
