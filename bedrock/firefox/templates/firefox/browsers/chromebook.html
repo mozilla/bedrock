@@ -21,6 +21,12 @@
 
 {% set android_url = firefox_adjust_url('android', 'firefox-browsers-chromebook') %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block sub_navigation %}
  {% include '/firefox/includes/desktop-platform-sub-nav.html' %}
 {% endblock %}

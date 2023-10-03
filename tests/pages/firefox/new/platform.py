@@ -5,23 +5,28 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.download_button import DownloadButton
 
 
 class PlatformDownloadPage(BasePage):
     _URL_TEMPLATE = "/{locale}/firefox/{slug}/"
 
-    _download_button_locator = (By.ID, "download-button-thanks")
+    _windows_download_button_locator = (By.ID, "download-button-desktop-release-win")
+    _mac_download_button_locator = (By.ID, "download-button-desktop-release-osx")
+    _linux_download_button_locator = (By.ID, "download-button-desktop-release-linux")
+    _linux64_download_button_locator = (By.ID, "download-button-desktop-release-linux-64")
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_windows_download_button_displayed(self):
+        return self.is_element_displayed(*self._windows_download_button_locator)
 
-    def download_firefox(self):
-        href = self.download_button.platform_link.get_attribute("href")
-        self.set_attribute(self.download_button.platform_link, att_name="href", att_value=href + "?automation=true")
-        self.download_button.click()
-        from pages.firefox.new.thank_you import ThankYouPage
+    @property
+    def is_mac_download_button_displayed(self):
+        return self.is_element_displayed(*self._mac_download_button_locator)
 
-        return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()
+    @property
+    def is_linux_download_button_displayed(self):
+        return self.is_element_displayed(*self._linux_download_button_locator)
+
+    @property
+    def is_linux64_download_button_displayed(self):
+        return self.is_element_displayed(*self._linux64_download_button_locator)

@@ -51,6 +51,10 @@ $image-path: '/media/protocol/img';
             margin-bottom: $spacing-md;
         }
     }
+
+    .download-firefox {
+        padding-bottom: $spacing-lg;
+    }
 }
 
 .mzp-c-article {
@@ -77,7 +81,15 @@ $image-path: '/media/protocol/img';
 .mzp-c-call-out-compact.mzp-t-dark {
     background: $color-purple-90;
 
+    .mzp-l-content {
+        @include grid-column-gap($spacing-sm);
+    }
+
     .mzp-c-call-out-title {
         color: $color-orange-50;
+    }
+
+    .mzp-c-button-download-privacy-link {
+        text-align: center;
     }
 }

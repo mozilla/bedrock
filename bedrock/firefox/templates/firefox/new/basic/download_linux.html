@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "firefox/includes/macros.html" import firefox_download_desktop_button_linux with context %}
+
 {% extends "firefox/new/basic/base_platform.html" %}
 
 {% block experiments %}{% endblock %}
@@ -17,8 +19,14 @@
   {% set og_desc = ftl('new-platform-faster-page-loading-linux') %}
 {% endif %}
 
+{% block body_class %}{{ super() }} firefox-platform-linux{% endblock %}
+
 {# hero #}
 {% set hero_title =  ftl('new-platform-download-mozilla-linux', fallback='firefox-new-download-firefox-for-linux')|safe %}
+
+{% block intro_download_button %}
+  {{ firefox_download_desktop_button_linux() }}
+{% endblock %}
 
 {# cards #}
 {% set card1_title = ftl('new-platform-privacy-more-than') %}

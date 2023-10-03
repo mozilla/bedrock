@@ -764,7 +764,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"

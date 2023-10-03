@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "firefox/includes/macros.html" import firefox_download_desktop_button_mac with context %}
+
 {% extends "firefox/new/basic/base_platform.html" %}
 
 {% block experiments %}{% endblock %}
@@ -17,8 +19,14 @@
   {% set og_desc = ftl('new-platform-faster-page-loading-mac') %}
 {% endif %}
 
+{% block body_class %}{{ super() }} firefox-platform-mac{% endblock %}
+
 {# hero #}
 {% set hero_title =  ftl('new-platform-download-mozilla-firefox-mac', fallback='firefox-new-download-firefox-for-macos')|safe %}
+
+{% block intro_download_button %}
+  {{ firefox_download_desktop_button_mac() }}
+{% endblock %}
 
 {# cards #}
 {% set card1_title = ftl('new-platform-privacy-comes-first') %}

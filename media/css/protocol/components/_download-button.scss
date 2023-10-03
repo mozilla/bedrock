@@ -109,6 +109,23 @@ ul.download-list {
     display: block !important;
 }
 
+// Platform specific Firefox download macros (issue #12192)
+.firefox-platform-button {
+    .download-link.os_linux64 {
+        display: none;
+    }
+
+    .linux.x64 & {
+        .download-link.os_linux {
+            display: none;
+        }
+
+        .download-link.os_linux64 {
+            display: inline-block;
+        }
+    }
+}
+
 // Conditional Firefox download buttons on unsupported
 // operating system versions (issue #13317)
 .fx-unsupported-message {
@@ -201,13 +218,19 @@ ul.download-list {
 .windows.fx-unsupported {
     // Show unsupported message with Firefox ESR download button.
     .download-button .fx-unsupported-message.win,
-    .c-button-download-thanks .fx-unsupported-message.win {
+    .c-button-download-thanks .fx-unsupported-message.win,
+    .firefox-platform-button-windows .fx-unsupported-message.win {
         display: block !important;
     }
 
     // Show Firefox Win32 ESR download buttons for 64-bit CPUs.
     .fx-unsupported-message.win .download-link.os_win {
         display: inline-block !important;
+    }
+
+    // Hide Windows platform specific buttons.
+    .firefox-platform-button-windows .firefox-platform-button {
+        display: none;
     }
 
     &.x64 {
@@ -226,8 +249,14 @@ ul.download-list {
 .osx.fx-unsupported {
     // Show unsupported message with Firefox ESR download button.
     .download-button .fx-unsupported-message.mac,
-    .c-button-download-thanks .fx-unsupported-message.mac {
+    .c-button-download-thanks .fx-unsupported-message.mac,
+    .firefox-platform-button-mac .fx-unsupported-message.mac {
         display: block !important;
+    }
+
+    // Hide Mac platform specific buttons.
+    .firefox-platform-button-mac .firefox-platform-button {
+        display: none;
     }
 }
 
