@@ -119,8 +119,12 @@ $promo-sm-mq: 400px;
             margin-left: 20px;
             flex: 1 0;
 
-            &:first-child {
-                margin-left: 0;
+            &.product-item-firefox {
+               @include bidi(((margin-left, 20px, margin-right, 20px),));
+            }
+
+            &.product-item-monitor {
+                @include bidi(((margin-right, 20px, margin-left, 0),));
             }
 
             span {
@@ -129,14 +133,13 @@ $promo-sm-mq: 400px;
         }
 
         @media (min-width: $promo-md-mq) {
-            margin-right: 0;
-            margin-left: auto;
+            @include bidi(((margin-left, auto, 0),));
+            @include bidi(((margin-right, 0, auto),));
         }
     }
 
     .fxa-email-field-container {
         display: flex;
-        align-items: center;
         flex-direction: column;
 
         #fxa-email-field {
