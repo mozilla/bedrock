@@ -1380,6 +1380,11 @@ button.mzp-c-cta-link {
     .mzp-c-button-download-container {
         margin-bottom: 0;
 
+        // Issue 13585
+        .mzp-c-button:focus {
+            color: $color-link-hover;
+        }
+
         // Hide the privacy link as there's already a one visible prior to clicking download.
         .mzp-c-button-download-privacy-link {
             display: none;
