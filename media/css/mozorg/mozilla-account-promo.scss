@@ -33,7 +33,7 @@ $promo-sm-mq: 400px;
 
         .promo-product-wrapper {
             flex-direction: row;
-            text-align: left;
+            @include bidi(((text-align, left, right),));
         }
     }
 
@@ -98,7 +98,7 @@ $promo-sm-mq: 400px;
         }
 
         @media (min-width: $promo-md-mq) {
-            text-align: left;
+            @include bidi(((text-align, left, right),));
             margin: 0;
         }
     }
@@ -120,7 +120,8 @@ $promo-sm-mq: 400px;
             flex: 1 0;
 
             &.product-item-firefox {
-               @include bidi(((margin-left, 20px, margin-right, 20px),));
+               margin-left: 20px;
+               margin-right: 20px;
             }
 
             &.product-item-monitor {
@@ -141,6 +142,7 @@ $promo-sm-mq: 400px;
     .fxa-email-field-container {
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         #fxa-email-field {
             width: 100%;
@@ -148,8 +150,13 @@ $promo-sm-mq: 400px;
             max-width: 100%;
         }
 
+        .mzp-c-field {
+            padding-bottom: 0;
+        }
+
         .mzp-c-button-container {
             margin-bottom: 0;
+            margin-top: $spacing-lg;
 
             &.mzp-l-stretch {
                 align-items: center;
@@ -158,13 +165,11 @@ $promo-sm-mq: 400px;
 
         @media (min-width: $promo-md-mq) {
             flex-direction: row;
-
-                .mzp-c-field {
-                    padding-bottom: 0;
-                }
+            align-items: baseline; // change to `center` when removing old form styles from `browser-products.scss`
 
                 .mzp-c-button-container {
-                    margin-left: $spacing-lg;
+                    // add `@include bidi(((margin-left, $spacing-lg, margin-right, 0),))` when removing old form styles from `browser-products.scss`
+                    margin-top: 0;
                 }
             }
         }
