@@ -105,9 +105,15 @@
 {% endblock %}
 
 {% block js %}
+  {% if show_cyber_security_banner %}
+    {{ js_bundle('mozilla-vpn-cyber-security-banner') }}
+  {% endif %}
+
   {% if vpn_affiliate_attribution_enabled %}
     {{ js_bundle('mozilla-vpn-affiliate') }}
   {% else %}
     {{ js_bundle('fxa_product_button') }}
   {% endif %}
+
+  {{ js_bundle('data_begincheckout') }}
 {% endblock %}

@@ -13,8 +13,33 @@
 {% block page_favicon_large %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
 
+{% set show_cyber_security_banner = vpn_available_in_country(country_code) and
+                                    ftl_has_messages('banner-vpn-cyber-take-20-percent-off', 'banner-vpn-cyber-use-coupon-code', 'banner-vpn-cyber-get-annual-sub', 'banner-vpn-cyber-offer-ends') and
+                                    switch('vpn-cyber-security-month') %}
+
 {% block sub_navigation %}
   {% include 'products/vpn/includes/subnav.html' %}
+{% endblock %}
+
+{% block site_css %}
+  {{ super() }}
+  {% if show_cyber_security_banner %}
+    {{ css_bundle('mozilla-vpn-cyber-security-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_cyber_security_banner %}
+    {% include 'includes/banners/vpn-cyber-security-month.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {% if show_cyber_security_banner %}
+    {{ js_bundle('mozilla-vpn-cyber-security-banner') }}
+    {{ js_bundle('fxa_product_button') }}
+    {{ js_bundle('data_begincheckout') }}
+  {% endif %}
 {% endblock %}
 
 {% block third_party_js %}

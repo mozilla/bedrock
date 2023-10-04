@@ -9,6 +9,10 @@
 
 {% extends "products/vpn/base.html" %}
 
+{% set _utm_source = 'www.mozilla.org-vpn-product-page' %}
+{% set _utm_campaign = 'resource-center' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split')}}
   {{ css_bundle('vpn-resource-center')}}
@@ -101,5 +105,6 @@
 {% endblock content %}
 
 {% block js %}
+  {{ super() }}
   {{ js_bundle("vpn-resource-center-article") }}
 {% endblock js %}
