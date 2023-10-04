@@ -1279,6 +1279,12 @@
         "css/mozorg/try-picture-in-picture.scss"
       ],
       "name": "try-picture-in-picture"
+    },
+    {
+      "files": [
+        "css/products/mozsocial/invite.scss"
+      ],
+      "name": "mozsocial-invite"
     }
   ],
   "js": [
@@ -1994,6 +2000,12 @@
         "js/products/relay/waitlist.es6.js"
       ],
       "name": "relay-waitlist"
+    },
+    {
+      "files": [
+        "js/products/mozsocial/invite.es6.js"
+      ],
+      "name": "mozsocial-waitlist"
     },
     {
       "files": [
