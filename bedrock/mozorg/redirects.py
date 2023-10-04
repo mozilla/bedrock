@@ -569,4 +569,7 @@ redirectpatterns = (
     redirect(r"^about/leadership/boards-of-directors/$", "/about/leadership/#boards"),
     # Issue 13672
     redirect(r"/VendorDPA/?$", "https://assets.mozilla.net/pdf/VendorDPA.pdf", re_flags="i"),
+    # Issue 13754
+    redirect(r"rise-25/?$", "https://rise25.mozilla.org/"),
+    redirect(r"rise25/?$", "https://rise25.mozilla.org/"),
 )

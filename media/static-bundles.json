@@ -1234,12 +1234,6 @@
     },
     {
       "files": [
-        "css/mozorg/rise25.scss"
-      ],
-      "name": "rise-25"
-    },
-    {
-      "files": [
         "css/firefox/challenge-the-default/index.scss"
       ],
       "name": "challenge-the-default"
@@ -1980,12 +1974,6 @@
         "js/mozorg/santa-locator.js"
       ],
       "name": "santa_locator"
-    },
-    {
-      "files": [
-        "js/mozorg/rise25.js"
-      ],
-      "name": "rise-25"
     },
     {
       "files": [

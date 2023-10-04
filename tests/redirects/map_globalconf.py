@@ -1240,5 +1240,8 @@ URLS = flatten(
         url_test("/privacy/mozilla-accounts/", "/privacy/firefox/#firefox-accounts", status_code=requests.codes.found),
         # Issue 13732
         url_test("/firefox/welcome/3/", "/firefox/accounts/"),
+        # Issue 13754
+        url_test("/rise25/", "https://rise25.mozilla.org/"),
+        url_test("/rise-25/", "https://rise25.mozilla.org/"),
     )
 )
