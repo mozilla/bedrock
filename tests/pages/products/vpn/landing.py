@@ -15,7 +15,7 @@ class VPNLandingPage(BasePage):
     _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Navigation
-    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Get Mozilla VPN"]')
     _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Pricing section
