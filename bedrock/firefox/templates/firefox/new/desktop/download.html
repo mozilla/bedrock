@@ -601,7 +601,13 @@
 {% if show_firefox_join_modal and not manual_update %}
 <aside class="mzp-u-modal-content join-firefox-content hide-from-legacy-ie">
   <h4 class="join-firefox-title">{{ ftl('firefox-desktop-download-youve-already-got-the-browser') }}</h4>
-  <p class="join-firefox-intro">{{ ftl('firefox-desktop-download-watch-for-hackers-with-v2', 'firefox-desktop-download-watch-for-hackers-with') }}</p>
+  <p class="join-firefox-intro">
+    {% if switch('mozilla-monitor-brand-name') %}
+      {{ ftl('firefox-desktop-download-watch-for-hackers-with-v3', 'firefox-desktop-download-watch-for-hackers-with-v2') }}
+    {% else %}
+      {{ ftl('firefox-desktop-download-watch-for-hackers-with-v2', 'firefox-desktop-download-watch-for-hackers-with') }}
+    {% endif %}
+  </p>
 
   <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product join-firefox-button" data-link-name="Get More From Firefox" data-link-type="button">{{ ftl('firefox-desktop-download-get-more-from-firefox') }}</a>
 

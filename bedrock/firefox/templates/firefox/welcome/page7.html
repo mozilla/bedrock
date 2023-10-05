@@ -110,9 +110,22 @@
       </div>
       <h3 class="c-picto-block-title">{{ ftl('page7-stay-ahead-of-hackers') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ ftl('page7-firefox-monitor-lets-you-find') }}</p>
+        {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+        <p>
+          {% if mozilla_monitor %}
+            {{ ftl('page7-firefox-monitor-lets-you-find-v2', fallback='page7-firefox-monitor-lets-you-find') }}
+          {% else %}
+            {{ ftl('page7-firefox-monitor-lets-you-find') }}
+          {% endif %}
+        </p>
         <a href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
-          <strong>{{ ftl('page7-get-firefox-monitor') }}</strong>
+          <strong>
+            {% if mozilla_monitor %}
+              {{ ftl('page7-get-mozilla-monitor', fallback='page7-get-firefox-monitor') }}
+            {% else %}
+              {{ ftl('page7-get-firefox-monitor') }}
+            {% endif %}
+          </strong>
         </a>
       </div>
     </div>

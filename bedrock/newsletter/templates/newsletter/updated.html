@@ -118,15 +118,27 @@
                   link_url=url('firefox.browsers.mobile.index'),
                 )}}
 
-                {{ card(
-                  title=ftl('newsletters-check-for-data-breaches'),
-                  ga_title='Check for data breaches',
-                  desc=ftl('newsletters-firefox-monitor-is-a-free'),
-                  cta=ftl('newsletters-sign-in-to-monitor'),
-                  image=resp_img('img/newsletter/confirm/monitor.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-                  aspect_ratio='mzp-has-aspect-16-9',
-                  link_url='https://monitor.firefox.com/',
-                )}}
+                {% if switch('mozilla-monitor-brand-name') %}
+                  {{ card(
+                    title=ftl('newsletters-check-for-data-breaches'),
+                    ga_title='Check for data breaches',
+                    desc=ftl('newsletters-mozilla-monitor-is-a-free', fallback='newsletters-firefox-monitor-is-a-free'),
+                    cta=ftl('newsletters-sign-in-to-monitor'),
+                    image=resp_img('img/newsletter/confirm/mozilla-monitor.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+                    aspect_ratio='mzp-has-aspect-16-9',
+                    link_url='https://monitor.firefox.com/',
+                  )}}
+                {% else %}
+                  {{ card(
+                    title=ftl('newsletters-check-for-data-breaches'),
+                    ga_title='Check for data breaches',
+                    desc=ftl('newsletters-firefox-monitor-is-a-free'),
+                    cta=ftl('newsletters-sign-in-to-monitor'),
+                    image=resp_img('img/newsletter/confirm/monitor.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+                    aspect_ratio='mzp-has-aspect-16-9',
+                    link_url='https://monitor.firefox.com/',
+                  )}}
+                {% endif %}
 
                 {{ card(
                   title=ftl('newsletters-meet-our-parent-brand'),

@@ -170,7 +170,14 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ ftl('welcome-page8-firefox-monitor') }}</h3>
+      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+      <h3 class="c-picto-block-title">
+        {% if mozilla_monitor %}
+          {{ ftl('welcome-page8-mozilla-monitor', fallback='welcome-page8-firefox-monitor') }}
+        {% else %}
+          {{ ftl('welcome-page8-firefox-monitor') }}
+        {% endif %}
+      </h3>
       <div class="c-picto-block-body">
         <p>{{ ftl('welcome-page8-see-what-youve-been') }}</p>
         <a id="monitor-link" href="https://monitor.firefox.com/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" data-cta-text="go to monitor" data-cta-type="button">

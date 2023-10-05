@@ -51,7 +51,12 @@ privacy-passwords-the-secret-to = The secret to preventing guessing, theft or pa
 privacy-passwords-when-an-attacker = When an attacker steals the password database for a site that you use (like <a { $url_linkedin }>LinkedIn</a> or <a { $url_yahoo }>Yahoo</a>), there’s nothing you can do but change your password for that site. That’s bad, but the damage can be much worse if you’ve re-used that password with other websites — then the attacker can access your accounts on those sites as well. To keep the damage contained, <strong>always use different passwords for different websites.</strong>
 
 #   $url_monitor (string) - link to https://monitor.firefox.com/ with additional attributes for analytics
+privacy-passwords-use-mozilla-monitor = Use <a { $url_monitor }>{ -brand-name-mozilla-monitor }</a> to keep an eye on email addresses associated with your accounts. If your email address appears in a known corporate data breach, you’ll be alerted and provided steps to follow to protect the affected account.
+
+# Obsolete string
+#   $url_monitor (string) - link to https://monitor.firefox.com/ with additional attributes for analytics
 privacy-passwords-use-firefox-monitor = Use <a { $url_monitor }>{ -brand-name-firefox-monitor }</a> to keep an eye on email addresses associated with your accounts. If your email address appears in a known corporate data breach, you’ll be alerted and provided steps to follow to protect the affected account.
+
 privacy-passwords-security-questions-my = Security Questions: My mother’s maiden name is “Ff926AKa9j6Q”
 privacy-passwords-finally-most-websites = Finally, most websites let you recover your password if you’ve forgotten it. Usually these systems make you answer some “security questions” before you can reset your password. <strong>The answers to these questions need to be just as secret as your password.</strong> Otherwise, an attacker can guess the answers and set your password to something they know.
 privacy-passwords-randomness-can-be = Randomness can be a problem, since the security questions that sites often use are also things people tend to know about you, like your birthplace, your birthday, or your relatives’ names, or that can be gleaned from sources such as social media. The good news is that the website doesn’t care whether the answer is real or not — you can lie! But lie productively: <strong>Give answers to the security questions that are long and random,</strong> like your passwords.

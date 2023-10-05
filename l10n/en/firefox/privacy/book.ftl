@@ -108,6 +108,9 @@ privacy-book-search-your-name = <strong>Search your name online occasionally.</s
 
 privacy-book-dont-have-time = <strong>Don’t have time?</strong> Set up a { -brand-name-google } Alert for your name and get notified if you are mentioned on a website.
 
+privacy-book-breach-alert-if-v2 = <strong>Breach alert:</strong> If your data actually becomes public through a known breach, it is crucial to react as quickly as possible and change your passwords. { -brand-name-mozilla-monitor } is a handy tool that will send you a message if that happens.
+
+# Obsolete string
 privacy-book-breach-alert-if = <strong>Breach alert:</strong> If your data actually becomes public through a known breach, it is crucial to react as quickly as possible and change your passwords. { -brand-name-firefox-monitor } is a handy tool that will send you a message if that happens.
 
 privacy-book-stay-safe-online = Stay safe online:

@@ -55,6 +55,13 @@ compare-brave-the-ability-to-sync-your-passwords = The ability to sync your pass
 #   $accounts (string) - link to /firefox/accounts/ with additional attributes for analytics
 #   $monitor (string) - link to monitor.firefox.com with additional attributes for analytics
 #   $breaches (string) - link to monitor.firefox.com/breaches with additional attributes for analytics
+compare-brave-the-firefox-browser-also-gives-v3 = The { -brand-name-firefox } browser also gives users the ability to sign up for a free <a { $accounts }>{ -brand-name-mozilla-account }</a>. Having a { -brand-name-mozilla-account } is the key to unlocking syncing across devices, plus you get the added benefit of products like <a { $monitor }>{ -brand-name-mozilla-monitor }</a> which monitors your email addresses and alerts you if any of your information has been involved in any known <a { $breaches }>data breaches</a>.
+
+# Obsolete string
+# Variables:
+#   $accounts (string) - link to /firefox/accounts/ with additional attributes for analytics
+#   $monitor (string) - link to monitor.firefox.com with additional attributes for analytics
+#   $breaches (string) - link to monitor.firefox.com/breaches with additional attributes for analytics
 compare-brave-the-firefox-browser-also-gives-v2 = The { -brand-name-firefox } browser also gives users the ability to sign up for a free <a { $accounts }>{ -brand-name-mozilla-account }</a>. Having a { -brand-name-mozilla-account } is the key to unlocking syncing across devices, plus you get the added benefit of products like <a { $monitor }>{ -brand-name-firefox-monitor }</a> which monitors your email addresses and alerts you if any of your information has been involved in any known <a { $breaches }>data breaches</a>.
 
 # Obsolete string

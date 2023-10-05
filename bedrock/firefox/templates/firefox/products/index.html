@@ -61,17 +61,28 @@
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
       <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Firefox Monitor">{{ ftl('firefox-products-firefox-monitor') }}</a></h2>
+      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+      <h2 class="c-landing-grid-title">
+        <a href="https://monitor.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}">
+          {% if mozilla_monitor %}
+            {{ ftl('firefox-products-mozilla-monitor', fallback='firefox-products-firefox-monitor') }}
+          {% else %}
+            {{ ftl('firefox-products-firefox-monitor') }}
+          {% endif %}
+        </a>
+      </h2>
       <p>{{ ftl('firefox-products-see-if-your-personal-information') }}</p>
       <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{{ ftl('firefox-products-check-for-breaches') }}</a></p>
-      <p id="qa-monitor-button-wrapper">{{ monitor_fxa_button(
-        entrypoint='mozilla.org-firefox-products',
-        button_text=ftl('firefox-products-sign-up-for-breach-alerts'),
-        class_name='mzp-c-cta-link',
-        is_button_class=False,
-        optional_parameters={'utm_campaign': 'firefox-products'},
-        optional_attributes={'data-cta-text': 'Sign up for breach alerts', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'card'}
-      ) }}</p>
+      <p id="qa-monitor-button-wrapper">
+        {{ monitor_fxa_button(
+          entrypoint='mozilla.org-firefox-products',
+          button_text=ftl('firefox-products-sign-up-for-breach-alerts'),
+          class_name='mzp-c-cta-link',
+          is_button_class=False,
+          optional_parameters={'utm_campaign': 'firefox-products'},
+          optional_attributes={'data-cta-text': 'Sign up for breach alerts', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'card'}
+        ) }}
+      </p>
     </div>
 
     <div class="c-landing-grid-item">

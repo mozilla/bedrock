@@ -15,9 +15,14 @@
         <ul class="mzp-l-rows-four">
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="https://monitor.firefox.com/?{{ utm_params }}" data-link-name="Firefox Monitor" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+              <a class="c-menu-item-link" href="https://monitor.firefox.com/?{{ utm_params }}" data-link-name="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
-                <h4 class="c-menu-item-title">{{ ftl('navigation-v2-firefox-monitor', fallback='navigation-firefox-monitor') }}</h4>
+                {% if mozilla_monitor %}
+                  <h4 class="c-menu-item-title">{{ ftl('navigation-v2-mozilla-monitor', fallback='navigation-v2-firefox-monitor') }}</h4>
+                {% else %}
+                  <h4 class="c-menu-item-title">{{ ftl('navigation-v2-firefox-monitor', fallback='navigation-firefox-monitor') }}</h4>
+                {% endif %}
                 <p class="c-menu-item-desc">{{ ftl('navigation-v2-see-if-your-email-has', fallback='navigation-see-if-your-personal') }}</p>
               </a>
             </section>

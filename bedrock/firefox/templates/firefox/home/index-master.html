@@ -151,8 +151,15 @@
       media_class='mzp-l-split-h-center',
       media_after=True
     ) %}
-      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-monitor">
-        <h3>{{ ftl('firefox-home-firefox-monitor') }}</h3>
+      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md {% if mozilla_monitor %}t-product-mozilla-monitor{% else %}mzp-t-product-monitor{% endif %}">
+        <h3>
+          {% if mozilla_monitor %}
+            {{ ftl('firefox-home-mozilla-monitor', fallback='firefox-home-firefox-monitor') }}
+          {% else %}
+            {{ ftl('firefox-home-firefox-monitor') }}
+          {% endif %}
+        </h3>
       </div>
       <h4>{{ ftl('firefox-home-know-when-hackers-strike') }}</h4>
       <a class="mzp-c-cta-link" href="{{ 'https://monitor.firefox.com/' + referrals }}" data-link-name="Monitor" data-link-type="link">{{ ftl('firefox-home-start-getting-breach') }}</a>

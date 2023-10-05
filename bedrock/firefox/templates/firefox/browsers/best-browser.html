@@ -80,7 +80,11 @@
         {{ ftl('best-browser-last-but-not-least') }}
       </p>
       <p>
-        {{ ftl('best-browser-firefox-is-offering', monitor='https://monitor.firefox.com/') }}
+        {% if switch('mozilla-monitor-brand-name') %}
+          {{ ftl('best-browser-firefox-is-offering-v2', fallback='best-browser-firefox-is-offering', monitor='href="https://monitor.firefox.com/"') }}
+        {% else %}
+          {{ ftl('best-browser-firefox-is-offering', monitor='https://monitor.firefox.com/') }}
+        {% endif %}
       </p>
       <blockquote aria-hidden="true" role="presentation">
       <p>

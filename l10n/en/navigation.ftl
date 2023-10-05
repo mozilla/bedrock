@@ -153,7 +153,10 @@ navigation-firefox-beta = { -brand-name-firefox-beta }
 navigation-firefox-nightly = { -brand-name-firefox-nightly }
 navigation-firefox-reality = { -brand-name-firefox-reality }
 navigation-firefox-lockwise = { -brand-name-firefox-lockwise }
+
+# Obsolete string
 navigation-firefox-monitor = { -brand-name-firefox-monitor }
+
 navigation-firefox-send = { -brand-name-firefox-send }
 navigation-pocket = { -brand-name-pocket }
 navigation-common-voice = { -brand-name-common-voice }
