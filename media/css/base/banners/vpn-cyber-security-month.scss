@@ -1,0 +1,156 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/base';
+
+.c-banner {
+    background: #680ef1;
+    background: url('/media/img/banners/vpn/vpn-banner-bg.png'),
+                linear-gradient(to right, #680ef1, #6463dd);
+    color: $color-white;
+    padding: $spacing-md 0;
+
+    .mzp-l-content {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+}
+
+.c-banner-main {
+    padding: 0 $spacing-lg;
+
+    @media #{$mq-md} {
+        align-items: center;
+        display: flex;
+        padding: 0;
+    }
+}
+
+.c-banner-title {
+    @include background-size(146px 50px);
+    @include image-replaced;
+    background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-stack-white.svg');
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: $color-white;
+    display: none;
+
+    @media #{$mq-lg} {
+        @include colspan(2);
+        display: block;
+        margin-bottom: 0;
+
+        img {
+            display: block;
+        }
+    }
+}
+
+.c-banner-content {
+    .mzp-c-button.mzp-t-dark {
+        color: $color-black;
+    }
+
+    @media #{$mq-sm} {
+        @include colspan(12);
+        @include grid-column-gap($spacing-lg);
+        align-items: center;
+        display: grid;
+        grid-template:
+            "copy-1 button"
+            "copy-2 button";
+
+        p {
+            margin-bottom: 0
+        }
+
+        .c-banner-copy:nth-of-type(1) {
+            grid-area: copy-1;
+            margin-bottom: $spacing-md;
+        }
+
+        .c-banner-copy:nth-of-type(2) {
+            grid-area: copy-2;
+        }
+
+        .c-banner-cta {
+            grid-area: button;
+        }
+    }
+
+    @media #{$mq-md} {
+        grid-template: "copy-1 copy-2 button";
+        grid-template-columns: 1fr 1fr 250px;
+
+        .c-banner-copy:nth-of-type(1) {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include colspan(10);
+    }
+}
+
+.c-banner-copy {
+    @include font-size(16px);
+    text-align: center;
+
+    &:nth-of-type(1) {
+        grid-area: copy-1;
+    }
+
+    &:nth-of-type(2) {
+        grid-area: copy-2;
+    }
+
+    span {
+        @include font-size(18px);
+    }
+
+    @media #{$mq-md} {
+        @include font-size(18px);
+
+        span {
+            @include font-size(21px);
+        }
+    }
+
+    @media #{$mq-xl} {
+        @include font-size(21px);
+
+        span {
+            @include font-size(24px);
+        }
+    }
+
+    html[lang^='en'] & {
+        strong {
+            display: block;
+        }
+
+        @media #{$mq-md} {
+            strong {
+                display: inline;
+            }
+        }
+
+        @media #{$mq-xl} {
+            strong {
+                display: block;
+            }
+        }
+    }
+}
+
+.c-banner-cta {
+    text-align: center;
+}
+
+.c-banner-copy-small {
+    @include text-body-sm;
+    display: block;
+    margin-top: $spacing-sm;
+}

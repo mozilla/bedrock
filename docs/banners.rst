@@ -46,7 +46,7 @@ should extend common base banner styles:
 
     @import 'includes/base';
 
-To initiate a banner on a page, include ``media/js/base/mozilla-banner.js`` in
+To initiate a banner on a page, include ``js/base/banners/mozilla-banner.js`` in
 your page bundle and then initiate the banner using a unique ID. The ID will
 be used as a cookie identifier should someone dismiss a banner and not wish to
 see it again.
