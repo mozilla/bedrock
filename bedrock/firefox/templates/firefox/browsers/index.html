@@ -28,6 +28,10 @@
   {{ css_bundle('protocol-emphasis-box')}}
   {{ css_bundle('firefox-browsers-products') }}
 
+  {% if switch('moz-accounts-update') %}
+    {{ css_bundle('moz-account-promo') }}
+  {% endif %}
+
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
@@ -92,8 +96,7 @@
     media_class='mzp-l-split-media-overflow',
     media_after=True
   ) %}
-    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong') }}</h1>
-    <p>{{ ftl('firefox-browsers-get-the-privacy-you-deserve') }}</p>
+    <h1 class="mzp-has-zap-11">{{ ftl('firefox-browsers-get-the-browsers-strong-v2', fallback='firefox-browsers-get-the-browsers-strong') }}</h1>
   {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
@@ -177,7 +180,13 @@
     </div>
   </div>
 
-  <div class="mzp-l-content is-js-dependent">
+
+  <!-- Mozilla accounts banner switch -->
+
+  {% if switch('moz-accounts-update') %}
+    {% include 'mozorg/includes/mozilla-account-form-promo.html' %}
+  {% else %}
+    <div class="mzp-l-content is-js-dependent">
     <div class="mzp-c-emphasis-box mzp-t-dark t-account">
       <div class="fxa-form-cta">
         {{ fxa_email_form(
@@ -196,6 +205,8 @@
       </div>
     </div>
   </div>
+  {% endif %}
+
 </main>
 {% endblock %}
 

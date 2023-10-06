@@ -15,11 +15,11 @@
   {%- elif LANG == 'en-GB' -%}
     Mozilla’s products — Mozilla (UK)
   {%- else -%}
-    {{ ftl('firefox-products-firefox-is-more-than-a-browser') }} - Mozilla
+    {{ ftl('firefox-products-firefox-beginning', fallback='firefox-products-firefox-is-more-than-a-browser') }} - Mozilla
   {%- endif -%}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('firefox-products-its-a-whole-family-of-products') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-products-mozillas-family-of-products', fallback='firefox-products-its-a-whole-family-of-products') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
@@ -27,6 +27,10 @@
   {{ css_bundle('protocol-split')}}
   {{ css_bundle('protocol-emphasis-box')}}
   {{ css_bundle('firefox-browsers-products') }}
+
+  {% if switch('moz-accounts-update') %}
+    {{ css_bundle('moz-account-promo') }}
+  {% endif %}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -54,8 +58,8 @@
     block_class='c-landing-banner t-products mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-media-overflow',
   ) %}
-    <h1 class="mzp-has-zap-14">{{ ftl('firefox-products-firefox-is-more-than-a-browser-emphasis') }}</h1>
-    <p>{{ ftl('firefox-products-its-a-whole-family-of-products') }}</p>
+    <h1 class="mzp-has-zap-14">{{ ftl('firefox-products-firefox-beginning-emphasis',  fallback='firefox-products-firefox-is-more-than-a-browser-emphasis') }}</h1>
+    <p>{{ ftl('firefox-products-mozillas-family-of-products',fallback='firefox-products-its-a-whole-family-of-products') }}</p>
   {% endcall %}
 
   <div class="mzp-l-content c-landing-grid">
@@ -97,7 +101,7 @@
           'height': '247'
         }
       ) }}
-      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox-browsers') }}</a></h2>
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox', fallback = 'firefox-products-firefox-browsers') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
       <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ ftl('download-button-download') }}</h3>
@@ -172,7 +176,11 @@
 
   </div>
 
-  <div class="mzp-l-content is-js-dependent">
+  <!-- Mozilla accounts banner switch -->
+  {% if switch('moz-accounts-update') %}
+    {% include 'mozorg/includes/mozilla-account-form-promo.html' %}
+  {% else %}
+    <div class="mzp-l-content is-js-dependent">
     <div class="mzp-c-emphasis-box mzp-t-dark t-account">
       <div class="fxa-form-cta">
         {{ fxa_email_form(
@@ -191,6 +199,8 @@
       </div>
     </div>
   </div>
+  {% endif %}
+
 </main>
 {% endblock %}
 

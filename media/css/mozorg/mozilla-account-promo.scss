@@ -1,0 +1,199 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+$brand-theme: 'mozilla';
+$promo-md-mq: 1015px;
+$promo-sm-mq: 400px;
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
+
+.moz-account-promo {
+    background: $color-black;
+    border-radius: $border-radius-lg;
+    margin-bottom: $layout-lg;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: $spacing-xl;
+
+    .promo-product-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+    }
+    @media (min-width: $promo-md-mq) {
+        padding: $layout-lg;
+
+        .promo-product-wrapper {
+            flex-direction: row;
+            @include bidi(((text-align, left, right),));
+        }
+    }
+
+    h2 {
+        @include font-base;
+        @include text-title-xl;
+        color: $color-white;
+
+        .gradient-text {
+            background: linear-gradient(to right, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (max-width: $promo-sm-mq) {
+            @include text-title-md;
+            margin-bottom: $layout-sm;
+        }
+    }
+
+    .accounts-cta-wrapper {
+        @include font-base;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #fxa-email-form {
+            color: $color-white;
+            margin-top: $spacing-xl;
+
+            .mzp-c-form-header {
+                display: none;
+            }
+        }
+
+        .mzp-c-field-info,
+        .accounts-signin {
+            @include text-body-xs;
+            text-align: center;
+        }
+
+        @media (min-width: $promo-md-mq) {
+            align-items: flex-start;
+        }
+    }
+
+    .accounts-signin,
+    .accounts-cta {
+        color: $color-white;
+        margin-top: 0;
+    }
+
+    .accounts-cta {
+        margin: 0 auto;
+        margin-top: $spacing-2xl;
+        text-align: center;
+
+        small {
+            a {
+                text-decoration: underline;
+            }
+        }
+
+        @media (min-width: $promo-md-mq) {
+            @include bidi(((text-align, left, right),));
+            margin: 0;
+        }
+    }
+
+    a {
+        color: $color-white;
+
+        &:hover {
+            color: $color-white;
+        }
+    }
+
+    .products-list {
+        display: flex;
+        justify-content: center;
+
+        li {
+            flex-shrink: 0;
+            margin-left: 20px;
+
+            &.product-item-firefox {
+               @include bidi(((margin-left, 20px, margin-right, 20px),));
+            }
+
+            &.product-item-monitor {
+                @include bidi(((margin-right, 20px, margin-left, 0),));
+            }
+
+            img {
+                width: 45px;
+                height: 45px;
+            }
+
+            span {
+                @include visually-hidden;
+            }
+        }
+
+        @media (max-width: $promo-sm-mq) {
+            li {
+                margin-left: 10px;
+
+                &.product-item-firefox {
+                    @include bidi(((margin-left, 10px, margin-right, 10px),));
+                }
+
+                &.product-item-monitor {
+                    @include bidi(((margin-right, 10px, margin-left, 0),));
+                }
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        @media (min-width: $promo-md-mq) {
+            @include bidi(((margin-left, auto, 0),));
+            @include bidi(((margin-right, 0, auto),));
+        }
+
+    .fxa-email-field-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #fxa-email-field {
+            width: 100%;
+            min-width: 230px;
+            max-width: 100%;
+        }
+
+        .mzp-c-field {
+            padding-bottom: 0;
+        }
+
+        .mzp-c-button-container {
+            margin-bottom: 0;
+            margin-top: $spacing-lg;
+
+            &.mzp-l-stretch {
+                align-items: center;
+            }
+        }
+
+        @media (min-width: $promo-md-mq) {
+            flex-direction: row;
+            align-items: baseline; // change to `center` when removing old form styles from `browser-products.scss`
+
+                .mzp-c-button-container {
+                    // add `@include bidi(((margin-left, $spacing-lg, margin-right, 0),))` when removing old form styles from `browser-products.scss`
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}

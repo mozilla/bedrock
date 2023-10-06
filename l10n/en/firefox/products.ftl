@@ -4,24 +4,40 @@
 
 ### URL: https://www-dev.allizom.org/firefox/products/
 
+# Obsolete string
 # HTML page title
 firefox-products-firefox-is-more-than-a-browser = { -brand-name-firefox } is more than a browser
 
+# HTML page title
+firefox-products-firefox-beginning = { -brand-name-firefox } is just the beginning
+
+# Obsolete string
 # HTML page description
 firefox-products-its-a-whole-family-of-products = It’s a whole family of products designed to keep you safer and smarter online.
 
+firefox-products-mozillas-family-of-products = { -brand-name-mozilla }’s family of products are all designed to keep you safer and smarter online
+
+# Obsolete string
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-products-firefox-is-more-than-a-browser-emphasis = { -brand-name-firefox } is <strong>more</strong> than a browser
 
 firefox-products-mozilla-monitor = { -brand-name-mozilla-monitor }
 
 # Obsolete string
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-products-firefox-beginning-emphasis = { -brand-name-firefox } is just the <strong>beginning</strong>
+
+
 firefox-products-firefox-monitor = { -brand-name-firefox-monitor }
 
 firefox-products-see-if-your-personal-information = See if your personal information has been compromised in a corporate data breach, and sign up for future alerts.
 firefox-products-check-for-breaches = Check for breaches
 firefox-products-sign-up-for-breach-alerts = Sign up for breach alerts
+
+# Obsolete string
 firefox-products-firefox-browsers = { -brand-name-firefox } browsers
+
+firefox-products-firefox = { -brand-name-firefox }
 firefox-products-get-the-browsers-that-block = Get the browsers that block 2000+ data trackers automatically. Enhanced Tracking Protection comes standard in every { -brand-name-firefox } browser.
 firefox-products-desktop = Desktop
 firefox-products-android = { -brand-name-android }

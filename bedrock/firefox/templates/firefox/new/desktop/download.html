@@ -540,7 +540,12 @@
         {{ download_picture('sync', '171', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-sync-your-devices') }}</h3>
         {% set available_attrs = fxa_link_fragment(entrypoint='mozilla.org-firefox-desktop') %}
-        <p>{{ ftl('firefox-desktop-download-firefox-is-available', attrs=available_attrs) }}</p>
+
+        {% if switch('moz-accounts-update') %}
+          <p>{{ ftl('firefox-desktop-download-firefox-is-available-v2', fallback='firefox-desktop-download-firefox-is-available', attrs=available_attrs) }}</p>
+        {% else %}
+          <p>{{ ftl('firefox-desktop-download-firefox-is-available', attrs=available_attrs) }}</p>
+        {% endif %}
       </div>
 
       <div class="mzp-c-card js-animate">

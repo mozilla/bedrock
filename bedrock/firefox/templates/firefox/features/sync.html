@@ -13,7 +13,8 @@
 <p>{{ ftl('features-sync-with-firefox-you-can-pick-up-where') }}</p>
 
   {% if switch('moz-accounts-update') %}
-    <p>{{ ftl('features-sync-sign-up-for-a-free-mozilla-account-v2', fallback='features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
+    {% set fxa = 'href="%s"'|safe|format(url('firefox.accounts')) %}
+    <p>{{ ftl('features-sync-sign-up-for-a-free-mozilla-account-v3', fallback='features-sync-sign-up-for-a-free-firefox-account', fxa=fxa) }}</p>
   {% else %}
     <p>{{ ftl('features-sync-sign-up-for-a-free-firefox-account', fxa=url('firefox.accounts')) }}</p>
   {% endif %}

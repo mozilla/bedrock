@@ -6,8 +6,16 @@
 
 firefox-home-firefox-protect-your = { -brand-name-firefox } - Protect your life online with privacy-first products
 firefox-home-firefox-is-more-than = { -brand-name-firefox } is more than a browser. Learn more about { -brand-name-firefox } products that handle your data with respect and are built for privacy anywhere you go online.
+
+# Obsolete string
 firefox-home-the-browser-is-just = The browser is just the beginning
+
+firefox-home-firefox-is-just = { -brand-name-firefox } is just the beginning.
+
+# Obsolete string
 firefox-home-meet-our-family-of = Meet our family of products
+
+firefox-home-meet-mozillas-family  = Meet { -brand-name-mozilla }’s family of products
 firefox-home-get-trackers-off = Get 2,000+ trackers off your trail — including { -brand-name-facebook }
 firefox-home-know-when-hackers-strike = Know when hackers strike — and stay a step ahead
 firefox-home-start-getting-breach = Start getting breach reports
@@ -23,7 +31,10 @@ firefox-home-learn-more-about-lockwise = Learn more about { -brand-name-lockwise
 # The strong tags around "respect" add a special underline. The underline breaks if it is on two words, so please omit the strong tags if they need to be around multiple words in your language.
 firefox-home-get-the-respect-you = Get the <strong>respect</strong> you deserve
 
+# Obsolete string
 firefox-home-every-single-firefox = Every single { -brand-name-firefox } product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>
+
+firefox-home-every-single-mozilla = Every single { -brand-name-mozilla } product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>
 
 # Obsolete string
 firefox-home-share-large-files-without = Share large files without prying eyes

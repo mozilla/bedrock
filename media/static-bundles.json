@@ -613,6 +613,12 @@
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss"
+      ],
+      "name": "moz-account-promo"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
