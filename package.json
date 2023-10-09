@@ -63,6 +63,7 @@
     "lint": "npm run lint-js && npm run lint-css && npm run prettier-check",
     "test": "npm run glean && npm run lint && npm run karma",
     "karma": "./node_modules/.bin/karma start ./tests/unit/karma.conf.js",
+    "jasmine": "npx jasmine-browser-runner serve --config=tests/unit/jasmine-browser.json",
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
     "prebuild": "npm run glean && npm run static",
     "build": "webpack --mode=production --bail",
