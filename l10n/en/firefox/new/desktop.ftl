@@ -147,7 +147,7 @@ firefox-desktop-download-firefox-is-available = { -brand-name-firefox } is avail
 
 # Variables:
 #   $attrs (attrs) - link to https://accounts.firefox.com/signin
-firefox-desktop-download-firefox-is-available-v2 = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-mozilla } account</a> and you’ll get access to syncing and more { -brand-name-mozilla } products.
+firefox-desktop-download-firefox-is-available-v2 = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-mozilla-account }</a> and you’ll get access to syncing and more { -brand-name-mozilla } products.
 
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/firefox-screenshots
