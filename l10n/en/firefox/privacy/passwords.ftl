@@ -66,9 +66,9 @@ privacy-passwords-now-all-of = Now, all of this sounds pretty intimidating. The 
 
 # Obsolete string
 #   $url_sumo-manager (string) - link to https://support.mozilla.org/kb/password-manager-remember-delete-edit-logins with additional attributes for analytics
-privacy-passwords-when-youre-logged = When you’re logged into { -brand-name-firefox } with your { -brand-name-firefox } account, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo_manager }>how to use the built-in password manager</a> to the fullest here.
+privacy-passwords-when-youre-logged = When you’re logged into { -brand-name-firefox } with your { -brand-name-firefox } account, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo-manager }>how to use the built-in password manager</a> to the fullest here.
 
-#   $url_sumo-manager (string) - link to https://support.mozilla.org/kb/password-manager-remember-delete-edit-logins with additional attributes for analytics
+#   $url_sumo_manager (string) - link to https://support.mozilla.org/kb/password-manager-remember-delete-edit-logins with additional attributes for analytics
 privacy-passwords-when-youre-logged-v2 = When you’re logged into { -brand-name-firefox } with your { -brand-name-mozilla-account }, you can sync across all your devices and access your passwords from a { -brand-name-firefox } mobile browser. Learn more about <a { $url_sumo_manager }>how to use the built-in password manager to the fullest</a>.
 privacy-passwords-twofactor-authentication-2fa = Two-Factor Authentication (2FA)
 privacy-passwords-2fa-is-a = 2FA is a great way to level-up your security. When setting up a new account, some sites will give you the option to add a “second factor” to the login process. Often, this means linking your phone number to your account, so after you enter your password, you will be prompted to enter a secure code texted directly to you. This way, if a hacker has managed to get your password, they still won’t be able to get into your account, since they don’t have your phone.
