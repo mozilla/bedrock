@@ -1,34 +1,11 @@
 {
-  "srcDir": "/",
+  "srcDir": "dist",
   "srcFiles": [
-      "media/js/base/site.js",
-      "media/js/base/mozilla-utils.js",
-      "media/js/base/mozilla-client.js",
-      "media/js/base/search-params.js",
-      "media/js/base/mozilla-cookie-helper.js",
-      "media/js/base/banners/mozilla-banner.js",
-      "media/js/base/mozilla-run.js",
-      "media/js/base/core-datalayer-page-id.js",
-      "media/js/base/core-datalayer.js",
-      "media/js/base/experiment-utils.es6.js",
-      "media/js/base/mozilla-fxa.js",
-      "media/js/base/mozilla-smoothscroll.js",
-      "media/js/base/stub-attribution.js",
-      "media/js/firefox/all/all-downloads-unified.js",
-      "media/js/firefox/new/common/thanks.js",
-      "media/js/firefox/family/fx-is-default.es6.js",
-      "media/js/pocket/analytics.es6.js",
-      "media/js/pocket/mobile-nav.es6.js",
-      "media/js/products/shared/affiliate-attribution.es6.js",
-      "media/js/newsletter/form-utils.es6.js",
-      "media/js/newsletter/recovery.es6.js",
-      "tests/unit/spec/base/core-datalayer-page-id.js",
-      "node_modules/sinon/pkg/sinon.js",
-      "tests/unit/img/*"
+    "test-deps.js"
   ],
-  "specDir": "/",
+  "specDir": "dist",
   "specFiles": [
-    "tests/unit/spec/**/*.js"
+    "test.js"
   ],
   "helpers": [],
   "env": {

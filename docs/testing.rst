@@ -9,7 +9,7 @@ Front-end testing
 =================
 
 Bedrock runs a suite of front-end `Jasmine`_ behavioral/unit tests, which use
-`Karma`_ as a test runner. We also have a suite of functional tests using
+`Jasmine Browser Runner`_ as a test runner. We also have a suite of functional tests using
 `Selenium`_ and `pytest`_. This allows us to emulate users interacting with a
 real browser. All these test suites live in the ``tests`` directory.
 
@@ -17,7 +17,7 @@ The ``tests`` directory comprises of:
 
 * ``/functional`` contains pytest tests.
 * ``/pages`` contains Python page objects.
-* ``/unit`` contains the Jasmine tests and Karma config file.
+* ``/unit`` contains the Jasmine tests and Jasmine Browser Runner config file.
 
 Installation
 ------------
@@ -49,7 +49,7 @@ run:
 
 .. code-block:: bash
 
-    $ npm run karma
+    $ npm run test
 
 See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit
 tests. We also use `Sinon`_ for creating test spies, stubs and mocks.
@@ -320,7 +320,7 @@ These tests and are run as part of the pipeline to ensure that download links co
 via product details are well formed and return valid 200 responses.
 
 .. _Jasmine: https://jasmine.github.io/index.html
-.. _Karma: https://karma-runner.github.io/
+.. _Jasmine Browser Runner: https://jasmine.github.io/setup/browser.html
 .. _Sinon: http://sinonjs.org/
 .. _Selenium: http://docs.seleniumhq.org/
 .. _pytest: http://pytest.org/latest/

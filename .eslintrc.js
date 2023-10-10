@@ -79,7 +79,7 @@ module.exports = {
             }
         },
         {
-            // JS Karma test files.
+            // JS Jasmine test files.
             files: ['tests/unit/**/*.js'],
             env: {
                 es2017: true,
@@ -97,7 +97,7 @@ module.exports = {
             files: [
                 'webpack.config.js',
                 'webpack.static.config.js',
-                'tests/unit/karma.conf.js'
+                'webpack.test.config.js'
             ],
             env: {
                 node: true,
