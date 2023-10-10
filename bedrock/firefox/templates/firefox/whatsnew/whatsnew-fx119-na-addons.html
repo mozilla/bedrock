@@ -1,0 +1,52 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_119_na_addons') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-119-na') %}
+    {{ js_bundle('firefox_whatsnew_119_experiment_na') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h2 class="wnp-main-title">Your privacy is covered</h2>
+      <p class="wnp-main-tagline">Firefox stops advertisers from following you around the web and blocks sites from identifying you – so you can browse easy.</p>
+
+      <div class="wnp-extra-image" role="presentation">
+        {% include 'firefox/whatsnew/includes/fx119/addons.svg' %}
+      </div>
+
+      <h3 class="wnp-extra-title">Want to boost your privacy?</h3>
+      <p class="wnp-extra-tagline">Check out our collection of recommended privacy extensions to make Firefox your finely-tuned, extra-private browser.</p>
+
+      <p class="wnp-main-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/firefox/collections/4757633/privacy-matters/?{{ utm_params }}" data-cta-text="Check out these extensions" data-cta-type="button" data-cta-position="primary-cta" target="_blank" rel="external noopener">Check out these extensions</a>
+      </p>
+
+      <p class="wnp-sign-off">
+        {{ ftl('whatsnew-signoff') }}
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

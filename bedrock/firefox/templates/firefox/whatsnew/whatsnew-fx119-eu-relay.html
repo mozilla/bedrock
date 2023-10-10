@@ -1,0 +1,92 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_119_eu_relay') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-119-eu') %}
+    {{ js_bundle('firefox_whatsnew_119_experiment_eu') }}
+  {% endif %}
+{% endblock %}
+
+{% if LANG == "de" %}
+  {% set field_placeholder = 'E-Mail-Adresse eingeben' %}
+  {% set relay_button = 'E-Mail-Maske erstellen' %}
+  {% set main_title = 'Für all die Seiten, denen du nicht wiiiiiiirklich traust' %}
+  {% set main_tagline_one = 'Mit Firefox Relay kannst du direkt in Firefox deine E-Mail-Adresse schützen, indem du dir beim Anmelden auf Websites E-Mail-Masken erstellen lässt.' %}
+  {% set main_tagline_two = 'Weniger Spam – mehr Privatsphäre.' %}
+  {% set main_cta = 'Aktiviere Firefox Relay' %}
+{% elif LANG == "fr" %}
+  {% set field_placeholder = 'Entrez votre adresse e-mail' %}
+  {% set relay_button = 'Générez un alias Relay' %}
+  {% set main_title = 'Pour tous les sites auxquels vous ne pouvez pas faire confiance' %}
+  {% set main_tagline_one = 'Masquez votre adresse e-mail personnelle avec Firefox Relay, pour vous inscrire sur n’importe quel site sans risquer d’être spammé·es.' %}
+  {% set main_cta = 'Activer Firefox Relay' %}
+{% else %}
+  {% set field_placeholder = 'Enter your email address' %}
+  {% set relay_button = 'Generate Relay mask' %}
+  {% set main_title = 'For all the sites you don’t reeeeeeeaaaaaally trust' %}
+  {% set main_tagline_one = 'With Firefox Relay, you can protect your personal email address directly in Firefox by creating email masks to sign up with instead.' %}
+  {% set main_tagline_two = 'Less spam – more privacy.' %}
+  {% set main_cta = 'Activate Firefox Relay' %}
+{% endif %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+    <div class="wnp-body">
+      <div class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-relay">Firefox Relay</div>
+
+      <div class="wnp-relay-animation" role="presentation">
+        <div class="relay-input">
+          <span>{{ field_placeholder }}</span>
+          <img src="{{ static('img/firefox/whatsnew/whatsnew119/check.svg') }}" alt="" class="input-check">
+        </div>
+        <div class="relay-dropdown">
+          <button>
+            <img width="32" src="{{ static('img/firefox/whatsnew/whatsnew119/relay-inverse.svg') }}" alt="" class="wnp-relay-logo">
+            {{ relay_button }}
+          </button>
+        </div>
+      </div>
+
+      <h2 class="wnp-main-title">{{ main_title }}</h2>
+
+      <div class="wnp-body-text">
+        <p>{{ main_tagline_one }}</p>
+      {% if main_tagline_two %}
+        <p>{{ main_tagline_two }}</p>
+      {% endif %}
+      </div>
+
+      <p class="wnp-main-cta">
+        <a class="mzp-c-button mzp-t-product" href="https://relay.firefox.com/?{{ utm_params }}" data-cta-text="{{ main_cta }}" data-cta-type="button" target="_blank" rel="external noopener">
+          {{ main_cta }}
+        </a>
+      </p>
+    </div>
+
+    <p class="wnp-sign-off">
+      {{ ftl('whatsnew-signoff') }}
+    </p>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+  {{ js_bundle('firefox_whatsnew_119_eu_relay') }}
+{% endblock %}

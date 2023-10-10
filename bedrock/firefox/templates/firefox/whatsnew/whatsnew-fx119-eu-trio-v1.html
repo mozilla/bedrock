@@ -1,0 +1,154 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_119_eu_trio') }}
+{% endblock %}
+
+{% if variant == "1" %}
+  {% set referral_id = "whatsnew-119-eu-v1-open" %}
+  {% set entrypoint = "whatsnew-119-eu-v1-open" %}
+{% elif variant == "2" %}
+  {% set referral_id = "whatsnew-119-eu-v2-closed" %}
+  {% set entrypoint = "whatsnew-119-eu-v2-closed" %}
+{% else %}
+  {% set referral_id = "whatsnew-119-eu-novariant" %}
+  {% set entrypoint = "whatsnew-119-eu-novariant" %}
+{% endif %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-119-eu') %}
+    {{ js_bundle('firefox_whatsnew_119_experiment_eu') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% if LANG == "de" %}
+  {% set main_title = "3 Schritte zu besserer Onlinesicherheit" %}
+  {% set box_one_title = "Schütze deine E-Mail-Adresse" %}
+  {% set box_one_body = "Du musst nie wieder deine E-Mail-Adresse mit Webseiten teilen, denen du nicht wiiiiiiiirklich traust – dank E-Mail-Masken von Firefox Relay." %}
+  {% set box_one_cta = "Aktiviere Firefox Relay" %}
+  {% set box_two_title = "Schütze deine privaten Informationen" %}
+  {% set box_two_body = "Mit Firefox Monitor wirst du sofort informiert, sollte deine E-Mail-Adresse Teil eines bekannten Datenlecks sein, damit du sofort weitere Schritte einleiten kannst." %}
+  {% set box_two_cta = "E-Mail-Adresse prüfen" %}
+  {% set box_three_title = "Schütze deine Verbindung" %}
+  {% set box_three_body = "Egal ob du im Ausland oder in einem öffentlichen Netzwerk surfst: Mozilla VPN schützt deine Verbindung." %}
+  {% set box_three_cta = "Hol dir Mozilla VPN" %}
+  {% set sign_off = "<strong>Powered by Mozilla.</strong> Für dich und das Web. Schon seit 1998."|safe %}
+{% elif LANG == "fr" %}
+  {% set main_title = "3 étapes pour plus de sécurité en ligne" %}
+  {% set box_one_title = "Protégez votre adresse e-mail" %}
+  {% set box_one_body = "Ne partagez plus jamais votre adresse e-mail personnelle avec les sites en lesquels vous n’avez pas confiance, grâce aux alias d’e-mail de Firefox Relay." %}
+  {% set box_one_cta = "Activer Firefox Relay" %}
+  {% set box_two_title = "Protégez vos données personnelles" %}
+  {% set box_two_body = "Avec Firefox Monitor, vous êtes averti·es dès que votre adresse e-mail fait partie d’un vol de données connu, pour que vous puissiez prendre les mesures nécessaires." %}
+  {% set box_two_cta = "Vérifier mon e-mail" %}
+  {% set box_three_title = "Protégez votre connexion" %}
+  {% set box_three_body = "Que vous naviguiez à l’étranger ou depuis un réseau ouvert, Mozilla VPN protège votre connexion." %}
+  {% set box_three_cta = "Essayer Mozilla VPN" %}
+  {% set sign_off = "<strong>Conçu par Mozilla.</strong> Pensé pour vous depuis 1998."|safe %}
+{% else %}
+  {% set main_title = "3 steps for better<br> online security"|safe %}
+  {% set box_one_title = "Protect your email address" %}
+  {% set box_one_body = "You never have to share your real email address with websites you don’t reeeeaaaaally trust – thanks to email masks from Firefox Relay." %}
+  {% set box_one_cta = "Activate Firefox Relay" %}
+  {% set box_two_title = "Protect your private info" %}
+  {% set box_two_body = "With Firefox Monitor, you get notified as soon as your email address becomes part of a known data breach, so you can take further steps quickly." %}
+  {% set box_two_cta = "Check my email" %}
+  {% set box_three_title = "Protect your connection" %}
+  {% set box_three_body = "Whether browsing abroad or on a public network, Mozilla VPN protects your connection." %}
+  {% set box_three_cta = "Get Mozilla VPN" %}
+  {% set sign_off = "<strong>Powered by Mozilla.</strong> Putting people before profits since 1998."|safe %}
+{% endif %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <h2 class="wnp-main-title">{{ main_title }}</h2>
+
+      <div class="mzp-l-columns mzp-t-columns-three">
+        <section class="c-box box-one">
+          <div class="c-box-inner" tabindex="0">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-eu-relay.png') }}" alt="" width="200" height="140">
+            </div>
+            <div class="c-box-body">
+              <h3 class="c-box-title">{{ box_one_title }}</h3>
+
+              <div class="c-box-content">
+                <p>{{ box_one_body }}</p>
+
+                <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://relay.firefox.com/?{{ utm_params }}" data-cta-text="{{ box_one_cta }}" data-cta-type="button"  target="_blank" rel="external noopener">{{ box_one_cta }}</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="c-box box-two">
+          <div class="c-box-inner" tabindex="0">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-eu-monitor.png') }}" alt="" width="200" height="140">
+            </div>
+            <div class="c-box-body">
+              <h3 class="c-box-title">{{ box_two_title }}</h3>
+
+              <div class="c-box-content">
+                <p>{{ box_two_body }}</p>
+
+                <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://monitor.firefox.com/?{{ utm_params }}" data-cta-text="{{ box_two_cta }}" data-cta-type="button" target="_blank" rel="external noopener">{{ box_two_cta }}</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="c-box box-three">
+          <div class="c-box-inner" tabindex="0">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-eu-vpn.png') }}" alt="" width="200" height="140">
+            </div>
+            <div class="c-box-body">
+              <h3 class="c-box-title">{{ box_three_title }}</h3>
+
+              <div class="c-box-content">
+                <p>{{ box_three_body }}</p>
+
+                {{ vpn_product_referral_link(
+                  page_anchor='#pricing',
+                  referral_id=referral_id,
+                  link_text=box_three_cta,
+                  class_name=' mzp-t-product mzp-t-secondary',
+                  optional_attributes= {
+                      'data-cta-text' : box_three_cta,
+                      'data-cta-type' : 'button',
+                      'target' : '_blank',
+                      'rel' : 'noopener',
+                  }
+                ) }}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="wnp-sign-off">
+        {{ sign_off }}
+      </p>
+
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

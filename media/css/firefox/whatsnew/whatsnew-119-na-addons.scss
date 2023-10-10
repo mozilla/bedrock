@@ -1,0 +1,108 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+@keyframes jump {
+    10% { transform: translateY(2px); }
+    60% { transform: translateY(-10px); }
+    80% { transform: translateY(0); }
+    90% { transform: translateY(-2px); }
+    100% { transform: none; }
+}
+
+@keyframes puzzle {
+    to { fill: $color-green-30; }
+}
+
+@keyframes heart {
+    to { fill: $color-pink-30; }
+}
+
+@keyframes lock {
+    to { fill: $color-violet-30; }
+}
+
+.wnp-content-main {
+    background-color: $color-blue-05;
+    color: $color-black;
+    margin-top: $spacing-md;
+    text-align: center;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+}
+
+.wnp-extra-title {
+    @include text-title-sm;
+    color: $color-black;
+}
+
+.wnp-main-tagline,
+.wnp-extra-tagline {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-md;
+}
+
+.wnp-extra-image {
+    margin: $layout-md auto $layout-sm;
+
+    #heart .fill {
+        fill: $color-pink-30;
+    }
+
+    #puzzle .fill {
+        fill: $color-green-30;
+    }
+
+    #lock .fill {
+        fill: $color-violet-30;
+    }
+}
+
+.wnp-sign-off {
+    color: $color-black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .wnp-extra-image {
+        #heart,
+        #puzzle,
+        #lock {
+            animation: jump 600ms cubic-bezier(0.6, -1.2, 0.8, 1.1) forwards;
+
+            .fill {
+                fill: $color-white;
+            }
+        }
+
+        #heart {
+            animation-delay: 1200ms;
+
+            .fill {
+                animation: heart 150ms 1600ms ease-in forwards;
+            }
+        }
+
+        #puzzle {
+            animation-delay: 1700ms;
+
+            .fill {
+                animation: puzzle 150ms 2000ms ease-in forwards;
+            }
+        }
+
+        #lock {
+            animation-delay: 2100ms;
+
+            .fill {
+                animation: lock 150ms 2400ms ease-in forwards;
+            }
+        }
+    }
+}

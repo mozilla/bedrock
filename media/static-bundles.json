@@ -468,6 +468,30 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-119-eu-trio.scss"
+      ],
+      "name": "firefox_whatsnew_119_eu_trio"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-119-eu-relay.scss"
+      ],
+      "name": "firefox_whatsnew_119_eu_relay"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-119-na-trio.scss"
+      ],
+      "name": "firefox_whatsnew_119_na_trio"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-119-na-addons.scss"
+      ],
+      "name": "firefox_whatsnew_119_na_addons"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1691,6 +1715,24 @@
         "js/firefox/whatsnew/whatsnew-118.es6.js"
       ],
       "name": "firefox_whatsnew_118"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-119-eu-relay.es6.js"
+      ],
+      "name": "firefox_whatsnew_119_eu_relay"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-119-experiment-eu.es6.js"
+      ],
+      "name": "firefox_whatsnew_119_experiment_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-119-experiment-na.es6.js"
+      ],
+      "name": "firefox_whatsnew_119_experiment_na"
     },
     {
       "files": [

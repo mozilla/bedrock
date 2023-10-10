@@ -1,0 +1,144 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.wnp-content-main {
+    background-color: $color-light-gray-10;
+    color: $color-black;
+    margin-top: $spacing-md;
+    text-align: center;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: $color-black;
+    margin: 0 auto $layout-xs;
+    max-width: $content-md;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    margin: 0 auto $layout-md;
+    max-width: 580px;
+}
+
+.wnp-extra-title {
+    @include text-title-2xs;
+    color: $color-black;
+    margin: $layout-sm auto;
+}
+
+.c-box {
+    margin: 0 auto $layout-sm;
+    max-width: $content-sm;
+    position: relative;
+    text-align: start;
+
+    .c-box-inner {
+        border-radius: $border-radius-lg;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .c-box-image {
+        background: $color-purple-05;
+        border-radius: $border-radius-lg $border-radius-lg 0 0;
+        display: block;
+        text-align: center;
+    }
+
+    &.box-one .c-box-image {
+        background: #e7dfff;
+    }
+
+    &.box-two .c-box-image {
+        background: #ffdfe7;
+    }
+
+    &.box-three .c-box-image {
+        background: #abf2ff;
+    }
+
+    .c-box-wordmark {
+        margin: 0 0 $spacing-sm;
+    }
+
+    .c-box-title {
+        @include font-firefox;
+        @include font-size(18px);
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: $spacing-md;
+    }
+
+    .c-box-body {
+        background: $color-white;
+        padding: $spacing-md;
+        border-radius: 0 0 $border-radius-lg $border-radius-lg;
+        height: 100%;
+        display: grid;
+        grid-template-rows: max-content 1fr;
+    }
+
+    .c-box-content {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        align-items: start;
+        height: 100%;
+
+        .mzp-c-button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+.wnp-sign-off {
+    text-align: center;
+    color: $color-black;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .c-box {
+        top: 20px;
+        opacity: 0;
+        animation: fade-up 350ms ease-in-out forwards;
+
+        &.box-one {
+            animation-delay: 300ms;
+        }
+
+        &.box-two {
+            animation-delay: 500ms;
+        }
+
+        &.box-three {
+            animation-delay: 700ms;
+        }
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        top: 20px;
+        opacity: 0;
+    }
+
+    60% {
+        top: -10px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
