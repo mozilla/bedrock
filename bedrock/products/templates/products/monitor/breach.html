@@ -1,0 +1,124 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "products/monitor/includes/macros.html" import free_scan with context %}
+
+{% extends "products/monitor/base.html" %}
+
+{% block page_title_full %}{{ ftl('monitor-breach-page-title', breach_title=breach.title) }}{% endblock %}
+
+{% block page_desc %}{{ ftl('monitor-breaches-page-desc') }}{% endblock %}
+
+{% block body_id %}mozilla-monitor-breaches{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-monitor-product-page' %}
+{% set _utm_campaign = 'monitor-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('monitor-common') }}
+  {{ css_bundle('monitor-breaches') }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content">
+    <section class="mzp-l-content mzp-t-content-xl">
+      <header class="breach-detail-header">
+        <div class="breach-detail-meta">
+          <h1>
+            {%- if breach.logo_path %}
+              <img src="{{ breach.logo_path }}" class="breach-logo" alt="{{ breach.name }} logo" width="32" height="32">
+            {%- else %}
+              <span role="img" aria-hidden="true" class="breach-logo">{{ breach.name|first }}</span>
+            {% endif %}
+            {{ breach.title }}
+          </h1>
+          {% if breach.category == 'website-breach' %}
+            <a href="https://{{ breach.domain }}" class="breach-detail-meta-domain" rel="nofollow noopener noreferrer" data-event-label="{{ breach.domain }}" data-event-action="Engage" data-event-category="Breach Detail: Website URL Link" target="_blank">{{ breach.domain }}</a>
+          {% endif %}
+          <a href="#what-is-this-breach" class="breach-detail-meta-more-info">{{ ftl(breach.category) }}</a>
+        </div>
+      </header>
+
+      <!-- Overview -->
+      <div class="breach-detail-overview">
+        <div class="breach-detail-overview-blurb">
+          <h2>{{ ftl('breach-overview-title') }}</h2>
+          <div>{{ ftl('breach-overview-new', breachDate=breach.breach_date, breachTitle=breach.title, addedDate=breach.added_date) }}</div>
+          {% if breach.is_delayed %}
+            <a href="#delayed-reporting">{{ ftl('delayed-reporting-headline') }}</a>
+          {% endif %}
+        </div>
+        <!--Exposed Data Classes -->
+        <div>
+          <h3>{{ ftl('what-data') }}</h3>
+          <ul class="breach-detail-compromised-list">
+            {% for data_class in breach.data_classes %}
+              <li key="TODO">
+                {# TODO: Convert data class to recommendation glyph.}
+                {# <img src="/images/breach-detail-{{ data_class }}.svg" alt="" width="24" /> #}
+                {{ data_class }}
+              </li>
+            {% endfor %}
+          </ul>
+          <p class="breach-detail-attribution">
+            {{ ftl('hibp-attribution', hibp_link_attr='href="https://haveibeenpwned.com/" target="_blank"') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Sign Up Banner -->
+      <div class="breach-detail-sign-up">
+        <img alt="" src="/images/breach-detail-scan.svg" width="120" />
+        <div class="breach-detail-sign-up-content">
+            <h2>{{ ftl('find-out-if') }}</h2>
+            <span>{{ ftl('find-out-if-description') }}</span>
+        </div>
+        <div class="breach-detail-sign-up-cta-wrapper">
+          <a href="/user/breaches" data-cta-id='breaches-detail' class="button primary">{{ ftl('breach-detail-cta-signup') }}</a>
+        </div>
+      </div>
+
+      <!-- What to do tips -->
+      <div id="what-to-do-next">
+        <div class="breach-detail-recommendation-lead">
+          {% if 'passwords' in breach.data_classes %}
+            <h2>{{ ftl('rec-section-headline') }}</h2>
+            <p>{{ ftl('rec-section-subhead') }}</p>
+          {% else %}
+            <h2>{{ ftl('rec-section-headline-no-pw') }}</h2>
+            <p>{{ ftl('rec-section-subhead-no-pw') }}</p>
+          {% endif %}
+        </div>
+        <dl class="breach-detail-recommendation-list">
+          makeRecommendationCards
+        </dl>
+      </div>
+
+      <!-- What is this breach? / Why did it take you so long to report it?-->
+      <div class="breach-detail-info">
+        <div id="what-is-this-breach">
+          makeBreachDetail(getBreachCategory())
+        </div>
+        {% if breach.is_delayed %}
+          <div id="delayed-reporting">
+            <h2>{{ ftl('delayed-reporting-headline') }}</h2>
+            {{ ftl('delayed-reporting-copy') }}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('monitor-common') }}
+{% endblock %}

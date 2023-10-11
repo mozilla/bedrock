@@ -49,4 +49,6 @@ if settings.DEV:
         path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
         path("relay/pricing/", views.relay_pricing_page, name="products.relay.pricing"),
         path("monitor/", views.monitor_landing_page, name="products.monitor.landing"),
+        path("monitor/breaches/", views.monitor_breaches, name="products.monitor.breaches"),
+        path("monitor/breach/<str:name>/", views.monitor_breach, name="products.monitor.breach"),
     )

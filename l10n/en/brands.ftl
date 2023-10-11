@@ -186,3 +186,7 @@
 -brand-name-google-play = Google Play
 -brand-name-youtube = YouTube
 -brand-name-chromebook = Chromebook
+
+## Websites
+
+-brand-name-hibp = Have I Been Pwned

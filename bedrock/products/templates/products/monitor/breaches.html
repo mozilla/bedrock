@@ -1,0 +1,85 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "products/monitor/includes/macros.html" import free_scan with context %}
+
+{% extends "products/monitor/base.html" %}
+
+{% block page_title_full %}{{ ftl('monitor-breaches-page-title') }}{% endblock %}
+
+{% block page_desc %}{{ ftl('monitor-breaches-page-desc') }}{% endblock %}
+
+{% block body_id %}mozilla-monitor-breaches{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-monitor-product-page' %}
+{% set _utm_campaign = 'monitor-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('monitor-common') }}
+  {{ css_bundle('monitor-breaches') }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content">
+    <div class="c-section">
+      <h1 class="u-title-xl">{{ ftl('monitor-breaches-hero-heading') }}</h1>
+      <p class="u-body-xl">{{ ftl('monitor-breaches-hero-tagline') }}</p>
+    </div>
+
+    <section class="mzp-l-content mzp-t-content-xl">
+      <div class="breach-card-container">
+      {% for breach in breaches %}
+        <a href="{{ url('products.monitor.breach', name=breach.name) }}" class="breach-card">
+          <h3>
+            <span class="logo-wrapper">
+              {%- if breach.logo_path %}
+                <img src="{{ breach.logo_path }}" class="breach-logo" alt="{{ breach.name }} logo" width="32" height="32">
+              {%- else %}
+                <span role="img" aria-hidden="true" class="breach-logo">{{ breach.name|first }}</span>
+              {% endif %}
+            </span>
+            <span>{{ breach.title }}</span>
+          </h3>
+          <div class="breach-main">
+            <dl>
+              <div>
+                <dt>{{ ftl('breach-added-label') }}</dt>
+                <dd>{{ breach.added_date|datetime }}</dd>
+              </div>
+              <div>
+                <dt>{{ ftl('breach-exposed-data') }}</dt>
+                <dd>{{ breach.data_classes|join(', ') }}</dd>
+                </dd>
+              </div>
+            </dl>
+            <span class="breach-detail-link">{{ ftl('more-about-this-breach') }}</span>
+          </div>
+        </a>
+      {% endfor %}
+      </div>
+    </section>
+
+    <section class="c-section c-section-control t-highlight-primary">
+      <div class="mzp-l-content mzp-t-content-lg">
+        <h2 class="u-title-lg">{{ ftl('monitor-take-back-control') }}</h2>
+
+        {{ free_scan(position='control', params=_params) }}
+
+        <p><small>{{ ftl('monitor-breach-data-provided-by') }}</small></p>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fxa_product_button') }}
+  {{ js_bundle('monitor-common') }}
+{% endblock %}

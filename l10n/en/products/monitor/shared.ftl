@@ -14,6 +14,9 @@ monitor-shared-sub-nav-all-breaches = All breaches
 
 ## Footer
 
+monitor-take-back-control = Take back control of your data
+monitor-breach-data-provided-by = Breach data provided by <strong>Have I Been Pwned</strong>
+
 monitor-shared-footer-about-mozilla = About { -brand-name-mozilla }
 
 monitor-shared-footer-terms-of-service = Terms of Service

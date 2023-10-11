@@ -1291,6 +1291,12 @@
         "css/products/mozsocial/invite.scss"
       ],
       "name": "mozsocial-invite"
+    },
+    {
+      "files": [
+        "css/products/monitor/breaches.scss"
+      ],
+      "name": "monitor-breaches"
     }
   ],
   "js": [

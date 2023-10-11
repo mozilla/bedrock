@@ -10,6 +10,8 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
 
+import pytest
+
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -533,3 +535,24 @@ class TestVPNResourceArticleView(TestCase):
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_monitor_breaches(client, breach):
+    # Test list page.
+    resp = client.get(reverse("products.monitor.breaches"), follow=True)
+    assert resp.status_code == 200
+    assert resp.context["breaches"][0] == breach
+    assert resp.context["template"] == "products/monitor/breaches.html"
+
+
+@pytest.mark.django_db
+def test_monitor_breach(client, breach):
+    # Test detail page.
+    resp = client.get(reverse("products.monitor.breach", kwargs={"name": "Twitter"}), follow=True)
+    assert resp.status_code == 200
+    assert resp.context["breach"] == breach
+    assert resp.context["template"] == "products/monitor/breach.html"
+
+    resp = client.get(reverse("products.monitor.breach", kwargs={"name": "foo"}), follow=True)
+    assert resp.status_code == 404

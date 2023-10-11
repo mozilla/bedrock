@@ -54,8 +54,3 @@ monitor-faq-what-do-i-do-question = I just found out I’m in a data breach. Wha
 monitor-faq-what-do-i-do-answer = Visit { -brand-name-mozilla-monitor } to learn what to do after a data breach and get guided steps to resolve exposures of your personal info. Hackers rely on people reusing passwords, so it’s important to create strong, unique passwords for all your accounts. Keep your passwords in a safe place that only you have access to; this could be the same place where you store important documents or a password manager.
 monitor-faq-what-gets-exposed-question = What information gets exposed in data breaches?
 monitor-faq-whats-gets-exposed-answer = Not all breaches expose all the same info. It just depends on what hackers can access. Many data breaches expose email addresses and passwords. Others expose more sensitive information such as credit card numbers, passport numbers and social security numbers.
-
-##
-
-monitor-take-back-control = Take back control of your data
-monitor-breach-data-provided-by = Breach data provided by <strong>Have I Been Pwned</strong>

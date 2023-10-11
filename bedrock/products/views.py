@@ -6,6 +6,7 @@ from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.decorators.http import require_safe
 
@@ -21,6 +22,7 @@ from bedrock.contentful.constants import (
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import MozSocialWaitlistForm, RelayBundleWaitlistForm, RelayPhoneWaitlistForm, RelayPremiumWaitlistForm, VPNWaitlistForm
+from bedrock.products.models import Breach
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 
@@ -532,3 +534,25 @@ def mozsocial_waitlist_page(request):
     ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "mozilla-social-waitlist"}
 
     return l10n_utils.render(request, template_name, ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def monitor_breaches(request):
+    template_name = "products/monitor/breaches.html"
+    ftl_files = ["products/monitor/breaches", "products/monitor/shared"]
+
+    breaches = Breach.objects.filter(is_sensitive=False).order_by("-added_date")
+    context = {"breaches": breaches}
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
+def monitor_breach(request, name):
+    template_name = "products/monitor/breach.html"
+    ftl_files = ["products/monitor/breaches", "products/monitor/shared"]
+
+    breach = get_object_or_404(Breach, name=name)
+    context = {"breach": breach}
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
