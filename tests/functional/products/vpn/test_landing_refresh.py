@@ -55,6 +55,7 @@ def test_vpn_available_in_country(country, base_url, selenium):
     # Footer
     assert not page.is_join_waitlist_footer_button_displayed
     assert page.is_get_vpn_footer_button_displayed
+    assert page.is_legal_footer_displayed
 
 
 @pytest.mark.nondestructive
@@ -83,3 +84,4 @@ def test_vpn_not_available_in_country(base_url, selenium):
     # Footer
     assert page.is_join_waitlist_footer_button_displayed
     assert not page.is_get_vpn_footer_button_displayed
+    assert page.is_legal_footer_displayed

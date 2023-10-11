@@ -34,6 +34,7 @@ class VPNLandingPage(BasePage):
     # Footer
     _get_vpn_footer_button_locator = (By.CSS_SELECTOR, '.c-aside.footer .mzp-c-button[data-cta-text="Get Mozilla VPN"]')
     _join_waitlist_footer_button_locator = (By.CSS_SELECTOR, '.c-aside.footer .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
+    _legal_footer_locator = (By.CLASS_NAME, "c-footer-legal")
 
     # Hero
 
@@ -94,3 +95,9 @@ class VPNLandingPage(BasePage):
     @property
     def is_join_waitlist_footer_button_displayed(self):
         return self.is_element_displayed(*self._join_waitlist_footer_button_locator)
+
+    # Legal links
+
+    @property
+    def is_legal_footer_displayed(self):
+        return self.is_element_displayed(*self._legal_footer_locator)
