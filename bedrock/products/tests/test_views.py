@@ -570,7 +570,7 @@ class TestVPNMorePages(TestCase):
         view = views.vpn_resource_center_redirect
         resp = view(req, "what-is-an-ip-address")
         # should redirect to en-US/vpn/resource-center/what-is-an-ip-address
-        assert resp.status_code == 302 and resp.url == "en-US/products/vpn/resource-center/what-is-an-ip-address/"
+        assert resp.status_code == 302 and resp.url == "/en-US/products/vpn/resource-center/what-is-an-ip-address/"
 
     @override_settings(DEV=True)
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
@@ -592,4 +592,4 @@ class TestVPNMorePages(TestCase):
         view = views.vpn_resource_center_redirect
         resp = view(req, "what-is-an-ip-address")
         # should redirect to fr/vpn/resource-center/what-is-an-ip-address
-        assert resp.status_code == 302 and resp.url == "fr/products/vpn/resource-center/what-is-an-ip-address/"
+        assert resp.status_code == 302 and resp.url == "/fr/products/vpn/resource-center/what-is-an-ip-address/"
