@@ -589,7 +589,7 @@ def vpn_resource_center_redirect(request, slug):
     locale = l10n_utils.get_locale(request)
     curr_page = VPNRC_SLUGS[slug]
     rc_slug = curr_page["slug"]
-    redirect_link = f"{locale}/products/vpn/resource-center/{rc_slug}/"
+    redirect_link = f"/{locale}/products/vpn/resource-center/{rc_slug}/"
     if active_locale_available(rc_slug, locale):
         return redirect(redirect_link)
     elif ftl_file_is_active(curr_page["ftl_files"][0]):
