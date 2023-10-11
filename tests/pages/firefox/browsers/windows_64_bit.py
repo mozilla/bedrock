@@ -5,15 +5,18 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.download_button import DownloadButton
 
 
 class Windows64BitPage(BasePage):
     _URL_TEMPLATE = "/{locale}/firefox/browsers/windows-64-bit/"
 
-    _download_button_locator = (By.ID, "win64-hero-download")
+    _windows_64bit_hero_download_button_locator = (By.ID, "win64-hero-download")
+    _windows_64bit_footer_download_button_locator = (By.ID, "win64-bottom-download")
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_windows_64_bit_hero_download_button_displayed(self):
+        return self.is_element_displayed(*self._windows_64bit_hero_download_button_locator)
+
+    @property
+    def is_windows_64_bit_footer_download_button_displayed(self):
+        return self.is_element_displayed(*self._windows_64bit_footer_download_button_locator)

@@ -148,7 +148,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         // target download buttons and other-platforms modal links.
         var downloadLinks = document.querySelectorAll(
-            '.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link'
+            '.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link, .firefox-platform-button .download-link'
         );
 
         for (var i = 0; i < downloadLinks.length; i++) {

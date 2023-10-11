@@ -1,0 +1,79 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% macro firefox_download_desktop_button_windows(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-win', build='32', position='primary cta') -%}
+  {% set class_name = 'os_win' if build == '32' else 'os_win64' %}
+  {% set os = 'win' if build == '32' else 'win64' %}
+  <div class="firefox-platform-button-windows">
+    <div class="firefox-platform-button">
+      <a class="download-link {{ class_name }} mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-stub&os={{ os }}&lang={{ LANG }}" data-link-type="download" data-display-name="Windows {{ build }}-bit" data-download-version="{{ os }}" data-download-os="Desktop" data-download-location="{{ position }}">
+        <strong class="download-title">
+          {{ cta_copy }}
+        </strong>
+      </a>
+
+      <small class="mzp-c-button-download-privacy-link">
+        <a href="{{ url('privacy.notices.firefox') }}">
+          {{ ftl('download-button-firefox-privacy-notice') }}
+        </a>
+      </small>
+    </div>
+
+    {# ESR download buttons to display on unsupported systems: issue 13317 #}
+    {% with channel_name = 'Firefox' %}
+      {% include 'firefox/includes/download-unsupported.html' %}
+    {% endwith %}
+  </div>
+{%- endmacro %}
+
+
+{% macro firefox_download_desktop_button_mac(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-osx', position='primary cta') -%}
+  <div class="firefox-platform-button-mac">
+    <div class="firefox-platform-button">
+      <a class="download-link os_osx mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-display-name="macOS" data-download-version="osx" data-download-os="Desktop" data-download-location="{{ position }}">
+        <strong class="download-title">
+          {{ cta_copy }}
+        </strong>
+      </a>
+
+      <small class="mzp-c-button-download-privacy-link">
+        <a href="{{ url('privacy.notices.firefox') }}">
+          {{ ftl('download-button-firefox-privacy-notice') }}
+        </a>
+      </small>
+    </div>
+
+    {# ESR download buttons to display on unsupported systems: issue 13317 #}
+    {% with channel_name = 'Firefox' %}
+      {% include 'firefox/includes/download-unsupported.html' %}
+    {% endwith %}
+  </div>
+{%- endmacro %}
+
+
+{% macro firefox_download_desktop_button_linux(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-linux', position='primary cta') -%}
+  <div class="firefox-platform-button-linux">
+    <div class="firefox-platform-button">
+      <a class="download-link os_linux mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 32-bit" data-download-version="linux" data-download-os="Desktop" data-download-location="{{ position }}">
+        <strong class="download-title">
+          {{ cta_copy }}
+        </strong>
+      </a>
+
+      <a class="download-link os_linux64 mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}-64" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 64-bit" data-download-version="linux64" data-download-os="Desktop" data-download-location="{{ position }}">
+        <strong class="download-title">
+          {{ ftl('download-button-download-now') }}
+        </strong>
+      </a>
+
+      <small class="mzp-c-button-download-privacy-link">
+        <a href="{{ url('privacy.notices.firefox') }}">
+          {{ ftl('download-button-firefox-privacy-notice') }}
+        </a>
+      </small>
+    </div>
+  </div>
+{%- endmacro %}

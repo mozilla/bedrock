@@ -28,6 +28,12 @@
 {# else it will fall back to the strings from new/download.ftl specified in base_download #}
 {% endif %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block features %}
   {% if ftl_file_is_active('firefox/new/platform') %}
     <section class="features">

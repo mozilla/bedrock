@@ -11,4 +11,5 @@ from pages.firefox.browsers.windows_64_bit import Windows64BitPage
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = Windows64BitPage(selenium, base_url).open()
-    assert page.download_button.is_displayed
+    assert page.is_windows_64_bit_hero_download_button_displayed
+    assert page.is_windows_64_bit_footer_download_button_displayed

@@ -5,6 +5,7 @@
 #}
 
 {% from "macros-protocol.html" import call_out_compact, hero with context %}
+{% from "firefox/includes/macros.html" import firefox_download_desktop_button_windows with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -20,18 +21,26 @@
   {{ css_bundle('windows-64-bit') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block body_class %}{{ super() }} firefox-windows-64bit{% endblock %}
+
 {% block sub_navigation %}
  {% include '/firefox/includes/desktop-platform-sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
   <div class="c-hero mzp-t-dark">
-    <div class="hero-content">
+    <div class="hero-content mzp-l-content">
       <div class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox"></div>
       <p>{{ ftl('windows-64-bit-64-bit') }}</p>
       <h1>{{ ftl('windows-64-bit-a-more-secure-firefox') }}</h1>
       <div class="download-firefox">
-        {{ download_firefox(dom_id='win64-hero-download', download_location='primary cta') }}
+        {{ firefox_download_desktop_button_windows(cta_copy=ftl('windows-64-bit-download-firefox', fallback='download-button-download-firefox'), id='win64-hero-download', build='64') }}
       </div>
     </div>
   </div>
@@ -69,18 +78,8 @@ title=ftl('windows-64-bit-take-control-of-your'),
 class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
 ) %}
 <div class="download-firefox">
-  {{ download_firefox(dom_id='win64-bottom-download', download_location='secondary cta') }}
+  {{ firefox_download_desktop_button_windows(cta_copy=ftl('windows-64-bit-download-firefox', fallback='download-button-download-firefox'), id='win64-bottom-download', build='64', position='secondary cta') }}
 </div>
 {% endcall %}
 
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
 {% endblock %}
