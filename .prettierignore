@@ -9,7 +9,7 @@ static
 static_build
 static_final
 venv
-dist
+tests/unit/dist
 
 # Ignore external JS libraries
 media/js/libs/**/

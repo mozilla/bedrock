@@ -1,9 +1,9 @@
 {
-  "srcDir": "dist",
+  "srcDir": "tests/unit/dist",
   "srcFiles": [
     "test-deps.js"
   ],
-  "specDir": "dist",
+  "specDir": "tests/unit/dist",
   "specFiles": [
     "test.js"
   ],

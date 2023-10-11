@@ -60,4 +60,4 @@ tests/unit/coverage
 Thumbs.db
 tmp/*
 venv
-dist/
+tests/unit/dist/
