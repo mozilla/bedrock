@@ -126,3 +126,8 @@ main {
         }
     }
 }
+
+.c-footer-legal {
+    @include text-body-sm;
+    text-align: center;
+}
