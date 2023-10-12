@@ -16,7 +16,7 @@ newsletters-read-all-about-it-in-our-newsletter = Read all about it in our <span
 # Subtitle for https://www-dev.allizom.org/newsletter/
 newsletters-subscribe-here-to-keep-current = Subscribe here to keep current with { -brand-name-mozilla } news, take action for a healthier internet, and get smarter about your online life.
 
-# Outdated string
+# Obsolete string
 newsletters-subscribe-to-updates-and-keep = Subscribe to updates and keep current with { -brand-name-mozilla } news. It’s the perfect way for us to keep in touch!
 
 # Page title the subscription confirmation page
@@ -115,7 +115,7 @@ newsletters-were-sorry-to-see-you-go = We’re sorry to see you go.
 newsletters-would-you-mind-telling-us = Would you mind telling us why you’re leaving?
 newsletters-other-v2 = Other… (maximum 500 characters)
 
-# Outdated string
+# Obsolete string
 newsletters-other = Other…
 
 newsletters-submit = Submit
@@ -261,7 +261,7 @@ newsletters-student-reps = Student Reps
 # Description for the newsletter in Newsletter subscription page (Student Reps)
 newsletters-former-university-program-v2 = Former University program from 2008-2011, now retired and relaunched as the { -brand-name-firefox } Student Ambassadors program.
 
-# Outdated String
+# Obsolete string
 # Description for the newsletter in Newsletter subscription page (Student Reps)
 newsletters-former-university-program = Former University program from 2008-2011, now retired and relaunched as the Firefox Student Ambassadors program.
 

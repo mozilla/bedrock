@@ -14,7 +14,7 @@ nightly-whatsnew-firefox-nightly = { -brand-name-firefox-nightly }
 
 nightly-whatsnew-every-4-to-5-weeks = Every 4 to 5 weeks, a new major version of { -brand-name-firefox } is released and as a result, the { -brand-name-nightly } version increases as well.
 
-# Obsolete
+# Obsolete string
 nightly-whatsnew-every-6-to-8-weeks = Every 6 to 8 weeks, a new major version of { -brand-name-firefox } is released and as a result, the { -brand-name-nightly } version increases as well.
 
 nightly-whatsnew-this-is-a-good = This is a good time to thank you for helping us make { -brand-name-firefox } better and to give you some pointers to documentation, communication channels and news sites related to { -brand-name-nightly } that may be of interest to you.
@@ -25,14 +25,14 @@ nightly-whatsnew-this-is-a-good = This is a good time to thank you for helping u
 #   $twitter (url) - link to https://twitter.com/FirefoxNightly
 nightly-whatsnew-if-you-want-to-v2 = If you want to know what’s happening around { -brand-name-nightly } and its community, reading our <a href="{ $blog }">blog</a> and following us on <a href="{ $mastodon }">Mastodon</a> or <a href="{ $twitter }">Twitter</a> are good starting points!
 
-# Obsolete
+# Obsolete string
 nightly-whatsnew-if-you-want-to = If you want to know what’s happening around { -brand-name-nightly } and its community, reading our <a href="{ $blog }">blog</a> and following us on <a href="{ $twitter }">{ -brand-name-twitter }</a> are good starting points!
 
 # Variables:
 #   $attrs (string) - link href and additional attributes
 nightly-whatsnew-want-to-know-which-v2 = Want to know which platform features you could test on { -brand-name-nightly } and can’t see yet on other { -brand-name-firefox } channels? Then have a look at the <a { $attrs }>Nightly Experiments</a> preferences page.
 
-# Obsolete
+# Obsolete string
 # Variables:
 #   $mdn (url) - link to https://developer.mozilla.org/Firefox/Experimental_features
 nightly-whatsnew-want-to-know-which = Want to know which platform features you could test on { -brand-name-nightly } and can’t see yet on other { -brand-name-firefox } channels? Then have a look at the <a href="{ $mdn }">Experimental Features</a> page on <abbr title="{ -brand-name-mozilla-developer-network }">{ -brand-name-mdn }</abbr>.

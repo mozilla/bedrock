@@ -12,41 +12,41 @@ footer-browser-comparison = Browser Comparison
 footer-brand-standards = Brand Standards
 footer-browsers = Browsers
 
-# Outdated string
+# Obsolete string
 footer-desktop = Desktop
 
-# Outdated string
+# Obsolete string
 footer-mobile = Mobile
 
-# Outdated string
+# Obsolete string
 footer-reality = { -brand-name-reality }
 footer-enterprise = { -brand-name-enterprise }
 
-# Outdated string
+# Obsolete string
 footer-products = Products
 
-# Outdated string
+# Obsolete string
 footer-lockwise = { -brand-name-lockwise }
 
-# Outdated string
+# Obsolete string
 footer-monitor = { -brand-name-monitor }
 
-# Outdated string
+# Obsolete string
 footer-send = { -brand-name-send }
 
-# Outdated string
+# Obsolete string
 footer-pocket = { -brand-name-pocket }
 
-# Outdated string
+# Obsolete string
 footer-join = Join
 
-# Outdated string
+# Obsolete string
 footer-sign-up = Sign Up
 
-# Outdated string
+# Obsolete string
 footer-sign-in = Sign In
 
-# Outdated string
+# Obsolete string
 footer-benefits = Benefits
 footer-developers = Developers
 footer-developer-edition = { -brand-name-developer-edition }
@@ -59,15 +59,15 @@ footer-portions-of-this-content = Portions of this content are ©1998–{ $curre
 footer-mozilla = { -brand-name-mozilla }
 footer-company = Company
 
-# Outdated string
+# Obsolete string
 footer-about = About
 footer-press-center = Press Center
 footer-careers = Careers
 
-# Outdated string
+# Obsolete string
 footer-test-new-features = Test New Features
 
-# Outdated string
+# Obsolete string
 footer-mdn-web-docs = { -brand-name-mdn-web-docs }
 footer-tools = Tools
 footer-resources = Resources

@@ -7,13 +7,13 @@
 # HTML page title
 firefox-browsers-page-title = Download { -brand-name-firefox } for Desktop, Mobile, or Enterprise
 
-# Outdated string
+# Obsolete string
 firefox-browsers-get-the-browsers-that-put = Get the browsers that put your privacy first — and always have
 
 # HTML page description
 firefox-browsers-page-desc = Choose from Desktop, { -brand-name-ios }, { -brand-name-android }, or let us email you a mobile download link.
 
-# Outdated string
+# Obsolete string
 firefox-browsers-get-the-privacy-you-deserve = Get the privacy you deserve. Enhanced Tracking Protection is automatic in every { -brand-name-firefox } browser.
 
 # Obsolete string
@@ -46,7 +46,7 @@ firefox-browsers-join-firefox-and-get-the-most = Join { -brand-name-firefox } an
 #   $accounts_attr (string) - anchor link url and attributes
 firefox-browsers-already-have-an-account-sign-v2 = Already have an account? <a { $fxa_attr }>Sign in</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
 
-# Outdated string
+# Obsolete string
 # Variables:
 #   $fxa_attr (string) - anchor link url and attributes
 #   $accounts_attr (string) - anchor link url and attributes

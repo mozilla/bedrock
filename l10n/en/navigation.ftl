@@ -19,7 +19,7 @@ navigation-watch-videos-and-browse = Watch videos and browse the internet on you
 navigation-firefox-browsers-put = { -brand-name-firefox } browsers put your privacy first — and always have.
 navigation-take-the-passwords-youve = Take the passwords you’ve saved in { -brand-name-firefox } with you everywhere.
 
-# Outdated string
+# Obsolete string
 navigation-firefox-is-a-whole-family = { -brand-name-firefox } is a whole family of products designed to keep you safer and smarter online.
 
 navigation-join-firefox = Join { -brand-name-firefox }
@@ -40,27 +40,27 @@ navigation-android-extensions = { -brand-name-android } Extensions
 navigation-your-firefox-account = Your { -brand-name-firefox-account }
 navigation-make-the-most-of-your = Make the most of your { -brand-name-firefox } experience, across every device.
 
-# Outdated string
+# Obsolete string
 navigation-learn-how-to-customize = Learn how to customize the way { -brand-name-firefox } works.
 
 navigation-explore-the-immersive = Explore the immersive web on your virtual reality headset.
 
-# Outdated string
+# Obsolete string
 navigation-experience-augmented = Experience augmented and virtual reality with { -brand-name-firefox }.
 
 navigation-get-together = Get together in virtual reality with this online social space.
 
-# Outdated string
+# Obsolete string
 navigation-meet-people-in-experimental = Meet people in experimental Mixed Reality chatrooms with { -brand-name-firefox }.
 
 navigation-mozilla-mixed-reality = { -brand-name-mozilla } Mixed Reality
 
-# Outdated string
+# Obsolete string
 navigation-mozilla-webvr = { -brand-name-mozilla } WebVR
 
 navigation-mozilla-brings-virtual = { -brand-name-mozilla } brings virtual and augmented reality to the open web.
 
-# Outdated string
+# Obsolete string
 navigation-mozilla-brings-firefox = { -brand-name-mozilla } brings { -brand-name-firefox } to augmented and virtual reality.
 
 navigation-firefox-built-just-for = { -brand-name-firefox }, built just for developers.
@@ -90,7 +90,7 @@ navigation-sign-up = Sign Up
 navigation-mozilla-vpn = { -brand-name-mozilla-vpn }: Fast. Simple. Private.
 navigation-protect-your-entire-device = Protect your entire device and all applications. Mask your real location and connect up to 5 devices. Subscribe now.
 
-# Outdated string
+# Obsolete string
 navigation-connected-and-protected = Connected and protected
 
 navigation-join = Join
@@ -105,7 +105,7 @@ navigation-new-features = New Features
 navigation-save-content-absorb-knowledge = Save content. Absorb knowledge.
 navigation-same-speed-and-safety = Same speed and safety you trust, designed just for business.
 
-# Outdated string
+# Obsolete string
 navigation-add-ons = Add-ons
 
 navigation-projects = Projects
@@ -113,12 +113,12 @@ navigation-close-projects-menu = Close Projects menu
 navigation-donate-your-voice-to = Donate your voice to help make voice recognition open to everyone.
 navigation-machine-learning = Machine Learning
 
-# Outdated string
+# Obsolete string
 navigation-web-of-things-iot = Web of Things (IoT)
 
 navigation-help-make-deep-learning = Help make deep learning algorithms available to the open source world.
 
-# Outdated string
+# Obsolete string
 navigation-make-devices-connected = Make devices connected to the internet safe, secure and interoperable.
 
 navigation-developers = Developers
