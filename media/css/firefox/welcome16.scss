@@ -41,6 +41,10 @@ $image-path: '/media/protocol/img';
         font-weight: normal;
         margin-bottom: $spacing-md;
         padding: $spacing-sm $spacing-md;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .c-coupon-copy {

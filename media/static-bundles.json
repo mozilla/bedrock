@@ -1364,6 +1364,12 @@
       ],
       "name": "firefox_welcome_page15_experiment"
     },
+       {
+      "files": [
+        "js/firefox/welcome/welcome16.js"
+      ],
+      "name": "firefox_welcome_page16"
+    },
     {
       "files": [
         "js/firefox/sticky-promo.es6.js",
