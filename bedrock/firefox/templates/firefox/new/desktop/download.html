@@ -16,6 +16,16 @@
 
 {% block string_data %}{% endblock %}
 
+{% block page_image %}
+  {% if LANG.startswith('en-') %}
+    {{ static('img/firefox/new/desktop/meta-img-en.png') }}
+  {% elif LANG.startswith('es-') %}
+    {{ static('img/firefox/new/desktop/meta-img-es.png') }}
+  {% else %}
+    {{ static('img/firefox/new/desktop/meta-img-global.png') }}
+  {% endif %}
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('protocol-card') }}
@@ -150,12 +160,12 @@
         </li>
       </ul>
 
-    {% if LANG.startswith('en') %}
+    {% if LANG.startswith('en-') %}
       <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-type="link" data-cta-text="See Release Notes">See Release Notes</a></p>
     {% endif %}
     </div>
   </section>
-{% elif LANG.startswith('en') %}
+{% elif LANG.startswith('en-') %}
   <section class="mzp-l-content t-releases">
     <div class="mzp-c-emphasis-box js-animate">
       <h2 class="mzp-c-section-heading mzp-has-zap-8"><strong>Latest</strong> Firefox features</h2>
