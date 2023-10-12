@@ -16,6 +16,16 @@
 
 {% block string_data %}{% endblock %}
 
+{% block page_image %}
+  {% if LANG.startswith('en') %}
+    {{ static('img/firefox/new/desktop/meta-img-en.png') }}
+  {% elif LANG == 'es-ES' %}
+    {{ static('img/firefox/new/desktop/meta-img-es.png') }}
+  {% else %}
+    {{ static('img/firefox/new/desktop/meta-img-global.png') }}
+  {% endif %}
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('protocol-card') }}
