@@ -507,6 +507,10 @@ STATICFILES_DIRS = (path("assets"),)
 if DEBUG:
     STATICFILES_DIRS += (path("media"),)
 
+# GCS bucket name for media. Configured on a per-deployment basis in envvars. Defaults to dev.
+# NOTE: This shouldn't be needed locally unless you're testing GCS uploads.
+GCS_MEDIA_BUCKET_NAME = config("GCS_MEDIA_BUCKET_NAME", default="bedrock-nonprod-dev-media")
+
 
 def set_whitenoise_headers(headers, path, url):
     if "/fonts/" in url:
