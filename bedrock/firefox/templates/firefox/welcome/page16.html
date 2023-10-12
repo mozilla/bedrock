@@ -1,0 +1,102 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}It’s Cybersecurity Month — time to level up your privacy{% endblock %}
+
+{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
+
+{% block body_class %}welcome-page14{% endblock %}
+
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page10') }}
+  {{ css_bundle('firefox_welcome_page16') }}
+{% endblock %}
+
+{% block js %}
+    {{ js_bundle("firefox_welcome_page16") }}
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+
+{% set coupon_code = 'CYBER20' %}
+
+
+{% block content_intro %}
+  <section class="c-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="">
+      <h1 class="c-main-title">This Cybersecurity Month, take 20% off your first year</h1>
+      <p class="c-main-tagline">Get a peace of mind with a single click. Keep your location and personal information private and secure with Mozilla VPN.</p>
+      <div class="c-main-cta">
+        {{ vpn_product_referral_link(
+          referral_id='welcome-page16',
+          link_text='Get Mozilla VPN',
+          class_name='mzp-t-product mzp-t-xl',
+          page_anchor="#pricing",
+          optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+          }
+        )}}
+      </div>
+        <div class="c-coupon-container">
+          <h2>Use code at checkout for 20% off</h2>
+          <strong class="c-coupon-code">{{ coupon_code }}</strong>
+          <button type="button" class="c-coupon-copy" id="code-copy" data-code="{{ coupon_code }}" data-success="Code copied!">Copy code</button>
+          <p class="c-coupon-expires"><small>Offer ends Oct 31, 2023</small></p>
+        </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content_body %}
+<section class="page-body">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <div class="mzp-l-columns mzp-t-columns-two">
+
+      <div class="mzp-t-picto-center">
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/welcome/includes/page16/shield.svg' %}
+          </div>
+          <h3 class="mzp-c-picto-title">Powerful privacy</h3>
+          <div class="mzp-c-picto-body">
+            <p>Block internet providers and trackers from seeing your browser and app activity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mzp-t-picto-center">
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {% include 'firefox/welcome/includes/page16/devices.svg' %}
+          </div>
+          <h3 class="mzp-c-picto-title">Protect all your devices</h3>
+          <div class="mzp-c-picto-body">
+            <p>Connect up to five devices on Windows, macOS, iOS, Android and Linux operating systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages">
+      Why am I seeing this?
+    </a>
+  </strong>
+</p>
+{% endblock %}

@@ -155,6 +155,7 @@ urlpatterns = (
             template_context_variations=["1", "2"],
         ),
     ),
+    page("firefox/welcome/16/", "firefox/welcome/page16.html"),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     # Issue 6604, SEO firefox/new pages
