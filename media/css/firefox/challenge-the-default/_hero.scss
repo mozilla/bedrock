@@ -194,6 +194,24 @@ $campaign-red: #ff6a75;
             max-width: 80%;
         }
 
+        .hero-text-flex-wrapper {
+            display: flex;
+            flex-direction: column-reverse;
+
+            .mzp-c-button {
+                align-self: flex-start;
+                margin-bottom: $spacing-lg;
+            }
+
+            @media #{$mq-md} {
+                flex-direction: column;
+
+                .mzp-c-button {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
         h1 {
             @include font-firefox;
             @include font-size(36px);
