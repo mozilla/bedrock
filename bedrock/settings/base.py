@@ -453,6 +453,7 @@ NOINDEX_URLS = [
     r"^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/",
     r"^newsletter/opt-out-confirmation/",
     r"^newsletter/country/success/",
+    r"^newsletter/newsletter-strings\.json",
     r"^products/vpn/invite/waitlist/",
     r"^products/relay/invite/waitlist/",
     r"/system-requirements/$",
