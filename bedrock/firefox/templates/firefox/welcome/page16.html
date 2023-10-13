@@ -12,6 +12,11 @@
 
 {% block body_class %}welcome-page14{% endblock %}
 
+{% set _entrypoint = "firefox-desktop" %}
+{% set _source = "moments" %}
+{% set _campaign = "cybersecurity-month-23" %}
+{% set _content = "moments-oct23-global" %}
+
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
@@ -21,6 +26,32 @@
 
 {% block js %}
     {{ js_bundle("firefox_welcome_page16") }}
+{% endblock %}
+
+{% block shoulder_logo %}
+  {{ picture(
+    url="img/firefox/welcome/page16/firefox-wordmark-light.svg",
+    sources=[
+      {
+        "media": "(prefers-color-scheme: light)",
+        "srcset": {
+          "img/firefox/welcome/page16/firefox-wordmark-light.svg": "default",
+        }
+      },
+      {
+        "media": "(prefers-color-scheme: dark)",
+        "srcset": {
+          "img/firefox/welcome/page16/firefox-wordmark-dark.svg": "default",
+        }
+      }
+    ],
+    optional_attributes={
+      "class": "c-header-logo",
+      "alt": "Firefox",
+      "width": "108",
+      "height": "40",
+    }
+  ) }}
 {% endblock %}
 
 {% block shoulder_cta %}{% endblock %}
@@ -41,6 +72,13 @@
           link_text='Get Mozilla VPN',
           class_name='mzp-t-product mzp-t-xl',
           page_anchor="#pricing",
+          optional_parameters={
+            'utm-medium': _entrypoint,
+            'utm_source': _source,
+            'utm_campaign': _campaign,
+            'utm_content': _content,
+            'coupon': coupon_code,
+          },
           optional_attributes= {
                 'data-cta-text' : 'Get Mozilla VPN',
                 'data-cta-type' : 'button',
@@ -50,8 +88,10 @@
       </div>
         <div class="c-coupon-container">
           <h2>Use code at checkout for 20% off</h2>
-          <strong class="c-coupon-code">{{ coupon_code }}</strong>
-          <button type="button" class="c-coupon-copy" id="code-copy" data-code="{{ coupon_code }}" data-success="Code copied!">Copy code</button>
+          <div class="c-coupon-code-wrapper">
+            <strong class="c-coupon-code">{{ coupon_code }}</strong>
+            <button type="button" class="c-coupon-copy mzp-c-button" id="code-copy" data-code="{{ coupon_code }}" data-success="Code copied!"><span class="copy-icon"></span><span class="copy-text">Copy code</span></button>
+          </div>
           <p class="c-coupon-expires"><small>Offer ends Oct 31, 2023</small></p>
         </div>
     </div>
@@ -66,7 +106,28 @@
       <div class="mzp-t-picto-center">
         <div class="mzp-c-picto">
           <div class="mzp-c-picto-image">
-            {% include 'firefox/welcome/includes/page16/shield.svg' %}
+            {{ picture(
+                url="img/firefox/welcome/page16/shield-light.svg",
+                sources=[
+                  {
+                    "media": "(prefers-color-scheme: light)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/shield-light.svg": "default",
+                    }
+                  },
+                  {
+                    "media": "(prefers-color-scheme: dark)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/shield-dark.svg": "default",
+                    }
+                  }
+                ],
+                optional_attributes={
+                  "alt": "",
+                  "width": "130",
+                  "height": "150",
+                }
+              ) }}
           </div>
           <h3 class="mzp-c-picto-title">Powerful privacy</h3>
           <div class="mzp-c-picto-body">
@@ -78,7 +139,28 @@
       <div class="mzp-t-picto-center">
         <div class="mzp-c-picto">
           <div class="mzp-c-picto-image">
-            {% include 'firefox/welcome/includes/page16/devices.svg' %}
+            {{ picture(
+                url="img/firefox/welcome/page16/devices-light.svg",
+                sources=[
+                  {
+                    "media": "(prefers-color-scheme: light)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/devices-light.svg": "default",
+                    }
+                  },
+                  {
+                    "media": "(prefers-color-scheme: dark)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/devices-dark.svg": "default",
+                    }
+                  }
+                ],
+                optional_attributes={
+                  "alt": "",
+                  "width": "287",
+                  "height": "200",
+                }
+              ) }}
           </div>
           <h3 class="mzp-c-picto-title">Protect all your devices</h3>
           <div class="mzp-c-picto-body">
@@ -94,7 +176,7 @@
 {% block content_utility %}
 <p>
   <strong>
-    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages">
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/">
       Why am I seeing this?
     </a>
   </strong>

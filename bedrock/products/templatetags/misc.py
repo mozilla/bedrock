@@ -262,7 +262,14 @@ def vpn_saving(ctx, country_code=None, lang=None, bundle_relay=False, ftl_string
 @library.global_function
 @jinja2.pass_context
 def vpn_product_referral_link(
-    ctx, referral_id="", link_to_pricing_page=False, page_anchor="", link_text=None, class_name=None, optional_attributes=None
+    ctx,
+    referral_id="",
+    link_to_pricing_page=False,
+    page_anchor="",
+    link_text=None,
+    class_name=None,
+    optional_attributes=None,
+    optional_parameters=None,
 ):
     """
     Render link to the /products/vpn/ landing page with referral attribution markup
@@ -282,6 +289,10 @@ def vpn_product_referral_link(
 
     if optional_attributes:
         attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
+
+    if optional_parameters:
+        params = "&".join(f"{param}={val}" for param, val in optional_parameters.items())
+        href += f"?{params}"
 
     if class_name:
         css_class += f" {class_name}"
