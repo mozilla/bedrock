@@ -53,7 +53,7 @@
     "prestart": "npm run glean",
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
     "in-pocket-mode": "SITE_MODE=Pocket npm start",
-    "lint-js": "./node_modules/.bin/eslint \"media/js/**/*.js\" \"tests/unit/spec/**/*.js\" webpack.config.js webpack.static.config.js",
+    "lint-js": "./node_modules/.bin/eslint \"media/js/**/*.js\" \"tests/unit/spec/**/*.js\" webpack.config.js webpack.test.config.js webpack.static.config.js",
     "lint-css": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\"",
     "lint": "npm run lint-js && npm run lint-css && npm run prettier-check",
     "test-build": "webpack --config webpack.test.config.js --mode=development",
