@@ -712,9 +712,9 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/get-app.scss"
+        "css/firefox/browsers/get-app.scss"
       ],
-      "name": "firefox-mobile-get-app"
+      "name": "firefox-browsers-get-app"
     },
     {
       "files": [
@@ -1512,9 +1512,9 @@
     {
       "files": [
         "js/base/send-to-device.es6.js",
-        "js/firefox/mobile/get-app.es6.js"
+        "js/firefox/browsers/get-app.es6.js"
       ],
-      "name": "firefox-mobile-get-app"
+      "name": "firefox-browsers-get-app"
     },
     {
       "files": [
