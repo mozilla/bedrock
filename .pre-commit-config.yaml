@@ -74,7 +74,7 @@ repos:
       - id: black
         language_version: python3
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.0
+    rev: v3.0.3
     hooks:
       - id: prettier
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
@@ -82,14 +82,14 @@ repos:
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@15.10.2"
-          - "stylelint-config-standard-scss@10.0.0"
+          - "stylelint@15.10.3"
+          - "stylelint-config-standard-scss@11.0.0"
           - "postcss-scss@4.0.6"
           - "postcss@8.4.26"
   - repo: https://github.com/eslint/eslint
-    rev: v8.45.0
+    rev: v8.51.0
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-config-prettier@8.8.0"
+          - "eslint-config-prettier@9.0.0"
   #       Additional excludes in /.eslintignore file
