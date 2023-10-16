@@ -3,7 +3,7 @@ babis==0.2.4
 basket-client==1.1.0
 beautifulsoup4==4.12.2
 bleach[css]==6.0.0
-boto3==1.28.44
+boto3==1.28.63
 certifi>=2023.7.22  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
@@ -34,13 +34,13 @@ gunicorn==19.7.1
 honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.2  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
-jq==1.5.0
+jq==1.6.0
 lxml==4.9.3  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
 Markdown==3.4.4
 markus[datadog]==4.2.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 meinheld==1.0.2
-newrelic==9.0.0
+newrelic==9.1.0
 Pillow==10.0.1
 PyGithub==1.59.1
 pyOpenSSL==23.2.0
