@@ -66,14 +66,12 @@ describe('page.js', function () {
         const content = await page.queryParams['utm_content'].testGetValue();
         expect(content).toEqual('test-content');
 
-        const entrypointExperiment = await page.queryParams[
-            'entrypoint_experiment'
-        ].testGetValue();
+        const entrypointExperiment =
+            await page.queryParams['entrypoint_experiment'].testGetValue();
         expect(entrypointExperiment).toEqual('test_entrypoint_experiment');
 
-        const entrypointVariation = await page.queryParams[
-            'entrypoint_variation'
-        ].testGetValue();
+        const entrypointVariation =
+            await page.queryParams['entrypoint_variation'].testGetValue();
         expect(entrypointVariation).toEqual('1');
 
         const experiment = await page.queryParams['experiment'].testGetValue();
@@ -98,9 +96,8 @@ describe('page.js', function () {
 
         initPageView();
 
-        const unspecifiedParam = await page.queryParams[
-            'unspecified_param'
-        ].testGetValue();
+        const unspecifiedParam =
+            await page.queryParams['unspecified_param'].testGetValue();
         expect(unspecifiedParam).toBeUndefined();
 
         const content = await page.queryParams['utm_content'].testGetValue();
