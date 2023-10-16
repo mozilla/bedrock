@@ -7,10 +7,12 @@
 import FxaLink from './fxa-link.es6.js';
 import FxaAttribution from './fxa-attribution.es6.js';
 
-const urlParams = new window._SearchParams();
+if (typeof window._SearchParams !== 'undefined') {
+    const urlParams = new window._SearchParams();
 
-// Track external URL parameter referrals for Firefox Account links.
-FxaAttribution.init(urlParams.params);
+    // Track external URL parameter referrals for Firefox Account links.
+    FxaAttribution.init(urlParams.params);
 
-// Configure Firefox Account links for Sync on desktop.
-FxaLink.init();
+    // Configure Firefox Account links for Sync on desktop.
+    FxaLink.init();
+}
