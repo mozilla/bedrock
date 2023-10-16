@@ -1,0 +1,20 @@
+{
+  "srcDir": "tests/unit/dist",
+  "srcFiles": [
+    "test-deps.js"
+  ],
+  "specDir": "tests/unit/dist",
+  "specFiles": [
+    "test.js"
+  ],
+  "helpers": [],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "stopOnSpecFailure": false,
+    "random": true
+  },
+  "browser": {
+    "name": "firefox"
+  },
+  "port": 9876
+}
