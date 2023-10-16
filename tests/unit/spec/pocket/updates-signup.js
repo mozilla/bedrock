@@ -76,7 +76,7 @@ describe('updates-signup.es6.js', function () {
                     </div>
                 </div>
                 <div class="mzp-c-split-media mzp-l-split-h-center mzp-l-split-media-overflow">
-                    <img src="/media/img/pocket/pocket-update-signup.png" alt="" class="mzp-c-split-media-asset">
+                    <img src="/img/placeholder.png" alt="" class="mzp-c-split-media-asset">
                 </div>
             </div>
 
