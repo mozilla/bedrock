@@ -19,7 +19,7 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==12.0
 pytest-selenium==2.0.1
 responses==0.23.3
-ruff==0.0.291
+ruff==0.0.292
 selenium==4.1.3
 translate-toolkit==3.10.1
 # Related to moz-l10n-lint, used in CI
