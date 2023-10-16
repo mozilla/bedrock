@@ -11,7 +11,10 @@ Front-end testing
 Bedrock runs a suite of front-end `Jasmine`_ behavioral/unit tests, which use
 `Jasmine Browser Runner`_ as a test runner. We also have a suite of functional tests using
 `Selenium`_ and `pytest`_. This allows us to emulate users interacting with a
-real browser. All these test suites live in the ``tests`` directory.
+real browser. All these test suites live in the ``tests`` directory. To run the tests locally,
+you must also first download `geckodriver`_  and `chromedriver`_ and make it available
+in your system path. You can alternatively specify the path to geckodriver and chromedriver
+using the command line (see the `pytest-selenium documentation`_ for more information).
 
 The ``tests`` directory comprises of:
 
@@ -24,6 +27,37 @@ Installation
 
 First follow the :ref:`installation instructions for bedrock<install>`, which
 will install the dependencies required to run the various front-end test suites.
+
+To download geckodriver and chromedriver and have it ready to run in your system, there are a couple of ways:
+
+- Download geckdriver's `latest release`_ and add it to your system path:
+
+        .. code-block:: bash
+
+            cd /path/to/your/downloaded/files/
+            mv geckodriver /usr/local/bin/
+
+- If you're on MacOS, download geckodriver directly using Homebrew, which automatically places it in your system path:
+
+        .. code-block:: bash
+
+            brew install geckodriver
+
+
+- Download chromedriver's `latest release <https://chromedriver.chromium.org/downloads>`_ and add it to your system path:
+
+        .. code-block:: bash
+
+            cd /path/to/your/downloaded/files/
+            mv chromedriver /usr/local/bin/
+
+- If you're on MacOS, download chromedriver directly using Homebrew/Cask, which automatically places it in your system path:
+
+        .. code-block:: bash
+
+            brew tap homebrew/cask
+
+            brew cask install chromedriver
 
 
 Running Jasmine tests using Jasmine Browser Runner
@@ -62,42 +96,7 @@ Running functional tests
   Before running the functional tests, please make sure to follow the bedrock
   :ref:`installation docs<install>`, including the database sync that is needed
   to pull in external data such as event/blog feeds etc. These are required for
-  some of the tests to pass. To run the tests locally, you must also first
-  download `geckodriver`_  and `chromedriver`_ and make it available in your system path. You can
-  alternatively specify the path to geckodriver using the command line (see the
-  `pytest-selenium documentation`_ for more information).
-
-To download geckodriver and have it ready to run in your system, there are a couple of ways:
-
-- Download its `latest release`_ and add it to your system path:
-
-        .. code-block:: bash
-
-            cd /path/to/your/downloaded/files/
-            mv geckodriver /usr/local/bin/
-
-- If you're on MacOS, download it directly using Homebrew, which automatically places it in your system path:
-
-        .. code-block:: bash
-
-            brew install geckodriver
-
-To download chromedriver and have it ready to run in your system, there are a couple of ways:
-
-- Download its `latest release`_ and add it to your system path:
-
-        .. code-block:: bash
-
-            cd /path/to/your/downloaded/files/
-            mv chromedriver /usr/local/bin/
-
-- If you're on MacOS, download it directly using Homebrew, which automatically places it in your system path:
-
-        .. code-block:: bash
-
-            brew tap homebrew/cask
-
-            brew cask install chromedriver
+  some of the tests to pass.
 
 To run the full functional test suite against your local bedrock instance in
 Mozorg mode:
