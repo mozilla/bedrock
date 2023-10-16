@@ -6,10 +6,9 @@
 
 (function () {
     'use strict';
-    const copyArea = document.querySelector('.c-coupon-code');
+    const copyText = document.querySelector('.copy-text');
     const copyButton = document.getElementById('code-copy');
 
-    copyArea.addEventListener('click', copyCouponCode);
     copyButton.addEventListener('click', copyCouponCode);
 
     async function copyCouponCode() {
@@ -18,7 +17,7 @@
 
         try {
             await navigator.clipboard.writeText(couponCode);
-            copyButton.textContent = successMsg;
+            copyText.textContent = successMsg;
         } catch (e) {
             //do nothing
         }

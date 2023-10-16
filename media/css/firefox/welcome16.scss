@@ -8,7 +8,9 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-main-image {
-    margin: 0 auto 48px;
+    border-radius: 100%;
+    margin: 0 auto $layout-md;
+    padding: $spacing-lg;
 }
 
 .mzp-c-picto-image {
@@ -16,46 +18,60 @@ $image-path: '/media/protocol/img';
     display: flex;
     min-height: 210px;
 
-    svg {
+    picture {
         display: inline-block;
         margin: 0 auto;
+
+        img {
+            width: 100%;
+        }
     }
 }
 
 .c-coupon-container {
     margin: $spacing-xl 0;
-    background-color: #c3c4fd;
+    background-color: #EDEDF0;
     border-radius: $border-radius-md;
     padding: $spacing-xl $spacing-sm;
+
+    .c-coupon-code-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: $spacing-lg;
+
+        .c-coupon-code {
+            @include text-body-lg;
+            background-color: $color-white;
+            border: 2px $color-black dotted;
+            border-right: none;
+            border-bottom-left-radius: $border-radius-sm;
+            border-top-left-radius: $border-radius-sm;
+            padding: $spacing-xs $spacing-lg;
+        }
+    }
 
     h2 {
         @include font-size(30px);
         margin-bottom: $spacing-xl;
     }
 
-    .c-coupon-code {
-        @include text-body-xl;
-        border-radius: $border-radius-sm;
-        border: 1px solid $color-black;
-        display: inline-block;
-        font-weight: normal;
-        margin-bottom: $spacing-md;
-        padding: $spacing-sm $spacing-md;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
     .c-coupon-copy {
         @include text-body-sm;
-        appearance: none;
-        background: transparent none;
-        border: 0;
-        cursor: pointer;
-        display: block;
-        margin: 0 auto;
-        text-decoration: underline;
+        display: flex;
+        align-items: center;
+
+        .copy-icon {
+            height: 24px;
+            width: 24px;
+            background-image: url('/media/img/firefox/welcome/page16/copy-light.svg');
+            display: inline-block;
+        }
+
+        &:hover {
+            .copy-icon {
+                    background-image: url('/media/img/firefox/welcome/page16/copy-dark.svg');
+            }
+        }
 
         &:hover,
         &:focus {
@@ -74,4 +90,104 @@ $image-path: '/media/protocol/img';
     .mzp-l-content.mzp-t-content-md {
         padding: $layout-md $layout-lg;
     }
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+
+@media (prefers-color-scheme: dark) {
+    #outer-wrapper {
+        background: $color-dark-gray-60;
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
+    }
+
+    .c-main-title,
+    .mzp-c-picto-title {
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
+    }
+
+    .c-main-image {
+        background-color: $color-white;
+    }
+
+    .c-coupon-container {
+        .c-coupon-code, small {
+            color: $body-text-color;
+        }
+    }
+
+    .c-utilities {
+        @include white-links;
+    }
+
+    .mzp-c-footer.mzp-t-light {
+        @include white-links;
+        background: $color-dark-gray-60;
+        color: $color-white;
+
+        .mzp-c-footer-sections {
+            border-color: $color-dark-gray-30;
+
+            a:hover,
+            a:focus,
+            a:active {
+                text-decoration: underline;
+            }
+        }
+
+        .mzp-c-footer-links-social li {
+            a.twitter {
+                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+            }
+
+            a.mastodon {
+                background-image: url('/media/img/logos/social/mastodon-white.svg');
+            }
+
+            a.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+
+            // bedrock override until icons are added to protocol-assets
+            // https://github.com/mozilla/protocol-assets/issues/84
+            a.linkedin {
+                background-image: url('/media/img/logos/social/linkedin-white.svg');
+            }
+
+            a.tiktok {
+                background-image: url('/media/img/logos/social/tiktok-white.svg');
+            }
+
+            a.spotify {
+                background-image: url('/media/img/logos/social/spotify-white.svg');
+            }
+
+            a:hover,
+            a:focus,
+            a:active {
+                outline-color: $color-white;
+            }
+        }
+
+        .mzp-c-footer-primary-logo a {
+            background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
+        }
+
+        .mzp-c-footer-heading.is-summary button::before {
+            background: $url-image-expand-white top left no-repeat;
+        }
+    }
+
 }
