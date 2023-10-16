@@ -47,10 +47,6 @@ $image-path: '/media/protocol/img';
             border-bottom-left-radius: $border-radius-sm;
             border-top-left-radius: $border-radius-sm;
             padding: $spacing-xs $spacing-lg;
-
-            &:hover {
-                    cursor: pointer;
-            }
         }
     }
 

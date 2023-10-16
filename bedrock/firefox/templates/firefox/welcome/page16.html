@@ -12,12 +12,6 @@
 
 {% block body_class %}welcome-page14{% endblock %}
 
-{% set _entrypoint = "firefox-desktop" %}
-{% set _source = "moments" %}
-{% set _campaign = "cybersecurity-month-23" %}
-{% set _content = "moments-oct23-global" %}
-
-
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox_welcome_page10') }}
@@ -65,7 +59,7 @@
     <div class="mzp-l-content mzp-t-content-md">
       <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="">
       <h1 class="c-main-title">This Cybersecurity Month, take 20% off your first year</h1>
-      <p class="c-main-tagline">Get a peace of mind with a single click. Keep your location and personal information private and secure with Mozilla VPN.</p>
+      <p class="c-main-tagline">Get peace of mind with a single click. Keep your location and personal information private and secure with Mozilla VPN.</p>
       <div class="c-main-cta">
         {{ vpn_product_referral_link(
           referral_id='welcome-page16',
@@ -73,10 +67,6 @@
           class_name='mzp-t-product mzp-t-xl',
           page_anchor="#pricing",
           optional_parameters={
-            'utm-medium': _entrypoint,
-            'utm_source': _source,
-            'utm_campaign': _campaign,
-            'utm_content': _content,
             'coupon': coupon_code,
           },
           optional_attributes= {
