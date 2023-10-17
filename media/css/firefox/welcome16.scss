@@ -8,7 +8,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-main-image {
-    border-radius: 100%;
     margin: 0 auto $layout-md;
     padding: $spacing-lg;
 }
@@ -112,10 +111,6 @@ $image-path: '/media/protocol/img';
         @supports (--css: variables) {
             color: var(--title-text-color-inverse);
         }
-    }
-
-    .c-main-image {
-        background-color: $color-white;
     }
 
     .c-coupon-container {

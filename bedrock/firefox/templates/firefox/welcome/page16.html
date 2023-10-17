@@ -57,9 +57,30 @@
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="">
-      <h1 class="c-main-title">This Cybersecurity Month, take 20% off your first year</h1>
-      <p class="c-main-tagline">Get peace of mind with a single click. Keep your location and personal information private and secure with Mozilla VPN.</p>
+       {{ picture(
+                url="img/firefox/welcome/page16/logo-light.svg",
+                sources=[
+                  {
+                    "media": "(prefers-color-scheme: light)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/logo-light.svg": "default",
+                    }
+                  },
+                  {
+                    "media": "(prefers-color-scheme: dark)",
+                    "srcset": {
+                      "img/firefox/welcome/page16/logo-dark.svg": "default",
+                    }
+                  }
+                ],
+                optional_attributes={
+                  "alt": "",
+                  "class": "c-main-image",
+                  "height": "80",
+                }
+              )}}
+      <h1 class="c-main-title">Take 20% off your first year</h1>
+      <p class="c-main-tagline">Keep your location and personal information private and secure. <br/>Get peace of mind with a single click.</p>
       <div class="c-main-cta">
         {{ vpn_product_referral_link(
           referral_id='welcome-page16',
@@ -77,7 +98,7 @@
         )}}
       </div>
         <div class="c-coupon-container">
-          <h2>Use code at checkout for 20% off</h2>
+          <h2>Use code at checkout</h2>
           <div class="c-coupon-code-wrapper">
             <strong class="c-coupon-code">{{ coupon_code }}</strong>
             <button type="button" class="c-coupon-copy mzp-c-button" id="code-copy" data-code="{{ coupon_code }}" data-success="Code copied!"><span class="copy-icon"></span><span class="copy-text">Copy code</span></button>
