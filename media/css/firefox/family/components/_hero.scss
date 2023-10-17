@@ -100,9 +100,8 @@ $image-path: '/media/protocol/img';
     .c-hero {
         .l-grid {
             display: grid;
-            justify-items: center;
-            align-items: center;
             grid-template-columns: 1fr;
+            place-items: center;
         }
         @media #{$mq-md} {
             h1 {

@@ -166,13 +166,12 @@ main {
 
 .c-section-press {
     .c-section-press-logos {
-        align-content: center;
         display: flex;
         flex-wrap: wrap;
         gap: $spacing-xl $spacing-2xl;
-        justify-content: center;
         margin: $spacing-2xl auto 0;
         max-width: 800px;
+        place-content: center;
     }
 
     .c-logo-item:first-child {
