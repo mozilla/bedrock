@@ -6,12 +6,11 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .c-careers-locations-list {
-    display: flex;
     align-items: center;
-    align-content: center;
-    justify-content: center;
+    display: flex;
     flex-wrap: wrap;
     margin: $spacing-2xl 0;
+    place-content: center;
 
     li {
         text-align: center;

@@ -81,8 +81,7 @@ $image-path: '/media/protocol/img';
     position: sticky;
     max-height: 100vh;
     top: 80px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden auto;
 }
 
 .mzp-c-sidemenu-main {

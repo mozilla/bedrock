@@ -57,8 +57,7 @@
     .c-dad-jokes-banner {
         .l-flex {
             display: flex;
-            row-gap: $spacing-sm;
-            column-gap: $spacing-lg;
+            gap: $spacing-sm $spacing-lg;
             flex-direction: column;
             align-items: center;
             justify-content: center;

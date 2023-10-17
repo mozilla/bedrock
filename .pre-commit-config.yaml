@@ -82,7 +82,7 @@ repos:
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@15.10.3"
+          - "stylelint@15.11.0"
           - "stylelint-config-standard-scss@11.0.0"
           - "postcss-scss@4.0.6"
           - "postcss@8.4.26"

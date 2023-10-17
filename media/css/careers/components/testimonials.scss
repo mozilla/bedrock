@@ -125,8 +125,7 @@ $image-path: '/media/protocol/img';
 
         @media #{$mq-md} {
             grid-template-columns: 1fr 1fr;
-            column-gap: $spacing-md;
-            row-gap: $spacing-md;
+            gap: $spacing-md;
 
             .c-careers-testimonial-item {
                 q {

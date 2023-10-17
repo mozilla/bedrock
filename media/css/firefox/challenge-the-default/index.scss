@@ -252,8 +252,7 @@ html:not(.is-firefox) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        column-gap: $spacing-xl;
-        row-gap: $layout-lg;
+        gap: $layout-lg $spacing-xl;
 
         &.large, &.medium {
             display: none;
