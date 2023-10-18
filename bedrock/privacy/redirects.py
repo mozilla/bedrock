@@ -30,7 +30,4 @@ redirectpatterns = (
     redirect(r"^privacy/betterweb/?$", "privacy.archive.firefox-betterweb-2023-06"),
     redirect(r"^privacy/firefox-fire-tv/?$", "privacy.archive.firefox-fire-tv-2023-06"),
     redirect(r"^privacy/firefox-reality/?$", "privacy.archive.firefox-reality-notice-2023-06"),
-    # temporary
-    # remove test in map_globalconf.py as well
-    redirect(r"^privacy/mozilla-accounts/?$", "privacy.notices.firefox", permanent=False, anchor="firefox-accounts"),
 )
