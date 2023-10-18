@@ -23,6 +23,9 @@
 {% block lead_in %}
   {% if doc.select('[datetime]') %}
     {{ doc.select('body > section > [datetime] ~ p')|join|safe }}
+    {% if doc.select('body > section > ul') %}
+      {{ doc.select('body > section > ul')|htmlattr(class="mzp-u-list-styled")|join|safe }}
+    {% endif %}
   {% else %}
     {{ doc.select('body > section > p')|join|safe }}
   {% endif %}
