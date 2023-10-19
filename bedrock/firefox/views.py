@@ -351,10 +351,7 @@ def show_default_account_whatsnew(version):
 
 
 class FirstrunView(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/firstrun/firstrun.html": ["firefox/firstrun"],
-        "firefox/developer/firstrun.html": ["firefox/developer"],
-    }
+    ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"], "firefox/new/desktop/download.html": ["firefox/new/desktop"]}
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
@@ -380,9 +377,9 @@ class FirstrunView(L10nTemplateView):
             if show_57_dev_firstrun(version):
                 template = "firefox/developer/firstrun.html"
             else:
-                template = "firefox/firstrun/firstrun.html"
+                template = "firefox/developer/firstrun.html"
         else:
-            template = "firefox/firstrun/firstrun.html"
+            template = "firefox/new/desktop/download.html"
 
         # return a list to conform with original intention
         return [template]
