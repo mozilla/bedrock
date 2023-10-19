@@ -1,0 +1,148 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.wnp-content-main {
+    background-color: $color-light-gray-20;
+    color: $color-black;
+    margin-top: $spacing-md;
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: $color-black;
+    margin: 0 auto $layout-lg;
+    max-width: $content-md;
+    text-align: center;
+}
+
+.c-box {
+    max-width: $content-sm;
+    margin: 0 auto $layout-sm;
+
+    .c-box-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .c-box-image {
+        background: $color-purple-05;
+        border-radius: $border-radius-lg $border-radius-lg 0 0;
+        display: block;
+        padding: $spacing-xs;
+        text-align: center;
+    }
+
+    &.box-one .c-box-image {
+        background: #b5b5ff;
+    }
+
+    &.box-two .c-box-image {
+        background: #e7dFff;
+    }
+
+    &.box-three .c-box-image {
+        background: #d9bfff;
+    }
+
+    .c-box-title {
+        @include text-title-2xs;
+    }
+
+    .c-box-body {
+        background: $color-white;
+        padding: $spacing-md;
+        border-radius: 0 0 $border-radius-lg $border-radius-lg;
+        height: 100%;
+        display: grid;
+        grid-template-rows: max-content 1fr;
+    }
+
+    .c-box-content {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        align-items: start;
+        height: 100%;
+        position: relative;
+
+        p {
+            @include text-body-sm;
+            height: 100%;
+        }
+    }
+}
+
+@media #{$mq-lg} and (prefers-reduced-motion: no-preference) {
+    .boxes-closed {
+        .c-box {
+            min-height: 25rem;
+            position: relative;
+            max-width: none;
+            margin: 0;
+
+            .c-box-inner {
+                position: absolute;
+            }
+
+            .c-box-body {
+                height: 2.75rem;
+                padding-bottom: $spacing-xl;
+                transition: height 350ms ease-in-out;
+                position: relative;
+
+                &::after {
+                    background: url('/media/protocol/img/icons/arrow-down.svg') center center no-repeat;
+                    bottom: $spacing-sm;
+                    content: "";
+                    display: block;
+                    height: 24px;
+                    opacity: .5;
+                    position: absolute;
+                    right: $spacing-md;
+                    width: 24px;
+                    transition: opacity 300ms 50ms ease;
+                }
+
+                p {
+                    height: 100%;
+                }
+            }
+
+            .c-box-content {
+                height: 0;
+                overflow: hidden;
+                transition: height 350ms ease-in-out;
+            }
+
+            .c-box-inner:hover,
+            .c-box-inner:focus,
+            .c-box-inner:focus-within {
+                outline: 0;
+
+                .c-box-body {
+                    height: 100%;
+
+                    &::after {
+                        opacity: 0;
+                    }
+                }
+
+                .c-box-content {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+.wnp-sign-off {
+    text-align: center;
+    color: $color-black;
+}

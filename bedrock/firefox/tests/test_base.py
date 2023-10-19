@@ -745,6 +745,73 @@ class TestWhatsNew(TestCase):
 
     # end 118.0 whatsnew tests
 
+    # begin 119.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_en_us(self, render_mock):
+        """Should use whatsnew-fx119-na-trio template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-na-trio.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_en_us_v2(self, render_mock):
+        """Should use whatsnew-fx119-na-addons template for en-US locale and v=2"""
+        req = self.rf.get("/firefox/whatsnew/?v=2")
+        req.locale = "en-US"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-na-addons.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_en_gb(self, render_mock):
+        """Should use whatsnew-fx119-eu-trio-v1 template for en-GB locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_de(self, render_mock):
+        """Should use whatsnew-fx119-eu-trio-v1 template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx119-eu-trio-v1 template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_en_gb_v2(self, render_mock):
+        """Should use whatsnew-fx119-eu-trio-v2 template for en-GB locale and v=2"""
+        req = self.rf.get("/firefox/whatsnew/?v=2")
+        req.locale = "en-GB"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_119_0_0_en_gb_v3(self, render_mock):
+        """Should use whatsnew-fx119-eu-relay template for en-GB locale and v=3"""
+        req = self.rf.get("/firefox/whatsnew/?v=3")
+        req.locale = "en-GB"
+        self.view(req, version="119.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx119-eu-relay.html"]
+
+    # end 119.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):

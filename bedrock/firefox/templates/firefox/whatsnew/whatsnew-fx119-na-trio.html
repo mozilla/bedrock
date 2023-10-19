@@ -1,0 +1,94 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_119_na_trio') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-119-na') %}
+    {{ js_bundle('firefox_whatsnew_119_experiment_na') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <h2 class="wnp-main-title">Your privacy is covered</h2>
+      <p class="wnp-main-tagline">Firefox stops advertisers from following you around the web and blocks sites from identifying you – so you can browse easy.</p>
+
+      <h3 class="wnp-extra-title">Want to boost your privacy?</h3>
+
+      <div class="mzp-l-columns mzp-t-columns-three">
+        <section class="c-box box-one">
+          <div class="c-box-inner">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-na-relay.svg') }}" alt="" width="260" height="150">
+            </div>
+            <div class="c-box-body">
+              <h4 class="c-box-wordmark"><img src="{{ static('img/firefox/whatsnew/whatsnew119/wordmark-relay.svg') }}" alt="Relay" width="129" height="22"></h4>
+              <p class="c-box-title">Protect your email and phone number from spam</p>
+
+              <div class="c-box-content">
+                <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://relay.firefox.com/?{{ utm_params }}" data-cta-text="Activate Relay" data-cta-type="button" target="_blank" rel="external noopener">Activate Relay</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="c-box box-two">
+          <div class="c-box-inner" tabindex="0">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-na-monitor.svg') }}" alt="" width="260" height="150">
+            </div>
+            <div class="c-box-body">
+              <h4 class="c-box-wordmark"><img src="{{ static('img/firefox/whatsnew/whatsnew119/wordmark-monitor.svg') }}" alt="Monitor" width="129" height="22"></h4>
+              <p class="c-box-title">Find out if you’ve been in a privacy breach and how to fix it</p>
+
+              <div class="c-box-content">
+                <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://monitor.firefox.com/?{{ utm_params }}" data-cta-text="Check for breaches" data-cta-type="button" target="_blank" rel="external noopener">Check for breaches</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="c-box box-three">
+          <div class="c-box-inner" tabindex="0">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew119/img-na-containers.svg') }}" alt="" width="260" height="150">
+            </div>
+            <div class="c-box-body">
+              <h4 class="c-box-wordmark"><img src="{{ static('img/firefox/whatsnew/whatsnew119/wordmark-containers.svg') }}" alt="Containers" width="129" height="22"></h4>
+              <p class="c-box-title">Keep your personal and work browsing separate</p>
+
+              <div class="c-box-content">
+                <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/multi-account-containers/?{{ utm_params }}" data-cta-text="Get this add-on" data-cta-type="button" target="_blank" rel="external noopener">Get this add-on</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="wnp-sign-off">
+        {{ ftl('whatsnew-signoff') }}
+      </p>
+
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_update') }}
+{% endblock %}

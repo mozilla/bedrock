@@ -1,0 +1,223 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
+
+
+.wnp-content-main {
+    background-color: $color-pink-05;
+    margin-top: $spacing-md;
+    text-align: center;
+
+    .mzp-c-wordmark {
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &.fxa-active {
+        .wnp-main-cta.fxa {
+            display: block;
+        }
+
+        .wnp-main-cta.landing {
+            display: none;
+        }
+    }
+
+    &.static {
+        .mzp-c-wordmark {
+            display: block;
+        }
+
+        .wnp-relay-animation {
+            display: none;
+            animation: none;
+        }
+    }
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: $color-black;
+}
+
+.wnp-body-text {
+    @include text-body-lg;
+    color: $color-black;
+    margin: 0 auto;
+    max-width: 525px;
+}
+
+.wnp-main-cta.fxa {
+    display: none;
+}
+
+.wnp-relay-animation {
+    --button-border-radius: 12px;
+    max-width: max-content;
+    margin: 2em auto;
+    background: $color-white;
+    border-radius: var(--button-border-radius);
+    height: 52px;
+    animation: 0.5s ease-out 0s 1 normal forwards running pop-in;
+
+
+    .relay-input {
+        background-color: $color-white;
+        color: $color-dark-gray-05;
+        border-radius: var(--button-border-radius);
+        justify-content: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        height: 56px;
+        width: 300px;
+
+        .input-check {
+            opacity: 0;
+        }
+
+        &.animation-end {
+            color: $color-black;
+            font-weight: bold;
+            justify-content: space-around;
+
+            .input-check {
+               animation: 0.2s ease-out 0.2s 1 normal forwards running pop-in;
+                width: 32px;
+            }
+        }
+    }
+
+    &.static {
+        animation: none;
+
+        .relay-input {
+            color: $color-black;
+            font-weight: bold;
+            justify-content: space-around;
+
+            .input-check {
+                opacity: 1;
+                width: 32px;
+            }
+        }
+    }
+
+    .relay-dropdown {
+        align-items: center;
+        background-color: $color-white;
+        border-radius: var(--button-border-radius);
+        display: flex;
+        justify-content: center;
+        margin: 14px auto 0;
+        padding: $spacing-md;
+        position: relative;
+        width: max-content;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+
+        button {
+            @include font-size(14px);
+            background: $color-purple-50;
+            border: none;
+            border-radius: var(--button-border-radius);
+            display: flex;
+            color: $color-white;
+            align-items: center;
+            padding: $spacing-sm $spacing-md;
+        }
+
+        .wnp-relay-logo {
+            margin: 0 $spacing-sm 0 0;
+            width: 26px;
+            height: 26px;
+        }
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: -8px;
+            right: 20%;
+            border-bottom: 8px solid $color-white;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+        }
+
+        &.active {
+            opacity: 1;
+
+            button {
+               animation: 0.8s ease-in-out .5s forwards button-press;
+            }
+        }
+    }
+
+    &.click-animation {
+        animation: 0.3s ease-in-out .5s forwards click;
+
+    }
+}
+
+
+@keyframes button-press {
+    0% {
+        transform: scale(1.0);
+        background: $color-purple-50;
+    }
+
+    50% {
+        transform: scale(0.98);
+        background: $color-purple-70;
+    }
+
+    80% {
+        transform: scale(1.0);
+        background: $color-purple-50;
+    }
+
+
+    100% {
+        transform: scale(1.0);
+        background: $color-purple-50;
+    }
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes click {
+    0% {
+        transform: scale(1.0);
+    }
+
+    50% {
+        transform: scale(0.98);
+    }
+
+
+    100% {
+        transform: scale(1.0);
+    }
+}
