@@ -18,7 +18,7 @@ const initTrafficCop = () => {
             });
         } else if (href.indexOf('v=2') !== -1) {
             window.dataLayer.push({
-                'data-ex-variant': 'wnp117-boxes-closed',
+                'data-ex-variant': 'wnp119-boxes-closed',
                 'data-ex-name': 'wnp-119-experiment-eu'
             });
         } else if (href.indexOf('v=3') !== -1) {

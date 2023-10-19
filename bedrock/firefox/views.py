@@ -523,7 +523,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("119."):
-            if locale in ["de", "fr", "en-GB"] or country == "GB":
+            if locale in ["de", "fr", "en-GB"]:
                 if variant == "3":
                     template = "firefox/whatsnew/whatsnew-fx119-eu-relay.html"
                 elif variant == "2":
@@ -531,10 +531,18 @@ class WhatsnewView(L10nTemplateView):
                 else:
                     template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"
             elif locale.startswith("en-"):
-                if variant == "2":
-                    template = "firefox/whatsnew/whatsnew-fx119-na-addons.html"
+                if country == "GB":
+                    if variant == "3":
+                        template = "firefox/whatsnew/whatsnew-fx119-eu-relay.html"
+                    elif variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"
                 else:
-                    template = "firefox/whatsnew/whatsnew-fx119-na-trio.html"
+                    if variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx119-na-addons.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx119-na-trio.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("118."):

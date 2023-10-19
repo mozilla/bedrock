@@ -37,11 +37,3 @@ if (window.Mozilla.Utils.allowsMotion()) {
 } else {
     document.querySelector('.wnp-content-main').classList.add('static');
 }
-
-(function () {
-    Mozilla.Client.getFxaDetails(function (details) {
-        if (details.setup) {
-            document.querySelector('.wnp-content-main');
-        }
-    });
-})();
