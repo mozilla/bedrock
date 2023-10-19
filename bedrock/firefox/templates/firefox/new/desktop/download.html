@@ -70,6 +70,10 @@
 
 {% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
+{% if outdated %}
+    <h1>sdkfhasldkjfh</h1>
+{% endif %}
+
 <main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">

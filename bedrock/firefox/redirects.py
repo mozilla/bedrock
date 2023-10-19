@@ -159,9 +159,6 @@ redirectpatterns = (
     redirect(r"^mobile/.+/system-requirements/?$", "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"),
     # bug 858315
     redirect(r"^projects/devpreview/firstrun(?:/(?:index\.html)?)?$", "/firefox/firstrun/"),
-    # issue 13665
-    redirect(r"^/firefox/firstrun/?$", "/firefox/new/?reason=outdated"),
-    # redirect(r"^/firefox/[^/]+[0-9]+/firstrun/?$", "/firefox/new/"),
     redirect(
         r"^projects/devpreview/(?P<page>[\/\w\.-]+)?$",
         "http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/{page}",

@@ -331,16 +331,6 @@ def show_57_dev_firstrun(version):
 
     return version >= Version("57.0")
 
-
-def redirect_old_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version < Version("40.0")
-
-
 def show_default_account_whatsnew(version):
     try:
         version = Version(version)
@@ -355,10 +345,13 @@ class FirstrunView(L10nTemplateView):
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
+        new_page_url = reverse("firefox.new") + "?reason=outdated"
 
         # redirect legacy /firstrun URLs to /firefox/new/
-        if redirect_old_firstrun(version):
-            return HttpResponsePermanentRedirect(reverse("firefox.new"))
+        if detect_channel(version) != "developer":
+            return HttpResponsePermanentRedirect(new_page_url)
+        elif detect_channel(version) == "developer" and not show_57_dev_firstrun(version):
+            return HttpResponsePermanentRedirect(reverse("firefox.developer.index"))
         else:
             return super().get(*args, **kwargs)
 
@@ -372,14 +365,7 @@ class FirstrunView(L10nTemplateView):
 
     def get_template_names(self):
         version = self.kwargs.get("version") or ""
-
-        if detect_channel(version) == "developer":
-            if show_57_dev_firstrun(version):
-                template = "firefox/developer/firstrun.html"
-            else:
-                template = "firefox/developer/firstrun.html"
-        else:
-            template = "firefox/new/desktop/download.html"
+        template = "firefox/developer/firstrun.html"
 
         # return a list to conform with original intention
         return [template]
@@ -718,7 +704,9 @@ class NewView(L10nTemplateView):
 
         reason = self.request.GET.get("reason", None)
         manual_update = True if reason == "manual-update" else False
+        outdated = True if reason == "outdated" else False
         ctx["manual_update"] = manual_update
+        ctx["outdated"] = outdated
 
         return ctx
 
