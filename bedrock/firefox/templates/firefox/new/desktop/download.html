@@ -71,7 +71,14 @@
 {% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
 {% if outdated %}
-    <h1>sdkfhasldkjfh</h1>
+
+  {% set update_url = 'href="%s" data-cta-type="link" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/en-US/kb/update-firefox-latest-release')) %}
+
+  <aside class="c-page-header-notification">
+    <div class="mzp-c-notification-bar mzp-t-warning">
+      {{ ftl('firefox-desktop-out-of-date', update_url=update_url) }}
+    </div>
+  </aside>
 {% endif %}
 
 <main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>

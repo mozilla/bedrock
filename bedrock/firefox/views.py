@@ -17,6 +17,7 @@ import querystringsafe_base64
 from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
+from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
@@ -331,6 +332,7 @@ def show_57_dev_firstrun(version):
 
     return version >= Version("57.0")
 
+
 def show_default_account_whatsnew(version):
     try:
         version = Version(version)
@@ -345,7 +347,7 @@ class FirstrunView(L10nTemplateView):
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
-        new_page_url = reverse("firefox.new") + "?reason=outdated"
+        new_page_url = urlparams(reverse("firefox.new"), reason="outdated")
 
         # redirect legacy /firstrun URLs to /firefox/new/
         if detect_channel(version) != "developer":
@@ -364,7 +366,7 @@ class FirstrunView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        version = self.kwargs.get("version") or ""
+        self.kwargs.get("version") or ""
         template = "firefox/developer/firstrun.html"
 
         # return a list to conform with original intention
@@ -704,7 +706,7 @@ class NewView(L10nTemplateView):
 
         reason = self.request.GET.get("reason", None)
         manual_update = True if reason == "manual-update" else False
-        outdated = True if reason == "outdated" else False
+        outdated = reason == "outdated"
         ctx["manual_update"] = manual_update
         ctx["outdated"] = outdated
 

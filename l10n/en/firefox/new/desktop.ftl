@@ -15,6 +15,11 @@ firefox-desktop-download-meta-desc-v2 = Get { -brand-name-firefox } for { -brand
 firefox-desktop-download-og-title = Download the fastest { -brand-name-firefox } ever
 firefox-desktop-download-og-desc = Faster page loading, less memory usage and packed with features, the new { -brand-name-firefox } is here.
 firefox-desktop-download-firefox = { -brand-name-firefox-browser }
+
+# Variables:
+#   $update_url (url) - link to https://support.mozilla.org/kb/update-firefox-latest-release
+firefox-desktop-out-of-date = An even newer { -brand-name-firefox } is available. <a { $update_url }">Update to the latest version</a>
+
 firefox-desktop-download-get-the-browser = Get the browser that protects what’s important
 # shady is slang which suggests something is untrustworthy
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
