@@ -343,16 +343,17 @@ def show_default_account_whatsnew(version):
 
 
 class FirstrunView(L10nTemplateView):
-    ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"], "firefox/new/desktop/download.html": ["firefox/new/desktop"]}
+    ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"]}
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
         new_page_url = urlparams(reverse("firefox.new"), reason="outdated")
+        channel = detect_channel(version)
 
         # redirect legacy /firstrun URLs to /firefox/new/
-        if detect_channel(version) != "developer":
+        if channel != "developer":
             return HttpResponsePermanentRedirect(new_page_url)
-        elif detect_channel(version) == "developer" and not show_57_dev_firstrun(version):
+        elif channel == "developer" and not show_57_dev_firstrun(version):
             return HttpResponsePermanentRedirect(reverse("firefox.developer.index"))
         else:
             return super().get(*args, **kwargs)
@@ -366,7 +367,6 @@ class FirstrunView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        self.kwargs.get("version") or ""
         template = "firefox/developer/firstrun.html"
 
         # return a list to conform with original intention

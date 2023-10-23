@@ -753,28 +753,20 @@ class TestFirstRun(TestCase):
         self.rf = RequestFactory()
 
     @override_settings(DEV=True)
-    def test_fx_firstrun_40_0(self, render_mock):
-        """Should use default firstrun template"""
+    def test_fx_firstrun_release_channel(self, render_mock):
+        """Should redirect to /firefox/new/ page"""
         req = self.rf.get("/en-US/firefox/firstrun/")
         resp = self.view(req, version="40.0")
         assert resp.status_code == 301
         assert resp["location"].endswith("/firefox/new/?reason=outdated")
 
     @override_settings(DEV=True)
-    def test_fx_firstrun_56_0(self, render_mock):
-        """Should use the default firstrun template"""
+    def test_fx_firstrun_dev_edition_old(self, render_mock):
+        """Should redirect to the /firefox/developer/ page"""
         req = self.rf.get("/en-US/firefox/firstrun/")
         resp = self.view(req, version="56.0a2")
         assert resp.status_code == 301
         assert resp["location"].endswith("/firefox/developer/")
-
-    @override_settings(DEV=True)
-    def test_fxdev_firstrun_57_0(self, render_mock):
-        """Should use 57 quantum dev edition firstrun template"""
-        req = self.rf.get("/en-US/firefox/firstrun/")
-        self.view(req, version="57.0a2")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/developer/firstrun.html"]
 
     @override_settings(DEV=True)
     def test_fx_firstrun_57_0(self, render_mock):
@@ -783,20 +775,3 @@ class TestFirstRun(TestCase):
         resp = self.view(req, version="57.0")
         assert resp.status_code == 301
         assert resp["location"].endswith("/firefox/new/?reason=outdated")
-
-    # test direct to /firefox/new/?reason=outdated for legacy /firstrun URLs with new notification bar to update browser
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_legacy_redirect(self, render_mock):
-        req = self.rf.get("/firefox/firstrun/")
-        req.locale = "en-US"
-        resp = self.view(req, version="39.0")
-        assert resp.status_code == 301
-        assert resp["location"].endswith("/firefox/new/?reason=outdated")
-
-    def test_fx_firstrun_dev_edition_legacy_redirect(self, render_mock):
-        req = self.rf.get("/firefox/firstrun/")
-        req.locale = "en-US"
-        resp = self.view(req, version="39.0a2")
-        assert resp.status_code == 301
-        assert resp["location"].endswith("/firefox/developer/")
