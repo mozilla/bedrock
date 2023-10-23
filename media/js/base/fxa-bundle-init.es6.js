@@ -10,9 +10,9 @@ import FxaAttribution from './fxa-attribution.es6.js';
 if (typeof window._SearchParams !== 'undefined') {
     const urlParams = new window._SearchParams();
 
-    // Track external URL parameter referrals for Firefox Account links.
+    // Track external URL parameter referrals for Mozilla account links.
     FxaAttribution.init(urlParams.params);
 
-    // Configure Firefox Account links for Sync on desktop.
+    // Configure Mozilla account links for Sync on desktop.
     FxaLink.init();
 }

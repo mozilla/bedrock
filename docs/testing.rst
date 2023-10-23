@@ -30,7 +30,7 @@ will install the dependencies required to run the various front-end test suites.
 
 To download geckodriver and chromedriver and have it ready to run in your system, there are a couple of ways:
 
-- Download geckdriver's `latest release`_ and add it to your system path:
+- `Download geckdriver <https://github.com/mozilla/geckodriver/releases/latest>`_ and add it to your system path:
 
         .. code-block:: bash
 
@@ -44,7 +44,7 @@ To download geckodriver and chromedriver and have it ready to run in your system
             brew install geckodriver
 
 
-- Download chromedriver's `latest release <https://chromedriver.chromium.org/downloads>`_ and add it to your system path:
+- `Download chromedriver <https://chromedriver.chromium.org/downloads>`_ and add it to your system path:
 
         .. code-block:: bash
 
@@ -61,7 +61,7 @@ To download geckodriver and chromedriver and have it ready to run in your system
 
 
 Running Jasmine tests using Jasmine Browser Runner
----------------------------------
+--------------------------------------------------
 
 To perform a single run of the Jasmine test suite using Firefox and Chrome,
 first make sure you have both browsers installed locally, and then activate
@@ -352,5 +352,4 @@ via product details are well formed and return valid 200 responses.
 .. _download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py
 .. _Basket: https://github.com/mozilla/basket
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
-.. _latest release: https://github.com/mozilla/geckodriver/releases/
 .. _chromedriver: https://chromedriver.chromium.org/downloads

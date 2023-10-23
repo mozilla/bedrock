@@ -852,7 +852,7 @@ def pocket_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a getpocket.com link with required params for FxA authentication.
+    Render a getpocket.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -874,7 +874,7 @@ def monitor_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a monitor.firefox.com link with required params for FxA authentication.
+    Render a monitor.firefox.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -896,7 +896,7 @@ def relay_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a relay.firefox.com link with required params for FxA authentication.
+    Render a relay.firefox.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -954,7 +954,7 @@ def fxa_button(
     optional_attributes=None,
 ):
     """
-    Render a accounts.firefox.com link with required params for FxA authentication.
+    Render a accounts.firefox.com link with required params for Mozilla account authentication.
 
     Examples
     ========

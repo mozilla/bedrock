@@ -168,7 +168,7 @@ const NewsletterManagementForm = {
     },
 
     /**
-     * Is the given locale in the list of supported locales for Firefox Account newsletters?
+     * Is the given locale in the list of supported locales for Mozilla account newsletters?
      * @param {String} locale
      * @returns  {Boolean}
      */
@@ -178,7 +178,7 @@ const NewsletterManagementForm = {
     },
 
     /**
-     * Is the given newsletter ID in the list of Firefox Account newsletters?
+     * Is the given newsletter ID in the list of Mozilla account newsletters?
      * @param {String} newsletter
      * @returns
      */
@@ -215,8 +215,8 @@ const NewsletterManagementForm = {
 
             /**
              * Only include a newsletter if 'active' === true AND 'show' === true
-             * OR if user is already subscribed, OR if they have a Firefox Account
-             * and it's an FxA related newsletter.
+             * OR if user is already subscribed, OR if they have a Mozilla account
+             * and it's an account related newsletter.
              */
             const obj = newsletters[newsletter];
 

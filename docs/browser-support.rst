@@ -157,7 +157,7 @@ instead rely on `feature detection`_ to deliver a degraded experience where appr
     The following feature detection helpers will return true for all browsers that get
     enhanced support, but will also return true for IE11 currently, even though that has
     now moved to degraded support. The reason for this is that whilst many of our newer
-    products don't support IE at all (e.g. Mozilla VPN, Firefox Monitor, Firefox Relay),
+    products don't support IE at all (e.g. Mozilla VPN, Mozilla Monitor, Firefox Relay),
     we do still need to provide support so that IE users can easily download Firefox. We
     can decide to update the feature detect in the future, at a time when we think makes
     sense.

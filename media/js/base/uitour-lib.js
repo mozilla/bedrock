@@ -208,7 +208,7 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Request the browser open the Firefox Accounts page.
+     * Request the browser open the Mozilla accounts page.
      *
      * @param {Object} [extraURLParams] - An optional object containing additional
      * parameters for the URL opened by the browser for reasons of promotional

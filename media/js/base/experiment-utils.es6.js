@@ -7,7 +7,7 @@
 const knownExcludedarams = [
     'automation=true', // Automated functional tests
     'cjevent=', // CJ Affiliate marketing referral links
-    'entrypoint_experiment=', // Firefox Accounts experiments
+    'entrypoint_experiment=', // Mozilla accounts experiments
     'entrypoint_variation=',
     'experiment=', // Stub attribution experiments
     'variation=',

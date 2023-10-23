@@ -488,7 +488,7 @@ if (typeof window.Mozilla === 'undefined') {
                     returnFxaDetails();
                 };
 
-                // Query Firefox Account signed In stage via 'fxa' config.
+                // Query Mozilla account signed In stage via 'fxa' config.
                 if (userVer >= 74) {
                     request.name = 'fxa';
                     request.callback = listenerFxA;

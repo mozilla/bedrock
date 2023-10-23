@@ -13,7 +13,7 @@ Introduction
 
 ``Mozilla.UITour`` is a JS library that exposes an event-based Web API for
 communicating with the Firefox browser chrome. It can be used for tasks such
-as opening menu panels, highlighting buttons, or querying Firefox Account
+as opening menu panels, highlighting buttons, or querying Mozilla account
 signed-in state. It is supported in Firefox 29 onward, but some API calls
 are only supported in later versions.
 
@@ -48,7 +48,7 @@ Note that ``browser.uitour.testingOrigins`` can be a comma separated list of dom
     must also exclude the domain protocol e.g. ``https://``. A browser restart is also required
     after adding an allowed domain.
 
-    If you are working on Firefox Accounts integration, you can use the ``identity.fxaccounts.autoconfig.uri``
+    If you are working on Mozilla accounts integration, you can use the ``identity.fxaccounts.autoconfig.uri``
     config property to change the Accounts server. For example, to change it to stage environment use this value:
     ``https://accounts.stage.mozaws.net/``. Restart the browser and make sure the configuration updated.
     ``identity.fxaccounts.remote.root`` preference should now point to ``https://accounts.stage.mozaws.net``.
