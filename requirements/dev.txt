@@ -110,8 +110,8 @@ certifi==2023.7.22 \
     # via
     #   -r requirements/prod.txt
     #   requests
+    #   selenium
     #   sentry-sdk
-    #   urllib3
 cffi==1.15.0 \
     --hash=sha256:00c878c90cb53ccfaae6b8bc18ad05d2036553e6d9d1d9dbcf323bbe83854ca3 \
     --hash=sha256:0104fb5ae2391d46a4cb082abdd5c69ea4eab79d8d44eaaf79f1b1fd806ee4c2 \
@@ -277,7 +277,6 @@ cryptography==41.0.4 \
     #   -r requirements/prod.txt
     #   pyjwt
     #   pyopenssl
-    #   urllib3
 cssselect==1.2.0 \
     --hash=sha256:666b19839cfaddb9ce9d36bfe4c969132c647b92fc9088c4e23f786b30f1b3dc \
     --hash=sha256:da1885f0c10b60c03ed5eccbb6b68d6eff248d91976fcde348f395d54c9fd35e
@@ -487,7 +486,6 @@ idna==3.3 \
     #   -r requirements/prod.txt
     #   requests
     #   trio
-    #   urllib3
 importlib-metadata==4.11.3 \
     --hash=sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6 \
     --hash=sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539
@@ -938,9 +936,7 @@ pynacl==1.5.0 \
 pyopenssl==23.2.0 \
     --hash=sha256:24f0dc5227396b3e831f4c7f602b950a5e9833d292c8e4a2e06b709292806ae2 \
     --hash=sha256:276f931f55a452e7dea69c7173e984eb2a4407ce413c918aa34b55f82f9b8bac
-    # via
-    #   -r requirements/prod.txt
-    #   urllib3
+    # via -r requirements/prod.txt
 pypng==0.20220715.0 \
     --hash=sha256:4a43e969b8f5aaafb2a415536c1a8ec7e341cd6a3f957fd5b5f32a4cfeed902c \
     --hash=sha256:739c433ba96f078315de54c0db975aee537cbc3e1d0ae4ed9aab0ca1e427e2c1
@@ -1001,9 +997,9 @@ pytest==7.4.2 \
     #   pytest-rerunfailures
     #   pytest-selenium
     #   pytest-variables
-pytest-base-url==1.4.2 \
-    --hash=sha256:7f1f32e08c2ee751e59e7f5880235b46e83496adc5cba5a01ca218c6fe81333d \
-    --hash=sha256:8b6523a1a3af73c317bdae97b722dfb55a7336733d1ad411eb4a4931347ba77a
+pytest-base-url==2.0.0 \
+    --hash=sha256:e1e88a4fd221941572ccdcf3bf6c051392d2f8b6cef3e0bc7da95abec4b5346e \
+    --hash=sha256:ed36fd632c32af9f1c08f2c2835dcf42ca8fcd097d6ed44a09f253d365ad8297
     # via pytest-selenium
 pytest-cov==4.1.0 \
     --hash=sha256:3904b13dfbfec47f003b8e77fd5b589cd11904a21ddf1ab38a64f204d6a10ef6 \
@@ -1037,13 +1033,13 @@ pytest-rerunfailures==12.0 \
     --hash=sha256:784f462fa87fe9bdf781d0027d856b47a4bfe6c12af108f6bd887057a917b48e \
     --hash=sha256:9a1afd04e21b8177faf08a9bbbf44de7a0fe3fc29f8ddbe83b9684bd5f8f92a9
     # via -r requirements/dev.in
-pytest-selenium==2.0.1 \
-    --hash=sha256:a0008e6dce7c68501369c1c543420f5906ffada493d4ff0c5d9d5ccdf4022203 \
-    --hash=sha256:fd632e0b657be6360f6319445eb0f475872d488b67634f791561851d55e390b1
+pytest-selenium==4.0.1 \
+    --hash=sha256:da19f3ea860b2e8dc6a742c9c8622f5cfbf590484c04dca2f2520aabdf545161 \
+    --hash=sha256:e7329aceb4c1e04aa711c5c625106ab906855a5e208a2246d6b6055f2011522f
     # via -r requirements/dev.in
-pytest-variables==1.9.0 \
-    --hash=sha256:ccf4afcd70de1f5f18b4463758a19f24647a9def1805f675e80db851c9e00ac0 \
-    --hash=sha256:f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a
+pytest-variables==3.0.0 \
+    --hash=sha256:190d9d4da5a6013eb02df2049f6047d911cdbe44c5b1734a6acc1748433c93d0 \
+    --hash=sha256:ab84235417afac5a0a7dd4c3918287d9c7329d2e16d570d6e943f8d8e02533b9
     # via pytest-selenium
 python-dateutil==2.8.2 \
     --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86 \
@@ -1172,8 +1168,9 @@ s3transfer==0.7.0 \
     # via
     #   -r requirements/prod.txt
     #   boto3
-selenium==4.1.3 \
-    --hash=sha256:14d28a628c831c105d38305c881c9c7847199bfd728ec84240c5e86fa1c9bd5a
+selenium==4.9.1 \
+    --hash=sha256:3444f4376321530c36ce8355b6b357d8cf4a7d588ce5cf772183465930bbed0e \
+    --hash=sha256:82aedaa85d55bc861f4c89ff9609e82f6c958e2e1e3da3ffcc36703f21d3ee16
     # via
     #   -r requirements/dev.in
     #   pypom
@@ -1291,7 +1288,7 @@ tzlocal==4.1 \
     # via
     #   -r requirements/prod.txt
     #   apscheduler
-urllib3[secure,socks]==1.26.11 \
+urllib3[socks]==1.26.11 \
     --hash=sha256:c33ccba33c819596124764c23a97d25f32b28433ba0dedeb77d873a38722c9bc \
     --hash=sha256:ea6e8fb210b19d950fab93b60c9009226c63a28808bc8386e05301e25883ac0a
     # via
