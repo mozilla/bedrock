@@ -33,7 +33,7 @@ Server architecture
 -------------------
 
 Bedrock is configured so that when ``dev=True``, VPN subscription links will point to
-the Firefox Accounts (FxA) staging environment. When ``dev=False``, they will point to
+the Mozilla accounts staging environment. When ``dev=False``, they will point to
 the Fxa production environment.
 
 So our different environments are mapped like so:

@@ -2,27 +2,35 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.. _firefox-accounts-helpers:
+.. _mozilla-accounts-helpers:
 
 ========================
-Firefox Accounts Helpers
+Mozilla accounts helpers
 ========================
-
-Marketing pages often promote the creation of a `Firefox Account`_ (FxA) as a common *call to action*
-(CTA). This is typically accomplished using either a sign-up form, or a prominent link/button. Other
-products such as `Mozilla VPN`_ use similar Firefox Account auth flows to manage subscriptions. To
-accomplish these tasks, bedrock templates can take advantage of a series of Python helpers which can
-be used to standardize product referrals, and make supporting these auth flows easier.
 
 .. Note::
 
-    See the attribution docs (:ref:`firefox-accounts-attribution`) for more a detailed description of
+    Since a rebranding in October 2023, we now refer to "Mozilla accounts" in our web pages instead
+    of "Firefox accounts". This rebranding is so far superficial, and sign up flows still go to
+    ``accounts.firefox.com``. Because of this, our internal code and helpers still use ``FxA`` or
+    ``fxa`` as a common abbreviation. However the language used around them should now be
+    "Mozilla accounts" going forward.
+
+Marketing pages often promote the creation of a `Mozilla account`_ as a common *call to action*
+(CTA). This is typically accomplished using either a sign-up form, or a prominent link/button. Other
+products such as `Mozilla VPN`_ use similar account auth flows to manage subscriptions. To accomplish
+these tasks, bedrock templates can take advantage of a series of Python helpers which can be used to
+standardize product referrals, and make supporting these auth flows easier.
+
+.. Note::
+
+    See the attribution docs (:ref:`mozilla-accounts-attribution`) for more a detailed description of
     the analytics functions these helpers provide.
 
-Firefox Account Sign-up Form
+Mozilla account sign-up form
 ----------------------------
 
-Use the ``fxa_email_form`` macro to display a Firefox Account signup form on a page.
+Use the ``fxa_email_form`` macro to display a Mozilla account sign-up form on a page.
 
 Usage
 ~~~~~
@@ -107,11 +115,11 @@ Invoking the macro will automatically include a set of default :abbr:`UTM (Urchi
 
 .. Note::
 
-    When signing into FxA using this form on a Firefox Desktop browser, it will also
+    When signing into a Mozilla account using this form on a Firefox Desktop browser, it will also
     activate the `Sync`_ feature.
 
 
-Firefox Account Links
+Mozilla account links
 ---------------------
 
 Use the ``fxa_button`` helper to create a :abbr:`CTA (Call To Action)` button or link to https://accounts.firefox.com/.
@@ -121,7 +129,7 @@ Usage
 
 .. code-block:: jinja
 
-    {{ fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In') }}
+    {{ fxa_button(entrypoint='mozilla.org-firefox-sync-page', button_text='Sign In') }}
 
 .. Note::
 
@@ -130,18 +138,18 @@ Usage
 
 .. Note::
 
-    When signing into FxA using this link on a Firefox Desktop browser, it will also
+    When signing into a Mozilla account using this link on a Firefox Desktop browser, it will also
     activate the `Sync`_ feature.
 
-For more information on the available parameters, read the "Common FxA Parameters"
+For more information on the available parameters, read the "Common Parameters"
 section further below.
 
 
-Firefox Monitor Links
+Mozilla Monitor links
 ---------------------
 
 Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a
-Firefox Accounts auth flow.
+Mozilla accounts auth flow.
 
 Usage
 ~~~~~
@@ -150,15 +158,15 @@ Usage
 
     {{ monitor_fxa_button(entrypoint=_entrypoint, button_text='Sign Up for Monitor') }}
 
-For more information on the available parameters, read the "Common FxA Parameters"
+For more information on the available parameters, read the "Common Parameters"
 section further below.
 
 
-Pocket Links
+Pocket links
 ------------
 
 Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a
-Firefox Accounts auth flow.
+Mozilla accounts auth flow.
 
 Usage
 ~~~~~
@@ -167,12 +175,12 @@ Usage
 
     {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
 
-For more information on the available parameters, read the "Common FxA Parameters"
+For more information on the available parameters, read the "Common Parameters"
 section below.
 
 
-Common :abbr:`FxA (Firefox Account)` Parameters
------------------------------------------------
+Common Parameters
+-----------------
 
 The ``fxa_button``, ``pocket_fxa_button``, and ``monitor_fxa_button`` helpers
 all support the same standard parameters:
@@ -207,7 +215,7 @@ Mozilla :abbr:`VPN (Virtual Private Network)` Links
 ---------------------------------------------------
 
 Use the ``vpn_subscribe_link`` helpers to create a :abbr:`VPN (Virtual Private Network)` subscription link via a
-Firefox Accounts auth flow.
+Mozilla accounts auth flow.
 
 Usage
 ~~~~~
@@ -252,23 +260,25 @@ The ``vpn_subscribe_link`` helper has an additional ``plan`` parameter to suppor
 Firefox Sync and UITour
 -----------------------
 
-Since Firefox 80 the :abbr:`FxA (Firefox Account)` link and email form macros use :ref:`UITour<ui-tour>` to show the Firefox Accounts page
-and log the browser into Sync or an Account. For non-Firefox browsers or if UITour is not available, the flow uses
-normal links that allow users to log into FxA as a website only without connecting the Firefox Desktop client.
-This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow
-(this includes handling the China Repack build of Firefox). This transition was introduced to later migrate
-Firefox Desktop to an OAuth based client authentication flow.
+Since Firefox 80 the accounts link and email form macros use :ref:`UITour<ui-tour>` to show the
+Mozilla accounts page and log the browser into Sync or an account. For non-Firefox browsers or if
+UITour is not available, the flow uses normal links that allow users to log into the Mozilla accounts
+website only, without connecting the Firefox Desktop client. This UITour flow allows the Firefox browser
+to determine the correct Mozilla accounts server and authentication flow (this includes handling the
+China Repack build of Firefox). This transition was introduced to later migrate Firefox Desktop to an
+OAuth based client authentication flow.
 
 The script that handles this logic is ``/media/js/base/fxa-link.js``, and will automatically apply
 to any link with a ``js-fxa-cta-link`` class name. The current code automatically detects if you are in the
 supported browser for this flow and updates links to drive them through the UITour API. The UITour
-``showFirefoxAccounts`` action supports flow id parameters, :abbr:`UTM (Urchin Tracking Module)` parameters and the email data field.
+``showFirefoxAccounts`` action supports flow id parameters, :abbr:`UTM (Urchin Tracking Module)` parameters
+and the email data field.
 
 
-Testing Signup Flows
---------------------
+Testing Sign-up Flows
+---------------------
 
-Testing the Firefox Account signup flows on a non-production environment requires
+Testing the Mozilla account sign-up flows on a non-production environment requires
 some additional configuration.
 
 **Configuring bedrock:**
@@ -292,6 +302,6 @@ For Mozilla :abbr:`VPN (Virtual Private Network)` links you can also set:
     which will also apply to demo servers. You may only need to configure
     your ``.env`` file if you wish to change a setting to something else.
 
-.. _Firefox Account: https://accounts.firefox.com
+.. _Mozilla account: https://accounts.firefox.com
 .. _Mozilla VPN: https://www.mozilla.org/products/vpn/
 .. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer

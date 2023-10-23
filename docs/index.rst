@@ -37,7 +37,7 @@ Contents
    uitour
    send-to-device
    download-buttons
-   firefox-accounts
+   mozilla-accounts
    funnelcake
    abtest
    vpn-subscriptions

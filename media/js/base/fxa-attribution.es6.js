@@ -370,7 +370,7 @@ FxaAttribution.getAttributionData = (urlParams) => {
 
 /**
  * If there are validated referral params on the page URL, query the
- * DOM and update Firefox Account links with the new param data.
+ * DOM and update Mozilla account links with the new param data.
  */
 FxaAttribution.init = (urlParams) => {
     // feature detect support for object modification.

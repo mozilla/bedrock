@@ -50,7 +50,7 @@ basket back-end that provides our interface to the newsletter vendor.
   of unsubscribed newsletters and allow subscribing to them. Some newsletters
   aren't included in that list by default (though they are shown if the
   user is already subscribed, to let them unsubscribe). If the user has a
-  Firefox Account, there are also some other related newsletters that will
+  Mozilla account, there are also some other related newsletters that will
   always be shown in the list.
 
 - Languages - newsletters are available in a particular set of languages.

@@ -911,7 +911,7 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
     "de": "https://www.instagram.com/mozilla_deutschland/",
 }
 
-# Firefox Accounts product links
+# Mozilla accounts product links
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
