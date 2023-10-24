@@ -70,6 +70,20 @@
 
 {% set show_mr106_browser_promo = switch('download-firefox-mr106-promo', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
 
+{% if outdated %}
+
+  {% set update_url = 'href="%s" data-cta-type="link" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/kb/update-firefox-latest-release' + referrals)) %}
+
+  {% if ftl_has_messages('firefox-desktop-out-of-date') %}
+    <aside class="c-page-header-notification">
+      <div class="mzp-c-notification-bar mzp-t-warning">
+        {{ ftl('firefox-desktop-out-of-date', update_url=update_url) }}
+      </div>
+    </aside>
+  {% endif %}
+
+{% endif %}
+
 <main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">

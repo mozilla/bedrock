@@ -534,12 +534,6 @@
     },
     {
       "files": [
-        "css/firefox/firstrun/firstrun.scss"
-      ],
-      "name": "firefox_firstrun_quantum"
-    },
-    {
-      "files": [
         "css/newsletter/newsletter-recovery.scss"
       ],
       "name": "newsletter-recovery"

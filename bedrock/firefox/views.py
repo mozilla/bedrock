@@ -17,6 +17,7 @@ import querystringsafe_base64
 from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
+from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
@@ -332,15 +333,6 @@ def show_57_dev_firstrun(version):
     return version >= Version("57.0")
 
 
-def redirect_old_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version < Version("40.0")
-
-
 def show_default_account_whatsnew(version):
     try:
         version = Version(version)
@@ -351,17 +343,18 @@ def show_default_account_whatsnew(version):
 
 
 class FirstrunView(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/firstrun/firstrun.html": ["firefox/firstrun"],
-        "firefox/developer/firstrun.html": ["firefox/developer"],
-    }
+    ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"]}
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
+        new_page_url = urlparams(reverse("firefox.new"), reason="outdated")
+        channel = detect_channel(version)
 
         # redirect legacy /firstrun URLs to /firefox/new/
-        if redirect_old_firstrun(version):
-            return HttpResponsePermanentRedirect(reverse("firefox.new"))
+        if channel != "developer":
+            return HttpResponsePermanentRedirect(new_page_url)
+        elif channel == "developer" and not show_57_dev_firstrun(version):
+            return HttpResponsePermanentRedirect(reverse("firefox.developer.index"))
         else:
             return super().get(*args, **kwargs)
 
@@ -374,15 +367,7 @@ class FirstrunView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        version = self.kwargs.get("version") or ""
-
-        if detect_channel(version) == "developer":
-            if show_57_dev_firstrun(version):
-                template = "firefox/developer/firstrun.html"
-            else:
-                template = "firefox/firstrun/firstrun.html"
-        else:
-            template = "firefox/firstrun/firstrun.html"
+        template = "firefox/developer/firstrun.html"
 
         # return a list to conform with original intention
         return [template]
@@ -751,7 +736,9 @@ class NewView(L10nTemplateView):
 
         reason = self.request.GET.get("reason", None)
         manual_update = True if reason == "manual-update" else False
+        outdated = reason == "outdated"
         ctx["manual_update"] = manual_update
+        ctx["outdated"] = outdated
 
         return ctx
 
