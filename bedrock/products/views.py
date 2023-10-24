@@ -532,3 +532,21 @@ def mozsocial_waitlist_page(request):
     ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "mozilla-social-waitlist"}
 
     return l10n_utils.render(request, template_name, ctx, ftl_files=ftl_files)
+
+
+@require_safe
+def monitor_waitlist_scan_page(request):
+    template_name = "products/monitor/waitlist/scan.html"
+    newsletter_id = "monitor-waitlist"
+    ctx = {"newsletter_id": newsletter_id}
+
+    return l10n_utils.render(request, template_name, ctx)
+
+
+@require_safe
+def monitor_waitlist_plus_page(request):
+    template_name = "products/monitor/waitlist/plus.html"
+    newsletter_id = "monitor-waitlist"
+    ctx = {"newsletter_id": newsletter_id}
+
+    return l10n_utils.render(request, template_name, ctx)

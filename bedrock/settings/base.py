@@ -456,6 +456,8 @@ NOINDEX_URLS = [
     r"^newsletter/newsletter-strings\.json",
     r"^products/vpn/invite/waitlist/",
     r"^products/relay/invite/waitlist/",
+    r"^products/monitor/waitlist-plus/",
+    r"^products/monitor/waitlist-scan/",
     r"/system-requirements/$",
     r".*/(firstrun|thanks)/$",
     r"^readiness/$",

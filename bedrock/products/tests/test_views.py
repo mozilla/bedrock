@@ -533,3 +533,28 @@ class TestVPNResourceArticleView(TestCase):
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
+
+
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestMonitorScanWaitlistPage(TestCase):
+    @override_settings(DEV=False)
+    def test_monitor_scan_waitlist_template(self, render_mock):
+        req = RequestFactory().get("/products/monitor/waitlist-scan/")
+        req.locale = "en-US"
+        view = views.monitor_waitlist_scan_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
+        template = render_mock.call_args[0][1]
+        assert template == "products/monitor/waitlist/scan.html"
+
+    @override_settings(DEV=False)
+    def test_monitor_plus_waitlist_template(self, render_mock):
+        req = RequestFactory().get("/products/monitor/waitlist-plus/")
+        req.locale = "en-US"
+        view = views.monitor_waitlist_plus_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
+        template = render_mock.call_args[0][1]
+        assert template == "products/monitor/waitlist/plus.html"

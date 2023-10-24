@@ -37,6 +37,8 @@ urlpatterns = (
         name="products.vpn.resource-center.article",
     ),
     path("mozsocial/invite/", views.mozsocial_waitlist_page, name="products.mozsocial.invite"),
+    path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
+    path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )
 
 if settings.DEV:

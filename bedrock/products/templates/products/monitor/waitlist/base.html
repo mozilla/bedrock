@@ -1,0 +1,58 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'base-protocol-mozilla.html' %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block body_class %}{{ super() }} monitor-waitlist{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('monitor-waitlist') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_vpn_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<main class="mzp-t-content-sm">
+  <section class="section-subscribe">
+    <header class="mzp-l-content mzp-t-content-lg">
+      <h1 class="page-title">{% block page_heading %}{% endblock %}</h1>
+      <h2 class="section-title">{{ self.page_desc() }}</h2>
+    </header>
+    <div class="mzp-l-content mzp-t-content-sm">
+    {% if country_code == "US" %}
+      {{ email_newsletter_form(
+        newsletters=newsletter_id,
+        include_title=False,
+        include_country=False,
+        include_language=False,
+        thankyou_head='Thanks!',
+        thankyou_content='If you haven’t previously confirmed a subscription to a Mozilla-related newsletter or waitlist, you may have to do so. Please check your inbox or your spam filter for an email from us.',
+        submit_text='Sign up now',
+        spinner_color='#0c99d5'
+      ) }}
+    {% else %}
+      <p class="c-not-available">
+        Sorry, this service is not currently available in your country.
+      </p>
+    {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}
