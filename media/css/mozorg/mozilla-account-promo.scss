@@ -39,13 +39,20 @@ $promo-sm-mq: 400px;
 
     h2 {
         @include font-base;
-        @include text-title-xl;
+        @include font-size(56px);
+        line-height: 1;
         color: $color-white;
+        letter-spacing: -2px;
+        margin-bottom: $layout-md;
 
         .gradient-text {
             background: linear-gradient(to right, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
             background-clip: text;
             color: transparent;
+        }
+
+        @media (min-width: $promo-md-mq) {
+            @include font-size(66px);
         }
 
         @media (max-width: $promo-sm-mq) {
@@ -91,6 +98,10 @@ $promo-sm-mq: 400px;
         margin-top: $spacing-2xl;
         text-align: center;
 
+        a {
+            @include font-base;
+        }
+
         small {
             a {
                 text-decoration: underline;
@@ -114,6 +125,7 @@ $promo-sm-mq: 400px;
     .products-list {
         display: flex;
         justify-content: center;
+        margin-bottom: 0;
 
         li {
             flex-shrink: 0;
@@ -130,6 +142,7 @@ $promo-sm-mq: 400px;
             img {
                 width: 45px;
                 height: 45px;
+                display: block;
             }
 
             span {
@@ -179,6 +192,10 @@ $promo-sm-mq: 400px;
         .mzp-c-button-container {
             margin-bottom: 0;
             margin-top: $spacing-lg;
+
+            #fxa-email-form-submit {
+                @include font-base;
+            }
 
             &.mzp-l-stretch {
                 align-items: center;
