@@ -69,11 +69,12 @@
     </div>
 
     <div class="mzp-l-content mzp-l-card-half">
+      {% set account_name = 'Mozilla account' if switch('moz-accounts-update') else 'Firefox account' %}
       {{ card(
         class='mzp-c-card-medium',
         title='Save It Fast',
         ga_title='Save It Fast',
-        desc='One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.',
+        desc='One click on the Pocket icon and content is saved to read later on any device, online or off. With your %s, logins and preferences travel with you.'|format(account_name),
         image=resp_img('img/firefox/pocket/pocket-save.png', srcset={'img/firefox/pocket/pocket-save-high-res.png': '2x' }, optional_attributes={'loading': 'lazy', 'class': 'mzp-c-card-image'}),
         aspect_ratio='mzp-has-aspect-3-2',
         link_url='https://support.mozilla.org/kb/save-web-pages-later-pocket-firefox',
