@@ -512,17 +512,6 @@ def relay_phone_waitlist__page(request):
 
 
 @require_safe
-def monitor_landing_page(request):
-    template_name = "products/monitor/landing.html"
-    ftl_files = ["products/monitor/landing", "products/monitor/shared"]
-    breach_scan_url = settings.MONITOR_BREACH_SCAN_URL
-
-    context = {"breach_scan_url": breach_scan_url}
-
-    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
-
-
-@require_safe
 def mozsocial_waitlist_page(request):
     template_name = "products/mozsocial/invite.html"
     ftl_files = ["products/mozsocial/invite"]
