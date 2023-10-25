@@ -62,7 +62,7 @@ firefox_monitor_notices = PrivacyDocView.as_view(template_name="privacy/notices/
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 
 ad_targeting_guidelines = PrivacyDocView.as_view(
-    template_name="privacy/notices/ad-targeting-guidelines.html", legal_doc_name="AdTargeting_Guidelines"
+    template_name="privacy/notices/ad-targeting-guidelines.html", legal_doc_name="adtargeting_guidelines"
 )
 
 subscription_services = PrivacyDocView.as_view(
