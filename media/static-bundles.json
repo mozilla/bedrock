@@ -1305,6 +1305,12 @@
     },
     {
       "files": [
+        "css/products/monitor/waitlist.scss"
+      ],
+      "name": "monitor-waitlist"
+    },
+    {
+      "files": [
         "css/mozorg/try-picture-in-picture.scss"
       ],
       "name": "try-picture-in-picture"
