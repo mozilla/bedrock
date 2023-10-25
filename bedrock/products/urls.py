@@ -50,5 +50,4 @@ if settings.DEV:
         page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
         path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
         path("relay/pricing/", views.relay_pricing_page, name="products.relay.pricing"),
-        path("monitor/", views.monitor_landing_page, name="products.monitor.landing"),
     )

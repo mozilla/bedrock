@@ -1293,18 +1293,6 @@
     },
     {
       "files": [
-        "css/products/monitor/common.scss"
-      ],
-      "name": "monitor-common"
-    },
-    {
-      "files": [
-        "css/products/monitor/landing.scss"
-      ],
-      "name": "monitor-landing"
-    },
-    {
-      "files": [
         "css/products/monitor/waitlist.scss"
       ],
       "name": "monitor-waitlist"
@@ -2066,12 +2054,6 @@
         "js/products/mozsocial/invite.es6.js"
       ],
       "name": "mozsocial-waitlist"
-    },
-    {
-      "files": [
-        "js/products/monitor/common.es6.js"
-      ],
-      "name": "monitor-common"
     },
     {
       "files": [
