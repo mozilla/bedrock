@@ -28,6 +28,7 @@ $promo-sm-mq: 400px;
         text-align: center;
 
     }
+
     @media (min-width: $promo-md-mq) {
         padding: $layout-lg;
 
@@ -44,10 +45,12 @@ $promo-sm-mq: 400px;
         color: $color-white;
         letter-spacing: -2px;
         margin-bottom: $layout-md;
+        text-align: left;
 
         .gradient-text {
             background: linear-gradient(to right, #ffd741 19%, #ff4540 42%, #f26fff 63%, #9a53fa 80%);
             background-clip: text;
+            -webkit-background-clip: text; // for Chrome web browser
             color: transparent;
         }
 
@@ -91,6 +94,10 @@ $promo-sm-mq: 400px;
     .accounts-cta {
         color: $color-white;
         margin-top: 0;
+    }
+
+    .accounts-signin {
+        margin-bottom: 0;
     }
 
     .accounts-cta {
@@ -173,20 +180,21 @@ $promo-sm-mq: 400px;
             @include bidi(((margin-left, auto, 0),));
             @include bidi(((margin-right, 0, auto),));
         }
+    }
 
     .fxa-email-field-container {
         display: flex;
         flex-direction: column;
-        align-items: center;
-
-        #fxa-email-field {
-            width: 100%;
-            min-width: 230px;
-            max-width: 100%;
-        }
 
         .mzp-c-field {
             padding-bottom: 0;
+
+            #fxa-email-field {
+                width: 100%;
+                min-width: 230px;
+                line-height: 1;
+                max-width: 100%;
+            }
         }
 
         .mzp-c-button-container {
@@ -213,4 +221,3 @@ $promo-sm-mq: 400px;
             }
         }
     }
-}
