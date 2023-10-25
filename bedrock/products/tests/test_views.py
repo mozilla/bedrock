@@ -560,6 +560,7 @@ class TestMonitorScanWaitlistPage(TestCase):
         assert template == "products/monitor/waitlist/plus.html"
 
 
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNMorePages(TestCase):
     @override_settings(DEV=True)
     @patch.object(views, "ftl_file_is_active", lambda *x: False)
