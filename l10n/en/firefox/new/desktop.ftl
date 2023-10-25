@@ -18,7 +18,7 @@ firefox-desktop-download-firefox = { -brand-name-firefox-browser }
 
 # Variables:
 #   $update_url (url) - link to https://support.mozilla.org/kb/update-firefox-latest-release
-firefox-desktop-out-of-date = An even newer { -brand-name-firefox } is available. <a { $update_url }">Update to the latest version</a>
+firefox-desktop-out-of-date = An even newer { -brand-name-firefox } is available. <a { $update_url }>Update to the latest version</a>
 
 firefox-desktop-download-get-the-browser = Get the browser that protects what’s important
 # shady is slang which suggests something is untrustworthy
