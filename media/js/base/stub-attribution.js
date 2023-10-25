@@ -328,32 +328,45 @@ if (typeof window.Mozilla === 'undefined') {
         return 'other';
     };
 
-    /**
-     * Gets the client ID from the GA object.
-     * @returns {String} client ID.
-     */
-    StubAttribution.getGAClientID = function () {
-        try {
-            var clientID = window.ga.getAll()[0].get('clientId');
+    StubAttribution.getGAData = function (dataLayer) {
+        dataLayer =
+            typeof dataLayer !== 'undefined' ? dataLayer : window.dataLayer;
 
-            if (clientID && typeof clientID === 'string' && clientID !== '') {
-                return clientID;
+        var result = {
+            client_id: null,
+            session_id: null
+        };
+
+        var _findObject = function (name, obj) {
+            for (var key in obj) {
+                if (
+                    typeof obj[key] === 'object' &&
+                    Object.prototype.hasOwnProperty.call(obj, key)
+                ) {
+                    if (key === name) {
+                        if (
+                            typeof obj[key].client_id === 'string' &&
+                            typeof obj[key].session_id === 'string'
+                        ) {
+                            result = obj[key];
+                        } else {
+                            return result;
+                        }
+                        break;
+                    } else {
+                        _findObject(name, obj[key]);
+                    }
+                }
             }
-            return null;
-        } catch (e) {
-            return null;
-        }
-    };
+        };
 
-    /**
-     * Returns a random identifier that we use to associate a
-     * visitor's website GA data with their Telemetry attribution
-     * data. This identifier is sent as a non-interaction event
-     * to GA, and also to the stub attribution service as session_id.
-     * @returns {String} session ID.
-     */
-    StubAttribution.createSessionID = function () {
-        return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        if (typeof dataLayer !== 'undefined') {
+            dataLayer.forEach(function (layer) {
+                _findObject('gtagApiResult', layer);
+            });
+        }
+
+        return result;
     };
 
     /**
@@ -369,9 +382,13 @@ if (typeof window.Mozilla === 'undefined') {
 
         function _checkGA() {
             clearTimeout(timeout);
-            var clientID = StubAttribution.getGAClientID();
+            var data = StubAttribution.getGAData();
 
-            if (clientID) {
+            if (
+                typeof data === 'object' &&
+                typeof data.client_id === 'string' &&
+                typeof data.session_id === 'string'
+            ) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
@@ -410,7 +427,7 @@ if (typeof window.Mozilla === 'undefined') {
             params.get('variation') || StubAttribution.experimentVariation;
         var referrer = StubAttribution.getReferrer(ref);
         var ua = StubAttribution.getUserAgent();
-        var clientID = StubAttribution.getGAClientID();
+        var ga = StubAttribution.getGAData();
 
         /* eslint-disable camelcase */
         var data = {
@@ -422,8 +439,8 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            client_id: clientID,
-            session_id: clientID ? StubAttribution.createSessionID() : null,
+            client_id: ga.client_id,
+            session_id: ga.session_id,
             dlsource: StubAttribution.DLSOURCE
         };
         /* eslint-enable camelcase */

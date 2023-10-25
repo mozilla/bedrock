@@ -13,7 +13,7 @@
 
 describe('stub-attribution.js', function () {
     const GA_CLIENT_ID = '1456954538.1610960957';
-    const STUB_SESSION_ID = '1234567890';
+    const GA_SESSION_ID = '1668161374';
     const DLSOURCE = 'mozorg';
 
     beforeEach(function () {
@@ -41,7 +41,7 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -50,9 +50,10 @@ describe('stub-attribution.js', function () {
             spyOn(window.dataLayer, 'push');
 
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
+            spyOn(Mozilla.StubAttribution, 'getGAData').and.returnValue({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
+            });
         });
 
         it('should update download links if session cookie exists', function () {
@@ -114,7 +115,7 @@ describe('stub-attribution.js', function () {
             ).toHaveBeenCalledWith(data);
             expect(window.dataLayer.push).toHaveBeenCalledWith({
                 event: 'stub-session-id',
-                eLabel: STUB_SESSION_ID
+                eLabel: GA_SESSION_ID
             });
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
@@ -280,7 +281,7 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -297,7 +298,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -312,7 +313,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -327,7 +328,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -342,7 +343,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -359,7 +360,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://example.com/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -374,7 +375,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://example.com/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -389,7 +390,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://example.com/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -404,7 +405,7 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -423,7 +424,7 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -440,7 +441,7 @@ describe('stub-attribution.js', function () {
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -457,7 +458,7 @@ describe('stub-attribution.js', function () {
                 referrer: '',
                 ua: 'chrome',
                 client_id: GA_CLIENT_ID,
-                session_id: STUB_SESSION_ID
+                session_id: GA_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -527,9 +528,10 @@ describe('stub-attribution.js', function () {
     describe('waitForGoogleAnalytics', function () {
         beforeEach(function () {
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
+            spyOn(Mozilla.StubAttribution, 'getGAData').and.returnValue({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
+            });
         });
 
         it('should fire a callback when GA client ID and session ID are found', function () {
@@ -559,9 +561,10 @@ describe('stub-attribution.js', function () {
     describe('getAttributionData', function () {
         beforeEach(function () {
             // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
+            spyOn(Mozilla.StubAttribution, 'getGAData').and.returnValue({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
+            });
         });
 
         it('should return attribution data if utm params are present', function () {
@@ -1137,45 +1140,85 @@ describe('stub-attribution.js', function () {
         });
     });
 
-    describe('getGAClientID', function () {
-        it('should return a valid Google Analytics client ID', function () {
-            window.ga = sinon.stub();
-            window.ga.getAll = sinon.stub().returns([
+    describe('getGAData', function () {
+        it('should return a valid Google Analytics client ID and session ID', function () {
+            const dataLayer = [
                 {
-                    get: () => GA_CLIENT_ID
-                }
-            ]);
-
-            expect(Mozilla.StubAttribution.getGAClientID()).toEqual(
-                GA_CLIENT_ID
-            );
-        });
-
-        it('should return a null if Google Analytics client ID is invalid', function () {
-            window.ga = sinon.stub();
-            window.ga.getAll = sinon.stub().returns([
+                    event: 'page-id-loaded',
+                    pageId: 'Homepage',
+                    'gtm.uniqueEventId': 1
+                },
                 {
-                    get: () => ''
+                    'gtm.start': 1678700450438,
+                    event: 'gtm.js',
+                    'gtm.uniqueEventId': 2
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'client_id'
+                    }
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'session_id'
+                    }
+                },
+                {
+                    h: {
+                        event: 'gtagApiGet',
+                        gtagApiResult: {
+                            client_id: GA_CLIENT_ID,
+                            session_id: GA_SESSION_ID
+                        },
+                        'gtm.uniqueEventId': 11
+                    }
+                },
+                {
+                    event: 'gtm.dom',
+                    'gtm.uniqueEventId': 12
+                },
+                {
+                    event: 'gtm.load',
+                    'gtm.uniqueEventId': 13
                 }
-            ]);
+            ];
 
-            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
-        });
-
-        it('should return a null if accessing Google Analytics object throws an error', function () {
-            window.ga = sinon.stub().throws(function () {
-                return new Error();
+            expect(Mozilla.StubAttribution.getGAData(dataLayer)).toEqual({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
             });
-            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
         });
-    });
 
-    describe('createSessionID', function () {
-        it('should return a 10 digit randomly generated number as a string', function () {
-            const result = Mozilla.StubAttribution.createSessionID();
+        it('should return null values if client ID and session ID are not found', function () {
+            const dataLayer = [
+                {
+                    event: 'page-id-loaded',
+                    pageId: 'Homepage',
+                    'gtm.uniqueEventId': 1
+                },
+                {
+                    'gtm.start': 1678700450438,
+                    event: 'gtm.js',
+                    'gtm.uniqueEventId': 2
+                },
+                {
+                    event: 'gtm.dom',
+                    'gtm.uniqueEventId': 12
+                },
+                {
+                    event: 'gtm.load',
+                    'gtm.uniqueEventId': 13
+                }
+            ];
 
-            expect(typeof result).toEqual('string');
-            expect(/^\d{10}$/.test(result)).toBeTruthy();
+            expect(Mozilla.StubAttribution.getGAData(dataLayer)).toEqual({
+                client_id: null,
+                session_id: null
+            });
         });
     });
 });
