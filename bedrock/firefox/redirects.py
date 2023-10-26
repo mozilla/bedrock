@@ -557,5 +557,5 @@ redirectpatterns = (
     redirect(r"^firefox/sync/?$", "firefox.features.sync"),
     # issue 13732
     redirect(r"^firefox/welcome/3/?$", "firefox.accounts"),
-    redirect(r"^firefox/mobile/get-app/", "https://www.mozilla.org/en-US/firefox/browsers/mobile/get-app/"),
+    redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
 )

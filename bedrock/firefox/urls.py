@@ -208,7 +208,6 @@ urlpatterns = (
         ftl_files=["firefox/browsers/mobile/compare", "firefox/browsers/compare/shared"],
     ),
     page("firefox/browsers/mobile/get-app/", "firefox/browsers/mobile/get-app.html", ftl_files=["firefox/mobile"]),
-
     # Issue 8641
     page("firefox/browsers/best-browser/", "firefox/browsers/best-browser.html", ftl_files=["firefox/browsers/best-browser"]),
     page("firefox/browsers/browser-history/", "firefox/browsers/browser-history.html", ftl_files=["firefox/browsers/history/browser-history"]),
