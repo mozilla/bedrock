@@ -155,6 +155,7 @@ newsletters-your-content-wasnt-relevant = Your content wasn’t relevant to me.
 newsletters-your-email-design = Your email design was too hard to read.
 newsletters-i-didnt-sign-up = I didn’t sign up for this.
 newsletters-please-select-a-reason = Please select a reason for unsubscribing.
+newsletters-fxa-error-retry = We are sorry, but there was a problem directing you to the email preferences. Please try the form below.
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/newsletter/
@@ -225,7 +226,7 @@ newsletters-insights = Insights
 # Obsolete string
 newsletters-internet-health-report = Internet Health Report
 
-# Description for the newsletter in Newsletter subscription page (Insights))
+# Description for the newsletter in Newsletter subscription page (Insights)
 newsletters-mozilla-published-articles-and-deep = { -brand-name-mozilla } publishes articles and deep dives on issues around internet health and trustworthy AI, including our annual Internet Health Report.
 
 # Obsolete string

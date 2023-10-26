@@ -195,8 +195,9 @@ def recovery(request):
     to manage their subscriptions.
     """
     form = EmailForm()
+    fxa_error = request.GET.get("fxa_error", "0") == "1"
 
-    context = {"form": form, "recovery_url": settings.BASKET_URL + "/news/recover/"}
+    context = {"form": form, "recovery_url": f"{settings.BASKET_URL}/news/recover/", "fxa_error": fxa_error}
 
     # This view is shared between two different templates. For context see bug 1442129.
     if "/newsletter/opt-out-confirmation/" in request.get_full_path():
