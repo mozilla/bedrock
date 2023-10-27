@@ -51,7 +51,7 @@ class Command(BaseCommand):
             dest="quiet",
             default=False,
             help="If no error occurs, swallow all output.",
-        ),
+        )
         parser.add_argument(
             "-f",
             "--force",
@@ -59,7 +59,7 @@ class Command(BaseCommand):
             dest="force",
             default=False,
             help="Load the data even if nothing new from Contentful.",
-        ),
+        )
 
     def log(self, msg) -> None:
         if not self.quiet:
