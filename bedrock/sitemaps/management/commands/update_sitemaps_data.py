@@ -16,8 +16,8 @@ class Command(BaseCommand):
     help = "Clones or updates sitemaps info from github"
 
     def add_arguments(self, parser):
-        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
-        parser.add_argument("-f", "--force", action="store_true", dest="force", default=False, help="Load the data even if nothing new from git."),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
+        parser.add_argument("-f", "--force", action="store_true", dest="force", default=False, help="Load the data even if nothing new from git.")
 
     def handle(self, *args, **options):
         if options["quiet"]:
