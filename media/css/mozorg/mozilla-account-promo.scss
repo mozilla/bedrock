@@ -24,9 +24,8 @@ $promo-sm-mq: 400px;
 
     .promo-product-wrapper {
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
-        text-align: center;
-
     }
 
     @media (min-width: $promo-md-mq) {
@@ -41,6 +40,7 @@ $promo-sm-mq: 400px;
     h2 {
         @include font-base;
         @include font-size(56px);
+        @include bidi(((text-align, left, right),));
         line-height: 1;
         color: $color-white;
         letter-spacing: -2px;
@@ -68,7 +68,7 @@ $promo-sm-mq: 400px;
         @include font-base;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
 
         #fxa-email-form {
             color: $color-white;
@@ -82,7 +82,7 @@ $promo-sm-mq: 400px;
         .mzp-c-field-info,
         .accounts-signin {
             @include text-body-xs;
-            text-align: center;
+            text-align: left;
         }
 
         @media (min-width: $promo-md-mq) {
@@ -101,9 +101,8 @@ $promo-sm-mq: 400px;
     }
 
     .accounts-cta {
-        margin: 0 auto;
+        align-self: flex-start;
         margin-top: $spacing-2xl;
-        text-align: center;
 
         a {
             @include font-base;
@@ -139,11 +138,11 @@ $promo-sm-mq: 400px;
             margin-left: 20px;
 
             &.product-item-firefox {
-               @include bidi(((margin-left, 20px, margin-right, 20px),));
+               @include bidi(((margin-left, 0, margin-right, 20px),));
             }
 
             &.product-item-monitor {
-                @include bidi(((margin-right, 20px, margin-left, 0),));
+                @include bidi(((margin-right, 0, margin-left, 0),));
             }
 
             img {
@@ -162,11 +161,11 @@ $promo-sm-mq: 400px;
                 margin-left: 10px;
 
                 &.product-item-firefox {
-                    @include bidi(((margin-left, 10px, margin-right, 10px),));
+                    @include bidi(((margin-left, 0, margin-right, 10px),));
                 }
 
                 &.product-item-monitor {
-                    @include bidi(((margin-right, 10px, margin-left, 0),));
+                    @include bidi(((margin-right, 0, margin-left, 0),));
                 }
 
                 img {
@@ -184,6 +183,7 @@ $promo-sm-mq: 400px;
 
     .fxa-email-field-container {
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
 
         .mzp-c-field {
@@ -198,25 +198,27 @@ $promo-sm-mq: 400px;
         }
 
         .mzp-c-button-container {
+            display: flex;
+            flex-direction: column;
             margin-bottom: 0;
             margin-top: $spacing-lg;
+            width: 100%;
 
             #fxa-email-form-submit {
                 @include font-base;
             }
-
-            &.mzp-l-stretch {
-                align-items: center;
-            }
         }
+
 
         @media (min-width: $promo-md-mq) {
             flex-direction: row;
             align-items: baseline; // change to `center` when removing old form styles from `browser-products.scss`
 
+
                 .mzp-c-button-container {
                     // add `@include bidi(((margin-left, $spacing-lg, margin-right, 0),))` when removing old form styles from `browser-products.scss`
                     margin-top: 0;
+                    width: unset;
                 }
             }
         }
