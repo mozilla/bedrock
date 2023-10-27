@@ -32,6 +32,7 @@
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
       <img src="{{ static('protocol/img/logos/firefox/browser/nightly/logo-word-hor-white.svg') }}" alt="{{ ftl('nightly-whatsnew-firefox-nightly') }}" width="216" height="40" class="c-page-header-logo-fx">
+    </img>
       <div class="mzp-c-notification-bar mzp-t-success up-to-date">
         {% set message = ftl('nightly-whatsnew-your-firefox-nightly') if ftl_has_messages('nightly-whatsnew-your-firefox-nightly') else self.page_title() %}
         <p>{{ message }}</p>
