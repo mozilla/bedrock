@@ -9,7 +9,7 @@ from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxMobileGetAppPage(BasePage):
-    _URL_TEMPLATE = "/{locale}/firefox/mobile/get-app/"
+    _URL_TEMPLATE = "/{locale}/firefox/browsers/mobile/get-app/"
 
     _get_firefox_qr_code_locator = (By.ID, "firefox-qr")
 

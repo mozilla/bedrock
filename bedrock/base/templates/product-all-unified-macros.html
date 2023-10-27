@@ -116,14 +116,14 @@
           {{ apple_app_store_button(href=build.platforms.ios.download_url, id='appStoreLink-list-'+ id) }}
         </li>
         {% if id.endswith('release') %}
-          <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="secondary">{{ ftl('firefox-all-product-send-link') }}</a></li>
+          <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="secondary">{{ ftl('firefox-all-product-send-link') }}</a></li>
         {% endif %}
       </ul>
     {% else %}
       <ul class="c-download-list">
         <li>{{ google_play_button(href=build.platforms.android.download_url, id='playStoreLink-all-'+ id) }}</li>
         {% if id.endswith('release') %}
-          <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
+          <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
         {% endif %}
       </ul>
     {% endif %}

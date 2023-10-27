@@ -406,7 +406,7 @@ describe('all-downloads-unified.js', function () {
                                 Google Play
                             </a>
                         </li>
-                        <li><a href="/en-US/firefox/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>
+                        <li><a href="/en-US/firefox/browsers/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>
                     </ul>
                 </li>
             </ol>`;
