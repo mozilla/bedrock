@@ -359,10 +359,14 @@ class Command(BaseCommand):
             seen_count += 1
             if completeness_spec:
                 viable_for_localisation_count += 1
+                entry_localised_fields_found = set()
                 data = contentful_entry.data
                 collected_values = []
                 for step in completeness_spec:
-                    collected_values.append(self._get_value_from_data(data, step))
+                    _value_for_step = self._get_value_from_data(data, step)
+                    if _value_for_step:
+                        entry_localised_fields_found.add(step)
+                    collected_values.append(_value_for_step)
                 contentful_entry.localisation_complete = all(collected_values)
                 contentful_entry.save()
                 if contentful_entry.localisation_complete:
@@ -370,9 +374,12 @@ class Command(BaseCommand):
             else:
                 localisation_not_configured_count += 1
             self.log(
-                f"Checking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
+                f"\nChecking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
                 f"-> Localised? {contentful_entry.localisation_complete}"
             )
+            if completeness_spec and not contentful_entry.localisation_complete:
+                _missing_fields = set(completeness_spec).difference(entry_localised_fields_found)
+                self.log(f"These fields were missing localised content: {_missing_fields}")
 
         self.log(
             (
