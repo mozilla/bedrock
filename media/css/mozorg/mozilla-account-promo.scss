@@ -20,7 +20,7 @@ $promo-sm-mq: 400px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: $spacing-xl;
+    padding: $spacing-lg;
 
     .promo-product-wrapper {
         display: flex;
@@ -73,6 +73,7 @@ $promo-sm-mq: 400px;
         #fxa-email-form {
             color: $color-white;
             margin-top: $spacing-xl;
+            max-width: 100%;
 
             .mzp-c-form-header {
                 display: none;
@@ -83,6 +84,10 @@ $promo-sm-mq: 400px;
         .accounts-signin {
             @include text-body-xs;
             text-align: left;
+        }
+
+        .mzp-c-field-info {
+            margin-top: $spacing-md;
         }
 
         @media (min-width: $promo-md-mq) {
@@ -185,23 +190,24 @@ $promo-sm-mq: 400px;
         display: flex;
         align-items: flex-start;
         flex-direction: column;
+        min-width: 230px;
 
         .mzp-c-field {
             padding-bottom: 0;
+            width: 100%;
 
             #fxa-email-field {
-                width: 100%;
+                width: 395px;
                 min-width: 230px;
-                line-height: 1;
                 max-width: 100%;
+                line-height: 1;
             }
         }
 
         .mzp-c-button-container {
             display: flex;
-            flex-direction: column;
             margin-bottom: 0;
-            margin-top: $spacing-lg;
+            margin-top: $spacing-md;
             width: 100%;
 
             #fxa-email-form-submit {
@@ -209,16 +215,16 @@ $promo-sm-mq: 400px;
             }
         }
 
-
+        // remove media query if Jodie approves current design
         @media (min-width: $promo-md-mq) {
-            flex-direction: row;
             align-items: baseline; // change to `center` when removing old form styles from `browser-products.scss`
 
 
                 .mzp-c-button-container {
                     // add `@include bidi(((margin-left, $spacing-lg, margin-right, 0),))` when removing old form styles from `browser-products.scss`
-                    margin-top: 0;
-                    width: unset;
+                    &::before {
+                        content: none;
+                    }
                 }
             }
         }
