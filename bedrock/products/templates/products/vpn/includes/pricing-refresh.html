@@ -7,12 +7,12 @@
 <div class="c-pricing-block-horizontal">
   <div class="mzp-l-columns mzp-t-columns-three">
     <div class="c-pricing-details">
-      <h2 class="c-pricing-details-heading">Included in subscription:</h2>
+      <h2 class="c-pricing-details-heading">{{ ftl('vpn-pricing-included-in-subscription') }}</h2>
 
       <ul class="mzp-u-list-styled">
-        <li>Connect up to {{ connect_devices }} devices</li>
-        <li>Access {{connect_servers }}+ servers in {{connect_countries }}+ countries</li>
-        <li>30-day money-back guarantee (for first-time customers only)</li>
+        <li>{{ ftl('vpn-pricing-connect-up-to', devices=connect_devices) }}</li>
+        <li>{{ ftl('vpn-pricing-access', servers=connect_servers, countries=connect_countries) }}</li>
+        <li>{{ ftl('vpn-pricing-money-back') }}</li>
       </ul>
     </div>
 
@@ -21,7 +21,7 @@
         <p class="c-pricing-block-tag">{{ ftl('vpn-shared-pricing-recommended-offer') }}</p>
 
         <h2 class="c-pricing-block-heading">
-          Annual
+          {{ ftl('vpn-pricing-annual') }}
         </h2>
 
         <h3 class="c-pricing-block-sub-heading">
@@ -35,7 +35,7 @@
 
         {{ vpn_subscribe_link(
           entrypoint=_utm_source,
-          link_text='Get annual subscription',
+          link_text=ftl('vpn-pricing-get-annual-subscription'),
           plan='12-month',
           class_name='mzp-c-button mzp-t-product mzp-t-xl',
           country_code=country_code,
@@ -55,7 +55,7 @@
     <section class="c-pricing-block">
       <header class="c-pricing-block-header">
         <h2 class="c-pricing-block-heading">
-          Monthly
+          {{ ftl('vpn-pricing-monthly') }}
         </h2>
 
         <h3 class="c-pricing-block-sub-heading">
@@ -66,7 +66,7 @@
       <div class="c-pricing-block-detail">
         {{ vpn_subscribe_link(
           entrypoint=_utm_source,
-          link_text='Get monthly subscription',
+          link_text=ftl('vpn-pricing-get-monthly-subscription'),
           plan='monthly',
           class_name='mzp-c-button mzp-t-product mzp-t-xl',
           country_code=country_code,

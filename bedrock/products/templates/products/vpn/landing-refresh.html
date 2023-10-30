@@ -9,10 +9,20 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title_full %}Get Mozilla VPN  — Mozilla (US){% endblock %}
+{# Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Get Mozilla VPN  — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Get Mozilla VPN — Mozilla (UK)
+  {%- else -%}
+    {{ ftl('vpn-landing-title') }}
+  {%- endif -%}
+{%- endblock -%}
+
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Use Mozilla VPN for full-device protection for all apps. With servers in {{ connect_countries }}+ countries, you can connect to anywhere, from anywhere.{% endblock %}
+{% block page_desc %}{{ ftl('vpn-landing-desc', countries=available_countries) }}{% endblock %}
 
 {% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
 
@@ -27,12 +37,6 @@
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
-{% endblock %}
-
-{% block experiments %}
-  {% if switch('experiment-vpn-refresh-pricing-layout', ['en-US']) %}
-    {{ js_bundle('experiment_vpn_refresh_pricing_layout') }}
-  {% endif %}
 {% endblock %}
 
 {% block site_header %}
@@ -73,21 +77,21 @@
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
-    <h1>Powerful privacy for peace of mind</h1>
+    <h1>{{ ftl('vpn-landing-powerful-privacy-for-peace') }}</h1>
 
     {% if vpn_available %}
       <p class="c-main-cta">
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary">
           {# Remove these conditionals once cybersecurity month banner is removed see issue 13761 #}
           {% if show_cyber_security_banner %}
-            Get Mozilla VPN
+            {{ ftl('vpn-shared-subscribe-link') }}
           {% else %}
             {{ vpn_saving(country_code=country_code, lang=LANG, bundle_relay=False, ftl_string='vpn-shared-save-percent-on') }}
           {% endif %}
         </a>
         {% if not show_cyber_security_banner %}
         <small>
-          *with an annual subscription
+          {{ ftl('vpn-shared-with-an-annual-subscription') }}
         </small>
         {% endif %}
       </p>
@@ -100,7 +104,7 @@
   {% endcall %}
 
   <aside class="c-powered-by mzp-l-content mzp-t-content-nospace">
-    <p><strong>Powered by Mozilla.</strong> Fighting for your right to privacy since 1998.</p>
+    <p>{{ ftl('vpn-landing-powered-by-mozilla-fighting-for') }}</p>
   </aside>
 
   {% call split(
@@ -126,44 +130,34 @@
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
-    <h2 class="u-title-lg">What’s a VPN?</h2>
+    <h2 class="u-title-lg">{{ ftl('vpn-landing-whats-a-vpn') }}</h2>
 
     <p class="u-body-lg">
-      A virtual private network protects your connection to the internet,
-      keeping your location and what you do online more private across your devices.
+      {{ ftl('vpn-landing-a-virtual-private-network-protects') }}
     </p>
 
     <p class="u-body-lg">
-      <a href="{{ url('products.vpn.features') }}">See all the ways Mozilla VPN protects you.</a>
+      <a href="{{ url('products.vpn.features') }}">{{ ftl('vpn-landing-see-all-the-ways-mozilla-vpn') }}</a>
     </p>
   {% endcall %}
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
-    <h2 class="c-section-title">How a VPN helps you</h2>
+    <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you') }}</h2>
 
     <img class="c-section-main-img" loading="lazy" src="{{ static('img/products/vpn/landing-refresh/travel-padlock.svg') }}" width="726" height="280" alt="">
 
     <ul class="mzp-l-columns mzp-t-columns-three">
       <li>
-        <h3 class="c-reason-title">Keeps your data safe on public Wi-Fi</h3>
-        <p>
-          Log into your bank or doctor’s office from the airport, cafe or
-          anywhere, with peace of mind.
-        </p>
+        <h3 class="c-reason-title">{{ ftl('vpn-landing-keeps-your-data-safe') }}</h3>
+        <p>{{ ftl('vpn-landing-log-into-your-bank-or') }}</p>
       </li>
       <li>
-        <h3 class="c-reason-title">Blocks advertisers from targeting you</h3>
-        <p>
-          Hide your activity from trackers and malware so you can shop without
-          being watched.
-        </p>
+        <h3 class="c-reason-title">{{ ftl('vpn-landing-blocks-advertisers-from') }}</h3>
+        <p>{{ ftl('vpn-landing-hide-your-activity-from') }}</p>
       </li>
       <li>
-        <h3 class="c-reason-title">Helps you access global content</h3>
-        <p>
-          Check out foreign shows, websites and live-streams while you’re
-          traveling or at home.
-        </p>
+        <h3 class="c-reason-title">{{ ftl('vpn-landing-helps-you-access-global') }}</h3>
+        <p>{{ ftl('vpn-landing-check-out-foreign-shows') }}</p>
       </li>
     </ul>
   </section>
@@ -171,7 +165,7 @@
   {{ vpn_conditional_cta_refresh('secondary') }}
 
   <section class="c-features mzp-l-content mzp-t-content-xl">
-    <h2 class="c-section-title t-large">Features</h2>
+    <h2 class="c-section-title t-large">{{ ftl('vpn-landing-features') }}</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-two mzp-t-picto-side">
       {% call picto(
@@ -187,7 +181,7 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          Connect up to 5 devices
+          {{ ftl('vpn-landing-connect-up-to-devices', devices=connect_devices) }}
         </p>
       {% endcall %}
 
@@ -204,7 +198,7 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          More than {{ connect_servers}} servers in {{ connect_countries }}+ countries
+          {{ ftl('vpn-landing-more-than-servers-in-countries', servers=connect_servers, countries=connect_countries) }}
         </p>
       {% endcall %}
 
@@ -221,7 +215,7 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          Fast network speeds even while gaming
+          {{ ftl('vpn-landing-fast-network-speeds-even-while') }}
         </p>
       {% endcall %}
 
@@ -238,7 +232,7 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          No logging, tracking or sharing of network data
+          {{ ftl('vpn-landing-no-logging-tracking-or-sharing') }}
         </p>
       {% endcall %}
 
@@ -255,7 +249,7 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          No bandwidth restrictions or throttling
+          {{ ftl('vpn-landing-no-bandwidth-restrictions-or') }}
         </p>
       {% endcall %}
 
@@ -272,11 +266,11 @@
         base_el='li'
       ) %}
         <p class="c-feature-title">
-          Extra security: whole device protection, multi-hop routing & more
+          {{ ftl('vpn-landing-extra-security-whole-device') }}
         </p>
       {% endcall %}
     </ul>
-    <p class="c-section-more"><a href="{{ url('products.vpn.features') }}">See all features</a></p>
+    <p class="c-section-more"><a href="{{ url('products.vpn.features') }}">{{ ftl('vpn-landing-see-all-features') }}</a></p>
   </section>
 
   {{ vpn_conditional_cta_refresh('tertiary') }}
@@ -295,29 +289,21 @@
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
-    <h2 class="u-title-lg">From a brand you can trust</h2>
-
-    <p>
-      Mozilla is a non-profit-backed internet company that’s been fighting
-      for a healthy web since 1998.
-    </p>
+    <h2 class="u-title-lg">{{ ftl('vpn-landing-fram-a-brand-you-can-trust') }}</h2>
+    <p>{{ ftl('vpn-landing-mozilla-is-a-non-profit-backed') }}</p>
   {% endcall %}
 
   <section id="pricing" class="mzp-l-content mzp-t-content-xl">
     {% if vpn_available %}
       <header class="c-pricing-main-header">
-        <h3 class="c-section-title">One subscription for all your devices</h3>
+        <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
       </header>
 
-      {% if entrypoint_variation == "2" %}
-        {% include 'products/vpn/includes/pricing-refresh-vertical.html' %}
-      {% else %}
-        {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
-      {% endif %}
+      {% include 'products/vpn/includes/pricing-refresh.html' %}
 
     {% else %}
       <header class="c-pricing-main-header">
-        <h2 class="c-section-title">Mozilla VPN is not yet available in your country</h2>
+        <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
 
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
           {{ ftl('vpn-shared-waitlist-link') }}
@@ -329,7 +315,7 @@
   {% include 'products/vpn/includes/press.html' %}
 
   <section class="c-learn-more mzp-l-content mzp-t-content-xl">
-    <h2 class="c-section-title t-large">Learn more from our experts</h2>
+    <h2 class="c-section-title t-large">{{ ftl('vpn-landing-learn-more-from-our-experts') }}</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-three">
       {% call picto(
@@ -346,7 +332,7 @@
       ) %}
         <h3 class="c-learn-more-heading">
           <a href="{{ url('products.vpn.resource-center.article', 'do-you-need-a-vpn-at-home-here-are-5-reasons-you-might') }}">
-            Do you need a VPN at home? Here’s 5 reasons you might.
+            {{ ftl('vpn-landing-do-you-need-a-vpn-at-home') }}
           </a>
         </h3>
       {% endcall %}
@@ -365,7 +351,7 @@
       ) %}
         <h3 class="c-learn-more-heading">
           <a href="{{ url('products.vpn.resource-center.article', 'what-is-an-ip-address') }}">
-            What is an IP address?
+            {{ ftl('vpn-landing-what-is-an-ip-address') }}
           </a>
         </h3>
       {% endcall %}
@@ -384,13 +370,13 @@
       ) %}
         <h3 class="c-learn-more-heading">
           <a href="{{ url('products.vpn.resource-center.article', 'how-your-location-is-tracked-and-how-you-can-limit-sharing-it') }}">
-            How your location is tracked and how you can limit sharing it
+            {{ ftl('vpn-landing-how-your-location-is-tracked') }}
           </a>
         </h3>
       {% endcall %}
     </ul>
 
-    <p class="c-section-more"><a href="{{ url('products.vpn.resource-center.landing') }}">See more resources</a></p>
+    <p class="c-section-more"><a href="{{ url('products.vpn.resource-center.landing') }}">{{ ftl('vpn-landing-see-more-resources') }}</a></p>
   </section>
 
   {{ vpn_conditional_cta_refresh('footer') }}

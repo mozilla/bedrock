@@ -5,15 +5,14 @@
 #}
 
 <section class="c-press mzp-l-content mzp-t-content-xl t-content-body">
-  <h2 class="c-section-title t-small">As seen in</h2>
+  <h2 class="c-section-title t-small">{{ ftl('vpn-press-as-seen-in') }}</h2>
 
   <ul class="mzp-l-columns mzp-t-columns-three">
     <li>
       <cite><img loading="lazy" src="{{ static('img/products/vpn/common/press/washington-post.svg') }}" width="240" alt="The Washington Post"></cite>
       <blockquote>
         <p>
-          “Mozilla’s VPN can also <a href="https://addons.mozilla.org/firefox/addon/multi-account-containers/?src=external-www.mozilla.org-vpnlanding&utm_source=www.mozilla.org-vpnlanding&utm_medium=referral" rel="external noopener" target="_blank">integrate into some nifty
-          privacy-protection features</a> of its Firefox browser.”
+          {{ ftl('vpn-press-mozillas-vpn-can-also-integrate-into', attrs='href="https://addons.mozilla.org/firefox/addon/multi-account-containers/?src=external-www.mozilla.org-vpnlanding&utm_source=www.mozilla.org-vpnlanding&utm_medium=referral" rel="external noopener" target="_blank"') }}
         </p>
       </blockquote>
     </li>
@@ -21,8 +20,7 @@
       <cite><img loading="lazy" src="{{ static('img/products/vpn/common/press/verge.svg') }}" width="240" alt="The Verge"></cite>
       <blockquote>
         <p>
-          “…unique features, like its Multi-Account Containers, might make
-          the feature easily accessible to users with more serious privacy concerns.”
+          {{ ftl('vpn-press-unique-features-like-its-multi-account') }}
         </p>
       </blockquote>
     </li>
@@ -30,8 +28,7 @@
       <cite><img loading="lazy" src="{{ static('img/products/vpn/common/press/techradar.svg') }}" width="240" alt="Tech Radar"></cite>
       <blockquote>
         <p>
-          “Mozilla VPN’s feature list has grown considerably since launch,
-          and the service now beats many specialist VPNs in some areas.”
+          {{ ftl('vpn-press-mozilla-vpns-feature-list-has-grown') }}
         </p>
       </blockquote>
     </li>
