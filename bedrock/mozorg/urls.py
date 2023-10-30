@@ -86,7 +86,6 @@ urlpatterns = (
     page("contact/spaces/", "mozorg/contact/spaces/spaces-landing.html"),
     page("contact/spaces/beijing/", "mozorg/contact/spaces/beijing.html"),
     page("contact/spaces/berlin/", "mozorg/contact/spaces/berlin.html"),
-    page("contact/spaces/paris/", "mozorg/contact/spaces/paris.html"),
     page("contact/spaces/san-francisco/", "mozorg/contact/spaces/san-francisco.html"),
     page("contact/spaces/toronto/", "mozorg/contact/spaces/toronto.html"),
     page("MPL/", "mozorg/mpl/index.html"),
