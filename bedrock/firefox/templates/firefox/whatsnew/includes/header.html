@@ -7,17 +7,12 @@
 <header class="c-page-header">
   <div class="mzp-l-content c-page-header-inner">
     <h2 class="c-page-header-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
-    <div class="c-page-header-notification">
-      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
-        <p>{{ ftl('whatsnew-up-to-date-notification-v2', fallback='whatsnew-up-to-date-notification') }}</p>
+    {% if ftl_has_messages('whatsnew-update-notification') %}
+      <div class="c-page-header-notification">
+        <div class="mzp-c-notification-bar mzp-t-success">
+          <p>{{ ftl('whatsnew-update-notification') }}</p>
+        </div>
       </div>
-      <div class="mzp-c-notification-bar out-of-date">
-        {% if ftl_has_messages('whatsnew-out-of-date-notification-v3') %}
-          <p>{{ ftl('whatsnew-out-of-date-notification-v3', url='https://support.mozilla.org/kb/update-firefox-latest-release?' + utm_params) }}</p>
-        {% else %}
-          <p>{{ ftl('whatsnew-out-of-date-notification-v2') }}</p>
-        {% endif %}
-      </div>
-    </div>
+    {% endif %}
   </div>
 </header>

@@ -20,30 +20,20 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .mzp-l-content {
-            padding-top: $spacing-sm;
-            padding-bottom: $spacing-sm;
+            padding-top: $spacing-xl;
+            padding-bottom: $spacing-xl;
+        }
+
+        .mzp-c-notification-bar {
+            margin-top: 0;
         }
     }
-}
-
-.mzp-c-notification-bar {
-    display: none;
-    margin: $layout-xs auto;
-}
-
-.is-up-to-date .mzp-c-notification-bar.up-to-date,
-.is-out-of-date .mzp-c-notification-bar.out-of-date {
-    display: block;
 }
 
 .c-page-header-inner {
     align-items: center;
     display: grid;
     grid-template-columns: 1fr;
-}
-
-.c-page-header-up-to-date {
-    margin: 0 $layout-sm;
 }
 
 .c-page-header-logo-fx {

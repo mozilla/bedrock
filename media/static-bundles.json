@@ -1626,16 +1626,9 @@
     {
       "files": [
         "js/base/send-to-device.es6.js",
-        "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_update"
     },
     {
       "files": [
@@ -1645,7 +1638,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/send-to-device.es6.js",
