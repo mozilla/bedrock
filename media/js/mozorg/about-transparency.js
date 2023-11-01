@@ -10,11 +10,20 @@
     if (_mqWide.matches) {
         window.MzpDetails.init('.c-collapsible-section-heading');
     }
-    _mqWide.addListener(function (mq) {
+
+    function handleMqChange(mq) {
         if (mq.matches) {
             window.MzpDetails.init('.c-collapsible-section-heading');
         } else {
             window.MzpDetails.destroy('.c-collapsible-section-heading');
         }
-    });
+    }
+
+    if (window.matchMedia('all').addEventListener) {
+        // evergreen
+        _mqWide.addEventListener('change', handleMqChange, false);
+    } else if (window.matchMedia('all').addListener) {
+        // IE fallback
+        _mqWide.addListener(handleMqChange);
+    }
 })();

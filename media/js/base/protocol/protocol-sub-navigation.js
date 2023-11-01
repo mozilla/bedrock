@@ -9,6 +9,14 @@
 
     var subNavTitle = '.c-sub-navigation .c-sub-navigation-title';
 
+    function handleMqChange(mq) {
+        if (mq.matches) {
+            window.MzpDetails.init(subNavTitle);
+        } else {
+            window.MzpDetails.destroy(subNavTitle);
+        }
+    }
+
     // check we have global Supports and Details library
     if (
         typeof window.MzpSupports !== 'undefined' &&
@@ -23,14 +31,13 @@
                 window.MzpDetails.init(subNavTitle);
             }
 
-            // remove details if screen is big
-            _mqWide.addListener(function (mq) {
-                if (mq.matches) {
-                    window.MzpDetails.init(subNavTitle);
-                } else {
-                    window.MzpDetails.destroy(subNavTitle);
-                }
-            });
+            if (window.matchMedia('all').addEventListener) {
+                // evergreen
+                _mqWide.addEventListener('change', handleMqChange, false);
+            } else if (window.matchMedia('all').addListener) {
+                // IE fallback
+                _mqWide.addListener(handleMqChange);
+            }
         }
     }
 })();

@@ -98,20 +98,18 @@ function handleKeyDown(e) {
 }
 
 export const addMediaQueryListeners = function () {
-    if (typeof mobileMenuQuery.addEventListener === 'function') {
+    function handleMqChange(mq) {
+        if (mq.matches) {
+            init();
+        }
+    }
+
+    if (window.matchMedia('all').addEventListener) {
         // evergreen
-        mobileMenuQuery.addEventListener('change', function (event) {
-            if (event.matches) {
-                init();
-            }
-        });
-    } else if (typeof mobileMenuQuery.addListener === 'function') {
+        mobileMenuQuery.addEventListener('change', handleMqChange, false);
+    } else if (window.matchMedia('all').addListener) {
         // IE fallback
-        mobileMenuQuery.addListener(function (event) {
-            if (event.matches) {
-                init();
-            }
-        });
+        mobileMenuQuery.addListener(handleMqChange);
     }
 };
 

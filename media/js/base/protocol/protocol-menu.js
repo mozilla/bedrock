@@ -206,7 +206,7 @@
     MzpMenu.handleState = function () {
         _mqWideNav = matchMedia('(min-width: ' + _wideBreakpoint + ')');
 
-        _mqWideNav.addListener(function (mq) {
+        function menuBind(mq) {
             MzpMenu.close();
 
             if (mq.matches) {
@@ -216,7 +216,15 @@
                 MzpMenu.unbindEventsWide();
                 MzpMenu.bindEventsSmall();
             }
-        });
+        }
+
+        if (window.matchMedia('all').addEventListener) {
+            // evergreen
+            _mqWideNav.addEventListener('change', menuBind, false);
+        } else if (window.matchMedia('all').addListener) {
+            // IE fallback
+            _mqWideNav.addListener(menuBind);
+        }
 
         if (MzpMenu.isWideViewport()) {
             MzpMenu.bindEventsWide();

@@ -106,13 +106,19 @@
                 ')'
         );
 
-        _mqLargeNav.addListener(function (mq) {
+        function makeStickyNav(mq) {
             if (mq.matches) {
                 MzpNavigation.createSticky();
             } else {
                 MzpNavigation.destroySticky();
             }
-        });
+        }
+
+        if (window.matchMedia('all').addEventListener) {
+            _mqLargeNav.addEventListener('change', makeStickyNav, false);
+        } else if (window.matchMedia('all').addListener) {
+            _mqLargeNav.addListener(makeStickyNav);
+        }
 
         if (MzpNavigation.isLargeViewport()) {
             MzpNavigation.createSticky();
