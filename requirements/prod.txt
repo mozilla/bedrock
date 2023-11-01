@@ -808,9 +808,9 @@ s3transfer==0.7.0 \
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
     # via -r requirements/prod.in
-sentry-sdk==1.31.0 \
-    --hash=sha256:64a7141005fb775b9db298a30de93e3b83e0ddd1232dc6f36eb38aebc1553291 \
-    --hash=sha256:6de2e88304873484207fed836388e422aeff000609b104c802749fd89d56ba5b
+sentry-sdk==1.33.1 \
+    --hash=sha256:1cce906dc86afda1ecd22c4716b0c846639151a3c3b59e23826711c6525c5642 \
+    --hash=sha256:816aeb900a54bba2d9346bad8ffac2d258c4fa09271b95a6533a714e9000f074
     # via -r requirements/prod.in
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
