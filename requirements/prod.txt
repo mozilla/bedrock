@@ -797,9 +797,9 @@ requests==2.31.0 \
     #   datadog
     #   django-mozilla-product-details
     #   pygithub
-rich-text-renderer==0.2.7 \
-    --hash=sha256:d34f1bfc1a2903e9b087d7550a01089b06867f0be21fa494fdee73b656c80bc7 \
-    --hash=sha256:e6fab8d1243dddd29bb65717ade63ca57f10561a3944fc49dac770c4d95ab71c
+rich-text-renderer==0.2.8 \
+    --hash=sha256:74e28bde639f737e2bc50f3dfb147bdbad4b2d7ab3f8f76a9db2d444edb8d13b \
+    --hash=sha256:e4680109372b55611250ebe0745f59cbf3f8932afa6f5cb5d1f3cc282a4bf95c
     # via -r requirements/prod.in
 s3transfer==0.7.0 \
     --hash=sha256:10d6923c6359175f264811ef4bf6161a3156ce8e350e705396a7557d6293c33a \
