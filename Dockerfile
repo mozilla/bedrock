@@ -1,7 +1,7 @@
 ########
 # Python dependencies builder
 #
-FROM python:3.9-slim-bullseye AS python-builder
+FROM python:3.12-slim-bullseye AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -52,7 +52,7 @@ RUN npm run build
 ########
 # django app container
 #
-FROM python:3.9-slim-bullseye AS app-base
+FROM python:3.12-slim-bullseye AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
