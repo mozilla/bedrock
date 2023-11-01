@@ -17,11 +17,20 @@ var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
     if (_mqWide.matches) {
         window.MzpDetails.init('.side-reference-title');
     }
-    _mqWide.addListener(function (mq) {
+
+    function handleMqChange(mq) {
         if (mq.matches) {
             window.MzpDetails.init('.side-reference-title');
         } else {
             window.MzpDetails.destroy('.side-reference-title');
         }
-    });
+    }
+
+    if (window.matchMedia('all').addEventListener) {
+        // evergreen
+        _mqWide.addEventListener('change', handleMqChange, false);
+    } else if (window.matchMedia('all').addListener) {
+        // IE fallback
+        _mqWide.addListener(handleMqChange);
+    }
 })();
