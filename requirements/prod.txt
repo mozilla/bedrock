@@ -22,9 +22,9 @@ attrs==21.4.0 \
     # via
     #   fluent-runtime
     #   jsonschema
-babel==2.9.1 \
-    --hash=sha256:ab49e12b91d937cd11f0b67cb259a57ab4ad2b59ac7a3b41d6c06c0ac5b0def9 \
-    --hash=sha256:bc0c176f9f6a994582230df350aa6e05ba2ebe4b3ac317eab29d9be5d2768da0
+babel==2.13.1 \
+    --hash=sha256:33e0952d7dd6374af8dbf6768cc4ddf3ccfefc244f9986d4074704f2fbd18900 \
+    --hash=sha256:7077a4984b02b6727ac10f1f7294484f737443d7e2e66c5e4380e41a3ae0b4ed
     # via fluent-runtime
 babis==0.2.4 \
     --hash=sha256:a901e8c27a47dfe22077f60c3f2daf324909a9f3f9838ecfa4100af346703fff \
