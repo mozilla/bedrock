@@ -872,9 +872,9 @@ webencodings==0.5.1 \
     #   bleach
     #   html5lib
     #   tinycss2
-whitenoise==6.5.0 \
-    --hash=sha256:15fe60546ac975b58e357ccaeb165a4ca2d0ab697e48450b8f0307ca368195a8 \
-    --hash=sha256:16468e9ad2189f09f4a8c635a9031cc9bb2cdbc8e5e53365407acf99f7ade9ec
+whitenoise==6.6.0 \
+    --hash=sha256:8998f7370973447fac1e8ef6e8ded2c5209a7b1f67c1012866dbcd09681c3251 \
+    --hash=sha256:b1f9db9bf67dc183484d760b99f4080185633136a273a03f6436034a41064146
     # via -r requirements/prod.in
 wrapt==1.14.0 \
     --hash=sha256:00108411e0f34c52ce16f81f1d308a571df7784932cc7491d1e94be2ee93374b \
