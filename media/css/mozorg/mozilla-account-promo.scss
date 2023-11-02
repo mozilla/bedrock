@@ -215,12 +215,9 @@ $promo-sm-mq: 400px;
             }
         }
 
-        // remove media query if Jodie approves current design
+
         @media (min-width: $promo-md-mq) {
-            align-items: baseline; // change to `center` when removing old form styles from `browser-products.scss`
-
-
-                .mzp-c-button-container {
+           .mzp-c-button-container {
                     // add `@include bidi(((margin-left, $spacing-lg, margin-right, 0),))` when removing old form styles from `browser-products.scss`
                     &::before {
                         content: none;
