@@ -595,7 +595,7 @@ def vpn_resource_center_redirect(request, slug):
     redirect_link = f"/{locale}/products/vpn/resource-center/{rc_slug}/"
     if active_locale_available(rc_slug, locale):
         return redirect(redirect_link)
-    elif ftl_file_is_active(curr_page["ftl_files"][0]):
+    elif ftl_file_is_active(curr_page["ftl_files"][0], locale):
         return l10n_utils.render(request, template=curr_page["old_template"], ftl_files=curr_page["ftl_files"])
     else:
         return redirect(redirect_link)
