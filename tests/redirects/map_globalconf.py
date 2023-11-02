@@ -1242,5 +1242,6 @@ URLS = flatten(
         url_test("/rise25/", "https://rise25.mozilla.org/"),
         url_test("/rise-25/", "https://rise25.mozilla.org/"),
         url_test("/firefox/mobile/get-app/", "/firefox/browsers/mobile/get-app/"),
+        url_test("/contact/spaces/paris/", "/contact/spaces/"),
     )
 )
