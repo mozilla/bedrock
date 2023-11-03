@@ -25,6 +25,16 @@ urlpatterns = (
     path("vpn/mobile/ios/", views.VPNIosView.as_view(), name="products.vpn.platforms.ios"),
     path("vpn/mobile/android/", views.VPNAndroidView.as_view(), name="products.vpn.platforms.android"),
     page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
+    # Evergreen SEO articles (issue #10224)
+    path(
+        "vpn/more/<slug:slug>/",
+        views.vpn_resource_center_redirect,
+        name="products.vpn.more.redirect",
+    ),
+    # VPN pages for Product team (issue #10388)
+    page("vpn/more/why-mozilla-vpn/", "products/vpn/more/why-mozilla-vpn.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
+    page("vpn/more/do-i-need-a-vpn/", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
+    page("vpn/more/what-is-a-vpn-v2/", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",

@@ -1,0 +1,77 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/vpn/more/base-article.html" %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-info') }}
+{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title %}What is a VPN?{% endblock page_title %}
+{% block page_desc %}
+Get answers to common questions about VPNs so you feel informed on what they do, when to use one, and why.
+{% endblock page_desc %}
+
+{% set source = "?source=vpn-info-what-is-a-vpn" %}
+
+{% block article %}
+
+<h3>Protect your identity online with Mozilla VPN</h3>
+<p>With Mozilla VPN, you can surf, stream, game, and get work done while maintaining your privacy online. Whether you’re
+  traveling, using public WiFi, or simply looking for more online security, we’ll always put your privacy first.</p>
+
+<h3 class="c-section-heading">What is Mozilla VPN?</h3>
+<p>A VPN, or Virtual Private Network, is a tool that allows you to access the internet securely wherever you are. Tools
+  like Mozilla VPN are available to anyone who wants to protect their connection to the internet, especially when it’s
+  over insecure networks like public WiFi. If you don’t want people being able to see where you’re located when you’re
+  online, you need a VPN. It’s even useful on a home network — without a VPN, websites and your Internet Service
+  Provider
+  can see your Internet traffic, and even the sites you’re browsing.</p>
+
+<h3 class="c-section-heading">How does Mozilla VPN work?</h3>
+<p>Mozilla VPN helps protect your data online by creating a secure “tunnel” between your device and the VPN or site
+  you’re
+  visiting. This “tunnel” protects you in two key ways:</p>
+<ul class="mzp-u-list-styled">
+  <li>When enabled, this tunnel will encrypt the traffic — in other words, encode your activity on the Internet —
+    between you and
+    Mozilla VPN so that no one on your local WiFi can see it.</li>
+  <li>It’ll handle traffic from all apps and software running on your device, so you can browse and communicate freely
+    over a
+    secure private network connection. <strong>Without a VPN, your network traffic could be monitored by someone on the
+      same network
+      as your device.</strong></li>
+</ul>
+<p>You can also avoid trackers with VPN. How does this help you? Well, it can help cut down on intrusive advertising —
+  you
+  know, where you click a link once and all of a sudden it feels like you’re getting bombarded by ads that know
+  everything
+  about you. <strong>VPN can help you cut down on that terrible advertising.</strong></p>
+<p>Mozilla VPN will also hide your IP, or Internet Protocol, address, which can help hide your location and protect your
+  identity. A VPN provider typically offers a number of connection gateways in different locations, which allows you to
+  use an IP address from a location different from your own.</p>
+<p>That way, whatever site or service you’re connecting to sees the VPN’s IP, not your actual IP address, as the source
+  of
+  your traffic. Mozilla VPN, for example, routes your traffic through a secure server and lets you <strong>choose from
+    more than
+    30 countries through which you can route your traffic.</strong></p>
+<p>In short, Mozilla VPN is a tool that allows you to take back control of your online activity from corporations,
+  hackers,
+  and thieves who would love to get a chance to steal your data or your identity, or otherwise compromise your online
+  life. By subscribing to Mozilla VPN, you’re also supporting our mission as a company to make the Internet a better
+  place
+  for all:</p>
+<p><strong><a href="{{ url('mozorg.about.manifesto') }}#principles-04">Principle 4:</a> Individuals’ security and
+    privacy on the internet are fundamental and must not be treated as optional.</strong></p>
+<p>Want to protect your online life? Get Mozilla VPN today.</p>
+<aside class="vpn-cta">
+  <a href="{{ url('products.vpn.landing') }}{{ source }}#pricing" class="mzp-c-button mzp-t-product mzp-t-xl">
+    {{ ftl('vpn-shared-subscribe-link') }}
+  </a>
+</aside>
+{% endblock article %}
