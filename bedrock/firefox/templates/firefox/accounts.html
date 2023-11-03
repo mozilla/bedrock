@@ -10,27 +10,13 @@
 
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
 
-{%- block page_title -%}
-  {%- if switch('moz-accounts-update') -%}
-    {{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}
-  {%- else -%}
-    {{ ftl('firefox-accounts-get-a-firefox-account') }}
-  {%- endif -%}
-{%- endblock -%}
+{% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}{% endblock %}
 
-{%- block page_desc -%}
-  {{ ftl('firefox-accounts-securely-sync-your') }}
-{%- endblock -%}
+{% block page_desc %}{{ ftl('firefox-accounts-securely-sync-your') }}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
-{%- block page_favicon -%}
-  {%- if switch('moz-accounts-update') -%}
-    {{ static('img/favicons/mozilla/favicon.ico') }}
-  {%- else -%}
-    {{ static('img/favicons/firefox/favicon.ico') }}
-  {%- endif -%}
-{%- endblock -%}
+{% block page_favicon %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endblock %}
 
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
@@ -53,12 +39,7 @@
     <div class="c-sub-navigation-content">
       <h2 class="c-sub-navigation-title is-summary">
         <a href="{{ url('firefox.accounts') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Accounts">
-          {% if switch('moz-accounts-update') %}
-            {{ ftl('sub-navigation-mozilla-account', fallback='sub-navigation-firefox-accounts') }}
-          {% else %}
-            <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
-            {{ ftl('sub-navigation-firefox-accounts') }}
-          {% endif %}
+          {{ ftl('sub-navigation-mozilla-account', fallback='sub-navigation-firefox-accounts') }}
         </a>
       </h2>
       <ul class="c-sub-navigation-list is-details is-closed">
@@ -97,13 +78,7 @@
         </div>
 
         <div class="c-manage">
-
-          {% if switch('moz-accounts-update') %}
-            <p>{{ ftl('mozilla-accounts-already', fallback='firefox-accounts-already') }}</p>
-          {% else %}
-            <p>{{ ftl('firefox-accounts-already') }}</p>
-          {% endif %}
-
+          <p>{{ ftl('mozilla-accounts-already', fallback='firefox-accounts-already') }}</p>
           <a href="https://accounts.firefox.com/settings" id="manage">{{ ftl('firefox-accounts-manage') }}</a>
         </div>
       </div>
@@ -111,12 +86,7 @@
     <div class="mzp-c-split-body">
 
       <div class="accounts-products">
-
-        {% if switch('moz-accounts-update') %}
-            <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
-          {% else %}
-            <h2>{{ ftl('firefox-accounts-sign-in-to') }}</h2>
-          {% endif %}
+        <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
 
         <a href="{{ url('firefox.browsers.index') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-firefox">{{ ftl('firefox-accounts-firefox-browser') }}</h4></a>
         <ul class="mzp-u-list-styled">

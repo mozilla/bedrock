@@ -31,21 +31,12 @@
     <div class="mzp-l-content mzp-t-content-md">
       {# If user is signed out (or undetermined), promote account #}
         <div class="show-fxa-supported-signed-out">
-          {% if switch('moz-accounts-update') %}
-            <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-mozilla"></div>
-          {% else %}
-            <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
-          {% endif %}
+          <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-mozilla"></div>
           <h1 class="wnp-main-title">{{ ftl('whatsnew-account-main-headline') }}</h1>
 
-          {% if switch('moz-accounts-update') %}
-            <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in-v2', fallback='whatsnew-account-main-lead-in') }}</p>
-          {% else %}
-            <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in') }}</p>
-          {% endif %}
+          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in-v2', fallback='whatsnew-account-main-lead-in') }}</p>
 
           <p class="cta">
-          {% if switch('moz-accounts-update') %}
             {{ fxa_button(
               entrypoint=entrypoint,
               button_text=ftl('whatsnew-account-mozilla-cta', fallback='whatsnew-account-main-button'),
@@ -53,15 +44,6 @@
               optional_parameters={'utm_campaign': campaign},
               optional_attributes={'data-cta-text': 'Get a Mozilla account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
             ) }}
-          {% else %}
-              {{ fxa_button(
-              entrypoint=entrypoint,
-              button_text=ftl('whatsnew-account-main-button'),
-              class_name='mzp-t-md',
-              optional_parameters={'utm_campaign': campaign},
-              optional_attributes={'data-cta-text': 'Get a Mozilla account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
-            ) }}
-          {% endif %}
           </p>
         </div>
 
