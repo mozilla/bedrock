@@ -28,7 +28,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
         {{ note.version }} / {{ note.tag|replace('HTML5', 'Web Platform') }}
         {%- if note.bug %} / <a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a>{% endif %}
-        {{ note.note|markdown|safe }}
+        {{ note.note|markdown(extensions=['bedrock.releasenotes.md_extensions:CloseImgTagExtension'])|safe }}
       </div>
     </content>
   </entry>
