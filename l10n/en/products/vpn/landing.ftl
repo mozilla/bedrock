@@ -112,6 +112,12 @@ vpn-landing-faq-compatibility-question-desc-windows-v2 = <a href="{ $url }">{ -b
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
+#   $minversion (string) - minimum supported version e.g. 10.15
+vpn-landing-faq-compatibility-question-desc-mac-v4 = <a href="{ $url }">{ -brand-name-mac }</a> ({ $minversion } and up)
+
+# Obsolete string
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
 vpn-landing-faq-compatibility-question-desc-mac-v3 = <a href="{ $url }">{ -brand-name-mac }</a> (10.15 and up)
 
 # Obsolete string
