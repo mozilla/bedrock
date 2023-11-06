@@ -619,21 +619,17 @@
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss",
         "css/firefox/home/master.scss"
       ],
       "name": "firefox-master"
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss",
         "css/firefox/browsers-products.scss"
       ],
       "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "css/mozorg/mozilla-account-promo.scss"
-      ],
-      "name": "moz-account-promo"
     },
     {
       "files": [
@@ -1027,6 +1023,25 @@
         "css/base/banners/vpn-cyber-security-month.scss"
       ],
       "name": "mozilla-vpn-cyber-security-banner"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss"
+      ],
+      "name": "mozilla-vpn-article"
+    },
+    {
+      "files": [
+        "css/products/vpn/components/hero.scss",
+        "css/products/vpn/components/block.scss",
+        "css/products/vpn/common.scss",
+        "css/products/vpn/article.scss",
+        "css/products/vpn/vpn-info.scss"
+      ],
+      "name": "mozilla-vpn-info"
     },
     {
       "files": [

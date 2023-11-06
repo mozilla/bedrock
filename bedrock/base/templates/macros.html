@@ -117,12 +117,7 @@
       {% if intro_text %}
         {{ intro_text }}
       {% else %}
-        {% if switch('moz-accounts-update') %}
-          {{ ftl('fxa-form-enter-your-email-v2', fallback='fxa-form-enter-your-email') }}
-        {% else %}
-          {{ ftl('fxa-form-enter-your-email') }}
-        {% endif %}
-
+        {{ ftl('fxa-form-enter-your-email-v2', fallback='fxa-form-enter-your-email') }}
       {% endif %}
       </p>
     </header>
@@ -131,9 +126,6 @@
       <div class="mzp-c-field mzp-l-stretch">
         <label class="mzp-c-field-label" for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required>
-        <p class="mzp-c-field-info">
-          {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
-        </p>
       </div>
 
       <div class="mzp-c-button-container mzp-l-stretch">
@@ -152,7 +144,11 @@
         {% endif %}
         </button>
       </div>
+
     </div>
+    <p class="mzp-c-field-info">
+      {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
+    </p>
 
   </form>
 {%- endmacro %}

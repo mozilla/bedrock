@@ -12,7 +12,7 @@ from bedrock.wordpress.models import BlogPost
 @alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
 
     def handle(self, *args, **options):
         errors = []

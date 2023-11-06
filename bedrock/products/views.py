@@ -6,6 +6,7 @@ from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.decorators.http import require_safe
 
@@ -22,7 +23,7 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import MozSocialWaitlistForm, RelayBundleWaitlistForm, RelayPhoneWaitlistForm, RelayPremiumWaitlistForm, VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils import L10nTemplateView, ftl_file_is_active
 
 
 def vpn_available(request):
@@ -44,6 +45,15 @@ def relay_available(product, request):
         raise Exception("Unrecognized product passed to relay_available()")
 
     return country in country_list
+
+
+def active_locale_available(slug, locale):
+    active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
+        classification=CONTENT_CLASSIFICATION_VPN,
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        slug=slug,
+    )
+    return locale in active_locales_for_this_article
 
 
 @require_safe
@@ -539,3 +549,42 @@ def monitor_waitlist_plus_page(request):
     ctx = {"newsletter_id": newsletter_id}
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+@require_safe
+def vpn_resource_center_redirect(request, slug):
+    # When a /more url is requested the user should be forwarded to the /resource-centre url
+    # If the rc article is not available in their requested language bedrock should display the /more/ article if it is available in their language.
+    # 2. If neither is available in their language bedrock should forward to the English rc article.
+    VPNRC_SLUGS = {
+        "what-is-an-ip-address": {
+            "slug": "what-is-an-ip-address",
+            "old_template": "products/vpn/more/ip-address.html",
+            "ftl_files": ["products/vpn/more/ip-address", "products/vpn/shared"],
+        },
+        "vpn-or-proxy": {
+            "slug": "the-difference-between-a-vpn-and-a-web-proxy",
+            "old_template": "products/vpn/more/vpn-or-proxy.html",
+            "ftl_files": ["products/vpn/more/vpn-or-proxy", "products/vpn/shared"],
+        },
+        "what-is-a-vpn": {
+            "slug": "what-is-a-vpn",
+            "old_template": "products/vpn/more/what-is-a-vpn.html",
+            "ftl_files": ["products/vpn/more/what-is-a-vpn", "products/vpn/shared"],
+        },
+        "when-to-use-a-vpn": {
+            "slug": "5-reasons-you-should-use-a-vpn",
+            "old_template": "products/vpn/more/when-to-use.html",
+            "ftl_files": ["products/vpn/more/when-to-use-a-vpn", "products/vpn/shared"],
+        },
+    }
+    locale = l10n_utils.get_locale(request)
+    curr_page = VPNRC_SLUGS[slug]
+    rc_slug = curr_page["slug"]
+    redirect_link = f"/{locale}/products/vpn/resource-center/{rc_slug}/"
+    if active_locale_available(rc_slug, locale):
+        return redirect(redirect_link)
+    elif ftl_file_is_active(curr_page["ftl_files"][0], locale):
+        return l10n_utils.render(request, template=curr_page["old_template"], ftl_files=curr_page["ftl_files"])
+    else:
+        return redirect(redirect_link)
