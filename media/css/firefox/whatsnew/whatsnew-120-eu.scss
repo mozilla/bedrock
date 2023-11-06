@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+
+.wnp-content-main {
+    background-color: $color-white;
+    color: $color-black;
+    padding-bottom: $spacing-md;
+    text-align: center;
+}
+
+.mzp-l-content.mzp-t-content-md {
+    padding-top: var(--v-grid-md);
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    padding: 0 $layout-lg;
+}
+
+.wnp-main-tagline, .wnp-toolbar-instructions {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-lg;
+}
+
+.wnp-toolbar-instructions {
+    font-weight: bold;
+}
+
+.wnp-main-cta {
+    margin-top: $layout-md;
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+}
+
+// animation
+
+// Disable animations
+@media (prefers-reduced-motion: reduce) {
+    #private,
+    #key,
+    #forget,
+    #addons,
+    #print {
+        animation: none;
+    }
+}
+
+#private {
+    animation: icons 1s ease 0s 1 normal forwards;
+    animation-iteration-count: 1;
+    animation-delay: 2800ms;
+    opacity: 0;
+    animation-fill-mode: forwards;
+
+}
+
+#key {
+    animation: icons 1s ease 0s 1 normal forwards;
+    animation-iteration-count: 1;
+    animation-delay: 2200ms;
+    opacity: 0;
+    animation-fill-mode: forwards;
+
+}
+
+#forget {
+    animation: icons 1s ease 0s 1 normal forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1600ms;
+    opacity: 0;
+    animation-fill-mode: forwards;
+
+}
+
+#addons {
+    animation: icons 1s ease 0s 1 normal forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1000ms;
+    opacity: 0;
+
+}
+
+#print {
+    animation: icons 1s ease 0s 1 normal forwards;
+    animation-delay: 400ms;
+    opacity: 0;
+}
+
+
+@keyframes icons {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

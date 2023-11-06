@@ -1,0 +1,68 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_120_eu') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set headline = 'Deine Lieblingsfunktionen immer griffbereit' %}
+  {% set body = 'Passe deine Symbolleiste an, damit du synchronisierte Tabs, deine Chronik oder das Bildschirmfoto-Werkzeug immer parat hast.' %}
+  {% set toolbar_instructions = 'Klicke auf Menü > Weitere Werkzeuge > Symbolleiste anpassen… und leg los.'%}
+  {% set cta_text = 'Symbolleiste anpassen' %}
+  {% set footer_bold = 'Powered by Mozilla.' %}
+  {% set footer_reg = 'Für dich und das Web. Schon seit 1998.' %}
+{% elif LANG == 'fr' %}
+  {% set headline = 'Naviguez mieux grâce à votre barre d’outils' %}
+  {% set body = 'Personnalisez la barre d’outils de votre navigateur et gardez vos fonctionnalités préférées à portée de main : capture
+  d’écran, synchronisation des onglets, historique et plus encore.' %}
+  {% set toolbar_instructions = 'Cliquez sur Menu > Outils supplémentaires > Personnaliser la barre d’outils pour commencer.' %}
+  {% set cta_text = 'Personnaliser ma barre d’outils' %}
+  {% set footer_bold = 'Conçu par Mozilla.'%}
+  {% set footer_reg = 'Pensé pour vous depuis 1998.' %}
+{% else %}
+  {% set headline = 'Your favourite browser features at your fingertips' %}
+  {% set body = 'Customise your browser toolbar and keep your screenshot tool, synchronised tabs, history and more always in view sight.' %}
+  {% set toolbar_instructions = 'Click on Menu > More tools > Customise toolbar to get started.' %}
+  {% set cta_text = 'Customise my toolbar' %}
+  {% set footer_bold = 'Powered by Mozilla.' %}
+  {% set footer_reg = 'Putting people before profits since 1998.' %}
+{% endif %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+        <div class="wnp-main-image">
+          {% include 'firefox/whatsnew/includes/fx120/toolbar.svg' %}
+        </div>
+        <h2 class="wnp-main-title">{{ headline }}</h2>
+
+        <p class="wnp-main-tagline">{{ body }}</p>
+        <p class="wnp-toolbar-instructions">{{ toolbar_instructions }}</p>
+
+        <button class="wnp-main-cta mzp-c-button mzp-t-product">{{ cta_text }}</button>
+      </div>
+      <p class="wnp-sign-off">
+        <strong>{{ footer_bold }}</strong> {{ footer_reg }}
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_120_eu') }}
+{% endblock %}

@@ -409,6 +409,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx119-na-addons.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx119-na-trio.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx120-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx120-eu-vpn.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx120-eu.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -416,7 +419,7 @@ class WhatsnewView(L10nTemplateView):
     vpn_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx115-eu-vpn.html",
         "firefox/whatsnew/whatsnew-fx117-vpn.html",
-        "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html",
+        "firefox/whatsnew/whatsnew-120fx-eu-vpn.html" "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html",
         "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html",
     ]
 
@@ -507,6 +510,13 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
+        elif version.startswith("120."):
+            if locale == "en-US":
+                template = "firefox/whatsnew/whatsnew-fx120-na.html"
+            elif locale in ["de", "fr", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx120-eu.html"
+            else:
+                template = "firefox/whatsnew/whatsnew-fx120-eu-vpn.html"
         elif version.startswith("119."):
             if locale in ["de", "fr", "en-GB"]:
                 if variant == "3":

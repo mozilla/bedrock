@@ -1,0 +1,62 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_120_eu_vpn') }}
+{% endblock %}
+
+{% set main_title = "Next level privacy, extraordinary price" %}
+{% set body_text = "Your online safety goes beyond your browser. Enjoy 20% off a yearly subscription to Mozilla VPN, your one-click solution
+for extra peace of mind all year long." %}
+{% set body_text_2 = "Enter code DEAL20 at checkout before Dec. 21st." %}
+{% set cta_text = "Get Mozilla VPN" %}
+{% set footer_strong = "Powered by Mozilla." %}
+{% set footer_reg = "Putting people before profits since 1998." %}
+
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+        <div class="wnp-main-image">
+          <span class="toggle" role="presentation"><span class="toggle-display"></span></span>
+        </div>
+
+        <h2 class="wnp-main-title">{{ main_title }}</h2>
+
+        <p class="wnp-main-tagline">{{ body_text }}</p>
+        <p class="wnp-main-tagline">{{ body_text_2 }}</p>
+
+        <p class="wnp-main-cta">
+          {{ vpn_product_referral_link(
+            referral_id='whatsnew-120-eu-vpn',
+            page_anchor='#pricing',
+            link_text=cta_text,
+            class_name='mzp-t-product mzp-t-xl',
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+            }
+          ) }}
+        </p>
+      </div>
+      <p class="wnp-sign-off">
+        <strong>{{ footer_strong }}</strong> {{ footer_reg }}
+      </p>
+    </div>
+  </section>
+{% endblock %}

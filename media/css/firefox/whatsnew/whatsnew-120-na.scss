@@ -1,0 +1,226 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import 'includes/dark-mode';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms';
+@import "~@mozilla-protocol/core/protocol/css/components/video";
+@import "~@mozilla-protocol/core/protocol/css/components/modal";
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.wnp-content-main {
+    background-color: $color-white;
+    color: $color-black;
+    margin-top: $spacing-md;
+    text-align: center;
+
+    .mzp-l-content.mzp-t-content-lg {
+        padding-top: var(--v-grid-md);
+    }
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    color: $color-black;
+    margin: 0 auto $layout-xs;
+    max-width: $content-md;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    margin: 0 auto $layout-md;
+    max-width: 580px;
+}
+
+.wnp-extra-title {
+    @include text-title-2xs;
+    color: $color-black;
+    margin: $layout-sm auto;
+}
+
+.mzp-l-columns {
+    margin-top: $layout-lg;
+}
+
+.mzp-c-picto-heading {
+    @include font-size(18px);
+}
+
+.mzp-c-picto .mzp-c-button {
+    margin: $spacing-xl auto 0 auto;
+    vertical-align: middle;
+    width: fit-content;
+    text-align: center;
+
+    span {
+        vertical-align: bottom;
+    }
+
+    svg {
+        margin-right: $spacing-sm;
+        vertical-align: middle;
+    }
+}
+
+
+.wnp-sign-off {
+    text-align: center;
+    color: $color-black;
+}
+
+
+.mzp-c-video {
+    margin: 0 auto $spacing-2xl;
+    overflow: visible;
+    position: relative;
+    max-width: 769px; // reduce width of video
+}
+
+
+// Video
+.video-play {
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+
+    &::after {
+        background: url("/media/img/firefox/whatsnew/whatsnew120-na/play.svg") no-repeat;
+        background-size: cover;
+        content: "";
+        height: 150px;
+        left: 50%;
+        margin: -75px 0 0 -75px;
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        width: 150px;
+        z-index: 2;
+    }
+
+    &:hover::after,
+    &:focus::after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .mzp-c-picto {
+        position: relative;
+        top: 20px;
+        opacity: 0;
+        animation: fade-up 350ms ease-in-out forwards;
+
+        &.box-one {
+            animation-delay: 300ms;
+        }
+
+        &.box-two {
+            animation-delay: 500ms;
+        }
+
+        &.box-three {
+            animation-delay: 700ms;
+        }
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        top: 20px;
+        opacity: 0;
+    }
+
+    60% {
+        top: -10px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// QR code modal
+
+.mzp-c-modal {
+    background: rgba(193, 193, 193, 0.6);
+
+    .mzp-c-modal-inner {
+        background: $color-white;
+        max-width: 300px;
+        border-radius: $border-radius-md;
+
+        .mzp-c-modal-button-close {
+                background-image: url('#{$image-path}/icons/close.svg')
+        }
+
+        .mzp-u-modal-content {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           flex-direction: column;
+
+           h4 {
+            margin-top: $spacing-lg;
+            text-align: center;
+           }
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        background: $color-dark-gray-60;
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
+
+        .mzp-c-button.mzp-t-secondary {
+            // copied from components/button.scss
+            // since you cannot extend within a media query
+            background-color: transparent;
+            border-color: $color-white;
+            color: $color-white;
+
+            &:focus {
+                outline-offset: 1px;
+                border-color: $button-border-color-focus;
+                box-shadow: $field-focus-ring-dark;
+                outline: $field-focus-ring-outline;
+            }
+
+            &:hover {
+                background-color: $color-dark-gray-30;
+                border-color: $color-white;
+                box-shadow: none;
+                color: $color-white;
+            }
+
+            &:active {
+                background-color: $color-dark-gray-30;
+                border-color: $color-light-gray-50;
+                color: $color-white;
+            }
+        }
+
+        .wnp-main-title, .wnp-sign-off, .mzp-c-picto-heading {
+            color: $title-text-color-inverse;
+
+            @supports (--css: variables) {
+                    color: var(--title-text-color-inverse);
+            }
+        }
+    }
+}

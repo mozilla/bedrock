@@ -1,0 +1,156 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_whatsnew_120_na') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% if variant == '1' %}
+  {% set qr_code = static('img/firefox/whatsnew/whatsnew120-na/qr-video.png') %}
+  {% set install_fakespot_url = 'https://addons.mozilla.org/en-US/firefox/addon/fakespot-fake-reviews-amazon/?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-video&utm_content=Fakespot'%}
+  {% set sync_tabs_url = 'https://support.mozilla.org/en-US/kb/send-tab-firefox-desktop-other-devices?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-video&utm_content=Firefox'%}
+{% else %}
+  {% set qr_code = static('img/firefox/whatsnew/whatsnew120-na/qr-novideo.png') %}
+  {% set install_fakespot_url = 'https://addons.mozilla.org/en-US/firefox/addon/fakespot-fake-reviews-amazon/?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Fakespot'%}
+  {% set sync_tabs_url = 'https://support.mozilla.org/en-US/kb/send-tab-firefox-desktop-other-devices?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Firefox'%}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h2 class="wnp-main-title">Make holiday shopping a breeze with Firefox</h2>
+    {% if variant == "1" %}
+        <div class="mzp-c-video">
+          <a class="video-play js-video-play" href="https://youtu.be/An2LHqi4Xkg" data-id="An2LHqi4Xkg"
+            data-video-title="Shop with confidence using Fakespot by Mozilla " title="Play the video">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew120-na/video-thumbnail.png') }}" alt="" width="769" height="432">
+          </a>
+        </div>
+      {% endif %}
+    <div class="mzp-l-columns mzp-t-columns-three">
+       {% call picto(
+        title="See which reviews are real before buying your gifts",
+        heading_level=4,
+        class='box-one',
+        image=picture(
+          url='img/firefox/whatsnew/whatsnew120-na/light/headphones.svg',
+           sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/light/headphones.svg": "default",
+              }
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/dark/headphones.svg": "default",
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <a class="mzp-c-button mzp-t-secondary" href="{{ install_fakespot_url }}" target="_blank" rel="external noopener">
+        {% include 'firefox/whatsnew/includes/fx120/fakespot.svg' %}<span>Install Fakespot</span></a>
+      {% endcall %}
+
+      {% call picto(
+        title="Take your shopping research on-the-go",
+        heading_level=4,
+        class='box-two',
+        image=picture(
+          url='img/firefox/whatsnew/whatsnew120-na/light/phone.svg',
+           sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/light/phone.svg": "default",
+              }
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/dark/phone.svg": "default",
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+      <a class="mzp-c-button mzp-t-secondary" href="{{ sync_tabs_url }}" target="_blank" rel="external noopener">
+        {% include 'firefox/whatsnew/includes/fx120/sync.svg' %}<span>Sync tabs & history</span>
+      </a>
+      {% endcall %}
+
+      {% call picto(
+        title="Check out faster with secure credit card autofill",
+        heading_level=4,
+        class='box-three',
+        image=picture(
+          url='img/firefox/whatsnew/whatsnew120-na/light/credit.svg',
+           sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/light/credit.svg": "default",
+              }
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew120-na/dark/credit.svg": "default",
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ),
+        body=True
+      ) %}
+        <a class="mzp-c-button mzp-t-secondary qr-code-btn">
+        {% include 'firefox/whatsnew/includes/fx120/qr.svg' %}<span>Get Firefox for mobile</span></a>
+        <div class="mzp-u-modal-content">
+          <img src="{{ qr_code }}" width="200">
+          <h4> Scan QR code to get Firefox on your phone</h4>
+        </div>
+      {% endcall %}
+
+    </div>
+
+    <p class="wnp-sign-off">
+      {{ ftl('whatsnew-signoff') }}
+    </p>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_120_na') }}
+{% endblock %}
