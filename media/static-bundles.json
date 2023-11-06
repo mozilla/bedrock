@@ -619,21 +619,17 @@
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss",
         "css/firefox/home/master.scss"
       ],
       "name": "firefox-master"
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss",
         "css/firefox/browsers-products.scss"
       ],
       "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "css/mozorg/mozilla-account-promo.scss"
-      ],
-      "name": "moz-account-promo"
     },
     {
       "files": [
