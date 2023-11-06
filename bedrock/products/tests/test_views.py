@@ -558,3 +558,39 @@ class TestMonitorScanWaitlistPage(TestCase):
         self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
         template = render_mock.call_args[0][1]
         assert template == "products/monitor/waitlist/plus.html"
+
+
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNMorePages(TestCase):
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    @patch.object(views, "active_locale_available", lambda *x: False)
+    def test_vpn_more_resource_center_redirect_rc_en_us(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "en-US"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should redirect to en-US/vpn/resource-center/what-is-an-ip-address
+        assert resp.status_code == 302 and resp.url == "/en-US/products/vpn/resource-center/what-is-an-ip-address/"
+
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    @patch.object(views, "active_locale_available", lambda *x: False)
+    def test_vpn_more_resource_center_redirect_ftl_active(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "ar"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should 200 as expected
+        assert resp.status_code == 200
+
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    @patch.object(views, "active_locale_available", lambda *x: True)
+    def test_vpn_more_resource_center_redirect_rc_active(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "fr"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should redirect to fr/vpn/resource-center/what-is-an-ip-address
+        assert resp.status_code == 302 and resp.url == "/fr/products/vpn/resource-center/what-is-an-ip-address/"

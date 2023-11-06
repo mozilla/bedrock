@@ -69,6 +69,8 @@ subscription_services = PrivacyDocView.as_view(
     template_name="privacy/notices/subscription-services.html", legal_doc_name="subscription_services_privacy_notice"
 )
 
+mozilla_accounts = PrivacyDocView.as_view(template_name="privacy/notices/mozilla-accounts.html", legal_doc_name="mozilla_accounts_privacy_notice")
+
 
 def privacy(request):
     doc = load_legal_doc("mozilla_privacy_policy", l10n_utils.get_locale(request))

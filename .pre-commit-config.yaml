@@ -73,6 +73,12 @@ repos:
     hooks:
       - id: black
         language_version: python3
+  - repo: https://github.com/mozilla-l10n/moz-fluent-linter
+    rev: v0.4.5
+    hooks:
+      - id: fluent_linter
+        files: \.ftl$
+        args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/, l10n-pocket/en/]
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.3
     hooks:

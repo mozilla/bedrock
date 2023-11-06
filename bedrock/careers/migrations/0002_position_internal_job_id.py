@@ -14,7 +14,7 @@ def clear_positions(apps, schema_editor):
 
 
 def sync_greenhouse(apps, schema_editor):
-    management.call_command("sync_greenhouse"),
+    management.call_command("sync_greenhouse")
 
 
 class Migration(migrations.Migration):

@@ -1,0 +1,47 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/vpn/more/base-article.html" %}
+
+{% block page_title %}{{ ftl('vpn-when-to-use-5-reasons-you-should') }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-when-to-use-here-are-five') }}{% endblock %}
+
+{% block article %}
+<p class="mzp-c-article-intro">{{ ftl('vpn-when-to-use-as-more-of', vpn=url('products.vpn.more.redirect', "what-is-a-vpn")) }}</p>
+
+<ol class="mzp-u-list-styled">
+  <li>{{ ftl('vpn-when-to-use-concealing-your-true') }}</li>
+  <li>{{ ftl('vpn-when-to-use-encrypting-your-traffic') }}</li>
+</ol>
+
+<p>{{ ftl('vpn-when-to-use-having-a-vpn') }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-1-a-walk') }}</h3>
+<p>{{ ftl('vpn-when-to-use-its-a-beautiful') }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-2-in-the') }}</h3>
+<p>{{ ftl('vpn-when-to-use-have-you-ever', mozvpn=url('products.vpn.landing')) }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-3-on-the') }}</h3>
+<p>{{ ftl('vpn-when-to-use-open-wifi-abounds') }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-4-home-away') }}</h3>
+<p>{{ ftl('vpn-when-to-use-if-you-are') }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-5-in-your') }}</h3>
+<p>{{ ftl('vpn-when-to-use-for-the-most') }}</p>
+<p>{{ ftl('vpn-when-to-use-because-your-internet') }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-make-sure-you') }}</h3>
+<p>{{ ftl('vpn-when-to-use-a-vpn-provides', book=url('firefox.privacy.book')) }}</p>
+
+<h3>{{ ftl('vpn-when-to-use-mozilla-vpn-a') }}</h3>
+<p>{{ ftl('vpn-when-to-use-the-most-important',
+  cnet='https://www.cnet.com/news/why-you-should-be-skeptical-about-a-vpns-no-logs-claims/',
+  pcmag='https://www.pcmag.com/news/7-vpn-services-found-recording-user-logs-despite-no-log-pledge') }}</p>
+<p>{{ ftl('vpn-when-to-use-weve-done-the', mozvpn=url('products.vpn.landing'), principles=url('privacy.principles'),
+  mission=url('mozorg.mission')) }}</p>
+{% endblock %}

@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+.vpn-hero {
+    .mzp-l-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .vpn-hero-desc {
+        @include text-body-xl;
+    }
+
+    .vpn-hero-cta {
+        @include text-body-md;
+        margin-top: $layout-md;
+    }
+}
+
+.vpn-content-block {
+    .mzp-c-wordmark {
+        background-position: center center;
+        margin: 0 auto $spacing-xl;
+
+        @media #{$mq-md} {
+            margin-bottom: $spacing-2xl;
+        }
+    }
+
+    .vpn-content-block-container {
+        padding-top: $layout-md;
+        padding-bottom: $layout-md;
+    }
+}
+
+.c-article-figure {
+    margin: 0 auto $spacing-xl;
+    text-align: center;
+
+    img {
+        display: block;
+        margin: 0 auto $spacing-md;
+    }
+
+    figcaption {
+        @include text-body-sm;
+        font-style: italic;
+    }
+}

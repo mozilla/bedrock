@@ -235,36 +235,3 @@ $brand-theme: 'firefox';
         }
     }
 }
-
-// ------------------------------------------------------------------------------
-// bottom of the page cta
-
-.c-end {
-    background: linear-gradient(90deg, $color-violet-90, $color-ink-80);
-    color: #fff;
-    text-align: center;
-
-    .mzp-l-content {
-        max-width: $content-lg;
-        padding-bottom: $layout-xl;
-        padding-top: $layout-xl;
-    }
-}
-
-.c-end-title {
-    @include text-title-md;
-    color: #fff;
-    margin-bottom: $spacing-2xl;
-    margin-top: $layout-md;
-
-    // https://github.com/mozilla/protocol/issues/511
-    strong {
-        @include zap('/media/protocol/img/zaps/zap-08.svg');
-    }
-}
-
-@media #{$mq-md} {
-    .c-end {
-        margin-top: $layout-lg;
-    }
-}

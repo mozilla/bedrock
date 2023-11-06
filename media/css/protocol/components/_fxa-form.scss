@@ -31,8 +31,7 @@ $image-path: '/media/protocol/img';
 
 .fxa-signin {
     @include text-body-xs;
-    color: $form-text;
-    margin-bottom: 0;
+    margin: $spacing-md 0 0;
 
     .mzp-t-dark & {
         color: $color-white;
