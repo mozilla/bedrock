@@ -118,7 +118,7 @@ vpn-landing-faq-compatibility-question-desc-mac-v4 = <a href="{ $url }">{ -brand
 # Obsolete string
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
-vpn-landing-faq-compatibility-question-desc-mac-v3 = <a href="{ $url }">{ -brand-name-mac }</a> (10.15 and up)
+vpn-landing-faq-compatibility-question-desc-mac-v3 = <a href="{ $url }">{ -brand-name-mac }</a> (10.14 and up)
 
 # Obsolete string
 # Variables:
