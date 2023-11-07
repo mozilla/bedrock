@@ -20,7 +20,6 @@ $image-path: '/media/protocol/img';
 
     .page-subtitle {
         @include text-title-xs;
-        color: #475467;
         margin: $spacing-lg 0;
     }
 }
