@@ -565,6 +565,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-online-harassment.scss"
+      ],
+      "name": "newsletter-online-harassment"
+    },
+    {
+      "files": [
         "css/firefox/all/all-unified.scss"
       ],
       "name": "firefox_all_unified"

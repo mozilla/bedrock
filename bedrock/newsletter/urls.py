@@ -45,6 +45,7 @@ urlpatterns = (
     ),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
     page("newsletter/security-and-privacy/", "newsletter/security-privacy-news.html", ftl_files=["mozorg/newsletters"]),
+    page("newsletter/security-and-privacy/online-harassment/", "newsletter/online-harassment.html"),
     page("newsletter/monitor-waitlist/", "newsletter/monitor-waitlist.html", ftl_files=["mozorg/newsletters"]),
     path("newsletter/newsletter-all.json", views.newsletter_all_json, name="newsletter.all"),
     path("newsletter/newsletter-strings.json", views.newsletter_strings_json, name="newsletter.strings"),
