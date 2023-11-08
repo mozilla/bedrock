@@ -313,7 +313,7 @@
         </li>
         <li>
           {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v4') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v4', url=url('products.vpn.platforms.mac')), minversion='10.15' }}
+            {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v4', url=url('products.vpn.platforms.mac'), minversion='10.15') }}
           {% elif ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v3') %}
             {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v3', url=url('products.vpn.platforms.mac')) }}
           {% elif ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v2') %}
