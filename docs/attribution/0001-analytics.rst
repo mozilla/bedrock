@@ -259,7 +259,7 @@ There are two ways to use TrackBeginCheckout:
 
 2) Pass the values as a data attribute.
 
-The ``vpn_subscribe_link`` and ``relay_subscribe_link`` will automatically generate a ``data-ga-item`` object
+The ``vpn_subscribe_link`` will automatically generate a ``data-ga-item`` object
 and add the ``ga-begin-checkout`` class to links they create -- as long as there is analytics information
 associated with the plan in its lookup table.
 

@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
 from django.urls import path
 
 from bedrock.mozorg.util import page
@@ -50,14 +49,3 @@ urlpatterns = (
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )
-
-if settings.DEV:
-    urlpatterns += (
-        path("relay/", views.relay_landing_page, name="products.relay.landing"),
-        path("relay/waitlist/", view=views.relay_premium_waitlist__page, name="products.relay.waitlist.premium"),
-        path("relay/waitlist/phone/", view=views.relay_phone_waitlist__page, name="products.relay.waitlist.phone"),
-        path("relay/waitlist/bundle/", view=views.relay_bundle_waitlist__page, name="products.relay.waitlist.bundle"),
-        page("relay/faq/", "products/relay/faq.html", ftl_files=["products/relay/shared", "products/relay/faq"]),
-        path("relay/premium/", views.relay_premium_page, name="products.relay.premium"),
-        path("relay/pricing/", views.relay_pricing_page, name="products.relay.pricing"),
-    )
