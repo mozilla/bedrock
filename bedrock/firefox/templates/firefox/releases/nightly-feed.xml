@@ -24,12 +24,12 @@
     <id>{{ note.link|absolute_url }}</id>
     <link rel="alternate" type="text/html" href="{{ note.link|absolute_url }}"/>
     <updated>{{ note.modified.isoformat() }}</updated>
-    <content type="xhtml">
-      <div xmlns="http://www.w3.org/1999/xhtml">
+    <content type="html">
+      <![CDATA[
         {{ note.version }} / {{ note.tag|replace('HTML5', 'Web Platform') }}
         {%- if note.bug %} / <a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a>{% endif %}
         {{ note.note|markdown|safe }}
-      </div>
+      ]]>
     </content>
   </entry>
   {% endfor %}
