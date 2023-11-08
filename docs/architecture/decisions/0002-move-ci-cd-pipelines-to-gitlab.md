@@ -1,4 +1,3 @@
-# 2. Move CI/CD Pipelines to Gitlab
 
 Date: 2019-10-09
 

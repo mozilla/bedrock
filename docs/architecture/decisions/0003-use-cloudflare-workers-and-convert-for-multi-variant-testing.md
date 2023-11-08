@@ -1,4 +1,3 @@
-# 3. Use Cloudflare Workers and Convert for multi-variant testing
 
 Date: 2019-10-09
 

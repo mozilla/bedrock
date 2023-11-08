@@ -1,0 +1,99 @@
+site_name: Bedrock Documentation
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.top
+    - toc.follow
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: deep purple
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: deep purple
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+markdown_extensions:
+  - admonition
+  - abbr
+  - def_list
+  - tables
+  - toc:
+      baselevel: 2
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.arithmatex
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tilde
+# extra:
+  # palette:
+  #     primary: '#087da1'
+  #     accent: '#00a889'
+  # font:
+  #     text: 'Source Sans Pro'
+repo_name: 'mozilla/bedrock'
+repo_url: 'https://github.com/mozilla/bedrock'
+nav:
+  - Home: index.md
+  - Install: install.md
+  - Localization: l10n.md
+  - Developing on Bedrock: coding.md
+  - How to Contribute: contribute.md
+  - Continuous Integration & Deployment: pipeline.md
+  - Front-end testing: testing.md
+  - Managing redirects: redirects.md
+  - Newsletters: newsletters.md
+  - Contentful CMS Integration: contentful.md
+  - Sitemaps: sitemap.md
+  - Using External Content Card Data: content-cards.md
+  - Banners: banners.md
+  - Mozilla.UITour: uitour.md
+  - Send to Device widget: send-to-device.md
+  - Firefox Download Buttons: download-buttons.md
+  - Mozilla account helpers: mozilla-accounts.md
+  - Funnel cakes and Partner Builds: funnelcake.md
+  - A/B Testing: abtest.md
+  - Mozilla VPN Subscriptions: vpn-subscriptions.md
+  - Attribution:
+    - attribution.md
+    - Mozorg Analytics: attribution/0001-analytics.md
+    - Firefox Desktop attribution: attribution/0002-firefox-desktop.md
+    - Firefox Mobile attribution: attribution/0003-firefox-mobile.md
+    - Mozilla accounts attribution: attribution/0004-mozilla-accounts.md
+    - Mozilla CJMS Affiliate attribution: attribution/0005-affiliate-marketing.md
+    - Pocket mode attribution: attribution/0006-pocket-analytics.md
+  - Architectural Decision Records:
+    - architectural-decisions.md
+    - 1. Record architecture decisions: architecture/decisions/0001-record-architecture-decisions.md
+    - 2. Move CI/CD Pipelines to Gitlab: architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab.md
+    - 3. Use Cloudflare Workers and Convert for multi-variant testing: architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing.md
+    - 4. Use Fluent For Localization: architecture/decisions/0004-use-fluent-for-localization.md
+    - 5. Use a Single Docker Image For All Deployments: architecture/decisions/0005-use-a-single-docker-image-for-all-deployments.md
+    - 6. Revise tooling for Python dependency management: architecture/decisions/0006-revise-tooling-for-python-dependency-management.md
+    - 7. Further revise tooling for Python dependency management: architecture/decisions/0007-further-revise-tooling-for-python-dependency-management.md
+    - 8. Move Demos To GCP: architecture/decisions/0008-move-demos-to-gcp.md
+    - 9. Manage Contentful schema state via migrations: architecture/decisions/0009-use-manage-contentful-migrations.md
+    - 10. Move CI to Github Actions for Unit and Integration tests: architecture/decisions/0010-move-ci-cd-to-github-actions.md
+    - 11. Use StatsD for metrics collection: architecture/decisions/0011-use-statsd-for-metrics-collection.md
+  - Browser Support: browser-support.md

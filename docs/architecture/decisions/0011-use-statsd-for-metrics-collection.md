@@ -1,4 +1,3 @@
-# 11. Use StatsD for metrics collection
 
 Date: 2023-05-19
 
@@ -80,7 +79,7 @@ captured at relevant points within the application.
   specific functions or code blocks within bedrock.
 * **Define Consistent Metric Names**:
   Choose meaningful and consistent names for our metrics. This helps in easily understanding and
-  interpreting the collected data. 
+  interpreting the collected data.
 * **Timing Metrics**:
   Use timing metrics to measure the duration of specific operations. This can include measuring the
   time taken to render a template, execute a database query, or process a request.  StatsD provides

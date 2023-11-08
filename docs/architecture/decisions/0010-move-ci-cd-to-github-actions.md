@@ -1,4 +1,3 @@
-# 10. Move CI to Github Actions for Unit and Integration tests
 
 Date: 2023-04-06
 
