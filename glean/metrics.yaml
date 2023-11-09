@@ -6,7 +6,6 @@ page:
     type: datetime
     lifetime: application
     send_in_pings:
-      - page-view
       - events
     description: |
       The time a page was viewed.
@@ -23,7 +22,6 @@ page:
     type: string
     lifetime: application
     send_in_pings:
-      - page-view
       - events
     description: |
       The URL path of the page that was viewed, excluding locale.
@@ -40,7 +38,6 @@ page:
     type: string
     lifetime: application
     send_in_pings:
-      - page-view
       - events
     description: |
       The locale of the page that was viewed.
@@ -57,7 +54,6 @@ page:
     type: labeled_string
     lifetime: application
     send_in_pings:
-      - page-view
       - events
     description: |
       Query parameters associated with the URL of
@@ -84,7 +80,6 @@ page:
     type: string
     lifetime: application
     send_in_pings:
-      - page-view
       - events
     description: |
       The referring URL that linked to the page that was viewed.
@@ -103,7 +98,6 @@ page:
         The HTTP status code of the page.
       lifetime: application
       send_in_pings:
-        - page-view
         - events
       data_sensitivity:
         - technical

@@ -11,11 +11,11 @@ const Utils = {
 
         // Ensure we don't include tokens in newsletter page pings
         // Issue https://github.com/mozilla/bedrock/issues/13583
-        if (pathName.indexOf('/newsletter/existing/') !== -1) {
+        if (pathName.includes('/newsletter/existing/')) {
             pathName = '/newsletter/existing/';
         }
 
-        if (pathName.indexOf('/newsletter/country/') !== -1) {
+        if (pathName.includes('/newsletter/country/')) {
             pathName = '/newsletter/country/';
         }
 

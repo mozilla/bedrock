@@ -350,12 +350,19 @@ to measure.
 Debugging pings
 ---------------
 
-For all non-production environments, bedrock will automatically set a debug
-view tag for all pings. This means that when running on localhost, on a demo,
-or on a staging environment, ping data will be viewable in the
-`Glean debug dashboard`_ which can be used to test that pings are working
-correctly. All bedrock debug pings will register in the debug dashboard with
-the tag name ``bedrock``.
+Glean supports debugging pings via a set of flags that can be enabled directly
+in the browser's web console.
+
+- ``window.Glean.setLogPings(true)`` (enable verbose ping logging in the web console).
+- ``window.Glean.setDebugViewTag('bedrock')`` (send pings to the `Glean debug dashboard`_ with the tag name ``bedrock``).
+
+.. Note::
+
+    After enabling Glean debugging in the web console, it will be remembered
+    when navigating across pages using ``sessionStorage``. To stop debugging,
+    you need to either close the browser tab, or delete the items from
+    ``sessionStorage``. You can disable ping logging by calling
+    ``window.Glean.setLogPings(false)``.
 
 Filtering out non-production pings
 ----------------------------------
@@ -364,17 +371,6 @@ Bedrock will also set an ``app_channel`` tag with a value of either ``prod`` or
 ``non-prod``, depending on the environment. This is present in all pings in the
 ``client_info`` section, and is useful for filtering out non-production data
 in telemetry dashboards.
-
-Logging pings in the console
-----------------------------
-
-When running bedrock locally, you can also set the following environment variable
-in your ``.env``` file to automatically log pings in the browser's web console.
-This can be especially useful when making updates to analytics code.
-
-.. code-block::
-
-    GLEAN_LOG_PINGS=True
 
 Defining metrics and pings
 --------------------------
