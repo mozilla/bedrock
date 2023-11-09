@@ -1,0 +1,2393 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../install/">
+      
+      
+        <link rel="next" href="../coding/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>Localization - Bedrock Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fluent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Localization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bedrock Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Localization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Localization
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluent" class="md-nav__link">
+    Fluent
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ftl-files" class="md-nav__link">
+    .ftl files
+  </a>
+  
+    <nav class="md-nav" aria-label=".ftl files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#translating-with-ftl-files" class="md-nav__link">
+    Translating with .ftl files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftl-string-ids" class="md-nav__link">
+    FTL String IDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-brand-names" class="md-nav__link">
+    Using brand names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#html-with-attributes" class="md-nav__link">
+    HTML with attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obsolete-strings" class="md-nav__link">
+    Obsolete strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Obsolete strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fallback" class="md-nav__link">
+    Fallback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove" class="md-nav__link">
+    Remove
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ftl-helper-function" class="md-nav__link">
+    The ftl helper function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ftl_has_messages-helper-function" class="md-nav__link">
+    The ftl_has_messages helper function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-fluent-files-specifying_fluent_files" class="md-nav__link">
+    Specifying Fluent files {#specifying_fluent_files}
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying Fluent files {#specifying_fluent_files}">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-page-function" class="md-nav__link">
+    Using the page() function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-class-based-view" class="md-nav__link">
+    Using the class-based view
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-in-a-view-function" class="md-nav__link">
+    Using in a view function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent-file-configuration" class="md-nav__link">
+    Fluent File Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent-file-activation" class="md-nav__link">
+    Fluent File Activation
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluent File Activation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deactivation" class="md-nav__link">
+    Deactivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternate-rules" class="md-nav__link">
+    Alternate Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-status" class="md-nav__link">
+    Activation Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-locales" class="md-nav__link">
+    Active Locales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-extraction" class="md-nav__link">
+    String extraction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    CSS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all" class="md-nav__link">
+    All
+  </a>
+  
+    <nav class="md-nav" aria-label="All">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#locale-specific-templates" class="md-nav__link">
+    Locale-specific Templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-active-locales-in-views" class="md-nav__link">
+    Specifying Active Locales in Views
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-l10n-integrations" class="md-nav__link">
+    Adding new L10N integrations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding/" class="md-nav__link">
+        Developing on Bedrock
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        How to Contribute
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Continuous Integration & Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Front-end testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redirects/" class="md-nav__link">
+        Managing redirects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newsletters/" class="md-nav__link">
+        Newsletters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contentful/" class="md-nav__link">
+        Contentful CMS Integration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sitemap/" class="md-nav__link">
+        Sitemaps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        Using External Content Card Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banners/" class="md-nav__link">
+        Banners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uitour/" class="md-nav__link">
+        Mozilla.UITour
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-device/" class="md-nav__link">
+        Send to Device widget
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download-buttons/" class="md-nav__link">
+        Firefox Download Buttons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mozilla-accounts/" class="md-nav__link">
+        Mozilla account helpers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funnelcake/" class="md-nav__link">
+        Funnel cakes and Partner Builds
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abtest/" class="md-nav__link">
+        A/B Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-subscriptions/" class="md-nav__link">
+        Mozilla VPN Subscriptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+          Attribution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_21">
+          <span class="md-nav__icon md-icon"></span>
+          Attribution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/" class="md-nav__link">
+        Attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0001-analytics/" class="md-nav__link">
+        Mozorg Analytics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
+        Firefox Desktop attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
+        Firefox Mobile attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
+        Mozilla accounts attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
+        Mozilla CJMS Affiliate attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
+        Pocket mode attribution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Architectural Decision Records
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Architectural Decision Records
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural-decisions/" class="md-nav__link">
+        Architectural Decision Records
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
+        2. Move CI/CD Pipelines to Gitlab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
+        3. Use Cloudflare Workers and Convert for multi-variant testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
+        4. Use Fluent For Localization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
+        5. Use a Single Docker Image For All Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        6. Revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        7. Further revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
+        8. Move Demos To GCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
+        9. Manage Contentful schema state via migrations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
+        10. Move CI to Github Actions for Unit and Integration tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
+        11. Use StatsD for metrics collection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        Browser Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fluent" class="md-nav__link">
+    Fluent
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ftl-files" class="md-nav__link">
+    .ftl files
+  </a>
+  
+    <nav class="md-nav" aria-label=".ftl files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#translating-with-ftl-files" class="md-nav__link">
+    Translating with .ftl files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftl-string-ids" class="md-nav__link">
+    FTL String IDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-brand-names" class="md-nav__link">
+    Using brand names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#html-with-attributes" class="md-nav__link">
+    HTML with attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obsolete-strings" class="md-nav__link">
+    Obsolete strings
+  </a>
+  
+    <nav class="md-nav" aria-label="Obsolete strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fallback" class="md-nav__link">
+    Fallback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove" class="md-nav__link">
+    Remove
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ftl-helper-function" class="md-nav__link">
+    The ftl helper function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ftl_has_messages-helper-function" class="md-nav__link">
+    The ftl_has_messages helper function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-fluent-files-specifying_fluent_files" class="md-nav__link">
+    Specifying Fluent files {#specifying_fluent_files}
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying Fluent files {#specifying_fluent_files}">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-page-function" class="md-nav__link">
+    Using the page() function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-class-based-view" class="md-nav__link">
+    Using the class-based view
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-in-a-view-function" class="md-nav__link">
+    Using in a view function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent-file-configuration" class="md-nav__link">
+    Fluent File Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent-file-activation" class="md-nav__link">
+    Fluent File Activation
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluent File Activation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deactivation" class="md-nav__link">
+    Deactivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternate-rules" class="md-nav__link">
+    Alternate Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-status" class="md-nav__link">
+    Activation Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-locales" class="md-nav__link">
+    Active Locales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-extraction" class="md-nav__link">
+    String extraction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    CSS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all" class="md-nav__link">
+    All
+  </a>
+  
+    <nav class="md-nav" aria-label="All">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#locale-specific-templates" class="md-nav__link">
+    Locale-specific Templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-active-locales-in-views" class="md-nav__link">
+    Specifying Active Locales in Views
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-l10n-integrations" class="md-nav__link">
+    Adding new L10N integrations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Localization</h1>
+
+<p>The site is fully localizable. Localization files are not shipped with
+the code distribution, but are available in separate GitHub
+repositories. The proper repos can be cloned and kept up-to-date using
+the <code>l10n_update</code> management command:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>./manage.py<span class="w"> </span>l10n_update
+</code></pre></div>
+<p>If you don't already have a <code>data/www-l10n</code> directory, this command
+will clone the git repo containing the .ftl translation files (either
+the dev or prod files depending on your <code>DEV</code> setting). If the folder is
+already present, it will update the repository to the latest version.</p>
+<h2 id="fluent">Fluent<a class="headerlink" href="#fluent" title="Permanent link">&para;</a></h2>
+<p>Bedrock's Localization (l10n) system is based on <a href="https://projectfluent.org/">Project
+Fluent</a>. This is a departure from a standard
+Django project that relies on a gettext work flow of string extraction
+from template and code files, in that it relies on developers directly
+editing the default language (English in our case) Fluent files and
+using the string IDs created there in their templates and views.</p>
+<p>The default files for the Fluent system live in the <code>l10n</code> directory in
+the root of the bedrock project. This directory houses directories for
+each locale the developers directly implement (mostly simplified English
+"en", and "en-US"). The simplified English files are the default
+fallback for every string ID on the site and should be strings that are
+plain and easy to understand English, as free from colloquialisms as
+possible. The translators are able to easily understand the meaning of
+the string, and can then add their own local flair to the ideas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Much of this documentation also applies to the use of Fluent with Pocket
+templates, with the main differences being that:</p>
+<ul>
+<li>the English Pocket Fluent directory is called <code>l10n-pocket/</code></li>
+<li>there are no activation-threshold checks for Pocket templates - we
+    expect all strings to be translated in one go, because they are done
+    via a vendor</li>
+</ul>
+</div>
+<h3 id="ftl-files">.ftl files<a class="headerlink" href="#ftl-files" title="Permanent link">&para;</a></h3>
+<p>When adding translatable strings to the site you start by putting them
+all into an .ftl file in the <code>l10n/en/</code> directory with a path that
+matches or is somehow meaningful for the expected location of the
+template or view in which they'll be used. For example, strings for the
+<code>mozorg/mission.html</code> template would go into the
+<code>l10n/en/mozorg/mission.ftl</code> file. Locales are activated for a
+particular .ftl file, not template or URL, so you should use a unique
+file for most URLs, unless they're meant to be translated and activated
+for new locales simultaneously.</p>
+<p>You can have shared .ftl files that you can load into any template
+render, but only the first .ftl file in the list of the ones for a page
+render will determine whether the page is active for a locale.</p>
+<p>Activation of a locale happens automatically once certain rules are met.
+A developer can mark some string IDs as being "Required", which means
+that the file won't be activated for a locale until that locale has
+translated all of those required strings. The other rule is a percentage
+completion rule: a certain percentage (configurable) of the strings IDs
+in the "en" file must be translated in the file for a locale before it
+will be marked as active. We'll get into how exactly this works later.</p>
+<h4 id="translating-with-ftl-files">Translating with .ftl files<a class="headerlink" href="#translating-with-ftl-files" title="Permanent link">&para;</a></h4>
+<p>The <a href="https://projectfluent.org/fluent/guide/">Fluent file syntax</a> is
+well documented on the Fluent Project's site. We use "double hash" or
+"group" comments to indicate strings required for activation. A group
+comment only ends when another group comment starts however, so you
+should either group your required strings at the bottom of a file, or
+also have a "not required" group comment. Here's an example:</p>
+<div class="highlight"><pre><span></span><code>### File for example.html
+
+## Required
+example-page-title = The Page Title
+# this is a note the applies only to example-page-desc
+example-page-desc = This page is a test.
+
+##
+example-footer = This string isn&#39;t as important
+</code></pre></div>
+<p>Any group comment (a comment that starts with "##") that starts with
+"Required" (case does not matter) will start a required strings block,
+and any other group comment will end it.</p>
+<p>Once you have your strings in your .ftl file you can place them in your
+template. We'll use the above .ftl file for a simple Jinja template
+example:</p>
+<div class="highlight"><pre><span></span><code><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;title&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-page-title&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    &lt;h1&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-page-title&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/h1&gt;</span>
+<span class="x">    &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-page-desc&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="x">    &lt;footer&gt;</span>
+<span class="x">        &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-footer&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="x">    &lt;/footer&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+<h4 id="ftl-string-ids"><abbr title="Fluent Translation List">FTL</abbr> String IDs<a class="headerlink" href="#ftl-string-ids" title="Permanent link">&para;</a></h4>
+<p>Our convention for string ID creation is the following:</p>
+<ol>
+<li>String IDs should be all lower-case alphanumeric characters.</li>
+<li>Words should be separated with hyphens.</li>
+<li>IDs should be prefixed with the name of the template file (e.g.
+    <code>firefox-new-skyline</code> for <code>firefox-new-skyline.html</code>)</li>
+<li>If you need to create a new string for the same place on a page and
+    to transition to it as it is translated, you can add a version
+    suffix to the string ID: e.g.
+    <code>firefox-new-skyline-main-page-title-v2</code>.</li>
+<li>The ID should be as descriptive as possible to make sense to the
+    developer, but could be anything as long as it adheres to the rules
+    above.</li>
+</ol>
+<h4 id="using-brand-names">Using brand names<a class="headerlink" href="#using-brand-names" title="Permanent link">&para;</a></h4>
+<p>Common Mozilla brand names are stored in a global
+<a href="https://github.com/mozilla/bedrock/blob/main/l10n/en/brands.ftl">brands.ftl</a>
+file, in the form of
+<a href="https://projectfluent.org/fluent/guide/terms.html">terms</a>. Terms are
+useful for keeping brand names separated from the rest of the
+translations, so that they can be managed in a consistent way across all
+translated files, and also updated easily in a global context. In
+general the brand names in this file remain in English and should not be
+translated, however locales still have the choice and control to make
+adjustments should it suit their particular language.</p>
+<p>Only our own brands should be managed this way, brands from other
+companies should not. If you are concerned that the brand is a common
+word and may be translated, leave a comment for the translators.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are trying to phase out use of <code>{ -brand-name-firefox-browser }</code>
+please use <code>{ -brand-name-firefox } browser</code>.</p>
+</div>
+<div class="highlight"><pre><span></span><code>-brand-name = Firefox
+
+example-about = About { -brand-name }.
+example-update-successful = { -brand-name } has been updated.
+# &quot;Safari&quot; here refers to the competing web browser
+example-compare = How does { -brand-name } compare to Safari?
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>When adding a new term to <code>brands.ftl</code>, the new term should also be
+manually added to the
+<a href="https://github.com/mozilla-l10n/www-l10n">mozilla-l10n/www-l10n</a> repo
+for <em>all locales</em>. The reason for this is that if a term does not exist
+for a particular locale, then it does not fall back to English like a
+regular string does. Instead, the term variable name is displayed on the
+page.</p>
+</div>
+<h4 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h4>
+<p>Single hash comments are applied only to the string immediately
+following them. They should be used to provide additional context for
+the translators including:</p>
+<ol>
+<li>What the values of variables are.</li>
+<li>Context about where string appears on the page if it is not visible
+    or references other elements on the page.</li>
+<li>Explanations of English idioms and jargon that may be confusing to
+    non-native speakers.</li>
+</ol>
+<div class="highlight"><pre><span></span><code># Variables:
+#   $savings (string) - the percentage saved from the regular price, not including the % Examples: 50, 70
+example-bundle-savings = Buy now for { $savings }% off.
+
+# Context: Used as an accessible text alternative for an image
+example-bookmark-manager-alt = The bookmark manager window in { -brand-name-firefox }.
+# Context: This lists the various websites and magazines who have mentioned Firefox Relay.
+# Example: &quot;As seen in: FORBES magainze and LifeHacker&quot;
+example-social-proof = As seen in:
+
+example-privacy-on-every = Want privacy on every device?
+# &quot;You got it&quot; here is a casual answer to the previous question, &quot;Want privacy on every device?&quot;
+example-you-got-it = You got it. Get { -brand-name-firefox } for mobile.
+</code></pre></div>
+<h5 id="html-with-attributes">HTML with attributes<a class="headerlink" href="#html-with-attributes" title="Permanent link">&para;</a></h5>
+<p>When passing HTML tags with attributes into strings for translation,
+remove as much room for error as possible by putting all the attributes
+and their values in a single variable. (This is most common with links
+and their href attributes but we do occasionally pass classes with other
+tags.)</p>
+<div class="highlight"><pre><span></span><code># Variables:
+#   $attrs (attrs) - link to https://www.mozilla.org/about/
+example-created = { -brand-name-firefox } was created by &lt;a {$attrs}&gt;{ -brand-name-mozilla }&lt;/a&gt;.
+
+# Variables:
+#   $class (string) - CSS class used to replace brand name with wordmark logo
+example-firefox-relay = Add &lt;span { $class }&quot;&gt;{ -brand-name-firefox-relay }&lt;/span&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">set</span> <span class="nv">created_attrs</span> <span class="o">=</span> <span class="s1">&#39;href=&quot;%s&quot; data-cta-type=&quot;link&quot; data-cta-text=&quot;created by Mozilla&quot;&#39;</span><span class="o">|</span><span class="nf">safe</span><span class="o">|</span><span class="nf">format</span><span class="o">(</span><span class="nv">url</span><span class="o">(</span><span class="s1">&#39;mozorg.about.index&#39;</span><span class="o">))</span> <span class="cp">%}</span>
+<span class="x">&lt;p&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-created&#39;</span><span class="o">,</span> <span class="nv">attrs</span><span class="o">=</span><span class="nv">created_attrs</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+
+<span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;example-firefox-relay&#39;</span><span class="o">,</span> <span class="nv">class_name</span><span class="o">=</span><span class="s1">&#39;class=&quot;mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay&quot;&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</code></pre></div>
+<h4 id="obsolete-strings">Obsolete strings<a class="headerlink" href="#obsolete-strings" title="Permanent link">&para;</a></h4>
+<p>When new strings are added to a page sometimes they update or replace
+old strings. Obsolete strings &amp; IDs should be removed from ftl files
+immediately if they are not being used as a fallback. If they are being
+kept as a fallback they should be removed after 1-2 months.</p>
+<h5 id="fallback">Fallback<a class="headerlink" href="#fallback" title="Permanent link">&para;</a></h5>
+<p>If you need to create a new string for the same place on a page and
+would like to keep the old one as a fallback, you can add a version
+suffix to the new string ID: e.g.
+<code>firefox-new-skyline-main-page-title-v2</code>.</p>
+<div class="highlight"><pre><span></span><code>example-block-title-v2 = Security, reliability and speed — on every device, anywhere you go.
+# Obsolete string
+example-block-title = Security, reliability and speed — from name you can trust.
+</code></pre></div>
+<p>The <code>ftl</code> helper function has the ability to accept a fallback string ID
+and is described in the next section.</p>
+<h5 id="remove">Remove<a class="headerlink" href="#remove" title="Permanent link">&para;</a></h5>
+<p>If the new string is fundamentally different a new string ID should be
+created and the old one deleted.</p>
+<p>For example, if the page is going from talking about the Google
+Translate extension to promoting our own Firefox Translate feature the
+old strings are not appropriate fall backs.</p>
+<p>The old strings and IDs should be deleted:</p>
+<div class="highlight"><pre><span></span><code>example-translate-title = The To Google Translate extension makes translating the page you’re on easier than ever.
+example-translate-content = Google Translate, with over 100 languages* at the ready, is used by millions of people around the world.
+</code></pre></div>
+<p>The new strings should have different IDs and not be versioned:</p>
+<div class="highlight"><pre><span></span><code>example-translate-integrated-title = { -brand-name-firefox } now comes with an integrated translation tool.
+example-translate-integrated-content =  Unlike some cloud-based alternatives, { -brand-name-firefox } translates text locally, so the content you’re translating doesn’t leave your machine.
+</code></pre></div>
+<p>The <code>ftl_has_messages</code> jinja helper would be useful here and is
+described in the next section.</p>
+<h4 id="the-ftl-helper-function">The <code>ftl</code> helper function<a class="headerlink" href="#the-ftl-helper-function" title="Permanent link">&para;</a></h4>
+<p>The <code>ftl()</code> function takes a string ID and returns the string in the
+current language, or simplified english if the string isn't translated.
+If you'd like to use a different string ID in the case that the primary
+one isn't translated you can specify that like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;primary-string-id&#39;</span><span class="p">,</span> <span class="n">fallback</span><span class="o">=</span><span class="s1">&#39;fallback-string-id&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>When a fallback is specified it will be used only if the primary isn't
+translated in the current locale. English locales (e.g. en-US, en-GB)
+will never use the fallback and will print the simplified english
+version of the primary string if not overridden in the more specific
+locale.</p>
+<p>You can also pass in replacement variables into the <code>ftl()</code> function for
+use with <a href="https://projectfluent.org/fluent/guide/variables.html">fluent
+variables</a>. If
+you had a variable in your fluent file like this:</p>
+<div class="highlight"><pre><span></span><code>welcome = Welcome, { $user }!
+</code></pre></div>
+<p>You could use that in a template like this:</p>
+<div class="highlight"><pre><span></span><code><span class="x">&lt;h2&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;welcome&#39;</span><span class="o">,</span> <span class="nv">user</span><span class="o">=</span><span class="s1">&#39;Dude&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;h2&gt;</span>
+</code></pre></div>
+<p>For our purposes these are mostly useful for things that can change, but
+which shouldn't involve retranslation of a string (e.g. URLs or email
+addresses).</p>
+<p>You may also request any other translation of the string (or the
+original English string of course) regardless of the current locale.</p>
+<div class="highlight"><pre><span></span><code><span class="x">&lt;h2&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;welcome&#39;</span><span class="o">,</span> <span class="nv">locale</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="o">,</span> <span class="nv">user</span><span class="o">=</span><span class="s1">&#39;Dude&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;h2&gt;</span>
+</code></pre></div>
+<p>This helper is available in Jinja templates and Python code in views.
+For use in a view you should always call it in the view itself:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># views.py</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils.fluent</span> <span class="kn">import</span> <span class="n">ftl</span>
+
+<span class="k">def</span> <span class="nf">about_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">ftl_files</span> <span class="o">=</span> <span class="s1">&#39;mozorg/about&#39;</span>
+    <span class="n">hello_string</span> <span class="o">=</span> <span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;about-hello&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+    <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="n">hello_string</span><span class="p">},</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+</code></pre></div>
+<p>If you need to use this string in a view, but define it outside of the
+view itself, you can use the <code>ftl_lazy</code> variant which will delay
+evaluation until render time. This is mostly useful for defining
+messages shared among several views in constants in a <code>views.py</code> or
+<code>models.py</code> file.</p>
+<p>Whether you use this function in a Python view or a Jinja template it
+will always use the default list of Fluent files defined in the
+<code>FLUENT_DEFAULT_FILES</code> setting. If you don't specify any additional
+Fluent files via the <code>fluent_files</code> keyword argument, then only those
+default files will be used.</p>
+<h4 id="the-ftl_has_messages-helper-function">The <code>ftl_has_messages</code> helper function<a class="headerlink" href="#the-ftl_has_messages-helper-function" title="Permanent link">&para;</a></h4>
+<p>Another useful template tool is the <code>ftl_has_messages()</code> function. You
+pass it any number of string IDs and it will return <code>True</code> only if all
+of those message IDs exist in the current translation. This is useful
+when you want to add a new block of HTML to a page that is already
+translated, but don't want it to appear untranslated on any page.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">if</span> <span class="nv">ftl_has_messages</span><span class="o">(</span><span class="s1">&#39;new-title&#39;</span><span class="o">,</span> <span class="s1">&#39;new-description&#39;</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="x">  &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;new-title&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/h3&gt;</span>
+<span class="x">  &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;new-description&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+<span class="x">  &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;title&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/h3&gt;</span>
+<span class="x">  &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;description&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</code></pre></div>
+<p>If you'd like to have it return true when any of the given message IDs
+exist in the translation instead of requiring all of them, you can pass
+the optional <code>require_all=False</code> parameter and it will do just that.</p>
+<p>There is a version of this function for use in views called
+<code>has_messages</code>. It works exactly the same way but is meant to be used in
+the view Python code.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># views.py</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils.fluent</span> <span class="kn">import</span> <span class="n">ftl</span><span class="p">,</span> <span class="n">has_messages</span>
+
+<span class="k">def</span> <span class="nf">about_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">ftl_files</span> <span class="o">=</span> <span class="s1">&#39;mozorg/about&#39;</span>
+    <span class="k">if</span> <span class="n">has_messages</span><span class="p">(</span><span class="s1">&#39;about-hello-v2&#39;</span><span class="p">,</span> <span class="s1">&#39;about-title-v2&#39;</span><span class="p">,</span>
+                    <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">):</span>
+        <span class="n">hello_string</span> <span class="o">=</span> <span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;about-hello-v2&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+        <span class="n">title_string</span> <span class="o">=</span> <span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;about-title-v2&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hello_string</span> <span class="o">=</span> <span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;about-hello&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+        <span class="n">title_string</span> <span class="o">=</span> <span class="n">ftl</span><span class="p">(</span><span class="s1">&#39;about-title&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+
+    <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="n">hello_string</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title_string</span><span class="p">},</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="specifying-fluent-files-specifying_fluent_files">Specifying Fluent files {#specifying_fluent_files}<a class="headerlink" href="#specifying-fluent-files-specifying_fluent_files" title="Permanent link">&para;</a></h3>
+<p>You have to tell the system which Fluent files to use for a particular
+template or view. This is done in either the <code>page()</code> helper in a
+<code>urls.py</code> file, or in the call to <code>l10n_utils.render()</code> in a view.</p>
+<h4 id="using-the-page-function">Using the <code>page()</code> function<a class="headerlink" href="#using-the-page-function" title="Permanent link">&para;</a></h4>
+<p>If you just need to render a template, which is quite common for
+bedrock, you will probably just add a line like the following to your
+<code>urls.py</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">page</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">),</span>
+    <span class="n">page</span><span class="p">(</span><span class="s1">&#39;about/contact&#39;</span><span class="p">,</span> <span class="s1">&#39;about/contact.html&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>To tell this page to use the Fluent framework for l10n you just need to
+tell it which file(s) to use:</p>
+<div class="highlight"><pre><span></span><code><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">page</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="s1">&#39;mozorg/about&#39;</span><span class="p">),</span>
+    <span class="n">page</span><span class="p">(</span><span class="s1">&#39;about/contact&#39;</span><span class="p">,</span> <span class="s1">&#39;about/contact.html&#39;</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mozorg/about/contact&#39;</span><span class="p">,</span> <span class="s1">&#39;mozorg/about&#39;</span><span class="p">]),</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>The system uses the first (or only) file in the list to determine which
+locales are active for that URL. You can pass a string or list of
+strings to the <code>ftl_files</code> argument. The files you specify can include
+the <code>.ftl</code> extension or not, and they will be combined with the list of
+default files which contain strings for global elements like navigation
+and footer. There will also be files for reusable widgets like the
+newsletter form, but those should always come last in the list.</p>
+<h4 id="using-the-class-based-view">Using the class-based view<a class="headerlink" href="#using-the-class-based-view" title="Permanent link">&para;</a></h4>
+<p>Bedrock includes a generic class-based view (CBV) that sets up l10n for
+you. If you need to do anything fancier than just render the page, then
+you can use this:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">L10nTemplateView</span>
+
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">L10nTemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+    <span class="n">ftl_files</span> <span class="o">=</span> <span class="s1">&#39;mozorg/about&#39;</span>
+</code></pre></div>
+<p>Using that CBV will do the right things for l10n, and then you can
+override other useful methods (e.g. <code>get_context_data</code>) to do what you
+need. Also, if you do need to do anything fancy with the context, and
+you find that you need to dynamically set the fluent files list, you can
+easily do so by setting <code>ftl_files</code> in the context instead of the class
+attribute.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">L10nTemplateView</span>
+
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">L10nTemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">ftl_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mozorg/about&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fancy&#39;</span><span class="p">):</span>
+            <span class="n">ftl_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;fancy&#39;</span><span class="p">)</span>
+
+        <span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;ftl_files&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ftl_files</span>
+        <span class="k">return</span> <span class="n">ctx</span>
+</code></pre></div>
+<p>A common case is needing to use
+<abbr title="Fluent Translation List">FTL</abbr> files when one template is used, but not with another. In this case you would
+have some logic to decide which template to use in the
+<code>get_template_names()</code> method. You can set the <code>ftl_files_map</code> class
+variable to a dict containing a map of template names to the list of <abbr title="Fluent Translation List">FTL</abbr>
+files for that template (or a single file name if that's all you need).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># views.py</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">L10nTemplateView</span>
+
+<span class="c1"># class-based view example</span>
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">L10nTemplateView</span><span class="p">):</span>
+    <span class="n">ftl_files_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;about_es.html&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;about_es&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;about_new.html&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;about&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">locale</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">):</span>
+            <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about_new.html&#39;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">locale</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;es&#39;</span><span class="p">):</span>
+            <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about_es.html&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># FTL system not used</span>
+            <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">template_name</span><span class="p">]</span>
+</code></pre></div>
+<p>If you need for your URL to use multiple Fluent files to determine the
+full list of active locales, for example when you are redesigning a page
+and have multiple templates in use for a single URL depending on locale,
+you can use the [activation_files]{.title-ref} parameter. This should be
+a list of <abbr title="Fluent Translation List">FTL</abbr> filenames that should all be used when determining the full list of
+translations for the URL. Bedrock will gather the full list for each
+file and combine them into a single list so that the footer language
+switcher works properly.</p>
+<p>Another common case is that you want to keep using an old template for
+locales that haven't yet translated the strings for a new one. In that
+case you can provide an <code>old_template_name</code> to the class and include
+both that template and <code>template_name</code> in the <code>ftl_files_map</code>. Once you
+do this the view will use the template in <code>template_name</code> only for
+requests for an active locale for the <abbr title="Fluent Translation List">FTL</abbr> files you provided in the map.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">L10nTemplateView</span>
+
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">L10nTemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about_new.html&#39;</span>
+    <span class="n">old_template_name</span> <span class="o">=</span> <span class="s2">&quot;about.html&quot;</span>
+    <span class="n">ftl_files_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;about_new.html&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;about_new&quot;</span><span class="p">,</span> <span class="s2">&quot;about_shared&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;about.html&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;about_shared&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>In this example when the <code>about_new</code> <abbr title="Fluent Translation List">FTL</abbr> file is active for a locale,
+the <code>about_new.html</code> template will be rendered. Otherwise the
+<code>about.html</code> template would be used.</p>
+<h4 id="using-in-a-view-function">Using in a view function<a class="headerlink" href="#using-in-a-view-function" title="Permanent link">&para;</a></h4>
+<p>Lastly there's the good old function views. These should use
+<code>l10n_utils.render</code> directly to render the template with the context.
+You can use the <code>ftl_files</code> argument with this function as well.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">render</span>
+
+<span class="k">def</span> <span class="nf">about_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Duder&#39;</span><span class="p">},</span> <span class="n">ftl_files</span><span class="o">=</span><span class="s1">&#39;mozorg/about&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="fluent-file-configuration">Fluent File Configuration<a class="headerlink" href="#fluent-file-configuration" title="Permanent link">&para;</a></h3>
+<p>In order for a Fluent file to be extracted through automation and sent
+out for localization, it must first be configured to go through one or
+more distinct pipelines. This is controlled via a set of configuration
+files:</p>
+<ul>
+<li><a href="https://github.com/mozilla/bedrock/blob/main/l10n/configs/vendor.toml">Vendor</a>,
+    locales translated by an agency, and paid for by Marketing (locales
+    covered by staff are also included in this group).</li>
+<li><a href="https://github.com/mozilla/bedrock/blob/main/l10n/configs/pontoon.toml">Pontoon</a>,
+    locales translated by Mozilla contributors.</li>
+<li><a href="https://github.com/mozilla/bedrock/blob/main/l10n/configs/special-templates.toml">Special
+    templates</a>,
+    for locales with dedicated templates that don't go through the
+    localization process (not currently used).</li>
+</ul>
+<p>Each configuration file consists of a pre-defined set of locales for
+which each group is responsible for translating. The locales defined in
+each file should not be changed without first consulting the with L10n
+team, and such changes should not be a regular occurrence.</p>
+<p>To establish a localization strategy for a Fluent file, it needs to be
+included as a path in one or more configuration files. For example:</p>
+<div class="highlight"><pre><span></span><code>[[paths]]
+    reference = &quot;en/mozorg/mission.ftl&quot;
+    l10n = &quot;{locale}/mozorg/mission.ftl&quot;
+</code></pre></div>
+<p>You can read more about configuration files in the <a href="https://moz-l10n-config.readthedocs.io/">L10n Project
+Configuration</a> docs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Path definitions in Fluent configuration files are not source order
+dependent. A broad definition using a wild card can invalidate all
+previous path definitions for example. Paths should be defined carefully
+to avoid exposing .ftl files to unintended locales.</p>
+</div>
+<p>Using a combination of vendor and pontoon configuration offers a
+flexible but specific set of options to choose from when it comes to
+defining an l10n strategy for a page. The available choices are:</p>
+<ol>
+<li>Staff locales.</li>
+<li>Staff + select vendor locales.</li>
+<li>Staff + all vendor locales.</li>
+<li>Staff + vendor + pontoon.</li>
+<li>All pontoon locales (for non-marketing content only).</li>
+</ol>
+<p>When choosing an option, it's important to consider that vendor locales
+have a cost associated with them, and pontoon leans on the goodwill of
+our volunteer community. Typically, only non-marketing content should go
+through Pontoon for all locales. Everything that is marketing related
+should feature one of the staff/vendor/pontoon configurations.</p>
+<h3 id="fluent-file-activation">Fluent File Activation<a class="headerlink" href="#fluent-file-activation" title="Permanent link">&para;</a></h3>
+<p>Fluent files are activated automatically when processed from the l10n
+team's repo into our own based on a couple of rules.</p>
+<ol>
+<li>If a fluent file has a group of required strings, all of those
+    strings must be present in the translation in order for it to be
+    activated.</li>
+<li>A translation must contain a minimum percent of the string IDs from
+    the English file to be activated.</li>
+</ol>
+<p>If both of these conditions are met the locale is activated for that
+particular Fluent file. Any view using that file as its primary (first
+in the list) file will be available in that locale.</p>
+<h4 id="deactivation">Deactivation<a class="headerlink" href="#deactivation" title="Permanent link">&para;</a></h4>
+<p>If the automated system activates a locale but we for some reason need
+to ensure that this page remains unavailable in that locale, we can add
+this locale to a list of deactivated locales in the metadata file for
+that <abbr title="Fluent Translation List">FTL</abbr> file. For example, say we needed to make sure that the
+[mozorg/mission.ftl]{.title-ref} file remained inactive for German, even
+though the translation is already done. We would add <code>de</code> to the
+<code>inactive_locales</code> list in the <code>metadata/mozorg/mission.json</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;active_locales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;de&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;fr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;en-GB&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;inactive_locales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;de&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;percent_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This would ensure that even though <code>de</code> appears in both lists, it will
+remain deactivated on the site. We could just remove it from the active
+list, but automation would keep attempting to add it back, so for now
+this is the best solution we have, and is an indication of the full list
+of locales that have satisfied the rules.</p>
+<h4 id="alternate-rules">Alternate Rules<a class="headerlink" href="#alternate-rules" title="Permanent link">&para;</a></h4>
+<p>It's also possible to change the percentage of string completion
+required for activation on a per-file basis. In the same metadata file
+as above, if a <code>percent_required</code> key exists in the JSON data (see
+above) it will be used as the minimum percent of string completion
+required for that file in order to activate new locales.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Once a locale is activated for a Fluent file it will <strong>NOT</strong> be
+automatically deactivated, even if the rules change. If you need to
+deactivate a locale you should follow the <a href="#deactivation">Deactivation</a>
+instructions.</p>
+</div>
+<h4 id="activation-status">Activation Status<a class="headerlink" href="#activation-status" title="Permanent link">&para;</a></h4>
+<p>You can determine and use the activation status of a Fluent file in a
+view to make some decisions; what template to render for example. The
+way you would do that is with the <code>ftl_file_is_active</code> function. For
+example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># views.py</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils</span> <span class="kn">import</span> <span class="n">L10nTemplateView</span>
+<span class="kn">from</span> <span class="nn">lib.l10n_utils.fluent</span> <span class="kn">import</span> <span class="n">ftl_file_is_active</span>
+
+<span class="c1"># class-based view example</span>
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">L10nTemplateView</span><span class="p">):</span>
+    <span class="n">ftl_files_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;about.html&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;about&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;about_new.html&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;about_new&#39;</span><span class="p">,</span> <span class="s1">&#39;about&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ftl_file_is_active</span><span class="p">(</span><span class="s1">&#39;mozorg/about_new&#39;</span><span class="p">):</span>
+            <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about_new.html&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">template_name</span><span class="p">]</span>
+
+<span class="c1"># function view example</span>
+<span class="k">def</span> <span class="nf">about_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ftl_file_is_active</span><span class="p">(</span><span class="s1">&#39;mozorg/about_new&#39;</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;mozorg/about_new.html&#39;</span>
+        <span class="n">ftl_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mozorg/about_new&#39;</span><span class="p">,</span> <span class="s1">&#39;mozorg/about&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;about.html&#39;</span>
+        <span class="n">ftl_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mozorg/about&#39;</span><span class="p">]</span>
+
+    <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">ftl_files</span><span class="o">=</span><span class="n">ftl_files</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="active-locales">Active Locales<a class="headerlink" href="#active-locales" title="Permanent link">&para;</a></h4>
+<p>To see which locales are active for a particular .ftl file you can
+either look in the metadata file for that .ftl file, which is the one
+with the same path but in the <code>metadata</code> folder instead of a locale
+folder in the www-l10n repository. Or if you'd like something a bit
+nicer looking and more convenient there is the <code>active_locales</code>
+management command:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./manage.py<span class="w"> </span>l10n_update
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./manage.py<span class="w"> </span>active_locales<span class="w"> </span>mozorg/mission
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>There<span class="w"> </span>are<span class="w"> </span><span class="m">91</span><span class="w"> </span>active<span class="w"> </span>locales<span class="w"> </span><span class="k">for</span><span class="w"> </span>mozorg/mission.ftl:
+-<span class="w"> </span>af
+-<span class="w"> </span>an
+-<span class="w"> </span>ar
+-<span class="w"> </span>ast
+-<span class="w"> </span>az
+-<span class="w"> </span>be
+-<span class="w"> </span><span class="nb">bg</span>
+-<span class="w"> </span>bn
+...
+</code></pre></div>
+<p>You get an alphabetically sorted list of all of the active locales for
+that .ftl file. You should run <code>./manage.py l10n_update</code> as shown above
+for the most accurate and up-to-date results.</p>
+<h3 id="string-extraction">String extraction<a class="headerlink" href="#string-extraction" title="Permanent link">&para;</a></h3>
+<p>The string extraction process for both new .ftl content and updates to
+existing .ftl content is handled through automation. On each commit to
+<code>main</code> a command is run that looks for changes to the <code>l10n/</code> and
+<code>l10n-pocket/</code> directories. If a change is detected, it will copy those
+files into a new branch in
+<a href="https://github.com/mozilla-l10n/www-l10n">mozilla-l10n/www-l10n</a> and
+then a bot will open a pull request containing those changes. Once the
+pull request has been reviewed and merged by the L10n team, everything
+is done.</p>
+<p>To view the state of the latest automated attempt to open an L10N PR,
+see:</p>
+<ul>
+<li><a href="https://github.com/mozilla/bedrock/actions/workflows/send_mozorg_fluent_strings_to_l10n_org.yml">Mozorg L10N PR
+    action</a></li>
+<li><a href="https://github.com/mozilla/bedrock/actions/workflows/send_pocket_fluent_strings_to_l10n_org.yml">Pocket L10N PR
+    action</a></li>
+</ul>
+<p>(We also just try to open L10N PRs every 3 hours, to catch any failed
+jobs that are triggered by a commit to <code>main</code>)</p>
+<h3 id="css">CSS<a class="headerlink" href="#css" title="Permanent link">&para;</a></h3>
+<p>If a localized page needs some locale-specific style tweaks, you can add
+the style rules to the page's stylesheet like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">html</span><span class="o">[</span><span class="nt">lang</span><span class="o">=</span><span class="s2">&quot;it&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">#</span><span class="nn">features</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">html</span><span class="o">[</span><span class="nt">dir</span><span class="o">=</span><span class="s2">&quot;rtl&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">#</span><span class="nn">features</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">right</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If a locale needs site-wide style tweaks, font settings in particular,
+you can add the rules to <code>/media/css/l10n/{{LANG}}/intl.css</code>. Pages on
+Bedrock automatically includes the CSS in the base templates with the
+[l10n_css]{.title-ref} helper function. The CSS may also be loaded
+directly from other Mozilla sites with such a URL:
+<code>//mozorg.cdn.mozilla.net/media/css/l10n/{{LANG}}/intl.css</code>.</p>
+<p><em>Open Sans</em>, the default font on mozilla.org, doesn't offer non-Latin
+glyphs. <code>intl.css</code> can have <code>@font-face</code> rules to define locale-specific
+fonts using custom font families as below:</p>
+<ul>
+<li><em>X-LocaleSpecific-Light</em>: Used in combination with <em>Open Sans
+    Light</em>. The font can come in 2 weights: normal and optionally bold</li>
+<li><em>X-LocaleSpecific</em>: Used in combination with <em>Open Sans Regular</em>.
+    The font can come in 2 weights: normal and optionally bold</li>
+<li><em>X-LocaleSpecific-Extrabold</em>: Used in combination with <em>Open Sans
+    Extrabold</em>. The font weight is 800 only</li>
+</ul>
+<p>Here's an example of <code>intl.css</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">X-LocaleSpecific-Light</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">mplus-2p-light</span><span class="o">),</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">Meiryo</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">X-LocaleSpecific-Light</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">bold</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">mplus-2p-medium</span><span class="o">),</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">Meiryo-Bold</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">X-LocaleSpecific</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">mplus-2p-regular</span><span class="o">),</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">Meiryo</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">X-LocaleSpecific</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">bold</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">mplus-2p-bold</span><span class="o">),</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">Meiryo-Bold</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="nt">X-LocaleSpecific-Extrabold</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">800</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">mplus-2p-black</span><span class="o">),</span><span class="w"> </span><span class="nt">local</span><span class="o">(</span><span class="nt">Meiryo-Bold</span><span class="o">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Localizers can specify locale-specific fonts in one of the following
+ways:</p>
+<ul>
+<li>Choose best-looking fonts widely used on major platforms, and
+    specify those with the <code>src: local(name)</code> syntax</li>
+<li>Find a best-looking free Web font, add the font files to
+    <code>/media/fonts/</code>, and specify those with the <code>src: url(path)</code> syntax</li>
+<li>Create a custom Web font to complement missing glyphs in <em>Open
+    Sans</em>, add the font files to <code>/media/fonts/l10n/</code>, and specify those
+    with the <code>src: url(path)</code> syntax. <a href="http://mplus-fonts.osdn.jp/about-en.html">M+
+    2c</a> offers various
+    international glyphs and looks similar to Open Sans, while <a href="https://www.google.com/get/noto/">Noto
+    Sans</a> is good for the bold and
+    italic variants. You can create subsets of these alternative fonts
+    in the WOFF and WOFF2 formats using a tool found on the Web. See
+    <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1360812">Bug 1360812</a>
+    for the Fulah (ff) locale's example</li>
+</ul>
+<p>Developers should use the <code>.open-sans</code> mixin instead of
+<code>font-family: 'Open Sans'</code> to specify the default font family in CSS.
+This mixin has both <em>Open Sans</em> and <em>X-LocaleSpecific</em> so
+locale-specific fonts, if defined, will be applied to localized pages.
+The variant mixins, <code>.open-sans-light</code> and <code>.open-sans-extrabold</code>, are
+also available.</p>
+<h2 id="all">All<a class="headerlink" href="#all" title="Permanent link">&para;</a></h2>
+<h3 id="locale-specific-templates">Locale-specific Templates<a class="headerlink" href="#locale-specific-templates" title="Permanent link">&para;</a></h3>
+<p>While the <code>ftl_has_messages</code> template function is great in small doses,
+it doesn't scale particularly well. A template filled with conditional
+copy can be difficult to comprehend, particularly when the conditional
+copy has associated CSS and/or JavaScript.</p>
+<p>In instances where a large amount of a template's copy needs to be
+changed, or when a template has messaging targeting one particular
+locale, creating a locale-specific template may be a good choice.</p>
+<p>Locale-specific templates function simply by naming convention. For
+example, to create a version of <code>/firefox/new.html</code> specifically for the
+<code>de</code> locale, you would create a new template named
+<code>/firefox/new.de.html</code>. This template can either extend
+<code>/firefox/new.html</code> and override only certain blocks, or be entirely
+unique.</p>
+<p>When a request is made for a particular page, bedrock's rendering
+function automatically checks for a locale-specific template, and, if
+one exists, will render it instead of the originally specified
+(locale-agnostic) template.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Creating a locale-specific template for en-US was not possible when this
+feature was introduced, but it is now. So you can create your en-US-only
+template and the rest of the locales will continue to use the default.</p>
+</div>
+<h3 id="specifying-active-locales-in-views">Specifying Active Locales in Views<a class="headerlink" href="#specifying-active-locales-in-views" title="Permanent link">&para;</a></h3>
+<p>Normally we rely on activation tags in our translation files (.lang
+files) to determine in which languages a page will be available. This
+will almost always be what we want for a page. But sometimes we need to
+explicitly state the locales available for a page. The
+[impressum]{.title-ref} page for example is only available in German and
+the template itself has German hard-coded into it since we don't need
+it to be translated into any other languages. In cases like these we can
+send a list of locale codes with the template context and it will be the
+final list. This can be accomplished in a few ways depending on how the
+view is coded.</p>
+<p>For a plain view function, you can simply pass a list of locale codes to
+[l10n_utils.render]{.title-ref} in the context using the name
+[active_locales]{.title-ref}. This will be the full list of available
+translations. Use [add_active_locales]{.title-ref} if you want to add
+languages to the existing list:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">french_and_german_only</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">l10n_utils</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;home.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;active_locales&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="s1">&#39;fr&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>If you don't need a custom view and are just using the
+[page()]{.title-ref} helper function in your [urls.py]{.title-ref} file,
+then you can similarly pass in a list:</p>
+<div class="highlight"><pre><span></span><code><span class="n">page</span><span class="p">(</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;about.html&#39;</span><span class="p">,</span> <span class="n">active_locales</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span> <span class="s1">&#39;es-ES&#39;</span><span class="p">]),</span>
+</code></pre></div>
+<p>Or if your view is even more fancy and you're using a Class-Based-View
+that inherits from [LangFilesMixin]{.title-ref} (which it must if you
+want it to be translated) then you can specify the list as part of the
+view Class definition:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MyView</span><span class="p">(</span><span class="n">LangFilesMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+    <span class="n">active_locales</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;zh-CN&#39;</span><span class="p">,</span> <span class="s1">&#39;hi-IN&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p>Or in the [urls.py]{.title-ref} when using a CBV:</p>
+<div class="highlight"><pre><span></span><code><span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;about/$&#39;</span><span class="p">,</span> <span class="n">MyView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">active_locales</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;de&#39;</span><span class="p">,</span> <span class="s1">&#39;fr&#39;</span><span class="p">])),</span>
+</code></pre></div>
+<p>The main thing to keep in mind is that if you specify
+[active_locales]{.title-ref} that will be the full list of localizations
+available for that page. If you'd like to add to the existing list of
+locales generated from the lang files then you can use the
+[add_active_locales]{.title-ref} name in all of the same ways as
+[active_locales]{.title-ref} above. It's a list of locale codes that
+will be added to the list already available. This is useful in
+situations where we would have needed the l10n team to create an empty
+.lang file with an active tag in it because we have a
+locale-specific-template with text in the language hard-coded into the
+template and therefore do not otherwise need a .lang file.</p>
+<h2 id="adding-new-l10n-integrations">Adding new L10N integrations<a class="headerlink" href="#adding-new-l10n-integrations" title="Permanent link">&para;</a></h2>
+<p>Bedrock, as a platform, can operate in different modes, and it is
+possible (necessary, even) to support multiple L10N pipelines, so that
+each mode of operation can have its own distinct Fluent files and
+translation strategy.</p>
+<p>As of Summer 2022, there are two separate L10N integrations within
+Bedrock:</p>
+<ul>
+<li>Mozilla.org ("Mozorg mode")</li>
+<li>Pocket Marketing Pages ("Pocket mode")</li>
+</ul>
+<p>These integrations are similar in their approach, but not identical in
+how they run. They use different translations strategies, which requires
+slightly different data flows.</p>
+<p>Moving L10N data (essentially Fluent <code>.ftl</code> files) happens via various
+automation steps, which aren't captured here, as they are more about
+infrastructure and operations. However, what follows outlines the steps
+needed to add a new L10N integration (for "<code>newintegration</code>") to
+Bedrock.</p>
+<ol>
+<li><strong>FILE SETUP (Bedrock developer)</strong></li>
+</ol>
+<p>Add a directory for the source (<code>en</code>) Fluent strings that will need
+translation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For source Fluent files currently...</p>
+<ul>
+<li>...Mozorg uses <code>./l10n/</code></li>
+<li>...Pocket uses <code>./l10n-pocket/</code></li>
+</ul>
+</div>
+<p>Add the following files:</p>
+<div class="highlight"><pre><span></span><code>./l10n-newintegration/
+./l10n-newintegration/en/<span class="w">  </span><span class="c1"># This is where source Fluent templates go for &#39;newintegration&#39;</span>
+./l10n-newintegration/en/configs/pontoon.toml<span class="w">  </span><span class="c1"># If using community/Pontoon translations at all</span>
+./l10n-newintegration/en/configs/vendor.toml<span class="w">  </span><span class="c1"># If using a paid-for translation service such as Smartling</span>
+./l10n-newintegration/en/configs/special-templates.toml<span class="w">   </span><span class="c1"># Only needed to exclude certain files from all community AND vendor translation. e.g. we use staff translation only.</span>
+
+./l10n-newintegration/l10n-pontoon.toml<span class="w">  </span><span class="c1"># If using community/Pontoon translations at all</span>
+./l10n-newintegration/l10n-vendor.toml<span class="w">  </span><span class="c1"># If using a paid-for translation service such as Smartling</span>
+
+./data/l10n-newintegration-team/<span class="w">  </span><span class="c1"># leave this empty - it will be populated via a git sync using data FROM the l10n team</span>
+</code></pre></div>
+<p>For the exact content of each [.toml]{.title-ref} or [.json]{.title-ref}
+file, see the examples in <code>./l10n/</code> and <code>./l10n-pocket/</code> for
+inspiration - they're not too hard to work out. The <code>.toml</code> files
+outside of <code>/en/</code> basically point to the ones in <code>/en/configs/</code> and are
+a 'gateway' through which we spec which config files are relevant to
+which translation stragegy (community or vendor - or neither if it's
+staff-only translation).</p>
+<ol>
+<li><strong>REPO SETUP (Bedrock and/or L10N team admin)</strong></li>
+</ol>
+<p>You will need to set up one or two new repos, to hold the translation
+files as part of the pipeline.</p>
+<p>i. <strong>A repo in where the files are sent to</strong> in
+<code>https://github.com/mozilla-l10n/</code> for the L10N team's automation to
+pick up.</p>
+<p>For example, Mozorg uses <code>github.com/mozilla-l10n/www-l10n/</code> and Pocket
+uses <code>github.com/mozilla-l10n/www-pocket-l10n/</code>. Your new
+<code>github.com/mozilla-l10n/www-newintegration-l10n/</code> repo will be needed
+regardless of who does the actual translation work.</p>
+<p>ii. <strong>An optional repo where files are post-processed following
+    translation</strong>.</p>
+<p>If relevant, this will live in <code>github.com/mozmeao/</code> - for example
+<code>github.com/mozmeao/www-newintegration-l10n/</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p><strong>If you are not using Pontoon/community translations, you do NOT need
+to create this repo.</strong> Why? If the translations are done by the
+community (via Pontoon), there is a possibility that not enough of the
+strings will be translated in order to render the content in the
+relevant locale. We run a <abbr title="Continuous Integration">CI</abbr> task to
+determine whether a locale has enough translated strings to be
+considered 'active'. At the moment, only Mozorg uses this pattern. The
+Pocket-mode translations do not have their activation measured because
+their translations come entirely from a vendor and we expect the Pocket
+strings to be 100% translated.</p>
+</div>
+<ol>
+<li><strong><abbr title="Continuous Integration">CI</abbr> SETUP (Bedrock dev)</strong></li>
+</ol>
+<p>Only relevant if using Pontoon community translations. Details of how
+MozMarRobot is hooked are best gleaned from looking at
+<code>https://gitlab.com/mozmeao/www-fluent-update</code>.</p>
+<p>In short, once new translations land in the string-source repo (e.g.
+<code>github.com/mozilla-l10n/www-newintegration-l10n</code>) they are cloned over
+to the activation-check repo
+<code>github.com/mozmeao/www-newintegration-l10n/</code> by <abbr title="Continuous Integration">CI</abbr> and later pulled
+into Bedrock from there.</p>
+<ol>
+<li><strong>CONFIGURE SETTINGS (Bedrock dev)</strong>.</li>
+</ol>
+<p>You'll also have to update settings so that when the site is in
+'newintegration' mode, it knows which L10N-related local folders and
+remote repos to use. Look in <code>settings/__init__.py</code> to see what we did
+for Pocket mode.</p>
+<p>You'll also have to set up new env vars to provide the new repo and
+filepath settings' values, which will mean updating
+<code>github.com/mozmeao/www-config/</code> and possibly getting new secrets
+provisioned in Kubernetes if you need to use a separate auth token for
+<code>github.com/mozilla-l10n/</code>. (You may not.)</p>
+<p>Note that if you are <em>not</em> using community/Pontoon translations - and
+therefore you don't need to use an intermediary repo to calculate
+activation status - you can just use the
+<code>mozilla-l10n/www-newintegration-l10n</code> repo for both outbound and
+inbound translations - look at the Pocket Mode setting for an example of
+this.</p>
+<ol>
+<li><strong>EXPAND L10N UPDATE SCRIPT (Bedrock dev)</strong>.</li>
+</ol>
+<p><strong>Uploading strings for translation</strong></p>
+<p>Uploading <code>`en</code>-locale source strings from Bedrock to the
+<code>github.com/mozilla-l10n/</code> repos is handled by
+<code>bedrock/bin/open-ftl-pr.sh</code>. This file requires no specific code
+changes to support a new integration as long as you have already set up
+a <code>SITE_MODE</code> for 'newintegration'.</p>
+<p>However, you <strong>do</strong> need to add a new entry to <code>bedrock/.gitlab-ci.yml</code>
+-- copy the <code>update-l10n</code> step, in a similar way to how it's been
+duplicated for <code>update-pocket-l10n</code>.</p>
+<p><strong>Downloading translated strings</strong></p>
+<p>Update the configuration dict at the top of
+<code>bedrock/lib/l10n_utils/management/commands/l10n_update.py</code> so that when
+that management command is run, it will pull down the appropriate
+translations for "newintegration".</p>
+<p>Tip: to test drive things, you can fork the real repos and test against
+your forks by specifying them via local env vars.</p>
+<ol>
+<li><strong>VENDOR SETUP (L10N Team)</strong></li>
+</ol>
+<p>The vendor (e.g. Smartling) will need to add the new string-source repo
+(<code>github.com/mozilla-l10n/www-newintegration-l10n</code>) to its
+configuration. Once this is done new translations from the vendor will
+be added to that repo, and synced down to Bedrock. This step is out of
+our hands, but the vendor's technical contact should be able to make it
+happen.</p>
+<ol>
+<li><strong>PONTOON SETUP (L10N Team)</strong></li>
+</ol>
+<p>Details to come for setting up community translations using Pontoon.
+(Contributions about this aspect are welcome!)</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

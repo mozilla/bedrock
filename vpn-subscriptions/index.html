@@ -1,0 +1,1300 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../abtest/">
+      
+      
+        <link rel="next" href="../attribution/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>Mozilla VPN Subscriptions - Bedrock Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#server-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mozilla VPN Subscriptions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bedrock Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10n/" class="md-nav__link">
+        Localization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding/" class="md-nav__link">
+        Developing on Bedrock
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        How to Contribute
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Continuous Integration & Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Front-end testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redirects/" class="md-nav__link">
+        Managing redirects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newsletters/" class="md-nav__link">
+        Newsletters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contentful/" class="md-nav__link">
+        Contentful CMS Integration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sitemap/" class="md-nav__link">
+        Sitemaps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        Using External Content Card Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banners/" class="md-nav__link">
+        Banners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uitour/" class="md-nav__link">
+        Mozilla.UITour
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-device/" class="md-nav__link">
+        Send to Device widget
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download-buttons/" class="md-nav__link">
+        Firefox Download Buttons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mozilla-accounts/" class="md-nav__link">
+        Mozilla account helpers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funnelcake/" class="md-nav__link">
+        Funnel cakes and Partner Builds
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abtest/" class="md-nav__link">
+        A/B Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mozilla VPN Subscriptions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mozilla VPN Subscriptions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#server-architecture" class="md-nav__link">
+    Server architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-countries-for-vpn" class="md-nav__link">
+    Adding new countries for VPN
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding new countries for VPN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-steps" class="md-nav__link">
+    Launch steps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-changes" class="md-nav__link">
+    Code changes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excluded-countries" class="md-nav__link">
+    Excluded countries
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+          Attribution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_21">
+          <span class="md-nav__icon md-icon"></span>
+          Attribution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/" class="md-nav__link">
+        Attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0001-analytics/" class="md-nav__link">
+        Mozorg Analytics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
+        Firefox Desktop attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
+        Firefox Mobile attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
+        Mozilla accounts attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
+        Mozilla CJMS Affiliate attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
+        Pocket mode attribution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Architectural Decision Records
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Architectural Decision Records
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural-decisions/" class="md-nav__link">
+        Architectural Decision Records
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
+        2. Move CI/CD Pipelines to Gitlab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
+        3. Use Cloudflare Workers and Convert for multi-variant testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
+        4. Use Fluent For Localization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
+        5. Use a Single Docker Image For All Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        6. Revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        7. Further revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
+        8. Move Demos To GCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
+        9. Manage Contentful schema state via migrations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
+        10. Move CI to Github Actions for Unit and Integration tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
+        11. Use StatsD for metrics collection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        Browser Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#server-architecture" class="md-nav__link">
+    Server architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-countries-for-vpn" class="md-nav__link">
+    Adding new countries for VPN
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding new countries for VPN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-steps" class="md-nav__link">
+    Launch steps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-changes" class="md-nav__link">
+    Code changes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excluded-countries" class="md-nav__link">
+    Excluded countries
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Mozilla VPN Subscriptions</h1>
+
+<p>The <a href="https://www.mozilla.org/en-US/products/vpn/">Mozilla VPN landing
+page</a> displays both pricing
+and currency information that is dependant on someone's physical
+location in the world (using geo-location). If someone is in the United
+States, they should see pricing in $USD, and if someone is in Germany
+they should see pricing in Euros. The page is also available in multiple
+languages, which can be viewed independently of someone's physical
+location. So someone who lives in Switzerland, but is viewing the page
+in German, should still see pricing and currency displayed in Swiss
+Francs (CHF).</p>
+<p>Additionally, it is important that we render location specific
+subscription links, as purchasing requires a credit card that is
+registered to each country where we have a plan available. We are also
+legally obligated to prevent both purchasing and/or downloading of
+Mozilla VPN in certain countries. In countries where VPN is not yet
+available, we also rely on geo-location to hide subscription links, and
+instead to display a <em>call to action</em> to encourage prospective customers
+to sign up to the <a href="https://www.mozilla.org/en-US/products/vpn/invite/">VPN wait
+list</a>.</p>
+<p>To facilitate all of the above, we rely on our CDN to return an
+appropriate country code that relates to where a visitor's request
+originated from (see <a href="../coding/#geo-template-view">Geo Template View</a>). We
+use that country code in our helpers and view logic for the VPN landing
+page to decide what to display in the pricing section of the page
+(see <a href="../mozilla-accounts/#mozilla-vpn-links">Mozilla VPN links</a>).</p>
+<h2 id="server-architecture">Server architecture<a class="headerlink" href="#server-architecture" title="Permanent link">&para;</a></h2>
+<p>Bedrock is configured so that when <code>dev=True</code>, VPN subscription links
+will point to the Mozilla accounts staging environment. When
+<code>dev=False</code>, they will point to the Fxa production environment.</p>
+<p>So our different environments are mapped like so:</p>
+<ul>
+<li><code>http://localhost:8000</code> -> <code>https://accounts.stage.mozaws.net/</code></li>
+<li><code>https://www-dev.allizom.org/products/vpn/</code> ->
+    <code>https://accounts.stage.mozaws.net/</code></li>
+<li><code>https://www.allizom.or/products/vpn/</code> ->
+    <code>https://accounts.firefox.com/</code></li>
+<li><code>https://www.mozilla.org/products/vpn</code> ->
+    <code>https://accounts.firefox.com/</code></li>
+</ul>
+<p>This allows the product and QA teams to routinely test changes and new
+VPN client releases on <a href="https://www-dev.allizom.org/products/vpn/">https://www-dev.allizom.org/products/vpn/</a>,
+prior to being available in production.</p>
+<h2 id="adding-new-countries-for-vpn">Adding new countries for VPN<a class="headerlink" href="#adding-new-countries-for-vpn" title="Permanent link">&para;</a></h2>
+<p>When launching VPN in new countries there is a set process to follow.</p>
+<h3 id="launch-steps">Launch steps<a class="headerlink" href="#launch-steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li>All the code changes below should be added <strong>behind a feature
+    switch</strong>.</li>
+<li>Once the PR is reviewed and merged, the product QA team should be
+    notified and they can then perform testing on
+    <a href="https://www-dev.allizom.org/products/vpn/">https://www-dev.allizom.org/products/vpn/</a>. Often the QA team will
+    request a date for code to be ready for testing to begin.</li>
+<li>Code can be pushed to production ahead of time (but will be disabled
+    behind the feature switch by default).</li>
+<li>Once QA gives the green light on launch day, the feature switch can
+    then be enabled in production.</li>
+<li>QA will then do a final round of post-launch QA to verify
+    subscriptions / purchasing works in the new countries in production.</li>
+</ol>
+<h3 id="code-changes">Code changes<a class="headerlink" href="#code-changes" title="Permanent link">&para;</a></h3>
+<p>Reference: officially assigned list of <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO country
+codes</a>.
+Reference: list of <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO 4217 currency
+codes</a>`</p>
+<p>The majority of config changes need to happen in
+<code>bedrock/settings/base.py</code>:</p>
+<ol>
+<li>
+<p>Add new pricing plan configs to <code>VPN_PLAN_ID_MATRIX</code> for any new
+    countries that require newly created plan IDs (these will be
+    provided by the VPN team). Separate plan IDs for both dev and prod
+    are required for each new currency / language combination (this is
+    because the product QA team need differently configured plans on dev
+    to routinely test things like renewal and cancellation flows). Meta
+    data such as price, total price and saving for each plan / currency
+    should also be provided.</p>
+<p>Example pricing plan config for $USD / English containing both
+12-month and monthly plans:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">VPN_PLAN_ID_MATRIX</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;usd&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;en&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;12-month&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;price_1J0Y1iKb9q6OnNsLXwdOFgDr&quot;</span> <span class="k">if</span> <span class="n">DEV</span> <span class="k">else</span> <span class="s2">&quot;price_1Iw85dJNcmPzuWtRyhMDdtM7&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;US$4.99&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="s2">&quot;US$59.88&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;saving&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                <span class="s2">&quot;analytics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;vpn&quot;</span><span class="p">,</span> <span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="s2">&quot;vpn&quot;</span><span class="p">,</span> <span class="s2">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span><span class="p">,</span> <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="s2">&quot;60.00&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;59.88&quot;</span><span class="p">,</span> <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="s2">&quot;yearly&quot;</span><span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;monthly&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;price_1J0owvKb9q6OnNsLExNhEDXm&quot;</span> <span class="k">if</span> <span class="n">DEV</span> <span class="k">else</span> <span class="s2">&quot;price_1Iw7qSJNcmPzuWtRMUZpOwLm&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;US$9.99&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;saving&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;analytics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;vpn&quot;</span><span class="p">,</span> <span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="s2">&quot;vpn&quot;</span><span class="p">,</span> <span class="s2">&quot;currency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span><span class="p">,</span> <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;9.99&quot;</span><span class="p">,</span> <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="s2">&quot;monthly&quot;</span><span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># repeat for other currency / language configs.</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See the <em>Begin Checkout</em> section of the
+<a href="../attribution/0001-analytics/">analytics docs</a> for more
+a detailed description of what should be in the analytics objects.</p>
+</blockquote>
+</li>
+<li>
+<p>Map each new country code to one or more applicable pricing plans in
+    <code>VPN_VARIABLE_PRICING</code>.</p>
+<p>Example that maps the <code>US</code> country code to the pricing plan config
+above:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><span class="n">VPN_VARIABLE_PRICING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;US&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">VPN_PLAN_ID_MATRIX</span><span class="p">[</span><span class="s2">&quot;usd&quot;</span><span class="p">][</span><span class="s2">&quot;en&quot;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="c1"># repeat for other country codes.</span>
+<span class="p">}</span>
+</code></pre></div>
+</blockquote>
+</li>
+<li>
+<p>Once every new country has a mapping to a pricing plan, add each new
+    country code to the list of supported countries in
+    <code>VPN_COUNTRY_CODES</code>. Because new countries need to be added behind a
+    feature switch, you may want to create a new variable temporarily
+    for this until launched, such as <code>VPN_COUNTRY_CODES_WAVE_VI</code>. You
+    can then add these to <code>VPN_COUNTRY_CODES</code> in <code>products/views.py</code>
+    using a simple function like so:</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">vpn_available</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="n">get_country_from_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">country_list</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">VPN_COUNTRY_CODES</span>
+
+    <span class="k">if</span> <span class="n">switch</span><span class="p">(</span><span class="s2">&quot;vpn-wave-vi&quot;</span><span class="p">):</span>
+        <span class="n">country_list</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">VPN_COUNTRY_CODES</span> <span class="o">+</span> <span class="n">settings</span><span class="o">.</span><span class="n">VPN_COUNTRY_CODES_WAVE_VI</span>
+
+    <span class="k">return</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">country_list</span>
+</code></pre></div>
+<p>The function could then be used in the landing page view like so:</p>
+<div class="highlight"><pre><span></span><code><span class="n">vpn_available_in_country</span> <span class="o">=</span> <span class="n">vpn_available</span><span class="p">(</span><span class="n">request</span><span class="p">),</span>
+</code></pre></div>
+</blockquote>
+</li>
+<li>
+<p>If you now test the landing page locally, you should hopefully see
+    the newly added pricing for each new country (add the
+    <code>?geo=[INSERT_COUNTRY_CODE]</code> param to the page URL to mock each
+    country). If all is well, this is the perfect time to add new <a href="https://github.com/mozilla/bedrock/blob/main/bedrock/products/tests/test_helper_misc.py">unit
+    tests</a>
+    for each new country. This will help give you confidence that the
+    right plan ID is displayed for each new country / language option.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_vpn_subscribe_link_variable_12_month_us_en</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Should contain expected 12-month plan ID (US / en-US)&quot;&quot;&quot;</span>
+    <span class="n">markup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span>
+        <span class="n">plan</span><span class="o">=</span><span class="s2">&quot;12-month&quot;</span><span class="p">,</span>
+        <span class="n">country_code</span><span class="o">=</span><span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&quot;</span><span class="p">,</span> <span class="n">markup</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_vpn_subscribe_link_variable_monthly_us_en</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Should contain expected monthly plan ID (US / en-US)&quot;&quot;&quot;</span>
+    <span class="n">markup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span>
+        <span class="n">plan</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
+        <span class="n">country_code</span><span class="o">=</span><span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm&quot;</span><span class="p">,</span> <span class="n">markup</span><span class="p">)</span>
+</code></pre></div>
+</li>
+<li>
+<p>Next, update <code>VPN_AVAILABLE_COUNTRIES</code> to the new total number of
+    countries where VPN is available. Again, because this needs to be
+    behind a feature switch you may want a new temporary variable that
+    you can use in <code>products/views.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">available_countries</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">VPN_AVAILABLE_COUNTRIES</span>
+
+<span class="k">if</span> <span class="n">switch</span><span class="p">(</span><span class="s2">&quot;vpn-wave-vi&quot;</span><span class="p">):</span>
+    <span class="n">available_countries</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">VPN_AVAILABLE_COUNTRIES_WAVE_VI</span>
+</code></pre></div>
+</li>
+<li>
+<p>Finally, there is also a string in <code>l10n/en/products/vpn/shared.ftl</code>
+    that needs updating to include the new countries. This should be a
+    new string ID, and behind a feature switch in the template:</p>
+<div class="highlight"><pre><span></span><code>vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Canada, Finland, France, Germany, Ireland, Italy, Malaysia, the Netherlands, New Zealand, Singapore, Spain, Sweden, Switzerland, the UK, and the US.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">if</span> <span class="nv">switch</span><span class="o">(</span><span class="s1">&#39;vpn_wave_vi&#39;</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;vpn-shared-available-countries-v6&#39;</span><span class="o">,</span> <span class="nv">fallback</span><span class="o">=</span><span class="s1">&#39;vpn-shared-available-countries-v5&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">ftl</span><span class="o">(</span><span class="s1">&#39;vpn-shared-available-countries-v5&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</code></pre></div>
+</li>
+<li>
+<p>After things are launched in production and QA has verified that all
+    is well, don't forget to file an issue to tidy up the temporary
+    variables and switch logic.</p>
+</li>
+</ol>
+<h2 id="excluded-countries">Excluded countries<a class="headerlink" href="#excluded-countries" title="Permanent link">&para;</a></h2>
+<p>For a list of country codes where we are legally obligated to prevent
+purchasing VPN, see <code>VPN_EXCLUDED_COUNTRY_CODES</code> in
+<code>bedrock/settings/base.py</code>.</p>
+<p>For a list of country codes where we are also required to prevent
+downloading the VPN client, see <code>VPN_BLOCK_DOWNLOAD_COUNTRY_CODES</code>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

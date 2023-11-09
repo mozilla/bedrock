@@ -1,0 +1,1726 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../l10n/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>Installing Bedrock - Bedrock Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing Bedrock
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bedrock Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Install
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    Installation Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    Docker Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-installation" class="md-nav__link">
+    Local Installation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-tests" class="md-nav__link">
+    Run the tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-it-run" class="md-nav__link">
+    Make it run
+  </a>
+  
+    <nav class="md-nav" aria-label="Make it run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local_1" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prod-mode" class="md-nav__link">
+    Prod Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pocket-mode" class="md-nav__link">
+    Pocket Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    Localization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-flipping-aka-switches" class="md-nav__link">
+    Feature Flipping (aka Switches)
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Flipping (aka Switches)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-cop" class="md-nav__link">
+    Traffic Cop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10n/" class="md-nav__link">
+        Localization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding/" class="md-nav__link">
+        Developing on Bedrock
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        How to Contribute
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Continuous Integration & Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Front-end testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redirects/" class="md-nav__link">
+        Managing redirects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newsletters/" class="md-nav__link">
+        Newsletters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contentful/" class="md-nav__link">
+        Contentful CMS Integration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sitemap/" class="md-nav__link">
+        Sitemaps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        Using External Content Card Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banners/" class="md-nav__link">
+        Banners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uitour/" class="md-nav__link">
+        Mozilla.UITour
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-device/" class="md-nav__link">
+        Send to Device widget
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download-buttons/" class="md-nav__link">
+        Firefox Download Buttons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mozilla-accounts/" class="md-nav__link">
+        Mozilla account helpers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funnelcake/" class="md-nav__link">
+        Funnel cakes and Partner Builds
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abtest/" class="md-nav__link">
+        A/B Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-subscriptions/" class="md-nav__link">
+        Mozilla VPN Subscriptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+          Attribution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_21">
+          <span class="md-nav__icon md-icon"></span>
+          Attribution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/" class="md-nav__link">
+        Attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0001-analytics/" class="md-nav__link">
+        Mozorg Analytics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
+        Firefox Desktop attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
+        Firefox Mobile attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
+        Mozilla accounts attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
+        Mozilla CJMS Affiliate attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
+        Pocket mode attribution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Architectural Decision Records
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Architectural Decision Records
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural-decisions/" class="md-nav__link">
+        Architectural Decision Records
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
+        2. Move CI/CD Pipelines to Gitlab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
+        3. Use Cloudflare Workers and Convert for multi-variant testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
+        4. Use Fluent For Localization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
+        5. Use a Single Docker Image For All Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        6. Revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        7. Further revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
+        8. Move Demos To GCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
+        9. Manage Contentful schema state via migrations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
+        10. Move CI to Github Actions for Unit and Integration tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
+        11. Use StatsD for metrics collection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        Browser Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    Installation Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-installation" class="md-nav__link">
+    Docker Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-installation" class="md-nav__link">
+    Local Installation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-tests" class="md-nav__link">
+    Run the tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-it-run" class="md-nav__link">
+    Make it run
+  </a>
+  
+    <nav class="md-nav" aria-label="Make it run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local_1" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prod-mode" class="md-nav__link">
+    Prod Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pocket-mode" class="md-nav__link">
+    Pocket Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    Localization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-flipping-aka-switches" class="md-nav__link">
+    Feature Flipping (aka Switches)
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Flipping (aka Switches)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-cop" class="md-nav__link">
+    Traffic Cop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Install</h1>
+
+<h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
+<p>There are two primary methods of installing bedrock: Docker and Local.
+Whichever you choose you'll start by getting the source</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mozilla/bedrock.git
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>bedrock
+</code></pre></div>
+<p>After these basic steps you can choose your install method below. Docker
+is the easiest and recommended way, but local is also possible and may
+be preferred by people for various reasons.</p>
+<p>You should also install our git pre-commit hooks. Our setup uses the
+<a href="https://pre-commit.com/">pre-commit</a> framework. Install the framework
+using the instructions on their site depending on your platform, then
+run <code>pre-commit install</code>. After that it will check your Python, JS, and
+CSS files before you commit to save you time waiting for the tests to
+run in our <abbr title="Continuous Integration">CI</abbr> before noticing a linting error.</p>
+<h3 id="docker-installation">Docker Installation<a class="headerlink" href="#docker-installation" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method assumes you have <a href="https://www.docker.com/">Docker installed for your
+platform</a>. If not please do that now or skip to
+the <code>Local Installation</code> section.</p>
+</div>
+<p>This is the simplest way to get started developing for bedrock. If
+you're on Linux or Mac (and possibly Windows 10 with the Linux
+subsystem) you can run a script that will pull our production and
+development docker images and start them:</p>
+<div class="highlight"><pre><span></span><code>$ make clean run
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can start the server any other time with:</p>
+<div class="highlight"><pre><span></span><code>$ make run
+</code></pre></div>
+</div>
+<p>You should see a number of things happening, but when it's done it will
+output something saying that the server is running at
+<a href="http://localhost:8000/">localhost:8000</a>. Go to that URL in a browser
+and you should see the mozilla.org home page. In this mode the site will
+refresh itself when you make changes to any template or media file.
+Simply open your editor of choice and modify things and you should see
+those changes reflected in your browser.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It's a good idea to run <code>make pull</code> from time to time. This will pull
+down the latest Docker images from our repository ensuring that you have
+the latest dependencies installed among other things. If you see any
+strange errors after a <code>git pull</code> then <code>make pull</code> is a good thing to
+try for a quick fix.</p>
+</div>
+<p>If you don't have or want to use Make you can call the docker and
+compose commands directly</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker-compose<span class="w"> </span>pull
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="o">[[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span>.env<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cp<span class="w"> </span>.env-dist<span class="w"> </span>.env
+</code></pre></div>
+<p>Then starting it all is simply</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>app<span class="w"> </span>assets
+</code></pre></div>
+<p>All of this is handled by the <code>Makefile</code> script and called by Make if
+you follow the above directions. You <strong>DO NOT</strong> need to do both.</p>
+<p>These directions pull and use the pre-built images that our deployment
+process has pushed to the <a href="https://hub.docker.com/u/mozorg/">Docker
+Hub</a>. If you need to add or change any
+dependencies for Python or Node then you'll need to build new images
+for local testing. You can do this by updating the requirements files
+and/or package.json file then simply running:</p>
+<div class="highlight"><pre><span></span><code>$ make build
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For Apple Silicon / M1 users</strong></p>
+<p>If you find that when you're building you hit issues with Puppeteer not
+installing, these will help:</p>
+<ul>
+<li><a href="https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-910101797">Set up a Rosetta
+    Terminal</a>.</li>
+<li>Follow these <a href="https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758">Puppeter installation
+    tips:</a>.</li>
+</ul>
+</div>
+<p><strong>Asset bundles</strong></p>
+<p>If you make a change to <code>media/static-bundles.json</code>, you'll need to
+restart Docker.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes stopping Docker doesn't actually kill the images. To be safe,
+after stopping docker, run <code>docker ps</code> to ensure the containers were
+actually stopped. If they have not been stopped, you can force them by
+running <code>docker-compose kill</code> to stop all containers, or
+<code>docker kill &lt;container_name&gt;</code> to stop a single container, e.g.
+<code>docker kill bedrock_app_1</code>.</p>
+</div>
+<h3 id="local-installation">Local Installation<a class="headerlink" href="#local-installation" title="Permanent link">&para;</a></h3>
+<p>These instructions assume you have Python, pip, and NodeJS installed. If
+you don't have [pip]{.title-ref} installed (you probably do) you can
+install it with the instructions in <a href="https://pip.pypa.io/en/stable/installing/">the pip
+docs</a>.</p>
+<p>Bedrock currently uses Python 3.9.10. The recommended way to install and
+use that version is with <a href="https://github.com/pyenv/pyenv">pyenv</a> and to
+create a virtualenv using
+<a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a> that will
+isolate Bedrock's dependencies from other things installed on the
+system.</p>
+<p>The following assumes you are on MacOS, using <code>zsh</code> as your shell and
+<a href="https://brew.sh/">Homebrew</a> as your package manager. If you are not,
+there are installation instructions for a variety of platforms and
+shells in the READMEs for the two pyenv projects.</p>
+<p><strong>Install Python 3.9.10 with pyenv</strong></p>
+<ol>
+<li>Install <code>pyenv</code> itself :<div class="highlight"><pre><span></span><code>$ brew install pyenv
+</code></pre></div>
+</li>
+</ol>
+<p>2. Configure your shell to init <code>pyenv</code> on start - this is noted in the
+project's <a href="https://github.com/pyenv/pyenv">own docs</a>, in more detail,
+but omits that setting [PYENV_ROOT]{.title-ref} and adding it to the
+path is needed:</p>
+<div class="highlight"><pre><span></span><code>$ echo &#39;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#39; &gt;&gt; ~/.zshrc
+$ echo &#39;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc
+$ echo &#39;eval &quot;$(pyenv init -)&quot;&#39; &gt;&gt; ~/.zshrc
+</code></pre></div>
+<p>3. Restart your login session for the changes to profile files to take
+effect - if you're not using <code>zsh</code>, the <code>pyenv</code> docs have other routes
+:</p>
+<div class="highlight"><pre><span></span><code>$ zsh -l
+</code></pre></div>
+<ol>
+<li>
+<p>Install the latest Python 3.9.x (eg 3.9.10), then test it's there:</p>
+<div class="highlight"><pre><span></span><code>$ pyenv install 3.9.10
+</code></pre></div>
+<p>If you'd like to make Python 3.9.10 your default globally, you can
+do so with:</p>
+<div class="highlight"><pre><span></span><code>$ pyenv global 3.9.10
+</code></pre></div>
+<p>If you only want to make Python 3.9.10 available in the current
+shell, while you set up the Python virtualenv (below), you can do so
+with:</p>
+<div class="highlight"><pre><span></span><code>$ pyenv shell 3.9.10
+</code></pre></div>
+</li>
+<li>
+<p>Verify that you have the correct version of Python installed:</p>
+<div class="highlight"><pre><span></span><code>$ python --version
+Python 3.9.10
+</code></pre></div>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>At the time of writing, Python 3.9.10 was the 3.9 release that worked
+with least complication across the core team's local-development
+platforms, incl both Intel and Apple Silicon Macs. It's also the
+version of 3.9 in the <code>slim-bullseye</code> image used for the Dockerized
+version.</p>
+</div>
+<p><strong>Install a plugin to manage virtualenvs via pyenv and create a
+virtualenv for Bedrock's dependencies</strong></p>
+<ol>
+<li>
+<p>Install <code>pyenv-virtualenv</code> :</p>
+<div class="highlight"><pre><span></span><code>$ brew install pyenv-virtualenv
+</code></pre></div>
+</li>
+<li>
+<p>Configure your shell to init <code>pyenv-virtualenv</code> on start - again,
+this is noted in the <code>pyenv-virtualenv</code> project's <a href="https://github.com/pyenv/pyenv-virtualenv">own
+documentation</a>, in more
+detail. The following will slot in a command that will work as long as
+you have pyenv-virtualenv installed:</p>
+<p>$ echo 'eval "$(pyenv virtualenv-init -)"' &gt;&gt; ~/.zshrc</p>
+</li>
+<li>
+<p>Restart your login session for the changes to profile files to take
+   effect :</p>
+<p>$ zsh -l</p>
+</li>
+<li>
+<p>Make a virtualenv we can use - in this example we'll call it
+    <code>bedrock</code> but use whatever you want :</p>
+<p>$ pyenv virtualenv 3.9.10 bedrock</p>
+</li>
+</ol>
+<p><strong>Use the virtualenv</strong></p>
+<ol>
+<li>
+<p>Switch to the virtualenv - this is the command you will use any time
+   you need this virtualenv :</p>
+<p>$ pyenv activate bedrock</p>
+</li>
+<li>
+<p>If you'd like to auto activate the virtualenv when you cd into the
+bedrock directory, and deactivate it when you exit the directory, you
+can do so with:</p>
+<p>$ echo 'bedrock' &gt; .python-version</p>
+</li>
+<li>
+<p>Securely upgrade pip :</p>
+<p>$ pip install --upgrade pip</p>
+</li>
+<li>
+<p>Install / update dependencies :</p>
+<p>$ make install-local-python-deps</p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you are on OSX and some of the compiled dependencies fails to
+compile, try explicitly setting the arch flags and try again. The
+following are relevant to Intel Macs only. If you're on Apple Silicon,
+3.9.10 should 'just work':</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ARCHFLAGS</span><span class="o">=</span><span class="s2">&quot;-arch i386 -arch x86_64&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>install-local-python-deps
+</code></pre></div>
+<p>If you are on Linux, you may need at least the following packages or
+their equivalent for your distro:</p>
+<div class="highlight"><pre><span></span><code>python3-dev libxslt-dev
+</code></pre></div>
+</div>
+<p><strong>Sync the database and all of the external data locally.</strong> This gets
+product-details, security-advisories, credits, release notes,
+localizations, legal-docs etc:</p>
+<div class="highlight"><pre><span></span><code>$ bin/bootstrap.sh
+</code></pre></div>
+<p><strong>Install the node dependencies to run the site</strong>. This will only work
+if you already have <a href="https://nodejs.org/">Node.js</a> and
+<a href="https://www.npmjs.com/">npm</a> installed:</p>
+<div class="highlight"><pre><span></span><code>$ npm install
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bedrock uses npm to ensure that Node.js packages that get installed are
+the exact ones we meant (similar to pip hash checking mode for python).
+Refer to the <a href="https://docs.npmjs.com/">npm documentation</a> for adding or
+upgrading Node.js dependencies.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As a convenience, there is a <code>make preflight</code> command which
+automatically brings your installed Python and NPM dependencies up to
+date and also fetches the latest DB containing the latest site content.
+This is a good thing to run after pulling latest changes from the <code>main</code>
+branch.</p>
+</div>
+<h2 id="run-the-tests">Run the tests<a class="headerlink" href="#run-the-tests" title="Permanent link">&para;</a></h2>
+<p>Now that we have everything installed, let's make sure all of our tests
+pass. This will be important during development so that you can easily
+know when you've broken something with a change.</p>
+<h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
+<p>We manage our local docker environment with docker-compose and Make. All
+you need to do here is run:</p>
+<div class="highlight"><pre><span></span><code>$ make test
+</code></pre></div>
+<p>If you don't have Make you can simply run <code>docker-compose run test</code>.</p>
+<p>If you'd like to run only a subset of the tests or only one of the test
+commands you can accomplish that with a command like the following:</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose run test py.test bedrock/firefox
+</code></pre></div>
+<p>This example will run only the unit tests for the <code>firefox</code> app in
+bedrock. You can substitute <code>py.test bedrock/firefox</code> with most any
+shell command you'd like and it will run in the Docker container and
+show you the output. You can also just run <code>bash</code> to get an interactive
+shell in the container which you can then use to run any commands you'd
+like and inspect the file system:</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose run test bash
+</code></pre></div>
+<h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
+<p>From the local install instructions above you should still have your
+virtualenv activated, so running the tests is as simple as:</p>
+<div class="highlight"><pre><span></span><code>$ py.test lib bedrock
+</code></pre></div>
+<p>To test a single app, specify the app by name in the command above.
+e.g.:</p>
+<div class="highlight"><pre><span></span><code>$ py.test bedrock/firefox
+</code></pre></div>
+<h2 id="make-it-run">Make it run<a class="headerlink" href="#make-it-run" title="Permanent link">&para;</a></h2>
+<h3 id="docker_1">Docker<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h3>
+<p>You can simply run the <code>make run</code> script mentioned above, or use
+docker-compose directly:</p>
+<div class="highlight"><pre><span></span><code>$ docker-compose up app assets
+</code></pre></div>
+<h3 id="local_1">Local<a class="headerlink" href="#local_1" title="Permanent link">&para;</a></h3>
+<p>To make the server run, make sure your virtualenv is activated, and then
+run the server:</p>
+<div class="highlight"><pre><span></span><code>$ npm start
+</code></pre></div>
+<p>If you are not inside a virtualenv, you can activate it by doing:</p>
+<div class="highlight"><pre><span></span><code>$ pyenv activate bedrock
+</code></pre></div>
+<h3 id="prod-mode">Prod Mode<a class="headerlink" href="#prod-mode" title="Permanent link">&para;</a></h3>
+<p>There are certain things about the site that behave differently when
+running locally in dev mode using Django's development server than they
+do when running in the way it runs in production. Static assets that
+work fine locally can be a problem in production if referenced
+improperly, and the normal error pages won't work unless <code>DEBUG=False</code>
+and doing that will make the site throw errors since the Django server
+doesn't have access to all of the built static assets. So we have a
+couple of extra Docker commands (via make) that you can use to run the
+site locally in a more prod-like way.</p>
+<p>First you should ensure that your <code>.env</code> file is setup the way you need.
+This usually means adding <code>DEBUG=False</code> and <code>DEV=False</code>, though you may
+want <code>DEV=True</code> if you want the site to act more like
+www-dev.allizom.org in that all feature switches are <code>On</code> and all
+locales are active for every page. After that you can run the following:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>run-prod
+</code></pre></div>
+<p>This will run the latest bedrock image using your local bedrock files
+and templates, but not your local static assets. If you need an updated
+image just run <code>make pull</code>.</p>
+<p>If you need to include the changes you've made to your local static
+files (images, css, js, etc.) then you have to build the image first:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>build-prod<span class="w"> </span>run-prod
+</code></pre></div>
+<h3 id="pocket-mode">Pocket Mode<a class="headerlink" href="#pocket-mode" title="Permanent link">&para;</a></h3>
+<p>By default, Bedrock will serve the content of <code>www.mozilla.org</code>.
+However, it is also possible to make Bedrock serve the content pages for
+Pocket (<code>getpocket.com</code>). This is done, ultimately, by setting a
+<code>SITE_MODE</code> env var to the value of <code>Pocket</code>.</p>
+<p>For local development, setting this env var is already supported in the
+standard ways to run the site:</p>
+<ul>
+<li>Docker: <code>make run-pocket</code> and <code>make run-pocket prod</code></li>
+<li>Local run/Node/webpack and Django runserver:
+    <code>npm run in-pocket-mode</code></li>
+<li><code>SITE_MODE=Pocket ./manage.py runserver</code> for plain ol' Django
+    runserver, in Pocket mode</li>
+</ul>
+<p>For demos on servers, remember to set the SITE_MODE env var to be the
+value you need (<code>Pocket</code> or <code>Mozorg</code> -- or nothing, which is the same as
+setting <code>Mozorg</code>)</p>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
+<p>This is a great place for coders and non-coders alike to contribute!
+Please note most of the documentation is currently in
+<a href="https://bashtage.github.io/sphinx-material/basics.html">reStructuredText</a>
+but we also support <a href="https://www.markdownguide.org/">Markdown</a> files.</p>
+<p>If you see a typo or similarly small change, you can use the "Edit in
+GitHub" link to propose a fix through GitHub. Note: you will not see
+your change directly committed to the main branch. You will commit the
+change to a separate branch so it can be reviewed by a staff member
+before merging to main.</p>
+<p>If you want to make a bigger change or <a href="https://github.com/mozilla/bedrock/labels/Documentation">find a Documentation issue on
+the repo</a>, it
+is best to edit and preview locally before submitting a pull request.
+You can do this with Docker or Local installations. Run the commands
+from your root folder. They will build documentation and start a live
+server to auto-update any changes you make to a documentation file.</p>
+<p>Docker:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>docs
+</code></pre></div>
+<p>Local:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/docs.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>livedocs
+</code></pre></div>
+<h2 id="localization">Localization<a class="headerlink" href="#localization" title="Permanent link">&para;</a></h2>
+<p>Localization (or L10n) files were fetched by the
+[bootstrap.sh]{.title-ref} command your ran earlier and are included in
+the docker images. If you need to update them or switch to a different
+repo or branch after changing settings you can run the following
+command:</p>
+<div class="highlight"><pre><span></span><code>$ ./manage.py l10n_update
+</code></pre></div>
+<p>You can read more details about how to localize content
+<a href="../l10n/">here</a>.</p>
+<h2 id="feature-flipping-aka-switches">Feature Flipping (aka Switches)<a class="headerlink" href="#feature-flipping-aka-switches" title="Permanent link">&para;</a></h2>
+<p>Environment variables are used to configure behavior and/or features of
+select pages on bedrock via a template helper function called
+<code>switch()</code>. It will take whatever name you pass to it (must be only
+numbers, letters, and dashes), convert it to uppercase, convert dashes
+to underscores, and lookup that name in the environment. For example:
+<code>switch('the-dude')</code> would look for the environment variable
+<code>SWITCH_THE_DUDE</code>. If the value of that variable is any of "on",
+"true", "1", or "yes", then it will be considered "on",
+otherwise it will be "off".</p>
+<p>You can also supply a list of locale codes that will be the only ones
+for which the switch is active. If the page is viewed in any other
+locale the switch will always return <code>False</code>, even in <code>DEV</code> mode. This
+list can also include a "Locale Group", which is all locales with a
+common prefix (e.g. "en-US, en-GB" or "zh-CN, zh-TW"). You specify
+these with just the prefix. So if you used
+<code>switch('the-dude', ['en', 'de'])</code> in a template, the switch would be
+active for German and any English locale the site supports.</p>
+<p>You may also use these switches in Python in <code>views.py</code> files (though
+not with locale support). For example:</p>
+<div class="highlight"><pre><span></span><code>from bedrock.base.waffle import switch
+
+def home_view(request):
+    title = &#39;Staging Home&#39; if switch(&#39;staging-site&#39;) else &#39;Prod Home&#39;
+    ...
+</code></pre></div>
+<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
+<p>If the environment variable <code>DEV</code> is set to a "true" value, then all
+switches will be considered "on" unless they are explicitly "off" in
+the environment. <code>DEV</code> defaults to "true" in local development and
+demo servers.</p>
+<p>To test switches locally:</p>
+<ol>
+<li>Set <code>DEV=False</code> in your <code>.env</code> file.</li>
+<li>Enable the switch in your <code>.env</code> file.</li>
+<li>Restart your web server.</li>
+</ol>
+<p>To configure switches/env vars for a demo branch. Follow the <a href="https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites">demo-site
+instructions
+here</a>.</p>
+<h3 id="traffic-cop">Traffic Cop<a class="headerlink" href="#traffic-cop" title="Permanent link">&para;</a></h3>
+<p>Currently, these switches are used to enable/disable <a href="https://github.com/mozmeao/trafficcop/">Traffic
+Cop</a> experiments on many pages
+of the site. We only add the Traffic Cop JavaScript snippet to a page
+when there is an active test. You can see the current state of these
+switches and other configuration values in our <a href="https://mozmeao.github.io/www-config/configs/">configuration
+repo</a>.</p>
+<p>To work with/test these experiment switches locally, you must add the
+switches to your local environment. For example:</p>
+<div class="highlight"><pre><span></span><code># to switch on firstrun-copy-experiment you&#39;d add the following to your ``.env`` file
+SWITCH_FIRSTRUN_COPY_EXPERIMENT=on
+</code></pre></div>
+<p>To do the equivalent in one of the bedrock apps see the
+<a href="https://mozmeao.github.io/www-config/">www-config</a> documentation.</p>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<p>A shortcut for activating virtual envs in zsh or bash is [.
+venv/bin/activate]{.title-ref}. The dot is the same as
+[source]{.title-ref}.</p>
+<p>There's a project called <a href="https://pypi.org/project/pew/">pew</a> that
+provides a better interface for managing/activating virtual envs, so you
+can use that if you want. Also if you need help managing various
+versions of Python on your system, the
+<a href="https://github.com/pyenv/pyenv">pyenv</a> project can help.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

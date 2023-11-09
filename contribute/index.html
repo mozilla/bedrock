@@ -1,0 +1,1351 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../coding/">
+      
+      
+        <link rel="next" href="../pipeline/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>How to contribute - Bedrock Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to contribute
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bedrock Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10n/" class="md-nav__link">
+        Localization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding/" class="md-nav__link">
+        Developing on Bedrock
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to Contribute
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        How to Contribute
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-workflow" class="md-nav__link">
+    Git workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-commit-messages" class="md-nav__link">
+    Git commit messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-your-work" class="md-nav__link">
+    Submitting your work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squashing-your-commits" class="md-nav__link">
+    Squashing your commits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-your-code" class="md-nav__link">
+    Deploying your code
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying your code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo-sites" class="md-nav__link">
+    Demo sites
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deprecated-heroku-demo-servers" class="md-nav__link">
+    DEPRECATED: Heroku Demo Servers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-to-production" class="md-nav__link">
+    Pushing to production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Continuous Integration & Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Front-end testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redirects/" class="md-nav__link">
+        Managing redirects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newsletters/" class="md-nav__link">
+        Newsletters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contentful/" class="md-nav__link">
+        Contentful CMS Integration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sitemap/" class="md-nav__link">
+        Sitemaps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        Using External Content Card Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banners/" class="md-nav__link">
+        Banners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uitour/" class="md-nav__link">
+        Mozilla.UITour
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-device/" class="md-nav__link">
+        Send to Device widget
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download-buttons/" class="md-nav__link">
+        Firefox Download Buttons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mozilla-accounts/" class="md-nav__link">
+        Mozilla account helpers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funnelcake/" class="md-nav__link">
+        Funnel cakes and Partner Builds
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abtest/" class="md-nav__link">
+        A/B Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-subscriptions/" class="md-nav__link">
+        Mozilla VPN Subscriptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+          Attribution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_21">
+          <span class="md-nav__icon md-icon"></span>
+          Attribution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/" class="md-nav__link">
+        Attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0001-analytics/" class="md-nav__link">
+        Mozorg Analytics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
+        Firefox Desktop attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
+        Firefox Mobile attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
+        Mozilla accounts attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
+        Mozilla CJMS Affiliate attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
+        Pocket mode attribution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Architectural Decision Records
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Architectural Decision Records
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural-decisions/" class="md-nav__link">
+        Architectural Decision Records
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
+        2. Move CI/CD Pipelines to Gitlab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
+        3. Use Cloudflare Workers and Convert for multi-variant testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
+        4. Use Fluent For Localization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
+        5. Use a Single Docker Image For All Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        6. Revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        7. Further revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
+        8. Move Demos To GCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
+        9. Manage Contentful schema state via migrations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
+        10. Move CI to Github Actions for Unit and Integration tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
+        11. Use StatsD for metrics collection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        Browser Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-workflow" class="md-nav__link">
+    Git workflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-commit-messages" class="md-nav__link">
+    Git commit messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-your-work" class="md-nav__link">
+    Submitting your work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squashing-your-commits" class="md-nav__link">
+    Squashing your commits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-your-code" class="md-nav__link">
+    Deploying your code
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying your code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo-sites" class="md-nav__link">
+    Demo sites
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deprecated-heroku-demo-servers" class="md-nav__link">
+    DEPRECATED: Heroku Demo Servers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-to-production" class="md-nav__link">
+    Pushing to production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>How to Contribute</h1>
+
+<p>Before diving into code it might be worth reading through the
+<a href="../coding/">Developing on Bedrock</a>
+documentation, which contains useful information and links to our coding
+guidelines for Python, Django, JavaScript and CSS.</p>
+<h2 id="git-workflow">Git workflow<a class="headerlink" href="#git-workflow" title="Permanent link">&para;</a></h2>
+<p>When you want to start contributing, you should create a branch from
+main. This allows you to work on different project at the same time:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>main
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>topic-branch
+</code></pre></div>
+<p>To keep your branch up-to-date, assuming the mozilla repository is the
+remote called mozilla:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>main
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only
+</code></pre></div>
+<p>More on <a href="https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only-git-is-a">Why you should use
+--ff-only</a>.
+To make this the default update your Git config as described in the
+article.</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>topic-branch
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>rebase<span class="w"> </span>main
+</code></pre></div>
+<p>If you need more Git expertise, a good resource is the <a href="http://git-scm.com/book">Git
+book</a>.</p>
+<p>Once you're done with your changes, you'll need to describe those
+changes in the commit message.</p>
+<h2 id="git-commit-messages">Git commit messages<a class="headerlink" href="#git-commit-messages" title="Permanent link">&para;</a></h2>
+<p>Commit messages are important when you need to understand why something
+was done.</p>
+<ul>
+<li>First, learn <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">how to write good git commit
+    messages</a>.</li>
+<li>All commit messages must include a bug number. You can put the bug
+    number on any line, not only the first one.</li>
+<li>If you use the syntax <code>bug xxx</code>, Github will reference the commit
+    into Bugzilla. With <code>fix bug xxx</code>, it will even close the bug once
+    it goes into main.</li>
+</ul>
+<p>If you're asked to change your commit message, you can use these
+commands:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>--amend
+</code></pre></div>
+<p>-f is doing a force push because you modified the history</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>my-remote<span class="w"> </span>topic-branch
+</code></pre></div>
+<h2 id="submitting-your-work">Submitting your work<a class="headerlink" href="#submitting-your-work" title="Permanent link">&para;</a></h2>
+<p>In general, you should submit your work with a pull request to main. If
+you are working with other people or you want to put your work on a demo
+server, then you should be working on a common topic branch.</p>
+<p>Once your code has been positively reviewed, it will be deployed shortly
+after. So if you want feedback on your code but it's not ready to be
+deployed, you should note it in the pull request, or use a <a href="https://github.blog/2019-02-14-introducing-draft-pull-requests/">Draft
+PR</a>.
+Also make use of an appropriate label, such as <code>Do Not Merge</code>.</p>
+<h2 id="squashing-your-commits">Squashing your commits<a class="headerlink" href="#squashing-your-commits" title="Permanent link">&para;</a></h2>
+<p>Should your pull request contain more than one commit, sometimes we may
+ask you to squash them into a single commit before merging. You can do
+this with [git rebase]{.title-ref}.</p>
+<p>As an example, let's say your pull request contains two commits. To
+squash them into a single commit, you can follow these instructions:</p>
+<div class="highlight"><pre><span></span><code>$ git rebase -i HEAD~2
+</code></pre></div>
+<p>You will then get an editor with your two commits listed. Change the
+second commit from [pick]{.title-ref} to [fixup]{.title-ref}, then save
+and close. You should then be able to verify that you only have one
+commit now with [git log]{.title-ref}.</p>
+<p>To push to GitHub again, because you "altered the history" of the repo
+by merging the two commits into one, you'll have to [git push
+-f]{.title-ref} instead of just [git push]{.title-ref}.</p>
+<h2 id="deploying-your-code">Deploying your code<a class="headerlink" href="#deploying-your-code" title="Permanent link">&para;</a></h2>
+<p>These are the websites that Bedrock is usually deployed to as part of
+development.</p>
+<h3 id="demo-sites">Demo sites<a class="headerlink" href="#demo-sites" title="Permanent link">&para;</a></h3>
+<p>Bedrock as a platform can run in two modes: Mozorg Mode (for content
+that will appear on mozilla.org) and Pocket Mode (for content that will
+end up on getpocket.com).</p>
+<p>To support this, we have two separate sets of URLs we use for demos. To
+get code up to one of those URLs, push it to the specified branch on
+<code>github.com/mozilla/bedrock</code>:</p>
+<ul>
+<li><em>Mozorg:</em><ul>
+<li>Branch <code>mozorg-demo-1</code> -> <a href="https://www-demo1.allizom.org/">https://www-demo1.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-2</code> -> <a href="https://www-demo2.allizom.org/">https://www-demo2.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-3</code> -> <a href="https://www-demo3.allizom.org/">https://www-demo3.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-4</code> -> <a href="https://www-demo4.allizom.org/">https://www-demo4.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-5</code> -> <a href="https://www-demo5.allizom.org/">https://www-demo5.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-6</code> -> <a href="https://www-demo6.allizom.org/">https://www-demo6.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-7</code> -> <a href="https://www-demo7.allizom.org/">https://www-demo7.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-8</code> -> <a href="https://www-demo8.allizom.org/">https://www-demo8.allizom.org/</a></li>
+<li>Branch <code>mozorg-demo-9</code> -> <a href="https://www-demo9.allizom.org/">https://www-demo9.allizom.org/</a></li>
+</ul>
+</li>
+<li><em>Pocket:</em><ul>
+<li>Branch <code>pocket-demo-1</code> -> <a href="https://www-demo1.tekcopteg.com/">https://www-demo1.tekcopteg.com/</a></li>
+<li>Branch <code>pocket-demo-2</code> -> <a href="https://www-demo2.tekcopteg.com/">https://www-demo2.tekcopteg.com/</a></li>
+<li>Branch <code>pocket-demo-3</code> -> <a href="https://www-demo3.tekcopteg.com/">https://www-demo3.tekcopteg.com/</a></li>
+<li>Branch <code>pocket-demo-4</code> -> <a href="https://www-demo4.tekcopteg.com/">https://www-demo4.tekcopteg.com/</a></li>
+<li>Branch <code>pocket-demo-5</code> -> <a href="https://www-demo5.tekcopteg.com/">https://www-demo5.tekcopteg.com/</a></li>
+</ul>
+</li>
+</ul>
+<p>For example, for Mozorg:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>mozilla<span class="w"> </span>my-demo-branch:mozorg-demo-2
+</code></pre></div>
+<p>Or for Pocket:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>mozilla<span class="w"> </span>my-demo-branch:pocket-demo-1
+</code></pre></div>
+<p><strong>Deployment notification and logs</strong></p>
+<p>At the moment, there is no way to view logs for the deployment unless
+you have access to Google Cloud Platform.</p>
+<p>If you <em>do</em> have access, the Cloud Build dashboard shows the latest
+builds, and Cloud Run will link off to the relevant logs.</p>
+<p>There are Mozilla Slack notifications in <code>#www-notify</code> that show the
+status of demo builds. (Work is ticketed to make those notifications
+richer in data.)</p>
+<p><strong>Env vars</strong></p>
+<p>Rather than tweak env vars via a web UI, they are set in config files.
+Both Mozorg and Pocket mode have specific demo-use-only env var files,
+which are only used by our GCP demo setup. They are:</p>
+<ul>
+<li><code>bedrock/gcp/bedrock-demos/cloudrun/mozorg-demo.env.yaml</code></li>
+<li><code>bedrock/gcp/bedrock-demos/cloudrun/pocket-demo.env.yaml</code></li>
+</ul>
+<p>If you need to set/add/remove an env var, you can edit the relevant file
+on your feature branch, commit it and push it along with the rest of the
+code, as above. There is a small risk of clashes, but these can be best
+avoided if you keep up to date with <code>bedrock/main</code> and can be resolved
+easily.</p>
+<p><strong>Secret values</strong></p>
+<p><em>Remember that the env vars files are public because they are in the
+Bedrock codebase, so sensitive values should not be added there, even
+temporarily.</em></p>
+<p>If you need to add a secret value, this currently needs to be added at
+the GCP level by someone with appropriate permissions to edit and apply
+the Terraform configuration, and to edit the trigger YAML spec to pass
+through the new secret. Currently Web-SRE and the backend team have
+appropriate GCP access and adding a secret is relatively quick. (We can
+make this easier in the future if there's sufficient need, of course.)</p>
+<div class="admonition note">
+<p class="admonition-title">Always-on vs auto-sleep demo servers</p>
+<p>The demo servers are on GCP Cloud Run, and by default they will be
+turned off if there is no traffic for 15 minutes. After this time, the
+demo app will be woken up if it receives a request.</p>
+<p>Normally, a 'cold start' will not be a problem. However, if the branch
+you are demoing does things that alter the database (i.e contains
+migrations), then you may find the restarted demo app crashes because
+the new migrations have not been applied after a cold start.</p>
+<p>The best current way to avoid that happening is:</p>
+<ul>
+<li>
+<p>In your branch's demo-env-vars YAML file, set
+    <code>LOCAL_DB_UPDATE=True</code> so that the Dev DB is not pulled down to the
+    demo app</p>
+</li>
+<li>
+<p>Ask one of the backend team to set the Demo app to always be awake
+    by setting 'Minimum instances' to 1 for the relevant Cloud Run
+    service and restarting it. The app will always be on and will not
+    sleep, so won't need a cold start. Once you have completed the
+    feature work, please ask the backenders to restore the default
+    sleepy behaviour. As an example with <code>mozorg-demo-1</code>:</p>
+<ul>
+<li>To make it always-on:
+    <code>gcloud run services update mozorg-demo-1 --min-instances 1</code></li>
+<li>To revert it to auto-sleeping:
+    <code>gcloud run services update mozorg-demo-1 --min-instances 0</code></li>
+</ul>
+</li>
+</ul>
+<p>(We'll try to make this a self-serve thing as soon as we can).</p>
+</div>
+<h4 id="deprecated-heroku-demo-servers">DEPRECATED: Heroku Demo Servers<a class="headerlink" href="#deprecated-heroku-demo-servers" title="Permanent link">&para;</a></h4>
+<p>Demos are now powered by Google Cloud Platform (GCP), and no longer by
+Heroku.</p>
+<p>However, the <a href="https://github.com/mozilla/bedrock/blob/main/.github/workflows/demo_deploy.yml">Github
+Action</a>
+we used to push code to Heroku may still be enabled. Pushing a branch to
+one of the [demo/*]{.title-ref} branches of the
+[mozilla/bedrock]{.title-ref} repo will trigger this. However, note that
+URLs that historically used to point to Heroku will be pointed to the
+new GCP demos services instead, so you will have to look at Heroku's
+web UI to see what the URL of the relevant Heroku app is.</p>
+<p>To push to launch a demo on Heroku:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>mozilla<span class="w"> </span>my-demo-branch:demo/1
+</code></pre></div>
+<h3 id="pushing-to-production">Pushing to production<a class="headerlink" href="#pushing-to-production" title="Permanent link">&para;</a></h3>
+<p>We're doing pushes as soon as new work is ready to go out.</p>
+<p>Code flows automatically to Dev, amd manually to Stage and to
+Production. See <a href="../pipeline/">pipeline docs</a> for details.</p>
+<p>After doing a push, those who are responsible for implementing changes
+need to update the bugs that have been pushed with a quick message
+stating that the code was deployed.</p>
+<p>If you'd like to see the commits that will be deployed before the push
+run the following command:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./bin/open-compare.py
+</code></pre></div>
+<p>This will discover the currently deployed git hash, and open a compare
+URL at github to the latest main. Look at <code>open-compare.py -h</code> for more
+options.</p>
+<p>We automate pushing to production via tagged commits (see
+<a href="../pipeline/">pipeline</a>)</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

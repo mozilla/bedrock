@@ -1,0 +1,2471 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../newsletters/">
+      
+      
+        <link rel="next" href="../sitemap/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>Contentful CMS Integration - Bedrock Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bedrock Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contentful CMS Integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bedrock Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mozilla/bedrock
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../l10n/" class="md-nav__link">
+        Localization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coding/" class="md-nav__link">
+        Developing on Bedrock
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        How to Contribute
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Continuous Integration & Deployment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Front-end testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redirects/" class="md-nav__link">
+        Managing redirects
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../newsletters/" class="md-nav__link">
+        Newsletters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Contentful CMS Integration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Contentful CMS Integration
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contentful-apps" class="md-nav__link">
+    Contentful Apps
+  </a>
+  
+    <nav class="md-nav" aria-label="Contentful Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compose" class="md-nav__link">
+    Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    Known Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations_1" class="md-nav__link">
+    Known Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#others" class="md-nav__link">
+    Others
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-models" class="md-nav__link">
+    Content Models
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emoji-legend-for-content-models" class="md-nav__link">
+    Emoji legend for content models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions-for-content-models" class="md-nav__link">
+    Naming conventions for content models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page" class="md-nav__link">
+    📄 Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    🎁 Layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component" class="md-nav__link">
+    ✏️ Component
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed" class="md-nav__link">
+    ♟ Embed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-page" class="md-nav__link">
+    Adding a new 📄 Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-component" class="md-nav__link">
+    Adding a new ✏️ Component
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-embed" class="md-nav__link">
+    Adding a new ♟ Embed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-rich-text-field-in-a-component" class="md-nav__link">
+    Adding a rich text field in a component
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-support-for-a-new-product-icon-size-folder" class="md-nav__link">
+    Adding support for a new product icon, size, folder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-text-rendering" class="md-nav__link">
+    Rich Text Rendering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l10n" class="md-nav__link">
+    L10N
+  </a>
+  
+    <nav class="md-nav" aria-label="L10N">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smartling-our-selected-approach" class="md-nav__link">
+    Smartling - our selected approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent" class="md-nav__link">
+    Fluent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-english-equivalent" class="md-nav__link">
+    No English Equivalent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assets" class="md-nav__link">
+    Assets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preview" class="md-nav__link">
+    Preview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolespermissions" class="md-nav__link">
+    Roles/Permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-practices" class="md-nav__link">
+    Development practices
+  </a>
+  
+    <nav class="md-nav" aria-label="Development practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-bedrock-set-up-locally-to-work-with-contentful" class="md-nav__link">
+    Get bedrock set up locally to work with Contentful
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-preview-your-changes-on-localhost" class="md-nav__link">
+    How to preview your changes on localhost
+  </a>
+  
+    <nav class="md-nav" aria-label="How to preview your changes on localhost">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-master-content-types" class="md-nav__link">
+    Existing (master) Content Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-non-master-content-types" class="md-nav__link">
+    New (non-master) Content Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-updaterefresh-the-sandbox-environment" class="md-nav__link">
+    How to update/refresh the sandbox environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-environment-is-connected-to-where" class="md-nav__link">
+    Which environment is connected to where?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentful-content-model-entries" class="md-nav__link">
+    Contentful Content Model &amp; Entries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-api-apipy" class="md-nav__link">
+    Bedrock API (api.py)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-render-allhtml" class="md-nav__link">
+    Bedrock Render (all.html)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-database" class="md-nav__link">
+    Bedrock Database
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-contentful-docs" class="md-nav__link">
+    Useful Contentful Docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-we-still-need-to-deal-with" class="md-nav__link">
+    Assumptions we still need to deal with
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    Legacy
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect" class="md-nav__link">
+    🔗 Connect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sitemap/" class="md-nav__link">
+        Sitemaps
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        Using External Content Card Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banners/" class="md-nav__link">
+        Banners
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uitour/" class="md-nav__link">
+        Mozilla.UITour
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-device/" class="md-nav__link">
+        Send to Device widget
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download-buttons/" class="md-nav__link">
+        Firefox Download Buttons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mozilla-accounts/" class="md-nav__link">
+        Mozilla account helpers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../funnelcake/" class="md-nav__link">
+        Funnel cakes and Partner Builds
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abtest/" class="md-nav__link">
+        A/B Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-subscriptions/" class="md-nav__link">
+        Mozilla VPN Subscriptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+          Attribution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_21">
+          <span class="md-nav__icon md-icon"></span>
+          Attribution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/" class="md-nav__link">
+        Attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0001-analytics/" class="md-nav__link">
+        Mozorg Analytics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
+        Firefox Desktop attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
+        Firefox Mobile attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
+        Mozilla accounts attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
+        Mozilla CJMS Affiliate attribution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
+        Pocket mode attribution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+          Architectural Decision Records
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
+          <span class="md-nav__icon md-icon"></span>
+          Architectural Decision Records
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectural-decisions/" class="md-nav__link">
+        Architectural Decision Records
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
+        1. Record architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
+        2. Move CI/CD Pipelines to Gitlab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
+        3. Use Cloudflare Workers and Convert for multi-variant testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
+        4. Use Fluent For Localization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
+        5. Use a Single Docker Image For All Deployments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        6. Revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
+        7. Further revise tooling for Python dependency management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
+        8. Move Demos To GCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
+        9. Manage Contentful schema state via migrations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
+        10. Move CI to Github Actions for Unit and Integration tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
+        11. Use StatsD for metrics collection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        Browser Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contentful-apps" class="md-nav__link">
+    Contentful Apps
+  </a>
+  
+    <nav class="md-nav" aria-label="Contentful Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compose" class="md-nav__link">
+    Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    Known Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations_1" class="md-nav__link">
+    Known Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#others" class="md-nav__link">
+    Others
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-models" class="md-nav__link">
+    Content Models
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emoji-legend-for-content-models" class="md-nav__link">
+    Emoji legend for content models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions-for-content-models" class="md-nav__link">
+    Naming conventions for content models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page" class="md-nav__link">
+    📄 Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    🎁 Layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component" class="md-nav__link">
+    ✏️ Component
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed" class="md-nav__link">
+    ♟ Embed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-page" class="md-nav__link">
+    Adding a new 📄 Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-component" class="md-nav__link">
+    Adding a new ✏️ Component
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-embed" class="md-nav__link">
+    Adding a new ♟ Embed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-rich-text-field-in-a-component" class="md-nav__link">
+    Adding a rich text field in a component
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-support-for-a-new-product-icon-size-folder" class="md-nav__link">
+    Adding support for a new product icon, size, folder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-text-rendering" class="md-nav__link">
+    Rich Text Rendering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l10n" class="md-nav__link">
+    L10N
+  </a>
+  
+    <nav class="md-nav" aria-label="L10N">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smartling-our-selected-approach" class="md-nav__link">
+    Smartling - our selected approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fluent" class="md-nav__link">
+    Fluent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-english-equivalent" class="md-nav__link">
+    No English Equivalent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assets" class="md-nav__link">
+    Assets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preview" class="md-nav__link">
+    Preview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolespermissions" class="md-nav__link">
+    Roles/Permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-practices" class="md-nav__link">
+    Development practices
+  </a>
+  
+    <nav class="md-nav" aria-label="Development practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-bedrock-set-up-locally-to-work-with-contentful" class="md-nav__link">
+    Get bedrock set up locally to work with Contentful
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-preview-your-changes-on-localhost" class="md-nav__link">
+    How to preview your changes on localhost
+  </a>
+  
+    <nav class="md-nav" aria-label="How to preview your changes on localhost">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-master-content-types" class="md-nav__link">
+    Existing (master) Content Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-non-master-content-types" class="md-nav__link">
+    New (non-master) Content Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-updaterefresh-the-sandbox-environment" class="md-nav__link">
+    How to update/refresh the sandbox environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-environment-is-connected-to-where" class="md-nav__link">
+    Which environment is connected to where?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contentful-content-model-entries" class="md-nav__link">
+    Contentful Content Model &amp; Entries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-api-apipy" class="md-nav__link">
+    Bedrock API (api.py)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-render-allhtml" class="md-nav__link">
+    Bedrock Render (all.html)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-database" class="md-nav__link">
+    Bedrock Database
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-contentful-docs" class="md-nav__link">
+    Useful Contentful Docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-we-still-need-to-deal-with" class="md-nav__link">
+    Assumptions we still need to deal with
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    Legacy
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect" class="md-nav__link">
+    🔗 Connect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Contentful CMS Integration</h1>
+
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Contentful is a headless <abbr title="Content Management System">CMS</abbr>. It
+stores content for our website in a structured format. We request the
+content from Contentful using an API. Then the content gets made into
+Protocol components for display on the site.</p>
+<p>We define the structure Contentful uses to store the data in <strong>content
+models</strong>. The content models are used to create a form for editors to
+fill out when they want to enter new content. Each chunk of content is
+called an <strong>entry</strong>.</p>
+<p>For example: we have a content model for our "card" component. That
+model creates a form with fields like heading, link, blurb, and image.
+Each card that is created from the model is its own entry.</p>
+<p>We have created a few different types of content models. Most are
+components that correspond to components in our design system. The
+smallest create little bits of code like buttons. The larger ones group
+together several entries for the smaller components into a bigger
+component or an entire page.</p>
+<p>For example: The <em>Page: General</em> model allows editors to include a hero
+entry, body entry, and callout entry. The callout layout entry, in turn,
+includes a <abbr title="Call To Action">CTA</abbr> entry.</p>
+<p>One advantage of storing the content in small chunks like this is that
+is can be reused in many different pages. A callout which focuses on the
+privacy related reasons to download Firefox could end up on the Private
+Browsing, Ad Tracker Blocking, and Fingerprinter Blocking pages. If our
+privacy focused tagline changes from "Keep it secret with Firefox" to
+"Keep it private with Firefox" it only needs to be updated in one
+entry.</p>
+<p>So, when looking at a page on the website that comes from Contentful you
+are typically looking at several different entries combined together.</p>
+<p>On the bedrock side, the data for all entries is periodically requested
+from the API and stored in a database.</p>
+<p>When a Contentful page is requested the code in [api.py]{.title-ref}
+transforms the information from the database into a group of Python
+dictionaries (these are like key/value pairs or an object in JS).</p>
+<p>This data is then passed to the page template (either Mozilla or for
+Firefox themed as appropriate). The page template includes some files
+which take the data and feed it into macros to create Protocol
+components. These are the same macros we use on non-Contentful pages.
+There are also includes which will import the appropriate JS and CSS
+files to support the components.</p>
+<p>Once rendered the pages get cached on the
+<abbr title="Content Delivery Network">CDN</abbr> as usual.</p>
+<h2 id="contentful-apps">Contentful Apps<a class="headerlink" href="#contentful-apps" title="Permanent link">&para;</a></h2>
+<p>Installed on Environment level. Make sure you are in the environment you
+want to edit before accessing an app. Use <em>Apps</em> link in top navigation
+of Contentful Web App to find an environment's installed apps.</p>
+<h3 id="compose">Compose<a class="headerlink" href="#compose" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.contentful.com/marketplace/contentful-app/compose/">Compose</a>
+provides a nicer editing experience. It creates a streamlined view of
+pages by combining multiple entries into a single edit screen and
+allowing field groups for better organization.</p>
+<p>Any changes made to Compose page entries in a specific environment are
+limited to that environment. If you are in a sandbox environment, you
+should see an <code>/environments/sandbox-name</code> path at the end of your
+Compose URL.</p>
+<h4 id="known-limitations">Known Limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Comments are not available on Compose entries</li>
+<li>It is not possible to edit embedded entries in Rich Text fields in
+    Compose app. Selecting the "edit" option in the dropdown opens the
+    entry in the Contentful web app.</li>
+</ul>
+<h3 id="merge">Merge<a class="headerlink" href="#merge" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.contentful.com/marketplace/app/merge/">Merge</a> provides a UI
+for comparing the state of Content Models across two environments. You
+can select what changes you would like to migrate to a new environment.</p>
+<h4 id="known-limitations_1">Known Limitations<a class="headerlink" href="#known-limitations_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Does not migrate Help Text (under Appearance Tab)</li>
+<li>Does not migrate any apps used with those Content Models</li>
+<li>Does not migrate Content Entries or Assets</li>
+<li>It can identify when Content Models should be available in Compose,
+    but it cannot migrate the field groups</li>
+</ul>
+<h3 id="others">Others<a class="headerlink" href="#others" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://www.contentful.com/marketplace/contentful-app/launch/">Launch</a>
+    allows creation of "releases", which can help coordinate
+    publishing of multiple entries</li>
+<li><a href="https://www.contentful.com/help/workflows-overview/">Workflows</a>
+    standardizes process for a specific Content Model. You can specify
+    steps and permissions to regulate how content moves from draft to
+    published.</li>
+</ul>
+<h2 id="content-models">Content Models<a class="headerlink" href="#content-models" title="Permanent link">&para;</a></h2>
+<h3 id="emoji-legend-for-content-models">Emoji legend for content models<a class="headerlink" href="#emoji-legend-for-content-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li>📄 this component is a page, it will include meta data for the page,
+    a folder, and slug</li>
+<li>🎁 this is a layout wrapper for another component</li>
+<li>✏️ this component includes editable content, not just layout config</li>
+<li>♟ this component is suitable for inclusion as an inline entry in a
+    rich text field</li>
+<li>➡️ this component can be embedded without a layout wrapper</li>
+</ul>
+<h3 id="naming-conventions-for-content-models">Naming conventions for content models<a class="headerlink" href="#naming-conventions-for-content-models" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For some fields it is important to be consistent because of how they are
+processed in bedrock. For all it is important to make the editor's jobs
+easier.</p>
+</div>
+<dl>
+<dt>Name</dt>
+<dd>
+<p>This is for the internal name of the entry. It should be set as the
+<strong>Entry title</strong>, required, and unique.</p>
+</dd>
+<dt>Preview (and Preview Title, Preview Blurb, Preview Image)</dt>
+<dd>
+<p>These will be used in search results and social media sites.
+There's also the potential to use them for aggregate pages on our
+own sites. Copy configuration and validation from an existing page.</p>
+</dd>
+<dt>Heading (and Heading Level)</dt>
+<dd>
+<p>Text on a page which provides context for information that follows
+it. Usually made into a H1-H4 in bedrock. Not: header, title, or
+name.</p>
+</dd>
+<dt>Image (and Image Size, Image Width)</dt>
+<dd>
+<p>Not: picture, photo, logo, or icon (unless we are specifically
+talking about a logo or icon.)</p>
+</dd>
+<dt>Content</dt>
+<dd>
+<p>Multi-reference</p>
+</dd>
+<dt>Product Icon</dt>
+<dd>
+<p>Copy configuration and validation from an existing page.</p>
+</dd>
+<dt>Theme</dt>
+<dd>
+<p>Copy configuration and validation from an existing page.</p>
+</dd>
+<dt>Body (Body Width, Body Vertical Alignment, Body Horizontal Alignment)</dt>
+<dd>
+<p>Rich text field in a Component. Do not use this for multi reference
+fields, even if the only content on the page is other content
+entries. Do not use MarkDown for body fields, we can't restrict the
+markup. Copy configuration and validation from an existing page.</p>
+</dd>
+<dt>Rich Text Content</dt>
+<dd>
+<p>Rich text field in a Compose Page</p>
+</dd>
+<dt><abbr title="Call To Action">CTA</abbr></dt>
+<dd>
+<p>The button/link/dropdown that we want a user to interact with
+following some content. Most often appearing in Split and Callout
+components.</p>
+</dd>
+</dl>
+<h3 id="page">📄 Page<a class="headerlink" href="#page" title="Permanent link">&para;</a></h3>
+<p>Pages in bedrock are created from page entries in Contentful's
+<a href="#compose">Compose</a> App.</p>
+<dl>
+<dt>Homepage</dt>
+<dd>
+<p>The homepage needs to be connected to bedrock using a Connect
+component (see <a href="#legacy">Legacy</a>) and page meta data like title,
+blurb, image, etc come from bedrock.</p>
+</dd>
+<dt>General</dt>
+<dd>
+<p>Includes hero, text, and callout. The simplified list and order of
+components is intended to make it easier for editors to put a page
+together.</p>
+</dd>
+<dt>Versatile</dt>
+<dd>
+<p>No pre-defined template. These pages can be constructed from any
+combination of layout and component entries.</p>
+</dd>
+<dt>Resource Center</dt>
+<dd>
+<p>Includes product, category, tags, and a rich text editor. These
+pages follow a recognizable format that will help orient users
+looking for more general product information (i.e. VPN).</p>
+</dd>
+</dl>
+<p>The versatile and general templates do not need bedrock configuration to
+be displayed. Instead, they should appear automatically at the folder
+and slug specified in the entry. These templates do include fields for
+meta data.</p>
+<h3 id="layout">🎁 Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h3>
+<p>These entries bring a group of components together. For example: 3 picto
+blocks in a picto block layout. They also include layout and theme
+options which are applied to all of the components they bring together.
+For example: centering the icons in all 3 picto blocks.</p>
+<p>These correspond roughly to Protocol templates.</p>
+<p>The one exception to the above is the Layout: Large Card, which exists
+to attach a large display image to a regular card entry. The large card
+must still be included in the Layout: 5 Cards.</p>
+<h3 id="component">✏️ Component<a class="headerlink" href="#component" title="Permanent link">&para;</a></h3>
+<p>We're using this term pretty loosely. It corresponds roughly to a
+Protocol atom, molecule, or organism.</p>
+<p>These entries include the actual content, the bits that people write and
+the images that go with it.</p>
+<p>If they do not require a layout wrapper there may also be some layout
+and theme options. For example, the text components include options for
+width and alignment.</p>
+<h3 id="embed">♟ Embed<a class="headerlink" href="#embed" title="Permanent link">&para;</a></h3>
+<p>These pre-configured content pieces can go in rich text editors when
+allowed (picto, split, multi column text...).</p>
+<p>Embeds are things like logos, where we want tightly coupled style and
+content that will be consistent across entries. If a logo design
+changes, we only need to update it in one place, and all uses of that
+embed will be updated.</p>
+<h3 id="adding-a-new-page">Adding a new 📄 Page<a class="headerlink" href="#adding-a-new-page" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Create the content model</p>
+<ul>
+<li>
+<p>Ensure the content model name starts with page (i.e.
+    pageProductJournalismStory)</p>
+</li>
+<li>
+<p>Add an SEO reference field which requires the <strong>SEO Metadata</strong>
+    content type</p>
+</li>
+<li>
+<p>In Compose, go to Page Types and click "Manage Page Types" to
+    make your new content model available to the Compose editor.</p>
+<ul>
+<li>If you have referenced components, you can choose
+    whether they will be displayed as expanded by default.</li>
+<li>Select "SEO" field for "Page Settings" field</li>
+</ul>
+</li>
+<li>
+<p>If the page is meant to be localised, ensure all fields that
+    need localisation have the "Enable localization of this field"
+    checkbox checked in content model field settings</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Update <code>bedrock/contentful/constants</code></p>
+<ul>
+<li>Add content type constant</li>
+<li>Add constant to default array</li>
+<li>If page is for a single locale only, add to
+    SINGLE_LOCALE_CONTENT_TYPES</li>
+<li>If page is localised, add to
+    LOCALISATION_COMPLETENESS_CHECK_CONFIG with an array of
+    localised fields that need to be checked before the page's
+    translation can be considered complete</li>
+</ul>
+</li>
+<li>
+<p>Update <code>bedrock/contentful/api.py</code></p>
+<ul>
+<li>If you're adding new embeddable content types, expand list of
+    renderer helpers configured for the RichTextRenderer in the
+    <code>ContentfulAPIWrapper</code></li>
+<li>Update <code>ContentfulAPIWrapper.get_content()</code> to have a clause
+    to handle the new page type</li>
+</ul>
+</li>
+<li>
+<p>Create a <a href="/coding/#writing-views">custom view</a> to pass the
+    Contentful data to a template</p>
+</li>
+</ul>
+<h3 id="adding-a-new-component">Adding a new ✏️ Component<a class="headerlink" href="#adding-a-new-component" title="Permanent link">&para;</a></h3>
+<p>Example: Picto</p>
+<ol>
+<li>Create the content model in Contentful.<ul>
+<li><em>Follow the naming conventions</em>.</li>
+<li>You may need two models if you are configuring layout
+    separately.</li>
+</ul>
+</li>
+<li>Add the new content model to the list of allowed references in other
+    content models (At the moment this is just the "content" reference
+    field on pages).</li>
+<li>In bedrock create CSS and JS entries in static-bundles for the new
+    component.</li>
+<li>In api.py write a def for the component.</li>
+<li>In api.py add the component name, def, and bundles to the
+    CONTENT_TYPE_MAP.</li>
+<li>Find or add the macro to macros-protocol.</li>
+<li>Import the macro into all.html and add a call to it in the entries
+    loop.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<ul>
+<li>can't define defaults in Contentful, so set those in your Python
+    def.</li>
+<li>for any optional fields make sure you check the field exists before
+    referencing the content.</li>
+</ul>
+</div>
+<h3 id="adding-a-new-embed">Adding a new ♟ Embed<a class="headerlink" href="#adding-a-new-embed" title="Permanent link">&para;</a></h3>
+<p>Example: Wordmark.</p>
+<ol>
+<li>Create the content model in Contentful.<ul>
+<li><em>Follow the naming conventions</em>.</li>
+</ul>
+</li>
+<li>Add the new content model to rich text fields (like split and text).</li>
+<li>In bedrock include the CSS in the Sass file for any component which
+    may use it (yeah, this is not ideal, hopefully we will have better
+    control in the future).</li>
+<li>Add a def to api.py to render the piece (like <code>_make_wordmark</code>).</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tips</p>
+<ul>
+<li>can't define defaults in Contentful, so set those in your Python
+    def.</li>
+<li>for any optional fields make sure you check the field exists before
+    referencing the content.</li>
+</ul>
+</div>
+<h3 id="adding-a-rich-text-field-in-a-component">Adding a rich text field in a component<a class="headerlink" href="#adding-a-rich-text-field-in-a-component" title="Permanent link">&para;</a></h3>
+<p>Disable everything then enable: B, I, UL, OL, Link to URL, and Inline
+entry. You will want to enable some some Headings as well, H1 should be
+enabled very rarely. Enable H2-H4 using your best judgement.</p>
+<h2 id="adding-support-for-a-new-product-icon-size-folder">Adding support for a new product icon, size, folder<a class="headerlink" href="#adding-support-for-a-new-product-icon-size-folder" title="Permanent link">&para;</a></h2>
+<p>Many content models have drop downs with identical content. For example:
+the Hero, Callout, and Wordmark models all include a "product icon".
+Other common fields are width and folder.</p>
+<p>There are two ways to keep these lists up to date to reflect Protocol
+updates:</p>
+<ol>
+<li>By opening and editing the content models individually in Contentful</li>
+<li>Scripting updates using the API</li>
+</ol>
+<p>At the moment it's not too time consuming to do by hand, just make sure
+you are copy and pasting to avoid introducing spelling errors.</p>
+<p>We have not tried scripting updates with the API yet. One thing to keep
+in mind if attempting this is that not all widths are available on all
+components. For example: the "Text: Four columns" component cannot be
+displayed in small content widths.</p>
+<h2 id="rich-text-rendering">Rich Text Rendering<a class="headerlink" href="#rich-text-rendering" title="Permanent link">&para;</a></h2>
+<p>Contentful provides a helper library to transform the rich text fields
+in the API into HTML content.</p>
+<p>In places were we disagree with the rendering or want to enhance the
+rendering we can provide our own renderers on the bedrock side. They can
+be as simple as changing [\&lt;b>]{.title-ref} tags to
+[\&lt;strong>]{.title-ref} tags or as complex as inserting a component.</p>
+<p>A list of our custom renderers is passed to the
+[RichTextRenderer]{.title-ref} helper at the start of the
+[ContentfulPage]{.title-ref} class in api.py. The renderers themselves
+are also defined in api.py</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Built-in nodes cannot be extended or customized: <em>Custom node types
+    and marks are not allowed</em>. Embed entry types are required to extend
+    rich text functionality. (i.e. if you need more than one style of
+    blockquote)</li>
+</ul>
+</div>
+<h2 id="l10n">L10N<a class="headerlink" href="#l10n" title="Permanent link">&para;</a></h2>
+<h3 id="smartling-our-selected-approach">Smartling - our selected approach<a class="headerlink" href="#smartling-our-selected-approach" title="Permanent link">&para;</a></h3>
+<p>When setting up a content model in Contentful, fields can be designated
+as available for translation.</p>
+<p>Individual users can be associated with different languages, so when
+they edit entries they see duplicate fields for each language they can
+translate into. In addition - and in the most common case - these fields
+are automatically sent to Smartling to be translated there.</p>
+<p>Once text for translation lands in Smartling, it is batched up into jobs
+for human translation. When the work is complete, Smartling
+automatically updates the relevant Contentful entries with the
+translations, in the appropriate fields.</p>
+<p>Note that those translations are only visible in Contentful if you
+select to view that locale's fields, but if they are present in
+Contentful's datastore (and that locale is enabled in the API response)
+they will be synced down by Bedrock.</p>
+<p>On the Bedrock side, the translated content is pulled down the same way
+as the default locale's content is, and is stored in a locale-specific
+ContentfulEntry in the database.</p>
+<p>In terms of 'activation', or "Do we have all the parts to show this
+Contentful content"?, Contentful content is not evaluated in the same
+way as Fluent strings (where we will show a page in a given locale if
+80% of its Fluent strings have been translated, falling back to en-US
+where not).</p>
+<p>Instead, we check that all of the required fields present in the
+translated Entry have non-null data, and if so, then the entire page is
+viable to show in the given locale. (ie, we look at fields, not strings.
+It's a coarser level of granularity compared to Fluent, because the
+data is organised differently -most of Contentful-sourced content will
+be rich text, not individual strings).</p>
+<p>The check about whether or not a Contentful entry is 'active' or
+'localisation complete' happens during the main sync from Contentful.
+Note that there is no fallback locale for Contentful content other than
+a redirect to the en-US version of the page - either the page is
+definitely available in a locale, or it's not at all available in that
+locale.</p>
+<div class="admonition note">
+<p class="admonition-title">Notes</p>
+<ul>
+<li>The batching of jobs in Smartling is still manual, even though the
+    data flow is automated. We need to keep an eye on how onerous this
+    is, plus what the cost exposure could be like if we fully automate
+    it.</li>
+<li>The Smartling integration is currently only set to use
+    Mozilla.org's 10 most popular locales, in addition to en-US.</li>
+<li>No localisation of Contentful content happens via Pontoon.</li>
+<li>The Smartling setup is most effectively leveraged with
+    Compose-based pages rather than Connect-based components, and the
+    latter may require some code tweaks.</li>
+<li>Our Compose: SEO field in Contentful is configured for translation
+    (and in use on the VPN Resource Center). All Compose pages require
+    this field. If a Compose page type is <em>not</em> meant to be localised,
+    we need to stop these SEO-related fields from going on to
+    Smartling.</li>
+</ul>
+</div>
+<h3 id="fluent">Fluent<a class="headerlink" href="#fluent" title="Permanent link">&para;</a></h3>
+<p><strong>NB: Not selected for use, but notes retained for reference</strong></p>
+<p>Instead of using the language translation fields in Contentful to store
+translations we could designate one of the locales to contain a fluent
+string ID. Bedrock could then use the string IDs and the English content
+to create Fluent files for submission into our current translation
+system.</p>
+<p>Creation of the string IDs could be automated using Contentful's write
+API.</p>
+<p>To give us the ability to use fallback strings the Contentful field
+could accept a comma separated list of values.</p>
+<p>This approach requires significant integration code on the bedrock side
+but comes with the benefit of using our current translation system,
+including community contributions.</p>
+<h3 id="no-english-equivalent">No English Equivalent<a class="headerlink" href="#no-english-equivalent" title="Permanent link">&para;</a></h3>
+<p><strong>NB: Not selected for use, but notes retained for reference</strong></p>
+<p>Components could be created in the language they are intended to display
+in. The localized content would be written in the English content
+fields.</p>
+<p>The down sides of this are that we do not know what language the
+components are written in and could accidentally display the wrong
+language on any page. It also means that localized content cannot be
+created automatically by English editors and translations would have to
+be manually associated with URLs.</p>
+<p>This is the approach that will likely be used for the German and French
+homepages since that content is not going to be used on English pages
+and creating a separate homepage with different components is valuable
+to the German and French teams.</p>
+<h2 id="assets">Assets<a class="headerlink" href="#assets" title="Permanent link">&para;</a></h2>
+<p>Images that are uploaded in Contentful will be served to site visitors
+from the Contentful <abbr title="Content Delivery Network">CDN</abbr>. The cost of using the <abbr title="Content Delivery Network">CDN</abbr> are not by request so we don't
+have to worry about how many times an image will be requested.</p>
+<p>Using the Contentful <abbr title="Content Delivery Network">CDN</abbr> lets us use their <a href="https://www.contentful.com/developers/docs/references/images-api/">Images
+API</a>
+to format our images.</p>
+<p>In theory, a large high quality image is uploaded in Contentful and then
+bedrock inserts links to the <abbr title="Content Delivery Network">CDN</abbr> for images which are cropped to fit their component
+and resized to fit their place on the page.</p>
+<p>Because we cannot rely on the dimensions of the image uploaded to
+Contentful as a guide for displaying the image - bedrock needs to be
+opinionated about what size images it requests based on the component
+and its configuration. For example, hero images are fixed at 800px wide.
+In the future this could be a user configurable option.</p>
+<h2 id="preview">Preview<a class="headerlink" href="#preview" title="Permanent link">&para;</a></h2>
+<p>Content previews are configured under <em>Settings</em> > <em>Content preview</em> on
+a per-content model basis. At the moment previews are only configured
+for pages, and display on demo5.</p>
+<p>Once the code is merged into bedrock they should be updated to use the
+dev server.</p>
+<p>Specific URLs will only update every 5 minutes as the data is pulled
+from the API but pages can be previewed up to the second at the
+[contentful-preview]{.title-ref} URL. This preview will include
+"changed" and "draft" changes (even if there is an error in the
+data) not just published changes.</p>
+<p>For previewing on localhost, see Development Practices, below.</p>
+<h2 id="rolespermissions">Roles/Permissions<a class="headerlink" href="#rolespermissions" title="Permanent link">&para;</a></h2>
+<p>In general we are trusting people to check their work before publishing
+and very few guard rails have been installed. We have a few roles with
+different permissions.</p>
+<dl>
+<dt>Admin</dt>
+<dd>
+<p>Organization</p>
+<ul>
+<li>Define roles and permission</li>
+<li>Manage users</li>
+<li>Change master and sandbox environment aliases</li>
+<li>Create new environments</li>
+</ul>
+<p>Master environment</p>
+<ul>
+<li>Edit content model</li>
+<li>Create, Edit, Publish, Archive, Delete content</li>
+<li>Install/Uninstall apps</li>
+</ul>
+</dd>
+<dt>Developer</dt>
+<dd>
+<p>Organization</p>
+<ul>
+<li>Create new environments</li>
+</ul>
+<p>Master environment</p>
+<ul>
+<li>Create, Edit, Publish, Archive content</li>
+</ul>
+<p>Sandbox environments (any non-master environment)</p>
+<ul>
+<li>Edit content model</li>
+<li>Create, Edit, Publish, Archive, Delete content</li>
+<li>Install/Uninstall apps</li>
+</ul>
+</dd>
+<dt>Editor (<abbr title="Work in Progress">WIP</abbr>)</dt>
+<dd>
+<p>Master environment (through Compose)</p>
+<ul>
+<li>Create, Edit, Publish, Archive content</li>
+</ul>
+</dd>
+</dl>
+<h2 id="development-practices">Development practices<a class="headerlink" href="#development-practices" title="Permanent link">&para;</a></h2>
+<p>This section outlines tasks generally required if developing features
+against Contentful.</p>
+<h3 id="get-bedrock-set-up-locally-to-work-with-contentful">Get bedrock set up locally to work with Contentful<a class="headerlink" href="#get-bedrock-set-up-locally-to-work-with-contentful" title="Permanent link">&para;</a></h3>
+<p>In your <code>.env</code> file for Bedrock, make sure you have the followign
+environment variables set up.</p>
+<ul>
+<li><code>CONTENTFUL_SPACE_ID</code> - this is the ID of our Contentful integration</li>
+<li><code>CONTENTFUL_SPACE_KEY</code> - this is the API key that allows you access
+    to our space. Note that two types of key are available: a Preview
+    key allows you to load in draft content; the Delivery key only loads
+    published contnet. For local dev, you want a Preview key.</li>
+<li><code>SWITCH_CONTENTFUL_HOMEPAGE_DE</code> should be set to <code>True</code> if you are
+    working on the German Contentful-powered homepage</li>
+<li><code>CONTENTFUL_ENVIRONMENT</code> Contentful has 'branches' which it calls
+    environments. [master]{.title-ref} is what we use in production, and
+    [sandbox]{.title-ref} is generally what we use in development. It's
+    also possible to reference a specific environment - e.g.
+    <code>CONTENTFUL_ENVIRONMENT=sandbox-2021-11-02</code></li>
+</ul>
+<p>To get values for these vars, please check with someone on the backend
+team.</p>
+<p>If you are working on the Contentful Sync backed by the message-queue
+(and if you don't know what this is, you don't need it for local dev),
+you will also need to set the following env vars:</p>
+<ul>
+<li><code>CONTENTFUL_NOTIFICATION_QUEUE_URL</code></li>
+<li><code>CONTENTFUL_NOTIFICATION_QUEUE_REGION</code></li>
+<li><code>CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID</code></li>
+<li><code>CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY</code></li>
+</ul>
+<h3 id="how-to-preview-your-changes-on-localhost">How to preview your changes on localhost<a class="headerlink" href="#how-to-preview-your-changes-on-localhost" title="Permanent link">&para;</a></h3>
+<p>When viewing a page in Contentful, it's possible to trigger a preview
+of the draft page. This is typically rendered on www-dev.allizom.org.
+However, that's only useful for code that's already in <code>main</code>. If you
+want to preview Contentful content on your local machine - e.g. you're
+working on a feature branch that isn't ready for merging - do the
+following:</p>
+<h4 id="existing-master-content-types">Existing (master) Content Types<a class="headerlink" href="#existing-master-content-types" title="Permanent link">&para;</a></h4>
+<p>In the right-hand sidebar of the editor page in Contentful:</p>
+<ul>
+<li>Find the Preview section</li>
+<li>Select <code>Change</code> and pick <code>Localhost Preview</code></li>
+<li>Click <code>Open preview</code></li>
+</ul>
+<h4 id="new-non-master-content-types">New (non-master) Content Types<a class="headerlink" href="#new-non-master-content-types" title="Permanent link">&para;</a></h4>
+<p>In bedrock:</p>
+<ul>
+<li>Update <code>class ContentfulPreviewView(L10nTemplateView)</code> in <a href="https://github.com/mozilla/bedrock/blob/main/bedrock/mozorg/views.py">Mozorg
+    Views</a>
+    with a render case for your new content type</li>
+</ul>
+<p>In the right-hand sidebar of the editor page in Contentful:</p>
+<ul>
+<li>Click Info tab</li>
+<li>Find <code>Entry ID</code> section and copy the value</li>
+</ul>
+<p>Manually create preview URL in browser:</p>
+<ul>
+<li>[<a href="http://localhost:8000/en-US/contentful-preview/{entry_id}/]{.title-ref">http://localhost:8000/en-US/contentful-preview/{entry_id}/]{.title-ref</a>}</li>
+</ul>
+<p>Note that previewing a page will require it to be pulled from
+Contentful's API, so you will need <code>CONTENTFUL_SPACE_ID</code> and
+<code>CONTENTFUL_SPACE_KEY</code> set in your <code>.env</code>. It may take a few seconds to
+get the data.</p>
+<p>Also note that when you select <code>Localhost preview</code>, the choice sticks,
+so you should set it back to <code>Preview on web</code> when you're done.</p>
+<h3 id="how-to-updaterefresh-the-sandbox-environment">How to update/refresh the sandbox environment<a class="headerlink" href="#how-to-updaterefresh-the-sandbox-environment" title="Permanent link">&para;</a></h3>
+<p>It helps to think of Contentful 'environments' as simply branches of a
+git-like repo full of content. You can take a particular environment and
+branch off it to make a new environment for <abbr title="Work in Progress">WIP</abbr> or experimental
+content, using the original one as your starting point. On top of this,
+Contentful has the concept of aliases for environments and we use two
+aliases in our setup:</p>
+<ul>
+<li><code>master</code> is used for production and is an alias currently pointing
+    to the [V1]{.title-ref} environment. It is pretty stable and access
+    to it is limited.</li>
+<li><code>sandbox</code> is used for development and more team members have access
+    to edit content. Again, it's an alias and is pointed at an
+    environment (think, branch) with a name in the format
+    <code>sandbox-YYYY-MM-DD</code>.</li>
+</ul>
+<p>While updating <code>master</code> is something that we generally don't do (at the
+moment only a product owner and/or admin would do this), updating the
+sandbox happens more often, typically to populate it with data more
+recently added to master. To do this:</p>
+<ul>
+<li>Go to <code>Settings &gt; Environments</code></li>
+<li>Ensure we have at least one spare environment slot. If we don't
+    delete the oldest <code>sandbox-XXXX-XX-XX</code> environment.</li>
+<li>Click the blue Add Environment button, to the right. Name it using
+    the <code>sandbox-YYYY-MM-DD</code> pattern and base it on whatever environment
+    is aliased to <code>master</code> - this will basically create a new 'branch'
+    with the content currently in master.</li>
+<li>In the Environment Aliases section of the main page, find
+    [sandbox]{.title-ref} and click Change alias target, then select the
+    <code>sandbox-XXXX-XX-XX</code> environment you just made.</li>
+</ul>
+<h3 id="which-environment-is-connected-to-where">Which environment is connected to where?<a class="headerlink" href="#which-environment-is-connected-to-where" title="Permanent link">&para;</a></h3>
+<p><code>master</code> is the environment used in Bedrock production, stage, dev and
+test <code>sandbox</code> may, in the future, be made the default environment for
+dev. It's also the one we should use for local development.</p>
+<p>If you develop a new feature that adds to Contentful (e.g. page or
+component) and you author it in the sandbox, you will need to re-create
+it in master before the corresponding bedrock changes hit production.</p>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<p>If you run into trouble on an issue, be sure to check in these places
+first and include the relevant information in requests for help (i.e.
+environment).</p>
+<h4 id="contentful-content-model-entries">Contentful Content Model &amp; Entries<a class="headerlink" href="#contentful-content-model-entries" title="Permanent link">&para;</a></h4>
+<ul>
+<li>What environment are you using?</li>
+<li>Do you have the necessary permissions to make changes?</li>
+<li>Do you see all the entry fields you need? Do those fields have the
+    correct value options?</li>
+</ul>
+<h4 id="bedrock-api-apipy"><a href="https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/api.py">Bedrock API (api.py)</a><a class="headerlink" href="#bedrock-api-apipy" title="Permanent link">&para;</a></h4>
+<ul>
+<li>What environment are you using?</li>
+<li>Can you find a Python function definition for the content type you
+    need?</li>
+<li>Does it structure data as expected?</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># example content type def</span>
+
+<span class="k">def</span> <span class="nf">get_section_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_obj</span><span class="p">):</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">entry_obj</span><span class="o">.</span><span class="n">fields</span><span class="p">()</span>
+    <span class="c1"># run `print(fields)` here to verify field values from Contentful</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;component&quot;</span><span class="p">:</span> <span class="s2">&quot;sectionHeading&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;heading&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;heading&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># run `print(data)` here to verify data values from Bedrock API</span>
+    <span class="k">return</span> <span class="n">data</span>
+</code></pre></div>
+<h4 id="bedrock-render-allhtml"><a href="https://github.com/mozilla/bedrock/blob/main/bedrock/contentful/templates/includes/contentful/all.html">Bedrock Render (all.html)</a><a class="headerlink" href="#bedrock-render-allhtml" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Can you find a render condition for the component you need?</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="x">/* example component condition */</span>
+
+<span class="cp">{%</span> <span class="k">elif</span> <span class="nv">entry.component</span> <span class="o">==</span> <span class="s1">&#39;sectionHeading&#39;</span> <span class="cp">%}</span>
+</code></pre></div>
+<p>-</p>
+<div class="highlight"><pre><span></span><code>If the component calls a macro:
+
+:   -   Does it have all the necessary parameters?
+    -   Is it passing the expected values as arguments?
+</code></pre></div>
+<p>-</p>
+<div class="highlight"><pre><span></span><code>If the component is custom HTML:
+
+:   -   Is the HTML structure correct?
+    -   Are Protocol-specific class names spelled correctly?
+</code></pre></div>
+<ul>
+<li>
+<p>Is the component
+    <a href="https://github.com/mozilla/bedrock/tree/main/media/css/contentful">CSS</a>
+    available?</p>
+</li>
+<li>
+<p>Is the component JS available?</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Component CSS and JS are defined in a <code>CONTENT_TYPE_MAP</code> from the
+Bedrock API (<code>api.py</code>).</p>
+</div>
+<h4 id="bedrock-database">Bedrock Database<a class="headerlink" href="#bedrock-database" title="Permanent link">&para;</a></h4>
+<p>Once content is synced into your local database, it can be found in the
+contentful_contentfulentry table. All the dependencies to explore the
+data are installed by default for local development.</p>
+<p>Using sqlite (with an example query to get some info about en-US pages):</p>
+<div class="highlight"><pre><span></span><code>./manage.py<span class="w"> </span>dbshell
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>select id, slug, data from contentful_contentfulentry where locale=&#39;en-US&#39;;
+</code></pre></div>
+<p>Close the sqlite shell with <code>.exit</code></p>
+<p>Using Django shell (with an example query to get data from first entry
+of "pageProductJournalismStory" type):</p>
+<div class="highlight"><pre><span></span><code>./manage.py<span class="w"> </span>shell
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">bedrock.contentful.models</span> <span class="kn">import</span> <span class="n">ContentfulEntry</span>
+
+<span class="n">product_stories</span> <span class="o">=</span> <span class="n">ContentfulEntry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;pageProductJournalismStory&quot;</span><span class="p">,</span> <span class="n">localisation_complete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="s2">&quot;en-US&quot;</span><span class="p">)</span>
+
+<span class="n">product_stories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># to see the data stored for the first story in the results</span>
+</code></pre></div>
+<p>Close the Djanjo shell with <code>exit()</code> or <code>CTRL+D</code></p>
+<h2 id="useful-contentful-docs">Useful Contentful Docs<a class="headerlink" href="#useful-contentful-docs" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&amp;-cropping/specify-focus-area">https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&amp;-cropping/specify-focus-area</a></p>
+<p><a href="https://www.contentful.com/developers/docs/references/content-delivery-api/">https://www.contentful.com/developers/docs/references/content-delivery-api/</a></p>
+<p><a href="https://contentful.github.io/contentful.py/#filtering-options">https://contentful.github.io/contentful.py/#filtering-options</a></p>
+<p><a href="https://github.com/contentful/rich-text-renderer.py">https://github.com/contentful/rich-text-renderer.py</a>
+<a href="https://github.com/contentful/rich-text-renderer.py/blob/a1274a11e65f3f728c278de5d2bac89213b7470e/rich_text_renderer/block_renderers.py">https://github.com/contentful/rich-text-renderer.py/blob/a1274a11e65f3f728c278de5d2bac89213b7470e/rich_text_renderer/block_renderers.py</a></p>
+<h2 id="assumptions-we-still-need-to-deal-with">Assumptions we still need to deal with<a class="headerlink" href="#assumptions-we-still-need-to-deal-with" title="Permanent link">&para;</a></h2>
+<blockquote>
+<ul>
+<li>image sizes</li>
+</ul>
+</blockquote>
+<h2 id="legacy">Legacy<a class="headerlink" href="#legacy" title="Permanent link">&para;</a></h2>
+<p>Since we decided to move forward the the Compose App, we no longer need
+the Connect content model. The EN-US homepage is currently still using
+Connect. Documentation is here for reference.</p>
+<ul>
+<li>🔗 this component is referenced by ID in bedrock (at the moment that
+    is just the homepage but could be used to connect single components
+    for display on non-contentful pages. For example: the latest feature
+    box on /new)</li>
+</ul>
+<h3 id="connect">🔗 Connect<a class="headerlink" href="#connect" title="Permanent link">&para;</a></h3>
+<p>These are the highest level component. They should be just a name and
+entry reference.</p>
+<p>The purpose of the connect is to create a stable ID that can be
+referenced in bedrock to be included in a jinja template. Right now we
+only do this for the homepage. This is because the homepage has some
+conditional content above and below the Contentful content.</p>
+<p>Using a connect component to create the link between jinja template and
+the Contentful Page entry means an entire new page can be created and
+proofed in Contentful before the bedrock homepage begins pulling that
+content in.</p>
+<p>In other contexts a connect content model could be created to link to
+entries where the ID may change. For example: the "Latest Firefox
+Features: section of /new could be moved to Contentful using a connect
+component which references 3 picto blocks.</p>
+<p>Because the ID must be added to a bedrock by a dev, only devs should be
+able to make new connect entries.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
