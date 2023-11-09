@@ -98,8 +98,7 @@ page javascript or redirecting to the same URL with a query string
 appended. We mostly use the redirect method in bedrock. This makes
 testing easier.
 
-Create a [variation
-view](http://bedrock.readthedocs.io/en/latest/coding.html#variation-views)
+Create a [variation view](coding.md#variation-views)
 for the a/b test.
 
 The view can handle the URL redirect in one of two ways:
@@ -112,8 +111,7 @@ The view can handle the URL redirect in one of two ways:
 
 Useful for small focused tests.
 
-This is explained on the [variation
-view](http://bedrock.readthedocs.io/en/latest/coding.html#variation-views)
+This is explained on the [variation view](coding.md#variation-views)
 page.
 
 ## New page
@@ -128,8 +126,7 @@ Create the variant page like you would a new page. Make sure it is
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 ```
 
-Configure as explained on the [variation
-view](http://bedrock.readthedocs.io/en/latest/coding.html#variation-views)
+Configure as explained on the [variation view](coding.md#variation-views)
 page.
 
 ## Traffic Cop
@@ -137,7 +134,7 @@ page.
 Create a .js file where you initialize Traffic Cop and include that in
 the experiments block in the template that will be doing the
 redirection. Wrap the extra js include in a
-[switch](http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches).
+[switch](install.md#feature-flipping-aka-switches).
 
 ``` jinja
 {% block experiments %}
@@ -149,8 +146,7 @@ redirection. Wrap the extra js include in a
 
 ## Switches
 
-See the traffic cop section of the [switch
-docs](http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches)
+See the traffic cop section of the [switch docs](install.md#feature-flipping-aka-switches)
 for instructions.
 
 ## Recording the data
@@ -158,8 +154,7 @@ for instructions.
 !!! note
 
     If you are measuring installs as part of your experiment be sure to
-    configure [custom stub
-    attribution](https://bedrock.readthedocs.io/en/latest/firefox-stub-attribution.html#measuring-campaigns-and-experiments)
+    configure [custom stub attribution](attribution/0002-firefox-desktop.md#measuring-campaigns-and-experiments)
     as well.
 
 Including the `data-ex-variant` and `data-ex-name` in the analytics

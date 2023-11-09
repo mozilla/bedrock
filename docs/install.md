@@ -484,9 +484,8 @@ To test switches locally:
 2.  Enable the switch in your `.env` file.
 3.  Restart your web server.
 
-To configure switches/env vars for a demo branch. Follow the [demo-site
-instructions
-here](https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites).
+To configure switches/env vars for a demo branch. Follow the
+[demo-site instructions here](contribute.md#demo-sites).
 
 ## Traffic Cop
 

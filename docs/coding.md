@@ -223,10 +223,8 @@ Bedrock follows the Django app structure and most templates are easy to
 find by matching URL path segments to folders and files within the
 correct app.
 
-| URL:
-  `https://www.mozilla.org/en-US/firefox/features/private-browsing/`
-| Template path:
-  `bedrock/bedrock/firefox/templates/firefox/features/private-browsing.html`
+URL: `https://www.mozilla.org/en-US/firefox/features/private-browsing/`<br>
+Template path: `bedrock/bedrock/firefox/templates/firefox/features/private-browsing.html`
 
 To get from URL to template path:
 
@@ -258,38 +256,31 @@ use.
 
 Version number is digits only.
 
-| Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0/whatsnew/>
-| Template path:
-  <https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/whatsnew>
+Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0/whatsnew/><br>
+Template path: <https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/whatsnew>
 
-| Firstrun URL: <https://www.mozilla.org/en-US/firefox/99.0/firstrun/>
-| Template path:
-  <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/firstrun/firstrun.html>
+Firstrun URL: <https://www.mozilla.org/en-US/firefox/99.0/firstrun/><br>
+Template path: <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/firstrun/firstrun.html>
 
 ### Firefox Nightly
 
 Version number is digits and **a1**.
 
-| Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0a1/whatsnew/>
-| Template path:
-  <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/nightly/whatsnew.html>
+Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0a1/whatsnew/><br>
+Template path: <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/nightly/whatsnew.html>
 
-| Firstrun URL:
-  <https://www.mozilla.org/en-US/firefox/nightly/firstrun/>
-| Template path:
-  <https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/nightly>
+Firstrun URL: <https://www.mozilla.org/en-US/firefox/nightly/firstrun/><br>
+Template path: <https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/nightly>
 
 ### Firefox Developer
 
 Version number is digits and **a2**.
 
-| Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0a2/whatsnew/>
-| Template path:
-  <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/whatsnew.html>
+Whatsnew URL: <https://www.mozilla.org/en-US/firefox/99.0a2/whatsnew/><br>
+Template path: <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/whatsnew.html>
 
-| Firstrun URL: <https://www.mozilla.org/en-US/firefox/99.0a2/firstrun/>
-| Template path:
-  <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/firstrun.html>
+Firstrun URL: <https://www.mozilla.org/en-US/firefox/99.0a2/firstrun/><br>
+Template path: <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/firstrun.html>
 
 ## Release Notes
 
@@ -328,14 +319,10 @@ command line:
 
 The script will:
 
--
+- optimize JPG and PNG files using [tinypng](https://tinypng.com/) (
 
-    optimize JPG and PNG files using [tinypng](https://tinypng.com/) (
-
-    :   -   this step is optional since running compression on the same
-            images over and over degrades them)
-        -   you will be prompted to add a [TinyPNG API
-            key](https://tinypng.com/developers)
+    -   this step is optional since running compression on the same images over and over degrades them)
+    -   you will be prompted to add a [TinyPNG API key](https://tinypng.com/developers)
 
 -   optimize SVG images locally with svgo
 
@@ -681,23 +668,17 @@ picture(
 This is a good question. The answer depends entirely on the image in
 question. A good rule of thumb is as follows:
 
--
+- Is the image a vector format (e.g. `.svg`)?
+    -   If yes, then for most cases you can simply use `static()`.
 
-    Is the image a vector format (e.g. `.svg`)?
-
-    :   -   If yes, then for most cases you can simply use `static()`.
-
--
-
-    Is the image a raster format (e.g. `.png` or `.jpg`)?
-
-    :   -   Is the same image displayed on both large and small
-            viewports? Does the image need to scale as the browser
-            resizes? If yes to both, then use `resp_img()` with both
-            `srcset` and `sizes`.
-        -   Is the image fixed in size (non-responsive)? Do you need to
-            serve a high resolution version? If yes to both, then use
-            `resp_img()` with just `srcset`.
+- Is the image a raster format (e.g. `.png` or `.jpg`)?
+    -   Is the same image displayed on both large and small
+        viewports? Does the image need to scale as the browser
+        resizes? If yes to both, then use `resp_img()` with both
+        `srcset` and `sizes`.
+    -   Is the image fixed in size (non-responsive)? Do you need to
+        serve a high resolution version? If yes to both, then use
+        `resp_img()` with just `srcset`.
 
 -   Does the source image need to change depending on a media query (e.g
     serve a different image on both desktop and mobile)? If yes, then
@@ -829,14 +810,14 @@ If you prefer to use Django's Generic View classes we have a convenient
 helper for that. You can use it either to create a custom view class of
 your own, or use it directly in a `urls.py` file.
 
-``` python
-# app/views.py
+``` python title="app/views.py"
 from lib.l10n_utils import L10nTemplateView
 
 class FirefoxRoxView(L10nTemplateView):
     template_name = "app/firefox-rox.html"
+```
 
-# app/urls.py
+``` python title="app/urls.py"
 urlpatterns = [
     # from views.py
     path("firefox/rox/", FirefoxRoxView.as_view()),
@@ -858,8 +839,7 @@ testing templates. If you'd like to have either separate templates or
 just a template context variable for switching, this will help you out.
 For example.
 
-``` python
-# urls.py
+``` python title="urls.py"
 
 from django.urls import path
 
@@ -888,8 +868,7 @@ If you'd rather have a fully separate template for your test, you can
 use the `template_name_variations` argument to the view instead of
 `template_context_variations`.
 
-``` python
-# urls.py
+``` python title="urls.py"
 
 from django.urls import path
 
@@ -922,8 +901,7 @@ name (depending on the options explained above) when requested at one of
 said locales. For example, the template name example above could be
 modified to only work for English or German like so
 
-``` python
-# urls.py
+``` python title="urls.py"
 
 from django.urls import path
 
@@ -1128,8 +1106,7 @@ HTML code and call it with the desired arguments, instead of manually
 adding Protocol markup. We can import multiple macros in a
 comma-separated fashion, ending the import with `with context`:
 
-``` html
-// bedrock/bedrock/firefox/templates/firefox/{specific-page}.html
+``` jinja title="bedrock/bedrock/firefox/templates/firefox/{specific-page}.html"
 
 {% from "macros-protocol.html" import billboard with context %}
 
@@ -1145,8 +1122,7 @@ comma-separated fashion, ending the import with `with context`:
 Because not all component styles are global, we still have to import the
 page-specific Protocol styles in SCSS:
 
-``` css
-/* bedrock/media/css/firefox/{specific-page}.scss */
+``` css title="bedrock/media/css/firefox/{specific-page}.scss"
 
 $brand-theme: 'firefox';
 
@@ -1173,7 +1149,7 @@ works for the following components:
 Include a CSS bundle in the template's `page_css` block along with any
 other page-specific bundles, like so:
 
-``` html
+``` jinja
 {% block page_css %}
     {{ css_bundle('protocol-split') }}
     {{ css_bundle('protocol-card') }}
