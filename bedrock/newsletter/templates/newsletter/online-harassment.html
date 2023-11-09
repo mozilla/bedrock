@@ -22,14 +22,31 @@ that makes the web a healthier place.{% endblock %}
 <main>
   <section class="section-subscribe mzp-l-content mzp-t-content-lg">
     <h1 class="page-title">Thanks for signing up</h1>
-    <p>We appreciate your willingness to participate in research for our anti-harassment products. Your feedback will help us
-    ensure we build products responsibly, and with your needs at the center.</p>
+
+    <p>
+      We appreciate your willingness to participate in research for our anti-harassment products. Your feedback will help us
+      ensure we build products responsibly, and with your needs at the center.
+    </p>
+
     <h2 class="page-subtitle">Whats next?</h2>
-    <p>Before we can email you about research, we need to make sure you’ve opted in to receiving emails from Mozilla. Unless
-    you’ve done so before, please check your inbox for an email from us to click and confirm your subscription.</p>
-    <p>Once we find a study for you to participate in, our small research team will reach out to you to schedule a survey, a
-    1-on-1 interview, or a session to view live prototypes.</p>
-    <p>You can reach out to us directly at <a href="mailto:digitalsafetyresearch@mozilla.com">digitalsafetyresearch@mozilla.com</a> with any questions or concerns.</p>
+
+    <p>
+      Once we find a study for you to participate in, our small research team will reach out to you to schedule a survey, a
+      1-on-1 interview, or a session to view live prototypes.
+    </p>
+
+    <p>
+      You can reach out to us directly at <a href="mailto:digitalsafetyresearch@mozilla.com">digitalsafetyresearch@mozilla.com</a>
+      with any questions or concerns.
+    </p>
+
+    <h2 class="page-subtitle">Want to stay informed about security and privacy at Mozilla?</h2>
+
+    <p>
+      Subscribe to our newsletter to get security and privacy news and product updates to stay safe and informed on everything
+      that makes the web a healthier place.
+    </p>
+
     <div class="mzp-l-content mzp-t-content-sm">
       {{ email_newsletter_form(newsletters='security-privacy-news', include_title=False, spinner_color='#0c99d5') }}
     </div>
@@ -38,5 +55,5 @@ that makes the web a healthier place.{% endblock %}
 {% endblock %}
 
 {% block js %}
-{{ js_bundle('newsletter') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}
