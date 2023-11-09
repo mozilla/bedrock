@@ -8,7 +8,12 @@ theme:
     - navigation.instant.progress
     - navigation.tracking
     - navigation.top
+    - navigation.indexes
+    - navigation.footer
     - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -78,7 +83,7 @@ nav:
   - A/B Testing: abtest.md
   - Mozilla VPN Subscriptions: vpn-subscriptions.md
   - Attribution:
-    - attribution.md
+    - attribution/index.md
     - Mozorg Analytics: attribution/0001-analytics.md
     - Firefox Desktop attribution: attribution/0002-firefox-desktop.md
     - Firefox Mobile attribution: attribution/0003-firefox-mobile.md
@@ -86,7 +91,7 @@ nav:
     - Mozilla CJMS Affiliate attribution: attribution/0005-affiliate-marketing.md
     - Pocket mode attribution: attribution/0006-pocket-analytics.md
   - Architectural Decision Records:
-    - architectural-decisions.md
+    - architecture/decisions/index.md
     - 1. Record architecture decisions: architecture/decisions/0001-record-architecture-decisions.md
     - 2. Move CI/CD Pipelines to Gitlab: architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab.md
     - 3. Use Cloudflare Workers and Convert for multi-variant testing: architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing.md
