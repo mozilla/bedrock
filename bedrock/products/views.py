@@ -23,7 +23,8 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import MozSocialWaitlistForm, RelayBundleWaitlistForm, RelayPhoneWaitlistForm, RelayPremiumWaitlistForm, VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView, ftl_file_is_active
+from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 
 def vpn_available(request):
@@ -58,25 +59,19 @@ def active_locale_available(slug, locale):
 
 @require_safe
 def vpn_landing_page(request):
-    ftl_files = ["products/vpn/landing", "products/vpn/shared"]
+    ftl_files = ["products/vpn/landing", "products/vpn/landing-2023", "products/vpn/shared", "products/vpn/pricing-2023"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     relay_bundle_available_in_country = vpn_available_in_country and country in settings.VPN_RELAY_BUNDLE_COUNTRY_CODES and switch("vpn-relay-bundle")
-    entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
-    entrypoint_variation = request.GET.get("entrypoint_variation", None)
+    experience = request.GET.get("xv", None)
 
-    # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["1", "2"]:
-        entrypoint_variation = None
-
-    if entrypoint_experiment != "vpn-refresh-pricing":
-        entrypoint_variation = None
-
-    if request.locale == "en-US":
+    if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
         template_name = "products/vpn/landing-refresh.html"
+    elif experience == "legacy":
+        template_name = "products/vpn/landing.html"
     else:
         template_name = "products/vpn/landing.html"
 
@@ -88,7 +83,7 @@ def vpn_landing_page(request):
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
         "relay_bundle_available_in_country": relay_bundle_available_in_country,
-        "entrypoint_variation": entrypoint_variation,
+        "experience": experience,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
@@ -96,18 +91,20 @@ def vpn_landing_page(request):
 
 @require_safe
 def vpn_pricing_page(request):
-    template_name = "products/vpn/pricing-refresh.html" if request.locale == "en-US" else "products/vpn/pricing.html"
-    ftl_files = ["products/vpn/landing", "products/vpn/shared"]
+    ftl_files = ["products/vpn/landing", "products/vpn/shared", "products/vpn/pricing-2023"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
-    variant = request.GET.get("v", None)
+    experience = request.GET.get("xv", None)
 
-    # ensure variant matches pre-defined value
-    if variant not in ["1", "2"]:
-        variant = None
+    if ftl_file_is_active("products/vpn/pricing-2023") and experience != "legacy":
+        template_name = "products/vpn/pricing-refresh.html"
+    elif experience == "legacy":
+        template_name = "products/vpn/pricing.html"
+    else:
+        template_name = "products/vpn/pricing.html"
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -116,7 +113,7 @@ def vpn_pricing_page(request):
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
-        "variant": variant,
+        "experience": experience,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
@@ -125,7 +122,7 @@ def vpn_pricing_page(request):
 @require_safe
 def vpn_features_page(request):
     template_name = "products/vpn/features.html"
-    ftl_files = ["products/vpn/shared"]
+    ftl_files = ["products/vpn/features", "products/vpn/shared"]
     vpn_available_in_country = vpn_available(request)
 
     context = {

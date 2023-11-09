@@ -125,6 +125,9 @@ vpn-shared-save-percent-on = Save { $percent }% on { -brand-name-mozilla-vpn }*
 # this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
 vpn-shared-when-you-subscribe = *when you subscribe to a 12-month plan
 
+# this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
+vpn-shared-with-an-annual-subscription = *with an annual subscription
+
 # Variables:
 #   $amount (string) - a string containing the total annual subscription price together with the appropriate currency symbol e.g. '35,94 €'
 vpn-shared-pricing-total = { $amount } total
@@ -170,6 +173,7 @@ vpn-subnav-vpn-vs-proxy = VPN vs Proxy
 vpn-subnav-subscribe = Subscribe to { -brand-name-mozilla-vpn }
 vpn-subnav-learn-about-vpns = Learn about VPNs
 vpn-subnav-download-mozilla-vpn = Download { -brand-name-mozilla-vpn }
+vpn-subnav-features = Features
 
 ## VPN Affiliate cookie notice
 
@@ -201,4 +205,15 @@ vpn-shared-why-bundle = Why bundle?
 #   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
 vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay-premium } yearly plan
 
-##
+vpn-shared-mozilla-vpn-is-not-yet-available = { -brand-name-mozilla-vpn } is not yet available in your country
+
+## Press quotations
+
+# Section title for press quotations about Mozilla VPN
+vpn-press-as-seen-in = As seen in
+
+# Variables
+#   $attrs (string) - link to https://addons.mozilla.org/firefox/addon/multi-account-containers/ with additional attributes
+vpn-press-mozillas-vpn-can-also-integrate-into = “{ -brand-name-mozilla }’s VPN can also <a { $attrs }>integrate into some nifty privacy-protection features</a> of its { -brand-name-firefox } browser.”
+vpn-press-unique-features-like-its-multi-account = “…unique features, like its Multi-Account Containers, might make the feature easily accessible to users with more serious privacy concerns.”
+vpn-press-mozilla-vpns-feature-list-has-grown = “{ -brand-name-mozilla-vpn }’s feature list has grown considerably since launch, and the service now beats many specialist VPNs in some areas.”

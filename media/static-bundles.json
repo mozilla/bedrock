@@ -1965,12 +1965,6 @@
     },
     {
       "files": [
-        "js/products/vpn/experiment-refresh-pricing-layout.es6.js"
-      ],
-      "name": "experiment_vpn_refresh_pricing_layout"
-    },
-    {
-      "files": [
         "js/base/banners/mozilla-banner.js",
         "js/base/banners/vpn-cyber-security-month.es6.js"
       ],

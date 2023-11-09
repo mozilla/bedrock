@@ -35,7 +35,7 @@ class TestVPNLandingPage(TestCase):
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
+        assert template == "products/vpn/landing-refresh.html"
 
     def test_vpn_landing_page_template_de(self, render_mock):
         req = RequestFactory().get("/products/vpn/")
@@ -43,7 +43,7 @@ class TestVPNLandingPage(TestCase):
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
+        assert template == "products/vpn/landing-refresh.html"
 
     @override_settings(DEV=False)
     def test_vpn_landing_page_geo_available(self, render_mock):
@@ -149,7 +149,7 @@ class TestVPNPricingPage(TestCase):
         assert template == "products/vpn/pricing-refresh.html"
 
     def test_vpn_pricing_page_template_de(self, render_mock):
-        req = RequestFactory().get("/products/vpn/pricing/")
+        req = RequestFactory().get("/products/vpn/pricing/?xv=legacy")
         req.locale = "de"
         view = views.vpn_pricing_page
         view(req)

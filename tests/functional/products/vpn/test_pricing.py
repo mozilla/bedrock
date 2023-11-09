@@ -31,7 +31,7 @@ from pages.products.vpn.pricing import VPNPricingPage
     ],
 )
 def test_vpn_pricing_available_in_country(country, base_url, selenium):
-    page = VPNPricingPage(selenium, base_url, locale="de", params=f"?geo={country}").open()
+    page = VPNPricingPage(selenium, base_url, locale="de", params=f"?xv=legacy&geo={country}").open()
     assert page.is_get_vpn_monthly_button_displayed
     assert page.is_get_vpn_12_months_button_displayed
     assert not page.is_join_waitlist_button_displayed
@@ -39,7 +39,7 @@ def test_vpn_pricing_available_in_country(country, base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_vpn_pricing_not_available_in_country(base_url, selenium):
-    page = VPNPricingPage(selenium, base_url, locale="de", params="?geo=cn").open()
+    page = VPNPricingPage(selenium, base_url, locale="de", params="?xv=legacy&geo=cn").open()
     assert not page.is_get_vpn_monthly_button_displayed
     assert not page.is_get_vpn_12_months_button_displayed
     assert page.is_join_waitlist_button_displayed

@@ -8,7 +8,7 @@
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_title_full %}Pricing - Mozilla VPN{% endblock %}
+{% block page_title_full %}{{ftl('vpn-pricing-page-title')}}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{% endblock %}
 
@@ -50,19 +50,15 @@
   <section class="mzp-l-content mzp-t-content-xl">
     {% if vpn_available %}
       <header class="c-pricing-main-header">
-        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
-        <h2 class="c-section-title">One subscription for all your devices</h2>
+        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-pricing-mozilla-vpn') }}</h1>
+        <h2 class="c-section-title">{{ ftl('vpn-pricing-one-subscription') }}</h2>
       </header>
 
-      {% if variant == '2' %}
-        {% include 'products/vpn/includes/pricing-refresh-vertical.html' %}
-      {% else %}
-        {% include 'products/vpn/includes/pricing-refresh-horizontal.html' %}
-      {% endif %}
+      {% include 'products/vpn/includes/pricing-refresh.html' %}
 
     {% else %}
       <header class="c-pricing-main-header">
-        <h1 class="c-section-title">Mozilla VPN is not yet available in your country</h1>
+        <h1 class="c-section-title">{{ ftl('vpn-pricing-vpn-not-available') }}</h1>
 
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
           {{ ftl('vpn-shared-waitlist-link') }}
@@ -74,29 +70,34 @@
   {% include 'products/vpn/includes/press.html' %}
 
   <section class="c-faq t-content-body mzp-l-content mzp-t-content-lg">
-    <h2 class="c-section-title">FAQs</h2>
+    <h2 class="c-section-title">{{ ftl('vpn-pricing-faqs') }}</h2>
 
     <details id="faq-refunds" class="c-faq-item mzp-is-anchor-link">
       <summary class="c-faq-item-heading">
-        <h3>What is Mozilla VPN’s refund policy?</h3>
+        <h3>{{ ftl('vpn-pricing-refund-policy') }}</h3>
       </summary>
-        <p class="c-faq-item-detail">The first time you subscribe to Mozilla VPN through Mozilla’s website, if you cancel your account within the first 30 days, you may request a refund and Mozilla will refund your first subscription term.</p>
-        <p class="c-faq-item-detail">If you purchased your subscription through in-app purchase from the Apple App Store or the Google Play Store, your payment is subject to the terms and conditions of the App Store. You must direct any billing and refund inquiries for such purchases to Apple or Google, as appropriate.</p>
+        <p class="c-faq-item-detail">{{ ftl('vpn-pricing-the-first-time-you') }}</p>
+        <p class="c-faq-item-detail">{{ ftl('vpn-pricing-if-you-purchased') }}</p>
     </details>
 
     <details id="faq-information" class="c-faq-item mzp-is-anchor-link">
+      {% set privacy_principles = 'href="%s" data-cta-type="link"'|safe|format(url('privacy.principles')) %}
+      {% set privacy_notice = 'href="%s" data-cta-type="link"'|safe|format(url('privacy.notices.subscription-services')) %}
+
       <summary class="c-faq-item-heading">
-        <h3>What information does Mozilla VPN keep?</h3>
+        <h3>{{ ftl('vpn-pricing-what-information') }}</h3>
       </summary>
-        <p class="c-faq-item-detail">We adhere strictly to Mozilla’s <a href="{{ url('privacy.principles') }}">Data Privacy Principles</a>. We only collect data required to keep Mozilla VPN operational and improve the product over time. We also track campaign and referral data on our mobile app to help Mozilla understand the effectiveness of our marketing campaigns. Read more in our <a href="{{ url('privacy.notices.subscription-services') }}">Privacy Notice</a>.</p>
+      <p class="c-faq-item-detail">{{ ftl('vpn-pricing-we-adhere-strictly', principles=privacy_principles, notice=privacy_notice) }}</p>
     </details>
 
     <details id="faq-subscriptions" class="c-faq-item mzp-is-anchor-link">
+
+      {% set manage_url = 'href="%s" data-cta-type="link"'|safe|format(('https://vpn.mozilla.org/r/vpn/subscription' + _params)) %}
+
       <summary class="c-faq-item-heading">
-        <h3>How do I manage my subscription and change my plan?</h3>
+        <h3>{{ ftl('vpn-pricing-how-do-i-manage') }}</h3>
       </summary>
-      {% set manage_url = 'https://vpn.mozilla.org/r/vpn/subscription' + _params %}
-      <p class="c-faq-item-detail">If you’re already subscribed to Mozilla VPN, you can change your plan or <a href="{{ manage_url }}">manage your subscription</a> anytime.</p>
+      <p class="c-faq-item-detail">{{ ftl('vpn-pricing-if-already-subscribed', manage=manage_url) }}</p>
     </details>
 
   </section>
