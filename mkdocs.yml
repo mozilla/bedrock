@@ -4,6 +4,9 @@ theme:
   logo: images/mozilla-logo.svg
   favicon: images/mozilla-m-logo.png
   features:
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
@@ -46,11 +49,13 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
-  - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.highlight
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.tilde
 # extra:

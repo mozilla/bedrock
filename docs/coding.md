@@ -42,13 +42,13 @@ already be installed alongside [Node.js](https://nodejs.org/).
 Our team maintains a few dependencies that we serve on Bedrock's
 front-end.
 
--   [\@mozilla-protocol/core](https://www.npmjs.com/package/@mozilla-protocol/core):
+-   [@mozilla-protocol/core](https://www.npmjs.com/package/@mozilla-protocol/core):
     Bedrock's primary design system
--   [\@mozmeao/cookie-helper](https://www.npmjs.com/package/@mozmeao/cookie-helper):
+-   [@mozmeao/cookie-helper](https://www.npmjs.com/package/@mozmeao/cookie-helper):
     A complete cookies reader/writer framework
--   [\@mozmeao/dnt-helper](https://github.com/mozmeao/dnt-helper): Do
+-   [@mozmeao/dnt-helper](https://github.com/mozmeao/dnt-helper): Do
     Not Track (DNT) helper
--   [\@mozmeao/trafficcop](https://www.npmjs.com/package/@mozmeao/trafficcop):
+-   [@mozmeao/trafficcop](https://www.npmjs.com/package/@mozmeao/trafficcop):
     Used for A/B testing page variants
 
 Because they are all published on NPM, install the packages and keep
