@@ -1,3 +1,6 @@
+---
+title: 1. Record architecture decisions
+---
 
 Date: 2019-01-07
 

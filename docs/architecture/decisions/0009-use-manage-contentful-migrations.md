@@ -1,3 +1,6 @@
+---
+title: 9. Manage Contentful schema state via migrations
+---
 
 Date: 2022-09-09
 

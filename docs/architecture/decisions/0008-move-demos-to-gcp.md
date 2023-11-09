@@ -1,3 +1,6 @@
+---
+title: 8. Move Demos To GCP
+---
 
 Date: 2022-07-14
 

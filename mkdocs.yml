@@ -1,6 +1,8 @@
 site_name: Bedrock Documentation
 theme:
   name: material
+  logo: images/mozilla-logo.svg
+  favicon: images/mozilla-m-logo.png
   features:
     - navigation.instant
     - navigation.instant.progress

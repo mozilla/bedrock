@@ -11,12 +11,3 @@ bedrock is a web application based on
 
 Patches are welcome! Feel free to fork and contribute to this project on
 [Github](https://github.com/mozilla/bedrock).
-
-# Contents
-
-::: {.toctree maxdepth="2"}
-install l10n coding contribute pipeline testing redirects newsletters
-contentful sitemap content-cards banners uitour send-to-device
-download-buttons mozilla-accounts funnelcake abtest vpn-subscriptions
-attribution architectural-decisions browser-support
-:::
