@@ -6,97 +6,53 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import 'includes/base';
+@import 'includes/basic';
 
-.c-banner {
-    background: $color-white url('/media/img/banners/fundraising/giving.jpg') right top no-repeat;
-    @include at2x('/media/img/banners/fundraising/giving.jpg');
-    @include background-size(cover);
-    color: $color-black;
+.c-banner-fundraising {
+    background: $color-red-50;
+    color: $color-white;
 
-    // this is needed here and below, as the high-res media query
-    // created by the at2x mixin needs overriding as well.
-    // see https://github.com/mozilla/protocol/issues/751
-    @media #{$mq-high-res} {
-        @include background-size(cover);
+    .c-banner-title {
+        @include bidi(((padding, 0 $spacing-sm 0 0, 0 0 0 $spacing-sm),));
+        @include text-title-lg;
+        color: $color-white;
+        display: block;
+        width: auto;
     }
 
-    @media #{$mq-lg} {
-        @include background-size(contain);
-        background-position: right $spacing-lg top;
+    .c-banner-tagline {
+        font-weight: bold;
+    }
 
-        @media #{$mq-high-res} {
-            @include background-size(contain);
+    .c-banner-media {
+        margin: 0 auto;
+        max-width: 255px;
+    }
+
+    .c-banner-button {
+        @include text-body-lg;
+        margin: 0;
+
+        &::after {
+            @include bidi(((content, ' →', '← '),));
         }
     }
 
-    // right-to-left locales get a reversed image.
-    html[dir='rtl'] & {
-        @include at2x('/media/img/banners/fundraising/giving-rtl.jpg');
-        @include background-size(cover);
-        background-position: left top;
+    .c-banner-close {
+        background-image: url('#{$image-path}/icons/close-white.svg');
+    }
 
-        @media #{$mq-lg} {
-            @include background-size(contain);
-            background-position: left $spacing-lg top;
+    @media #{$mq-md} {
+        .c-banner-media {
+            max-width: 100%;
+        }
+    }
 
-            @media #{$mq-high-res} {
-                @include background-size(contain);
+    @media #{$mq-lg} {
+        .mzp-c-split-body {
+            html[lang^='en'] & {
+                max-width: 34em;
             }
         }
     }
-}
-
-.c-banner-inner {
-    margin: -$spacing-md auto;
-}
-
-.c-banner-main {
-    backdrop-filter: blur(5px);
-    background: rgba($color-white, 0.7);
-    display: block;
-    padding: $spacing-md $spacing-xl;
-
-    @media #{$mq-lg} {
-        max-width: 50%;
-    }
-}
-
-.c-banner-title {
-    @include text-title-xs;
-    @include bidi(((padding, 0 $spacing-sm 0 0, 0 0 0 $spacing-sm),));
-    display: block;
-    font-weight: normal;
-    line-height: 1.25em;
-    width: auto;
-
-    html[lang^='en'] & {
-        @include text-title-sm;
-    }
-}
-
-.c-banner-content {
-    padding: 0;
-
-    p {
-        @include text-body-md;
-    }
-}
-
-.c-fundraiser-submit .mzp-c-button {
-    @include text-body-lg;
-    margin: 0;
-}
-
-@supports (display: grid) {
-    .c-fundraiser-submit .mzp-c-button {
-        width: 100%;
-    }
-}
-
-// Close button
-.c-banner-close {
-    @include bidi(((right, $spacing-lg, auto), (left, auto, $spacing-lg),));
-    background-image: url('#{$image-path}/icons/close.svg');
-    top: $spacing-lg;
 }

@@ -130,7 +130,9 @@ class HomeView(VariationTemplateView):
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
     def get_template_names(self):
-        if ftl_file_is_active("mozorg/home-new"):
+        experience = self.request.GET.get("xv", None)
+
+        if ftl_file_is_active("mozorg/home-new") and experience != "legacy":
             return [self.template_name]
 
         return [self.old_template_name]
