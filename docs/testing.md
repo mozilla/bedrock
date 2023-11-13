@@ -122,7 +122,7 @@ To run the full functional test suite against your local bedrock
 instance in Pocket mode, things are slightly different, because of the
 way things are set up in order to allow CI to test both Mozorg Mode and
 Pocket Mode at the same time. You need to define a temporary environment
-variable (needed by the [pocket_base_url]{.title-ref} fixture) and scope
+variable (needed by the `pocket_base_url` fixture) and scope
 pytest to only run Pocket tests:
 
 ``` bash
@@ -130,7 +130,7 @@ BASE_POCKET_URL=http://localhost:8000 py.test -m pocket_mode --driver Firefox --
 ```
 
 This will run all test suites found in the `tests/functional` directory
-that have the pytest "[mark]{.title-ref}" of [pocket_mode]{.title-ref}
+that have the pytest "`mark`" of `pocket_mode`
 and assumes you have bedrock running *in Pocket mode* at `localhost` on
 port `8000`. Results will be reported in
 `tests/functional/results.html`.

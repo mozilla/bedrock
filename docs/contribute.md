@@ -92,7 +92,7 @@ Also make use of an appropriate label, such as `Do Not Merge`.
 
 Should your pull request contain more than one commit, sometimes we may
 ask you to squash them into a single commit before merging. You can do
-this with [git rebase]{.title-ref}.
+this with `git rebase`.
 
 As an example, let's say your pull request contains two commits. To
 squash them into a single commit, you can follow these instructions:
@@ -100,14 +100,12 @@ squash them into a single commit, you can follow these instructions:
     git rebase -i HEAD~2
 
 You will then get an editor with your two commits listed. Change the
-second commit from [pick]{.title-ref} to [fixup]{.title-ref}, then save
+second commit from `pick` to `fixup`, then save
 and close. You should then be able to verify that you only have one
-commit now with [git log]{.title-ref}.
+commit now with `git log`.
 
 To push to GitHub again, because you "altered the history" of the repo
-by merging the two commits into one, you'll have to [git push
--f]{.title-ref} instead of just [git push]{.title-ref}.
-
+by merging the two commits into one, you'll have to `git push -f` instead of just `git push`.
 # Deploying your code
 
 These are the websites that Bedrock is usually deployed to as part of
@@ -231,8 +229,8 @@ Heroku.
 However, the [Github
 Action](https://github.com/mozilla/bedrock/blob/main/.github/workflows/demo_deploy.yml)
 we used to push code to Heroku may still be enabled. Pushing a branch to
-one of the [demo/\*]{.title-ref} branches of the
-[mozilla/bedrock]{.title-ref} repo will trigger this. However, note that
+one of the `demo/\*` branches of the
+`mozilla/bedrock` repo will trigger this. However, note that
 URLs that historically used to point to Heroku will be pointed to the
 new GCP demos services instead, so you will have to look at Heroku's
 web UI to see what the URL of the relevant Heroku app is.

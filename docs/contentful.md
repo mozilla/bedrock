@@ -42,7 +42,7 @@ are typically looking at several different entries combined together.
 On the bedrock side, the data for all entries is periodically requested
 from the API and stored in a database.
 
-When a Contentful page is requested the code in [api.py]{.title-ref}
+When a Contentful page is requested the code in `api.py`
 transforms the information from the database into a group of Python
 dictionaries (these are like key/value pairs or an object in JS).
 
@@ -366,12 +366,12 @@ in the API into HTML content.
 
 In places were we disagree with the rendering or want to enhance the
 rendering we can provide our own renderers on the bedrock side. They can
-be as simple as changing [\<b\>]{.title-ref} tags to
-[\<strong\>]{.title-ref} tags or as complex as inserting a component.
+be as simple as changing `\<b\>` tags to
+`\<strong\>` tags or as complex as inserting a component.
 
 A list of our custom renderers is passed to the
-[RichTextRenderer]{.title-ref} helper at the start of the
-[ContentfulPage]{.title-ref} class in api.py. The renderers themselves
+`RichTextRenderer` helper at the start of the
+`ContentfulPage` class in api.py. The renderers themselves
 are also defined in api.py
 
 !!! note
@@ -515,7 +515,7 @@ dev server.
 
 Specific URLs will only update every 5 minutes as the data is pulled
 from the API but pages can be previewed up to the second at the
-[contentful-preview]{.title-ref} URL. This preview will include
+`contentful-preview` URL. This preview will include
 "changed" and "draft" changes (even if there is an error in the
 data) not just published changes.
 
@@ -582,8 +582,8 @@ environment variables set up.
 -   `SWITCH_CONTENTFUL_HOMEPAGE_DE` should be set to `True` if you are
     working on the German Contentful-powered homepage
 -   `CONTENTFUL_ENVIRONMENT` Contentful has 'branches' which it calls
-    environments. [master]{.title-ref} is what we use in production, and
-    [sandbox]{.title-ref} is generally what we use in development. It's
+    environments. `master` is what we use in production, and
+    `sandbox` is generally what we use in development. It's
     also possible to reference a specific environment - e.g.
     `CONTENTFUL_ENVIRONMENT=sandbox-2021-11-02`
 
@@ -631,7 +631,7 @@ In the right-hand sidebar of the editor page in Contentful:
 
 Manually create preview URL in browser:
 
--   [http://localhost:8000/en-US/contentful-preview/{entry_id}/]{.title-ref}
+-   `http://localhost:8000/en-US/contentful-preview/{entry_id}/`
 
 Note that previewing a page will require it to be pulled from
 Contentful's API, so you will need `CONTENTFUL_SPACE_ID` and
@@ -651,7 +651,7 @@ Contentful has the concept of aliases for environments and we use two
 aliases in our setup:
 
 -   `master` is used for production and is an alias currently pointing
-    to the [V1]{.title-ref} environment. It is pretty stable and access
+    to the `V1` environment. It is pretty stable and access
     to it is limited.
 -   `sandbox` is used for development and more team members have access
     to edit content. Again, it's an alias and is pointed at an
@@ -671,7 +671,7 @@ recently added to master. To do this:
     is aliased to `master` - this will basically create a new 'branch'
     with the content currently in master.
 -   In the Environment Aliases section of the main page, find
-    [sandbox]{.title-ref} and click Change alias target, then select the
+    `sandbox` and click Change alias target, then select the
     `sandbox-XXXX-XX-XX` environment you just made.
 
 ## Which environment is connected to where?

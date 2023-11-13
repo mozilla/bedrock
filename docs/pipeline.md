@@ -103,12 +103,10 @@ Mozorg, but there are some for Pocket mode that also get run.
 ## Push to stage branch
 
 Whenever a change is pushed to the stage branch, a production docker
-image is built, published to [Docker
-Hub](https://hub.docker.com/r/mozmeao/bedrock/tags), and deployed to a
+image is built, published to [Docker Hub](https://hub.docker.com/r/mozmeao/bedrock/tags), and deployed to a
 [public staging environment](https://www.allizom.org). Once the new
 image is deployed, the full suite of UI tests is run against it again,
-but this time with the addition of the [headless download
-tests]{.title-ref}.
+but this time with the addition of the `headless download tests`.
 
 ## Push to prod branch (tagged) {#tagged-commit}
 
@@ -129,8 +127,7 @@ this will have already happened as a result of a push to the `main` or
 
 3.  Check that dev deployment is green:
 
-    1.  View the [Integration Tests Github
-        Action](https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml)
+    1.  View the [Integration Tests Github Action](https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml)
         and look at the run labelled
         `Run Integration tests for main`
 

@@ -146,7 +146,7 @@ up for, and `title` can override the text:
 {% endblock %}
 ```
 
-The [newsletters]{.title-ref} parameter, the first positional argument,
+The `newsletters` parameter, the first positional argument,
 can be either a list of newsletter IDs or a comma separated list of
 newsletters IDs:
 

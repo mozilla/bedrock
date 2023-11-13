@@ -23,7 +23,7 @@ be made for all platforms so [bedrock support may
 expand](https://github.com/mozilla/bedrock/issues/6251).
 
 We signal to bedrock that we want a funnelcake when linking to the
-download page by appending the query variable [f]{.title-ref} with a
+download page by appending the query variable `f` with a
 value equal to the funnelcake number being requested.
 
 ``` text

@@ -121,7 +121,7 @@ restart Docker.
 ## Local Installation
 
 These instructions assume you have Python, pip, and NodeJS installed. If
-you don't have [pip]{.title-ref} installed (you probably do) you can
+you don't have `pip` installed (you probably do) you can
 install it with the instructions in [the pip
 docs](https://pip.pypa.io/en/stable/installing/).
 
@@ -145,7 +145,7 @@ shells in the READMEs for the two pyenv projects.
 
 2. Configure your shell to init `pyenv` on start - this is noted in the
 project's [own docs](https://github.com/pyenv/pyenv), in more detail,
-but omits that setting [PYENV_ROOT]{.title-ref} and adding it to the
+but omits that setting `PYENV_ROOT` and adding it to the
 path is needed:
 
         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
@@ -430,7 +430,7 @@ make livedocs
 # Localization
 
 Localization (or L10n) files were fetched by the
-[bootstrap.sh]{.title-ref} command your ran earlier and are included in
+`bootstrap.sh` command your ran earlier and are included in
 the docker images. If you need to update them or switch to a different
 repo or branch after changing settings you can run the following
 command:

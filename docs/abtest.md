@@ -104,7 +104,7 @@ for the a/b test.
 The view can handle the URL redirect in one of two ways:
 
 1.  the same page, with some different content based on the
-    [variation]{.title-ref} variable
+    `variation` variable
 2.  a totally different page
 
 ## Content variation
