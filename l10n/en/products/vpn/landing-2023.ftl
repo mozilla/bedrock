@@ -11,7 +11,6 @@ vpn-landing-title = { -brand-name-mozilla-vpn }: Protect Your Entire Device
 # Variables:
 #   $countries (number) - number of available countries
 vpn-landing-desc = Use { -brand-name-mozilla-vpn } for full-device protection for all apps. With servers in { $countries }+ countries, you can connect to anywhere, from anywhere.
-
 vpn-landing-powerful-privacy-for-peace = Powerful privacy for peace of mind
 
 vpn-landing-whats-a-vpn = What’s a VPN?
@@ -20,21 +19,27 @@ vpn-landing-see-all-the-ways-mozilla-vpn = See all the ways { -brand-name-mozill
 
 vpn-landing-how-a-vpn-helps-you = How a VPN helps you
 vpn-landing-keeps-your-data-safe = Keeps your data safe on public Wi-Fi
-vpn-landing-log-into-your-bank-or = Log into your bank or doctor’s office from the airport, cafe or anywhere, with peace of mind.
+vpn-landing-log-in-to-your-bank-or = Log in to your bank or doctor’s office from the airport, cafe or anywhere, with peace of mind.
 vpn-landing-blocks-advertisers-from = Blocks advertisers from targeting you
 vpn-landing-hide-your-activity-from = Hide your activity from trackers and malware so you can shop without being watched.
 vpn-landing-helps-you-access-global = Helps you access global content
-vpn-landing-check-out-foreign-shows = Check out foreign shows, websites and live-streams while you’re traveling or at home.
+vpn-landing-check-out-streaming-media = Check out streaming media, websites and live-streams from other countries while you’re traveling or at home.
 vpn-landing-features = Features
 
 # Variables:
-#   $devices (number) - number of allowed devices
-vpn-landing-connect-up-to-devices = Connect up to { $devices } devices
+#   $devices (number) - number of devices users can connect to VPN
+vpn-landing-connect-up-to-devices = { $devices ->
+    [one] Connect up to { $devices } device
+   *[other] Connect up to { $devices } devices
+}
 
 # Variables:
 #   $servers (number) - number of VPN servers
 #   $countries (number) - number of available countries
-vpn-landing-more-than-servers-in-countries = More than { $servers } servers in { $countries }+ countries
+vpn-landing-more-than-servers-in-countries = { $servers ->
+    [one] More than { $servers } server in { $countries }+ countries
+   *[other] More than { $servers } servers in { $countries }+ countries
+}
 vpn-landing-fast-network-speeds-even-while = Fast network speeds even while gaming
 vpn-landing-no-logging-tracking-or-sharing = No logging, tracking or sharing of network data
 vpn-landing-no-bandwidth-restrictions-or = No bandwidth restrictions or throttling
