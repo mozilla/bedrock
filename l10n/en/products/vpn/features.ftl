@@ -16,12 +16,18 @@ vpn-features-convenient = Convenient
 # Variables
 #   $servers (number) - number of VPN servers
 #   $countries (number) - number of available countries
-vpn-features-more-than = More than { $servers } servers in { $countries }+ countries
+vpn-features-more-than = { $servers ->
+    [one] More than { $servers } server in { $countries }+ countries
+   *[other] More than { $servers } servers in { $countries }+ countries
+}
 vpn-features-see-our-list = See our list of servers.
 
 # Variables:
 #   $devices (number) - number of devices users can connect to VPN
-vpn-features-connect-up-to = Connect up to { $devices } devices
+vpn-features-connect-up-to = { $devices ->
+    [one] Connect up to { $devices } device
+   *[other] Connect up to { $devices } devices
+}
 vpn-features-supported-platforms = Supported on Windows, macOS, Android, iOS and Linux operating systems.
 vpn-features-no-bandwidth = No bandwidth restrictions or throttling
 vpn-features-including-no-data = Including no data cap or speed limit.
@@ -58,7 +64,7 @@ vpn-features-set-different-locations = Set different locations for each tab in {
 
 # Variables
 #   $containers (url) - link to https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn
-vpn-features-combine-mozilla-vpn-with-containers = Combine { -brand-name-mozilla-vpn } with the Multi-Account Containers { -brand-name-firefox } extension andset different VPN locations per { -brand-name-firefox } tab. <a { $containers }>Learn how</a>.
+vpn-features-combine-mozilla-vpn-with-containers = Combine { -brand-name-mozilla-vpn } with the Multi-Account Containers { -brand-name-firefox } extension and set different VPN locations per { -brand-name-firefox } tab. <a { $containers }>Learn how</a>.
 
 vpn-features-trustworthy = Trustworthy
 vpn-features-money-back = 30-day money-back guarantee
@@ -73,7 +79,7 @@ vpn-features-built-transparently = Built transparently in open source
 
 # Variables
 #   $github (url) - link to https://github.com/mozilla-mobile/mozilla-vpn-client
-vpn-features-made-with-open-source-code = { -brand-name-mozilla-vpn } is made with open-source code, meaning that all thecode is publicly accessible. See our <a { $github }>Github repository</a>.
+vpn-features-made-with-open-source-code = { -brand-name-mozilla-vpn } is made with open-source code, meaning that all the code is publicly accessible. See our <a { $github }>GitHub repository</a>.
 
 vpn-features-reviewed-by-third = Reviewed by third-party security experts
 

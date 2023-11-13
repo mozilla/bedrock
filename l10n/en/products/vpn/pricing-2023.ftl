@@ -15,12 +15,18 @@ vpn-pricing-included-in-subscription = Included in subscription:
 
 # Variables:
 #   $devices (number) - number of devices users can connect to VPN
-vpn-pricing-connect-up-to = Connect up to { $devices } devices
+vpn-pricing-connect-up-to = { $devices ->
+    [one] Connect up to { $devices } device
+   *[other] Connect up to { $devices } devices
+}
 
 # Variables:
 #   $servers (number) - number of VPN servers
 #   $countries (number) - number of available countries
-vpn-pricing-access = Access { $servers }+ servers in { $countries }+ countries
+vpn-pricing-access = { $servers ->
+    [one] Access { $servers } server in { $countries }+ countries
+   *[other] Access { $servers } servers in { $countries }+ countries
+}
 vpn-pricing-money-back = 30-day money-back guarantee (for first-time customers only)
 vpn-pricing-annual = Annual
 vpn-pricing-monthly = Monthly
@@ -32,14 +38,14 @@ vpn-pricing-vpn-not-available = { -brand-name-mozilla-vpn } is not yet available
 vpn-pricing-faqs = FAQs
 vpn-pricing-refund-policy = What is { -brand-name-mozilla-vpn }’s refund policy?
 vpn-pricing-the-first-time-you = The first time you subscribe to { -brand-name-mozilla-vpn } through { -brand-name-mozilla }’s website, if you cancel your account within the first 30 days, you may request a refund and { -brand-name-mozilla } will refund your first subscription term.
-vpn-pricing-if-you-purchased = If you purchased your subscription through in-app purchase from the Apple App Store or the Google Play Store, your payment is subject to the terms and conditions of the App Store. You must direct any billing and refund inquiries for such purchases to Apple or Google, as appropriate.
+vpn-pricing-if-you-purchased = If you purchased your subscription through in-app purchase from the Apple App Store or the Google Play Store, your payment is subject to the terms and conditions of the store. You must direct any billing and refund inquiries for such purchases to Apple or Google, as appropriate.
 
 vpn-pricing-what-information = What information does { -brand-name-mozilla-vpn } keep?
 
 # Variables
 #   $principles (url) - link to https://www.mozilla.org/privacy/principles/
 #   $notice (url) - link to https://www.mozilla.org/privacy/subscription-services/
-vpn-pricing-we-adhere-strictly = We adhere strictly to { -brand-name-mozilla }’s <a { $principles }">Data Privacy Principles</a>. We only collect data required to keep { -brand-name-mozilla-vpn } operational and improve the product over time. We also track campaign and referral data on our mobile app to help { -brand-name-mozilla } understand the effectiveness of our marketing campaigns. Read more in our <a { $notice }>Privacy Notice</a>.
+vpn-pricing-we-adhere-strictly = We adhere strictly to { -brand-name-mozilla }’s <a { $principles }>Data Privacy Principles</a>. We only collect data required to keep { -brand-name-mozilla-vpn } operational and improve the product over time. We also track campaign and referral data on our mobile app to help { -brand-name-mozilla } understand the effectiveness of our marketing campaigns. Read more in our <a { $notice }>Privacy Notice</a>.
 
 vpn-pricing-how-do-i-manage = How do I manage my subscription and change my plan?
 
