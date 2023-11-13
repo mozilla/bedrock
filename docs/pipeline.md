@@ -57,8 +57,7 @@ much faster than running the full test suite locally.
 
 ## Pull request
 
-Once a pull request is submitted, a [Unit Tests Github
-Action](https://github.com/mozilla/bedrock/actions/workflows/pull_request_tests.yml)
+Once a pull request is submitted, a [Unit Tests Github Action](https://github.com/mozilla/bedrock/actions/workflows/pull_request_tests.yml)
 will run both the Python and JavaScript unit tests, as well as the suite
 of redirect headless HTTP(s) response checks.
 
@@ -74,10 +73,8 @@ The tests for the dev environment are currently configured as follows:
 
 -   Chrome (latest) via local Selenium grid.
 -   Firefox (latest) via local Selenium grid.
--   Internet Explorer 11 (smoke tests) via [Sauce
-    Labs](https://saucelabs.com/).
--   Internet Explorer 9 (sanity tests) via [Sauce
-    Labs](https://saucelabs.com/).
+-   Internet Explorer 11 (smoke tests) via [Sauce Labs](https://saucelabs.com/).
+-   Internet Explorer 9 (sanity tests) via [Sauce Labs](https://saucelabs.com/).
 -   Headless tests.
 
 Note that now we have Mozorg mode and Pocket mode, we actually stand up
@@ -112,8 +109,7 @@ but this time with the addition of the `headless download tests`.
 
 When a tagged commit is pushed to the `prod` branch, a production
 container image (private, see above) is built, and a set of public
-images is also built and pushed to [Docker
-Hub](https://hub.docker.com/r/mozmeao/bedrock/tags) if needed (usually
+images is also built and pushed to [Docker Hub](https://hub.docker.com/r/mozmeao/bedrock/tags) if needed (usually
 this will have already happened as a result of a push to the `main` or
 `stage` branch). The production image is deployed to each
 [production](https://www.mozilla.org) deployment.
@@ -167,12 +163,10 @@ currently deployed to Dev, Stage, and Prod:
 # Instance Configuration & Switches
 
 We have a [separate repo](https://github.com/mozmeao/www-config) for
-configuring our primary instances (dev, stage, and prod). The [docs for
-updating configurations](https://mozmeao.github.io/www-config/) in that
+configuring our primary instances (dev, stage, and prod). The [docs for updating configurations](https://mozmeao.github.io/www-config/) in that
 repo are on their own page, but there is a way to tell what version of
 the configuration is in use on any particular instance of bedrock. You
-can go to the `/healthz-cron/` URL on an instance ([see
-prod](https://www.mozilla.org/healthz-cron/) for example) to see the
+can go to the `/healthz-cron/` URL on an instance ([see prod](https://www.mozilla.org/healthz-cron/) for example) to see the
 current commit of all of the external Git repos in use by the site and
 how long ago they were updated. The info on that page also includes the
 latest version of the database in use, the git revision of the bedrock
@@ -184,8 +178,7 @@ to production, this is the URL you should check.
 
 There are several components for Selenium, which are independently
 versioned. The first is the Python client, and this can be updated via
-the [test
-dependencies](https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt).
+the [test dependencies](https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt).
 The other components are the Selenium versions used in both SauceLabs
 and the local Selenium grid. These versions are selected automatically
 based on the required OS / Browser configuration, so they should not
@@ -209,9 +202,7 @@ following clause to the matrix:
   MARK_EXPRESSION: smoke
 ```
 
-You can use [Sauce Labs platform
-configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/)
-to help with the parameter values.
+You can use [Sauce Labs platform configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/) to help with the parameter values.
 
 # Pushing to the integration tests branch
 
