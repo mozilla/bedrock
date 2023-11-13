@@ -76,13 +76,13 @@ Chrome, first make sure you have both browsers installed locally, and
 then activate your bedrock virtual env.
 
 ``` bash
-$ pyenv activate bedrock
+pyenv activate bedrock
 ```
 
 You can then run the tests with the following command:
 
 ``` bash
-$ npm run test
+npm run test
 ```
 
 This will run all our front-end linters and formatting checks before
@@ -90,7 +90,7 @@ running the Jasmine test suite. If you only want to run the tests
 themselves, you can run:
 
 ``` bash
-$ npm run test
+npm run test
 ```
 
 See the [Jasmine](https://jasmine.github.io/index.html) documentation
@@ -111,7 +111,7 @@ To run the full functional test suite against your local bedrock
 instance in Mozorg mode:
 
 ``` bash
-$ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/
+py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/
 ```
 
 This will run all test suites found in the `tests/functional` directory
@@ -126,7 +126,7 @@ variable (needed by the [pocket_base_url]{.title-ref} fixture) and scope
 pytest to only run Pocket tests:
 
 ``` bash
-$ BASE_POCKET_URL=http://localhost:8000 py.test -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
+BASE_POCKET_URL=http://localhost:8000 py.test -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
 ```
 
 This will run all test suites found in the `tests/functional` directory
@@ -160,14 +160,14 @@ To run a single test file you must tell py.test to execute a specific
 file e.g. `tests/functional/test_newsletter.py`:
 
 ``` bash
-$ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
+py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
 ```
 
 To run a single test you can filter using the `-k` argument supplied
 with a keyword e.g. `-k test_download_button_displayed`:
 
 ``` bash
-$ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
+py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
 ```
 
 You can also easily run the tests against any bedrock environment by
@@ -175,7 +175,7 @@ specifying the `--base-url` argument. For example, to run all functional
 tests against dev:
 
 ``` bash
-$ py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html tests/functional/
+py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html tests/functional/
 ```
 
 !!! note
@@ -204,7 +204,7 @@ For example, to run the home page tests using Internet Explorer via
 Sauce Labs:
 
 ``` bash
-$ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName 'Windows 10' --html tests/functional/results.html tests/functional/test_home.py
+SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName 'Windows 10' --html tests/functional/results.html tests/functional/test_home.py
 ```
 
 # Writing Selenium tests

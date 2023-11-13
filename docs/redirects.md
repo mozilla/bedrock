@@ -159,11 +159,11 @@ a virtual environment for the tests. The additional requirements can
 then be installed by using the following commands:
 
 ``` bash
-$ source venv/bin/activate
+source venv/bin/activate
 ```
 
 ``` bash
-$ pip install -r requirements/dev.txt
+pip install -r requirements/dev.txt
 ```
 
 ## Running the tests
@@ -173,7 +173,7 @@ instance of the site (e.g. www.mozilla.org) you can set the `--base-url`
 command line option:
 
 ``` bash
-$ py.test --base-url https://www.mozilla.org tests/redirects/
+py.test --base-url https://www.mozilla.org tests/redirects/
 ```
 
 By default, tests will run one at a time. If you intend to run the suite

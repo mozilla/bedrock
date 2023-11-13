@@ -7,12 +7,12 @@ title: Installing Bedrock
 There are two primary methods of installing bedrock: Docker and Local.
 Whichever you choose you'll start by getting the source
 
-``` bash
-$ git clone https://github.com/mozilla/bedrock.git
+``` shell
+git clone https://github.com/mozilla/bedrock.git
 ```
 
-``` bash
-$ cd bedrock
+``` shell
+cd bedrock
 ```
 
 After these basic steps you can choose your install method below. Docker
@@ -39,13 +39,13 @@ you're on Linux or Mac (and possibly Windows 10 with the Linux
 subsystem) you can run a script that will pull our production and
 development docker images and start them:
 
-    $ make clean run
+    make clean run
 
 !!! note
 
     You can start the server any other time with:
 
-        $ make run
+        make run
 
 You should see a number of things happening, but when it's done it will
 output something saying that the server is running at
@@ -66,18 +66,18 @@ those changes reflected in your browser.
 If you don't have or want to use Make you can call the docker and
 compose commands directly
 
-``` bash
-$ docker-compose pull
+``` shell
+docker-compose pull
 ```
 
-``` bash
-$ [[ ! -f .env ]] && cp .env-dist .env
+``` shell
+[[ ! -f .env ]] && cp .env-dist .env
 ```
 
 Then starting it all is simply
 
-``` bash
-$ docker-compose up app assets
+``` shell
+docker-compose up app assets
 ```
 
 All of this is handled by the `Makefile` script and called by Make if
@@ -90,7 +90,7 @@ dependencies for Python or Node then you'll need to build new images
 for local testing. You can do this by updating the requirements files
 and/or package.json file then simply running:
 
-    $ make build
+    make build
 
 !!! note
 
@@ -139,43 +139,42 @@ shells in the READMEs for the two pyenv projects.
 
 **Install Python 3.9.10 with pyenv**
 
-1.  Install `pyenv` itself :
+1. Install `pyenv` itself :
 
-        $ brew install pyenv
+        brew install pyenv
 
-2\. Configure your shell to init `pyenv` on start - this is noted in the
+2. Configure your shell to init `pyenv` on start - this is noted in the
 project's [own docs](https://github.com/pyenv/pyenv), in more detail,
 but omits that setting [PYENV_ROOT]{.title-ref} and adding it to the
 path is needed:
 
-    $ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+        echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
-3\. Restart your login session for the changes to profile files to take
-effect - if you're not using `zsh`, the `pyenv` docs have other routes
-:
+3. Restart your login session for the changes to profile files to take
+effect - if you're not using `zsh`, the `pyenv` docs have other routes:
 
-    $ zsh -l
+        zsh -l
 
-4.  Install the latest Python 3.9.x (eg 3.9.10), then test it's there:
+4. Install the latest Python 3.9.x (eg 3.9.10), then test it's there:
 
-        $ pyenv install 3.9.10
+        pyenv install 3.9.10
 
     If you'd like to make Python 3.9.10 your default globally, you can
     do so with:
 
-        $ pyenv global 3.9.10
+        pyenv global 3.9.10
 
     If you only want to make Python 3.9.10 available in the current
     shell, while you set up the Python virtualenv (below), you can do so
     with:
 
-        $ pyenv shell 3.9.10
+        pyenv shell 3.9.10
 
 5.  Verify that you have the correct version of Python installed:
 
-        $ python --version
+        python --version
         Python 3.9.10
 
 !!! info
@@ -190,7 +189,7 @@ virtualenv for Bedrock's dependencies**
 
 1. Install `pyenv-virtualenv` :
 
-        $ brew install pyenv-virtualenv
+        brew install pyenv-virtualenv
 
 2. Configure your shell to init `pyenv-virtualenv` on start - again,
 this is noted in the `pyenv-virtualenv` project's [own
@@ -198,38 +197,38 @@ documentation](https://github.com/pyenv/pyenv-virtualenv), in more
 detail. The following will slot in a command that will work as long as
 you have pyenv-virtualenv installed:
 
-    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+        echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
 3. Restart your login session for the changes to profile files to take
    effect :
 
-       $ zsh -l
+        zsh -l
 
 4. Make a virtualenv we can use - in this example we'll call it
     `bedrock` but use whatever you want :
 
-       $ pyenv virtualenv 3.9.10 bedrock
+        pyenv virtualenv 3.9.10 bedrock
 
 **Use the virtualenv**
 
 1. Switch to the virtualenv - this is the command you will use any time
    you need this virtualenv :
 
-       $ pyenv activate bedrock
+        pyenv activate bedrock
 
 2. If you'd like to auto activate the virtualenv when you cd into the
 bedrock directory, and deactivate it when you exit the directory, you
 can do so with:
 
-    $ echo 'bedrock' > .python-version
+        echo 'bedrock' > .python-version
 
 3. Securely upgrade pip :
 
-       $ pip install --upgrade pip
+        pip install --upgrade pip
 
 4. Install / update dependencies :
 
-       $ make install-local-python-deps
+        make install-local-python-deps
 
 !!! info
 
@@ -238,12 +237,12 @@ can do so with:
     following are relevant to Intel Macs only. If you're on Apple Silicon,
     3.9.10 should 'just work':
 
-    ``` bash
-    $ export ARCHFLAGS="-arch i386 -arch x86_64"
+    ``` shell
+    export ARCHFLAGS="-arch i386 -arch x86_64"
     ```
 
-    ``` bash
-    $ make install-local-python-deps
+    ``` shell
+    make install-local-python-deps
     ```
 
     If you are on Linux, you may need at least the following packages or
@@ -255,13 +254,13 @@ can do so with:
 product-details, security-advisories, credits, release notes,
 localizations, legal-docs etc:
 
-    $ bin/bootstrap.sh
+    bin/bootstrap.sh
 
 **Install the node dependencies to run the site**. This will only work
 if you already have [Node.js](https://nodejs.org/) and
 [npm](https://www.npmjs.com/) installed:
 
-    $ npm install
+    npm install
 
 !!! note
 
@@ -289,14 +288,14 @@ know when you've broken something with a change.
 We manage our local docker environment with docker-compose and Make. All
 you need to do here is run:
 
-    $ make test
+    make test
 
 If you don't have Make you can simply run `docker-compose run test`.
 
 If you'd like to run only a subset of the tests or only one of the test
 commands you can accomplish that with a command like the following:
 
-    $ docker-compose run test py.test bedrock/firefox
+    docker-compose run test py.test bedrock/firefox
 
 This example will run only the unit tests for the `firefox` app in
 bedrock. You can substitute `py.test bedrock/firefox` with most any
@@ -305,19 +304,19 @@ show you the output. You can also just run `bash` to get an interactive
 shell in the container which you can then use to run any commands you'd
 like and inspect the file system:
 
-    $ docker-compose run test bash
+    docker-compose run test bash
 
 ## Local
 
 From the local install instructions above you should still have your
 virtualenv activated, so running the tests is as simple as:
 
-    $ py.test lib bedrock
+    py.test lib bedrock
 
 To test a single app, specify the app by name in the command above.
 e.g.:
 
-    $ py.test bedrock/firefox
+    py.test bedrock/firefox
 
 # Make it run
 
@@ -326,18 +325,18 @@ e.g.:
 You can simply run the `make run` script mentioned above, or use
 docker-compose directly:
 
-    $ docker-compose up app assets
+    docker-compose up app assets
 
 ## Local
 
 To make the server run, make sure your virtualenv is activated, and then
 run the server:
 
-    $ npm start
+    npm start
 
 If you are not inside a virtualenv, you can activate it by doing:
 
-    $ pyenv activate bedrock
+    pyenv activate bedrock
 
 ## Prod Mode
 
@@ -357,8 +356,8 @@ want `DEV=True` if you want the site to act more like
 www-dev.allizom.org in that all feature switches are `On` and all
 locales are active for every page. After that you can run the following:
 
-``` bash
-$ make run-prod
+``` shell
+make run-prod
 ```
 
 This will run the latest bedrock image using your local bedrock files
@@ -368,8 +367,8 @@ image just run `make pull`.
 If you need to include the changes you've made to your local static
 files (images, css, js, etc.) then you have to build the image first:
 
-``` bash
-$ make build-prod run-prod
+``` shell
+make build-prod run-prod
 ```
 
 ## Pocket Mode
@@ -414,18 +413,18 @@ server to auto-update any changes you make to a documentation file.
 
 Docker:
 
-``` bash
-$ make docs
+``` shell
+make docs
 ```
 
 Local:
 
-``` bash
-$ pip install -r requirements/docs.txt
+``` shell
+pip install -r requirements/docs.txt
 ```
 
-``` bash
-$ make livedocs
+``` shell
+make livedocs
 ```
 
 # Localization
@@ -436,7 +435,7 @@ the docker images. If you need to update them or switch to a different
 repo or branch after changing settings you can run the following
 command:
 
-    $ ./manage.py l10n_update
+    ./manage.py l10n_update
 
 You can read more details about how to localize content
 [here](l10n.md).
@@ -465,11 +464,13 @@ active for German and any English locale the site supports.
 You may also use these switches in Python in `views.py` files (though
 not with locale support). For example:
 
-    from bedrock.base.waffle import switch
+``` py title="views.py"
+from bedrock.base.waffle import switch
 
-    def home_view(request):
-        title = 'Staging Home' if switch('staging-site') else 'Prod Home'
-        ...
+def home_view(request):
+    title = 'Staging Home' if switch('staging-site') else 'Prod Home'
+    # ...
+```
 
 ## Testing
 
@@ -499,17 +500,18 @@ repo](https://mozmeao.github.io/www-config/configs/).
 To work with/test these experiment switches locally, you must add the
 switches to your local environment. For example:
 
-    # to switch on firstrun-copy-experiment you'd add the following to your ``.env`` file
-    SWITCH_FIRSTRUN_COPY_EXPERIMENT=on
+``` shell
+# to switch on firstrun-copy-experiment you'd add the following to your ``.env`` file
+SWITCH_FIRSTRUN_COPY_EXPERIMENT=on
+```
 
 To do the equivalent in one of the bedrock apps see the
 [www-config](https://mozmeao.github.io/www-config/) documentation.
 
 ## Notes
 
-A shortcut for activating virtual envs in zsh or bash is [.
-venv/bin/activate]{.title-ref}. The dot is the same as
-[source]{.title-ref}.
+A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as
+`source`.
 
 There's a project called [pew](https://pypi.org/project/pew/) that
 provides a better interface for managing/activating virtual envs, so you

@@ -24,9 +24,8 @@ help:
 	@echo "  test                       - run tests against local files"
 	@echo "  test-image                 - run tests against files in docker image"
 	@echo "  test-cdn                   - run CDN tests against TEST_DOMAIN"
-	@echo "  docs                       - generate Sphinx HTML documentation with server and live reload using Docker"
-	@echo "  livedocs                   - generate Sphinx HTML documentation with server and live reload"
-	@echo "  build-docs                 - generate Sphinx HTML documentation using Docker"
+	@echo "  docs                       - generate mkdocs HTML documentation with server and live reload using Docker"
+	@echo "  build-docs                 - generate mkdocs HTML documentation"
 	@echo "  build-ci                   - build docker images for use in our CI pipeline"
 	@echo "  test-ci                    - run tests against files in docker image built by CI"
 	@echo "  compile-requirements       - update Python requirements files using pip-compile"
@@ -129,10 +128,10 @@ docs: .docker-build-pull
 	${DC} up docs
 
 build-docs: .docker-build-pull
-	${DC} run app make -C docs/ clean html
+	${DC} run app mkdocs build -d "docs/_build"
 
 livedocs:
-	${MAKE} -C docs/ clean livehtml
+	mkdocs serve
 
 test_infra/fixtures/tls.json:
 	${DOCKER} run -it --rm jumanjiman/ssllabs-scan:latest --quiet https://${TEST_DOMAIN}/en-US/ > "test_infra/fixtures/tls.json"

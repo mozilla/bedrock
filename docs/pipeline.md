@@ -147,11 +147,11 @@ this will have already happened as a result of a push to the `main` or
     `MOZ_GIT_REMOTE` environment variable. So the following are equivalent:
 
     ``` bash
-    $ bin/tag-release.sh --push -r mozilla
+    bin/tag-release.sh --push -r mozilla
     ```
 
     ``` bash
-    $ MOZ_GIT_REMOTE=mozilla bin/tag-release.sh --push
+    MOZ_GIT_REMOTE=mozilla bin/tag-release.sh --push
     ```
 
     And if you'd like to just tag and not push the tag anywhere, you may
@@ -228,5 +228,5 @@ there may be commits on that branch which aren't in yours -- so, if you
 have the `mozilla/bedrock` remote set as `mozilla`:
 
 ``` bash
-$ git push -f mozilla $(git branch --show-current):run-integration-tests
+git push -f mozilla $(git branch --show-current):run-integration-tests
 ```

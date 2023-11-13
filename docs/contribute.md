@@ -13,22 +13,22 @@ When you want to start contributing, you should create a branch from
 main. This allows you to work on different project at the same time:
 
 ``` bash
-$ git switch main
+git switch main
 ```
 
 ``` bash
-$ git switch -c topic-branch
+git switch -c topic-branch
 ```
 
 To keep your branch up-to-date, assuming the mozilla repository is the
 remote called mozilla:
 
 ``` bash
-$ git switch main
+git switch main
 ```
 
 ``` bash
-$ git pull --ff-only
+git pull --ff-only
 ```
 
 More on [Why you should use
@@ -37,11 +37,11 @@ To make this the default update your Git config as described in the
 article.
 
 ``` bash
-$ git switch topic-branch
+git switch topic-branch
 ```
 
 ``` bash
-$ git rebase main
+git rebase main
 ```
 
 If you need more Git expertise, a good resource is the [Git
@@ -67,13 +67,13 @@ If you're asked to change your commit message, you can use these
 commands:
 
 ``` bash
-$ git commit --amend
+git commit --amend
 ```
 
 -f is doing a force push because you modified the history
 
 ``` bash
-$ git push -f my-remote topic-branch
+git push -f my-remote topic-branch
 ```
 
 # Submitting your work
@@ -97,7 +97,7 @@ this with [git rebase]{.title-ref}.
 As an example, let's say your pull request contains two commits. To
 squash them into a single commit, you can follow these instructions:
 
-    $ git rebase -i HEAD~2
+    git rebase -i HEAD~2
 
 You will then get an editor with your two commits listed. Change the
 second commit from [pick]{.title-ref} to [fixup]{.title-ref}, then save
@@ -143,13 +143,13 @@ get code up to one of those URLs, push it to the specified branch on
 For example, for Mozorg:
 
 ``` bash
-$ git push -f mozilla my-demo-branch:mozorg-demo-2
+git push -f mozilla my-demo-branch:mozorg-demo-2
 ```
 
 Or for Pocket:
 
 ``` bash
-$ git push -f mozilla my-demo-branch:pocket-demo-1
+git push -f mozilla my-demo-branch:pocket-demo-1
 ```
 
 **Deployment notification and logs**
@@ -240,7 +240,7 @@ web UI to see what the URL of the relevant Heroku app is.
 To push to launch a demo on Heroku:
 
 ``` bash
-$ git push -f mozilla my-demo-branch:demo/1
+git push -f mozilla my-demo-branch:demo/1
 ```
 
 ## Pushing to production
@@ -258,7 +258,7 @@ If you'd like to see the commits that will be deployed before the push
 run the following command:
 
 ``` bash
-$ ./bin/open-compare.py
+./bin/open-compare.py
 ```
 
 This will discover the currently deployed git hash, and open a compare
