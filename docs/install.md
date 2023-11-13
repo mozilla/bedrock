@@ -420,10 +420,6 @@ make docs
 Local:
 
 ``` shell
-pip install -r requirements/docs.txt
-```
-
-``` shell
 make livedocs
 ```
 
