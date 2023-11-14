@@ -8,7 +8,8 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_title %}{{ ftl('whatsnew-page-title-v2' ,fallback='whatsnew-page-title') }}{% endblock %}
+
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {% block page_css %}

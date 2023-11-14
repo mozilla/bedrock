@@ -6,7 +6,7 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_title %}{{ ftl('whatsnew-page-title-v2', fallback='whatsnew-page-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
