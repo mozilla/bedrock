@@ -83,13 +83,13 @@
       <p class="c-main-cta">
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary">
           {# Remove these conditionals once cybersecurity month banner is removed see issue 13761 #}
-          {% if show_cyber_security_banner %}
+          {% if show_events_banner %}
             {{ ftl('vpn-shared-subscribe-link') }}
           {% else %}
             {{ vpn_saving(country_code=country_code, lang=LANG, bundle_relay=False, ftl_string='vpn-shared-save-percent-on') }}
           {% endif %}
         </a>
-        {% if not show_cyber_security_banner %}
+        {% if not show_events_banner %}
         <small>
           {{ ftl('vpn-shared-with-an-annual-subscription') }}
         </small>
@@ -388,8 +388,8 @@
 {% endblock %}
 
 {% block js %}
-  {% if show_cyber_security_banner %}
-    {{ js_bundle('mozilla-vpn-cyber-security-banner') }}
+  {% if show_events_banner %}
+    {{ js_bundle('mozilla-vpn-events-banner') }}
   {% endif %}
 
   {% if vpn_affiliate_attribution_enabled %}

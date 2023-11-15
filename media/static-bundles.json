@@ -1026,9 +1026,9 @@
     },
     {
       "files": [
-        "css/base/banners/vpn-cyber-security-month.scss"
+        "css/base/banners/vpn-events-banner.scss"
       ],
-      "name": "mozilla-vpn-cyber-security-banner"
+      "name": "mozilla-vpn-events-banner"
     },
     {
       "files": [
@@ -1966,9 +1966,9 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-cyber-security-month.es6.js"
+        "js/base/banners/vpn-events-banner.es6.js"
       ],
-      "name": "mozilla-vpn-cyber-security-banner"
+      "name": "mozilla-vpn-events-banner"
     },
     {
       "files": [

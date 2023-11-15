@@ -5,7 +5,7 @@
  */
 
 function onLoad() {
-    window.Mozilla.Banner.init('vpn-cyber-security-month-banner');
+    window.Mozilla.Banner.init('vpn-events-banner');
 }
 
 window.Mozilla.run(onLoad);
