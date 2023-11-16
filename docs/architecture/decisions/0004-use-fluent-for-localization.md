@@ -1,4 +1,6 @@
-# 4. Use Fluent For Localization
+---
+title: 4. Use Fluent For Localization
+---
 
 Date: 2019-12-16
 

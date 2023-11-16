@@ -25,3 +25,5 @@ translate-toolkit==3.10.1
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==9.0.2
+# docs
+mkdocs-material==9.1.19

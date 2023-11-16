@@ -17,4 +17,3 @@ pip install pip-tools==6.13.0
 
 pip-compile --generate-hashes -r requirements/prod.in --resolver=backtracking --rebuild
 pip-compile --generate-hashes -r requirements/dev.in --resolver=backtracking --rebuild
-pip-compile --generate-hashes -r requirements/docs.in --resolver=backtracking --rebuild

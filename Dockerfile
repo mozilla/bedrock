@@ -102,7 +102,6 @@ RUN apt-install make sqlite3
 COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
 COPY requirements/* ./requirements/
 RUN pip install --require-hashes --no-cache-dir -r requirements/dev.txt
-RUN pip install --require-hashes --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./pyproject.toml ./
 COPY ./.coveragerc ./

@@ -1,4 +1,6 @@
-# 5. Use a Single Docker Image For All Deployments
+---
+title: 5. Use a Single Docker Image For All Deployments
+---
 
 Date: 2020-07-07
 
