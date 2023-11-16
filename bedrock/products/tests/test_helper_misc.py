@@ -10,7 +10,7 @@ import pytest
 from django_jinja.backend import Jinja2
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.products.templatetags.misc import vpn_available_in_country
+from bedrock.products.templatetags.misc import vpn_available_in_country, vpn_supported_locale
 
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_VPN_ENDPOINT = "https://vpn.mozilla.org/"
@@ -500,6 +500,43 @@ TEST_VPN_RELAY_BUNDLE_PRICING = {
         "default": TEST_VPN_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
     },
 }
+
+
+@pytest.mark.parametrize(
+    "locale",
+    [
+        "de",
+        "el",
+        "en-CA",
+        "en-GB",
+        "en-US",
+        "es-ES",
+        "es-MX",
+        "pl",
+        "pt-BR",
+        "pt-PT",
+        "tr",
+        "uk",
+        "zh-TW",
+        "zh-CN",
+    ],
+)
+def test_vpn_supported_locale(locale):
+    """Should return True for locales where the VPN client is localized"""
+    assert vpn_supported_locale(locale) is True
+
+
+@pytest.mark.parametrize(
+    "locale",
+    [
+        "ach" "br",
+        "sco",
+        "xh",
+    ],
+)
+def test_vpn_not_supported_locale(locale):
+    """Should return False for locales where the VPN client is not localized"""
+    assert vpn_supported_locale(locale) is False
 
 
 @pytest.mark.parametrize("country_code", settings.VPN_COUNTRY_CODES)

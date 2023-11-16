@@ -6,6 +6,7 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import 'includes/lib';
+@import 'components/unsupported-language';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';

@@ -21,6 +21,7 @@ import bleach
 import jinja2
 from django_jinja import library
 from markupsafe import Markup
+from product_details import product_details
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
@@ -677,6 +678,15 @@ def lang_short(ctx):
     """Returns a shortened locale code e.g. en."""
     locale = getattr(ctx["request"], "locale", "en-US")
     return locale.split("-")[0]
+
+
+@library.global_function
+@jinja2.pass_context
+def native_language_name(ctx):
+    """Returns translated native language name e.g. `tr` locale would render `Türkçe`"""
+    locale = getattr(ctx["request"], "locale", "en-US")
+    language = product_details.languages.get(locale)
+    return language["native"] if language else locale
 
 
 def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, product, adgroup, creative=None):

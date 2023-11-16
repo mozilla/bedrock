@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if not vpn_supported_locale(LANG) and ftl_has_messages('vpn-shared-unsupported-language-warning', 'vpn-shared-unsupported-language-contribute') %}
+  <div class="vpn-unsupported-language">
+    <p>
+      {% set sumo_href = 'target="_blank" href="https://support.mozilla.org/kb/what-languages-mozilla-vpn-available' + _params + '"' %}
+      {{ ftl('vpn-shared-unsupported-language-warning', language=native_language_name(), href=sumo_href) }}
+    </p>
+
+    <p>
+      {% set contribute_href = 'target="_blank" href="https://pontoon.mozilla.org/projects/mozilla-vpn-client/"' %}
+      {{ ftl('vpn-shared-unsupported-language-contribute', href=contribute_href) }}
+    </p>
+  </div>
+{% endif %}

@@ -68,11 +68,6 @@ def vpn_landing_page(request):
             template_name = "products/vpn/variants/landing-refresh-{}.html".format(entrypoint_variation)
         else:
             template_name = "products/vpn/landing-refresh.html"
-    elif experience == "legacy":
-        if entrypoint_experiment == "vpn-pricing-position" and entrypoint_variation in ["1", "2"]:
-            template_name = "products/vpn/variants/landing-{}.html".format(entrypoint_variation)
-        else:
-            template_name = "products/vpn/landing.html"
     else:
         if entrypoint_experiment == "vpn-pricing-position" and entrypoint_variation in ["1", "2"]:
             template_name = "products/vpn/variants/landing-{}.html".format(entrypoint_variation)
