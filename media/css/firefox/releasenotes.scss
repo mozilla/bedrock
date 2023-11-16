@@ -433,12 +433,24 @@ $image-path: '/media/protocol/img';
         }
 
         p {
-            margin-bottom: 0;
+            margin-bottom: $spacing-sm;
         }
 
-        span {
+        details {
             @include text-body-xs;
             cursor: help;
+            padding: 0 $spacing-md;
+
+            summary {
+                position: unset;
+                padding: 0 0 $spacing-xs 0;
+                color: $color-marketing-gray-60;
+                font-weight: bold;
+
+                &::before {
+                    content:none;
+                }
+            }
         }
     }
 
