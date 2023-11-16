@@ -14,4 +14,4 @@ banner-vpn-holidays-take-20-percent-off = This holiday season <strong>take 20% o
 banner-vpn-holidays-use-coupon-code = Use code { $coupon_code } at checkout
 
 banner-vpn-holidays-get-annual-sub = Get annual subscription
-banner-vpn-holidays-offer-ends = Offer ends Dec 18, 2023
+banner-vpn-holidays-offer-ends = Offer ends Dec 31, 2023
