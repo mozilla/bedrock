@@ -75,7 +75,7 @@ def vpn_landing_page(request):
         entrypoint_variation = None
 
     if entrypoint_experiment != "vpn-holidays-na-test":
-        entrypoint_variation = None
+        entrypoint_experiment = None
 
     if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
         template_name = "products/vpn/landing-refresh.html"
@@ -93,6 +93,8 @@ def vpn_landing_page(request):
         "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
         "relay_bundle_available_in_country": relay_bundle_available_in_country,
         "experience": experience,
+        "entrypoint_experiment": entrypoint_experiment,
+        "entrypoint_variation": entrypoint_variation,
     }
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)

@@ -10,13 +10,13 @@ import { isApprovedToRun } from '../experiment-utils.es6.js';
 const href = window.location.href;
 
 const initTrafficCop = () => {
-    if (href.indexOf('v=') !== -1) {
-        if (href.indexOf('v=1') !== -1) {
+    if (href.indexOf('entrypoint_variation=') !== -1) {
+        if (href.indexOf('entrypoint_variation=1') !== -1) {
             window.dataLayer.push({
                 'data-ex-variant': 'vpn-holidays-na-test-v1',
                 'data-ex-name': 'vpn-holidays-na-test'
             });
-        } else if (href.indexOf('v=2') !== -1) {
+        } else if (href.indexOf('entrypoint_variation=2') !== -1) {
             window.dataLayer.push({
                 'data-ex-variant': 'vpn-holidays-na-test-v2',
                 'data-ex-name': 'vpn-holidays-na-test'
@@ -26,8 +26,8 @@ const initTrafficCop = () => {
         const cop = new TrafficCop({
             id: 'vpn-holidays-na-test',
             variations: {
-                'v=1': 50,
-                'v=2': 50
+                'entrypoint_variation=1': 50,
+                'entrypoint_variation=2': 50
             }
         });
         cop.init();

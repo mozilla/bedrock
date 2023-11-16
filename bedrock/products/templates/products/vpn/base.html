@@ -17,7 +17,7 @@
                                     ftl_has_messages('banner-vpn-holidays-take-20-percent-off', 'banner-vpn-holidays-use-coupon-code', 'banner-vpn-holidays-get-annual-sub', 'banner-vpn-holidays-offer-ends') and
                                     switch('vpn-events-banner') %}
 
-{% set show_holidays_na_banner = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] and variation =='1' %}
+{% set show_holidays_na_banner = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] and entrypoint_variation == '1'%}
 
 {% block sub_navigation %}
   {% include 'products/vpn/includes/subnav.html' %}
@@ -25,23 +25,44 @@
 
 {% block site_css %}
   {{ super() }}
-  {% if show_events_banner and show_holidays_na_banner %}
+  {% if show_events_banner %}
     {{ css_bundle('mozilla-vpn-events-banner') }}
   {% endif %}
+
+  {% if show_holidays_na_banner %}
+    {{ css_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
+
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_events_banner and show_holidays_na_banner %}
-    {% include 'includes/banners/vpn-events-banner.html' %}
-  {% endif %}
+{% if show_events_banner and show_holidays_na_banner %}
+  {% include 'includes/banners/vpn-events-banner.html' %}
+{% endif %}
+
+{% if not show_holidays_na_banner %}
+
+{% endif %}
+
+{% if show_events_banner%}
+  {% include 'includes/banners/vpn-events-banner.html' %}
+{% endif %}
+
 {% endblock %}
 
 {% block js %}
-  {% if show_events_banner and show_holidays_na_banner %}
+  {% if show_events_banner %}
     {{ js_bundle('mozilla-vpn-events-banner') }}
     {{ js_bundle('fxa_product_button') }}
     {{ js_bundle('data_begincheckout') }}
   {% endif %}
+
+  {% if show_holidays_na_banner %}
+    {{ js_bundle('mozilla-vpn-holidays-na-experiment-banner') }}
+    {{ js_bundle('fxa_product_button') }}
+    {{ js_bundle('data_begincheckout') }}
+  {% endif %}
+
 {% endblock %}
 
 {% block third_party_js %}

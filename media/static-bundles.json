@@ -1973,6 +1973,12 @@
     },
     {
       "files": [
+        "js/base/banners/vpn-events-banner-na-experiment.es6.js"
+      ],
+      "name": "mozilla-vpn-holidays-na-experiment-banner"
+    },
+    {
+      "files": [
         "js/careers/listings/listings.es6.js"
       ],
       "name": "careers-listings"
