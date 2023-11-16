@@ -145,6 +145,7 @@ class Note(RNModel):
     sort_num = None
     created = None
     modified = None
+    progressive_rollout = False
 
 
 class MarkdownField(models.TextField):

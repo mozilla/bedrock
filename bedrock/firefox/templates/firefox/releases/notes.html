@@ -394,10 +394,21 @@
 {% block email_form %}{% endblock %}
 
 {% macro note_entry(note) %}
-  <li id="note-{{ note.id }}">
-    {{ note.note|safe }}
-    {% if release.channel == 'Nightly' and note.bug -%}
-    <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a></span>
-    {%- endif %}
+  <li class="release-note" id="note-{{ note.id }}">
+    <div class="release-note-content">
+      {{ note.note|safe }}
+      {% if release.channel == 'Nightly' and note.bug -%}
+      <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a></span>
+      {%- endif %}
+    </div>
+    {% if note.progressive_rollout %}
+    <div class="release-note-progressive-rollout-indicator">
+      <img src="{{ static('img/firefox/releasenotes/progressive.svg') }}" alt="">
+      <p>This feature is part of a progressive roll out.</p>
+      <span title="Certain new Firefox features are released gradually. This means some users will see the feature before everyone does. This approach helps to get early feedback to catch bugs and improve behavior quickly, meaning more Firefox users overall have a better experience.">
+        What is a progressive roll out?
+      </span>
+    </div>
+    {% endif %}
   </li>
 {% endmacro %}

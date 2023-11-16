@@ -417,3 +417,39 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.release-note {
+    .release-note-progressive-rollout-indicator {
+        @include text-body-md;
+        text-align: center;
+        width: 230px;
+        border: 2px solid $color-marketing-gray-20;
+        border-radius: $border-radius-md;
+        padding: $spacing-sm 0;
+        margin: auto;
+
+        img {
+            width: 100px
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        span {
+            @include text-body-xs;
+            cursor: help;
+        }
+    }
+
+    @media #{$mq-md} {
+        display: flex;
+
+        .release-note-progressive-rollout-indicator {
+            margin-left: $spacing-lg;
+            max-width: 230px;
+            min-width: 230px;
+        }
+    }
+
+}
