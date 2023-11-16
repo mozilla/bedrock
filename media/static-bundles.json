@@ -1966,8 +1966,7 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-events-banner.es6.js",
-        "js/base/banners/vpn-events-banner-na-experiment.es6.js"
+        "js/base/banners/vpn-events-banner.es6.js"
       ],
       "name": "mozilla-vpn-events-banner"
     },
