@@ -4,33 +4,43 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends 'includes/banners/base.html' %}
+{% extends 'includes/banners/basic.html' %}
 
 {% block banner_id %}fundraising-banner{% endblock %}
 
-{% block banner_title %}{{ ftl('banner-fundraising-title-v2', fallback='banner-fundraising-title') }}{% endblock %}
+{% block banner_class %}c-banner-fundraising{% endblock %}
 
 {% block banner_content %}
-  {% if ftl_has_messages('banner-fundraising-body-v2', 'banner-fundraising-body-extra') %}
-    <p>{{ ftl('banner-fundraising-body-v2') }}</p>
-    <p>{{ ftl('banner-fundraising-body-extra') }}</p>
-  {% else %}
-    <p>{{ ftl('banner-fundraising-body') }}</p>
-  {% endif %}
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+    image=resp_img(
+      url='img/banners/fundraising/loading-800.png',
+      srcset={
+        'img/banners/fundraising/loading-600.png': '600w',
+        'img/banners/fundraising/loading-800.png': '800w',
+        'img/banners/fundraising/loading-1000.png': '1000w',
+        'img/banners/fundraising/loading-1200.png': '1200w',
+        'img/banners/fundraising/loading-1400.png': '1400w',
+      },
+      sizes={
+        '(min-width: 1600px)': '680px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '355',
+        'width': '680',
+        'class': 'c-banner-media mzp-c-split-media-asset'
+      }
+    ),
+    media_after=False
+  ) %}
+    <h2 class="c-banner-title">{{ ftl('banner-fundraising-giving-tuesday-title') }}</h2>
 
-  <form id="fundraiser-form" class="c-fundraiser-form" method="get" action="https://foundation.mozilla.org/">
-    <div class="c-fundraiser-submit">
-      <button type="submit" class="mzp-c-button mzp-t-product mzp-t-lg">{{ ftl('banner-fundraising-donate') }}</button>
-    </div>
+    <p class="c-banner-tagline">{{ ftl('banner-fundraising-giving-tuesday-tagline') }}</p>
 
-    {# Referral params #}
-    <input type="hidden" name="form" value="donate">
-    <input type="hidden" name="c_id" value="7014x000000eQOH">
-    <input type="hidden" name="ref" value="moco">
-    <input type="hidden" name="utm_campaign" value="moco">
-    <input type="hidden" name="utm_source" value="mozilla.org">
-    <input type="hidden" name="utm_medium" value="referral">
-    <input type="hidden" name="utm_content" value="giving2022banner">
+    {% set donate_url = "https://foundation.mozilla.org/?form=eoy-banner&utm_medium=web&utm_source=eoy-banner&utm_campaign=23-EOYB-B1&utm_content=button_donate&utm_term=" + lang_short() %}
 
-  </form>
+    <a class="c-banner-button mzp-c-button mzp-t-product mzp-t-xl" href="{{ donate_url }}">{{ ftl('banner-fundraising-donate') }}</a>
+  {% endcall %}
 {% endblock %}
