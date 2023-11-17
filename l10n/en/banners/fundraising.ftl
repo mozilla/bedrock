@@ -4,6 +4,7 @@
 
 ### URL: https://www-dev.allizom.org/
 
+# Giving Tuesday is a global day of generosity where people are inspired to give, collaborate, share and donate.
 banner-fundraising-giving-tuesday-title = Donate to { -brand-name-mozilla } for Giving Tuesday
 banner-fundraising-giving-tuesday-tagline = It’s time to reclaim the internet from big tech. Can you donate to { -brand-name-mozilla } for Giving Tuesday?
 
