@@ -32,11 +32,23 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
+
+{% set show_events_banner = vpn_available_in_country(country_code) and ftl_has_messages('banner-vpn-holidays-take-20-percent-off', 'banner-vpn-holidays-use-coupon-code', 'banner-vpn-holidays-get-annual-sub', 'banner-vpn-holidays-offer-ends') and
+switch('vpn-events-banner') %}
+
+{% set holidays_na_banner_experiment = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
+{% endblock %}
+
+{% block page_banner %}
+  {% if show_events_banner %}
+    {% include 'includes/banners/vpn-events-banner.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block site_header %}

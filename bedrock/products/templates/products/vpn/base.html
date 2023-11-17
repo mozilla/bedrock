@@ -13,12 +13,6 @@
 {% block page_favicon_large %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/vpn/favicon.png') }}{% endblock %}
 
-{% set show_events_banner = vpn_available_in_country(country_code) and
-                                    ftl_has_messages('banner-vpn-holidays-take-20-percent-off', 'banner-vpn-holidays-use-coupon-code', 'banner-vpn-holidays-get-annual-sub', 'banner-vpn-holidays-offer-ends') and
-                                    switch('vpn-events-banner') %}
-
-{% set holidays_na_banner_experiment = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] %}
-
 {% block sub_navigation %}
   {% include 'products/vpn/includes/subnav.html' %}
 {% endblock %}
@@ -39,12 +33,6 @@
     {{ css_bundle('mozilla-vpn-events-banner') }}
   {% endif %}
 
-{% endblock %}
-
-{% block page_banner %}
-  {% if show_events_banner %}
-    {% include 'includes/banners/vpn-events-banner.html' %}
-  {% endif %}
 {% endblock %}
 
 {% block js %}
