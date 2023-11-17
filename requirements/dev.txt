@@ -436,9 +436,9 @@ freezegun==1.2.2 \
     --hash=sha256:cd22d1ba06941384410cd967d8a99d5ae2442f57dfafeff2fda5de8dc5c05446 \
     --hash=sha256:ea1b963b993cb9ea195adbd893a48d573fda951b0da64f60883d7e988b606c9f
     # via -r requirements/dev.in
-glean-parser==8.1.1 \
-    --hash=sha256:5fdd123d9711032a4e2acfa7983cbbfa6a53a29f7270dbe52be9e5ee1790a0f8 \
-    --hash=sha256:6d49e0c0aac34a1e9eda7fc63b12f1513efed1c827e0ac94078493114049021e
+glean-parser==10.0.3 \
+    --hash=sha256:d57359629d295f9ee570068a2846966892e3fedb722259ecbcd8cc376d299b51 \
+    --hash=sha256:f8fddd87b24552541318ac037e33750d27d0045131e4f8a60ec13a159fcbdd5c
     # via -r requirements/prod.txt
 greenlet==0.4.17 \
     --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
@@ -770,7 +770,6 @@ markupsafe==2.0.1 \
     # via
     #   -r requirements/prod.txt
     #   django-jinja-markdown
-    #   glean-parser
     #   jinja2
 markus[datadog]==4.2.0 \
     --hash=sha256:156398b7de56db4e8ef420a80fcce1c49b6d3d41405874a3e128cb209cf4bfd8 \
