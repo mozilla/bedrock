@@ -562,9 +562,15 @@ if (typeof window.Mozilla === 'undefined') {
 
                     // Send the session ID to GA as non-interaction event.
                     if (data.client_id && data.session_id) {
+                        // UA
                         window.dataLayer.push({
                             event: 'stub-session-id',
                             eLabel: data.session_id
+                        });
+                        // GA4
+                        window.dataLayer.push({
+                            event: 'stub_session_set',
+                            id: data.session_id
                         });
                     }
                 }
