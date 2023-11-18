@@ -34,7 +34,7 @@
   {%- endif -%}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('mobile-ios-see-your-open-tabs', fallback='mobile-ios-firefox-browser-for') }}{% endblock %}
+{% block page_desc %}{{ ftl('mobile-ios-see-your-open-tabs') }}{% endblock %}
 
 {% block body_class %}{{ super() }} mobile-ios{% endblock %}
 
@@ -64,7 +64,7 @@
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('mobile-ios-firefox-browser') }}</div>
     <h1 class="mzp-u-title-xl">
-      {{ ftl('mobile-ios-get-to-your-go-to', fallback='mobile-ios-get-automatic-privacy') }}
+      {{ ftl('mobile-ios-get-to-your-go-to') }}
     </h1>
     <p class="c-tagline">{{ self.page_desc() }}</p>
     <p class="c-cta">
@@ -112,7 +112,7 @@
     theme_class='mzp-t-background-secondary'
   ) %}
     <h3>{{ ftl('mobile-ios-get-more-firefox') }}</h3>
-    <p>{{ ftl('mobile-ios-add-firefox-across-v2', fallback='mobile-ios-add-firefox-across') }}</p>
+    <p>{{ ftl('mobile-ios-add-firefox-across-v2') }}</p>
   {% endcall %}
 
   {% call split(
@@ -128,8 +128,8 @@
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
-    <h3>{{ ftl('mobile-ios-own-your-home', fallback='mobile-ios-keep-tabs-on') }}</h3>
-    <p>{{ ftl('mobile-ios-get-to-the-parts', fallback='mobile-ios-create-as-many') }}</p>
+    <h3>{{ ftl('mobile-ios-own-your-home') }}</h3>
+    <p>{{ ftl('mobile-ios-get-to-the-parts') }}</p>
   {% endcall %}
 
   {% call split(

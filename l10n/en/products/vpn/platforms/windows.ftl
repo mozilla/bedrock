@@ -4,8 +4,6 @@
 
 ### URL: https://www-dev.allizom.org/products/vpn/desktop/windows
 
-# Obsolete Strings
-vpn-windows-page-title = { -brand-name-mozilla-vpn } for { -brand-name-windows } 10
 vpn-windows-page-description = Protect your entire PC with a virtual private network (VPN) from { -brand-name-mozilla }, an internet pioneer that’s been fighting for your digital privacy since 1998.
 
 # Windows strings

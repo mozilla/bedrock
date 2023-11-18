@@ -11,11 +11,6 @@ learn-more-faq = { -brand-name-firefox } FAQ
 the-history-of = The history of web browsers
 firefox-has-been = { -brand-name-firefox } has been there since almost the beginning.
 
-# Obsolete string
-firefox-rebel-with = { -brand-name-firefox }: Rebel with a cause
-
-# Obsolete string
-firefox-is-independent = { -brand-name-firefox } is independent and backed by the not-for-profit { -brand-name-mozilla }, which fights for your online rights and makes the internet accessible to everyone, everywhere.
 what-is-a = What is a web browser?
 a-web-browser = A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.
 update-your-browser = Update your browser to fast, safe and secure { -brand-name-firefox }.
@@ -63,11 +58,6 @@ were-obsessed-with = We’re obsessed with protecting your privacy. That’s why
 incognito-browser-what = Incognito browser: What it really means
 firefox-calls-it = { -brand-name-firefox } calls it private browsing, { -brand-name-chrome } calls it incognito mode. Both let you browse the web without saving your browsing history.
 
-# Obsolete string
-take-the-stress = Take the stress out of finding a safe browser.
-
-# Obsolete string
-building-a-safe = Building a safe browser is an art and a science because there are no set rules.
 firefox-more-fingerprinter-blocking = Fingerprinter Blocking
 firefox-more-fingerprinting-is-a = Fingerprinting is a type of online tracking that’s more invasive than ordinary cookie-based tracking — that’s why { -brand-name-firefox-browser } blocks it.
 firefox-more-translate-the-web = Translate the web

@@ -15,9 +15,6 @@ compare-safari-comparing-firefox-browser = Comparing { -brand-name-firefox-brows
 
 compare-safari-if-you-use-a-mac-or-have-updated = If you use a { -brand-name-mac-short } or have an { -brand-name-iphone }, chances are you’re familiar with the { -brand-name-safari } web browser. The fact that it’s pre-installed as the default browser for { -brand-name-apple } product users definitely gives it an early advantage, but { -brand-name-firefox } has its own set of useful features that make it an attractive alternative and can now be set as your default browser on your { -brand-name-mac-short } and { -brand-name-iphone }. Here we’ll explore the main differences between our browser and { -brand-name-safari } in terms of privacy, utility and portability between devices.
 
-# Obsolete string
-# "Mac" is a brand name, used here as informal shorthand for "macOS computer".
-compare-safari-if-you-use-a-mac-or-have = If you use a Mac or have an { -brand-name-iphone }, chances are you’re familiar with the { -brand-name-safari } web browser. The fact that it’s pre-installed as the default browser for { -brand-name-apple } product users definitely gives it an early advantage, but { -brand-name-firefox } has its own set of useful features that make it an attractive alternative. Here we’ll explore the main differences between our browser and { -brand-name-safari } in terms of privacy, utility, and portability between devices.
 
 # A "white hot topic" is something a lot of people are talking about. "Interwebs" is a slang term for the web. Alternative: "web".
 compare-safari-privacy-has-become-a-white = Privacy has become a white hot topic for tech companies as they realize more and more people are feeling vulnerable to things like data breaches, ad trackers and hackers. But when it comes down to the real tools people use to navigate the actual interwebs, is it all talk or are they actually taking action to keep your data secure?
@@ -52,18 +49,6 @@ compare-safari-also-when-you-sign-up-for-updated-v2 = Also, when you sign up for
 #   $pocket (string) - link to getpocket.com with additional attributes for analytics
 compare-safari-also-when-you-sign-up-for-updated = Also, when you sign up for a { -brand-name-firefox } account, you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline.
 
-# Obsolete string
-# Variables:
-#   $pocket (string) - link to getpocket.com with additional attributes for analytics
-#   $send (string) - link to send.firefox.com with additional attributes for analytics
-compare-safari-also-when-you-sign-up-for = Also, when you sign up for a { -brand-name-firefox } account you get access to unique services like <a { $pocket }>{ -brand-name-pocket }</a> and <a { $send }>{ -brand-name-send }</a> that integrate directly into the browser. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline. With { -brand-name-send } you can share large files with end-to-end encryption with  a variety of security controls, such as the ability to set an expiration time for a file link to expire, the number of downloads, and whether to add an optional password for an extra layer of security.
-
-# Obsolete string
-# Variables:
-#   $pocket (string) - link to getpocket.com with additional attributes for analytics
-#   $send (string) - link to send.firefox.com with additional attributes for analytics
-# "Screenshots" is a brand name when capitalized and plural, but also appears here as a regular, non-brand term (lowercase and singular).
-compare-safari-also-when-you-sign-up-for-fallback = Also, when you sign up for a { -brand-name-firefox } account you get access to some unique services like Screenshots, <a { $pocket }>{ -brand-name-pocket }</a> and <a { $send }>{ -brand-name-send }</a> that integrate directly into the browser. Screenshots is a feature built right into the { -brand-name-firefox } browser, allowing you to copy or download any or all part of a web page. When you save the screenshot, you can also choose which folder you want to find it in, instead of cluttering your desktop. The { -brand-name-pocket } for { -brand-name-firefox } button lets you save web pages and videos to { -brand-name-pocket } in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline. With { -brand-name-send }, you can share large files with end-to-end encryption and a variety of security controls, such as the ability to set an expiration time for a file link to expire, the number of downloads, and whether to add an optional password for an extra layer of security.
 compare-safari-firefox-is-also-great-for-video = { -brand-name-firefox } is also great for video and audio. With autoplay blocking built directly into the browser and turned on automatically, no website will ever shout or bark at you uninvited.
 
 # Variables:

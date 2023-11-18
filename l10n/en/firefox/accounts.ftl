@@ -41,8 +41,6 @@ firefox-accounts-send-a-tab = <a href="{ $send }">Send a tab</a> to a different 
 firefox-accounts-save-and-sync = <a href="{ $password }">Save and sync passwords</a>
 firefox-accounts-get-email-alerts = Get email alerts when your info appears in a known data breach
 
-# Obsolete string
-firefox-accounts-see-if-youve-been = See if you’ve been involved in an online data breach.
 firefox-accounts-protect-your-identity = Protect your identity with secure phone and email masking
 firefox-accounts-keep-your-passwords = Keep your passwords protected and portable.
 firefox-accounts-get-a-lookout-for = Get a lookout for data breaches.

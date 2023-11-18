@@ -32,8 +32,6 @@ pocket-footer-privacy-policy = Privacy policy
 pocket-footer-terms-of-service = Terms of service
 pocket-footer-cookie-preferences = Cookie preferences
 
-# Obsolete string
-pocket-footer-read-it-later-brand-name = { -brand-name-read-it-later-inc }
 pocket-footer-twitter-brand-name = { -brand-name-twitter }
 pocket-footer-facebook-brand-name = { -brand-name-facebook }
 

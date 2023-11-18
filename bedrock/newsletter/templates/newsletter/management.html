@@ -109,7 +109,7 @@
             <small>{{ ftl('newsletters-text-subscribers-will-receive') }}</small>
 
             <aside>
-              <p>{{ ftl('newsletters-many-of-our-communications-v2', fallback='newsletters-many-of-our-communications', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
+              <p>{{ ftl('newsletters-many-of-our-communications-v2', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
 
               <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('firefox.accounts')) }}</p>
 
@@ -155,11 +155,7 @@
 <div class="template-error-strings" hidden>
   <ul>
     <li class="error-token-not-found">
-      {% if ftl_has_messages('newsletters-the-supplied-link-has-expired-v2') %}
-        {{ ftl("newsletters-the-supplied-link-has-expired-v2", recovery_href=recovery_href) }}
-      {% else %}
-        {{ ftl("newsletters-the-supplied-link-has-expired") }}
-      {% endif %}
+      {{ ftl("newsletters-the-supplied-link-has-expired-v2", recovery_href=recovery_href) }}
     </li>
     <li class="error-invalid-email">
       {{ ftl('newsletters-this-is-not-a-valid-email') }}

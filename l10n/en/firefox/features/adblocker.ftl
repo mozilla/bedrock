@@ -40,8 +40,6 @@ features-adblocker-on-firefox-you-can-use = On { -brand-name-firefox }, you can 
 features-adblocker-choose-your-level-of-protection = Choose your level of protection
 features-adblocker-to-start-click-on-the-v2 = To start, click the shield to the left of the address bar on any webpage and select “Protection Settings.” This will open the { -brand-name-firefox } Settings Privacy & Security panel in a new tab. You should see a blue pop-up with different selections.
 
-# Obsolete string
-features-adblocker-to-start-click-on-the = To start, click on the { -brand-name-firefox } menu in the top right-hand corner of your screen. It looks like three lines stacked on top of each other. In the drop-down menu, click on Content Blocking. You should see a blue pop-up with different selections.
 features-adblocker-go-easy-with-standard = Go easy with Standard mode
 
 # Variables:
@@ -73,6 +71,3 @@ features-adblocker-in-some-cases-an-ad-blocker = In some cases, an ad blocker ca
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/new/
 features-adblocker-if-you-want-to-learn-more-v2 = If you want to learn more about ad blocking, there are hundreds of ad blocker extensions available for { -brand-name-firefox } and other browsers. If you want to try out the ad blockers { -brand-name-firefox } uses, <a href="{ $url }">click here to download</a> a browser that puts privacy first.
-
-# Obsolete string
-features-adblocker-if-you-want-to-learn-more = If you want to learn more about ad blocking, there are hundreds of ad blocker extensions available for { -brand-name-firefox } and other browsers. If want to try out the ad blockers { -brand-name-firefox } uses, <a href="{ $url }">click here to download</a> a browser that puts privacy first.

@@ -43,12 +43,8 @@
     </div>
 
     <div class="mobile-cta">
-      {% if ftl_has_messages('facebook-container-only-available-for-desktop', 'facebook-container-visit-to-get-for-desktop') %}
         <p>{{ ftl('facebook-container-only-available-for-desktop') }}</p>
         <p>{{ ftl('facebook-container-visit-to-get-for-desktop', url=url('firefox.new'), link_copy='www.mozilla.org/firefox/new/') }}</p>
-      {% else %}
-        <p>{{ ftl('facebook-container-the-facebook-container-extension') }}</p>
-      {% endif %}
 
       {% if ftl_has_messages('facebook-container-get-firefox-android-ios') %}
         <p>{{ ftl('facebook-container-get-firefox-android-ios') }}</p>

@@ -64,7 +64,7 @@
   {% block hero %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-landing-hero-sub-heading-v2', fallback='vpn-landing-hero-sub-heading'),
+      subheading=ftl('vpn-landing-hero-sub-heading-v2'),
       desc=ftl('vpn-landing-hero-desc')
     ) %}
       {{ vpn_conditional_cta(position='primary') }}
@@ -107,11 +107,7 @@
       class_name='vpn-content-media-left-half'
     ) %}
       <p>
-        {% if ftl_has_messages('vpn-landing-fast-secure-desc-v2') %}
           {{ ftl('vpn-landing-fast-secure-desc-v2', wireguard='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}
-        {% else %}
-          {{ ftl('vpn-landing-fast-secure-desc', mullvad='https://mullvad.net/help/no-logging-data-policy/', wireguard='https://mullvad.net/help/why-wireguard/', attrs='target="_blank" rel="external noopener noreferrer"') }}
-        {% endif %}
       </p>
     {% endcall %}
 
@@ -182,7 +178,7 @@
         </a>
 
         <p class="availability-copy">
-          {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
+          {{ ftl('vpn-shared-available-countries-v6') }}
         </p>
       {% endcall %}
     {% endif %}
@@ -232,7 +228,7 @@
               </a>
 
               <p class="availability-copy">
-                {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
+                {{ ftl('vpn-shared-available-countries-v6') }}
               </p>
             </div>
             <div class="l-column-last">
@@ -261,7 +257,7 @@
       <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-uses-question-desc', url=url('products.vpn.resource-center.article', 'what-is-a-vpn')) }}</p>
 
       <ol class="vpn-faq-item-detail mzp-u-list-styled">
-        <li>{{ ftl('vpn-landing-faq-uses-conceal-v2', url=url('products.vpn.resource-center.article', 'what-is-an-ip-address'), fallback='vpn-landing-faq-uses-conceal') }}</li>
+        <li>{{ ftl('vpn-landing-faq-uses-conceal-v2', url=url('products.vpn.resource-center.article', 'what-is-an-ip-address')) }}</li>
         <li>{{ ftl('vpn-landing-faq-uses-encrypt') }}</li>
       </ol>
 
@@ -274,11 +270,7 @@
       <summary  class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-info-question-heading') }}</h3>
       </summary>
-    {% if ftl_has_messages('vpn-landing-faq-info-question-desc-v2') %}
       <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc-v2', principles=url('privacy.principles'), notice=url('privacy.notices.subscription-services')) }}</p>
-    {% else %}
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-info-question-desc', url=url('privacy.principles')) }}</p>
-    {% endif %}
     </details>
 
     <details id="faq-privacy" class="vpn-faq-item mzp-is-anchor-link">
@@ -292,7 +284,7 @@
       <summary class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-competition-question-heading') }}</h3>
       </summary>
-      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-competition-question-desc-v2', fallback='vpn-landing-faq-competition-question-desc', url=url('mozorg.about.history')) }}</p>
+      <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-competition-question-desc-v2', url=url('mozorg.about.history')) }}</p>
     </details>
 
     <details id="faq-compatibility" class="vpn-faq-item mzp-is-anchor-link">
@@ -300,43 +292,25 @@
         <h3>{{ ftl('vpn-landing-faq-compatibility-question-heading') }}</h3>
       </summary>
       <p class="vpn-faq-item-detail">
-        {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-v2') %}
           {{ ftl('vpn-landing-faq-compatibility-question-desc-v2', mobile=url('products.vpn.platforms.mobile'), desktop=url('products.vpn.platforms.desktop')) }}
-        {% else %}
-          {{ ftl('vpn-landing-faq-compatibility-question-desc') }}
-        {% endif %}
       </p>
 
       <ul class="vpn-faq-item-detail mzp-u-list-styled">
         <li>
-          {{ ftl('vpn-landing-faq-compatibility-question-desc-windows-v3', fallback='vpn-landing-faq-compatibility-question-desc-windows-v2', url=url('products.vpn.platforms.windows')) }}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc-windows-v3', url=url('products.vpn.platforms.windows')) }}
         </li>
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-mac-v4') %}
             {% set mac_url='href="%s"'|safe|format(url('products.vpn.platforms.mac')) %}
             {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v4', url=mac_url, minversion='10.15') }}
-          {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-mac-v3', url=url('products.vpn.platforms.mac')) }}
-          {% endif %}
         </li>
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-android-v3') %}
             {{ ftl('vpn-landing-faq-compatibility-question-desc-android-v3', url=url('products.vpn.platforms.android')) }}
-          {% elif ftl_has_messages('vpn-landing-faq-compatibility-question-desc-android-v2') %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-android-v2', url=url('products.vpn.platforms.android')) }}
-          {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-android') }}
-          {% endif %}
         </li>
         <li>
-          {% if ftl_has_messages('vpn-landing-faq-compatibility-question-desc-ios-v4') %}
             {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v4', url=url('products.vpn.platforms.ios'), version='13.0') }}
-          {% else %}
-            {{ ftl('vpn-landing-faq-compatibility-question-desc-ios-v3', url=url('products.vpn.platforms.ios')) }}
-          {% endif %}
         </li>
         <li>
-          {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v4', fallback='vpn-landing-faq-compatibility-question-desc-linux-v3', url=url('products.vpn.platforms.linux')) }}
+          {{ ftl('vpn-landing-faq-compatibility-question-desc-linux-v4', url=url('products.vpn.platforms.linux')) }}
         </li>
       </ul>
     </details>
@@ -345,12 +319,8 @@
       <summary class="vpn-faq-item-heading">
         <h3>{{ ftl('vpn-landing-faq-refund-question-heading') }}</h3>
       </summary>
-      {% if ftl_has_messages('vpn-landing-faq-refund-question-desc-v2', 'vpn-landing-faq-refund-question-additional-desc') %}
         <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-desc-v2') }}</p>
         <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-additional-desc') }}</p>
-      {% else %}
-        <p class="vpn-faq-item-detail">{{ ftl('vpn-landing-faq-refund-question-desc') }}</p>
-      {% endif %}
     </details>
 
     <details id="faq-subscriptions" class="vpn-faq-item mzp-is-anchor-link">

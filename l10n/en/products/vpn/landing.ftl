@@ -14,9 +14,6 @@ vpn-landing-page-desc = Use the { -brand-name-mozilla-vpn } for full-device prot
 
 vpn-landing-hero-sub-heading-v2 = Security, reliability and speed — on every device, anywhere you go.
 
-# Obsolete string
-vpn-landing-hero-sub-heading = Security you can rely on. A name you can trust.
-
 vpn-landing-hero-desc = A Virtual Private Network from the makers of { -brand-name-firefox }.
 vpn-landing-privacy-heading = One tap to privacy
 vpn-landing-privacy-desc = Surf, stream, game, and get work done while maintaining your privacy online. Whether you’re traveling, using public WiFi, or simply looking for more online security, we will always put your privacy first.
@@ -26,13 +23,6 @@ vpn-landing-fast-secure-heading = Fast and secure network
 #   $wireguard (url) - https://mullvad.net/help/why-wireguard/
 #   $attrs (string) - specific attributes added to external links
 vpn-landing-fast-secure-desc-v2 = { -brand-name-mozilla-vpn } runs on a global network of servers. Using the most advanced <a href="{ $wireguard }" { $attrs }>{ -brand-name-wireguard }®</a> protocol, we encrypt your network activity and hide your IP address. We never log, track, or share your network data.
-
-# Obsolete string
-# Variables:
-#   $mullvad (url) - https://mullvad.net/help/no-logging-data-policy/
-#   $wireguard (url) - https://mullvad.net/help/why-wireguard/
-#   $attrs (string) - specific attributes added to external links
-vpn-landing-fast-secure-desc = { -brand-name-mozilla-vpn } runs on a global network of servers powered by <a href="{ $mullvad }" { $attrs }>{ -brand-name-mullvad }</a>. Using the most advanced <a href="{ $wireguard }" { $attrs }>{ -brand-name-wireguard }®</a> protocol, we encrypt your network activity and hide your IP address. We never log, track, or share your network data.
 
 vpn-landing-brand-trust-heading = A VPN from a brand you can trust
 
@@ -53,8 +43,6 @@ vpn-landing-faq-uses-question-desc = As more of daily life takes place through t
 #   $url (url) - link to https://www.mozilla.org/products/vpn/more/what-is-an-ip-address/
 vpn-landing-faq-uses-conceal-v2 = Concealing your true <a href="{ $url }">IP address</a>. This protects your identity and obscures your location.
 
-# Obsolete string
-vpn-landing-faq-uses-conceal = Concealing your true IP address. This protects your identity and obscures your location.
 vpn-landing-faq-uses-encrypt = Encrypting the traffic between you and your VPN provider so no one on your local network can decipher or modify it.
 
 # Variables:
@@ -67,11 +55,6 @@ vpn-landing-faq-info-question-heading = What information does the { -brand-name-
 #   $principles (url) - link to https://www.mozilla.org/privacy/principles/
 #   $notice (url) - link to https://www.mozilla.org/privacy/subscription-services/
 vpn-landing-faq-info-question-desc-v2 = We adhere strictly to { -brand-name-mozilla }’s <a href="{ $principles }">Data Privacy Principles</a> and we collect the data required to keep the VPN operational and to improve the product over time. We also track campaign and referral data on our mobile app to help { -brand-name-mozilla } understand the effectiveness of our marketing campaigns. Read more in our <a href="{ $notice }">Privacy Notice</a>.
-
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/privacy/principles/
-vpn-landing-faq-info-question-desc = We don’t log, track, or share any of your network activity. We adhere strictly to { -brand-name-mozilla }’s <a href="{ $url }">Data Privacy Principles</a> and we only collect the data required to keep the VPN operational and improve the product over time.
 
 vpn-landing-faq-protected-question-heading = How is my privacy protected?
 
@@ -86,11 +69,6 @@ vpn-landing-faq-competition-question-heading = How does { -brand-name-mozilla-vp
 #   $url (url) - link to https://www.mozilla.org/about/history/
 vpn-landing-faq-competition-question-desc-v2 = While free VPNs seem attractive, they do not make the same commitments to privacy as { -brand-name-mozilla-vpn }. Other VPNs don’t have { -brand-name-mozilla }’s over 20-year <a href="{ $url }">track record</a> of building products that put people and privacy first.
 
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/about/history/
-vpn-landing-faq-competition-question-desc = While free VPNs seem attractive, they do not make the same commitments to privacy as { -brand-name-mozilla-vpn } and may sell or store your data. Other paid VPNs don’t have { -brand-name-mozilla }’s over 20-year <a href="{ $url }">track record</a> of building products that put people and privacy first.
-
 vpn-landing-faq-compatibility-question-heading = What devices is { -brand-name-mozilla-vpn } compatible with?
 
 # Variables:
@@ -98,66 +76,33 @@ vpn-landing-faq-compatibility-question-heading = What devices is { -brand-name-m
 #   $desktop (url) - link to https://www.mozilla.org/products/vpn/desktop/
 vpn-landing-faq-compatibility-question-desc-v2 = { -brand-name-mozilla-vpn } is compatible with <a href="{ $mobile }">mobile</a>, tablet, and <a href="{ $desktop }">desktop</a> on:
 
-# Obsolete string
-vpn-landing-faq-compatibility-question-desc = { -brand-name-mozilla-vpn } is compatible with:
-
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/windows/
 vpn-landing-faq-compatibility-question-desc-windows-v3 = <a href="{ $url }">{ -brand-name-windows }</a> 10/11 (64-bit only)
-
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/windows/
-vpn-landing-faq-compatibility-question-desc-windows-v2 = <a href="{ $url }">{ -brand-name-windows }</a> 10 (64-bit only)
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
 #   $minversion (string) - minimum supported version e.g. 10.15
 vpn-landing-faq-compatibility-question-desc-mac-v4 = <a { $url }>{ -brand-name-mac }</a> ({ $minversion } and up)
 
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/mac/
-vpn-landing-faq-compatibility-question-desc-mac-v3 = <a href="{ $url }">{ -brand-name-mac }</a> (10.14 and up)
-
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/android/
 vpn-landing-faq-compatibility-question-desc-android-v3 = <a href="{ $url }">{ -brand-name-android }</a> (version 8 and up)
-
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/android/
-vpn-landing-faq-compatibility-question-desc-android-v2 = <a href="{ $url }">{ -brand-name-android }</a> (version 6 and up)
-
-# Obsolete string
-vpn-landing-faq-compatibility-question-desc-android = { -brand-name-android } (version 6 and up)
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/ios/
 #   $version (number) - minimum supported version number
 vpn-landing-faq-compatibility-question-desc-ios-v4 = <a href="{ $url }">{ -brand-name-ios }</a> ({ $version } and up)
 
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://www.mozilla.org/products/vpn/mobile/ios/
-vpn-landing-faq-compatibility-question-desc-ios-v3 = <a href="{ $url }">{ -brand-name-ios }</a> (12.0 and up)
-
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/linux/
 vpn-landing-faq-compatibility-question-desc-linux-v4 = <a href="{ $url }">Linux</a> (Ubuntu 20.04 and up)
-
-# Obsolete string
-#   $url (url) - link to https://www.mozilla.org/products/vpn/desktop/linux/
-vpn-landing-faq-compatibility-question-desc-linux-v3 = <a href="{ $url }">{ -brand-name-linux }</a> ({ -brand-name-ubuntu } 18.04 and up)
 
 vpn-landing-faq-refund-question-heading = What is { -brand-name-mozilla-vpn }’s refund policy?
 
 vpn-landing-faq-refund-question-desc-v2 = The first time you subscribe to { -brand-name-mozilla-vpn } through { -brand-name-mozilla }’s website, if you cancel your account within the first 30 days, you may request a refund and { -brand-name-mozilla } will refund your first subscription term.
 
 vpn-landing-faq-refund-question-additional-desc = If you purchase your subscription through in-app purchase from the { -brand-name-apple } { -brand-name-app-store } or the { -brand-name-google-play } Store, your payment is subject to the terms and conditions of the { -brand-name-app-store }. You must direct any billing and refund inquiries for such purchases to { -brand-name-apple } or { -brand-name-google }, as appropriate.
-
-# Obsolete string
-vpn-landing-faq-refund-question-desc = You can get your money back within 30 days of purchasing your subscription. Contact us and submit the refund request by tapping the “Get Help” button in Settings on your { -brand-name-mozilla-vpn } app.
 
 vpn-landing-faq-manage-subscription-question-heading = How do I manage my subscription?
 
@@ -178,9 +123,6 @@ vpn-landing-faq-link = See more FAQs
 vpn-landing-invite-page-title = Join the Waitlist: { -brand-name-mozilla-vpn }
 
 vpn-landing-invite-page-desc-v2 = Get notified when { -brand-name-mozilla-vpn } is available for your region.
-
-# Obsolete string
-vpn-landing-invite-page-desc = Get notified when { -brand-name-mozilla-vpn } is available for your device and region.
 
 vpn-landing-invite-page-heading = Join the VPN Waitlist
 vpn-landing-invite-email-label = What is your email address?

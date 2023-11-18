@@ -274,7 +274,7 @@
                     <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">{{ ftl('firefox-desktop-download-primary-password', fallback='firefox-desktop-download-master-password') }}</th>
+                    <th scope="row">{{ ftl('firefox-desktop-download-primary-password') }}</th>
                     <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
                     <td>{{ download_picture('icon-dash', 24, 24, ftl('firefox-desktop-download-no')) }}</td>
                     <td>{{ download_picture('icon-check', 24, 24, ftl('firefox-desktop-download-yes')) }}</td>
@@ -630,7 +630,7 @@
     {% if switch('mozilla-monitor-brand-name') %}
       {{ ftl('firefox-desktop-download-watch-for-hackers-with-v3', 'firefox-desktop-download-watch-for-hackers-with-v2') }}
     {% else %}
-      {{ ftl('firefox-desktop-download-watch-for-hackers-with-v2', 'firefox-desktop-download-watch-for-hackers-with') }}
+      {{ ftl('firefox-desktop-download-watch-for-hackers-with-v2') }}
     {% endif %}
   </p>
 

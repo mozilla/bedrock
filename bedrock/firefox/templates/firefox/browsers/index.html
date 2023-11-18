@@ -15,11 +15,11 @@
   {%- elif LANG == 'en-GB' -%}
     Download Firefox Browser — Mozilla (UK)
   {%- else -%}
-    {{ ftl('firefox-browsers-page-title', fallback='firefox-browsers-get-the-browsers-that-put') }} - Mozilla
+    {{ ftl('firefox-browsers-page-title') }} - Mozilla
   {%- endif -%}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('firefox-browsers-page-desc', fallback='firefox-browsers-get-the-privacy-you-deserve') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-browsers-page-desc') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
