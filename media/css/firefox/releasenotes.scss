@@ -422,7 +422,7 @@ $image-path: '/media/protocol/img';
     .release-note-progressive-rollout-indicator {
         @include text-body-md;
         text-align: center;
-        width: 230px;
+        width: 210px;
         border: 2px solid $color-marketing-gray-20;
         border-radius: $border-radius-md;
         padding: $spacing-sm 0;
@@ -438,14 +438,18 @@ $image-path: '/media/protocol/img';
 
         details {
             @include text-body-xs;
-            cursor: help;
             padding: 0 $spacing-md;
 
+            p {
+                text-align: left;
+            }
+
             summary {
-                position: unset;
-                padding: 0 0 $spacing-xs 0;
                 color: $color-marketing-gray-60;
+                cursor: pointer;
                 font-weight: bold;
+                padding: 0 0 $spacing-xs 0;
+                position: static;
 
                 &::before {
                     content:none;
@@ -459,8 +463,8 @@ $image-path: '/media/protocol/img';
 
         .release-note-progressive-rollout-indicator {
             margin-left: $spacing-lg;
-            max-width: 230px;
-            min-width: 230px;
+            max-width: 210px;
+            min-width: 210px;
         }
     }
 
