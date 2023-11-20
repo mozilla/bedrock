@@ -123,11 +123,6 @@ privacy-book-some-online-services = <strong>Some online services will ask you to
 
 privacy-book-wondering-how-youre = <strong>Wondering how you’re supposed to come up with and remember all your passwords and security answers?</strong> Please don’t write them on a piece of paper that you keep next to your computer (yep, people do that). Instead, get a password manager that not only safely store your passwords, security answers and other private information, but also helps you generate random passwords and lets you easily use them across all of your devices.
 
-privacy-book-there-are-several-v2 = There are several great password managers on the market; some are encrypted with a primary password, others with biometric features (fingerprint, face scan). Choose whichever works best for you – and maybe you want to give { -brand-name-firefox-lockwise } a try? It will store all of your passwords securely and is available for your mobile devices as well as your desktop browser, so that you have your login information ready whenever you need it.
-
-# Obsolete string
-privacy-book-there-are-several = There are several great password managers on the market; some are encrypted with a master password, others with biometric features (fingerprint, face scan). Choose whichever works best for you – and maybe you want to give { -brand-name-firefox-lockwise } a try? It will store all of your passwords securely and is available for your mobile devices as well as your desktop browser, so that you have your login information ready whenever you need it.
-
 privacy-book-not-just-for = Not just for IT professionals:
 
 privacy-book-a-strong-password = A strong password is important and a first step towards enhanced online security. Want to double the safety? Try multi-factor authentication (MFA) – many services offer it already!

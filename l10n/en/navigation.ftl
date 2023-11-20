@@ -18,10 +18,6 @@ navigation-firefox-for-fire-tv = { -brand-name-firefox } for { -brand-name-fire-
 navigation-watch-videos-and-browse = Watch videos and browse the internet on your { -brand-name-amazon } { -brand-name-fire-tv }.
 navigation-firefox-browsers-put = { -brand-name-firefox } browsers put your privacy first — and always have.
 navigation-take-the-passwords-youve = Take the passwords you’ve saved in { -brand-name-firefox } with you everywhere.
-
-# Obsolete string
-navigation-firefox-is-a-whole-family = { -brand-name-firefox } is a whole family of products designed to keep you safer and smarter online.
-
 navigation-join-firefox = Join { -brand-name-firefox }
 navigation-access-all-of-firefox = Access all of { -brand-name-firefox } with a single login — and get more from every product when you do.
 navigation-meet-the-firefox-family = Meet the { -brand-name-firefox } Family
@@ -39,30 +35,10 @@ navigation-get-firefox-focus = Get { -brand-name-firefox-focus }
 navigation-android-extensions = { -brand-name-android } Extensions
 navigation-your-firefox-account = Your { -brand-name-firefox-account }
 navigation-make-the-most-of-your = Make the most of your { -brand-name-firefox } experience, across every device.
-
-# Obsolete string
-navigation-learn-how-to-customize = Learn how to customize the way { -brand-name-firefox } works.
-
 navigation-explore-the-immersive = Explore the immersive web on your virtual reality headset.
-
-# Obsolete string
-navigation-experience-augmented = Experience augmented and virtual reality with { -brand-name-firefox }.
-
 navigation-get-together = Get together in virtual reality with this online social space.
-
-# Obsolete string
-navigation-meet-people-in-experimental = Meet people in experimental Mixed Reality chatrooms with { -brand-name-firefox }.
-
 navigation-mozilla-mixed-reality = { -brand-name-mozilla } Mixed Reality
-
-# Obsolete string
-navigation-mozilla-webvr = { -brand-name-mozilla } WebVR
-
 navigation-mozilla-brings-virtual = { -brand-name-mozilla } brings virtual and augmented reality to the open web.
-
-# Obsolete string
-navigation-mozilla-brings-firefox = { -brand-name-mozilla } brings { -brand-name-firefox } to augmented and virtual reality.
-
 navigation-firefox-built-just-for = { -brand-name-firefox }, built just for developers.
 navigation-preview-the-latest-build = Preview the latest build of { -brand-name-firefox } and help us make it the best.
 navigation-firefox-playground = { -brand-name-firefox } Playground
@@ -89,10 +65,6 @@ navigation-sign-up = Sign Up
 
 navigation-mozilla-vpn = { -brand-name-mozilla-vpn }: Fast. Simple. Private.
 navigation-protect-your-entire-device = Protect your entire device and all applications. Mask your real location and connect up to 5 devices. Subscribe now.
-
-# Obsolete string
-navigation-connected-and-protected = Connected and protected
-
 navigation-join = Join
 navigation-close-join-menu = Close Join menu
 navigation-sign-in = Sign In
@@ -104,22 +76,12 @@ navigation-meet-the-technology-company = Meet the technology company that puts p
 navigation-new-features = New Features
 navigation-save-content-absorb-knowledge = Save content. Absorb knowledge.
 navigation-same-speed-and-safety = Same speed and safety you trust, designed just for business.
-
-# Obsolete string
-navigation-add-ons = Add-ons
-
 navigation-projects = Projects
 navigation-close-projects-menu = Close Projects menu
 navigation-donate-your-voice-to = Donate your voice to help make voice recognition open to everyone.
 navigation-machine-learning = Machine Learning
 
-# Obsolete string
-navigation-web-of-things-iot = Web of Things (IoT)
-
 navigation-help-make-deep-learning = Help make deep learning algorithms available to the open source world.
-
-# Obsolete string
-navigation-make-devices-connected = Make devices connected to the internet safe, secure and interoperable.
 
 navigation-developers = Developers
 navigation-close-developers-menu = Close Developers menu
@@ -162,5 +124,4 @@ navigation-pocket = { -brand-name-pocket }
 navigation-common-voice = { -brand-name-common-voice }
 navigation-hubs = { -brand-name-hubs }
 navigation-rust = { -brand-name-rust }
-navigation-web-assembly = { -brand-name-web-assembly }
 navigation-mdn-web-docs = { -brand-name-mdn-web-docs }

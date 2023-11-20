@@ -31,8 +31,8 @@
   {% set landing_header = "Choose a browser that supports a better web for you and everyone else" %}
   {% set landing_body = "Set Firefox back to your default browser and enjoy peace of mind with every link you open." %}
 {% else %}
-    {% set landing_header = ftl('set-as-default-landing-you-should-get', fallback='set-as-default-landing-make-sure-youre-protected') %}
-    {% set landing_body = ftl('set-as-default-landing-if-you-recently', fallback='set-as-default-landing-thanks-for-using-the') %}
+    {% set landing_header = ftl('set-as-default-landing-you-should-get') %}
+    {% set landing_body = ftl('set-as-default-landing-if-you-recently') %}
 {% endif %}
 
 {% block content %}

@@ -28,11 +28,6 @@ firefox-new-need-help = Need help?
 #   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
 firefox-new-mozilla-no-longer-provides = { -brand-name-mozilla } <a href="{ $url }">no longer provides security updates</a> on { -brand-name-windows } { -brand-name-xp } or { -brand-name-vista }, but you can still use { -brand-name-firefox }.
 
-# Obsolete string
-# Variables:
-#   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
-firefox-new-youre-using-an-insecure-outdated = You’re using an insecure, outdated operating system <a href="{ $url }">no longer supported by { -brand-name-firefox }</a>.
-
 # Variables:
 #   $id (string) - HTML ID for the download link.
 #   $fallback_url (url) - link to https://www.mozilla.org/firefox/all/
@@ -51,9 +46,6 @@ firefox-new-please-follow = Please follow <a href="{ $url }">these instructions<
 firefox-new-your-system-may-not = Your system may not meet the requirements for { -brand-name-firefox }, but you can try one of <a href="{ $url }">these versions</a>.
 
 firefox-new-windows = { -brand-name-windows }
-
-# Obsolete string
-firefox-new-windows-10 = { -brand-name-windows } 10
 
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app

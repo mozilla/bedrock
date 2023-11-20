@@ -6,10 +6,10 @@
 
 {% extends 'base-protocol-mozilla.html' %}
 
-{% block page_title %}{{ ftl('newsletters-sign-up-read-up-stay-informed', fallback='newsletters-sign-up-read-up-make-a-difference') }}{% endblock page_title %}
+{% block page_title %}{{ ftl('newsletters-sign-up-read-up-stay-informed') }}{% endblock page_title %}
 
 {% block page_desc %}
-  {{ ftl('newsletters-get-smart-on-the-issues', fallback='newsletters-get-the-mozilla-newsletter') }}
+  {{ ftl('newsletters-get-smart-on-the-issues') }}
 {% endblock %}
 
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}

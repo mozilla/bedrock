@@ -85,8 +85,8 @@
     "title": "{{ ftl('newsletters-get-involved')|striptags }}"
   },
   "internet-health-report": {
-    "title": "{{ ftl('newsletters-insights', fallback='newsletters-internet-health-report')|striptags }}",
-    "description": "{{ ftl('newsletters-mozilla-published-articles-and-deep', fallback='newsletters-keep-up-with-our-annual')|striptags }}"
+    "title": "{{ ftl('newsletters-insights')|striptags }}",
+    "description": "{{ ftl('newsletters-mozilla-published-articles-and-deep')|striptags }}"
   },
   "join-mozilla": {
     "title": "{{ ftl('newsletters-join-mozilla')|striptags }}"
@@ -157,7 +157,7 @@
       "title": "{{ ftl('newsletters-shapre-of-the-web')|striptags }}"
   },
   "student-reps": {
-      "description": "{{ ftl('newsletters-former-university-program-v2', fallback='newsletters-former-university-program')|striptags }}",
+      "description": "{{ ftl('newsletters-former-university-program-v2')|striptags }}",
       "title": "{{ ftl('newsletters-student-reps')|striptags }}"
   },
   "take-action-for-the-internet": {
@@ -165,7 +165,7 @@
       "title": "{{ ftl('newsletters-take-action')|striptags }}"
   },
   "test-pilot": {
-      "description": "{{ ftl('newsletters-help-us-make-a-better-v2', 'newsletters-help-us-make-a-better')|striptags }}",
+      "description": "{{ ftl('newsletters-help-us-make-a-better-v2')|striptags }}",
       "title": "{{ ftl('newsletters-new-product-testing')|striptags }}"
   },
   "webmaker": {

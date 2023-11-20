@@ -26,21 +26,5 @@ CO01:
   exclusions:
     files: []
     messages:
-      # firefox/browsers.ftl
-      - firefox-browsers-already-have-an-account-sign
-      # firefox/browsers/compare/chrome.ftl
-      - compare-chrome-weve-also-recently-restated
       # firefox/features/translate.ftl
       - features-translate-for-everyone
-      # firefox/privacy/passwords.ftl
-      - privacy-passwords-firefox-will
-      # firefox/privacy/passwords.ftl
-      - privacy-passwords-in-todays-internet
-      # mozorg/mission.ftl
-      - mission-at-mozilla-were-a-global-community
-      # mozorg/mission.ftl
-      - mission-read-the-mozilla-manifesto-to-learn
-      # mozorg/mission.ftl
-      - mission-our-structure-organization-and-the
-      # mozorg/newsletters.ftl
-      - newsletters-former-university-program

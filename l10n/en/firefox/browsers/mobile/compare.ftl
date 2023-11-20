@@ -15,8 +15,6 @@ mobile-compare-since-your-mobile = Since your mobile browser is your lifeline to
 mobile-compare-which-mobile-browser = Which mobile browser keeps things confidential?
 mobile-compare-at-a-minimum-v2 = At a minimum, your mobile browser should provide some version of “private browsing mode,” which automatically deletes your history and search history. In this area, all five of the browsers compared here score points.
 
-# Obsolete string
-mobile-compare-at-a-minimum = At a minimum, your mobile browser should provide some version of “private browsing mode,” which automatically deletes your history and search history. In this area, all seven of the browsers compared here score points.
 mobile-compare-another-mobile-feature = Another mobile feature that should be a given is the ability to prevent websites and companies from tracking your browsing and shopping data — even in normal browsing mode.
 mobile-compare-blocking-thirdparty-trackers = Blocking third-party trackers isn’t just important for privacy — it also helps pages load much faster, without those pieces of code attaching themselves and slowing your browser down.
 mobile-compare-from-the-chart = From the chart above, it’s obvious { -brand-name-firefox } offers the most complete privacy and security toolset of the five browsers and provides a dashboard overview of your overall security and privacy online.

@@ -39,9 +39,6 @@ privacy-passwords-your-browser-also = Your browser also helps keep you informed 
 
 privacy-passwords-firefox-will-v2 = { -brand-name-firefox } will display a warning instead of the website if it is known to be a phishing site.
 
-# Obsolete string
-privacy-passwords-firefox-will = Firefox will display a warning instead of the website if it is known to be a phishing site.
-
 privacy-passwords-in-general-the = In general, the best defense against phishing is to <strong>be suspicious of what you receive</strong>, whether it shows up in email, a text message or on the phone. Instead of taking action on what someone sent you, visit the site directly. For example, if an email says you need to reset your PayPal password, don’t click the link. Type in paypal.com yourself. If the bank calls, call them back.
 privacy-passwords-strength-in-diversity = Strength in diversity
 privacy-passwords-the-secret-to = The secret to preventing guessing, theft or password reset is a whole lot of randomness. When attackers try to guess passwords, they usually do two things: 1) Use “dictionaries” — lists of common passwords that people use all the time, and 2) make some random guesses. The <strong>longer and more random your password is</strong>, the less likely that either of these guessing techniques will find it.
@@ -88,8 +85,3 @@ privacy-passwords-for-better-or = For better or worse, we’re going to be using
 #   $url_privacy_products (string) - link to https://www.mozilla.org/firefox/privacy/products/ with additional attributes for analytics
 #   $url_about_manifesto (string) - link to https://www.mozilla.org/about/manifesto/ with additional attributes for analytics
 privacy-passwords-in-todays-internet-v2 = In today’s internet, where thousands of passwords are stolen every day and accounts are traded on the black market, it’s worth the effort to keep your online life safe. When you use { -brand-name-firefox } products, some of the effort is taken off your plate, because all our products are built to uphold our <a { $url_privacy_products }>privacy promise</a>. And { -brand-name-firefox } is always guided by <a { $url_about_manifesto }>{ -brand-name-mozilla }’s mission</a>, the not-for-profit we are backed by, to build a better internet.
-
-# Obsolete string
-#   $url_privacy_products (string) - link to https://www.mozilla.org/firefox/privacy/products/ with additional attributes for analytics
-#   $url_about_manifesto (string) - link to https://www.mozilla.org/about/manifesto/ with additional attributes for analytics
-privacy-passwords-in-todays-internet = In today’s internet, where thousands of passwords are stolen every day and accounts are traded on the black market, it’s worth the effort to keep your online life safe. When you use { -brand-name-firefox } products, some of the effort is taken off your plate, because all our products are built to uphold our <a { $url_privacy_products }>privacy promise</a>. And { -brand-name-firefox } is always guided by <a { $url_about_manifesto }>Mozilla’s mission</a>, the not-for-profit we are backed by, to build a better internet.

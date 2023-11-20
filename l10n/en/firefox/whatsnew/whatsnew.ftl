@@ -11,9 +11,6 @@ whatsnew-page-title = What’s new with { -brand-name-firefox } - More privacy, 
 whatsnew-page-description = Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.
 whatsnew-firefox = { -brand-name-firefox }
 
-# Obsolete string
-whatsnew-firefox-browser = { -brand-name-firefox-browser }
-
 whatsnew-update-notification = Your { -brand-name-firefox } has been updated.
 
 # Variables:

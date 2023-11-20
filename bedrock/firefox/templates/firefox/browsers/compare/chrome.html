@@ -41,7 +41,7 @@
     <section class="compare-details-section-summary">
         <p class="compare-details-section-intro">{{ ftl('compare-chrome-in-2008-google-introduced') }}</p>
 
-        <p>{{ ftl('compare-chrome-fast-forward-to-today-the-updated', fallback='compare-chrome-fast-forward-to-today-the') }}</p>
+        <p>{{ ftl('compare-chrome-fast-forward-to-today-the-updated') }}</p>
 
         <p>{{ ftl('compare-chrome-and-so-here-we-are-the-browser') }}</p>
 
@@ -78,7 +78,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
@@ -103,13 +103,12 @@
           ) }}
         {% else %}
           {{ ftl('compare-chrome-at-firefox-we-have-a-huge',
-                 fallback='compare-chrome-at-firefox-we-have-a-huge-fallback',
                  attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe
           ) }}
         {% endif %}
       </p>
 
-      <p>{{ ftl('compare-chrome-weve-also-recently-restated-v2', fallback='compare-chrome-weve-also-recently-restated', attrs='href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox'))) }}</p>
+      <p>{{ ftl('compare-chrome-weve-also-recently-restated-v2', attrs='href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox'))) }}</p>
 
       <p>{{ ftl('compare-chrome-google-chrome-is-by-all-accounts') }}</p>
 
@@ -243,7 +242,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
@@ -252,7 +251,7 @@
 
       <p>{{ ftl('compare-chrome-almost-needless-to-say-versions') }}</p>
 
-      <p>{{ ftl('compare-chrome-both-chrome-and-firefox-also-updated', fallback='compare-chrome-both-chrome-and-firefox-also') }}</p>
+      <p>{{ ftl('compare-chrome-both-chrome-and-firefox-also-updated') }}</p>
 
       {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
 
@@ -269,7 +268,7 @@
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-chrome') }} (85)

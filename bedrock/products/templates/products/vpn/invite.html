@@ -9,7 +9,7 @@
 {% block page_title_full %}{{ ftl('vpn-landing-invite-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('vpn-landing-invite-page-desc-v2', fallback='vpn-landing-invite-page-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-landing-invite-page-desc-v2') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-invite{% endblock %}
 
@@ -32,7 +32,7 @@
 <main class="mzp-l-content mzp-t-content-md">
   <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post">
     <h1 class="mzp-c-form-header">{{ ftl('vpn-landing-invite-page-heading') }}</h1>
-    <p class="mzp-c-form-subtitle">{{ ftl('vpn-landing-invite-page-desc-v2', fallback='vpn-landing-invite-page-desc') }}</p>
+    <p class="mzp-c-form-subtitle">{{ ftl('vpn-landing-invite-page-desc-v2') }}</p>
     <div hidden>
       {{ newsletter_form.newsletters|safe }}
     </div>
