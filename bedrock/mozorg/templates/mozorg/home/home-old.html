@@ -13,7 +13,7 @@
 
 {% set referrals="?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage" %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-giving2023') and ftl_has_messages('banner-fundraising-giving-tuesday-title', 'banner-fundraising-giving-tuesday-tagline') %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2023') and ftl_has_messages('banner-fundraising-title-1', 'banner-fundraising-tagline-1') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -25,6 +25,12 @@
     {{ css_bundle('fundraising-banner') }}
   {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block experiments %}
+  {% if show_fundraising_banner and switch('fundraising-banner-experiment') %}
+    {{ js_bundle('fundraising-banner-experiment') }}
   {% endif %}
 {% endblock %}
 

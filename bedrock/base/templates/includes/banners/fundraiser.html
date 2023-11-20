@@ -10,17 +10,36 @@
 
 {% block banner_class %}c-banner-fundraising{% endblock %}
 
+{% if variation == '3' %}
+  {% set campaign = '23-EOYB-B4' %}
+  {% set title = ftl('banner-fundraising-title-3') %}
+  {% set tagline = ftl('banner-fundraising-tagline-3') %}
+  {% set image = 'hand-heart' %}
+{% elif variation == '2' %}
+  {% set campaign = '23-EOYB-B3' %}
+  {% set title = ftl('banner-fundraising-title-2') %}
+  {% set tagline = ftl('banner-fundraising-tagline-2') %}
+  {% set image = 'ctrl-alt-del' %}
+{% else %}
+  {% set campaign = '23-EOYB-B2' %}
+  {% set title = ftl('banner-fundraising-title-1') %}
+  {% set tagline = ftl('banner-fundraising-tagline-1') %}
+  {% set image = 'hand-heart' %}
+{% endif %}
+
+{% set donate_url = "https://foundation.mozilla.org/?form=eoy-banner&utm_medium=web&utm_source=eoy-banner&utm_campaign=" + campaign + "&utm_content=button_donate&utm_term=" + lang_short() %}
+
 {% block banner_content %}
   {% call split(
     block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
     image=resp_img(
-      url='img/banners/fundraising/hourglass-800.png',
+      url='img/banners/fundraising/' + image + '-800.png',
       srcset={
-        'img/banners/fundraising/hourglass-600.png': '600w',
-        'img/banners/fundraising/hourglass-800.png': '800w',
-        'img/banners/fundraising/hourglass-1000.png': '1000w',
-        'img/banners/fundraising/hourglass-1200.png': '1200w',
-        'img/banners/fundraising/hourglass-1400.png': '1400w',
+        'img/banners/fundraising/' + image + '-600.png': '600w',
+        'img/banners/fundraising/' + image + '-800.png': '800w',
+        'img/banners/fundraising/' + image + '-1000.png': '1000w',
+        'img/banners/fundraising/' + image + '-1200.png': '1200w',
+        'img/banners/fundraising/' + image + '-1400.png': '1400w',
       },
       sizes={
         '(min-width: 1600px)': '680px',
@@ -35,11 +54,9 @@
     ),
     media_after=False
   ) %}
-    <h2 class="c-banner-title">{{ ftl('banner-fundraising-giving-tuesday-title') }}</h2>
 
-    <p class="c-banner-tagline">{{ ftl('banner-fundraising-giving-tuesday-tagline') }}</p>
-
-    {% set donate_url = "https://foundation.mozilla.org/?form=eoy-banner&utm_medium=web&utm_source=eoy-banner&utm_campaign=23-EOYB-B1&utm_content=button_donate&utm_term=" + lang_short() %}
+    <h2 class="c-banner-title">{{ title }}</h2>
+    <p class="c-banner-tagline">{{ tagline }}</p>
 
     <a class="c-banner-button mzp-c-button mzp-t-product mzp-t-xl" href="{{ donate_url }}">{{ ftl('banner-fundraising-donate') }}</a>
   {% endcall %}

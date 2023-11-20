@@ -124,7 +124,7 @@ def namespaces(request, namespace):
 class HomeView(VariationTemplateView):
     template_name = "mozorg/home/home-new.html"
     old_template_name = "mozorg/home/home-old.html"
-    template_context_variations = ["1", "2"]
+    template_context_variations = ["1", "2", "3"]
     activation_files = ["mozorg/home-new", "mozorg/home"]
 
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
