@@ -41,64 +41,55 @@
     margin-top: $layout-md;
 }
 
-.wnp-main-image {
-    margin: $layout-sm auto;
+// if js is disabled or they are not on firefox, show the sumo link instead of the UI tour button
+.mzp-c-button.sumo-link, .mzp-c-button.uitour  {
+    display: none;
 }
 
-// animation
+.no-js {
+    .mzp-c-button.uitour.uitour {
+        display: none;
+    }
 
-// Disable animations
-@media (prefers-reduced-motion: reduce) {
-    #private,
-    #key,
-    #forget,
-    #addons,
-    #print {
-        animation: none;
+    .mzp-c-button.sumo-link {
+        display: inline;
     }
 }
 
-#private {
-    animation: icons 1s ease 0s 1 normal forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2800ms;
-    opacity: 0;
-    animation-fill-mode: forwards;
+.js {
+    .mzp-c-button.uitour {
+            display: none;
+        }
 
+        .mzp-c-button.sumo-link {
+            display: inline;
+        }
 }
 
-#key {
-    animation: icons 1s ease 0s 1 normal forwards;
-    animation-iteration-count: 1;
-    animation-delay: 2200ms;
-    opacity: 0;
-    animation-fill-mode: forwards;
+.is-firefox {
+    .mzp-c-button.uitour {
+        display: inline;
+    }
 
+    .mzp-c-button.sumo-link {
+        display: none;
+    }
 }
 
-#forget {
-    animation: icons 1s ease 0s 1 normal forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1600ms;
-    opacity: 0;
-    animation-fill-mode: forwards;
 
+.no-firefox {
+    .uitour {
+        display: none;
+    }
+
+    .sumo-link {
+        display: block;
+    }
 }
 
-#addons {
-    animation: icons 1s ease 0s 1 normal forwards;
-    animation-iteration-count: 1;
-    animation-delay: 1000ms;
-    opacity: 0;
-
+.wnp-main-image {
+    margin: $layout-sm auto;
 }
-
-#print {
-    animation: icons 1s ease 0s 1 normal forwards;
-    animation-delay: 400ms;
-    opacity: 0;
-}
-
 
 @keyframes icons {
     from {
@@ -106,6 +97,41 @@
     }
 
     to {
+        opacity: 1;
+    }
+}
+
+.toolbar-icon {
+    animation: icons 1s ease 0s 1 normal forwards;
+    opacity: 0;
+}
+
+// animation
+#print {
+    animation-delay: 400ms;
+}
+
+#addons {
+    animation-delay: 1000ms;
+}
+
+#forget {
+    animation-delay: 1600ms;
+}
+
+#key {
+    animation-delay: 2200ms;
+}
+
+#private {
+    animation-delay: 2800ms;
+}
+
+
+// Disable animations
+@media (prefers-reduced-motion: reduce) {
+   .toolbar-icon {
+        animation: none;
         opacity: 1;
     }
 }

@@ -419,7 +419,8 @@ class WhatsnewView(L10nTemplateView):
     vpn_excluded_templates = [
         "firefox/whatsnew/whatsnew-fx115-eu-vpn.html",
         "firefox/whatsnew/whatsnew-fx117-vpn.html",
-        "firefox/whatsnew/whatsnew-120fx-eu-vpn.html" "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html",
+        "firefox/whatsnew/whatsnew-fx120-eu-vpn.html",
+        "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html",
         "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html",
     ]
 
@@ -511,12 +512,12 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("120."):
-            if locale == "en-US":
+            if locale in ["en-US", "en-CA"]:
                 template = "firefox/whatsnew/whatsnew-fx120-na.html"
-            elif locale in ["de", "fr", "en-GB"]:
-                template = "firefox/whatsnew/whatsnew-fx120-eu.html"
             elif country in WNP117_VPN_EXPANSION_COUNTRIES:
                 template = "firefox/whatsnew/whatsnew-fx120-eu-vpn.html"
+            elif locale in ["de", "fr", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx120-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("119."):
