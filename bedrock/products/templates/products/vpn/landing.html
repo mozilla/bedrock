@@ -38,8 +38,22 @@ switch('vpn-events-banner') %}
 
 {% set holidays_na_banner_experiment = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] %}
 
+{% block experiments %}
+  {% if holidays_na_banner_experiment %}
+    {{ js_bundle('mozilla-vpn-holidays-na-experiment-banner') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('mozilla-vpn-landing') }}
+
+  {% if show_events_banner %}
+    {{ css_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
+
+  {% if show_holidays_na_banner %}
+    {{ css_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -408,6 +422,12 @@ switch('vpn-events-banner') %}
     {{ js_bundle('mozilla-vpn-affiliate') }}
   {% else %}
     {{ js_bundle('fxa_product_button') }}
+  {% endif %}
+
+  {% if show_events_banner %}
+    {{ js_bundle('mozilla-vpn-events-banner') }}
+    {{ js_bundle('fxa_product_button') }}
+    {{ js_bundle('data_begincheckout') }}
   {% endif %}
 
   {{ js_bundle('mozilla-vpn-landing') }}

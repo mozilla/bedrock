@@ -40,8 +40,8 @@ const init = () => {
             const cop = new TrafficCop({
                 id: 'vpn-holidays-na-test',
                 variations: {
-                    'entrypoint_variation=1': 50,
-                    'entrypoint_variation=2': 50
+                    'entrypoint_experiment=vpn-holidays-na-test&entrypoint_variation=1': 50,
+                    'entrypoint_experiment=vpn-holidays-na-test&entrypoint_variation=2': 50
                 }
             });
             cop.init();

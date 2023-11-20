@@ -38,11 +38,25 @@ switch('vpn-events-banner') %}
 
 {% set holidays_na_banner_experiment = switch('vpn-holidays-na-test') and country_code in ['US', 'CA'] %}
 
+{% block experiments %}
+  {% if holidays_na_banner_experiment %}
+    {{ js_bundle('mozilla-vpn-holidays-na-experiment-banner') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
+
+  {% if show_events_banner %}
+    {{ css_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
+
+  {% if show_holidays_na_banner %}
+    {{ css_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -94,7 +108,7 @@ switch('vpn-events-banner') %}
     {% if vpn_available %}
       <p class="c-main-cta">
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary">
-          {# Remove these conditionals once cybersecurity month banner is removed see issue 13761 #}
+          {# Remove these conditionals once holidays event banner is removed, see issue 13885 #}
           {% if show_events_banner %}
             {{ ftl('vpn-shared-subscribe-link') }}
           {% else %}
@@ -402,6 +416,12 @@ switch('vpn-events-banner') %}
 {% block js %}
   {% if show_events_banner %}
     {{ js_bundle('mozilla-vpn-events-banner') }}
+  {% endif %}
+
+  {% if show_events_banner %}
+    {{ js_bundle('mozilla-vpn-events-banner') }}
+    {{ js_bundle('fxa_product_button') }}
+    {{ js_bundle('data_begincheckout') }}
   {% endif %}
 
   {% if vpn_affiliate_attribution_enabled %}
