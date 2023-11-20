@@ -31,11 +31,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block sub_navigation %}
 {% endblock %}
 
-{% set cta_group %}
-  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg">Firefox als Standardbrowser festlegen</a>
-  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg">Firefox fürs Handy entdecken</a>
-  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen', locale_in_transition=True) }}
-{% endset %}
+{% macro cta_group(position) -%}
+  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Firefox als Standardbrowser festlegen</a>
+  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Firefox for Mobile" data-cta-position="{{ position }}">Firefox fürs Handy entdecken</a>
+  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen', download_location=position, locale_in_transition=True) }}
+{%- endmacro %}
 
 {% block content %}
 <main class="firefox-home">
@@ -159,7 +159,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               findest.</p>
               <p class="not-firefox">Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine
               Non-Profit im Rücken.</p>
-              {{ cta_group }}
+              {{ cta_group('hero') }}
             </div>
           </div>
           {{ picture(
@@ -400,7 +400,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </section>
         <div class="comparison-cta">
           <h3>Du entscheidest, was Standard ist</h3>
-          {{ cta_group }}
+          {{ cta_group('comparison') }}
         </div>
       </div>
     </section>
@@ -494,8 +494,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>Mach mit!</h3>
-    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer">werde Teil unserer Community</a>.</p>
-    {{ cta_group }}
+    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community">werde Teil unserer Community</a>.</p>
+    {{ cta_group('footer') }}
     <p class="text-bottom mobile">Powered by Mozilla <br>Aus Liebe zum Web seit 1998</p>
     <p class="text-bottom desktop">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
   </section>
