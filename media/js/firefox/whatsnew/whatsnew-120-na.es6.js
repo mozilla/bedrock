@@ -6,8 +6,6 @@
 
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
-import TrafficCop from '@mozmeao/trafficcop';
-import { isApprovedToRun } from '../../base/experiment-utils.es6.js';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
 const href = window.location.href;
@@ -15,36 +13,6 @@ const videoLink = document.querySelector('.js-video-play');
 const src = 'https://www.youtube.com/iframe_api';
 const qrButton = document.querySelector('.qr-code-btn');
 const modalContent = document.querySelector('.mzp-u-modal-content');
-
-const initTrafficCop = () => {
-    if (href.indexOf('v=') !== -1) {
-        if (href.indexOf('v=1') !== -1) {
-            window.dataLayer.push({
-                'data-ex-variant': 'wnp120-video',
-                'data-ex-name': 'wnp-120-experiment-na'
-            });
-        } else if (href.indexOf('v=2') !== -1) {
-            window.dataLayer.push({
-                'data-ex-variant': 'wnp120-no-video',
-                'data-ex-name': 'wnp-120-experiment-na'
-            });
-        }
-    } else if (TrafficCop) {
-        const murtaugh = new TrafficCop({
-            id: 'wnp-120-expiriment-na',
-            cookieExpires: 0,
-            variations: {
-                'v=1': 50, // Fakespot video
-                'v=2': 50 // no video
-            }
-        });
-        murtaugh.init();
-    }
-};
-
-if (isApprovedToRun()) {
-    initTrafficCop();
-}
 
 if (href.indexOf('v=1') !== -1) {
     init();

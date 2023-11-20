@@ -1761,6 +1761,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-120-experiment-na.es6.js"
+      ],
+      "name": "firefox_whatsnew_120_experiment_na"
+    },
+    {
+      "files": [
         "js/firefox/whatsnew/whatsnew-120-eu.es6.js"
       ],
       "name": "firefox_whatsnew_120_eu"

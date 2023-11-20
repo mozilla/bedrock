@@ -19,6 +19,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {{ css_bundle('firefox_whatsnew_120_na') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-120-na', ['en-US', 'en-CA']) %}
+    {{ js_bundle('firefox_whatsnew_120_experiment_na') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% if variant == '1' %}

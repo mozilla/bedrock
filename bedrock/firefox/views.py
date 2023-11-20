@@ -512,10 +512,10 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("120."):
-            if locale in ["en-US", "en-CA"]:
-                template = "firefox/whatsnew/whatsnew-fx120-na.html"
-            elif country in WNP117_VPN_EXPANSION_COUNTRIES:
+            if country in WNP117_VPN_EXPANSION_COUNTRIES:
                 template = "firefox/whatsnew/whatsnew-fx120-eu-vpn.html"
+            elif locale in ["en-US", "en-CA"]:
+                template = "firefox/whatsnew/whatsnew-fx120-na.html"
             elif locale in ["de", "fr", "en-GB"]:
                 template = "firefox/whatsnew/whatsnew-fx120-eu.html"
             else:
