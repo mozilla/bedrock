@@ -15,6 +15,7 @@ const heroClose = document.querySelector('.close');
 const animatedButton = document.querySelector('.animated-button');
 const heroEasterEgg = document.querySelector('.hero-easter-egg');
 const animatedLogos = document.querySelectorAll('.ctd-logo-sprite');
+const summaries = document.querySelectorAll('summary');
 let toggleWrapper;
 
 for (let index = 0; index < animatedLogos.length; index++) {
@@ -27,6 +28,33 @@ for (let index = 0; index < animatedLogos.length; index++) {
             setTimeout(() => {
                 logo.style.animation = '';
             }, 4500);
+        },
+        false
+    );
+}
+
+for (let index = 0; index < summaries.length; index++) {
+    const summary = summaries[index];
+    summary.addEventListener(
+        'click',
+        function (e) {
+            let parent = e.target;
+            const label = e.target.innerText;
+            // closest is not supported in IE
+            // but neither is details/summary element so they won't have anything to click on
+            if (parent.nodeName !== 'details' && Element.prototype.closest) {
+                parent = parent.closest('details');
+            } else if (!Element.prototype.closest) {
+                return false;
+            }
+
+            if (!parent.hasAttribute('open')) {
+                window.dataLayer.push({
+                    event: 'in-page-interaction',
+                    eAction: 'Open details',
+                    eLabel: label
+                });
+            }
         },
         false
     );
@@ -50,6 +78,10 @@ kittenButton.addEventListener(
             onDestroy: () => {
                 kittenButton.focus();
             }
+        });
+        window.dataLayer.push({
+            event: 'in-page-interaction',
+            eAction: 'Kitten modal'
         });
     },
     false
@@ -94,6 +126,10 @@ for (let index = 0; index < toggles.length; index++) {
                 input.parentElement.classList.toggle('animate-slide');
             }
             checkToggles();
+            window.dataLayer.push({
+                event: 'in-page-interaction',
+                eAction: 'Toggle change'
+            });
         },
         false
     );
@@ -115,6 +151,11 @@ heroClose.addEventListener(
             heroWrapper.classList.remove('animate-close');
             heroEasterEgg.classList.toggle('hidden');
         }, 4500);
+
+        window.dataLayer.push({
+            event: 'in-page-interaction',
+            eAction: 'Hero close'
+        });
     },
     false
 );
@@ -139,6 +180,11 @@ function isWednesday() {
         lizardImage.style.display = 'none';
         wednesdayWrapper.classList.remove('animate-wednesday');
     }, 5000);
+
+    window.dataLayer.push({
+        event: 'in-page-interaction',
+        eAction: 'Wednesday Lizard View'
+    });
 }
 
 // check toggle state on page load
