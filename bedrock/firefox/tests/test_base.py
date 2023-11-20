@@ -812,6 +812,73 @@ class TestWhatsNew(TestCase):
 
     # end 119.0 whatsnew tests
 
+    # begin 120.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_na(self, render_mock):
+        """Should use whatsnew-fx120-na template when country is us"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="US")
+        req.locale = "en-US"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-na.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_na_en_ca(self, render_mock):
+        """Should use whatsnew-fx120-na template when country is canada"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="CA")
+        req.locale = "en-CA"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-na.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_eu_de(self, render_mock):
+        """Should use whatsnew-fx120-eu template de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_eu_en_gb(self, render_mock):
+        """Should use whatsnew-fx120-eu template de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_eu_fr(self, render_mock):
+        """Should use whatsnew-fx120-eu template with de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_en_us_it(self, render_mock):
+        """Should use whatsnew-fx120-eu-vpn template for en-US locale in Italy"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="IT")
+        req.locale = "en-US"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-eu-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_120_0_0_de_at(self, render_mock):
+        """Should use whatsnew-fx120-eu-vpn template for de locale in Austria"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="AT")
+        req.locale = "de"
+        self.view(req, version="120.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx120-eu-vpn.html"]
+
+    # end 120.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
