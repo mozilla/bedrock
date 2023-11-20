@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import datetime
 from pathlib import Path
 from unittest.mock import Mock, patch
 
@@ -14,7 +15,8 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
-from bedrock.releasenotes.models import ProductRelease
+from bedrock.releasenotes.models import Note, ProductRelease
+from lib.l10n_utils import render_to_string
 
 TESTS_PATH = Path(__file__).parent
 DATA_PATH = str(TESTS_PATH.joinpath("data"))
@@ -128,6 +130,77 @@ class TestReleaseViews(TestCase):
         assert views.release_notes_template("Release", "Firefox") == "firefox/releases/release-notes.html"
         assert views.release_notes_template("ESR", "Firefox") == "firefox/releases/esr-notes.html"
         assert views.release_notes_template("", "") == "firefox/releases/release-notes.html"
+
+    def test_notes_template_includes_progressive_rollout_indicator_if_appropriate(self):
+        for note_data, expected in [
+            (
+                {
+                    "bug": None,
+                    "created": "2023-10-18T15:00:45.721582+00:00",
+                    "id": 789795,
+                    "is_public": True,
+                    "modified": "2023-11-14T03:22:59.082462+00:00",
+                    "note": "Recently closed tabs now persist between sessions that don't have automatic session restore enabled. Manually restoring a previous session will continue to reopen any previously open tabs or windows.",  # noqa
+                    "sort_num": 0,
+                    "tag": "New",
+                    "progressive_rollout": False,
+                },
+                False,
+            ),
+            (
+                {
+                    "bug": None,
+                    "created": "2023-10-18T14:59:52.262138+00:00",
+                    "id": 789794,
+                    "is_public": True,
+                    "modified": "2023-11-14T03:22:58.386974+00:00",
+                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.mozilla.org/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
+                    "sort_num": 0,
+                    "tag": "New",
+                    "progressive_rollout": True,
+                },
+                True,
+            ),
+            (
+                {
+                    "bug": None,
+                    "created": "2023-10-18T15:00:45.721582+00:00",
+                    "id": 789795,
+                    "is_public": True,
+                    "modified": "2023-11-14T03:22:59.082462+00:00",
+                    "note": "Recently closed tabs now persist between sessions that don't have automatic session restore enabled. Manually restoring a previous session will continue to reopen any previously open tabs or windows.",  # noqa
+                    "sort_num": 0,
+                    "tag": "New",
+                    # Deliberately no progressive_rollout key/value pair
+                },
+                False,
+            ),
+        ]:
+            fake_request = RequestFactory().get("/")
+
+            with self.subTest(note_data=note_data, expected=expected):
+                note = Note(data=note_data)
+                fake_release = ProductRelease(
+                    **{
+                        "product": "Firefox",
+                        "channel": "Release",
+                        "version": "556.0",
+                        "release_date": datetime.date.fromisoformat("2117-08-02"),
+                        "created": datetime.datetime.fromisoformat("2117-03-21T13:19:13.668000+00:00"),
+                        "modified": datetime.datetime.fromisoformat("2117-03-21T13:19:13.668000+00:00"),
+                        "is_public": True,
+                    }
+                )
+                fake_release_notes = [note]
+                rendered = render_to_string(
+                    request=fake_request,
+                    template_name="firefox/releases/notes.html",
+                    context={
+                        "release_notes": fake_release_notes,
+                        "release": fake_release,
+                    },
+                )
+                assert ('class="release-note-progressive-rollout-indicator"' in rendered) is expected
 
     @override_settings(DEV=False)
     def test_non_public_release(self):
