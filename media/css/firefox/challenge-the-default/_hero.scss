@@ -30,7 +30,7 @@ $campaign-red: #ff6a75;
 
     p {
         @include font-size(24px);
-        color: $color-white;
+        color: $color-black;
         font-weight: 600;
         text-align: center;
     }
@@ -223,9 +223,10 @@ $campaign-red: #ff6a75;
 
         p {
             @include font-size(18px);
-            font-weight: 600;
             color: $color-marketing-gray-70;
-            margin-bottom: $layout-sm;
+            font-weight: 600;
+            margin-bottom: $spacing-xl;
+            max-width: $content-md;
         }
 
         .mzp-c-button {
@@ -252,5 +253,90 @@ $campaign-red: #ff6a75;
     // issue 13317
     .fx-unsupported-message {
         @include bidi(((text-align, left, right),));
+    }
+}
+
+// Hero variations for ad conversion see issue 13915
+
+main[data-variant="2"] {
+    .ctd-hero-wrapper,
+    .c-ctd-hero {
+        background: #2AC3A2;
+    }
+}
+
+main[data-variant="3"],
+main[data-variant="4"] {
+    .ctd-hero-wrapper,
+    .c-ctd-hero {
+        background: #FFBDC5;
+    }
+}
+
+main[data-variant="2"],
+main[data-variant="3"],
+main[data-variant="4"],
+main[data-variant="5"] {
+    .c-hero-top {
+        border-color: transparent;
+    }
+
+    .c-ctd-hero {
+        .minimize {
+            background-image: url('/media/img/firefox/challenge-the-default/minimize-black.svg');
+        }
+
+        .expand {
+            background-image: url('/media/img/firefox/challenge-the-default/open-black.svg');
+        }
+
+        .close {
+            background-image: url('/media/img/firefox/challenge-the-default/close-black.svg');
+        }
+
+        .hero-content-wrapper {
+            display: block;
+        }
+
+        .c-hero-text {
+            h1 {
+                @include font-size(38px);
+
+                br {
+                    display: none;
+                }
+            }
+
+            @media #{$mq-md} {
+                max-width: 100%;
+            }
+
+            @media #{$mq-lg} {
+                h1 {
+                    @include font-size(100px);
+
+                    br {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+
+    .icon-firefox {
+        @include background-size(40px 40px);
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
+        background-position: top left;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 40px;
+        vertical-align: middle;
+        width: 40px;
+
+        @media #{$mq-lg} {
+            @include background-size(90px 90px);
+            height: 90px;
+            width: 90px;
+        }
     }
 }

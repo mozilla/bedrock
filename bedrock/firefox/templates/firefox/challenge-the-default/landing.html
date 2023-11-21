@@ -38,7 +38,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {%- endmacro %}
 
 {% block content %}
-<main class="firefox-home">
+<main class="firefox-home" {% if variant %}data-variant="{{ variant }}"{% endif %}>
+  {% if variant not in ["2", "3", "4", "5"] %}
   <div class="ctd-mobile-banner">
     {{ resp_img(
         url='img/firefox/challenge-the-default/logo-firefox.svg',
@@ -51,6 +52,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     }}
     <div class="ctd-logo-sprite"></div>
   </div>
+  {% endif %}
   <section class="ctd-hero-wrapper">
     <div class="hidden hero-easter-egg">
       <svg class="toggle-easter-egg" id="elBstU1fviJ1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -133,6 +135,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <div class="hero-wrapper">
         <div class="c-hero-top">
           <div class="c-hero-top-images">
+            {% if variant not in ["2", "3", "4", "5"] %}
               {{ resp_img(
                 url='img/firefox/challenge-the-default/logo-firefox.svg',
                 optional_attributes={
@@ -143,6 +146,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 })
               }}
               <div class="ctd-logo-sprite"></div>
+            {% endif %}
           </div>
           <div class="c-hero-top-controls" aria-hidden="true">
               <span class="hero-control-btn minimize"></span>
@@ -151,14 +155,21 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </div>
         </div>
         <div class="hero-content-wrapper">
+          {% if variant in ["1", "2", "3", "4", "5"] %}
+            {% include 'firefox/challenge-the-default/includes/hero-v' + variant + '.html' %}
+          {% else %}
           <div class="c-hero-text">
             <h1>Der Browser, den du selber wählst</h1>
             <div class="hero-text-flex-wrapper">
-              <p class="is-firefox">Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein
-              Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas
-              findest.</p>
-              <p class="not-firefox">Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine
-              Non-Profit im Rücken.</p>
+              <p class="is-firefox">
+                Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein
+                Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas
+                findest.
+              </p>
+              <p class="not-firefox">
+                Wenn du Firefox wählst, triffst du eine bewusste Entscheidung. Besserer Datenschutz, mehr Transparenz und
+                ein gesünderes Web.
+              </p>
               {{ cta_group('hero') }}
             </div>
           </div>
@@ -184,11 +195,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 'alt': 'Image of a seagull sitting on a no birds allowed sign'
               }
           )}}
+          {% endif %}
         </div>
       </div>
     </div>
   </section>
-
     <section class="mzp-l-content mzp-t-content-xl c-ctd-features">
       <h2>Unsere <br>Lieblingsfeatures</h2>
       <ul class="mzp-l-columns mzp-t-columns-four">

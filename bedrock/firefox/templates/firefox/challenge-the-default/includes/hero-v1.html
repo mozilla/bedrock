@@ -1,0 +1,43 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="c-hero-text">
+  <h1>Der Browser, den du selber wählst</h1>
+  <div class="hero-text-flex-wrapper">
+    <p class="is-firefox">
+      Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein
+      Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas
+      findest.
+    </p>
+    <p class="not-firefox">
+      Wenn du Firefox wählst, triffst du eine bewusste Entscheidung. Besserer Datenschutz, mehr Transparenz und
+      ein gesünderes Web.
+    </p>
+    {{ cta_group('hero-v1') }}
+  </div>
+</div>
+{{ picture(
+    url='img/firefox/challenge-the-default/hero-image-mobile.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/firefox/challenge-the-default/hero-image-mobile.png': 'default'
+        }
+      },
+      {
+        'media': '(min-width: 1024px)',
+        'srcset': {
+          'img/firefox/challenge-the-default/hero-image-desktop.png': 'default'
+        }
+      },
+    ],
+    optional_attributes={
+      'loading': 'eager',
+      'class': 'c-hero-image',
+      'alt': 'Image of a seagull sitting on a no birds allowed sign'
+    }
+)}}
