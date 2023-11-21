@@ -14,8 +14,13 @@ import FirefoxDefault from '../../../../../media/js/firefox/family/fx-is-default
 describe('fx-is-default.js', function () {
     beforeEach(function () {
         window.Mozilla.UITour = sinon.stub();
+        window.Mozilla.UITour.ping = sinon.stub();
         window.Mozilla.UITour.getConfiguration = sinon.stub();
         document.body.append(document.createElement('main'));
+
+        spyOn(window.Mozilla.UITour, 'ping').and.callFake((callback) => {
+            callback();
+        });
     });
 
     afterEach(function () {

@@ -22,18 +22,22 @@ const FirefoxDefault = {
     },
 
     init: () => {
+        const main = document.querySelector('main');
+
         if (!FirefoxDefault.isSupported()) {
             return;
         }
+
         return new window.Promise(function (resolve) {
-            FirefoxDefault.isDefaultBrowser()
-                .then(function () {
-                    document
-                        .querySelector('main')
-                        .classList.add('is-firefox-default');
-                    resolve();
-                })
-                .catch(() => resolve());
+            Mozilla.UITour.ping(() => {
+                main.classList.add('set-default-supported');
+                FirefoxDefault.isDefaultBrowser()
+                    .then(function () {
+                        main.classList.add('is-firefox-default');
+                        resolve();
+                    })
+                    .catch(() => resolve());
+            });
         });
     }
 };

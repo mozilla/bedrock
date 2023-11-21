@@ -138,7 +138,6 @@ html:not(.is-firefox) {
     }
 }
 
-
 .ctd-logo-sprite {
     @include image-replaced;
     animation: ctd-sprite 1.25s steps(25);
