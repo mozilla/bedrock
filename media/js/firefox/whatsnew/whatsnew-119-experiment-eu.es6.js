@@ -12,19 +12,40 @@ const href = window.location.href;
 const initTrafficCop = () => {
     if (href.indexOf('v=') !== -1) {
         if (href.indexOf('v=1') !== -1) {
+            // UA
             window.dataLayer.push({
                 'data-ex-variant': 'wnp119-boxes-open',
                 'data-ex-name': 'wnp-119-experiment-eu'
             });
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'wnp-119-experiment-eu',
+                variant: 'wnp119-boxes-open'
+            });
         } else if (href.indexOf('v=2') !== -1) {
+            // UA
             window.dataLayer.push({
                 'data-ex-variant': 'wnp119-boxes-closed',
                 'data-ex-name': 'wnp-119-experiment-eu'
             });
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'wnp-119-experiment-eu',
+                variant: 'wnp119-boxes-closed'
+            });
         } else if (href.indexOf('v=3') !== -1) {
+            // UA
             window.dataLayer.push({
                 'data-ex-variant': 'wnp119-relay',
                 'data-ex-name': 'wnp-119-experiment-eu'
+            });
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'wnp-119-experiment-eu',
+                variant: 'wnp119-relay'
             });
         }
     } else if (TrafficCop) {

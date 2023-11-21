@@ -112,15 +112,29 @@ A/B tests
 
 .. code-block:: javascript
 
-    if(href.indexOf('v=a') !== -1) {
+    if (href.indexOf('v=a') !== -1) {
+        // UA
         window.dataLayer.push({
             'data-ex-variant': 'de-page',
             'data-ex-name': 'Berlin-Campaign-Landing-Page'
         });
+        // GA4
+        window.dataLayer.push({
+            event: 'experiment_view',
+            id: 'Berlin-Campaign-Landing-Page',
+            variant: 'de-page',
+        });
     } else if (href.indexOf('v=b') !== -1) {
+        // UA
         window.dataLayer.push({
             'data-ex-variant': 'campaign-page',
             'data-ex-name': 'Berlin-Campaign-Landing-Page'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'experiment_view',
+            id: 'Berlin-Campaign-Landing-Page',
+            variant: 'campaign-page',
         });
     }
 

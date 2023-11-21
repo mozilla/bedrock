@@ -12,14 +12,28 @@ const href = window.location.href;
 const initTrafficCop = () => {
     if (href.indexOf('v=') !== -1) {
         if (href.indexOf('v=1') !== -1) {
+            // UA
             window.dataLayer.push({
                 'data-ex-variant': 'wnp119-boxes',
                 'data-ex-name': 'wnp-119-experiment-na'
             });
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'wnp-119-experiment-na',
+                variant: 'wnp119-boxes'
+            });
         } else if (href.indexOf('v=2') !== -1) {
+            // UA
             window.dataLayer.push({
                 'data-ex-variant': 'wnp119-addons',
                 'data-ex-name': 'wnp-119-experiment-na'
+            });
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'wnp-119-experiment-na',
+                variant: 'wnp119-addons'
             });
         }
     } else if (TrafficCop) {
