@@ -348,12 +348,12 @@ The custom event we use for this is `dimension_set`.
 
     window.dataLayer.push({
         event: 'dimension_set',
-        firefox_isDefault: true
+        firefox_is_default: true
     });
 
 User scoped custom dimensions must be configured in GA4. The list of supported custom dimensions is:
 
-- firefox_isDefault (boolean)
+- firefox_is_default (boolean)
 
 
 How can visitors opt out of GA?

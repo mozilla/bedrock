@@ -37,7 +37,7 @@
         // GA4
         window.dataLayer.push({
             event: 'dimension_set',
-            firefox_isDefault: true
+            firefox_is_default: true
         });
     }
 
@@ -55,7 +55,7 @@
         // GA4
         window.dataLayer.push({
             event: 'dimension_set',
-            firefox_isDefault: false
+            firefox_is_default: false
         });
     }
 
