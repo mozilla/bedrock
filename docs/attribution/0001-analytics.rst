@@ -326,6 +326,36 @@ You do NOT need to include ``datalayer-productdownload-init.es6.js`` in the page
 in the site bundle.
 
 
+Default Browser
+~~~~~~~~~~~~~~~
+
+Trigger this event when a user sets their default browser to Firefox. It's an important conversion for us!
+
+.. code-block:: javascript
+
+    window.dataLayer.push({
+        event: 'default_browser_set',
+    });
+
+
+User Scoped Custom Dimensions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When using GA4 through GTM there isn’t a way to set user scoped custom dimensions without an accompanying event.
+The custom event we use for this is `dimension_set`.
+
+.. code-block:: javascript
+
+    window.dataLayer.push({
+        event: 'dimension_set',
+        firefox_is_default: true
+    });
+
+User scoped custom dimensions must be configured in GA4. The list of supported custom dimensions is:
+
+- firefox_is_default (boolean)
+
+
 How can visitors opt out of GA?
 -------------------------------
 

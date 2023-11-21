@@ -27,10 +27,17 @@
         clearTimeout(timeout);
         document.querySelector('.wnp-main-cta').classList.add('hide');
 
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'whatsnew-116',
             eLabel: 'firefox-default'
+        });
+
+        // GA4
+        window.dataLayer.push({
+            event: 'dimension_set',
+            firefox_is_default: true
         });
     }
 
@@ -38,10 +45,17 @@
         clearTimeout(timeout);
         document.querySelector('.wnp-main-cta').classList.add('show');
 
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'whatsnew-116',
             eLabel: 'firefox-not-default'
+        });
+
+        // GA4
+        window.dataLayer.push({
+            event: 'dimension_set',
+            firefox_is_default: false
         });
     }
 

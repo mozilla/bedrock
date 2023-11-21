@@ -27,7 +27,16 @@
 
     function onDefaultSwitch() {
         document.querySelector('main').classList.add('is-firefox-default');
+        // UA
         trackEvent('default-changed', 'success');
+        // GA4
+        window.dataLayer.push({
+            event: 'default_browser_set'
+        });
+        window.dataLayer.push({
+            event: 'dimension_set',
+            firefox_is_default: true
+        });
     }
 
     function checkForDefaultSwitch() {
@@ -41,6 +50,7 @@
             });
     }
 
+    // UA
     function trackEvent(action, label) {
         window.dataLayer.push({
             event: 'in-page-interaction',
@@ -68,7 +78,13 @@
                 document
                     .querySelector('main')
                     .classList.add('is-firefox-default');
+                // UA
                 trackEvent('visited', 'firefox-default');
+                // GA4
+                window.dataLayer.push({
+                    event: 'dimension_set',
+                    firefox_is_default: true
+                });
             })
             .catch(function (canSetDefaultBrowserInBackground) {
                 /**
@@ -85,7 +101,13 @@
                         timer = setInterval(checkForDefaultSwitch, 1000);
                     }, 1500);
                 }
+                // UA
                 trackEvent('visited', 'firefox-not-default');
+                // GA4
+                window.dataLayer.push({
+                    event: 'dimension_set',
+                    firefox_is_default: false
+                });
             });
     }
 
