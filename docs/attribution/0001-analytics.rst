@@ -77,33 +77,58 @@ When a banner is shown:
 
 .. code-block:: javascript
 
-    dataLayer.push({
+    // UA
+    window.dataLayer.push({
         'eLabel': 'Banner Impression',
         'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
         'data-banner-impression': '1',
         'event': 'non-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'display',
+        name: '<banner name>', //ex. Fb-Video-Compat
+        non_interaction: true
     });
 
 When an element in the banner is clicked:
 
 .. code-block:: javascript
 
-    dataLayer.push({
-        'eLabel': 'Banner Clickthrough',
+    // UA
+    window.dataLayer.push({
+        'eLabel': 'Banner Click (OK)',
         'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
         'data-banner-click': '1',
         'event': 'in-page-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'clickthrough',
+        name: '<banner name>', //ex. Fb-Video-Compat
     });
 
 When a banner is dismissed:
 
 .. code-block:: javascript
 
+    // UA
     dataLayer.push({
         'eLabel': 'Banner Dismissal',
         'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
         'data-banner-dismissal': '1',
         'event': 'in-page-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'dismiss',
+        name: '<banner name>' //ex. Fb-Video-Compat
     });
 
 
@@ -339,6 +364,97 @@ There are two ways to use TrackProductDownload:
 You do NOT need to include ``datalayer-productdownload-init.es6.js`` in the page bundle, it is already included
 in the site bundle.
 
+Widget Action
+~~~~~~~~~~~~~
+
+We are using the custom event ``widget_action`` to track the behaviour of javascript widgets.
+
+
+.. list-table:: How do you chose between ``widget_action`` and ``cta_click``?
+   :widths: 50 50
+   :header-rows: 1
+
+   * - widget_action
+     - cta_click
+   * - The action is specific or unique.
+
+       *(Only the language switcher changes the page language.)*
+     - The action is "click".
+   * - The user does not leave the page.
+     - It sends the user somewhere else.
+   * - It requires Javascript to work.
+     - No JS required.
+   * - It can perform several actions.
+
+       *(A modal can be opened and closed.)*
+     - It does one action.
+   * - There could be several on the page doing different things.
+
+       *(An accordion list of FAQs)*
+     - There could be several on the page doing the same thing.
+
+       *(A download button in the header and footer.)*
+
+Properties for use with `widget_action`  (not all widgets will use all options):
+
+- type
+    - **Required.**
+    - The type of widget.
+    - Examples: "modal", "protection report", "affiliate notification", "help icon".
+    - *Avoid “button” or “link”. If you want to track a link or button use `cta_click`.*
+- action
+    - **Required.**
+    - The thing that happened.
+    - Examples: "open", "accept", "timeout", "vote up".
+    - *Avoid “click”. If you want to track a click use `cta_click`.*
+- name
+    - Give the widget a name.
+    - This can help you group actions from the same widget, or make it easier to find
+      the widget in the reports.
+    - The dashes are not required but they're allowed if you want to match the element
+      class or ID.
+    - Examples: "dad-joke-banner", "focus-qr-code", "Join Firefox Modal"
+- label
+    - How is this action labeled to the user?
+    - Examples: "Okay", "Check your protection report", "Get the app"
+- non_interaction (boolean)
+    - True if the action was triggered by something other than a user gesture.
+    - If it's not included we assume the value is *false*
+
+To use ``widget_action`` push your event to the ``dataLayer``:
+
+.. code-block:: js
+
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'accept',
+        name: 'dad-jokes-banner'
+    });
+
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'modal',
+        action: 'open',
+        name: 'help-icon'
+        label: 'Get Browser Help'
+    });
+
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'vote',
+        action: 'helpful',
+        name: 'vpn-resource-center'
+        label: 'What is an IP address?'
+    });
+
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'details',
+        action: 'open',
+        name: 'relay-faq'
+        label: 'Where is Relay available?'
+    });
 
 Default Browser
 ~~~~~~~~~~~~~~~

@@ -20,16 +20,32 @@ function showBanner() {
     document.removeEventListener('scroll', showBanner);
     dadJokesBanner.classList.remove('hide-banner');
     dadJokesBanner.classList.add('fade-in-banner');
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'display',
+        name: 'dad-jokes-banner',
+        non_interaction: true
+    });
     // allow dismissal click
     dadJokesBannerClose.addEventListener('click', hideBanner);
 }
 
 function hideBanner() {
+    // UA
     window.dataLayer.push({
         eLabel: 'Banner Dismissal',
         'data-banner-name': 'firefox-for-families-banner',
         'data-banner-dismissal': '1',
         event: 'in-page-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'banner',
+        action: 'accept',
+        name: 'dad-jokes-banner'
     });
     // start emoji animation according to user preference
     const userPrefAnimation = motionAllowed()
