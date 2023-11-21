@@ -13,19 +13,40 @@
     var initTrafficCop = function () {
         if (href.indexOf('v=') !== -1) {
             if (href.indexOf('v=1') !== -1) {
+                // UA
                 window.dataLayer.push({
                     'data-ex-variant': 'v1-pointed',
                     'data-ex-name': 'firefox-set-as-default-experiment'
                 });
+                // GA4
+                window.dataLayer.push({
+                    event: 'experiment_view',
+                    id: 'v1-pointed',
+                    variant: 'firefox-set-as-default-experiment'
+                });
             } else if (href.indexOf('v=2') !== -1) {
+                // UA
                 window.dataLayer.push({
                     'data-ex-variant': 'v2-privacy',
                     'data-ex-name': 'firefox-set-as-default-experiment'
                 });
+                // GA4
+                window.dataLayer.push({
+                    event: 'experiment_view',
+                    id: 'v2-privacy',
+                    variant: 'firefox-set-as-default-experiment'
+                });
             } else if (href.indexOf('v=3') !== -1) {
+                // UA
                 window.dataLayer.push({
                     'data-ex-variant': 'v3-mission',
                     'data-ex-name': 'firefox-set-as-default-experiment'
+                });
+                // GA4
+                window.dataLayer.push({
+                    event: 'experiment_view',
+                    id: 'v3-mission',
+                    variant: 'firefox-set-as-default-experiment'
                 });
             }
         } else if (TrafficCop) {
