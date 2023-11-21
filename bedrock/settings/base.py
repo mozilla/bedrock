@@ -235,7 +235,7 @@ FLUENT_DEFAULT_FILES = [
     "affiliate",
     "banners/firefox-app-store",
     "banners/fundraising",
-    "banners/vpn-cyber-security-month",
+    "banners/vpn-holidays",
     "brands",
     "download_button",
     "firefox/sticky-promo",

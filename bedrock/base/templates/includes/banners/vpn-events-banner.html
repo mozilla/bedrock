@@ -6,23 +6,23 @@
 
 {% extends 'includes/banners/base.html' %}
 
-{% block banner_id %}vpn-cyber-security-month-banner{% endblock %}
+{% block banner_id %}vpn-events-banner{% endblock %}
 
-{% set coupon_code = 'CYBER20' %}
+{% set coupon_code = 'HOLIDAY20' %}
 
-{% block banner_title %}{{ ftl('banner-vpn-cyber-title') }}{% endblock %}
+{% block banner_title %}{{ ftl('banner-vpn-holidays-title') }}{% endblock %}
 
 {% block banner_content %}
-  <p class="c-banner-copy">{{ ftl('banner-vpn-cyber-take-20-percent-off') }}</p>
+  <p class="c-banner-copy">{{ ftl('banner-vpn-holidays-take-20-percent-off') }}</p>
 
   <p class="c-banner-copy">
-    <b>{{ ftl('banner-vpn-cyber-use-coupon-code', coupon_code='<span>%s</span>'|format(coupon_code)|safe) }}</b>
+    <b>{{ ftl('banner-vpn-holidays-use-coupon-code', coupon_code='<span>%s</span>'|format(coupon_code)|safe) }}</b>
   </p>
 
   <div class="c-banner-cta">
     {{ vpn_subscribe_link(
       entrypoint=_utm_source,
-      link_text=ftl('banner-vpn-cyber-get-annual-sub'),
+      link_text=ftl('banner-vpn-holidays-get-annual-sub'),
       plan='12-month',
       class_name='mzp-c-button mzp-t-dark mzp-t-md',
       country_code=country_code,
@@ -37,7 +37,7 @@
         'data-cta-position': 'banner'
       })
     }}
-    <small class="c-banner-copy-small">{{ ftl('banner-vpn-cyber-offer-ends') }}</small>
+    <small class="c-banner-copy-small">{{ ftl('banner-vpn-holidays-offer-ends') }}</small>
   </div>
 
 {% endblock %}

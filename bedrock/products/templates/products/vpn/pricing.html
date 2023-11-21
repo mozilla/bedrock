@@ -88,10 +88,6 @@
 {% endblock %}
 
 {% block js %}
-  {% if show_cyber_security_banner %}
-    {{ js_bundle('mozilla-vpn-cyber-security-banner') }}
-  {% endif %}
-
   {% if vpn_affiliate_attribution_enabled %}
     {{ js_bundle('mozilla-vpn-affiliate') }}
   {% else %}
