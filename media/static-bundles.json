@@ -1314,24 +1314,6 @@
     },
     {
       "files": [
-        "css/products/relay/landing.scss"
-      ],
-      "name": "relay-landing"
-    },
-    {
-      "files": [
-        "css/products/relay/faq.scss"
-      ],
-      "name": "relay-faq"
-    },
-    {
-      "files": [
-        "css/products/relay/waitlist.scss"
-      ],
-      "name": "relay-waitlist"
-    },
-    {
-      "files": [
         "css/products/monitor/waitlist.scss"
       ],
       "name": "monitor-waitlist"
@@ -2091,12 +2073,6 @@
         "js/firefox/challenge-the-default/device-detect.es6.js"
       ],
       "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "js/products/relay/waitlist.es6.js"
-      ],
-      "name": "relay-waitlist"
     },
     {
       "files": [
