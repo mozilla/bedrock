@@ -19,35 +19,63 @@
   {{ css_bundle('firefox_whatsnew_120_eu_vpn') }}
 {% endblock %}
 
-{%- if LANG == 'de' -%}
-  {% set main_title = "Datenschutz der Extraklasse, jetzt extra günstig" %}
-  {% set body_text = "Online-Sicherheit geht weit über Ihren Browser hinaus. Sichere dir 20% Rabatt auf ein Mozilla VPN Jahresabo, deine One-Click-Lösung für ein gutes Gefühl, das ganze Jahr über." %}
-  {% set body_text_2 = "Gib den Code DEAL20 an der Kasse ein. Nur bis 21. Dez!" %}
-  {% set cta_text = "Hol dir Mozilla VPN" %}
-  {% set sign_off = "<strong>Powered by Mozilla.</strong> Bei uns stehen Menschen seit 1998 über Gewinnen."|safe %}
+{%- if LANG == 'cs' -%}
+  {% set main_title = "Soukromí na vyšší úrovni, jedinečná cena" %}
+  {% set body_text = "Vaše online bezpečí jde nad rámec vašeho prohlížeče. Využijte 20% slevu na roční předplatné služby Mozilla VPN, která vám na jedno kliknutí zajistí větší klid po celý rok." %}
+  {% set body_text_2 = "Zadejte kód DEAL20 u pokladny do 21. prosince." %}
+  {% set cta_text = "Získejte Mozilla VPN" %}
+  {% set sign_off = "<strong>Provozováno společností Mozilla.</strong> Upřednostňujeme lidi před ziskem už od roku 1998."|safe %}
 
-{%- elif LANG.startswith("es-"): -%}
+{%- elif LANG == 'da' -%}
+  {% set main_title = "Det næste niveau af privatliv til en fantastisk pris" %}
+  {% set body_text = "Din sikkerhed online handler om mere end din browser. Få 20 % rabat på et årsabonnement på Mozilla VPN, som kan give dig ekstra ro i sindet året rundt med kun ét klik." %}
+  {% set body_text_2 = "Angiv koden DEAL20 under betalingen inden d. 21. december." %}
+  {% set cta_text = "Få Mozilla VPN" %}
+  {% set sign_off = "<strong>Drevet af Mozilla.</strong> Vi har prioriteret mennesker over profit siden 1998."|safe %}
+
+{%- elif LANG == 'de' -%}
+  {% set main_title = "Datenschutz der Extraklasse, jetzt extra günstig" %}
+  {% set body_text = "Online-Sicherheit geht weit über deinen Browser hinaus. Sichere dir 20 % Rabatt auf ein Mozilla VPN Jahresabo, deine Lösung für ein gutes Gefühl, das ganze Jahr über." %}
+  {% set body_text_2 = "Gib den Code DEAL20 an der Kasse ein. Nur bis 21. Dezember!" %}
+  {% set cta_text = "Hol dir Mozilla VPN" %}
+  {% set sign_off = "<strong>Powered by Mozilla.</strong> Für dich und das Web. Schon seit 1998."|safe %}
+
+{%- elif LANG.startswith("es-") -%}
   {% set main_title = "Privacidad al máximo nivel a un precio extraordinario" %}
   {% set body_text = "Tu seguridad online va más allá de tu navegador. Disfruta de un 20 % de descuento en tu suscripción anual a Mozilla VPN: tu solución en un solo clic para disfrutar de tranquilidad extra durante todo el año." %}
   {% set body_text_2 = "Introduce el código DEAL20 al pagar antes del 21 de diciembre." %}
   {% set cta_text = "Consigue Mozilla VPN" %}
   {% set sign_off = "<strong>Con tecnología de Mozilla.</strong> Priorizamos a las personas sobre el beneficio desde 1998."|safe %}
 
-{%- elif LANG == "fr": -%}
+{%- elif LANG == "fi" -%}
+  {% set main_title = "Uuden luokan yksityisyyttä, poikkeukselliseen hintaan" %}
+  {% set body_text = "Verkkoturvallisuutesi ulottuu selaintasi pidemmälle. Saat 20 %:n alennuksen Mozilla VPN -vuositilauksesta, joka antaa vankempaa mielenrauhaa koko vuodeksi yhdellä napsautuksella." %}
+  {% set body_text_2 = "Anna koodi DEAL20 kassalla 21. joulukuuta mennessä" %}
+  {% set cta_text = "Hanki Mozilla VPN" %}
+  {% set sign_off = "<strong>Palvelun tarjoaa Mozilla.</strong> Ihmiset voiton tavoittelun edelle jo vuodesta 1998."|safe %}
+
+{%- elif LANG == "fr" -%}
   {% set main_title = "Confidentialité assurée, prix exceptionnel" %}
   {% set body_text = "Votre sécurité en ligne ne se limite pas à votre navigateur. Profitez de 20% de réduction sur l’abonnement annuel à Mozilla VPN, votre solution en un clic pour plus de tranquillité toute l’année." %}
   {% set body_text_2 = "Utilisez le code DEAL20 lors du paiement avant le 21 déc." %}
   {% set cta_text = "Installer Mozilla VPN" %}
   {% set sign_off = "<strong>Conçu par Mozilla.</strong> Nous plaçons les personnes avant le profit depuis 1998."|safe %}
 
-{%- elif LANG == "it": -%}
+{%- elif LANG == "hu" -%}
+  {% set main_title = "Jövőbe mutató biztonság, rendkívüli áron" %}
+  {% set body_text = "Az online biztonság túlmutat a böngészőn. Vásároljon éves Mozilla VPN előfizetést 20% kedvezménnyel, és érezze magát biztonságban egész évben, egyetlen kattintással." %}
+  {% set body_text_2 = "Fizetéskor adja meg a DEAL20 kódot december 21-ig." %}
+  {% set cta_text = "Kérem a Mozilla VPN-t" %}
+  {% set sign_off = "<strong>A Mozilla erejével.</strong> Mi az embereket helyezzük a profit elé – már 1998 óta."|safe %}
+
+{%- elif LANG == "it" -%}
   {% set main_title = "Privacy di livello superiore a un prezzo straordinario" %}
   {% set body_text = "La tua sicurezza online va oltre il tuo browser. Approfitta del 20% di sconto sull'abbonamento annuale a Mozilla VPN. La tua soluzione a portata di clic per un anno intero di tranquillità." %}
   {% set body_text_2 = "Inserisci il codice DEAL20 in fase di pagamento entro il 21 dicembre." %}
   {% set cta_text = "Ottieni Mozilla VPN" %}
   {% set sign_off = "<strong>Creata da Mozilla.</strong> Dal 1998, prima le persone, poi i profitti."|safe %}
 
-{%- elif LANG == "nl": -%}
+{%- elif LANG == "nl" -%}
   {% set main_title = "Meer privacy, scherpe prijs" %}
   {% set body_text = "Als u veilig op internet wilt, hebt u meer nodig dan een goede browser. Profiteer van 20% korting op een jaarabonnement op Mozilla VPN, dat u in één klik extra zekerheid biedt gedurende het hele jaar." %}
   {% set body_text_2 = "Gebruik vóór 21 december code DEAL20 tijdens het afrekenen." %}
@@ -60,6 +88,20 @@
   {% set body_text_2 = "Płacąc, wprowadź kod DEAL20, ważny do 21 grudnia." %}
   {% set cta_text = "Pobierz Mozilla VPN" %}
   {% set sign_off = "<strong>Wykorzystuje technologię Mozilla.</strong> Tworzymy dla ludzi, nie dla zysku, od 1998 r."|safe %}
+
+{%- elif LANG == "pt-PT" -%}
+  {% set main_title = "Privacidade de alto nível a um preço extraordinário." %}
+  {% set body_text = "A sua segurança online vai muito para além do seu browser. Aproveite 20% de desconto numa subscrição anual da Mozilla VPN, a sua solução com um só clique que lhe proporciona total tranquilidade durante todo o ano." %}
+  {% set body_text_2 = "Introduza o código DEAL20 na fase do pagamento antes de 21 de dezembro." %}
+  {% set cta_text = "Obtenha o Mozilla VPN" %}
+  {% set sign_off = "<strong>Com tecnologia Mozilla.</strong> Colocamos as pessoas à frente dos lucros desde 1998."|safe %}
+
+{%- elif LANG == "sv-SE" -%}
+  {% set main_title = "Högsta integritet, lägsta möjliga pris" %}
+  {% set body_text = "Onlinesäkerhet handlar om mer än webbläsaren. Få 20 % rabatt på en årsprenumeration på Mozilla VPN och känn extra sinnesro året runt med ett enkelt klick." %}
+  {% set body_text_2 = "Ange koden DEAL20 i kassan före 21 december." %}
+  {% set cta_text = "Skaffa Mozilla VPN" %}
+  {% set sign_off = "<strong>Drivs av Mozilla.</strong> Där människan gått före vinsten sedan 1998."|safe %}
 
 {%- else -%}
   {% set main_title = "Next level privacy, extraordinary price" %}
