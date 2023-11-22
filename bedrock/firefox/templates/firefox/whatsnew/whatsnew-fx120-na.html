@@ -41,46 +41,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 <section class="wnp-content-main">
   <div class="mzp-l-content mzp-t-content-lg">
     <h2 class="wnp-main-title">Make holiday shopping a breeze with Firefox</h2>
-    {% if variant == "1" %}
-        <div class="mzp-c-video">
-          <a class="video-play js-video-play" href="https://youtu.be/An2LHqi4Xkg" data-id="An2LHqi4Xkg"
-            data-video-title="Shop with confidence using Fakespot by Mozilla " title="Play the video">
-            <img src="{{ static('img/firefox/whatsnew/whatsnew120-na/video-thumbnail.png') }}" alt="" width="769" height="432">
-          </a>
-        </div>
-      {% endif %}
-    <div class="mzp-l-columns mzp-t-columns-three">
-       {% call picto(
-        title="See which reviews are real before buying your gifts",
-        heading_level=4,
-        class='box-one',
-        image=picture(
-          url='img/firefox/whatsnew/whatsnew120-na/light/headphones.svg',
-           sources=[
-            {
-              "media": "(prefers-color-scheme: light)",
-              "srcset": {
-                "img/firefox/whatsnew/whatsnew120-na/light/headphones.svg": "default",
-              }
-            },
-            {
-              "media": "(prefers-color-scheme: dark)",
-              "srcset": {
-                "img/firefox/whatsnew/whatsnew120-na/dark/headphones.svg": "default",
-              }
-            }
-          ],
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-      ) %}
-        <a class="mzp-c-button mzp-t-secondary" href="{{ install_fakespot_url }}" target="_blank" rel="external noopener">
-        {% include 'firefox/whatsnew/includes/fx120/fakespot.svg' %}<span>Install Fakespot</span></a>
-      {% endcall %}
-
+    <div class="mzp-l-columns mzp-t-columns-two">
       {% call picto(
         title="Take your shopping research on-the-go",
         heading_level=4,

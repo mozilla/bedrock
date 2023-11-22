@@ -41,8 +41,8 @@ const initTrafficCop = () => {
             id: 'wnp-120-expiriment-na',
             cookieExpires: 0,
             variations: {
-                'v=1': 50, // Fakespot video
-                'v=2': 50 // no video
+                'v=1': 0, // Fakespot video
+                'v=2': 100 // no video
             }
         });
         murtaugh.init();
