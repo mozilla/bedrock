@@ -156,7 +156,7 @@ and :abbr:`CTA (Call To Action)`/button link elements.
     When adding any new elements to a Bedrock page, please follow the below guidelines
     to ensure accurate analytics tracking.
 
-For all generic CTA links and ``<button>`` elements, add these data attributes
+For all generic CTA ``<a>`` and ``<button>`` elements, add these data attributes
 (* indicates a required attribute):
 
 +-----------------------+---------------------------------------------------------------------------+
@@ -168,6 +168,18 @@ For all generic CTA links and ``<button>`` elements, add these data attributes
 +-----------------------+---------------------------------------------------------------------------+
 | ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``) |
 +-----------------------+---------------------------------------------------------------------------+
+
+For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
+
++-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Data Attribute        | Expected Value                                                                                                                                                                                                                     |
++=======================+====================================================================================================================================================================================================================================+
+| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                                                                                                                                                                               |
++-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``data-cta-text``     | Name or text of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``). We use this when the link text is not useful, as is the case with many account forms that say, ``Continue``. We replace ``Continue`` with ``Register``. |
++-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)                                                                                                                                                          |
++-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 For Firefox download buttons, add these data attributes (* indicates a required attribute).
 Note that ``data-download-name`` and ``data-download-version`` should be included for download
@@ -188,24 +200,12 @@ required.
 | ``data-download-location`` | ``primary``, ``secondary``, ``nav``, ``other``                                                              |
 +----------------------------+-------------------------------------------------------------------------------------------------------------+
 
-For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
-
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Data Attribute        | Expected Value                                                                                                                                                                                                                     |
-+=======================+====================================================================================================================================================================================================================================+
-| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                                                                                                                                                                               |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``data-cta-text``     | Name or text of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``). We use this when the link text is not useful, as is the case with many account forms that say, ``Continue``. We replace ``Continue`` with ``Register``. |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)                                                                                                                                                          |
-+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
 
 **Old data-cta structure**
 
 Do not use. Included here because some old pages still use it.
 
-``data-cta-type=""`` and ``data-cta-name=""`` trigger a generic link / button
+``data-link-type="link"`` and ``data-link-name=""`` trigger a generic link / button
 click with the following structure:
 
 - Event Category: ``{{page ID}} Interactions``
