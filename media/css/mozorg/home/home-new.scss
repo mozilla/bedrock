@@ -13,15 +13,25 @@ header {
         text-align: center;
 
         h1 {
-            @include font-size(54px);
+            @include font-size(32px);
         }
 
         p {
             @include font-mozilla;
-            @include font-size(30px);
+            @include font-size(18px);
             margin: 0 auto;
             max-width: 780px;
             line-height: 1.4;
+        }
+
+        @media #{$mq-md} {
+            h1 {
+                @include font-size(54px);
+            }
+
+            p {
+                @include font-size(30px);
+            }
         }
     }
 }
@@ -32,7 +42,7 @@ header {
         text-align: center;
 
         @media #{$mq-xs} {
-            @include font-size(35px);
+            @include font-size(32px);
         }
 
         @media #{$mq-md} {
