@@ -419,6 +419,11 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .relevant-countries {
+        @include text-body-xs;
+        margin-bottom: $spacing-lg;
+    }
+
     .release-note-progressive-rollout-indicator {
         @include text-body-md;
         text-align: center;

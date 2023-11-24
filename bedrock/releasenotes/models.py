@@ -146,6 +146,7 @@ class Note(RNModel):
     created = None
     modified = None
     progressive_rollout = False
+    relevant_countries = []
 
 
 class MarkdownField(models.TextField):
