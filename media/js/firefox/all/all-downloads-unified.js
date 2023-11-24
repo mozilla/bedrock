@@ -272,7 +272,7 @@
     };
 
     /**
-     * Append Firefox attribution params for windows downloads.
+     * Append Firefox attribution params for Windows and macOS downloads.
      */
     FirefoxDownloader.onDownloadButtonClick = function (e) {
         e.preventDefault();
@@ -281,6 +281,15 @@
         var version = el.getAttribute('data-download-version');
 
         if (version && /win/.test(version)) {
+            url = FirefoxDownloader.setAttributionURL(e.target.href);
+        }
+
+        // macOS Nightly only for now.
+        if (
+            version &&
+            /osx/.test(version) &&
+            url.indexOf('product=firefox-nightly-latest') !== -1
+        ) {
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }
 

@@ -174,6 +174,17 @@ if (typeof window.Mozilla === 'undefined') {
                         data
                     );
                 }
+                // Append attribution params to macOS Firefox Nightly links.
+                if (
+                    version &&
+                    /osx/.test(version) &&
+                    link.href.indexOf('product=firefox-nightly-latest') !== -1
+                ) {
+                    link.href = Mozilla.StubAttribution.appendToDownloadURL(
+                        link.href,
+                        data
+                    );
+                }
             } else if (
                 link.href &&
                 link.href.indexOf('/firefox/download/thanks/') !== -1
@@ -492,7 +503,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     /**
      * Determines if requirements for stub attribution to work are satisfied.
-     * Stub attribution is only applicable to Windows users who get the stub installer.
+     * Stub attribution is only applicable to Windows/macOS users on desktop.
      * @return {Boolean}.
      */
     StubAttribution.meetsRequirements = function () {
@@ -508,7 +519,7 @@ if (typeof window.Mozilla === 'undefined') {
             return false;
         }
 
-        if (window.site.platform !== 'windows') {
+        if (!/windows|osx/i.test(window.site.platform)) {
             return false;
         }
 

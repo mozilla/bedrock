@@ -13,9 +13,9 @@ that enables Mozilla to link website attributable referral data (including Googl
 Analytics data) to a user's Firefox profile. When a website visitor lands on
 www.mozilla.org and clicks to download Firefox, we pass attribution data about
 their visit to the Firefox installer for inclusion in `Telemetry`_. This is to
-enable Mozilla to better understand how things like changes to our website and
-different marketing campaigns can affect installation rates, as well as overall
-product retention. The data also gives us an insight into how many installations
+enable Mozilla to better understand how changes to our website and different
+marketing campaigns can affect installation rates, as well as overall product
+retention. The data also gives us an insight into how many installations
 originate from www.mozilla.org, as opposed to elsewhere on the internet.
 
 Scope and requirements
@@ -23,10 +23,9 @@ Scope and requirements
 
 - Attribution was originally only possible via the Firefox stub installer on Windows
   (hence the name *stub attribution*), however it now also works on full installer
-  links, and across all Windows desktop release channels.
-- Attribution is still limited to devices running a Windows OS. The flow does not
-  yet work for macOS and Linux users. It also does not work for Android or iOS
-  devices.
+  links, and across all desktop release channels.
+- Attribution now also works on macOS. The flow does not yet work for Linux, Android
+  or iOS devices.
 - Attribution will only be passed if a website visitor has their
   `Do Not Track (DNT)`_ preference disabled in their browser. Visitors can opt-out
   by enabling DNT. This is covered in our `privacy policy`_.
