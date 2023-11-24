@@ -370,30 +370,30 @@ Widget Action
 We are using the custom event ``widget_action`` to track the behaviour of javascript widgets.
 
 
-.. list-table:: How do you chose between ``widget_action`` and ``cta_click``?
-   :widths: 50 50
-   :header-rows: 1
+**How do you chose between ``widget_action`` and ``cta_click``?**
 
-   * - widget_action
-     - cta_click
-   * - The action is specific or unique.
++-------------------------------------------------+-------------------------------------------------+
+| widget_action                                   | cta_click                                       |
++=================================================+=================================================+
+| The action is specific or unique.               | The action is "click".                          |
+|                                                 |                                                 |
+| *(Only the language switcher changes*           |                                                 |
+| *the page language.)*                           |                                                 |
++-------------------------------------------------+-------------------------------------------------+
+| The user does not leave the page.               | It sends the user somewhere else.               |
++-------------------------------------------------+-------------------------------------------------+
+| It requires Javascript to work.                 | No JS required.                                 |
++-------------------------------------------------+-------------------------------------------------+
+| It can perform several actions.                 | It does one action.                             |
+|                                                 |                                                 |
+| *(A modal can be opened and closed.)*           |                                                 |
++-------------------------------------------------+-------------------------------------------------+
+| There could be several on the page              | There could be several on the page              |
+| doing different things.                         | doing the same thing.                           |
+|                                                 |                                                 |
+| *(An accordion list of FAQs)*                   | *(A download button in the header and footer.)* |
++-------------------------------------------------+-------------------------------------------------+
 
-       *(Only the language switcher changes the page language.)*
-     - The action is "click".
-   * - The user does not leave the page.
-     - It sends the user somewhere else.
-   * - It requires Javascript to work.
-     - No JS required.
-   * - It can perform several actions.
-
-       *(A modal can be opened and closed.)*
-     - It does one action.
-   * - There could be several on the page doing different things.
-
-       *(An accordion list of FAQs)*
-     - There could be several on the page doing the same thing.
-
-       *(A download button in the header and footer.)*
 
 Properties for use with `widget_action`  (not all widgets will use all options):
 
@@ -414,7 +414,7 @@ Properties for use with `widget_action`  (not all widgets will use all options):
     - The dashes are not required but they're allowed if you want to match the element
       class or ID.
     - Examples: "dad-joke-banner", "focus-qr-code", "Join Firefox Modal"
-- label
+- text
     - How is this action labeled to the user?
     - Examples: "Okay", "Check your protection report", "Get the app"
 - non_interaction (boolean)
@@ -437,7 +437,7 @@ To use ``widget_action`` push your event to the ``dataLayer``:
         type: 'modal',
         action: 'open',
         name: 'help-icon'
-        label: 'Get Browser Help'
+        text: 'Get Browser Help'
     });
 
     window.dataLayer.push({
@@ -445,7 +445,7 @@ To use ``widget_action`` push your event to the ``dataLayer``:
         type: 'vote',
         action: 'helpful',
         name: 'vpn-resource-center'
-        label: 'What is an IP address?'
+        text: 'What is an IP address?'
     });
 
     window.dataLayer.push({
@@ -453,7 +453,7 @@ To use ``widget_action`` push your event to the ``dataLayer``:
         type: 'details',
         action: 'open',
         name: 'relay-faq'
-        label: 'Where is Relay available?'
+        text: 'Where is Relay available?'
     });
 
 Default Browser

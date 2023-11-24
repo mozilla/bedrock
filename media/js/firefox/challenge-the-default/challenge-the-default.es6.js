@@ -99,7 +99,7 @@ kittenButton.addEventListener(
         window.dataLayer.push({
             event: 'widget_action',
             type: 'easter egg',
-            action: 'discover',
+            action: 'click',
             name: 'kitten modal'
         });
     },
@@ -154,7 +154,7 @@ for (let index = 0; index < toggles.length; index++) {
             window.dataLayer.push({
                 event: 'widget_action',
                 type: 'easter egg',
-                action: 'discover',
+                action: 'click',
                 name: 'animated toggles'
             });
         },
@@ -188,7 +188,7 @@ heroClose.addEventListener(
         window.dataLayer.push({
             event: 'widget_action',
             type: 'easter egg',
-            action: 'discover',
+            action: 'click',
             name: 'close hero'
         });
     },
