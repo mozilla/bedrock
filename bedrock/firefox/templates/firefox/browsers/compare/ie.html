@@ -93,14 +93,14 @@
           </tbody>
         </table>
 
-      <p>{{ ftl('compare-ie-if-you-havent-moved-on-from-using', attrs='href="https://www.telegraph.co.uk/technology/2019/02/08/stop-using-internet-explorer-warns-microsofts-security-chief/" rel="external noopener" data-cta-type="link" data-cta-name="Microsoft security chief warned"'|safe) }}</p>
+      <p>{{ ftl('compare-ie-if-you-havent-moved-on-from-using', attrs='href="https://www.telegraph.co.uk/technology/2019/02/08/stop-using-internet-explorer-warns-microsofts-security-chief/" rel="external noopener" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-ie-microsoft-is-no-longer-supporting') }}</p>
 
       <img src="{{ static('img/firefox/compare/compare-privacy-locks.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
-      <p>{{ ftl('compare-ie-so-whats-the-solution-if-your', fallback='compare-ie-so-whats-the-solution-if-your-fallback', lockwise='href="%s" data-cta-type="link" data-cta-name="password manager"'|safe|format(url('firefox.features.password-manager')),
-                 privacy='href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox'))) }}</p>
+      <p>{{ ftl('compare-ie-so-whats-the-solution-if-your', fallback='compare-ie-so-whats-the-solution-if-your-fallback', lockwise='href="%s" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')),
+                 privacy='href="%s" data-cta-type="link"'|safe|format(url('privacy.notices.firefox'))) }}</p>
 
       {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
 
@@ -178,8 +178,8 @@
       <p>{{ ftl('compare-ie-really-the-only-reasons-to-use') }}</p>
 
       <p>
-        {{ ftl('compare-ie-on-the-other-end-of-the-spectrum', fallback='compare-ie-on-the-other-end-of-the-spectrum-fallback', pocket='href="%s" data-cta-type="link" data-cta-name="Pocket"'|safe|format(url('firefox.pocket')),
-                 products='href="%s" data-cta-type="link" data-cta-name="our other Firefox products"'|safe|format(url('firefox'))) }}
+        {{ ftl('compare-ie-on-the-other-end-of-the-spectrum', fallback='compare-ie-on-the-other-end-of-the-spectrum-fallback', pocket='href="%s" data-cta-type="link"'|safe|format(url('firefox.pocket')),
+                 products='href="%s" data-cta-type="link"'|safe|format(url('firefox'))) }}
       </p>
 
       {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
@@ -245,7 +245,7 @@
 
       <p>
         {# Download link should be locale neutral. See issue #7982 #}
-        {{ ftl('compare-ie-our-opinion-is-just-to-go-with', attrs='href="/firefox/download/thanks/" data-cta-type="link" data-cta-name="download Firefox"'|safe) }}
+        {{ ftl('compare-ie-our-opinion-is-just-to-go-with', attrs='href="/firefox/download/thanks/" data-cta-type="link"'|safe) }}
       </p>
 
       <div class="compare-content compare-version-disclaimer">
