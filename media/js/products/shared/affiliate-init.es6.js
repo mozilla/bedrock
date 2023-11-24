@@ -49,11 +49,18 @@ function handleOptOutClick(e) {
             notification.classList.remove('show');
             unbindNotificationEvents();
 
+            // UA
             window.dataLayer.push({
                 eLabel: 'Banner Click (Reject)',
                 'data-banner-name': 'Affiliate notification',
                 'data-banner-click': '1',
                 event: 'in-page-interaction'
+            });
+            // GA4
+            window.dataLayer.push({
+                event: 'widget_action',
+                type: 'affiliate notification',
+                action: 'reject'
             });
         })
         .catch((e) => {
@@ -67,11 +74,18 @@ function handleOkClick(e) {
     notification.classList.remove('show');
     unbindNotificationEvents();
 
+    // UA
     window.dataLayer.push({
         eLabel: 'Banner Click (OK)',
         'data-banner-name': 'Affiliate notification',
         'data-banner-click': '1',
         event: 'in-page-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'affiliate notification',
+        action: 'accept'
     });
 }
 
@@ -81,11 +95,18 @@ function handleCloseNotification(e) {
     notification.classList.remove('show');
     unbindNotificationEvents();
 
+    // UA
     window.dataLayer.push({
         eLabel: 'Banner Dismissal',
         'data-banner-name': 'Affiliate notification',
         'data-banner-dismissal': '1',
         event: 'in-page-interaction'
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'affiliate notification',
+        action: 'dismiss'
     });
 }
 
@@ -96,11 +117,19 @@ function showOptOutNotification() {
         notification.classList.add('show');
         bindNotificationEvents();
 
+        // UA
         window.dataLayer.push({
             eLabel: 'Banner Impression',
             'data-banner-name': 'Affiliate notification',
             'data-banner-impression': '1',
             event: 'non-interaction'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'affiliate notification',
+            action: 'impression',
+            non_interaction: true
         });
     }
 }

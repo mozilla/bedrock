@@ -10,9 +10,16 @@
 import MzpLangSwitcher from '@mozilla-protocol/core/protocol/js/lang-switcher';
 
 MzpLangSwitcher.init(function (previousLanguage, newLanguage) {
+    // UA
     window.dataLayer.push({
         event: 'change-language',
         languageSelected: newLanguage,
         previousLanguage: previousLanguage
+    });
+    //GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'language selector',
+        action: 'change to: ' + newLanguage
     });
 });

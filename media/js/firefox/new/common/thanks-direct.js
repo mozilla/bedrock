@@ -70,10 +70,18 @@
         requestComplete = true;
 
         // Fire GA event to log attribution success
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'direct-attribution',
             eLabel: 'success'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'direct-attribution',
+            action: 'success',
+            non_interaction: true
         });
 
         beginFirefoxDownload();
@@ -88,10 +96,18 @@
         requestComplete = true;
 
         // Fire GA event to log attribution timeout
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'direct-attribution',
             eLabel: 'timeout'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'direct-attribution',
+            action: 'timeout',
+            non_interaction: true
         });
 
         beginFirefoxDownload();

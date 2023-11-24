@@ -30,10 +30,18 @@ trigger.addEventListener(
             closeText: window.Mozilla.Utils.trans('global-close')
         });
 
+        // UA
         window.dataLayer.push({
             event: 'in-page-interaction',
             eAction: 'link click',
             eLabel: 'Get Firefox for mobile'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'modal',
+            action: 'open',
+            name: 'Get Firefox for mobile'
         });
     },
     false
