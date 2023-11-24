@@ -19,6 +19,7 @@ MzpLangSwitcher.init(function (previousLanguage, newLanguage) {
     //GA4
     window.dataLayer.push({
         event: 'widget_action',
-        action: 'change to' + newLanguage
+        type: 'language selector',
+        action: 'change to: ' + newLanguage
     });
 });
