@@ -307,17 +307,6 @@ $image-path: '/media/protocol/img';
     margin-right: $spacing-sm;
 }
 
-.bug-id {
-    @include bidi(((text-align, right, left),));
-    display: block;
-    margin-bottom: 0;
-
-    p + &,
-    ul + & {
-        margin-top: -1em;
-    }
-}
-
 .developer-more {
     border-bottom: 2px solid $color-marketing-gray-20;
     margin-bottom: $layout-md;
@@ -419,6 +408,17 @@ $image-path: '/media/protocol/img';
 }
 
 .release-note {
+    .bug-id {
+        @include bidi(((text-align, right, left),));
+        display: block;
+        margin-bottom: 0;
+
+        p + &,
+        ul + & {
+            margin-top: -1em;
+        }
+    }
+
     .release-note-progressive-rollout-indicator {
         @include text-body-md;
         text-align: center;
