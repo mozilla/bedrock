@@ -252,8 +252,13 @@ describe('stub-attribution.js', function () {
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
-        it('should return false if platform is not windows', function () {
-            window.site.platform = 'osx';
+        it('should return false if platform is not windows or macOS', function () {
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
+            window.site.platform = 'linux';
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
+            window.site.platform = 'ios';
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
+            window.site.platform = 'android';
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
@@ -264,6 +269,12 @@ describe('stub-attribution.js', function () {
 
         it('should return true for windows users who satisfy all other requirements', function () {
             window.site.platform = 'windows';
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
+        });
+
+        it('should return true for macOS users who satisfy all other requirements', function () {
+            window.site.platform = 'osx';
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
@@ -847,6 +858,8 @@ describe('stub-attribution.js', function () {
             'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64DevUrl =
             'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
+        const macOSNightlyUrl =
+            'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
 
         beforeEach(function () {
             const downloadMarkup = `<ul class="download-list">
@@ -859,6 +872,7 @@ describe('stub-attribution.js', function () {
                     <li><a id="link-dev-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winDevUrl}">Download</a></li>
                     <li><a id="link-dev-direct-win" class="download-link" data-download-version="win" href="${winDevUrl}">Download</a></li>
                     <li><a id="link-dev-direct-win64" class="download-link" data-download-version="win64" href="${win64DevUrl}">Download</a></li>
+                    <li><a id="link-macos-nightly" class="download-link" data-download-version="osx" href="${macOSNightlyUrl}">Download</a></li>
                 </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
@@ -927,6 +941,11 @@ describe('stub-attribution.js', function () {
                 document.getElementById('link-dev-direct-win64').href
             ).toEqual(
                 'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+
+            // macOS Nightly links
+            expect(document.getElementById('link-macos-nightly').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
         });
 
