@@ -1822,12 +1822,6 @@
     },
     {
       "files": [
-        "js/base/convert-snippet.js"
-      ],
-      "name": "convert"
-    },
-    {
-      "files": [
         "js/libs/modernizr.custom.inputtypes.js",
         "js/press/speaker-request.js"
       ],

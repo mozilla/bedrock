@@ -179,9 +179,6 @@ else:
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "creativecommons.org",
-        "cdn-4.convertexperiments.com",
-        "logs.convertexperiments.com",
-        "images.ctfassets.net",
     ]
     _csp_script_src = [
         # TODO fix things so that we don't need this
@@ -194,17 +191,11 @@ else:
         "tagmanager.google.com",
         "www.youtube.com",
         "s.ytimg.com",
-        "cdn-4.convertexperiments.com",
-        "app.convert.com",
-        "data.track.convertexperiments.com",
-        "1003350.track.convertexperiments.com",
-        "1003343.track.convertexperiments.com",
         "js.stripe.com",
     ]
     _csp_style_src = [
         # TODO fix things so that we don't need this
         "'unsafe-inline'",
-        "app.convert.com",
     ]
     _csp_child_src = [
         "www.googletagmanager.com",
@@ -221,9 +212,6 @@ else:
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "region1.google-analytics.com",
-        "logs.convertexperiments.com",
-        "1003350.metrics.convertexperiments.com",
-        "1003343.metrics.convertexperiments.com",
         "sentry.prod.mozaws.net",  # DEPRECATED. TODO: remove this once all sites are talking to sentry.io instead
         "o1069899.sentry.io",
         "o1069899.ingest.sentry.io",
