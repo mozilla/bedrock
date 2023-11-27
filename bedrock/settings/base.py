@@ -1219,9 +1219,6 @@ markus.configure(backends=MARKUS_BACKENDS)
 #
 # where "103" in the variable name is the funnelcake ID.
 
-# Issue 7508 - Convert.com experiment sandbox
-CONVERT_PROJECT_ID = "10039-1003350" if DEV else "10039-1003343"
-
 # VPN ==========================================================================================
 
 # URL for Mozilla VPN sign-in links
