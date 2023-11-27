@@ -23,7 +23,7 @@ jobs:
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -62,7 +62,7 @@ jobs:
 
     steps:
       - name: Fetch codebase
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run CDN tests
         run: ./bin/integration_tests/functional_tests.sh
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, cdn-tests]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack
         with:

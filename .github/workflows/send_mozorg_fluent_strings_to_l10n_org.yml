@@ -18,7 +18,7 @@ jobs:
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run PR-opening script
         shell: bash
         run: SITE_MODE=Mozorg FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
