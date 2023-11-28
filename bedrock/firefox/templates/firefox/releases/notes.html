@@ -400,6 +400,13 @@
       {% if release.channel == 'Nightly' and note.bug -%}
       <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">Bug {{ note.bug }}</a></span>
       {%- endif %}
+      {% if note.progressive_rollout and note.relevant_countries %}
+      <div class="relevant-countries">
+        Currently available in:
+        {% for data in note.relevant_countries %}
+            {{data.name}}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </div>{% endif %}
     </div>
     {% if note.progressive_rollout %}
     <div class="release-note-progressive-rollout-indicator">
