@@ -41,6 +41,8 @@ switch('vpn-events-banner') %}
 {% block experiments %}
   {% if holidays_na_banner_experiment %}
     {{ js_bundle('mozilla-vpn-holidays-na-experiment-banner') }}
+  {% elif switch('experiment-vpn-pricing-position') %}
+    {{ js_bundle('mozilla-vpn-landing-pricing-position-experiment') }}
   {% endif %}
 {% endblock %}
 
@@ -93,7 +95,6 @@ switch('vpn-events-banner') %}
   {% endblock %}
 
   <div class="mzp-l-content mzp-t-content-xl">
-
     {% call vpn_content_media(
       heading=ftl('vpn-landing-privacy-heading'),
       image=resp_img(
@@ -111,6 +112,8 @@ switch('vpn-events-banner') %}
     ) %}
       <p>{{ ftl('vpn-landing-privacy-desc') }}</p>
     {% endcall %}
+
+    {% block top_pricing_position %}{% endblock %}
 
     {% call vpn_content_media(
       heading=ftl('vpn-landing-fast-secure-heading'),
@@ -230,42 +233,43 @@ switch('vpn-events-banner') %}
           </a>
         {% endcall %}
       </div>
-
     {% endif %}
 
-    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-    <div id="pricing" class="mzp-is-anchor-link">
-      {% if vpn_available %}
-        {% include 'products/vpn/includes/pricing-plus-relay.html' %}
-      {% else %}
-        <div class="vpn-waitlist-feature-block">
-          {% call vpn_content_block(
-            class_name='vpn-content-block-price t-highlight'
-          ) %}
-          <div class="l-columns-two">
-            <div class="l-column-first">
-              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
-                {{ ftl('vpn-shared-waitlist-link') }}
-              </a>
+    {% block default_pricing_position %}
+      {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+      <div id="pricing" class="mzp-is-anchor-link">
+        {% if vpn_available %}
+          {% include 'products/vpn/includes/pricing-plus-relay.html' %}
+        {% else %}
+          <div class="vpn-waitlist-feature-block">
+            {% call vpn_content_block(
+              class_name='vpn-content-block-price t-highlight'
+            ) %}
+            <div class="l-columns-two">
+              <div class="l-column-first">
+                <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+                  {{ ftl('vpn-shared-waitlist-link') }}
+                </a>
 
-              <p class="availability-copy">
-                {{ ftl('vpn-shared-available-countries-v6') }}
-              </p>
+                <p class="availability-copy">
+                  {{ ftl('vpn-shared-available-countries-v6') }}
+                </p>
+              </div>
+              <div class="l-column-last">
+                <ul class="mzp-u-list-styled vpn-feature-list">
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
+                  <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
+                </ul>
+              </div>
             </div>
-            <div class="l-column-last">
-              <ul class="mzp-u-list-styled vpn-feature-list">
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-devices', devices=connect_devices) }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-servers', servers=connect_servers, countries=connect_countries) }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-                <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity') }}</li>
-              </ul>
-            </div>
+            {% endcall %}
           </div>
-          {% endcall %}
-        </div>
-      {% endif %}
-    </div>
+        {% endif %}
+      </div>
+    {% endblock %}
   </div>
 
   <section id="faq" class="vpn-faq mzp-l-content mzp-t-content-lg">

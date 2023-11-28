@@ -21,6 +21,14 @@ html {
     }
 }
 
+.c-pricing-top {
+    margin-top: $layout-xl;
+
+    @media #{$mq-md} {
+        margin-top: $layout-2xl;
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // Waitlist Feature Block
 

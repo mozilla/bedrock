@@ -137,6 +137,46 @@ class TestVPNLandingPage(TestCase):
         ctx = render_mock.call_args[0][2]
         self.assertFalse(ctx["relay_bundle_available_in_country"])
 
+    # start pricing position experiment tests
+
+    def test_vpn_landing_refresh_pricing_position_1_template(self, render_mock):
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-pricing-position&entrypoint_variation=1", HTTP_CF_IPCOUNTRY="fr")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/variants/landing-refresh-1.html"
+
+    def test_vpn_landing_refresh_pricing_position_2_template(self, render_mock):
+        req = RequestFactory().get("/products/vpn/?entrypoint_experiment=vpn-pricing-position&entrypoint_variation=2", HTTP_CF_IPCOUNTRY="fr")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/variants/landing-refresh-2.html"
+
+    def test_vpn_landing_legacy_pricing_position_1_template(self, render_mock):
+        req = RequestFactory().get(
+            "/products/vpn/?entrypoint_experiment=vpn-pricing-position&entrypoint_variation=1&xv=legacy", HTTP_CF_IPCOUNTRY="fr"
+        )
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/variants/landing-1.html"
+
+    def test_vpn_landing_legacy_pricing_position_2_template(self, render_mock):
+        req = RequestFactory().get(
+            "/products/vpn/?entrypoint_experiment=vpn-pricing-position&entrypoint_variation=2&xv=legacy", HTTP_CF_IPCOUNTRY="fr"
+        )
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/variants/landing-2.html"
+
+    # end pricing position experiment tests
+
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNPricingPage(TestCase):
