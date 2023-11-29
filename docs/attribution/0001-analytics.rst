@@ -181,6 +181,9 @@ and :abbr:`CTA (Call To Action)`/button link elements.
     When adding any new elements to a Bedrock page, please follow the below guidelines
     to ensure accurate analytics tracking.
 
+Generic CTAs
+~~~~~~~~~~~~
+
 For all generic CTA links and ``<button>`` elements, add these data attributes
 (* indicates a required attribute):
 
@@ -208,6 +211,17 @@ For all links to accounts.firefox.com use these data attributes (* indicates a r
 +-----------------------+----------------------------------------------------------------------------------+
 | ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
 +-----------------------+----------------------------------------------------------------------------------+
+
+Links identified with ``data-cta-type`` become UA events with the following format:
+
+| **Category:** ``cta click``
+| **Action:** ``cta: {{data-cta-type}}``
+| **Label:** ``{{data-cta-text}}``
+| **CD Index 9 - CTA Position:** ``{{data-cta-position}}``
+
+
+Download Links
+~~~~~~~~~~~~~~
 
 For Firefox download buttons, add these data attributes (* indicates a required attribute).
 Note that ``data-download-name`` and ``data-download-version`` should be included for download
@@ -311,6 +325,29 @@ To use this method you will need to include ``datalayer-begincheckout-init.es6.j
     >
         Get monthly plan
     </a>
+
+
+CTA Click
+~~~~~~~~~
+
+Like our UA implementation (documented above) the implementation of ``cta_click`` for GA4 is based of
+the existence of certain data-attributes on an element.
+
+Only one of the following data-attributes is necessary to log the event:
+
+- data-cta-text (examples: Get Mozilla VPN, Leading by example)
+- data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay)
+  - This is to group CTAs by their destination
+  - Do not use this to identify the element (ie. link, button)
+- data-cta-position (examples: banner, pricing, primary, secondary)
+
+.. code-block:: html
+
+    <a href="https://monitor.firefox.com/&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor">Check for breaches</a>
+
+    <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-position="banner" data-cta-text="Get It Now">Send me a link</a>
+
+    <a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-text="Firefox for iOS">Firefox for iOS</a>
 
 
 Product Download
