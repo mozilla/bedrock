@@ -11,6 +11,7 @@ from django.test.utils import override_settings
 
 import pytest
 from django_jinja.backend import Jinja2
+from markus.testing import MetricsMock
 
 from bedrock.base.urlresolvers import Prefixer
 from lib import l10n_utils
@@ -41,18 +42,23 @@ class TestRender(TestCase):
         if add_active_locales:
             ctx["add_active_locales"] = add_active_locales
 
-        response = l10n_utils.render(request, template, ctx)
+        with MetricsMock() as mm:
+            response = l10n_utils.render(request, template, ctx)
 
-        if status == 302:
-            self.assertEqual(response.status_code, 302)
-            self.assertEqual(response["Location"], destination)
-            self.assertEqual(response["Vary"], "Accept-Language")
-        elif status == 404:
-            self.assertEqual(response.status_code, 404)
-        else:
-            self.assertEqual(response.status_code, 200)
-            if path == "/":
+            if status == 302:
+                self.assertEqual(response.status_code, 302)
+                self.assertEqual(response["Location"], destination)
                 self.assertEqual(response["Vary"], "Accept-Language")
+                mm.assert_incr_once("locale.redirect", tags=[f"from_locale:{prefixer.locale or 'none'}", f"to_locale:{destination.split('/')[1]}"])
+
+            elif status == 404:
+                self.assertEqual(response.status_code, 404)
+                mm.assert_not_incr("locale.redirect")
+            else:
+                self.assertEqual(response.status_code, 200)
+                mm.assert_not_incr("locale.redirect")
+                if path == "/":
+                    self.assertEqual(response["Vary"], "Accept-Language")
 
     def test_no_accept_language_header(self):
         template = "firefox/new.html"
