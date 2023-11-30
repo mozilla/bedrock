@@ -57,8 +57,8 @@
         {{ ftl('sub-navigation-firefox') }}
       </h2>
       <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-name="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-text="FAQ">{{ ftl('sub-navigation-faq') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Learn More">{{ ftl('sub-navigation-learn-more') }}</a></li>
       </ul>
     </div>
   </div>
@@ -137,9 +137,9 @@
           {# Direct users on unsupported OSes to the /new/ page, where they can read EOL messaging (see issue 13317) #}
           <li class="mzp-c-menu-list-item menu-desktop-unsupported"><a href="{{ url('firefox.new') }}" class="ga-product-download"  data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-home-desktop') }}</a></li>
           {# Download link should be locale neutral see issue 7982 #}
-          <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" class="ga-product-download" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-name="Trackers">{{ ftl('firefox-home-desktop') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-link-name="Trackers"> {{ ftl('firefox-home-android') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-link-name="Trackers">{{ ftl('firefox-home-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" class="ga-product-download" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-text="Trackers">{{ ftl('firefox-home-desktop') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-link-text="Trackers"> {{ ftl('firefox-home-android') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-link-text="Trackers">{{ ftl('firefox-home-ios') }}</a></li>
         </ul>
       </div>
       <p id="test-fbc" class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ ftl('firefox-home-get-the-facebook-container') }}</a></p>
@@ -162,7 +162,7 @@
         </h3>
       </div>
       <h4>{{ ftl('firefox-home-know-when-hackers-strike') }}</h4>
-      <a class="mzp-c-cta-link" href="{{ 'https://monitor.mozilla.org/' + referrals }}" data-link-name="Monitor" data-link-type="link">{{ ftl('firefox-home-start-getting-breach') }}</a>
+      <a class="mzp-c-cta-link" href="{{ 'https://monitor.mozilla.org/' + referrals }}" data-link-text="Monitor" data-link-type="link">{{ ftl('firefox-home-start-getting-breach') }}</a>
     {% endcall %}
 
   {% if ftl_has_messages('firefox-home-protection-for-your-whole') %}
@@ -176,7 +176,7 @@
         <h3>{{ ftl('firefox-home-mozilla-vpn') }}</h3>
       </div>
       <h4>{{ ftl('firefox-home-protection-for-your-whole') }}</h4>
-      <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Get Mozilla VPN" data-link-name="Mozilla VPN">{{ ftl('firefox-home-get-mozilla-vpn') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Get Mozilla VPN" data-link-text="Mozilla VPN">{{ ftl('firefox-home-get-mozilla-vpn') }}</a></p>
     {% endcall %}
   {% endif %}
 
@@ -189,7 +189,7 @@
       <div>
         <h3 class="mzp-has-zap-8">{{ ftl('firefox-home-get-the-respect-you') }}</h3>
         <p>{{ ftl('firefox-home-every-single-mozilla', fallback='firefox-home-every-single-firefox') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('firefox.privacy.index') }}" data-link-name="Promise" data-link-type="link">{{ ftl('ui-learn-more') }}</a>
+        <a class="mzp-c-cta-link" href="{{ url('firefox.privacy.index') }}" data-link-text="Promise" data-link-type="link">{{ ftl('ui-learn-more') }}</a>
       </div>
     {% endcall %}
   </div>
@@ -207,11 +207,11 @@
       <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-app') }}</h5>
         <ul class="mzp-c-menu-list-list" id="menu-pocket">
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android" data-link-name="Pocket"> {{ ftl('firefox-home-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS" data-link-name="Pocket">{{ ftl('firefox-home-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android" data-link-text="Pocket"> {{ ftl('firefox-home-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS" data-link-text="Pocket">{{ ftl('firefox-home-ios') }}</a></li>
         </ul>
       </div>
-      <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS" data-link-name="Pocket">{{ ftl('firefox-home-learn-more-about-pocket') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS" data-link-text="Pocket">{{ ftl('firefox-home-learn-more-about-pocket') }}</a></p>
     {% endcall %}
 
     {% call split(
@@ -224,7 +224,7 @@
         <h3>{{ ftl('firefox-home-firefox-relay') }}</h3>
       </div>
       <h4>{{ ftl('firefox-home-un-spam-your-life') }}</h4>
-      <a class="mzp-c-cta-link" href="{{ 'https://relay.firefox.com/' + referrals }}" data-link-name="Relay" data-link-type="link">{{ ftl('firefox-home-try-relay') }}</a>
+      <a class="mzp-c-cta-link" href="{{ 'https://relay.firefox.com/' + referrals }}" data-link-text="Relay" data-link-type="link">{{ ftl('firefox-home-try-relay') }}</a>
     {% endcall %}
 
     {% include 'mozorg/includes/mozilla-account-cta-promo.html' %}

@@ -16,7 +16,7 @@
           <li>
             <section class="c-menu-item mzp-has-icon">
               {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
-              <a class="c-menu-item-link" href="https://monitor.mozilla.org/?{{ utm_params }}" data-link-name="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              <a class="c-menu-item-link" href="https://monitor.mozilla.org/?{{ utm_params }}" data-link-text="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
                 {% if mozilla_monitor %}
                   <h4 class="c-menu-item-title">{{ ftl('navigation-v2-mozilla-monitor', fallback='navigation-v2-firefox-monitor') }}</h4>
@@ -29,7 +29,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="{{ url('firefox.facebookcontainer.index') }}" data-link-name="Facebook Container" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              <a class="c-menu-item-link" href="{{ url('firefox.facebookcontainer.index') }}" data-link-text="Facebook Container" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <svg class="c-menu-item-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#f80073" d="M27 1H5C2.8 1 1 2.8 1 5v22c0 2.2 1.8 4 4 4h22c2.2 0 4-1.8 4-4V5c0-2.2-1.8-4-4-4z"></path><path fill="#fff" d="M26 8.8l-1.4-1.4c-.1-.1-.2-.1-.3 0l-1.4 1.4-.1.1v2.8h-2.3V8.9L19 7.4c-.1-.1-.2-.1-.3 0l-1.4 1.4-.1.1v2.8h-2.3V8.9l-1.4-1.4c-.1-.1-.2-.1-.3 0l-1.4 1.4-.1.1v2.8H9.2V8.9L7.8 7.4c-.1-.1-.2-.1-.3 0L6 8.8l-.1.1v15c0 .1.1.2.2.2H9c.1 0 .2-.1.2-.2v-2.8h2.3V24c0 .1.1.2.2.2h2.8c.1 0 .2-.1.2-.2v-2.8H17V24c0 .1.1.2.2.2H20c.1 0 .2-.1.2-.2v-2.8h2.3V24c0 .1.1.2.2.2h2.8c.1 0 .2-.1.2-.2V9c.4-.1.3-.2.3-.2zm-14.7 11H9.2v-6.6h2.3v6.6h-.2zm5.6 0h-2.1v-6.6h2.3v6.6h-.2zm5.7 0h-2.1v-6.6h2.3v6.6h-.2z"></path></svg>
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-facebook-container') }}</h4>
               {% if ftl_has_messages('navigation-v2-help-prevent-facebook-from') %}
@@ -40,7 +40,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="https://getpocket.com/firefox_learnmore/?{{ utm_params }}" data-link-name="Pocket" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              <a class="c-menu-item-link" href="https://getpocket.com/firefox_learnmore/?{{ utm_params }}" data-link-text="Pocket" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <img loading="lazy" src="{{ static('protocol/img/logos/pocket/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-pocket') }}</h4>
                 <p class="c-menu-item-desc">{{ ftl('navigation-v2-save-and-discover-the-best', fallback='navigation-save-quality-content') }}</p>
@@ -49,7 +49,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-name="Mozilla VPN" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              <a class="c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-text="Mozilla VPN" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <svg class="c-menu-item-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#42435a" d="M26 10.4c-2.5 0-4.7 1.7-5.4 4h-9.3c-.1-.4-.3-.7-.4-1.1l2.4-2.4c.8.4 1.7.7 2.7.7 3.1 0 5.6-2.5 5.6-5.6S19.1.4 16 .4 10.4 2.9 10.4 6c0 1 .2 1.9.7 2.7l-2.4 2.4c-.8-.5-1.7-.7-2.7-.7C2.9 10.4.4 12.9.4 16s2.5 5.6 5.6 5.6c2.5 0 4.7-1.7 5.4-4h9.3c.1.4.3.7.4 1.1l-2.4 2.4c-.8-.4-1.7-.7-2.7-.7-3.1 0-5.6 2.5-5.6 5.6s2.5 5.6 5.6 5.6 5.6-2.5 5.6-5.6c0-1-.2-1.9-.7-2.7l2.4-2.4c.8.4 1.7.7 2.7.7 3.1 0 5.6-2.5 5.6-5.6s-2.5-5.6-5.6-5.6zM16 3.6c1.3 0 2.4 1.1 2.4 2.4S17.3 8.4 16 8.4 13.6 7.3 13.6 6s1.1-2.4 2.4-2.4zM6 18.4c-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4c1.3 0 2.4 1.1 2.4 2.4S7.3 18.4 6 18.4zm10 10c-.5 0-1-.2-1.3-.4-.3-.2-.5-.4-.6-.6-.3-.4-.4-.8-.4-1.3s.2-1 .4-1.3c.2-.3.4-.5.6-.6.4-.3.8-.4 1.3-.4 1.3 0 2.4 1.1 2.4 2.4s-1.1 2.2-2.4 2.2zm10-10c-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4 2.4 1.1 2.4 2.4-1.1 2.4-2.4 2.4z"></path></svg>
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-mozilla-vpn') }}</h4>
                 <p class="c-menu-item-desc">{{ ftl('navigation-v2-get-protection-beyond-your-browser', fallback='navigation-protect-your-entire-device') }}</p>
@@ -58,7 +58,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="{{ url('firefox.privacy.products') }}" data-link-name="Hubs" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
+              <a class="c-menu-item-link" href="{{ url('firefox.privacy.products') }}" data-link-text="Hubs" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
                 <svg class="c-menu-item-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#42435a" d="M27.3 7.6c0-1.5-1.1-2.8-2.6-3L16 3.1 7.2 4.6c-1.5.2-2.6 1.5-2.6 3 0 2.4 0 5.5.2 7 .4 4.5 1.3 7 3.5 9.8 1.9 2.4 4.6 4 7.6 4.4h.4c3-.5 5.7-2 7.6-4.4 2.2-2.8 3-5.3 3.5-9.8-.1-1.6-.1-5.1-.1-7zm-2.9 6.7c-.4 4-1.1 6-2.9 8.4-1.4 1.7-3.3 2.9-5.5 3.3-2.2-.4-4.1-1.6-5.5-3.3-1.8-2.4-2.5-4.4-2.9-8.4-.1-1.1-.1-3.5-.1-6.7 0-.1.1-.2.2-.2L16 6l8.3 1.4c.1 0 .2.1.2.2 0 3.2 0 5.7-.1 6.7zm-13.9-.2c0-.4-.1-1.5-.1-4.3l5.6-.9v14.2c-1.3-.3-2.4-1.1-3.2-2.1-1.4-1.8-2-3.1-2.3-6.9z"></path></svg>
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-product-promise') }}</h4>
               {% if ftl_has_messages('navigation-v2-learn-how-each-firefox-product') %}
@@ -69,7 +69,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="https://relay.firefox.com/?{{ utm_params }}" data-link-name="Firefox Relay" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
+              <a class="c-menu-item-link" href="https://relay.firefox.com/?{{ utm_params }}" data-link-text="Firefox Relay" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/relay/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-firefox-relay', fallback='navigation-v2-firefox-relay-beta') }}</h4>
               {% if ftl_has_messages('navigation-v2-sign-up-for-new-accounts') %}
@@ -80,7 +80,7 @@
           </li>
           <li>
             <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="https://developer.mozilla.org/en-US/plus?{{ utm_params }}" data-link-name="MDN Plus" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
+              <a class="c-menu-item-link" href="https://developer.mozilla.org/en-US/plus?{{ utm_params }}" data-link-text="MDN Plus" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
                 <img loading="lazy" src="{{ static('img/nav/icons/icon-mdn-plus.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
                 <h4 class="c-menu-item-title">{{ ftl('navigation-v2-mdn-plus') }}</h4>
               {% if ftl_has_messages('navigation-v2-new-features-and-tools') %}
@@ -90,7 +90,7 @@
             </section>
           </li>
         </ul>
-        <p class="c-menu-category-link"><a href="{{ url('firefox.products.index') }}" data-link-name="View all Products" data-link-type="nav" data-link-position="topnav" data-link-group="products">{{ ftl('navigation-v2-view-all-products') }}</a></p>
+        <p class="c-menu-category-link"><a href="{{ url('firefox.products.index') }}" data-link-text="View all Products" data-link-type="nav" data-link-position="topnav" data-link-group="products">{{ ftl('navigation-v2-view-all-products') }}</a></p>
       </div>
     </div><!-- close .c-menu-panel-container -->
   </div><!-- close .c-menu-panel -->
