@@ -333,23 +333,24 @@ CTA Click
 Like our UA implementation (documented above) the implementation of ``cta_click`` for GA4 is based of
 the existence of certain data-attributes on an element.
 
-Only one of the following data-attributes is necessary to log the event:
+`data-cta-text` must be present to trigger the event:
 
+- data-cta-text
+  - Defining this is useful to group the link clicks across locales
+  - The value does not need to exactly match the text
+  - Provide something more useful than "click here" or "learn more". If that is the copy you were provided
+    consider asking for copy that is more useful to the users too!
+- data-cta-position (examples: banner, pricing, primary, secondary)
 - data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay, pocket)
   - This is to group CTAs by their destination
   - Do not use this to identify the element (ie. link, button)
-- data-cta-position (examples: banner, pricing, primary, secondary)
-- data-cta-text
-  - If no value is provided the text of the clicked element will be used
-  - Please use this when the link text is not useful.
-  - Also, if it's not useful to us we might be failing our users as well! Don't use text like
-  "click here" or "learn more"
+
 
 .. code-block:: html
 
-    <a href="https://monitor.mozilla.org/&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor">Check for breaches</a>
+    <a href="https://monitor.firefox.com/" data-cta-text="Check for breaches" data-cta-type="fxa-monitor">Check for breaches</a>
 
-    <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-position="banner" data-cta-text="Get It Now">Send me a link</a>
+    <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-text="Send Link for Firefox Mobile" data-cta-position="banner">Send me a link</a>
 
     <a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-text="Firefox for iOS">Firefox for iOS</a>
 
@@ -359,15 +360,28 @@ For all links to accounts.firefox.com use these data attributes (* indicates a r
 +-----------------------+----------------------------------------------------------------------------------+
 | Data Attribute        | Expected Value                                                                   |
 +=======================+==================================================================================+
-| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
+| ``data-cta-text`` *   | Text or name of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
 +-----------------------+----------------------------------------------------------------------------------+
-| ``data-cta-text``     | Name or text of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
-|                       |                                                                                  |
-|                       | We use this when the link text is not useful, as is the case with many           |
-|                       | account forms that say, ``Continue``. We replace ``Continue`` with ``Register``. |
+| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
 +-----------------------+----------------------------------------------------------------------------------+
 | ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
 +-----------------------+----------------------------------------------------------------------------------+
+
+
+Link Click
+~~~~~~~~~
+
+Our implementation of ``link_click`` for GA4 is based of the existence of certain data-attributes on a
+link element.
+
+`data-link-text` must be present to trigger the event:
+
+- data-link-text (examples: “Monitor”, “Features”, “Instagram (mozilla)”, “Mozilla VPN”)
+- data-link-position (examples: topnav, subnav, sticky-promo, topnav - firefox, footer - company)
+
+```
+<a href="" data-link-text=""></a>
+```
 
 
 Product Download
@@ -416,7 +430,6 @@ Widget Action
 ~~~~~~~~~~~~~
 
 We are using the custom event ``widget_action`` to track the behaviour of javascript widgets.
-
 
 **How do you chose between ``widget_action`` and ``cta_click``?**
 

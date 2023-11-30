@@ -57,9 +57,9 @@ class BasePage(ScrollElementIntoView, Page):
         _products_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-products"]')
         _about_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-about"]')
         _innovation_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-innovation"]')
-        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Desktop Browser"]')
-        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Developer Edition"]')
-        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Mozilla Manifesto"]')
+        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Desktop Browser"]')
+        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Developer Edition"]')
+        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Mozilla Manifesto"]')
         _firefox_download_button_locator = (By.CSS_SELECTOR, "#protocol-nav-download-firefox > .download-link")
         _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '.c-navigation-vpn-cta-container > [data-cta-text="Get Mozilla VPN"]')
 

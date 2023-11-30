@@ -27,9 +27,9 @@ regular_link_input = {"text": "Testing link", "href": "/regular", "cta_name": "T
 EXPECTED_NAV_HTML = {
     "title_text": """Testing title""",
     "title_icon": """<img class="c-sub-navigation-icon" src="icon.png" width="24" height="24" alt="">""",
-    "title_link": """<a href="/category" data-link-type="nav" data-link-position="subnav" data-link-name="Test Title">""",
-    "current_link": """<a href="/current" data-link-type="nav" data-link-position="subnav" data-link-name="Test Link" aria-current="page"> Testing current link </a>""",  # noqa: E501
-    "regular_link": """<a href="/regular" data-link-type="nav" data-link-position="subnav" data-link-name="Test Link"> Testing link </a>""",
+    "title_link": """<a href="/category" data-link-type="nav" data-link-position="subnav" data-link-text="Test Title">""",
+    "current_link": """<a href="/current" data-link-type="nav" data-link-position="subnav" data-link-text="Test Link" aria-current="page"> Testing current link </a>""",  # noqa: E501
+    "regular_link": """<a href="/regular" data-link-type="nav" data-link-position="subnav" data-link-text="Test Link"> Testing link </a>""",
     "is_summary": """is-summary""",
     "is_details_default_closed": """is-details is-closed""",
 }

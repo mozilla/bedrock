@@ -10,7 +10,7 @@
   CSS Import: @import '~@mozilla-protocol/core/protocol/css/components/billboard';
   Macro Parameters:
     desc (Required): String indicating paragraph text (usually a translation id wrapped in ftl function).
-    ga_title (Required): String providing value for data-link-name attribute on cta.
+    ga_title (Required): String providing value for data-link-text attribute on cta.
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
     link_cta: String indicating link text (usually a translation id wrapped in an ftl function).
     link_url: String or url helper function provides href value for cta link.
@@ -38,7 +38,7 @@
         <h{{ heading_level }} class="mzp-c-billboard-title">{{ title }}</h{{ heading_level }}>
         <p class="mzp-c-billboard-desc">{{ desc }}</p>
         {% if link_url and link_cta %}
-          <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
+          <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-text="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
         {% endif %}
       </div>
     </div>
@@ -180,7 +180,7 @@
     class: String adding class(es) to the section tag.
     cta: String adding optional call to action for the card.,
     desc: String indicating paragraph text (usually a translation id wrapped in ftl function).,
-    ga_title (Required): String providing value for data-link-name attribute on cta.,
+    ga_title (Required): String providing value for data-link-text attribute on cta.,
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling
     image (Required): Image to be used in the Card element. Can pass an <img> element, resp_img or picture Python helpers
     link_rel: String for link rel attribute.
@@ -214,7 +214,7 @@
   youtube_id=None
 ) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}mzp-has-video has-video-embed{% endif %}" {% if attributes %}{{attributes|safe}}{% endif %}>
-  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}  {% if link_target %}target="{{ link_target }}"{% endif %} {% if link_rel %}rel="{{ link_rel }}"{% endif %} {% if link_title %}title="{{ link_title }}"{% endif %}>
+  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-text="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}  {% if link_target %}target="{{ link_target }}"{% endif %} {% if link_rel %}rel="{{ link_rel }}"{% endif %} {% if link_title %}title="{{ link_title }}"{% endif %}>
     {% if image %}
       <div class="mzp-c-card-media-wrapper">{{ image|safe }}</div>
     {% endif %}

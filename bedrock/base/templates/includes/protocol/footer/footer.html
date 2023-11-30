@@ -10,7 +10,7 @@
   <div class="mzp-l-content">
     <nav class="mzp-c-footer-primary">
       <div class="mzp-c-footer-primary-logo">
-        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ ftl('footer-mozilla') }}</a>
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-text="Mozilla">{{ ftl('footer-mozilla') }}</a>
       </div>
       <div class="mzp-c-footer-sections">
         <section class="mzp-c-footer-section">
@@ -18,14 +18,14 @@
             {{ ftl('footer-company') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('mozorg.about.manifesto') }}" data-link-type="footer" data-link-name="Mozilla Manifesto">{{ ftl('footer-mozilla-manifesto') }}</a></li>
-            <li><a href="{{ press_blog_url() }}?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-name="Press Center">{{ ftl('footer-press-center') }}</a></li>
+            <li><a href="{{ url('mozorg.about.manifesto') }}" data-link-type="footer" data-link-text="Mozilla Manifesto">{{ ftl('footer-mozilla-manifesto') }}</a></li>
+            <li><a href="{{ press_blog_url() }}?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Press Center">{{ ftl('footer-press-center') }}</a></li>
           {% if ftl_has_messages('footer-corporate-blog') %}
-            <li><a href="https://blog.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-name="Corporate Blog">{{ ftl('footer-corporate-blog') }}</a></li>
+            <li><a href="https://blog.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Corporate Blog">{{ ftl('footer-corporate-blog') }}</a></li>
           {% endif %}
-            <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-name="Careers">{{ ftl('footer-careers') }}</a></li>
-            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact">{{ ftl('footer-contact') }}</a></li>
-            <li><a href="{{ donate_url(content='footer') }}" data-link-type="footer" data-link-name="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
+            <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-text="Careers">{{ ftl('footer-careers') }}</a></li>
+            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-text="Contact">{{ ftl('footer-contact') }}</a></li>
+            <li><a href="{{ donate_url(content='footer') }}" data-link-type="footer" data-link-text="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
           </ul>
         </section>
 
@@ -34,11 +34,11 @@
             {{ ftl('footer-resources') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy Hub">{{ ftl('footer-privacy-hub', fallback='footer-privacy') }}</a></li>
+            <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-text="Privacy Hub">{{ ftl('footer-privacy-hub', fallback='footer-privacy') }}</a></li>
           {% if ftl_has_messages('footer-browser-comparison') %}
-            <li><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="footer" data-link-name="Browser Comparison">{{ ftl('footer-browser-comparison') }}</a></li>
+            <li><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="footer" data-link-text="Browser Comparison">{{ ftl('footer-browser-comparison') }}</a></li>
           {% endif %}
-            <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-type="footer" data-link-name="Brand Standards">{{ ftl('footer-brand-standards') }}</a></li>
+            <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-type="footer" data-link-text="Brand Standards">{{ ftl('footer-brand-standards') }}</a></li>
           </ul>
         </section>
 
@@ -47,9 +47,9 @@
             {{ ftl('footer-support') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="https://support.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-name="Product Help">{{ ftl('footer-product-help', fallback='footer-support') }}</a></li>
-            <li><a href="https://bugzilla.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-name="File a Bug">{{ ftl('footer-file-a-bug') }}</a></li>
-            <li><a href="https://pontoon.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-name="Localise Mozilla">{{ ftl('footer-localize-mozilla') }}</a></li>
+            <li><a href="https://support.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="Product Help">{{ ftl('footer-product-help', fallback='footer-support') }}</a></li>
+            <li><a href="https://bugzilla.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="File a Bug">{{ ftl('footer-file-a-bug') }}</a></li>
+            <li><a href="https://pontoon.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="Localise Mozilla">{{ ftl('footer-localize-mozilla') }}</a></li>
           </ul>
         </section>
 
@@ -58,32 +58,32 @@
             {{ ftl('footer-developers') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('firefox.developer.index') }}" data-link-type="footer" data-link-name="Firefox Developer Edition">{{ ftl('footer-developer-edition') }}</a></li>
-            <li><a href="{{ url('firefox.channel.desktop') }}#beta" data-link-type="footer" data-link-name="Firefox Beta">{{ ftl('footer-beta') }}</a></li>
-            <li><a href="{{ url('firefox.channel.android') }}#beta" data-link-type="footer" data-link-name="Firefox Beta for Android">{{ ftl('footer-beta-for-android') }}</a></li>
-            <li><a href="{{ url('firefox.channel.desktop') }}#nightly" data-link-type="footer" data-link-name="Firefox Nightly">{{ ftl('footer-nightly') }}</a></li>
-            <li><a href="{{ url('firefox.channel.android') }}#nightly" data-link-type="footer" data-link-name="Firefox Nightly for Android">{{ ftl('footer-nightly-for-android') }}</a></li>
-            <li><a href="{{ url('firefox.enterprise.index') }}" data-link-type="footer" data-link-name="Firefox for Enterprise">{{ ftl('footer-enterprise') }}</a></li>
-            <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-type="footer" data-link-name="Tools">{{ ftl('footer-tools') }}</a></li>
+            <li><a href="{{ url('firefox.developer.index') }}" data-link-type="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-developer-edition') }}</a></li>
+            <li><a href="{{ url('firefox.channel.desktop') }}#beta" data-link-type="footer" data-link-text="Firefox Beta">{{ ftl('footer-beta') }}</a></li>
+            <li><a href="{{ url('firefox.channel.android') }}#beta" data-link-type="footer" data-link-text="Firefox Beta for Android">{{ ftl('footer-beta-for-android') }}</a></li>
+            <li><a href="{{ url('firefox.channel.desktop') }}#nightly" data-link-type="footer" data-link-text="Firefox Nightly">{{ ftl('footer-nightly') }}</a></li>
+            <li><a href="{{ url('firefox.channel.android') }}#nightly" data-link-type="footer" data-link-text="Firefox Nightly for Android">{{ ftl('footer-nightly-for-android') }}</a></li>
+            <li><a href="{{ url('firefox.enterprise.index') }}" data-link-type="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-enterprise') }}</a></li>
+            <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-type="footer" data-link-text="Tools">{{ ftl('footer-tools') }}</a></li>
           </ul>
         </section>
 
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading-social">{{ ftl('footer-follow-mozilla') }}</h5>
           <ul class="mzp-c-footer-links-social">
-            <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ ftl('footer-twitter') }}<span> (@mozilla)</span></a></li>
-            <li><a class="mastodon" href="https://mozilla.social/@Mozilla" rel="me" data-link-type="footer" data-link-name="Mastodon (@mozilla)">{{ ftl('footer-mastodon') }}<span> (@mozilla)</span></a></li>
-            <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('footer-instagram') }}<span> (@mozilla)</span></a></li>
-            <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-type="footer" data-link-name="LinkedIn (@mozilla)">{{ ftl('footer-linkedin') }}<span> (@mozilla)</span></a></li>
-            <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-type="footer" data-link-name="TikTok (@mozilla)">{{ ftl('footer-tiktok') }}<span> (@mozilla)</span></a></li>
-            <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-type="footer" data-link-name="Spotify (@mozilla)">{{ ftl('footer-spotify') }}<span> (@mozilla)</span></a></li>
+            <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-twitter') }}<span> (@mozilla)</span></a></li>
+            <li><a class="mastodon" href="https://mozilla.social/@Mozilla" rel="me" data-link-type="footer" data-link-text="Mastodon (@mozilla)">{{ ftl('footer-mastodon') }}<span> (@mozilla)</span></a></li>
+            <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-instagram') }}<span> (@mozilla)</span></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-type="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-linkedin') }}<span> (@mozilla)</span></a></li>
+            <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-type="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-tiktok') }}<span> (@mozilla)</span></a></li>
+            <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-type="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-spotify') }}<span> (@mozilla)</span></a></li>
           </ul>
 
           <h5 class="mzp-c-footer-heading-social">{{ ftl('footer-follow-firefox') }}</h5>
           <ul class="mzp-c-footer-links-social">
-            <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ ftl('footer-twitter') }}<span> (@firefox)</span></a></li>
-            <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-name="Instagram (@firefox)">{{ ftl('footer-instagram') }}<span> (@firefox)</span></a></li>
-            <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-name="YouTube (@firefoxchannel)">{{ ftl('footer-youtube') }}<span> (@firefoxchannel)</span></a></li>
+            <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-twitter') }}<span> (@firefox)</span></a></li>
+            <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-instagram') }}<span> (@firefox)</span></a></li>
+            <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-youtube') }}<span> (@firefoxchannel)</span></a></li>
           </ul>
         </section>
       </div>
@@ -94,17 +94,17 @@
       </div>
       <div class="mzp-c-footer-legal">
         <ul class="mzp-c-footer-terms">
-          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
-          <li><a href="{{ url('privacy.notices.websites') }}#user-choices" data-link-type="footer" data-link-name="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
-          <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ ftl('footer-websites-legal') }}</a></li>
-          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-name="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-text="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}#user-choices" data-link-type="footer" data-link-text="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
+          <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-text="Legal">{{ ftl('footer-websites-legal') }}</a></li>
+          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
           {% if ftl_has_messages('footer-about-this-site') %}
-            <li><a href="{{ url('mozorg.about.this-site') }}" data-link-type="footer" data-link-name="About this site">{{ ftl('footer-about-this-site') }}</a></li>
+            <li><a href="{{ url('mozorg.about.this-site') }}" data-link-type="footer" data-link-text="About this site">{{ ftl('footer-about-this-site') }}</a></li>
           {% endif %}
         </ul>
         <p class="mzp-c-footer-license" rel="license">
-          {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
+          {% set moco_link = 'href="%s" data-link-type="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
+          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-type="footer" data-link-text="Mozilla Foundation"'|safe %}
           {{ ftl('footer-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
           {{ ftl('footer-portions-of-this-content', url=url('foundation.licensing.website-content'), current_year=current_year|string) }}
         </p>
