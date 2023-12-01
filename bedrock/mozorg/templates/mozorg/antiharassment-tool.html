@@ -147,60 +147,60 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 <section class="c-product-section">
   <div class="mzp-l-content mzp-t-content-xl">
     <h2 class="section-heading">More Mozilla products that keep you safe</h2>
-    <div class="mzp-l-columns mzp-t-columns-four">
-      <div class="mzp-t-picto-center">
-        <a href="{{ url('firefox.new') }}" class="mzp-c-picto">
-          {{ resp_img(
-            url="img/mozorg/antiharassment-tool/firefox.svg",
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ) }}
-          <h3 class="mzp-c-picto-heading">Firefox Browsers</h3>
-          <p class="c-picto-subtitle">Private & secure browsing</p>
-        </a>
-      </div>
-      <div class="mzp-t-picto-center">
-        <a href="https://monitor.firefox.com/" rel="external noopener" class="mzp-c-picto">
-          {{ resp_img(
-            url="img/mozorg/antiharassment-tool/monitor.png",
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ) }}
-          <h3 class="mzp-c-picto-heading">Mozilla Monitor</h3>
-          <p class="c-picto-subtitle">Data breach monitoring</p>
-        </a>
-      </div>
-      <div class="mzp-t-picto-center">
-        <a href="https://relay.firefox.com/" rel="external noopener" class="mzp-c-picto">
-          {{ resp_img(
-            url="img/mozorg/antiharassment-tool/relay.svg",
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ) }}
-          <h3 class="mzp-c-picto-heading">Mozilla Relay</h3>
-          <p class="c-picto-subtitle">User friendly email & phone masking</p>
-        </a>
-      </div>
-      <div class="mzp-t-picto-center">
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-picto">
-          {{ resp_img(
-            url="img/mozorg/antiharassment-tool/vpn.svg",
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy'
-            }
-          ) }}
-          <h3 class="mzp-c-picto-heading">Mozilla VPN</h3>
-          <p class="c-picto-subtitle">A VPN you can trust</p>
-        </a>
-    </div>
-  </div>
+    <ul class="mzp-l-columns mzp-t-columns-four">
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/firefox.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">Private & secure browsing</h3>
+        <div class="mzp-c-picto-body">
+          <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary">Get Firefox</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/monitor.png",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">Data breach monitoring</h3>
+        <div class="mzp-c-picto-body">
+          <a href="https://monitor.firefox.com/" rel="external noopener" class="mzp-c-button mzp-t-secondary">Get Mozilla Monitor</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/relay.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">User friendly email & phone masking</h3>
+        <div class="mzp-c-picto-body">
+          <a href="https://relay.firefox.com/" rel="external noopener" class="mzp-c-button mzp-t-secondary">Get Mozilla Relay</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/vpn.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">A VPN you can trust</h3>
+        <div class="mzp-c-picto-body">
+          <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary">Get Mozilla VPN</a>
+        </div>
+    </li>
+  </ul>
 </section>
 
 {% endblock %}

@@ -27,7 +27,6 @@ $aht-color-secondary: #FDA1DE;
     }
 }
 
-
 .mzp-c-button.c-button-aht-primary-inverse {
     background-color: $color-white;
     color: $color-pink-70;
@@ -116,6 +115,12 @@ $aht-color-secondary: #FDA1DE;
         gap: 24px;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+
+        @media #{$mq-md} {
+            flex-direction: row;
+            display: inline;
+        }
     }
 }
 
@@ -166,13 +171,16 @@ $aht-color-secondary: #FDA1DE;
     }
 
     .mzp-c-picto {
-        display: block;
-        text-decoration: none;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
     }
 
     .mzp-c-picto-heading {
         @include font-base;
         @include font-size(18px);
-
+        margin-bottom: $spacing-lg;
     }
 }
