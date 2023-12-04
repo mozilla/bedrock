@@ -155,6 +155,25 @@ $aht-color-secondary: #FDA1DE;
     }
 }
 
+
+// Bug in protocol
+.mzp-c-newsletter-form .mzp-c-form-errors {
+    display: block
+}
+
+.mzp-c-newsletter-form .mzp-c-form-errors.hidden {
+    display: none;
+}
+
+.mzp-c-newsletter-thanks {
+    display: block;
+    text-align: center;
+}
+
+.mzp-c-newsletter-thanks.hidden {
+    display: none;
+}
+
 .mzp-c-newsletter-title.section-heading {
     margin-bottom: $layout-md;
 }
