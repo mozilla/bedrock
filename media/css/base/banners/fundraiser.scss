@@ -42,6 +42,10 @@ $image-path: '/media/protocol/img';
         background-image: url('#{$image-path}/icons/close-white.svg');
     }
 
+    .mzp-c-split-body {
+        margin-top: $spacing-md;
+    }
+
     @media #{$mq-md} {
         .c-banner-media {
             max-width: 100%;
@@ -50,6 +54,8 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .mzp-c-split-body {
+            margin-top: 0;
+
             html[lang^='en'] & {
                 max-width: 34em;
             }

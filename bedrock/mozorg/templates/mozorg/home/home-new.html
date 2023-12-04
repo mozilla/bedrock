@@ -22,7 +22,7 @@
 
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-giving2023') and ftl_has_messages('banner-fundraising-giving-tuesday-title', 'banner-fundraising-giving-tuesday-tagline') %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2023') and ftl_has_messages('banner-fundraising-title-1', 'banner-fundraising-tagline-1') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
@@ -40,10 +40,6 @@
   {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
-
-  {% if switch('home-vpn-feature-experiment') %}
-    {{ css_bundle('home-featured-vpn') }}
-  {% endif %}
 {% endblock %}
 
 {% block page_banner %}
@@ -55,8 +51,8 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('home-vpn-feature-experiment') %}
-      {{ js_bundle('home-vpn-feature-experiment') }}
+  {% if show_fundraising_banner and switch('fundraising-banner-experiment') %}
+    {{ js_bundle('fundraising-banner-experiment') }}
   {% endif %}
 {% endblock %}
 
@@ -186,7 +182,8 @@
             'img/home/2023/mofo-split-high-res.jpg': '2x'
           },
           optional_attributes={
-            'class': 'mzp-c-split-media-asset'
+            'class': 'mzp-c-split-media-asset',
+            'loading': 'lazy'
           }
         ),
         media_after=False
@@ -205,7 +202,8 @@
             'img/home/2023/contribute-split-high-res.png': '2x'
           },
           optional_attributes={
-            'class': 'mzp-c-split-media-asset'
+            'class': 'mzp-c-split-media-asset',
+            'loading': 'lazy'
           }
         ),
         media_after=False
@@ -216,10 +214,8 @@
     {% endcall %}
   </section>
 
-  <!-- VPN promo experiment -->
-  {% if variation == '2' and switch('home-vpn-feature-experiment') %}
-    {% include 'mozorg/home/includes/featured-vpn.html' %}
-  {% endif %}
+  <!-- VPN promo -->
+  {% include 'mozorg/home/includes/featured-vpn.html' %}
 
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">
@@ -231,7 +227,7 @@
         <a href="{{ url('mozorg.about.index') }}" class="mzp-c-button">{{ ftl('home-learn-more-about-mozilla') }}</a>
       </div>
       <div class="c-dino">
-        <img src="{{ static('img/home/2023/mozilla-dino.svg') }}" alt="">
+        <img loading="lazy" src="{{ static('img/home/2023/mozilla-dino.svg') }}" alt="">
       </div>
     </div>
   </section>
@@ -246,7 +242,7 @@
       <div class="c-newsletter-content">
         {{ email_newsletter_form(
           newsletters='knowledge-is-power',
-          title=' ',
+          title=None,
           button_class='button-dark',
           )}}
         </div>

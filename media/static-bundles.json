@@ -196,6 +196,7 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/featured-vpn.scss",
         "css/mozorg/home/home-new.scss"
       ],
       "name": "home-new"
@@ -211,12 +212,6 @@
         "css/mozorg/home/includes/pocket-promo.scss"
       ],
       "name": "home-pocket-promo"
-    },
-    {
-      "files": [
-        "css/mozorg/home/includes/featured-vpn.scss"
-      ],
-      "name": "home-featured-vpn"
     },
     {
       "files": [
@@ -1461,12 +1456,6 @@
     },
     {
       "files": [
-        "js/mozorg/home/youtube.js"
-      ],
-      "name": "home"
-    },
-    {
-      "files": [
         "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
@@ -1486,9 +1475,9 @@
     },
     {
       "files": [
-        "js/mozorg/home/feature-vpn-experiment.es6.js"
+        "js/mozorg/home/banner-experiment.es6.js"
       ],
-      "name": "home-vpn-feature-experiment"
+      "name": "fundraising-banner-experiment"
     },
     {
       "files": [
