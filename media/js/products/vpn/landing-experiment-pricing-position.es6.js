@@ -35,7 +35,4 @@ const initTrafficCop = () => {
     }
 };
 
-// Avoid entering automated tests into random experiments.
-if (isApprovedToRun()) {
-    initTrafficCop();
-}
+initTrafficCop();
