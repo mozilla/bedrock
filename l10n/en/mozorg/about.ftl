@@ -26,8 +26,6 @@ about-firefox-fast-for-good = { -brand-name-firefox }: Fast for Good
 about-when-you-use-the-new-firefox = When you use the new { -brand-name-firefox }, you get a blazing fast experience while supporting { -brand-name-mozilla }’s mission to keep the internet healthy, weird and welcoming to all.
 about-walking-our-privacy-talk = Walking Our Privacy Talk
 about-when-the-facebook-breach-was = When the { -brand-name-facebook } breach was revealed, { -brand-name-mozilla } had an immediate response – and a { -brand-name-firefox } product to support user privacy.
-about-talking-internet-issues-irl = Talking Internet Issues IRL
-about-in-mozillas-irl-podcast-host = In { -brand-name-mozilla }’s IRL podcast, host Manoush Zomorodi shares real stories of life online and real talk about the future of the Web.
 about-corporation-foundation-not = Corporation. Foundation. Not-for-profit.
 about-learn-about-the-mozilla-foundation = Learn about the { -brand-name-mozilla-foundation }
 about-mozilla-puts-people-over-profit = { -brand-name-mozilla } puts people over profit in everything we say, build and do. In fact, there’s a non-profit Foundation at the heart of our enterprise.
@@ -37,6 +35,12 @@ about-read-the-manifesto = Read The Manifesto
 about-a-global-view = A Global View
 about-with-offices-all-over-the = With <a href="{ $url }">offices all over the world</a>, we consider the internet from multiple cultures and contexts.
 about-san-francisco = San Francisco
+about-talking-tech-issues-irl = Talking Tech Issues IRL
+about-in-mozillas-multi-award-winning = In { -brand-name-mozilla }'s multi-award winning podcast, host Bridget Todd talks to the people shaping the future of the internet and AI.
+
+# Obsolete strings (remove in 1-2 months)
+about-talking-internet-issues-irl = Talking Internet Issues IRL
+about-in-mozillas-irl-podcast-host = In { -brand-name-mozilla }’s IRL podcast, host Manoush Zomorodi shares real stories of life online and real talk about the future of the Web.
 
 # The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase.
 about-2000-non-employee-guests-welcomed = <strong>2000</strong> non-employee guests welcomed each year
