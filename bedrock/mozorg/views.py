@@ -252,7 +252,7 @@ def mieco_email_form(request):
 @require_safe
 def anti_harassment_tool_view(request):
     locale = l10n_utils.get_locale(request)
-    newsletter_form = NewsletterFooterForm("antiharassment-tool", locale)
+    newsletter_form = NewsletterFooterForm("antiharassment-waitlist", locale=locale)
     action = settings.BASKET_SUBSCRIBE_URL
 
     ctx = {"action": action, "newsletter_form": newsletter_form}
