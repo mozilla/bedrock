@@ -1,0 +1,215 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Anti-Harassment tool{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('antiharassment-tool') }}
+{% endblock %}
+
+
+{% block site_header %}
+  {% with
+    custom_nav_cta="<a class='mzp-c-button mzp-t-secondary' href='https://mozilla.formstack.com/forms/online_harassment' rel='external noopener' target='_blank'>Test our product</a>" |safe
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+
+{% block content %}
+<section class="c-bg-gradient">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h1>Help us fight online harassment</h1>
+    <h2>More than half of all people have experienced online harassment, cyberstalking, doxxing, or online violence.</h2>
+    <p>Women, people of color, and the LBGTQ+ community are disproportionately affected. People are also constantly targeted
+    due to their line of work, their professional opinions, and their identities.</p>
+    <p><strong>This is not okay and we are here to help put an end to it.</strong></p>
+    <div class="c-button-group">
+      <a href="#newsletter" class="mzp-c-button c-button-aht-secondary-inverse">Get product updates</a>
+      <a href="https://mozilla.formstack.com/forms/online_harassment" rel="external noopener" target="_blank" class="mzp-c-button c-button-aht-primary-inverse">Test our product</a>
+    </div>
+  </div>
+</section>
+
+<section class="mzp-l-content mzp-t-content-lg">
+  <h2 class="section-heading">Our vision</h2>
+  <h3 class="section-subheading">We’re currently building tools to help keep people safe online.</h3>
+  <p>Our goal is to fight for wellbeing, promote digital safety, and empower people to do their jobs without being harassed.
+  We want to help people who’ve experienced online harassment move from a place of fear, to a place of resilience.</p>
+</section>
+
+<section class="c-help-section">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h2 class="section-heading">We need your help to build the best solution possible</h2>
+    <h3 class="section-subheading">Throughout this exploration, we’ve been talking to real people who are facing this problem to ensure we build products
+    responsibly, and with your needs at the center.</h3>
+    <p>If you've experienced online harassment due to your line of work, your professional opinions, or your identity, we want
+    to hear from you (and we’re sorry you’ve had to go through this). Your unique perspective can help us ensure that our
+    products will make a meaningful difference.</p>
+    <p>This may involve a survey, a 1-on-1 interview, or viewing a live prototype.
+    Your responses are anonymous and we’ll compensate you for your time.</p>
+    <a href="https://mozilla.formstack.com/forms/online_harassment" rel="external noopener" target="_blank" class="mzp-c-button c-button-aht-secondary">Help test our product</a>
+  </div>
+</section>
+
+<section class="c-resources-section mzp-l-content mzp-t-content-lg">
+  <h2 class="section-heading">Resources for online harassment</h2>
+  <p>Mozilla is a member of the <a href="https://onlineviolenceresponsehub.org/" rel="external noopener" target="_blank">Coalition Against Online Violence</a>, which helps women journalists facing online abuse. If
+  you’re currently facing online harassment of other forms of online violence, here are more organizations we recommend.</p>
+  <div class="c-resource-grid">
+    <div class="c-resource-grid-item">
+      <a href="https://cybercivilrights.org/ccri-crisis-helpline/" rel="external noopener" target="_blank">CCRI Crisis Helpline</a>
+      <p>Call this 24/7 helpline for help with nonconsensual pornography, recorded sexual assault, or sextortion.</p>
+    </div>
+    <div class="c-resource-grid-item">
+      <a href="https://www.thecyberhelpline.com/" rel="external noopener" target="_blank">The Cyber Helpline</a>
+      <p>Talk to cybercrime experts for help with cybercrime and digital fraud.</p>
+    </div>
+    <div class="c-resource-grid-item">
+      <a href="https://righttobe.org/feel-support/" rel="external noopener" target="_blank">Right to Be</a>
+      <p>Get support from other survivors of online harassment, and share your own story.</p>
+    </div>
+    <div class="c-resource-grid-item">
+      <a href="https://onlineharassmentfieldmanual.pen.org/" rel="external noopener" target="_blank">Online Harassment Field Manual</a>
+      <p>Empower yourself with this guide from PEN America for those experiencing or witnessing online abuse.</p>
+    </div>
+    <div class="c-resource-grid-item">
+      <a href="https://takeitdown.ncmec.org/" rel="external noopener" target="_blank">Take it Down</a>
+      <p>Remove nude, partially nude, or sexually explicit images of those under 18 years old with this free service.</p>
+    </div>
+    <div class="c-resource-grid-item">
+      <a href="https://stopncii.org/?utm_medium=organic&utm_source=mozilla&utm_campaign=antiharassment" rel="external noopener" target="_blank">StopNCII</a>
+      <p>Remove non-consensual intimate images across participating platforms with this free tool.</p>
+    </div>
+  </div>
+</section>
+
+<section class="c-newsletter" id="newsletter">
+  <form id="newsletter-form" class="mzp-l-content mzp-t-content-md mzp-c-newsletter-form" action="{{ action }}" method="post">
+  <header class="mzp-c-newsletter-header">
+    <h2 class="mzp-c-newsletter-title section-heading">Be the first to know when we launch</h2>
+  </header>
+    <div hidden>
+      {{ newsletter_form.newsletters|safe }}
+    </div>
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+    <input type="hidden" name="format" id="format-html" value="H">
+    <input type="hidden" name="country" id="id_country" value="us">
+    <input type="hidden" name="lang" id="id_lang" value="en">
+    <fieldset class="mzp-c-newsletter-content">
+      <div class="mzp-c-form-errors hidden hide-from-legacy-ie" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">Please enter a valid email address</li>
+          <li class="error-try-again-later hidden">There was an error adding you to the newsletter. Please try again.</li>
+        </ul>
+      </div>
+      <div>
+        <label for="id_email">
+          What is your email address?
+        </label>
+        <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true"
+          placeholder="yourname@example.com">
+      </div>
+      <div id="newsletter-details" class="mzp-c-newsletter-details">
+        <fieldset class="mzp-u-inline">
+          <legend>Format</legend>
+          <p>
+            <label for="format-html" class="mzp-u-inline">
+              <input type="radio" id="format-html" name="format" value="H" checked="">HTML
+            </label>
+            <label for="format-text" class="mzp-u-inline">
+              <input type="radio" id="format-text" name="format" value="T">Text
+            </label>
+          </p>
+        </fieldset>
+        <p>
+          <label for="privacy" class="mzp-u-inline">
+            <input type="checkbox" id="privacy" name="privacy" required="" aria-required="true">I’m okay with Mozilla handling
+            my info as explained in <a href="/en-US/privacy/websites/">this Privacy Notice</a>
+          </label>
+        </p>
+      </div>
+      <p class="mzp-c-form-submit">
+        <button class="mzp-c-button c-button-aht-primary mzp-t-xl" id="newsletter-submit" type="submit">Get Product Updates</button>
+        <span class="mzp-c-fieldnote">We will only send you Mozilla-related information.</span>
+      </p>
+    </fieldset>
+  </form>
+  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden mzp-l-content mzp-t-content-lg">
+    <h3>Thanks!</h3>
+    <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter, you may have to do so. Please check
+    your inbox or your spam filter for an email from us.</p>
+  </div>
+</section>
+
+<section class="c-product-section">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <h2 class="section-heading">More Mozilla products that keep you safe</h2>
+    <ul class="mzp-l-columns mzp-t-columns-four">
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/firefox.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">Private & secure browsing</h3>
+        <div class="mzp-c-picto-body">
+          <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary">Get Firefox</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/monitor.png",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">Data breach monitoring</h3>
+        <div class="mzp-c-picto-body">
+          <a href="https://monitor.firefox.com/" rel="external noopener" class="mzp-c-button mzp-t-secondary">Get Mozilla Monitor</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/relay.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">User friendly email & phone masking</h3>
+        <div class="mzp-c-picto-body">
+          <a href="https://relay.firefox.com/" rel="external noopener" class="mzp-c-button mzp-t-secondary">Get Mozilla Relay</a>
+        </div>
+      </li>
+      <li class="mzp-c-picto">
+        {{ resp_img(
+          url="img/mozorg/antiharassment-tool/vpn.svg",
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        ) }}
+        <h3 class="mzp-c-picto-heading">A VPN you can trust</h3>
+        <div class="mzp-c-picto-body">
+          <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary">Get Mozilla VPN</a>
+        </div>
+    </li>
+  </ul>
+</section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}

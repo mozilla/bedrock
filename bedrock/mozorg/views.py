@@ -4,6 +4,7 @@
 
 import json
 
+from django.conf import settings
 from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
@@ -21,6 +22,7 @@ from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
+from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.utils.views import VariationTemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
@@ -245,3 +247,14 @@ def mieco_email_form(request):
         return {"error": 400, "message": str(e)}, 400, CORS_HEADERS
 
     return {"status": "ok"}, 200, CORS_HEADERS
+
+
+@require_safe
+def anti_harassment_tool_view(request):
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = NewsletterFooterForm("antiharassment-waitlist", locale=locale)
+    action = settings.BASKET_SUBSCRIBE_URL
+
+    ctx = {"action": action, "newsletter_form": newsletter_form}
+
+    return l10n_utils.render(request, "mozorg/antiharassment-tool.html", ctx)

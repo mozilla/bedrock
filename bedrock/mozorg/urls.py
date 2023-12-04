@@ -158,6 +158,7 @@ urlpatterns = (
         ftl_files=["mozorg/try-picture-in-picture"],
         active_locales=["en-US", "de", "fr", "it"],
     ),
+    path("antiharassment-tool", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
 )
 
 if settings.DEV:
