@@ -1947,6 +1947,12 @@
     },
     {
       "files": [
+        "js/products/vpn/landing-experiment-pricing-position.es6.js"
+      ],
+      "name": "mozilla-vpn-landing-pricing-position-experiment"
+    },
+    {
+      "files": [
         "js/products/shared/affiliate-init.es6.js"
       ],
       "name": "mozilla-vpn-affiliate"
