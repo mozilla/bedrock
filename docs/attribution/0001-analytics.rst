@@ -335,11 +335,15 @@ the existence of certain data-attributes on an element.
 
 Only one of the following data-attributes is necessary to log the event:
 
-- data-cta-text (examples: Get Mozilla VPN, Leading by example)
-- data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay)
+- data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay, pocket)
   - This is to group CTAs by their destination
   - Do not use this to identify the element (ie. link, button)
 - data-cta-position (examples: banner, pricing, primary, secondary)
+- data-cta-text
+  - If no value is provided the text of the clicked element will be used
+  - Please use this when the link text is not useful.
+  - Also, if it's not useful to us we might be failing our users as well! Don't use text like
+  click here" or "learn more"
 
 .. code-block:: html
 
@@ -348,6 +352,22 @@ Only one of the following data-attributes is necessary to log the event:
     <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-position="banner" data-cta-text="Get It Now">Send me a link</a>
 
     <a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-text="Firefox for iOS">Firefox for iOS</a>
+
+
+For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
+
++-----------------------+----------------------------------------------------------------------------------+
+| Data Attribute        | Expected Value                                                                   |
++=======================+==================================================================================+
+| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
++-----------------------+----------------------------------------------------------------------------------+
+| ``data-cta-text``     | Name or text of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
+|                       |                                                                                  |
+|                       | We use this when the link text is not useful, as is the case with many           |
+|                       | account forms that say, ``Continue``. We replace ``Continue`` with ``Register``. |
++-----------------------+----------------------------------------------------------------------------------+
+| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++-----------------------+----------------------------------------------------------------------------------+
 
 
 Product Download
