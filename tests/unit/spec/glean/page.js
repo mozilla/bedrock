@@ -48,7 +48,7 @@ describe('page.js', function () {
     it('should record specific query parameters in the page view', async function () {
         const query =
             'utm_source=test-source&utm_campaign=test-campaign&utm_medium=test-medium&utm_content=test-content&entrypoint_experiment=test_entrypoint_experiment&entrypoint_variation=1&experiment=test-experiment&variation=1&v=1&xv=test-xv';
-        spyOn(Utils, 'getQueryParamsFromURL').and.returnValue(
+        spyOn(Utils, 'getQueryParamsFromUrl').and.returnValue(
             new window._SearchParams(query)
         );
 
@@ -90,7 +90,7 @@ describe('page.js', function () {
     it('should not record unspecified query params in the page view', async function () {
         const query =
             'unspecified_param=test-unspecified-param&utm_content=test-content';
-        spyOn(Utils, 'getQueryParamsFromURL').and.returnValue(
+        spyOn(Utils, 'getQueryParamsFromUrl').and.returnValue(
             new window._SearchParams(query)
         );
 
@@ -106,7 +106,7 @@ describe('page.js', function () {
 
     it('should decode known params', async function () {
         const query = 'utm_source=%25&utm_campaign=%2F';
-        spyOn(Utils, 'getQueryParamsFromURL').and.returnValue(
+        spyOn(Utils, 'getQueryParamsFromUrl').and.returnValue(
             new window._SearchParams(query)
         );
 
@@ -122,7 +122,7 @@ describe('page.js', function () {
     it('should not record known params that contain bad values', async function () {
         const query =
             'utm_source=<script>yikes</script>&utm_campaign=%5Ctest&utm_medium=%3Ctest&utm_content=test-content&experiment';
-        spyOn(Utils, 'getQueryParamsFromURL').and.returnValue(
+        spyOn(Utils, 'getQueryParamsFromUrl').and.returnValue(
             new window._SearchParams(query)
         );
 

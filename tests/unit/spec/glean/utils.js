@@ -11,9 +11,38 @@
 
 import Utils from '../../../../media/js/glean/utils.es6';
 
-describe('utilsjs', function () {
+describe('utils.js', function () {
     afterEach(function () {
         Mozilla.Analytics.customReferrer = '';
+    });
+
+    describe('getUrl', function () {
+        it('should return the a complete URL including query parameters', function () {
+            const url1 = 'https://www.mozilla.org/en-US/';
+            expect(Utils.getUrl(url1)).toEqual(url1);
+
+            const url2 =
+                'https://www.mozilla.org/en-US/firefox/new/?utm_source=test&utm_campaign=test';
+            expect(Utils.getUrl(url2)).toEqual(url2);
+        });
+
+        it('should remove newsletter tokens from know URLs', function () {
+            const url1 =
+                'https://www.mozilla.org/en-US/newsletter/existing/a1a2a3a4-abc1-12ab-a123-12345a12345b/?utm_source=test&utm_campaign=test';
+            expect(Utils.getUrl(url1)).toEqual(
+                'https://www.mozilla.org/en-US/newsletter/existing/?utm_source=test&utm_campaign=test'
+            );
+
+            const url2 =
+                'https://www.mozilla.org/en-US/newsletter/country/a1a2a3a4-abc1-12ab-a123-12345a12345b/?utm_source=test&utm_campaign=test';
+            expect(Utils.getUrl(url2)).toEqual(
+                'https://www.mozilla.org/en-US/newsletter/country/?utm_source=test&utm_campaign=test'
+            );
+
+            const url3 =
+                'https://www.mozilla.org/en-US/newsletter/existing/?utm_source=test&utm_campaign=test';
+            expect(Utils.getUrl(url3)).toEqual(url3);
+        });
     });
 
     describe('getPathFromUrl', function () {
@@ -64,12 +93,12 @@ describe('utilsjs', function () {
         });
     });
 
-    describe('getQueryParamsFromURL', function () {
+    describe('getQueryParamsFromUrl', function () {
         it('should return an object made up of params from a query string', function () {
             const query =
                 'utm_source=test-source&utm_campaign=test-campaign&utm_medium=test-medium&utm_content=test-content&entrypoint_experiment=test_entrypoint_experiment&entrypoint_variation=1&experiment=test-experiment&variation=1&v=1&xv=test-xv';
 
-            expect(Utils.getQueryParamsFromURL(query).params).toEqual({
+            expect(Utils.getQueryParamsFromUrl(query).params).toEqual({
                 utm_source: 'test-source',
                 utm_campaign: 'test-campaign',
                 utm_medium: 'test-medium',
@@ -117,19 +146,17 @@ describe('utilsjs', function () {
         });
     });
 
-    describe('hasValidURLScheme', function () {
+    describe('isValidHttpUrl', function () {
         it('should return true for non secure URLs', function () {
-            expect(Utils.hasValidURLScheme('http://localhost:8000')).toBeTrue();
+            expect(Utils.isValidHttpUrl('http://localhost:8000')).toBeTrue();
         });
 
         it('should return true for secure URLs', function () {
-            expect(
-                Utils.hasValidURLScheme('https://www.mozilla.org')
-            ).toBeTrue();
+            expect(Utils.isValidHttpUrl('https://www.mozilla.org')).toBeTrue();
         });
 
         it('should return false for file URLs', function () {
-            expect(Utils.hasValidURLScheme('file://C:/Users/')).toBeFalse();
+            expect(Utils.isValidHttpUrl('file://C:/Users/')).toBeFalse();
         });
     });
 
