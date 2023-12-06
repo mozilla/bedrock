@@ -343,7 +343,7 @@ Only one of the following data-attributes is necessary to log the event:
   - If no value is provided the text of the clicked element will be used
   - Please use this when the link text is not useful.
   - Also, if it's not useful to us we might be failing our users as well! Don't use text like
-  click here" or "learn more"
+  "click here" or "learn more"
 
 .. code-block:: html
 
