@@ -114,16 +114,27 @@ describe('utils.js', function () {
     });
 
     describe('getReferrer', function () {
+        afterEach(function () {
+            Mozilla.Analytics.customReferrer = '';
+        });
+
         it('should return a custom referrer when set', function () {
-            const expected = 'http://www.google.com';
+            const expected = 'http://www.google.com/';
             Mozilla.Analytics.customReferrer = expected;
             expect(Utils.getReferrer()).toEqual(expected);
         });
 
-        it('should return standard document referrer otherwise', function () {
-            const expected = 'http://www.bing.com';
-            Mozilla.Analytics.customReferrer = '';
+        it('should return regular referrer otherwise', function () {
+            const expected = 'http://www.bing.com/';
             expect(Utils.getReferrer(expected)).toEqual(expected);
+        });
+
+        it('should strip newsletter tokens from referrer URLs', function () {
+            const expected =
+                'https://www.mozilla.org/en-US/newsletter/country/a1a2a3a4-abc1-12ab-a123-12345a12345b/?utm_source=test&utm_campaign=test';
+            expect(Utils.getReferrer(expected)).toEqual(
+                'https://www.mozilla.org/en-US/newsletter/country/?utm_source=test&utm_campaign=test'
+            );
         });
     });
 
@@ -143,20 +154,6 @@ describe('utils.js', function () {
                 .getElementsByTagName('html')[0]
                 .setAttribute('data-http-status', '404');
             expect(Utils.getHttpStatus()).toEqual('404');
-        });
-    });
-
-    describe('isValidHttpUrl', function () {
-        it('should return true for non secure URLs', function () {
-            expect(Utils.isValidHttpUrl('http://localhost:8000')).toBeTrue();
-        });
-
-        it('should return true for secure URLs', function () {
-            expect(Utils.isValidHttpUrl('https://www.mozilla.org')).toBeTrue();
-        });
-
-        it('should return false for file URLs', function () {
-            expect(Utils.isValidHttpUrl('file://C:/Users/')).toBeFalse();
         });
     });
 

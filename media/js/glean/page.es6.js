@@ -4,7 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import GleanMetrics from '@mozilla/glean/metrics';
 import * as page from '../libs/glean/page.js';
 import Utils from './utils.es6';
 
@@ -21,7 +20,7 @@ const defaultParams = {
     xv: '' // short param for 'experience version'.
 };
 
-function initPageView() {
+function recordCustomPageMetrics() {
     page.viewed.set();
     page.path.set(Utils.getPathFromUrl());
     page.locale.set(Utils.getLocaleFromUrl());
@@ -48,24 +47,6 @@ function initPageView() {
             page.queryParams[param].set(finalParams[param]);
         }
     }
-
-    /**
-     * Manually call Glean's default page_load event. Here
-     * we override `url` and `referrer` since we need to
-     * apply some custom logic to these values before they
-     * are sent.
-     */
-    GleanMetrics.pageLoad({
-        url: Utils.getUrl(),
-        referrer: Utils.getReferrer()
-    });
-
-    /**
-     * This old page hit event can be removed once we're
-     * confident that the new page_load event is working
-     * as expected.
-     */
-    page.hit.record();
 }
 
 function pageEvent(obj) {
@@ -96,4 +77,4 @@ function pageEvent(obj) {
     }
 }
 
-export { initPageView, pageEvent };
+export { recordCustomPageMetrics, pageEvent };

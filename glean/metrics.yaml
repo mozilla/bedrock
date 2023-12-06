@@ -93,32 +93,18 @@ page:
       - marketing-websites-team@mozilla.com
     expires: never
   http_status:
-      type: string
-      description: |
-        The HTTP status code of the page.
-      lifetime: application
-      send_in_pings:
-        - events
-      data_sensitivity:
-        - technical
-      bugs:
-        - https://github.com/mozilla/bedrock/issues/13581
-      data_reviews:
-        - https://bugzilla.mozilla.org/show_bug.cgi?id=1848981
-      notification_emails:
-        - marketing-websites-team@mozilla.com
-      expires: never
-  hit:
-    type: event
+    type: string
     description: |
-      An event which is sent every time a page is loaded.
+      The HTTP status code of the page.
+    lifetime: application
+    send_in_pings:
+      - events
     data_sensitivity:
-      - web_activity
       - technical
     bugs:
-      - https://github.com/mozilla/bedrock/issues/10746
+      - https://github.com/mozilla/bedrock/issues/13581
     data_reviews:
-      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1848981
     notification_emails:
       - marketing-websites-team@mozilla.com
     expires: never
