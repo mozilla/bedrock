@@ -5,32 +5,64 @@
  */
 
 const Utils = {
-    getPathFromUrl: (path) => {
-        let pathName = path ? path : document.location.pathname;
+    getUrl: (str) => {
+        const urlString = typeof str === 'string' ? str : window.location.href;
+        const url = new URL(urlString);
+
+        // Ensure we don't include tokens in newsletter page load event pings
+        // Issue https://github.com/mozilla/bedrock/issues/13583
+        const newsletterPaths = [
+            '/newsletter/existing/',
+            '/newsletter/country/'
+        ];
+
+        newsletterPaths.forEach((path) => {
+            // Find the index of the newsletter pathname
+            const index = url.pathname.indexOf(path);
+
+            // Remove everything after the pathname (which is the token)
+            if (index !== -1) {
+                const newPathname = url.pathname.substring(
+                    0,
+                    index + path.length
+                );
+                url.pathname = newPathname;
+            }
+        });
+
+        return url.toString();
+    },
+
+    getPathFromUrl: (str) => {
+        let pathName =
+            typeof str === 'string' ? str : document.location.pathname;
         pathName = pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
+        const newsletterPaths = [
+            '/newsletter/existing/',
+            '/newsletter/country/'
+        ];
 
         // Ensure we don't include tokens in newsletter page pings
         // Issue https://github.com/mozilla/bedrock/issues/13583
-        if (pathName.includes('/newsletter/existing/')) {
-            pathName = '/newsletter/existing/';
-        }
-
-        if (pathName.includes('/newsletter/country/')) {
-            pathName = '/newsletter/country/';
-        }
+        newsletterPaths.forEach((path) => {
+            if (pathName.includes(path)) {
+                pathName = path;
+            }
+        });
 
         return pathName;
     },
 
-    getLocaleFromUrl: (path) => {
-        const pathName = path ? path : document.location.pathname;
+    getLocaleFromUrl: (str) => {
+        const pathName =
+            typeof str === 'string' ? str : document.location.pathname;
         const locale = pathName.match(/^\/(\w{2}-\w{2}|\w{2,3})\//);
         // If there's no locale in the path then assume language is `en-US`;
         return locale && locale.length > 0 ? locale[1] : 'en-US';
     },
 
-    getQueryParamsFromURL: (qs) => {
-        const query = typeof qs === 'string' ? qs : window.location.search;
+    getQueryParamsFromUrl: (str) => {
+        const query = typeof str === 'string' ? str : window.location.search;
 
         if (typeof window._SearchParams !== 'undefined') {
             return new window._SearchParams(query);
@@ -39,8 +71,8 @@ const Utils = {
         return false;
     },
 
-    getReferrer: (ref) => {
-        const referrer = typeof ref === 'string' ? ref : document.referrer;
+    getReferrer: (str) => {
+        const referrer = typeof str === 'string' ? str : document.referrer;
 
         if (typeof window.Mozilla.Analytics !== 'undefined') {
             return Mozilla.Analytics.getReferrer(referrer);
@@ -56,8 +88,16 @@ const Utils = {
         return pageId && pageId === '404' ? '404' : '200';
     },
 
-    hasValidURLScheme: (url) => {
-        return /^https?:\/\//.test(url);
+    isValidHttpUrl: (str) => {
+        let url;
+
+        try {
+            url = new URL(str);
+        } catch (e) {
+            return false;
+        }
+
+        return url.protocol === 'http:' || url.protocol === 'https:';
     },
 
     isTelemetryEnabled: () => {

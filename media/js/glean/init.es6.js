@@ -5,11 +5,12 @@
  */
 
 import Glean from '@mozilla/glean/web';
+import { BrowserSendBeaconUploader } from '@mozilla/glean/web';
 import { initPageView, pageEvent } from './page.es6';
 import { clickEvent } from './elements.es6';
 import Utils from './utils.es6';
 
-const shouldInitialize = Utils.hasValidURLScheme(window.location.href);
+const shouldInitialize = Utils.isValidHttpUrl(window.location.href);
 
 function initGlean() {
     const pageUrl = window.location.href;
@@ -26,7 +27,8 @@ function initGlean() {
 
     Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
         channel: channel,
-        serverEndpoint: endpoint
+        serverEndpoint: endpoint,
+        httpClient: BrowserSendBeaconUploader // use sendBeacon since Firefox does not yet support keepalive using fetch()
     });
 }
 
