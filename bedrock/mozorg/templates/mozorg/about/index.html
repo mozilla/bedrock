@@ -70,10 +70,10 @@
       )}}
       {{ card(
           class='mzp-c-card-medium',
-          title=ftl('about-talking-internet-issues-irl'),
+          title=ftl('about-talking-tech-issues-irl', fallback='about-talking-internet-issues-irl'),
           ga_title='Talking Internet Issues IRL',
-          desc=ftl('about-in-mozillas-irl-podcast-host'),
-          image=resp_img('img/mozorg/about/irl.jpg', srcset={"img/mozorg/about/irl-high-res.jpg": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+          desc=ftl('about-in-mozillas-multi-award-winning', fallback='about-in-mozillas-irl-podcast-host'),
+          image=resp_img('img/mozorg/about/irl.png', srcset={"img/mozorg/about/irl-high-res.png": "2x"}, optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           aspect_ratio='mzp-has-aspect-3-2',
           link_url='https://irlpodcast.org/'
       )}}
