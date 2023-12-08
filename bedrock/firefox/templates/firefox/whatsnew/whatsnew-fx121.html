@@ -1,0 +1,94 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_121') }}
+{% endblock %}
+
+{% if LANG == "en-GB" %}
+  {% set headline = 'Customise Firefox for Android' %}
+  {% set body = 'From powerful ad blockers to a full dark-mode experience — don’t miss the new Android extensions.' %}
+{% elif LANG == 'fr' %}
+  {% set headline = 'Naviguez mieux grâce à votre barre d’outils' %}
+  {% set body = 'Personnalisez la barre d’outils de votre navigateur et gardez vos fonctionnalités préférées à portée de main : capture
+  d’écran, synchronisation des onglets, historique et plus encore.' %}
+{% else %}
+  {% set headline = 'Unwrapping a new phone this holiday?' %}
+  {% set body = 'Download Firefox as your fast, secure, on-the-go browser and make the new year bright.' %}
+  {% set box_one_headline = 'Customize Firefox for Android'  %}
+  {% set box_one_lede = 'From powerful ad blockers to a full dark-mode experience — don’t miss the new Android extensions.'  %}
+  {% set box_one_cta = 'Explore 400+ new extensions'  %}
+  {% set box_two_headline = 'Set up Firefox in a flash'  %}
+  {% set box_two_lede = 'Easily back-up your Firefox tabs and history, and instantly access on your other devices.'  %}
+  {% set box_two_cta = 'Meet your back up assistant'  %}
+{% endif %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-xl">
+      {% call split(
+    block_class='mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    image=resp_img(url='img/firefox/whatsnew/whatsnew121/presents-and-qr.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
+    media_after=True
+  ) %}
+      <h2 class="wnp-main-title">{{ headline }}</h2>
+      <p class="wnp-main-tagline">{{ body }}</p>
+  {% endcall %}
+  </div>
+
+
+    <div class="mzp-l-content mzp-t-content-lg mzp-l-columns mzp-t-columns-two c-boxes">
+        <section class="c-box box-one">
+          <div class="c-box-inner">
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew121/puzzle.svg') }}" alt="" width="140" height="140">
+            </div>
+            <div class="c-box-body">
+              <h3 class="box-headline">
+                {{ box_one_headline }}
+              </h3>
+              <p class="c-box-lede">{{ box_one_lede }}</p>
+              <a href="">{{ box_one_cta }}</a>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="c-box box-two">
+          <div class="c-box-inner">
+            <div class="c-box-image">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew121/sync.svg') }}" alt="" width="140" height="140">
+          </div>
+            <div class="c-box-body">
+              <h3 class="box-headline">
+                {{ box_two_headline }}
+              </h3>
+              <p class="c-box-lede">{{ box_two_lede }}</p>
+              <a href="">{{ box_two_cta }}</a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <p class="wnp-sign-off">
+        {{ ftl('whatsnew-signoff') }}
+      </p>
+  </section>
+
+{% endblock %}

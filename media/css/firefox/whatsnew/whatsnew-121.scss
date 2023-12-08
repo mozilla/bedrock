@@ -1,0 +1,63 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.wnp-content-main {
+    color: $color-black;
+}
+
+.wnp-main-tagline,
+.c-box-lede {
+    @include text-body-lg;
+}
+
+.mzp-c-split {
+    padding-bottom: 0;
+
+    .mzp-c-split-container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .mzp-c-split-media-asset {
+        width: 500px;
+    }
+}
+
+.c-boxes {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .c-box {
+        background: $color-light-gray-10;
+        border-radius: $border-radius-md;
+        text-align: center;
+        padding: $spacing-lg;
+
+        .c-box-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%
+        }
+
+        .c-box-body {
+            height: 100%;
+            display: grid;
+            grid-template-rows: max-content 1fr;
+        }
+
+        .c-box-image {
+            margin-top: $spacing-lg;
+        }
+    }
+
+}
+
+.wnp-sign-off {
+    text-align: center;
+}
