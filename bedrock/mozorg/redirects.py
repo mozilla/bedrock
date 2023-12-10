@@ -541,17 +541,7 @@ redirectpatterns = (
     # Issue 9984
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
     # Issue 11204
-    redirect(
-        r"^(truecolou?rs|turningred)/?$",
-        "https://truecolors.firefox.com/",
-        merge_query=True,
-        query={
-            "utm_campaign": "firefox-disney-us",
-            "utm_medium": "web",
-            "utm_source": "redirect",
-            "utm_content": "mozilla.org-turningred",
-        },
-    ),
+    redirect(r"^(truecolou?rs|turningred)/?$", "firefox"),
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
     redirect(r"^santa-locator/?$", "mozorg.santa-locator"),
