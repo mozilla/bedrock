@@ -1182,24 +1182,12 @@ URLS = flatten(
         # issue 12156
         url_test("/privacy/{mozilla-vpn,firefox-relay}/", "/privacy/subscription-services/"),
         # Issue 11204
-        url_test(
-            "/{truecolors,truecolours,turningred}/",
-            "https://truecolors.firefox.com/",
-            query={
-                "utm_campaign": "firefox-disney-us",
-                "utm_medium": "web",
-                "utm_source": "redirect",
-                "utm_content": "mozilla.org-turningred",
-            },
-        ),
+        url_test("/{truecolors,truecolours,turningred}/", "/firefox/"),
         url_test(
             "/{truecolors,truecolours,turningred}/?utm_source=dude",
-            "https://truecolors.firefox.com/",
+            "/firefox/",
             query={
-                "utm_campaign": "firefox-disney-us",
-                "utm_medium": "web",
                 "utm_source": "dude",
-                "utm_content": "mozilla.org-turningred",
             },
         ),
         # Issue 11991
