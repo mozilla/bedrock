@@ -28,8 +28,3 @@ combine-as-imports = true
 
 [tool.ruff.isort.sections]
 django = ["django"]
-
-[tool.black]
-line-length = 150  # To match flake8
-target-version = ['py39']
-include = '\.pyi?$'

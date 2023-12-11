@@ -114,7 +114,7 @@ lint: .docker-build-pull
 
 format: .docker-build-pull
 	${DC} run assets npm run format
-	${DC} run app black .
+	${DC} run app ruff format .
 
 test: .docker-build-pull
 	${DC} run --rm test

@@ -5,7 +5,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 ruff check .
-black --check .
+ruff format --check .
 moz-l10n-lint l10n/l10n-pontoon.toml
 moz-l10n-lint l10n/l10n-vendor.toml
 moz-l10n-lint l10n-pocket/l10n-vendor.toml
