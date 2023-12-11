@@ -16,6 +16,16 @@
     @include text-body-lg;
 }
 
+ @keyframes pulse {
+     0%, 100% {
+         transform: scale(1);
+     }
+
+    50% {
+         transform: scale(0.7);
+     }
+}
+
 .mzp-c-split {
     padding-bottom: 0;
 
@@ -26,6 +36,11 @@
 
     .mzp-c-split-media-asset {
         width: 500px;
+        animation-name: pulse;
+        animation-duration: 1.3s;
+        animation-iteration-count: 2;
+        animation-delay: 1s;
+        animation-timing-function: ease-out;
     }
 }
 
@@ -53,10 +68,17 @@
 
         .c-box-image {
             margin-top: $spacing-lg;
+            }
         }
     }
 
-}
+    .box-one {
+        margin-bottom: $layout-md;
+
+        @media #{$mq-md} {
+            margin-bottom: 0;
+        }
+    }
 
 .wnp-sign-off {
     text-align: center;

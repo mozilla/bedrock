@@ -22,12 +22,23 @@
 {% endblock %}
 
 {% if LANG == "en-GB" %}
-  {% set headline = 'Customise Firefox for Android' %}
-  {% set body = 'From powerful ad blockers to a full dark-mode experience — don’t miss the new Android extensions.' %}
+  {% set headline = 'Unwrapping a new phone this holiday season?' %}
+  {% set body = 'Download Firefox as your fast, secure, on-the-go browser and make the new year bright.' %}
+  {% set box_one_headline = 'Customise Firefox for Android'  %}
+  {% set box_one_lede = 'From powerful ad blockers to a full dark-mode experience — don’t miss the new Android extensions.'  %}
+  {% set box_one_cta = 'Explore 400+ new extensions'  %}
+  {% set box_two_headline = 'Set up Firefox in a flash'  %}
+  {% set box_two_lede = 'Easily back-up your Firefox tabs and history, and instantly access on your other devices.'  %}
+  {% set box_two_cta = 'Meet your back up assistant'  %}
 {% elif LANG == 'fr' %}
-  {% set headline = 'Naviguez mieux grâce à votre barre d’outils' %}
-  {% set body = 'Personnalisez la barre d’outils de votre navigateur et gardez vos fonctionnalités préférées à portée de main : capture
-  d’écran, synchronisation des onglets, historique et plus encore.' %}
+  {% set headline = 'Un nouveau téléphone pour les fêtes ?' %}
+  {% set body = 'Téléchargez Firefox pour une navigation mobile rapide et sécurisée, et commencez  l’année en beauté.' %}
+  {% set box_one_headline = 'Personnalisez Firefox pour Android'  %}
+  {% set box_one_lede = 'Bloquez les pubs avec le très populaire uBlock ou naviguez en mode sombre avec Dark Reader.' %}
+  {% set box_one_cta = 'Explorer plus de 400 nouvelles extensions' %}
+  {% set box_two_headline = 'Configurez Firefox en un clin d’œil'  %}
+  {% set box_two_lede = 'Sauvegardez vos onglets et votre historique Firefox et accédez-y instantanément sur tous vos appareils.'  %}
+  {% set box_two_cta = 'En savoir plus' %}
 {% else %}
   {% set headline = 'Unwrapping a new phone this holiday?' %}
   {% set body = 'Download Firefox as your fast, secure, on-the-go browser and make the new year bright.' %}
@@ -45,7 +56,11 @@
       {% call split(
     block_class='mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-h-center',
-    image=resp_img(url='img/firefox/whatsnew/whatsnew121/presents-and-qr.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
+    image=resp_img(url='img/firefox/whatsnew/whatsnew121/presents-and-qr-high-res.png',
+    srcset={
+      "img/firefox/whatsnew/whatsnew121/presents-and-qr-high-res.png": "2x"
+    },
+     optional_attributes={ 'class': 'mzp-c-split-media-asset' }),
     media_after=True
   ) %}
       <h2 class="wnp-main-title">{{ headline }}</h2>
@@ -57,9 +72,7 @@
     <div class="mzp-l-content mzp-t-content-lg mzp-l-columns mzp-t-columns-two c-boxes">
         <section class="c-box box-one">
           <div class="c-box-inner">
-            <div class="c-box-image">
-              <img src="{{ static('img/firefox/whatsnew/whatsnew121/puzzle.svg') }}" alt="" width="140" height="140">
-            </div>
+
             <div class="c-box-body">
               <h3 class="box-headline">
                 {{ box_one_headline }}
@@ -67,15 +80,14 @@
               <p class="c-box-lede">{{ box_one_lede }}</p>
               <a href="">{{ box_one_cta }}</a>
             </div>
-
+            <div class="c-box-image">
+              <img src="{{ static('img/firefox/whatsnew/whatsnew121/puzzle.svg') }}" alt="" width="140" height="140">
+            </div>
           </div>
         </section>
 
         <section class="c-box box-two">
           <div class="c-box-inner">
-            <div class="c-box-image">
-            <img src="{{ static('img/firefox/whatsnew/whatsnew121/sync.svg') }}" alt="" width="140" height="140">
-          </div>
             <div class="c-box-body">
               <h3 class="box-headline">
                 {{ box_two_headline }}
@@ -83,6 +95,9 @@
               <p class="c-box-lede">{{ box_two_lede }}</p>
               <a href="">{{ box_two_cta }}</a>
             </div>
+            <div class="c-box-image">
+            <img src="{{ static('img/firefox/whatsnew/whatsnew121/sync.svg') }}" alt="" width="140" height="140">
+          </div>
           </div>
         </section>
       </div>
