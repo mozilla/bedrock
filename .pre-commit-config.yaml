@@ -68,11 +68,7 @@ repos:
     rev: v0.1.11
     hooks:
       - id: ruff
-  - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 23.12.1
-    hooks:
-      - id: black
-        language_version: python3
+      - id: ruff-format
   - repo: https://github.com/mozilla-l10n/moz-fluent-linter
     rev: v0.4.5
     hooks:

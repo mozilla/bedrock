@@ -291,7 +291,9 @@ class Command(BaseCommand):
     def _get_content_to_sync(
         self,
         available_locales,
-    ) -> list((str, str),):
+    ) -> list(
+        (str, str),
+    ):
         """Fetches which content types and ids to query, individually, from the Contentful API"""
         content_to_sync = []
 
