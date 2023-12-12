@@ -1,0 +1,166 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+$pocket-inverse-color: #3A0603;
+
+.pocket-feature {
+    @include font-base;
+    padding-top: 0;
+
+    .feature-wrapper {
+        border-radius: $border-radius-md;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #32313b;
+        padding: $spacing-2xl 0;
+    }
+
+    .image-wrapper {
+        max-width: 300px;
+        margin-bottom: $spacing-xl;
+    }
+
+    .feature-info {
+        text-align: center;
+        margin-bottom: $spacing-lg;
+
+        small, h2 {
+            color: $color-white;
+        }
+
+        small {
+            @include font-size(18px);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h2 {
+            @include font-size(32px);
+            @include font-base;
+            font-weight: normal;
+        }
+    }
+
+    a {
+        @include text-body-lg;
+        background-color: $color-red-50;
+        border-color: $color-red-50;
+        white-space: nowrap;
+
+        &:hover, &:active {
+            border-color: $color-red-50;
+            color: $color-red-50
+        }
+
+        &:focus {
+            border-color: $color-red-50;
+            color: $color-white;
+            box-shadow: 0 0 0 1px $color-blue-05;
+        }
+    }
+
+    @media #{$mq-md} {
+        .image-wrapper {
+            max-width: none;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .feature-wrapper {
+            flex-direction: row;
+            padding: 0 $spacing-2xl 0 0;
+        }
+
+        .feature-info {
+            text-align: left;
+            margin: 0 $spacing-md;
+        }
+
+        .image-wrapper {
+            background-color: $color-red-50;
+            padding-left: $spacing-2xl;
+            border-top-left-radius: $border-radius-md;
+            border-bottom-left-radius: $border-radius-md;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.pocket-pencil-content {
+    background-color: $color-red-50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: $spacing-md;
+    max-height: 110px;
+    max-width: 100%;
+
+    .pocket-logo {
+        align-self: flex-start;
+        margin: calc(#{$spacing-md} + 4px) $spacing-md 0;
+    }
+
+    h2 {
+        @include font-base;
+        @include font-size(21px);
+        color: $color-white;
+        margin-top: $spacing-md;
+
+    }
+
+    .pocket-illustration {
+        align-self: flex-start;
+        max-height: 80px;
+    }
+
+    .mzp-c-button.t-pocket {
+        white-space: nowrap;
+        background-color: $pocket-inverse-color;
+        border-color: $pocket-inverse-color;
+
+        &:hover, &:active {
+            background-color: transparent;
+            color: $pocket-inverse-color;
+        }
+
+        &:focus {
+            background-color: $pocket-inverse-color;
+            border-color: $pocket-inverse-color;
+            box-shadow: 0 0 0 1px $color-blue-05;
+        }
+    }
+    @media #{$mq-md} {
+        max-height: 80px;
+        padding-bottom: 0;
+
+        .pocket-logo {
+            margin: 0 0 0 $spacing-md;
+            align-self: center;
+            height: 45px;
+            width: 45px;
+        }
+
+        .text-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-grow: 2;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mobile-break {
+            display: none;
+        }
+    }
+}
