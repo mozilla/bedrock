@@ -11,17 +11,22 @@
 {% block banner_class %}c-banner-fundraising{% endblock %}
 
 {% if variation == '3' %}
-  {% set campaign = '23-EOYB-B4' %}
+  {% set campaign = '23-EOYB-B8' %}
   {% set title = ftl('banner-fundraising-title-3') %}
   {% set tagline = ftl('banner-fundraising-tagline-3') %}
   {% set image = 'hand-heart' %}
 {% elif variation == '2' %}
-  {% set campaign = '23-EOYB-B3' %}
-  {% set title = ftl('banner-fundraising-title-2') %}
-  {% set tagline = ftl('banner-fundraising-tagline-2') %}
-  {% set image = 'ctrl-alt-del' %}
+  {% set campaign = '23-EOYB-B7' %}
+  {% set title = ftl('banner-fundraising-title-1') %}
+  {% set tagline = ftl('banner-fundraising-tagline-1') %}
+  {% set image = 'thermometer' %}
+{% elif variation == '1' %}
+  {% set campaign = '23-EOYB-B6' %}
+  {% set title = ftl('banner-fundraising-title-1') %}
+  {% set tagline = ftl('banner-fundraising-tagline-1') %}
+  {% set image = 'hand-heart' %}
 {% else %}
-  {% set campaign = '23-EOYB-B2' %}
+  {% set campaign = '23-EOYB-B5' %}
   {% set title = ftl('banner-fundraising-title-1') %}
   {% set tagline = ftl('banner-fundraising-tagline-1') %}
   {% set image = 'hand-heart' %}
