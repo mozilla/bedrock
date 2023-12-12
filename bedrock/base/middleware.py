@@ -9,6 +9,8 @@ This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
 import base64
+import inspect
+import time
 from warnings import warn
 
 from django.conf import settings
@@ -115,3 +117,48 @@ class MetricsStatusMiddleware(MiddlewareMixin):
             self._record(404)
         else:
             self._record(500)
+
+
+class MetricsViewTimingMiddleware(MiddlewareMixin):
+    """Send request timing to statsd"""
+
+    def __init__(self, get_response=None):
+        if not settings.ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE:
+            raise MiddlewareNotUsed
+
+        self.get_response = get_response
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        if inspect.isfunction(view_func):
+            view = view_func
+        else:
+            view = view_func.__class__
+
+        request._start_time = time.time()
+        request._view_module = getattr(view, "__module__", "none")
+        request._view_name = getattr(view, "__name__", "none")
+
+    def _record_timing(self, request, status_code):
+        if hasattr(request, "_start_time") and hasattr(request, "_view_module") and hasattr(request, "_view_name"):
+            # View times.
+            view_time = int((time.time() - request._start_time) * 1000)
+            metrics.timing(
+                "view.timings",
+                view_time,
+                tags=[
+                    f"view_path:{request._view_module}.{request._view_name}.{request.method}",
+                    f"module:{request._view_module}.{request.method}",
+                    f"method:{request.method}",
+                    f"status_code:{status_code}",
+                ],
+            )
+
+    def process_response(self, request, response):
+        self._record_timing(request, response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        if isinstance(exception, Http404):
+            self._record_timing(request, 404)
+        else:
+            self._record_timing(request, 500)
