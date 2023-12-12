@@ -65,7 +65,7 @@ class TestLocaleURLMiddleware(TestCase):
     MIDDLEWARE=["bedrock.base.middleware.MetricsStatusMiddleware"],
     ROOT_URLCONF="bedrock.base.tests.urls",
 )
-class TestMetricsMiddleware(TestCase):
+class TestMetricsStatusMiddleware(TestCase):
     def test_200(self):
         with MetricsMock() as mm:
             resp = Client().get(reverse("index"))
@@ -138,3 +138,73 @@ class TestMetricsMiddleware(TestCase):
             resp = Client().get(reverse("returns_500"))
             assert resp.status_code == 500
             mm.assert_incr_once("response.status", tags=["status_code:500"])
+
+
+@override_settings(
+    MIDDLEWARE=["bedrock.base.middleware.MetricsViewTimingMiddleware"],
+    ROOT_URLCONF="bedrock.base.tests.urls",
+    ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE=True,
+)
+class TestMetricsViewTimingMiddleware(TestCase):
+    @override_settings(ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE=False)
+    def test_200_disabled(self):
+        with MetricsMock() as mm:
+            resp = Client().get(reverse("index"))
+            assert resp.status_code == 200
+            mm.assert_not_timing("view.timings")
+
+    def test_200(self):
+        with MetricsMock() as mm:
+            resp = Client().get(reverse("index"))
+            assert resp.status_code == 200
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.index.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:200"],
+            )
+
+    def test_302(self):
+        with MetricsMock() as mm:
+            resp = Client().get(reverse("redirect"))
+            assert resp.status_code == 302
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.redirect.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:302"],
+            )
+
+    def test_raises_404(self):
+        with MetricsMock() as mm:
+            with suppress(UndefinedError):
+                resp = Client().get(reverse("raises_404"))
+                assert resp.status_code == 404
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.raises_404.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:404"],
+            )
+
+    def test_returns_404(self):
+        with MetricsMock() as mm:
+            resp = Client().get(reverse("returns_404"))
+            assert resp.status_code == 404
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.returns_404.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:404"],
+            )
+
+    def test_raises_500(self):
+        with MetricsMock() as mm:
+            with suppress(UndefinedError):
+                resp = Client().get(reverse("raises_500"))
+                assert resp.status_code == 500
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.raises_500.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:500"],
+            )
+
+    def test_returns_500(self):
+        with MetricsMock() as mm:
+            resp = Client().get(reverse("returns_500"))
+            assert resp.status_code == 500
+            mm.assert_timing_once(
+                "view.timings",
+                tags=["view_path:bedrock.base.tests.urls.returns_500.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:500"],
+            )
