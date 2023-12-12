@@ -52,6 +52,9 @@
 {% block content %}
 
 <header>
+    {% if LANG == 'de' or LANG.startswith('en-') and show_pocket_banner %}
+      {% include 'mozorg/home/includes/pocket-pencil-promo.html' %}
+    {% endif %}
     {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
       {% include 'mozorg/home/includes/ctd-promo-de.html'%}
     {% endif %}
