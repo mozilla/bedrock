@@ -13,6 +13,7 @@
 
 describe('stub-attribution.js', function () {
     const GA_CLIENT_ID = '1456954538.1610960957';
+    const GA_SESSION_ID = '1668161374';
     const STUB_SESSION_ID = '1234567890';
     const DLSOURCE = 'mozorg';
 
@@ -1176,6 +1177,88 @@ describe('stub-attribution.js', function () {
 
             expect(typeof result).toEqual('string');
             expect(/^\d{10}$/.test(result)).toBeTruthy();
+        });
+    });
+
+    describe('getGtagData', function () {
+        it('should return a valid Google Analytics client ID and session ID', function () {
+            const dataLayer = [
+                {
+                    event: 'page-id-loaded',
+                    pageId: 'Homepage',
+                    'gtm.uniqueEventId': 1
+                },
+                {
+                    'gtm.start': 1678700450438,
+                    event: 'gtm.js',
+                    'gtm.uniqueEventId': 2
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'client_id'
+                    }
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'session_id'
+                    }
+                },
+                {
+                    h: {
+                        event: 'gtagApiGet',
+                        gtagApiResult: {
+                            client_id: GA_CLIENT_ID,
+                            session_id: GA_SESSION_ID
+                        },
+                        'gtm.uniqueEventId': 11
+                    }
+                },
+                {
+                    event: 'gtm.dom',
+                    'gtm.uniqueEventId': 12
+                },
+                {
+                    event: 'gtm.load',
+                    'gtm.uniqueEventId': 13
+                }
+            ];
+
+            expect(Mozilla.StubAttribution.getGtagData(dataLayer)).toEqual({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
+            });
+        });
+    });
+
+    it('should return null values if client ID and session ID are not found', function () {
+        const dataLayer = [
+            {
+                event: 'page-id-loaded',
+                pageId: 'Homepage',
+                'gtm.uniqueEventId': 1
+            },
+            {
+                'gtm.start': 1678700450438,
+                event: 'gtm.js',
+                'gtm.uniqueEventId': 2
+            },
+            {
+                event: 'gtm.dom',
+                'gtm.uniqueEventId': 12
+            },
+            {
+                event: 'gtm.load',
+                'gtm.uniqueEventId': 13
+            }
+        ];
+
+        expect(Mozilla.StubAttribution.getGtagData(dataLayer)).toEqual({
+            client_id: null,
+            session_id: null
         });
     });
 });
