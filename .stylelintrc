@@ -16,7 +16,6 @@
                 "ignoreFunctions": ["local"]
             }
         ],
-        "max-line-length": null,
         "font-family-no-missing-generic-family-keyword": [
             true,
             {

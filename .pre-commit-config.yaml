@@ -80,7 +80,7 @@ repos:
         files: \.ftl$
         args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/, l10n-pocket/en/]
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.3
+    rev: v3.1.0
     hooks:
       - id: prettier
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
@@ -88,14 +88,14 @@ repos:
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@15.11.0"
-          - "stylelint-config-standard-scss@11.0.0"
-          - "postcss-scss@4.0.6"
-          - "postcss@8.4.26"
+          - "stylelint@16.0.2"
+          - "stylelint-config-standard-scss@12.0.0"
+          - "postcss-scss@4.0.9"
+          - "postcss@8.4.32"
   - repo: https://github.com/eslint/eslint
-    rev: v8.51.0
+    rev: v8.56.0
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-config-prettier@9.0.0"
+          - "eslint-config-prettier@9.1.0"
   #       Additional excludes in /.eslintignore file
