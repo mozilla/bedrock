@@ -17,7 +17,7 @@
 }
 
 @keyframes sparkle {
-  0% {
+    0% {
       transform: scale(1);
     }
 
@@ -42,14 +42,6 @@
 }
 
 .mzp-c-split {
-    padding-bottom: 0;
-    padding-top: 0;
-
-    .mzp-c-split-container {
-        padding-right: 0;
-        padding-left: 0;
-    }
-
     .mzp-c-split-media {
         position: relative;
 
@@ -124,26 +116,25 @@
 
         .c-box-image {
             margin-top: $spacing-lg;
-            }
+        }
+    }
+
+    .box-one {
+        margin-bottom: $layout-md;
+    }
+
+    @media #{$mq-md} {
+        justify-content: center;
+
+        .c-box {
+            width: 300px;
         }
 
         .box-one {
-            margin-bottom: $layout-md;
-
-        }
-
-        @media #{$mq-md} {
-            justify-content: center;
-
-            .c-box {
-                width: 300px;
-            }
-
-            .box-one {
-                margin-bottom: 0;
-            }
+            margin-bottom: 0;
         }
     }
+}
 
 .wnp-sign-off {
     text-align: center;
