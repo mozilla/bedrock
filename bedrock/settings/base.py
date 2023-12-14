@@ -1844,6 +1844,40 @@ VPN_RELAY_BUNDLE_COUNTRY_CODES = [
     "US",  # United States of America
 ]
 
+# List of locales that are supported in the Mozilla VPN client application.
+VPN_SUPPORTED_LOCALES = [
+    "co",
+    "cs",
+    "cy",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "fy",
+    "hsb",
+    "hu",
+    "ia",
+    "id",
+    "is",
+    "it",
+    "ja",
+    "lo",
+    "nl",
+    "pa",
+    "pl",
+    "pt",
+    "ru",
+    "sk",
+    "sl",
+    "sq",
+    "sv",
+    "tr",
+    "uk",
+    "zh",
+]
+
 # RELAY =========================================================================================
 
 RELAY_PRODUCT_URL = config(

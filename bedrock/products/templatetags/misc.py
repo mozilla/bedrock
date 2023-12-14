@@ -107,6 +107,18 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
 
 
 @library.global_function
+def vpn_supported_locale(LANG):
+    """
+    Global helper that can be passed locale via a template
+    in order to determine if the VPN app is translated
+    in a visitor's language.
+    """
+    locale = LANG.split("-")[0]
+
+    return locale in settings.VPN_SUPPORTED_LOCALES
+
+
+@library.global_function
 def vpn_available_in_country(country_code):
     """
     Global helper that can be passed a country_code via a template

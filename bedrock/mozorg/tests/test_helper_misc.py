@@ -861,6 +861,26 @@ class TestLangShort(TestCase):
         assert self._render("de") == "de"
 
 
+class TestNativeLanguageName(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, domain=None):
+        req = self.rf.get("/")
+        req.locale = locale
+
+        return render("{{ native_language_name() }}", {"request": req})
+
+    def test_native_language_names(self):
+        """should return a native language name"""
+        assert self._render("en-US") == "English (US)"
+        assert self._render("de") == "Deutsch"
+        assert self._render("tr") == "Türkçe"
+
+    def test_unknown_locale_code(self):
+        """should return locale code if unknown"""
+        assert self._render("aaa") == "aaa"
+
+
 class TestFirefoxAdjustUrl(TestCase):
     rf = RequestFactory()
 
