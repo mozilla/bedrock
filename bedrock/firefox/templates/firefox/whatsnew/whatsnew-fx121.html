@@ -1,0 +1,147 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_121') }}
+{% endblock %}
+
+{% set utm_params_amo_na = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-na&utm_content=amo-new-extensions' %}
+{% set utm_params_amo_gb = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-gb&utm_content=amo-new-extensions' %}
+{% set utm_params_amo_eu = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-eu&utm_content=amo-new-extensions' %}
+
+{% set utm_params_backup_na = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-na&utm_content=backup-assistant' %}
+{% set utm_params_backup_gb = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-gb&utm_content=backup-assistant' %}
+{% set utm_params_backup_eu = '?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-121-eu&utm_content=backup-assistant' %}
+
+<!-- UK English -->
+{% if LANG == "en-GB" %}
+  {% set headline = 'Unwrapping a new phone this holiday season?' %}
+  {% set body = 'Download Firefox as your fast, secure, on-the-go browser and make the new year bright.' %}
+  {% set box_one_headline = 'Customise Firefox for Android' %}
+  {% set qr_code_alt_text = 'QR code: Scan me' %}
+  {% set box_one_lede = 'From powerful ad blockers to a full dark-mode experience — don’t miss the new Android extensions.' %}
+  {% set box_one_cta = 'Explore 400+ new extensions' %}
+  {% set box_one_link = 'https://addons.mozilla.org/android/' + utm_params_amo_gb %}
+  {% set box_two_headline = 'Set up Firefox in a flash' %}
+  {% set box_two_lede = 'Easily back-up your Firefox tabs and history, and instantly access on your other devices.' %}
+  {% set box_two_cta = 'Meet your back up assistant' %}
+  {% set box_two_link = 'https://support.mozilla.org/kb/switching-devices' + utm_params_backup_gb %}
+  {% set sign_off = ftl('whatsnew-signoff') %}
+
+  <!-- German -->
+{% elif LANG == 'de' %}
+  {% set headline = 'Liegt ein neues Handy unterm Baum?' %}
+  {% set body = 'Mach Firefox zu deinem Browser für unterwegs und starte schnell und sicher ins neue Jahr.' %}
+  {% set box_one_headline = 'Personalisiere Firefox auf Android' %}
+  {% set qr_code_alt_text = 'QR code: Scan mich' %}
+  {% set box_one_lede = 'Blockiere Werbung mit dem beliebten uBlock oder erlebe jede Website im Dark Reader.' %}
+  {% set box_one_cta = 'Entdecke über 400 neue Erweiterungen' %}
+  {% set box_one_link = 'https://addons.mozilla.org/de/android/' + utm_params_amo_eu %}
+  {% set box_two_headline = 'Richte Firefox in Sekunden ein' %}
+  {% set box_two_lede = 'Erstelle ganz unkompliziert ein Backup von deinen Tabs und deiner Chronik und greife auf anderen Geräten auf sie zu.' %}
+  {% set box_two_cta = 'Zum Backup-Assistent' %}
+  {% set box_two_link = 'https://support.mozilla.org/de/kb/sichern-firefox-daten-ubertragen-auf-anderes-gerat' + utm_params_backup_eu %}
+  {% set sign_off = '<strong>Powered by Mozilla.</strong> Für dich und das Web. Schon seit 1998.' | safe %}
+
+  <!-- French -->
+{% elif LANG == 'fr' %}
+  {% set headline = 'Un nouveau téléphone pour les fêtes ?' %}
+  {% set body = 'Téléchargez Firefox pour une navigation mobile rapide et sécurisée, et commencez  l’année en beauté.' %}
+  {% set box_one_headline = 'Personnalisez Firefox pour Android' %}
+  {% set qr_code_alt_text = 'Scanner le QR code' %}
+  {% set box_one_lede = 'Bloquez les pubs avec le très populaire uBlock ou naviguez en mode sombre avec Dark Reader.' %}
+  {% set box_one_cta = 'Explorer plus de 400 nouvelles extensions' %}
+  {% set box_one_link = 'https://addons.mozilla.org/fr/android/' + utm_params_amo_eu %}
+  {% set box_two_headline = 'Configurez Firefox en un clin d’œil' %}
+  {% set box_two_lede = 'Sauvegardez vos onglets et votre historique Firefox et accédez-y instantanément sur tous vos appareils.' %}
+  {% set box_two_cta = 'En savoir plus' %}
+  {% set box_two_link = 'https://support.mozilla.org/fr/kb/sauvegarder-donnees-firefox-transferer' + utm_params_backup_eu %}
+  {% set sign_off = '<strong>Conçu par Mozilla.</strong> Pensé pour vous depuis 1998.' | safe %}
+
+  <!-- US English/other -->
+  {% else %}
+  {% set headline = 'Unwrapping a new </br> phone this holiday?' | safe %}
+  {% set body = 'Download Firefox as your fast, secure, on-the-go </br> browser and make the new year bright.' | safe %}
+  {% set box_one_headline = 'Customize Firefox  </br> for Android' | safe %}
+  {% set qr_code_alt_text = 'QR code: Scan me' %}
+  {% set box_one_lede = 'From powerful ad blockers to a full </br> dark-mode experience — don’t miss the new Android extensions.' | safe %}
+  {% set box_one_cta = 'Explore 400+ new extensions' %}
+  {% set box_one_link = 'https://addons.mozilla.org/android/' + utm_params_amo_na %}
+  {% set box_two_headline = 'Set up Firefox </br> in a flash' | safe %}
+  {% set box_two_lede = 'Easily back-up your Firefox tabs and history, and instantly access on your other devices.' %}
+  {% set box_two_cta = 'Meet your back up assistant' %}
+  {% set box_two_link = 'https://support.mozilla.org/kb/switching-devices' + utm_params_backup_na %}
+  {% set sign_off = ftl('whatsnew-signoff') %}
+{% endif %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-c-split mzp-t-content-lg mzp-l-split-center-on-sm-md">
+        <div class="mzp-c-split-container">
+            <div class="mzp-c-split-body ">
+                <h2 class="wnp-main-title">{{ headline }}</h2>
+                <p class="wnp-main-tagline">{{ body }}</p>
+            </div>
+            <div class="mzp-c-split-media mzp-l-split-h-center">
+                <img class="mzp-c-split-media-asset" src="{{ l10n_img('firefox/wnp-121/presents-and-qr.svg') }}" alt="{{ qr_code_alt_text }}">
+                <img src="{{ static('img/firefox/whatsnew/whatsnew121/star-1.svg') }}" alt="" class="star star-one">
+                <img src="{{ static('img/firefox/whatsnew/whatsnew121/star-2.svg') }}" alt="" class="star star-two">
+                <img src="{{ static('img/firefox/whatsnew/whatsnew121/star-3.svg') }}" alt="" class="star star-three">
+            </div>
+        </div>
+    </div>
+
+  <div class="mzp-l-content mzp-t-content-md mzp-l-columns mzp-t-columns-two c-boxes">
+    <section class="c-box box-one">
+      <div class="c-box-inner">
+
+        <div class="c-box-body">
+          <h3 class="c-box-headline">
+            {{ box_one_headline }}
+          </h3>
+          <p class="c-box-lede">{{ box_one_lede }}</p>
+          <a class="mzp-c-cta-link" href="{{ box_one_link }}">{{ box_one_cta }}</a>
+        </div>
+        <div class="c-box-image">
+          <img src="{{ static('img/firefox/whatsnew/whatsnew121/puzzle.svg') }}" alt="" width="140" height="140">
+        </div>
+      </div>
+    </section>
+
+    <section class="c-box box-two">
+      <div class="c-box-inner">
+        <div class="c-box-body">
+          <h3 class="c-box-headline">
+            {{ box_two_headline }}
+          </h3>
+          <p class="c-box-lede">{{ box_two_lede }}</p>
+          <a class="mzp-c-cta-link" href="{{ box_two_link }}">{{ box_two_cta }}</a>
+        </div>
+        <div class="c-box-image">
+        <img src="{{ static('img/firefox/whatsnew/whatsnew121/sync.svg') }}" alt="" width="140" height="140">
+      </div>
+      </div>
+    </section>
+  </div>
+  <p class="wnp-sign-off">
+    {{ sign_off }}
+  </p>
+</section>
+
+{% endblock %}
