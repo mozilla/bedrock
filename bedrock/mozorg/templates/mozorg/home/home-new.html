@@ -24,12 +24,14 @@
 
 {% set show_fundraising_banner = switch('fundraising-banner-giving2023') and ftl_has_messages('banner-fundraising-title-1', 'banner-fundraising-tagline-1') %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+{% set show_pocket_banner = switch("pocket-best-of-2023-banner") %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
+  {{ css_bundle('pocket-best-of')}}
 
   {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
     {{ css_bundle('ctd-promo') }}
@@ -64,7 +66,6 @@
     {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
       {% include 'mozorg/home/includes/ctd-promo-de.html'%}
     {% endif %}
-
   <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
     <h1>{{ ftl('home-mission-driven') }}</h1>
     <p>{{ ftl('home-were-not-normal') }}</p>
@@ -214,8 +215,12 @@
     {% endcall %}
   </section>
 
-  <!-- VPN promo -->
-  {% include 'mozorg/home/includes/featured-vpn.html' %}
+  <!-- Mid-page promo -->
+  {% if LANG == 'de' or LANG.startswith('en-') and show_pocket_banner %}
+    {% include 'mozorg/home/includes/pocket-best-of.html'%}
+  {% else %}
+    {% include 'mozorg/home/includes/featured-vpn.html' %}
+  {% endif %}
 
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">

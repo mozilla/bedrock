@@ -203,6 +203,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/pocket-best-of.scss"
+      ],
+      "name": "pocket-best-of"
+    },
+    {
+      "files": [
         "css/mozorg/home/home-old.scss"
       ],
       "name": "home-old"
