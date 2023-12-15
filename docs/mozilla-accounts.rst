@@ -148,7 +148,7 @@ section further below.
 Mozilla Monitor links
 ---------------------
 
-Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a
+Use the ``monitor_fxa_button`` helper to link to https://monitor.mozilla.org/ via a
 Mozilla accounts auth flow.
 
 Usage

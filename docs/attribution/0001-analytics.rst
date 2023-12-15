@@ -347,7 +347,7 @@ Only one of the following data-attributes is necessary to log the event:
 
 .. code-block:: html
 
-    <a href="https://monitor.firefox.com/&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor">Check for breaches</a>
+    <a href="https://monitor.mozilla.org/&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor">Check for breaches</a>
 
     <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-position="banner" data-cta-text="Get It Now">Send me a link</a>
 
