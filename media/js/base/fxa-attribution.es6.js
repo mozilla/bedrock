@@ -9,7 +9,7 @@ const FxaAttribution = {};
 const _allowedDomains = [
     'https://accounts.firefox.com/',
     'https://accounts.stage.mozaws.net/',
-    'https://monitor.firefox.com/',
+    'https://monitor.mozilla.org/',
     'https://getpocket.com/',
     'https://vpn.mozilla.org/',
     'https://stage.guardian.nonprod.cloudops.mozgcp.net/',

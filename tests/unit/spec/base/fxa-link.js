@@ -101,7 +101,7 @@ describe('fxa-link.js', function () {
 
         it('does NOT use the UITour for non-FxA domains in Fx >= 80', function () {
             const link = document.querySelectorAll('.js-fxa-cta-link')[0];
-            link.href = 'https://monitor.firefox.com';
+            link.href = 'https://monitor.mozilla.org';
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
                 true
             );
