@@ -116,7 +116,30 @@
             <div class="noodle-circle t-fill-yellow-orange"></div>
             <div class="noodle-pill t-fill-blue"></div>
             <div class="noodle-pill t-outline-pink"></div>
-            <div class="noodle-browser"></div>
+            <div class="noodle-browser">
+              {{ picture(
+                url='img/firefox/new/desktop/firefox-browser-light-600.png',
+                sources=[
+                  {
+                    'media': '(min-width: 688px)',
+                    'srcset': {
+                      'img/firefox/new/desktop/firefox-browser-light-1200.png': '2x',
+                      'img/firefox/new/desktop/firefox-browser-light-600.png': 'default'
+                    }
+                  },
+                  {
+                    'media': '(max-width: 687px)',
+                    'srcset': {
+                      'img/placeholder.png': 'default'
+                    }
+                  }
+                ],
+                optional_attributes={
+                  'height': '371px',
+                  'width': '514px'
+                }
+              )}}
+            </div>
             <!--<![endif]-->
           </div>
         </div>
@@ -470,13 +493,23 @@
       <!--<![endif]-->
       <div class="c-screenshot">
         {{ resp_img(
-          url='img/firefox/new/desktop/screen-mr1.png',
+          url='img/firefox/new/desktop/firefox-new-tab-1000.png',
           srcset={
-            'img/firefox/new/desktop/screen-mr1-high-res.png': '2x'
+            'img/firefox/new/desktop/firefox-new-tab-2000.png': '2000w',
+            'img/firefox/new/desktop/firefox-new-tab-1800.png': '1800w',
+            'img/firefox/new/desktop/firefox-new-tab-1600.png': '1600w',
+            'img/firefox/new/desktop/firefox-new-tab-1400.png': '1400w',
+            'img/firefox/new/desktop/firefox-new-tab-1200.png': '1200w',
+            'img/firefox/new/desktop/firefox-new-tab-1000.png': '1000w',
+            'img/firefox/new/desktop/firefox-new-tab-800.png': '800w',
+          },
+          sizes={
+            '(min-width: 1200px)': '930px',
+            'default': '90vw'
           },
           optional_attributes={
-            'width': '1040',
-            'height': '412',
+            'width': '1000',
+            'height': '397',
             'loading': 'lazy'
           }
         ) }}
