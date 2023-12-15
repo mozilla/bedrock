@@ -1,0 +1,185 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
+
+{% block body_class %}welcome-page17-vpn{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page17') }}
+{% endblock %}
+
+{% if LANG == "de" %}
+  {% set page_title = 'Schalte ein sichereres 2024 frei' %}
+  {% set main_title = 'Schalte ein<br> sichereres 2024 frei'|safe %}
+  {% set main_cta = 'Hol dir Mozilla VPN' %}
+  {% set picto_one_title = 'Leistungsstarker Datenschutz' %}
+  {% set picto_one_body = 'Hindere Internetanbieter und Tracker daran, deine Browser- und App-Aktivitäten einzusehen.' %}
+  {% set picto_two_title = 'Schütze alle deine Geräte' %}
+  {% set picto_two_body = 'Verbinde bis zu fünf Geräte mit Windows, macOS, iOS, Android und Linux Betriebssystemen.' %}
+{% elif LANG == "fr" %}
+  {% set page_title = 'Améliorez votre sécurité en 2024' %}
+  {% set main_title = 'Améliorez<br> votre sécurité en 2024'|safe %}
+  {% set main_cta = 'Installez Mozilla VPN' %}
+  {% set picto_one_title = 'Confidentialité assurée' %}
+  {% set picto_one_body = 'Empêchez les fournisseurs d’accès à Internet et les traqueurs de suivre vos activités dans votre navigateur et vos applications.' %}
+  {% set picto_two_title = 'Protégez tous vos appareils' %}
+  {% set picto_two_body = 'Connectez jusqu’à cinq appareils sous système d’exploitation Windows, macOS, iOS, Android ou Linux.' %}
+{% else %}
+  {% set page_title = 'Switch on a more secure 2024' %}
+  {% set main_title = 'Switch on<br> a more secure 2024'|safe %}
+  {% set main_cta = 'Get Mozilla VPN' %}
+  {% set picto_one_title = 'Powerful privacy' %}
+  {% set picto_one_body = 'Block internet providers and trackers from seeing your browser and app activity.' %}
+  {% set picto_two_title = 'Protect all your devices' %}
+  {% set picto_two_body = 'Connect up to five devices on Windows, macOS, iOS, Android and Linux operating systems.' %}
+{% endif %}
+
+{% block shoulder_logo %}
+  {{ picture(
+    url="img/firefox/welcome/page17/firefox-wordmark-light.svg",
+    sources=[
+      {
+        "media": "(prefers-color-scheme: light)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-light.svg": "default",
+        }
+      },
+      {
+        "media": "(prefers-color-scheme: dark)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-dark.svg": "default",
+        }
+      }
+    ],
+    optional_attributes={
+      "class": "c-header-logo",
+      "alt": "Firefox",
+      "width": "108",
+      "height": "40",
+    }
+  ) }}
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+  <section class="c-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+
+      <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">Mozilla VPN</h1>
+
+      <div class="c-toggle-container">
+        <span class="toggle" role="presentation"><span class="toggle-display"></span></span>
+      </div>
+
+      <h2 class="c-main-title">{{ main_title }}</h2>
+
+      <div class="c-main-cta">
+        {{ vpn_product_referral_link(
+          referral_id='welcome-page17',
+          link_text=main_cta,
+          class_name='mzp-t-product mzp-t-xl',
+          page_anchor="#pricing",
+          optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN',
+                'data-cta-type' : 'button',
+                'data-cta-position' : 'primary-cta',
+          }
+        )}}
+      </div>
+
+    </div>
+  </section>
+{% endblock %}
+
+{% block content_body %}
+<section class="page-body">
+  <div class="mzp-l-content mzp-t-content-lg mzp-t-content-nospace">
+    <div class="mzp-l-columns mzp-t-columns-two">
+
+      <div class="mzp-t-picto-center">
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {{ picture(
+                url="img/firefox/welcome/page17/vpn-shield-light.svg",
+                sources=[
+                  {
+                    "media": "(prefers-color-scheme: light)",
+                    "srcset": {
+                      "img/firefox/welcome/page17/vpn-shield-light.svg": "default",
+                    }
+                  },
+                  {
+                    "media": "(prefers-color-scheme: dark)",
+                    "srcset": {
+                      "img/firefox/welcome/page17/vpn-shield-dark.svg": "default",
+                    }
+                  }
+                ],
+                optional_attributes={
+                  "alt": "",
+                  "width": "300",
+                }
+              ) }}
+          </div>
+          <h2 class="mzp-c-picto-heading">{{ picto_one_title }}</h2>
+          <div class="mzp-c-picto-body">
+            <p>{{ picto_one_body }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mzp-t-picto-center">
+        <div class="mzp-c-picto">
+          <div class="mzp-c-picto-image">
+            {{ picture(
+                url="img/firefox/welcome/page17/vpn-devices-light.svg",
+                sources=[
+                  {
+                    "media": "(prefers-color-scheme: light)",
+                    "srcset": {
+                      "img/firefox/welcome/page17/vpn-devices-light.svg": "default",
+                    }
+                  },
+                  {
+                    "media": "(prefers-color-scheme: dark)",
+                    "srcset": {
+                      "img/firefox/welcome/page17/vpn-devices-dark.svg": "default",
+                    }
+                  }
+                ],
+                optional_attributes={
+                  "alt": "",
+                  "width": "300",
+                }
+              ) }}
+          </div>
+          <h2 class="mzp-c-picto-heading">{{ picto_two_title }}</h2>
+          <div class="mzp-c-picto-body">
+            <p>{{ picto_two_body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/">
+      {{ ftl('welcome-page14-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}

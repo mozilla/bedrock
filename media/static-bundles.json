@@ -935,6 +935,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome17.scss"
+      ],
+      "name": "firefox_welcome_page17"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
