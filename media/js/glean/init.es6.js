@@ -11,7 +11,10 @@ import { recordCustomPageMetrics, pageEvent } from './page.es6';
 import { clickEvent } from './elements.es6';
 import Utils from './utils.es6';
 
-function initGlean() {
+let gleanInitialized = false;
+let pageEventLoaded = false;
+
+function initGlean(telemetryEnabled) {
     const pageUrl = window.location.href;
     const endpoint = 'https://www.mozilla.org';
     const channel = pageUrl.startsWith(endpoint) ? 'prod' : 'non-prod';
@@ -24,12 +27,16 @@ function initGlean() {
         Glean.setSourceTags(['automation']);
     }
 
-    Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
+    Glean.initialize('bedrock', telemetryEnabled, {
         channel: channel,
         serverEndpoint: endpoint,
         httpClient: BrowserSendBeaconUploader // use sendBeacon since Firefox does not yet support keepalive using fetch()
     });
 
+    gleanInitialized = true;
+}
+
+function initPageLoadEvent() {
     /**
      * Record some additional page metrics that
      * aren't in the default page_load event.
@@ -46,6 +53,8 @@ function initGlean() {
         url: Utils.getUrl(),
         referrer: Utils.getReferrer()
     });
+
+    pageEventLoaded = true;
 }
 
 /**
@@ -68,5 +77,28 @@ function initHelpers() {
     };
 }
 
-initGlean();
+/**
+ * initGlean() should always be called, even if cookie consent is not given.
+ * When `hasConsent === true`, Glean will send analytics pings as normal.
+ * When `hasConsent === false`, Glean will instead sent `deletion-request`
+ * pings to automatically remove a client's telemetry data.
+ */
+window.addEventListener(
+    'mozConsentStatus',
+    (e) => {
+        const hasConsent = e.detail.analytics;
+
+        if (!gleanInitialized) {
+            initGlean(hasConsent);
+        } else {
+            Glean.setUploadEnabled(hasConsent);
+        }
+
+        if (hasConsent && !pageEventLoaded) {
+            initPageLoadEvent();
+        }
+    },
+    false
+);
+
 initHelpers();

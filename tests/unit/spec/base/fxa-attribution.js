@@ -12,10 +12,6 @@
 import FxaAttribution from '../../../../media/js/base/fxa-attribution.es6.js';
 
 describe('fxa-attribution.js', function () {
-    beforeEach(function () {
-        window.Mozilla.dntEnabled = sinon.stub();
-    });
-
     afterEach(function () {
         Mozilla.Analytics.customReferrer = '';
     });
@@ -397,19 +393,6 @@ describe('fxa-attribution.js', function () {
                 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one&entrypoint_experiment=test-id&entrypoint_variation=test-variation'
             );
         });
-
-        it('should append coupon parameter when present', function () {
-            const data = {
-                coupon: 'test'
-            };
-
-            const url =
-                'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=pricing';
-
-            expect(FxaAttribution.appendToProductURL(url, data)).toEqual(
-                'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=pricing&coupon=test'
-            );
-        });
     });
 
     describe('getSearchReferralData', function () {
@@ -558,7 +541,6 @@ describe('fxa-attribution.js', function () {
 
     describe('setFxALinkReferralCookie', function () {
         it('should set a referral cookie as expected', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
             spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(
@@ -579,7 +561,6 @@ describe('fxa-attribution.js', function () {
         });
 
         it('should not set a referral cookie if one already exists', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             spyOn(Mozilla.Cookies, 'enabled').and.returnValue(true);
             spyOn(Mozilla.Cookies, 'setItem');
             spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(
@@ -736,53 +717,7 @@ describe('fxa-attribution.js', function () {
             );
         });
 
-        it('should pass coupon parameter only to FxA subscription links', function () {
-            const data = {
-                coupon: 'test'
-            };
-            spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(
-                false
-            );
-            spyOn(FxaAttribution, 'getSearchReferralData').and.returnValue(
-                null
-            );
-
-            FxaAttribution.init(data);
-
-            const expected = document.getElementById('test-expected');
-            const expectedHref = expected.getAttribute('href');
-            const secondExpected = document.getElementById(
-                'test-second-expected'
-            );
-            const secondExpectedHref = secondExpected.getAttribute('href');
-            const thirdExpected = document.getElementById(
-                'test-third-expected'
-            );
-            const thirdExpectedHref = thirdExpected.getAttribute('href');
-            const fourthExpected = document.getElementById('test-subscription');
-            const fourthExpectedHref = fourthExpected.getAttribute('href');
-
-            const unexpected = document.getElementById('test-not-accounts');
-            const unexpectedHref = unexpected.getAttribute('href');
-
-            expect(expectedHref).toEqual(
-                'https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
-            );
-            expect(secondExpectedHref).toEqual(
-                'https://monitor.mozilla.org/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
-            );
-            expect(thirdExpectedHref).toEqual(
-                'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral'
-            );
-            expect(fourthExpectedHref).toEqual(
-                'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=pricing&coupon=test'
-            );
-            expect(unexpectedHref).toEqual(
-                'https://www.mozilla.org/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'
-            );
-        });
-
-        it('should handle padding all accepted query parameters together', function () {
+        it('should handle passing all accepted query parameters together', function () {
             const data = {
                 utm_source: 'source-two',
                 utm_content: 'content-two',
@@ -790,8 +725,7 @@ describe('fxa-attribution.js', function () {
                 utm_term: 'term-two',
                 utm_campaign: 'campaign-two',
                 entrypoint_experiment: 'test-experiment',
-                entrypoint_variation: 'test-variation',
-                coupon: 'test'
+                entrypoint_variation: 'test-variation'
             };
             spyOn(FxaAttribution, 'hasFxALinkReferralCookie').and.returnValue(
                 false
@@ -828,7 +762,7 @@ describe('fxa-attribution.js', function () {
                 'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
             );
             expect(fourthExpectedHref).toEqual(
-                'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&data_cta_position=pricing&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation&coupon=test'
+                'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&data_cta_position=pricing&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
             );
             expect(unexpectedHref).toEqual(
                 'https://www.mozilla.org/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page'

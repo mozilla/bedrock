@@ -15,7 +15,27 @@ if (typeof window.Mozilla === 'undefined') {
 
     var Banner = {};
 
+    Banner.hasConsentCookie = function () {
+        var prefCookieID = 'moz-consent-pref';
+        try {
+            if (window.Mozilla.Cookies.hasItem(prefCookieID)) {
+                var pref = JSON.parse(
+                    window.Mozilla.Cookies.getItem(prefCookieID)
+                );
+                return pref.functional;
+            }
+            return false;
+        } catch (e) {
+            return false;
+        }
+    };
+
     Banner.setCookie = function (id) {
+        // only set functional cookie if consent has been given.
+        if (!Banner.hasConsentCookie()) {
+            return;
+        }
+
         var date = new Date();
         var cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
         date.setTime(date.getTime() + cookieDuration); // 1 day expiration

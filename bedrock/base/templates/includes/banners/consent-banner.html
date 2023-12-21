@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<aside class="moz-consent-banner" id="moz-consent-banner" role="region" aria-label="{{ ftl('consent-banner-aria-label') }}" data-nosnippet="true">
+  <div class="moz-consent-banner-content">
+    <h2 class="moz-consent-banner-heading">{{ ftl('consent-banner-heading') }}</h2>
+    <div class="moz-consent-banner-copy">
+      <p>{{ ftl('consent-banner-body') }}</p>
+      <div class="moz-consent-banner-controls">
+        <button type="button" id="moz-consent-banner-button-reject" class="moz-consent-banner-button moz-consent-banner-button-reject">
+          {{ ftl('consent-banner-button-reject') }}
+        </button>
+        <button type="button" id="moz-consent-banner-button-accept" class="moz-consent-banner-button moz-consent-banner-button-accept">
+          {{ ftl('consent-banner-button-accept') }}
+        </button>
+        <a href="{{ url('privacy.cookie-settings')}}">
+          {{ ftl('consent-banner-settings-link') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</aside>

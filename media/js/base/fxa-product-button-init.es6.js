@@ -6,4 +6,13 @@
 
 import FxaProductButton from './fxa-product-button.es6.js';
 
-FxaProductButton.init();
+function handleEvent(e) {
+    const hasConsent = e.detail.analytics;
+
+    if (hasConsent) {
+        FxaProductButton.init();
+        window.removeEventListener('mozConsentStatus', handleEvent, false);
+    }
+}
+
+window.addEventListener('mozConsentStatus', handleEvent, false);

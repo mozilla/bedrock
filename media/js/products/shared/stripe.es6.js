@@ -4,19 +4,18 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FxaForm from './fxa-form.es6.js';
-
 function handleEvent(e) {
     const hasConsent = e.detail.analytics;
 
     if (hasConsent) {
-        FxaForm.init();
+        // init Stripe Radar (3rd party script).
+        const newScriptTag = document.createElement('script');
+        const target = document.getElementsByTagName('script')[0];
+        newScriptTag.src = 'https://js.stripe.com/v3/';
+        target.parentNode.insertBefore(newScriptTag, target);
 
         window.removeEventListener('mozConsentStatus', handleEvent, false);
     }
 }
-
-// Configure Sync for Firefox desktop browsers.
-FxaForm.configureSync();
 
 window.addEventListener('mozConsentStatus', handleEvent, false);

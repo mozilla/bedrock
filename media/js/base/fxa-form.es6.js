@@ -162,6 +162,7 @@ FxaForm.fetchTokens = function () {
 FxaForm.interceptFxANavigation = function (event) {
     event.preventDefault();
     const extraURLParams = FxaForm.getUTMParams();
+    const formElem = document.getElementById('fxa-email-form');
 
     let entrypoint = null;
     if (entrypointInput && entrypointInput.value) {
@@ -208,6 +209,7 @@ FxaForm.interceptFxANavigation = function (event) {
  * Configures Sync for Firefox browsers.
  */
 FxaForm.setServiceContext = function () {
+    const formElem = document.getElementById('fxa-email-form');
     const contextField = formElem.querySelector('[name="context"]');
     const userVer = parseFloat(Mozilla.Client._getFirefoxVersion());
     const useUITourForFxA =
@@ -224,6 +226,15 @@ FxaForm.setServiceContext = function () {
             // intercept the flow and submit the form using the UITour API.
             formElem.addEventListener('submit', FxaForm.interceptFxANavigation);
         });
+    }
+};
+
+/**
+ * Configure Sync for Firefox desktop browsers.
+ */
+FxaForm.configureSync = function () {
+    if (Mozilla.Client._isFirefoxDesktop()) {
+        FxaForm.setServiceContext();
     }
 };
 
@@ -267,10 +278,6 @@ FxaForm.init = function () {
             });
 
             FxaForm.fetchTokens().then(() => {
-                // Configure Sync for Firefox desktop browsers.
-                if (Mozilla.Client._isFirefoxDesktop()) {
-                    FxaForm.setServiceContext();
-                }
                 resolve();
             });
         } else {

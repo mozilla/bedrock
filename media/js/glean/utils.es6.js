@@ -95,16 +95,6 @@ const Utils = {
             .getElementsByTagName('html')[0]
             .getAttribute('data-http-status');
         return pageId && pageId === '404' ? '404' : '200';
-    },
-
-    isTelemetryEnabled: () => {
-        if (
-            typeof Mozilla.Cookies !== 'undefined' &&
-            Mozilla.Cookies.enabled()
-        ) {
-            return !Mozilla.Cookies.hasItem('moz-1st-party-data-opt-out');
-        }
-        return true;
     }
 };
 

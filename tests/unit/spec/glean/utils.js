@@ -156,24 +156,4 @@ describe('utils.js', function () {
             expect(Utils.getHttpStatus()).toEqual('404');
         });
     });
-
-    describe('isTelemetryEnabled', function () {
-        it('should return true if opt out cookie does not exist', function () {
-            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
-            const result = Utils.isTelemetryEnabled();
-            expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-1st-party-data-opt-out'
-            );
-            expect(result).toBeTrue();
-        });
-
-        it('should return false if opt out cookie exists', function () {
-            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
-            const result = Utils.isTelemetryEnabled();
-            expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-1st-party-data-opt-out'
-            );
-            expect(result).toBeFalse();
-        });
-    });
 });

@@ -9,18 +9,21 @@
 
     var dataLayer = (window.dataLayer = window.dataLayer || []);
 
-    function initGA() {
+    function initGTM(e) {
+        var hasConsent = e.detail.analytics;
         var GTM_CONTAINER_ID = document
             .getElementsByTagName('html')[0]
             .getAttribute('data-gtm-container-id');
 
-        if (GTM_CONTAINER_ID) {
+        if (hasConsent && GTM_CONTAINER_ID) {
             // prettier-ignore
             (function(w,d,s,l,i,j,f,dl,k,q){
                 w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});f=d.getElementsByTagName(s)[0];
                 k=i.length;q='//www.googletagmanager.com/gtm.js?id=@&l='+(l||'dataLayer');
                 while(k--){j=d.createElement(s);j.async=!0;j.src=q.replace('@',i[k]);f.parentNode.insertBefore(j,f);}
             }(window,document,'script','dataLayer',[GTM_CONTAINER_ID]));
+
+            window.removeEventListener('mozConsentStatus', initGTM, false);
         }
     }
 
@@ -81,9 +84,9 @@
         pageId: getPageId()
     });
 
-    // Load GA script.
-    initGA();
-
     // Monkey patch dataLayer.push() click events
     updateDataLayerPush();
+
+    // Load GTM only on cookie consent signal
+    window.addEventListener('mozConsentStatus', initGTM, false);
 })();

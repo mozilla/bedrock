@@ -949,7 +949,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-plus-relay.scss",
@@ -960,7 +959,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/common-refresh.scss"
       ],
       "name": "mozilla-vpn-common-refresh"
@@ -979,7 +977,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-basic.scss",
         "css/products/vpn/common.scss"
@@ -1313,6 +1310,12 @@
         "css/mozorg/rise25/rise25.scss"
       ],
       "name": "rise25"
+    },
+    {
+      "files": [
+        "css/privacy/cookie-settings-form.scss"
+      ],
+      "name": "cookie-settings-form"
     }
   ],
   "js": [
@@ -1331,7 +1334,6 @@
     {
       "files": [
         "js/base/site.js",
-        "js/base/dnt-helper.js",
         "js/base/mozilla-cookie-helper.js",
         "js/base/core-datalayer-page-id.js"
       ],
@@ -1423,9 +1425,6 @@
     },
     {
       "files": [
-        "js/base/dnt-helper.js",
-        "js/base/mozilla-cookie-helper.js",
-        "js/base/search-params.js",
         "js/base/stub-attribution.js",
         "js/base/stub-attribution-init-ie.js"
       ],
@@ -1558,7 +1557,7 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/firefox/accounts-2019.es6.js"
+        "js/base/fxa-form-init.es6.js"
       ],
       "name": "firefox_accounts_2019"
     },
@@ -1698,6 +1697,14 @@
     },
     {
       "files": [
+        "js/libs/classlist.js",
+        "js/base/mozilla-cookie-helper.js",
+        "js/base/search-params.js"
+      ],
+      "name": "lib-ie"
+    },
+    {
+      "files": [
         "js/base/protocol/init-details.es6.js",
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
@@ -1724,6 +1731,18 @@
         "js/base/datalayer-productdownload-init.es6.js"
       ],
       "name": "data"
+    },
+    {
+      "files": [
+        "js/base/mozilla-consent-banner-init.es6.js"
+      ],
+      "name": "consent-banner"
+    },
+    {
+      "files": [
+        "js/privacy/cookie-settings-form-init.es6.js"
+      ],
+      "name": "cookie-settings-form"
     },
     {
       "files": [
@@ -1841,6 +1860,12 @@
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"
+    },
+    {
+      "files": [
+        "js/products/shared/stripe.es6.js"
+      ],
+      "name": "stripe"
     },
     {
       "files": [

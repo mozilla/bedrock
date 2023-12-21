@@ -8,7 +8,7 @@
     'use strict';
 
     // This script is run in a conditional comment that only IE understands,
-    // so all we care about is making sure that window.site.patform === 'windows'
+    // so all we care about is making sure that window.site.platform === 'windows'
     // for the stub attribution check.
     window.site = {
         platform:
@@ -18,5 +18,14 @@
                 : 'other'
     };
 
-    Mozilla.StubAttribution.init();
+    function handleEvent(e) {
+        var hasConsent = e.detail.analytics;
+
+        if (hasConsent) {
+            Mozilla.StubAttribution.init();
+            window.removeEventListener('mozConsentStatus', handleEvent, false);
+        }
+    }
+
+    window.addEventListener('mozConsentStatus', handleEvent, false);
 })();

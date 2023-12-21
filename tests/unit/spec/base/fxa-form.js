@@ -69,6 +69,9 @@ describe('fxa-form.js', function () {
                 '79.0'
             );
 
+            // Firefox Sync needs to be configured before init() is called.
+            FxaForm.configureSync();
+
             return FxaForm.init().then(() => {
                 const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
@@ -94,6 +97,9 @@ describe('fxa-form.js', function () {
                 '80.0'
             );
 
+            // Firefox Sync needs to be configured before init() is called.
+            FxaForm.configureSync();
+
             return FxaForm.init().then(() => {
                 const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
@@ -118,6 +124,9 @@ describe('fxa-form.js', function () {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
                 false
             );
+
+            // Firefox Sync needs to be configured before init() is called.
+            FxaForm.configureSync();
 
             return FxaForm.init().then(() => {
                 var form = document.getElementById('fxa-email-form');
@@ -150,6 +159,9 @@ describe('fxa-form.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             });
             /* eslint-enable camelcase */
+
+            // Firefox Sync needs to be configured before init() is called.
+            FxaForm.configureSync();
 
             return FxaForm.init().then(function () {
                 var form = document.getElementById('fxa-email-form');
@@ -208,6 +220,10 @@ describe('fxa-form.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here'
             });
             /* eslint-enable camelcase */
+
+            // Firefox Sync needs to be configured before init() is called.
+            FxaForm.configureSync();
+
             return FxaForm.init().then(function () {
                 var form = document.getElementById('fxa-email-form');
                 form.querySelector('#fxa-email-field').value = 'a@a.com';

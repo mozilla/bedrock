@@ -33,7 +33,8 @@
 @import 'components/download-button';
 
 // Custom global components for nav and footer
-// These will later be backported to Protocol
+// These will later be back-ported to Protocol
+@import '../base/banners/consent-banner';
 @import 'components/footer';
 @import 'components/navigation';
 @import 'components/menu';

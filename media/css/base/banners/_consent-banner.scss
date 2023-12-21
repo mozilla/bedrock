@@ -1,0 +1,180 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/tokens/dist/index';
+
+$banner-color-bg: #fff;
+
+@keyframes a-slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.moz-consent-banner {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    background: $banner-color-bg;
+    color: $color-black;
+    display: none;
+    font-family: Inter, sans-serif;
+    text-size-adjust: 100%;
+
+    &.is-visible {
+        display: block;
+    }
+
+    .moz-consent-banner-content {
+        background: $banner-color-bg;
+        margin: 0 auto;
+        max-width: $content-xl;
+        padding: $spacing-md $spacing-md 0 $spacing-md;
+    }
+
+    .moz-consent-banner-heading {
+        color: $color-black;
+        font-family: Inter, sans-serif;
+        font-size: 1.5rem;
+        font-size: 24px;
+        margin: 0 0 $spacing-md;
+    }
+
+    .moz-consent-banner-copy {
+        p {
+            font-size: 16px;
+            font-size: 1rem;
+            max-width: 60em;
+            line-height: 1.5;
+        }
+
+        a:link,
+        a:visited {
+            color: $color-black;
+            text-decoration: underline;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: none;
+        }
+    }
+
+    .moz-consent-banner-controls {
+        text-align: center;
+
+        a {
+            display: inline-block;
+            font-size: 16px;
+            font-size: 1rem;
+            margin-bottom: $spacing-md;
+        }
+    }
+
+    .moz-consent-banner-button {
+        background-color: $color-black;
+        border-radius: $border-radius-sm;
+        border: 2px solid $color-black;
+        box-sizing: border-box;
+        color: $color-white;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: $spacing-md;
+        padding: 6px $spacing-lg;
+        text-align: center;
+        transition:
+            background-color 100ms,
+            box-shadow 100ms,
+            color 100ms;
+        width: 100%;
+
+        &:focus {
+            border-color: $color-blue-50;
+            box-shadow: 0 0 0 2px rgba($color-blue-40, 0.5);
+            outline-offset: 1px;
+        }
+
+        &:hover {
+            background-color: $color-marketing-gray-20;
+            border-color: $color-black;
+            box-shadow: none;
+            color: $color-black;
+        }
+
+        &:active {
+            background-color: $color-marketing-gray-20;
+            border-color: $color-marketing-gray-70;
+            color: $color-black;
+        }
+    }
+
+    @media #{$mq-md} {
+        .moz-consent-banner-content {
+            padding: $spacing-lg $spacing-2xl 0 $spacing-2xl;
+        }
+
+        .moz-consent-banner-controls {
+            text-align: left;
+
+            [dir='rtl'] & {
+                text-align: right;
+            }
+
+            .moz-consent-banner-button,
+            a {
+                display: inline-block;
+                margin-bottom: $spacing-lg;
+                margin-right: $spacing-md;
+
+                [dir='rtl'] & {
+                    margin-left: $spacing-md;
+                    margin-right: 0;
+                }
+            }
+
+            .moz-consent-banner-button {
+                width: auto;
+            }
+        }
+    }
+
+    @media #{$mq-tall} {
+        animation: a-slide-up 600ms ease 0ms both;
+        background: transparent;
+        bottom: 0;
+        left: 0;
+        padding: $spacing-sm;
+        position: fixed;
+        right: 0;
+        z-index: 1000;
+
+        .moz-consent-banner-content {
+            border-radius: $border-radius-lg;
+            box-shadow: 0 5px 16px 2px rgba(29, 17, 51, 0.25);
+        }
+
+        @media #{$mq-md} {
+            padding: $spacing-md;
+        }
+
+        @media #{$mq-lg} {
+            padding: $spacing-lg;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}

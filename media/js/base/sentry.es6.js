@@ -15,28 +15,32 @@ import {
     makeFetchTransport
 } from '@sentry/browser';
 
-// Respect Do Not Track
-if (
-    typeof window.Mozilla.dntEnabled === 'function' &&
-    !window.Mozilla.dntEnabled()
-) {
-    // Get Data Source Name (DSN)
-    const sentryDsn = document
-        .getElementsByTagName('html')[0]
-        .getAttribute('data-sentry-dsn');
+function handleEvent(e) {
+    const hasConsent = e.detail.analytics;
 
-    const client = new BrowserClient({
-        dsn: sentryDsn,
-        sampleRate: 0.1,
-        transport: makeFetchTransport,
-        stackParser: defaultStackParser,
-        integrations: [
-            new Dedupe(),
-            new GlobalHandlers(),
-            new HttpContext(),
-            new TryCatch()
-        ]
-    });
+    if (hasConsent) {
+        // Get Data Source Name (DSN)
+        const sentryDsn = document
+            .getElementsByTagName('html')[0]
+            .getAttribute('data-sentry-dsn');
 
-    getCurrentHub().bindClient(client);
+        const client = new BrowserClient({
+            dsn: sentryDsn,
+            sampleRate: 0.1,
+            transport: makeFetchTransport,
+            stackParser: defaultStackParser,
+            integrations: [
+                new Dedupe(),
+                new GlobalHandlers(),
+                new HttpContext(),
+                new TryCatch()
+            ]
+        });
+
+        getCurrentHub().bindClient(client);
+
+        window.removeEventListener('mozConsentStatus', handleEvent, false);
+    }
 }
+
+window.addEventListener('mozConsentStatus', handleEvent, false);

@@ -18,8 +18,6 @@ describe('stub-attribution.js', function () {
     const DLSOURCE = 'mozorg';
 
     beforeEach(function () {
-        window.Mozilla.dntEnabled = sinon.stub();
-
         // stub out google tag manager
         window.dataLayer = sinon.stub();
         window.dataLayer.push = sinon.stub();
@@ -254,7 +252,6 @@ describe('stub-attribution.js', function () {
         });
 
         it('should return false if platform is not windows or macOS', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             window.site.platform = 'linux';
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
             window.site.platform = 'ios';
@@ -263,20 +260,13 @@ describe('stub-attribution.js', function () {
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
-        it('should return false if browser has DNT enabled', function () {
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(true);
-            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
-        });
-
         it('should return true for windows users who satisfy all other requirements', function () {
             window.site.platform = 'windows';
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
 
         it('should return true for macOS users who satisfy all other requirements', function () {
             window.site.platform = 'osx';
-            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
     });

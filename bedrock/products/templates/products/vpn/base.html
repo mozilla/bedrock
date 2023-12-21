@@ -21,10 +21,8 @@
   {{ super() }}
 {% endblock %}
 
-{% block js %}
-
-{% endblock %}
+{% block js %}{% endblock %}
 
 {% block third_party_js %}
-  <script async src="https://js.stripe.com/v3/"></script>
+  {{ js_bundle('stripe') }}
 {% endblock %}
