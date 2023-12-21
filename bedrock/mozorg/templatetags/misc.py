@@ -27,6 +27,16 @@ from bedrock.base.templatetags.helpers import static
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
 
 
+@library.global_function
+def needs_data_consent(country_code):
+    """
+    Global helper that can be passed a country_code via a template
+    in order to determine if cookie consent banner should be shown.
+    """
+    country_list = settings.DATA_CONSENT_COUNTRIES
+    return country_code in country_list
+
+
 def _strip_img_prefix(url):
     return re.sub(r"^/?img/", "", url)
 

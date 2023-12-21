@@ -15,6 +15,9 @@ $image-path: '/media/protocol/img';
 @import 'components/sub-navigation';
 @import 'components/download-button-ie';
 
+// Consent banner
+@import '~@mozmeao/consent-banner/styles';
+
 // An arbitrary container for translatable strings to use in scripts
 #strings {
     display: none;

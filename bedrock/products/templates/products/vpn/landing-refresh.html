@@ -68,9 +68,6 @@
 
 {% block content %}
 <main>
-  {% if vpn_affiliate_attribution_enabled %}
-    {% include 'includes/affiliate-banner.html' %}
-  {% endif %}
   {% call split(
     block_class='c-hero mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(

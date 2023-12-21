@@ -4,6 +4,15 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import Glean from '@mozilla/glean/web';
+import GleanMetrics from '@mozilla/glean/metrics';
+import { recordCustomPageMetrics } from './page.es6';
+import {
+    consentRequired,
+    getConsentCookie,
+    isFirefoxDownloadThanks
+} from '../base/consent/utils.es6';
+
 const Utils = {
     filterNewsletterURL: (str) => {
         try {
@@ -93,14 +102,117 @@ const Utils = {
         return pageId && pageId === '404' ? '404' : '200';
     },
 
-    isTelemetryEnabled: () => {
-        if (
-            typeof Mozilla.Cookies !== 'undefined' &&
-            Mozilla.Cookies.enabled()
-        ) {
-            return !Mozilla.Cookies.hasItem('moz-1st-party-data-opt-out');
+    /**
+     * Determine if page URL is /firefox/download/thanks/.
+     */
+    isFirefoxDownloadThanks: () => {
+        return isFirefoxDownloadThanks(window.location.href);
+    },
+
+    /**
+     * Initialize Glean for sending pings.
+     * @param {*} telemetryEnabled
+     */
+    initGlean: (telemetryEnabled) => {
+        const pageUrl = window.location.href;
+        const endpoint = 'https://www.mozilla.org';
+        const channel = pageUrl.startsWith(endpoint) ? 'prod' : 'non-prod';
+
+        /**
+         * Ensure telemetry coming from automated testing is tagged
+         * https://mozilla.github.io/glean/book/reference/debug/sourceTags.html
+         */
+        if (pageUrl.includes('automation=true')) {
+            Glean.setSourceTags(['automation']);
         }
-        return true;
+
+        Glean.initialize('bedrock', telemetryEnabled, {
+            channel: channel,
+            serverEndpoint: endpoint
+        });
+    },
+
+    /**
+     * Record page load event and add custom metrics.
+     */
+    initPageLoadEvent: () => {
+        recordCustomPageMetrics();
+
+        /**
+         * Manually call Glean's default page_load event. Here
+         * we override `url` and `referrer` since we need to
+         * apply some custom logic to these values before they
+         * are sent.
+         */
+        GleanMetrics.pageLoad({
+            url: Utils.getUrl(),
+            referrer: Utils.getReferrer()
+        });
+    },
+
+    /**
+     * Initialize Glean and fire page load event only if telemetry
+     * is enabled.
+     * @param {Boolean} telemetryEnabled
+     */
+    configureGlean: (telemetryEnabled) => {
+        Utils.initGlean(telemetryEnabled);
+
+        if (telemetryEnabled) {
+            Utils.initPageLoadEvent();
+        }
+    },
+
+    /**
+     * Handle 'mozConsentStatus' event.
+     * @param {Object} e - Event object.
+     */
+    handleConsent: (e) => {
+        Utils.configureGlean(e.detail.analytics);
+        window.removeEventListener(
+            'mozConsentStatus',
+            Utils.handleConsent,
+            false
+        );
+    },
+
+    /**
+     * Configure Glean depending on data consent requirements.
+     */
+    bootstrapGlean: () => {
+        // If visitor is in the EU/EAA wait for a consent signal.
+        if (consentRequired()) {
+            /**
+             * If we're on /thanks/ and already have a consent cookie that
+             * accepts analytics then load Glean. This is important because
+             * a consent signal does not fire on /thanks/ in EU/EAA due to
+             * the allow-list, but we still want to record downloads from
+             * campaign pages that are allowed.
+             */
+            const cookie = getConsentCookie();
+
+            if (
+                Utils.isFirefoxDownloadThanks(window.location.href) &&
+                cookie &&
+                cookie.analytics
+            ) {
+                Utils.configureGlean(cookie.analytics);
+            } else {
+                window.addEventListener(
+                    'mozConsentStatus',
+                    Utils.handleConsent,
+                    false
+                );
+            }
+        } else {
+            /**
+             * Else if outside of EU/EAA, load analytics by default
+             * (unless consent cookie rejects analytics).
+             */
+            const cookie = getConsentCookie();
+            const consent = cookie ? cookie.analytics : true;
+            Utils.configureGlean(consent);
+        }
     }
 };
 

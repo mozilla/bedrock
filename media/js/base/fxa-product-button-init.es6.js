@@ -4,6 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FxaProductButton from './fxa-product-button.es6.js';
+import FxaProductButtonConsent from './fxa-product-button-consent.es6.js';
 
-FxaProductButton.init();
+FxaProductButtonConsent.init();

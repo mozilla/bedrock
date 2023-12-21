@@ -4,6 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FxaForm from './fxa-form.es6.js';
+import FxaFormConsent from './fxa-form-consent.es6.js';
 
-FxaForm.init();
+FxaFormConsent.init();

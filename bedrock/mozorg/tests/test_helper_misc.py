@@ -1134,3 +1134,47 @@ class TestFxALinkFragment(TestCase):
             '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"'
         )
         self.assertEqual(markup, expected)
+
+
+@pytest.mark.parametrize(
+    "country_code, expected",
+    [
+        ("AT", "True"),  # Austria
+        ("BE", "True"),  # Belgium
+        ("BG", "True"),  # Bulgaria
+        ("HR", "True"),  # Croatia
+        ("CY", "True"),  # Republic of Cyprus
+        ("CZ", "True"),  # Czech Republic
+        ("DK", "True"),  # Denmark
+        ("EE", "True"),  # Estonia
+        ("FI", "True"),  # Finland
+        ("FR", "True"),  # France
+        ("DE", "True"),  # Germany
+        ("GR", "True"),  # Greece
+        ("HU", "True"),  # Hungary
+        ("IE", "True"),  # Ireland
+        ("IS", "True"),  # Iceland
+        ("IT", "True"),  # Italy
+        ("LV", "True"),  # Latvia
+        ("LI", "True"),  # Liechtenstein
+        ("LT", "True"),  # Lithuania
+        ("LU", "True"),  # Luxembourg
+        ("MT", "True"),  # Malta
+        ("NL", "True"),  # Netherlands
+        ("NO", "True"),  # Norway
+        ("PL", "True"),  # Poland
+        ("PT", "True"),  # Portugal
+        ("RO", "True"),  # Romania
+        ("SK", "True"),  # Slovakia
+        ("SI", "True"),  # Slovenia
+        ("ES", "True"),  # Spain
+        ("SE", "True"),  # Sweden
+        ("CH", "True"),  # Switzerland
+        ("GB", "True"),  # United Kingdom
+        ("US", "False"),  # United States
+        ("CA", "False"),  # Canada
+    ],
+)
+def test_needs_data_consent(country_code, expected):
+    template = "{{ needs_data_consent('%s') }}" % country_code
+    assert render(template) == expected

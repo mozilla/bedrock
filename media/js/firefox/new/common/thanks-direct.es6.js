@@ -19,6 +19,8 @@
  * DNT is still respected as an opt-out signal.
  */
 
+import { dntEnabled, gpcEnabled } from '../../../base/consent/utils.es6';
+
 let timeout;
 let requestComplete = false;
 
@@ -154,7 +156,9 @@ function initAttribution() {
 if (
     typeof Mozilla.StubAttribution !== 'undefined' &&
     Mozilla.StubAttribution.meetsRequirements() &&
-    !Mozilla.StubAttribution.hasCookie()
+    !Mozilla.StubAttribution.hasCookie() &&
+    !gpcEnabled() &&
+    !dntEnabled()
 ) {
     initAttribution();
 } else {

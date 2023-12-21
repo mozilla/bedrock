@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% macro consent_cookie_control(id) -%}
+  <div class="cookie-control" id="cookie-control-{{ id }}">
+    <label for="cookie-radio-{{ id }}-yes" class="cookie-control-label mzp-u-inline">
+      <input type="radio" name="cookie-radio-{{ id }}" id="cookie-radio-{{ id }}-yes" value="yes">
+      {{ ftl('cookie-settings-i-agree') }}
+    </label>
+
+    <label for="cookie-radio-{{ id }}-no" class="cookie-control-label mzp-u-inline">
+      <input type="radio" name="cookie-radio-{{ id }}" id="cookie-radio-{{ id }}-no" value="no">
+      {{ ftl('cookie-settings-i-do-not-agree') }}
+    </label>
+  </div>
+{%- endmacro %}

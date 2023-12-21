@@ -1,0 +1,196 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "privacy/includes/macros.html" import consent_cookie_control with context %}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}{{ ftl('cookie-settings-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('cookie-settings-page-desc') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('cookie-settings-form') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with
+    hide_nav_download_button=True,
+    hide_nav_get_vpn_button=True
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+<nav aria-label="breadcrumb" class="mzp-c-breadcrumb is-hidden">
+  <ol class="mzp-c-breadcrumb-list">
+    <li class="mzp-c-breadcrumb-item">
+      <a href="#">{{ ftl('cookie-settings-breadcrumb-link') }}</a>
+    </li>
+    <li aria-current="page" class="mzp-c-breadcrumb-item">
+      {{ ftl('cookie-settings-page-title') }}
+    </li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content mzp-t-content-md">
+    <header class="cookie-consent-header">
+
+      <h1>{{ ftl('cookie-settings-page-title') }}</h1>
+
+      {# noscript warning to enable JavaScript #}
+      <noscript>
+        <p><strong>{{ ftl('cookie-settings-turn-on-javascript') }}</strong></p>
+      </noscript>
+
+      <p>{{ ftl('cookie-settings-explainer') }}</p>
+
+      <p>{{ ftl('cookie-settings-page-intro-v2', fallback='cookie-settings-page-intro') }}</p>
+    </header>
+
+    <form class="cookie-consent-form">
+      <h2>{{ ftl('cookie-settings-how-mozilla-heading') }}</h2>
+
+      <ul>
+        <li class="cookie-category">
+          <h3 class="cookie-category-title">
+            {{ ftl('cookie-settings-category-necessary-heading') }}
+          </h3>
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-category-necessary-what-are-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>{{ ftl('cookie-settings-category-necessary-what-are-desc') }}</p>
+            </div>
+          </details>
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-how-does-mozilla-use-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>{{ ftl('cookie-settings-category-necessary-how-does-desc-v2') }}</p>
+            </div>
+          </details>
+        </li>
+        <li class="cookie-category">
+          <h3 class="cookie-category-title">
+            {{ ftl('cookie-settings-category-preference-heading') }}
+          </h3>
+
+          {{ consent_cookie_control('preference') }}
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-category-preference-what-are-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>
+                {{ ftl('cookie-settings-category-preference-what-are-desc') }}
+              </p>
+            </div>
+          </details>
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-how-does-mozilla-use-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>{{ ftl('cookie-settings-category-preference-how-does-desc') }}</p>
+            </div>
+          </details>
+        </li>
+        <li class="cookie-category">
+          <h3 class="cookie-category-title">
+            {{ ftl('cookie-settings-category-analytics-heading') }}
+          </h3>
+
+          {{ consent_cookie_control('analytics') }}
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-category-analytics-what-are-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>{{ ftl('cookie-settings-category-analytics-what-are-desc') }}</p>
+            </div>
+          </details>
+
+          <details class="cookie-category-details-section">
+            <summary class="cookie-summary">
+              <h4 class="cookie-summary-title">
+                {{ ftl('cookie-settings-how-does-mozilla-use-subheading') }}
+              </h4>
+            </summary>
+
+            <div class="cookie-detail">
+              <p>{{ ftl('cookie-settings-category-analytics-how-does-desc') }}</p>
+            </div>
+          </details>
+        </li>
+      </ul>
+
+      <div class="cookie-consent-form-submit">
+        <button class="mzp-c-button" type="submit">
+          {{ ftl('cookie-settings-save-changes') }}
+        </button>
+
+        <p class="hidden cookie-consent-form-submit-success" tabindex="-1">{{ ftl('cookie-settings-your-cookie-settings-have') }}</p>
+      </div>
+
+    </form>
+
+    <section class="cookie-settings-section">
+      <h2>{{ ftl('cookie-settings-your-consent-heading') }}</h2>
+
+      <p>{{ ftl('cookie-settings-your-consent-desc') }}</p>
+
+      <ul class="mzp-u-list-styled">
+        <li><a href="https://www.mozilla.org/">https://www.mozilla.org/</a></li>
+      </ul>
+    </section>
+
+    <section class="cookie-settings-section">
+      <h2>{{ ftl('cookie-settings-privacy-heading') }}</h2>
+
+      <p>{{ ftl('cookie-settings-privacy-desc') }}</p>
+
+      <p>
+        <a href="{{ url('privacy.notices.websites') }}">
+          {{ ftl('cookie-settings-privacy-policy-link') }}
+        </a>
+      </p>
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block consent_banner_js %}
+  {{ super() }}
+  <!--[if IE 9]> -->
+    {{ js_bundle('cookie-settings-form') }}
+  <!--<![endif]-->
+{% endblock %}

@@ -4,7 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const knownExcludedarams = [
+import { gpcEnabled, dntEnabled } from './consent/utils.es6';
+
+const knownExcludedParams = [
     'automation=true', // Automated functional tests
     'cjevent=', // CJ Affiliate marketing referral links
     'entrypoint_experiment=', // Mozilla accounts experiments
@@ -17,19 +19,27 @@ const knownExcludedarams = [
 ];
 
 /**
- * Check given URL against a list of well-know experemental query parameters.
+ * Check given URL against a list of well-know experimental query parameters.
  * Issue #10559
  * @param {String} params - query params, defaults to window.location.search.
- * @returns {Boolean} - return false if match is found.
+ * @returns {Boolean} - return false if match is found or if GPC / DNT are enabled.
  */
 function isApprovedToRun(params) {
     let queryString =
         typeof params === 'string' ? params : window.location.search || null;
 
+    if (gpcEnabled()) {
+        return false;
+    }
+
+    if (dntEnabled()) {
+        return false;
+    }
+
     if (queryString) {
         queryString = decodeURIComponent(queryString);
 
-        return knownExcludedarams.every((param) => {
+        return knownExcludedParams.every((param) => {
             return queryString.indexOf(param) === -1;
         });
     }

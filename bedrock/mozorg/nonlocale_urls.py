@@ -26,6 +26,7 @@ urlpatterns = (
     page("credits/faq/", "mozorg/credits-faq.html"),
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),
     path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
+    path(".well-known/gpc.json", views.GpcDotJson.as_view(), name="gpc.json"),
     # namespaces
     path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
     path("2005/app-update", views.namespaces, {"namespace": "update"}),

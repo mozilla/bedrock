@@ -8,7 +8,6 @@ import FxaProductButton from '../../base/fxa-product-button.es6.js';
 
 const AffiliateAttribution = {};
 const _marketingCookieID = 'moz-cj-affiliate';
-const _preferenceCookieID = 'moz-pref-cj-affiliate';
 
 AffiliateAttribution.hasMarketingCookie = function () {
     return Mozilla.Cookies.hasItem(_marketingCookieID);
@@ -35,29 +34,6 @@ AffiliateAttribution.setMarketingCookie = function (value, expires) {
 AffiliateAttribution.removeMarketingCookie = function () {
     return Mozilla.Cookies.removeItem(
         _marketingCookieID,
-        '/',
-        null,
-        false,
-        'lax'
-    );
-};
-
-AffiliateAttribution.hasPreferenceCookie = function () {
-    return Mozilla.Cookies.hasItem(_preferenceCookieID);
-};
-
-AffiliateAttribution.getPreferenceCookie = function () {
-    return Mozilla.Cookies.getItem(_preferenceCookieID);
-};
-
-AffiliateAttribution.setPreferenceCookie = function (value) {
-    const date = new Date();
-    const cookieDuration = 30 * 24 * 60 * 60 * 1000; // 30 day expiration
-    date.setTime(date.getTime() + cookieDuration);
-    Mozilla.Cookies.setItem(
-        _preferenceCookieID,
-        value,
-        date.toUTCString(),
         '/',
         null,
         false,
@@ -155,45 +131,11 @@ AffiliateAttribution.fetch = function (flowId, cjID, value) {
     });
 };
 
-AffiliateAttribution.optOut = function () {
-    return new window.Promise((resolve, reject) => {
-        const overwrite = true;
-        FxaProductButton.init(overwrite)
-            .then(() => {
-                AffiliateAttribution.setPreferenceCookie('reject');
-                AffiliateAttribution.removeMarketingCookie();
-                resolve();
-            })
-            .catch(() => {
-                reject();
-            });
-    });
-};
-
-AffiliateAttribution.shouldShowOptOutNotification = function () {
-    return (
-        (Boolean(AffiliateAttribution.getCJEventParam()) ||
-            AffiliateAttribution.hasMarketingCookie()) &&
-        !AffiliateAttribution.hasPreferenceCookie()
-    );
-};
-
-AffiliateAttribution.shouldInitiateAttributionFlow = function () {
-    return (
-        AffiliateAttribution.meetsRequirements() &&
-        AffiliateAttribution.getPreferenceCookie() !== 'reject'
-    );
-};
-
 AffiliateAttribution.addFlowParams = function () {
     FxaProductButton.init();
 };
 
 AffiliateAttribution.init = function () {
-    if (!AffiliateAttribution.meetsRequirements()) {
-        return false;
-    }
-
     return new window.Promise((resolve, reject) => {
         const cjEventParamValue = AffiliateAttribution.getCJEventParam();
 

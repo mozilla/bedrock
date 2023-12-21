@@ -72,6 +72,13 @@ class SecurityDotTxt(RequireSafeMixin, TemplateView):
     content_type = "text/plain"
 
 
+class GpcDotJson(RequireSafeMixin, TemplateView):
+    # https://github.com/mozilla/bedrock/issues/14213
+    # served under .well-known/gpc.json
+    template_name = "mozorg/gpc.json"
+    content_type = "application/json"
+
+
 NAMESPACES = {
     "addons-bl": {
         "namespace": "http://www.mozilla.org/2006/addons-blocklist",

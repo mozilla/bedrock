@@ -6,7 +6,7 @@
 
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific assets default to windows #}
-<html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% block gtm_page_id %}{% endblock %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}"{% endif %} {% block html_attrs %}{% endblock %}>
+<html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% block gtm_page_id %}{% endblock %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}"{% endif %} {% block html_attrs %}{% endblock %}>
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
@@ -15,6 +15,10 @@
 
     {% block experiments %}{% endblock %}
     <!--<![endif]-->
+
+    <!--[if IE 9]>
+    {{ js_bundle('site-ie') }}
+    <![endif]-->
 
 <!--
 {% include "includes/careers-teaser.html" %}
@@ -92,6 +96,10 @@
       data-global-previous="{{ ftl('ui-previous') }}"
       {% block string_data %}{% endblock %}></div>
 
+    {% block consent_banner %}
+      {% include 'includes/banners/consent-banner.html' %}
+    {% endblock %}
+
     {% block site_header %}
       {% include 'includes/protocol/navigation/navigation.html' %}
     {% endblock %}
@@ -125,18 +133,18 @@
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
       <!--<![endif]-->
+
+      <!--[if IE 9]>
+        {{ js_bundle('lib-ie') }}
+      <![endif]-->
     {% endblock %}
 
     {# Bug 1279291 #}
     {% block stub_attribution %}
       {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if !IE]><!-->
+        <!--[if IE 9]><!-->
           {{ js_bundle('stub-attribution') }}
         <!--<![endif]-->
-
-        <!--[if gte IE 8]>
-          {{ js_bundle('stub-attribution-ie') }}
-        <![endif]-->
       {% endif %}
     {% endblock %}
 
@@ -151,5 +159,11 @@
 
     {% block third_party_js %}{% endblock %}
     <!--<![endif]-->
+
+    {% block consent_banner_js %}
+    <!--[if IE 9]><!-->
+      {{ js_bundle('consent-banner') }}
+    <!--<![endif]-->
+    {% endblock %}
   </body>
 </html>

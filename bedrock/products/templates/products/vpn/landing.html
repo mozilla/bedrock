@@ -57,10 +57,6 @@
 
 {% block content %}
 <main {% if show_relay_promo_block %}class="has-relay-promo"{% endif %}>
-  {% if vpn_affiliate_attribution_enabled %}
-    {% include 'includes/affiliate-banner.html' %}
-  {% endif %}
-
   {% block hero %}
     {% call vpn_hero(
       heading=ftl('vpn-shared-product-name'),

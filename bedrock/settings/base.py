@@ -250,7 +250,7 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
-    "affiliate",
+    "banners/consent-banner",
     "banners/firefox-app-store",
     "brands",
     "download_button",
@@ -1187,6 +1187,44 @@ markus.configure(backends=MARKUS_BACKENDS)
 # FUNNELCAKE_103_LOCALES=de,fr,en-US
 #
 # where "103" in the variable name is the funnelcake ID.
+
+# Countries that need to see cookie banner
+# See https://www.gov.uk/eu-eea
+
+DATA_CONSENT_COUNTRIES = [
+    "AT",  # Austria
+    "BE",  # Belgium
+    "BG",  # Bulgaria
+    "HR",  # Croatia
+    "CY",  # Republic of Cyprus
+    "CZ",  # Czech Republic
+    "DK",  # Denmark
+    "EE",  # Estonia
+    "FI",  # Finland
+    "FR",  # France
+    "DE",  # Germany
+    "GR",  # Greece
+    "HU",  # Hungary
+    "IE",  # Ireland
+    "IS",  # Iceland
+    "IT",  # Italy
+    "LV",  # Latvia
+    "LI",  # Liechtenstein
+    "LT",  # Lithuania
+    "LU",  # Luxembourg
+    "MT",  # Malta
+    "NL",  # Netherlands
+    "NO",  # Norway
+    "PL",  # Poland
+    "PT",  # Portugal
+    "RO",  # Romania
+    "SK",  # Slovakia
+    "SI",  # Slovenia
+    "ES",  # Spain
+    "SE",  # Sweden
+    "CH",  # Switzerland
+    "GB",  # United Kingdom
+]
 
 # VPN ==========================================================================================
 

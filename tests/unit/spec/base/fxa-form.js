@@ -50,6 +50,9 @@ describe('fxa-form.js', function () {
         window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
 
         document.body.insertAdjacentHTML('beforeend', form);
+
+        // reset attribution flag before each test.
+        FxaForm.skipAttribution = true;
     });
 
     afterEach(function () {
@@ -64,7 +67,10 @@ describe('fxa-form.js', function () {
             '79.0'
         );
 
-        return FxaForm.init().then(() => {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(() => {
             const form = document.getElementById('fxa-email-form');
             expect(form.getAttribute('action')).toEqual(
                 'https://accounts.firefox.com/'
@@ -87,7 +93,10 @@ describe('fxa-form.js', function () {
             '80.0'
         );
 
-        return FxaForm.init().then(() => {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(() => {
             const form = document.getElementById('fxa-email-form');
             expect(form.getAttribute('action')).toEqual(
                 'https://accounts.firefox.com/'
@@ -112,7 +121,10 @@ describe('fxa-form.js', function () {
             false
         );
 
-        return FxaForm.init().then(() => {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(() => {
             const form = document.getElementById('fxa-email-form');
             expect(form.getAttribute('action')).toEqual(
                 'https://accounts.firefox.com/'
@@ -144,7 +156,10 @@ describe('fxa-form.js', function () {
         });
         /* eslint-enable camelcase */
 
-        return FxaForm.init().then(function () {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(function () {
             const form = document.getElementById('fxa-email-form');
             expect(form.getAttribute('action')).toEqual(
                 'https://accounts.firefox.com/'
@@ -200,7 +215,10 @@ describe('fxa-form.js', function () {
         });
         /* eslint-enable camelcase */
 
-        return FxaForm.init().then(function () {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(function () {
             const form = document.getElementById('fxa-email-form');
             form.querySelector('#fxa-email-field').value = 'a@a.com';
             expect(form.getAttribute('action')).toEqual(
@@ -280,7 +298,10 @@ describe('fxa-form.js', function () {
         });
         /* eslint-enable camelcase */
 
-        return FxaForm.init().then(function () {
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        return FxaForm.init(false).then(function () {
             const form = document.getElementById('fxa-email-form');
             form.querySelector('#fxa-email-field').value = 'a@a.com';
             expect(form.getAttribute('action')).toEqual(
@@ -351,6 +372,17 @@ describe('fxa-form.js', function () {
         );
         spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
 
+        spyOn(FxaForm, 'getUTMParams').and.returnValue({
+            utm_source: 'desktop-snippet',
+            utm_content: 'rel-esr',
+            utm_medium: 'referral',
+            utm_term: 4242,
+            utm_campaign: 'F100_4242_otherstuff_in_here'
+        });
+
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
         return FxaForm.init(true).then(function () {
             const form = document.getElementById('fxa-email-form');
             form.querySelector('#fxa-email-field').value = 'a@a.com';
@@ -381,5 +413,59 @@ describe('fxa-form.js', function () {
                 'a@a.com'
             );
         });
+    });
+
+    it('should allow attribution to be skipped even if init() is never called', function () {
+        spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+        spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue(
+            '80.0'
+        );
+        spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(
+            function (callback) {
+                callback({
+                    accurate: true,
+                    distribution: undefined
+                });
+            }
+        );
+        spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
+
+        spyOn(FxaForm, 'getUTMParams').and.returnValue({
+            utm_source: 'desktop-snippet',
+            utm_content: 'rel-esr',
+            utm_medium: 'referral',
+            utm_term: 4242,
+            utm_campaign: 'F100_4242_otherstuff_in_here'
+        });
+
+        // Configure Sync for Firefox desktop before initializing attribution.
+        FxaForm.configureSync();
+
+        const form = document.getElementById('fxa-email-form');
+        form.querySelector('#fxa-email-field').value = 'a@a.com';
+        expect(form.querySelector('[name="flow_id"]').value).toEqual('');
+        expect(form.querySelector('[name="flow_begin_time"]').value).toEqual(
+            ''
+        );
+        expect(form.querySelector('[name="device_id"]').value).toEqual('');
+        expect(form.querySelector('[name="utm_source"]').value).toEqual(
+            'mozilla.org-privacy-products'
+        );
+        expect(form.querySelector('[name="utm_campaign"]').value).toEqual(
+            'fxa-embedded-form'
+        );
+        expect(form.querySelector('[name="utm_content"]')).toEqual(null);
+        expect(form.querySelector('[name="utm_term"]')).toEqual(null);
+        expect(form.querySelector('[name="utm_medium"]')).toEqual(null);
+
+        form.querySelector('#fxa-email-form-submit').click();
+        expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith(
+            {
+                utm_source: 'mozilla.org-privacy-products',
+                utm_campaign: 'fxa-embedded-form'
+            },
+            'mozilla.org-privacy-products',
+            'a@a.com'
+        );
     });
 });
