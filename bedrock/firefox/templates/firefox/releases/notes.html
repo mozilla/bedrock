@@ -98,7 +98,11 @@
       <div class="intro">
         <div class="container">
           {% if not primary_heading %}
-            {% set primary_heading = '{0} <br> Release Notes'|f(product_name)|safe %}
+            {% if product_name == 'Firefox Beta' %}
+              {% set primary_heading = 'Firefox Beta and Developer Edition <br> Release Notes'|safe %}
+            {% else %}
+              {% set primary_heading = '{0} <br> Release Notes'|f(product_name)|safe %}
+            {% endif %}
           {% endif %}
           {% if release.product == 'Firefox for Android' %}
             {% set feedback_url='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' %}
