@@ -13,7 +13,7 @@ pyquery==2.0.0
 pytest==7.4.2  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 pytest-cov==4.1.0
 pytest-datadir==1.5.0
-pytest-django==4.6.0
+pytest-django==4.7.0
 pytest-mock==3.11.1
 pytest-parallel==0.1.1
 pytest-rerunfailures==12.0
