@@ -1,6 +1,6 @@
 -r prod.txt
 
-black==23.11.0
+black==23.12.1
 bpython==0.24
 braceexpand==0.1.7
 factory-boy==3.3.0
