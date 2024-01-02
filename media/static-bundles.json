@@ -239,12 +239,6 @@
     },
     {
       "files": [
-        "css/base/banners/fundraiser.scss"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -1483,19 +1477,6 @@
         "js/firefox/features/features-article.es6.js"
       ],
       "name": "firefox_features_article"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/banner-init.js"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "js/mozorg/home/banner-experiment.es6.js"
-      ],
-      "name": "fundraising-banner-experiment"
     },
     {
       "files": [
