@@ -5,32 +5,40 @@
  */
 
 const Utils = {
+    filterNewsletterURL: (str) => {
+        try {
+            const url = new URL(str);
+
+            // Ensure we don't include tokens in newsletter page load event pings
+            // Issue https://github.com/mozilla/bedrock/issues/13583
+            const newsletterPaths = [
+                '/newsletter/existing/',
+                '/newsletter/country/'
+            ];
+
+            newsletterPaths.forEach((path) => {
+                // Find the index of the newsletter pathname
+                const index = url.pathname.indexOf(path);
+
+                // Remove everything after the pathname (which is the token)
+                if (index !== -1) {
+                    const newPathname = url.pathname.substring(
+                        0,
+                        index + path.length
+                    );
+                    url.pathname = newPathname;
+                }
+            });
+
+            return url.toString();
+        } catch (e) {
+            return str;
+        }
+    },
+
     getUrl: (str) => {
-        const urlString = typeof str === 'string' ? str : window.location.href;
-        const url = new URL(urlString);
-
-        // Ensure we don't include tokens in newsletter page load event pings
-        // Issue https://github.com/mozilla/bedrock/issues/13583
-        const newsletterPaths = [
-            '/newsletter/existing/',
-            '/newsletter/country/'
-        ];
-
-        newsletterPaths.forEach((path) => {
-            // Find the index of the newsletter pathname
-            const index = url.pathname.indexOf(path);
-
-            // Remove everything after the pathname (which is the token)
-            if (index !== -1) {
-                const newPathname = url.pathname.substring(
-                    0,
-                    index + path.length
-                );
-                url.pathname = newPathname;
-            }
-        });
-
-        return url.toString();
+        const url = typeof str === 'string' ? str : window.location.href;
+        return Utils.filterNewsletterURL(url);
     },
 
     getPathFromUrl: (str) => {
@@ -73,12 +81,13 @@ const Utils = {
 
     getReferrer: (str) => {
         const referrer = typeof str === 'string' ? str : document.referrer;
+        const url = Utils.filterNewsletterURL(referrer);
 
         if (typeof window.Mozilla.Analytics !== 'undefined') {
-            return Mozilla.Analytics.getReferrer(referrer);
+            return Mozilla.Analytics.getReferrer(url);
         }
 
-        return referrer;
+        return url;
     },
 
     getHttpStatus: () => {
@@ -86,18 +95,6 @@ const Utils = {
             .getElementsByTagName('html')[0]
             .getAttribute('data-http-status');
         return pageId && pageId === '404' ? '404' : '200';
-    },
-
-    isValidHttpUrl: (str) => {
-        let url;
-
-        try {
-            url = new URL(str);
-        } catch (e) {
-            return false;
-        }
-
-        return url.protocol === 'http:' || url.protocol === 'https:';
     },
 
     isTelemetryEnabled: () => {

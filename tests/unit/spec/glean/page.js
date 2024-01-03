@@ -11,7 +11,10 @@
 
 import * as page from '../../../../media/js/libs/glean/page.js';
 import Utils from '../../../../media/js/glean/utils.es6';
-import { initPageView, pageEvent } from '../../../../media/js/glean/page.es6';
+import {
+    recordCustomPageMetrics,
+    pageEvent
+} from '../../../../media/js/glean/page.es6';
 import { testResetGlean } from '@mozilla/glean/testing';
 
 describe('page.js', function () {
@@ -30,7 +33,7 @@ describe('page.js', function () {
     });
 
     it('should register a page view correctly', async function () {
-        initPageView();
+        recordCustomPageMetrics();
 
         const path = await page.path.testGetValue();
         expect(path).toEqual('/firefox/new/');
@@ -52,7 +55,7 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        initPageView();
+        recordCustomPageMetrics();
 
         const source = await page.queryParams['utm_source'].testGetValue();
         expect(source).toEqual('test-source');
@@ -94,7 +97,7 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        initPageView();
+        recordCustomPageMetrics();
 
         const unspecifiedParam =
             await page.queryParams['unspecified_param'].testGetValue();
@@ -110,7 +113,7 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        initPageView();
+        recordCustomPageMetrics();
 
         const source = await page.queryParams['utm_source'].testGetValue();
         expect(source).toEqual('%');
@@ -126,7 +129,7 @@ describe('page.js', function () {
             new window._SearchParams(query)
         );
 
-        initPageView();
+        recordCustomPageMetrics();
 
         const source = await page.queryParams['utm_source'].testGetValue();
         expect(source).toEqual('');

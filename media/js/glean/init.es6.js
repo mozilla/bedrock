@@ -5,22 +5,21 @@
  */
 
 import Glean from '@mozilla/glean/web';
+import GleanMetrics from '@mozilla/glean/metrics';
 import { BrowserSendBeaconUploader } from '@mozilla/glean/web';
-import { initPageView, pageEvent } from './page.es6';
+import { recordCustomPageMetrics, pageEvent } from './page.es6';
 import { clickEvent } from './elements.es6';
 import Utils from './utils.es6';
-
-const shouldInitialize = Utils.isValidHttpUrl(window.location.href);
 
 function initGlean() {
     const pageUrl = window.location.href;
     const endpoint = 'https://www.mozilla.org';
-    const channel = pageUrl.startsWith('https://www.mozilla.org/')
-        ? 'prod'
-        : 'non-prod';
+    const channel = pageUrl.startsWith(endpoint) ? 'prod' : 'non-prod';
 
-    // Ensure telemetry coming from automated testing is tagged
-    // https://mozilla.github.io/glean/book/reference/debug/sourceTags.html
+    /**
+     * Ensure telemetry coming from automated testing is tagged
+     * https://mozilla.github.io/glean/book/reference/debug/sourceTags.html
+     */
     if (pageUrl.includes('automation=true')) {
         Glean.setSourceTags(['automation']);
     }
@@ -30,31 +29,44 @@ function initGlean() {
         serverEndpoint: endpoint,
         httpClient: BrowserSendBeaconUploader // use sendBeacon since Firefox does not yet support keepalive using fetch()
     });
+
+    /**
+     * Record some additional page metrics that
+     * aren't in the default page_load event.
+     */
+    recordCustomPageMetrics();
+
+    /**
+     * Manually call Glean's default page_load event. Here
+     * we override `url` and `referrer` since we need to
+     * apply some custom logic to these values before they
+     * are sent.
+     */
+    GleanMetrics.pageLoad({
+        url: Utils.getUrl(),
+        referrer: Utils.getReferrer()
+    });
 }
 
+/**
+ * Creates global helpers on the window.Mozilla.Glean
+ * namespace, so that external JS bundles can trigger
+ * custom interaction events.
+ */
 function initHelpers() {
     if (typeof window.Mozilla === 'undefined') {
         window.Mozilla = {};
     }
 
-    // Create a global for external bundles to fire interaction pings.
     window.Mozilla.Glean = {
         pageEvent: (obj) => {
-            if (shouldInitialize) {
-                pageEvent(obj);
-            }
+            pageEvent(obj);
         },
         clickEvent: (obj) => {
-            if (shouldInitialize) {
-                clickEvent(obj);
-            }
+            clickEvent(obj);
         }
     };
 }
 
-if (shouldInitialize) {
-    initGlean();
-    initPageView();
-}
-
+initGlean();
 initHelpers();
