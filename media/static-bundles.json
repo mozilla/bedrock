@@ -2079,6 +2079,13 @@
         "js/mozorg/try-picture-in-picture.js"
       ],
       "name": "try-picture-in-picture"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/mozorg/home/banner-init.js"
+      ],
+      "name": "pocket-banner"
     }
   ]
 }
