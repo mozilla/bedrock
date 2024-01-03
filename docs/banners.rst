@@ -13,7 +13,7 @@ Creating page banners
 
 Any page on bedrock can incorporate a top of page banner as a temporary feature.
 An example of such a banner is the :abbr:`MOFO (Mozilla Foundation)` fundraising
-form that gets shown on the home page several times a year.
+banner that gets shown on the home page several times a year.
 
 Banners can be inserted into any page template by using the ``page_banner``
 block. Banners can also be toggled on and off using a switch:

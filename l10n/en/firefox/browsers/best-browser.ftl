@@ -34,7 +34,7 @@ best-browser-firefox-is-offering-v2 = { -brand-name-firefox } is offering someth
 
 # Obsolete string
 # Variables:
-# $monitor (url) - link to https://monitor.firefox.com
+# $monitor (url) - link to https://monitor.mozilla.org
 best-browser-firefox-is-offering = { -brand-name-firefox } is offering something new to keep you safe: <a href="{ $monitor }">{ -brand-name-firefox-monitor }</a>. It’s a free service that will alert you if there are any public hacks on your accounts and let you know if your accounts got hacked in the past. Another neat feature is the Green Lock. It looks like a small green icon at the top left side of the browser window. If you’re on { -brand-name-firefox } and see the green lock, it means the website is encrypted and secure. If the lock is grey, you might want to think twice about entering any sensitive information.
 
 best-browser-we-visit-hundreds-or = We visit hundreds or even thousands of websites each day, and you can’t expect users to make security and privacy decisions for each of these sites. That is why a browser that gives you more control is so important - because it offers real, meaningful protection.

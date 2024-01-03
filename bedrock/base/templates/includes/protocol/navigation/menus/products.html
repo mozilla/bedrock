@@ -16,7 +16,7 @@
           <li>
             <section class="c-menu-item mzp-has-icon">
               {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
-              <a class="c-menu-item-link" href="https://monitor.firefox.com/?{{ utm_params }}" data-link-name="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+              <a class="c-menu-item-link" href="https://monitor.mozilla.org/?{{ utm_params }}" data-link-name="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}" data-link-type="nav" data-link-position="topnav" data-link-group="products">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
                 {% if mozilla_monitor %}
                   <h4 class="c-menu-item-title">{{ ftl('navigation-v2-mozilla-monitor', fallback='navigation-v2-firefox-monitor') }}</h4>

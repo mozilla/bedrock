@@ -884,7 +884,7 @@ def monitor_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a monitor.firefox.com link with required params for Mozilla account authentication.
+    Render a monitor.mozilla.org link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -894,7 +894,7 @@ def monitor_fxa_button(
 
         {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
-    product_url = "https://monitor.firefox.com/user/dashboard"
+    product_url = "https://monitor.mozilla.org/user/dashboard"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )

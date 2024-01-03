@@ -47,11 +47,11 @@ privacy-passwords-the-secret-to = The secret to preventing guessing, theft or pa
 #   $url_yahoo (string) - link to https://www.wired.com/2016/12/yahoo-hack-billion-users/ with additional attributes for analytics
 privacy-passwords-when-an-attacker = When an attacker steals the password database for a site that you use (like <a { $url_linkedin }>LinkedIn</a> or <a { $url_yahoo }>Yahoo</a>), there’s nothing you can do but change your password for that site. That’s bad, but the damage can be much worse if you’ve re-used that password with other websites — then the attacker can access your accounts on those sites as well. To keep the damage contained, <strong>always use different passwords for different websites.</strong>
 
-#   $url_monitor (string) - link to https://monitor.firefox.com/ with additional attributes for analytics
+#   $url_monitor (string) - link to https://monitor.mozilla.org/ with additional attributes for analytics
 privacy-passwords-use-mozilla-monitor = Use <a { $url_monitor }>{ -brand-name-mozilla-monitor }</a> to keep an eye on email addresses associated with your accounts. If your email address appears in a known corporate data breach, you’ll be alerted and provided steps to follow to protect the affected account.
 
 # Obsolete string
-#   $url_monitor (string) - link to https://monitor.firefox.com/ with additional attributes for analytics
+#   $url_monitor (string) - link to https://monitor.mozilla.org/ with additional attributes for analytics
 privacy-passwords-use-firefox-monitor = Use <a { $url_monitor }>{ -brand-name-firefox-monitor }</a> to keep an eye on email addresses associated with your accounts. If your email address appears in a known corporate data breach, you’ll be alerted and provided steps to follow to protect the affected account.
 
 privacy-passwords-security-questions-my = Security Questions: My mother’s maiden name is “Ff926AKa9j6Q”
