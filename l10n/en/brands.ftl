@@ -21,6 +21,9 @@
 -brand-name-mullvad = Mullvad
 -brand-name-netscape = Netscape
 -brand-name-twitter = Twitter
+
+# X is the new rebrand name for Twitter
+-brand-name-x = X
 -brand-name-wireguard = WireGuard
 -brand-name-linkedin = LinkedIn
 -brand-name-tiktok = TikTok

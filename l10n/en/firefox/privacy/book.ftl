@@ -206,4 +206,8 @@ privacy-book-questions-feedback = Questions & Feedback
 
 privacy-book-do-you-have = Do you have questions or feedback? Please don’t hesitate to reach out to us, we’re looking forward to hearing from you!
 
+# Obsolete string
 privacy-book-twitter = { -brand-name-twitter }
+
+privacy-book-x = { -brand-name-x }
+privacy-book-x-formerly-twitter = { -brand-name-x } (formerly { -brand-name-twitter })
