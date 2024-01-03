@@ -14,9 +14,7 @@ import Utils from './utils.es6';
 function initGlean() {
     const pageUrl = window.location.href;
     const endpoint = 'https://www.mozilla.org';
-    const channel = pageUrl.startsWith('https://www.mozilla.org/')
-        ? 'prod'
-        : 'non-prod';
+    const channel = pageUrl.startsWith(endpoint) ? 'prod' : 'non-prod';
 
     /**
      * Ensure telemetry coming from automated testing is tagged
