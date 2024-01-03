@@ -12,7 +12,7 @@ const allowedList = [
     'https://accounts.stage.mozaws.net/',
     'https://getpocket.com/',
     'https://guardian-dev.herokuapp.com/',
-    'https://monitor.firefox.com/',
+    'https://monitor.mozilla.org/',
     'https://relay.firefox.com/',
     'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
     'https://vpn.mozilla.org/'

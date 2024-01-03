@@ -234,7 +234,6 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "affiliate",
     "banners/firefox-app-store",
-    "banners/fundraising",
     "banners/vpn-holidays",
     "brands",
     "download_button",
@@ -1051,7 +1050,7 @@ WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="main")
 
 MONITOR_SWITCH_WAITLIST = "SWITCH_MONITOR_WAITLIST"
 MONITOR_SWITCH_WAITLIST_DEFAULT = "off"
-MONITOR_ENDPOINT = config("MONITOR_ENDPOINT", default="https://monitor.firefox.com/api/v1/stats")
+MONITOR_ENDPOINT = config("MONITOR_ENDPOINT", default="https://monitor.mozilla.org/api/v1/stats")
 MONITOR_TOKEN = config("MONITOR_TOKEN", default="")
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
