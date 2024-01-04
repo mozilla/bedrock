@@ -65,7 +65,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.1.9
+    rev: v0.1.11
     hooks:
       - id: ruff
   - repo: https://github.com/psf/black-pre-commit-mirror
