@@ -160,14 +160,23 @@
       </div>
       <p>
         {% if mozilla_monitor %}
-          {{ ftl('firefox-privacy-hub-when-you-enter-your-email-v2', fallback='firefox-privacy-hub-when-you-enter-your-email') }}
+          {% if LANG.startswith('en-') %}
+            When you enter your email address in Mozilla Monitor, we forget it immediately after we’ve checked for a match in known
+            data breaches — unless you authorize us to continue monitoring for new leaks of your personal information.
+          {% else %}
+            {{ ftl('firefox-privacy-hub-when-you-enter-your-email-v2', fallback='firefox-privacy-hub-when-you-enter-your-email') }}
+          {% endif %}
         {% else %}
           {{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}
         {% endif %}
       </p>
       <p>
         <a class="mzp-c-cta-link" href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-text="Check for breaches" data-cta-position="secondary">
-        {{ ftl('firefox-privacy-hub-check-for-breaches') }}
+        {% if LANG.startswith('en-') %}
+          Check for exposures now
+        {% else %}
+          {{ ftl('firefox-privacy-hub-check-for-breaches') }}
+        {% endif %}
         </a>
       </p>
     {% endcall %}

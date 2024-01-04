@@ -161,8 +161,8 @@
           {% endif %}
         </h3>
       </div>
-      <h4>{{ ftl('firefox-home-know-when-hackers-strike') }}</h4>
-      <a class="mzp-c-cta-link" href="{{ 'https://monitor.mozilla.org/' + referrals }}" data-link-text="Monitor" data-link-type="link">{{ ftl('firefox-home-start-getting-breach') }}</a>
+      <h4>{% if LANG.startswith('en-') %}See if you’ve been in a data breach — and let us automatically retrieve your stolen info{% else %}{{ ftl('firefox-home-know-when-hackers-strike') }}{% endif %}</h4>
+      <a class="mzp-c-cta-link" href="{{ 'https://monitor.mozilla.org/' + referrals }}" data-link-name="Monitor" data-link-type="link">{% if LANG.startswith('en-') %}Check for breaches now{% else %}{{ ftl('firefox-home-start-getting-breach') }}{% endif %}</a>
     {% endcall %}
 
   {% if ftl_has_messages('firefox-home-protection-for-your-whole') %}

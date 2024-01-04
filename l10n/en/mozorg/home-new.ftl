@@ -23,6 +23,8 @@ home-product-relay-masks = Easy-to-use email & phone masks
 home-cta-get-relay = Get { -brand-name-relay }
 home-product-vpn-trust = A VPN you can trust
 home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
+home-product-monitor-data = Data breach alerts
+home-cta-get-monitor = Get { -brand-name-monitor }
 
 home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the world there’s a business to be made with trustworthy AI. That includes putting things like human rights, data protection and transparency at the core of how these complex systems work.”
 

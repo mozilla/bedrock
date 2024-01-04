@@ -99,19 +99,24 @@ header {
 .c-products {
     text-align: center;
 
-    ul {
+    .c-product-columns {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
         margin-top: $layout-lg;
+        gap: $v-grid-sm $h-grid-md;
+
+
 
         .mzp-c-picto {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: $layout-lg;
+            margin: 0 0 $layout-lg;
+            max-width: 275px;
+            flex: 1 1 275px;
 
-            &:last-child {
-                margin-bottom: 0;
-            }
 
             .mzp-c-picto-image {
                 margin-bottom: $spacing-md;
