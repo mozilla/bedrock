@@ -1,0 +1,107 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/og.png') }}{% endblock %}
+
+{% block body_class %}welcome-page17-mobile{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_welcome_page17') }}
+{% endblock %}
+
+{% if LANG == "de" %}
+  {% set page_title = 'Neues Jahr, neues Smartphone? Hol dir die Firefox App.' %}
+  {% set main_title = 'Neues Jahr, neues Smartphone?<br> Hol dir die Firefox App.'|safe %}
+  {% set main_tagline = 'Blockiere Tracker, verwalte Passwörter und passe deine Datenschutzeinstellungen spielend an, mit Firefox Portable.' %}
+  {% set qr_caption = 'Um loszulegen, scanne den QR-Code' %}
+  {% set qr_alt = 'QR-Code zum Scannen für Firefox' %}
+  {% set adjust_url = 'https://app.adjust.com/17szhv0y' %}
+{% elif LANG == "fr" %}
+  {% set page_title = 'Nouvelle année, nouveau téléphone ? Téléchargez l’application Firefox.' %}
+  {% set main_title = 'Nouvelle année, nouveau téléphone ?<br> Téléchargez l’application Firefox.'|safe %}
+  {% set main_tagline = 'Bloquez les traqueurs, gérez vos mots de passe et personnalisez simplement vos paramètres de confidentialité avec Firefox, où que vous soyez.' %}
+  {% set qr_caption = 'Scanner le code QR pour commencer' %}
+  {% set qr_alt = 'Code QR à scanner pour Firefox' %}
+  {% set adjust_url = 'https://app.adjust.com/17ckotcd' %}
+{% else %}
+  {% set page_title = 'New year, new phone? Get the Firefox app.' %}
+  {% set main_title = 'New year, new phone?<br> Get the Firefox app.'|safe %}
+  {% set main_tagline = 'Block trackers, manage passwords and easily customize your privacy settings with Firefox on-the-go.' %}
+  {% set qr_caption = 'Scan the QR code to get started' %}
+  {% set qr_alt = 'QR code to scan for Firefox' %}
+  {% set adjust_url = 'https://app.adjust.com/17py9i7o' %}
+{% endif %}
+
+{% block shoulder_logo %}
+  {{ picture(
+    url="img/firefox/welcome/page17/firefox-wordmark-light.svg",
+    sources=[
+      {
+        "media": "(prefers-color-scheme: light)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-light.svg": "default",
+        }
+      },
+      {
+        "media": "(prefers-color-scheme: dark)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-dark.svg": "default",
+        }
+      }
+    ],
+    optional_attributes={
+      "class": "c-header-logo",
+      "alt": "Firefox",
+      "width": "108",
+      "height": "40",
+    }
+  ) }}
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+  <section class="c-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+
+      <h1 class="c-main-title">{{ main_title }}</h1>
+      <p class="c-main-tagline">{{ main_tagline }}</p>
+
+      <figure class="qr-code-wrapper">
+        <img src="{{ l10n_img('firefox/welcome/page17/qr-code.png') }}" width="200" height="200" alt="{{ qr_alt }}">
+        <figcaption>{{ qr_caption }}</figcaption>
+      </figure>
+
+      <ul class="c-store-badges">
+        <li class="c-store-badge-google">
+          {{ google_play_button(href=adjust_url, id='playStoreLink') }}
+        </li>
+        <li class="c-store-badge-apple">
+          {{ apple_app_store_button(href=adjust_url, id='appStoreLink') }}
+        </li>
+      </ul>
+
+    </div>
+  </section>
+{% endblock %}
+
+{% block content_body %}{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/">
+      {{ ftl('welcome-page14-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}

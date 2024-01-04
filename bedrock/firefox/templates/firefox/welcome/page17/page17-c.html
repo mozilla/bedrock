@@ -1,0 +1,92 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/welcome/page17/pip-hero.jpg') }}{% endblock %}
+
+{% block body_class %}welcome-page17-pip{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page17') }}
+{% endblock %}
+
+{% if LANG == "de" %}
+  {% set page_title = 'Starte im neuen Jahr mit der Bild-im-Bild-Funktion durch' %}
+  {% set main_title = 'Starte im neuen Jahr mit der Bild-im-Bild-Funktion durch'|safe %}
+  {% set main_cta = 'Jetzt testen' %}
+  {% set picto_one_title = 'Ein Meeting verfolgen und gleichzeitig Notizen machen' %}
+  {% set picto_two_title = 'Ein Koch-Tutorial angucken, während du das Rezept anschaust' %}
+  {% set picto_three_title = 'Die Kinder entertainen und nebenbei eine E-Mail fertig schreiben' %}
+{% elif LANG == "fr" %}
+  {% set page_title = 'Entamez une année productive avec la fonctionnalité plébiscitée d’incrustation vidéo' %}
+  {% set main_title = 'Entamez une année productive avec la fonctionnalité plébiscitée d’incrustation vidéo'|safe %}
+  {% set main_cta = 'Essayez-le dès maintenant' %}
+  {% set picto_one_title = 'Suivez une réunion tout en prenant des notes' %}
+  {% set picto_two_title = 'Gardez un tutoriel ouvert au-dessus d’une recette' %}
+  {% set picto_three_title = 'Divertissez les enfants pendant que vous travaillez' %}
+{% else %}
+  {% set page_title = 'Do more in the new year with Picture-in-Picture' %}
+  {% set main_title = 'Do more in the new year<br> with Picture-in-Picture'|safe %}
+  {% set main_cta = 'Try it now' %}
+  {% set picto_one_title = 'Watch a lecture or meeting while you take notes' %}
+  {% set picto_two_title = 'Keep a tutorial video open with a recipe while you cook' %}
+  {% set picto_three_title = 'Entertain cats, dogs and kids while you get work done' %}
+{% endif %}
+
+{% block shoulder_logo %}
+  {{ picture(
+    url="img/firefox/welcome/page17/firefox-wordmark-light.svg",
+    sources=[
+      {
+        "media": "(prefers-color-scheme: light)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-light.svg": "default",
+        }
+      },
+      {
+        "media": "(prefers-color-scheme: dark)",
+        "srcset": {
+          "img/firefox/welcome/page17/firefox-wordmark-dark.svg": "default",
+        }
+      }
+    ],
+    optional_attributes={
+      "class": "c-header-logo",
+      "alt": "Firefox",
+      "width": "108",
+      "height": "40",
+    }
+  ) }}
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+  <section class="c-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h1 class="c-main-title">{{ main_title }}</h1>
+      <p class="c-main-cta"><a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-text="Try it now" data-cta-type="button">{{ main_cta }}</a></p>
+
+      <img src="{{ static('img/firefox/welcome/page17/pip-hero.jpg') }}" alt="" class="c-main-image">
+    </div>
+  </section>
+{% endblock %}
+
+{% block content_body %}{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/">
+      {{ ftl('welcome-page14-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}

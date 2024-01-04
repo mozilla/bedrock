@@ -1,0 +1,275 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
+.c-page-header {
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+}
+
+.c-content-main {
+    text-align: center;
+    color: $color-black;
+
+    .mzp-c-wordmark.mzp-t-product-vpn {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor.svg');
+        background-position: top center;
+        margin: 0 auto $spacing-2xl;
+    }
+}
+
+.page-body {
+    color: $color-black;
+}
+
+.c-main-tagline {
+    @include text-body-lg;
+
+    @media #{$mq-md} {
+        padding: 0 $layout-xl;
+    }
+}
+
+.c-main-image {
+    margin: 0 auto $layout-md;
+
+    .welcome-page17-pip & {
+        margin-top: $layout-md;
+    }
+}
+
+.mzp-c-picto-heading {
+    @include text-title-2xs;
+    color: $color-black;
+}
+
+.qr-code-wrapper {
+    background: $color-white;
+    border-radius: $border-radius-lg;
+    border: 2px solid $color-marketing-gray-20;
+    box-shadow: $box-shadow-sm;
+    margin: $layout-sm auto;
+    max-width: 220px;
+    padding: $spacing-lg;
+
+    figcaption {
+        color: $color-black;
+        font-weight: bold;
+        line-height: 1.125;
+        padding: 0 $spacing-lg;
+    }
+}
+
+.c-store-badges {
+    text-align: center;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing-sm $spacing-lg;
+    }
+}
+
+.c-utilities {
+    text-align: center;
+}
+
+// * -------------------------------------------------------------------------- */
+// VPN toggle animation
+.c-toggle-container {
+    margin: 0 auto $spacing-md;
+}
+
+.toggle {
+    align-items: center;
+    animation: fade-and-zoom 200ms 800ms ease forwards, drop 400ms 1050ms ease-in forwards;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.85);
+    top: -25px;
+}
+
+.toggle-display {
+    --offset: 0.25em;
+    --diameter: 2.5em;
+    align-items: center;
+    animation: toggle-color 100ms 1600ms linear forwards;
+    background-color: $color-white;
+    border-radius: 100vw;
+    border: 2px solid $color-black;
+    display: flex;
+    height: calc(var(--diameter) + var(--offset) * 2);
+    justify-content: space-around;
+    position: relative;
+    width: calc(var(--diameter) * 2 + var(--offset) * 2);
+    transition: background-color 100ms linear;
+
+    @media #{$mq-md} {
+        --diameter: 3em;
+    }
+
+    @media #{$mq-lg} {
+        --diameter: 3.5em
+    }
+
+    &::before {
+        animation: toggle-slide 500ms 1400ms cubic-bezier(.8, -0.75, .5, 1.1) forwards;
+        background: $color-white;
+        border-radius: 50%;
+        border: 2px solid $color-black;
+        box-sizing: border-box;
+        content: '';
+        height: var(--diameter);
+        left: var(--offset);
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        transition: inherit;
+        width: var(--diameter);
+        z-index: 2;
+    }
+}
+
+// Disable animations
+@media (prefers-reduced-motion: reduce) {
+    .toggle,
+    .toggle-display,
+    .toggle-display::before {
+        animation: none;
+    }
+}
+
+// ---------------------------------------------------------------------------*/
+// Animations
+
+@keyframes toggle-slide {
+    from { transform: translate(0, -50%); }
+    to { transform: translate(100%, -50%); }
+}
+
+@keyframes toggle-color {
+    from { background-color: $color-white; }
+    to { background-color: $color-green-40; }
+}
+
+@keyframes fade-and-zoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drop {
+    0% { top: -25px; }
+    50% { top: 4px; }
+    70% { top: -8px; }
+    90%, 100% { top: 0; }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+
+@media (prefers-color-scheme: dark) {
+    #outer-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .c-content-main,
+    .c-main-title,
+    .page-body,
+    .mzp-c-picto-heading {
+        color: $color-white;
+    }
+
+    .c-content-main {
+        .mzp-c-wordmark.mzp-t-product-vpn {
+            background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-word-hor-white.svg');
+        }
+    }
+
+    .c-utilities {
+        @include white-links;
+    }
+
+    .mzp-c-footer.mzp-t-light {
+        @include white-links;
+        background: $color-dark-gray-60;
+        color: $color-white;
+
+        .mzp-c-footer-sections {
+            border-color: $color-dark-gray-30;
+
+            a:hover,
+            a:focus,
+            a:active {
+                text-decoration: underline;
+            }
+        }
+
+        .mzp-c-footer-links-social li {
+            a.twitter {
+                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+            }
+
+            a.mastodon {
+                background-image: url('/media/img/logos/social/mastodon-white.svg');
+            }
+
+            a.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+
+            // bedrock override until icons are added to protocol-assets
+            // https://github.com/mozilla/protocol-assets/issues/84
+            a.linkedin {
+                background-image: url('/media/img/logos/social/linkedin-white.svg');
+            }
+
+            a.tiktok {
+                background-image: url('/media/img/logos/social/tiktok-white.svg');
+            }
+
+            a.spotify {
+                background-image: url('/media/img/logos/social/spotify-white.svg');
+            }
+
+            a:hover,
+            a:focus,
+            a:active {
+                outline-color: $color-white;
+            }
+        }
+
+        .mzp-c-footer-primary-logo a {
+            background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor-white.svg');
+        }
+
+        .mzp-c-footer-heading.is-summary button::before {
+            background: $url-image-expand-white top left no-repeat;
+        }
+    }
+}

@@ -57,28 +57,28 @@
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-       {{ picture(
-                url="img/firefox/welcome/page16/logo-light.svg",
-                sources=[
-                  {
-                    "media": "(prefers-color-scheme: light)",
-                    "srcset": {
-                      "img/firefox/welcome/page16/logo-light.svg": "default",
-                    }
-                  },
-                  {
-                    "media": "(prefers-color-scheme: dark)",
-                    "srcset": {
-                      "img/firefox/welcome/page16/logo-dark.svg": "default",
-                    }
-                  }
-                ],
-                optional_attributes={
-                  "alt": "Mozilla VPN",
-                  "class": "c-main-image",
-                  "height": "80",
-                }
-              )}}
+      {{ picture(
+        url="img/firefox/welcome/page16/logo-light.svg",
+        sources=[
+          {
+            "media": "(prefers-color-scheme: light)",
+            "srcset": {
+              "img/firefox/welcome/page16/logo-light.svg": "default",
+            }
+          },
+          {
+            "media": "(prefers-color-scheme: dark)",
+            "srcset": {
+              "img/firefox/welcome/page16/logo-dark.svg": "default",
+            }
+          }
+        ],
+        optional_attributes={
+          "alt": "Mozilla VPN",
+          "class": "c-main-image",
+          "height": "80",
+        }
+      )}}
       <h1 class="c-main-title">This Cybersecurity Month, take 20% off your first year</h1>
       <p class="c-main-tagline">Keep your location and personal information private and secure. <br/>Get peace of mind with a single click.</p>
       <div class="c-main-cta">
