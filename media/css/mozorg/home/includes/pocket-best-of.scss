@@ -99,43 +99,53 @@ $pocket-inverse-color: #3A0603;
 .c-banner.pocket-banner {
     padding-top: 0;
     padding-bottom: 0;
+    background-color: $color-red-50;
+    position: relative;
 
     .mzp-l-content {
         padding-top: 0;
         padding-bottom: 0;
+
+        &::after {
+            content: none;
+        }
+    }
+
+    .pocket-logo {
+        margin: calc(#{$spacing-md} + 4px) $spacing-md 0;
+        position: absolute;
+    }
+
+    .pocket-illustration {
+        align-self: flex-start;
+        height: 80px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .c-banner-close {
+       background: transparent url("/media/protocol/img/icons/close-white.svg") center center no-repeat
     }
 
     .pocket-pencil-content {
-        background-color: $color-red-50;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        padding-left: 60px;
         justify-content: space-between;
         padding-top: 0;
         padding-bottom: $spacing-md;
-        max-height: 110px;
+        height: 110px;
         max-width: 100%;
-        position: relative;
-
-        .c-banner-close {
-           background: transparent url("/media/protocol/img/icons/close-white.svg") center center no-repeat
-        }
-
-        .pocket-logo {
-            align-self: flex-start;
-            margin: calc(#{$spacing-md} + 4px) $spacing-md 0;
-        }
+        flex-direction: column;
 
         h2 {
             @include font-base;
             @include font-size(21px);
             color: $color-white;
             margin-top: $spacing-md;
+            margin-bottom: $spacing-md;
 
-        }
-
-        .pocket-illustration {
-            align-self: flex-start;
-            max-height: 80px;
         }
 
         .mzp-c-button.t-pocket {
@@ -155,30 +165,27 @@ $pocket-inverse-color: #3A0603;
             }
         }
 
-        @media #{$mq-md} {
+    }
+    @media #{$mq-md} {
+        .pocket-pencil-content {
             max-height: 80px;
+            max-width: 1440px;
             padding-bottom: 0;
-
-            .pocket-logo {
-                margin: 0 0 0 $spacing-md;
-                align-self: center;
-                height: 45px;
-                width: 45px;
-            }
-
-            .text-wrapper {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                flex-grow: 2;
-            }
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
         }
 
-        @media #{$mq-lg} {
-            .mobile-break {
-                display: none;
-            }
+        .pocket-logo {
+            height: 45px;
+            width: 45px;
+        }
+
+    }
+
+    @media #{$mq-lg} {
+        .mobile-break {
+            display: none;
         }
     }
 }

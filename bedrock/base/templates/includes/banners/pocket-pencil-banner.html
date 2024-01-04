@@ -13,15 +13,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endif %}
 
 <aside class="pocket-banner c-banner hide-from-legacy-ie" id="pocket-banner">
-  <div class="mzp-l-content">
-    <div class="pocket-pencil-content">
-      <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
-      <img class="pocket-logo" loading="eager" src="{{ static('img/home/2023/pocket-logo-transparent.svg') }}" alt="" height="30" width="30">
-      <div class="text-wrapper">
+    <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>
+    <img class="pocket-logo" loading="eager" src="{{ static('img/home/2023/pocket-logo-transparent.svg') }}" alt="" height="30" width="30">
+    <div class="pocket-pencil-content mzp-l-content">
         <h2>{{ heading_text }}</h2>
         <a class="mzp-c-button t-pocket" href="https://www.getpocket.com/2023/" rel="external noopener" target="_blank" data-cta-type="link" data-cta-position="top-page banner" data-cta-text="See the winners">{{ cta_text }}</a>
-      </div>
-      <img class="pocket-illustration" loading="eager" src="{{ static('img/home/2023/pocket-best-of-pencil.png') }}" alt="">
     </div>
-  </div>
+    <img class="pocket-illustration" loading="eager" src="{{ static('img/home/2023/pocket-best-of-pencil.png') }}" alt="">
 </aside>
