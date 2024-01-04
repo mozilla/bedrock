@@ -3,7 +3,7 @@ babis==0.2.4
 basket-client==1.1.0
 beautifulsoup4==4.12.2
 bleach[css]==6.1.0
-boto3==1.28.63
+boto3==1.34.12
 certifi>=2023.7.22  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
@@ -25,7 +25,7 @@ django-watchman==1.3.0
 Django==3.2.23
 docutils==0.20.1
 envcat==0.1.1
-everett==3.2.0
+everett==3.3.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==10.0.3  # Must match the required version in the Glean NPM package.
@@ -35,13 +35,13 @@ honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.2  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.6.0
-lxml==4.9.3  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
+lxml==5.0.0  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
 Markdown==3.5.1
 markus[datadog]==4.2.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 meinheld==1.0.2
 newrelic==9.3.0
-Pillow==10.1.0
+Pillow==10.2.0
 PyGithub==2.1.1
 pyOpenSSL==23.3.0
 PyYAML==6.0.1
