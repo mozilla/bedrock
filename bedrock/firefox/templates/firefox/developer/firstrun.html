@@ -42,11 +42,7 @@
 
   {% include '/firefox/developer/includes/highlights.html' %}
 
-  {% if ftl_has_messages('firefox-developer-made-for-developers', 'firefox-developer-all-the-latest') %}
-    {% include '/firefox/developer/includes/for-developers.html' %}
-  {% else %}
-    {% include '/firefox/developer/includes/performance.html' %}
-  {% endif %}
+  {% include '/firefox/developer/includes/for-developers.html' %}
 
   {% include '/firefox/developer/includes/features.html' %}
 
