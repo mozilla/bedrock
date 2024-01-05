@@ -118,10 +118,14 @@ $pocket-inverse-color: #3A0603;
 
     .pocket-illustration {
         align-self: flex-start;
-        height: 80px;
+        height: 60px;
         position: absolute;
         right: 0;
         top: 0;
+
+        @media #{$mq-sm} {
+            height: 80px;
+        }
     }
 
     .c-banner-close {
@@ -130,8 +134,7 @@ $pocket-inverse-color: #3A0603;
 
     .pocket-pencil-content {
         display: flex;
-        align-items: flex-start;
-        padding-left: 60px;
+        align-items: center;
         justify-content: space-between;
         padding-top: 0;
         padding-bottom: $spacing-md;
@@ -139,13 +142,17 @@ $pocket-inverse-color: #3A0603;
         max-width: 100%;
         flex-direction: column;
 
+        @media #{$mq-sm} {
+            align-items: flex-start;
+            padding-left: 50px;
+        }
+
         h2 {
             @include font-base;
             @include font-size(21px);
             color: $color-white;
             margin-top: $spacing-md;
             margin-bottom: $spacing-md;
-
         }
 
         .mzp-c-button.t-pocket {
@@ -164,8 +171,8 @@ $pocket-inverse-color: #3A0603;
                 box-shadow: 0 0 0 1px $color-blue-05;
             }
         }
-
     }
+
     @media #{$mq-md} {
         .pocket-pencil-content {
             max-height: 80px;
@@ -180,7 +187,6 @@ $pocket-inverse-color: #3A0603;
             height: 45px;
             width: 45px;
         }
-
     }
 
     @media #{$mq-lg} {
