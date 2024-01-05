@@ -30,19 +30,22 @@
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
-  {{ css_bundle('pocket-best-of')}}
 
+  {% if show_pocket_banner %}
+    {{ css_bundle('pocket-best-of')}}
+  {% endif %}
   {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
     {{ css_bundle('ctd-promo') }}
   {% endif %}
-
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_firefox_app_store_banner %}
+  {%- if (LANG == 'de' or LANG.startswith('en-')) and show_pocket_banner -%}
+    {% include 'includes/banners/pocket-pencil-banner.html' %}
+  {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
@@ -52,9 +55,10 @@
 {% block content %}
 
 <header>
-    {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
-      {% include 'mozorg/home/includes/ctd-promo-de.html'%}
-    {% endif %}
+  {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
+    {% include 'mozorg/home/includes/ctd-promo-de.html'%}
+  {% endif %}
+
   <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
     <h1>{{ ftl('home-mission-driven') }}</h1>
     <p>{{ ftl('home-were-not-normal') }}</p>
@@ -247,7 +251,9 @@
 
 {% block js %}
   {{ js_bundle('newsletter') }}
-
+  {% if show_pocket_banner %}
+    {{ js_bundle('pocket-banner') }}
+  {% endif %}
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
