@@ -134,17 +134,17 @@ $pocket-inverse-color: #3A0603;
 
     .pocket-pencil-content {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         padding-top: 0;
         padding-bottom: $spacing-md;
         height: 110px;
         max-width: 100%;
+        padding-left: 50px;
         flex-direction: column;
 
         @media #{$mq-sm} {
-            align-items: flex-start;
-            padding-left: 50px;
+            align-items: center;
         }
 
         h2 {
