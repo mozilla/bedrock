@@ -18,15 +18,17 @@
 {% endblock %}
 
 {% if LANG == "de" %}
-  {% set page_title = 'Starte im neuen Jahr mit der Bild-im-Bild-Funktion durch' %}
-  {% set main_title = 'Starte im neuen Jahr mit der Bild-im-Bild-Funktion durch'|safe %}
+  {% set page_title = 'Surfe im neuen Jahr sicher durch das Internet und nutze dabei die Bild-im-Bild-Funktion' %}
+  {% set main_title = 'Surfe im neuen Jahr sicher durch das Internet und nutze dabei die Bild-im-Bild-Funktion.'|safe %}
+  {% set main_tagline = 'Mit der Bild-im-Bild-Funktion kannst du einfach mehrere Aufgaben gleichzeitig bearbeiten und dir die neuesten Tutorials oder Aufnahmen angucken, während du arbeitest.' %}
   {% set main_cta = 'Jetzt testen' %}
   {% set picto_one_title = 'Ein Meeting verfolgen und gleichzeitig Notizen machen' %}
   {% set picto_two_title = 'Ein Koch-Tutorial angucken, während du das Rezept anschaust' %}
   {% set picto_three_title = 'Die Kinder entertainen und nebenbei eine E-Mail fertig schreiben' %}
 {% elif LANG == "fr" %}
-  {% set page_title = 'Entamez une année productive avec la fonctionnalité plébiscitée d’incrustation vidéo' %}
-  {% set main_title = 'Entamez une année productive avec la fonctionnalité plébiscitée d’incrustation vidéo'|safe %}
+  {% set page_title = 'Mettez cette année sous le signe de la productivité avec l’incrustation vidéo' %}
+  {% set main_title = 'Mettez cette année sous le signe de la productivité avec l’incrustation vidéo'|safe %}
+  {% set main_tagline = 'Faites plusieurs choses à la fois facilement avec l’incrustation vidéo: visionnez des tutoriels, des enregistrements et plus encore tout en travaillant.' %}
   {% set main_cta = 'Essayez-le dès maintenant' %}
   {% set picto_one_title = 'Suivez une réunion tout en prenant des notes' %}
   {% set picto_two_title = 'Gardez un tutoriel ouvert au-dessus d’une recette' %}
@@ -34,6 +36,7 @@
 {% else %}
   {% set page_title = 'Do more in the new year with Picture-in-Picture' %}
   {% set main_title = 'Do more in the new year<br> with Picture-in-Picture'|safe %}
+  {% set main_tagline = 'Easily multitask with Picture-in-Picture, and catch up on tutorials, recordings and more while you work.' %}
   {% set main_cta = 'Try it now' %}
   {% set picto_one_title = 'Watch a lecture or meeting while you take notes' %}
   {% set picto_two_title = 'Keep a tutorial video open with a recipe while you cook' %}
@@ -75,11 +78,15 @@
       <p class="c-main-cta"><a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-text="Try it now" data-cta-type="button">{{ main_cta }}</a></p>
 
       <img src="{{ static('img/firefox/welcome/page17/pip-hero.jpg') }}" alt="" class="c-main-image">
+      <h3 class="c-main-subheading">{{ main_tagline }}</h3>
     </div>
   </section>
 {% endblock %}
 
-{% block content_body %}{% endblock %}
+{% block content_body %}
+  <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace">
+  </div>
+{% endblock %}
 
 {% block content_utility %}
 <p>
