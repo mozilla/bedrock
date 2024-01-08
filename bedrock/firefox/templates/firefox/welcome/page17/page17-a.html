@@ -18,8 +18,8 @@
 {% endblock %}
 
 {% if LANG == "de" %}
-  {% set page_title = 'Schalte ein sichereres 2024 frei' %}
-  {% set main_title = 'Schalte ein<br> sichereres 2024 frei'|safe %}
+  {% set page_title = 'Schalte dir ein sicheres 2024 frei' %}
+  {% set main_title = 'Schalte dir ein<br> sicheres 2024 frei'|safe %}
   {% set main_cta = 'Hol dir Mozilla VPN' %}
   {% set picto_one_title = 'Leistungsstarker Datenschutz' %}
   {% set picto_one_body = 'Hindere Internetanbieter und Tracker daran, deine Browser- und App-Aktivitäten einzusehen.' %}
@@ -28,10 +28,10 @@
 {% elif LANG == "fr" %}
   {% set page_title = 'Améliorez votre sécurité en 2024' %}
   {% set main_title = 'Améliorez<br> votre sécurité en 2024'|safe %}
-  {% set main_cta = 'Installez Mozilla VPN' %}
+  {% set main_cta = 'Installer Mozilla VPN' %}
   {% set picto_one_title = 'Confidentialité assurée' %}
   {% set picto_one_body = 'Empêchez les fournisseurs d’accès à Internet et les traqueurs de suivre vos activités dans votre navigateur et vos applications.' %}
-  {% set picto_two_title = 'Protégez tous vos appareils' %}
+  {% set picto_two_title = 'Tous vos appareils protégés' %}
   {% set picto_two_body = 'Connectez jusqu’à cinq appareils sous système d’exploitation Windows, macOS, iOS, Android ou Linux.' %}
 {% else %}
   {% set page_title = 'Switch on a more secure 2024' %}
@@ -88,7 +88,6 @@
           referral_id='welcome-page17',
           link_text=main_cta,
           class_name='mzp-t-product mzp-t-xl',
-          page_anchor="#pricing",
           optional_attributes= {
                 'data-cta-text' : 'Get Mozilla VPN',
                 'data-cta-type' : 'button',

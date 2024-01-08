@@ -40,6 +40,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-main-subheading {
+    @include text-body-xl;
+    text-align: center;
+}
+
 .c-main-image {
     margin: 0 auto $layout-md;
 
@@ -196,6 +201,7 @@ $image-path: '/media/protocol/img';
 
     .c-content-main,
     .c-main-title,
+    .c-main-subheading,
     .page-body,
     .mzp-c-picto-heading {
         color: $color-white;
