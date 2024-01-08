@@ -586,7 +586,115 @@ if (typeof window.Mozilla === 'undefined') {
                     }
                 }
             });
+
+            // Wait for GTM to load the GTAG GET API so that we can pass along client and session ID
+            StubAttribution.waitForGTagAPI(function (data) {
+                var gtagData = data;
+
+                if (gtagData && StubAttribution.withinAttributionRate()) {
+                    // GA4 - send an event indicating we did or did not get session ID from GTM
+                    if (gtagData.client_id && gtagData.session_id) {
+                        window.dataLayer.push({
+                            event: 'stub_session_test',
+                            label: 'session found'
+                        });
+                    } else {
+                        window.dataLayer.push({
+                            event: 'stub_session_test',
+                            label: 'session not-found'
+                        });
+                    }
+                }
+            });
         }
+    };
+
+    /**
+     * Attempts to retrieve the GA4 client and session ID from the dataLayer
+     * The GTAG GET API tag will write it to the dataLayer once GTM has loaded it
+     * https://www.simoahava.com/gtmtips/write-client-id-other-gtag-fields-datalayer/
+     */
+    StubAttribution.getGtagData = function (dataLayer) {
+        dataLayer =
+            typeof dataLayer !== 'undefined' ? dataLayer : window.dataLayer;
+
+        var result = {
+            client_id: null,
+            session_id: null
+        };
+
+        var _findObject = function (name, obj) {
+            for (var key in obj) {
+                if (
+                    typeof obj[key] === 'object' &&
+                    Object.prototype.hasOwnProperty.call(obj, key)
+                ) {
+                    if (key === name) {
+                        if (
+                            typeof obj[key].client_id === 'string' &&
+                            typeof obj[key].session_id === 'string'
+                        ) {
+                            result = obj[key];
+                        } else {
+                            return result;
+                        }
+                        break;
+                    } else {
+                        _findObject(name, obj[key]);
+                    }
+                }
+            }
+        };
+
+        try {
+            if (typeof dataLayer === 'object') {
+                dataLayer.forEach(function (layer) {
+                    _findObject('gtagApiResult', layer);
+                });
+            }
+        } catch (error) {
+            // GA4
+            window.dataLayer.push({
+                event: 'stub_session_test',
+                label: 'error'
+            });
+        }
+
+        return result;
+    };
+
+    /**
+     * A crude check to see if GTAG GET API has been loaded by GTM. Periodically
+     * attempts to retrieve the client and session ID.
+     * @param {Function} callback
+     */
+    StubAttribution.waitForGTagAPI = function (callback) {
+        var timeout;
+        var pollRetry = 0;
+        var interval = 100;
+        var limit = 20; // (100 x 20) / 1000 = 2 seconds
+
+        function _checkGtagAPI() {
+            clearTimeout(timeout);
+            var data = StubAttribution.getGtagData();
+
+            if (
+                typeof data === 'object' &&
+                typeof data.client_id === 'string' &&
+                typeof data.session_id === 'string'
+            ) {
+                callback(data);
+            } else {
+                if (pollRetry <= limit) {
+                    pollRetry += 1;
+                    timeout = window.setTimeout(_checkGtagAPI, interval);
+                } else {
+                    callback(false);
+                }
+            }
+        }
+
+        _checkGtagAPI();
     };
 
     window.Mozilla.StubAttribution = StubAttribution;
