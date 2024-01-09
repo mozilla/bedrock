@@ -134,11 +134,8 @@ $image-path: '/media/protocol/img';
     }
 
     &.twitter::before {
-        background-image: url('/media/img/logos/social/x-icon-black.svg');
-        background-size: 21px auto;
-        height: 25px;
-        width: 25px;
-        bottom: -2;
+        background-size: 27px auto;
+        background-position: 0 3px;
     }
 
     &.facebook {
