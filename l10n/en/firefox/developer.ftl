@@ -77,7 +77,7 @@ firefox-developer-congrats-you-now-have-firefox = Congrats. You now have { -bran
 firefox-developer-this-isnt-just-an-update = This isn’t just an update. This is { -brand-name-firefox-quantum }: A brand new { -brand-name-firefox } that has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.
 firefox-developer-welcome-to-firefox-browser = Welcome to { -brand-name-firefox-browser } { -brand-name-developer-edition }
 firefox-developer-made-for-developers = The browser made for developers
-firefox-developer-all-the-latest-v2 = All the latest developer tools in beta, in addition to features like the Multi-line Console Editor and WebSocket Inspector.
+firefox-developer-all-the-latest-v2 = All the latest developer tools in beta in addition to features like the Multi-line Console Editor and WebSocket Inspector.
 
 # Obsolete string
 firefox-developer-all-the-latest = All the latest developer tools in beta, plus <strong>experimental features</strong> like the Multi-line Console Editor and WebSocket Inspector.
