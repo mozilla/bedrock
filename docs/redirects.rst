@@ -43,7 +43,8 @@ The ``redirect()`` function has several options. Its signature is as follows:
 .. code-block:: python
 
     def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=None,
-                 query=None, vary=None, cache_timeout=12, decorators=None):
+                 query=None, vary=None, cache_timeout=12, decorators=None, re_flags=None,
+                 to_args=None, to_kwargs=None, prepend_locale=True, merge_query=False):
         """
         Return a url matcher suited for urlpatterns.
 
@@ -64,6 +65,14 @@ The ``redirect()`` function has several options. Its signature is as follows:
             and `expires` headers.
         decorators: a callable (or list of callables) that will wrap the view used to redirect
             the user. equivalent to adding a decorator to any other view.
+        re_flags: a string of any of the characters: "iLmsux". Will modify the `pattern` regex
+            based on the documented meaning of the flags (see python re module docs).
+        to_args: a tuple or list of args to pass to reverse if `to` is a url name.
+        to_kwargs: a dict of keyword args to pass to reverse if `to` is a url name.
+        prepend_locale: if true the redirect URL will be prepended with the locale from the
+            requested URL.
+        merge_query: merge the requested query params from the `query` arg with any query params
+            from the request.
 
         Usage:
         urlpatterns = [
