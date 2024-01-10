@@ -27,6 +27,11 @@ ATTRS_ALLOWED_IN_FLUENT_STRINGS = [
     "rel",
     "title",
     "target",
+    "data-link-text",
+    "data-link-position",
+    "data-cta-text",
+    "data-cta-type",
+    "data-cta-position",
 ]
 
 
