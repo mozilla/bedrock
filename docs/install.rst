@@ -292,6 +292,12 @@ To test a single app, specify the app by name in the command above. e.g.::
 Make it run
 ===========
 
+
+.. ATTENTION::
+   Regardless of whether you run Bedrock via Docker or directly on your machine,
+   the URL of the site is ``http://localhost:8000`` - `not` ``8080``
+
+
 Docker
 ------
 
