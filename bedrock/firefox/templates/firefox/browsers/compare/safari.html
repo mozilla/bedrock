@@ -101,7 +101,7 @@
 
       <p>{{ ftl('compare-safari-our-private-browsing-mode', attrs='href="https://addons.mozilla.org/firefox/addon/facebook-container/" rel="external noopener" data-cta-text="Facebook Container" data-cta-type="link"'|safe) }}</p>
 
-      <p>{{ ftl('compare-safari-as-far-as-security-goes-firefox', lockwise='href="%s" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')), monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-safari-as-far-as-security-goes-firefox', lockwise='href="%s" data-cta-text="Password manager" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')), monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-safari-if-you-choose-to-use-safari') }}</p>
 
@@ -238,7 +238,7 @@
 
       <p>{{ ftl('compare-safari-firefox-and-safari-both-provide') }}</p>
 
-      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v3', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-type="link"'|safe|format(url('firefox.accounts'))) }}</p>
+      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v3', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-text="Accounts" data-cta-type="link"'|safe|format(url('firefox.accounts'))) }}</p>
 
       <p>{{ ftl('compare-safari-the-firefox-app-for-ios-and', ios='href="%s" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe|format(app_store_url('firefox')),
               android='href="%s" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe|format(play_store_url('firefox'))) }}</p>

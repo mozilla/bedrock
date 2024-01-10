@@ -89,8 +89,8 @@
         </tbody>
       </table>
 
-      <p>{{ ftl('compare-brave-the-brave-browser-like-so', opera='href="%s" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.opera')),
-                 edge='href="%s" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.edge'))) }}</p>
+      <p>{{ ftl('compare-brave-the-brave-browser-like-so', opera='href="%s" data-cta-text="Opera" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.opera')),
+                 edge='href="%s" data-cta-text="Edge" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.edge'))) }}</p>
 
       <p>{{ ftl('compare-brave-brave-differentiates-itself') }}</p>
 
@@ -102,9 +102,9 @@
 
       <p>{{ ftl('compare-brave-on-the-other-side-of-the-coin', attrs='href="https://addons.mozilla.org/firefox/addon/ublock-origin/" rel="external noopener" data-cta-text="uBlock Origin" data-cta-type="link"'|safe) }}</p>
 
-      <p>{{ ftl('compare-brave-there-are-a-few-of-braves', lockwise='href="%s" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')),
+      <p>{{ ftl('compare-brave-there-are-a-few-of-braves', lockwise='href="%s" data-cta-text="password manager" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')),
           extension='href="https://addons.mozilla.org/addon/https-everywhere/" rel="external noopener" data-cta-text="HTTPS Everywhere" data-cta-type="link"'|safe,
-          privacy='href="%s" data-cta-type="link"'|safe|format(url('firefox.privacy.products'))) }}</p>
+          privacy='href="%s" data-cta-text="privacy products" data-cta-type="link"'|safe|format(url('firefox.privacy.products'))) }}</p>
 
       <p>{{ ftl('compare-brave-the-bottom-line-is-that-even') }}</p>
 
@@ -241,7 +241,7 @@
         <p>
           {{ ftl('compare-brave-the-firefox-browser-also-gives-v3',
                 fallback='compare-brave-the-firefox-browser-also-gives',
-                accounts='href="%s" data-cta-type="link"'|safe|format(url('firefox.accounts')),
+                accounts='href="%s" data-cta-text="accounts" data-cta-type="link"'|safe|format(url('firefox.accounts')),
                 monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
                 breaches='href="https://monitor.mozilla.org/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe
           ) }}
@@ -250,7 +250,7 @@
         <p>
           {{ ftl('compare-brave-the-firefox-browser-also-gives-v2',
                   fallback='compare-brave-the-firefox-browser-also-gives',
-                  accounts='href="%s" data-cta-type="link"'|safe|format(url('firefox.accounts')),
+                  accounts='href="%s" data-cta-text="accounts" data-cta-type="link"'|safe|format(url('firefox.accounts')),
                   monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
                   breaches='href="https://monitor.mozilla.org/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe
           ) }}
