@@ -7,13 +7,13 @@
 {% if LANG == 'de' %}
 <div class="mzp-c-video">
     <iframe src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0"
+    title="Falls du noch mehr über die Facebook Container Erweiterung erfahren möchtest, schau dir gern unser Video an"
       allow="encrypted-media" allowfullscreen>
-      <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ ftl('ui-watch-the-video') }}</a></p>
   </iframe>
 </div>
 {% else %}
 <div class="mzp-c-video">
-  <video id="fbcontainer-video" preload="metadata" controls
+  <video id="fbcontainer-video" preload="metadata" controls title="Click to watch a video about Facebook Container"
     poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
       <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
       <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
