@@ -1,0 +1,249 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/dark-mode';
+
+.wnp-content-main,
+.wnp-main-title {
+    color: $color-black;
+    text-align: center;
+}
+
+@media #{$mq-md} {
+    .wnp-main-title {
+        padding-left: $layout-lg;
+        padding-right: $layout-lg;
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+// Show a loading indicator until we can detect default browser
+.wnp-loading {
+    animation: loading 1.2s ease-in-out infinite;
+    background: linear-gradient(100deg, $color-light-gray-20 30%, $color-white 50%, $color-light-gray-20 70%);
+    background-size: 400%;
+    border-radius: $border-radius-sm;
+    height: 20px;
+    margin: 0 auto $layout-md;
+    width: 200px;
+
+    &.hide {
+        display: none;
+    }
+}
+
+// Assuming JS is available, show no content until we can detect default browser
+.js {
+    .is-default,
+    .is-not-default {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// Fall back to the non-default state if JS fails
+.no-js {
+    .is-default,
+    .wnp-loading {
+        display: none;
+    }
+
+    .is-not-default {
+        display: block;
+    }
+}
+
+// Conditional content
+.is-default,
+.is-not-default {
+    &.hide {
+        display: none;
+    }
+
+    &.show {
+        display: block;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Comparison table
+.mzp-u-data-table.compare-table {
+    margin: $layout-md auto;
+    max-width: $content-lg;
+    width: 100%;
+
+    thead {
+        th {
+            @include font-firefox;
+            @include text-title-xs;
+            background-color: $color-white;
+            border-bottom: 3px solid $color-marketing-gray-20;
+            border-top: 3px solid $color-marketing-gray-20;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+
+            @media #{$mq-sm} {
+                position: static;
+            }
+
+            img {
+                height: auto;
+                max-height: 36px;
+                max-width: 36px;
+                min-width: 1rem;
+                width: 100%;
+            }
+        }
+    }
+
+    th,
+    td {
+        @include text-body-sm;
+        border-left: 1px solid $color-marketing-gray-20;
+        border-top: 1px solid $color-marketing-gray-20;
+        font-weight: normal;
+        padding: $spacing-xs;
+        text-align: center;
+
+        &:first-child {
+            border-left: none;
+            text-align: start;
+        }
+
+        @media #{$mq-sm} {
+            padding: $spacing-sm;
+        }
+    }
+
+    tbody {
+        tr:nth-child(2n - 1) {
+            background-color: $color-marketing-gray-10;
+        }
+
+        tr:last-child {
+            th,
+            td {
+                border-bottom: 1px solid $color-marketing-gray-20;
+            }
+        }
+    }
+
+    .compare-table-legend {
+        .legend-label {
+            font-weight: bold;
+        }
+
+        .compare-icon {
+            vertical-align: middle;
+            margin-left: $spacing-md;
+        }
+    }
+}
+
+.compare-icon {
+    @include image-replaced;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+
+    &.compare-icon-yes {
+        background-image: url('/media/img/firefox/whatsnew/whatsnew122/check-light.svg');
+    }
+
+    &.compare-icon-some {
+        background-image: url('/media/img/firefox/whatsnew/whatsnew122/tilde-light.svg');
+    }
+
+    &.compare-icon-no {
+        background-image: url('/media/img/firefox/whatsnew/whatsnew122/dash-light.svg');
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// For dark mode
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main,
+    .wnp-main-title {
+        color: $color-white;
+    }
+
+    .wnp-rel-notes {
+        @include white-links;
+    }
+
+    .mzp-u-data-table.compare-table {
+        thead th {
+            background-color: transparent;
+            border-bottom-color: $color-light-gray-80;
+            border-top-color: $color-light-gray-80;
+        }
+
+        th,
+        td {
+            border-left-color: $color-light-gray-80;
+            border-top-color: $color-light-gray-80;
+        }
+
+        tbody {
+            tr:nth-child(2n - 1) {
+                background-color: transparent;
+            }
+
+            tr:last-child {
+                th,
+                td {
+                    border-bottom-color: $color-light-gray-80;
+                }
+            }
+        }
+    }
+
+    .compare-icon {
+        &.compare-icon-yes {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew122/check-dark.svg');
+        }
+
+        &.compare-icon-some {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew122/tilde-dark.svg');
+        }
+
+        &.compare-icon-no {
+            background-image: url('/media/img/firefox/whatsnew/whatsnew122/dash-dark.svg');
+        }
+    }
+
+    .wnp-main-cta {
+        .mzp-c-button.mzp-t-product.mzp-t-secondary {
+            background-color: transparent;
+            border-color: $color-white;
+            color: $color-white;
+
+            &:hover,
+            &:active {
+                background-color: $color-dark-gray-40;
+                border-color: $color-white;
+                box-shadow: none;
+                color: $color-white;
+            }
+        }
+    }
+}
