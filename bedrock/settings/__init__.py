@@ -179,6 +179,7 @@ else:
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "creativecommons.org",
+        "images.ctfassets.net",
     ]
     _csp_script_src = [
         # TODO fix things so that we don't need this
