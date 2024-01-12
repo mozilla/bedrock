@@ -61,7 +61,7 @@ TrackProductDownload.getEventObject = (
     download_language = false
 ) => {
     const eventObject = {};
-    eventObject['event'] = 'product_download';
+    eventObject['event'] = product + '_download';
     eventObject['product'] = product;
     eventObject['platform'] = platform;
     eventObject['method'] = method;
@@ -138,15 +138,15 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
 
         switch (idParam) {
             case 'org.mozilla.firefox':
-                androidProduct = 'firefox';
+                androidProduct = 'firefox_mobile';
                 androidRelease = 'release';
                 break;
             case 'org.mozilla.fenix':
-                androidProduct = 'firefox';
+                androidProduct = 'firefox_mobile';
                 androidRelease = 'nightly';
                 break;
             case 'org.mozilla.firefox_beta':
-                androidProduct = 'firefox';
+                androidProduct = 'firefox_mobile';
                 androidRelease = 'beta';
                 break;
             case 'org.mozilla.focus':
@@ -169,7 +169,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
     } else if (appStoreURL.test(downloadURL) || iTunesURL.test(downloadURL)) {
         let iosProduct = 'unrecognized';
         if (downloadURL.indexOf('/id989804926') !== -1) {
-            iosProduct = 'firefox';
+            iosProduct = 'firefox_mobile';
         } else if (downloadURL.indexOf('/id1055677337') !== -1) {
             iosProduct = 'focus';
         } else if (downloadURL.indexOf('/id1073435754') !== -1) {
@@ -185,9 +185,11 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             'release'
         );
     } else if (adjustURL.test(downloadURL)) {
+        const adjustProduct = params.mz_pr ? params.mz_pr : 'unrecognized';
+        const adjustPlatform = params.mz_pl ? params.mz_pl : '';
         eventObject = TrackProductDownload.getEventObject(
-            params.mz_pr,
-            params.mz_pl,
+            adjustProduct,
+            adjustPlatform,
             'adjust',
             'release'
         );
@@ -234,6 +236,22 @@ TrackProductDownload.sendEventFromURL = (downloadURL) => {
  */
 TrackProductDownload.sendEvent = (eventObject) => {
     window.dataLayer.push(eventObject);
+    // we also want to keep the old event name around for a few months to help with the transition
+    // this can be deleted as part of the UA cleanup
+    TrackProductDownload.sendOldEvent(eventObject);
+};
+
+/**
+ * Sends an version of the old product_download event to the data layer
+ * @param {Object} - product details formatted into a product_download event
+ */
+TrackProductDownload.sendOldEvent = (eventObject) => {
+    // deep copy of event object
+    const oldEventObject = JSON.parse(JSON.stringify(eventObject));
+    // replace event name with old event name
+    oldEventObject['event'] = 'product_download';
+    // add to dataLayer
+    window.dataLayer.push(oldEventObject);
 };
 
 export default TrackProductDownload;

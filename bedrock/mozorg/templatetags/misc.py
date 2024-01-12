@@ -713,7 +713,7 @@ def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, local
     if redirect_url:
         link += "?redirect=" + quote(redirect_url, safe="") + "&" + params + "&mz_pl=" + redirect
     else:
-        link += "?" + params + "&mz_pl=mobile"
+        link += "?" + params
 
     return link
 
@@ -737,7 +737,7 @@ def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
     play_store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     locale = getattr(ctx["request"], "locale", "en-US")
 
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "firefox", adgroup, creative)
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "firefox_mobile", adgroup, creative)
 
 
 @library.global_function

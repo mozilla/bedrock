@@ -384,30 +384,36 @@ link element.
 ```
 
 
-Product Download
+Product Downloads
 ~~~~~~~~~~~~~~~~
 
 .. Important::
 
-    Only Firefox and Pocket are currently supported. VPN support has not been added.
+    VPN support has not been added. Firefox, Firefox Mobile, Focus, Klar, and Pocket are currently supported.
 
-We are using a the custom event `product_download` to track product downloads and app store referrals
-for Firefox, Pocket, and VPN. We are not using the default GA4 event file_download for a combination of reasons:
+When the user signals their intent do install one of our products we log a download event named for the product.
+This intent could be: clicking an app store badge, triggering a file download, or sending themselves the link
+using the send to device widget. The events are in the format [product name]_download and all function the same.
+So they use the same JavaScript "TrackProductDownload". For this documentation the following custom events will be
+talked about as `product_download` :
+
+- `firefox_download`
+- `firefox_mobile_download`
+- `focus_download`
+- `klar_download`
+- `pocket_download`
+
+We are not using the default GA4 event file_download for a combination of reasons:
 it does not trigger for the Firefox file types, we would like to collect more information than is included with
 the default events, and we would like to treat product downloads as goals but not all file downloads are goals.
 
-.. Note::
-
-    Most apps listed in *appstores.py* are supported but you may still want to check that the URL
-    you are tracking is identified as valid in ```isValidDownloadURL``` and will be recognized by ```getEventFromUrl``.
-
 Properties for use with `product_download` (not all products will have all options):
 
-- product (example: firefox)
-- platform (example: win64)
-- method (store, site, or adjust)
-- release_channel (example: nightly)
-- download_language (example: en-CA)
+- product (one of: firefox, firefox_mobile, focus, klar, pocket, vpn)
+- platform **optional** (one of: win, win-msi, win64, win64-msi, win64-aarch64, macos, linux, linux64, android, ios)
+- method (one of: site, store, or adjust)
+- release_channel **optional** (one of: release, esr, devedition, beta, nightly)
+- download_language **optional** (example: en-CA)
 
 There are two ways to use TrackProductDownload:
 
@@ -425,6 +431,25 @@ There are two ways to use TrackProductDownload:
 
 You do NOT need to include ``datalayer-productdownload-init.es6.js`` in the page bundle, it is already included
 in the site bundle.
+
+.. Note::
+
+    Most apps listed in *appstores.py* are supported but you may still want to check that the URL
+    you are tracking is identified as valid in ```isValidDownloadURL``` and will be recognized by ```getEventFromUrl``.
+
+
+If you would like to track something as a download that is not currently in the *appstores.py* you can
+get and send the event object manually. This most often happens with adjust links generated for specific campaigns:
+
+.. code-block:: javascript
+
+    let customEventObject = TrackProductDownload.getEventObject(
+            'firefox_mobile',
+            '', // if you are not redirecting to a specific store, leave platform empty
+            'adjust'
+        );
+    TrackProductDownload.sendEvent(customEventObject);
+
 
 Widget Action
 ~~~~~~~~~~~~~

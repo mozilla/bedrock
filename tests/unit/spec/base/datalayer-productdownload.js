@@ -65,7 +65,7 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
 describe('TrackProductDownload.getEventObject', function () {
     it('should insert parameters into the proper place in the event object', function () {
         let testFullEventExpectedObject = {
-            event: 'product_download',
+            event: 'testProduct_download',
             product: 'testProduct',
             platform: 'testPlatform',
             method: 'testMethod',
@@ -83,7 +83,7 @@ describe('TrackProductDownload.getEventObject', function () {
     });
     it('should create an event object even if there are no release_channel or download_language parameters', function () {
         let testShortEventExpectedObject = {
-            event: 'product_download',
+            event: 'testProduct_download',
             product: 'testProduct',
             platform: 'testPlatform',
             method: 'testMethod'
@@ -109,19 +109,19 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
         );
-        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox_mobile');
     });
     it('should identify product for Firefox in the Play Store', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
             'https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org'
         );
-        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox_mobile');
     });
     it('should identify product for Firefox with Adjust', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
-            'https://app.adjust.com/2uo1qc?mz_pr=firefox&mz_pl=mobile'
+            'https://app.adjust.com/2uo1qc?mz_pr=firefox_mobile&mz_pl=mobile'
         );
-        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['product']).toBe('firefox_mobile');
     });
     it('should identify product for Pocket in the App Store', function () {
         let testEvent = TrackProductDownload.getEventFromUrl(
@@ -243,6 +243,12 @@ describe('TrackProductDownload.getEventFromUrl', function () {
             'https://app.adjust.com/b8s7qo?redirect=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337&campaign=www.mozilla.org&adgroup=mobile-focus-page&mz_pr=focus&mz_pl=ios'
         );
         expect(testEvent['platform']).toBe('ios');
+    });
+    it('should not identify platform for Adjust link without redirect', function () {
+        let testEvent = TrackProductDownload.getEventFromUrl(
+            'https://app.adjust.com/b8s7qo'
+        );
+        expect(testEvent['platform']).toBe('');
     });
     // release channel
     it('should identify release_channel for Firefox Release', function () {
@@ -383,7 +389,7 @@ describe('TrackProductDownload.handleLink', function () {
         expect(TrackProductDownload.isValidDownloadURL).toHaveBeenCalled();
         expect(TrackProductDownload.getEventObject).toHaveBeenCalled();
         expect(TrackProductDownload.sendEvent).toHaveBeenCalledWith({
-            event: 'product_download',
+            event: 'firefox_download',
             product: 'firefox',
             platform: 'win64',
             method: 'site',
