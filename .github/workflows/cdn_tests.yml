@@ -55,6 +55,8 @@ jobs:
       PYTEST_PROCESSES: auto
       SAUCELABS_API_KEY: ""
       SAUCELABS_USERNAME: ""
+      RERUNS_ALLOWED: 3
+      RERUNS_DELAY_SECS: 60
 
     # Note we use if: always() below to keep things going, rather than
     # continue-on-error, because that approach falsely marks the overall
