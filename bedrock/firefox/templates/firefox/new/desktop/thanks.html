@@ -80,6 +80,14 @@
         {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
         {{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}
       </p>
+      <div class="show-linux">
+        <div class="c-linux-button-group">
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('firefox-desktop-download-linux-32') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('firefox-desktop-download-linux-64') }}</a>
+        </div>
+        {% set attrs = 'href="https://support.mozilla.org/en-US/kb/install-firefox-linux#debian%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        <p class="linux-deb-text">{{ ftl('firefox-desktop-download-linux-using-debian', attrs=attrs) }}</p>
+      </div>
       <p class="show-else">
         {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
         {{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}

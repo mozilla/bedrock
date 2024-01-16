@@ -21,7 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @returns {Boolean}
      */
     DownloadThanks.shouldAutoDownload = function (platform, fxSupported) {
-        var supportedPlatforms = ['windows', 'osx', 'linux', 'android', 'ios'];
+        var supportedPlatforms = ['windows', 'osx', 'android', 'ios'];
 
         if (fxSupported && supportedPlatforms.indexOf(platform) !== -1) {
             return true;
