@@ -1394,12 +1394,6 @@
     },
     {
       "files": [
-        "js/firefox/welcome/welcome8-traffic-cop.js"
-      ],
-      "name": "firefox_welcome_page8_traffic_cop"
-    },
-    {
-      "files": [
         "js/firefox/welcome/welcome14.js"
       ],
       "name": "firefox_welcome_page14"
