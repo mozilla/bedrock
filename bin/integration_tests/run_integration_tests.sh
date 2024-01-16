@@ -14,6 +14,8 @@ set -xe
 : ${BROWSER_NAME:="firefox"}
 : ${TESTS_PATH:="tests"}
 : ${RESULTS_PATH:="${TESTS_PATH}/results"}
+: ${RERUNS_ALLOWED:="2"}
+: ${RERUNS_DELAY_SECS:="1"}
 
 # Common arguments
 if [ "${DRIVER}" = "SauceLabs" ]; then
@@ -27,7 +29,8 @@ CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
 CMD="${CMD} --workers ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
-CMD="${CMD} --reruns 2"
+CMD="${CMD} --reruns ${RERUNS_ALLOWED}"
+CMD="${CMD} --reruns-delay ${RERUNS_DELAY_SECS}"
 CMD="${CMD} --html ${RESULTS_PATH}/index.html"
 CMD="${CMD} --junitxml ${RESULTS_PATH}/junit.xml"
 if [ -n "${DRIVER}" ]; then CMD="${CMD} --driver ${DRIVER}"; fi
