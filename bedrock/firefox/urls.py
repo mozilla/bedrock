@@ -226,16 +226,7 @@ urlpatterns = (
     # Issue 13253: Ensure that Firefox can continue to refer to this URL.
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
     # Default browser campaign
-    path(
-        "firefox/set-as-default/",
-        VariationTemplateView.as_view(
-            template_name="firefox/set-as-default/landing.html",
-            ftl_files="firefox/set-as-default/landing",
-            variation_locales=["en-US"],
-            template_context_variations=["1", "2", "3"],
-        ),
-        name="firefox.set-as-default",
-    ),
+    page("firefox/set-as-default/", "firefox/set-as-default/landing.html", ftl_files="firefox/set-as-default/landing"),
     # Issue #9490 - Evergreen Content for SEO
     page("firefox/more/", "firefox/more.html", ftl_files="firefox/more"),
     page("firefox/browsers/quantum/", "firefox/browsers/quantum.html", ftl_files="firefox/browsers/quantum"),
