@@ -46,7 +46,7 @@
 {% block body_class %}mzp-t-firefox {{ theme_class }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('firefox_releasenotes') }}
 {% endblock %}
@@ -115,8 +115,12 @@
             heading_level=1,
             title=primary_heading,
             desc=call_out_desc|safe,
-            class='mzp-t-firefox ' + product_class,
+            class='mzp-t-firefox mzp-t-background-tertiary ' + product_class,
             include_cta=True,
+            brand=True,
+            brand_product='firefox',
+            brand_type='logo',
+            brand_size='lg',
           ) %}
             {% if download_button_primary %}
               <div class="c-download-cta">
@@ -342,7 +346,11 @@
 
     {% call call_out_compact(
       title=download_title,
-      class='mzp-t-firefox ' + product_class
+      class='mzp-t-firefox mzp-t-background-secondary ' + product_class,
+      brand=True,
+      brand_product='firefox',
+      brand_type='logo',
+      brand_size='lg'
     ) %}
       {{ download_button_secondary }}
     {% endcall %}

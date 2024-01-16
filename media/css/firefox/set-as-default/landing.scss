@@ -6,11 +6,13 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
-.mzp-c-call-out.mzp-t-hero.mzp-t-product-firefox {
+.mzp-c-callout.mzp-t-hero.mzp-t-product-firefox {
     background: $color-white;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         @include background-size(64px, 64px);
     }
 }

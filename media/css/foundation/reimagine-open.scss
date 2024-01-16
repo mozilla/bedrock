@@ -9,15 +9,15 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core//protocol/css/includes/lib';
 
-.mzp-c-call-out.mzp-t-hero {
+.mzp-c-callout.mzp-t-hero {
     background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
     @include background-size(469px, 195px);
 
-    .mzp-c-call-out-desc {
+    .mzp-c-callout-desc {
         @include text-body-xl;
     }
 
-    .c-call-out-byline {
+    .c-callout-byline {
         @include text-body-sm;
         font-style: italic;
         margin-bottom: $spacing-2xl;

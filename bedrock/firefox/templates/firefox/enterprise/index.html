@@ -6,14 +6,13 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out_compact, picto, split with context %}
+{% from "macros-protocol.html" import picto, split with context %}
 
 {% block page_title_full %}{{ ftl('firefox-enterprise-get-firefox-for-your-enterprise-with') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-enterprise-get-unmatched-data-protection') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox-enterprise') }}
 {% endblock %}

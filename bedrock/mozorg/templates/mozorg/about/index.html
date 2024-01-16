@@ -20,17 +20,17 @@
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('protocol-newsletter') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('about') }}
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-call-out mzp-t-hero"  {% if variant %}data-variant="{{ variant }}"{% endif%}>
+<section class="mzp-c-callout mzp-t-hero"  {% if variant %}data-variant="{{ variant }}"{% endif%}>
   <div class="mzp-l-content">
-    <h1 class="mzp-c-call-out-title">{{ ftl('about-mozilla-makes-browsers-apps') }}</h1>
-    <p class="mzp-c-call-out-desc">{{ ftl('about-our-mission-keep-the-internet') }}</p>
-     <p class="c-call-out-cta">
-        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-link-text="Read Our Mission" data-link-type="button" data-cta-position="primary cta">
+    <h1 class="mzp-c-callout-title">{{ ftl('about-mozilla-makes-browsers-apps') }}</h1>
+    <p class="mzp-c-callout-desc">{{ ftl('about-our-mission-keep-the-internet') }}</p>
+     <p class="c-callout-cta">
+        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-link-name="Read Our Mission" data-link-type="button" data-cta-position="primary cta">
           {{ ftl('about-read-our-mission') }}
         </a>
       </p>

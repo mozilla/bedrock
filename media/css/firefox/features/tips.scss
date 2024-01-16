@@ -10,6 +10,8 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @import '~@mozilla-protocol/core/protocol/css/components/video';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-mozilla';
 
 // Play button on videos
 .mzp-c-card-media-wrapper {
@@ -32,9 +34,4 @@ $image-path: '/media/protocol/img';
         opacity: 1;
         transform: scale(1.1);
     }
-}
-
-// Call-out
-.mzp-c-call-out-compact.mzp-t-dark {
-    background-color: $color-ink-80;
 }

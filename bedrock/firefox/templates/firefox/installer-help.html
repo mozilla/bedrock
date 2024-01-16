@@ -16,7 +16,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('installer_help') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
 {% endblock %}
 
 {% block site_header %}
@@ -43,10 +43,10 @@
 
 {% block content %}
 <main class="mzp-l-content">
-  <section class="mzp-c-call-out mzp-t-hero installer-call-out">
+<section class="mzp-c-callout mzp-t-hero installer-callout">
     <div class="mzp-l-content">
-      <h1 class="mzp-c-call-out-title">{{ ftl('installer-help-page-title') }}</h1>
-      <p class="mzp-c-call-out-desc">
+      <h1 class="mzp-c-callout-title">{{ ftl('installer-help-page-title') }}</h1>
+      <p class="mzp-c-callout-desc">
         {{ ftl('installer-help-main-tagline') }}
         <span>{{ call_out_desc }}</span>
       </p>

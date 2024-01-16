@@ -56,9 +56,9 @@ html {
 }
 
 // * -------------------------------------------------------------------------- */
-// Page call-out
+// Page callout
 
-.mzp-c-call-out {
+.mzp-c-callout {
     &.mzp-t-dark.mzp-t-hero {
         background-color: $color-marketing-gray-99;
     }
@@ -118,7 +118,7 @@ html {
     }
 }
 
-.mzp-c-call-out.mzp-t-hero .mzp-c-call-out-title {
+.mzp-c-callout.mzp-t-hero .mzp-c-callout-title {
     @include text-title-lg;
     margin-bottom: $layout-sm;
 
@@ -146,7 +146,7 @@ html {
     }
 }
 
-.mzp-c-call-out.mzp-t-hero .mzp-c-call-out-desc {
+.mzp-c-callout.mzp-t-hero .mzp-c-callout-desc {
     @include text-body-lg;
     margin-bottom: $layout-sm;
 
@@ -296,7 +296,7 @@ html {
 // * -------------------------------------------------------------------------- */
 // Dark theme
 
-.mzp-c-call-out.mzp-t-dark {
+.mzp-c-callout.mzp-t-dark {
     @include light-links;
     background-color: $color-ink-80;
     color: $color-white;

@@ -17,7 +17,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-split')}}
   {{ css_bundle('protocol-card')}}
-  {{ css_bundle('protocol-call-out')}}
+  {{ css_bundle('protocol-callout')}}
   {{ css_bundle('firefox_facebook_container') }}
 {% endblock %}
 
@@ -86,7 +86,11 @@
     {% call call_out_compact(
       title=ftl('facebook-container-browse-freely-with-firefox'),
       class='mzp-t-dark',
-      heading_level=2)
+      heading_level=2,
+      brand=True,
+      brand_product='firefox',
+      brand_type='logo',
+      brand_size='lg')
     %}
     {{ download_firefox(alt_copy=ftl('download-button-download-now'), dom_id="download-firefox-today") }}
     {% endcall %}

@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import split, call_out_compact with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,7 +15,6 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-call-out') }}
   {{ css_bundle('firefox-browsers-mobile') }}
 
   {% if show_firefox_app_store_banner %}

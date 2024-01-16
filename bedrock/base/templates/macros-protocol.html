@@ -115,20 +115,26 @@
 {#
   Call Out: https://protocol.mozilla.org/components/detail/call-out--default.html
   HTML import: {% from "macros-protocol.html" import call_out with context %}
-  CSS bundle: {% block page_css %} {{ css_bundle('protocol-call-out') }} {% endblock %}
+  CSS bundle: {% block page_css %} {{ css_bundle('protocol-callout') }} {% endblock %}
   Macro parameters:
     title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
     desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
     class: String adding class(es) to the section tag.
     include_cta: Boolean indicating whether or not to include the body of the macro call (usually a mix of text and html).
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+    brand: Boolean indicating whether or not to display a Mozilla product logo or wordmark.
+    brand_product: String indicating what Mozilla product is to be displayed.
+    brand_type: String for choosing whether a logo or a wordmark is to be displayed.
+    brand_size: String to indicate size of the logo or wordmark to be added.
+    brand_text: String naming the branding's product. Used for accessibility purposes. Is optional as it depends on if the logo/wordmark used is for decorative purposes or not.
 #}
-{% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2) -%}
-<section class="mzp-c-call-out {% if class %}{{ class }}{% endif %}">
+{% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None) -%}
+<section class="mzp-c-callout {% if class %}{{ class }}{% endif %}">
   <div class="mzp-l-content">
-    <h{{ heading_level }} class="mzp-c-call-out-title">{{ title }}</h{{ heading_level }}>
+    {% if brand %}<div class="mzp-t-callout-brand mzp-c-{{ brand_type }} mzp-t-{{ brand_type }}-{{ brand_size }} mzp-t-product-{{ brand_product }}">{{ brand_text }}</div>{% endif %}
+    <h{{ heading_level }} class="mzp-c-callout-title">{{ title }}</h{{ heading_level }}>
     {% if desc %}
-    <p class="mzp-c-call-out-desc">{{ desc }}</p>
+    <p class="mzp-c-callout-desc">{{ desc }}</p>
     {% endif %}
     {% if include_cta %}
       {{ caller() }}
@@ -139,28 +145,30 @@
 
 
 {#
-  Call Out (compact): https://protocol.mozilla.org/components/detail/compact-call-out--default.html
+  Call Out (compact): https://protocol.mozilla.org/components/detail/compact-callout--default.html
   HTML import: {% from "macros-protocol.html" import call_out with context %}
-  CSS bundle: {% block page_css %} {{ css_bundle('protocol-call-out') }} {% endblock %}
+  CSS bundle: {% block page_css %} {{ css_bundle('protocol-callout') }} {% endblock %}
   Marco Parameters:
     title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
     desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
     class: tring adding class(es) to the section tag.
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
 #}
-{% macro call_out_compact(title, desc=None, class=None, heading_level=2) -%}
-<section class="mzp-c-call-out-compact {% if class %}{{ class }}{% endif %}">
-  <div class="mzp-l-content">
-    <div class="mzp-c-call-out-content">
-      <div class="mzp-c-call-out-container">
-        <h{{ heading_level }} class="mzp-c-call-out-title">{{ title }}</h{{ heading_level }}>
+{% macro call_out_compact(title, desc=None, class=None, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None) -%}
+<section class="mzp-c-callout mzp-l-compact {% if class %}{{ class }}{% endif %}">
+
+  <div class="mzp-l-content mzp-t-content-lg">
+    <div class="mzp-c-callout-content">
+      {% if brand %}<div class="mzp-t-callout-compact-brand mzp-c-{{ brand_type }} mzp-t-{{ brand_type }}-{{ brand_size }} mzp-t-product-{{ brand_product }}">{{ brand_text }}</div>{% endif %}
+      <div class="mzp-c-callout-container">
+        <h{{ heading_level }} class="mzp-c-callout-title">{{ title }}</h{{ heading_level }}>
         {% if desc %}
-        <p class="mzp-c-call-out-desc">{{ desc }}</p>
+        <p class="mzp-c-callout-desc">{{ desc }}</p>
         {% endif %}
       </div>
     </div>
-    <div class="mzp-c-call-out-cta">
-      <div class="mzp-c-call-out-cta-container">
+    <div class="mzp-c-callout-cta">
+      <div class="mzp-c-callout-cta-container">
         {{ caller() }}
       </div>
     </div>

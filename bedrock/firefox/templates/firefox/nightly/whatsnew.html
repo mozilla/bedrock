@@ -11,6 +11,7 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('nightly_whatsnew') }}
 {% endblock %}
 
@@ -43,10 +44,10 @@
     <div class="mzp-c-emphasis-box">
       <h2 class="c-emphasis-box-title">{{ self.page_title() }}</h2>
       {% if LANG == 'es-ES' and country_code == 'ES' %}
-      <section class="mzp-c-call-out  mzp-t-dark  mzp-t-content-xl mzp-l-content-xl">
+      <section class="mzp-c-callout  mzp-t-dark  mzp-t-content-xl mzp-l-content-xl">
           <div class="mzp-l-content">
-              <h4 class="mzp-c-call-out-title">¿Quieres ayudar en España?</h4>
-              <div class="mzp-c-call-out-desc">
+              <h4 class="mzp-c-callout-title">¿Quieres ayudar en España?</h4>
+              <div class="mzp-c-callout-desc">
                   <p>El éxito de Mozilla y de Firefox también depende de la existencia e implicación de comunidades locales en todos los aspectos del proyecto.</p>
                   <p>¿Quieres implicarte en uno de los proyectos open source más importantes en el mundo y ayudarnos a crear una web más abierta para todos?</p>
               </div>

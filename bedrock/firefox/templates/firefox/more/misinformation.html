@@ -13,7 +13,7 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('misinformation') }}
 {% endblock %}
@@ -192,7 +192,11 @@
 
 {% call call_out_compact(
   title=ftl('misinformation-designed-to-protect'),
-  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg',
 ) %}
 <div class="download-firefox">
   {{ download_firefox(dom_id='misinformation-footer-download', download_location='secondary cta') }}

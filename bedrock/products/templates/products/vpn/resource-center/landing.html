@@ -16,7 +16,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-card') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('vpn-resource-center') }}
 {% endblock page_css %}
@@ -77,7 +77,7 @@
     media_class='resource-center-split-media',
   ) %}
     <h1 class="resource-center-wordmark mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-vpn">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h1>
-    <h2 class="mzp-c-call-out-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
+    <h2 class="mzp-c-callout-title">{{ ftl('vpn-resource-center-start-protecting') }}</h2>
     {{ vpn_resource_center_cta(
       referral_id='vpn-resource-center',
       link_text=vpn_saving(country_code=country_code, lang=LANG, ftl_string='vpn-shared-save-percent-on'),

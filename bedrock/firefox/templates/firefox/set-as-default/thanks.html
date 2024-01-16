@@ -14,7 +14,7 @@
 {% block page_title %}{{ ftl('set-as-default-thanks-set-as-default-thanks-for-choosing-firefox') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-call-out')}}
+  {{ css_bundle('protocol-callout')}}
   {{ css_bundle('firefox-default-thanks') }}
 {% endblock %}
 
@@ -32,15 +32,19 @@
     title=ftl('set-as-default-thanks-set-as-default-thanks-for-choosing-firefox'),
     class='mzp-t-product-firefox mzp-t-hero thanks-hero',
     include_cta=True,
-    heading_level=1
+    heading_level=1,
+    brand=True,
+    brand_product='firefox',
+    brand_type='logo',
+    brand_size='xl',
   ) %}
     <div class="thanks-state-not-firefox">
-      <p class="mzp-c-call-out-desc">
+      <p class="mzp-c-callout-desc">
         {{ ftl('set-as-default-thanks-looks-like-youre-using-a') }}
       </p>
       {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), download_location='primary cta') }}
     </div>
-    <div class="mzp-c-call-out-desc thanks-state-not-default-desktop hide-from-legacy-ie">
+    <div class="mzp-c-callout-desc thanks-state-not-default-desktop hide-from-legacy-ie">
       <p>{{ ftl('set-as-default-thanks-youre-almost-done-just-change') }}</p>
 
       <p class="thanks-help-text">
@@ -49,15 +53,15 @@
         </a>
       </p>
     </div>
-    <p class="mzp-c-call-out-desc thanks-state-not-default-android hide-from-legacy-ie">
+    <p class="mzp-c-callout-desc thanks-state-not-default-android hide-from-legacy-ie">
     {{ ftl('set-as-default-thanks-heres-everything-you-need-android',
            android='https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms) }}
     </p>
-    <p class="mzp-c-call-out-desc thanks-state-not-default-ios hide-from-legacy-ie">
+    <p class="mzp-c-callout-desc thanks-state-not-default-ios hide-from-legacy-ie">
     {{ ftl('set-as-default-thanks-heres-everything-you-need-ios',
            ios='https://support.mozilla.org/en-US/kb/unable-set-firefox-default-browser-ios' ~ utms) }}
     </p>
-    <p class="mzp-c-call-out-desc thanks-state-is-default hide-from-legacy-ie">
+    <p class="mzp-c-callout-desc thanks-state-is-default hide-from-legacy-ie">
       {{ ftl('set-as-default-thanks-youre-all-set') }}
     </p>
   {% endcall %}

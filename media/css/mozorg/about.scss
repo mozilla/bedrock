@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Hero image
 
-.mzp-c-call-out.mzp-t-hero {
+.mzp-c-callout.mzp-t-hero {
     @include at2x('/media/img/mozorg/about/about-hero-xxs.jpg', auto, 400px);
     @include border-box;
     background-repeat: no-repeat;
@@ -39,12 +39,12 @@ $image-path: '/media/protocol/img';
         justify-content: center;
     }
 
-    .mzp-c-call-out-desc {
+    .mzp-c-callout-desc {
         font-weight: bold;
         margin-bottom: $spacing-2xl;
     }
 
-    .c-call-out-cta {
+    .c-callout-cta {
         margin-bottom: 1.25em;
     }
 }

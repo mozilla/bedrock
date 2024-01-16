@@ -13,7 +13,7 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
@@ -28,6 +28,10 @@
       class='mzp-t-hero mzp-t-product-firefox',
       include_cta=True,
       heading_level=1,
+      brand=True,
+      brand_product='firefox',
+      brand_type='logo',
+      brand_size='lg',
     ) %}
       <div class="cta-container">
         <div class="mzp-c-button-download-container">

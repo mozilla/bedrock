@@ -10,22 +10,24 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import '../protocol/components/sub-navigation';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // * -------------------------------------------------------------------------- */
 // Call out / page header
 
-.mzp-c-call-out.mzp-t-product-firefox,
-.mzp-c-call-out.mzp-t-product-beta {
+.mzp-c-callout.mzp-t-product-firefox,
+.mzp-c-callout.mzp-t-product-beta {
     background: $color-marketing-gray-20;
 }
 
 // nightly header gradient
-.mzp-c-call-out.mzp-t-product-nightly {
+.mzp-c-callout.mzp-t-product-nightly {
     background: linear-gradient(#000, #001e44);
 }
 
 // developer header gradient
-.mzp-c-call-out.mzp-t-product-developer {
+.mzp-c-callout.mzp-t-product-developer {
     background: linear-gradient(#000, #001e44);
 }
 
@@ -36,7 +38,7 @@ $image-path: '/media/protocol/img';
 
 .t-quantum {
     // firefox release
-    .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-firefox .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/release-quantum.png');
 
         @media #{$mq-high-res} {
@@ -45,7 +47,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox beta
-    .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-beta .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/beta-quantum.png');
 
         @media #{$mq-high-res} {
@@ -54,7 +56,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox nightly
-    .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-nightly .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/nightly-quantum.png');
 
         @media #{$mq-high-res} {
@@ -63,7 +65,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox developer edition
-    .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-developer .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/developer-quantum.png');
 
         @media #{$mq-high-res} {
@@ -72,7 +74,7 @@ $image-path: '/media/protocol/img';
     }
 
     // pre-dev edition firefox aurora
-    .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-developer.t-aurora .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/aurora.png');
 
         @media #{$mq-high-res} {
@@ -83,7 +85,7 @@ $image-path: '/media/protocol/img';
 
 .t-pre-quantum {
     // firefox release
-    .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-firefox .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/firefox-old.png');
 
         @media #{$mq-high-res} {
@@ -92,7 +94,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox beta
-    .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-beta .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/beta-old.png');
 
         @media #{$mq-high-res} {
@@ -101,7 +103,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox nightly
-    .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-nightly .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/nightly-old.png');
 
         @media #{$mq-high-res} {
@@ -110,7 +112,7 @@ $image-path: '/media/protocol/img';
     }
 
     // firefox developer edition
-    .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-developer .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/developer-old.png');
 
         @media #{$mq-high-res} {
@@ -119,7 +121,7 @@ $image-path: '/media/protocol/img';
     }
 
     // pre-dev edition firefox aurora
-    .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
+    .mzp-c-callout.mzp-t-product-developer.t-aurora .mzp-c-callout-title {
         background-image: url('/media/img/firefox/releasenotes/aurora.png');
 
         @media #{$mq-high-res} {
@@ -361,17 +363,17 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Compact call out
 
-.mzp-c-call-out-compact {
+.mzp-c-callout-compact {
     margin-top: $layout-md;
 }
 
 // nightly footer gradient
-.mzp-c-call-out-compact.mzp-t-product-nightly {
+.mzp-c-callout-compact.mzp-t-product-nightly {
     background: linear-gradient(#001e44, #002d66);
 }
 
 // developer footer gradient
-.mzp-c-call-out-compact.mzp-t-product-developer {
+.mzp-c-callout-compact.mzp-t-product-developer {
     background: linear-gradient(#001e44, #002d66);
 }
 

@@ -6,17 +6,19 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-nightly';
 
 main {
     background-color: $color-ink-80;
     color: $color-white;
 }
 
-.mzp-c-call-out.mzp-t-hero.main-header {
+.mzp-c-callout.mzp-t-hero.main-header {
     background: linear-gradient($color-black, $color-ink-80);
 
     @media #{$mq-md} {
-        .mzp-c-call-out-title {
+        .mzp-c-callout-title {
             background-size: 160px 160px;
             margin-bottom: $spacing-xl;
             padding-top: 200px;

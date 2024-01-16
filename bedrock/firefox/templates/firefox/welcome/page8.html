@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -18,11 +18,11 @@
 
 {%block page_css %}
  {{ super()}}
- {{ css_bundle('protocol-call-out') }}
+ {{ css_bundle('protocol-callout') }}
 {% endblock %}
 
 {% block content_intro %}
-  {% call call_out(
+  {% call callout(
       title=ftl('welcome-page8-your-privacy-respected'),
       desc=ftl('welcome-page8-firefox-automatically-protects'),
       class='mzp-t-firefox mzp-t-dark mzp-t-hero variation-default',

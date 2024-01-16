@@ -875,9 +875,9 @@
     },
     {
       "files": [
-        "css/protocol/components/call-out.scss"
+        "css/protocol/components/callout.scss"
       ],
-      "name": "protocol-call-out"
+      "name": "protocol-callout"
     },
     {
       "files": [

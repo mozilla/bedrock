@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/callout';
+
+// Temporary styles for call-out while the hero component has been depreciated. Will be updated with a new component
+.mzp-c-callout.mzp-t-hero {
+    .mzp-l-content {
+        box-sizing: border-box;
+        max-width: $content-sm;
+        padding: $layout-md $layout-xs;
+    }
+
+    .mzp-c-callout-title {
+        @include text-title-lg;
+    }
+
+    @media #{$mq-md} {
+        .mzp-l-content {
+            max-width: $content-md;
+            padding: $layout-md $layout-xl;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding: $layout-xl 80px;
+        }
+    }
+}
+
+.mzp-c-callout[class*='mzp-t-product-'].mzp-t-hero .mzp-c-callout-title {
+    background-size: 80px 80px;
+}
+
+.mzp-c-callout {
+    .mzp-l-content {
+        .mzp-t-callout-brand {
+            margin: $spacing-md auto;
+
+            .mzp-c-callout-title {
+                padding-top: $spacing-lg;
+            }
+
+        }
+    }
+}
+
+.mzp-l-compact {
+    .mzp-l-content {
+        .mzp-c-callout-content:has(.mzp-t-callout-compact-brand) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+            .mzp-t-callout-compact-brand {
+                flex-shrink: 0;
+                margin-bottom: 0;
+            }
+
+            .mzp-c-callout-container {
+                margin-left: 0;
+                margin-top: $spacing-xl;
+            }
+
+            @media #{$mq-md} {
+                align-items: center;
+                flex-direction: row;
+
+                .mzp-c-callout-container {
+                    margin-left: $spacing-xl;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
