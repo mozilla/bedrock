@@ -8,7 +8,6 @@ import bedrock.releasenotes.views
 from bedrock.firefox import views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
-from bedrock.utils import views as utils_views
 from bedrock.utils.views import VariationTemplateView
 
 latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
@@ -129,16 +128,7 @@ urlpatterns = (
     page("firefox/welcome/4/", "firefox/welcome/page4.html", ftl_files=["firefox/welcome/page4"]),
     page("firefox/welcome/6/", "firefox/welcome/page6.html", ftl_files=["firefox/welcome/page6"]),
     page("firefox/welcome/7/", "firefox/welcome/page7.html", ftl_files=["firefox/welcome/page7"]),
-    path(
-        "firefox/welcome/8/",
-        utils_views.VariationTemplateView.as_view(
-            template_name="firefox/welcome/page8.html",
-            ftl_files=["firefox/welcome/page8"],
-            template_context_variations=["text", "image", "animation", "header-text"],
-            variation_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
-        ),
-        name="firefox.welcome.page8",
-    ),
+    page("firefox/welcome/8/", "firefox/welcome/page8.html", ftl_files=["firefox/welcome/page8"]),
     page("firefox/welcome/9/", "firefox/welcome/page9.html", active_locales=["de", "fr"]),
     page("firefox/welcome/10/", "firefox/welcome/page10.html", ftl_files=["firefox/welcome/page10"]),
     page("firefox/welcome/11/", "firefox/welcome/page11.html", ftl_files=["firefox/welcome/page11"]),

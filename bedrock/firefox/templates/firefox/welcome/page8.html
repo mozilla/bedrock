@@ -10,144 +10,31 @@
 
 {% block page_title %}{{ ftl('welcome-page8-firefox-protects-your-privacy') }}{% endblock %}
 
-{% if variation == 'image' %}
-  {% set _utm_content = 'image' %}
-  {% set variation_name = 'variation-2-image' %}
-{% elif variation == 'animation' %}
-  {% set _utm_content = 'animation' %}
-  {% set variation_name = 'variation-3-animation' %}
-{% elif variation == 'text' %}
-  {% set _utm_content = 'text' %}
-{% elif variation == 'header-text' %}
-  {% set _utm_content = 'header-text' %}
-{% else %}
-  {% set _utm_content = 'none' %}
-{% endif %}
-
-{% if variation %}
-  {% set _utm_campaign = 'hvt-welcome-8' %}
-{% else %}
-  {% set _utm_campaign = 'welcome-8-protection' %}
-{% endif %}
+{% set _utm_content = 'none' %}
+{% set _utm_campaign = 'welcome-8-protection' %}
 {% set _utm_source = 'mozilla.org-firefox-welcome-8' %}
 
-{% block body_class %}{{ super() }} welcome-page8 {{variation_name}} {% endblock %}
+{% block body_class %}{{ super() }} welcome-page8{% endblock %}
 
 {%block page_css %}
  {{ super()}}
  {{ css_bundle('protocol-call-out') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('welcome-8-experiment', ['en', 'de', 'fr']) %}
-    {{ js_bundle('firefox_welcome_page8_traffic_cop') }}
-  {% endif %}
-{% endblock %}
-
-{% if LANG == 'de' %}
-  {% set prying_eyes = 'Halte andere davon ab, jeden deiner Schritte zu verfolgen.' %}
-  {% set prevent_profit = 'Hindere Unternehmen daran, aus deinen pers\u00F6nlichen Informationen Profit zu schlagen.' %}
-  {% set block_automatically = 'Blocke Online-Tracker ganz automatisch - ohne ewig in den Einstellungen suchen zu m\u00FCssen.' %}
-  {% set autopilot = 'Schalte deine Privatsph\u00E4re auf <strong>Autopilot</strong>'|safe %}
-{% elif LANG == 'fr' %}
-  {% set prying_eyes = 'Emp\u00EAchez les regards indiscrets de suivre vos moindres faits et gestes.' %}
-  {% set prevent_profit = 'Emp\u00EAchez les entreprises tiers de tirer profit de vos informations personnelles. ' %}
-  {% set block_automatically = 'Bloquez automatiquement les traqueurs. Sans vous emm\u00EAler les pinceaux avec les param\u00E8tres.' %}
-  {% set autopilot = 'Votre vie priv\u00E9e est activ\u00E9e <strong>automatiquement</strong> par d\u00E9faut'|safe %}
-{% else %}
-  {% set prying_eyes = 'Keep prying eyes from tracking your every move.' %}
-  {% set prevent_profit = 'Prevent companies from profiting off your personal info.' %}
-  {% set block_automatically = 'Block trackers automatically. No messing with settings.' %}
-  {% set autopilot = 'Your privacy is on <strong>autopilot</strong>'|safe %}
-{% endif %}
-
 {% block content_intro %}
-  {% if variation == 'header-text' %}
-    {% call call_out(
-        title=autopilot,
-        desc=ftl('welcome-page8-firefox-automatically-protects'),
-        class='mzp-t-firefox mzp-t-dark mzp-t-hero variation-default',
-        include_cta=True,
-        heading_level=1
-      ) %}
-      <p class="primary-cta protection-report">
-        <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" class="mzp-c-button mzp-t-product" id="button" rel="external" data-cta-position="primary" data-cta-text="View your report" data-cta-type="button">
-          {{ ftl('welcome-page8-view-your-protection-report') }}
-        </a>
-      </p>
-    {% endcall %}
-  {% elif variation == 'image' %}
-    <section class="mzp-c-call-out mzp-t-hero mzp-t-firefox mzp-t-dark" id="hero-image">
-      <div class="mzp-l-content">
-        <div class="mzp-c-call-out-body">
-          <h1 class="mzp-c-call-out-title">{{ ftl('welcome-page8-your-privacy-respected') }}</h1>
-          <div class="image-container">
-            <div class="image-wrapper">
-              <img src="{{ static('img/firefox/welcome/trackers-magnify.svg') }}" alt="stop trackers from watching you">
-              <p>{{ prying_eyes }}</p>
-              <img id="arrow-right" src="{{ static('img/firefox/welcome/arrows-right.svg') }}" alt="arrows pointing right">
-              <img id="arrow-down" src="{{ static('img/firefox/welcome/arrows-down.svg') }}" alt="arrows pointing down">
-            </div>
-            <div class="image-wrapper">
-              <img src="{{ static('img/firefox/welcome/trackers-money.svg') }}" alt="stop trackers from selling your data">
-              <p>{{ prevent_profit }}</p>
-            </div>
-            <div class="image-wrapper">
-              <img src="{{ static('img/firefox/welcome/trackers-shield.svg') }}" alt="block trackers by default">
-              <p>{{ block_automatically }}</p>
-            </div>
-          </div>
-        <p class="primary-cta protection-report">
-          <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" class="mzp-c-button mzp-t-product" id="button" rel="external" data-cta-position="primary" data-cta-text="View your report" data-cta-type="button">
-            {{ ftl('welcome-page8-view-your-protection-report') }}
-          </a>
-        </p>
-        </div>
-      </div>
-    </section>
-  {% elif variation == 'animation' %}
-    <section class="mzp-c-call-out mzp-t-firefox mzp-t-dark mzp-t-hero" id="hero-animation">
-      <div class="mzp-l-content">
-        <div class="mzp-c-call-out-body">
-          <h1 class="mzp-c-call-out-title">{{ ftl('welcome-page8-your-privacy-respected') }}</h1>
-          <div class="image-container">
-            <video autoplay loop playsinline muted>
-              <source src="https://assets.mozilla.net/video/tracker-blocking.webm" type="video/webm">
-            </video>
-            <div class="image-wrapper">
-              <p>{{ prying_eyes }}</p>
-            </div>
-            <div class="image-wrapper">
-              <p>{{ prevent_profit }}</p>
-            </div>
-            <div class="image-wrapper">
-              <p>{{ block_automatically }}</p>
-            </div>
-          </div>
-
-        <p class="primary-cta protection-report">
-          <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" class="mzp-c-button mzp-t-product" id="button" rel="external" data-cta-position="primary" data-cta-text="View your report" data-cta-type="button">
-            {{ ftl('welcome-page8-view-your-protection-report') }}
-          </a>
-        </p>
-        </div>
-      </div>
-    </section>
-  {% else %}
-    {% call call_out(
-        title=ftl('welcome-page8-your-privacy-respected'),
-        desc=ftl('welcome-page8-firefox-automatically-protects'),
-        class='mzp-t-firefox mzp-t-dark mzp-t-hero variation-default',
-        include_cta=True,
-        heading_level=1
-      ) %}
-      <p class="primary-cta protection-report">
-        <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" class="mzp-c-button mzp-t-product" id="button" rel="external" data-cta-position="primary" data-cta-text="View your report" data-cta-type="button">
-          {{ ftl('welcome-page8-view-your-protection-report') }}
-        </a>
-      </p>
-    {% endcall %}
-  {% endif %}
+  {% call call_out(
+      title=ftl('welcome-page8-your-privacy-respected'),
+      desc=ftl('welcome-page8-firefox-automatically-protects'),
+      class='mzp-t-firefox mzp-t-dark mzp-t-hero variation-default',
+      include_cta=True,
+      heading_level=1
+    ) %}
+    <p class="primary-cta protection-report">
+      <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _utm_source }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&utm_content={{_utm_content}}" class="mzp-c-button mzp-t-product" id="button" rel="external" data-cta-position="primary" data-cta-text="View your report" data-cta-type="button">
+        {{ ftl('welcome-page8-view-your-protection-report') }}
+      </a>
+    </p>
+  {% endcall %}
 {% endblock %}
 
 {% block content_primary %}

@@ -78,15 +78,6 @@ html {
     }
 }
 
-.mzp-c-call-out .mzp-l-content {
-    .welcome-page8.variation-2-image &,
-    .welcome-page8.variation-3-animation & {
-        max-width: $content-max;
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-
 .mzp-c-call-out-body {
     @include border-box;
     margin: 0 auto;
@@ -96,13 +87,6 @@ html {
 
     .welcome-page4 & {
         max-width: $content-md - ($layout-md * 2);
-    }
-
-    .welcome-page8.variation-2-image &,
-    .welcome-page8.variation-3-animation & {
-        max-width: $content-max;
-        padding-right: 0;
-        padding-left: 0;
     }
 
     .welcome-page10 & {
@@ -466,18 +450,6 @@ html {
     }
 }
 
-.welcome-page8.variation-2-image,
-.welcome-page8.variation-3-animation {
-    .mzp-l-content {
-        padding: 24px 52px;
-    }
-
-    .mzp-c-call-out-title {
-        max-width: $content-md;
-        margin: 0 auto;
-    }
-}
-
 .image-container {
     margin: 35px 0 70px;
 
@@ -527,105 +499,5 @@ html {
 
     #arrow-down {
         display: none;
-    }
-}
-
-@media (max-width: 1190px) {
-    .welcome-page8.variation-2-image {
-        .image-container {
-            .image-wrapper {
-                margin: 0 30px;
-
-                &:first-of-type {
-                    margin: 0 30px 0 0;
-                }
-
-                &:last-child {
-                    margin: 0 0 0 30px;
-                }
-
-                p {
-                    @include font-size(16px);
-                    max-width: 178px;
-                }
-
-                img {
-                    height: 178px;
-                }
-
-                #arrow-right {
-                    top: 62px;
-                    right: -55px;
-                    height: 60px;
-                }
-            }
-        }
-    }
-}
-
-.welcome-page8.variation-2-image {
-    .image-container {
-        @media (max-width: 767px) {
-            max-width: 300px;
-            margin: 5px auto 70px;
-
-            #arrow-right {
-                display: none;
-            }
-
-            .image-wrapper {
-                margin: 0;
-
-                &:last-child {
-                    margin: 0;
-                }
-
-                &:first-of-type {
-                    margin: 0 0 50px;
-                }
-
-                img {
-                    height: 250px;
-                }
-
-                p {
-                    max-width: 230px;
-                }
-            }
-
-            #arrow-down {
-                display: block;
-                bottom: -63px;
-                left: 84px;
-                height: 45px;
-            }
-        }
-    }
-}
-
-.welcome-page8.variation-3-animation {
-    .image-container {
-        margin: 35px auto 70px;
-        max-width: 1000px;
-
-        @media (max-width: 767px) {
-            margin: 35px auto 45px;
-        }
-
-        .image-wrapper {
-            display: inline-block;
-            vertical-align: top;
-            margin: 0 5%;
-            position: relative;
-            width: 25%;
-
-            &:first-of-type {
-                margin: 0 5% 0 0;
-            }
-
-            &:last-child {
-                margin: 0 0 0 5%;
-            }
-        }
     }
 }
