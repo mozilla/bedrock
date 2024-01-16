@@ -60,7 +60,7 @@ def vpn_landing_page(request):
     if entrypoint_variation not in ["1", "2"]:
         entrypoint_variation = None
 
-    if entrypoint_experiment not in ["vpn-holidays-na-test", "vpn-pricing-position"]:
+    if entrypoint_experiment not in ["vpn-pricing-position"]:
         entrypoint_experiment = None
 
     if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":

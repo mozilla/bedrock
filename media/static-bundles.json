@@ -1051,12 +1051,6 @@
     },
     {
       "files": [
-        "css/base/banners/vpn-events-banner.scss"
-      ],
-      "name": "mozilla-vpn-events-banner"
-    },
-    {
-      "files": [
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/common.scss",
@@ -1962,19 +1956,6 @@
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/base/banners/vpn-events-banner.es6.js"
-      ],
-      "name": "mozilla-vpn-events-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/vpn-events-banner-na-experiment.es6.js"
-      ],
-      "name": "mozilla-vpn-holidays-na-experiment-banner"
     },
     {
       "files": [
