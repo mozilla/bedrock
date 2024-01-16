@@ -50,8 +50,6 @@ const initTrafficCop = () => {
         }
     } else if (TrafficCop && isApprovedToRun()) {
         const cop = new TrafficCop({
-            id: 'wnp124-experiment-de',
-            cookieExpires: 0,
             variations: {
                 'v=1': 95, // Browser comparison
                 'v=2': 2.5, // CTA Voices video CTA

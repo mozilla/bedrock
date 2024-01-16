@@ -50,8 +50,6 @@ const initTrafficCop = () => {
         }
     } else if (TrafficCop) {
         const murtaugh = new TrafficCop({
-            id: 'wnp-119-experiment-eu',
-            cookieExpires: 0,
             variations: {
                 'v=1': 33, // Three boxes, open
                 'v=2': 33, // Three boxes, closed
