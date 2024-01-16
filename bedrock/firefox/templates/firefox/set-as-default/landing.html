@@ -17,23 +17,8 @@
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('set-as-default-experiment', ['en-US']) %}
-    {{ js_bundle("firefox-default-landing") }}
-  {% endif %}
-{% endblock %}
-
-
-{% if variation == '2' %}
-  {% set landing_header = "Feel safe every time you explore the web" %}
-  {% set landing_body = "Choose the browser that puts your privacy first everyday. Make sure Firefox is your default browser" %}
-{% elif variation == '3' %}
-  {% set landing_header = "Choose a browser that supports a better web for you and everyone else" %}
-  {% set landing_body = "Set Firefox back to your default browser and enjoy peace of mind with every link you open." %}
-{% else %}
-    {% set landing_header = ftl('set-as-default-landing-you-should-get') %}
-    {% set landing_body = ftl('set-as-default-landing-if-you-recently') %}
-{% endif %}
+{% set landing_header = ftl('set-as-default-landing-you-should-get') %}
+{% set landing_body = ftl('set-as-default-landing-if-you-recently') %}
 
 {% block content %}
   <main>
