@@ -80,18 +80,8 @@ FxaAttribution.getFxALinkReferralData = () => {
     return null;
 };
 
-FxaAttribution.getReferrer = (ref) => {
-    const referrer = typeof ref === 'string' ? ref : document.referrer;
-
-    if (typeof window.Mozilla.Analytics !== 'undefined') {
-        return Mozilla.Analytics.getReferrer(referrer);
-    }
-
-    return referrer;
-};
-
 FxaAttribution.getSearchReferralData = (ref) => {
-    const referrer = FxaAttribution.getReferrer(ref);
+    const referrer = typeof ref === 'string' ? ref : document.referrer;
     const google = /^https?:\/\/www\.google\.\w{2,3}(\.\w{2})?\/?/;
     const bing = /^https?:\/\/www\.bing\.com\/?/;
     const yahoo = /^https?:\/\/(\w*\.)?search\.yahoo\.com\/?/;

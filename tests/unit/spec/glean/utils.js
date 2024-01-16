@@ -12,10 +12,6 @@
 import Utils from '../../../../media/js/glean/utils.es6';
 
 describe('utils.js', function () {
-    afterEach(function () {
-        Mozilla.Analytics.customReferrer = '';
-    });
-
     describe('getUrl', function () {
         it('should return the a complete URL including query parameters', function () {
             const url1 = 'https://www.mozilla.org/en-US/';
@@ -114,17 +110,7 @@ describe('utils.js', function () {
     });
 
     describe('getReferrer', function () {
-        afterEach(function () {
-            Mozilla.Analytics.customReferrer = '';
-        });
-
-        it('should return a custom referrer when set', function () {
-            const expected = 'http://www.google.com/';
-            Mozilla.Analytics.customReferrer = expected;
-            expect(Utils.getReferrer()).toEqual(expected);
-        });
-
-        it('should return regular referrer otherwise', function () {
+        it('should return regular referrer', function () {
             const expected = 'http://www.bing.com/';
             expect(Utils.getReferrer(expected)).toEqual(expected);
         });
