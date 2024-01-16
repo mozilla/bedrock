@@ -234,7 +234,6 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "affiliate",
     "banners/firefox-app-store",
-    "banners/vpn-holidays",
     "brands",
     "download_button",
     "firefox/sticky-promo",
