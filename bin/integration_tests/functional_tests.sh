@@ -66,4 +66,6 @@ docker run \
     -e "BOUNCER_URL=${BOUNCER_URL:=https://download.mozilla.org/}" \
     -e "SCREEN_WIDTH=1600" \
     -e "SCREEN_HEIGHT=1200" \
+    -e "RERUNS_ALLOWED=${RERUNS_ALLOWED:=2}" \
+    -e "RERUNS_DELAY_SECS=${RERUNS_DELAY_SECS:=1}" \
     ${TEST_IMAGE} bin/integration_tests/run_integration_tests.sh
