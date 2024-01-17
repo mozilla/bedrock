@@ -71,10 +71,10 @@ ul.download-list {
 .download-button .os_win64,
 .download-button .os_win64-msi,
 .download-button .os_win64-aarch64,
-// .download-button .os_linux,
-// .download-button .os_linux64,
+.download-button .os_linux,
+.download-button .os_linux64,
 .android .download-button-desktop,
-// .linux.x64 .download-list .os_linux,
+.linux.x64 .download-list .os_linux,
 .download-button .os_win,
 .download-button .os_win-msi,
 .download-button .os_osx,
@@ -86,7 +86,7 @@ ul.download-list {
 }
 
 .linux .download-button .os_linux,
-.linux.x64 .download-button .os_linux64,
+.linux .download-button .os_linux64,
 .windows .download-button .os_win,
 .osx .download-button .os_osx,
 .android .download-button .os_android,
@@ -109,15 +109,19 @@ ul.download-list {
     display: block !important;
 }
 
+.download-list .linux {
+    margin-bottom: $spacing-md;
+}
+
 // Platform specific Firefox download macros (issue #12192)
 .firefox-platform-button {
     .download-link.os_linux64 {
-        // display: none;
+        display: none;
     }
 
     .linux.x64 & {
         .download-link.os_linux {
-            // display: none;
+            display: none;
         }
 
         .download-link.os_linux64 {

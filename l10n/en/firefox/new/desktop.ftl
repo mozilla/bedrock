@@ -218,4 +218,5 @@ firefox-desktop-download-linux-64 = { -brand-name-linux } 64-bit
 
 # Variables
 #   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
-firefox-desktop-download-linux-using-debian = Using { -brand-name-debian }, { -brand-name-ubuntu } or any { -brand-name-debian }-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.
+# Note: word Debian shouldnt be translated
+firefox-desktop-download-linux-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.

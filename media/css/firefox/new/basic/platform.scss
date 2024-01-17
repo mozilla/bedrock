@@ -7,6 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+.c-linux-debian {
+    margin-top: $spacing-md;
+}
+
 @media #{$mq-lg} {
     .features .mzp-c-picto-body {
         max-width: $content-xs;

@@ -44,6 +44,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
+
+.os_linux64 { /* stylelint-disable-line */
+    margin-bottom: $spacing-md;
+}
+
 .l-notes {
     @include text-body-sm;
     max-width: $screen-lg;

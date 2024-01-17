@@ -19,6 +19,14 @@ new-platform-need-help = Need help?
 
 new-platform-download-mozilla-linux = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-linux }
 
+new-platform-download-linux-32 = { -brand-name-linux } 32-bit
+new-platform-download-linux-64 = { -brand-name-linux } 64-bit
+
+# Variables
+#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
+# Note: word Debian shouldnt be translated
+new-platform-download-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.
+
 # /firefox/linux/ HTML page description
 new-platform-download-mozilla-desc-linux = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-linux }, a free web browser. { -brand-name-firefox } is created by a global not-for-profit dedicated to putting individuals in control online. Get { -brand-name-firefox } for { -brand-name-linux } today!
 

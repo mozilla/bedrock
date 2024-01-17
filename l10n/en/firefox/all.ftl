@@ -66,3 +66,8 @@ firefox-all-product-firefox-android = { -brand-name-firefox } { -brand-name-andr
 firefox-all-product-firefox-android-beta = { -brand-name-firefox } { -brand-name-android } { -brand-name-beta }
 firefox-all-product-firefox-android-nightly = { -brand-name-firefox } { -brand-name-android } { -brand-name-nightly }
 firefox-all-product-firefox-ios = { -brand-name-firefox } { -brand-name-ios }
+
+# Variables
+#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
+# Note: Debian shouldn't be translated
+firefox-all-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.
