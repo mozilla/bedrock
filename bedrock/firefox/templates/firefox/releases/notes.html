@@ -133,8 +133,8 @@
       <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
         <div class="mzp-l-sidebar">
           <h2 class="c-release-summary">
-            <div class="c-release-version">{{ release.version }}</div>
-            <div class="c-release-product">{{ release.product }} {{ release.channel }}</div>
+            <span class="c-release-version">{{ release.version }}</span>
+            <span class="c-release-product">{{ release.product }} {{ release.channel }}</span>
           </h2>
           {% if release.is_public %}
             <p class="c-release-date">{{ release.release_date|l10n_format_date }}</p>
