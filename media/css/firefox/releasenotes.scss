@@ -408,6 +408,10 @@ $image-path: '/media/protocol/img';
 }
 
 .release-note {
+    .release-note-content{
+        width: 100%;
+    }
+
     .bug-id {
         @include bidi(((text-align, right, left),));
         display: block;
