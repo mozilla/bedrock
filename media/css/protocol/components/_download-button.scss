@@ -74,7 +74,6 @@ ul.download-list {
 .download-button .os_linux,
 .download-button .os_linux64,
 .android .download-button-desktop,
-.linux.x64 .download-list .os_linux,
 .download-button .os_win,
 .download-button .os_win-msi,
 .download-button .os_osx,
@@ -119,9 +118,9 @@ ul.download-list {
         display: none;
     }
 
-    .linux.x64 & {
+    .linux & {
         .download-link.os_linux {
-            display: none;
+            display: inline-block;
         }
 
         .download-link.os_linux64 {
