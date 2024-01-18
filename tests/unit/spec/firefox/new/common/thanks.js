@@ -19,14 +19,17 @@ describe('thanks.js', function () {
                 Mozilla.DownloadThanks.shouldAutoDownload('osx', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
-            ).toBeTruthy();
-            expect(
                 Mozilla.DownloadThanks.shouldAutoDownload('android', true)
             ).toBeTruthy();
             expect(
                 Mozilla.DownloadThanks.shouldAutoDownload('ios', true)
             ).toBeTruthy();
+        });
+
+        it('should return false for linux platforms', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
+            ).toBeFalsy();
         });
 
         it('should return false for unknown platforms', function () {

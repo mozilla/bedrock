@@ -48,6 +48,8 @@
 
     <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
 
+    <h1 class="mzp-has-zap-8 c-section-title show-linux">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-select-linux') }}</h1>
+
     <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
 
     <h1 class="c-section-title show-linux-arm">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
@@ -82,11 +84,11 @@
       </p>
       <div class="show-linux">
         <div class="c-linux-button-group">
-          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('firefox-desktop-download-linux-32') }}</a>
-          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('firefox-desktop-download-linux-64') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32') }}</a>
         </div>
-        {% set attrs = 'href="https://support.mozilla.org/en-US/kb/install-firefox-linux#debian%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-        <p class="linux-deb-text">{{ ftl('firefox-desktop-download-linux-using-debian', attrs=attrs) }}</p>
+        {% set attrs = 'href="https://support.mozilla.org/en-US/kb/install-firefox-linux#debian%s" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
+        <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
       </div>
       <p class="show-else">
         {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}

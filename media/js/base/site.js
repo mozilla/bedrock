@@ -7,36 +7,36 @@
 (function () {
     'use strict';
     window.site = {
-        getPlatform: function (/*ua, pf*/) {
-            // pf = pf || navigator.platform;
-            // ua = ua || navigator.userAgent;
+        getPlatform: function (ua, pf) {
+            pf = pf || navigator.platform;
+            ua = ua || navigator.userAgent;
 
-            // if (pf.indexOf('Win32') !== -1 || pf.indexOf('Win64') !== -1) {
-            //     return 'windows';
-            // }
-            // if (/android/i.test(ua)) {
-            //     return 'android';
-            // }
-            // if (/linux/i.test(pf) || /linux/i.test(ua)) {
-            //     return 'linux';
-            // }
-            // if (pf.indexOf('MacPPC') !== -1) {
-            //     return 'other';
-            // }
-            // if (
-            //     pf.indexOf('iPhone') !== -1 ||
-            //     pf.indexOf('iPad') !== -1 ||
-            //     pf.indexOf('iPod') !== -1 ||
-            //     (pf.indexOf('MacIntel') !== -1 && 'ontouchstart' in window)
-            // ) {
-            //     // iPadOS
-            //     return 'ios';
-            // }
-            // if (ua.indexOf('Mac OS X') !== -1) {
-            //     return 'osx';
-            // }
+            if (pf.indexOf('Win32') !== -1 || pf.indexOf('Win64') !== -1) {
+                return 'windows';
+            }
+            if (/android/i.test(ua)) {
+                return 'android';
+            }
+            if (/linux/i.test(pf) || /linux/i.test(ua)) {
+                return 'linux';
+            }
+            if (pf.indexOf('MacPPC') !== -1) {
+                return 'other';
+            }
+            if (
+                pf.indexOf('iPhone') !== -1 ||
+                pf.indexOf('iPad') !== -1 ||
+                pf.indexOf('iPod') !== -1 ||
+                (pf.indexOf('MacIntel') !== -1 && 'ontouchstart' in window)
+            ) {
+                // iPadOS
+                return 'ios';
+            }
+            if (ua.indexOf('Mac OS X') !== -1) {
+                return 'osx';
+            }
 
-            return 'linux';
+            return 'other';
         },
 
         getPlatformVersion: function (ua) {

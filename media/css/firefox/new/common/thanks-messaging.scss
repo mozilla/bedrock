@@ -82,9 +82,8 @@ $image-path: '/media/protocol/img';
     }
 
     &.linux {
-        .show-else,
         .show-linux,
-         {
+        {
             display: block !important;
         }
 

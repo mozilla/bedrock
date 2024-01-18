@@ -178,6 +178,8 @@ firefox-desktop-download-now-else = Now finish <strong>installing</strong> { -br
 firefox-desktop-download-now-windows = Now <strong>run</strong> the installer that just downloaded.
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-now-mac = Now <strong>open</strong> the file that just downloaded.
+# the strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-desktop-download-select-linux = Select a <strong>download</strong> option below
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/products/firefox/download-and-install
 firefox-desktop-download-get-help = Having trouble? <a { $attrs }>Get help with your installation</a>.
@@ -211,12 +213,3 @@ firefox-desktop-download-please-follow = Please follow <a href="{ $url }">these 
 firefox-desktop-download-your-system-may-not = Your system may not meet the requirements for { -brand-name-firefox }, but you can try one of <a href="{ $url }">these versions</a>.
 
 firefox-desktop-download-taskbar = { -brand-name-firefox } will be pinned to the { -brand-name-windows } taskbar after installation
-
-# Linux
-firefox-desktop-download-linux-32 = { -brand-name-linux } 32-bit
-firefox-desktop-download-linux-64 = { -brand-name-linux } 64-bit
-
-# Variables
-#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
-# Note: word Debian shouldnt be translated
-firefox-desktop-download-linux-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.

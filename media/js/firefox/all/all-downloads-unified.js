@@ -259,11 +259,9 @@
         element
     ) {
         var el = element || downloadInfoButton;
-        var form = document.querySelector('.c-product-select-form');
         el.href = url;
         el.setAttribute('data-display-name', product.label);
         el.setAttribute('data-download-version', platform.id);
-        form.setAttribute('data-download-version', platform.id);
         el.setAttribute('data-download-language', language.id);
 
         if (/^android/.test(platform.id)) {
@@ -447,6 +445,7 @@
      * @param {Object} event object.
      */
     FirefoxDownloader.onPlatformChange = function (e) {
+        form.setAttribute('data-download-version', e.target.value);
         FirefoxDownloader.setAllSelectOptions(e.target.value, platformSelect);
         FirefoxDownloader.setDownloadButton();
     };

@@ -59,18 +59,18 @@
     <div class="firefox-platform-button">
       <a class="download-link os_linux mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 32-bit" data-download-version="linux" data-download-os="Desktop" data-download-location="{{ position }}">
         <strong class="download-title">
-          {{ ftl('new-platform-download-linux-32') }}
+          {{ ftl('download-button-linux-32') }}
         </strong>
       </a>
 
       <a class="download-link os_linux64 mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}-64" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 64-bit" data-download-version="linux64" data-download-os="Desktop" data-download-location="{{ position }}">
         <strong class="download-title">
-          {{ ftl('new-platform-download-linux-64') }}
+          {{ ftl('download-button-linux-64') }}
         </strong>
       </a>
 
-      <p class="c-linux-debian">{{ ftl('new-platform-download-using-debian', attrs='href="https://support.mozilla.org/en-US/kb/install-firefox-linux#debian" rel="external noopener" data-cta-type="link"
-      data-cta-text="Get help with your installation"')}}</p>
+      <p class="c-linux-debian">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/en-US/kb/install-firefox-linux#debian" rel="external noopener" data-cta-type="link"
+      data-cta-text="You can set up our APT repository instead"')}}</p>
 
       <small class="mzp-c-button-download-privacy-link">
         <a href="{{ url('privacy.notices.firefox') }}">

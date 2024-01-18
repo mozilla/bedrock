@@ -155,7 +155,6 @@
 -brand-name-mac = macOS
 -brand-name-mac-short = Mac
 -brand-name-ubuntu = Ubuntu
--brand-name-debian = Debian
 -brand-name-vista = Vista
 -brand-name-windows = Windows
 -brand-name-xp = XP
