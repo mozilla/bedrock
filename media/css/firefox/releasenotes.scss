@@ -168,6 +168,7 @@ $image-path: '/media/protocol/img';
 .c-release-version {
     @include font-base;
     @include text-title-xl;
+    display: block;
 }
 
 .c-release-first-text,
@@ -179,6 +180,7 @@ $image-path: '/media/protocol/img';
     .c-release-product {
         @include font-base;
         @include text-title-2xs;
+        display: block;
     }
 
     .c-release-date {
@@ -408,6 +410,10 @@ $image-path: '/media/protocol/img';
 }
 
 .release-note {
+    .release-note-content{
+        width: 100%;
+    }
+
     .bug-id {
         @include bidi(((text-align, right, left),));
         display: block;
