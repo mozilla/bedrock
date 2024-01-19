@@ -30,7 +30,7 @@ $image-path: '/media/protocol/img';
         margin-bottom: $spacing-md;
 
         a:first-child {
-            margin-right: $spacing-md;
+            margin-bottom: $spacing-md;
         }
     }
 }
@@ -82,19 +82,8 @@ $image-path: '/media/protocol/img';
     }
 
     &.linux {
-        .show-linux,
-        {
+        .show-linux {
             display: block !important;
-        }
-
-        &.arm {
-            .show-else {
-                display: none !important;
-            }
-
-            .show-linux-arm {
-                display: block !important;
-            }
         }
     }
 

@@ -15,13 +15,6 @@ new-platform-advanced-install-options = Advanced install options & other platfor
 new-platform-download-in-another = Download in another language
 new-platform-need-help = Need help?
 
-## Linux
-
-new-platform-download-mozilla-linux = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-linux }
-
-new-platform-download-linux-32 = { -brand-name-linux } 32-bit
-new-platform-download-linux-64 = { -brand-name-linux } 64-bit
-
 # Variables
 #   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
 # Note: word Debian shouldnt be translated

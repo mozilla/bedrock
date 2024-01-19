@@ -99,6 +99,10 @@ ul.download-list {
     display: block !important;
 }
 
+.os_linux64 { /* stylelint-disable-line */
+    margin-bottom: $spacing-md;
+}
+
 // 64-bit UA detection for Firefox Beta on Windows (issue #10194)
 .windows.x64 .download-button-beta .os_win {
     display: none !important;

@@ -100,18 +100,6 @@
             return 'x86';
         },
 
-        // Returns true if CPU is an ARM processor.
-        isARM: function (architecture) {
-            var arch =
-                typeof architecture === 'string'
-                    ? architecture
-                    : window.site.archType;
-            if (arch && (arch === 'arm' || arch.match(/armv(\d+)/))) {
-                return true;
-            }
-            return false;
-        },
-
         getArchSize: function (ua, pf) {
             pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
@@ -181,12 +169,6 @@
                     classString += ' fx-unsupported';
                     window.site.fxSupported = false;
                 }
-            }
-
-            // Used to display a custom installation message and
-            // SUMO link on the /firefox/download/thanks/ page.
-            if (window.site.isARM()) {
-                classString += ' arm';
             }
 
             // Used for 64bit download link on Linux and Firefox Beta on Windows.

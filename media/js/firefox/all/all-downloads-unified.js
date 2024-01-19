@@ -370,6 +370,7 @@
         var product = FirefoxDownloader.getProductSelection();
         var platform = FirefoxDownloader.getPlatformSelection(product);
         var language = FirefoxDownloader.getLanguageSelection(product);
+        downloadInfo.setAttribute('data-platform', platform.id);
         FirefoxDownloader.setDownloadInfo(
             product.label,
             platform.label,
@@ -445,7 +446,6 @@
      * @param {Object} event object.
      */
     FirefoxDownloader.onPlatformChange = function (e) {
-        form.setAttribute('data-download-version', e.target.value);
         FirefoxDownloader.setAllSelectOptions(e.target.value, platformSelect);
         FirefoxDownloader.setDownloadButton();
     };

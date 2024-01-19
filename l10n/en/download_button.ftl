@@ -62,6 +62,6 @@ download-button-linux-32 = Download { -brand-name-linux } 32-bit
 download-button-linux-64 = Download { -brand-name-linux } 64-bit
 
 # Variables
-#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
-# Note: Debian shouldn't be translated
-download-button-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT repository instead</a>.
+#   $attrs (attrs) - link to https://support.mozilla.org/kb/install-firefox-linux#debian
+# Note: Debian and Ubuntu are brand names and shouldn't be translated
+download-button-using-debian = Using Debian, Ubuntu or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT repository instead</a>.

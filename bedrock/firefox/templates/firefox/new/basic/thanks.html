@@ -41,9 +41,7 @@
 
   <section class="mzp-c-call-out mzp-t-product-firefox">
     <div class="mzp-l-content">
-      <h1 class="mzp-c-call-out-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
-
-      <h1 class="mzp-c-call-out-title show-linux-arm">{{ ftl('firefox-new-download-interrupted') }}</h1>
+      <h1 class="mzp-c-call-out-title show-windows show-mac show-else show-linux">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
 
       <h1 class="mzp-c-call-out-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
 
@@ -65,10 +63,19 @@
             </a>
           </p>
         {% endif %}
+
+        <div class="show-linux">
+          <div class="c-linux-button-group">
+            <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}"
+              class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32') }}</a>
+            <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}"
+              class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64') }}</a>
+          </div>
+          {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux#debian%s" rel="external noopener"
+          data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
+          <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
+        </div>
         {# Edge-case platform support messaging #}
-        <p class="show-linux-arm">
-          {{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
-        </p>
         <p class="show-unknown">
           {{ ftl('firefox-new-your-system-may-not', url=firefox_url('desktop', 'all'))}}
         </p>
