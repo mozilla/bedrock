@@ -205,11 +205,33 @@ describe('all-downloads-unified.js', function () {
         });
 
         it('should return a well formatted attribution link if data exists', function () {
-            const url =
+            const winUrl =
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
+            const macOSNightlyUrl =
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
+            const macOSBetaUrl =
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
+            const macOSDevUrl =
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
+
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(true);
-            expect(Mozilla.FirefoxDownloader.setAttributionURL(url)).toEqual(
+            expect(Mozilla.FirefoxDownloader.setAttributionURL(winUrl)).toEqual(
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSNightlyUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSBetaUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSDevUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
             );
         });
 

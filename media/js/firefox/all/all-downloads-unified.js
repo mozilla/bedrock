@@ -284,11 +284,13 @@
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }
 
-        // macOS Nightly only for now.
+        // Only macOS pre-release channels for now.
         if (
             version &&
             /osx/.test(version) &&
-            url.indexOf('product=firefox-nightly-latest') !== -1
+            /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
+                url
+            )
         ) {
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }

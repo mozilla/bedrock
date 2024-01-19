@@ -861,6 +861,10 @@ describe('stub-attribution.js', function () {
             'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const macOSNightlyUrl =
             'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
+        const macOSBetaUrl =
+            'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
+        const macOSDevUrl =
+            'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
 
         beforeEach(function () {
             const downloadMarkup = `<ul class="download-list">
@@ -874,6 +878,8 @@ describe('stub-attribution.js', function () {
                     <li><a id="link-dev-direct-win" class="download-link" data-download-version="win" href="${winDevUrl}">Download</a></li>
                     <li><a id="link-dev-direct-win64" class="download-link" data-download-version="win64" href="${win64DevUrl}">Download</a></li>
                     <li><a id="link-macos-nightly" class="download-link" data-download-version="osx" href="${macOSNightlyUrl}">Download</a></li>
+                    <li><a id="link-macos-beta" class="download-link" data-download-version="osx" href="${macOSBetaUrl}">Download</a></li>
+                    <li><a id="link-macos-dev" class="download-link" data-download-version="osx" href="${macOSDevUrl}">Download</a></li>
                 </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
@@ -944,9 +950,15 @@ describe('stub-attribution.js', function () {
                 'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
 
-            // macOS Nightly links
+            // macOS pre-release links
             expect(document.getElementById('link-macos-nightly').href).toEqual(
                 'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-macos-beta').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-macos-dev').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
         });
 

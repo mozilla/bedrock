@@ -174,11 +174,13 @@ if (typeof window.Mozilla === 'undefined') {
                         data
                     );
                 }
-                // Append attribution params to macOS Firefox Nightly links.
+                // Append attribution params to macOS Firefox pre-release links.
                 if (
                     version &&
                     /osx/.test(version) &&
-                    link.href.indexOf('product=firefox-nightly-latest') !== -1
+                    /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
+                        link.href
+                    )
                 ) {
                     link.href = Mozilla.StubAttribution.appendToDownloadURL(
                         link.href,
