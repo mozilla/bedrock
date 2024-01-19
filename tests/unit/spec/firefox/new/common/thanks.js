@@ -95,7 +95,7 @@ describe('thanks.js', function () {
             );
         });
 
-        it('should return the correct download for Linux 32bit', function () {
+        it('should not return a download for Linux 32bit', function () {
             const site = {
                 platform: 'linux',
                 isARM: function () {
@@ -104,12 +104,10 @@ describe('thanks.js', function () {
                 archSize: 32
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux&lang=en-US'
-            );
+            expect(result).toBeFalsy();
         });
 
-        it('should return the correct download for Linux 64bit', function () {
+        it('should not return a download for Linux 64bit', function () {
             const site = {
                 platform: 'linux',
                 isARM: function () {
@@ -118,9 +116,7 @@ describe('thanks.js', function () {
                 archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
-            );
+            expect(result).toBeFalsy();
         });
 
         it('should not return a download for Linux ARM', function () {

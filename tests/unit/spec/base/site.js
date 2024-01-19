@@ -469,6 +469,26 @@ describe('site.js', function () {
         });
     });
 
+    describe('isARM', function () {
+        beforeEach(function () {
+            // don't fall back to `window.site.archType` in tests.
+            sinon.stub(window.site, 'archType').value(null);
+        });
+
+        it('should return true for ARM processors', function () {
+            expect(window.site.isARM('arm')).toBeTrue();
+            expect(window.site.isARM('armv8')).toBeTrue();
+            expect(window.site.isARM('armv7')).toBeTrue();
+        });
+
+        it('should return false for other values', function () {
+            expect(window.site.isARM('x86')).toBeFalse();
+            expect(window.site.isARM('')).toBeFalse();
+            expect(window.site.isARM(null)).toBeFalse();
+            expect(window.site.isARM(undefined)).toBeFalse();
+        });
+    });
+
     describe('getPlatformClass', function () {
         beforeEach(function () {
             document.documentElement.className = 'windows no-js';

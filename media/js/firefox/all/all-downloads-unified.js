@@ -172,6 +172,12 @@
         var currentPlatform = currentOptions.querySelector(
             '.c-selection-platform select'
         );
+        document
+            .querySelector('.c-download')
+            .setAttribute(
+                'data-platform',
+                FirefoxDownloader.getSelectOption(currentPlatform).id
+            );
         return FirefoxDownloader.getSelectOption(currentPlatform);
     };
 
@@ -370,7 +376,6 @@
         var product = FirefoxDownloader.getProductSelection();
         var platform = FirefoxDownloader.getPlatformSelection(product);
         var language = FirefoxDownloader.getLanguageSelection(product);
-        downloadInfo.setAttribute('data-platform', platform.id);
         FirefoxDownloader.setDownloadInfo(
             product.label,
             platform.label,

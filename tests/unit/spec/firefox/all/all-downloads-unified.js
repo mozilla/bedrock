@@ -289,6 +289,8 @@ describe('all-downloads-unified.js', function () {
             label: 'Acholi'
         };
 
+        const downloadInfo = `<div class="c-download"></div>`;
+
         const options = `<div class="c-selection-options" data-product="desktop_beta">
                 <p class="c-selection c-selection-version">
                     <label for="select_desktop_beta_version" class="c-selection-label">Which version would you like?</label>
@@ -321,11 +323,13 @@ describe('all-downloads-unified.js', function () {
 
         beforeEach(function () {
             document.body.insertAdjacentHTML('beforeend', options);
+            document.body.insertAdjacentHTML('beforeend', downloadInfo);
         });
 
         afterEach(function () {
             document.querySelector('.c-selection-options').remove();
             document.querySelector('.c-locale-list').remove();
+            document.querySelector('.c-download').remove();
         });
 
         it('should set the download link as expected', function () {
@@ -396,6 +400,7 @@ describe('all-downloads-unified.js', function () {
             label: 'Multiple languages'
         };
 
+        const downloadInfo = `<div class="c-download"></div>`;
         const options = `<div class="c-selection-options" data-product="android_release">
                 <p class="c-selection c-selection-version hidden">
                     <label for="select_android_release_version" class="c-selection-label">Which version would you like?</label>
@@ -435,11 +440,13 @@ describe('all-downloads-unified.js', function () {
 
         beforeEach(function () {
             document.body.insertAdjacentHTML('beforeend', options);
+            document.body.insertAdjacentHTML('beforeend', downloadInfo);
         });
 
         afterEach(function () {
             document.querySelector('.c-selection-options').remove();
             document.querySelector('.c-locale-list').remove();
+            document.querySelector('.c-download').remove();
         });
 
         it('should set the download link as expected', function () {
