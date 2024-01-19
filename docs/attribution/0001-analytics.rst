@@ -544,7 +544,8 @@ The custom event we use for this is `dimension_set`.
 
 User scoped custom dimensions must be configured in GA4. The list of supported custom dimensions is:
 
-- firefox_is_default (boolean)
+- `firefox_is_default` (boolean)
+- `firefox_is_signed_in` (boolean)
 
 
 How can visitors opt out of GA?
