@@ -116,7 +116,6 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     # is this a request to change language from a non-javascript user? 
     if request.GET.get('lang'):
         locale = request.GET.get('lang')
-        request.META['QUERY_STRING'] = ''
 
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
