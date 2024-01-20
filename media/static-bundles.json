@@ -1756,7 +1756,8 @@
     {
       "files": [
         "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
+        "js/base/mozilla-fxa-init.js",
+        "js/firefox/whatsnew/whatsnew-122-eu.js"
       ],
       "name": "firefox_whatsnew_122_eu"
     },
