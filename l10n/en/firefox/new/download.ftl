@@ -36,6 +36,8 @@ firefox-new-your-firefox-new-should-begin = Your download should begin automatic
 firefox-new-firefox-is-more-than-a-browser = { -brand-name-firefox } is more than a browser.
 # "all is not lost" is another way to say "don't give up hope", "there are other things we can try", or "don't stop trying yet"
 firefox-new-download-interrupted = Your download was interrupted. But all is not lost.
+firefox-new-download-almost-there = Almost there!
+firefox-new-download-select-linux = Select a download option below
 
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/install-firefox-linux
