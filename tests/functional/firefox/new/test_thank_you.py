@@ -13,5 +13,9 @@ from pages.firefox.new.thank_you import ThankYouPage
 @pytest.mark.nondestructive
 def test_direct_download_link_thank_you(base_url, selenium):
     page = ThankYouPage(selenium, base_url).open()
-    assert page.is_direct_download_link_displayed
-    assert page.is_direct_download_link_valid
+    if page.is_platform_linux:
+        assert page.is_linux_button_group_displayed
+        assert page.is_linux_link_valid
+    else:
+        assert page.is_direct_download_link_displayed
+        assert page.is_direct_download_link_valid
