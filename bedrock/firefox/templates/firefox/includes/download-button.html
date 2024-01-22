@@ -84,8 +84,10 @@
                 {% endif %}
               {% elif plat.os == 'ios' %}
                 {{ ftl('download-button-firefox-ios') }}
-              {% elif 'linux' in plat.os %}
-                {{ plat.os_arch_pretty or plat.os_pretty }}
+              {% elif plat.os == 'linux' %}
+                {{ ftl('download-button-linux-32') }}
+              {% elif plat.os == 'linux64' %}
+                {{ ftl('download-button-linux-64') }}
               {% else %}
                 {% if channel == 'beta' %}
                   {{ ftl('download-button-firefox-beta') }}

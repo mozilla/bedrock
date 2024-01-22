@@ -69,3 +69,21 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.show-linux {
+    display: none;
+
+     br {
+        display: none;
+     }
+
+     @media #{$mq-md} {
+        br {
+            display: inline;
+        }
+     }
+}
+
+.linux .show-linux {
+    display: block;
+}

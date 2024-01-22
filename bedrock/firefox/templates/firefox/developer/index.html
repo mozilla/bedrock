@@ -61,6 +61,8 @@
 
       {{ download_firefox('alpha', platform='desktop', dom_id='intro-download', download_location='primary cta') }}
 
+      <p class="show-linux">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox#debian" rel="external noopener"
+      data-cta-type="link" data-cta-text="Get help with your installation"')}}</p>
       <p class="intro-feedback-note">
         {{ ftl('firefox-developer-firefox-developer-edition-sends') }}
         <a href="{{ url('privacy.notices.firefox') }}#pre-release" class="more">{{ ftl('ui-learn-more') }}</a>

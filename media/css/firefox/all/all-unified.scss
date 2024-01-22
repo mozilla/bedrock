@@ -249,8 +249,8 @@ $image-path: '/media/protocol/img';
 }
 
 .c-linux-debian {
+    @include bidi(((text-align, left, right), ));
     display: none;
-    text-align: left;
 }
 
 .c-download-button {

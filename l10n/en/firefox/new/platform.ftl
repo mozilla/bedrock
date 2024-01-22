@@ -15,11 +15,6 @@ new-platform-advanced-install-options = Advanced install options & other platfor
 new-platform-download-in-another = Download in another language
 new-platform-need-help = Need help?
 
-# Variables
-#   $attrs (attrs) - link to https://support.mozilla.org/en-US/kb/install-firefox-linux#debian
-# Note: word Debian shouldnt be translated
-new-platform-download-using-debian = Using Debian, { -brand-name-ubuntu } or any Debian-based distribution?<br>You can set up our <a { $attrs }>APT respository instead</a>.
-
 # /firefox/linux/ HTML page description
 new-platform-download-mozilla-desc-linux = Download { -brand-name-mozilla } { -brand-name-firefox } for { -brand-name-linux }, a free web browser. { -brand-name-firefox } is created by a global not-for-profit dedicated to putting individuals in control online. Get { -brand-name-firefox } for { -brand-name-linux } today!
 

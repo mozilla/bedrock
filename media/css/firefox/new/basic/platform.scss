@@ -9,6 +9,20 @@ $image-path: '/media/protocol/img';
 
 .c-linux-debian {
     margin-top: $spacing-md;
+
+    br {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        br {
+            display: inline;
+        }
+    }
+}
+
+.linux .download-link.os_linux { /* stylelint-disable-line */
+    margin-bottom: $spacing-md;
 }
 
 @media #{$mq-lg} {

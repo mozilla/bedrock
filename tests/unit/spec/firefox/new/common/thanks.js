@@ -95,25 +95,13 @@ describe('thanks.js', function () {
             );
         });
 
-        it('should not return a download for Linux 32bit', function () {
+        it('should not return a download for Linux', function () {
             const site = {
                 platform: 'linux',
                 isARM: function () {
                     return false;
                 },
                 archSize: 32
-            };
-            const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toBeFalsy();
-        });
-
-        it('should not return a download for Linux 64bit', function () {
-            const site = {
-                platform: 'linux',
-                isARM: function () {
-                    return false;
-                },
-                archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
             expect(result).toBeFalsy();
