@@ -167,9 +167,9 @@
   </div>
 
   <section class="c-mission mzp-l-content">
-    <!-- Manifesto -->
+    <!-- Foundation -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace',
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace c-foundation',
         image=resp_img(
           url='img/home/2023/mofo-split.png',
           srcset={
@@ -184,7 +184,11 @@
     ) %}
     <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
     <p>{{ ftl('home-mozilla-consists-of') }}</p>
-    <a href="{{ url('mozorg.about.manifesto') }}" class="mzp-c-button">{{ ftl('home-learn-about-mofo') }}</a>
+    <a href="https://foundation.mozilla.org/" class="mzp-c-button" rel="external noopener">
+      <span>{{ ftl('home-learn-about-mofo') }}</span>
+      <img src="{{ static('img/home/2023/external-link-white.png') }}" alt="" class="external-link-white">
+      <img src="{{ static('img/home/2023/external-link-black.png') }}" alt="" class="external-link-black">
+    </a>
     {% endcall %}
           <hr>
     <!-- Contribute -->
