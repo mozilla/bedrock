@@ -1,0 +1,136 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_122_na') }}
+{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  {% include 'firefox/whatsnew/includes/header.html' %}
+
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      <h1 class="wnp-main-title">Your privacy always comes first</h1>
+      <p class="wnp-main-tagline">And in a private browsing window, your protections go even further.</p>
+
+      <table class="mzp-u-data-table compare-table">
+        <thead>
+          <tr>
+            <th>Protections</th>
+            <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="Firefox"></th>
+            <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="Chrome"></th>
+            <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="Edge"></th>
+            <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="Safari"></th>
+            <th scope="col"><img src="{{ static('img/logos/ddg/logo-duckduckgo.png') }}" height="36" width="36" alt="DuckDuckGo"></th>
+            <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="Opera"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Passwordless sign-in</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Fingerprinting resistance</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-some">Somewhat</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Copy URL without site tracking</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Prevent sites from tracking and sharing data</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-some">Somewhat</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-some">Somewhat</span></td>
+            <td><span class="compare-icon compare-icon-some">Somewhat</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Tracker content blocking</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Enforce user’s choice to not let websites sell their data</th>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+            <td><span class="compare-icon compare-icon-yes">Yes</span></td>
+            <td><span class="compare-icon compare-icon-no">No</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7" role="presentation" class="compare-table-legend">
+              <span class="legend-label">Legend:</span>
+              <span class="compare-icon compare-icon-yes">Yes</span> Yes
+              <span class="compare-icon compare-icon-some">Yes</span> Somewhat
+              <span class="compare-icon compare-icon-no">Yes</span> No
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="wnp-loading"></div>
+
+      <p class="wnp-main-cta is-not-default">
+        <a href="{{ url('firefox.set-as-default.thanks') }}" rel="noopener" target="_blank" class="mzp-c-button mzp-t-product mzp-t-secondary" data-cta-type="button" data-cta-text="Make Firefox your default browser">
+          Make Firefox your default browser
+        </a>
+      </p>
+
+      <p class="wnp-main-cta is-default">
+        <a href="{{ url('firefox.privacy.products') }}" rel="noopener" target="_blank" class="mzp-c-button mzp-t-product mzp-t-secondary" data-cta-type="button" data-cta-text="More ways we protect your privacy">
+          More ways we protect your privacy
+        </a>
+      </p>
+    </div>
+
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p class="wnp-rel-notes">{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_122_na') }}
+{% endblock %}

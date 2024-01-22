@@ -8,6 +8,7 @@
 .wnp-sign-off {
     @include text-body-sm;
     margin-top: $layout-lg;
+    text-align: center;
 
     strong {
         display: block;

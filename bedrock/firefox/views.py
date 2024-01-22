@@ -413,6 +413,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx120-eu-vpn.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx120-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx121.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx122-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx122-eu.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -510,6 +512,16 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("122."):
+            if locale in ["de", "en-GB", "es-ES", "fr", "it", "pl"]:
+                template = "firefox/whatsnew/whatsnew-fx122-eu.html"
+            elif locale in ["en-US", "en-CA"]:
+                if country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx122-eu.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx122-na.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("121."):
