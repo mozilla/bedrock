@@ -18,10 +18,20 @@ $image-path: '/media/protocol/img';
 .show-windows,
 .show-windows-10-plus,
 .show-mac,
+.show-linux,
 .show-else,
-.show-linux-arm,
 .show-auto-download-notification {
     display: none !important;
+}
+
+.show-linux {
+    .c-linux-button-group {
+        margin-bottom: $spacing-md;
+
+        a:first-child {
+            margin-bottom: $spacing-md;
+        }
+    }
 }
 
 // Show platform specific messaging when known.
@@ -71,20 +81,8 @@ $image-path: '/media/protocol/img';
     }
 
     &.linux {
-        .show-else,
-        .show-auto-download-notification {
+        .show-linux {
             display: block !important;
-        }
-
-        &.arm {
-            .show-else,
-            .show-auto-download-notification {
-                display: none !important;
-            }
-
-            .show-linux-arm {
-                display: block !important;
-            }
         }
     }
 

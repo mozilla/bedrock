@@ -48,9 +48,9 @@
 
     <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
 
-    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
+    <h1 class="mzp-has-zap-8 c-section-title show-linux">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-select-linux') }}</h1>
 
-    <h1 class="c-section-title show-linux-arm">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
+    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
 
     <h1 class="c-section-title show-unknown">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
 
@@ -80,15 +80,20 @@
         {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
         {{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}
       </p>
+      <div class="show-linux">
+        <div class="c-linux-button-group">
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64') }}</a>
+        </div>
+        {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
+        <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
+      </div>
       <p class="show-else">
         {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
         {{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}
       </p>
 
       {# Edge-case platform support messaging #}
-      <p class="show-linux-arm">
-        {{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
-      </p>
       <p class="show-unknown">
         {{ ftl('firefox-desktop-download-your-system-may-not', url=firefox_url('desktop', 'all'))}}
       </p>

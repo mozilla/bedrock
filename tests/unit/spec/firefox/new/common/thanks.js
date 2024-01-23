@@ -19,14 +19,17 @@ describe('thanks.js', function () {
                 Mozilla.DownloadThanks.shouldAutoDownload('osx', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
-            ).toBeTruthy();
-            expect(
                 Mozilla.DownloadThanks.shouldAutoDownload('android', true)
             ).toBeTruthy();
             expect(
                 Mozilla.DownloadThanks.shouldAutoDownload('ios', true)
             ).toBeTruthy();
+        });
+
+        it('should return false for linux platforms', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
+            ).toBeFalsy();
         });
 
         it('should return false for unknown platforms', function () {
@@ -92,7 +95,7 @@ describe('thanks.js', function () {
             );
         });
 
-        it('should return the correct download for Linux 32bit', function () {
+        it('should not return a download for Linux', function () {
             const site = {
                 platform: 'linux',
                 isARM: function () {
@@ -101,23 +104,7 @@ describe('thanks.js', function () {
                 archSize: 32
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux&lang=en-US'
-            );
-        });
-
-        it('should return the correct download for Linux 64bit', function () {
-            const site = {
-                platform: 'linux',
-                isARM: function () {
-                    return false;
-                },
-                archSize: 64
-            };
-            const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
-            );
+            expect(result).toBeFalsy();
         });
 
         it('should not return a download for Linux ARM', function () {

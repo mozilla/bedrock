@@ -44,6 +44,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.show-linux {
+    display: none;
+}
+
+.linux .show-linux {
+    display: block;
+}
+
 .l-notes {
     @include text-body-sm;
     max-width: $screen-lg;

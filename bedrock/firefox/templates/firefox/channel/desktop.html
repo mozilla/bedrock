@@ -57,8 +57,9 @@
 
     {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-developer-download") }}
   {% endcall %}
-
   <div class="l-notes mzp-l-content">
+    <p class="show-linux">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox" rel="external noopener"
+    data-cta-type="link" data-cta-text="Get help with your installation"') }}</p>
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li><a href="{{ url('firefox.developer.index') }}">{{ ftl('ui-learn-more') }}</a></li>
@@ -89,6 +90,9 @@
     {% endcall %}
 
   <div class="l-notes mzp-l-content">
+    <p class="show-linux">{{ ftl('download-button-using-debian',
+      attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox" rel="external noopener"
+      data-cta-type="link" data-cta-text="Get help with your installation"') }}</p>
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{ ftl('firefox-channel-nightly-blog') }}</a></li>

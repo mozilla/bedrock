@@ -172,6 +172,14 @@
         var currentPlatform = currentOptions.querySelector(
             '.c-selection-platform select'
         );
+        // Adds platform string to download-info element
+        // to show/hide additonal instructions for linux installs
+        document
+            .querySelector('.c-download')
+            .setAttribute(
+                'data-platform',
+                FirefoxDownloader.getSelectOption(currentPlatform).id
+            );
         return FirefoxDownloader.getSelectOption(currentPlatform);
     };
 

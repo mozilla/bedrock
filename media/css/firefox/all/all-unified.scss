@@ -93,6 +93,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// display additional instructions when linux is selected
+
+.c-download[data-platform="linux"],
+.c-download[data-platform="linux64"] {
+    .c-linux-debian {
+        display: block;
+    }
+}
+
 .c-selection-formset {
     margin-bottom: 0;
 }
@@ -237,6 +246,11 @@ $image-path: '/media/protocol/img';
             display: none;
         }
     }
+}
+
+.c-linux-debian {
+    @include bidi(((text-align, left, right), ));
+    display: none;
 }
 
 .c-download-button {

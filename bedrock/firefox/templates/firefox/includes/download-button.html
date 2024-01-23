@@ -69,7 +69,7 @@
            {% else %}data-download-os="Desktop"{% endif %}
            {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>
           <strong class="download-title">
-            {% if alt_copy %}
+            {% if alt_copy and 'linux' not in plat.os %}
               {{ alt_copy }}
             {% else %}
               {% if plat.os == 'android' %}
@@ -84,6 +84,10 @@
                 {% endif %}
               {% elif plat.os == 'ios' %}
                 {{ ftl('download-button-firefox-ios') }}
+              {% elif plat.os == 'linux' %}
+                {{ ftl('download-button-linux-32') }}
+              {% elif plat.os == 'linux64' %}
+                {{ ftl('download-button-linux-64') }}
               {% else %}
                 {% if channel == 'beta' %}
                   {{ ftl('download-button-firefox-beta') }}
