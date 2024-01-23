@@ -65,7 +65,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.1.11
+    rev: v0.1.14
     hooks:
       - id: ruff
       - id: ruff-format

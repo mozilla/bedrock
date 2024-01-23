@@ -4,7 +4,7 @@ bpython==0.24
 braceexpand==0.1.7
 factory-boy==3.3.0
 freezegun==1.4.0
-pipdeptree==2.13.1
+pipdeptree==2.13.2
 py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
@@ -15,10 +15,10 @@ pytest-datadir==1.5.0
 pytest-django==4.7.0
 pytest-mock==3.12.0
 pytest-parallel==0.1.1
-pytest-rerunfailures==12.0
+pytest-rerunfailures==13.0
 pytest-selenium==4.0.1
 responses==0.24.1
-ruff==0.1.11
+ruff==0.1.14
 selenium==4.9.1 # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.12.1
 # Related to moz-l10n-lint, used in CI
