@@ -167,6 +167,35 @@ header {
             @include bidi(((text-align, left, right),));
         }
     }
+
+    .c-foundation {
+        a {
+            display: inline-flex;
+            align-items: center;
+
+            img {
+                margin-left: $spacing-sm;
+            }
+
+            .external-link-white {
+                display: block;
+            }
+
+            .external-link-black {
+                display: none;
+            }
+
+            &:hover {
+                .external-link-white {
+                    display: none;
+                }
+
+                .external-link-black {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 .c-about {
