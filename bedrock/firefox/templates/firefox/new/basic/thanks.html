@@ -73,7 +73,7 @@
             <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}"
               class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64') }}</a>
           </div>
-          {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#debian" rel="external noopener"
+          {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener"
           data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
           <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
         </div>
