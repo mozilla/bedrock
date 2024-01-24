@@ -13,6 +13,10 @@
     text-align: center;
 }
 
+.wnp-main-tagline {
+    @include text-body-xl;
+}
+
 @media #{$mq-md} {
     .wnp-main-title {
         padding-left: $layout-lg;
