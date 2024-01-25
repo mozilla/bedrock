@@ -24,21 +24,24 @@
   {% set main_tagline = 'Firefox blockierst du ganz einfach Tracker, verwaltest spielend deine Passwörter und passt deine Datenschutzeinstellungen mit wenigen Klicks an.' %}
   {% set qr_caption = 'Um loszulegen, scanne den QR-Code' %}
   {% set qr_alt = 'QR-Code zum Scannen für Firefox' %}
-  {% set adjust_url = 'https://app.adjust.com/17szhv0y' %}
+  {% set android_url = play_store_url('firefox', 'firefox-welcome-17b-de') %}
+  {% set ios_url = app_store_url('firefox', 'firefox-welcome-17b-de') %}
 {% elif LANG == "fr" %}
   {% set page_title = 'Nouvelle année, nouveau téléphone ? Téléchargez l’application Firefox.' %}
   {% set main_title = 'Nouvelle année, nouveau téléphone ?<br> Téléchargez l’application Firefox.'|safe %}
   {% set main_tagline = 'Bloquez les traqueurs, gérez vos mots de passe et personnalisez simplement vos paramètres de confidentialité avec Firefox, où que vous soyez.' %}
   {% set qr_caption = 'Scanner le code QR pour commencer' %}
   {% set qr_alt = 'Code QR à scanner pour Firefox' %}
-  {% set adjust_url = 'https://app.adjust.com/17ckotcd' %}
+  {% set android_url = play_store_url('firefox', 'firefox-welcome-17b-fr') %}
+  {% set ios_url = app_store_url('firefox', 'firefox-welcome-17b-fr') %}
 {% else %}
   {% set page_title = 'New year, new phone? Get the Firefox app.' %}
   {% set main_title = 'New year, new phone?<br> Get the Firefox app.'|safe %}
   {% set main_tagline = 'Block trackers, manage passwords and easily customize your privacy settings with Firefox on-the-go.' %}
   {% set qr_caption = 'Scan the QR code to get started' %}
   {% set qr_alt = 'QR code to scan for Firefox' %}
-  {% set adjust_url = 'https://app.adjust.com/17py9i7o' %}
+  {% set android_url = play_store_url('firefox', 'firefox-welcome-17b') %}
+  {% set ios_url = app_store_url('firefox', 'firefox-welcome-17b') %}
 {% endif %}
 
 {% block shoulder_logo %}
@@ -83,10 +86,10 @@
 
       <ul class="c-store-badges">
         <li class="c-store-badge-google">
-          {{ google_play_button(href=adjust_url, id='playStoreLink') }}
+          {{ google_play_button(href=android_url, id='playStoreLink') }}
         </li>
         <li class="c-store-badge-apple">
-          {{ apple_app_store_button(href=adjust_url, id='appStoreLink') }}
+          {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
         </li>
       </ul>
 

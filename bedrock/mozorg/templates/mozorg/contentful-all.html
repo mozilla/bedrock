@@ -12,8 +12,8 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=' + _utm_campaign %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = firefox_adjust_url('android', _utm_campaign) %}
-{% set ios_url = firefox_adjust_url('ios', _utm_campaign) %}
+{% set android_url = play_store_url('firefox', _utm_campaign) %}
+{% set ios_url = app_store_url('firefox', _utm_campaign) %}
 
 {# meta data #}
 {% block page_title %}{{ info.title }}{% endblock %}

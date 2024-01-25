@@ -17,10 +17,12 @@
 {% block header %}Go your own way with Firefox mobile{% endblock %}
 {% block body_copy %}Firefox mobile adapts to you and makes it easier than ever to see all your open tabs, past searches, and favorite sites.{% endblock %}
 {% block ios_badge %}
-  {{ apple_app_store_button(href='https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=ios-store', id='appStoreLink-primary', class_name='ios store-badge') }}
+  {% set ios_url = app_store_url('firefox', 'firefox-landing-100') %}
+  {{ apple_app_store_button(href=ios_url, id='appStoreLink-primary', class_name='ios store-badge') }}
 {% endblock %}
 {% block android_badge %}
-  {{ google_play_button(href='https://app.adjust.com/jcn6eyw?campaign=firefox100&adgroup=android-store', id='playStoreLink-primary', class_name='android store-badge') }}
+  {% set android_url = play_store_url('firefox', 'firefox-landing-100') %}
+  {{ google_play_button(href=android_url, id='playStoreLink-primary', class_name='android store-badge') }}
 {% endblock %}
 {% block site_footer %}
   {% with theme_class='mzp-t-light' %}

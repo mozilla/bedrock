@@ -51,10 +51,10 @@
 
         <ul>
           <li>
-            {{ google_play_button(href=firefox_adjust_url('android', 'fb-container-page'), id='playStoreLink') }}
+            {{ google_play_button(href=play_store_url('firefox', 'firefox-facebook-container'), id='playStoreLink') }}
           </li>
           <li>
-            {{ apple_app_store_button(href=firefox_adjust_url('ios', 'fb-container-page'), id='appStoreLink') }}
+            {{ apple_app_store_button(href=app_store_url('firefox', 'firefox-facebook-container'), id='appStoreLink') }}
           </li>
         </ul>
       {% endif %}

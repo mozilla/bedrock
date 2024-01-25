@@ -19,7 +19,7 @@
   {{ css_bundle('chromebook') }}
 {% endblock %}
 
-{% set android_url = firefox_adjust_url('android', 'firefox-browsers-chromebook') %}
+{% set android_url = play_store_url('firefox', 'firefox-browsers-chromebook') %}
 
 {% block site_header %}
   {% with hide_nav_cta=True %}
@@ -49,7 +49,7 @@
     <h4 class="mzp-c-menu-list-title">{{ ftl('browsers-chromebook-dropdown-copy') }}</h4>
     <ul class="mzp-c-menu-list-list download-platform-list">
       <li class="mzp-c-menu-list-item">
-        <a href="{{ firefox_adjust_url('android', 'firefox-browsers-faq') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">
+        <a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">
           {{ ftl('browsers-chromebook-browsers-chromebook-get-firefox-for') }}
           <p><small>{{ ftl('browsers-chromebook-x86-based-chromebook') }}</small></p>
         </a>

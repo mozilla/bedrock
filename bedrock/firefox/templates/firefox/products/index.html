@@ -39,8 +39,8 @@
   {% endif %}
 {% endblock %}
 
-{% set android_url = firefox_adjust_url('android', 'products-page') %}
-{% set ios_url = firefox_adjust_url('ios', 'products-page') %}
+{% set android_url = play_store_url('firefox', 'firefox-products') %}
+{% set ios_url = app_store_url('firefox', 'firefox-products') %}
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-products' %}
 {% set _entrypoint = 'mozilla.org-firefox-products' %}
 
@@ -100,8 +100,8 @@
             {# Download link should be locale neutral see issue 7982 #}
             <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ ftl('firefox-products-desktop') }}</a></li>
           <!--<![endif]-->
-          <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-android"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
         </ul>
       </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="See all browsers">{{ ftl('firefox-products-see-all-browsers') }}</a></p>
@@ -124,8 +124,8 @@
         <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-products-get-pocket') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-pocket">
           <li class="mzp-c-menu-list-item t-web"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket for Desktop">{{ ftl('firefox-products-desktop') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">{{ ftl('firefox-products-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ play_store_url('pocket', 'firefox-products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">{{ ftl('firefox-products-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ app_store_url('pocket', 'firefox-products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">{{ ftl('firefox-products-ios') }}</a></li>
         </ul>
       </div>
 
@@ -151,8 +151,8 @@
       <div id="menu-focus-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ ftl('download-button-download') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
-          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('android', 'firefox_products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ focus_adjust_url('ios', 'firefox_products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ play_store_url('focus', 'firefox-products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ app_store_url('focus', 'firefox-products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
         </ul>
       </div>
 

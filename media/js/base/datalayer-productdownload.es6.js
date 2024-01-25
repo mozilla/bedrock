@@ -12,7 +12,6 @@ const iTunesURL = /^https:\/\/itunes.apple.com/;
 const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
 const marketURL = /^market:\/\/play.google.com/;
-const adjustURL = /^https:\/\/app.adjust.com/;
 
 if (typeof window.dataLayer === 'undefined') {
     window.dataLayer = [];
@@ -32,8 +31,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
             iTunesURL.test(downloadURL) ||
             appStoreURL.test(downloadURL) ||
             playStoreURL.test(downloadURL) ||
-            marketURL.test(downloadURL) ||
-            adjustURL.test(downloadURL)
+            marketURL.test(downloadURL)
         ) {
             return true;
         } else {
@@ -182,15 +180,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             iosProduct,
             'ios',
             'store',
-            'release'
-        );
-    } else if (adjustURL.test(downloadURL)) {
-        const adjustProduct = params.mz_pr ? params.mz_pr : 'unrecognized';
-        const adjustPlatform = params.mz_pl ? params.mz_pl : '';
-        eventObject = TrackProductDownload.getEventObject(
-            adjustProduct,
-            adjustPlatform,
-            'adjust',
             'release'
         );
     }

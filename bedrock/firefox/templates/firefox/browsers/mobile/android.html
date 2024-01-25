@@ -11,7 +11,7 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = firefox_adjust_url('android', 'mobile-android-page') %}
+{% set android_url = play_store_url('firefox', 'firefox-browsers-mobile-android') %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}

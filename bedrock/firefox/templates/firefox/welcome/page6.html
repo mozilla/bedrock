@@ -16,8 +16,8 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-6' %}
 {% set _utm_campaign = 'welcome-6-default-browser' %}
 
-{% set android_url = firefox_adjust_url('android', 'moments6') %}
-{% set ios_url = firefox_adjust_url('ios', 'moments6') %}
+{% set android_url = play_store_url('firefox', 'firefox-welcome-6') %}
+{% set ios_url = app_store_url('firefox', 'firefox-welcome-6') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {%block page_css %}

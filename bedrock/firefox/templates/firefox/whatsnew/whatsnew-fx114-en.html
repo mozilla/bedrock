@@ -46,10 +46,12 @@
 
     <ul class="c-store-badges">
       <li class="c-store-badge-google">
-        {{ google_play_button(href='https://app.adjust.com/10mpolq5', id='playStoreLink') }}
+        {% set android_url = play_store_url('firefox', 'firefox-whatsnew-114') %}
+        {{ google_play_button(href=android_url, id='playStoreLink') }}
       </li>
       <li class="c-store-badge-apple">
-        {{ apple_app_store_button(href='https://app.adjust.com/10mpolq5', id='appStoreLink') }}
+        {% set ios_url = app_store_url('firefox', 'firefox-whatsnew-114') %}
+        {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
       </li>
     </ul>
 

@@ -8,26 +8,40 @@
 Firefox mobile attribution
 ==========================
 
-For Firefox mobile app store referrals we use `Adjust`_, a third-party
-attribution system for mobile apps that is designed to measure, optimize
-and scale app growth. We use Adjust tracking links across www.mozilla.org
-when we link to app stores for both Firefox and Firefox Focus on Android
-and iOS. We also often embed Adjust links in QR codes that we display to
-desktop visitors.
+For Firefox mobile referrals we use native app store web links with additional
+campaign parameters to help measure download to install rates.
 
-To find out more about Adjust, see the following links:
+App store url helpers
+---------------------
 
-- `What is mobile ad attribution?`_
-- `Attribution methods`_
+To help streamline creating app store referral links we have `app_store_url()` and
+`play_store_url()` helpers, which accept a `product`` name and an optional
+`campaign`` parameter.
 
-Adjust link helpers
--------------------
+For example:
 
-Whilst they are not used routinely in our pages, bedrock does have a series
-of `Adjust link helpers`_ that can be used to create Adjust links for different
-products.
+```
+play_store_url('firefox', 'firefox-home')
+app_store_url('firefox', 'firefox-home')
+```
 
-.. _Adjust: https://www.adjust.com/
-.. _What is mobile ad attribution?: https://www.adjust.com/blog/mobile-ad-attribution-introduction-for-beginners/
-.. _Attribution methods: https://help.adjust.com/en/article/attribution-methods
-.. _Adjust link helpers: https://github.com/mozilla/bedrock/blob/main/bedrock/mozorg/templatetags/misc.py
+Would render:
+
+```
+https://apps.apple.com/us/app/apple-store/id989804926?pt=373246&ct=firefox-home&mt=8
+https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&hl=en
+```
+
+For Firefox Focus:
+
+```
+play_store_url('focus', 'firefox-browsers-mobile-focus')
+app_store_url('focus', 'firefox-browsers-mobile-focus')
+```
+
+Would render:
+
+```
+https://apps.apple.com/us/app/apple-store/id1055677337?pt=373246&ct=firefox-home&mt=8
+https://play.google.com/store/apps/details?id=org.mozilla.focus&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&hl=en
+```

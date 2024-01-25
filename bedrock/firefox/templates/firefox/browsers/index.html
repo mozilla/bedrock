@@ -39,8 +39,8 @@
   {% endif %}
 {% endblock %}
 
-{% set android_url = firefox_adjust_url('android', 'browsers-page') %}
-{% set ios_url = firefox_adjust_url('ios', 'browsers-page') %}
+{% set android_url = play_store_url('firefox', 'firefox-browsers') %}
+{% set ios_url = app_store_url('firefox', 'firefox-browsers') %}
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-browsers' %}
 {% set _entrypoint = 'mozilla.org-firefox-browsers' %}
 
@@ -149,8 +149,8 @@
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-browsers-download-for-mobile') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
-          <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-browsers-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-browsers-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-browsers-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-browsers-ios') }}</a></li>
           <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">{{ ftl('firefox-browsers-send-me-a-link') }}</a></li>
         </ul>
       </div>
