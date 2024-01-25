@@ -123,6 +123,7 @@ if IS_POCKET_MODE:
         "www.mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
+        "cdn.cookielaw.org",  # See https://github.com/mozilla/bedrock/issues/14118
     ]
     _csp_script_src = [
         # TODO fix use of OptanonWrapper() so that we don't need this
