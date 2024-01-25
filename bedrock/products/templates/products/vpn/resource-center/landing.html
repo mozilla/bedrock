@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from 'macros-protocol.html' import call_out, split %}
+{% from 'macros-protocol.html' import callout, split %}
 {% from "products/vpn/includes/macros.html" import vpn_resource_center_cta with context %}
 
 {% extends "products/vpn/base.html" %}
@@ -38,7 +38,7 @@
 
 {% block content %}
 <div class="mzp-l-content">
-  {{ call_out (
+  {{ callout (
     title=ftl('vpn-resource-center-whats-the-deal'),
     desc=ftl('vpn-resource-center-discover-how-they'),
     class='resource-center-page-header resource-center-hero'

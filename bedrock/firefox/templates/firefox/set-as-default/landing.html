@@ -6,7 +6,7 @@
 #}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros-protocol.html" import call_out, picto with context %}
+{% from "macros-protocol.html" import callout, picto with context %}
 
 {% block page_title %}{{ ftl('set-as-default-landing-make-firefox-your-default') }}{% endblock %}
 {% block page_desc %}{{ ftl('set-as-default-landing-choose-the-browser') }}{% endblock %}
@@ -22,7 +22,7 @@
 
 {% block content %}
   <main>
-    {% call call_out(
+    {% call callout(
       title=ftl('set-as-default-landing-make-sure-youre-protected'),
       desc=ftl('set-as-default-landing-thanks-for-using-the'),
       class='mzp-t-hero mzp-t-product-firefox',

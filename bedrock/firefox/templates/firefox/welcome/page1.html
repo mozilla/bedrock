@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -39,7 +39,7 @@
 
 {% block content_intro %}
 
-  {% call call_out(
+  {% call callout(
     title=hero_title,
     desc=ftl('welcome-page1-youve-got-the-web-browser'),
     class='mzp-t-firefox mzp-t-dark mzp-t-hero',

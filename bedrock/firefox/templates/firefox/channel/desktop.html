@@ -18,7 +18,7 @@
 
 {% block channels %}
 <section id="beta" class="mzp-is-anchor-link">
-  {% call call_out_compact(
+  {% call callout_compact(
     title=ftl('firefox-channel-beta'),
     desc=ftl('firefox-channel-test-about-to-be-released'),
     class='mzp-t-product-beta mzp-t-firefox',
@@ -54,7 +54,7 @@
 </section>
 
 <section id="developer" class="mzp-is-anchor-link">
-  {% call call_out_compact(
+  {% call callout_compact(
     title=ftl('firefox-channel-developer-edition'),
     desc=ftl('firefox-channel-build-test-scale-and-more'),
     class='mzp-t-product-developer mzp-t-firefox',
@@ -89,7 +89,7 @@
 </section>
 
 <section id="nightly" class="mzp-is-anchor-link">
-    {% call call_out_compact(
+    {% call callout_compact(
       title=ftl('firefox-channel-nightly'),
       desc=ftl('firefox-channel-get-a-sneak-peek-at-our', fallback='firefox-channel-test-brand-new-features'),
       class='mzp-t-product-nightly mzp-t-firefox',

@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button, apple_app_store_button with context %}
-{% from "macros-protocol.html" import split, call_out_compact with context %}
+{% from "macros-protocol.html" import split, callout_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -83,7 +83,7 @@
   </section>
 
   <section class="firefox-cta">
-    {% call call_out_compact(
+    {% call callout_compact(
       title=ftl('facebook-container-browse-freely-with-firefox'),
       class='mzp-t-dark',
       heading_level=2,

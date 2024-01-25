@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button, apple_app_store_button with context %}
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block content_intro %}
-  {% call call_out(
+  {% call callout(
     title=ftl('welcome-page6-make-sure-youre-protected'),
     desc=ftl('welcome-page6-when-you-choose-firefox-you'),
     class='mzp-t-firefox mzp-t-dark mzp-t-hero',

@@ -8,7 +8,7 @@
 
 {% block page_image %}{{ static('img/firefox/features/tips/tips-and-tools.png') }}{% endblock %}
 
-{% from "macros-protocol.html" import split, call_out, zap, card, call_out_compact with context %}
+{% from "macros-protocol.html" import split, callout, zap, card, callout_compact with context %}
 
 {% block page_title %}Firefox Tips and Tools{% endblock %}
 {% block page_desc %}Our favorite Firefox tips, tricks and nerd-friendly features to help you get the most of your time online – it’s kind of like our version of a secret menu.{% endblock %}
@@ -213,7 +213,7 @@
       )}}
     </div>
 
-    {% call call_out(
+    {% call callout(
        title='Available now for desktop and mobile',
        heading_level=3,
        class='mzp-t-product-firefox mzp-t-background-secondary',
@@ -227,7 +227,7 @@
     {% endcall %}
   </section>
 
-  {% call call_out_compact(
+  {% call callout_compact(
       title='The account that protects you rather than profits off you.',
       class='mzp-t-product-family mzp-t-firefox  mzp-t-background-tertiary hide-from-legacy-ie',
       heading_level=3,

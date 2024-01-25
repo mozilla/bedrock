@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact, hero with context %}
+{% from "macros-protocol.html" import callout_compact, hero with context %}
 {% from "firefox/includes/macros.html" import firefox_download_desktop_button_windows with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -73,7 +73,7 @@
   </article>
 </div>
 
-{% call call_out_compact(
+{% call callout_compact(
   title=ftl('windows-64-bit-take-control-of-your'),
   class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
   brand=True,

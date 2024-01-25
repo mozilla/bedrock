@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -70,11 +70,11 @@
       </div>
     </section>
 
-    {% call call_out(
+    {% call callout(
       title=ftl('manifesto-show-your-support'),
       desc=ftl('manifesto-an-internet-with-these'),
       class='share-addendum',
-      include_cta=True
+      include_cta=True,
     ) %}
       <p>
         <a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-type="social share" data-link-text="Twitter">

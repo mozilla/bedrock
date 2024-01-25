@@ -5,7 +5,7 @@
 #}
 
 {% extends "/firefox/base/base-protocol.html" %}
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}

@@ -114,7 +114,7 @@
 
 {#
   Call Out: https://protocol.mozilla.org/components/detail/call-out--default.html
-  HTML import: {% from "macros-protocol.html" import call_out with context %}
+  HTML import: {% from "macros-protocol.html" import callout with context %}
   CSS bundle: {% block page_css %} {{ css_bundle('protocol-callout') }} {% endblock %}
   Macro parameters:
     title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
@@ -127,10 +127,11 @@
     brand_type: String for choosing whether a logo or a wordmark is to be displayed.
     brand_size: String to indicate size of the logo or wordmark to be added.
     brand_text: String naming the branding's product. Used for accessibility purposes. Is optional as it depends on if the logo/wordmark used is for decorative purposes or not.
+    content_width: String to declare size of the container using Protocol's content width classes (i.e. mzp-t-content-md / mzp-t-content-lg). When using this macro, only declare the T-shirt sizing strings we have in place (i.e. 'sm', 'md', 'lg', 'xl'). Content width of the Callout container's macro is defaulted to mzp-t-content-lg.
 #}
-{% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None) -%}
+{% macro callout(title, desc=None, class=None, include_cta=False, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None, content_width=None) -%}
 <section class="mzp-c-callout {% if class %}{{ class }}{% endif %}">
-  <div class="mzp-l-content">
+  <div class="mzp-l-content {% if content_width %}mzp-t-content-{{content_width}} {% else %} mzp-t-content-lg {% endif %}">
     {% if brand %}<div class="mzp-t-callout-brand mzp-c-{{ brand_type }} mzp-t-{{ brand_type }}-{{ brand_size }} mzp-t-product-{{ brand_product }}">{{ brand_text }}</div>{% endif %}
     <h{{ heading_level }} class="mzp-c-callout-title">{{ title }}</h{{ heading_level }}>
     {% if desc %}
@@ -146,7 +147,7 @@
 
 {#
   Call Out (compact): https://protocol.mozilla.org/components/detail/compact-callout--default.html
-  HTML import: {% from "macros-protocol.html" import call_out with context %}
+  HTML import: {% from "macros-protocol.html" import callout with context %}
   CSS bundle: {% block page_css %} {{ css_bundle('protocol-callout') }} {% endblock %}
   Marco Parameters:
     title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
@@ -154,7 +155,7 @@
     class: tring adding class(es) to the section tag.
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
 #}
-{% macro call_out_compact(title, desc=None, class=None, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None) -%}
+{% macro callout_compact(title, desc=None, class=None, heading_level=2, brand=False, brand_product=None, brand_type=None, brand_size=None, brand_text=None) -%}
 <section class="mzp-c-callout mzp-l-compact {% if class %}{{ class }}{% endif %}">
 
   <div class="mzp-l-content mzp-t-content-lg">

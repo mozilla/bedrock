@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -29,7 +29,7 @@
 {% block content_intro %}
   <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="">
 
-  {% call call_out(
+  {% call callout(
     title='Standort ändern, <br>Verbindung sichern, <br><strong>Privatsphäre schützen</strong>.'|safe,
     desc='Mozilla VPN (Virtuelles Privates Netzwerk) schützt deine gesamte Internetverbindung – auf all deinen Geräten und überall dort, wo du online gehst.',
     class='mzp-t-firefox mzp-t-hero',

@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, split, picto with context %}
+{% from "macros-protocol.html" import callout, split, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -25,7 +25,7 @@
 
 {% block hub_content %}
 
-  {{ call_out(
+  {{ callout(
     title=ftl('firefox-privacy-hub-mozilla-protects-your-privacy-strong', fallback='firefox-privacy-hub-firefox-protects-your-privacy-strong')|safe,
     class='privacy-products-call-out-main',
     heading_level=1)
@@ -121,7 +121,7 @@
     </ul>
   </div>
 
-  {% call call_out(
+  {% call callout(
     title=ftl('firefox-privacy-hub-more-than-s-trackers-blocked', trackers=10000000000),
     class='privacy-products-tracker-counter mzp-t-dark',
     include_cta=True

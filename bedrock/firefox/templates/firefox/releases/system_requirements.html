@@ -6,7 +6,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out, call_out_compact %}
+{% from "macros-protocol.html" import callout, callout_compact %}
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
 
@@ -33,7 +33,7 @@
     </div>
   </main>
 
-  {% call call_out_compact(
+  {% call callout_compact(
     title='Get the most recent version',
     class='mzp-t-firefox mzp-t-product-firefox mzp-t-background-secondary',
     brand=True,

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out, picto with context %}
+{% from "macros-protocol.html" import callout, picto with context %}
 
 {% extends "/firefox/base/base-protocol.html" %}
 
@@ -33,7 +33,7 @@
 
 {% block content %}
 <main>
-  {{ call_out(
+  {{ callout(
     title=ftl('nightly-firstrun-thank-you-for-using'),
     class='mzp-t-dark mzp-t-product-nightly main-header mzp-t-hero',
     heading_level=1,

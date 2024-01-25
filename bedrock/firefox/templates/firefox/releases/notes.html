@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import sub_nav with context %}
-{% from "macros-protocol.html" import call_out, call_out_compact %}
+{% from "macros-protocol.html" import callout, callout_compact %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -111,7 +111,7 @@
           {% endif %}
           {% set bugzilla_url='https://bugzilla.mozilla.org/' %}
           {% set call_out_desc = 'Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.'|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) %}
-          {% call call_out(
+          {% call callout(
             heading_level=1,
             title=primary_heading,
             desc=call_out_desc|safe,
@@ -344,7 +344,7 @@
     {% endif %}
     </section>
 
-    {% call call_out_compact(
+    {% call callout_compact(
       title=download_title,
       class='mzp-t-firefox mzp-t-background-secondary ' + product_class,
       brand=True,

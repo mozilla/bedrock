@@ -11,7 +11,7 @@ class VPNResourceCenterHomePage(BasePage):
     _URL_TEMPLATE = "/{locale}/products/vpn/resource-center/"
 
     # Header unit
-    _resource_center_header_locator = (By.CSS_SELECTOR, ".mzp-c-call-out.resource-center-page-header.resource-center-hero")
+    _resource_center_header_locator = (By.CSS_SELECTOR, ".mzp-c-callout.resource-center-page-header.resource-center-hero")
 
     # Article link
     _resource_center_article_link_locator = (By.CSS_SELECTOR, ".resource-center-articles .mzp-c-card a.mzp-c-card-block-link")
