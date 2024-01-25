@@ -159,7 +159,7 @@
 <section class="mzp-c-callout mzp-l-compact {% if class %}{{ class }}{% endif %}">
 
   <div class="mzp-l-content mzp-t-content-lg">
-    <div class="mzp-c-callout-content">
+    <div class="mzp-c-callout-content {% if brand %}mzp-c-callout-content-has-brand{% endif %}">
       {% if brand %}<div class="mzp-t-callout-compact-brand mzp-c-{{ brand_type }} mzp-t-{{ brand_type }}-{{ brand_size }} mzp-t-product-{{ brand_product }}">{{ brand_text }}</div>{% endif %}
       <div class="mzp-c-callout-container">
         <h{{ heading_level }} class="mzp-c-callout-title">{{ title }}</h{{ heading_level }}>

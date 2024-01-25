@@ -53,10 +53,10 @@ $image-path: '/media/protocol/img';
 
 .mzp-l-compact {
     .mzp-l-content {
-        .mzp-c-callout-content:has(.mzp-t-callout-compact-brand) {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        .mzp-c-callout-content-has-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
 
             .mzp-t-callout-compact-brand {
                 flex-shrink: 0;
