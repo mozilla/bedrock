@@ -34,6 +34,9 @@
   {% if show_pocket_banner %}
     {{ css_bundle('pocket-best-of')}}
   {% endif %}
+  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
+    {{ css_bundle('monitor-banner')}}
+  {% endif %}
   {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
     {{ css_bundle('ctd-promo') }}
   {% endif %}
@@ -45,6 +48,8 @@
 {% block page_banner %}
   {%- if (LANG == 'de' or LANG.startswith('en-')) and show_pocket_banner -%}
     {% include 'includes/banners/pocket-pencil-banner.html' %}
+  {% elif LANG == 'en-US' and switch('monitor-plus-banner') %}
+    {% include 'includes/banners/monitor-plus.html' %}
   {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
@@ -215,6 +220,8 @@
   <!-- Mid-page promo -->
   {% if LANG == 'de' or LANG.startswith('en-') and show_pocket_banner %}
     {% include 'mozorg/home/includes/pocket-best-of.html'%}
+  {% elif LANG == 'en-US' and switch("monitor-plus-banner") %}
+    {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
   {% else %}
     {% include 'mozorg/home/includes/featured-vpn.html' %}
   {% endif %}
@@ -257,6 +264,9 @@
   {{ js_bundle('newsletter') }}
   {% if show_pocket_banner %}
     {{ js_bundle('pocket-banner') }}
+  {% endif %}
+  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
+    {{ js_bundle('monitor-banner') }}
   {% endif %}
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
