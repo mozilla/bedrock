@@ -31,7 +31,7 @@
       <table class="mzp-u-data-table compare-table">
         <thead>
           <tr>
-            <th>Protections</th>
+            <th>Protections*</th>
             <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="Firefox"></th>
             <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="Chrome"></th>
             <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="Edge"></th>
@@ -91,11 +91,17 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="7" role="presentation" class="compare-table-legend">
-              <span class="legend-label">Legend:</span>
-              <span class="compare-icon compare-icon-yes">Yes</span> Yes
-              <span class="compare-icon compare-icon-some">Yes</span> Somewhat
-              <span class="compare-icon compare-icon-no">Yes</span> No
+            <td colspan="6">
+              <p role="presentation" class="compare-table-legend">
+                <span class="legend-label">Legend:</span>
+                <span class="compare-icon compare-icon-yes">Yes</span> Yes
+                <span class="compare-icon compare-icon-some">Yes</span> Somewhat
+                <span class="compare-icon compare-icon-no">Yes</span> No
+              </p>
+
+              <p class="compare-table-disclaimer">
+                * Based on browser capability in December 2023
+              </p>
             </td>
           </tr>
         </tfoot>

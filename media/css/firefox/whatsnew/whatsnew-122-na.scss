@@ -150,14 +150,23 @@
     }
 
     .compare-table-legend {
+        float: left;
+
         .legend-label {
             font-weight: bold;
         }
 
         .compare-icon {
             vertical-align: middle;
-            margin-left: $spacing-md;
+            margin-left: $spacing-sm;
         }
+    }
+
+    .compare-table-disclaimer {
+        @include text-body-xs;
+        float: right;
+        text-align: right;
+        margin-top: $spacing-xs;
     }
 }
 
