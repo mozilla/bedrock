@@ -713,6 +713,6 @@ event data.
 .. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
 .. _websites privacy notice: https://www.mozilla.org/privacy/websites/
 .. _STMO dashboard: https://sql.telemetry.mozilla.org/dashboard/bedrock-landing-page-dashboard?p_date=d_last_30_days
-.. _event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=
+.. _event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=non-prod
 .. _Glean Dictionary: https://dictionary.telemetry.mozilla.org/apps/bedrock
 .. _events ping: https://dictionary.telemetry.mozilla.org/apps/bedrock/pings/events
