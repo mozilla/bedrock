@@ -135,6 +135,13 @@ class TestReleaseModel(TestCase):
         rel = models.get_release("firefox", "57.0a1")
         assert len(rel.notes) == 6
 
+    @override_settings(DEV=True)
+    def test_invalid_version(self):
+        """Should not load data for invalid versions."""
+        models.ProductRelease.objects.refresh()
+        release_cache.clear()
+        assert models.get_release("firefox", "copy-56.0") is None
+
 
 @patch.object(models.ProductRelease, "objects")
 class TestGetRelease(TestCase):

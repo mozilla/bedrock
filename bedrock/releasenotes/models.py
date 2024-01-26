@@ -5,6 +5,7 @@
 import codecs
 import json
 import os
+import re
 import xml.etree.ElementTree as etree
 from glob import glob
 from operator import attrgetter
@@ -24,6 +25,7 @@ from markdown.inlinepatterns import InlineProcessor
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.releasenotes import version_re
 from bedrock.releasenotes.utils import memoize
 
 
@@ -195,6 +197,7 @@ class ProductReleaseManager(models.Manager):
         return self.get_queryset(include_drafts).product(product_name, channel_name, version)
 
     def refresh(self):
+        version_regex = re.compile(version_re)
         release_objs = []
         rn_path = os.path.join(settings.RELEASE_NOTES_PATH, "releases")
         with transaction.atomic(using=self.db):
@@ -203,6 +206,9 @@ class ProductReleaseManager(models.Manager):
             for release_file in releases:
                 with codecs.open(release_file, "r", encoding="utf-8") as rel_fh:
                     data = json.load(rel_fh)
+                    # Make sure the version is valid and publicly accessible.
+                    if not version_regex.match(data["version"]):
+                        continue
                     # doing this to simplify queries for Firefox since it is always
                     # looked up with product=Firefox and relies on the version number
                     # and channel to determine ESR.
