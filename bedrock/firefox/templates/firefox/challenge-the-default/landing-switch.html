@@ -5,7 +5,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
 {% if switch('challenge-the-default-active') %}
-  {% include 'firefox/challenge-the-default/landing.html' %}
+  {% if LANG == 'de' %}
+    {% include 'firefox/challenge-the-default/langs/landing.de.html' %}
+  {% elif LANG == 'fr' %}
+    {% include 'firefox/challenge-the-default/langs/landing.fr.html' %}
+  {% endif %}
 {% else %}
   {% include 'firefox/home/index-master.html' %}
 {% endif %}

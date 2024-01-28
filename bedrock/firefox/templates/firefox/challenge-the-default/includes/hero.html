@@ -4,21 +4,20 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+<!-- Base -->
 <div class="c-hero-text">
-  <h1>Der Browser, den du selber wählst</h1>
+  <h1>{{ hero_head|safe }}</h1>
   <div class="hero-text-flex-wrapper">
     <p class="is-firefox">
-      Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein
-      Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas
-      findest.
+      {{ hero_text_ff }}
     </p>
     <p class="not-firefox">
-      Wenn du Firefox wählst, triffst du eine bewusste Entscheidung. Besserer Datenschutz, mehr Transparenz und
-      ein gesünderes Web.
+      {{ hero_text_not_ff }}
     </p>
-    {{ cta_group('hero-v1') }}
+    {{ cta_group('hero') }}
   </div>
 </div>
+{% if LANG != "fr" %}
 {{ picture(
     url='img/firefox/challenge-the-default/hero-image-mobile.png',
     sources=[
@@ -41,3 +40,4 @@
       'alt': 'Image of a seagull sitting on a no birds allowed sign'
     }
 )}}
+{% endif %}

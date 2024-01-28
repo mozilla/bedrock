@@ -1,0 +1,32 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="c-animated-button" aria-hidden="true">
+  <div class="mzp-l-content mzp-t-content-nospace">
+    <svg class="wednesday-bg" width="1440" height="246" viewBox="0 0 1440 246" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="719.993" cy="123.001" rx="797.262" ry="785.044" fill="#2AC3A2" />
+      <ellipse class="wednesday-circle pink circle1" cx="719.996" cy="123" rx="604" ry="595" fill="#FFBDC5" />
+      <circle class="wednesday-circle red circle2" cx="719.996" cy="123" r="476" fill="#FF6A75" />
+      <circle class="wednesday-circle light-green circle3" cx="719.996" cy="123" r="372" fill="#D1FFEE" />
+      <circle cx="719.996" cy="123" r="283" fill="#2AC3A2" />
+    </svg>
+    <button class="animated-button ctd-logo-sprite">Challenge the default</button>
+    {{ resp_img(
+        url='img/firefox/challenge-the-default/is-wednesday.png',
+        optional_attributes={
+          'class': 'wednesday-lizard is-wednesday',
+          'alt': "It's Wednesday my dudes"
+        }
+    )}}
+    {{ resp_img(
+        url='img/firefox/challenge-the-default/is-not-wednesday.png',
+        optional_attributes={
+          'class': 'wednesday-lizard not-wednesday',
+          'alt': "It's not Wednesday my dudes"
+        }
+    )}}
+  </div>
+</section>

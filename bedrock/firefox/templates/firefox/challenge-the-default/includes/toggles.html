@@ -1,0 +1,64 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="c-ctd-toggles" aria-hidden="true">
+  <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
+    <div class="toggle-grid small">
+        {% for element in range(4) %}
+          <label class="toggle" for="toggle-top-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+        {% endfor %}
+        <label class="toggle middle" for="toggle-middle">
+          <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
+          <span class="toggle-display"></span>
+        </label>
+        {% for element in range(4) %}
+          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+            <span class="toggle-display"></span>
+          </label>
+        {% endfor %}
+    </div>
+    <div class="toggle-grid medium">
+      {% for element in range(7) %}
+      <label class="toggle" for="toggle-top-{{ loop.index }}">
+        <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% endfor %}
+      <label class="toggle middle" for="toggle-middle">
+        <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% for element in range(7) %}
+      <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+        <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% endfor %}
+    </div>
+    <div class="toggle-grid large">
+      {% for element in range(10) %}
+      <label class="toggle" for="toggle-top-{{ loop.index }}">
+        <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% endfor %}
+      <label class="toggle middle" for="toggle-middle">
+        <input type="checkbox" name="toggle-middle" id="toggle-middle" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% for element in range(10) %}
+      <label class="toggle" for="toggle-bottom-{{ loop.index }}">
+        <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
+        <span class="toggle-display"></span>
+      </label>
+      {% endfor %}
+    </div>
+  </div>
+</section>

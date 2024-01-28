@@ -1,0 +1,65 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/challenge-the-default/landing-base.html" %}
+
+{% block page_image %}{{ static('img/firefox/challenge-the-default/ctd-share-fr.png') }}{% endblock %}
+
+{% set seo_desc = 'Imaginez un navigateur qui ait un intérêt à cœur avant tout : le vôtre. Firefox est rapide, sécurisé, et éthique. Parce que nous n’avons de compte à rendre qu’à vous, nos utilisateurs, pas à des actionnaires ou annonceurs.' %}
+{% set cta_default = 'Choisir Firefox comme navigateur par défaut' %}
+{% set cta_mobile = 'Découvrir Firefox mobile' %}
+{% set cta_download = 'Essayer Firefox' %}
+{% set hero_alt = 'Changez la donne' %}
+{% set hero_egg = 'Vous êtes du genre curieux ? Explorez la page pour découvrir d’autres surprises !' %}
+{% set hero_head = 'Choisissez un navigateur <span class="icon-firefox"></span> pensé pour vous' %}
+{% set hero_text_ff = 'Firefox a un intérêt à cœur avant tout : le vôtre. Notre objectif est de vous délivrer la meilleure expérience possible, une sécurité hors-norme, et une transparence unique. Profitez de nos standards de navigation sur tous vos appareils. ' %}
+{% set hero_text_not_ff = 'Imaginez un navigateur qui ait un intérêt à cœur avant tout : le vôtre. Dont l’objectif soit de vous délivrer la meilleure expérience possible, une sécurité hors-norme, et une transparence unique. Firefox est rapide, sécurisé, et éthique. Parce que nous n’avons de compte à rendre qu’à vous, nos utilisateurs, pas à des actionnaires ou annonceurs. ' %}
+
+{% set features_head = 'Nos fonctionnalités<br> préférées' %}
+{% set features_browsing_title = 'Navigation fluide' %}
+{% set features_browsing_body = 'Gardez vos onglets ouverts et vos mots de passe à portée de main sur tous vos appareils, si vous le souhaitez.' %}
+{% set features_multi_title = 'Multitâche simplifié' %}
+{% set features_multi_body = 'Continuez à regarder des vidéos dans une fenêtre pop-up pendant que vous naviguez.' %}
+{% set features_power_title = 'Soutien à but non lucratif*' %}
+{% set features_power_body = 'Firefox est soutenu par la Fondation Mozilla et prend ses décisions avec l’utilisateur au cœur, pas les profits.' %}
+{% set features_power_small = '*Oui ça n’est pas une fonctionnalité, mais c’est bien quand même, non ?' %}
+{% set features_pdf_title = 'PDF rapidement édités' %}
+{% set features_pdf_body = 'Modifiez des PDF directement dans le navigateur - sans détour.' %}
+
+{% set compare_title = 'Firefox change<br> la donne' %}
+{% set compare_body = 'Adoptez un navigateur qui se démarque sur les sujets qui comptent.' %}
+{% set compare_passwords = 'Remplissage automatique des mots de passe' %}
+{% set compare_search = 'Options de moteur de recherche' %}
+{% set compare_sync = 'Synchronisation entre appareils' %}
+{% set compare_block = 'Blocage des cookies tiers par défaut' %}
+{% set compare_profit = 'Soutien d’une organisation à but non lucratif' %}
+{% set compare_privacy = 'Soucieux de la protection de votre vie privée' %}
+{% set compare_shareholders = 'Aucun actionnaire aux intérêts particuliers' %}
+{% set compare_logo = 'Amoureux de l’Internet et doté d’un logo mignon' %}
+{% set compare_cta = 'Changez la donne avec Firefox ' %}
+{% set kitten_egg = 'Tous les chemins ne mènent pas à Chrome' %}
+
+{% set cred_title = 'La mission de Firefox' %}
+{% set cred_private_title = 'Une confidentialité inconditionnelle' %}
+{% set cred_private_body = 'Vos données vous appartiennent. Et avec Firefox, ça ne changera jamais. Nous ne vendons, ni n’enregistrons, vos données personnelles.' %}
+{% set cred_ethical_title = 'Une alternative éthique' %}
+{% set cred_ethical_body = 'Depuis toujours, nous veillons à proposer un choix différent sur le web. Nous sommes, et resterons, un contrepied à la monopolisation d’Internet par quelques acteurs obnubilés par le profit.' %}
+{% set cred_change_title = 'Un moteur de changement' %}
+{% set cred_change_body = 'Nous plaidons pour une meilleure législation et travaillons avec des organisations gouvernementales pour assurer la sécurité des gens et l’équité de l’industrie.' %}
+{% set cred_community_title = 'Une communauté internationale' %}
+{% set cred_community_body = 'Tout comme Internet, Firefox est fait de celles et ceux qui y mettent du leur chaque jour. Notre communauté mondiale nous aide à perfectionner nos produits et rendre le Web plus sain.' %}
+
+{% set footer_title = 'Contribuer' %}
+{% set footer_body = '<a %s>Rejoignez notre communauté</a> pour contribuer à faire d’Internet un meilleur endroit pour toutes et tous.' %}
+{% set footer_mobile = 'Conçu par Mozilla.<br> Pensé pour vous depuis 1998.' %}
+{% set footer_desktop = 'Conçu par Mozilla. Pensé pour vous depuis 1998.' %}
+
+{# Alternate hero headings #}
+{% set hero_head_control = 'Choisissez un navigateur <span class="icon-firefox"></span> pensé pour vous' %}
+{% set hero_head_chrome = 'Tous les chemins ne <span class="icon-firefox"></span> mènent pas à Chrome' %}
+{% set hero_head_safari = hero_head_control %}
+{% set hero_head_new = 'Nouvel appareil<br> Nouveau navigateur<br> Nouveau <span class="icon-firefox"></span> standard' %}
+{% set hero_head_standard = 'Vous seul décidez de ce qu’est <span class="icon-firefox"></span> la norme' %}

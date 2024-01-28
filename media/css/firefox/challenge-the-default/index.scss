@@ -152,6 +152,13 @@ html:not(.is-firefox) {
         animation: none;
         background-position: -3024px;
     }
+
+    [lang="fr"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+        background-size: 126px 50px;
+        background-position: center center;
+        animation: none;
+    }
 }
 
 .c-animated-button .ctd-logo-sprite {
@@ -162,12 +169,20 @@ html:not(.is-firefox) {
     width: 250px;
     background-size: 6250px 100px;
     background-position: -6000px;
+    background-repeat: no-repeat;
     position: absolute;
     border: none;
 
     @media (prefers-reduced-motion: reduce) {
         animation: none;
         background-position: -6000px;
+    }
+
+    [lang="fr"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+        background-size: 250px 100px;
+        background-position: center center;
+        animation: none;
     }
 }
 
@@ -213,7 +228,6 @@ html:not(.is-firefox) {
         @include font-firefox;
         @include font-size(40px);
         font-weight: 800;
-        white-space: nowrap;
         margin-bottom: $spacing-lg;
         hyphens: auto;
     }
