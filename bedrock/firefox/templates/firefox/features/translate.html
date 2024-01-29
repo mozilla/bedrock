@@ -6,55 +6,48 @@
 
 {% extends "firefox/features/base-article.html" %}
 
-{% block page_title %}Translate the web - directly in Firefox{% endblock %}
-{% block page_desc %}Translate from more than 100 languages to your language directly in your Firefox browser - easier than ever.{% endblock %}
+{% block page_title %}Translate a webpage with Firefox{% endblock %}
+{% block page_desc %}Firefox Translations is an added built-in translation feature that allows you to easily browse the web in your preferred language. Learn more about how this feature in Firefox works, and how Mozilla helps keep what you translate private.{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
 
 {% block article_title_short %}Translate the web{% endblock %}
-{% block article_title %}Translate the web with Firefox{% endblock %}
+{% block article_title %}Translate a webpage with Firefox{% endblock %}
 
 {% block article_content %}
-<p>The internet is filled with amazing stuff, but a lot of it is not written in
-  English — making billions of people around the globe need a translator just to
-  use the internet. You can <a href="{{ url('firefox.all') }}">download Firefox in over 100 languages</a>,
-  so your browser menus, notifications and messages are in your preferred language,
-  but that doesn’t solve the problem of all that amazing content you use your browser
-  to find.</p>
+<p>One of the best things about the internet is that we can access content worldwide. Whether it's
+  news articles, blogs, or even a review of your latest tech gadget, you can find it all on the seemingly
+  never-ending web. With Firefox's latest translation feature, this tool will continuously translate a
+  webpage in real-time.</p>
 
-<h2>Firefox Translations</h2>
-<p>The <a href="https://addons.mozilla.org/firefox/addon/firefox-translations/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Firefox Translations extension</a>
-  can automatically translate content from the web pages you visit. Unlike some
-  cloud-based alternatives, this extension translates text locally in Firefox,
-  so the content you’re translating doesn’t leave your machine.</p>
-<p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/firefox-translations/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Get Firefox Translations</a></p>
+<p>While other browsers rely on cloud services, the Firefox translation language models are
+  downloaded on the user's browser and translations are done locally, so Mozilla doesn’t
+  record what webpages you translate.</p>
 
-<h2>To Google Translate</h2>
-<p>Google Translate, with over 100 languages* at the ready, is used by millions
-  of people around the world. But moving back and forth between translate.google.com
-  and the page you’re trying to read isn’t an ideal experience. The
-  <a href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">To Google Translate</a> extension makes translating the page you’re
-  on easier than ever.</p>
-<p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://addons.mozilla.org/firefox/addon/to-google-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Get To Google Translate</a></p>
-<p>Once installed, simply highlight the text you want to translate and right-click to pull up a menu with two options: 1) Takes to you translate.google.com with your selected text automatically entered into the translation field; or 2) Listen to audio pronunciation of the phrase (powered by Google Text-to-Speech), which is helpful if you’re trying to learn a new language.</p>
+<h2>When you translate a webpage it stays private</h2>
+<p>When your translations are processed locally, no data from your chosen device leaves
+  your device or relies on Cloud services for translation. This means that Mozilla doesn’t
+  know what web page you translate, and makes our translation feature stand out in comparison
+  to other translation tools.</p>
 
-<h2>Switch Languages in Firefox</h2>
-<p>If you are already using Firefox, you can change your browser’s language or add
-  languages to the Firefox interface.
-  <a href="https://support.mozilla.org/kb/use-firefox-another-language?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener">Learn how here.</a></p>
+<h2>What languages are currently supported?</h2>
+<p>The languages below are what currently are supported by Firefox’s Translation feature:</p>
 
-<p class="footnote">* With the To Google Translate extension, you can currently
-  translate these languages:</p>
-<p class="footnote">Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani,
-  Basque, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Cebuano, Chichewa,
-  Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian,
-  Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati,
-  Haitian Creole, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic,
-  Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer,
-  Kinyarwanda, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish,
-  Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian,
-  Myanmar (Burmese), Nepali, Norwegian, Odia (Oriya), Pashto, Persian, Polish,
-  Portuguese, Punjabi, Romanian, Russian, Samoan, Scots Gaelic, Serbian, Sesotho,
-  Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili,
-  Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Turkish, Turkmen, Ukrainian, Urdu,
-  Uyghur, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba and Zulu.</p>
+<ul class="mzp-u-list-styled">
+  <li>Spanish</li>
+  <li>English</li>
+  <li>German</li>
+  <li>Bulgarian</li>
+  <li>Portuguese</li>
+  <li>Italian</li>
+  <li>French</li>
+  <li>Polish</li>
+  <li>Dutch</li>
+</ul>
+<p>And more languages are in development!</p>
+
+<h2>Firefox speaks your language</h2>
+<p>The Firefox Translation feature is another way Mozilla keeps your internet personalized and
+  more private. Mozilla doesn’t track what webpages you translate. With millions of users worldwide,
+  Mozilla wants to ensure that those who use Firefox are learning, communicating, sharing, and staying
+  informed on their own terms. <a href="{{ url('firefox.new') }}">Get started in your preferred language by downloading Firefox.</a></p>
 {% endblock %}
