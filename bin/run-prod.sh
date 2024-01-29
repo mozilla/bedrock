@@ -4,12 +4,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-function run-gunicorn () {
+function run-uwsgi () {
     if [[ -z "$NEW_RELIC_LICENSE_KEY" ]]; then
-        exec gunicorn "$@"
+        exec uwsgi "$@"
     else
         export NEW_RELIC_CONFIG_FILE=newrelic.ini
-        exec newrelic-admin run-program gunicorn "$@"
+        exec newrelic-admin run-program uwsgi "$@"
     fi
 }
 
@@ -26,4 +26,4 @@ for fname in "${STARTUP_FILES[@]}"; do
     fi
 done
 
-run-gunicorn wsgi.app:application --config wsgi/config.py
+run-uwsgi --ini /app/wsgi/uwsgi.ini

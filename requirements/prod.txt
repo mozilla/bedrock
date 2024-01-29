@@ -360,32 +360,6 @@ glean-parser==10.0.3 \
     --hash=sha256:d57359629d295f9ee570068a2846966892e3fedb722259ecbcd8cc376d299b51 \
     --hash=sha256:f8fddd87b24552541318ac037e33750d27d0045131e4f8a60ec13a159fcbdd5c
     # via -r requirements/prod.in
-greenlet==0.4.17 \
-    --hash=sha256:1023d7b43ca11264ab7052cb09f5635d4afdb43df55e0854498fc63070a0b206 \
-    --hash=sha256:124a3ae41215f71dc91d1a3d45cbf2f84e46b543e5d60b99ecc20e24b4c8f272 \
-    --hash=sha256:13037e2d7ab2145300676852fa069235512fdeba4ed1e3bb4b0677a04223c525 \
-    --hash=sha256:3af587e9813f9bd8be9212722321a5e7be23b2bc37e6323a90e592ab0c2ef117 \
-    --hash=sha256:41d8835c69a78de718e466dd0e6bfd4b46125f21a67c3ff6d76d8d8059868d6b \
-    --hash=sha256:4481002118b2f1588fa3d821936ffdc03db80ef21186b62b90c18db4ba5e743b \
-    --hash=sha256:47825c3a109f0331b1e54c1173d4e57fa000aa6c96756b62852bfa1af91cd652 \
-    --hash=sha256:5494e3baeacc371d988345fbf8aa4bd15555b3077c40afcf1994776bb6d77eaf \
-    --hash=sha256:75e4c27188f28149b74e7685809f9227410fd15432a4438fc48627f518577fa5 \
-    --hash=sha256:97f2b01ab622a4aa4b3724a3e1fba66f47f054c434fbaa551833fa2b41e3db51 \
-    --hash=sha256:a34023b9eabb3525ee059f3bf33a417d2e437f7f17e341d334987d4091ae6072 \
-    --hash=sha256:ac85db59aa43d78547f95fc7b6fd2913e02b9e9b09e2490dfb7bbdf47b2a4914 \
-    --hash=sha256:be7a79988b8fdc5bbbeaed69e79cfb373da9759242f1565668be4fb7f3f37552 \
-    --hash=sha256:bee111161420f341a346731279dd976be161b465c1286f82cc0779baf7b729e8 \
-    --hash=sha256:ccd62f09f90b2730150d82f2f2ffc34d73c6ce7eac234aed04d15dc8a3023994 \
-    --hash=sha256:d3436110ca66fe3981031cc6aff8cc7a40d8411d173dde73ddaa5b8445385e2d \
-    --hash=sha256:e495096e3e2e8f7192afb6aaeba19babc4fb2bdf543d7b7fed59e00c1df7f170 \
-    --hash=sha256:e66a824f44892bc4ec66c58601a413419cafa9cec895e63d8da889c8a1a4fa4a
-    # via
-    #   -r requirements/prod.in
-    #   meinheld
-gunicorn==19.7.1 \
-    --hash=sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6 \
-    --hash=sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622
-    # via -r requirements/prod.in
 honcho==1.1.0 \
     --hash=sha256:a4d6e3a88a7b51b66351ecfc6e9d79d8f4b87351db9ad7e923f5632cc498122f \
     --hash=sha256:c5eca0bded4bef6697a23aec0422fd4f6508ea3581979a3485fc4b89357eb2a9
@@ -658,9 +632,6 @@ markus[datadog]==4.2.0 \
     #   markus
 mdx-outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz \
     --hash=sha256:a78e112f80628246dd45858fe18404aaa8efb8dc81949bb1fbb87e91f9654afa
-    # via -r requirements/prod.in
-meinheld==1.0.2 \
-    --hash=sha256:008c76937ac2117cc69e032dc69cea9f85fc605de9bac1417f447c41c16a56d6
     # via -r requirements/prod.in
 newrelic==9.5.0 \
     --hash=sha256:12be024a5dfd1667d05d7cce968189e2490b6f6d24f194695365607b2340be20 \
@@ -1063,6 +1034,9 @@ urllib3==1.26.18 \
     #   pygithub
     #   requests
     #   sentry-sdk
+uwsgi==2.0.23 \
+    --hash=sha256:0cafda0c16f921db7fe42cfaf81b167cf884ee17350efbdd87d1ecece2d7de37
+    # via -r requirements/prod.in
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
     --hash=sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923
