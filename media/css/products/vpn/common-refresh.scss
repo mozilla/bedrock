@@ -83,7 +83,26 @@ main {
 }
 
 .c-guarantee {
+    @include text-body-sm;
+    color: $color-green-70;
     font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+
+    &::before {
+        @include bidi((
+            (background-position, top left, top right),
+            (padding-right, $spacing-xs, padding-left, 0),
+        ));
+        background-image: url('/media/img/products/vpn/common/check-green.svg');
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 16px;
+        position: relative;
+        top: 2px;
+        width: 16px;
+    }
 }
 
 .t-content-body {
