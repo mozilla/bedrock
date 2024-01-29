@@ -5,19 +5,21 @@
 # flake8: noqa
 import os
 
+IS_HTTPS = os.environ.get("HTTPS", "").strip() == "on"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bedrock.settings")
 
 # must be imported after env var is set above.
+from django.core.handlers.wsgi import WSGIRequest
 from django.core.wsgi import get_wsgi_application
 
 
-django_application = get_wsgi_application()
+class WSGIHTTPSRequest(WSGIRequest):
+    def _get_scheme(self):
+        if IS_HTTPS:
+            return "https"
+
+        return super()._get_scheme()
 
 
-# This is a hack to force Django to generate https URLs.
-def https_application(environ, start_response):
-    environ["wsgi.url_scheme"] = "https"
-    return django_application(environ, start_response)
-
-
-application = https_application
+application = get_wsgi_application()
+application.request_class = WSGIHTTPSRequest
