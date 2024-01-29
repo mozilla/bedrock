@@ -31,7 +31,6 @@ services:
     env_file: .env
     environment:
         SITE_MODE: "${SITE_MODE:-Mozorg}"
-
     ports:
       - "8080:8080"
     volumes:
