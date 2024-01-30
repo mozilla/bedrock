@@ -119,7 +119,7 @@
                 )}}
 
                 {% if switch('mozilla-monitor-brand-name') %}
-                  {% if LANG.startswith('en-') %}
+                  {% if LANG == 'en-US' %}
                     {% set title = 'Reclaim your stolen info from hackers'%}
                     {% set desc = 'Mozilla Monitor lets you see if you’ve been part of a data breach and automatically gets your stolen info back.' %}
                   {% else %}

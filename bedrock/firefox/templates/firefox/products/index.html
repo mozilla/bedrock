@@ -71,8 +71,8 @@
           {% endif %}
         </a>
       </h2>
-      <p>{% if LANG.startswith('en-') %}See if you’ve been part of a data breach. If so, let us automatically get your private info back for you and continually monitor your identity for new leaks.{% else %}{{ ftl('firefox-products-see-if-your-personal-information') }}{% endif %}</p>
-      <p><a class="mzp-c-cta-link" href="https://monitor.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{% if LANG.startswith('en-') %}Check for breaches now{% else %}{{ ftl('firefox-products-check-for-breaches') }}{% endif %}</a></p>
+      <p>{% if LANG == 'en-US' %}See if you’ve been part of a data breach. If so, let us automatically get your private info back for you and continually monitor your identity for new leaks.{% else %}{{ ftl('firefox-products-see-if-your-personal-information') }}{% endif %}</p>
+      <p><a class="mzp-c-cta-link" href="https://monitor.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{% if LANG == 'en-US' %}Check for breaches now{% else %}{{ ftl('firefox-products-check-for-breaches') }}{% endif %}</a></p>
       <p id="qa-monitor-button-wrapper">
         {{ monitor_fxa_button(
           entrypoint='mozilla.org-firefox-products',

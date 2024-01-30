@@ -99,29 +99,43 @@ header {
 .c-products {
     text-align: center;
 
-    .c-product-columns {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+    ul {
         margin-top: $layout-lg;
-        gap: $v-grid-sm $h-grid-md;
-
-
 
         .mzp-c-picto {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            margin: 0 0 $layout-lg;
-            max-width: 275px;
-            flex: 1 1 275px;
+            margin-bottom: $layout-lg;
 
+            &:last-child {
+                margin-bottom: 0;
+            }
 
             .mzp-c-picto-image {
                 margin-bottom: $spacing-md;
             }
 
+        }
+
+        &.c-product-columns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column wrap;
+            column-gap: $v-grid-sm;
+
+            .mzp-c-picto {
+                height: 200px;
+                width: 275px;
+                margin: 0 0 $layout-lg;
+            }
+
+            @media #{$mq-md} {
+                align-items: flex-start;
+                flex-direction: row;
+            }
         }
     }
 
