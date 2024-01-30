@@ -1946,9 +1946,9 @@
     },
     {
       "files": [
-        "js/products/vpn/landing-experiment-pricing-position.es6.js"
+        "js/products/vpn/landing-experiment-headlines.es6.js"
       ],
-      "name": "mozilla-vpn-landing-pricing-position-experiment"
+      "name": "mozilla-vpn-landing-headlines-experiment"
     },
     {
       "files": [
