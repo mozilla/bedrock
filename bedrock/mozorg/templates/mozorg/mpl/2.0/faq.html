@@ -6,6 +6,10 @@
 
 {% extends "mozorg/base.html" %}
 
+{% block page_css %}
+  {{ css_bundle('license-faq') }}
+{% endblock %}
+
 {% block page_title %}MPL 2.0 FAQ{% endblock %}
 
 {% block page_desc %}MPL 2.0 FAQ{% endblock %}
@@ -19,6 +23,8 @@
     <p>Please note that, while this FAQ is intended to be accurate and helpful, it <em>is not the license</em>, and may not cover important issues that affect you and your specific situation. As a result, reading the FAQ should not serve as a substitute for reading the license itself, or for seeking legal advice from a lawyer.</p>
     <p>If you see any errors in this FAQ, or have suggestions for further questions, please email <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.</p>
     <p>The MPL version 1.1 FAQ is still available <a href="{{ url('mozorg.mpl.1.1.faq') }}">here</a> but should not be used except as a reference for that license.</p>
+
+    <p class="last-updated">Last updated on January 30th, 2024</p>
   </section>
 
   <section>
@@ -34,7 +40,10 @@
   <section>
     <h2 id="license-use">Using and Distributing Software Under the License</h2>
     <h3 id="apply">Q4: I want to use the Mozilla Public License for software that I have written. What do I have to do?</h3>
-    <p>To apply the Mozilla Public License to software that you have written, add the header from Exhibit A of the license to each source code file in your project. Sample headers for various commenting styles are available <a href="{{ url('mozorg.mpl.headers.index') }}">here.</a> You may also add additional accurate notices of copyright ownership, such as the name of the copyright holder, but this is not necessary.</p>
+    <p>To apply the Mozilla Public License to software that you have written, add the header from Exhibit A of the license to each source code file in your project. Sample headers for various commenting styles are available <a href="{{ url('mozorg.mpl.headers.index') }}">here.</a></p>
+    <p>Alternately, in ecosystems where Software Package Data Exchange® (SPDX) Identifiers are the preferred format for communicating license information, add this header (in a comment style appropriate to your programming language) to each source code file in your project:</p>
+    <p><code>// SPDX-License-Identifier: MPL-2.0</code></p>
+    <p>You may also add additional accurate notices of copyright ownership, such as the name of the copyright holder, but this is not necessary.</p>
     <h3 id="use">Q5: I want to use software which is available under the MPL. What do I have to do?</h3>
     <p>Nothing. Like all other free and open source software, software available under the MPL is available for anyone (including individuals and companies) to use for any purpose. The MPL only creates obligations for you if you want to distribute the software outside your organization.</p>
     <h3 id="distribute-within-organization">Q6: I want to distribute software which is available under the MPL, either changed or unchanged, within my organization. What do I have to do?</h3>
@@ -127,5 +136,12 @@
 
     <h3 id="physical-distribution">Q26: I would like to distribute source code by using a courier or other physical mechanisms. Is this "reasonable" for purposes of meeting my obligations under Section 3.2(a)?</h3>
     <p>In modern software development, distribution happens almost exclusively over the internet, because of the low cost and convenience. While the MPL allows for alternatives when necessary, in general any mechanism (such as a courier) that adds cost and complexity without a specific, necessary purpose is not reasonable, and so does not comply with the requirements of Section 3.2(a).</p>
+
+    <h3 id="machine-readable-header">Q27: Can I use a machine-readable header in my source code files to indicate that the file is under the MPL?</h3>
+    <p>Use of a standards-compliant, machine-readable license metadata header in source code files can be compliant with the notice-related goals and requirements of MPL 2.0.</p>
+    <p>MPL 2.0 recommends the use of the specific text in Exhibits A or B in order to provide consistency for recipients of source code. However, the license was drafted with the understanding that not all technical communities may be able to, or wish to, use the header in the recommended manner. In particular, Exhibit A notes that it may not be "desirable" to include the standard header in all files, and describes some alternative mechanisms.</p>
+    <p>As a result, use of a machine-readable mechanism, such as a <a href="https://spdx.dev/learn/handling-license-info/">Software Package Data Exchange® (SPDX) ID</a>, can meet the requirements of the license.</p>
+    <p>Where a relevant technical community's stated policy is to require such machine-readable license metadata, such as those communities that recommend use of SPDX IDs or <a href="https://reuse.software/">the REUSE project's licensing data specification</a>, we recommend following that community's practice.</p>
+
   </section>
 {% endblock %}
