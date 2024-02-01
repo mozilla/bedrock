@@ -561,6 +561,8 @@ URLS = flatten(
         url_test("/newsletter/new/", "/newsletter/"),
         # bug 1238458
         url_test("/newsletter/ios/", "/firefox/browsers/mobile/ios/"),
+        # issue 14142
+        url_test("/firefox/browsers/compare/ie/", "/firefox/browsers/compare/"),
         # bug 818323
         url_test("/projects/security/known-vulnerabilities.html", "/security/known-vulnerabilities/"),
         url_test("/projects/security/older-vulnerabilities.html", "/security/known-vulnerabilities/older-vulnerabilities/"),

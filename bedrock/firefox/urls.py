@@ -175,11 +175,6 @@ urlpatterns = (
         ftl_files=["firefox/browsers/compare/edge", "firefox/browsers/compare/shared"],
     ),
     page(
-        "firefox/browsers/compare/ie/",
-        "firefox/browsers/compare/ie.html",
-        ftl_files=["firefox/browsers/compare/ie", "firefox/browsers/compare/shared"],
-    ),
-    page(
         "firefox/browsers/compare/opera/",
         "firefox/browsers/compare/opera.html",
         ftl_files=["firefox/browsers/compare/opera", "firefox/browsers/compare/shared"],
