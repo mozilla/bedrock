@@ -19,7 +19,7 @@ pytest-rerunfailures==13.0
 pytest-selenium==4.0.1
 responses==0.24.1
 ruff==0.1.14
-selenium==4.9.1 # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
+selenium==4.17.2 # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.12.1
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
