@@ -185,10 +185,6 @@ main .mzp-l-content {
             clear: left;
             margin-left: 0;
         }
-
-        &.c-landing-grid-wide {
-            width: 100%;
-        }
     }
 }
 
@@ -225,10 +221,6 @@ main .mzp-l-content {
 
         .c-landing-grid-img {
             max-width: 100%;
-        }
-
-        .c-landing-grid-wide {
-            grid-column: span 2;
         }
     }
 

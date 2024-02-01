@@ -195,11 +195,6 @@ urlpatterns = (
     page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
     page("firefox/browsers/mobile/get-ios/", "firefox/browsers/mobile/get-ios.html", ftl_files=["firefox/browsers/mobile/get-ios"]),
     page("firefox/browsers/mobile/focus/", "firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"]),
-    page(
-        "firefox/browsers/mobile/compare/",
-        "firefox/browsers/mobile/compare.html",
-        ftl_files=["firefox/browsers/mobile/compare", "firefox/browsers/compare/shared"],
-    ),
     page("firefox/browsers/mobile/get-app/", "firefox/browsers/mobile/get-app.html", ftl_files=["firefox/mobile"]),
     # Issue 8641
     page("firefox/browsers/best-browser/", "firefox/browsers/best-browser.html", ftl_files=["firefox/browsers/best-browser"]),

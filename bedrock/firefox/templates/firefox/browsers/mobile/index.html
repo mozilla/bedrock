@@ -141,29 +141,19 @@
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Focus Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/firefox/browsers/mobile/index/compare-mobile-browsers.svg') }}" alt="" class="c-landing-grid-img" width="350" height="350">
-      <h2 class="c-landing-grid-title">
-        <a href="{{ url('firefox.browsers.mobile.compare') }}" data-cta-type="link" data-cta-text="Compare Mobile Browsers">{{ ftl('browsers-mobile-compare-mobile-browsers') }}</a>
-      </h2>
-      <p>{{ ftl('browsers-mobile-see-how-firefox-stacks-up') }}</p>
-
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.compare') }}" data-cta-type="link" data-cta-text="Compare">{{ ftl('browsers-mobile-compare') }}</a></p>
-    </div>
-
-    <div class="c-landing-grid-item c-landing-grid-wide">
-      {% call split(
-        image=resp_img('img/firefox/browsers/dev.png',
-          srcset={ 'img/firefox/browsers/dev-high-res.png': '2x' },
-          optional_attributes={ 'class': 'mzp-c-split-media-asset'}
-        ),
-        block_class='t-compare'
-      ) %}
-        <h2>{{ ftl('browsers-mobile-see-how-firefox-for-desktop-compare') }}</h2>
-        <p class="c-compare-title mzp-has-zap-06">{{ ftl('browsers-mobile-see-how-firefox-for-desktop-strong') }}</p>
-        <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}" data-cta-type="link" data-cta-text="Compare">{{ ftl('browsers-mobile-compare') }}</a></p>
-      {% endcall %}
-    </div>
+  </section>
+  <section class="c-browser-compare mzp-l-content mzp-t-content-lg">
+    {% call split(
+      image=resp_img('img/firefox/browsers/dev.png',
+        srcset={ 'img/firefox/browsers/dev-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
+      block_class='t-compare'
+    ) %}
+      <h2>{{ ftl('browsers-mobile-see-how-firefox-for-desktop-compare') }}</h2>
+      <p class="c-compare-title mzp-has-zap-06">{{ ftl('browsers-mobile-see-how-firefox-for-desktop-strong') }}</p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}" data-cta-type="link" data-cta-text="Compare">{{ ftl('browsers-mobile-compare') }}</a></p>
+    {% endcall %}
   </section>
 
   {% include 'mozorg/includes/mozilla-account-form-promo.html' %}

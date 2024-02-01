@@ -40,6 +40,3 @@ compare-index-browsers-have-come-a-long = Browsers have come a long way since { 
 compare-index-firefox-is-backed-by-the-not = { -brand-name-firefox } is backed by the not-for-profit { -brand-name-mozilla }.
 compare-index-firefox-puts-your-privacy = { -brand-name-firefox } puts your privacy first — in everything we make and do. We believe you have the right to decide how and with whom you share your personal information. { -brand-name-firefox } collects as little data as possible and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
 compare-index-based-on-the-criteria-we-outlined = Based on the criteria we outlined — privacy, utility, and portability — there’s really only one browser that meets the mark, and that’s { -brand-name-firefox }. The real area of difference isn’t in functionality, it’s privacy. { -brand-name-firefox } is the most private browser that doesn’t lock you into an ecosystem. Use it on any operating system, on all your devices, and feel secure when you do.
-
-compare-index-see-how-firefox-for-mobile = See how { -brand-name-firefox } for mobile stacks up to five other mobile browsers.
-compare-index-compare = Compare
