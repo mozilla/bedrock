@@ -58,8 +58,8 @@ download-a-different-build = Download a different build
 
 ## Linux
 
-download-button-linux-32 = Download { -brand-name-linux } 32-bit
-download-button-linux-64 = Download { -brand-name-linux } 64-bit
+download-button-linux-32 = Download for Linux 32-bit
+download-button-linux-64 = Download for Linux 64-bit
 
 # Variables
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
