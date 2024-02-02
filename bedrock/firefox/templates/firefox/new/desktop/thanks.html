@@ -82,8 +82,8 @@
       </p>
       <div class="show-linux">
         <div class="c-linux-button-group">
-          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32') }}</a>
-          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32-v2') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64-v2') }}</a>
         </div>
         {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
         <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
