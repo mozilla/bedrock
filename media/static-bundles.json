@@ -707,6 +707,12 @@
     },
     {
       "files": [
+        "css/mozorg/license-faq.scss"
+      ],
+      "name": "license-faq"
+    },
+    {
+      "files": [
         "css/mozorg/contact-spaces.scss"
       ],
       "name": "contact-spaces"
