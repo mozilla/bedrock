@@ -111,7 +111,7 @@
           </h4>
         </a>
         <ul class="mzp-u-list-styled">
-          <li>{% if LANG.startswith('en-') %}Get automated removal of your exposed info from sites that are selling it{% else %}{{ ftl('firefox-accounts-get-email-alerts') }}{% endif %}</li>
+          <li>{% if LANG == 'en-US' %}Get automated removal of your exposed info from sites that are selling it{% else %}{{ ftl('firefox-accounts-get-email-alerts') }}{% endif %}</li>
         </ul>
 
         {% if ftl_has_messages('firefox-accounts-protect-your-identity') %}
