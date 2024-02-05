@@ -5,7 +5,7 @@
 #}
 
 {% macro select_product_list(products, disabled=False) %}
- <select id="select-product" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+ <select id="select-product" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %} data-testid="firefox-all-product-select">
   {% for p_name, p_label in products %}
     <option value="{{ p_name }}">{{ p_label }}</option>
   {% endfor %}
@@ -15,7 +15,7 @@
 {% macro select_version_list(id, version, disabled=False) %}
   {% set version_select_id = 'select_' ~ id ~ '_version' %}
   <label for="{{ version_select_id }}" class="c-selection-label">{{ ftl('firefox-all-which-version') }}</label>
-  <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+  <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %} data-testid="firefox-all-version-select ({{ id }})">
     {# ESR can have two versions available. ESR Latest should always come first in the dropdown. #}
     {% if id == 'desktop_esr_next' %}
       <option value="desktop_esr">{{ desktop_esr_latest_version }}</option>
@@ -48,7 +48,7 @@
   <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
     {{ ftl('firefox-all-get-help') }}
   </a>
-  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %} data-testid="firefox-all-platform-select ({{ id }})">
     {% for p_name, p_label in platforms %}
       <option value="{{ p_name }}">{{ p_label }}</option>
     {% endfor %}
@@ -57,7 +57,7 @@
 
 {% macro select_language_list(id, builds, disabled=False) %}
   <label for="{{ id }}" class="c-selection-label">{{ ftl('firefox-all-select-your-preferred-language') }}</label>
-  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %} data-testid="firefox-all-language-select ({{ id }})">
     {% for build in builds %}
       <option value="{{ build.locale }}"{% if build.locale == 'en-US' %} selected{% endif%}>
       {%- if build.name_native and build.name_native != build.name_en -%}

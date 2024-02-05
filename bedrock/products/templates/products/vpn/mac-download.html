@@ -19,7 +19,7 @@
   <div class="vpn-platform-download">
     {% if block_download %}
       <header class="platform-download-header">
-        <div class="mzp-l-content platform-download-blocked">
+        <div class="mzp-l-content platform-download-blocked" data-testid="vpn-download-blocked-message">
           <img src="{{ static('img/products/vpn/download/vpn-unavailable-country.svg') }}" alt="">
           <h1>{{ ftl('vpn-download-unable-to-download') }}</h1>
           <p>{{ ftl('vpn-download-not-in-country') }}</p>
@@ -37,7 +37,7 @@
           <p>{{ ftl('vpn-your-download-should-start', url=mac_download_url, id='vpn-download-link-mac' ) }}</p>
         </div>
       </header>
-      <section class="vpn-download-instructions mzp-l-content">
+      <section class="vpn-download-instructions mzp-l-content" data-testid="vpn-download-instructions">
         <ol class="mzp-l-columns mzp-t-columns-four">
           {% call picto(
             base_el='li',

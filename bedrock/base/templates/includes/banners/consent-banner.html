@@ -4,16 +4,16 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<aside class="moz-consent-banner" id="moz-consent-banner" role="region" aria-label="{{ ftl('consent-banner-aria-label') }}" data-nosnippet="true">
+<aside class="moz-consent-banner" id="moz-consent-banner" role="region" aria-label="{{ ftl('consent-banner-aria-label') }}" data-nosnippet="true" data-testid="consent-banner">
   <div class="moz-consent-banner-content">
     <h2 class="moz-consent-banner-heading">{{ ftl('consent-banner-heading') }}</h2>
     <div class="moz-consent-banner-copy">
       <p>{{ ftl('consent-banner-body-v2', fallback='consent-banner-body') }}</p>
       <div class="moz-consent-banner-controls">
-        <button type="button" id="moz-consent-banner-button-accept" class="moz-consent-banner-button moz-consent-banner-button-accept">
+        <button type="button" id="moz-consent-banner-button-accept" class="moz-consent-banner-button moz-consent-banner-button-accept" data-testid="consent-banner-accept-button">
           {{ ftl('consent-banner-button-accept') }}
         </button>
-        <button type="button" id="moz-consent-banner-button-reject" class="moz-consent-banner-button moz-consent-banner-button-reject">
+        <button type="button" id="moz-consent-banner-button-reject" class="moz-consent-banner-button moz-consent-banner-button-reject" data-testid="consent-banner-reject-button">
           {{ ftl('consent-banner-button-reject') }}
         </button>
         <a href="{{ url('privacy.cookie-settings')}}">

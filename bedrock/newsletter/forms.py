@@ -177,12 +177,12 @@ class NewsletterFooterForm(forms.Form):
         "mozilla-and-you": ftl("multi-newsletter-form-checkboxes-label-firefox"),
     }
 
-    email = forms.EmailField(widget=EmailInput(attrs={"required": "required"}))
+    email = forms.EmailField(widget=EmailInput(attrs={"required": "required", "data-testid": "newsletter-email-input"}))
     # first/last_name not yet included in email_newsletter_form helper
     # currently used on /contribute/friends/ (custom markup)
     first_name = forms.CharField(widget=forms.TextInput, required=False)
     last_name = forms.CharField(widget=forms.TextInput, required=False)
-    privacy = forms.BooleanField(widget=PrivacyWidget)
+    privacy = forms.BooleanField(widget=PrivacyWidget(attrs={"data-testid": "newsletter-privacy-checkbox"}))
     source_url = forms.CharField(required=False)
     newsletters = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple())
 

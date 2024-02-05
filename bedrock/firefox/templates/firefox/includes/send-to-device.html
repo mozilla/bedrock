@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section id="{{ dom_id }}" class="send-to-device {{ class_name }}" data-spinner-color="{{ spinner_color }}">
+<section id="{{ dom_id }}" class="send-to-device {{ class_name }}" data-spinner-color="{{ spinner_color }}" data-testid="send-to-device-form">
   <div class="form-container">
     {% if include_title %}
       <h2 class="form-heading">
@@ -17,7 +17,7 @@
     {% endif %}
     <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
     <form class="send-to-device-form" action="{{ basket_url }}" method="post">
-      <div class="mzp-c-form-errors hidden">
+      <div class="mzp-c-form-errors hidden" data-testid="send-to-device-form-error">
         <ul class="mzp-u-list-styled">
           <li class="error-email-invalid hidden">
             {{ ftl('send-to-device-please-enter-an-email') }}
@@ -41,10 +41,10 @@
               {{ ftl('send-to-device-enter-your-email') }}
             {% endif %}
           </label>
-          <input id="{{ dom_id }}-input" class="mzp-c-field-control send-to-device-input" name="email" type="text" required>
+          <input id="{{ dom_id }}-input" class="mzp-c-field-control send-to-device-input" name="email" type="text" required data-testid="send-to-device-form-email-field">
         </div>
         <div class="mzp-c-button-container mzp-l-stretch">
-          <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}">
+          <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}" data-testid="send-to-device-form-submit-button">
             {{ ftl('send-to-device-send') }}
           </button>
         </div>
@@ -57,7 +57,7 @@
           <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
         </p>
       </div>
-      <div class="thank-you hidden">
+      <div class="thank-you hidden" data-testid="send-to-device-form-thanks">
         <p class="email">{{ ftl('send-to-device-check-your-device-email') }}</p>
         <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
       </div>

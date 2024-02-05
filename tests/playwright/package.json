@@ -1,0 +1,22 @@
+{
+  "name": "bedrock",
+  "version": "0.1.0",
+  "description": "Making mozilla.org awesome, one pebble at a time",
+  "private": true,
+  "dependencies": {
+    "@playwright/test": "^1.44.0",
+    "dotenv": "^16.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/bedrock.git"
+  },
+  "author": "Mozilla",
+  "license": "MPL",
+  "bugs": {
+    "url": "https://bugzilla.mozilla.org/"
+  },
+  "scripts": {
+    "install-deps": "npx playwright install --with-deps"
+  }
+}
