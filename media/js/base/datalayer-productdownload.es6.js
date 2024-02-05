@@ -226,8 +226,11 @@ TrackProductDownload.handleLink = (event) => {
 TrackProductDownload.sendEventFromURL = (downloadURL) => {
     // get event object
     const eventObject = TrackProductDownload.getEventFromUrl(downloadURL);
-    // send for tracking
-    TrackProductDownload.sendEvent(eventObject);
+
+    if (eventObject) {
+        // only send event for tracking if eventObject is valid (issue 14177)
+        TrackProductDownload.sendEvent(eventObject);
+    }
 };
 
 /**
