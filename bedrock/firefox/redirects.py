@@ -470,6 +470,8 @@ redirectpatterns = (
     # bug 1418500
     redirect(r"^firefox/android/?$", "firefox.browsers.mobile.android"),
     redirect(r"^firefox/focus/?$", "firefox.browsers.mobile.focus"),
+    # issue 14141
+    redirect(r"^firefox/browsers/mobile/compare/?$", "firefox.browsers.mobile.index"),
     redirect(r"^firefox/ios/?$", "firefox.browsers.mobile.ios"),
     # issue 9502
     redirect(r"^firefox/quantum/?", "/firefox/browsers/quantum/"),

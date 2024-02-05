@@ -245,12 +245,6 @@
     },
     {
       "files": [
-        "css/base/banners/mobile-compare.scss"
-      ],
-      "name": "mobile-compare-banner"
-    },
-    {
-      "files": [
         "css/base/banners/mozilla-connect.scss"
       ],
       "name": "mozilla-connect-banner"
@@ -1514,13 +1508,6 @@
     {
       "files": [
         "js/base/send-to-device.es6.js",
-        "js/firefox/browsers/mobile-compare.es6.js"
-      ],
-      "name": "firefox-browsers-mobile-compare"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
         "js/firefox/browsers/get-app.es6.js"
       ],
       "name": "firefox-browsers-get-app"
@@ -1925,13 +1912,6 @@
         "js/newsletter/country-init.es6.js"
       ],
       "name": "newsletter-country"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/base/banners/mobile-compare-banner-init.js"
-      ],
-      "name": "mobile_compare_banner"
     },
     {
       "files": [
