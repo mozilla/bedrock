@@ -1,0 +1,66 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/challenge-the-default/landing-base.html" %}
+
+{% block page_image %}{{ static('img/firefox/challenge-the-default/ctd-share.png') }}{% endblock %}
+
+{% set seo_desc = 'Du hast eine Wahl, wenn es um Browser geht! Vorinstalliert ist gut, ausgewählt ist besser. Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine Non-Profit im Rücken.' %}
+{% set cta_default = 'Firefox als Standardbrowser festlegen' %}
+{% set cta_mobile = 'Firefox fürs Handy entdecken' %}
+{% set cta_download = 'Jetzt Firefox wählen' %}
+{% set hero_alt = 'Firefox - Challenge the Default' %}
+{% set hero_egg = 'Du gehst den Dingen auf den Grund. Gut so!' %}
+{% set hero_head = 'Der Browser, den du selber wählst' %}
+{% set hero_text_ff = 'Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas findest.' %}
+{% set hero_text_not_ff = 'Wenn du Firefox wählst, triffst du eine bewusste Entscheidung. Besserer Datenschutz, mehr Transparenz und ein gesünderes Web.' %}
+
+{% set features_head = 'Unsere <br>Lieblingsfeatures' %}
+{% set features_browsing_title = 'Nahtloses Browsen' %}
+{% set features_browsing_body = 'Hab offene Tabs und Passwörter griffbereit auf all deinen Geräten – wenn du das willst.' %}
+{% set features_multi_title = 'Einfaches Multitasking' %}
+{% set features_multi_body = 'Schaue Videos in einem Pop-up-Fenster einfach weiter, während du browst.' %}
+{% set features_power_title = 'Non-Profit-Power*' %}
+{% set features_power_body = 'Firefox wird von der Mozilla Foundation unterstützt und stellt Menschen über Profite.' %}
+{% set features_power_small = '*Wir wissen, dass das kein Feature ist, aber hier machen wir die Regeln. :)' %}
+{% set features_pdf_title = 'Schnelles Bearbeiten von PDFs' %}
+{% set features_pdf_body = 'Bearbeite PDFs ohne Umwege direkt im Browser.' %}
+
+{% set compare_title = 'Firefox macht den Unterschied' %}
+{% set compare_body = 'Kein Fan von viel Text? Kein Problem! Hier siehst du auf einen Blick, warum Firefox die richtige Wahl für dich ist.' %}
+{% set compare_passwords = 'Automatisches Ausfüllen von Passwörtern' %}
+{% set compare_search = 'Suchmaschinenoptionen' %}
+{% set compare_sync = 'Synchronisieren zwischen Geräten' %}
+{% set compare_block = 'Standardmäßiges Blockieren von Third-Party-Cookies' %}
+{% set compare_profit = 'Von einer Non-Profit unterstützt' %}
+{% set compare_privacy = 'Sorgt sich um deine Privatsphäre' %}
+{% set compare_shareholders = 'Hat keine Shareholder mit eigenen Interessen' %}
+{% set compare_logo = 'Liebt das Internet und hat ein süßes Logo' %}
+{% set compare_cta = 'Du entscheidest, was Standard ist' %}
+{% set kitten_egg = 'Nicht alle Wege führen nach Chrome' %}
+
+{% set cred_title = 'Das ist Firefox' %}
+{% set cred_private_title = 'Kompromisslos privat' %}
+{% set cred_private_body = 'Deine Daten gehören dir. Und mit Firefox bleibt das auch so. Wir verkaufen deine persönlichen Daten nicht und vieles speichern wir nicht mal.' %}
+{% set cred_ethical_title = 'Non-Profit Rückenwind' %}
+{% set cred_ethical_body = 'Firefox wird von der Mozilla Foundation unterstützt und folgt der Mission, das Internet besser zu machen, statt hohen Profiten hinterher zu jagen.' %}
+{% set cred_change_title = 'Verändern statt beschweren' %}
+{% set cred_change_body = 'Wir setzen uns für eine bessere Gesetzgebung ein und arbeiten mit Regierungsorganisationen zusammen daran, dass Menschen geschützt werden und die Branche fair bleibt.' %}
+{% set cred_community_title = 'Zusammen ist man weniger allein' %}
+{% set cred_community_body = 'Firefox arbeitet mit einer globalen Community zusammen, die uns dabei unterstützt, unsere Produkte besser und das Internet sicherer und schöner für alle zu machen.' %}
+
+{% set footer_title = 'Mach mit!' %}
+{% set footer_body = 'Wenn du das Internet gemeinsam mit uns besser machen willst, <a %s>werde Teil unserer Community</a>.' %}
+{% set footer_mobile = 'Powered by Mozilla <br>Aus Liebe zum Web seit 1998' %}
+{% set footer_desktop = 'Powered by Mozilla. Aus Liebe zum Web seit 1998.' %}
+
+{# Alternate hero headings #}
+{% set hero_head_control = 'Der Browser, den du selber wählst' %}
+{% set hero_head_chrome = 'Nicht alle <br>Wege <span class="icon-firefox"></span> führen nach Chrome.' %}
+{% set hero_head_safari = 'Safari ist ein toller Browser, um <span class="icon-firefox"></span> Firefox runterzuladen.' %}
+{% set hero_head_new = 'Neues Device. Neuer Browser. Neue <span class="icon-firefox"></span> Standards.' %}
+{% set hero_head_standard = 'Du entscheidest, was <span class="icon-firefox"></span> Standard ist' %}
+{% set hero_head_choice = 'Du kannst jeden Browser <span class="icon-firefox"></span> wählen.<br> Aber nicht jeder Browser wählt dich.' %}

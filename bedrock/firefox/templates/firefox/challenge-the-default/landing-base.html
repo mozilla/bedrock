@@ -13,11 +13,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
 
 {% block page_desc %}
-  Du hast eine Wahl, wenn es um Browser geht! Vorinstalliert ist gut, ausgewählt ist besser.
-  Mit Firefox entscheidest du dich gegen den Standard und für konsequenten Datenschutz, mehr Transparenz und eine
-  Non-Profit im Rücken.
+  {{ seo_desc }}
 {% endblock %}
-{% block page_image %}{{ static('img/firefox/challenge-the-default/ctd-share.png') }}{% endblock %}
+{% block page_image %}
+  {% if LANG == "fr" %}
+    {{ static('img/firefox/challenge-the-default/ctd-share-fr.png') }}
+  {% else %}
+    {{ static('img/firefox/challenge-the-default/ctd-share.png') }}
+  {% endif %}
+{% endblock %}
 {% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
@@ -32,14 +36,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% macro cta_group(position) -%}
-  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Firefox als Standardbrowser festlegen</a>
-  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Firefox for Mobile" data-cta-position="{{ position }}">Firefox fürs Handy entdecken</a>
-  {{ download_firefox_thanks(button_class='not-firefox', alt_copy='Jetzt Firefox wählen', download_location=position, locale_in_transition=True) }}
+  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">{{ cta_default }}</a>
+  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Firefox for Mobile" data-cta-position="{{ position }}">{{ cta_mobile }}</a>
+  {{ download_firefox_thanks(button_class='not-firefox', alt_copy=cta_download, download_location=position, locale_in_transition=True) }}
 {%- endmacro %}
 
 {% block content %}
-<main class="firefox-home" {% if variant %}data-variant="{{ variant }}"{% endif %}>
-  {% if variant not in ["2", "3", "4", "5"] %}
+<main class="firefox-home" data-variant="{% if variation %}{{ variation }}{% else %}none{% endif %}">
+  {% if variation not in ["2", "3", "4", "5", "6"] %}
   <div class="ctd-mobile-banner">
     {{ resp_img(
         url='img/firefox/challenge-the-default/logo-firefox.svg',
@@ -47,7 +51,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           'loading': 'eager',
           'height': '24',
           'class': 'ctd-sub-nav-image',
-          'alt': 'Firefox - Challenge the Default'
+          'alt': hero_alt
       })
     }}
     <div class="ctd-logo-sprite"></div>
@@ -121,7 +125,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </g>
         </g>
       </svg>
-      <p>Du gehst den Dingen auf den Grund. Gut so!</p>
+      <p>{{ hero_egg }}</p>
     </div>
     <div class="c-ctd-hero mzp-l-content mzp-t-content-xl">
       <svg class="svg" width="0" height="0">
@@ -135,12 +139,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <div class="hero-wrapper">
         <div class="c-hero-top">
           <div class="c-hero-top-images">
-            {% if variant not in ["2", "3", "4", "5"] %}
+            {% if variation not in ["2", "3", "4", "5", "6"] %}
               {{ resp_img(
                 url='img/firefox/challenge-the-default/logo-firefox.svg',
                 optional_attributes={
                   'loading': 'eager',
-                  'alt': 'Firefox - Challenge the Default',
+                  'alt': hero_alt,
                   'class': 'firefox-logo',
                   'width': '50px'
                 })
@@ -155,57 +159,21 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </div>
         </div>
         <div class="hero-content-wrapper">
-          {% if variant in ["1", "2", "3", "4", "5"] %}
-            {% include 'firefox/challenge-the-default/includes/hero-v' + variant + '.html' %}
+          {% if variation in ["1", "2", "3", "4", "5", "6"] %}
+            {% include 'firefox/challenge-the-default/includes/heroes/hero-v' + variation + '.html' %}
           {% else %}
-          <div class="c-hero-text">
-            <h1>Der Browser, den du selber wählst</h1>
-            <div class="hero-text-flex-wrapper">
-              <p class="is-firefox">
-                Eigentlich bewerben wir an dieser Stelle Firefox. Da du den aber schon nutzt, verraten wir dir stattdessen ein
-                Geheimnis: Wir haben ein paar Überraschungen auf dieser Seite versteckt. Klick doch mal rum und guck, ob du etwas
-                findest.
-              </p>
-              <p class="not-firefox">
-                Wenn du Firefox wählst, triffst du eine bewusste Entscheidung. Besserer Datenschutz, mehr Transparenz und
-                ein gesünderes Web.
-              </p>
-              {{ cta_group('hero') }}
-            </div>
-          </div>
-          {{ picture(
-              url='img/firefox/challenge-the-default/hero-image-mobile.png',
-              sources=[
-                {
-                  'media': '(max-width: 1023px)',
-                  'srcset': {
-                    'img/firefox/challenge-the-default/hero-image-mobile.png': 'default'
-                  }
-                },
-                {
-                  'media': '(min-width: 1024px)',
-                  'srcset': {
-                    'img/firefox/challenge-the-default/hero-image-desktop.png': 'default'
-                  }
-                },
-              ],
-              optional_attributes={
-                'loading': 'eager',
-                'class': 'c-hero-image',
-                'alt': 'Image of a seagull sitting on a no birds allowed sign'
-              }
-          )}}
+            {% include 'firefox/challenge-the-default/includes/hero.html' %}
           {% endif %}
         </div>
       </div>
     </div>
   </section>
     <section class="mzp-l-content mzp-t-content-xl c-ctd-features">
-      <h2>Unsere <br>Lieblingsfeatures</h2>
+      <h2>{{ features_head|safe }}</h2>
       <ul class="mzp-l-columns mzp-t-columns-four">
         {% call picto(
           base_el='li',
-          title='Nahtloses Browsen',
+          title=features_browsing_title,
           image=resp_img(
           url='img/firefox/challenge-the-default/cursor.svg',
           optional_attributes={
@@ -215,11 +183,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           ),
           body=True,
         ) %}
-          <p>Hab offene Tabs und Passwörter griffbereit auf all deinen Geräten – wenn du das willst.</p>
+          <p>{{ features_browsing_body }}</p>
         {% endcall %}
         {% call picto(
           base_el='li',
-          title='Einfaches Multitasking',
+          title=features_multi_title,
           image=resp_img(
             url='img/firefox/challenge-the-default/screen.svg',
             optional_attributes={
@@ -229,11 +197,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           ),
           body=True,
         ) %}
-          <p>Schaue Videos in einem Pop-up-Fenster einfach weiter, während du browst.</p>
+          <p>{{ features_multi_body }}</p>
         {% endcall %}
         {% call picto(
           base_el='li',
-          title='Non-Profit-Power*',
+          title=features_power_title,
           image=resp_img(
             url='img/firefox/challenge-the-default/toggle.svg',
             optional_attributes={
@@ -243,13 +211,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           ),
           body=True,
         )%}
-          <p>Firefox wird von der Mozilla Foundation unterstützt und stellt Menschen über Profite.</p>
-          <small>*Wir wissen, dass das kein Feature ist, aber hier machen wir die Regeln. :)</small>
+          <p>{{ features_power_body }}</p>
+          <small>{{ features_power_small }}</small>
           </p>
         {% endcall %}
         {% call picto(
           base_el='li',
-          title='Schnelles Bearbeiten von PDFs',
+          title=features_pdf_title,
           image=resp_img(
             url='img/firefox/challenge-the-default/input.svg',
             optional_attributes={
@@ -259,75 +227,18 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           ),
           body=True,
         )%}
-          <p>Bearbeite PDFs ohne Umwege direkt im Browser.</p>
+          <p>{{ features_pdf_body }}</p>
         {% endcall %}
       </ul>
     </section>
 
-    <section class="c-ctd-toggles" aria-hidden="true">
-      <div class="mzp-l-content mzp-l-content mzp-t-content-xl">
-        <div class="toggle-grid small">
-            {% for element in range(4) %}
-              <label class="toggle" for="toggle-top-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
-                <span class="toggle-display"></span>
-              </label>
-            {% endfor %}
-            <label class="toggle middle" for="toggle-middle">
-              <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
-              <span class="toggle-display"></span>
-            </label>
-            {% for element in range(4) %}
-              <label class="toggle" for="toggle-bottom-{{ loop.index }}">
-                <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
-                <span class="toggle-display"></span>
-              </label>
-            {% endfor %}
-        </div>
-        <div class="toggle-grid medium">
-          {% for element in range(7) %}
-          <label class="toggle" for="toggle-top-{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% endfor %}
-          <label class="toggle middle" for="toggle-middle">
-            <input type="checkbox" name="toggle" id="toggle-middle" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% for element in range(7) %}
-          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% endfor %}
-        </div>
-        <div class="toggle-grid large">
-          {% for element in range(10) %}
-          <label class="toggle" for="toggle-top-{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-top-{{ loop.index }}" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% endfor %}
-          <label class="toggle middle" for="toggle-middle">
-            <input type="checkbox" name="toggle-middle" id="toggle-middle" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% for element in range(10) %}
-          <label class="toggle" for="toggle-bottom-{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-bottom-{{ loop.index }}" class="toggle-input" />
-            <span class="toggle-display"></span>
-          </label>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
+    {% include 'firefox/challenge-the-default/includes/toggles.html' %}
 
     <section class="c-ctd-comparison">
       <div class="mzp-l-content mzp-t-content-lg">
         <div class="c-ctd-comparison-text">
-          <h2>Firefox macht den Unterschied</h2>
-          <p>Kein Fan von viel Text? Kein Problem! Hier siehst du auf einen Blick, warum Firefox die richtige Wahl für dich ist.</p>
+          <h2>{{ compare_title|safe }}</h2>
+          <p>{{ compare_body }} </p>
         </div>
 
         <table class="mzp-u-data-table comparison-table" data-selected-browser="chrome">
@@ -349,56 +260,56 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Automatisches Ausfüllen von Passwörtern</th>
+              <th scope="row">{{ compare_passwords }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari" aria-label="checkmark">&#x2713;</td>
               <td class="chrome" aria-label="checkmark">&#x2713;</td>
               <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
-              <th scope="row" class="break-word">Suchmaschinenoptionen</th>
+              <th scope="row" class="break-word">{{ compare_search }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari" aria-label="checkmark">&#x2713;</td>
               <td class="chrome" aria-label="checkmark">&#x2713;</td>
               <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
-              <th scope="row">Synchronisieren zwischen Geräten</th>
+              <th scope="row">{{ compare_sync }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari" aria-label="checkmark">&#x2713;</td>
               <td class="chrome" aria-label="checkmark">&#x2713;</td>
               <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
-              <th scope="row">Standardmäßiges Blockieren von Third-Party-Cookies</th>
+              <th scope="row">{{ compare_block }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari" aria-label="checkmark">&#x2713;</td>
               <td class="chrome"></td>
               <td class="edge" aria-label="checkmark">&#x2713;</td>
             </tr>
             <tr>
-              <th scope="row">Von einer Non-Profit unterstützt</th>
+              <th scope="row">{{ compare_profit }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
-              <th scope="row">Sorgt sich um deine Privatsphäre</th>
+              <th scope="row">{{ compare_privacy }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
-              <th scope="row">Hat keine Shareholder mit eigenen Interessen</th>
+              <th scope="row">{{ compare_shareholders }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
-              <th scope="row">Liebt das Internet und hat ein süßes Logo</th>
+              <th scope="row">{{ compare_logo }}</th>
               <td class="firefox" aria-label="checkmark">&#x2713;</td>
               <td class="safari"></td>
               <td class="chrome"></td>
@@ -410,14 +321,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <button type="button" class="kitten-button">=^._.^=</button>
         </section>
         <div class="comparison-cta">
-          <h3>Du entscheidest, was Standard ist</h3>
+          <h3>{{ compare_cta }}</h3>
           {{ cta_group('comparison') }}
         </div>
       </div>
     </section>
       <div class="mzp-u-modal-content kitten-modal">
         <div class="kitten-modal-grid">
-          <h2>Nicht alle Wege führen nach Chrome</h2>
+          <h2>{{ kitten_egg }}</h2>
           {{ picture(
             url='img/firefox/challenge-the-default/laser-cat-mobile.png',
             sources=[
@@ -444,71 +355,42 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="c-ctd-credentials">
     <div class="mzp-l-content mzp-t-content-md">
-      <h2>Das ist Firefox</h2>
+      <h2>{{ cred_title }}</h2>
       <details class="mzp-c-details">
         <summary>
-          <h3>Kompromisslos privat</h3>
+          <h3>{{ cred_private_title }}</h3>
         </summary>
-        <p>Deine Daten gehören dir. Und mit Firefox bleibt das auch so. Wir verkaufen deine persönlichen Daten nicht und vieles
-        speichern wir nicht mal.</p>
+        <p>{{ cred_private_body }}</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>Non-Profit Rückenwind</h3>
+          <h3>{{ cred_ethical_title }}</h3>
         </summary>
-        <p>Firefox wird von der Mozilla Foundation unterstützt und folgt der Mission, das Internet besser zu machen, statt hohen
-        Profiten hinterher zu jagen.</p>
+        <p>{{ cred_ethical_body }}</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>Verändern statt beschweren</h3>
+          <h3>{{ cred_change_title }}</h3>
         </summary>
-        <p>Wir setzen uns für eine bessere Gesetzgebung ein und arbeiten mit Regierungsorganisationen zusammen daran, dass Menschen
-        geschützt werden und die Branche fair bleibt.</p>
+        <p>{{ cred_change_body }}</p>
       </details>
       <details class="mzp-c-details">
         <summary>
-          <h3>Zusammen ist man weniger allein</h3>
+          <h3>{{ cred_community_title }}</h3>
         </summary>
-        <p>Firefox arbeitet mit einer globalen Community zusammen, die uns dabei unterstützt, unsere Produkte besser und das
-        Internet sicherer und schöner für alle zu machen.</p>
+        <p>{{ cred_community_body }}</p>
       </details>
     </div>
   </section>
 
-  <section class="c-animated-button" aria-hidden="true">
-    <div class="mzp-l-content mzp-t-content-nospace">
-      <svg class="wednesday-bg" width="1440" height="246" viewBox="0 0 1440 246" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="719.993" cy="123.001" rx="797.262" ry="785.044" fill="#2AC3A2" />
-        <ellipse class="wednesday-circle pink circle1" cx="719.996" cy="123" rx="604" ry="595" fill="#FFBDC5" />
-        <circle class="wednesday-circle red circle2" cx="719.996" cy="123" r="476" fill="#FF6A75" />
-        <circle class="wednesday-circle light-green circle3" cx="719.996" cy="123" r="372" fill="#D1FFEE" />
-        <circle cx="719.996" cy="123" r="283" fill="#2AC3A2" />
-      </svg>
-      <button class="animated-button ctd-logo-sprite">Challenge the default</button>
-      {{ resp_img(
-          url='img/firefox/challenge-the-default/is-wednesday.png',
-          optional_attributes={
-            'class': 'wednesday-lizard is-wednesday',
-            'alt': "It's Wednesday my dudes"
-          }
-      )}}
-      {{ resp_img(
-          url='img/firefox/challenge-the-default/is-not-wednesday.png',
-          optional_attributes={
-            'class': 'wednesday-lizard not-wednesday',
-            'alt': "It's not Wednesday my dudes"
-          }
-      )}}
-    </div>
-  </section>
+  {% include 'firefox/challenge-the-default/includes/wednesday.html' %}
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
-    <h3>Mach mit!</h3>
-    <p>Wenn du das Internet gemeinsam mit uns besser machen willst, <a href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community">werde Teil unserer Community</a>.</p>
+    <h3>{{ footer_title }}</h3>
+    <p>{{ footer_body|safe|format('href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community"') }}</p>
     {{ cta_group('footer') }}
-    <p class="text-bottom mobile">Powered by Mozilla <br>Aus Liebe zum Web seit 1998</p>
-    <p class="text-bottom desktop">Powered by Mozilla. Aus Liebe zum Web seit 1998.</p>
+    <p class="text-bottom mobile">{{ footer_mobile }}</p>
+    <p class="text-bottom desktop">{{ footer_desktop }}</p>
   </section>
 {% endblock %}
 

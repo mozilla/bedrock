@@ -840,17 +840,17 @@ class FirefoxHomeView(L10nTemplateView):
     ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"], "firefox/challenge-the-default/landing-switch.html": ["firefox/home"]}
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3", "4", "5"]
+    variations = ["1", "2", "3", "4", "5", "6"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        variant = self.request.GET.get("v", None)
+        variation = self.request.GET.get("v", None)
 
-        # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
+        # ensure variation matches pre-defined value
+        if variation not in self.variations:
+            variation = None
 
-        ctx["variant"] = variant
+        ctx["variation"] = variation
 
         return ctx
 

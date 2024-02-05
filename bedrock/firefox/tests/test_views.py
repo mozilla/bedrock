@@ -492,6 +492,15 @@ class TestFirefoxHome(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/home/index-master.html"]
 
+    @patch("bedrock.firefox.views.l10n_utils.render")
+    def test_firefox_home_de(self, render_mock):
+        req = RequestFactory().get("/firefox/")
+        req.locale = "de"
+        view = views.FirefoxHomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/challenge-the-default/landing-switch.html"]
+
 
 class TestFirefoxGA(TestCase):
     def assert_ga_attr(self, response):
