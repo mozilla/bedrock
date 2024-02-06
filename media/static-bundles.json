@@ -209,6 +209,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/monitor-banner.scss"
+      ],
+      "name": "monitor-banner"
+    },
+    {
+      "files": [
         "css/mozorg/home/home-old.scss"
       ],
       "name": "home-old"
@@ -2067,6 +2073,14 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "pocket-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/mozorg/home/monitor-banner-init.js"
+      ],
+      "name": "monitor-banner"
     }
+
   ]
 }
