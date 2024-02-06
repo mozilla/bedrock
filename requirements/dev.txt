@@ -448,9 +448,9 @@ django-crum==0.7.9 \
     --hash=sha256:037cc8b822975bb1d41cd24269b59a512cc77448fadc3f34ab9a17b229b4b471 \
     --hash=sha256:65e9bc0f070a663fafc4d9e357f45fd4e6f01838b20a9e2fb7670f5706754288
     # via -r requirements/prod.txt
-django-csp==3.7 \
-    --hash=sha256:01443a07723f9a479d498bd7bb63571aaa771e690f64bde515db6cdb76e8041a \
-    --hash=sha256:01eda02ad3f10261c74131cdc0b5a6a62b7c7ad4fd017fbefb7a14776e0a9727
+django-csp==3.8rc0 \
+    --hash=sha256:7d4469e9828f53434d8b05f2226f5e5a4f91b8d05276382af7d47df7de7b4c8a \
+    --hash=sha256:b2dd6b0d269a0ce0ff7148a23f4b15da2a45b41d0c20e0fd7477e80adec92b6f
     # via -r requirements/prod.txt
 django-extensions==3.2.3 \
     --hash=sha256:44d27919d04e23b3f40231c4ab7af4e61ce832ef46d610cc650d53e68328410a \
