@@ -109,6 +109,7 @@ urlpatterns = (
     page("moss/mission-partners/", "mozorg/moss/mission-partners.html"),
     page("moss/secure-open-source/", "mozorg/moss/secure-open-source.html"),
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),
+    path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
     # namespaces
     path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
     path("2005/app-update", views.namespaces, {"namespace": "update"}),

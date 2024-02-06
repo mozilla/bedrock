@@ -65,6 +65,13 @@ class Robots(RequireSafeMixin, TemplateView):
         return {"disallow_all": not hostname == "www.mozilla.org"}
 
 
+class SecurityDotTxt(RequireSafeMixin, TemplateView):
+    # https://github.com/mozilla/bedrock/issues/14173
+    # served under .well-known/security.txt
+    template_name = "mozorg/security.txt"
+    content_type = "text/plain"
+
+
 NAMESPACES = {
     "addons-bl": {
         "namespace": "http://www.mozilla.org/2006/addons-blocklist",
