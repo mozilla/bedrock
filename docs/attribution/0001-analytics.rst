@@ -338,8 +338,7 @@ the existence of certain data-attributes on an element.
 - data-cta-text
   - Defining this is useful to group the link clicks across locales
   - The value does not need to exactly match the text
-  - Provide something more useful than "click here" or "learn more". If that is the copy you were provided
-    consider asking for copy that is more useful to the users too!
+  - Provide something more useful than "click here" or "learn more". If that is the copy you were provided consider asking for copy that is more useful to the users too!
 - data-cta-position (examples: banner, pricing, primary, secondary)
 - data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay, pocket)
   - This is to group CTAs by their destination
@@ -369,7 +368,7 @@ For all links to accounts.firefox.com use these data attributes (* indicates a r
 
 
 Link Click
-~~~~~~~~~
+~~~~~~~~~~
 
 Our implementation of ``link_click`` for GA4 is based of the existence of certain data-attributes on a
 link element.
