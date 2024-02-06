@@ -119,10 +119,18 @@
                 )}}
 
                 {% if switch('mozilla-monitor-brand-name') %}
+                  {% if LANG == 'en-US' %}
+                    {% set title = 'Reclaim your stolen info from hackers'%}
+                    {% set desc = 'Mozilla Monitor lets you see if you’ve been part of a data breach and automatically gets your stolen info back.' %}
+                  {% else %}
+                    {% set title = ftl('newsletters-check-for-data-breaches') %}
+                    {% set desc = ftl('newsletters-mozilla-monitor-is-a-free', fallback='newsletters-firefox-monitor-is-a-free') %}
+                  {% endif %}
+
                   {{ card(
-                    title=ftl('newsletters-check-for-data-breaches'),
-                    ga_title='Check for data breaches',
-                    desc=ftl('newsletters-mozilla-monitor-is-a-free', fallback='newsletters-firefox-monitor-is-a-free'),
+                    title=title,
+                    ga_title=title,
+                    desc=desc,
                     cta=ftl('newsletters-sign-in-to-monitor'),
                     image=resp_img('img/newsletter/confirm/mozilla-monitor.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
                     aspect_ratio='mzp-has-aspect-16-9',

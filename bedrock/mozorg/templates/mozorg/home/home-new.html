@@ -84,7 +84,9 @@
   <section class="c-products mzp-l-content mzp-t-content-xl">
     <h2>{{ ftl('home-mozilla-makes-privacy') }}</h2>
 
-    <ul class="mzp-l-columns mzp-t-columns-four">
+    {% set show_monitor_picto =  ftl_has_messages('home-product-monitor-data', 'home-cta-get-monitor') %}
+
+    <ul class="{% if show_monitor_picto %}c-product-columns{% else %}mzp-l-columns mzp-t-columns-four{% endif %}">
 
       <!-- Firefox -->
       {% call picto(
@@ -103,7 +105,6 @@
           ) %}
         <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
-
 
       <!-- Pocket -->
       {% call picto(
@@ -158,6 +159,28 @@
           ) %}
         <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
+
+      {% set monitor_desc = 'Automaticly reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
+
+      {% if show_monitor_picto %}
+        <!-- Monitor -->
+        {% call picto(
+          base_el='li',
+          title=monitor_desc,
+          image=resp_img(
+            url='protocol/img/logos/firefox/monitor/logo.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'loading': 'lazy',
+              'width': '50',
+              'height': '50'
+            }
+            ),
+            body=True,
+            ) %}
+          <a href="https://monitor.mozilla.org/" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link" rel="external noopener">{{ ftl('home-cta-get-monitor')}}</a>
+        {% endcall %}
+      {% endif %}
     </ul>
   </section>
 

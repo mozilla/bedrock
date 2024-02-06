@@ -118,6 +118,25 @@ header {
             }
 
         }
+
+        &.c-product-columns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column wrap;
+            column-gap: $v-grid-sm;
+
+            .mzp-c-picto {
+                height: 200px;
+                width: 275px;
+                margin: 0 0 $layout-lg;
+            }
+
+            @media #{$mq-md} {
+                align-items: flex-start;
+                flex-direction: row;
+            }
+        }
     }
 
     h3 {
