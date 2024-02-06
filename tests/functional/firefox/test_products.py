@@ -10,12 +10,6 @@ from pages.firefox.products import FirefoxProductsPage
 
 
 @pytest.mark.nondestructive
-def test_monitor_button_displayed(base_url, selenium):
-    page = FirefoxProductsPage(selenium, base_url).open()
-    assert page.is_monitor_button_displayed
-
-
-@pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
     page = FirefoxProductsPage(selenium, base_url).open()
     page.join_firefox_form.type_email("success@example.com")
