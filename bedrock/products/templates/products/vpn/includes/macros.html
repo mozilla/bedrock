@@ -152,11 +152,11 @@
     {% if vpn_available %}
       {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
       <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ pricing_url }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation">
-        Get Mozilla VPN
+        {{ ftl('vpn-shared-subscribe-link') }}
       </a>
     {% else %}
       <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
-        Join the Waitlist
+        {{ ftl('vpn-shared-waitlist-link') }}
       </a>
     {% endif %}
   </div>
