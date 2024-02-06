@@ -30,4 +30,6 @@ redirectpatterns = (
     redirect(r"^privacy/betterweb/?$", "privacy.archive.firefox-betterweb-2023-06"),
     redirect(r"^privacy/firefox-fire-tv/?$", "privacy.archive.firefox-fire-tv-2023-06"),
     redirect(r"^privacy/firefox-reality/?$", "privacy.archive.firefox-reality-notice-2023-06"),
+    # issue 14186
+    redirect(r"^privacy/firefox-monitor/?$", "privacy.notices.subscription-services"),
 )
