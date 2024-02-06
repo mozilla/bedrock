@@ -57,8 +57,6 @@ thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thun
 
 websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/websites.html", legal_doc_name="websites_privacy_notice")
 
-firefox_monitor_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-monitor.html", legal_doc_name="firefox_monitor_terms_privacy")
-
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 
 ad_targeting_guidelines = PrivacyDocView.as_view(
