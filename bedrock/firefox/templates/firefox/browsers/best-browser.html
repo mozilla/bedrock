@@ -80,8 +80,8 @@
         {{ ftl('best-browser-last-but-not-least') }}
       </p>
       <p>
-        {% if switch('mozilla-monitor-brand-name') %}
-          {{ ftl('best-browser-firefox-is-offering-v2', fallback='best-browser-firefox-is-offering', monitor='href="https://monitor.mozilla.org/"') }}
+        {% if ftl_has_messages('best-browser-firefox-is-offering-v2') and switch('mozilla-monitor-brand-name') %}
+          {{ ftl('best-browser-firefox-is-offering-v2', monitor='href="https://monitor.mozilla.org/"') }}
         {% else %}
           {{ ftl('best-browser-firefox-is-offering', monitor='https://monitor.mozilla.org/') }}
         {% endif %}
