@@ -108,12 +108,22 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ ftl('page7-stay-ahead-of-hackers') }}</h3>
+      <h3 class="c-picto-block-title">
+        {% if LANG == "en-US" %}
+            Reclaim your stolen info from hackers
+        {% else %}
+          {{ ftl('page7-stay-ahead-of-hackers') }}
+        {% endif %}
+      </h3>
       <div class="c-picto-block-body">
         {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
         <p>
           {% if mozilla_monitor %}
-            {{ ftl('page7-firefox-monitor-lets-you-find-v2', fallback='page7-firefox-monitor-lets-you-find') }}
+            {% if LANG == "en-US" %}
+              Mozilla Monitor lets you see if you’ve been part of a data breach. And if you have, it automatically gets your private info back for you and continually monitors your identity for new leaks.
+            {% else %}
+              {{ ftl('page7-firefox-monitor-lets-you-find-v2', fallback='page7-firefox-monitor-lets-you-find') }}
+            {% endif %}
           {% else %}
             {{ ftl('page7-firefox-monitor-lets-you-find') }}
           {% endif %}
@@ -121,7 +131,11 @@
         <a href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
           <strong>
             {% if mozilla_monitor %}
-              {{ ftl('page7-get-mozilla-monitor', fallback='page7-get-firefox-monitor') }}
+              {% if LANG == "en-US" %}
+                Check for breaches now
+              {% else %}
+                {{ ftl('page7-get-mozilla-monitor', fallback='page7-get-firefox-monitor') }}
+              {% endif %}
             {% else %}
               {{ ftl('page7-get-firefox-monitor') }}
             {% endif %}
