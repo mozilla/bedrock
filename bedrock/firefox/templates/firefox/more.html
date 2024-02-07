@@ -200,10 +200,10 @@
     </div>
     <div class="mzp-l-card-third">
       {{ card(
-        title=ftl('seven-of-the'),
+        title=ftl('six-of-the-best', fallback='seven-of-the'),
         ga_title='Compare',
-        image=resp_img('img/firefox/more/compare-browsers.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('we-compare-firefox'),
+        image=resp_img('img/firefox/more/compare-browsers.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('we-compare-firefox-v2', fallback='we-compare-firefox'),
         link_url=url('firefox.browsers.compare.index')
       )}}
 
