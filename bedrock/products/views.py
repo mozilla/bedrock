@@ -57,22 +57,16 @@ def vpn_landing_page(request):
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["1", "2"]:
+    if entrypoint_variation not in ["1", "2", "3"]:
         entrypoint_variation = None
 
-    if entrypoint_experiment not in ["vpn-pricing-position"]:
+    if entrypoint_experiment not in ["vpn-headlines"]:
         entrypoint_experiment = None
 
     if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
-        if entrypoint_experiment == "vpn-pricing-position" and entrypoint_variation in ["1", "2"]:
-            template_name = "products/vpn/variants/landing-refresh-{}.html".format(entrypoint_variation)
-        else:
-            template_name = "products/vpn/landing-refresh.html"
+        template_name = "products/vpn/landing-refresh.html"
     else:
-        if entrypoint_experiment == "vpn-pricing-position" and entrypoint_variation in ["1", "2"]:
-            template_name = "products/vpn/variants/landing-{}.html".format(entrypoint_variation)
-        else:
-            template_name = "products/vpn/landing.html"
+        template_name = "products/vpn/landing.html"
 
     context = {
         "vpn_available": vpn_available_in_country,

@@ -33,8 +33,8 @@
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
 {% block experiments %}
-  {% if switch('experiment-vpn-pricing-position') %}
-    {{ js_bundle('mozilla-vpn-landing-pricing-position-experiment') }}
+  {% if switch('experiment-vpn-headlines', ['en-US', 'en-CA', 'en-GB', 'fr', 'de']) %}
+    {{ js_bundle('mozilla-vpn-landing-headlines-experiment') }}
   {% endif %}
 {% endblock %}
 
@@ -54,6 +54,17 @@
 {% block sub_navigation %}
   {% include 'products/vpn/includes/subnav-refresh.html' %}
 {% endblock %}
+
+{% if LANG == "de" %}
+  {% set headline_exp_v2_sub = 'Schalte den Rundumschutz für Webaktivitäten und Standort vor Hackern und Trackern ein.' %}
+  {% set headline_exp_v3_sub = 'Schütze deine Online-Aktivitäten und deinen Standort mit nur einem Klick.' %}
+{% elif LANG == "fr" %}
+  {% set headline_exp_v2_sub = 'Masquez intégralement vos activités sur le Web et votre emplacement aux yeux des hackers et des traqueurs.' %}
+  {% set headline_exp_v3_sub = 'Protégez vos activités numériques et votre emplacement en un seul clic.' %}
+{% else %}
+  {% set headline_exp_v2_sub = 'Switch on complete web activity and location protection from hackers and trackers.' %}
+  {% set headline_exp_v3_sub = 'Protect your digital activity and physical location with just one click.' %}
+{% endif %}
 
 {% block content %}
 <main>
@@ -83,7 +94,15 @@
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
+  {% if entrypoint_experiment == 'vpn-headlines' and entrypoint_variation == '2' %}
+    <h1 class="u-title-xl">{{ ftl('vpn-landing-powerful-privacy-for-peace') }}</h1>
+    <h2 class="c-page-subtitle u-title-xs">{{ headline_exp_v2_sub }}</h2>
+  {% elif entrypoint_experiment == 'vpn-headlines' and entrypoint_variation == '3' %}
+    <h1>Mozilla VPN</h1>
+    <h2 class="c-page-subtitle u-title-xs">{{ headline_exp_v3_sub }}</h2>
+  {% else %}
     <h1>{{ ftl('vpn-landing-powerful-privacy-for-peace') }}</h1>
+  {% endif %}
 
     {% if vpn_available %}
       <p class="c-main-cta">
@@ -140,7 +159,25 @@
     </p>
   {% endcall %}
 
-  {% block top_pricing_position %}{% endblock %}
+  {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+  <section id="pricing" class="mzp-l-content mzp-t-content-xl">
+    {% if vpn_available %}
+      <header class="c-pricing-main-header">
+        <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
+      </header>
+
+      {% include 'products/vpn/includes/pricing-refresh.html' %}
+
+    {% else %}
+      <header class="c-pricing-main-header">
+        <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
+
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+          {{ ftl('vpn-shared-waitlist-link') }}
+        </a>
+      </header>
+    {% endif %}
+  </section>
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you') }}</h2>
@@ -293,28 +330,6 @@
     <h2 class="u-title-lg">{{ ftl('vpn-landing-fram-a-brand-you-can-trust') }}</h2>
     <p>{{ ftl('vpn-landing-mozilla-is-a-non-profit-backed') }}</p>
   {% endcall %}
-
-  {% block default_pricing_position %}
-  {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-  <section id="pricing" class="mzp-l-content mzp-t-content-xl">
-    {% if vpn_available %}
-      <header class="c-pricing-main-header">
-        <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
-      </header>
-
-      {% include 'products/vpn/includes/pricing-refresh.html' %}
-
-    {% else %}
-      <header class="c-pricing-main-header">
-        <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
-
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
-          {{ ftl('vpn-shared-waitlist-link') }}
-        </a>
-      </header>
-    {% endif %}
-  </section>
-  {% endblock %}
 
   {% include 'products/vpn/includes/press.html' %}
 
