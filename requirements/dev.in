@@ -9,7 +9,7 @@ py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
 pyquery==2.0.0
-pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
+pytest==8.0.0  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 pytest-cov==4.1.0
 pytest-datadir==1.5.0
 pytest-django==4.7.0
