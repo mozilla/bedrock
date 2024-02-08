@@ -523,6 +523,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-123-eu.scss"
+      ],
+      "name": "firefox_whatsnew_123_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1753,6 +1759,12 @@
         "js/firefox/whatsnew/whatsnew-122-eu.js"
       ],
       "name": "firefox_whatsnew_122_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-123-eu.js"
+      ],
+      "name": "firefox_whatsnew_123_eu"
     },
     {
       "files": [

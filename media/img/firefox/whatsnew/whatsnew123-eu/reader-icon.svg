@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" x="0" y="0" version="1.1" viewBox="0 0 16 16" width="16" height="16">
+  <style>
+    .st0{fill:none;stroke:#000;stroke-width:1.7131;stroke-linecap:round}
+  </style>
+  <path d="M5.5 4.5h4.8" class="st0"/>
+  <path d="M5.5 7.7h4.8" class="st0"/>
+  <path d="M5.5 10.9h2.2" class="st0"/>
+  <path fill="none" stroke="#000" stroke-width="1.7131" d="M3.4.9h9.1c.8 0 1.4.6 1.4 1.4v11.3c0 .8-.6 1.4-1.4 1.4H3.4c-.8 0-1.4-.6-1.4-1.4V2.3C2 1.5 2.6.9 3.4.9z"/>
+</svg>
