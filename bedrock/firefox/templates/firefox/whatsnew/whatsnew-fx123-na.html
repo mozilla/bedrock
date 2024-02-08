@@ -4,4 +4,41 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-testest
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_123_na') }}
+{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+        <h2 class="wnp-main-title">See your search <br> with suggested images</h2>
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew-123-na/search.png') }}"
+        srcset="{{ static('img/firefox/whatsnew/whatsnew-123-na/search-high-res.png') }} 2x"
+        alt="" class="star star-three">
+        <p class="wnp-main-tagline">Now when you type in the search bar, Firefox suggests a list of <a href="https://support.mozilla.org/en-US/kb/search-suggestions-firefox?{{ utm_params }}" target="_blank" rel="external noopener" data-cta-type="link" data-cta-text="Popular results with images">popular results with images*</a> to find what you're looking for even faster.</p>
+
+        <p class="wnp-main-cta">
+          <a class="mzp-c-button mzp-t-product mzp-t-secondary" href="" data-cta-text="Try it now" data-cta-type="button" target="_blank" rel="external noopener">
+            Try it now
+          </a>
+        </p>
+        <span>*This visual update is only available with Google Search.</span>
+      </div>
+      <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_123_na') }}
+{% endblock %}
