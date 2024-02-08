@@ -65,12 +65,15 @@
       <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{ ftl('firefox-channel-nightly-blog') }}</a></li>
       <li><a href="{{ firefox_url('android', 'all', 'nightly') }}">{{ ftl('firefox-channel-all-languages-and-builds') }}</a></li>
     </ul>
+    <p>
     {% if ftl_has_messages('firefox-channel-nightly-is-an-unstable-testing') %}
       {{ ftl('firefox-channel-nightly-is-an-unstable-testing', link=url('privacy.notices.firefox') + '#pre-release') }}
     {% else %}
       {{ ftl('firefox-channel-firefox-nightly-automatically') }}
       <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
+    </p>
+    <p>{{ ftl('firefox-channel-nightly-update-one-or-more-times') }}</p>
   </div>
 </section>
 {% endblock %}
