@@ -387,7 +387,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>{{ footer_title }}</h3>
-    <p>{{ footer_body|safe|format('href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community"') }}</p>
+    <p>{{ footer_body|format('href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community"')|safe }}</p>
     {{ cta_group('footer') }}
     <p class="text-bottom mobile">{{ footer_mobile }}</p>
     <p class="text-bottom desktop">{{ footer_desktop }}</p>
