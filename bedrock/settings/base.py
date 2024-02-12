@@ -537,7 +537,7 @@ STORAGES = {
 }
 
 MEDIA_URL = config("MEDIA_URL", default="/user-media/")
-MEDIA_ROOT = config("MEDIA_ROOT", default=path("media"))
+MEDIA_ROOT = config("MEDIA_ROOT", default=path("user-media"))
 STATIC_URL = config("STATIC_URL", default="/media/")
 STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
 STATICFILES_DIRS = (path("assets"),)
@@ -1859,6 +1859,8 @@ WAGTAIL_ENABLE_ADMIN = config(
 )
 
 if WAGTAIL_ENABLE_ADMIN:
+    # Enable Middleware essential for admin
+
     for midddleware_spec in [
         "django.middleware.csrf.CsrfViewMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
