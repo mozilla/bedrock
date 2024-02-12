@@ -59,6 +59,18 @@ class TestRobots(TestCase):
         self.assertEqual(response.get("Content-Type"), "text/plain")
 
 
+class TestSecurityDotTxt(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.view = views.SecurityDotTxt()
+
+    def test_no_redirect(self):
+        response = self.client.get("/.well-known/security.txt", HTTP_HOST="www.mozilla.org")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get("Content-Type"), "text/plain")
+        self.assertContains(response, "security@mozilla.org")
+
+
 @override_settings(DEV=False)
 @patch("bedrock.mozorg.views.l10n_utils.render", return_value=HttpResponse())
 class TestHomePageLocales(TestCase):

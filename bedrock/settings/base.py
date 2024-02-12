@@ -409,6 +409,7 @@ SUPPORTED_NONLOCALES = [
     "credits",
     "gameon",
     "robots.txt",
+    ".well-known",
     "telemetry",
     "webmaker",
     "contributor-data",
