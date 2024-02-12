@@ -54,5 +54,20 @@ if settings.DEBUG:
 if settings.WAGTAIL_ENABLE_ADMIN:
     urlpatterns += (path("cms-admin/", include(wagtailadmin_urls)),)
 
+if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage":
+    # Serve media files from Django itself - production won't use this
+    from django.urls import re_path
+    from django.views.static import serve
+
+    urlpatterns += (
+        re_path(
+            r"^user-media/(?P<path>.*)$",
+            serve,
+            {"document_root": settings.MEDIA_ROOT},
+        ),
+    )
+    # Note that statics are handled via Whitenoise's middleware
+
+
 # Wagtail is the catch-all route, and it will raise a 404 if needed
 urlpatterns += (path("", include(wagtail_urls)),)

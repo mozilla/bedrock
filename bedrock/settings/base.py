@@ -529,7 +529,7 @@ CANONICAL_URL = "https://www.mozilla.org"
 SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
 
 MEDIA_URL = config("MEDIA_URL", default="/user-media/")
-MEDIA_ROOT = config("MEDIA_ROOT", default=path("media"))
+MEDIA_ROOT = config("MEDIA_ROOT", default=path("user-media"))
 STATIC_URL = config("STATIC_URL", default="/media/")
 STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
 STATICFILES_STORAGE = (
@@ -2310,9 +2310,34 @@ WAGTAIL_ENABLE_ADMIN = config(
 )
 
 if WAGTAIL_ENABLE_ADMIN:
+    # Enable Middleware essential for admin
+
     for midddleware_spec in [
         "django.middleware.csrf.CsrfViewMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
     ]:
         MIDDLEWARE.insert(3, midddleware_spec)
+
+    # Disable CSP for the admin routes, else it doesn't fully work - eg connect-src and img-src are needed
+    CSP_EXCLUDE_URL_PREFIXES = (
+        # Until https://github.com/wagtail/wagtail/issues/1288 is resolved, exclude the Wagtail admin
+        "/cms-admin/",
+    )
+
+# Storage
+# If config is available, we use Google Cloud Storage, else (for local dev)
+# fall back to filesytem storage
+
+GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
+GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
+GS_OBJECT_PARAMETERS = {
+    "cache_control": "max-age=2592000, public, immutable",
+    # 2592000 == 30 days / 1 month
+}
+
+
+if GS_BUCKET_NAME and GS_PROJECT_ID:
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    GS_DEFAULT_ACL = "publicRead"
+    GS_FILE_OVERWRITE = False
