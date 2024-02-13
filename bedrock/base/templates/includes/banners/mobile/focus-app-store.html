@@ -4,8 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set android_url = focus_adjust_url('android', 'app-store-banner') %}
-{% set ios_url = focus_adjust_url('ios', 'app-store-banner') %}
+{% set android_url = play_store_url('focus', 'app-store-banner') %}
+{% set ios_url = app_store_url('focus', 'app-store-banner') %}
 
 {% if ftl_has_messages('banner-firefox-focus-app-store-title', 'banner-firefox-app-store-free-google-play', 'banner-firefox-app-store-free-app-store', 'ui-view') %}
 <aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-native" id="firefox-app-store-banner">

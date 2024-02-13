@@ -429,7 +429,7 @@ describe('all-downloads-unified.js', function () {
                     <h4 class="c-locale-label">Multiple languages</h4>
                     <ul class="c-download-list">
                         <li>
-                            <a id="playStoreLink-list" rel="external" href="https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&amp;campaign=www.mozilla.org&amp;adgroup=all-page" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">
+                            <a id="playStoreLink-list" rel="external" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">
                                 Google Play
                             </a>
                         </li>

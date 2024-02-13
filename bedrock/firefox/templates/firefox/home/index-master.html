@@ -138,8 +138,8 @@
           <li class="mzp-c-menu-list-item menu-desktop-unsupported"><a href="{{ url('firefox.new') }}" class="ga-product-download"  data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-home-desktop') }}</a></li>
           {# Download link should be locale neutral see issue 7982 #}
           <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" class="ga-product-download" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-text="Trackers">{{ ftl('firefox-home-desktop') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-link-text="Trackers"> {{ ftl('firefox-home-android') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-link-text="Trackers">{{ ftl('firefox-home-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-android"><a href="{{ play_store_url('firefox', 'firefox-home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-link-text="Trackers"> {{ ftl('firefox-home-android') }}</a></li>
+          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ app_store_url('firefox', 'firefox-home') }}" class="ga-product-download"  rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-link-text="Trackers">{{ ftl('firefox-home-ios') }}</a></li>
         </ul>
       </div>
       <p id="test-fbc" class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ ftl('firefox-home-get-the-facebook-container') }}</a></p>
@@ -207,8 +207,8 @@
       <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h5 class="mzp-c-menu-list-title">{{ ftl('firefox-home-download-the-app') }}</h5>
         <ul class="mzp-c-menu-list-list" id="menu-pocket">
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android" data-link-text="Pocket"> {{ ftl('firefox-home-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS" data-link-text="Pocket">{{ ftl('firefox-home-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ play_store_url('pocket', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android" data-link-text="Pocket"> {{ ftl('firefox-home-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ app_store_url('pocket', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS" data-link-text="Pocket">{{ ftl('firefox-home-ios') }}</a></li>
         </ul>
       </div>
       <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS" data-link-text="Pocket">{{ ftl('firefox-home-learn-more-about-pocket') }}</a></p>

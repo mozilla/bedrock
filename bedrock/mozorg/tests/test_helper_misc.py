@@ -663,40 +663,6 @@ class TestAbsoluteURLFilter(TestCase):
         assert misc.absolute_url("https://www.mozilla.org/en-US/firefox/new/") == expected
 
 
-class TestFirefoxIOSURL(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, ct_param=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if ct_param:
-            return render("{{ firefox_ios_url('%s') }}" % ct_param, {"request": req})
-
-        return render("{{ firefox_ios_url() }}", {"request": req})
-
-    def test_firefox_ios_url_no_locale(self):
-        """No locale, fallback to default URL"""
-        assert self._render("") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_default(self):
-        """should fallback to default URL"""
-        assert self._render("ar") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-        assert self._render("zu") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_localized(self):
-        """should return localized URL"""
-        assert self._render("en-US") == "https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926"
-        assert self._render("es-ES") == "https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926"
-        assert self._render("ja") == "https://itunes.apple.com/jp/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_param(self):
-        """should return default or localized URL with ct param"""
-        assert self._render("", "mozorg") == ("https://itunes.apple.com/app/firefox-private-safe-browser/id989804926?ct=mozorg")
-        assert self._render("en-US", "mozorg") == ("https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926?ct=mozorg")
-        assert self._render("es-ES", "mozorg") == ("https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926?ct=mozorg")
-
-
 @pytest.mark.parametrize(
     "html, cleaned",
     [
@@ -807,42 +773,140 @@ def test_csrf():
 class TestAppStoreURL(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale):
+    def _render(self, product, campaign, locale):
         req = self.rf.get("/")
         req.locale = locale
-        product = "lockwise"
-        return render("{{ app_store_url('%s') }}" % product, {"request": req})
+        return render(
+            "{{{{ app_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            {"request": req},
+        )
 
-    def test_app_store_url_no_locale(self):
+    def test_firefox_app_store_url_no_locale(self):
         """No locale, fallback to default URL"""
-        assert self._render("") == "https://itunes.apple.com/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "") == "https://apps.apple.com/app/apple-store/id989804926"
 
-    def test_app_store_url_default(self):
+    def test_firefox_app_store_url_default(self):
         """should fallback to default URL"""
-        assert self._render("ar") == "https://itunes.apple.com/app/id1314000270?mt=8"
-        assert self._render("zu") == "https://itunes.apple.com/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "ar") == "https://apps.apple.com/app/apple-store/id989804926"
+        assert self._render("firefox", "", "zu") == "https://apps.apple.com/app/apple-store/id989804926"
 
-    def test_app_store_url_localized(self):
+    def test_firefox_app_store_url_localized(self):
         """should return localized URL"""
-        assert self._render("en-US") == "https://itunes.apple.com/us/app/id1314000270?mt=8"
-        assert self._render("es-ES") == "https://itunes.apple.com/es/app/id1314000270?mt=8"
-        assert self._render("de") == "https://itunes.apple.com/de/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "en-US") == "https://apps.apple.com/us/app/apple-store/id989804926"
+        assert self._render("firefox", "", "es-ES") == "https://apps.apple.com/es/app/apple-store/id989804926"
+        assert self._render("firefox", "", "de") == "https://apps.apple.com/de/app/apple-store/id989804926"
+
+    def test_firefox_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("firefox", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+
+    def test_focus_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("focus", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("focus", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("focus", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id1073435754?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+
+    def test_pocket_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("pocket", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
 
 
 class TestPlayStoreURL(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale):
+    def _render(self, product, campaign, locale):
         req = self.rf.get("/")
         req.locale = locale
-        product = "lockwise"
-        return render("{{ play_store_url('%s') }}" % product, {"request": req})
+        return render(
+            "{{{{ play_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            {"request": req},
+        )
 
-    def test_play_store_url_localized(self):
+    def test_firefox_play_store_url_no_locale(self):
+        """No locale, fallback to default URL"""
+        assert self._render("firefox", "", "") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+
+    def test_firefox_play_store_url_localized(self):
         """should return localized URL"""
-        assert self._render("en-US") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=en"
-        assert self._render("es-ES") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=es"
-        assert self._render("de") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=de"
+        assert self._render("firefox", "", "en-US") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=en"
+        assert self._render("firefox", "", "es-ES") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=es"
+        assert self._render("firefox", "", "de") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=de"
+
+    def test_firefox_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("firefox", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
+
+    def test_focus_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("focus", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("focus", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("focus", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.klar&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
+
+    def test_pocket_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("pocket", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
 
 
 class TestLangShort(TestCase):
@@ -879,230 +943,6 @@ class TestNativeLanguageName(TestCase):
     def test_unknown_locale_code(self):
         """should return locale code if unknown"""
         assert self._render("aaa") == "aaa"
-
-
-class TestFirefoxAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_firefox_ios_adjust_url(self):
-        """Firefox for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox_mobile&amp;mz_pl=ios"
-        )
-
-    def test_firefox_ios_adjust_url_invalid_country(self):
-        """Firefox for mobile with an App Store URL redirect with an unsupported country"""
-        assert (
-            self._render("zz", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox_mobile&amp;mz_pl=ios"
-        )
-
-    def test_firefox_ios_adjust_url_creative(self):
-        """Firefox for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=firefox_mobile&amp;mz_pl=ios"
-        )
-
-    def test_firefox_android_adjust_url(self):
-        """Firefox for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox_mobile&amp;mz_pl=android"
-        )
-
-    def test_firefox_no_redirect_adjust_url(self):
-        """Firefox for mobile with no redirect"""
-        assert (
-            self._render("en-US", None, "test-page") == "https://app.adjust.com/2uo1qc?"
-            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=firefox_mobile"
-        )
-
-
-class TestFocusAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_focus_ios_adjust_url(self):
-        """Firefox Focus with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=ios"
-        )
-
-    def test_focus_ios_adjust_url_invalid_country(self):
-        """Firefox Focus with an App Store URL redirect with an unsupported country"""
-        assert (
-            self._render("zz", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=ios"
-        )
-
-    def test_focus_ios_adjust_url_creative(self):
-        """Firefox Focus with an App Store URL redirect and creative param"""
-        assert (
-            self._render("fr", "ios", "test-page", "experiment-name") == "https://app.adjust.com/b8s7qo?"
-            "redirect=https%3A%2F%2Fitunes.apple.com%2Ffr%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=focus&amp;mz_pl=ios"
-        )
-
-    def test_focus_android_adjust_url(self):
-        """Firefox Focus for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus&amp;mz_pl=android"
-        )
-
-    def test_focus_no_redirect_adjust_url(self):
-        """Firefox Focus for mobile with no redirect"""
-        assert (
-            self._render("en-US", None, "test-page") == "https://app.adjust.com/b8s7qo?"
-            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=focus"
-        )
-
-    def test_klar_ios_adjust_url(self):
-        """Firefox Klar with an App Store URL redirect"""
-        assert (
-            self._render("de", "ios", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fklar-by-firefox%2Fid1073435754"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=klar&amp;mz_pl=ios"
-        )
-
-    def test_klar_android_adjust_url(self):
-        """Firefox Klar for mobile with a Play Store redirect"""
-        assert (
-            self._render("de", "android", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.klar"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=klar&amp;mz_pl=android"
-        )
-
-
-class TestLockwiseAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_lockwise_ios_adjust_url(self):
-        """Firefox Lockwise for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=ios"
-        )
-
-    def test_lockwise_ios_adjust_url_invalid_country(self):
-        """Firefox Lockwise for mobile with an App Store URL redirect with an unsupported country"""
-        assert (
-            self._render("zz", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=ios"
-        )
-
-    def test_lockwise_ios_adjust_url_creative(self):
-        """Firefox Lockwise for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/6tteyjo"
-            "?redirect=https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=lockwise&amp;mz_pl=ios"
-        )
-
-    def test_lockwise_android_adjust_url(self):
-        """Firefox Lockwise for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dmozilla.lockbox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise&amp;mz_pl=android"
-        )
-
-    def test_lockwise_no_redirect_adjust_url(self):
-        """Firefox Lockwise for mobile with no redirect"""
-        assert (
-            self._render("en-US", None, "test-page") == "https://app.adjust.com/6tteyjo?"
-            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=lockwise"
-        )
-
-
-class TestPocketAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_pocket_ios_adjust_url(self):
-        """Pocket for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=ios"
-        )
-
-    def test_pocket_ios_adjust_url_invalid_country(self):
-        """Pocket for mobile with an App Store URL redirect with an unsupported country"""
-        assert (
-            self._render("zz", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=ios"
-        )
-
-    def test_pocket_ios_adjust_url_creative(self):
-        """Pocket for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name&amp;mz_pr=pocket&amp;mz_pl=ios"
-        )
-
-    def test_pocket_android_adjust_url(self):
-        """Pocket for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.ideashower.readitlater.pro"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket&amp;mz_pl=android"
-        )
-
-    def test_pocket_no_redirect_adjust_url(self):
-        """Pocket for mobile with no redirect"""
-        assert (
-            self._render("en-US", None, "test-page") == "https://app.adjust.com/m54twk?"
-            "campaign=www.mozilla.org&amp;adgroup=test-page&amp;mz_pr=pocket"
-        )
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)

@@ -26,8 +26,8 @@
 {% endblock %}
 
 {% set message_set = 'fx-mobile-download-desktop' %}
-{% set android_url = firefox_adjust_url('android', 'mobile-get-app-page') %}
-{% set ios_url = firefox_adjust_url('ios', 'mobile-get-app-page') %}
+{% set android_url = play_store_url('firefox', 'firefox-browsers-mobile-get-app') %}
+{% set ios_url = app_store_url('firefox', 'firefox-browsers-mobile-get-app') %}
 
 {% block content %}
 <main class="mzp-l-content mzp-t-content-md mzp-t-firefox">

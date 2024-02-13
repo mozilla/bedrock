@@ -8,7 +8,6 @@ import re
 import urllib.parse
 from os import path
 from os.path import splitext
-from urllib.parse import quote
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -24,7 +23,6 @@ from markupsafe import Markup
 from product_details import product_details
 
 from bedrock.base.templatetags.helpers import static
-from bedrock.firefox.firefox_details import firefox_ios
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
 
@@ -533,49 +531,6 @@ def absolute_url(url):
     return prefix + url
 
 
-@library.global_function
-@jinja2.pass_context
-def firefox_ios_url(ctx, ct_param=None):
-    """
-    Output a link to the Firefox for iOS download page on the Apple App Store
-    taking locales into account.
-
-    Use the locale from the current request. Check if the locale matches one of
-    the Store's supported countries, return the localized page's URL or fall
-    back to the default (English) page if not.
-
-    The optional ct_param is a campaign value for the app analytics.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ firefox_ios_url() }}
-
-    For en-US this would output:
-
-        https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926
-
-    For es-ES this would output:
-
-        https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926
-
-    For ja this would output:
-
-        https://itunes.apple.com/jp/app/firefox-private-safe-browser/id989804926
-
-    """
-    locale = getattr(ctx["request"], "locale", "en-US")
-    link = firefox_ios.get_download_url("release", locale)
-
-    if ct_param:
-        return link + "?ct=" + ct_param
-
-    return link
-
-
 @library.filter
 def htmlattr(_list, **kwargs):
     """
@@ -653,11 +608,20 @@ def ifeq(a, b, text):
 
 @library.global_function
 @jinja2.pass_context
-def app_store_url(ctx, product):
+def app_store_url(ctx, product, campaign=None):
     """Returns a localised app store URL for a given product"""
-    base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
     locale = getattr(ctx["request"], "locale", "en-US")
     countries = settings.APPLE_APPSTORE_COUNTRY_MAP
+    params = "?pt=373246&ct={cmp}&mt=8"
+
+    if product == "focus" and locale == "de":
+        base_url = getattr(settings, "APPLE_APPSTORE_KLAR_LINK")
+    else:
+        base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
+
+    if campaign:
+        base_url = base_url + params.format(cmp=campaign)
+
     if locale in countries:
         return base_url.format(country=countries[locale])
     else:
@@ -666,10 +630,24 @@ def app_store_url(ctx, product):
 
 @library.global_function
 @jinja2.pass_context
-def play_store_url(ctx, product):
+def play_store_url(ctx, product, campaign=None):
     """Returns a localised play store URL for a given product"""
+    locale = lang_short(ctx)
     base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
-    return f"{base_url}&hl={lang_short(ctx)}"
+    params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+
+    if product == "focus" and locale == "de":
+        base_url = getattr(settings, "GOOGLE_PLAY_KLAR_LINK")
+    else:
+        base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
+
+    if campaign:
+        base_url = base_url + params.format(cmp=campaign)
+
+    if locale:
+        base_url = base_url + f"&hl={locale}"
+
+    return base_url
 
 
 @library.global_function
@@ -687,131 +665,6 @@ def native_language_name(ctx):
     locale = getattr(ctx["request"], "locale", "en-US")
     language = product_details.languages.get(locale)
     return language["native"] if language else locale
-
-
-def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, product, adgroup, creative=None):
-    link = adjust_url
-    params = "campaign=www.mozilla.org&adgroup=" + adgroup
-    redirect_url = None
-
-    # Get the appropriate app store URL to use as a fallback redirect.
-    if redirect == "ios":
-        countries = settings.APPLE_APPSTORE_COUNTRY_MAP
-        if locale in countries:
-            redirect_url = app_store_url.format(country=countries[locale])
-        else:
-            redirect_url = app_store_url.replace("/{country}/", "/")
-    elif redirect == "android":
-        redirect_url = google_play_url
-
-    # Optional creative parameter.
-    if creative:
-        params += "&creative=" + creative
-
-    params += "&mz_pr=" + product
-
-    if redirect_url:
-        link += "?redirect=" + quote(redirect_url, safe="") + "&" + params + "&mz_pl=" + redirect
-    else:
-        link += "?" + params
-
-    return link
-
-
-@library.global_function
-@jinja2.pass_context
-def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Firefox on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ firefox_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_FIREFOX_URL
-    app_store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
-    play_store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "firefox_mobile", adgroup, creative)
-
-
-@library.global_function
-@jinja2.pass_context
-def focus_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Focus/Klar on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ focus_adjust_url('ios', 'fights-for-you-page') }}
-    """
-    klar_locales = ["de"]
-    adjust_url = settings.ADJUST_FOCUS_URL
-    app_store_url = settings.APPLE_APPSTORE_FOCUS_LINK
-    play_store_url = settings.GOOGLE_PLAY_FOCUS_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-    product = "focus"
-
-    if locale in klar_locales:
-        adjust_url = settings.ADJUST_KLAR_URL
-        app_store_url = settings.APPLE_APPSTORE_KLAR_LINK
-        play_store_url = settings.GOOGLE_PLAY_KLAR_LINK
-        product = "klar"
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, product, adgroup, creative)
-
-
-@library.global_function
-@jinja2.pass_context
-def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Pocket on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ pocket_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_POCKET_URL
-    app_store_url = settings.APPLE_APPSTORE_POCKET_LINK
-    play_store_url = settings.GOOGLE_PLAY_POCKET_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "pocket", adgroup, creative)
-
-
-@library.global_function
-@jinja2.pass_context
-def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Lockwise on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ lockwise_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_LOCKWISE_URL
-    app_store_url = settings.APPLE_APPSTORE_LOCKWISE_LINK
-    play_store_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, "lockwise", adgroup, creative)
 
 
 def _fxa_product_url(product_url, entrypoint, optional_parameters=None):

@@ -14,8 +14,8 @@
 {% block body_class %}{{ super() }} welcome-page4{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = firefox_adjust_url('android', 'welcome-4') %}
-{% set ios_url = firefox_adjust_url('ios', 'welcome-4') %}
+{% set android_url = play_store_url('firefox', 'firefox-welcome-4') %}
+{% set ios_url = app_store_url('firefox', 'firefox-welcome-4') %}
 
 {%block page_css %}
  {{ super()}}

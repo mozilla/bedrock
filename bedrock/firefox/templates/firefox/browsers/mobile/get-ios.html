@@ -34,7 +34,8 @@
     {{ ftl('get-ios-firefox-mobile-adapts') }}
   </p>
   <p class="c-cta">
-    {{ apple_app_store_button(href='https://nn8g.adj.st/?adjust_t=ucunb4r') }}
+    {% set ios_url = app_store_url('firefox', 'firefox-browsers-mobile-get-ios') %}
+    {{ apple_app_store_button(href=ios_url) }}
   </p>
 </div>
 

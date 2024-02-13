@@ -11,10 +11,10 @@
   {% set page_id = 'data-gtm-page-id="/firefox/ios/releasenotes/"' %}
   {% set product_name = release.product %}
   {% set download_button_primary %}
-    {{ apple_app_store_button(href=firefox_ios_url('mozorg-releasenotes_page-appstore-button'), id='download-ios-primary') }}
+    {{ apple_app_store_button(href=app_store_url('firefox', 'firefox-release-notes'), id='download-ios-primary') }}
   {% endset %}
   {% set download_button_secondary %}
-    {{ apple_app_store_button(href=firefox_ios_url('mozorg-releasenotes_page-appstore-button'), id='download-ios-secondary') }}
+    {{ apple_app_store_button(href=app_store_url('firefox', 'firefox-release-notes'), id='download-ios-secondary') }}
   {% endset %}
 {% elif release.product == 'Firefox for Android' %}
   {% set page_id = 'data-gtm-page-id="/firefox/android/releasenotes/"' %}
