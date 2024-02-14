@@ -14,7 +14,7 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox_new_thanks') }}
 {% endblock %}
@@ -39,13 +39,13 @@
     </div>
   </div>
 
-  <section class="mzp-c-call-out mzp-t-product-firefox">
+  <section class="mzp-c-callout mzp-t-product-firefox">
     <div class="mzp-l-content">
-      <h1 class="mzp-c-call-out-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
+      <h1 class="mzp-c-callout-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
 
-      <h1 class="mzp-c-call-out-title show-linux">{{ ftl('firefox-new-download-almost-there') }}<br>{{ ftl('firefox-new-download-select-linux') }}</h1>
+      <h1 class="mzp-c-callout-title show-linux">{{ ftl('firefox-new-download-almost-there') }}<br>{{ ftl('firefox-new-download-select-linux') }}</h1>
 
-      <h1 class="mzp-c-call-out-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
+      <h1 class="mzp-c-callout-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
 
     {% if ftl_has_messages('firefox-new-if-you-see-a-prompt', 'firefox-new-visit-support-for-more') %}
       <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10-plus">

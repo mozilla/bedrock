@@ -7,14 +7,16 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // * -------------------------------------------------------------------------- */
 // Main Hero
 
-.mzp-c-call-out.mzp-t-product-firefox.mzp-t-hero {
+.mzp-c-callout.mzp-t-product-firefox.mzp-t-hero {
     background: $color-white;
 
-    .mzp-c-call-out-desc {
+    .mzp-c-callout-desc {
         @include text-title-xs;
     }
 

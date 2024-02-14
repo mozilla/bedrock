@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import callout_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('browser-history') }}
 {% endblock %}
@@ -110,7 +110,7 @@
   </article>
 </div>
 
-{% call call_out_compact(
+{% call callout_compact(
   title=ftl('browser-history-take-control-of'),
   class='mzp-t-product-firefox mzp-t-firefox'
 ) %}

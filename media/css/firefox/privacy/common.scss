@@ -15,7 +15,7 @@ $brand-theme: 'firefox';
 .call-out-privacy {
     background-color: $color-white;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         @include text-title-xs;
         background: url('/media/img/firefox/privacy/icon-privacy.svg') top center no-repeat;
         padding-top: 70px + $spacing-lg;

@@ -19,17 +19,18 @@ $brand-theme: 'firefox';
 
 .mzp-c-split-body {
     max-width: 580px;
-}
 
-.mzp-c-logo {
-    margin-left: auto;
-    margin-right: auto;
+    .mzp-c-logo {
+        margin-left: auto;
+        margin-right: auto;
 
-    @media #{$mq-md} {
-        margin-left: 0;
-        margin-right: 0;
+        @media #{$mq-md} {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
+
 
 // * -------------------------------------------------------------------------- */
 // Conditional CTAs

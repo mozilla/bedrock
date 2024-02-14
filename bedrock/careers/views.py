@@ -57,10 +57,6 @@ class LocationsView(L10nTemplateView):
     template_name = "careers/locations.html"
 
 
-class InternshipsView(L10nTemplateView):
-    template_name = "careers/internships.html"
-
-
 class BenefitsView(L10nTemplateView):
     template_name = "careers/benefits.html"
 

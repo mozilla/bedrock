@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact, hero with context %}
+{% from "macros-protocol.html" import callout_compact, hero with context %}
 {% from "firefox/includes/macros.html" import firefox_download_desktop_button_windows with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('windows-64-bit') }}
 {% endblock %}
@@ -73,9 +73,13 @@
   </article>
 </div>
 
-{% call call_out_compact(
-title=ftl('windows-64-bit-take-control-of-your'),
-class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+{% call callout_compact(
+  title=ftl('windows-64-bit-take-control-of-your'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg',
 ) %}
 <div class="download-firefox">
   {{ firefox_download_desktop_button_windows(cta_copy=ftl('windows-64-bit-download-firefox', fallback='download-button-download-firefox'), id='win64-bottom-download', build='64', position='secondary cta') }}

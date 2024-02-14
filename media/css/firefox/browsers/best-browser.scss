@@ -6,7 +6,6 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
@@ -75,10 +74,10 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Call out
 
-.mzp-c-call-out-compact.mzp-t-dark {
+.mzp-l-compact.mzp-t-dark {
     background: $color-purple-90;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         color: $color-orange-50;
     }
 }

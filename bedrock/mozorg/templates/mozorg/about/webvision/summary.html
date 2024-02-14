@@ -10,7 +10,7 @@
 
 {% block page_css %}
   {{ css_bundle("protocol-article") }}
-  {{ css_bundle("protocol-call-out") }}
+  {{ css_bundle("protocol-callout") }}
   {{ css_bundle("webvision") }}
 {% endblock %}
 
@@ -23,10 +23,10 @@
     {{ doc.content|safe }}
   </article>
 </main>
-<section class="mzp-c-call-out">
+<section class="mzp-c-callout mzp-t-background-secondary">
   <div class="mzp-l-content">
-    <h2 class="mzp-c-call-out-title">Ready for more?</h2>
-    <p class="mzp-c-call-out-desc">This was just the summary. You can read our <a href="{{ url('mozorg.about.webvision.full') }}">entire vision for the evolution of the Web here</a>.</p>
+    <h2 class="mzp-c-callout-title">Ready for more?</h2>
+    <p class="mzp-c-callout-desc">This was just the summary. You can read our <a href="{{ url('mozorg.about.webvision.full') }}">entire vision for the evolution of the Web here</a>.</p>
   </div>
 </section>
 {% endblock %}

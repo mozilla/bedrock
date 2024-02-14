@@ -881,9 +881,9 @@
     },
     {
       "files": [
-        "css/protocol/components/call-out.scss"
+        "css/protocol/components/callout.scss"
       ],
-      "name": "protocol-call-out"
+      "name": "protocol-callout"
     },
     {
       "files": [
@@ -1480,6 +1480,12 @@
     },
     {
       "files": [
+        "js/newsletter/newsletter-init.es6.js"
+      ],
+      "name": "newsletter"
+    },
+    {
+      "files": [
         "js/firefox/features/tips/tips-youtube.js"
       ],
       "name": "firefox_tips"
@@ -1877,13 +1883,6 @@
         "js/firefox/enterprise/landing.js"
       ],
       "name": "firefox-enterprise"
-    },
-    {
-      "files": [
-        "js/newsletter/newsletter.es6.js",
-        "js/newsletter/newsletter-init.es6.js"
-      ],
-      "name": "newsletter"
     },
     {
       "files": [

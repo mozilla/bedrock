@@ -6,6 +6,8 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // * -------------------------------------------------------------------------- */
 // Header
@@ -111,15 +113,15 @@ $image-path: '/media/protocol/img';
 }
 
 // * -------------------------------------------------------------------------- */
-// Call-out
+// Callout
 
-.mzp-c-call-out-compact,
+.mzp-c-callout-compact,
 .all-download {
     display: none;
 }
 
 .is-modern-browser {
-    .mzp-c-call-out-compact {
+    .mzp-c-callout-compact {
         display: block;
     }
 

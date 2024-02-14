@@ -5,12 +5,12 @@
 #}
 
 
-{% from "macros-protocol.html" import call_out_compact, card, split, picto with context %}
+{% from "macros-protocol.html" import callout_compact, card, split, picto with context %}
 
 {% for entry in entries -%}
     {% if entry.component == 'callout' %}
 
-      {% call call_out_compact(
+      {% call callout_compact(
         title=entry.title,
         desc=entry.body|external_html,
         class=entry.theme_class + ' ' + entry.product_class,

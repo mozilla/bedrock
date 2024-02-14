@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out, split, picto with context %}
+{% from "macros-protocol.html" import callout, split, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -56,7 +56,7 @@
     <p>{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>
   {% endcall %}
 
-  {{ call_out(
+  {{ callout(
     title=ftl('firefox-privacy-hub-thats-why-everything-we-make'),
     class='call-out-data-promise')
   }}

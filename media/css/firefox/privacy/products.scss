@@ -21,10 +21,10 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Top Page Call Out
 
-.privacy-products-call-out-main {
+.privacy-products-callout-main {
     background-color: $color-white;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         @include text-title-md;
         margin: $spacing-md 0;
 
@@ -96,7 +96,7 @@ $image-path: '/media/protocol/img';
     @include light-links;
     background-color: $color-violet-80;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         margin: 0 auto $spacing-lg;
         max-width: 24em;
 
@@ -163,7 +163,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.call-out-privacy {
+.callout-privacy {
     background-color: $color-marketing-gray-10;
 }
 

@@ -6,7 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/callout';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
 .feature-article-container {
@@ -47,7 +47,7 @@ $image-path: '/media/protocol/img';
         position: relative;
     }
 
-    & > .mzp-c-call-out {
+    & > .mzp-c-callout {
         margin: $spacing-lg 0;
         padding: $spacing-lg;
     }
@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         padding: $spacing-2xl;
 
-        & > .mzp-c-call-out {
+        & > .mzp-c-callout {
             margin: $spacing-xl ($spacing-2xl * -1);
             padding: $spacing-xl $spacing-2xl;
         }

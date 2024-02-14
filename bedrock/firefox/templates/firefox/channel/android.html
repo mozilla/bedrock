@@ -21,10 +21,14 @@
 
 {% block channels %}
 <section id="beta" class="mzp-is-anchor-link">
-  {% call call_out_compact(
+  {% call callout_compact(
     title=ftl('firefox-channel-beta'),
     desc=ftl('firefox-channel-try-the-latest-android-features'),
-    class='mzp-t-product-beta mzp-t-firefox') %}
+    class='mzp-t-product-beta mzp-t-firefox',
+    brand=True,
+    brand_product='beta',
+    brand_type='logo',
+    brand_size='xl') %}
 
     {{ download_firefox('beta', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-beta-download") }}
   {% endcall %}
@@ -52,10 +56,14 @@
 </section>
 
 <section id="nightly" class="mzp-is-anchor-link">
-  {% call call_out_compact(
+  {% call callout_compact(
     title=ftl('firefox-channel-nightly'),
     desc=ftl('firefox-channel-check-out-new-android-features'),
-    class='mzp-t-product-nightly mzp-t-firefox') %}
+    class='mzp-t-product-nightly mzp-t-firefox',
+    brand=True,
+    brand_product='nightly',
+    brand_type='logo',
+    brand_size='xl') %}
 
     {{ download_firefox('nightly', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-nightly-download") }}
   {% endcall %}

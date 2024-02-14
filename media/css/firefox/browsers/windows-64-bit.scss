@@ -79,18 +79,13 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Call out
 
-.mzp-c-call-out-compact.mzp-t-dark {
+.mzp-l-compact.mzp-t-dark {
     background: $color-purple-90;
 
-    .mzp-l-content {
-        @include grid-column-gap($spacing-sm);
-    }
+    @media #{$mq-md} {
+        .mzp-c-callout-cta-container {
+            white-space: nowrap;
 
-    .mzp-c-call-out-title {
-        color: $color-orange-50;
-    }
-
-    .mzp-c-button-download-privacy-link {
-        text-align: center;
+        }
     }
 }

@@ -14,7 +14,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('firefox-privacy-common') }}
 {% endblock %}
@@ -27,7 +27,7 @@
 <main>
   {% block hub_content %}{% endblock %}
 
-  {{ call_out(
+  {{ callout(
     title=ftl('firefox-privacy-hub-read-the-privacy-notice-for', url=url('privacy.notices.firefox')),
     class='call-out-privacy')
   }}

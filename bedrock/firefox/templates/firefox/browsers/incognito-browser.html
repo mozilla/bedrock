@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import callout_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('incognito-browser') }}
 {% endblock %}
@@ -187,9 +187,13 @@
   </article>
 </div>
 
-{% call call_out_compact(
+{% call callout_compact(
   title='Take control of your browser.',
-  class='mzp-t-product-firefox mzp-t-firefox'
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-background-secondary',
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg',
 ) %}
   <div class="download-firefox">
     {{ download_firefox_thanks(dom_id='download-button-secondary', download_location='secondary') }}

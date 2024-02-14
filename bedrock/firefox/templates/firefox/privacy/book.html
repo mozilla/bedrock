@@ -17,7 +17,7 @@
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('protocol-call-out') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('privacy-book') }}
 {% endblock %}
 
@@ -26,11 +26,11 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-call-out mzp-t-hero">
+<section class="mzp-c-callout mzp-t-hero">
   <div class="mzp-l-content">
     <img src="{{ static('img/firefox/privacy/book/privacy-eyes.png') }}" width="200" height="200" alt="">
-    <h1 class="mzp-c-call-out-title">{{ ftl('privacy-book-little-book-of') }}</h1>
-    <p class="mzp-c-call-out-desc">{{ ftl('privacy-book-how-to-stay') }}</p>
+    <h1 class="mzp-c-callout-title">{{ ftl('privacy-book-little-book-of') }}</h1>
+    <p class="mzp-c-callout-desc">{{ ftl('privacy-book-how-to-stay') }}</p>
      {{ download_firefox_thanks() }}
   </div>
 </section>

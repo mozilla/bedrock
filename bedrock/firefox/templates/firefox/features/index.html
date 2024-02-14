@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from 'macros-protocol.html' import card, call_out %}
+{% from 'macros-protocol.html' import card, callout %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -33,7 +33,7 @@
 {% block body_class %}features-index{% endblock %}
 
 {% block content %}
-{{ call_out (
+{{ callout (
   title=self.page_title(),
   desc=self.page_desc(),
   class='c-feature-header mzp-t-content-md'
