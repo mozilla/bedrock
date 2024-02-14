@@ -167,21 +167,8 @@ if (typeof window.Mozilla === 'undefined') {
                 ) !== -1
             ) {
                 version = link.getAttribute('data-download-version');
-                // Append attribution params to Windows 32bit, 64bit, and MSI installer links.
-                if (version && /win/.test(version)) {
-                    link.href = Mozilla.StubAttribution.appendToDownloadURL(
-                        link.href,
-                        data
-                    );
-                }
-                // Append attribution params to macOS Firefox pre-release links.
-                if (
-                    version &&
-                    /osx/.test(version) &&
-                    /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
-                        link.href
-                    )
-                ) {
+                // Append attribution params to Windows and macOS links
+                if (version && /win|osx/.test(version)) {
                     link.href = Mozilla.StubAttribution.appendToDownloadURL(
                         link.href,
                         data

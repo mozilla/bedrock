@@ -288,18 +288,7 @@
         var url = e.target.href;
         var version = el.getAttribute('data-download-version');
 
-        if (version && /win/.test(version)) {
-            url = FirefoxDownloader.setAttributionURL(e.target.href);
-        }
-
-        // Only macOS pre-release channels for now.
-        if (
-            version &&
-            /osx/.test(version) &&
-            /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
-                url
-            )
-        ) {
+        if (version && /win|osx/.test(version)) {
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }
 
