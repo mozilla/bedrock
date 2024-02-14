@@ -213,6 +213,8 @@ describe('all-downloads-unified.js', function () {
                 'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
             const macOSDevUrl =
                 'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
+            const macOSUrl =
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US';
 
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(true);
             expect(Mozilla.FirefoxDownloader.setAttributionURL(winUrl)).toEqual(
@@ -232,6 +234,11 @@ describe('all-downloads-unified.js', function () {
                 Mozilla.FirefoxDownloader.setAttributionURL(macOSDevUrl)
             ).toEqual(
                 'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
             );
         });
 
