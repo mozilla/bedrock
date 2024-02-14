@@ -19,9 +19,7 @@ main {
 
     @media #{$mq-md} {
         .mzp-c-callout-title {
-            background-size: 160px 160px;
             margin-bottom: $spacing-xl;
-            padding-top: 200px;
         }
     }
 }
