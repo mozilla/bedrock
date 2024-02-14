@@ -46,7 +46,7 @@ six-of-the-best = Six of the best browsers in direct comparison
 # Obsolete string
 we-compare-firefox = We compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave } and { -brand-name-ie } to help you make your decision.
 
-we-compare-firefox-v2 = We compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera } and { -brand-name-brave } to help you make your decision.
+we-compare-firefox-v2 = We compare { -brand-name-firefox } with Chrome, Edge, Safari, Opera and Brave to help you make your decision.
 comparing-firefox-chrome = Comparing { -brand-name-firefox-browser } with { -brand-name-google } { -brand-name-chrome }
 big-isnt-always = Big isn’t always best. Choose independence instead.
 comparing-firefox-brave = Comparing { -brand-name-firefox-browser } to { -brand-name-brave }
