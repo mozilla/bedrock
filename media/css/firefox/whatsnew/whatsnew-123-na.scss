@@ -1,0 +1,52 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+$mobile-xs: 415px;
+
+.wnp-content-main {
+    .mzp-l-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .wnp-main-title {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                background-image: url('/media/img/firefox/whatsnew/whatsnew-123-na/search-icon.svg');
+                background-repeat: no-repeat;
+                content: "";
+                height: 90px;
+                width: 90px;
+                top: 0;
+                left: 15px;
+
+                @media (max-width: $mobile-xs) {
+                    display: none;
+                }
+
+                @media #{$mq-md} {
+                    top: 5px;
+                    left: 25px;
+                }
+            }
+        }
+
+        .wnp-main-title,
+        .wnp-main-image,
+        .wnp-main-tagline {
+            margin-bottom: $spacing-xl;
+        }
+
+        span {
+            @include text-body-sm;
+        }
+    }
+}

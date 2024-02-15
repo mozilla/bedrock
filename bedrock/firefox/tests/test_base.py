@@ -977,6 +977,55 @@ class TestWhatsNew(TestCase):
 
     # end 122.0 whatsnew tests
 
+    # begin 123.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_123_0_0_gb(self, render_mock):
+        """Should use whatsnew-fx123-eu template for en-GB locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="123.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx123-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_123_0_0_us_gb(self, render_mock):
+        """Should use whatsnew-fx123-eu template for en-US locale in UK"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="GB")
+        req.locale = "en-US"
+        self.view(req, version="123.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx123-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_123_0_0_de(self, render_mock):
+        """Should use whatsnew-fx123-eu template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="123.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx123-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_123_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx123-eu template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="123.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx123-eu.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_123_0_0_us(self, render_mock):
+        """Should use whatsnew-fx123-na template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="123.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx123-na.html"]
+
+    # end 123.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
