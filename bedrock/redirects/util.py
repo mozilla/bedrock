@@ -6,6 +6,7 @@ import re
 from collections import defaultdict
 from urllib.parse import parse_qs, urlencode
 
+from django.conf import settings
 from django.http import (
     HttpResponseGone,
     HttpResponsePermanentRedirect,
@@ -84,6 +85,23 @@ def platform_redirector(desktop_dest, android_dest, ios_dest):
             return desktop_dest
 
     return decider
+
+
+def mobile_app_redirector(request, product, campaign):
+    android_re = re.compile(r"\bAndroid\b", flags=re.I)
+    value = request.headers.get("User-Agent", "")
+
+    if android_re.search(value):
+        base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
+        params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+    else:
+        base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK").replace("/{country}/", "/")
+        params = "?pt=373246&ct={cmp}&mt=8"
+
+    if campaign:
+        return base_url + params.format(cmp=campaign)
+    else:
+        return base_url
 
 
 def no_redirect(pattern, locale_prefix=True, re_flags=None):

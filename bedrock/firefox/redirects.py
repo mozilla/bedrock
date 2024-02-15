@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from bedrock.redirects.util import no_redirect, platform_redirector, redirect
+from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
 
 def firefox_mobile_faq(request, *args, **kwargs):
@@ -15,6 +15,37 @@ def firefox_mobile_faq(request, *args, **kwargs):
 
 def firefox_channel(*args, **kwargs):
     return platform_redirector("firefox.channel.desktop", "firefox.channel.android", "firefox.channel.ios")
+
+
+def mobile_app(request, *args, **kwargs):
+    qs = request.META.get("QUERY_STRING", "")
+    campaign = None
+    product = "firefox"
+
+    product_options = ["firefox", "focus", "klar"]
+
+    campaign_options = [
+        "firefox-whatsnew",
+        "firefox-whatsnew-120",
+        "firefox-whatsnew-122",
+        "firefox-welcome-4",
+        "firefox-welcome-6",
+        "firefox-welcome-17",
+        "firefox-browsers-mobile-get-app",
+        "firefox-browsers-mobile-android",
+        "firefox-browsers-mobile-ios",
+        "firefox-browsers-mobile-focus",
+    ]
+
+    for p in product_options:
+        if f"product={p}" in qs:
+            product = p
+
+    for c in campaign_options:
+        if f"campaign={c}" in qs:
+            campaign = c
+
+    return mobile_app_redirector(request, product, campaign)
 
 
 redirectpatterns = (
@@ -562,4 +593,6 @@ redirectpatterns = (
     # issue 13732
     redirect(r"^firefox/welcome/3/?$", "firefox.accounts"),
     redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
+    # issue 14172
+    redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
 )

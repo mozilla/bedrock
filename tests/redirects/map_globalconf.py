@@ -1231,5 +1231,54 @@ URLS = flatten(
         url_test("/foundation/annualreport/{,2022/}", "https://stateof.mozilla.org/"),
         # Issue 14186
         url_test("/privacy/firefox-monitor/", "/privacy/subscription-services/"),
+        # Issue 14172
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox",
+            "https://apps.apple.com/app/apple-store/id989804926",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-whatsnew",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew",
+            "https://apps.apple.com/app/apple-store/id989804926?pt=373246&ct=firefox-whatsnew&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=focus&campaign=firefox-browsers-mobile-focus",
+            "https://play.google.com/store/apps/details?id=org.mozilla.focus&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-browsers-mobile-focus",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=focus&campaign=firefox-browsers-mobile-focus",
+            "https://apps.apple.com/app/apple-store/id1055677337?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=klar&campaign=firefox-browsers-mobile-focus",
+            "https://play.google.com/store/apps/details?id=org.mozilla.klar&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-browsers-mobile-focus",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=klar&campaign=firefox-browsers-mobile-focus",
+            "https://apps.apple.com/app/apple-store/id1073435754?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
     )
 )
