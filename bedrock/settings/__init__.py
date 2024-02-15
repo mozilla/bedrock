@@ -198,7 +198,6 @@ else:
     _csp_child_src = [
         "www.googletagmanager.com",
         "www.google-analytics.com",
-        "www.youtube-nocookie.com",
         "trackertest.org",  # mozilla service for tracker detection
         "www.surveygizmo.com",
         "accounts.firefox.com",

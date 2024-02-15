@@ -4,12 +4,21 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import video_inline_embed with context %}
+
 {% if LANG == 'de' %}
-<div class="mzp-c-video">
-    <iframe src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0"
-    title="Falls du noch mehr über die Facebook Container Erweiterung erfahren möchtest, schau dir gern unser Video an"
-      allow="encrypted-media" allowfullscreen>
-  </iframe>
+<div class="c-hero-video">
+  {{ video_inline_embed(
+    id='7yLoRVwuZlc',
+    title='Falls du noch mehr über die Facebook Container Erweiterung erfahren möchtest, schau dir gern unser Video an',
+    image=resp_img(
+      url='img/firefox/facebook-container/video-poster.png',
+      optional_attributes={
+        'width': '684',
+        'height': '385'
+      }
+    ),
+  ) }}
 </div>
 {% else %}
 <div class="mzp-c-video">

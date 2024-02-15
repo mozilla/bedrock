@@ -7,33 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
-@import '~@mozilla-protocol/core/protocol/css/components/video';
-
-// Video
-.video-play {
-    position: absolute;
-    display: block;
-
-    &::after {
-        background: url('/media/img/icons/video-play.svg') top left no-repeat;
-        content: '';
-        height: 100px;
-        left: 50%;
-        margin: -50px 0 0 -50px;
-        opacity: 0.7;
-        position: absolute;
-        top: 50%;
-        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-        width: 100px;
-        z-index: 2;
-    }
-
-    &:hover::after,
-    &:focus::after {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-}
+@import '../../protocol/components/video';
 
 .has-pip-icon strong {
     @include bidi((

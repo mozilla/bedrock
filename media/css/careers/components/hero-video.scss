@@ -6,6 +6,7 @@
 @use 'sass:color';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../../protocol/components/video';
 
 // Header with video
 .c-careers-video-hero {
@@ -51,39 +52,5 @@
     &.t-hero-diversity .c-video-wrapper {
         background: cp.$teal-primary url('/media/img/careers/hero-bg-diversity.jpg') center center no-repeat;
         background-size: cover;
-    }
-}
-
-.c-hero-video {
-    .video-play {
-        display: block;
-        border: 2px solid rgba(255, 255, 255, 0.7);
-        line-height: 0;
-        transition: border-color 150ms ease-in-out;
-
-        &::after {
-            background: url('/media/img/icons/video-play.svg') top left no-repeat;
-            content: '';
-            height: 100px;
-            left: 50%;
-            margin: -50px 0 0 -50px;
-            opacity: 0.7;
-            position: absolute;
-            top: 50%;
-            transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-            width: 100px;
-            z-index: 2;
-        }
-
-        &:hover,
-        &:focus {
-            border-color: $color-white;
-            outline: 0;
-
-            &::after {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-        }
     }
 }

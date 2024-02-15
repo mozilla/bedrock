@@ -99,5 +99,9 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_facebook_container_video') }}
+  {% if LANG == "de" %}
+    {{ js_bundle('video-inline-embed') }}
+  {% else %}
+    {{ js_bundle('firefox_facebook_container_video') }}
+  {% endif %}
 {% endblock %}

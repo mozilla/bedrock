@@ -4,8 +4,19 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="mzp-c-video">
-    <iframe src="https://www.youtube-nocookie.com/embed/NXomgmnfU_Y?rel=0&amp;showinfo=0" frameborder="0" title="Watch the Firefox Tips video covering the Eyedropper tool"
-      allow="encrypted-media" allowfullscreen>
-  </iframe>
+{% from "macros.html" import video_modal_embed with context %}
+
+<div class="c-firefox-tips-video">
+  {{ video_modal_embed(
+    id='NXomgmnfU_Y',
+    title='Watch the Firefox Tips video covering the Eyedropper tool',
+    cta_title='Watch the Firefox Tips video covering the Eyedropper tool',
+    image=resp_img(
+      url='img/firefox/features/tips/fx_video-thumb_secret-menu_eyedropper_bram.jpg',
+      optional_attributes={
+        'width': '684',
+        'height': '385'
+      }
+    ),
+  ) }}
 </div>

@@ -4,8 +4,19 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="mzp-c-video">
-    <iframe src="https://www.youtube-nocookie.com/embed/sn9dib80w3c?rel=0&amp;showinfo=0" frameborder="0"
-    title="Watch the Firefox Tips video covering the Forget Button tool" allow="encrypted-media" allowfullscreen>
-  </iframe>
+{% from "macros.html" import video_modal_embed with context %}
+
+<div class="c-firefox-tips-video">
+  {{ video_modal_embed(
+    id='sn9dib80w3c',
+    title='Watch the Firefox Tips video covering the Forget Button tool',
+    cta_title='Watch the Firefox Tips video covering the Forget Button tool',
+    image=resp_img(
+      url='img/firefox/features/tips/fx_video-thumb_secret-menu_forget_damiano.jpg',
+      optional_attributes={
+        'width': '684',
+        'height': '385'
+      }
+    ),
+  ) }}
 </div>

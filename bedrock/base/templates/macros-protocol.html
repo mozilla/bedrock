@@ -245,9 +245,9 @@
   </a>
   {% if youtube_id %}
   <div class="mzp-c-card-video-wrapper hidden">
-    <figure class="mzp-c-card-video-content">
+    <figure class="js-video-content">
       <div class="mzp-c-video">
-        <div class="video-play" data-id="{{ youtube_id }}"></div>
+        <div class="video-player-frame" data-video-id="{{ youtube_id }}" data-video-title="{{ title }}"></div>
       </div>
       <figcaption>
         <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ ftl('ui-learn-more') }}</a></p>

@@ -7,7 +7,6 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/includes/forms';
-@import "~@mozilla-protocol/core/protocol/css/components/video";
 @import "~@mozilla-protocol/core/protocol/css/components/modal";
 @import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
 
@@ -77,35 +76,6 @@
     overflow: visible;
     position: relative;
     max-width: 769px; // reduce width of video
-}
-
-
-// Video
-.video-play {
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-
-    &::after {
-        background: url("/media/img/firefox/whatsnew/whatsnew120-na/play.svg") no-repeat;
-        background-size: cover;
-        content: "";
-        height: 150px;
-        left: 50%;
-        margin: -75px 0 0 -75px;
-        opacity: 0.7;
-        position: absolute;
-        top: 50%;
-        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-        width: 150px;
-        z-index: 2;
-    }
-
-    &:hover::after,
-    &:focus::after {
-        opacity: 1;
-        transform: scale(1.1);
-    }
 }
 
 @media (prefers-reduced-motion: no-preference) {

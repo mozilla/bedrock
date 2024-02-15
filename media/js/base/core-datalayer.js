@@ -40,11 +40,7 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
         if (!isModernBrowser) {
             return 'false';
         }
-        return document.querySelector('video') !== null ||
-            document.querySelector('iframe[src^="https://www.youtube"]') !==
-                null
-            ? 'true'
-            : 'false';
+        return document.querySelector('video') !== null ? 'true' : 'false';
     };
 
     /** Returns page version.
