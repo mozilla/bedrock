@@ -38,17 +38,6 @@ describe('core-datalayer.js', function () {
             content.parentNode.removeChild(content);
         });
 
-        it('will return "true" when YouTube iframe video is present on page.', function () {
-            const videoMarkup =
-                '<iframe id="video-content" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
-
-            document.body.insertAdjacentHTML('beforeend', videoMarkup);
-            expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
-
-            const content = document.getElementById('video-content');
-            content.parentNode.removeChild(content);
-        });
-
         it('will return "false" when download button is not present on page.', function () {
             expect(Mozilla.Analytics.pageHasVideo()).toBe('false');
         });

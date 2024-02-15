@@ -7,8 +7,8 @@ $image-path: '/media/protocol/img';
 $brand-theme: "firefox";
 
 @import "~@mozilla-protocol/core/protocol/css/includes/lib";
-@import "~@mozilla-protocol/core/protocol/css/components/video";
 @import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+@import '../protocol/components/video';
 
 .try-pip-content-main {
     color: $color-dark-gray-90;
@@ -52,32 +52,6 @@ $brand-theme: "firefox";
 
     .mzp-c-picto-heading {
         @include text-title-2xs;
-    }
-}
-
-// Video
-.video-play {
-    position: absolute;
-    display: block;
-
-    &::after {
-        background: url("/media/img/icons/video-play.svg") top left no-repeat;
-        content: "";
-        height: 100px;
-        left: 50%;
-        margin: -50px 0 0 -50px;
-        opacity: 0.7;
-        position: absolute;
-        top: 50%;
-        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-        width: 100px;
-        z-index: 2;
-    }
-
-    &:hover::after,
-    &:focus::after {
-        opacity: 1;
-        transform: scale(1.1);
     }
 }
 

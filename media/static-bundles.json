@@ -1427,12 +1427,6 @@
     },
     {
       "files": [
-        "js/firefox/features/tips/tips-youtube.js"
-      ],
-      "name": "firefox_tips"
-    },
-    {
-      "files": [
         "js/firefox/features/features-article.es6.js"
       ],
       "name": "firefox_features_article"
@@ -1652,12 +1646,6 @@
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
-    },
-    {
-      "files": [
-        "js/firefox/features/picture-in-picture.js"
-      ],
-      "name": "firefox-features-pip"
     },
     {
       "files": [
@@ -1881,9 +1869,15 @@
     },
     {
       "files": [
-        "js/careers/hero-video.js"
+        "js/base/video-inline-embed.es6.js"
       ],
-      "name": "careers-hero-video"
+      "name": "video-inline-embed"
+    },
+    {
+      "files": [
+        "js/base/video-modal-embed.es6.js"
+      ],
+      "name": "video-modal-embed"
     },
     {
       "files": [
@@ -1934,12 +1928,6 @@
         "js/products/mozsocial/invite.es6.js"
       ],
       "name": "mozsocial-waitlist"
-    },
-    {
-      "files": [
-        "js/mozorg/try-picture-in-picture.js"
-      ],
-      "name": "try-picture-in-picture"
     },
     {
       "files": [

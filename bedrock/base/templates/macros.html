@@ -203,3 +203,23 @@
   </div>
 </nav>
 {%- endmacro %}
+
+{% macro video_modal_embed(id='', title='', image='', start='0', cta_title=ftl('ui-watch-the-video')) -%}
+<a class="video-play js-video-play" href="https://youtu.be/{{ id }}" title="{{ cta_title }}">
+  {{ image|safe }}
+</a>
+
+<div class="mzp-u-modal-content hidden">
+  <div class="js-video-content mzp-c-video">
+    <div class="video-player-frame" data-video-id="{{ id }}" data-video-title="{{ title }}" data-video-start="{{ start }}"></div>
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro video_inline_embed(id='', title='', image='', start='0', cta_title=ftl('ui-watch-the-video')) -%}
+<div class="mzp-c-video">
+  <a class="video-play js-video-play" href="https://youtu.be/{{ id }}" data-video-id="{{ id }}" data-video-title="{{ title }}" data-video-start="{{ start }}" title="{{ cta_title }}">
+    {{ image|safe }}
+  </a>
+</div>
+{%- endmacro %}

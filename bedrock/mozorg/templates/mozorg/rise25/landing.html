@@ -4,9 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol.html" %}
-
+{% from "macros.html" import video_modal_embed with context %}
 {% from "macros-protocol.html" import split with context %}
+
+{% extends "base-protocol.html" %}
 
 {% block page_title %}Rise25 Awards: Call for Nominations{% endblock %}
 {% block page_desc %}We’re seeking 25 visionaries using AI to drive social impact, offering them global recognition at our Dublin awards event.{% endblock %}
@@ -37,26 +38,28 @@
       their stories widely, we’ll amplify their work and connect them with a community
       dedicated to supporting responsible AI initiatives that benefit humanity. Know
       an innovator making a difference with AI?</p>
-    <p class="r25-hero-cta">
+    <div class="r25-hero-cta">
       <strong class="r25-hero-notice">Call for nominees closes on<br> <time datetime="2024-03-29">March 29, 2024</time></strong>
 
       <a href="#nominate" class="r25-c-button t-fancy">Nominate <span>someone</span></a>
 
-      <a class="video-play js-video-play" href="https://youtu.be/LbGtijF8qb0" role="button" title="Play the video">
-        {{ resp_img(
-          url='img/mozorg/rise25/hero-thumb.jpg',
-          srcset={
-            'img/mozorg/rise25/hero-thumb-high-res.jpg': '1.5x'
-          },
-          optional_attributes={
-            'width': '178',
-            'height': '100',
-            'class': 'fallback',
-            'alt': ''
-          }
+      {{ video_modal_embed(
+          id='LbGtijF8qb0',
+          title='Play the video',
+          image=resp_img(
+            url='img/mozorg/rise25/hero-thumb.jpg',
+            srcset={
+              'img/mozorg/rise25/hero-thumb-high-res.jpg': '1.5x'
+            },
+            optional_attributes={
+              'width': '178',
+              'height': '100',
+              'class': 'fallback',
+              'alt': ''
+            }
+          ),
         ) }}
-      </a>
-    </p>
+    </div>
   {% endcall %}
 
   <section class="mzp-l-content r25-promote">
@@ -240,5 +243,6 @@
 
 {% block js %}
   {{ js_bundle('protocol-modal') }}
+  {{ js_bundle('video-modal-embed') }}
   {{ js_bundle('rise25-landing') }}
 {% endblock %}

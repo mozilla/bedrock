@@ -4,9 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
-
+{% from "macros.html" import video_inline_embed with context %}
 {% from "macros-protocol.html" import split, picto, card, with context %}
+
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}The State of Mozilla: 2020 Annual Report{% endblock %}
 {% block page_desc %}Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day.{% endblock %}
@@ -48,10 +49,17 @@
     <p>It’s going to take us all to make the internet better and we invite anyone to <a href="{{ url('firefox') }}">download Firefox</a>, <a href="https://getpocket.com">Pocket</a> and <a href="{{ url('products.vpn.landing') }}">Mozilla VPN</a>, to <a href="{{ url('mozorg.contribute') }}">volunteer</a> with
       us or to <a href="https://donate.mozilla.org/">make a donation</a> to support the work of internet health leaders around the world.</p>
 
-    <div class="mzp-c-video">
-      <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/ISYtFzMXVbM" title="Watch Mozilla: The big picture" frameborder="0" allowfullscreen>
-      </iframe>
-    </div>
+    {{ video_inline_embed(
+      id='ISYtFzMXVbM',
+      title='Watch Mozilla: The big picture',
+      image=resp_img(
+        url='img/foundation/annualreport/2020/som-video-thumbnail.png',
+        optional_attributes={
+          'width': '928',
+          'height': '522'
+        }
+      ),
+    ) }}
   </div>
 
   <!-- Leadership Cards -->
@@ -1292,5 +1300,6 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('video-inline-embed') }}
   {{ js_bundle('annual_report_modal') }}
 {% endblock %}

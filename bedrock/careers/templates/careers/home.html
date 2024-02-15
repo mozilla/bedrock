@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import video_modal_embed with context %}
+
 {% extends "careers/base.html" %}
 
 {% block page_title %}Mozilla Careers — Feel good about your work again.{% endblock %}
@@ -393,9 +395,18 @@
         can look like — balancing your life with the connection and community
         essential to the products we’re building.</p>
 
-      <div class="mzp-c-video">
-        <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/_EeFDE5WW0I" title="Watch Mozillians, kids, and pets on Zoom" frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="c-mozillians-video">
+        {{ video_modal_embed(
+          id='_EeFDE5WW0I',
+          title='Watch Mozillians, kids, and pets on Zoom',
+          image=resp_img(
+            url='img/careers/mozillians-video-thumb.jpg',
+            optional_attributes={
+              'width': '684',
+              'height': '385'
+            }
+          ),
+        ) }}
       </div>
 
       <p class="c-careers-button-wrapper">
@@ -411,6 +422,6 @@
 
 {% block js %}
   {{ js_bundle('protocol-modal') }}
-  {{ js_bundle('careers-hero-video') }}
+  {{ js_bundle('video-modal-embed') }}
   {{ js_bundle('careers-testimonials') }}
 {% endblock %}

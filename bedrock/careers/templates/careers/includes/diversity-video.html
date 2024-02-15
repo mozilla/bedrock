@@ -4,14 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="c-hero-video">
-  <a class="video-play js-video-play" href="https://youtu.be/oDifVXtL10w" title="Play the video" role="button">
-    <img src="{{ static('img/careers/diversity-video-thumbnail.png') }}" alt="" width="1200" height="686">
-  </a>
+{% from "macros.html" import video_modal_embed with context %}
 
-  <div class="mzp-u-modal-content hidden">
-    <div class="mzp-c-video">
-      <div class="video-player" data-video-id="oDifVXtL10w" data-video-title="Diversity and Inclusion at Mozilla"></div>
-    </div>
-  </div>
+<div class="c-hero-video">
+  {{ video_modal_embed(
+    id='oDifVXtL10w',
+    title='Diversity and Inclusion at Mozilla',
+    image=resp_img(
+      url='img/careers/diversity-video-thumbnail.png',
+      optional_attributes={
+        'width': '684',
+        'height': '385'
+      }
+    ),
+  ) }}
 </div>
