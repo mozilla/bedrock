@@ -1,0 +1,48 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox OS Privacy Notice — Archived, May 12, 2022{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block body_class %}{{ super() }} format-paragraphs{% endblock %}
+
+{% block article_header_logo %}{{ static('img/privacy/logo-firefox.png') }}{% endblock %}
+
+{% block title %}Firefox OS Privacy Notice{% endblock %}
+
+{% block time %}<span class="archived">Archived, May 12, 2022</span>{% endblock %}
+
+{% block lead_in %}
+  <p>Mozilla cares about your Privacy. When Firefox OS sends information to us, our <a href="/privacy/">Mozilla Privacy Policy</a> describes how we handle that information.</p>
+{% endblock %}
+
+{% block sections %}
+  <section class="section2" id="things-you-should-know"><h2>Things you should know</h2>
+    <p class="summary" id="location-services">Firefox OS connects to us and others in order to provide product features.</p>
+    <ul class="mzp-u-list-styled">
+      <li>Updates: To keep itself up to date, Firefox OS automatically connects to a service operated by or on behalf of the manufacturer of your device. Firefox OS also automatically checks for updates to installed apps by sending a request to the Firefox Marketplace or, if you installed an app from another location, that app’s developer’s services.</li>
+      <li>Location: When you turn location services on, Firefox OS may use multiple data points and entities to estimate your location, including GPS, AGPS and other geolocation service providers. You can disable location services in the Firefox OS “Settings” app on your device. <a href="https://wiki.mozilla.org/Firefox_OS/AGPS_service_provider_terms">Learn more about AGPS Service Provider Terms</a>.</li>
+      <li>Initial Activation: Upon initial activation of your Firefox OS device, Firefox OS sends to Mozilla a one-time data ping (e.g., data relating to device specific information such as software release version, partner ID, country and screen size) which helps Mozilla determine if security updates and critical fixes are needed for our users and partners, determine requirements for app developers so they can build better apps for our users, and helps Mozilla with market analysis (e.g., determine how many devices have been activated). <a href="https://wiki.mozilla.org/Firefox_OS/Metrics/activationping">Learn more</a></li>
+      <li>App Usage: In order to improve content discovery on Firefox Marketplace, Firefox OS sends "Application Usage Information" (e.g., active use time, counts of opens/closes/crashes, list of uninstalled apps on Firefox OS devices) to Mozilla. You can disable the sharing of App Usage Information in the Firefox OS “Settings” app on your device. <a href="https://wiki.mozilla.org/FirefoxOS/Metrics/App_Usage">Learn more</a></li>
+      <li>Search Engine Provider Information: In order to improve search on Firefox OS devices, Firefox OS sends information to Mozilla about which search engine provided search results to the device. You can disable the sharing of search engine search result information in the Firefox OS “Settings” app on your device. <a href="https://wiki.mozilla.org/FirefoxOS/Metrics/App_Usage">Learn more</a></li>
+    </ul>
+    <hr/>
+    <p class="summary" id="external-parties">The device you are using, like most mobile devices, is created by several parties. This notice only covers how Mozilla handles your information for official versions of Firefox OS authorized by Mozilla.</p>
+    <ul class="mzp-u-list-styled">
+      <li>If you use apps made by someone other than Mozilla, their privacy policies will apply.</li>
+      <li>Firefox OS allows you to use several integrated third party services, such as your email or social provider. The privacy policy of those services will apply to your use of them.</li>
+    </ul>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}
+
+{% block js %}
+  {{ js_bundle('privacy_protocol') }}
+{% endblock %}

@@ -1,0 +1,36 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import sub_nav with context %}
+
+{% if ftl_has_messages('sub-navigation-privacy', 'sub-navigation-our-promise', 'sub-navigation-our-products', 'sub-navigation-little-book-of-privacy') %}
+  {{ sub_nav(
+    title={
+      'text':  ftl('sub-navigation-privacy', fallback='firefox-privacy-privacy')
+    },
+    links=[
+    {
+      'text': ftl('sub-navigation-our-promise', fallback='firefox-privacy-our-promise'),
+      'href': url('firefox.privacy.index'),
+      'cta_name': "Our Promise"
+    },
+    {
+      'text': ftl('sub-navigation-our-products', fallback='firefox-privacy-our-products'),
+      'href': url('firefox.privacy.products') ,
+      'cta_name': "Our Products"
+    },
+    {
+      'text': ftl('sub-navigation-little-book-of-privacy'),
+      'href': url('firefox.privacy.book'),
+      'cta_name': "Little Book of Privacy"
+    },
+    {
+      'text': ftl('sub-navigation-safe-passwords'),
+      'href': url('firefox.privacy.passwords'),
+      'cta_name': "Safe Passwords"
+    }]
+  ) }}
+{% endif %}

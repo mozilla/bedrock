@@ -6,118 +6,118 @@
 
 {% extends "mozorg/about/policy/transparency/report-base.html" %}
 
-{% block page_title %}{{ _('Transparency Report - January-June, 2019') }}{% endblock %}
+{% block page_title %}Transparency Report - January-June, 2019{% endblock %}
 
 {% block report_title %}
-<h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: January 1, 2019 to June 30, 2019') }}</span></h1>
+<h1>Transparency Report <span>Reporting Period: January 1, 2019 to June 30, 2019</span></h1>
 {% endblock %}
 
 {% block report_body %}
 <section id="government-user-data" class="c-collapsible-section">
-  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">{{ _('Government Demands for User Data') }}</h2>
+  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">Government Demands for User Data</h2>
 
   <div data-accordion-role="tabpanel">
     <p>
-      {{ _('In the Reporting Period, Mozilla received the following.') }}
+      In the Reporting Period, Mozilla received the following.
     </p>
 
     <table class="mzp-u-data-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Legal Processes') }}</th>
-          <th scope="col">{{ _('Received') }}</th>
-          <th scope="col">{{ _('Data Produced') }}</th>
+          <th scope="col">Legal Processes</th>
+          <th scope="col">Received</th>
+          <th scope="col">Data Produced</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-search-warrant' }}">{{ _('Search Warrants') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-search-warrant' }}">Search Warrants</a>
           </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
+          <td>0</td>
         </tr>
         <tr>
           <th scope="row">
-            <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-subpoena' }}">{{ _('Subpoenas') }}</a>
+            <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-subpoena' }}">Subpoenas</a>
           </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-court-order' }}">{{ _('Court Orders') }}</a>
-          </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
         </tr>
         <tr>
           <th scope="row">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-wiretap-order' }}">{{ _('Wiretap Orders') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-court-order' }}">Court Orders</a>
           </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
+          <td>0</td>
         </tr>
         <tr>
           <th scope="row">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-pen-register-order' }}">{{ _('Pen Register Orders') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-wiretap-order' }}">Wiretap Orders</a>
           </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
+          <td>0</td>
         </tr>
         <tr>
           <th scope="row">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-emergency-request' }}">{{ _('Emergency Requests') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-pen-register-order' }}">Pen Register Orders</a>
           </th>
           <td>0</td>
-          <td>{{ _('0') }}</td>
+          <td>0</td>
         </tr>
         <tr>
           <th scope="row">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request' }}">{{ _('National Security Requests') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-emergency-request' }}">Emergency Requests</a>
+          </th>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <a
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request' }}">National Security Requests</a>
             <sup><a href="#footnote-1">1</a></sup>
           </th>
           <td>0-249</td>
-          <td>{{ _('0-249') }}</td>
+          <td>0-249</td>
         </tr>
       </tbody>
     </table>
 
     <aside class="footnotes">
       <p>
-        {{ _('1. We seek to be as transparent as possible about the User Data Requests that we receive from government authorities. The reporting band listed is one of four reporting bands permitted under U.S. law for National Security Requests.') }}
+        1. We seek to be as transparent as possible about the User Data Requests that we receive from government authorities. The reporting band listed is one of four reporting bands permitted under U.S. law for National Security Requests.
       </p>
     </aside>
   </div>
 </section>
 
 <section id="government-content-removal" class="c-collapsible-section">
-  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">{{ _('Government Demands for Content Removal') }}</h2>
+  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">Government Demands for Content Removal</h2>
 
   <div data-accordion-role="tabpanel">
     <p>
-      {{ _('In the Reporting Period, Mozilla did not receive any government requests for content removal from our services.') }}
+      In the Reporting Period, Mozilla did not receive any government requests for content removal from our services.
     </p>
 
     <table class="mzp-u-data-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Requesting Country') }}</th>
-          <th scope="col">{{ _('Requests Received') }}</th>
-          <th scope="col">{{ _('Data Produced') }}</th>
+          <th scope="col">Requesting Country</th>
+          <th scope="col">Requests Received</th>
+          <th scope="col">Data Produced</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ _('N/A') }}</th>
+          <th scope="row">N/A</th>
           <td>0</td>
-          <td>{{ _('N/A') }}</td>
+          <td>N/A</td>
         </tr>
       </tbody>
     </table>
@@ -126,94 +126,94 @@
 </section>
 
 <section id="copyright-trademark" class="c-collapsible-section">
-  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">{{ _('Copyright and Trademark Requests') }}</h2>
+  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">Copyright and Trademark Requests</h2>
 
   <div data-accordion-role="tabpanel">
-    <h3>{{ _('Copyright') }}</h3>
-    <p>{{ _('In the Reporting Period, we received 8 Copyright Takedown Notices and 0 Counter Notices.') }}</p>
+    <h3>Copyright</h3>
+    <p>In the Reporting Period, we received 8 Copyright Takedown Notices and 0 Counter Notices.</p>
 
     <table class="mzp-u-data-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Mozilla Service') }}</th>
+          <th scope="col">Mozilla Service</th>
           <th scope="col">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">{{ _('Takedown Notices') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">Takedown Notices</a>
           </th>
           <th scope="col">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">{{ _('Counter Notices') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">Counter Notices</a>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ _('Firefox Add-ons') }}</th>
+          <th scope="row">Firefox Add-ons</th>
           <td>7</td>
           <td>0</td>
         </tr>
         <tr>
-          <th scope="row">{{ _('Pocket') }}</th>
+          <th scope="row">Pocket</th>
           <td>0</td>
           <td>0</td>
         </tr>
         <tr>
-          <th scope="row">{{ _('Other Services') }}</th>
+          <th scope="row">Other Services</th>
           <td>1</td>
           <td>0</td>
         </tr>
       </tbody>
     </table>
 
-    <h3>{{ _('Trademark') }}</h3>
-    <p>{{ _('In the Reporting Period, we received 4 Trademark Takedown Notices and 0 Counter Notices.') }}</p>
+    <h3>Trademark</h3>
+    <p>In the Reporting Period, we received 4 Trademark Takedown Notices and 0 Counter Notices.</p>
 
     <table class="mzp-u-data-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Mozilla Service') }}</th>
+          <th scope="col">Mozilla Service</th>
           <th scope="col">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">{{ _('Takedown Notices') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">Takedown Notices</a>
           </th>
           <th scope="col">
             <a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">{{ _('Counter Notices') }}</a>
+              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">Counter Notices</a>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ _('Firefox Add-ons') }}</th>
+          <th scope="row">Firefox Add-ons</th>
           <td>4</td>
           <td>0</td>
         </tr>
         <tr>
-          <th scope="row">{{ _('Pocket') }}</th>
+          <th scope="row">Pocket</th>
           <td>0</td>
           <td>0</td>
         </tr>
         <tr>
-          <th scope="row">{{ _('Other Services') }}</th>
+          <th scope="row">Other Services</th>
           <td>0</td>
           <td>0</td>
       </tbody>
     </table>
-    <h3>{{ _('Personal Data Requests') }}</h3>
-    <p>{{ _('In the Reporting Period, we received 757 requests.') }}</p>
+    <h3>Personal Data Requests</h3>
+    <p>In the Reporting Period, we received 757 requests.</p>
 
     <table class="mzp-u-data-table">
       <thread>
-        <th scope="col">{{ _('Service') }}</th>
-        <th scope="col">{{ _('Received') }}</th>
+        <th scope="col">Service</th>
+        <th scope="col">Received</th>
       </thread>
       <tbody>
         <tr>
-          <th scope="row">{{ _('Mozilla') }}</th>
+          <th scope="row">Mozilla</th>
           <td>427 <sup><a href="#notation">*</a></sup></td>
         </tr>
         <tr>
-          <th scope="row">{{ _('Pocket') }}</th>
+          <th scope="row">Pocket</th>
           <td>330</td>
         </tr>
       </tbody>
@@ -221,11 +221,11 @@
     <aside class="footnotes">
       <section id="notation">
         <p>
-          {% trans privacy=url('privacy') %}
+          {% with privacy=url('privacy') %}
           * During the Reporting Period we surfaced additional methods to contact us in our <a
             href="{{ privacy }}">Mozilla Privacy Policy</a>. This higher level visibility likely caused the increase in
           Personal Data Requests that we received compared to 2018 H2.
-          {% endtrans %}
+          {% endwith %}
         </p>
       </section>
     </aside>
@@ -233,69 +233,69 @@
 </section>
 
 <section id="supplement" class="c-collapsible-section">
-  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">{{ _('Supplement') }}</h2>
+  <h2 class="c-collapsible-section-heading" data-accordion-role="tab">Supplement</h2>
 
   <div data-accordion-role="tabpanel">
-    <h3>{{ _('Legislative Reform') }}</h3>
+    <h3>Legislative Reform</h3>
     <p>
-      {% trans consumer='https://blog.mozilla.org/netpolicy/files/2019/04/Mozilla-U.S.-Consumer-Privacy-Bill-Blueprint-4.4.19-2.pdf',
-                     letter='https://blog.mozilla.org/netpolicy/files/2019/01/Mozilla-letter-re-FB-claims-of-data-partner.pdf' %}
+      {% with consumer='https://blog.mozilla.org/netpolicy/files/2019/04/Mozilla-U.S.-Consumer-Privacy-Bill-Blueprint-4.4.19-2.pdf',
+              letter='https://blog.mozilla.org/netpolicy/files/2019/01/Mozilla-letter-re-FB-claims-of-data-partner.pdf' %}
       During this reporting period, Mozilla continued our fight for greater data security and privacy across the globe.
       In the US, we released our <a href="{{ consumer }}">US Consumer Privacy Bill Blueprint</a> and we sent <a
         href="{{ letter }}">a letter to the US Congress</a> about Facebook data sharing. In the wake of the US Supreme
       Court’s Carpenter ruling, we released two studies for Firefox users on privacy expectations of location
       information shared online.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans kenyan='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
-                     data='https://www.tespok.co.ke/?p=13513' %}
+      {% with kenyan='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
+              data='https://www.tespok.co.ke/?p=13513' %}
       In Kenya, we advocated for a strong data protection law, and spoke out against <a href="{{ kenyan }}">Kenyan
         legislation for a new ID system</a> that would allow the government to collect the DNA, biometrics, and other
       sensitive data of everyone in Kenya. We also held a series of <a href="{{ data }}">Lean Data Practices
         workshops</a> in Nairobi with government, business, and civil society stakeholders.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans cybersecurity='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/',
-                     seehere='https://blog.mozilla.org/netpolicy/files/2019/06/Sub-62-TOLA-Act.pdf' %}
+      {% with cybersecurity='https://blog.mozilla.org/netpolicy/2017/10/03/vulnerability-disclosure-should-be-in-new-eu-cybersecurity-strategy/',
+              seehere='https://blog.mozilla.org/netpolicy/files/2019/06/Sub-62-TOLA-Act.pdf' %}
       The the <a href="{{ cybersecurity }}">EU Cybersecurity Act</a> included an important provision that we advocated
       for to grant ENISA (the EU Cybersecurity Agency) a mandate to work with Member States to stand up government
       vulnerability disclosure programs. We also continued to speak out against legislation in Australia that
       dangerously undermines encryption (see <a href="{{ seehere }}">here</a>); although there is much more progress
       needed, our advocacy did lead to a limited government vulnerability disclosure program.
-      {% endtrans %}
+      {% endwith %}
     </p>
     <p>
-      {% trans content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/',
-                     comments='https://blog.mozilla.org/netpolicy/2019/04/10/uk_online-harms/',
-                     liability='https://blog.mozilla.org/netpolicy/2019/01/02/india-attempts-to-turn-online-companies-into-censors-and-undermines-security-mozilla-responds/' %}
+      {% with content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/',
+              comments='https://blog.mozilla.org/netpolicy/2019/04/10/uk_online-harms/',
+              liability='https://blog.mozilla.org/netpolicy/2019/01/02/india-attempts-to-turn-online-companies-into-censors-and-undermines-security-mozilla-responds/' %}
       We continued to pushback on the <a href="{{ content }}">EU Terrorist Content Regulation</a>, and filed <a
         href="{{ comments }}">comments</a> against the UK government’s overreaching white paper on Online Harms, which
       had worrying effects on individual liberties and the competitive ecosystem. And we spoke out strongly against
       India’s proposed <a href="{{ liability }}">intermediary liability rules</a>, which would force all online
       intermediaries to censor and surveil their users and threatened encryption as well.
-      {% endtrans %}
+      {% endwith %}
     </p>
 
-    <h3>{{ _('Threat Indicators &amp; Data Disclosures') }}</h3>
+    <h3>Threat Indicators &amp; Data Disclosures</h3>
     <table class="mzp-u-data-table">
       <thead>
         <tr>
-          <th scope="col">{{ _('Type of Disclosure') }}</th>
-          <th scope="col">{{ _('Number of Disclosures') }}</th>
+          <th scope="col">Type of Disclosure</th>
+          <th scope="col">Number of Disclosures</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><a
-              href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-threat-indicator' }}">{{ _('Cybersecurity Threat Indicator') }}</a>
+          <th scope="row">
+            <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-threat-indicator' }}">Cybersecurity Threat Indicator</a>
           </th>
           <td>0</td>
         </tr>
         <tr>
           <th scope="row">
-            {{ _('Other <a href="%s">Specific User</a> Data Disclosure')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}
+            Other <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-specific-user' }}">Specific User</a> Data Disclosure
           </th>
           <td>0</td>
         </tr>

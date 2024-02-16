@@ -1,0 +1,169 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../../../base/banners/includes/basic';
+
+$gradient: to right,
+rgba(229, 63, 176, 0.15) 0%,
+rgba(144, 89, 255, 0.15) 62.5%,
+rgba(91, 109, 248, 0.15) 100%;
+
+// Pencil banner
+.c-banner.monitor-banner {
+    background: linear-gradient(#{$gradient});
+    padding-bottom: 0;
+    padding-top: 0;
+    position: relative;
+
+    .c-monitor-banner-content {
+        text-align: center;
+        padding: $spacing-md;
+
+        .c-monitor-banner-logo {
+            align-self: flex-start;
+            flex-grow: 2;
+            max-width: 120px;
+        }
+
+        h2 {
+            @include font-base;
+            @include font-size(22px);
+            margin: 0 0 $spacing-md;
+
+            span {
+                color: #C60184;
+            }
+        }
+
+        .c-cta {
+            margin: 0;
+        }
+
+        .mzp-c-button {
+            white-space: nowrap;
+        }
+
+        @media #{$mq-sm} {
+            align-items: center;
+            display: flex;
+            justify-content: flex-start;
+            text-align: start;
+
+            .monitor-banner-text {
+                display: flex;
+                flex-direction: column;
+                margin-left: $spacing-xl;
+                margin-right: $spacing-xl;
+                max-width: none;
+
+                h2{
+                    margin-right: $spacing-md;
+
+                    br {
+                        display: inline;
+                    }
+                }
+            }
+
+            .c-cta {
+                display: flex;
+                align-self: middle;
+            }
+        }
+
+        @media #{$mq-md} {
+            justify-content: center;
+            align-items: center;
+
+            .monitor-banner-text {
+                flex-direction: row;
+                flex-grow: 2;
+                justify-content: space-around;
+
+                h2 {
+                    @include font-size(28px);
+                    margin-bottom: 0;
+                }
+
+                .mzp-c-button {
+                    align-self: center;
+                }
+            }
+
+            .c-monitor-banner-logo {
+                align-self: flex-center;
+                flex-grow: 2;
+                max-width: 100px;
+            }
+        }
+    }
+}
+
+// Mid-page banner
+.monitor-feature {
+    @include font-base;
+    padding-top: 0;
+
+    .feature-wrapper {
+        align-items: flex-start;
+        background: linear-gradient(#{$gradient});
+        border-radius: $border-radius-md;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: $spacing-2xl $spacing-lg;
+
+        .c-monitor-logo {
+            max-width: 260px;
+        }
+
+        h2 {
+            @include font-base;
+            @include font-size(32px);
+            margin: $spacing-lg 0;
+            text-align: start;
+
+            br {
+                display: none;
+            }
+
+            span {
+                color: #C60184;
+            }
+        }
+
+        .c-cta {
+            margin: 0;
+        }
+
+        .mzp-c-button {
+            white-space: nowrap;
+        }
+
+        @media #{$mq-md} {
+            padding: $spacing-md $spacing-lg;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+
+            .c-monitor-logo {
+                max-width: 120px;
+            }
+
+            h2 {
+                margin: 0 $spacing-lg;
+            }
+        }
+
+        @media #{$mq-lg} {
+            h2 br {
+                display: inline;
+            }
+        }
+    }
+}

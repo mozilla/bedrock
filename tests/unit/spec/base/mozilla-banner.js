@@ -5,21 +5,12 @@
  */
 
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon, */
-
 describe('mozilla-banner.js', function () {
     beforeEach(function () {
-        // stub out Mozilla.Cookie lib
-        window.Mozilla.Cookies = sinon.stub();
-        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
-        window.Mozilla.Cookies.setItem = sinon.stub();
-        window.Mozilla.Cookies.getItem = sinon.stub();
-        window.Mozilla.Cookies.hasItem = sinon.stub();
-
         // stub out google tag manager
         window.dataLayer = sinon.stub();
         window.dataLayer.push = sinon.stub();

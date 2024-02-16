@@ -4,22 +4,20 @@
 
 @use 'sass:color';
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core//protocol/css/includes/lib';
-@import '~@mozilla-protocol/core//protocol/css/components/hero';
 
-.mzp-c-hero {
+.mzp-c-callout.mzp-t-hero {
     background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
     @include background-size(469px, 195px);
-    margin-bottom: $spacing-2xl;
 
-    .mzp-c-hero-desc {
+    .mzp-c-callout-desc {
         @include text-body-xl;
     }
 
-    .c-hero-byline {
+    .c-callout-byline {
         @include text-body-sm;
         font-style: italic;
         margin-bottom: $spacing-2xl;

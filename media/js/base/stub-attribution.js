@@ -12,6 +12,8 @@ if (typeof window.Mozilla === 'undefined') {
 (function () {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     /**
      * Constructs attribution data based on utm parameters and referrer information
      * for relay to the Firefox stub installer. Data is first signed and encoded via
@@ -24,6 +26,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     StubAttribution.COOKIE_CODE_ID = 'moz-stub-attribution-code';
     StubAttribution.COOKIE_SIGNATURE_ID = 'moz-stub-attribution-sig';
+    StubAttribution.DLSOURCE = 'mozorg';
 
     /**
      * Experiment name and variation globals. These values can be set directly by a
@@ -92,13 +95,19 @@ if (typeof window.Mozilla === 'undefined') {
             StubAttribution.COOKIE_CODE_ID,
             data.attribution_code,
             expires,
-            '/'
+            '/',
+            undefined,
+            false,
+            'lax'
         );
         Mozilla.Cookies.setItem(
             StubAttribution.COOKIE_SIGNATURE_ID,
             data.attribution_sig,
             expires,
-            '/'
+            '/',
+            undefined,
+            false,
+            'lax'
         );
     };
 
@@ -139,7 +148,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         // target download buttons and other-platforms modal links.
         var downloadLinks = document.querySelectorAll(
-            '.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link'
+            '.download-list .download-link, .c-button-download-thanks .download-link, .download-platform-list .download-link, .firefox-platform-button .download-link'
         );
 
         for (var i = 0; i < downloadLinks.length; i++) {
@@ -148,12 +157,31 @@ if (typeof window.Mozilla === 'undefined') {
             var directLink;
             // Append stub attribution data to direct download links.
             if (
-                link.href &&
-                link.href.indexOf('https://download.mozilla.org') !== -1
+                (link.href &&
+                    (link.href.indexOf('https://download.mozilla.org') !== -1 ||
+                        link.href.indexOf(
+                            'https://bouncer-bouncer.stage.mozaws.net/'
+                        ) !== -1)) ||
+                link.href.indexOf(
+                    'https://dev.bouncer.nonprod.webservices.mozgcp.net'
+                ) !== -1
             ) {
                 version = link.getAttribute('data-download-version');
                 // Append attribution params to Windows 32bit, 64bit, and MSI installer links.
                 if (version && /win/.test(version)) {
+                    link.href = Mozilla.StubAttribution.appendToDownloadURL(
+                        link.href,
+                        data
+                    );
+                }
+                // Append attribution params to macOS Firefox pre-release links.
+                if (
+                    version &&
+                    /osx/.test(version) &&
+                    /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
+                        link.href
+                    )
+                ) {
                     link.href = Mozilla.StubAttribution.appendToDownloadURL(
                         link.href,
                         data
@@ -317,12 +345,28 @@ if (typeof window.Mozilla === 'undefined') {
      * Gets the client ID from the GA object.
      * @returns {String} client ID.
      */
-    StubAttribution.getGAVisitID = function () {
+    StubAttribution.getGAClientID = function () {
         try {
-            return window.ga.getAll()[0].get('clientId');
+            var clientID = window.ga.getAll()[0].get('clientId');
+
+            if (clientID && typeof clientID === 'string' && clientID !== '') {
+                return clientID;
+            }
+            return null;
         } catch (e) {
             return null;
         }
+    };
+
+    /**
+     * Returns a random identifier that we use to associate a
+     * visitor's website GA data with their Telemetry attribution
+     * data. This identifier is sent as a non-interaction event
+     * to GA, and also to the stub attribution service as session_id.
+     * @returns {String} session ID.
+     */
+    StubAttribution.createSessionID = function () {
+        return Math.floor(1000000000 + Math.random() * 9000000000).toString();
     };
 
     /**
@@ -338,9 +382,9 @@ if (typeof window.Mozilla === 'undefined') {
 
         function _checkGA() {
             clearTimeout(timeout);
-            var clientID = StubAttribution.getGAVisitID();
+            var clientID = StubAttribution.getGAClientID();
 
-            if (clientID && typeof clientID === 'string') {
+            if (clientID) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
@@ -355,6 +399,16 @@ if (typeof window.Mozilla === 'undefined') {
         _checkGA();
     };
 
+    StubAttribution.getReferrer = function (ref) {
+        var referrer = typeof ref === 'string' ? ref : document.referrer;
+
+        if (typeof window.Mozilla.Analytics !== 'undefined') {
+            return Mozilla.Analytics.getReferrer(referrer);
+        }
+
+        return referrer;
+    };
+
     /**
      * Gets utm parameters and referrer information from the web page if they exist.
      * @param {String} ref - Optional referrer to facilitate testing.
@@ -367,9 +421,9 @@ if (typeof window.Mozilla === 'undefined') {
             params.get('experiment') || StubAttribution.experimentName;
         var variation =
             params.get('variation') || StubAttribution.experimentVariation;
-        var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
+        var referrer = StubAttribution.getReferrer(ref);
         var ua = StubAttribution.getUserAgent();
-        var visitID = StubAttribution.getGAVisitID();
+        var clientID = StubAttribution.getGAClientID();
 
         /* eslint-disable camelcase */
         var data = {
@@ -381,7 +435,9 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            visit_id: visitID
+            client_id: clientID,
+            session_id: clientID ? StubAttribution.createSessionID() : null,
+            dlsource: StubAttribution.DLSOURCE
         };
         /* eslint-enable camelcase */
 
@@ -449,7 +505,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     /**
      * Determines if requirements for stub attribution to work are satisfied.
-     * Stub attribution is only applicable to Windows users who get the stub installer.
+     * Stub attribution is only applicable to Windows/macOS users on desktop.
      * @return {Boolean}.
      */
     StubAttribution.meetsRequirements = function () {
@@ -465,7 +521,7 @@ if (typeof window.Mozilla === 'undefined') {
             return false;
         }
 
-        if (window.site.platform !== 'windows') {
+        if (!/windows|osx/i.test(window.site.platform)) {
             return false;
         }
 
@@ -516,9 +572,131 @@ if (typeof window.Mozilla === 'undefined') {
                     StubAttribution.hasValidData(data)
                 ) {
                     StubAttribution.requestAuthentication(data);
+
+                    // Send the session ID to GA as non-interaction event.
+                    if (data.client_id && data.session_id) {
+                        // UA
+                        window.dataLayer.push({
+                            event: 'stub-session-id',
+                            eLabel: data.session_id
+                        });
+                        // GA4
+                        window.dataLayer.push({
+                            event: 'stub_session_set',
+                            id: data.session_id
+                        });
+                    }
+                }
+            });
+
+            // Wait for GTM to load the GTAG GET API so that we can pass along client and session ID
+            StubAttribution.waitForGTagAPI(function (data) {
+                var gtagData = data;
+
+                if (gtagData && StubAttribution.withinAttributionRate()) {
+                    // GA4 - send an event indicating we did or did not get session ID from GTM
+                    if (gtagData.client_id && gtagData.session_id) {
+                        window.dataLayer.push({
+                            event: 'stub_session_test',
+                            label: 'session found'
+                        });
+                    } else {
+                        window.dataLayer.push({
+                            event: 'stub_session_test',
+                            label: 'session not-found'
+                        });
+                    }
                 }
             });
         }
+    };
+
+    /**
+     * Attempts to retrieve the GA4 client and session ID from the dataLayer
+     * The GTAG GET API tag will write it to the dataLayer once GTM has loaded it
+     * https://www.simoahava.com/gtmtips/write-client-id-other-gtag-fields-datalayer/
+     */
+    StubAttribution.getGtagData = function (dataLayer) {
+        dataLayer =
+            typeof dataLayer !== 'undefined' ? dataLayer : window.dataLayer;
+
+        var result = {
+            client_id: null,
+            session_id: null
+        };
+
+        var _findObject = function (name, obj) {
+            for (var key in obj) {
+                if (
+                    typeof obj[key] === 'object' &&
+                    Object.prototype.hasOwnProperty.call(obj, key)
+                ) {
+                    if (key === name) {
+                        if (
+                            typeof obj[key].client_id === 'string' &&
+                            typeof obj[key].session_id === 'string'
+                        ) {
+                            result = obj[key];
+                        } else {
+                            return result;
+                        }
+                        break;
+                    } else {
+                        _findObject(name, obj[key]);
+                    }
+                }
+            }
+        };
+
+        try {
+            if (typeof dataLayer === 'object') {
+                dataLayer.forEach(function (layer) {
+                    _findObject('gtagApiResult', layer);
+                });
+            }
+        } catch (error) {
+            // GA4
+            window.dataLayer.push({
+                event: 'stub_session_test',
+                label: 'error'
+            });
+        }
+
+        return result;
+    };
+
+    /**
+     * A crude check to see if GTAG GET API has been loaded by GTM. Periodically
+     * attempts to retrieve the client and session ID.
+     * @param {Function} callback
+     */
+    StubAttribution.waitForGTagAPI = function (callback) {
+        var timeout;
+        var pollRetry = 0;
+        var interval = 100;
+        var limit = 20; // (100 x 20) / 1000 = 2 seconds
+
+        function _checkGtagAPI() {
+            clearTimeout(timeout);
+            var data = StubAttribution.getGtagData();
+
+            if (
+                typeof data === 'object' &&
+                typeof data.client_id === 'string' &&
+                typeof data.session_id === 'string'
+            ) {
+                callback(data);
+            } else {
+                if (pollRetry <= limit) {
+                    pollRetry += 1;
+                    timeout = window.setTimeout(_checkGtagAPI, interval);
+                } else {
+                    callback(false);
+                }
+            }
+        }
+
+        _checkGtagAPI();
     };
 
     window.Mozilla.StubAttribution = StubAttribution;

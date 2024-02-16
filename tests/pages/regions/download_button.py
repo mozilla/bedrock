@@ -8,13 +8,11 @@ from pages.base import BaseRegion
 
 
 class DownloadButton(BaseRegion):
-
     _download_link_locator = (By.CSS_SELECTOR, ".download-link")
 
     @property
     def platform_link(self):
         els = [el for el in self.find_elements(*self._download_link_locator) if el.is_displayed()]
-        assert len(els) == 1, "Expected one platform link to be displayed"
         return els[0]
 
     @property

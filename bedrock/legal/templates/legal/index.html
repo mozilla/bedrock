@@ -9,6 +9,7 @@
 {% block page_title %}{{ ftl('legal-legal') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('legal') }}
 {% endblock %}
 
@@ -56,10 +57,19 @@
     <a href="{{ url('legal.terms.mozilla') }}">{{ ftl('legal-our-websites') }}</a>
   </li>
   <li>
+    <a href="{{ url('legal.terms.subscription-services') }}">{{ ftl('legal-mozilla-subscription-services') }}</a>
+  </li>
+  <li>
     <a href="{{ url('legal.terms.services') }}">{{ ftl('legal-firefox-services') }}</a>
   </li>
   <li>
-    <a href="https://webmaker.org/#/legal">{{ ftl('legal-webmaker') }}</a>
+    <a href="https://getpocket.com/tos/">{{ ftl('legal-pocket') }}</a>
+  </li>
+  <li>
+    <a href="{{ url('legal.terms.mdn-plus') }}">{{ ftl('legal-mdn-plus') }}</a>
+  </li>
+  <li>
+    <a href="{{ url('legal.terms.hubs') }}">{{ ftl('legal-hubs') }}</a>
   </li>
 </ul>
 
@@ -69,7 +79,7 @@
     <a href="{{ url('privacy') }}">{{ ftl('legal-privacy-notices-and-policy') }}</a>
   </li>
   <li>
-    <a href="{{ url('foundation.trademarks.policy' ) }}">{{ _('Mozilla Trademark Guidelines') }}</a>
+    <a href="{{ url('foundation.trademarks.policy' ) }}">Mozilla Trademark Guidelines</a>
   </li>
 </ul>
 
@@ -88,7 +98,12 @@
 <aside class="mzp-l-content">
   <div class="mzp-c-newsletter">
     <div class="mzp-c-newsletter-image">
-      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+      {{ resp_img(
+        url='img/home/2018/newsletter-graphic.png',
+        srcset={
+          'img/home/2018/newsletter-graphic-high-res.png': '2x'
+        }
+      ) }}
     </div>
     <div class="newsletter-content">
       {% if LANG.startswith('en-') %}
@@ -101,9 +116,4 @@
     </div>
   </div>
 </aside>
-{% endblock %}
-
-{% block site_js %}
-  {{ super() }}
-  {{ js_bundle('legal') }}
 {% endblock %}

@@ -1,0 +1,26 @@
+/* Issue 8930 */
+
+@font-face {
+    font-family: X-LocaleSpecific;
+    font-weight: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/l10n/ur/NotoNastaliqUrdu-Regular.woff2') format('woff2'),
+        url('/media/fonts/l10n/ur/NotoNastaliqUrdu-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: X-LocaleSpecific;
+    font-weight: bold;
+    font-display: swap;
+    src:
+        url('/media/fonts/l10n/ur/NotoNastaliqUrdu-Bold.woff2') format('woff2'),
+        url('/media/fonts/l10n/ur/NotoNastaliqUrdu-Bold.woff') format('woff');
+}
+
+/* Bug 944269 */
+
+* {
+    /* !important required for locale specific override */
+    letter-spacing: normal !important; /* stylelint-disable-line declaration-no-important */
+}

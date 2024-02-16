@@ -9,10 +9,9 @@ from pages.regions.download_button import DownloadButton
 
 
 class FeaturePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/features/{slug}/"
 
-    _download_button_locator = (By.ID, "features-header-download")
+    _download_button_locator = (By.ID, "features-footer-download")
 
     @property
     def download_button(self):

@@ -21,12 +21,17 @@
     <dl>
         <dt>Namespace</dt>
         <dd><code>{{ namespace }}</code></dd>
+        {% if slug == 'xul' %}
+        <dt>Background information</dt>
+        {% else%}
         <dt>Documentation</dt>
+        {% endif %}
         <dd><a href="{{ docs }}">{{ docs }}</a></dd>
     </dl>
     {% if slug == 'xul' %}
         <p class="xul">
-            There is no data.<br/>There is only XUL!</p>
+            There is no data.<br/>There is only XUL!
+        </p>
     {% endif %}
 </section>
 </body>

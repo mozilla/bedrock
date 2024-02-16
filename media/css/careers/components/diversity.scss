@@ -1,0 +1,107 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as cp;
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-careers-diversity-numbers {
+    .mzp-c-picto-heading {
+        @include font-base;
+        margin-bottom: $spacing-md;
+        font-weight: 400;
+    }
+}
+
+.c-careers-diversity-mrg {
+    .mzp-c-split {
+        padding: 48px 0;
+
+        .mzp-c-split-container {
+            padding: 0;
+        }
+
+        blockquote {
+            border: 0;
+
+            .c-careers-diversity-quote {
+                @include text-body-xl;
+                font-weight: 400;
+                position: relative;
+
+                &::before {
+                    @include text-title-sm;
+                    content: '“';
+                    position: absolute;
+                    top: -10px;
+                    left: -15px;
+                    color: cp.$teal-primary;
+                    font-weight: bold;
+                }
+
+                &::after {
+                    @include text-title-sm;
+                    content: '”';
+                    position: absolute;
+                    bottom: 0;
+                    color: cp.$teal-primary;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .c-diversity-citation {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .c-diversity-citation-image {
+                margin-bottom: $spacing-sm;
+                border-radius: 50%;
+                flex-shrink: 0;
+
+                img {
+                    height: 95px;
+                    width: 95px;
+                    border-radius: 50%;
+                }
+            }
+
+            .c-diversity-citation-author {
+                border-left: 4px solid cp.$teal-primary;
+                padding-left: $spacing-lg;
+                color: $color-dark-gray-20;
+
+                cite {
+                    @include text-title-xs;
+                    color: $color-dark-gray-20;
+                    font-style: normal;
+
+                    &::before {
+                        content: '';
+                    }
+                }
+
+                p {
+                    @include text-body-sm;
+                    @include font-base;
+                    color: $color-dark-gray-20;
+                    font-weight: 700;
+                    margin-bottom: 0;
+                }
+            }
+
+            @media #{$mq-lg} {
+                flex-direction: row;
+                align-items: center;
+
+                .c-diversity-citation-image {
+                    margin-right: $spacing-lg;
+                }
+            }
+        }
+    }
+}

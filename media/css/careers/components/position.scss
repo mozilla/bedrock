@@ -1,0 +1,54 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.job-post {
+    padding-bottom: $layout-lg;
+
+    ul {
+        list-style: disc;
+        margin-left: $spacing-xl;
+    }
+
+    li {
+        margin-bottom: 0.25em;
+    }
+}
+
+.job-header {
+    margin-top: $layout-md;
+
+    @media #{$mq-md} {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .job-title {
+        @include text-title-xs;
+    }
+
+    .title-location {
+        margin-bottom: $layout-sm;
+    }
+}
+
+.job-apply {
+    min-width: 200px;
+    max-width: 250px;
+    margin-bottom: $spacing-lg;
+
+    .mzp-c-menu-list-title {
+        @include font-base;
+    }
+
+    ul {
+        margin: 0;
+    }
+}
+
+#why .mzp-l-content {
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+}

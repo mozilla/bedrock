@@ -1,0 +1,369 @@
+{
+	"error_id": "a024fd08-40d3-44c2-b131-0f682bf99a3c",
+	"payload": {
+		"breadcrumbs": {
+			"values": [{
+				"category": "query",
+				"data": {},
+				"message": "RELEASE SAVEPOINT \"s4348263744_x298\"",
+				"timestamp": "2022-03-15T11:31:32.407924Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SAVEPOINT \"s4348263744_x299\"",
+				"timestamp": "2022-03-15T11:31:32.408646Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"base_configvalue\".\"id\", \"base_configvalue\".\"name\", \"base_configvalue\".\"value\" FROM \"base_configvalue\"",
+				"timestamp": "2022-03-15T11:31:32.456215Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"base_configvalue\".\"id\", \"base_configvalue\".\"name\", \"base_configvalue\".\"value\" FROM \"base_configvalue\"",
+				"timestamp": "2022-03-15T11:31:32.456341Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "INSERT INTO \"legal_docs_legaldoc\" (\"name\", \"locale\", \"content\") VALUES (%s, %s, %s)",
+				"timestamp": "2022-03-15T11:31:32.475178Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"id\", \"legal_docs_legaldoc\".\"name\", \"legal_docs_legaldoc\".\"locale\", \"legal_docs_legaldoc\".\"content\" FROM \"legal_docs_legaldoc\" WHERE (\"legal_docs_legaldoc\".\"locale\" = %s AND \"legal_docs_legaldoc\".\"name\" = %s) LIMIT 21",
+				"timestamp": "2022-03-15T11:31:32.475454Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"id\", \"legal_docs_legaldoc\".\"name\", \"legal_docs_legaldoc\".\"locale\", \"legal_docs_legaldoc\".\"content\" FROM \"legal_docs_legaldoc\" WHERE (\"legal_docs_legaldoc\".\"locale\" = %s AND \"legal_docs_legaldoc\".\"name\" = %s) LIMIT 21",
+				"timestamp": "2022-03-15T11:31:32.475691Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "INSERT INTO \"legal_docs_legaldoc\" (\"name\", \"locale\", \"content\") VALUES (%s, %s, %s)",
+				"timestamp": "2022-03-15T11:31:32.477486Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"id\", \"legal_docs_legaldoc\".\"name\", \"legal_docs_legaldoc\".\"locale\", \"legal_docs_legaldoc\".\"content\" FROM \"legal_docs_legaldoc\" WHERE (\"legal_docs_legaldoc\".\"locale\" = %s AND \"legal_docs_legaldoc\".\"name\" = %s) LIMIT 21",
+				"timestamp": "2022-03-15T11:31:32.477690Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"id\", \"legal_docs_legaldoc\".\"name\", \"legal_docs_legaldoc\".\"locale\", \"legal_docs_legaldoc\".\"content\" FROM \"legal_docs_legaldoc\" WHERE (\"legal_docs_legaldoc\".\"locale\" = %s AND \"legal_docs_legaldoc\".\"name\" = %s) LIMIT 21",
+				"timestamp": "2022-03-15T11:31:32.477878Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"id\", \"legal_docs_legaldoc\".\"name\", \"legal_docs_legaldoc\".\"locale\", \"legal_docs_legaldoc\".\"content\" FROM \"legal_docs_legaldoc\" WHERE (\"legal_docs_legaldoc\".\"locale\" = %s AND \"legal_docs_legaldoc\".\"name\" = %s) LIMIT 21",
+				"timestamp": "2022-03-15T11:31:32.478058Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SELECT \"legal_docs_legaldoc\".\"locale\" FROM \"legal_docs_legaldoc\" WHERE \"legal_docs_legaldoc\".\"name\" = %s",
+				"timestamp": "2022-03-15T11:31:32.478211Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "PRAGMA foreign_key_check",
+				"timestamp": "2022-03-15T11:31:32.478290Z",
+				"type": "default"
+			}, {
+				"category": "query",
+				"data": {},
+				"message": "SAVEPOINT \"s4348263744_x314\"",
+				"timestamp": "2022-03-15T11:31:32.494125Z",
+				"type": "default"
+			}]
+		},
+		"contexts": {
+			"runtime": {
+				"build": "3.9.10 (main, Jan 27 2022, 13:52:54) \n[Clang 13.0.0 (clang-1300.0.29.30)]",
+				"name": "CPython",
+				"version": "3.9.10"
+			}
+		},
+		"environment": "production",
+		"event_id": "0ff455b2c99b468eac95a89caed5d3da",
+		"exception": {
+			"values": [{
+				"mechanism": null,
+				"module": null,
+				"stacktrace": {
+					"frames": [{
+						"abs_path": "/Users/testharness/Code/bedrock/bedrock/utils/management/decorators.py",
+						"context_line": "            cls.old_handle(*args, **kwargs)",
+						"filename": "bedrock/utils/management/decorators.py",
+						"function": "_handle",
+						"in_app": true,
+						"lineno": 21,
+						"module": "bedrock.utils.management.decorators",
+						"post_context": ["        except Exception as ex:", "            capture_exception(ex)", "            # We DO want the exception to bubble up, because a calling script", "            # will want to check the exit code", "            raise"],
+						"pre_context": ["            ...", "    \"\"\"", "", "    def _handle(cls, *args, **kwargs):", "        try:"],
+						"vars": {
+							"args": [],
+							"cls": "<bedrock.mozorg.management.commands.update_product_details_files.Command object at 0x110b55bb0>",
+							"ex": "Exception('broke yo')",
+							"kwargs": {
+								"database": "'default'",
+								"force": "False",
+								"quiet": "False"
+							}
+						}
+					}, {
+						"abs_path": "/Users/testharness/Code/bedrock/bedrock/mozorg/management/commands/update_product_details_files.py",
+						"context_line": "        self.load_changes(options, self.file_storage.all_json_files())",
+						"filename": "bedrock/mozorg/management/commands/update_product_details_files.py",
+						"function": "handle",
+						"in_app": true,
+						"lineno": 64,
+						"module": "bedrock.mozorg.management.commands.update_product_details_files",
+						"post_context": ["        self.repo.set_db_latest()", "", "        if not options[\"quiet\"]:", "            print(\"Product Details data update is complete\")", ""],
+						"pre_context": ["", "        if not settings.PROD_DETAILS_STORAGE.endswith(\"PDDatabaseStorage\"):", "            # no need to continue if not using DB backend", "            return", ""],
+						"vars": {
+							"args": [],
+							"options": {
+								"database": "'default'",
+								"force": "False",
+								"quiet": "False"
+							},
+							"self": "<bedrock.mozorg.management.commands.update_product_details_files.Command object at 0x110b55bb0>"
+						}
+					}, {
+						"abs_path": "/Users/testharness/.pyenv/versions/3.9.10/lib/python3.9/unittest/mock.py",
+						"context_line": "        return self._mock_call(*args, **kwargs)",
+						"filename": "unittest/mock.py",
+						"function": "__call__",
+						"in_app": true,
+						"lineno": 1092,
+						"module": "unittest.mock",
+						"post_context": ["", "", "    def _mock_call(self, /, *args, **kwargs):", "        return self._execute_mock_call(*args, **kwargs)", ""],
+						"pre_context": ["    def __call__(self, /, *args, **kwargs):", "        # can't use self in-case a function / method we are mocking uses self", "        # in the signature", "        self._mock_check_sig(*args, **kwargs)", "        self._increment_mock_call(*args, **kwargs)"],
+						"vars": {
+							"args": [{
+								"database": "'default'",
+								"force": "False",
+								"quiet": "False"
+							}, "<MagicMock name='file_storage.all_json_files()' id='4575056752'>"],
+							"kwargs": {},
+							"self": "<MagicMock name='load_changes' id='4575285792'>"
+						}
+					}, {
+						"abs_path": "/Users/testharness/.pyenv/versions/3.9.10/lib/python3.9/unittest/mock.py",
+						"context_line": "        return self._execute_mock_call(*args, **kwargs)",
+						"filename": "unittest/mock.py",
+						"function": "_mock_call",
+						"in_app": true,
+						"lineno": 1096,
+						"module": "unittest.mock",
+						"post_context": ["", "    def _increment_mock_call(self, /, *args, **kwargs):", "        self.called = True", "        self.call_count += 1", ""],
+						"pre_context": ["        self._increment_mock_call(*args, **kwargs)", "        return self._mock_call(*args, **kwargs)", "", "", "    def _mock_call(self, /, *args, **kwargs):"],
+						"vars": {
+							"args": [{
+								"database": "'default'",
+								"force": "False",
+								"quiet": "False"
+							}, "<MagicMock name='file_storage.all_json_files()' id='4575056752'>"],
+							"kwargs": {},
+							"self": "<MagicMock name='load_changes' id='4575285792'>"
+						}
+					}, {
+						"abs_path": "/Users/testharness/.pyenv/versions/3.9.10/lib/python3.9/unittest/mock.py",
+						"context_line": "                raise effect",
+						"filename": "unittest/mock.py",
+						"function": "_execute_mock_call",
+						"in_app": true,
+						"lineno": 1151,
+						"module": "unittest.mock",
+						"post_context": ["            elif not _callable(effect):", "                result = next(effect)", "                if _is_exception(result):", "                    raise result", "            else:"],
+						"pre_context": ["        # executed separately from their call, also AsyncMock overrides this method", "", "        effect = self.side_effect", "        if effect is not None:", "            if _is_exception(effect):"],
+						"vars": {
+							"args": [{
+								"database": "'default'",
+								"force": "False",
+								"quiet": "False"
+							}, "<MagicMock name='file_storage.all_json_files()' id='4575056752'>"],
+							"effect": "Exception('broke yo')",
+							"kwargs": {},
+							"self": "<MagicMock name='load_changes' id='4575285792'>"
+						}
+					}]
+				},
+				"type": "Exception",
+				"value": "broke yo"
+			}]
+		},
+		"extra": {
+			"sys.argv": ["/Users/testharness/.pyenv/versions/bedrock39/bin/pytest", "bedrock"]
+		},
+		"level": "error",
+		"modules": {
+			"apscheduler": "3.9.1",
+			"asgiref": "3.5.0",
+			"attrs": "21.4.0",
+			"babel": "2.9.1",
+			"babis": "0.2.4",
+			"basket-client": "1.0.0",
+			"beautifulsoup4": "4.10.0",
+			"black": "21.12b0",
+			"bleach": "4.1.0",
+			"blessings": "1.7",
+			"boto3": "1.21.15",
+			"botocore": "1.24.16",
+			"bpython": "0.22.1",
+			"braceexpand": "0.1.7",
+			"certifi": "2021.10.8",
+			"cffi": "1.15.0",
+			"chardet": "4.0.0",
+			"charset-normalizer": "2.0.12",
+			"cl-ext.lang": "0.1.0",
+			"click": "8.0.4",
+			"commonware": "0.6.0",
+			"compare-locales": "7.6.0",
+			"contentful": "1.13.1",
+			"contextlib2": "0.5.4",
+			"coverage": "6.3.2",
+			"cryptography": "36.0.1",
+			"cssselect": "1.1.0",
+			"curtsies": "0.3.10",
+			"cwcwidth": "0.1.6",
+			"deprecated": "1.2.13",
+			"dirsync": "2.2.5",
+			"django": "3.2.12",
+			"django-allow-cidr": "0.4.0",
+			"django-cors-headers": "3.11.0",
+			"django-crum": "0.7.9",
+			"django-csp": "3.7",
+			"django-extensions": "3.1.5",
+			"django-jinja": "2.10.0",
+			"django-jinja-markdown": "1.0.1",
+			"django-jsonview": "2.0.0",
+			"django-memoize": "2.3.1",
+			"django-mozilla-product-details": "1.0.1",
+			"django-watchman": "1.3.0",
+			"docutils": "0.17.1",
+			"envcat": "0.1.1",
+			"everett": "3.0.0",
+			"factory-boy": "3.2.1",
+			"faker": "13.2.0",
+			"flake8": "4.0.1",
+			"fluent.runtime": "0.3",
+			"fluent.syntax": "0.17.0",
+			"greenlet": "0.4.17",
+			"gunicorn": "19.7.1",
+			"honcho": "1.1.0",
+			"html5lib": "1.1",
+			"idna": "3.3",
+			"importlib-metadata": "4.11.2",
+			"iniconfig": "1.1.1",
+			"isort": "5.10.1",
+			"jinja2": "3.0.3",
+			"jmespath": "0.10.0",
+			"lxml": "4.8.0",
+			"markdown": "3.3.6",
+			"markupsafe": "2.1.0",
+			"mccabe": "0.6.1",
+			"mdx-outline": "1.3.0",
+			"meinheld": "1.0.2",
+			"mypy-extensions": "0.4.3",
+			"netaddr": "0.8.0",
+			"newrelic": "7.4.0.172",
+			"oauthlib": "3.2.0",
+			"packaging": "21.3",
+			"parsimonious": "0.8.1",
+			"pathspec": "0.9.0",
+			"pillow": "9.0.1",
+			"pip": "22.0.3",
+			"pipdeptree": "2.2.1",
+			"platformdirs": "2.5.1",
+			"pluggy": "1.0.0",
+			"py": "1.11.0",
+			"pycodestyle": "2.8.0",
+			"pycparser": "2.21",
+			"pyflakes": "2.4.0",
+			"pygithub": "1.55",
+			"pygments": "2.11.2",
+			"pyjwt": "2.3.0",
+			"pynacl": "1.5.0",
+			"pyopenssl": "21.0.0",
+			"pyparsing": "3.0.7",
+			"pypom": "1.0",
+			"pyquery": "1.4.3",
+			"pytest": "6.2.5",
+			"pytest-base-url": "1.4.2",
+			"pytest-cov": "3.0.0",
+			"pytest-datadir": "1.3.1",
+			"pytest-django": "4.5.2",
+			"pytest-html": "3.1.1",
+			"pytest-metadata": "1.11.0",
+			"pytest-mock": "3.6.1",
+			"pytest-parallel": "0.1.1",
+			"pytest-rerunfailures": "10.2",
+			"pytest-selenium": "1.17.0",
+			"pytest-variables": "1.9.0",
+			"python-dateutil": "2.8.2",
+			"python-memcached": "1.59",
+			"pytoml": "0.1.21",
+			"pytz": "2021.3",
+			"pytz-deprecation-shim": "0.1.0.post0",
+			"pyxdg": "0.27",
+			"pyyaml": "6.0",
+			"qrcode": "7.3.1",
+			"querystringsafe-base64": "1.1.1",
+			"requests": "2.27.1",
+			"requests-oauthlib": "1.3.1",
+			"responses": "0.17.0",
+			"rich-text-renderer": "0.2.4",
+			"s3transfer": "0.5.2",
+			"selenium": "3.141.0",
+			"sentry-processor": "0.0.1",
+			"sentry-sdk": "1.5.7",
+			"setuptools": "58.1.0",
+			"six": "1.16.0",
+			"soupsieve": "2.3.1",
+			"sqlparse": "0.4.2",
+			"supervisor": "4.2.4",
+			"tblib": "1.7.0",
+			"timeago": "1.0.15",
+			"toml": "0.10.2",
+			"tomli": "1.2.3",
+			"translate-toolkit": "3.5.3",
+			"typing-extensions": "4.1.1",
+			"tzdata": "2021.5",
+			"tzlocal": "4.1",
+			"urllib3": "1.26.8",
+			"webencodings": "0.5.1",
+			"wheel": "0.37.1",
+			"whitenoise": "6.0.0",
+			"wrapt": "1.13.3",
+			"zipp": "3.7.0"
+		},
+		"platform": "python",
+		"release": "",
+		"request": {},
+		"sdk": {
+			"integrations": ["argv", "atexit", "boto3", "dedupe", "django", "excepthook", "logging", "modules", "stdlib", "threading"],
+			"name": "sentry.python",
+			"packages": [{
+				"name": "pypi:sentry-sdk",
+				"version": "1.5.7"
+			}],
+			"version": "1.5.7"
+		},
+		"server_name": "bedrock",
+		"timestamp": "2022-03-15T11:31:32.496707Z",
+		"transaction": "/en-US/firefox/all/"
+	}
+}

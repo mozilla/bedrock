@@ -10,6 +10,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+# flake8: noqa
 import os
 import sys
 
@@ -32,6 +33,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.coverage",
     "sphinx_copybutton",
+    "sphinxcontrib.jquery",
     "myst_parser",
 ]
 
@@ -52,7 +54,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "mozilla.org"
-copyright = "2011, Mozilla"
+copyright = "2011-2023, Mozilla"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -225,9 +227,6 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [("index", "mozilla.org", "mozilla.org Documentation", ["Mozilla"], 1)]
 
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"http://docs.python.org/": None}
 
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]

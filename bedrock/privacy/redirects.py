@@ -19,4 +19,17 @@ redirectpatterns = (
     redirect(r"^privacy/firefox-cliqz/?$", "privacy.archive.firefox-cliqz-2018-06"),
     # mozilla/bedrock/#7983
     redirect(r"^/privacy/products/?$", "firefox.privacy.products"),
+    # mozilla/bedrock/#11610
+    redirect(r"^privacy/firefox-os/?$", "privacy.archive.firefox-os-2022-05"),
+    # issue 12156
+    redirect(r"^privacy/(mozilla-vpn|firefox-relay)/?$", "privacy.notices.subscription-services"),
+    # issue 12935
+    redirect(r"^privacy/facebook/?$", "privacy.archive.facebook-2023-04"),
+    # issue 13272
+    redirect(r"^privacy/firefox-private-network/?$", "privacy.archive.firefox-private-network-notice-2023-06"),
+    redirect(r"^privacy/betterweb/?$", "privacy.archive.firefox-betterweb-2023-06"),
+    redirect(r"^privacy/firefox-fire-tv/?$", "privacy.archive.firefox-fire-tv-2023-06"),
+    redirect(r"^privacy/firefox-reality/?$", "privacy.archive.firefox-reality-notice-2023-06"),
+    # issue 14186
+    redirect(r"^privacy/firefox-monitor/?$", "privacy.notices.subscription-services"),
 )

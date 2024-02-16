@@ -31,8 +31,9 @@ class TestLoadLegalDoc(TestCase):
         self.assertEqual(doc["content"], "You're not wrong Walter...")
         self.assertEqual(doc["active_locales"], ["en-US"])
 
-    def test_legal_doc_exists_en_locale(self):
-        """Should return the content of the en file and say it's en-US."""
+    @override_settings(IS_MOZORG_MODE=True)
+    def test_legal_doc_exists_en_locale__mozorg_mode(self):
+        """Should return the content of the "en" file and say the active locale is "en-US" if in Mozorg Mode"""
         LegalDoc.objects.create(
             name="the_dude_exists",
             locale="en",
@@ -41,6 +42,18 @@ class TestLoadLegalDoc(TestCase):
         doc = views.load_legal_doc("the_dude_exists", "en-US")
         self.assertEqual(doc["content"], "You're not wrong Walter...")
         self.assertEqual(doc["active_locales"], ["en-US"])
+
+    @override_settings(IS_MOZORG_MODE=False, PROD_LANGUAGES=["en", "de", "hi-IN"])
+    def test_legal_doc_exists_en_locale__pocket_mode(self):
+        """Should return the content of the "en" file and say the active locale is "en" if in Pocket Mode"""
+        LegalDoc.objects.create(
+            name="the_dude_exists",
+            locale="en",
+            content="You're not wrong Walter...",
+        )
+        doc = views.load_legal_doc("the_dude_exists", "en")
+        self.assertEqual(doc["content"], "You're not wrong Walter...")
+        self.assertEqual(doc["active_locales"], ["en"])
 
     def test_legal_doc_exists_snake_case_convert(self):
         """Should return the content of the file if it exists in snake case."""
@@ -97,51 +110,10 @@ class TestLegalDocView(TestCase):
         req.locale = "de"
         view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists")
         resp = view(req)
-        assert resp["cache-control"] == f"max-age={views.CACHE_TIMEOUT!s}"
+        assert "cache-control" not in resp  # This view is no longer cached at the Bedrock level
         assert resp.content.decode("utf-8") == doc_value
         assert render_mock.call_args[0][2]["doc"] == doc_value
         lld_mock.assert_called_with("the_dude_exists", "de")
-
-    @patch.object(views, "load_legal_doc")
-    @patch.object(views.l10n_utils, "render")
-    def test_cache_settings(self, render_mock, lld_mock):
-        """Should use the cache_timeout value from view."""
-        doc_value = "Donny, you're out of your element!"
-        lld_mock.return_value = {
-            "content": doc_value,
-            "active_locales": ["es-ES", "en-US"],
-        }
-        good_resp = HttpResponse(doc_value)
-        render_mock.return_value = good_resp
-        req = RequestFactory().get("/dude/exists/cached/")
-        req.locale = "es-ES"
-        view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists", cache_timeout=10)
-        resp = view(req)
-        assert resp["cache-control"] == "max-age=10"
-
-    @patch.object(views, "load_legal_doc")
-    @patch.object(views.l10n_utils, "render")
-    def test_cache_class_attrs(self, render_mock, lld_mock):
-        """Should use the cache_timeout value from view class."""
-        doc_value = "Donny, you're out of your element!"
-        lld_mock.return_value = {
-            "content": doc_value,
-            "active_locales": ["es-ES", "en-US"],
-        }
-        good_resp = HttpResponse(doc_value)
-        render_mock.return_value = good_resp
-        req = RequestFactory().get("/dude/exists/cached/2/")
-        req.locale = "es-ES"
-
-        class DocTestView(views.LegalDocView):
-            cache_timeout = 20
-            template_name = "base.html"
-            legal_doc_name = "the_dude_abides"
-
-        view = DocTestView.as_view()
-        resp = view(req)
-        assert resp["cache-control"] == "max-age=20"
-        lld_mock.assert_called_with("the_dude_abides", "es-ES")
 
 
 class TestFilePathData(TestCase):

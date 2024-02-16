@@ -5,8 +5,9 @@
 import os
 
 from django.conf import settings
-from django.urls import re_path
+from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_safe
 
 import commonware.log
 
@@ -30,9 +31,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     page's URL name will be "path.to.template". Set the `url_name` parameter
     to override this name.
 
-    @param name: The URL regex pattern.  If not empty, a trailing slash is
-        added automatically, so it shouldn't be included in the parameter
-        value.
+    @param name: The URL path. It is passed to `django.urls.path`.
     @param tmpl: The template name.  Also used to come up with the URL name.
     @param decorators: A decorator or an iterable of decorators that should
         be applied to the view.
@@ -48,16 +47,13 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         as the context.
     """
-    pattern = r"^%s/$" % name if name else r"^$"
-
     if url_name is None:
         # Set the name of the view to the template path replaced with dots
         (base, ext) = os.path.splitext(tmpl)
         url_name = base.replace("/", ".")
 
-    # we don't have a caching backend yet, so no csrf (it's just a
-    # newsletter form anyway)
     @csrf_exempt
+    @require_safe
     def _view(request):
         if newrelic:
             # Name this in New Relic to differentiate pages
@@ -83,7 +79,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
             except TypeError:
                 log.exception("decorators not iterable or does not contain callable items")
 
-    return re_path(pattern, _view, name=url_name)
+    return path(name, _view, name=url_name)
 
 
 def get_fb_like_locale(request_locale):

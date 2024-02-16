@@ -17,7 +17,7 @@ PRESS_INQUIRY_EMAIL_SUBJECT = "New Press Inquiry"
 PRESS_INQUIRY_EMAIL_TO = ["press@mozilla.com"]
 SPEAKER_REQUEST_EMAIL_FROM = PRESS_INQUIRY_EMAIL_FROM = "Mozilla.com <noreply@mozilla.com>"
 SPEAKER_REQUEST_EMAIL_SUBJECT = "New speaker request form submission"
-SPEAKER_REQUEST_EMAIL_TO = ["events@mozilla.com"]
+SPEAKER_REQUEST_EMAIL_TO = ["press@mozilla.com"]
 
 
 class PressInquiryView(FormView):

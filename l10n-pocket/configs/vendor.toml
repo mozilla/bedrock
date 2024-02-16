@@ -1,0 +1,26 @@
+# All content handled by the vendor or Mozilla staff should
+# be covered by the [[paths]] in this file, with the relevant locales.
+
+basepath = ".."
+
+locales = [
+    "de",
+    "es-LA",
+    "es-ES",
+    "fr-CA",
+    "fr",
+    "it",
+    "ja",
+    "ko",
+    "nl",
+    "pl",
+    "pt-BR",
+    "pt-PT",
+    "ru",
+    "zh-CN",
+    "zh-TW",
+]
+
+[[paths]]
+    reference = "en/**/*.ftl"
+    l10n = "{locale}/**/*.ftl"

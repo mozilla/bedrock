@@ -18,7 +18,10 @@
 
         // Only auto-start the download if a supported platform is detected.
         if (
-            Mozilla.DownloadThanks.shouldAutoDownload(window.site.platform) &&
+            Mozilla.DownloadThanks.shouldAutoDownload(
+                window.site.platform,
+                window.site.fxSupported
+            ) &&
             typeof Mozilla.Utils !== 'undefined'
         ) {
             downloadURL = Mozilla.DownloadThanks.getDownloadURL(window.site);
@@ -28,12 +31,29 @@
                 // Make sure the 'Try downloading again' link is well formatted! (issue 9615)
                 if (directDownloadLink && directDownloadLink.href) {
                     directDownloadLink.href = downloadURL;
+                    directDownloadLink.addEventListener(
+                        'click',
+                        function (event) {
+                            try {
+                                Mozilla.TrackProductDownload.handleLink(event);
+                            } catch (error) {
+                                return;
+                            }
+                        },
+                        false
+                    );
                 }
 
                 // Start the platform-detected download a second after DOM ready event.
-                // We don't rely on the window load event as we have third-party tracking pixels.
                 Mozilla.Utils.onDocumentReady(function () {
                     setTimeout(function () {
+                        try {
+                            Mozilla.TrackProductDownload.sendEventFromURL(
+                                downloadURL
+                            );
+                        } catch (error) {
+                            return;
+                        }
                         window.location.href = downloadURL;
                     }, 1000);
                 });
@@ -50,10 +70,18 @@
         requestComplete = true;
 
         // Fire GA event to log attribution success
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'direct-attribution',
             eLabel: 'success'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'direct-attribution',
+            action: 'success',
+            non_interaction: true
         });
 
         beginFirefoxDownload();
@@ -68,10 +96,18 @@
         requestComplete = true;
 
         // Fire GA event to log attribution timeout
+        // UA
         window.dataLayer.push({
             event: 'non-interaction',
             eAction: 'direct-attribution',
             eLabel: 'timeout'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'direct-attribution',
+            action: 'timeout',
+            non_interaction: true
         });
 
         beginFirefoxDownload();
@@ -92,7 +128,12 @@
         Mozilla.StubAttribution.waitForGoogleAnalytics(function () {
             var data = Mozilla.StubAttribution.getAttributionData();
 
-            if (data && Mozilla.StubAttribution.withinAttributionRate()) {
+            // make sure we check referrer for AMO (issue 11467)
+            if (
+                data &&
+                Mozilla.StubAttribution.withinAttributionRate() &&
+                Mozilla.StubAttribution.hasValidData(data)
+            ) {
                 Mozilla.StubAttribution.successCallback = onSuccess;
                 Mozilla.StubAttribution.timeoutCallback = onTimeout;
                 // We don't want to delay the download indefinitely for a stub attribution call,

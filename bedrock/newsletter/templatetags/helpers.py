@@ -4,10 +4,12 @@
 
 import logging
 
+from django.conf import settings
 from django.template.loader import render_to_string
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib.l10n_utils import get_locale
@@ -16,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def email_newsletter_form(
     ctx,
     newsletters="mozilla-and-you",
@@ -30,7 +32,6 @@ def email_newsletter_form(
     thankyou_head=None,
     thankyou_content=None,
     footer=True,
-    process_form=True,
     include_title=None,
     submit_text=None,
     button_class=None,
@@ -40,6 +41,7 @@ def email_newsletter_form(
 ):
     request = ctx["request"]
     context = ctx.get_all()
+    action = settings.BASKET_SUBSCRIBE_URL
 
     success = bool(ctx.get("success"))
     if success and not use_thankyou:
@@ -49,9 +51,14 @@ def email_newsletter_form(
     if not form:
         form = NewsletterFooterForm(newsletters, get_locale(request))
 
+    if isinstance(newsletters, list):
+        newsletters = ", ".join(newsletters)
+
+    is_multi_newsletter = "," in newsletters
+
     context.update(
         dict(
-            id=newsletters,
+            id="mozilla-firefox-multi" if is_multi_newsletter else newsletters,
             title=title,
             subtitle=subtitle,  # nested in/depends on include_title
             desc=desc,  # nested in/depends on include_title
@@ -70,8 +77,10 @@ def email_newsletter_form(
             success=success,
             email_label=email_label,
             email_placeholder=email_placeholder,
+            is_multi_newsletter_form=is_multi_newsletter,
+            action=action,
         )
     )
 
     html = render_to_string("newsletter/includes/form.html", context, request=request)
-    return jinja2.Markup(html)
+    return Markup(html)

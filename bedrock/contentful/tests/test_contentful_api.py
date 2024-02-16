@@ -13,6 +13,7 @@ from rich_text_renderer.block_renderers import ListItemRenderer
 from rich_text_renderer.text_renderers import TextRenderer
 
 from bedrock.contentful.api import (
+    DEFAULT_LOCALE,
     AssetBlockRenderer,
     ContentfulPage,
     EmphasisRenderer,
@@ -43,10 +44,10 @@ from bedrock.contentful.api import (
     get_client,
 )
 from bedrock.contentful.constants import (
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
+from bedrock.contentful.models import ContentfulEntry
 
 
 @pytest.mark.parametrize("raw_mode", [True, False])
@@ -433,7 +434,6 @@ def test__make_cta_button(
 
 
 def test__make_plain_text():
-
     # Note this test will need a fixup when we add unidecode() support
     node = {
         "content": [
@@ -510,7 +510,6 @@ def test_EmphasisRenderer():
 
 @patch("bedrock.contentful.api.get_current_request")
 def test_LinkRenderer__mozilla_link(mock_get_current_request):
-
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
     mock_get_current_request.return_value = mock_request
@@ -529,7 +528,6 @@ def test_LinkRenderer__mozilla_link(mock_get_current_request):
 
 @patch("bedrock.contentful.api.get_current_request")
 def test_LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
-
     mock_request = Mock()
     mock_request.page_info = {"utm_campaign": "TEST"}
     mock_get_current_request.return_value = mock_request
@@ -581,7 +579,6 @@ def test_OlRenderer():
 
 @patch("bedrock.contentful.api._only_child")
 def test__LiRenderer(mock__only_child):
-
     li_renderer = LiRenderer()
 
     li_renderer._render_content = Mock("mocked__render_content")
@@ -631,7 +628,6 @@ def test_InlineEntryRenderer(
     mock_client,
     content_type_label,
 ):
-
     mock_entry = Mock()
     mock_content_type = Mock()
     mock_content_type.id = content_type_label
@@ -666,7 +662,7 @@ def test_AssetBlockRenderer(mock_client, mock__get_image_url):
         "https://example.com/image-hires.png",
     ]
     output = AssetBlockRenderer().render(node)
-    expected = '<img src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="Test Description" />'
+    expected = '<img loading="lazy" src="https://example.com/image.png" srcset="https://example.com/image-hires.png 1.5x" alt="Test Description">'
 
     assert mock__get_image_url.call_args_list[0][0] == (mock_asset, 688)
     assert mock__get_image_url.call_args_list[1][0] == (mock_asset, 1376)
@@ -681,7 +677,7 @@ def test__render_list():
 
 @pytest.fixture
 def basic_contentful_page(rf):
-    """Naive reusable fixutre for setting up a ContentfulPage
+    """Naive reusable fixture for setting up a ContentfulPage
     Note that it does NOTHING with set_current_request / thread-locals
     """
     with patch("bedrock.contentful.api.set_current_request"):
@@ -702,7 +698,6 @@ def test_ContentfulPage__init(
     locale_to_patch,
     rf,
 ):
-
     mock_get_locale.side_effect = lambda x: x.locale
     mock_request = rf.get("/")
     mock_request.locale = locale_to_patch
@@ -734,7 +729,6 @@ def test_ContentfulPage__page_property(basic_contentful_page, locale_to_patch):
 
 
 def test_ContentfulPage__render_rich_text(basic_contentful_page):
-
     # The actual/underlying RichTextRenderer is tested in its own package
     # - this test just checks our usage
 
@@ -793,6 +787,71 @@ def test_ContentfulPage___get_preview_image_from_fields__bad_data(
     assert output is None
 
 
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__happy_path(
+    basic_contentful_page,
+):
+    assert DEFAULT_LOCALE == "en-US"
+
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "seo": {
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") == "https://example.com/test.webp"
+
+
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__no_match_for_id(
+    basic_contentful_page,
+):
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "seo": {
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("NOT_THE_test_id") == ""
+
+
+@pytest.mark.django_db
+def test_ContentfulPage___get_image_from_default_locale_seo_object__no_relevant_data(
+    basic_contentful_page,
+):
+    ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_id",
+        locale=DEFAULT_LOCALE,
+        data={
+            "entries": ["dummy"],
+            "info": {
+                "bobbins": {  # replacing `seo` key
+                    "image": "https://example.com/test.webp",
+                },
+            },
+        },
+    )
+
+    assert basic_contentful_page._get_image_from_default_locale_seo_object("test_id") == ""
+
+
 @pytest.mark.parametrize(
     "entry_fields, expected",
     (
@@ -823,7 +882,6 @@ def test_ContentfulPage__get_info_data__theme_campaign(
     entry_fields,
     expected,
 ):
-
     slug = "test-test-test"
 
     output = basic_contentful_page._get_info_data__theme_campaign(entry_fields, slug)
@@ -868,84 +926,90 @@ def test_ContentfulPage__get_info_data__locale(
 
 
 @pytest.mark.parametrize(
-    "page_title, page_type, page_fields, entry_fields, seo_fields, expected",
+    "page_type, legacy_connect_page_fields, entry_fields, seo_fields, expected",
     (
         (
-            "test page one",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
-            {},
-            {},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},  # Connect-type fields
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
+                "title": "test page one",
+            },  # fields from the page itself
+            {},  # SEO object's fields
+            {
+                "slug": "vrc-main-page-slug",
                 "title": "test page one",
                 "blurb": "",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
-            {},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
             {},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
+                "title": "",
+            },
+            {},
+            {
+                "slug": "vrc-main-page-slug",
                 "title": "",
                 "blurb": "",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},
             {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
+                "slug": "vrc-main-page-slug",
+                "title": "",
             },
             {},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
                 "title": "preview title",
                 "blurb": "preview blurb",
             },
         ),
         (
-            "",
-            COMPOSE_MAIN_PAGE_TYPE,
-            {"slug": "compose-main-page-slug"},
+            CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+            {},
             {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
+                "slug": "vrc-main-page-slug",
+                "title": "",
             },
             {"description": "seo description"},
             {
-                "slug": "compose-main-page-slug",
+                "slug": "vrc-main-page-slug",
                 "title": "preview title",
                 "blurb": "seo description",
             },
         ),
         (
-            "page title",
             CONTENT_TYPE_CONNECT_HOMEPAGE,
-            {},
             {
-                "slug": "homepage-slug",
+                "slug": "homepage-slug",  # This will be ignored
+            },
+            {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
             },
             {},  # SEO fields not present for non-Compose pages
             {
-                "slug": "homepage-slug",
+                "slug": "home",  # ie, there is no way to set the slug using Connect:Homepage
                 "title": "preview title",
                 "blurb": "preview blurb",
             },
         ),
         (
-            "page title",
             CONTENT_TYPE_CONNECT_HOMEPAGE,
-            {},
             {
                 # no slug field, so will fall back to default of 'home'
+            },
+            {
                 "preview_title": "preview title",
                 "preview_blurb": "preview blurb",
             },
@@ -962,26 +1026,21 @@ def test_ContentfulPage__get_info_data__locale(
         "compose page with slug, no title, no blurb",
         "compose page with slug, title from entry, blurb from entry",
         "compose page with slug, no title, blurb from seo",
-        "Non-Compose page with slug, title, blurb from entry",
+        "Non-Compose page with title, blurb from entry + PROOF SLUG IS NOT SET",
         "Non-Compose page with default slug, title, blurb from entry",
     ],
 )
 def test_ContentfulPage__get_info_data__slug_title_blurb(
     basic_contentful_page,
-    page_title,
     page_type,
-    page_fields,
+    legacy_connect_page_fields,
     entry_fields,
     seo_fields,
     expected,
 ):
     basic_contentful_page.page = Mock()
     basic_contentful_page.page.content_type.id = page_type
-    basic_contentful_page.page.fields = Mock(return_value=page_fields)
-    if page_title:
-        basic_contentful_page.page.title = page_title
-    else:
-        basic_contentful_page.page.title = ""
+    basic_contentful_page.page.fields = Mock(return_value=legacy_connect_page_fields)
 
     assert (
         basic_contentful_page._get_info_data__slug_title_blurb(
@@ -1034,7 +1093,6 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
     page_type,
     expected,
 ):
-
     assert basic_contentful_page._get_info_data__category_tags_classification(entry_fields, page_type) == expected
 
 
@@ -1049,6 +1107,7 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
             {
                 "dummy": "seo fields",
                 "preview_image": "https://example.com/test-seo.png",
+                "description": "Test SEO description comes through",
             },
             {
                 "title": "test title",
@@ -1068,6 +1127,7 @@ def test_ContentfulPage__get_info_data__category_tags_classification(
                 "seo": {
                     "dummy": "seo fields",
                     "image": "https://example.com/test-seo.png",
+                    "description": "Test SEO description comes through",
                 },
             },
         ),
@@ -1113,7 +1173,6 @@ def test_ContentfulPage__get_info_data(
     seo_obj__fields,
     expected,
 ):
-
     mock__get_preview_image_from_fields.side_effect = [
         "https://example.com/test-entry.png",
         "https://example.com/test-seo.png",
@@ -1169,11 +1228,11 @@ def test_ContentfulPage__get_info_data(
                 {
                     "dummy": "seo fields",
                     "preview_image": "https://example.com/test-seo.png",
+                    "description": "Test SEO description comes through",
                 },
             )
             in mock__get_preview_image_from_fields.call_args_list
         )
-
     else:
         assert mock__get_preview_image_from_fields.call_count == 1
         mock__get_preview_image_from_fields.assert_called_once_with(entry_obj__fields)
@@ -1197,6 +1256,192 @@ def test_ContentfulPage__get_info_data(
     )
 
 
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data(mock__get_image_url, basic_contentful_page):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    # only set required and default fields
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "mobile_media_after": False,
+    }
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    def is_empty_string(string):
+        return len(string.strip()) == 0
+
+    assert output["component"] == "split"
+    assert is_empty_string(output["block_class"])
+    assert is_empty_string(output["theme_class"])
+    assert is_empty_string(output["body_class"])
+    basic_contentful_page.render_rich_text.assert_called_once()
+    assert is_empty_string(output["media_class"])
+    assert output["media_after"] is False
+    mock__get_image_url.assert_called_once()
+    assert is_empty_string(output["mobile_class"])
+
+
+@pytest.mark.parametrize(
+    "split_class_fields, expected",
+    (
+        (None, ""),
+        ({"image_side": "Right"}, ""),
+        ({"image_side": "Left"}, "mzp-l-split-reversed"),
+        ({"body_width": "Even"}, ""),
+        ({"body_width": "Narrow"}, "mzp-l-split-body-narrow"),
+        ({"body_width": "Wide"}, "mzp-l-split-body-wide"),
+        ({"image_pop": "None"}, ""),
+        ({"image_pop": "Both"}, "mzp-l-split-pop"),
+        ({"image_pop": "Top"}, "mzp-l-split-pop-top"),
+        ({"image_pop": "Bottom"}, "mzp-l-split-pop-bottom"),
+        ({"image_side": "Left", "body_width": "Narrow", "image_pop": "Both"}, "mzp-l-split-reversed mzp-l-split-body-narrow mzp-l-split-pop"),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_split_class(
+    mock__get_image_url,
+    basic_contentful_page,
+    split_class_fields,
+    expected,
+):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "mobile_media_after": False,
+    }
+    if split_class_fields:
+        mock_entry_obj.fields.return_value.update(split_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["block_class"].strip() == expected
+
+
+@pytest.mark.parametrize(
+    "page_id, body_class_fields, expected",
+    (
+        ("mockPage", None, ""),
+        ("pageHome", None, "c-home-body"),
+        ("mockPage", {"body_vertical_alignment": "Top"}, "mzp-l-split-v-start"),
+        ("mockPage", {"body_vertical_alignment": "Center"}, "mzp-l-split-v-center"),
+        ("mockPage", {"body_vertical_alignment": "Bottom"}, "mzp-l-split-v-end"),
+        ("mockPage", {"body_horizontal_alignment": "Left"}, "mzp-l-split-h-start"),
+        ("mockPage", {"body_horizontal_alignment": "Center"}, "mzp-l-split-h-center"),
+        ("mockPage", {"body_horizontal_alignment": "Right"}, "mzp-l-split-h-end"),
+        (
+            "pageHome",
+            {"body_vertical_alignment": "Top", "body_horizontal_alignment": "Center"},
+            "mzp-l-split-v-start mzp-l-split-h-center c-home-body",
+        ),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_body_class(
+    mock__get_image_url,
+    basic_contentful_page,
+    page_id,
+    body_class_fields,
+    expected,
+):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = page_id
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "mobile_media_after": False,
+    }
+    if body_class_fields:
+        mock_entry_obj.fields.return_value.update(body_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["body_class"].strip() == expected
+
+
+@pytest.mark.parametrize(
+    "media_class_fields, expected",
+    (
+        (None, ""),
+        ({"image_width": "Fill available width"}, ""),
+        ({"image_width": "Fill available height"}, "mzp-l-split-media-constrain-height"),
+        ({"image_width": "Overflow container"}, "mzp-l-split-media-overflow"),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_media_class(mock__get_image_url, basic_contentful_page, media_class_fields, expected):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "mobile_media_after": False,
+    }
+    if media_class_fields:
+        mock_entry_obj.fields.return_value.update(media_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["media_class"].strip() == expected
+
+
+@pytest.mark.parametrize(
+    "mobile_class_fields, expected",
+    (
+        (None, ""),
+        ({"mobile_display": "Center content"}, "mzp-l-split-center-on-sm-md"),
+        ({"mobile_display": "Hide image"}, "mzp-l-split-hide-media-on-sm-md"),
+    ),
+)
+@patch("bedrock.contentful.api._get_image_url")
+def test_ContentfulPage__get_split_data__get_mobile_class(mock__get_image_url, basic_contentful_page, mobile_class_fields, expected):
+    # mock self and entry data
+    basic_contentful_page.page = Mock()
+    basic_contentful_page.page.content_type.id = "mockPage"
+    basic_contentful_page.render_rich_text = Mock()
+    mock_entry_obj = Mock()
+    mock_entry_obj.fields.return_value = {
+        "name": "Split Test",
+        "image": "Stub image",
+        "body": "Stub body",
+        "mobile_media_after": False,
+    }
+    if mobile_class_fields:
+        mock_entry_obj.fields.return_value.update(mobile_class_fields)
+
+    mock_entry_obj.content_type.id = "mock-split-type"
+
+    output = basic_contentful_page.get_split_data(mock_entry_obj)
+
+    assert output["mobile_class"].strip() == expected
+
+
 # FURTHER TESTS TO COME
 # def test_ContentfulPage__get_content():
 #     assert False, "WRITE ME"
@@ -1210,31 +1455,7 @@ def test_ContentfulPage__get_info_data(
 #     assert False, "WRITE ME"
 
 
-# def test_ContentfulPage__get_hero_data():
-#     assert False, "WRITE ME"
-
-
 # def test_ContentfulPage__get_section_data():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_split_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_body_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_media_class():
-#     assert False, "WRITE ME"
-
-
-# def test_ContentfulPage__get_split_data__get_mobile_class():
 #     assert False, "WRITE ME"
 
 

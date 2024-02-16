@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out, split, picto with context %}
+{% from "macros-protocol.html" import callout, split, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -13,6 +13,7 @@
 
 {% block page_css %}
   {{ super() }}
+  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox-privacy-promise') }}
 {% endblock %}
 
@@ -24,9 +25,30 @@
 {% block hub_content %}
 
   {% call split(
-    image_url='img/firefox/privacy/promise/privacy-hero.png',
-    include_highres_image=True,
-    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace',
+    image=picture('img/firefox/privacy/promise/privacy-hero-700.png',
+      sources=[
+        {
+          'media': '(min-width: 768px)',
+          'srcset': {
+            'img/firefox/privacy/promise/privacy-hero-500.png': '500w',
+            'img/firefox/privacy/promise/privacy-hero-700.png': '700w',
+            'img/firefox/privacy/promise/privacy-hero-900.png': '900w',
+            'img/firefox/privacy/promise/privacy-hero-1100.png': '1100w',
+          },
+          'sizes': {
+            'default': 'calc(50vw - 192px)'
+          }
+        },
+        {
+          'media': '(max-width: 767px)',
+          'srcset': {
+            'img/placeholder.png': 'default'
+          }
+        }
+      ],
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'height': '626', 'width': '680' }
+    ),
+    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace t-mobile-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-v-end'
   ) %}
@@ -34,15 +56,14 @@
     <p>{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>
   {% endcall %}
 
-  {{ call_out(
+  {{ callout(
     title=ftl('firefox-privacy-hub-thats-why-everything-we-make'),
     class='call-out-data-promise')
   }}
 
   <div>
     {% call split(
-      image_url='img/firefox/privacy/promise/less.jpg',
-      include_highres_image=True,
+      image=resp_img('img/firefox/privacy/promise/less.jpg', srcset={ 'img/firefox/privacy/promise/less-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='privacy-promise-feature mzp-l-split-reversed'
     ) %}
       <h2>{{ ftl('firefox-privacy-hub-take-less') }}</h2>
@@ -51,8 +72,7 @@
     {% endcall %}
 
     {% call split(
-      image_url='img/firefox/privacy/promise/safe.jpg',
-      include_highres_image=True,
+      image=resp_img('img/firefox/privacy/promise/safe.jpg', srcset={ 'img/firefox/privacy/promise/safe-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='privacy-promise-feature'
     ) %}
       <h2>{{ ftl('firefox-privacy-hub-keep-it-safe') }}</h2>
@@ -71,16 +91,19 @@
     {% endcall %}
 
     {% call split(
-      image_url='img/firefox/privacy/promise/secrets.jpg',
-      include_highres_image=True,
+      image=resp_img('img/firefox/privacy/promise/secrets.jpg', srcset={ 'img/firefox/privacy/promise/secrets-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='privacy-promise-feature mzp-l-split-reversed'
     ) %}
       <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
       <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h3>
       <p>
-        {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
-               meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
-               privacy=url('privacy.notices.firefox')) }}
+        {% if ftl_has_messages('firefox-privacy-hub-theres-no-hidden-agenda-here-v2') %}
+          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here-v2', privacy=url('privacy.notices.firefox')) }}
+        {% else %}
+          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
+                meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
+                privacy=url('privacy.notices.firefox')) }}
+        {% endif %}
       </p>
     {% endcall %}
   </div>
@@ -90,8 +113,14 @@
       {% call picto(
         title=ftl('firefox-privacy-hub-why-trust-firefox'),
         body=True,
-        image_url='img/icons/mountain-purple.svg',
-        image_width=150,
+        image=resp_img(
+          url='img/icons/mountain-purple.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '150',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li'
       ) %}
         <p>
@@ -104,8 +133,14 @@
       {% call picto(
         title=ftl('firefox-privacy-hub-your-privacy-by-the-product'),
         body=True,
-        image_url='img/icons/privacy-shield.svg',
-        image_width=150,
+        image=resp_img(
+          url='img/icons/privacy-shield.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '150',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li'
       ) %}
         <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>

@@ -57,15 +57,12 @@ firefox-developer-firefox-devtools-now-grays-out = { -brand-name-firefox-devtool
 firefox-developer-firefox-devtools = { -brand-name-firefox-devtools }
 firefox-developer-the-new-firefox-devtools = The new { -brand-name-firefox-devtools } are powerful, flexible, and best of all, hackable. This includes a best-in-class JavaScript debugger, which can target multiple browsers and is built in React and Redux.
 firefox-developer-master-css-grid = Master CSS Grid
-firefox-developer-next-gen-css-engine = Next-Gen CSS Engine
-firefox-developer-a-next-generation = A Next-Generation CSS Engine
+firefox-developer-built-for-developers = Built for Developers
 firefox-developer-master-innovative-features = Innovative Features
 firefox-developer-want-to-be-on-the-cutting-edge = Want to be on the cutting-edge?
 firefox-developer-firefox-nightly-receives = { -brand-name-firefox-nightly } receives daily updates and allows you to access features months before they go mainstream.
-firefox-developer-firefox-quantum-includes = { -brand-name-firefox-quantum } includes a new CSS engine, written in Rust, that has state-of-the-art innovations and is blazingly fast.
 firefox-developer-firefox-is-the-only-browser = { -brand-name-firefox } is the only browser with tools built specifically for building and designing with CSS Grid. These tools allow you to visualize the grid, display associated area names, preview transformations on the grid and much more.
 firefox-developer-convenient-features = Convenient Features
-firefox-developer-faster-performance = Faster Performance
 firefox-developer-shapes-editor = Shapes Editor
 firefox-developer-firefox-devtools-has-a-brand-new-v2 = { -brand-name-firefox-devtools } has a brand new shape path editor that takes the guesswork out of fine-tuning your shape-outside and clip-path shapes by allowing you to very easily fine-tune your adjustments with a visual editor.
 firefox-developer-firefox-devtools-has-a-brand-new = { -brand-name-firefox-devtools } has a brand new shape path editor that takes the guesswork out of fine-tuning your shadow-outside and clip-path shapes by allowing you to very easily fine-tune your adjustments with a visual editor.
@@ -80,7 +77,11 @@ firefox-developer-congrats-you-now-have-firefox = Congrats. You now have { -bran
 firefox-developer-this-isnt-just-an-update = This isn’t just an update. This is { -brand-name-firefox-quantum }: A brand new { -brand-name-firefox } that has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.
 firefox-developer-welcome-to-firefox-browser = Welcome to { -brand-name-firefox-browser } { -brand-name-developer-edition }
 firefox-developer-made-for-developers = The browser made for developers
+firefox-developer-all-the-latest-v2 = All the latest developer tools in beta in addition to features like the Multi-line Console Editor and WebSocket Inspector.
+
+# Obsolete string
 firefox-developer-all-the-latest = All the latest developer tools in beta, plus <strong>experimental features</strong> like the Multi-line Console Editor and WebSocket Inspector.
+
 firefox-developer-a-separate-profile = A <strong>separate profile and path</strong> so you can easily run it alongside Release or { -brand-name-beta } { -brand-name-firefox }.
 firefox-developer-preferences-tailored = Preferences <strong>tailored for web developers</strong>: Browser and remote debugging are enabled by default, as are the dark theme and developer toolbar button.
 firefox-developer-congrats-you-now-have = Congrats. You now have { -brand-name-firefox-browser } { -brand-name-developer-edition }.

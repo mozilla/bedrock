@@ -6,7 +6,7 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Newsgroups Message Cancellation Policy') }}{% endblock %}
+{% block page_title %}Newsgroups Message Cancellation Policy{% endblock %}
 {% set body_id = "about-forum-cancellation" %}
 
 {% block page_css %}
@@ -16,31 +16,31 @@
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
-<h2 id="support-policy">{{ _('Support Newsgroups Cancellation Policy (mozilla.support.*)') }}</h2>
+<h2 id="support-policy">Support Newsgroups Cancellation Policy (mozilla.support.*)</h2>
 
-  <p>{{ _('The support newsgroups are monitored by the support newsgroup moderator and his assistants (if any).') }}</p>
+  <p>The support newsgroups are monitored by the support newsgroup moderator and his assistants (if any).</p>
 
   <dl class="mzp-u-list-styled">
-    <dt>{{ _('Uncivil Posts') }}</dt>
+    <dt>Uncivil Posts</dt>
       <dd>
         <p>
-          {{ _('The first rule of the <a href="%s">etiquette guidelines</a> is to be civil.')|format(url('mozorg.about.forums.etiquette')) }}
-          {{ _('If they agree that a post contains a personal attack, they will immediately remove the post and (if possible) notify the poster by private e-mail.') }}</p>
+          The first rule of the <a href="{{ url('mozorg.about.forums.etiquette') }}">etiquette guidelines</a> is to be civil.
+          If they agree that a post contains a personal attack, they will immediately remove the post and (if possible) notify the poster by private e-mail.</p>
      </dd>
 
-    <dt>{{ _('Off-Topic Posts and Other Etiquette Violations') }}</dt>
+    <dt>Off-Topic Posts and Other Etiquette Violations</dt>
       <dd>
         <p>
-        {{ _('If they agree that someone is regularly off-topic or repeatedly violates the <a href="%s">etiquette guidelines</a> in other ways, they will warn them by private e-mail (or in the newsgroup if the e-mail address cannot be determined).')|format(url('mozorg.about.forums.etiquette')) }}
-        {{ _('If they later agree that the behaviour has not changed, they will notify the person by e-mail (or newsgroup post, as above) and then start to cancel any and all infringing posts from that person, without warning or comment.') }}
+        If they agree that someone is regularly off-topic or repeatedly violates the <a href="{{ url('mozorg.about.forums.etiquette') }}">etiquette guidelines</a> in other ways, they will warn them by private e-mail (or in the newsgroup if the e-mail address cannot be determined).
+        If they later agree that the behaviour has not changed, they will notify the person by e-mail (or newsgroup post, as above) and then start to cancel any and all infringing posts from that person, without warning or comment.
         </p>
 
-        <p>{{ _('At least the first time round, an e-mailed assurance of reformation, plus a practical demonstration of one month in length (where the group feels the need to cancel no or very few posts), resets the process.') }}</p>
+        <p>At least the first time round, an e-mailed assurance of reformation, plus a practical demonstration of one month in length (where the group feels the need to cancel no or very few posts), resets the process.</p>
       </dd>
   </dl>
 
-<h2 id="other-policy">{{ _('Other Newsgroups Cancellation Policy') }}</h2>
+<h2 id="other-policy">Other Newsgroups Cancellation Policy</h2>
 
-<p>{{ _('Currently, no non-spam messages are cancelled in other Mozilla newsgroups.') }}</p>
+<p>Currently, no non-spam messages are cancelled in other Mozilla newsgroups.</p>
 
 {% endblock %}

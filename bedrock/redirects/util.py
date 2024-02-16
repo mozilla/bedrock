@@ -3,8 +3,10 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import re
+from collections import defaultdict
 from urllib.parse import parse_qs, urlencode
 
+from django.conf import settings
 from django.http import (
     HttpResponseGone,
     HttpResponsePermanentRedirect,
@@ -12,7 +14,6 @@ from django.http import (
 )
 from django.urls import NoReverseMatch, URLResolver, re_path, reverse
 from django.urls.resolvers import RegexPattern
-from django.utils.encoding import force_text
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
@@ -84,6 +85,23 @@ def platform_redirector(desktop_dest, android_dest, ios_dest):
             return desktop_dest
 
     return decider
+
+
+def mobile_app_redirector(request, product, campaign):
+    android_re = re.compile(r"\bAndroid\b", flags=re.I)
+    value = request.headers.get("User-Agent", "")
+
+    if android_re.search(value):
+        base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
+        params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+    else:
+        base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK").replace("/{country}/", "/")
+        params = "?pt=373246&ct={cmp}&mt=8"
+
+    if campaign:
+        return base_url + params.format(cmp=campaign)
+    else:
+        return base_url
 
 
 def no_redirect(pattern, locale_prefix=True, re_flags=None):
@@ -192,6 +210,10 @@ def redirect(
         else:
             view_decorators.extend(decorators)
 
+    if query:
+        # prevent updating in place
+        query = query.copy()
+
     def _view(request, *args, **kwargs):
         # don't want to have 'None' in substitutions
         kwargs = {k: v or "" for k, v in kwargs.items()}
@@ -217,15 +239,19 @@ def redirect(
 
         # use info from url captures.
         if args or kwargs:
-            redirect_url = strip_tags(force_text(redirect_url).format(*args, **kwargs))
+            if args:
+                redirect_url = redirect_url.format(*args)
+            if kwargs:
+                # Use `defaultdict` to default to empty string for missing kwargs.
+                redirect_url = redirect_url.format_map(defaultdict(str, kwargs))
+            redirect_url = strip_tags(redirect_url)
 
         if query:
             if merge_query:
                 req_query = parse_qs(request.META.get("QUERY_STRING", ""))
-                req_query.update(query)
-                querystring = urlencode(req_query, doseq=True)
-            else:
-                querystring = urlencode(query, doseq=True)
+                query.update(req_query)
+
+            querystring = urlencode(query, doseq=True)
         elif query is None:
             querystring = request.META.get("QUERY_STRING", "")
         else:

@@ -39,7 +39,17 @@
     <section class="compare-details-section-summary">
       <p class="compare-details-section-intro">{{ ftl('compare-brave-just-like-the-firefox-browser') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-brave.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-brave.png',
+        srcset={
+          'img/firefox/compare/compare-browser-brave-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '544',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -62,7 +72,7 @@
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
           <tr>
-            <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
+            <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default') }}</th>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
@@ -79,8 +89,8 @@
         </tbody>
       </table>
 
-      <p>{{ ftl('compare-brave-the-brave-browser-like-so', opera='href="%s" data-cta-type="link" data-cta-name="Opera"'|safe|format(url('firefox.browsers.compare.opera')),
-                 edge='href="%s" data-cta-type="link" data-cta-name="Edge"'|safe|format(url('firefox.browsers.compare.edge'))) }}</p>
+      <p>{{ ftl('compare-brave-the-brave-browser-like-so', opera='href="%s" data-cta-text="Opera" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.opera')),
+                 edge='href="%s" data-cta-text="Edge" data-cta-type="link"'|safe|format(url('firefox.browsers.compare.edge'))) }}</p>
 
       <p>{{ ftl('compare-brave-brave-differentiates-itself') }}</p>
 
@@ -92,9 +102,9 @@
 
       <p>{{ ftl('compare-brave-on-the-other-side-of-the-coin', attrs='href="https://addons.mozilla.org/firefox/addon/ublock-origin/" rel="external noopener" data-cta-text="uBlock Origin" data-cta-type="link"'|safe) }}</p>
 
-      <p>{{ ftl('compare-brave-there-are-a-few-of-braves', lockwise='href="%s" data-cta-type="link" data-cta-name="password manager"'|safe|format(url('firefox.features.password-manager')),
+      <p>{{ ftl('compare-brave-there-are-a-few-of-braves', lockwise='href="%s" data-cta-text="password manager" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')),
           extension='href="https://addons.mozilla.org/addon/https-everywhere/" rel="external noopener" data-cta-text="HTTPS Everywhere" data-cta-type="link"'|safe,
-          privacy='href="%s" data-cta-type="link" data-cta-name="Privacy Report"'|safe|format(url('firefox.privacy.products'))) }}</p>
+          privacy='href="%s" data-cta-text="privacy products" data-cta-type="link"'|safe|format(url('firefox.privacy.products'))) }}</p>
 
       <p>{{ ftl('compare-brave-the-bottom-line-is-that-even') }}</p>
 
@@ -164,7 +174,7 @@
             <tr>
               <th scope="row">{{ ftl('compare-shared-in-browser-screenshot-tool') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
         </tbody>
       </table>
@@ -218,7 +228,7 @@
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
           </tr>
           <tr>
-            <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
+            <th scope="row">{{ ftl('compare-shared-primary-password') }}</th>
             <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
           </tr>
@@ -227,9 +237,25 @@
 
       <p>{{ ftl('compare-brave-the-ability-to-sync-your-passwords') }}</p>
 
-      <p>{{ ftl('compare-brave-the-firefox-browser-also-gives', accounts='href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts')),
-          monitor='href="https://monitor.firefox.com/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
-          breaches='href="https://monitor.firefox.com/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe) }}</p>
+      {% if switch('mozilla-monitor-brand-name') %}
+        <p>
+          {{ ftl('compare-brave-the-firefox-browser-also-gives-v3',
+                fallback='compare-brave-the-firefox-browser-also-gives',
+                accounts='href="%s" data-cta-text="accounts" data-cta-type="link"'|safe|format(url('firefox.accounts')),
+                monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
+                breaches='href="https://monitor.mozilla.org/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe
+          ) }}
+        </p>
+      {% else %}
+        <p>
+          {{ ftl('compare-brave-the-firefox-browser-also-gives-v2',
+                  fallback='compare-brave-the-firefox-browser-also-gives',
+                  accounts='href="%s" data-cta-text="accounts" data-cta-type="link"'|safe|format(url('firefox.accounts')),
+                  monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
+                  breaches='href="https://monitor.mozilla.org/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe
+          ) }}
+        </p>
+      {% endif %}
 
       <p>{{ ftl('compare-brave-brave-also-recently-gained') }}</p>
 
@@ -250,7 +276,7 @@
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-brave') }} (1.14.81)

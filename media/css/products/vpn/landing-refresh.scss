@@ -1,0 +1,158 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import 'includes/lib';
+@import 'pricing-refresh';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Smooth Scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Hero section
+
+.c-main-cta {
+    display: inline-block;
+    text-align: center;
+
+    small {
+        @include text-body-sm;
+        display: block;
+        margin-top: $spacing-sm;
+    }
+}
+
+.c-powered-by {
+    @include text-body-sm;
+    text-align: center;
+
+    @media #{$mq-xl} {
+        margin-top: -$layout-sm;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// How a VPN helps
+
+.c-how-vpn-helps {
+    background: $color-marketing-gray-20;
+    padding-top: $layout-md;
+    padding-bottom: $layout-md;
+
+    .c-reason-title {
+        @include text-title-2xs;
+    }
+
+    .c-section-main-img {
+        display: block;
+        margin: 0 auto $layout-md;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Features section
+
+.c-features {
+    border-top: 2px solid $color-light-gray-30;
+    padding-bottom: 0;
+
+    .mzp-l-columns {
+        max-width: $content-lg;
+        margin: $layout-sm auto;
+
+        @media #{$mq-md} {
+            margin-bottom: $layout-lg;
+        }
+    }
+
+    .mzp-t-picto-side {
+        .mzp-c-picto {
+            text-align: center;
+            font-weight: bold;
+            padding: 0;
+
+            .mzp-c-picto-image {
+                display: none;
+            }
+
+            .c-feature-title {
+                @include font-size($vpn-title-2xs-size);
+                line-height: 1.2;
+            }
+
+            @media #{$mq-md} {
+                @include bidi((
+                    (text-align, left, right),
+                    (padding-left, $layout-lg, 0),
+                    (padding-right, 0, $layout-lg),
+                ));
+                font-weight: normal;
+
+                .mzp-c-picto-image {
+                    display: inline;
+                    width: 40px;
+                }
+
+                .c-feature-title {
+                    @include font-size($vpn-title-xs-size);
+                }
+            }
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Trusted brand section
+
+.c-brand-trust {
+    padding-top: 0;
+
+    .mzp-c-split-container {
+        padding-top: $layout-lg;
+        border-top: 2px solid $color-light-gray-30;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Learn more section
+
+.c-learn-more {
+    .c-section-title {
+        margin-bottom: $spacing-2xl * 2;
+    }
+
+    .mzp-l-columns {
+        margin-bottom: $layout-sm;
+
+        @media #{$mq-md} {
+            margin-bottom: $layout-lg;
+        }
+    }
+
+    .mzp-c-picto img {
+        display: block;
+        margin: 0 auto $spacing-xl;
+    }
+
+    .c-learn-more-heading {
+        @include text-body-lg;
+        font-weight: normal;
+
+        a:link,
+        a:visited {
+            color: $color-black;
+        }
+    }
+}

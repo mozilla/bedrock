@@ -19,6 +19,15 @@ page7-make-them-unfollow-you = Make them unfollow you
 page7-that-sneaky-little-button = That sneaky little button
 page7-those-innocent-looking-f-buttons = Those innocent-looking F buttons from { -brand-name-facebook } track your web activity, even if you don’t have an account. { -brand-name-facebook-container } blocks them.
 page7-stay-ahead-of-hackers = Stay ahead of hackers
+
+page7-firefox-monitor-lets-you-find-v2 = { -brand-name-mozilla-monitor } lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)
+
+# Obsolete string
 page7-firefox-monitor-lets-you-find = { -brand-name-firefox-monitor } lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)
+
+page7-get-mozilla-monitor = Get { -brand-name-mozilla-monitor }
+
+# Obsolete string
 page7-get-firefox-monitor = Get { -brand-name-firefox-monitor }
+
 page7-why-am-i-seeing-this = Why am I seeing this?

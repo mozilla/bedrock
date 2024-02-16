@@ -17,12 +17,13 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Determine if browser should attempt to download Firefox on page load.
      * @param {String} platform
+     * @param {Boolean} fxSupported
      * @returns {Boolean}
      */
-    DownloadThanks.shouldAutoDownload = function (platform) {
-        var supportedPlatforms = ['windows', 'osx', 'linux', 'android', 'ios'];
+    DownloadThanks.shouldAutoDownload = function (platform, fxSupported) {
+        var supportedPlatforms = ['windows', 'osx', 'android', 'ios'];
 
-        if (supportedPlatforms.indexOf(platform) !== -1) {
+        if (fxSupported && supportedPlatforms.indexOf(platform) !== -1) {
             return true;
         }
 
@@ -47,16 +48,8 @@ if (typeof window.Mozilla === 'undefined') {
                 link = document.getElementById(prefix + 'osx');
                 break;
             case 'linux':
-                if (site.isARM) {
-                    // Linux ARM users get SUMO install instructions.
-                    link = null;
-                } else if (site.archSize === 64) {
-                    // Detect 64bit / 32bit builds for Linux.
-                    link = document.getElementById(prefix + 'linux64');
-                } else {
-                    link = document.getElementById(prefix + 'linux');
-                }
-
+                // Linux users get SUMO install instructions.
+                link = null;
                 break;
             case 'android':
                 link = document.getElementById(prefix + 'android');

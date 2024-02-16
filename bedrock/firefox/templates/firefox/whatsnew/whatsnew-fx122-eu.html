@@ -1,0 +1,134 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import fxa_email_form with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{{ super() }} state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_122_eu') }}
+{% endblock %}
+
+{% if LANG == "de" %}
+  {% set main_title = 'Ein Account – eine Milliarde Vorteile …' %}
+  {% set main_tagline = '(Na gut, vielleicht nicht eine Milliarde, aber echt viele!)' %}
+  {% set main_body = 'Dein Mozilla-Konto lässt dich nicht nur nahtlos Firefox Tabs, Chronik und Lesezeichen zwischen Geräten mitnehmen. Es gewährt dir auch Zugang zu allen weiteren Produkten von Mozilla.' %}
+  {% set button_text = 'Erstelle ein Konto' %}
+{% elif LANG == "es-ES" %}
+  {% set main_title = 'Una cuenta. Un millón de beneficios.' %}
+  {% set main_tagline = '(Bueno, quizás no un millón, ¡pero muchos sí!)' %}
+  {% set main_body = 'Tu cuenta Mozilla no solo te permite transferir sin problemas las pestañas, historial y marcadores de Firefox entre dispositivos. También te da acceso a todo el resto de productos de Mozilla.' %}
+  {% set button_text = 'Crear una cuenta' %}
+{% elif LANG == "fr" %}
+  {% set main_title = 'Un seul compte. Tout Mozilla.' %}
+  {% set main_tagline = '' %}
+  {% set main_body = 'Votre compte Mozilla vous permet de transférer très simplement vos onglets, l’historique et vos marque-pages Firefox d’un appareil à l’autre. Il vous donne également accès à tous les autres produits Mozilla.' %}
+  {% set button_text = 'Créer un compte' %}
+{% elif LANG == "it" %}
+  {% set main_title = 'Un solo account. Vantaggi infiniti.' %}
+  {% set main_tagline = '(Non proprio infiniti, ma comunque tantissimi!)' %}
+  {% set main_body = 'Il tuo account Mozilla non si limita a farti trasferire facilmente schede, cronologia e segnalibri di Firefox. Ti fornisce anche l’accesso a tutti gli altri prodotti firmati Mozilla.' %}
+  {% set button_text = 'Crea un account' %}
+{% elif LANG == "pl" %}
+  {% set main_title = 'Jedno konto. Milion korzyści.' %}
+  {% set main_tagline = '(No, może nie milion, ale bardzo dużo!)' %}
+  {% set main_body = 'Konto Mozilla zapewnia Ci nie tylko łatwy dostęp do Twoich kart, historii i zakładek w przeglądarce Firefox na różnych urządzeniach. Daje Ci także dostęp do wszystkich pozostałych produktów Mozilla.' %}
+  {% set button_text = 'Załóż konto' %}
+{% else %}
+  {% set main_title = 'One account. A billion benefits.' %}
+  {% set main_tagline = '(Well, maybe not a billion, but a lot!)' %}
+  {% set main_body = 'Your Mozilla account not only lets you seamlessly transfer Firefox tabs, history and bookmarks between devices. It also gives you access to all other Mozilla products.' %}
+  {% set button_text = 'Create an account' %}
+{% endif %}
+
+{% set _entrypoint = 'mozilla.org-whatsnew122' %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+
+    <div class="wnp-loading"></div>
+
+    {# Promote Mozilla account for signed out (or undetermined) users #}
+    <div class="is-signed-out">
+      {{ picture(
+        url='img/firefox/whatsnew/whatsnew122/products-light.png',
+          sources=[
+          {
+            "media": "(prefers-color-scheme: light)",
+            "srcset": {
+              "img/firefox/whatsnew/whatsnew122/products-light.png": "565w",
+              "img/firefox/whatsnew/whatsnew122/products-light-2x.png": "2x"
+            }
+          },
+          {
+            "media": "(prefers-color-scheme: dark)",
+            "srcset": {
+              "img/firefox/whatsnew/whatsnew122/products-dark.png": "565w",
+              "img/firefox/whatsnew/whatsnew122/products-dark-2x.png": "2x"
+            }
+          }
+        ],
+        optional_attributes={
+          'class': 'wnp-main-image',
+          'alt': '',
+          'width': '565',
+          'height': '160'
+        }
+      ) }}
+      <h1 class="wnp-main-title">{{ main_title }}</h1>
+    {% if LANG != "fr" %}
+      <p class="wnp-main-tagline">{{ main_tagline }}</p>
+    {% endif %}
+      <p class="wnp-main-body">{{ main_body }}</p>
+
+      <div class="accounts-cta-wrapper">
+        {{ fxa_email_form(
+          class_name='fxa-form',
+          entrypoint=_entrypoint,
+          utm_campaign='whatsnew-122',
+          button_class='mzp-c-button mzp-t-product mzp-t-lg',
+          button_text=button_text
+          )
+        }}
+        <p class="accounts-signin">
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': 'whatsnew-122'}) %}
+          {% set sign_in_url = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="Accounts Learn More"'|safe %}
+          {% set learn_more_url = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
+          {{ ftl('moz-account-already-have', sign_in_url=sign_in_url, learn_more_url=learn_more_url) }}
+        </p>
+      </div>
+    </div>
+
+    {# Promote Firefox mobile for signed in users #}
+    <div class="is-signed-in">
+      <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-want-privacy-on-every-device') }}</h1>
+      <p class="wnp-main-tagline">{{ ftl('whatsnew-s2d-you-got-it-get-firefox-for') }}</p>
+
+      <div id="qr-wrapper">
+        <img src="{{ static('img/firefox/whatsnew/qrcode.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="250" height="250" alt="{{ ftl('whatsnew-account-qr-code-alt') }}">
+      </div>
+    </div>
+  </div>
+
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fxa_form') }}
+  {{ js_bundle('firefox_whatsnew_122_eu') }}
+{% endblock %}

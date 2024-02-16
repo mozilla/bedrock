@@ -208,7 +208,7 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Request the browser open the Firefox Accounts page.
+     * Request the browser open the Mozilla accounts page.
      *
      * @param {Object} [extraURLParams] - An optional object containing additional
      * parameters for the URL opened by the browser for reasons of promotional
@@ -275,6 +275,14 @@ if (typeof window.Mozilla === 'undefined') {
         _sendEvent('openSearchPanel', {
             callbackID: _waitForCallback(callback)
         });
+    };
+
+    Mozilla.UITour.toggleReaderMode = function () {
+        _sendEvent('toggleReaderMode');
+    };
+
+    Mozilla.UITour.forceShowReaderIcon = function () {
+        _sendEvent('forceShowReaderIcon');
     };
 
     Mozilla.UITour.ping = function (callback) {

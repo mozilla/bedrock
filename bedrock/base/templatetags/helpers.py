@@ -12,19 +12,20 @@ from django.utils.encoding import smart_str
 
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
 
 from bedrock.base import waffle
 from bedrock.utils import expand_locale_groups
 
 from ..urlresolvers import reverse
 
-CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css" />'
-JS_TEMPLATE = '<script type="text/javascript" src="%s" charset="utf-8"></script>'
+CSS_TEMPLATE = '<link href="%s" rel="stylesheet" type="text/css">'
+JS_TEMPLATE = '<script src="%s"></script>'
 log = logging.getLogger(__name__)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def switch(cxt, name, locales=None):
     """A template helper that replaces waffle
 
@@ -53,7 +54,7 @@ def switch(cxt, name, locales=None):
 @library.global_function
 def thisyear():
     """The current year."""
-    return jinja2.Markup(datetime.date.today().year)
+    return Markup(datetime.date.today().year)
 
 
 @library.global_function
@@ -126,7 +127,7 @@ def js_bundle(name):
     """
     path = f"js/{name}.js"
     path = staticfiles_storage.url(path)
-    return jinja2.Markup(JS_TEMPLATE % path)
+    return Markup(JS_TEMPLATE % path)
 
 
 @library.global_function
@@ -137,7 +138,7 @@ def css_bundle(name):
     """
     path = f"css/{name}.css"
     path = staticfiles_storage.url(path)
-    return jinja2.Markup(CSS_TEMPLATE % path)
+    return Markup(CSS_TEMPLATE % path)
 
 
 @library.global_function
@@ -148,20 +149,3 @@ def alternate_url(path, locale):
         return alt_paths[path][locale]
 
     return None
-
-
-@library.global_function
-@jinja2.contextfunction
-def get_donate_params(ctx):
-    """Returns donation params for the current locale with an added key
-    containing a list version of the preset donation amounts.
-
-    :returns: dictionary of donation values, including list of amount presets
-    """
-
-    donate_params = settings.DONATE_PARAMS.get(ctx["LANG"], settings.DONATE_PARAMS["en-US"])
-
-    # presets are stored as a string but we need a list for views
-    donate_params["preset_list"] = donate_params["presets"].split(",")
-
-    return donate_params

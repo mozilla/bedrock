@@ -1,0 +1,72 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-banner {
+    @include clearfix;
+    padding: $spacing-lg 0;
+    position: relative;
+    z-index: 3;
+
+    // hide by default if JS is available to avoid flicker
+    // (if visitor previously dismissed)
+    .js & {
+        display: none;
+    }
+
+    // conditional class used to display the banner.
+    &.c-banner-is-visible {
+        display: block;
+    }
+}
+
+.c-banner-title {
+    @include text-title-lg;
+}
+
+.c-banner-tagline {
+    @include text-body-xl;
+}
+
+// Close button
+.c-banner-close {
+    @include background-size(20px 20px);
+    @include bidi(((right, $spacing-sm, auto), (left, auto, $spacing-sm)));
+    @include image-replaced;
+    background: transparent url('#{$image-path}/icons/close.svg') center center no-repeat;
+    border: none;
+    cursor: pointer;
+    display: none;
+    height: 42px;
+    min-width: 0;
+    padding: 0;
+    position: absolute;
+    top: $spacing-sm;
+    width: 42px;
+    z-index: 1;
+
+    &:hover,
+    &:focus {
+        @include transition(transform 0.1s ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus {
+        outline: 1px dotted $color-white;
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
+    }
+}

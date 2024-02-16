@@ -5,15 +5,16 @@
 #}
 
 {% from "macros.html" import fxa_email_form with context %}
-{% from "macros-protocol.html" import call_out, split, picto with context %}
+{% from "macros-protocol.html" import callout, split, picto with context %}
 
 {% extends "firefox/privacy/base.html" %}
 
 {% block page_title_full %}{{ ftl('firefox-privacy-hub-firefox-privacy-by-the') }}{% endblock %}
-{% block page_desc %}{{ ftl('firefox-privacy-hub-firefox-protects-your-privacy') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-privacy-hub-mozilla-protects-your-privacy', fallback= 'firefox-privacy-hub-firefox-protects-your-privacy') }}{% endblock %}
 
 {% block page_css %}
   {{ super() }}
+  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox-privacy-products') }}
 {% endblock %}
 
@@ -24,15 +25,14 @@
 
 {% block hub_content %}
 
-  {{ call_out(
-    title=ftl('firefox-privacy-hub-firefox-protects-your-privacy-strong')|safe,
-    class='privacy-products-call-out-main',
+  {{ callout(
+    title=ftl('firefox-privacy-hub-mozilla-protects-your-privacy-strong', fallback='firefox-privacy-hub-firefox-protects-your-privacy-strong')|safe,
+    class='privacy-products-callout-main',
     heading_level=1)
   }}
 
   {% call split(
-    image_url='img/firefox/privacy/products/report.svg',
-    l10n_image=True,
+    image=resp_img('img/firefox/privacy/products/report.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset', 'l10n': 'true'}),
     block_class='privacy-products-hero mzp-t-dark mzp-l-split-hide-media-on-sm-md',
     media_class='mzp-l-split-media-overflow'
   ) %}
@@ -74,7 +74,14 @@
     <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three">
       {% call picto(
         title=ftl('firefox-privacy-hub-invisible-to-the-top-trackers'),
-        image_url='img/firefox/privacy/products/icon-invisible.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-invisible.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}
@@ -82,7 +89,14 @@
       {% endcall %}
       {% call picto(
         title=ftl('firefox-privacy-hub-always-in-your-control'),
-        image_url='img/firefox/privacy/products/icon-control.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-control.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}
@@ -90,16 +104,24 @@
       {% endcall %}
       {% call picto(
         title=ftl('firefox-privacy-hub-protection-beyond-tracking'),
-        image_url='img/firefox/privacy/products/icon-protection.svg',
+        image=resp_img(
+          url='img/firefox/privacy/products/icon-protection.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         base_el='li',
         body=True
       ) %}
-        <p>{{ ftl('firefox-privacy-hub-if-you-have-a-firefox-account') }}</p>
-      {% endcall %}
+        <p>{{ ftl('firefox-privacy-hub-if-you-have-a-mozilla-account', fallback='firefox-privacy-hub-if-you-have-a-firefox-account') }}</p>
+
+        {% endcall %}
     </ul>
   </div>
 
-  {% call call_out(
+  {% call callout(
     title=ftl('firefox-privacy-hub-more-than-s-trackers-blocked', trackers=10000000000),
     class='privacy-products-tracker-counter mzp-t-dark',
     include_cta=True
@@ -123,23 +145,45 @@
 
   <div class="privacy-products-list t-medium">
     {% call split(
-      image_url='img/firefox/privacy/products/monitor.svg',
+      image=resp_img('img/firefox/privacy/products/monitor.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       media_class='mzp-l-split-h-center'
     ) %}
-      <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-monitor">
-        <h2>{{ ftl('firefox-privacy-hub-firefox-monitor') }}</h2>
+      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+      <div class="mzp-c-wordmark mzp-t-wordmark-md {% if mozilla_monitor %}t-product-mozilla-monitor{% else %}mzp-t-product-monitor{% endif %}">
+        <h2>
+          {% if mozilla_monitor %}
+            {{ ftl('firefox-privacy-hub-mozilla-monitor', fallback='firefox-privacy-hub-firefox-monitor') }}
+          {% else %}
+            {{ ftl('firefox-privacy-hub-firefox-monitor') }}
+          {% endif %}
+        </h2>
       </div>
-      <p>{{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}</p>
       <p>
-        <a class="mzp-c-cta-link" href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-position="secondary">
-        {{ ftl('firefox-privacy-hub-check-for-breaches') }}
+        {% if mozilla_monitor %}
+          {% if LANG == 'en-US' %}
+            When you enter your email address in Mozilla Monitor, we forget it immediately after we’ve checked to see where your
+            personal details have been exposed — unless you authorize us to continue monitoring your info for future exposures.
+          {% else %}
+            {{ ftl('firefox-privacy-hub-when-you-enter-your-email-v2', fallback='firefox-privacy-hub-when-you-enter-your-email') }}
+          {% endif %}
+        {% else %}
+          {{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}
+        {% endif %}
+      </p>
+      <p>
+        <a class="mzp-c-cta-link" href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-text="Check for breaches" data-cta-position="secondary">
+        {% if LANG == 'en-US' %}
+          Check for exposures now
+        {% else %}
+          {{ ftl('firefox-privacy-hub-check-for-breaches') }}
+        {% endif %}
         </a>
       </p>
     {% endcall %}
 
   {% if ftl_has_messages('firefox-privacy-hub-surf-stream-and-get-work') %}
     {% call split(
-      image_url='img/firefox/privacy/products/vpn.svg',
+      image=resp_img('img/firefox/privacy/products/vpn.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       block_class='mzp-l-split-reversed',
       media_class='mzp-l-split-h-center'
     ) %}
@@ -148,7 +192,7 @@
       </div>
       <p>{{ ftl('firefox-privacy-hub-surf-stream-and-get-work') }}</p>
       <p>
-        <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing' )}}" data-cta-type="fxa-vpn" data-cta-position="secondary">
+        <a class="mzp-c-cta-link" href="{{ url('products.vpn.landing' )}}" data-cta-type="vpn" data-cta-text="VPN" data-cta-position="secondary">
           {{ ftl('firefox-privacy-hub-get-mozilla-vpn') }}
         </a>
       </p>
@@ -161,8 +205,10 @@
   {% set block_class = 'mzp-l-split-reversed' %}
   {% endif %}
     {% call split(
-      image_url='img/firefox/privacy/products/pocket.png',
-      include_highres_image=True,
+      image=resp_img('img/firefox/privacy/products/pocket.png',
+        srcset={ 'img/firefox/privacy/products/pocket-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
       block_class=block_class,
       media_class='mzp-l-split-h-center'
     ) %}
@@ -179,31 +225,37 @@
 
     <section class="privacy-products-accounts mzp-l-content mzp-l-columns mzp-t-columns-two">
       <div>
-        <h2 class="mzp-c-card-feature-title">{{ ftl('firefox-privacy-hub-your-firefox-account') }}</h2>
+        <h2 class="mzp-c-card-feature-title">
+            {{ ftl('firefox-privacy-hub-your-mozilla-account', fallback='firefox-privacy-hub-your-firefox-account') }}
+        </h2>
         <div class="mzp-c-card-feature-desc">
-          {{ ftl('firefox-privacy-hub-all-the-information-synced') }}
+            {{ ftl('firefox-privacy-hub-all-the-information-synced-v2', fallback='firefox-privacy-hub-all-the-information-synced') }}
         </div>
       </div>
       <div class="mzp-c-emphasis-box">
         {{ fxa_email_form(
           entrypoint=_entrypoint,
-          form_title=ftl('firefox-privacy-hub-take-your-privacy-and-bookmarks'),
+          form_title=ftl('firefox-privacy-hub-take-your-privacy-and-bookmarks-v2', fallback='firefox-privacy-hub-take-your-privacy-and-bookmarks'),
           button_class='mzp-c-button mzp-t-primary mzp-t-product',
           style='trailhead',
-          utm_campaign=_utm_campaign)
-        }}
+          utm_campaign=_utm_campaign
+        ) }}
 
         <p class="fxa-signin">
-        {{ ftl('firefox-privacy-hub-already-have-an-account',
-          sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
-          class_name='js-fxa-cta-link js-fxa-product-button',
-          learn_more=url('firefox.accounts') )}}
+          {{ ftl('firefox-privacy-hub-already-have-an-account-v2',
+             fallback='firefox-privacy-hub-already-have-an-account',
+             sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
+             class_name='js-fxa-cta-link js-fxa-product-button',
+             learn_more=url('firefox.accounts')
+          )}}
         </p>
       </div>
     </section>
   </div>
+
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('fxa_form') }}
   {{ js_bundle('firefox-privacy-products') }}
 {% endblock %}

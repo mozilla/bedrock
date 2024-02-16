@@ -5,7 +5,7 @@
 // This style sheet is served exclusively to Internet Explorer 8 and older.
 // Old versions get this minimal style while IE9 and up recieve more advanced styling.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -59,10 +59,6 @@ footer {
 
 .mzp-c-newsletter-details {
     display: block !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.mzp-c-newsletter-thanks {
-    display: none;
 }
 
 // make sure dark components have correct background and text color

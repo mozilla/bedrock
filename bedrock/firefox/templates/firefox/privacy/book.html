@@ -14,51 +14,33 @@
 {% block page_image %}{{ static('img/firefox/privacy/book/privacy-book-arrow-og.png') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('privacy-book') }}
 {% endblock %}
 
 {% block sub_navigation %}
-{% if ftl_has_messages('sub-navigation-privacy', 'sub-navigation-our-promise', 'sub-navigation-our-products', 'sub-navigation-little-book-of-privacy') %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-privacy') }}</h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('firefox.privacy.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Our Promise">{{ ftl('sub-navigation-our-promise') }}</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('firefox.privacy.products') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Our Products">{{ ftl('sub-navigation-our-products') }}</a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('firefox.privacy.book') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Little Book of Privacy">{{ ftl('sub-navigation-little-book-of-privacy') }}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-{% endif %}
+  {% include 'firefox/privacy/includes/sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero">
+<section class="mzp-c-callout mzp-t-hero">
   <div class="mzp-l-content">
-    <div class="mzp-c-hero-body">
-      <img src="{{ static('img/firefox/privacy/book/privacy-eyes.png') }}" width="200" height="200" alt="">
-      <h1 class="mzp-c-hero-title">{{ ftl('privacy-book-little-book-of') }}</h1>
-      <div class="mzp-c-hero-desc">
-        <p>{{ ftl('privacy-book-how-to-stay') }}</p>
-        {{ download_firefox_thanks() }}
-      </div>
-    </div>
+    <img src="{{ static('img/firefox/privacy/book/privacy-eyes.png') }}" width="200" height="200" alt="">
+    <h1 class="mzp-c-callout-title">{{ ftl('privacy-book-little-book-of') }}</h1>
+    <p class="mzp-c-callout-desc">{{ ftl('privacy-book-how-to-stay') }}</p>
+     {{ download_firefox_thanks() }}
   </div>
 </section>
 
 {% call split(
-  image_url='img/firefox/privacy/book/privacy-healthy-internet.jpg',
+  image=resp_img('img/firefox/privacy/book/privacy-healthy-internet.jpg',
+    optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy' }
+  ),
   block_class='mzp-l-split-reversed',
   media_class='mzp-l-split-v-start',
-  loading='lazy',
 ) %}
   <h2>{{ ftl('privacy-book-a-healthy-private') }}</h2>
   <p>{{ ftl('privacy-book-we-believe-that') }}</p>
@@ -72,9 +54,10 @@
 
 <div id="data-breaches" class="data-breaches">
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-book-arrow-on-face.jpg',
+    image=resp_img('img/firefox/privacy/book/privacy-book-arrow-on-face.jpg',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy'}
+    ),
     media_class='mzp-l-split-v-start',
-    loading='lazy',
   ) %}
     <h3>{{ ftl('privacy-book-data-breaches') }}</h3>
     <p>{{ ftl('privacy-book-even-when-organizations') }}</p>
@@ -84,10 +67,11 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-troll.jpg',
+    image=resp_img('img/firefox/privacy/book/privacy-troll.jpg',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy' }
+    ),
     block_class='mzp-l-split-reversed',
     media_class='mzp-l-split-v-start',
-    loading='lazy',
   ) %}
     <h3>{{ ftl('privacy-book-trackers-everywhere-') }}</h3>
     <p>{{ ftl('privacy-book-trackers-cookies-youve') }}</p>
@@ -100,11 +84,12 @@
 
 {% call split(
   block_id='fake-news',
-  image_url='img/firefox/privacy/book/privacy-callouts.png',
+  image=resp_img('img/firefox/privacy/book/privacy-callouts.png',
+    optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy'}
+  ),
   theme_class='mzp-t-dark mzp-t-background-secondary',
   block_class='mzp-t-split-nospace',
   media_class='mzp-l-split-v-start',
-  loading='lazy',
 ) %}
   <h3>{{ ftl('privacy-book-fake-news-and') }}</h3>
   <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
@@ -115,9 +100,10 @@
 
 <section id="tips" class="c-tips">
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-digital-life-growing.jpg',
+    image=resp_img('img/firefox/privacy/book/privacy-digital-life-growing.jpg',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy'}
+    ),
     block_class='c-tips-title mzp-l-split-reversed',
-    loading='lazy',
   ) %}
     <h2>{{ ftl('privacy-book-tips-for') }}</h2>
   {% endcall %}
@@ -152,7 +138,14 @@
       title=ftl('privacy-book-search-engine-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-search.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-search.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-search-engine-duckduckgo') }}</p>
     {% endcall %}
@@ -161,7 +154,14 @@
       title=ftl('privacy-book-email-have-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-email.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-email.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-email-have-you') }}</p>
     {% endcall %}
@@ -170,7 +170,14 @@
       title=ftl('privacy-book-browser-while-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-browser.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-browser.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-browser-while-many') }}</p>
     {% endcall %}
@@ -179,7 +186,14 @@
       title=ftl('privacy-book-messenger-signal-title'),
       heading_level=4,
       body=True,
-      image_url='img/firefox/privacy/book/privacy-icon-messenger.svg',
+      image=resp_img(
+        url='img/firefox/privacy/book/privacy-icon-messenger.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'loading': 'lazy'
+        }
+      )
     ) %}
       <p>{{ ftl('privacy-book-messenger-signal-is') }}</p>
     {% endcall %}
@@ -206,14 +220,21 @@
   </div>
 
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-magnify.png',
+    image=resp_img('img/firefox/privacy/book/privacy-magnify.png',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy'}
+    ),
     block_class='c-tips-magnify mzp-l-split-reversed',
-    loading='lazy',
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-search-your-name') }}</li>
       <li>{{ ftl('privacy-book-dont-have-time') }}</li>
-      <li>{{ ftl('privacy-book-breach-alert-if') }}</li>
+      <li>
+        {% if switch('mozilla-monitor-brand-name') %}
+          {{ ftl('privacy-book-breach-alert-if-v2', fallback='privacy-book-breach-alert-if') }}
+        {% else %}
+          {{ ftl('privacy-book-breach-alert-if') }}
+        {% endif %}
+      </li>
     </ol>
   {% endcall %}
 
@@ -227,7 +248,6 @@
       <li>{{ ftl('privacy-book-some-online-services') }}</li>
       <li>
         <p>{{ ftl('privacy-book-wondering-how-youre') }}</p>
-        <p>{{ ftl('privacy-book-there-are-several-v2', fallback='privacy-book-there-are-several') }}</p>
       </li>
     </ol>
   </div>
@@ -241,14 +261,14 @@
       <li>{{ ftl('privacy-book-there-are-many') }}</li>
     </ol>
 
-    <img src="{{ static('img/firefox/privacy/book/privacy-devices.png') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-devices.png') }}" alt="" width="930" height="465">
   </div>
 
   <div id="safer-connections" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-safer-connections-public') }}</h3>
     <p>{{ ftl('privacy-book-public-wifi') }}</p>
 
-    <img src="{{ static('img/firefox/privacy/book/privacy-coffee.png') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-coffee.png') }}" alt="" width="300" height="250">
     <ol>
       <li>{{ ftl('privacy-book-ideally-avoid-publicly') }}</li>
       <li>{{ ftl('privacy-book-perhaps-you-just') }}</li>
@@ -260,19 +280,19 @@
   <div id="bluetooth" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-how-about-your') }}</h3>
     <p>{{ ftl('privacy-book-bluetooth-is-a') }}</p>
-    <img src="{{ static('img/firefox/privacy/book/privacy-joystick-sonos.png') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-joystick-sonos.png') }}" alt="" width="930" height="431">
   </div>
 
   <div id="https" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-the-secure-site') }}</h3>
     <p>{{ ftl('privacy-book-its-not-unusual') }}</p>
-    <img src="{{ static('img/firefox/privacy/book/privacy-keys.jpg') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-keys.jpg') }}" alt="" width="2064" height="1479">
   </div>
 
   <div id="email" class="mzp-l-content mzp-t-content-md">
     <h3>{{ ftl('privacy-book-email-accounts-and') }}</h3>
     <p>{{ ftl('privacy-book-your-email-address') }}</p>
-    <img src="{{ static('img/firefox/privacy/book/privacy-identities.jpg') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-identities.jpg') }}" width="2064" height="2100" alt="">
   </div>
 
   <div id="click-bait" class="mzp-l-content mzp-t-content-md">
@@ -281,8 +301,9 @@
   </div>
 
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-caution.jpg',
-    loading='lazy',
+    image=resp_img('img/firefox/privacy/book/privacy-caution.jpg',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy', 'width': '1584', 'height': '1176' }
+    ),
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-from-time-to') }}</li>
@@ -312,9 +333,10 @@
   </div>
 
   {% call split(
-    image_url='img/firefox/privacy/book/privacy-globe.jpg',
+    image=resp_img('img/firefox/privacy/book/privacy-globe.jpg',
+      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'loading': 'lazy', 'width': '1596', 'height': '948' }
+    ),
     block_class='mzp-l-split-reversed',
-    loading='lazy',
   ) %}
     <ol>
       <li>{{ ftl('privacy-book-many-social-media') }}</li>
@@ -327,7 +349,7 @@
     <h3>{{ ftl('privacy-book-dont-need-it') }}</h3>
     <p>{{ ftl('privacy-book-even-if-you') }}</p>
 
-    <img src="{{ static('img/firefox/privacy/book/privacy-chains.png') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-chains.png') }}" alt="" width="2064" height="1050">
 
     <ol>
       <li>
@@ -341,16 +363,15 @@
       </li>
     </ol>
 
-    <img src="{{ static('img/firefox/privacy/book/privacy-cleaning.png') }}" alt="" loading="lazy">
+    <img loading="lazy" src="{{ static('img/firefox/privacy/book/privacy-cleaning.png') }}" alt="" width="1929" height="2150">
   </div>
 </section>
 
 {% call split(
   block_id='trackers',
-  image_url='img/firefox/privacy/book/privacy-target.png',
+  image=resp_img('img/firefox/privacy/book/privacy-target.png', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
   block_class='mzp-t-split-nospace',
-  theme_class='mzp-t-dark mzp-t-background-secondary',
-  loading='lazy',
+  theme_class='mzp-t-dark mzp-t-background-secondary'
 ) %}
   <h3>{{ ftl('privacy-book-friendly-reminder-what') }}</h3>
   <p>{{ ftl('privacy-book-news-recommendations-are') }}</p>
@@ -364,7 +385,7 @@
   <p>{{ ftl('privacy-book-do-you-have') }}</p>
 
   <h3>Twitter</h3>
-  <a class="twitter" href="https://twitter.com/firefox" data-link-type="privacy-book" data-link-name="Twitter (@firefox)">{{ ftl('privacy-book-twitter') }}<span> (@firefox)</span></a>
+  <a class="twitter" href="https://twitter.com/firefox" data-link-type="privacy-book" data-link-text="Twitter (@firefox)">{{ ftl('privacy-book-twitter') }}<span> (@firefox)</span></a>
 </section>
 
 {% endblock %}

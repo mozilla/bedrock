@@ -38,9 +38,9 @@ class Command(BaseCommand):
         super().__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):
-        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
-        parser.add_argument("--database", default="default", help=("Specifies the database to use, if using a db. " 'Defaults to "default".')),
-        parser.add_argument("-f", "--force", action="store_true", dest="force", default=False, help="Load the data even if nothing new from git."),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
+        parser.add_argument("--database", default="default", help=("Specifies the database to use, if using a db. " 'Defaults to "default".'))
+        parser.add_argument("-f", "--force", action="store_true", dest="force", default=False, help="Load the data even if nothing new from git.")
 
     def handle(self, *args, **options):
         # don't really care about deleted files. almost never happens in p-d.

@@ -8,7 +8,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("contentful", "0003_add_classification_category_and_tags_fields_to_contentfulentry"),
     ]

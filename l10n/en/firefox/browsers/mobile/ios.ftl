@@ -7,14 +7,8 @@
 # HTML page title
 mobile-ios-firefox-browser-ios = { -brand-name-firefox-browser } { -brand-name-ios } ({ -brand-name-iphone } & { -brand-name-ipad })
 
-# HTML description
-# Obsolete string
-mobile-ios-firefox-browser-for = { -brand-name-firefox } browser for { -brand-name-ios } is fast, secure and private from the first time you open it.
-
 mobile-ios-firefox-browser = { -brand-name-firefox-browser }
 
-# Obsolete string
-mobile-ios-get-automatic-privacy = Get automatic privacy on your { -brand-name-iphone } and { -brand-name-ipad }
 mobile-ios-get-firefox-for = Get { -brand-name-firefox } for { -brand-name-ios }
 
 mobile-ios-send-a-download-link-to-your = Send a download link to your phone.
@@ -42,16 +36,8 @@ mobile-ios-see-your-open-tabs = See your open tabs, past searches and favorite s
 mobile-ios-own-your-home = Own your home screen
 mobile-ios-get-to-the-parts = Get to the parts of the internet you care about faster. Choose to see all your open tabs, recent searches, bookmarks and favorite sites all in one place.
 
-# Obsolete string
-mobile-ios-add-firefox-across = Add { -brand-name-firefox } across your devices for secure, seamless browsing. { -brand-name-sync } your devices to take your favorite bookmarks, saved logins, passwords and browsing history wherever you go. Plus, send open tabs between your phone and desktop to pick up where you left off.
-
 mobile-ios-find-it-all = Find it all faster
 mobile-ios-get-search-suggestions = Get search suggestions in the search bar and quickly access the sites you visit most. Type in your search question, and get suggested and previously searched results across your favorite search engines.
-
-# Obsolete string
-mobile-ios-keep-tabs-on = Keep tabs on all those tabs
-# Obsolete string
-mobile-ios-create-as-many = Create as many tabs as you’d like without losing track. { -brand-name-firefox } displays your open tabs as thumbnails and numbered tabs, making it easy to find what you want quickly.
 
 mobile-ios-discover-more-of = Discover more of what you love
 mobile-ios-open-a-new = Open a new tab in { -brand-name-firefox } to see the sites you visit most, your recent bookmarks and popular articles in { -brand-name-pocket }. { -brand-name-firefox } gives you quick access to your most recently used sites to help you get where you’re going faster.

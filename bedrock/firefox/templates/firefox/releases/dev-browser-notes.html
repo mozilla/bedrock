@@ -10,10 +10,10 @@
 {% set product_name = 'Firefox Developer Edition' %}
 {% set product_class = 'mzp-t-dark mzp-t-product-developer' %}
 {% set download_button_primary %}
- {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition'), dom_id="download-dev-edition-primary") }}
+ {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy='Download Firefox Developer Edition', dom_id="download-dev-edition-primary") }}
 {% endset %}
 {% set download_button_secondary %}
- {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition'), dom_id="download-dev-edition-secondary") }}
+ {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy='Download Firefox Developer Edition', dom_id="download-dev-edition-secondary") }}
 {% endset %}
 
 {% set download_all_link = firefox_url('desktop', 'all', channel='alpha') %}
@@ -22,15 +22,15 @@
   <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
     <div class="mzp-l-sidebar">
       <h2 class="c-release-summary">
-        <div class="c-release-version">{{ _('{version}')|f(version=release.version) }}</div>
-        <div class="c-release-product">{{ _('Firefox Developer Edition') }}</div>
+        <div class="c-release-version">{{ release.version }}</div>
+        <div class="c-release-product">Firefox Developer Edition</div>
       </h2>
       {% if release.is_public %}
-        <p class="c-release-date">{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+        <p class="c-release-date">{{ release.release_date|l10n_format_date }}</p>
       {% endif %}
     </div>
     <div class="mzp-l-main mzp-l-article">
-        <h2 class="c-release-first-title">{{ _('Version {version}, first offered to Firefox Developer Edition channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+        <h2 class="c-release-first-title">Version {{ release.version }}, first offered to Firefox Developer Edition channel users on {{ release.release_date|l10n_format_date }}</h2>
         <div class="c-release-first-text">{{ release.text|safe }}</div>
     </div>
   </div>

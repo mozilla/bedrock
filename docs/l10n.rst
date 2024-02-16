@@ -37,6 +37,15 @@ are plain and easy to understand English, as free from colloquialisms as possibl
 translators are able to easily understand the meaning of the string, and can then add their
 own local flair to the ideas.
 
+.. note::
+
+    Much of this documentation also applies to the use of Fluent with Pocket templates,
+    with the main differences being that:
+
+    * the English Pocket Fluent directory is called ``l10n-pocket/``
+    * there are no activation-threshold checks for Pocket templates - we expect all strings to be translated in one go, because they are done via a vendor
+
+
 .. _Project Fluent: https://projectfluent.org/
 
 .ftl files
@@ -75,6 +84,7 @@ bottom of a file, or also have a "not required" group comment. Here's an example
 
     ## Required
     example-page-title = The Page Title
+    # this is a note the applies only to example-page-desc
     example-page-desc = This page is a test.
 
     ##
@@ -105,8 +115,8 @@ above .ftl file for a simple Jinja template example:
 
 .. _Fluent file syntax: https://projectfluent.org/fluent/guide/
 
-FTL String IDs
-~~~~~~~~~~~~~~
+:abbr:`FTL (Fluent Translation List)` String IDs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our convention for string ID creation is the following:
 
@@ -121,18 +131,28 @@ Our convention for string ID creation is the following:
 Using brand names
 ~~~~~~~~~~~~~~~~~
 
-Common brand names are stored in a global `brands.ftl`_ file, in the form of `terms`_. Terms are useful for
+Common Mozilla brand names are stored in a global `brands.ftl`_ file, in the form of `terms`_. Terms are useful for
 keeping brand names separated from the rest of the translations, so that they can be managed in a consistent
 way across all translated files, and also updated easily in a global context. In general the brand names in
 this file remain in English and should not be translated, however locales still have the choice and control
 to make adjustments should it suit their particular language.
 
-.. code-block:: text
+Only our own brands should be managed this way, brands from other companies should not. If you are concerned
+that the brand is a common word and may be translated, leave a comment for the translators.
+
+.. note::
+
+    We are trying to phase out use of ``{ -brand-name-firefox-browser }`` please use ``{ -brand-name-firefox } browser``.
+
+
+.. code-block:: fluent
 
     -brand-name = Firefox
 
-    about = About { -brand-name }.
-    update-successful = { -brand-name } has been updated.
+    example-about = About { -brand-name }.
+    example-update-successful = { -brand-name } has been updated.
+    # "Safari" here refers to the competing web browser
+    example-compare = How does { -brand-name } compare to Safari?
 
 .. important::
 
@@ -141,9 +161,110 @@ to make adjustments should it suit their particular language.
     for a particular locale, then it does not fall back to English like a regular string does. Instead,
     the term variable name is displayed on the page.
 
-.. _brands.ftl: https://github.com/mozilla/bedrock/blob/master/l10n/en/brands.ftl
+.. _brands.ftl: https://github.com/mozilla/bedrock/blob/main/l10n/en/brands.ftl
 .. _terms: https://projectfluent.org/fluent/guide/terms.html
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
+
+Variables
+~~~~~~~~~
+
+Single hash comments are applied only to the string immediately following them. They should be used to provide
+additional context for the translators including:
+
+1. What the values of variables are.
+2. Context about where string appears on the page if it is not visible or references other elements on the page.
+3. Explanations of English idioms and jargon that may be confusing to non-native speakers.
+
+.. code-block:: fluent
+
+    # Variables:
+    #   $savings (string) - the percentage saved from the regular price, not including the % Examples: 50, 70
+    example-bundle-savings = Buy now for { $savings }% off.
+
+    # Context: Used as an accessible text alternative for an image
+    example-bookmark-manager-alt = The bookmark manager window in { -brand-name-firefox }.
+    # Context: This lists the various websites and magazines who have mentioned Firefox Relay.
+    # Example: "As seen in: FORBES magainze and LifeHacker"
+    example-social-proof = As seen in:
+
+    example-privacy-on-every = Want privacy on every device?
+    # "You got it" here is a casual answer to the previous question, "Want privacy on every device?"
+    example-you-got-it = You got it. Get { -brand-name-firefox } for mobile.
+
+
+HTML with attributes
+********************
+
+When passing HTML tags with attributes into strings for translation, remove as much room for error as possible by
+putting all the attributes and their values in a single variable. (This is most common with links and their href
+attributes but we do occasionally pass classes with other tags.)
+
+.. code-block:: fluent
+
+    # Variables:
+    #   $attrs (attrs) - link to https://www.mozilla.org/about/
+    example-created = { -brand-name-firefox } was created by <a {$attrs}>{ -brand-name-mozilla }</a>.
+
+    # Variables:
+    #   $class (string) - CSS class used to replace brand name with wordmark logo
+    example-firefox-relay = Add <span { $class }">{ -brand-name-firefox-relay }</span>
+
+
+.. code-block:: jinja
+
+    {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
+    <p>{{ ftl('example-created', attrs=created_attrs) }}</p>
+
+    {{ ftl('example-firefox-relay', class_name='class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay"') }}
+
+
+Obsolete strings
+~~~~~~~~~~~~~~~~
+
+When new strings are added to a page sometimes they update or replace old strings. Obsolete strings & IDs should be removed from ftl files
+immediately if they are not being used as a fallback. If they are being kept as a fallback they should be removed after 1-2 months.
+
+
+Fallback
+********
+
+If you need to create a new string for the same place on a page and would like to keep the old one as a fallback, you can add a version
+suffix to the new string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
+
+.. code-block:: fluent
+
+    example-block-title-v2 = Security, reliability and speed — on every device, anywhere you go.
+    # Obsolete string
+    example-block-title = Security, reliability and speed — from name you can trust.
+
+
+The ``ftl`` helper function has the ability to accept a fallback string ID and is described in the next section.
+
+Remove
+******
+
+If the new string is fundamentally different a new string ID should be created and the old one deleted.
+
+For example, if the page is going from talking about the Google Translate extension to promoting our own Firefox Translate feature the old
+strings are not appropriate fall backs.
+
+The old strings and IDs should be deleted:
+
+.. code-block:: fluent
+
+    example-translate-title = The To Google Translate extension makes translating the page you’re on easier than ever.
+    example-translate-content = Google Translate, with over 100 languages* at the ready, is used by millions of people around the world.
+
+
+The new strings should have different IDs and not be versioned:
+
+.. code-block:: fluent
+
+    example-translate-integrated-title = { -brand-name-firefox } now comes with an integrated translation tool.
+    example-translate-integrated-content =  Unlike some cloud-based alternatives, { -brand-name-firefox } translates text locally, so the content you’re translating doesn’t leave your machine.
+
+The ``ftl_has_messages`` jinja helper would be useful here and is described in the next section.
+
 
 The ``ftl`` helper function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -175,6 +296,13 @@ You could use that in a template like this:
 
 For our purposes these are mostly useful for things that can change, but which shouldn't involve
 retranslation of a string (e.g. URLs or email addresses).
+
+You may also request any other translation of the string (or the original English string of course) regardless of the current locale.
+
+.. code-block:: jinja
+
+    <h2>{{ ftl('welcome', locale='en', user='Dude') }}<h2>
+
 
 This helper is available in Jinja templates and Python code in views. For use in a view you should
 always call it in the view itself:
@@ -316,7 +444,7 @@ so by setting ``ftl_files`` in the context instead of the class attribute.
             ctx['ftl_files'] = ftl_files
             return ctx
 
-A common case is needing to use FTL files when one template is used, but not with another. In this case
+A common case is needing to use :abbr:`FTL (Fluent Translation List)` files when one template is used, but not with another. In this case
 you would have some logic to decide which template to use in the ``get_template_names()`` method. You can
 set the ``ftl_files_map`` class variable to a dict containing a map of template names to the list of
 FTL files for that template (or a single file name if that's all you need).
@@ -346,9 +474,29 @@ FTL files for that template (or a single file name if that's all you need).
 
 If you need for your URL to use multiple Fluent files to determine the full list of active locales, for
 example when you are redesigning a page and have multiple templates in use for a single URL depending on
-locale, you can use the `activation_files` parameter. This should be a list of FTL filenames that should all
+locale, you can use the `activation_files` parameter. This should be a list of :abbr:`FTL (Fluent Translation List)` filenames that should all
 be used when determining the full list of translations for the URL. Bedrock will gather the full list for each
 file and combine them into a single list so that the footer language switcher works properly.
+
+Another common case is that you want to keep using an old template for locales that haven't yet translated
+the strings for a new one. In that case you can provide an ``old_template_name`` to the class and include
+both that template and ``template_name`` in the ``ftl_files_map``. Once you do this the view will use the
+template in ``template_name`` only for requests for an active locale for the FTL files you provided in the map.
+
+.. code-block:: python
+
+    from lib.l10n_utils import L10nTemplateView
+
+    class AboutView(L10nTemplateView):
+        template_name = 'about_new.html'
+        old_template_name = "about.html"
+        ftl_files_map = {
+            "about_new.html": ["about_new", "about_shared"],
+            "about.html": ["about", "about_shared"],
+        }
+
+In this example when the ``about_new`` FTL file is active for a locale, the ``about_new.html`` template will be
+rendered. Otherwise the ``about.html`` template would be used.
 
 Using in a view function
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -410,9 +558,9 @@ with them, and pontoon leans on the goodwill of our volunteer community. Typical
 non-marketing content should go through Pontoon for all locales. Everything that is marketing
 related should feature one of the staff/vendor/pontoon configurations.
 
-.. _Vendor: https://github.com/mozilla/bedrock/blob/master/l10n/configs/vendor.toml
-.. _Pontoon: https://github.com/mozilla/bedrock/blob/master/l10n/configs/pontoon.toml
-.. _Special templates: https://github.com/mozilla/bedrock/blob/master/l10n/configs/special-templates.toml
+.. _Vendor: https://github.com/mozilla/bedrock/blob/main/l10n/configs/vendor.toml
+.. _Pontoon: https://github.com/mozilla/bedrock/blob/main/l10n/configs/pontoon.toml
+.. _Special templates: https://github.com/mozilla/bedrock/blob/main/l10n/configs/special-templates.toml
 .. _L10n Project Configuration: https://moz-l10n-config.readthedocs.io/
 
 Fluent File Activation
@@ -433,7 +581,7 @@ Deactivation
 
 If the automated system activates a locale but we for some reason need to ensure that this page remains
 unavailable in that locale, we can add this locale to a list of deactivated locales in the metadata file
-for that FTL file. For example, say we needed to make sure that the `mozorg/mission.ftl` file remained
+for that :abbr:`FTL (Fluent Translation List)` file. For example, say we needed to make sure that the `mozorg/mission.ftl` file remained
 inactive for German, even though the translation is already done. We would add ``de`` to the ``inactive_locales``
 list in the ``metadata/mozorg/mission.json`` file:
 
@@ -546,13 +694,24 @@ String extraction
 -----------------
 
 The string extraction process for both new .ftl content and updates to existing .ftl
-content is handled through automation. On each commit to master a command is run that
-looks for changes to the ``l10n/`` directory. If a change is detected, it will copy
+content is handled through automation. On each commit to ``main`` a command is run that
+looks for changes to the ``l10n/`` and ``l10n-pocket/`` directories. If a change is
+detected, it will copy
 those files into a new branch in `mozilla-l10n/www-l10n`_ and then a bot will open a
 pull request containing those changes. Once the pull request has been reviewed and
 merged by the L10n team, everything is done.
 
+To view the state of the latest automated attempt to open an L10N PR, see:
+
+* `Mozorg L10N PR action`_
+* `Pocket L10N PR action`_
+
+(We also just try to open L10N PRs every 3 hours, to catch any failed jobs that
+are triggered by a commit to ``main``)
+
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
+.. _Mozorg L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_mozorg_fluent_strings_to_l10n_org.yml
+.. _Pocket L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_pocket_fluent_strings_to_l10n_org.yml
 
 CSS
 ---
@@ -729,3 +888,144 @@ from the lang files then you can use the `add_active_locales` name in all of the
 This is useful in situations where we would have needed the l10n team to create an empty .lang file with
 an active tag in it because we have a locale-specific-template with text in the language hard-coded into
 the template and therefore do not otherwise need a .lang file.
+
+
+Adding new L10N integrations
+============================
+
+Bedrock, as a platform, can operate in different modes, and it is possible
+(necessary, even) to support multiple L10N pipelines, so that each mode of
+operation can have its own distinct Fluent files and translation strategy.
+
+As of Summer 2022, there are two separate L10N integrations within Bedrock:
+
+* Mozilla.org ("Mozorg mode")
+* Pocket Marketing Pages ("Pocket mode")
+
+These integrations are similar in their approach, but not identical in how they run.
+They use different translations strategies, which requires slightly different data flows.
+
+Moving L10N data (essentially Fluent ``.ftl`` files) happens via various
+automation steps, which aren't captured here, as they are more about
+infrastructure and operations. However, what follows outlines the steps needed
+to add a new L10N integration (for "``newintegration``") to Bedrock.
+
+1. **FILE SETUP (Bedrock developer)**
+
+Add a directory for the source (``en``) Fluent strings that will
+need translation.
+
+.. note::
+    For source Fluent files currently...
+
+    * ...Mozorg uses ``./l10n/``
+    * ...Pocket uses ``./l10n-pocket/``
+
+Add the following files:
+
+.. code-block:: bash
+
+    ./l10n-newintegration/
+    ./l10n-newintegration/en/  # This is where source Fluent templates go for 'newintegration'
+    ./l10n-newintegration/en/configs/pontoon.toml  # If using community/Pontoon translations at all
+    ./l10n-newintegration/en/configs/vendor.toml  # If using a paid-for translation service such as Smartling
+    ./l10n-newintegration/en/configs/special-templates.toml   # Only needed to exclude certain files from all community AND vendor translation. e.g. we use staff translation only.
+
+    ./l10n-newintegration/l10n-pontoon.toml  # If using community/Pontoon translations at all
+    ./l10n-newintegration/l10n-vendor.toml  # If using a paid-for translation service such as Smartling
+
+    ./data/l10n-newintegration-team/  # leave this empty - it will be populated via a git sync using data FROM the l10n team
+
+For the exact content of each `.toml` or `.json` file, see the examples in
+``./l10n/`` and ``./l10n-pocket/`` for inspiration - they're not too hard to work out.
+The ``.toml`` files outside of ``/en/`` basically point to the ones in ``/en/configs/``
+and are a 'gateway' through which we spec which config files are relevant to which
+translation stragegy (community or vendor - or neither if it's staff-only translation).
+
+2. **REPO SETUP (Bedrock and/or L10N team admin)**
+
+You will need to set up one or two new repos, to hold the translation files as
+part of the pipeline.
+
+i. **A repo in where the files are sent to** in ``https://github.com/mozilla-l10n/``
+for the L10N team's automation to pick up.
+
+For example, Mozorg uses ``github.com/mozilla-l10n/www-l10n/`` and Pocket uses
+``github.com/mozilla-l10n/www-pocket-l10n/``.
+Your new ``github.com/mozilla-l10n/www-newintegration-l10n/`` repo will be needed
+regardless of who does the actual translation work.
+
+ii. **An optional repo where files are post-processed following translation**.
+
+If relevant, this will live in ``github.com/mozmeao/`` - for example ``github.com/mozmeao/www-newintegration-l10n/``
+
+.. important::
+    **If you are not using Pontoon/community translations, you do NOT need to create
+    this repo.**
+    Why? If the translations are done by the community (via Pontoon), there is a
+    possibility that not enough of the strings will be translated in order to render
+    the content in the relevant locale. We run a :abbr:`CI (Continuous Integration)`
+    task to determine whether a locale has enough translated strings to be considered
+    'active'. At the moment, only Mozorg uses this pattern. The Pocket-mode translations
+    do not have their activation measured because their translations come entirely from
+    a vendor and we expect the Pocket strings to be 100% translated.
+
+3. **CI SETUP (Bedrock dev)**
+
+Only relevant if using Pontoon community translations. Details of how MozMarRobot
+is hooked are best gleaned from looking at ``https://gitlab.com/mozmeao/www-fluent-update``.
+
+In short, once new translations land in the string-source repo (e.g.
+``github.com/mozilla-l10n/www-newintegration-l10n``) they are cloned over to the
+activation-check repo ``github.com/mozmeao/www-newintegration-l10n/`` by CI
+and later pulled into Bedrock from there.
+
+4. **CONFIGURE SETTINGS (Bedrock dev)**.
+
+You'll also have to update settings so that when the site is in
+'newintegration' mode, it knows which L10N-related local folders and remote repos
+to use. Look in ``settings/__init__.py`` to see what we did for Pocket mode.
+
+You'll also have to set up new env vars to provide the new repo and filepath
+settings' values, which will mean updating ``github.com/mozmeao/www-config/``
+and possibly getting new secrets provisioned in Kubernetes if you need to use
+a separate auth token for ``github.com/mozilla-l10n/``. (You may not.)
+
+Note that if you are *not* using community/Pontoon translations - and therefore you
+don't need to use an intermediary repo to calculate activation status - you can
+just use the ``mozilla-l10n/www-newintegration-l10n`` repo for both outbound and
+inbound translations - look at the Pocket Mode setting for an example of this.
+
+5. **EXPAND L10N UPDATE SCRIPT (Bedrock dev)**.
+
+**Uploading strings for translation**
+
+Uploading ```en``-locale source strings from Bedrock to the
+``github.com/mozilla-l10n/`` repos is handled by ``bedrock/bin/open-ftl-pr.sh``.
+This file requires no specific code changes to support a new integration as long as
+you have already set up a ``SITE_MODE`` for 'newintegration'.
+
+However, you **do** need to add a new entry to ``bedrock/.gitlab-ci.yml`` –
+copy the ``update-l10n`` step, in a similar way to how it's been duplicated
+for ``update-pocket-l10n``.
+
+**Downloading translated strings**
+
+Update the configuration dict at the top of ``bedrock/lib/l10n_utils/management/commands/l10n_update.py``
+so that when that management command is run, it will pull down the appropriate translations for "newintegration".
+
+Tip: to test drive things, you can fork the real repos and test against your
+forks by specifying them via local env vars.
+
+6. **VENDOR SETUP (L10N Team)**
+
+The vendor (e.g. Smartling) will need to add the new string-source repo
+(``github.com/mozilla-l10n/www-newintegration-l10n``) to its configuration.
+Once this is done new translations from the vendor will be added to that repo,
+and synced down to Bedrock. This step is out of our hands, but the vendor's
+technical contact should be able to make it happen.
+
+7. **PONTOON SETUP (L10N Team)**
+
+Details to come for setting up community translations using Pontoon.
+(Contributions about this aspect are welcome!)

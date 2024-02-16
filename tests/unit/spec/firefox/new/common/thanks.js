@@ -5,7 +5,7 @@
  */
 
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
@@ -13,25 +13,40 @@ describe('thanks.js', function () {
     describe('shouldAutoDownload', function () {
         it('should return true for supported platforms', function () {
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('windows')
+                Mozilla.DownloadThanks.shouldAutoDownload('windows', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('osx')
+                Mozilla.DownloadThanks.shouldAutoDownload('osx', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('linux')
+                Mozilla.DownloadThanks.shouldAutoDownload('android', true)
             ).toBeTruthy();
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('android')
+                Mozilla.DownloadThanks.shouldAutoDownload('ios', true)
             ).toBeTruthy();
+        });
+
+        it('should return false for linux platforms', function () {
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('ios')
-            ).toBeTruthy();
+                Mozilla.DownloadThanks.shouldAutoDownload('linux', true)
+            ).toBeFalsy();
         });
 
         it('should return false for unknown platforms', function () {
             expect(
-                Mozilla.DownloadThanks.shouldAutoDownload('other')
+                Mozilla.DownloadThanks.shouldAutoDownload('other', true)
+            ).toBeFalsy();
+        });
+
+        it('should return false for non-supported Windows versions', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('windows', false)
+            ).toBeFalsy();
+        });
+
+        it('should return false for non-supported macOS versions', function () {
+            expect(
+                Mozilla.DownloadThanks.shouldAutoDownload('osx', false)
             ).toBeFalsy();
         });
     });
@@ -80,34 +95,24 @@ describe('thanks.js', function () {
             );
         });
 
-        it('should return the correct download for Linux 32bit', function () {
+        it('should not return a download for Linux', function () {
             const site = {
                 platform: 'linux',
-                isARM: false,
+                isARM: function () {
+                    return false;
+                },
                 archSize: 32
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux&lang=en-US'
-            );
-        });
-
-        it('should return the correct download for Linux 64bit', function () {
-            const site = {
-                platform: 'linux',
-                isARM: false,
-                archSize: 64
-            };
-            const result = Mozilla.DownloadThanks.getDownloadURL(site);
-            expect(result).toEqual(
-                'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US'
-            );
+            expect(result).toBeFalsy();
         });
 
         it('should not return a download for Linux ARM', function () {
             const site = {
                 platform: 'linux',
-                isARM: true,
+                isARM: function () {
+                    return true;
+                },
                 archSize: 64
             };
             const result = Mozilla.DownloadThanks.getDownloadURL(site);

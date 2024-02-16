@@ -11,9 +11,10 @@ from bedrock.mozorg.tests import TestCase
 class FeedTests(TestCase):
     def test_career_feed(self):
         job_id_1 = "oflWVfwb"
+        job_id_1_1 = "oflWVfwbb"  # Using an internal job ID to join these two.
         job_id_2 = "oFlWVfwB"
-        job_id_3 = "oFlWVfwc"
-        job_1 = PositionFactory(job_id=job_id_1)
+        job_1 = PositionFactory(job_id=job_id_1, internal_job_id=999)
+        job_1_1 = PositionFactory(job_id=job_id_1_1, internal_job_id=999)
         job_2 = PositionFactory(job_id=job_id_2)
 
         url = reverse("careers.feed")
@@ -31,9 +32,12 @@ class FeedTests(TestCase):
             self.assertIn(job.department, content)
             self.assertIn(job.updated_at.strftime("%a, %d %b %Y %H:%M:%S %z"), content)
             self.assertIn(job.get_absolute_url(), content)
-            self.assertNotIn("Worldwide", content)
 
-        PositionFactory(job_id=job_id_3, location="Remote")
+        # Only the first job grouped with an internal job ID is shown in the feed.
+        self.assertNotIn(job_1_1.get_absolute_url(), content)
+
+        job_id_3 = "oFlWVfwc"
+        job_3 = PositionFactory(job_id=job_id_3, job_locations="Remote")
         response = self.client.get(url, follow=True)
         content = response.content.decode("utf-8")
-        self.assertIn("Worldwide", content)
+        self.assertNotIn(job_3.get_absolute_url(), content)

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.utils.http import urlquote
+from urllib.parse import quote
 
 # Base link to Firefox for Android on the Google Play store.
 GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
@@ -11,14 +11,13 @@ GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mo
 # campaign parameters.
 # To clarify below, 'referrer' key value must be a URL encoded string of utm_*
 # key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
-GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + urlquote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
+GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + quote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
 
-# Bug 1264843: link to China build of Fx4A, for display within Fx China repack
-GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK_UTMS.replace("org.mozilla.firefox", "cn.mozilla.firefox")
+# Bug 1264843, Issue 13108: link to China build of Fx4A, for display within Fx China repack
+GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = "https://www.firefox.com.cn/mobile/get-app/"
 
-# Link to Firefox for iOS on the Apple App Store with Google Analytics campaign
-# patameters. Each implementation should add a "ct" parameter for analytics.
-APPLE_APPSTORE_FIREFOX_LINK = "https://itunes.apple.com/{country}/app/firefox-private-safe-browser/id989804926"
+# Link to Firefox for iOS on the Apple App Store.
+APPLE_APPSTORE_FIREFOX_LINK = "https://apps.apple.com/{country}/app/apple-store/id989804926"
 
 # Map Mozilla's locale codes to Apple's country codes so we can link to a
 # localized App Store page when possible. Here's the official territory list:
@@ -81,28 +80,22 @@ APPLE_APPSTORE_COUNTRY_MAP = {
 }
 
 # Link to Firefox Focus on the Apple App Store.
-APPLE_APPSTORE_FOCUS_LINK = "https://itunes.apple.com/{country}/app/firefox-focus-privacy-browser/id1055677337"
+APPLE_APPSTORE_FOCUS_LINK = "https://apps.apple.com/{country}/app/apple-store/id1055677337"
 
 # Link to Firefox Focus on the Google Play store.
 GOOGLE_PLAY_FOCUS_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.focus"
 
 # Link to Firefox Focus on the Apple App Store.
-APPLE_APPSTORE_KLAR_LINK = "https://itunes.apple.com/{country}/app/klar-by-firefox/id1073435754"
+APPLE_APPSTORE_KLAR_LINK = "https://apps.apple.com/{country}/app/apple-store/id1073435754"
 
 # Link to Firefox Klar on the Google Play store.
 GOOGLE_PLAY_KLAR_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.klar"
 
 # Link to Pocket on the Apple App Store.
-APPLE_APPSTORE_POCKET_LINK = "https://itunes.apple.com/{country}/app/pocket-save-read-grow/id309601447"
+APPLE_APPSTORE_POCKET_LINK = "https://apps.apple.com/{country}/app/apple-store/id309601447"
 
 # Link to Pocket on the Google Play store.
 GOOGLE_PLAY_POCKET_LINK = "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
-
-# Link to Lockwise on the Apple App Store.
-APPLE_APPSTORE_LOCKWISE_LINK = "https://itunes.apple.com/{country}/app/id1314000270?mt=8"
-
-# Link to Lockwise on the Google Play store.
-GOOGLE_PLAY_LOCKWISE_LINK = "https://play.google.com/store/apps/details?id=mozilla.lockbox"
 
 # Link to Firefox Beta on the Google Play Store.
 GOOGLE_PLAY_FIREFOX_BETA_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta"
@@ -113,15 +106,5 @@ GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK = "https://play.google.com/store/apps/details?i
 # Link to Firefox for Fire TV on Amazon Store.
 AMAZON_FIREFOX_FIRE_TV_LINK = "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD"
 
-# Link to Firefox Lite on the Google Play Store.
-GOOGLE_PLAY_FIREFOX_LITE_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.rocket"
-
 # Link to Firefox Send on the Google Play Store.
 GOOGLE_PLAY_FIREFOX_SEND_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
-
-# app.adjust.com links for all of the above products (Issue 7214)
-ADJUST_FIREFOX_URL = "https://app.adjust.com/2uo1qc"
-ADJUST_FOCUS_URL = "https://app.adjust.com/b8s7qo"
-ADJUST_KLAR_URL = "https://app.adjust.com/jfcx5x"
-ADJUST_POCKET_URL = "https://app.adjust.com/m54twk"
-ADJUST_LOCKWISE_URL = "https://app.adjust.com/6tteyjo"

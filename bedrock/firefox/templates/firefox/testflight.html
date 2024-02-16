@@ -6,44 +6,68 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% block page_title_prefix %}
-{{ _('Firefox for iOS Beta') }} —
+Firefox for iOS Beta —
 {% endblock %}
 
-{% block page_title %}{{ _('TestFlight') }}{% endblock %}
+{% block page_title %}TestFlight{% endblock %}
 
 {% block page_desc %}
-{{ _('Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.') }}
+Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.
 {% endblock %}
 
 {% block page_css %}
-{{ css_bundle('firefox_ios_testflight') }}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('protocol-callout')}}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('firefox_ios_testflight') }}
 {% endblock %}
 
 {% block content %}
-<main role="main">
-  {% call hero(
-  title=_('Help shape the future <br>of Firefox for iOS'),
-  desc=_('Sign up to test pre-release versions to make Firefox even better.'),
-  class='mzp-t-firefox mzp-t-dark mzp-t-product-firefox',
-  include_cta=False,
-  heading_level=1) %}
+<main>
+
+  {% call callout(
+  title='Help shape the future <br>of Firefox for iOS'|safe,
+  desc='Sign up to test pre-release versions to make Firefox even better.',
+  class='mzp-t-firefox mzp-t-dark mzp-t-hero',
+  heading_level=1,
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg') %}
   {% endcall %}
 
   <section class="mzp-l-content mzp-t-content-sm">
-    <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post" data-spinner-color="#fff">
-      {{ newsletter_form.newsletters|safe }}
+    <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post">
+      <div hidden>
+        {{ newsletter_form.newsletters|safe }}
+      </div>
       {# test flight program is only available in english #}
       <input type="hidden" name="lang" id="id_lang" value="en">
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
       <fieldset class="mzp-c-newsletter-content">
-        <div class="mzp-c-form-errors" id="newsletter-errors"></div>
+        <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+          <ul class="mzp-u-list-styled">
+            <li class="error-email-invalid hidden">
+              Please enter a valid email address
+            </li>
+            <li class="error-terms hidden">
+              You must agree to the terms and conditions
+            </li>
+            <li class="error-privacy-policy hidden">
+              You must agree to the privacy notice
+            </li>
+            <li class="error-try-again-later hidden">
+              We are sorry, but there was a problem with our system. Please try again later!
+            </li>
+          </ul>
+        </div>
 
         <div>
-          <label for="id_email">{{ _('Email') }}</label>
+          <label for="id_email">Email</label>
           <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true">
         </div>
 
@@ -53,18 +77,16 @@
           <fieldset class="mzp-u-inline">
             <legend>Format</legend>
               <label for="format-html" class="mzp-u-inline">
-                <input type="radio" id="format-html" name="fmt" value="H" checked> HTML
+                <input type="radio" id="format-html" name="format" value="H" checked> HTML
               </label>
               <label for="format-text" class="mzp-u-inline">
-                <input type="radio" id="format-text" name="fmt" value="T"> Text
+                <input type="radio" id="format-text" name="format" value="T"> Text
               </label>
           </fieldset>
             <label for="id_terms" class="mzp-u-inline">
               <input id="id_terms" name="terms" required aria-required="true" type="checkbox">
-              {% trans url='#terms-conditions' %}
               I have read and agree to these
-              <a href="{{ url }}">Terms and Conditions</a>
-              {% endtrans %}
+              <a href="#terms-conditions">Terms and Conditions</a>
             </label>
           <p>
             {{ newsletter_form.privacy|safe }}
@@ -72,54 +94,48 @@
         </div>
 
         <p class="mzp-c-form-submit">
-          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">{{ _('Submit') }}</button>
+          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">Submit</button>
         </p>
       </fieldset>
-
-      <div id="newsletter-spinner" class="hidden"></div>
     </form>
 
-    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
-      <h3>{{ _('Congrats!') }}</h3>
-      <h4>{{ _('You have been added to the Firefox for iOS testing program.') }}</h4>
+    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden">
+      <h3>Congrats!</h3>
+      <h4>You have been added to the Firefox for iOS testing program.</h4>
       <p>
-        {% trans %}
         When test spots are available, you will receive an invitation from
         TestFlight, Apple's App Store program that manages pre-release
         software, to participate in the program.
-        {% endtrans %}
-        <strong>{{ _('Please accept it.') }}</strong>
+        <strong>Please accept it.</strong>
       </p>
-      <p>{{ _('Be aware that this email may be in your spam folder.') }}</p>
+      <p>Be aware that this email may be in your spam folder.</p>
     </div>
   </section>
 
   <section class="mzp-l-content mzp-t-content-sm" id="terms-conditions">
-    <h4>{{ _('Terms and Conditions') }}</h4>
+    <h4>Terms and Conditions</h4>
     <ol class="mzp-u-list-styled">
       <li>
         <p>
-          {{ _('This pre-release program (“Program”) is only available in English.') }}
-          {{ _('You must be at least 18 years old or have your parent consent to your participation in the Program.') }}
+          This pre-release program (“Program”) is only available in English.
+          You must be at least 18 years old or have your parent consent to your participation in the Program.
         </p>
       </li>
       <li>
         <p>
-          <strong>{{ _('Installation of TestFlight is required for Program participation.') }}</strong>
-          {% trans url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
+          <strong>Installation of TestFlight is required for Program participation.</strong>
+          {% with url='https://www.apple.com/legal/internet-services/itunes/testflight/sren/terms.html' %}
           TestFlight is published by Apple and its
           <a href="{{ url }}" rel="external">terms and conditions</a> apply.
-          {% endtrans %}
+          {% endwith %}
 
-          {% trans url=url('privacy') %}
           When Mozilla receives data from you or TestFlight, we handle it in
-          accordance with our <a href="{{ url }}">Privacy Policy</a>.
-          {% endtrans %}
+          accordance with our <a href="{{ url('privacy') }}">Privacy Policy</a>.
         </p>
       </li>
       <li>
         <p>
-          {{ _('You may receive emails from TestFlight or Mozilla in connection with your participation in this Program.') }}
+          You may receive emails from TestFlight or Mozilla in connection with your participation in this Program.
         </p>
       </li>
     </ol>

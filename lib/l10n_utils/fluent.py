@@ -145,7 +145,10 @@ def l10nize(f):
         # can not use += here because that mutates the original list
         ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
         locale = kwargs.get("locale") or translation.get_language(True)
-        l10n = fluent_l10n([locale, "en"], ftl_files)
+        locales = [locale]
+        if locale != "en":
+            locales.append("en")
+        l10n = fluent_l10n(locales, ftl_files)
         return f(l10n, *args, **kwargs)
 
     return inner
@@ -164,7 +167,6 @@ def load_fluent_resources(root, locale, resource_ids):
         if locale != "en":
             path = settings.FLUENT_LOCAL_PATH.joinpath("en", "brands.ftl")
             resources.append(load_fluent_file(path))
-
     return resources
 
 
@@ -204,6 +206,11 @@ def get_active_locales(ftl_files, force=False):
     available languages. You can pass `force=True` to override this
     behavior.
     """
+    if settings.IS_POCKET_MODE:
+        # All locales in Pocket should be 100% ready to go, because they are
+        # translated by a vendor, so we can just use Prod languages all the time
+        return settings.PROD_LANGUAGES
+
     if settings.DEV and not force:
         return settings.DEV_LANGUAGES
 

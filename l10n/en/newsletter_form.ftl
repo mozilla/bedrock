@@ -5,11 +5,15 @@
 newsletter-form-please-enter-a-valid = Please enter a valid email address
 newsletter-form-you-must-agree-to = You must agree to the privacy notice
 newsletter-form-your-email-address = Your email address
+newsletter-form-we-are-sorry-but-there = We are sorry, but there was a problem with our system. Please try again later!
+newsletter-form-please-select-country = Please select a country or region
+newsletter-form-please-select-language = Please select a language
 
 # Only localize "yourname". Do not change "@example.com".
 newsletter-form-yournameexamplecom = yourname@example.com
 
 newsletter-form-select-country-or-region = Select country or region
+newsletter-form-select-language = Select language
 newsletter-form-your-email-here = YOUR EMAIL HERE
 newsletter-form-format = Format
 newsletter-form-html = HTML
@@ -35,3 +39,9 @@ newsletter-form-thanks = Thanks!
 newsletter-form-leave-this-field-empty = Leave this field empty.
 newsletter-form-yes = Yes
 newsletter-form-no = No
+multi-newsletter-form-checkboxes-legend = I want information about:
+multi-newsletter-form-checkboxes-label-mozilla = { -brand-name-mozilla-foundation }
+multi-newsletter-form-checkboxes-label-firefox = { -brand-name-firefox }
+multi-newsletter-form-checkboxes-error = Please check at least one of the newsletter options.
+multi-newsletter-form-title = Love the Web
+multi-newsletter-form-desc = Get the { -brand-name-mozilla } newsletters and help us keep the web open and free.

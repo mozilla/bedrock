@@ -1,0 +1,71 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-resources {
+    background-color: f3.$blue-primary;
+
+    @media #{$mq-sm} {
+        br {
+            display: none;
+        }
+    }
+
+    &-subtext {
+        max-width: 60ch;
+    }
+
+    .c-module-tag-title {
+        @include f3.no-topic;
+    }
+
+    .l-flex {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: $layout-md;
+        justify-content: center;
+
+        @media #{$mq-lg} {
+            justify-content: start;
+        }
+    }
+
+    .mzp-c-card {
+        flex: 1 0 $content-xs;
+
+        &.t-shadow {
+            @include f3.card-shadow(f3.$black);
+        }
+
+        &-media-wrapper {
+            margin-bottom: $spacing-md;
+        }
+
+        &-title {
+            @include text-title-2xs;
+        }
+
+        a:hover {
+            box-shadow: none;
+        }
+
+        @media screen and (max-width: $screen-md) {
+            &:not(:last-of-type) {
+                margin-bottom: $layout-sm;
+            }
+        }
+    }
+
+    .mzp-c-button {
+        margin-top: $layout-md;
+        text-align: center;
+        width: 100%;
+
+        @media #{$mq-lg} {
+            width: auto;
+        }
+    }
+}

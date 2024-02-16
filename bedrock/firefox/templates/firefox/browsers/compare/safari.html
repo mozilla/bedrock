@@ -39,9 +39,19 @@
 <div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
     <section class="compare-details-section-summary">
-      <p class="compare-details-section-intro">{{ ftl('compare-safari-if-you-use-a-mac-or-have-updated', fallback='compare-safari-if-you-use-a-mac-or-have') }}</p>
+      <p class="compare-details-section-intro">{{ ftl('compare-safari-if-you-use-a-mac-or-have-updated') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-safari.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-safari.png',
+        srcset={
+          'img/firefox/compare/compare-browser-safari-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '544',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -64,7 +74,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -91,7 +101,7 @@
 
       <p>{{ ftl('compare-safari-our-private-browsing-mode', attrs='href="https://addons.mozilla.org/firefox/addon/facebook-container/" rel="external noopener" data-cta-text="Facebook Container" data-cta-type="link"'|safe) }}</p>
 
-      <p>{{ ftl('compare-safari-as-far-as-security-goes-firefox', lockwise='href="%s" data-cta-type="link" data-cta-name="password manager"'|safe|format(url('firefox.features.password-manager')), monitor='href="https://monitor.firefox.com/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-safari-as-far-as-security-goes-firefox', lockwise='href="%s" data-cta-text="Password manager" data-cta-type="link"'|safe|format(url('firefox.features.password-manager')), monitor='href="https://monitor.mozilla.org/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-safari-if-you-choose-to-use-safari') }}</p>
 
@@ -170,18 +180,13 @@
 
       <p>{{ ftl('compare-safari-in-addition-to-the-regular') }}</p>
 
-      <p>{{ ftl('compare-safari-like-safari-firefox-encourages', attrs='href="https:/addons.mozilla.org" rel="external noopener" data-cta-text="add-ons and extensions" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-safari-like-safari-firefox-encourages', attrs='href="https://addons.mozilla.org" rel="external noopener" data-cta-text="add-ons and extensions" data-cta-type="link"'|safe) }}</p>
 
-
-    {% if ftl_has_messages('compare-safari-also-when-you-sign-up-for-updated', 'compare-safari-firefox-is-also-great-for-video', 'compare-safari-screenshots-is-another-popular') %}
-      <p>{{ ftl('compare-safari-also-when-you-sign-up-for-updated', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-safari-also-when-you-sign-up-for-updated-v2', fallback='compare-safari-also-when-you-sign-up-for-updated', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-safari-firefox-is-also-great-for-video') }}</p>
 
-      <p>{{ ftl('compare-safari-screenshots-is-another-popular', attrs='href="https:/screenshots.firefox.com" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe) }}</p>
-    {% else %}
-      <p>{{ ftl('compare-safari-also-when-you-sign-up-for', fallback='compare-safari-also-when-you-sign-up-for-fallback', pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe, send='href="https://send.firefox.com/" rel="external noopener" data-cta-text="Send" data-cta-type="link"'|safe ) }}</p>
-    {% endif %}
+      <p>{{ ftl('compare-safari-screenshots-is-another-popular', attrs='href="https://screenshots.firefox.com" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-safari-both-browsers-have-a-lot') }}</p>
 
@@ -224,7 +229,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
@@ -233,10 +238,10 @@
 
       <p>{{ ftl('compare-safari-firefox-and-safari-both-provide') }}</p>
 
-      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated', fallback='compare-safari-firefox-also-offers-a-similar', attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts'))) }}</p>
+      <p>{{ ftl('compare-safari-firefox-also-offers-a-similar-updated-v3', fallback='compare-safari-firefox-also-offers-a-similar-updated', attrs = 'href="%s" data-cta-text="Accounts" data-cta-type="link"'|safe|format(url('firefox.accounts'))) }}</p>
 
-      <p>{{ ftl('compare-safari-the-firefox-app-for-ios-and', ios='href="%s" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe|format(app_store_url('firefox')),
-              android='href="%s" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe|format(play_store_url('firefox'))) }}</p>
+      <p>{{ ftl('compare-safari-the-firefox-app-for-ios-and', ios='href="%s" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe|format(app_store_url('firefox', campaign='firefox-browsers-compare-safari')),
+              android='href="%s" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe|format(play_store_url('firefox', campaign='firefox-browsers-compare-safari'))) }}</p>
 
       <p>{{ ftl('compare-safari-since-safari-is-apples-proprietary') }}</p>
 
@@ -255,7 +260,7 @@
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-safari') }} (14)

@@ -36,7 +36,7 @@
 
   <h4 id="security-vulnerability-amounts">Rewards Amount</h4>
 
-  <p>The bounty for valid potentially exploitable critical and high security rated client security vulnerabilities will be between $10,000 and $3,000 (USD) cash reward, depending on the impact of the vulnerability and the quality of the report, as detailed below.</p>
+  <p>The bounty for valid potentially exploitable critical and high security rated client security vulnerabilities will be between $20,000 and $3,000 (USD) cash reward, depending on the impact of the vulnerability and the quality of the report, as detailed below.</p>
 
   <p>The bounty program encourages the <u>earliest possible reporting</u> of potentially exploitable bugs. A bounty <u>is not determined based on the <i>initial</i> submission</u>, but rather on the outcome of the discussion with developers. Improving test cases post-submission, figuring out if an engineer's speculation is founded or not, or other assistance that helps resolve the issue <i>will</i> increase your bounty payout.</p>
 
@@ -85,9 +85,17 @@
     <tr>
       <td>Highest Impact
         <ul class="mzp-u-list-styled">
-          <li>UXSS<sup>0</sup></li>
-          <li>Sandbox Escape<sup>1</sup></li>
-          <li>Bypassing WebExtension install prompts<sup>2</sup></li>
+          <li>Sandbox Escape<sup>0</sup></li>
+          <li>Bypassing WebExtension install prompts<sup>1</sup></li>
+        </ul>
+      </td>
+      <td>$20,000</td>
+      <td>$18,000</td>
+    </tr>
+    <tr>
+      <td>Higher Impact
+        <ul class="mzp-u-list-styled">
+          <li>UXSS<sup>2</sup></li>
         </ul>
       </td>
       <td>$10,000</td>
@@ -96,10 +104,7 @@
     <tr>
       <td>High Impact
         <ul class="mzp-u-list-styled">
-          <li>Memory Corruption</li>
-          <li>Same Origin Bypass leaking high-impact user data</li>
-          <li>Obtaining the user’s IP address if a proxy is configured</li>
-          <li>Other vulnerabilities not fitting 'Highest Impact', but still receiving a <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-high rating</a></li>
+          <li>Vulnerabilities not fitting 'Higher' or 'Highest Impact', but still receiving a <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">sec-high rating</a></li>
         </ul>
       </td>
       <td>$5,000</td>
@@ -112,18 +117,18 @@
         </ul>
       </td>
       <td colspan="2" style="text-align:center">
-        <span style="white-space:nowrap">$2,500 - $500</span><br />
+        <span style="white-space:nowrap">$2,500 - $500</span><br>
         <span style="white-space:nowrap">Typically $1000</span></td>
     </tr>
   </tbody>
   </table>
-  <p><sup>0</sup>UXSS is defined as the ability to execute privileged JavaScript in a way that allows you access to data from arbitrary origins or to affect Firefox preferences or settings.</p>
+  <p><sup>0</sup>A sandbox escape is defined as a method to run arbitrary attacker code with full user privileges in the parent process or natively on the user's computer. This can be achieved either through memory corruption or Javascript-based vulnerabilities. Vulnerabilities that assume arbitrary code execution in the content process - such as invoking an IPC method with attacker-controlled parameters - do qualify for Highest Impact.</p>
 
-  <p><sup>1</sup>Sandbox escapes that assume arbitrary code execution in the content process - such as invoking an IPC method with attacker-controlled parameters - do qualify for Highest Impact.</p>
+  <p><sup>1</sup> For Highest Impact, bypassing WebExtension Install Prompts excludes local attacks.</p>
 
-  <p><sup>2</sup> For Highest importance, bypassing WebExtension Install Prompts excludes local attacks.</p>
+  <p><sup>2</sup>UXSS is defined as the ability to execute JavaScript in an arbitrary cross-origin context. As mentioned above, complex user interaction or limited capabilities of the vulnerability (such as only being able to inject into a cross-origin domain, but not an arbitrary cross-origin domain) may decrease the bounty award.</p>
 
-  <p><sup>3</sup> Denial of Service issues that merely crash the browser are not elligible for a bounty.</p>
+  <p><sup>3</sup> Denial of Service issues that merely crash the browser are not eligible for a bounty.</p>
 
 <h2 id="exploit-mitigation-bounty">Exploit Mitigation Bug Bounty</h2>
 
@@ -162,13 +167,13 @@
 
   <p><strong>Bounty</strong>: Assuming the mitigation is bypassed in a testing scenario, with privileged access, we will treat a bypass of the above listed mitigations as High Impact using the table above, with the same payout range for baseline to high quality report.</p>
 
-  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $7K - $10K plus an additional $3500.</p>
+  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $18K - $20K plus an additional $9000.</p>
 
   <p><em>Note</em>: If you’re in the Bounty Bonus category, you may think submitting them separately could earn you slightly more money than submitting them together. We’re pretty sure that doing so would make the second report bounty-ineligible, but if you think each issue is fully independent, you’re welcome to submit them separately and we’ll consider it.</p>
 
 <h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
 
-  <p>In coordination with the GitHub Security Lab, we have launched a new program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries written in CodeQL or as clang-based checkers (clang analyzer, clang plugin using the AST API or clang-tidy). Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
+  <p>We also have a program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">written as clang-based checkers</a> - we have some documentation that <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">may help you get started or integrate and run over Firefox as a whole</a>. Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
 
   <p>We will issue a bounty for the query itself, dependent upon the quality of the submission. Because this is an experiment, we are not committing to an exact amount or range for the bounty, but we expect this will typically be in the $2500-$7500 range.</p>
 
@@ -191,7 +196,7 @@
 
   <p><b>Examples of Quality of Submission:</b> As mentioned, the bounty amount we grant for the query will be determined based on the quality of the submission, and an estimation of the number of issues we think it may identify in a one to three-year timespan. On the low end, if you submit a query that identifies a single historical issue of a syntactical misuse of an API we are unlikely to use in future code, we may not issue a bounty, and if we did it would be below the $2500 range. And on the high end, if you submit a query that matches 3 unknown issues today, in code written in the last year - we can expect it will identify a significant number of issues in the future and would be looking above the $7500 range. (Plus you’d be eligible for separate bounties on those 3 issues.)</p>
 
-  <p><b>Compatibility with Github’s Bounty:</b> Github’s bounty policy is <i>compatible</i> with Mozilla’s. This means that if you follow both Mozilla’s and Github’s policies, you are eligible to earn a bounty from both. Note that this includes <i>not</i> providing unfixed vulnerabilities <i>or queries that identify unfixed vulnerabilities</i> in Mozilla products to third parties (i.e. Github). Once we’ve resolved the issues, they have a CVE issued, and our MFSA has become public, then you can submit to Github. Please, please <a href="mailto:security@mozilla.org">talk to us</a> if you have questions about this before sharing potentially confidential information.</p>
+  <p><em>Note</em>: While we previously accepted submissions of CodeQL queries, we no longer do. You are of course encouraged to develop CodeQL queries if you think they will be valuable, and submit any findings you glean from them.</p>
 
   <h2 id="claiming-a-bounty">Claiming a Bug Bounty</h2>
 

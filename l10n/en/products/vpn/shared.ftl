@@ -9,10 +9,7 @@ vpn-shared-subscribe-link = Get { -brand-name-mozilla-vpn }
 vpn-shared-waitlist-link = Join the Waitlist
 vpn-shared-sign-in-link = Already a subscriber?
 
-# Outdated string
-vpn-shared-available-countries-v3 = We currently offer { -brand-name-mozilla-vpn } in the US, Canada, the UK, Germany, France, Italy, Spain, Belgium, Austria, Switzerland, Malaysia, New Zealand, and Singapore.
-
-vpn-shared-available-countries-v4 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Canada, France, Germany, Ireland, Italy, Malaysia, the Netherlands, New Zealand, Singapore, Spain, Switzerland, the UK, and the US.
+vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Bulgaria, Canada, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malaysia, Malta, the Netherlands, New Zealand, Poland, Portugal, Romania, Singapore, Slovenia, Slovakia, Spain, Sweden, Switzerland, the UK, and the US.
 
 # This is a standalone string that is typically displayed underneath a "Get Mozilla VPN" button.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee
@@ -77,26 +74,25 @@ vpn-shared-wireguard-copyright = { -brand-name-wireguard } is a registered trade
 
 vpn-shared-pricing-variable-heading-v2 = Choose a subscription plan that works for you
 
-# Outdated string
-vpn-shared-pricing-variable-heading = Choose a plan that works for you
+vpn-shared-one-subscription-heading = One subscription for all your devices
+vpn-shared-choose-a-plan-sub-heading = Choose a plan that works for you
 
 vpn-shared-pricing-variable-sub-heading = All of our plans include:
 vpn-shared-pricing-recommended-offer = Recommended
-vpn-shared-pricing-plan-6-month = 6 Month
-vpn-shared-pricing-plan-12-month = 12 Month
-vpn-shared-pricing-plan-monthly = Monthly
+
+vpn-shared-pricing-plan-12-month-v2 = 12 Month plan
+
+vpn-shared-pricing-plan-monthly-v2 = Monthly plan
 
 # Variables:
 #   $amount (string) - a string containing the monthly subscription price together with the appropriate currency symbol e.g. 'US$4.99' or '6,99 €'.
 vpn-shared-pricing-monthly = { $amount }<span>/month</span>
 
-# Outdated string
-vpn-shared-pricing-get-6-month = Get 6 month plan
+# Monthly price plus tax (shown in US and Canada).
+# Variables:
+#   $amount (string) - a string containing the monthly subscription price together with the appropriate currency symbol e.g. 'US$4.99' or '6,99 €'.
+vpn-shared-pricing-monthly-plus-tax = { $amount }<span>/month + tax</span>
 
-# Outdated string
-vpn-shared-pricing-get-12-month = Get 12 month plan
-
-vpn-shared-pricing-get-6-month-v2 = Get 6-month plan
 vpn-shared-pricing-get-12-month-v2 = Get 12-month plan
 vpn-shared-pricing-get-monthly = Get monthly plan
 
@@ -111,9 +107,17 @@ vpn-shared-save-percent-on = Save { $percent }% on { -brand-name-mozilla-vpn }*
 # this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
 vpn-shared-when-you-subscribe = *when you subscribe to a 12-month plan
 
+# this is used as a footnote for the previous string and should include the asterisk OR matching character for both strings.
+vpn-shared-with-an-annual-subscription = *with an annual subscription
+
 # Variables:
 #   $amount (string) - a string containing the total annual subscription price together with the appropriate currency symbol e.g. '35,94 €'
 vpn-shared-pricing-total = { $amount } total
+
+# total price plus tax (shown in US and Canada).
+# Variables:
+#   $amount (string) - a string containing the total annual subscription price together with the appropriate currency symbol e.g. '35,94 €'
+vpn-shared-pricing-total-plus-tax = { $amount } total + tax
 
 # Platform subpage shared strings
 
@@ -123,6 +127,9 @@ vpn-shared-platform-cta-button = See pricing & availability
 vpn-shared-platform-privacy-promise = Your privacy is our promise
 
 vpn-shared-platform-trust-partner-headline = About our trusted partner
+
+vpn-shared-platform-what-is = What is { -brand-name-mozilla-vpn }?
+vpn-shared-platfrom-why-choose = Why { -brand-name-mozilla-vpn }?
 # Variables:
 #   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
 #   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/
@@ -145,5 +152,62 @@ vpn-subnav-platform-windows = { -brand-name-windows }
 vpn-subnav-whats-an-ip-address = What’s an IP address?
 vpn-subnav-when-to-use-a-vpn = When to use a VPN
 vpn-subnav-vpn-vs-proxy = VPN vs Proxy
+vpn-subnav-subscribe = Subscribe to { -brand-name-mozilla-vpn }
+vpn-subnav-learn-about-vpns = Learn about VPNs
+vpn-subnav-download-mozilla-vpn = Download { -brand-name-mozilla-vpn }
+vpn-subnav-features = Features
 
-##
+## VPN Affiliate cookie notice
+
+# Variables:
+#   $attrs (string) - link to https://www.mozilla.org/privacy/websites/ with additional attributes.
+vpn-shared-affiliate-notification-message = We use cookies to understand which affiliate partner led you to { -brand-name-mozilla-vpn }. We do not share personally identifying information with our partners. Read our <a { $attrs }>Privacy Policy</a>.
+
+vpn-shared-affiliate-notification-reject = Reject
+vpn-shared-affiliate-notification-ok = OK
+
+## VPN + Relay bundle offer
+
+vpn-shared-increase-your-privacy = Increase your privacy with { -brand-name-vpn } + { -brand-name-relay }
+
+# Variables:
+#   $url (string) - link to https://relay.firefox.com/premium/
+vpn-add-relay-to-protect = Add { -brand-name-firefox-relay } to your subscription to protect your email and phone number. <a href="{ $url }">Learn more</a>.
+
+# Variables:
+#   $class_name (string) - CSS class name used to replace brand name with wordmark logo
+vpn-shared-add-firefox-relay = Add <span class="{ $class_name }">{ -brand-name-firefox-relay }</span>
+
+vpn-shared-relay-email-masking = Email masking
+vpn-shared-relay-phone-masking = Phone masking
+vpn-shared-get-vpn-plus-relay = Get { -brand-name-vpn } + { -brand-name-relay }
+vpn-shared-why-bundle = Why bundle?
+
+# Variables:
+#   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
+vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay-premium } yearly plan
+
+vpn-shared-mozilla-vpn-is-not-yet-available = { -brand-name-mozilla-vpn } is not yet available in your country
+
+## Press quotations
+
+# Section title for press quotations about Mozilla VPN
+vpn-press-as-seen-in = As seen in
+
+# Variables
+#   $attrs (string) - link to https://addons.mozilla.org/firefox/addon/multi-account-containers/ with additional attributes
+vpn-press-mozillas-vpn-can-also-integrate-into = “{ -brand-name-mozilla }’s VPN can also <a { $attrs }>integrate into some nifty privacy-protection features</a> of its { -brand-name-firefox } browser.”
+vpn-press-unique-features-like-its-multi-account = “…unique features, like its Multi-Account Containers, might make the feature easily accessible to users with more serious privacy concerns.”
+vpn-press-mozilla-vpns-feature-list-has-grown = “{ -brand-name-mozilla-vpn }’s feature list has grown considerably since launch, and the service now beats many specialist VPNs in some areas.”
+
+## Unsupported language notification
+
+# Alternative translation: Mozilla VPN isn’t currently offfered in this language ({ $language }), but you can use it in English, French, German, Spanish and <a { $href }>over 30 other languages</a>.
+# Variables
+#   $language (string) - localized native language name for the locale of the current page.
+#   $href (string) - link to https://support.mozilla.org/kb/what-languages-mozilla-vpn-available with additional attributes.
+vpn-shared-unsupported-language-warning = { -brand-name-mozilla-vpn } isn’t currently offered in { $language }, but you can use it in English, French, German, Spanish and <a { $href }>over 30 other languages</a>.
+
+# Variables
+#   $href (string) - link to https://pontoon.mozilla.org/projects/mozilla-vpn-client/ with additional attributes.
+vpn-shared-unsupported-language-contribute = Want to help bring { -brand-name-mozilla-vpn } to more people? <a { $href }>Become a volunteer translator</a>.

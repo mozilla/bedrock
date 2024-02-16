@@ -8,9 +8,6 @@ navigation-v2-download-firefox = Download { -brand-name-firefox }
 navigation-v2-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
 navigation-v2-menu = Menu
 
-# Obsolete string
-navigation-v2-get-a-firefox-account = Get a { -brand-name-firefox-account }
-
 ## Firefox menu
 
 navigation-v2-firefox-browsers = { -brand-name-firefox-browsers }
@@ -35,7 +32,11 @@ navigation-v2-view-all-firefox-browsers = View all { -brand-name-firefox-browser
 
 navigation-v2-products = Products
 navigation-v2-close-products-menu = Close Products menu
+navigation-v2-mozilla-monitor = { -brand-name-mozilla-monitor }
+
+# Obsolete string
 navigation-v2-firefox-monitor = { -brand-name-firefox-monitor }
+
 navigation-v2-see-if-your-email-has = See if your email has appeared in a company’s data breach.
 navigation-v2-pocket = { -brand-name-pocket }
 navigation-v2-save-and-discover-the-best = Save and discover the best stories from across the web.
@@ -48,8 +49,8 @@ navigation-v2-learn-how-each-firefox-product = Learn how each { -brand-name-fire
 navigation-v2-firefox-relay = { -brand-name-firefox-relay }
 navigation-v2-firefox-relay-beta = { -brand-name-firefox-relay } (beta)
 navigation-v2-sign-up-for-new-accounts = Sign up for new accounts without handing over your email address.
-navigation-v2-firefox-private-network-beta = { -brand-name-firefox-private-network } (beta)
-navigation-v2-protect-your-browsers-connection = Protect your browser’s connection to the internet.
+navigation-v2-mdn-plus = { -brand-name-mdn-plus}
+navigation-v2-new-features-and-tools = New features and tools for a customized { -brand-name-mdn} experience
 navigation-v2-view-all-products = View all Products
 
 ## Who We Are menu
@@ -68,6 +69,8 @@ navigation-v2-careers = Careers
 navigation-v2-work-for-a-mission-driven-updated = Work for a mission-driven organization that makes people-first products.
 navigation-v2-mozilla-blog = { -brand-name-mozilla } Blog
 navigation-v2-learn-about-mozilla-and = Learn about { -brand-name-mozilla } and the issues that matter to us.
+navigation-v2-stories = Stories
+navigation-v2-stories-about-how = Stories about how our people and products are changing the world for the better.
 navigation-v2-more-about-mozilla = More About { -brand-name-mozilla }
 
 ## Innovation menu
@@ -86,4 +89,5 @@ navigation-v2-common-voice = { -brand-name-common-voice }
 navigation-v2-donate-your-voice-so-the-future = Donate your voice so the future of the web can hear everyone.
 navigation-v2-webassembly = { -brand-name-webassembly }
 navigation-v2-learn-more-about-the-new = Learn more about the new, low-level, assembly-like language.
-navigation-v2-more-mozilla-innovation = More { -brand-name-mozilla } Innovation
+navigation-v2-mozilla-innovation-projects = { -brand-name-mozilla } Innovation Projects
+navigation-v2-discover-ways-to-bring = Discover ways to bring bright ideas to life.

@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -14,19 +14,20 @@ $image-path: '/media/protocol/img';
     background: transparent;
 
     .mzp-l-content {
-        padding-top: $spacing-lg;
-        padding-bottom: $spacing-lg;
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
     }
-}
 
-.mzp-c-notification-bar {
-    display: none;
-    margin: $layout-xs auto;
-}
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-top: $spacing-xl;
+            padding-bottom: $spacing-xl;
+        }
 
-.is-up-to-date .mzp-c-notification-bar.up-to-date,
-.is-out-of-date .mzp-c-notification-bar.out-of-date {
-    display: block;
+        .mzp-c-notification-bar {
+            margin-top: 0;
+        }
+    }
 }
 
 .c-page-header-inner {
@@ -35,17 +36,13 @@ $image-path: '/media/protocol/img';
     grid-template-columns: 1fr;
 }
 
-.c-page-header-up-to-date {
-    margin: 0 $layout-sm;
-}
-
 .c-page-header-logo-fx {
     @include image-replaced;
-    background: url($image-path + '/logos/firefox/browser/logo-word-hor.svg') no-repeat;
-    @include background-size(216px, 40px);
-    width: 216px;
+    background: url('/media/img/firefox/whatsnew/logo-word-hor.svg') no-repeat;
+    @include background-size(120px, 40px);
+    width: 120px;
     height: 40px;
-    margin: 0;
+    margin: 0 auto;
 }
 
 @media #{$mq-lg} {
@@ -53,5 +50,9 @@ $image-path: '/media/protocol/img';
         @include grid-column-gap($spacing-lg);
         display: grid;
         grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-logo-fx {
+        margin: 0;
     }
 }

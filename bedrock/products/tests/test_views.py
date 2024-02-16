@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
+import os
 from unittest.mock import Mock, patch
 
 from django.http import HttpResponse
@@ -19,72 +19,31 @@ from bedrock.mozorg.tests import TestCase
 from bedrock.products import views
 
 
-@patch("bedrock.newsletter.forms.get_lang_choices", lambda *x: [["en", "English"]])
-class TestVPNInviteWaitlist(TestCase):
-    def setUp(self):
-        patcher = patch("bedrock.products.views.basket.subscribe")
-        self.mock_subscribe = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def _request(self, data, expected_status=200, locale="en-US"):
-        req = RequestFactory().post("/", data)
-        req.locale = locale
-        resp = views.vpn_invite_waitlist(req)
-        assert resp.status_code == expected_status
-        return json.loads(resp.content)
-
-    def test_form_success(self):
-        resp_data = self._request(
-            {"newsletters": "guardian-vpn-waitlist", "email": "test@example.com", "country": "us", "privacy": True, "fmt": "H", "lang": "en"}
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            email="test@example.com", fpn_country="us", fpn_platform="", lang="en", newsletters="guardian-vpn-waitlist"
-        )
-
-    def test_invalid_email(self):
-        resp_data = self._request(
-            {"newsletters": "guardian-vpn-waitlist", "email": "invalid.email", "country": "us", "privacy": True, "fmt": "H", "lang": "en"}
-        )
-        assert not resp_data["success"]
-        assert "Please enter a valid email address" in resp_data["errors"]
-        assert not self.mock_subscribe.called
-
-    def test_invalid_country(self):
-        resp_data = self._request(
-            {"newsletters": "guardian-vpn-waitlist", "email": "test@example.com", "country": "zzzz", "privacy": True, "fmt": "H", "lang": "en"}
-        )
-        assert not resp_data["success"]
-        assert "Select a valid choice. zzzz is not one of the available choices." in resp_data["errors"]
-        assert not self.mock_subscribe.called
-
-    def test_platforms(self):
-        resp_data = self._request(
-            {
-                "newsletters": "guardian-vpn-waitlist",
-                "email": "test@example.com",
-                "country": "us",
-                "platforms": ["windows", "android"],
-                "privacy": True,
-                "fmt": "H",
-                "lang": "en",
-            }
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            email="test@example.com", fpn_country="us", fpn_platform="windows,android", lang="en", newsletters="guardian-vpn-waitlist"
-        )
-
-
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
-    def test_vpn_landing_page_template(self, render_mock):
+    def test_vpn_landing_page_template_us(self, render_mock):
         req = RequestFactory().get("/products/vpn/")
         req.locale = "en-US"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing.html"
+        assert template == "products/vpn/landing-refresh.html"
+
+    def test_vpn_landing_page_template_gb(self, render_mock):
+        req = RequestFactory().get("/products/vpn/")
+        req.locale = "en-GB"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing-refresh.html"
+
+    def test_vpn_landing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/")
+        req.locale = "de"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing-refresh.html"
 
     @override_settings(DEV=False)
     def test_vpn_landing_page_geo_available(self, render_mock):
@@ -104,6 +63,178 @@ class TestVPNLandingPage(TestCase):
         ctx = render_mock.call_args[0][2]
         self.assertFalse(ctx["vpn_available"])
 
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertTrue(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="False")
+    def test_vpn_landing_page_geo_available_affiliate_flow_disabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_not_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="cn")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_landing_page_geo_available_affiliate_not_supported_in_country(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="it")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    def test_vpn_landing_page_relay_bundle_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["relay_bundle_available_in_country"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    def test_vpn_landing_page_relay_bundle_not_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="gb")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["relay_bundle_available_in_country"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="False")
+    def test_vpn_landing_page_relay_bundle_disabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["relay_bundle_available_in_country"])
+
+
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNPricingPage(TestCase):
+    def test_vpn_pricing_page_template_us(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/pricing-refresh.html"
+
+    def test_vpn_pricing_page_template_de(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/?xv=legacy")
+        req.locale = "de"
+        view = views.vpn_pricing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/pricing.html"
+
+    @override_settings(DEV=False)
+    def test_vpn_pricing_page_geo_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="de")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+
+    @override_settings(DEV=False)
+    def test_vpn_pricing_page_geo_not_available(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="cn")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["vpn_available"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_pricing_page_geo_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertTrue(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="False")
+    def test_vpn_pricing_page_geo_available_affiliate_flow_disabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="us")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_pricing_page_geo_not_available_affiliate_flow_enabled(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="cn")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertFalse(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+    @override_settings(DEV=False)
+    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    def test_vpn_pricing_page_geo_available_affiliate_not_supported_in_country(self, render_mock):
+        req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="it")
+        req.locale = "en-US"
+        view = views.vpn_pricing_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertTrue(ctx["vpn_available"])
+        self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
+
+
+@override_settings(VPN_ENDPOINT="https://vpn.mozilla.org/")
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNDownloadPage(TestCase):
+    @override_settings(DEV=False)
+    def test_vpn_downoad_page_links(self, render_mock):
+        req = RequestFactory().get("/products/vpn/download/")
+        req.locale = "en-US"
+        view = views.vpn_download_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["windows_download_url"], "https://vpn.mozilla.org/r/vpn/download/windows")
+        self.assertEqual(ctx["mac_download_url"], "https://vpn.mozilla.org/r/vpn/download/mac")
+        self.assertEqual(ctx["linux_download_url"], "https://vpn.mozilla.org/r/vpn/download/linux")
+        self.assertEqual(ctx["android_download_url"], "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn")
+        self.assertEqual(ctx["ios_download_url"], "https://apps.apple.com/us/app/mozilla-vpn/id1489407738")
+
 
 class TestVPNResourceCenterHelpers(TestCase):
     def _build_mock_entry(self, entry_category_name):
@@ -112,7 +243,6 @@ class TestVPNResourceCenterHelpers(TestCase):
         return entry
 
     def test__filter_articles(self):
-
         articles = {
             "a": self._build_mock_entry("Category one"),
             "b": self._build_mock_entry("category TWO"),
@@ -226,7 +356,7 @@ class TestVPNResourceCenterHelpers(TestCase):
                 self.assertEqual(output, case["expected"])
 
 
-@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+@override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=60)
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNResourceListingView(TestCase):
     def setUp(self):
@@ -237,6 +367,7 @@ class TestVPNResourceListingView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for
@@ -246,17 +377,15 @@ class TestVPNResourceListingView(TestCase):
     def _request(
         self,
         locale,
-        path="/",
+        querystring=None,
         expected_status=200,
     ):
-        req = RequestFactory().get(path)
-        req.locale = locale
-        resp = views.resource_center_landing_view(req)
+        querystring = querystring if querystring else {}
+        resp = self.client.get(reverse("products.vpn.resource-center.landing"), querystring, HTTP_ACCEPT_LANGUAGE=locale, follow=True)
         assert resp.status_code == expected_status
         return resp
 
     def test_simple_get__for_valid_locale_with_enough_content(self, render_mock):
-
         self._request(locale="fr")
         passed_context = render_mock.call_args_list[0][0][2]
 
@@ -286,22 +415,14 @@ class TestVPNResourceListingView(TestCase):
         )
 
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self._request(locale="sk", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
-        render_mock.assert_not_called()
+        resp = self._request(locale="sk")
+        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self._request(locale="xx", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
-        render_mock.assert_not_called()
+        resp = self._request(locale="xx")
+        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
-    @override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=95)
+    @override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
         # ie, if you go to the VRC for a language we're working on but which
         # isn't active yet because it doesn't meet the activation threshold
@@ -309,15 +430,10 @@ class TestVPNResourceListingView(TestCase):
         ContentfulEntry.objects.filter(locale="fr").last().delete()
         assert ContentfulEntry.objects.filter(locale="fr").count() < ContentfulEntry.objects.filter(locale="en-US").count()
 
-        resp = self._request(locale="fr", expected_status=302, path="/test-path/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/test-path/"),
-        )
-        render_mock.assert_not_called()
+        resp = self._request(locale="fr")
+        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
     def test_category_filtering(self, render_mock):
-
         first = ContentfulEntry.objects.filter(locale="en-US").first()
         first.category = "other category"
         first.save()
@@ -326,7 +442,7 @@ class TestVPNResourceListingView(TestCase):
         last.category = "other category"
         last.save()
 
-        self._request(locale="en-US", path="/?category=other+category")
+        self._request(locale="en-US", querystring={"category": "other+category"})
         passed_context = render_mock.call_args_list[0][0][2]
 
         self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
@@ -356,7 +472,7 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
 
 
-@override_settings(CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE=60)
+@override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=60)
 class TestVPNResourceArticleView(TestCase):
     def setUp(self):
         for i in range(8):
@@ -366,6 +482,7 @@ class TestVPNResourceArticleView(TestCase):
                     category="Test Category",
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
+                    localisation_complete=True,
                     contentful_id=f"entry_{i+1}",
                     slug=f"slug-{i+1}",
                     # We only get back the .data field, so let's put something useful in here to look for
@@ -405,18 +522,75 @@ class TestVPNResourceArticleView(TestCase):
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self.client.get("/de/products/vpn/resource-center/slug-2/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
-        )
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="de")
+        # Which will 302 as expected
+        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self.client.get("/xx/products/vpn/resource-center/slug-2/")
-        self.assertEqual(
-            resp._headers["location"],
-            ("Location", "/en-US/xx/products/vpn/resource-center/slug-2/"),  # Which will 404 as expected
-        )
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="xx")
+        # Which will 302 as expected
+        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
+
+
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestMonitorScanWaitlistPage(TestCase):
+    @override_settings(DEV=False)
+    def test_monitor_scan_waitlist_template(self, render_mock):
+        req = RequestFactory().get("/products/monitor/waitlist-scan/")
+        req.locale = "en-US"
+        view = views.monitor_waitlist_scan_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
+        template = render_mock.call_args[0][1]
+        assert template == "products/monitor/waitlist/scan.html"
+
+    @override_settings(DEV=False)
+    def test_monitor_plus_waitlist_template(self, render_mock):
+        req = RequestFactory().get("/products/monitor/waitlist-plus/")
+        req.locale = "en-US"
+        view = views.monitor_waitlist_plus_page
+        view(req)
+        ctx = render_mock.call_args[0][2]
+        self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
+        template = render_mock.call_args[0][1]
+        assert template == "products/monitor/waitlist/plus.html"
+
+
+@patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
+class TestVPNMorePages(TestCase):
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    @patch.object(views, "active_locale_available", lambda *x: False)
+    def test_vpn_more_resource_center_redirect_rc_en_us(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "en-US"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should redirect to en-US/vpn/resource-center/what-is-an-ip-address
+        assert resp.status_code == 302 and resp.url == "/en-US/products/vpn/resource-center/what-is-an-ip-address/"
+
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    @patch.object(views, "active_locale_available", lambda *x: False)
+    def test_vpn_more_resource_center_redirect_ftl_active(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "ar"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should 200 as expected
+        assert resp.status_code == 200
+
+    @override_settings(DEV=True)
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    @patch.object(views, "active_locale_available", lambda *x: True)
+    def test_vpn_more_resource_center_redirect_rc_active(self, render_mock):
+        req = RequestFactory().get("/products/vpn/more/what-is-an-ip-address/")
+        req.locale = "fr"
+        view = views.vpn_resource_center_redirect
+        resp = view(req, "what-is-an-ip-address")
+        # should redirect to fr/vpn/resource-center/what-is-an-ip-address
+        assert resp.status_code == 302 and resp.url == "/fr/products/vpn/resource-center/what-is-an-ip-address/"

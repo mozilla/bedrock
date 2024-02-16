@@ -9,7 +9,6 @@ from pages.base import BasePage, BaseRegion
 
 
 class FirefoxAllPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/all/"
 
     _product_locator = (By.ID, "select-product")
@@ -50,10 +49,6 @@ class FirefoxAllPage(BasePage):
     def is_desktop_download_button_displayed(self):
         return self.is_element_displayed(*self._desktop_download_button_locator)
 
-    @property
-    def is_desktop_download_link_valid(self):
-        return "https://download.mozilla.org" in self.find_element(*self._desktop_download_button_locator).get_attribute("href")
-
     def select_product(self, value):
         el = self.find_element(*self._product_locator)
         Select(el).select_by_visible_text(value)
@@ -81,7 +76,6 @@ class FirefoxAllPage(BasePage):
 
 
 class ProductOptions(BaseRegion):
-
     _platform_locator = (By.CSS_SELECTOR, ".c-selection-platform select")
     _language_locator = (By.CSS_SELECTOR, ".c-selection-language select")
 

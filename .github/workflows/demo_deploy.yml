@@ -1,0 +1,45 @@
+name: Deploy Demo
+
+on:
+  push:
+    branches:
+      - "demo/*"
+
+jobs:
+  deploy:
+    name: Deploy Heroku
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          # this means that it is a full history clone, not a shallow one
+          # heroku push fails with a shallow clone
+          fetch-depth: 0
+      - name: Set up git credentials
+        run : |
+          # doesn't matter the credentials here since we're not committing anything
+          # but git will complain if these are not set
+          git config --global user.email 'MozmarRobot@users.noreply.github.com'
+          git config --global user.name 'MozMEAO Bot'
+      - name: Set up Heroku CLI
+        env:
+          API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          EMAIL: "heroku-bedrock-deployer@mozilla.com"
+        run: |
+          cat > ~/.netrc <<EOF
+          machine api.heroku.com
+              login ${EMAIL}
+              password ${API_KEY}
+          machine git.heroku.com
+              login ${EMAIL}
+              password ${API_KEY}
+          EOF
+      - name: Deploy
+        run: |
+          set -ex
+          # the call to xargs here just strips whitespace
+          export DEMO_NUMBER=$(echo "$GITHUB_REF_NAME" | cut -d "/" -f 2 | xargs)
+          export APP_NAME="www-demo${DEMO_NUMBER}"
+          heroku git:remote --app "$APP_NAME"
+          git push --force heroku "${GITHUB_REF_NAME}:main"

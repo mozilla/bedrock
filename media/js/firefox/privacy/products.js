@@ -12,10 +12,18 @@
     function handleOpenProtectionReport(e) {
         e.preventDefault();
 
+        // UA
         window.dataLayer.push({
             event: 'in-page-interaction',
             eAction: 'link click',
             eLabel: 'See what Firefox has blocked for you'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'protection report',
+            action: 'open',
+            label: 'See what Firefox has blocked for you'
         });
 
         Mozilla.UITour.showProtectionReport();

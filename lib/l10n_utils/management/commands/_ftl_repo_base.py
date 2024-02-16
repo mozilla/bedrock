@@ -24,8 +24,8 @@ class FTLRepoCommand(BaseCommand):
         if options["quiet"]:
             self.stdout._out = StringIO()
 
-        self.l10n_repo = GitRepo(settings.FLUENT_L10N_TEAM_REPO_PATH, settings.FLUENT_L10N_TEAM_REPO_URL)
-        self.meao_repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
+        self.l10n_repo = GitRepo(settings.FLUENT_L10N_TEAM_REPO_PATH, settings.FLUENT_L10N_TEAM_REPO_URL, settings.FLUENT_L10N_TEAM_REPO_BRANCH)
+        self.meao_repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL, settings.FLUENT_REPO_BRANCH)
 
     def update_l10n_team_files(self):
         try:
@@ -34,7 +34,7 @@ class FTLRepoCommand(BaseCommand):
         except FileNotFoundError:
             pass
         self.l10n_repo.update()
-        self.stdout.write("Updated l10n team .ftl files")
+        self.stdout.write(f"Updated l10n team .ftl files for {settings.FLUENT_L10N_TEAM_REPO_URL}")
 
     def update_fluent_files(self):
         try:
@@ -42,7 +42,7 @@ class FTLRepoCommand(BaseCommand):
         except FileNotFoundError:
             pass
         self.meao_repo.update()
-        self.stdout.write("Updated .ftl files")
+        self.stdout.write(f"Updated .ftl files for {settings.FLUENT_REPO_URL}")
 
     def config_git(self):
         """Set user config so that committing will work"""

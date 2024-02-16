@@ -6,23 +6,22 @@
 
 'use strict';
 
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const staticBundles = require('./media/static-bundles.json');
+const webpack = require('webpack');
 
 function resolveBundles(fileList) {
     return fileList.map((f) => {
-        if (f.match(/^protocol\//)) {
-            return `./node_modules/@mozilla-protocol/core/${f}`;
-        }
         return path.resolve(__dirname, 'media', f);
     });
 }
 
-function getCSSBundles() {
+function getBundles() {
     return new Promise((resolve) => {
         const allFiles = {};
         staticBundles['css'].forEach((bundle) => {
@@ -30,13 +29,6 @@ function getCSSBundles() {
             const files = resolveBundles(bundle['files']);
             allFiles[name] = files;
         });
-        resolve(allFiles);
-    });
-}
-
-function getJSBundles() {
-    return new Promise((resolve) => {
-        const allFiles = {};
         staticBundles['js'].forEach((bundle) => {
             const name = bundle['name'];
             const files = resolveBundles(bundle['files']);
@@ -46,17 +38,26 @@ function getJSBundles() {
     });
 }
 
-const jsConfig = {
-    entry: () => getJSBundles(),
+module.exports = {
+    entry: () => getBundles(),
     output: {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, 'assets/'),
         publicPath: '/media/'
     },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: { ie8: true }
+            }),
+            new CssMinimizerPlugin({})
+        ]
+    },
     module: {
         rules: [
             {
                 test: /\.es6\.js$/,
+                include: path.resolve(__dirname, 'media'),
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -73,49 +74,11 @@ const jsConfig = {
                         ]
                     }
                 }
-            }
-        ]
-    },
-    watchOptions: {
-        aggregateTimeout: 600,
-        ignored: './node_modules/'
-    },
-    performance: {
-        hints: 'warning'
-    },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                {
-                    // Copy legacy IE scripts that aren't bundled.
-                    from: path.resolve(__dirname, 'media/js/ie/'),
-                    to: 'js/ie/'
-                },
-                {
-                    // Copy minified careers pages JS.
-                    from: path.resolve(__dirname, 'media/js/careers/libs/'),
-                    to: 'js/careers/libs/'
-                }
-            ]
-        })
-    ]
-};
-
-const cssConfig = {
-    entry: () => getCSSBundles(),
-    output: {
-        filename: 'temp/[name].js',
-        path: path.resolve(__dirname, 'assets/'),
-        publicPath: '/media/'
-    },
-    optimization: {
-        minimizer: [new CssMinimizerPlugin({})]
-    },
-    module: {
-        rules: [
+            },
             {
                 test: /\.scss$/,
                 include: path.resolve(__dirname, 'media'),
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
@@ -131,40 +94,54 @@ const cssConfig = {
     },
     watchOptions: {
         aggregateTimeout: 600,
-        ignored: './node_modules/'
+        ignored: '/node_modules/'
     },
     performance: {
         hints: 'warning'
     },
+    devServer: {
+        port: 8000,
+        open: false,
+        hot: false,
+        static: false,
+        devMiddleware: {
+            index: false // specify to enable root proxy'ing
+        },
+        proxy: {
+            context: () => true,
+            target: process.env.WP_PROXY_URL || 'http://0.0.0.0:8080'
+        },
+        watchFiles: ['media/**/*.js', 'media/**/*.scss', 'bedrock/**/*.html'],
+        client: {
+            logging: 'error',
+            overlay: false
+        },
+        setupExitSignals: true,
+        onListening: () => {
+            /* eslint-disable-next-line no-console */
+            console.log(
+                '[bedrock] Please wait for bundles to finish compiling.'
+            );
+        }
+    },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    // Copy legacy IE scripts that aren't bundled.
+                    from: path.resolve(__dirname, 'media/js/ie/'),
+                    to: 'js/ie/'
+                }
+            ]
+        }),
+        new Dotenv(),
+        new webpack.DefinePlugin({
+            __SENTRY_DEBUG__: false,
+            __SENTRY_TRACING__: false
+        }),
         new MiniCssExtractPlugin({
             filename: ({ chunk }) =>
                 `css/${chunk.name.replace('--css', '')}.css`
         })
     ]
 };
-
-// Plugin will only start when Webpack is in watch mode.
-const browserSync = new BrowserSyncPlugin({
-    port: 8000,
-    proxy: process.env.BS_PROXY_URL || 'localhost:8080',
-    open: false,
-    notify: true,
-    reloadDebounce: 1000,
-    injectChanges: false,
-    files: ['./bedrock/**/*.html'],
-    ui: {
-        port: 8001
-    },
-    serveStatic: [
-        {
-            route: './media',
-            dir: './assets'
-        }
-    ]
-});
-
-jsConfig.plugins.push(browserSync);
-cssConfig.plugins.push(browserSync);
-
-module.exports = [jsConfig, cssConfig];

@@ -1,13 +1,32 @@
-[tool.black]
-line-length = 150  # To match flake8
-target-version = ['py37']
-include = '\.pyi?$'
+[tool.ruff]
+line-length = 150
+target-version = 'py39'
+extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache"]
 
-[tool.isort]
-combine_as_imports = true
-default_section = 'THIRDPARTY'
-include_trailing_comma = true
-known_django = 'django'
-known_first_party = 'bedrock,lib,pages'
-profile = 'black'
-sections = 'FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER'
+[tool.ruff.lint]
+# Set what ruff should check for.
+# See https://beta.ruff.rs/docs/rules/ for a list of rules.
+select = [
+    # TODO: Enable flake8-builtin and fix errors to fix variable name shadowing errors.
+    # "A", # flake8-builtin errors.
+    # TODO: Enable bugbear and fix errors.
+    # "B", # bugbear errors
+    "DJ", # flake8-django errors.
+    "E", # pycodestyle errors
+    "F", # pyflakes errors
+    "I", # import sorting
+    "Q", # flake8-quotes errors
+    "W", # pycodestyle warnings
+]
+
+[tool.ruff.lint.per-file-ignores]
+"bedrock/settings/__init__.py" = ["F405"]
+"bedrock/contentful/tests/data.py" = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["bedrock", "lib", "pages"]
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+combine-as-imports = true
+
+[tool.ruff.lint.isort.sections]
+django = ["django"]

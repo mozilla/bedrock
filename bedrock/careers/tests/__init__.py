@@ -12,6 +12,7 @@ from bedrock.careers.models import Position
 
 class PositionFactory(factory.django.DjangoModelFactory):
     job_id = factory.Faker("pyint")
+    internal_job_id = factory.Faker("pyint")
     title = factory.Faker("job")
     department = factory.Faker("random_element", elements=["Data Analytics", "Engineering"])
     location = factory.Faker("random_element", elements=["Mountain View", "San Francisco", "Toronto"])

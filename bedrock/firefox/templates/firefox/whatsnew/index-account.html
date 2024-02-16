@@ -4,11 +4,9 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import send_to_device with context %}
-
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_title %}{{ ftl('whatsnew-page-title-v2', fallback='whatsnew-page-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
@@ -33,16 +31,18 @@
     <div class="mzp-l-content mzp-t-content-md">
       {# If user is signed out (or undetermined), promote account #}
         <div class="show-fxa-supported-signed-out">
-          <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
+          <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-mozilla"></div>
           <h1 class="wnp-main-title">{{ ftl('whatsnew-account-main-headline') }}</h1>
-          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in') }}</p>
+
+          <p class="wnp-main-tagline">{{ ftl('whatsnew-account-main-lead-in-v2', fallback='whatsnew-account-main-lead-in') }}</p>
+
           <p class="cta">
             {{ fxa_button(
               entrypoint=entrypoint,
-              button_text=ftl('whatsnew-account-main-button'),
+              button_text=ftl('whatsnew-account-mozilla-cta', fallback='whatsnew-account-main-button'),
               class_name='mzp-t-md',
               optional_parameters={'utm_campaign': campaign},
-              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+              optional_attributes={'data-cta-text': 'Get a Mozilla account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
             ) }}
           </p>
         </div>
@@ -62,7 +62,7 @@
         {# Only certain locales get send_to_device, else they see a QRCode. #}
         {% if show_send_to_device %}
           <div id="send-to-device-wrapper" class="primary-cta">
-            {{ send_to_device(include_title=False, message_set='fx-whatsnew', spinner_color='#fff;', class='vertical') }}
+            {{ send_to_device(include_title=False, message_set='fx-whatsnew', spinner_color='#fff;') }}
           </div>
         {% else %}
           <div id="qr-wrapper" class="primary-cta">
@@ -75,5 +75,6 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('firefox_whatsnew_account') }}
 {% endblock %}

@@ -9,7 +9,6 @@ from pages.regions.modal import ModalProtocol
 
 
 class DownloadPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/new/"
 
     _download_button_locator = (By.CSS_SELECTOR, "#download-button-thanks > .download-link")

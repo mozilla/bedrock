@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class ManifestoPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/about/manifesto/"
 
     _primary_share_button_locator = (By.CSS_SELECTOR, ".share-addendum .js-manifesto-share")

@@ -26,7 +26,6 @@ class _TestCommandWithoutException(BaseCommand):
 
 @patch("bedrock.utils.management.decorators.capture_exception")
 def test_sentry_alerting_base_command__exception_raised(mock_capture_exception):
-
     assert not mock_capture_exception.called
 
     try:
@@ -39,7 +38,6 @@ def test_sentry_alerting_base_command__exception_raised(mock_capture_exception):
 
 @patch("bedrock.utils.management.decorators.capture_exception")
 def test_sentry_alerting_base_command__no_exception_raised(mock_capture_exception):
-
     assert not mock_capture_exception.called
 
     command = _TestCommandWithoutException()

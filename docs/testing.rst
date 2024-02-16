@@ -9,38 +9,77 @@ Front-end testing
 =================
 
 Bedrock runs a suite of front-end `Jasmine`_ behavioral/unit tests, which use
-`Karma`_ as a test runner. We also have a suite of functional tests using
+`Jasmine Browser Runner`_ as a test runner. We also have a suite of functional tests using
 `Selenium`_ and `pytest`_. This allows us to emulate users interacting with a
-real browser. All these test suites live in the ``tests`` directory.
+real browser. All these test suites live in the ``tests`` directory. To run the tests locally,
+you must also first download `geckodriver`_  and `chromedriver`_ and make it available
+in your system path. You can alternatively specify the path to geckodriver and chromedriver
+using the command line (see the `pytest-selenium documentation`_ for more information).
 
 The ``tests`` directory comprises of:
 
 * ``/functional`` contains pytest tests.
 * ``/pages`` contains Python page objects.
-* ``/unit`` contains the Jasmine tests and Karma config file.
+* ``/unit`` contains the Jasmine tests and Jasmine Browser Runner config file.
 
 Installation
 ------------
 
 First follow the :ref:`installation instructions for bedrock<install>`, which
-will install the specific versions of Jasmine/Karma which are needed to run the
-unit tests, and guide you through installing pip and setting up a virtual
-environment for the functional tests. The additional requirements can then be
-installed by using the following commands:
+will install the dependencies required to run the various front-end test suites.
+
+To download geckodriver and chromedriver and have it ready to run in your system, there are a couple of ways:
+
+- `Download geckdriver <https://github.com/mozilla/geckodriver/releases/latest>`_ and add it to your system path:
+
+        .. code-block:: bash
+
+            cd /path/to/your/downloaded/files/
+            mv geckodriver /usr/local/bin/
+
+- If you're on MacOS, download geckodriver directly using Homebrew, which automatically places it in your system path:
+
+        .. code-block:: bash
+
+            brew install geckodriver
+
+
+- `Download chromedriver <https://chromedriver.chromium.org/downloads>`_ and add it to your system path:
+
+        .. code-block:: bash
+
+            cd /path/to/your/downloaded/files/
+            mv chromedriver /usr/local/bin/
+
+- If you're on MacOS, download chromedriver directly using Homebrew/Cask, which automatically places it in your system path:
+
+        .. code-block:: bash
+
+            brew tap homebrew/cask
+
+            brew cask install chromedriver
+
+
+Running Jasmine tests using Jasmine Browser Runner
+--------------------------------------------------
+
+To perform a single run of the Jasmine test suite using Firefox and Chrome,
+first make sure you have both browsers installed locally, and then activate
+your bedrock virtual env.
 
 .. code-block:: bash
 
-    $ source venv/bin/activate
+    $ pyenv activate bedrock
+
+You can then run the tests with the following command:
 
 .. code-block:: bash
 
-    $ pip install -r requirements/dev.txt
+    $ npm run test
 
-Running Jasmine tests using Karma
----------------------------------
-
-To perform a single run of the Jasmine test suite using Firefox, type the
-following command:
+This will run all our front-end linters and formatting checks before running
+the Jasmine test suite. If you only want to run the tests themselves, you can
+run:
 
 .. code-block:: bash
 
@@ -57,12 +96,10 @@ Running functional tests
   Before running the functional tests, please make sure to follow the bedrock
   :ref:`installation docs<install>`, including the database sync that is needed
   to pull in external data such as event/blog feeds etc. These are required for
-  some of the tests to pass. To run the tests using Firefox, you must also first
-  download `geckodriver`_ and make it available in your `system path`_. You can
-  alternatively specify the path to geckodriver using the command line (see the
-  `pytest-selenium documentation`_ for more information).
+  some of the tests to pass.
 
-To run the full functional test suite against your local bedrock instance:
+To run the full functional test suite against your local bedrock instance in
+Mozorg mode:
 
 .. code-block:: bash
 
@@ -72,11 +109,25 @@ This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
 be reported in ``tests/functional/results.html``.
 
+To run the full functional test suite against your local bedrock instance in
+Pocket mode, things are slightly different, because of the way things are set
+up in order to allow CI to test both Mozorg Mode and Pocket Mode at the same
+time. You need to define a temporary environment variable (needed by the
+`pocket_base_url` fixture) and scope pytest to only run Pocket tests:
+
+.. code-block:: bash
+
+    $ BASE_POCKET_URL=http://localhost:8000 py.test -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
+
+This will run all test suites found in the ``tests/functional`` directory that have
+the pytest "`mark`" of `pocket_mode` and assumes you have bedrock running *in Pocket mode* at
+``localhost`` on port ``8000``. Results will be reported in ``tests/functional/results.html``.
+
 .. Note::
 
-    If you omit the ``--base-url`` command line option then a local instance of
-    bedrock will be started, however the tests are not currently able to run
-    against bedrock in this way.
+    If you omit the ``--base-url`` command line option in Mozorg mode (ie, not
+    in Pocket mode) then a local instance of bedrock will be started, however
+    the tests are not currently able to run against bedrock in this way.
 
 By default, tests will run one at a time. This is the safest way to ensure
 predictable results, due to
@@ -136,7 +187,7 @@ For example, to run the home page tests using Internet Explorer via Sauce Labs:
 
 .. code-block:: bash
 
-    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' -n auto --html tests/functional/results.html tests/functional/test_home.py
+    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName 'Windows 10' --html tests/functional/results.html tests/functional/test_home.py
 
 
 Writing Selenium tests
@@ -214,28 +265,6 @@ be enough to cover our most critical pages where legacy browser support is impor
 You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
 command line.
 
-Sanity tests
-~~~~~~~~~~~~
-
-Sanity tests behave in much the same way as smoke tests, but will also run against Internet
-Explorer 9, which is a browser that does not receive 1st class CSS/JS support (except on
-certain download pages such as /firefox/new/). The number of sanity tests we run should be
-small and cover only a handful key of pages.
-
-.. code-block:: python
-
-    import pytest
-
-    @pytest.mark.sanity
-    @pytest.mark.smoke
-    @pytest.mark.nondestructive
-    def test_download_button_displayed(base_url, selenium):
-        page = DownloadPage(selenium, base_url, params='').open()
-        assert page.is_download_button_displayed
-
-You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
-command line.
-
 Waits and Expected Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -302,12 +331,12 @@ reliability due to any potential network flakiness.
 Headless tests
 --------------
 
-There are targeted headless tests for the `download`_ and `localized download`_ pages.
+There are targeted headless tests for the `download`_ pages.
 These tests and are run as part of the pipeline to ensure that download links constructed
 via product details are well formed and return valid 200 responses.
 
-.. _Jasmine: https://jasmine.github.io/1.3/introduction.html
-.. _Karma: https://karma-runner.github.io/
+.. _Jasmine: https://jasmine.github.io/index.html
+.. _Jasmine Browser Runner: https://jasmine.github.io/setup/browser.html
 .. _Sinon: http://sinonjs.org/
 .. _Selenium: http://docs.seleniumhq.org/
 .. _pytest: http://pytest.org/latest/
@@ -320,8 +349,7 @@ via product details are well formed and return valid 200 responses.
 .. _waits: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
-.. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
-.. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
+.. _download: https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py
 .. _Basket: https://github.com/mozilla/basket
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
-.. _system path: https://developer.mozilla.org/docs/Mozilla/QA/Marionette/WebDriver#Add_executable_to_system_path
+.. _chromedriver: https://chromedriver.chromium.org/downloads

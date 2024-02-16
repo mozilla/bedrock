@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FirefoxWelcomePage1(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/welcome/1/"
 
     _monitor_primary_button_locator = (By.CSS_SELECTOR, ".primary-cta .js-fxa-product-button")

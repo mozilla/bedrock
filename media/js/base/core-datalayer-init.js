@@ -11,8 +11,6 @@
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = (window.dataLayer = window.dataLayer || []);
-    var firefoxDetailsComplete = false;
-    var fxaDetailsComplete = false;
 
     function sendCoreDataLayer() {
         var dataLayerCore = {
@@ -20,37 +18,20 @@
             pageHasDownload: analytics.pageHasDownload(),
             pageHasVideo: analytics.pageHasVideo(),
             pageVersion: analytics.getPageVersion(),
-            // permitted for www.mozill.org, will always return false on other domains
-            testPilotUser: 'testpilotAddon' in navigator ? 'true' : 'false',
-            releaseWindowVersion: analytics.getLatestFxVersion(),
-            win10SUser: analytics.isWin10S()
+            releaseWindowVersion: analytics.getLatestFxVersion()
         };
 
         dataLayer.push(dataLayerCore);
     }
 
-    function checkSendCoreDataLayer() {
-        if (firefoxDetailsComplete && fxaDetailsComplete) {
-            sendCoreDataLayer();
-        }
-    }
-
     function initCoreDataLayer() {
-        client.getFxaDetails(function (details) {
-            dataLayer.push(analytics.formatFxaDetails(details));
-            fxaDetailsComplete = true;
-            checkSendCoreDataLayer();
-        });
-
         if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
             client.getFirefoxDetails(function (details) {
                 dataLayer.push(details);
-                firefoxDetailsComplete = true;
-                checkSendCoreDataLayer();
+                sendCoreDataLayer();
             });
         } else {
-            firefoxDetailsComplete = true;
-            checkSendCoreDataLayer();
+            sendCoreDataLayer();
         }
 
         analytics.updateDataLayerPush();
@@ -67,9 +48,16 @@
                 var validParams = analytics.getAMOExperiment(params);
 
                 if (validParams) {
+                    // UA
                     dataLayer.push({
                         'data-ex-name': validParams['experiment'],
                         'data-ex-variant': validParams['variation']
+                    });
+                    // GA4
+                    dataLayer.push({
+                        event: 'experiment_view',
+                        id: validParams['experiment'],
+                        variant: validParams['variation']
                     });
                 }
             }

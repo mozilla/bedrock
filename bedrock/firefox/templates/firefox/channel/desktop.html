@@ -17,11 +17,15 @@
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
 
 {% block channels %}
-<section id="beta">
-  {% call call_out_compact(
+<section id="beta" class="mzp-is-anchor-link">
+  {% call callout_compact(
     title=ftl('firefox-channel-beta'),
     desc=ftl('firefox-channel-test-about-to-be-released'),
-    class='mzp-t-product-beta mzp-t-firefox') %}
+    class='mzp-t-product-beta mzp-t-firefox',
+    brand=True,
+    brand_product='beta',
+    brand_type='logo',
+    brand_size='xl') %}
 
     {{ download_firefox('beta', platform='desktop', force_direct=True, force_full_installer=True, alt_copy=ftl('download-button-download'), dom_id="desktop-beta-download") }}
   {% endcall %}
@@ -49,16 +53,21 @@
   </div>
 </section>
 
-<section id="developer">
-  {% call call_out_compact(
+<section id="developer" class="mzp-is-anchor-link">
+  {% call callout_compact(
     title=ftl('firefox-channel-developer-edition'),
     desc=ftl('firefox-channel-build-test-scale-and-more'),
-    class='mzp-t-product-developer mzp-t-firefox') %}
+    class='mzp-t-product-developer mzp-t-firefox',
+    brand=True,
+    brand_product='developer',
+    brand_type='logo',
+    brand_size='xl') %}
 
     {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-developer-download") }}
   {% endcall %}
-
   <div class="l-notes mzp-l-content">
+    <p class="show-linux">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox" rel="external noopener"
+    data-cta-type="link" data-cta-text="Get help with your installation"') }}</p>
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li><a href="{{ url('firefox.developer.index') }}">{{ ftl('ui-learn-more') }}</a></li>
@@ -79,16 +88,23 @@
   </div>
 </section>
 
-<section id="nightly">
-    {% call call_out_compact(
+<section id="nightly" class="mzp-is-anchor-link">
+    {% call callout_compact(
       title=ftl('firefox-channel-nightly'),
       desc=ftl('firefox-channel-get-a-sneak-peek-at-our', fallback='firefox-channel-test-brand-new-features'),
-      class='mzp-t-product-nightly mzp-t-firefox') %}
+      class='mzp-t-product-nightly mzp-t-firefox',
+      brand=True,
+      brand_product='nightly',
+      brand_type='logo',
+      brand_size='xl') %}
 
       {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-nightly-download") }}
     {% endcall %}
 
   <div class="l-notes mzp-l-content">
+    <p class="show-linux">{{ ftl('download-button-using-debian',
+      attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox" rel="external noopener"
+      data-cta-type="link" data-cta-text="Get help with your installation"') }}</p>
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-channel-release-notes') }}</a></li>
       <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{ ftl('firefox-channel-nightly-blog') }}</a></li>
@@ -107,17 +123,7 @@
         <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
+    <p>{{ ftl('firefox-channel-nightly-update-one-or-more-times') }}</p>
   </div>
 </section>
-{% endblock %}
-
-{% block structured_data %}
-  {
-    "@context": "https://schema.org/",
-    "@graph": [
-      {% include 'includes/structured-data/software/firefox-beta-software.json' %}
-      ,
-      {% include 'includes/structured-data/software/firefox-nightly-software.json' %}
-    ]
-  }
 {% endblock %}

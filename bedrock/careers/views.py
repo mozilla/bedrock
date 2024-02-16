@@ -4,16 +4,16 @@
 
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import DetailView, ListView
 
 from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.models import Position
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.wordpress.models import BlogPost
-from lib.l10n_utils import LangFilesMixin, render
+from lib.l10n_utils import L10nTemplateView, LangFilesMixin, RequireSafeMixin, render
 
 
-class HomeView(LangFilesMixin, TemplateView):
+class HomeView(L10nTemplateView):
     template_name = "careers/home.html"
 
     def get_context_data(self, **kwargs):
@@ -31,16 +31,38 @@ class HomeView(LangFilesMixin, TemplateView):
         return context
 
 
-class InternshipsView(LangFilesMixin, TemplateView):
-    template_name = "careers/internships.html"
+class DiversityView(L10nTemplateView):
+    template_name = "careers/diversity.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        posts = BlogPost.objects.filter_by_blogs("careers")
+        featured = posts.filter_by_tags("story").first()
+        if featured:
+            context["featured_post"] = featured
+            context["recent_posts"] = posts.exclude(id=featured.id)[:2]
+        else:
+            context["featured_post"] = None
+            context["recent_posts"] = posts[:3]
+
+        return context
 
 
-class BenefitsView(LangFilesMixin, TemplateView):
+class TeamsView(L10nTemplateView):
+    template_name = "careers/teams.html"
+
+
+class LocationsView(L10nTemplateView):
+    template_name = "careers/locations.html"
+
+
+class BenefitsView(L10nTemplateView):
     template_name = "careers/benefits.html"
 
 
-class PositionListView(LangFilesMixin, ListView):
-    model = Position
+class PositionListView(LangFilesMixin, RequireSafeMixin, ListView):
+    queryset = Position.objects.exclude(job_locations="Remote")
     template_name = "careers/listings.html"
     context_object_name = "positions"
 
@@ -50,7 +72,7 @@ class PositionListView(LangFilesMixin, ListView):
         return context
 
 
-class PositionDetailView(LangFilesMixin, DetailView):
+class PositionDetailView(LangFilesMixin, RequireSafeMixin, DetailView):
     model = Position
     context_object_name = "position"
     template_name = "careers/position.html"
@@ -58,16 +80,16 @@ class PositionDetailView(LangFilesMixin, DetailView):
     def get_object(self, queryset=None):
         if queryset is None:
             queryset = self.get_queryset()
-        return get_object_or_404(queryset, **self.kwargs)
+
+        post = get_object_or_404(queryset, **self.kwargs)
+        return post.cover
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         position = context["position"]
 
         context["meta_description"] = generate_position_meta_description(position)
-
-        related_positions = Position.objects.filter(department=position.department).exclude(id=position.id)
-        context["related_positions"] = related_positions
+        context["postings"] = list(Position.objects.filter(internal_job_id=position.internal_job_id).exclude(job_locations="Remote"))
 
         return context
 

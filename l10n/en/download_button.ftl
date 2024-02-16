@@ -23,7 +23,7 @@ download-button-please-follow-these = Please follow <a href="{ $url }">these ins
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/system-requirements/
-download-button-your-system-does-not = Your system doesn't meet the <a href="{ $url }">requirements</a> to run { -brand-name-firefox }.
+download-button-your-system-does-not = Your system doesn’t meet the <a href="{ $url }">requirements</a> to run { -brand-name-firefox }.
 
 download-button-firefox-other-platforms = { -brand-name-firefox } for Other Platforms & Languages
 download-button-update-your-firefox = Update your { -brand-name-firefox }
@@ -43,3 +43,31 @@ download-button-firefox-ios = <span>{ -brand-name-firefox }</span> for { -brand-
 download-button-firefox-privacy = { -brand-name-firefox } Privacy
 download-button-firefox-privacy-notice = { -brand-name-firefox } Privacy Notice
 download-button-download = Download
+
+# Variables:
+#   $channel_name (string) - e.g. Firefox Beta, Firefox Nightly
+#   $help_url (url) - link to https://support.mozilla.org/
+#   $os_version (string) - e.g. Windows 8.1, macOS 10.14
+download-button-unsupported-platform = { $channel_name } is <a href="{ $help_url }">no longer supported</a> on { $os_version } and below.
+
+download-button-please-download-esr = Please download { -brand-name-firefox-esr } (Extended Support Release) to use { -brand-name-firefox }.
+download-firefox-esr = Download { -brand-name-firefox-esr }
+download-firefox-esr-32 = Download { -brand-name-firefox-esr } 32-bit
+download-firefox-esr-64 = Download { -brand-name-firefox-esr } 64-bit
+download-a-different-build = Download a different build
+
+## Linux
+
+# Obsolete string
+download-button-linux-32 = Download { -brand-name-linux } 32-bit
+
+# Obsolete string
+download-button-linux-64 = Download { -brand-name-linux } 64-bit
+
+download-button-linux-32-v2 = Download for Linux 32-bit
+download-button-linux-64-v2 = Download for Linux 64-bit
+
+# Variables
+#   $attrs (attrs) - link to https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+# Note: Debian and Ubuntu are brand names and shouldn't be translated
+download-button-using-debian = Using Debian, Ubuntu or any Debian-based distribution?<br> You can set up our <a { $attrs }>APT repository instead</a>.

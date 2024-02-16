@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FirstRunPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/nightly/firstrun/"
 
     _start_testing_locator = (By.CSS_SELECTOR, ".contribute .test .mzp-c-button")

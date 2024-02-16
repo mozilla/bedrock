@@ -2,17 +2,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '../protocol/components/fxa-form';
 @import '../protocol/components/custom-menu-list';
+@import '../protocol/components/fxa-form';
 @import './sticky-promo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/zap';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// Hello developer in the future! This file serves multiple different pages
+// which isn't so obvious, so make changes with care! Be sure to check the
+// following pages: /firefox/browsers/, /firefox/products/, /firefox/mobile/.
+// See issue https://github.com/mozilla/bedrock/issues/11405
 
 $send-svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(3.000000, 1.000000)" stroke="#{$color-link-hover}" stroke-width="2"><path d="M2,16 L2,20 C2,21.1045695 2.8954305,22 4,22 L14,22 C15.1045695,22 16,21.1045695 16,20 L16,2 C16,0.8954305 15.1045695,-2.02906125e-16 14,0 L4,0 C2.8954305,2.02906125e-16 2,0.8954305 2,2 L2,6" stroke-linecap="round"></path><path d="M2,4 L16,4"></path><path d="M2,18 L16,18"></path><path d="M3.55271368e-15,11 L10,11" stroke-linecap="round" stroke-linejoin="round"></path><polyline stroke-linecap="round" stroke-linejoin="round" points="6 7 10 11 6 15"></polyline></g></g></svg>';
 $send-url: svg-url($send-svg);
@@ -94,6 +98,15 @@ main .mzp-l-content {
     }
 }
 
+// center firefox logo on small viewports
+.mzp-c-split.mzp-l-split-center-on-sm-md .mzp-c-logo {
+    margin: 0 auto $spacing-2xl;
+
+    @media #{$mq-md} {
+        margin: 0 0 $spacing-2xl;
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // use split component for top banner
 
@@ -172,10 +185,6 @@ main .mzp-l-content {
             clear: left;
             margin-left: 0;
         }
-
-        &.c-landing-grid-wide {
-            width: 100%;
-        }
     }
 }
 
@@ -212,10 +221,6 @@ main .mzp-l-content {
 
         .c-landing-grid-img {
             max-width: 100%;
-        }
-
-        .c-landing-grid-wide {
-            grid-column: span 2;
         }
     }
 
@@ -283,6 +288,16 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
+// issue 13317
+.fx-unsupported .cta-download[data-download-os="Desktop"]{
+    display: none;
+}
+
+// issue 13317
+.fx-unsupported .menu-desktop {
+    display: none;
+}
+
 // * -------------------------------------------------------------------------- */
 // Mobile download links, show app store links when user is on mobile
 
@@ -328,7 +343,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 // * -------------------------------------------------------------------------- */
 // dev tools and desktop compare blocks
 
-.t-dev,
 .t-compare {
     background-color: $color-marketing-gray-20;
     margin-top: $layout-xs + $layout-2xl;
@@ -353,14 +367,12 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-.c-dev-title,
 .c-compare-title {
     @include text-title-sm;
     font-weight: bold;
 }
 
 @media #{$mq-sm} {
-    .t-dev,
     .t-compare {
         margin-left: auto;
         margin-right: auto;
@@ -373,7 +385,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 @media #{$mq-md} {
-    .t-dev,
     .t-compare {
         border-radius: $border-radius-sm;
         margin-top: 0;
@@ -394,116 +405,4 @@ $url-download-link-hover: svg-url($download-link-hover);
             width: 100%;
         }
     }
-}
-
-@media (min-width: #{$screen-lg}) and (max-width: #{$screen-xl - 1px}) {
-    .t-dev {
-        .mzp-c-card-feature.mzp-l-card-feature-left-half {
-            display: block;
-        }
-
-        .mzp-c-split-body {
-            width: 100%;
-            text-align: center;
-        }
-
-        .mzp-c-split-media {
-            display: none;
-        }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// FxA account signup form
-
-// box around form
-.mzp-c-emphasis-box.t-account {
-    @include white-links;
-    background: $color-ink-80 linear-gradient($color-violet-50 -100%, $color-ink-80);
-    color: $color-white;
-    margin: 0 auto $v-grid-xs auto;
-    position: relative;
-
-    @media #{$mq-sm} {
-        margin-bottom: $v-grid-md;
-        max-width: 560px;
-    }
-
-    @media #{$mq-lg} {
-        margin-bottom: $v-grid-lg;
-        max-width: 100%;
-
-        &::after {
-            @include bidi((
-                (right, $layout-md, calc(560px + #{$layout-md * 2})),
-                (left, calc(560px + #{$layout-md * 2}), $layout-md),
-            ));
-            content: '';
-            background: url('/media/img/firefox/browsers/fxa.svg') center center no-repeat;
-            background-size: contain;
-            display: block;
-            position: absolute;
-            top: $layout-md;
-            bottom: $layout-md;
-        }
-    }
-
-    @media #{$mq-xl} {
-        &::after {
-            background-size: auto;
-        }
-    }
-}
-
-// form
-.fxa-form-cta {
-    max-width: 560px;
-    margin: 0 auto;
-
-    .mzp-c-form-title {
-        @include font-firefox;
-    }
-
-    @media #{$mq-md} {
-        margin: 0;
-    }
-}
-
-.fxa-email-form-intro {
-    display: none;
-}
-
-.mzp-c-field-info {
-    @include text-body-xs;
-}
-
-.fxa-email-field-container {
-    @media #{$mq-md} {
-        @supports (display:grid) {
-            & {
-                @include grid-column-gap($spacing-lg);
-                display: grid;
-                grid-template-columns: 1fr 100px;
-            }
-
-            .mzp-c-field {
-                padding-bottom: 0;
-            }
-
-            .mzp-c-button-container {
-                display: block; // not flex
-
-                // put in fake form label to push button down height of real form label next to it
-                &::before {
-                    @include field-label;
-                    content: '.';
-                    visibility: hidden;
-                }
-            }
-        }
-    }
-}
-
-.fxa-signin {
-    margin-top: $spacing-xl;
 }

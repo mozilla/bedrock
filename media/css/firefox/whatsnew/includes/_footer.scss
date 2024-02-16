@@ -5,60 +5,13 @@
 // * -------------------------------------------------------------------------- */
 // Footer overrides
 
-.c-footer {
+.mzp-c-footer.mzp-t-light {
     background: $color-white;
     color: $color-ink-80;
 
-    a:link,
-    a:visited {
-        color: $color-ink-80;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-ink-90;
-            text-decoration: underline;
-        }
-    }
-
-    .c-footer-sections {
+    .mzp-c-footer-sections {
         border-top: 1px solid $color-light-gray-30;
         border-bottom: 1px solid $color-light-gray-30;
         padding: $layout-md 0;
-    }
-}
-
-.c-footer-list-social li {
-    a:hover,
-    a:active,
-    a:focus {
-        border-bottom-color: transparent;
-    }
-
-    a.twitter {
-        background-image: url('/media/protocol/img/icons/social/twitter/black.svg');
-    }
-
-    a.instagram {
-        background-image: url('/media/protocol/img/icons/social/instagram/black.svg');
-    }
-
-    a.youtube {
-        background-image: url('/media/protocol/img/icons/social/youtube/black.svg');
-    }
-}
-
-.c-footer-primary-logo a {
-    background-image: url('/media/protocol/img/logos/mozilla/logo-word-hor.svg');
-}
-
-.c-footer-legal {
-    a:link,
-    a:visited {
-        &:hover,
-        &:focus,
-        &:active {
-            text-decoration: none;
-        }
     }
 }

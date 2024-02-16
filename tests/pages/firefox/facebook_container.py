@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class FacebookContainerPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/facebookcontainer/"
 
     _facebook_container_link_locator = (By.CLASS_NAME, "extension-cta")

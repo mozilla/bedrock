@@ -16,8 +16,9 @@
  # the view for the platform pages will activate the locale if either language file is active  #}
 
 {% block extrahead %}
- {{ super() }}
- {{ css_bundle('firefox_new_platform') }}
+  {{ super() }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_new_platform') }}
 {% endblock %}
 
 {% if ftl_file_is_active('firefox/new/platform') %}
@@ -27,14 +28,25 @@
 {# else it will fall back to the strings from new/download.ftl specified in base_download #}
 {% endif %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block features %}
   {% if ftl_file_is_active('firefox/new/platform') %}
     <section class="features">
       <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
         {% call picto(
           title=card1_title,
-          image_url=card1_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card1_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}
@@ -42,8 +54,13 @@
         {% endcall %}
         {% call picto(
           title=card2_title,
-          image_url=card2_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card2_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}
@@ -51,8 +68,13 @@
         {% endcall %}
         {% call picto(
           title=card3_title,
-          image_url=card3_image_url,
-          image_width=96,
+          image=resp_img(
+            url=card3_image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '96'
+            }
+          ),
           body=True,
           base_el='li'
         ) %}

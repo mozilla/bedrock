@@ -10,6 +10,8 @@
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-emphasis-box') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('nightly_whatsnew') }}
 {% endblock %}
 
@@ -31,7 +33,7 @@
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
       <img src="{{ static('protocol/img/logos/firefox/browser/nightly/logo-word-hor-white.svg') }}" alt="{{ ftl('nightly-whatsnew-firefox-nightly') }}" width="216" height="40" class="c-page-header-logo-fx">
-      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+      <div class="mzp-c-notification-bar mzp-t-success">
         {% set message = ftl('nightly-whatsnew-your-firefox-nightly') if ftl_has_messages('nightly-whatsnew-your-firefox-nightly') else self.page_title() %}
         <p>{{ message }}</p>
       </div>
@@ -41,13 +43,30 @@
   <div class="mzp-l-content">
     <div class="mzp-c-emphasis-box">
       <h2 class="c-emphasis-box-title">{{ self.page_title() }}</h2>
-      <p>{{ ftl('nightly-whatsnew-every-4-to-5-weeks', fallback='nightly-whatsnew-every-6-to-8-weeks') }}</p>
+      {% if LANG == 'es-ES' and country_code == 'ES' %}
+      <section class="mzp-c-callout  mzp-t-dark  mzp-t-content-xl mzp-l-content-xl">
+          <div class="mzp-l-content">
+              <h4 class="mzp-c-callout-title">¿Quieres ayudar en España?</h4>
+              <div class="mzp-c-callout-desc">
+                  <p>El éxito de Mozilla y de Firefox también depende de la existencia e implicación de comunidades locales en todos los aspectos del proyecto.</p>
+                  <p>¿Quieres implicarte en uno de los proyectos open source más importantes en el mundo y ayudarnos a crear una web más abierta para todos?</p>
+              </div>
+
+              <p><a href="https://chat.mozilla.org/#/room/#spain:mozilla.org" class="mzp-c-button mzp-t-dark" type="button" data-cta-type="button" data-cta-text="Join Spain channel">¡Entra en el chat y hablemos!</a></p>
+          </div>
+      </section>
+      <br>
+      {% endif %}
+      <p>{{ ftl('nightly-whatsnew-every-4-to-5-weeks') }}</p>
 
       <p>{{ ftl('nightly-whatsnew-this-is-a-good') }}</p>
 
-      <p>{{ ftl('nightly-whatsnew-if-you-want-to', blog='https://blog.nightly.mozilla.org/', twitter='https://twitter.com/FirefoxNightly') }}</p>
+      <p>{{ ftl('nightly-whatsnew-if-you-want-to-v2', blog='https://blog.nightly.mozilla.org/', twitter='https://twitter.com/FirefoxNightly', mastodon='https://mozilla.social/@FirefoxNightly') }}</p>
 
-      <p>{{ ftl('nightly-whatsnew-want-to-know-which', mdn='https://developer.mozilla.org/Firefox/Experimental_features?utm_source=firefox&utm_medium=whatsnew&utm_campaign=nightly') }}</p>
+      <p>
+          {% set attrs = 'href="#" class="nightly-experiments-link"' %}
+          {{ ftl('nightly-whatsnew-want-to-know-which-v2', attrs=attrs) }}
+        </p>
 
       <p>{{ ftl('nightly-whatsnew-do-you-experience', bugzilla='https://bugzilla.mozilla.org') }}</p>
 
@@ -58,7 +77,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_nightly_whatsnew') }}
+  {{ js_bundle('firefox_whatsnew_nightly') }}
 {% endblock %}
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}

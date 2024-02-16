@@ -25,6 +25,7 @@ def dummy_vrc_pages():
             slug=f"test-slug-{idx}",
             # TODO: support different locales
             locale="en-US",
+            localisation_complete=True,
             content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
             classification=CONTENT_CLASSIFICATION_VPN,
             data={},

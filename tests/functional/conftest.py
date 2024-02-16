@@ -24,23 +24,17 @@ def driver_log():
 
 @pytest.fixture(scope="session")
 def session_capabilities(pytestconfig, session_capabilities):
-    if pytestconfig.getoption("driver") == "SauceLabs":
+    driver = pytestconfig.getoption("driver")
+    if driver == "SauceLabs":
         session_capabilities.setdefault("tags", []).append("bedrock")
 
-        # Avoid default SauceLabs proxy for IE.
-        session_capabilities["avoidProxy"] = True
+        if session_capabilities.get("browserName", driver).lower() == "internet explorer":
+            # Avoid default SauceLabs proxy for IE.
+            session_capabilities["avoidProxy"] = True
 
-    if pytestconfig.getoption("driver") == "BrowserStack":
-        session_capabilities.setdefault("tags", []).append("bedrock")
-
-        if session_capabilities.get("browser").lower() == "internet explorer" and session_capabilities.get("browser_version") == "11.0":
-            # https://www.browserstack.com/docs/automate/selenium/using-sendkeys-on-remote-IE11
-            session_capabilities["browserstack.sendKeys"] = True
-            session_capabilities["browserstack.use_w3c"] = True
-
-            # Set Selenium and IE driver version - https://www.browserstack.com/automate/capabilities
-            session_capabilities["browserstack.selenium_version"] = "3.141.59"
-            session_capabilities["browserstack.ie.driver"] = "3.141.59"
+            # Use JavaScript events instead of native
+            # window events for more reliable IE testing.
+            session_capabilities["se:ieOptions"] = {"nativeEvents": False}
 
     return session_capabilities
 
@@ -104,8 +98,8 @@ def pytest_generate_tests(metafunc):
 
 def get_web_page(url):
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = requests.get(url, timeout=TIMEOUT, headers={"accept-language": "en"})
     except requests.RequestException:
         # retry
-        r = requests.get(url, timeout=TIMEOUT)
+        r = requests.get(url, timeout=TIMEOUT, headers={"accept-language": "en"})
     return BeautifulSoup(r.content, "html.parser")

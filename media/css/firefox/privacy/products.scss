@@ -2,18 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-monitor';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../protocol/components/fxa-form';
 
 .t-medium .mzp-l-content,
@@ -24,10 +21,10 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Top Page Call Out
 
-.privacy-products-call-out-main {
+.privacy-products-callout-main {
     background-color: $color-white;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         @include text-title-md;
         margin: $spacing-md 0;
 
@@ -99,7 +96,7 @@ $image-path: '/media/protocol/img';
     @include light-links;
     background-color: $color-violet-80;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         margin: 0 auto $spacing-lg;
         max-width: 24em;
 
@@ -166,7 +163,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.call-out-privacy {
+.callout-privacy {
     background-color: $color-marketing-gray-10;
 }
 

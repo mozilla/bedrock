@@ -43,7 +43,7 @@ class Command(BaseCommand):
             default=settings.FLUENT_LOCAL_PATH,
             help="Check files in the external Fluent Repo instead of the bedrock files.",
         )
-        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
 
     def handle(self, *args, **options):
         self.parser = NoisyFluentParser()

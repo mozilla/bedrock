@@ -95,3 +95,7 @@ class TestSitemapView(TestCase):
         )
         resp = self.client.get("/fr/sitemap.xml")
         assert resp.content.decode() == good_resp
+
+    def test_post(self):
+        resp = self.client.post("/en-US/sitemap.xml")
+        assert resp.status_code == 405

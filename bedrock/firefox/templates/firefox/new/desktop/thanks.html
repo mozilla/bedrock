@@ -14,15 +14,12 @@
 
 {% block extrahead %}
   {{ super() }}
+  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox_desktop_download_thanks') }}
 
   <!--[if IE]>
     {{ css_bundle('firefox_desktop_download_thanks_ie') }}
   <![endif]-->
-{% endblock %}
-
-{% block string_data %}
-  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
 {% endblock %}
 
 {% block site_header %}
@@ -34,7 +31,7 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-download-thanks' %}
 
 {% block content %}
-<main role="main">
+<main>
   <div class="mzp-c-notification-bar mzp-t-success show-auto-download-notification">
     {# fallback_url is replaced by the platform download link via JS, but if
         something fails the user should still get a link to a working download path. #}
@@ -50,15 +47,15 @@
 
     <h1 class="mzp-has-zap-8 c-section-title show-mac">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-mac') }}</h1>
 
-    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
+    <h1 class="mzp-has-zap-8 c-section-title show-linux">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-select-linux') }}</h1>
 
-    <h1 class="c-section-title show-linux-arm">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
+    <h1 class="mzp-has-zap-8 c-section-title show-else">{{ ftl('firefox-desktop-download-almost-there') }}<br>{{ ftl('firefox-desktop-download-now-else') }}</h1>
 
     <h1 class="c-section-title show-unknown">{{ ftl('firefox-desktop-download-interrupted') }}</h1>
 
   {% if ftl_has_messages('firefox-desktop-download-if-you-see-a-prompt', 'firefox-desktop-download-visit-support-for-more') %}
-    <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10">
-      <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-10-black.svg') }}" alt="{{ ftl('firefox-desktop-download-windows-10') }}" width="132" height="24">
+    <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10-plus">
+      <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-black.svg') }}" alt="{{ ftl('firefox-desktop-download-windows') }}" width="132" height="28">
       <p>{{ ftl('firefox-desktop-download-if-you-see-a-prompt', attrs='href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals)) }}</p>
 
       <p><a href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Visit Support for More Details">{{ ftl('firefox-desktop-download-visit-support-for-more') }}</a></p>
@@ -66,18 +63,39 @@
   {% endif %}
 
     <div class="c-support-install">
-      {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-mac">{{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}</span>
-      {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-windows">{{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}</span>
-      {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
-      <span class="show-else">{{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}</span>
+      {# shown to all Windows users from the release of Firefox 103 onward. #}
+      {% if switch('firefox-103-taskbar-message') and ftl_has_messages('firefox-desktop-download-taskbar') %}
+        <p class="show-windows">
+          <a href="https://support.mozilla.org/kb/how-unpin-firefox-taskbar-windows-10{{ referrals }}">
+            {{ ftl('firefox-desktop-download-taskbar') }}
+          </a>
+        </p>
+      {% endif %}
+      <p class="show-mac">
+        {% set support_mac_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-mac%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_mac_attrs) }}
+      </p>
+      <p class="show-windows">
+        {% set support_windows_attrs = 'href="https://support.mozilla.org/kb/how-download-and-install-firefox-windows%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_windows_attrs) }}
+      </p>
+      <div class="show-linux">
+        <div class="c-linux-button-group">
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32-v2') }}</a>
+          <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64-v2') }}</a>
+        </div>
+        {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
+        <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
+      </div>
+      <p class="show-else">
+        {% set support_else_attrs = 'href="https://support.mozilla.org/products/firefox/install-and-update-firefox%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals) %}
+        {{ ftl('firefox-desktop-download-get-help', attrs=support_else_attrs) }}
+      </p>
 
       {# Edge-case platform support messaging #}
-      <span class="show-linux-arm">{{ ftl('firefox-desktop-download-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
-      <span class="show-unknown">
+      <p class="show-unknown">
         {{ ftl('firefox-desktop-download-your-system-may-not', url=firefox_url('desktop', 'all'))}}
-      </span>
+      </p>
     </div>
 
     {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
@@ -90,8 +108,5 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('tracking-pixel') %}
-    {{ js_bundle('firefox_new_pixel') }}
-  {% endif %}
   {{ js_bundle('firefox_new_thanks') }}
 {% endblock %}

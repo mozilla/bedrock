@@ -6,13 +6,20 @@
 
 {% extends 'products/vpn/resource-center/base-article.html' %}
 
+{%- block page_desc -%}
+  {% if info.seo.description %}{{ info.seo.description }}{% endif %}
+{%- endblock -%}
+
 {% block article_category %}
   {% if info.category %}{{ info.category }}{% endif %}
 {% endblock %}
+
 {% block article_title %}{{ info.title }}{% endblock %}
+
 {% block article_slug %}{{ info.slug }}{% endblock %}
+
 {% block vpn_article %}
-{% for entry in entries -%}
-  {{ entry.body|external_html }}
-{% endfor %}
+  {% for entry in entries -%}
+    {{ entry.body|external_html }}
+  {% endfor %}
 {% endblock vpn_article %}

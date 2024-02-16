@@ -246,7 +246,7 @@ class TestSpeakerRequest(TestCase):
 
         assert not form.is_valid()
 
-    def test_form_valid_attachement(self):
+    def test_form_valid_attachment(self):
         """
         Form should be valid when attachment under/at size limit.
         """
@@ -258,7 +258,7 @@ class TestSpeakerRequest(TestCase):
         # make sure form is valid
         assert form.is_valid()
 
-    def test_form_invalid_attachement(self):
+    def test_form_invalid_attachment(self):
         """
         Form should be invalid and contain attachment errors when attachment
         over size limit.
@@ -301,7 +301,7 @@ class TestSpeakerRequest(TestCase):
 
     @patch("bedrock.press.views.render_to_string", return_value="rendered")
     @patch("bedrock.press.views.EmailMessage")
-    def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
+    def test_email_with_attachment(self, mock_email_message, mock_render_to_string):
         """
         Make sure email is sent with attachment.
         """

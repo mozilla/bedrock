@@ -2,22 +2,24 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/article';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 .seo-hero {
     background: $color-purple-90 url('/media/img/firefox/browsers/best-browser/hero-pattern.png') 55% 60% no-repeat;
     @include background-size(2500px);
-    color: get-theme('body-text-color-inverse');
+    color: $body-text-color-inverse;
     text-align: center;
     min-height: 520px;
     margin-bottom: $spacing-xl;
+
+    @supports (--css: variables) {
+        color: var(--body-text-color-inverse);
+    }
 
     .hero-content {
         padding-top: $layout-xl;
@@ -29,11 +31,14 @@ $image-path: '/media/protocol/img';
         }
 
         h1 {
-            @include font-base;
             @include text-title-lg;
-            color: get-theme('title-text-color-inverse');
+            color: $title-text-color-inverse;
             margin: 0 auto $spacing-2xl;
             max-width: 580px;
+
+            @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+            }
         }
 
         p {
@@ -61,7 +66,6 @@ $image-path: '/media/protocol/img';
         margin-bottom: $layout-lg;
 
         h2 {
-            @include font-base;
             @include text-title-md;
         }
     }
@@ -70,10 +74,10 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Call out
 
-.mzp-c-call-out-compact.mzp-t-dark {
+.mzp-l-compact.mzp-t-dark {
     background: $color-purple-90;
 
-    .mzp-c-call-out-title {
+    .mzp-c-callout-title {
         color: $color-orange-50;
     }
 }

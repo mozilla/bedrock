@@ -2,11 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import 'includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+
 
 // * -------------------------------------------------------------------------- */
 // Guarantee / Availability Copy
@@ -111,9 +114,10 @@ main .mzp-c-button.mzp-t-xl {
 }
 
 // The hover / focus color for secondary protocol button colors is the same as the
-// pricing container background color, which creates an a11y issue. So set the button
+// VPN container background color, which creates an a11y issue. So set the button
 // background color to white to give a better contrast change.
-.vpn-pricing-variable-plans .mzp-c-button.mzp-t-secondary {
+.vpn-pricing-variable-plans .mzp-c-button.mzp-t-secondary,
+.vpn-download-list .mzp-c-button.mzp-t-secondary {
     background: $color-white;
 }
 
@@ -121,11 +125,14 @@ main .mzp-c-button.mzp-t-xl {
 // VPN Product Feature List
 
 .vpn-feature-list.mzp-u-list-styled {
-    @include bidi(((text-align, left, right),));
+    @include bidi((
+        (margin-left, 0, margin-right, 0),
+        (text-align, left, right),
+    ));
     @include text-body-lg;
     display: inline-block;
     list-style: none;
-    margin: 0 0 $spacing-lg 0;
+    margin-bottom: $spacing-lg;
 
     li {
         @include bidi((
@@ -175,5 +182,22 @@ main .mzp-c-button.mzp-t-xl {
     a:link,
     a:visited {
         @include text-body-xs;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Platform pages
+
+.platform-article {
+    padding-top: 0;
+}
+
+.c-vpn-platform-footer {
+    text-align: center;
+
+    .mzp-c-wordmark {
+        margin-left: auto;
+        margin-right: auto;
+        background-position: center;
     }
 }

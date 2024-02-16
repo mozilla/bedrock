@@ -1,0 +1,30 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block article_title_short %}{{ ftl('features-eyedropper-eyedropper-tool') }}{% endblock %}
+{% block article_title %}{{ ftl('features-eyedropper-select-colors-in-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-eyedropper-identify-the-exact-color-on-a') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-eyedropper-there-are-a-lot-of-reasons') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/eyedropper.png",
+    srcset={
+        "img/firefox/features/eyedropper-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": ftl('features-eyedropper-screenshot-of-the-eyedropper-tool'),
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>{{ ftl('features-eyedropper-you-can-find-the-eyedropper') }}</p>
+{% endblock article_content %}

@@ -1,0 +1,55 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block article_title_short %}{{ ftl('pdf-editor-pdf-editor') }}{% endblock %}
+{% block article_title %}{{ ftl('pdf-editor-add-text-to-pdfs') }}{% endblock %}
+{% block page_desc %}{{ ftl('pdf-editor-view-and-edit-pdf-files-right-in') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('pdf-editor-if-you-need-to-add-stuff-to-a-pdf') }}</p>
+
+<h2>{{ ftl('pdf-editor-fill-in-forms-online-without') }}</h2>
+
+<p>{{ ftl('pdf-editor-weve-all-faced-this-you-need-to') }}</p>
+
+<p>{{ ftl('pdf-editor-no-more-now-all-you-need-to-do') }}</p>
+
+<h2>{{ ftl('pdf-editor-add-text') }}</h2>
+
+<p>{{ ftl('pdf-editor-open-the-pdf-in-firefox-click-text') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/edit-pdf-text.png",
+    srcset={
+        "img/firefox/features/edit-pdf-text-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ ftl('pdf-editor-add-drawings-or-your-signature') }}</h2>
+
+<p>{{ ftl('pdf-editor-open-the-pdf-in-firefox-click-draw') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/edit-pdf-draw.png",
+    srcset={
+        "img/firefox/features/edit-pdf-draw-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+{% endblock article_content %}

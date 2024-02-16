@@ -9,7 +9,6 @@ from pages.regions.download_button import DownloadButton
 
 
 class BestBrowserPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/best-browser/"
 
     _download_button_locator = (By.ID, "safebrowser-hero-download")

@@ -1,0 +1,37 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<aside class="monitor-feature mzp-l-content">
+  <div class="feature-wrapper">
+    {{ picture(
+    url='img/home/2023/mozilla-monitor-logo-hor.svg',
+    sources=[
+      {
+        'media': '(max-width: 760px)',
+        'srcset': {
+          'img/home/2023/mozilla-monitor-logo-hor.svg': 'default'
+        }
+      },
+      {
+        'media': '(min-width: 760px)',
+        'srcset': {
+          'img/home/2023/mozilla-monitor-logo-ver.svg': 'default'
+        }
+      },
+    ],
+    optional_attributes={
+      'loading': 'eager',
+      'class': 'c-monitor-logo',
+      'alt': ''
+    }
+)}}
+    <h2>Stop sites from selling you out <br>with Monitor <span>Plus</span></h2>
+    <p class="c-cta">
+      <a href="https://monitor.firefox.com/?utm_medium=mozilla-websites&utm_source=mozilla.org&utm_campaign=monitor-plus-launch-us&utm_content=moz-banner-a-us" rel="external noopener" target="_blank" class="mzp-c-button mzp-t-product"
+        data-cta-text="Start with a free scan" data-cta-type="fxa-monitor" data-cta-position="mid-page-banner">Start with a free scan</a>
+    </p>
+  </div>
+</aside>

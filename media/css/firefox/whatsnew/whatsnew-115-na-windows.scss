@@ -1,0 +1,45 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import 'includes/dark-mode';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+.wnp-content-main {
+    color: $color-black;
+    text-align: center;
+}
+
+.wnp-main-title {
+    @include text-title-md;
+    padding: 0 $layout-xl;
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-xl;
+}
+
+.wnp-sign-off {
+    color: $color-black;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .wnp-main-title,
+    .wnp-main-tagline,
+    .wnp-sign-off {
+        color: $color-white;
+    }
+
+    .wnp-content-main {
+        @include white-links;
+    }
+}

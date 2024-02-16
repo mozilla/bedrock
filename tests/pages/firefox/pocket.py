@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FirefoxPocketPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/pocket/"
 
     _pocket_primary_button_locator = (By.CSS_SELECTOR, "#pocket-hero .js-fxa-product-button")

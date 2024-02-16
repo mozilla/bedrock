@@ -1,0 +1,79 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% block content %}
+  <section class="ctd-promo">
+
+    <!-- CTD Promo for non-Firefox users -->
+    <div class="ctd-promo-non-fx">
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md',
+        body_class=None,
+        media_class='mzp-l-split-h-center mzp-l-split-v-center',
+        media_after=False,
+        image=resp_img(
+            url='img/home/2023/ctd-onboarding.png',
+            srcset={
+              'img/home/2023/ctd-onboarding.png': '768w',
+              'img/home/2023/ctd-onboarding-mobile.png': '767w'
+            },
+            sizes={
+            "(max-width: 767px)": "50vw",
+            "default": "calc(100vw)"
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'width': '520',
+          },)
+        ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">Firefox</div>
+    <h2>Dein Browser ist soooooo Standard</h2>
+    <p>Wir sagen nicht, dass Firefox auf jeden Fall der bessere Browser für dich ist. Wir sagen nur, dass es sich lohnen könnte, den Browser zu wechseln.
+    </p>
+    <p><small>(Wir haben auch ein paar wirklich gute Argumente.)</small></p>
+
+    <a href="{{ url('firefox') }}" class="mzp-c-button mzp-t-product" data-cta-text="Ich schau mir Firefox mal an" data-cta-type="button" data-cta-position="banner">Ich schau mir Firefox mal an</a>
+    {% endcall %}
+    </div>
+
+    <!-- CTD Promo for Firefox users -->
+    <div class="ctd-promo-fx">
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md',
+        body_class=None,
+        media_class='mzp-l-split-h-center mzp-l-split-v-center',
+        media_after=False,
+        image=resp_img(
+            url='img/home/2023/ctd-onboarding.png',
+            srcset={
+              'img/home/2023/ctd-onboarding.png': '768w',
+              'img/home/2023/ctd-onboarding-mobile.png': '767w'
+            },
+            sizes={
+            "(max-width: 767px)": "50vw",
+            "default": "calc(100vw)"
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'width': '520',
+          },)
+        ) %}
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">Firefox</div>
+    <h2>Und was machen wir jetzt?</h2>
+    <p>Dieser Banner soll eigentlich Firefox bewerben, aber den nutzt du ja schon. (Yay!)
+    </p>
+    <p>
+      Wir könnten dich nach deinem Lieblingsdino fragen, ein kleines Gedicht für dich schreiben, oder dir unseren Mobile Browser zeigen.
+    </p>
+
+    <a href="{{ url('firefox.browsers.mobile.index') }}" class="mzp-c-button mzp-t-product" data-cta-text="Zeigt mir den Mobile Browser" data-cta-type="button" data-cta-position="banner">Zeigt mir den Mobile Browser</a>
+    </div>
+
+  {% endcall %}
+
+  </section>
+
+{% endblock %}

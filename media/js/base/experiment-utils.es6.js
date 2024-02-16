@@ -4,14 +4,16 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const knownExperimentalParams = [
+const knownExcludedarams = [
     'automation=true', // Automated functional tests
-    'entrypoint_experiment=', // Firefox Accounts experiments
+    'cjevent=', // CJ Affiliate marketing referral links
+    'entrypoint_experiment=', // Mozilla accounts experiments
     'entrypoint_variation=',
     'experiment=', // Stub attribution experiments
     'variation=',
     'utm_medium=cpc', // Ad campaign tests
-    'utm_source=firefox-browser' // Firefox in-product tests
+    'utm_source=firefox-browser', // Firefox in-product tests
+    'reason=manual-update' // https://github.com/mozilla/bedrock/issues/11071
 ];
 
 /**
@@ -27,7 +29,7 @@ function isApprovedToRun(params) {
     if (queryString) {
         queryString = decodeURIComponent(queryString);
 
-        return knownExperimentalParams.every((param) => {
+        return knownExcludedarams.every((param) => {
             return queryString.indexOf(param) === -1;
         });
     }
@@ -35,6 +37,4 @@ function isApprovedToRun(params) {
     return true;
 }
 
-module.exports = {
-    isApprovedToRun
-};
+export { isApprovedToRun };

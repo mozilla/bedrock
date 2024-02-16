@@ -154,5 +154,12 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
+    Utils.allowsMotion = function () {
+        return (
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+        );
+    };
+
     window.Mozilla.Utils = Utils;
 })();

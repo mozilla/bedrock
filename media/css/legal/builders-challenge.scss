@@ -1,0 +1,35 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.builders-challenge-terms {
+    ol > li::marker {
+        font-weight: bold;
+    }
+}
+
+.nested-lists {
+    counter-reset: count;
+
+    .nested-counter-list {
+        li {
+            counter-increment: count 1;
+
+            &::marker {
+                content: counter(count, lower-alpha) '. ';
+                font-weight: 500;
+            }
+        }
+    }
+
+    .deep-nested-counter-list {
+        li {
+            counter-increment: count 1;
+
+            &::marker {
+                content: counter(count, lower-alpha) '. ';
+                font-weight: 500;
+            }
+        }
+    }
+}

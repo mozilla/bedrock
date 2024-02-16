@@ -1,16 +1,21 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import os
-from unittest.mock import ANY, Mock, patch
 
+import json
+import os
+from unittest.mock import Mock, patch
+
+from django.core import mail
 from django.http.response import HttpResponse
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
+from bedrock.mozorg.models import WebvisionDoc
 from bedrock.mozorg.tests import TestCase
 
 
@@ -19,17 +24,17 @@ class TestViews(TestCase):
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""
         with self.activate("en-US"):
-            resp = self.client.get(reverse("mozorg.home"), {"f": "5"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5"})
             assert b"product=firefox-stub-f5&" in resp.content
 
     def test_download_button_bad_funnelcake(self):
         """The download button should not have a bad funnelcake ID."""
         with self.activate("en-US"):
-            resp = self.client.get(reverse("mozorg.home"), {"f": "5dude"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5dude"})
             assert b"product=firefox-stub&" in resp.content
             assert b"product=firefox-stub-f5dude&" not in resp.content
 
-            resp = self.client.get(reverse("mozorg.home"), {"f": "999999999"})
+            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "999999999"})
             assert b"product=firefox-stub&" in resp.content
             assert b"product=firefox-stub-f999999999&" not in resp.content
 
@@ -54,34 +59,70 @@ class TestRobots(TestCase):
         self.assertEqual(response.get("Content-Type"), "text/plain")
 
 
-@patch("bedrock.mozorg.views.l10n_utils.render")
-class TestHomePage(TestCase):
+class TestSecurityDotTxt(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
+        self.view = views.SecurityDotTxt()
 
-    def test_home_en_template(self, render_mock):
+    def test_no_redirect(self):
+        response = self.client.get("/.well-known/security.txt", HTTP_HOST="www.mozilla.org")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get("Content-Type"), "text/plain")
+        self.assertContains(response, "security@mozilla.org")
+
+
+@override_settings(DEV=False)
+@patch("bedrock.mozorg.views.l10n_utils.render", return_value=HttpResponse())
+class TestHomePageLocales(TestCase):
+    def test_post(self, render_mock):
+        req = RequestFactory().post("/")
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        resp = view(req)
+        assert resp.status_code == 405
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "en-US"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
 
-    def test_home_de_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "de"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-de.html", ANY)
+        req.locale = "en-US"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
 
-    def test_home_fr_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "fr"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home-fr.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-new.html"]
 
-    def test_home_locale_template(self, render_mock):
+    @patch.object(views, "ftl_file_is_active", lambda *x: False)
+    def test_old_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
-        req.locale = "es"
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, "mozorg/home/home.html", ANY)
+        req.locale = "es-ES"
+        view = views.HomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["mozorg/home/home-old.html"]
+
+    def test_no_post(self, render_mock):
+        req = RequestFactory().post("/")
+        req.locale = "en-US"
+        home_view = views.HomeView.as_view()
+        resp = home_view(req)
+        self.assertEqual(resp.status_code, 405)
 
 
 @pytest.mark.django_db
@@ -90,21 +131,16 @@ class TestHomePage(TestCase):
     (
         (
             "abc",
-            {"page_type": "pageHome", "info": {"theme": "mozilla"}},
-            "mozorg/home/home-contentful.html",
-        ),
-        (
-            "def",
             {"page_type": "pagePageResourceCenter", "info": {"theme": "mozilla"}},
             "products/vpn/resource-center/article.html",
         ),
         (
-            "ghi",
+            "def",
             {"page_type": "OTHER", "info": {"theme": "firefox"}},
             "firefox/contentful-all.html",
         ),
         (
-            "jkl",
+            "ghi",
             {"page_type": "OTHER", "info": {"theme": "mozilla"}},
             "mozorg/contentful-all.html",
         ),
@@ -130,7 +166,6 @@ def test_contentful_preview_view(
     page_data,
     expected_template,
 ):
-
     mock_page_data = Mock(name="mock_page_data")
     mock_page_data.get_content.return_value = page_data
     contentfulpage_mock.return_value = mock_page_data
@@ -142,3 +177,124 @@ def test_contentful_preview_view(
     client.get(url, follow=True)
     assert render_mock.call_count == 1
     assert render_mock.call_args_list[0][0][1] == expected_template
+
+
+class TestWebvisionDocView(TestCase):
+    def test_doc(self):
+        WebvisionDoc.objects.create(name="summary", content={"title": "<h1>Summary</h1>"})
+        resp = self.client.get(reverse("mozorg.about.webvision.summary"), follow=True)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.context["doc"], {"title": "<h1>Summary</h1>"})
+
+    def test_missing_doc_is_404(self):
+        resp = self.client.get(reverse("mozorg.about.webvision.full"))
+        self.assertEqual(resp.status_code, 404)
+
+
+class TestWebvisionRedirect(TestCase):
+    def test_redirect(self):
+        # Since the webvision URL requires a WebvisionDoc to exist, we test this
+        # here instead of in the redirects tests.
+        WebvisionDoc.objects.create(name="summary", content="")
+        resp = self.client.get("/webvision/", follow=True, HTTP_ACCEPT_LANGUAGE="en")
+        self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
+
+
+class TestMiecoEmail(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.view = views.mieco_email_form
+        with self.activate("en-US"):
+            self.url = reverse("mozorg.email_mieco")
+
+        self.data = {
+            "name": "The Dude",
+            "email": "foo@bar.com",
+            "interests": "abiding, bowling",
+            "description": "The rug really tied the room together.",
+        }
+
+    def tearDown(self):
+        mail.outbox = []
+
+    def test_not_post(self):
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Only POST requests are allowed"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    def test_bad_json(self):
+        resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Error decoding JSON"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    def test_invalid_email(self):
+        resp = self.client.post(self.url, content_type="application/json", data='{"email": "foo@bar"}')
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Invalid form data"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    def test_invalid_message_id(self):
+        self.data["message_id"] = "the-dude"
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.content, b'{"error": 400, "message": "Invalid form data"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
+    @patch("bedrock.mozorg.views.EmailMessage")
+    def test_success(self, mock_emailMessage, mock_render_to_string):
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+
+        self.assertEqual(resp.status_code, 200)
+        mock_emailMessage.assert_called_once_with(
+            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
+        )
+        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
+    @patch("bedrock.mozorg.views.EmailMessage")
+    def test_success_mieco(self, mock_emailMessage, mock_render_to_string):
+        self.data["message_id"] = "mieco"
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+
+        self.assertEqual(resp.status_code, 200)
+        mock_emailMessage.assert_called_once_with(
+            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
+        )
+        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
+    @patch("bedrock.mozorg.views.EmailMessage")
+    def test_success_innovations(self, mock_emailMessage, mock_render_to_string):
+        self.data["message_id"] = "innovations"
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+
+        self.assertEqual(resp.status_code, 200)
+        mock_emailMessage.assert_called_once_with(
+            views.MIECO_EMAIL_SUBJECT["innovations"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["innovations"]
+        )
+        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertIn("Access-Control-Allow-Origin", resp.headers)
+        self.assertIn("Access-Control-Allow-Headers", resp.headers)
+
+    def test_outbox(self):
+        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(len(mail.outbox), 1)
+
+        email = mail.outbox[0]
+        self.assertIn(f"Name: {self.data['name']}", email.body)
+        self.assertIn(f"E-mail: {self.data['email']}", email.body)
+        self.assertIn(f"Interests: {self.data['interests']}", email.body)
+        self.assertIn(f"Message:\n{self.data['description']}", email.body)

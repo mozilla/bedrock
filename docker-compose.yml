@@ -1,10 +1,9 @@
 version: '3.4'
 services:
-  # Run browser-sync and compile static assets.
+  # Run webpack-dev-server and compile static assets.
   #
-  # This is the primary server and it proxies
-  # the Django app so that it can add the fancy
-  # browser refresh JS.
+  # This is the primary server and it proxies the
+  # Django app so that Webpack can watch for file changes.
   assets:
     build:
       context: .
@@ -19,7 +18,7 @@ services:
       - ./bedrock/:/app/bedrock:delegated
       - ./assets/:/app/assets:delegated
     environment:
-      BS_PROXY_URL: "app:8080"
+      WP_PROXY_URL: "http://app:8080"
 
   # the django app
   app:
@@ -30,6 +29,8 @@ services:
     platform: linux/amd64
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
+    environment:
+        SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8080:8080"
     volumes:
@@ -85,6 +86,7 @@ services:
     env_file: .env
     environment:
       RUN_SUPERVISOR: "true"
+      SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8000:8000"
     volumes:
@@ -121,3 +123,12 @@ services:
       target: app-base
     image: mozmeao/bedrock_code:${GIT_COMMIT:-latest}
     platform: linux/amd64
+
+  # Python dependency management
+  compile-requirements:
+    image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
+    platform: linux/amd64
+    command:
+      ./bin/compile-requirements.sh
+    volumes:
+      - .:/app

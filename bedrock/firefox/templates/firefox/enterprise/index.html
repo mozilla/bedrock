@@ -6,12 +6,14 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out_compact, picto, split with context %}
+{% from "macros-protocol.html" import picto, split with context %}
 
 {% block page_title_full %}{{ ftl('firefox-enterprise-get-firefox-for-your-enterprise-with') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-enterprise-get-unmatched-data-protection') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox-enterprise') }}
 {% endblock %}
 
@@ -29,16 +31,16 @@
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">
-        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+      <h2 class="c-sub-navigation-title is-summary">
+        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
           <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
          {{ ftl('sub-navigation-firefox') }}
         </a>
       </h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.developer.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Developer Edition">{{ ftl('sub-navigation-developer-edition') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
+      <ul class="c-sub-navigation-list is-details is-closed">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.developer.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Developer Edition">{{ ftl('sub-navigation-developer-edition') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-text="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
       </ul>
     </div>
   </div>
@@ -46,9 +48,9 @@
 {% endblock %}
 
 {% block content %}
-<main role="main">
+<main>
   {% call split(
-    image_url='img/firefox/enterprise/fx-browser-img.svg',
+    image=resp_img('img/firefox/enterprise/fx-browser-img.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
     block_class='mzp-t-dark t-enterprise mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-v-start mzp-l-split-h-start',
     media_after=True
@@ -73,8 +75,14 @@
       <ul class="mzp-l-columns mzp-t-columns-three">
         {% call picto(
           title=ftl('firefox-enterprise-your-data-stays-your-business'),
-          image_url='img/firefox/enterprise/icon-data-privacy.svg',
-          image_width='44',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-data-privacy.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '44',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           {% if LANG == 'en-US' %}
@@ -86,8 +94,14 @@
 
         {% call picto(
           title=ftl('firefox-enterprise-deploy-when-and-how-you-want'),
-          image_url='img/firefox/enterprise/icon-deploy.svg',
-          image_width='53',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-deploy.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '53',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('firefox-enterprise-with-install-packages-and') }}</p>
@@ -95,8 +109,14 @@
 
         {% call picto(
           title=ftl('firefox-enterprise-choose-your-release-cadence'),
-          image_url='img/firefox/enterprise/icon-release.svg',
-          image_width='49',
+          image=resp_img(
+            url='img/firefox/enterprise/icon-release.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '49',
+              'loading': 'lazy'
+            }
+          ),
           body=True,
         ) %}
           <p>{{ ftl('firefox-enterprise-get-rapid-releases-to-make') }}</p>
@@ -118,22 +138,22 @@
             <h4 class="mzp-c-menu-list-title">{{ ftl('firefox-enterprise-select-your-download') }}</h4>
             <ul class="mzp-c-menu-list-list download-platform-list">
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox">
                   {{ ftl('firefox-enterprise-firefox-browser') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox">
                   {{ ftl('firefox-enterprise-firefox-browser-msi-installer') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox Extended Support Release">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox Extended Support Release">
                   {{ ftl('firefox-enterprise-firefox-extended-support-release') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox Extended Support Release">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox Extended Support Release">
                   {{ ftl('firefox-enterprise-firefox-extended-support-release-msi') }}
                 </a>
               </li>
@@ -161,12 +181,12 @@
             <h4 class="mzp-c-menu-list-title">{{ ftl('firefox-enterprise-select-your-download') }}</h4>
             <ul class="mzp-c-menu-list-list download-platform-list">
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox">
                   {{ ftl('firefox-enterprise-firefox-browser') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox Extended Support Release">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox Extended Support Release">
                   {{ ftl('firefox-enterprise-firefox-extended-support-release') }}
                 </a>
               </li>
@@ -193,22 +213,22 @@
             <h4 class="mzp-c-menu-list-title">{{ ftl('firefox-enterprise-select-your-download') }}</h4>
             <ul class="mzp-c-menu-list-list download-platform-list">
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox">
                   {{ ftl('firefox-enterprise-firefox-browser') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox">
                   {{ ftl('firefox-enterprise-firefox-browser-msi-installer') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox Extended Support Release">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox Extended Support Release">
                   {{ ftl('firefox-enterprise-firefox-extended-support-release') }}
                 </a>
               </li>
               <li class="mzp-c-menu-list-item">
-                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox Extended Support Release">
+                <a class="download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox Extended Support Release">
                   {{ ftl('firefox-enterprise-firefox-extended-support-release-msi') }}
                 </a>
               </li>
@@ -238,10 +258,6 @@
   </div>
 
 </main>
-{% endblock %}
-
-{% block structured_data %}
-  {% include 'includes/structured-data/software/firefox-enterprise-software.json' %}
 {% endblock %}
 
 {% block js %}

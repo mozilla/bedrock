@@ -5,19 +5,13 @@
  */
 
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('core-datalayer-page-id.js', function () {
-    beforeEach(function () {
-        // stub out Mozilla.Cookie lib
-        window.Mozilla.Cookies = sinon.stub();
-        window.Mozilla.Cookies.hasItem = sinon.stub();
-        window.Mozilla.Cookies.getItem = sinon.stub();
-        window.Mozilla.Cookies.removeItem = sinon.stub();
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
     });
 
     describe('getPageId', function () {
@@ -62,11 +56,13 @@ describe('core-datalayer-page-id.js', function () {
 
     describe('buildDataObject', function () {
         it('should contain customReferrer if found in cookie', function () {
+            const expected = 'http://www.google.com';
             spyOn(Mozilla.Analytics, 'getTrafficCopReferrer').and.returnValue(
-                'http://www.google.com'
+                expected
             );
             const obj = Mozilla.Analytics.buildDataObject();
             expect(obj.customReferrer).toBeDefined();
+            expect(Mozilla.Analytics.customReferrer).toEqual(expected);
         });
 
         it('should not contain customReferrer if not found in cookie', function () {
@@ -75,6 +71,26 @@ describe('core-datalayer-page-id.js', function () {
             );
             const obj = Mozilla.Analytics.buildDataObject();
             expect(obj.customReferrer).not.toBeDefined();
+            expect(Mozilla.Analytics.customReferrer).toEqual('');
+        });
+    });
+
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(Mozilla.Analytics.getReferrer()).toEqual(expected);
+        });
+
+        it('should return an empty string if customReferrer is direct', function () {
+            Mozilla.Analytics.customReferrer = 'direct';
+            expect(Mozilla.Analytics.getReferrer()).toEqual('');
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(Mozilla.Analytics.getReferrer(expected)).toEqual(expected);
         });
     });
 });

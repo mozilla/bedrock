@@ -23,6 +23,7 @@ def test_signup_default_values(base_url, selenium):
 @pytest.mark.nondestructive
 def test_sign_up_success(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()
+    assert not page.sign_up_successful
     page.expand_form()
     page.type_email("success@example.com")
     page.select_text_format()
@@ -35,6 +36,7 @@ def test_sign_up_success(base_url, selenium):
 @pytest.mark.nondestructive
 def test_sign_up_failure(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()
+    assert not page.is_form_error_displayed
     page.expand_form()
     page.type_email("invalid@email")
     page.select_text_format()

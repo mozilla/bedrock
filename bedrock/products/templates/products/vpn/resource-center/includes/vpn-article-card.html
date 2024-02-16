@@ -6,11 +6,14 @@
 
 {% from 'macros-protocol.html' import card %}
 
-{{ card (
+{% set image_url = article.info.seo.image or static('img/products/vpn/resource-center/article-1-light.svg') %}
+{% set image = '<img class="mzp-c-card-image" src="' ~ image_url ~ '">' %}
+
+{{ card(
   title=article.info.title,
   ga_title=article.info.title,
   aspect_ratio='mzp-has-aspect-16-9',
   desc=article.info.blurb,
-  image_url=article.info.seo.image or "img/products/vpn/resource-center/article-1-light.svg",
+  image=image,
   link_url=url('products.vpn.resource-center.article', article.info.slug)
-)}}
+) }}

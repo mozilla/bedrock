@@ -131,6 +131,8 @@ class TestFluentViewTranslationUtils(TestCase):
 
     def test_ftl_view_util(self):
         assert fluent.ftl("fluent-title", locale="de", ftl_files="mozorg/fluent") == "Title in German"
+        assert fluent.ftl("fluent-title", locale="fr", ftl_files="mozorg/fluent") == "Title in French"
+        assert fluent.ftl("fluent-title", locale="en", ftl_files="mozorg/fluent") == "This is a test of the new Fluent L10n system"
 
     def test_ftl_view_util_no_mutate_list(self):
         """Should not mutate the ftl_files list"""

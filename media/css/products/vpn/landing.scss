@@ -2,11 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-relay';
 
 // * -------------------------------------------------------------------------- */
 // Smooth Scroll
@@ -19,11 +21,19 @@ html {
     }
 }
 
+.c-pricing-top {
+    margin-top: $layout-xl;
+
+    @media #{$mq-md} {
+        margin-top: $layout-2xl;
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // Waitlist Feature Block
 
 .vpn-waitlist-feature-block {
-    margin: $layout-xl 0;
+    margin: 0 0 $layout-xl 0;
     text-align: center;
 
     .vpn-feature-list.mzp-u-list-styled {
@@ -33,7 +43,6 @@ html {
 
     @media #{$mq-md} {
         @include bidi(((text-align, left, right),));
-        margin: $layout-2xl 0;
     }
 
     @media #{$mq-lg} {
@@ -44,20 +53,23 @@ html {
 }
 
 // * -------------------------------------------------------------------------- */
-// Featured Press Logos
+// VPN + Relay bundle promo block
 
-.vpn-featured-press-logos {
-    margin: $layout-lg 0;
-    text-align: center;
+.has-relay-promo {
+    .vpn-connect-to-countries-and-servers {
+        margin-bottom: 0;
+    }
 
-    .vpn-featured-press-heading {
-        @include font-base;
-        @include font-size(18px);
-        font-weight: normal;
+    .vpn-variable-pricing-block {
+        margin-top: 0;
+    }
+}
 
-        html[lang^='en'] & {
-            text-transform: uppercase;
-        }
+.vpn-content-block-relay-bundle-promo {
+    margin-top: 0;
+
+    .vpn-content-media-desc > p > a {
+        display: inline-block;
     }
 }
 

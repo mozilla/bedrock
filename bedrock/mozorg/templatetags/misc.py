@@ -4,7 +4,6 @@
 
 # coding: utf-8
 
-import random
 import re
 import urllib.parse
 from os import path
@@ -15,21 +14,15 @@ from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
-from django.utils import six
-from django.utils.http import urlquote
-from django.utils.translation import ugettext as _
-
-try:
-    from django.utils.encoding import smart_unicode as smart_text
-except ImportError:
-    from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 
 import bleach
 import jinja2
 from django_jinja import library
+from markupsafe import Markup
+from product_details import product_details
 
 from bedrock.base.templatetags.helpers import static
-from bedrock.firefox.firefox_details import firefox_ios
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
 
@@ -73,7 +66,7 @@ def l10n_img_file_name(ctx, url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def l10n_img(ctx, url):
     """Output the url to a localized image.
 
@@ -113,7 +106,7 @@ def l10n_img(ctx, url):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def l10n_css(ctx):
     """
     Output the URL to a locale-specific stylesheet if exists.
@@ -150,7 +143,7 @@ def l10n_css(ctx):
     else:
         markup = ""
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
@@ -162,74 +155,125 @@ def field_with_attrs(bfield, **kwargs):
 
 
 @library.global_function
-@jinja2.contextfunction
-def platform_img(ctx, url, optional_attributes=None):
-    optional_attributes = optional_attributes or {}
-    img_urls = {}
-    platforms = optional_attributes.pop("platforms", ALL_FX_PLATFORMS)
-    add_high_res = optional_attributes.pop("high-res", False)
-    is_l10n = optional_attributes.pop("l10n", False)
-
-    for platform in platforms:
-        img_urls[platform] = add_string_to_image_url(url, platform)
-        if add_high_res:
-            img_urls[platform + "-high-res"] = convert_to_high_res(img_urls[platform])
-
-    img_attrs = {}
-    for platform, image in img_urls.items():
-        if is_l10n:
-            image = l10n_img_file_name(ctx, _strip_img_prefix(image))
-
-        if find_static(image):
-            key = "data-src-" + platform
-            img_attrs[key] = static(image)
-
-    if add_high_res:
-        img_attrs["data-high-res"] = "true"
-
-    img_attrs.update(optional_attributes)
-    attrs = " ".join(f'{attr}="{val}"' for attr, val in img_attrs.items())
-
-    # Don't download any image until the javascript sets it based on
-    # data-src so we can do platform detection. If no js, show the
-    # windows version.
-    markup = (
-        '<img class="platform-img js" src="" data-processed="false" {attrs}>'
-        '<noscript><img class="platform-img win" src="{win_src}" {attrs}>'
-        "</noscript>"
-    ).format(attrs=attrs, win_src=img_attrs["data-src-windows"])
-
-    return jinja2.Markup(markup)
-
-
-@library.global_function
-@jinja2.contextfunction
-def high_res_img(ctx, url, optional_attributes=None):
-    if optional_attributes and optional_attributes.pop("l10n", False) is True:
-        url = _strip_img_prefix(url)
-        url_high_res = convert_to_high_res(url)
-        url = l10n_img(ctx, url)
-        url_high_res = l10n_img(ctx, url_high_res)
-    else:
-        url_high_res = convert_to_high_res(url)
-        url = static(url)
-        url_high_res = static(url_high_res)
+@jinja2.pass_context
+def resp_img(ctx={}, url=None, srcset=None, sizes=None, optional_attributes=None):
+    alt = ""
+    attrs = ""
+    final_sizes = ""
+    final_srcset = ""
+    l10n = False
+    loading = ""
 
     if optional_attributes:
-        class_name = optional_attributes.pop("class", "")
-        attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
-    else:
-        class_name = ""
-        attrs = ""
+        l10n = optional_attributes.pop("l10n", False)
+        alt = optional_attributes.pop("alt", "")
 
-    # Use native srcset attribute for high res images
-    markup = f'<img class="{class_name}" src="{url}" srcset="{url_high_res} 1.5x"{attrs}>'
+        # Put `loading` before `src` to avoid a bug in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=1647077)
+        if "loading" in optional_attributes:
+            loading = f'loading="{optional_attributes.pop("loading", "")}" '
 
-    return jinja2.Markup(markup)
+        if optional_attributes:
+            attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
+
+    # default src
+    if not url.startswith("https://"):
+        url = l10n_img(ctx, url) if l10n else static(url)
+
+    if srcset:
+        srcset_last_item = list(srcset)[-1]
+        for image, size in srcset.items():
+            postfix = "" if image == srcset_last_item else ","
+            if not image.startswith("https://"):
+                image = l10n_img(ctx, image) if l10n else static(image)
+            final_srcset = final_srcset + image + " " + size + postfix
+
+    if sizes:
+        sizes_last_item = list(sizes)[-1]
+        for window_size, img_width in sizes.items():
+            postfix = "" if window_size == sizes_last_item else ","
+
+            if window_size == "default":
+                final_sizes = final_sizes + img_width + postfix
+            else:
+                final_sizes = final_sizes + window_size + " " + img_width + postfix
+
+    srcset_str = f'srcset="{final_srcset}" ' if final_srcset else ""
+    sizes_str = f'sizes="{final_sizes}" ' if final_sizes else ""
+    markup = f'<img {loading}src="{url}" {srcset_str}{sizes_str}alt="{alt}"{attrs}>'
+
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
+def picture(ctx={}, url=None, sources=[], optional_attributes=None):
+    alt = ""
+    attrs = ""
+    final_sources = []
+    l10n = False
+    loading = ""
+
+    if optional_attributes:
+        l10n = optional_attributes.pop("l10n", False)
+        alt = optional_attributes.pop("alt", "")
+
+        # Put `loading` before `src` to avoid a bug in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=1647077)
+        if "loading" in optional_attributes:
+            loading = f'loading="{optional_attributes.pop("loading", "")}" '
+
+        if optional_attributes:
+            attrs = " " + " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
+
+    # default src
+    if not url.startswith("https://"):
+        url = l10n_img(ctx, url) if l10n else static(url)
+
+    # sources
+    for source in sources:
+        final_srcset = ""
+        final_sizes = ""
+        source_media = source.pop("media", False)
+        source_srcset = source.pop("srcset", False)
+        source_type = source.pop("type", False)
+        source_sizes = source.pop("sizes", False)
+
+        # srcset
+        if source_srcset:
+            srcset_last_item = list(source_srcset)[-1]
+            for image, descriptor in source_srcset.items():
+                postfix = "" if image == srcset_last_item else ","
+                if not image.startswith("https://"):
+                    image = l10n_img(ctx, image) if l10n else static(image)
+                if descriptor == "default":
+                    final_srcset = final_srcset + image + postfix
+                else:
+                    final_srcset = final_srcset + image + " " + descriptor + postfix
+
+        # sizes
+        if source_sizes:
+            sizes_last_item = list(source_sizes)[-1]
+            for window_size, img_width in source_sizes.items():
+                postfix = "" if window_size == sizes_last_item else ","
+
+                if window_size == "default":
+                    final_sizes = final_sizes + img_width + postfix
+                else:
+                    final_sizes = final_sizes + window_size + " " + img_width + postfix
+
+        media_markup = f' media="{source_media}"' if source_media else ""
+        type_markup = f' type="{source_type}"' if source_type else ""
+        srcset_markup = f' srcset="{final_srcset}"' if final_srcset != "" else ""
+        sizes_markup = f' sizes="{final_sizes}"' if final_sizes != "" else ""
+        source_markup = f"<source{media_markup}{type_markup}{srcset_markup}{sizes_markup}>"
+        final_sources.append(source_markup)
+
+    markup = f'<picture>{"".join(final_sources)}<img {loading}src="{url}" alt="{alt}"{attrs}></picture>'
+
+    return Markup(markup)
+
+
+@library.global_function
+@jinja2.pass_context
 def video(ctx, *args, **kwargs):
     """
     HTML5 Video tag helper.
@@ -281,11 +325,11 @@ def video(ctx, *args, **kwargs):
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
-    return jinja2.Markup(render_to_string("mozorg/videotag.html", data, request=ctx["request"]))
+    return Markup(render_to_string("mozorg/videotag.html", data, request=ctx["request"]))
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def press_blog_url(ctx):
     """Output a link to the press blog taking locales into account.
 
@@ -322,9 +366,9 @@ def press_blog_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
-def donate_url(ctx, source=""):
-    """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
+@jinja2.pass_context
+def donate_url(ctx, content=""):
+    """Output a formatted donation link to the donation page
 
     Examples
     ========
@@ -334,39 +378,26 @@ def donate_url(ctx, source=""):
 
         {{ donate_url() }}
 
-    For en-US this would output:
+    This would output:
 
-        https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco
 
-    For de this would output:
+        {{ donate(content='footer')}}
 
-        https://donate.mozilla.org/de/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
+    This would output:
 
-    For a locale not defined in settings.DONATE this would output:
+        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco&utm_content=footer
 
-        https://donate.mozilla.org/?utm_source=mozilla.org&utm_medium=referral&utm_content=footer
 
     """
-    locale = getattr(ctx["request"], "locale", "en-US")
 
-    donate_url_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
+    content = "&utm_content=" + content if content else ""
 
-    donate_url = settings.DONATE_LINK_UNKNOWN.format(source=source)
-
-    if locale in settings.DONATE_PARAMS:
-        donate_url = settings.DONATE_LINK.format(
-            locale=locale,
-            presets=donate_url_params["presets"],
-            default=donate_url_params["default"],
-            source=source,
-            currency=donate_url_params["currency"],
-        )
-
-    return donate_url
+    return settings.DONATE_LINK.format(content=content)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def firefox_twitter_url(ctx):
     """Output a link to Twitter taking locales into account.
 
@@ -403,7 +434,7 @@ def firefox_twitter_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def mozilla_twitter_url(ctx):
     """Output a link to Twitter taking locales into account.
 
@@ -436,7 +467,7 @@ def mozilla_twitter_url(ctx):
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def mozilla_instagram_url(ctx):
     """Output a link to Instagram taking locales into account.
 
@@ -458,7 +489,7 @@ def mozilla_instagram_url(ctx):
 
     For DE this would output:
 
-        https://www.instagram.com/unfcktheinternet/
+        https://www.instagram.com/mozilla_deutschland/
 
     """
     locale = getattr(ctx["request"], "locale", "en-US")
@@ -500,49 +531,6 @@ def absolute_url(url):
     return prefix + url
 
 
-@library.global_function
-@jinja2.contextfunction
-def firefox_ios_url(ctx, ct_param=None):
-    """
-    Output a link to the Firefox for iOS download page on the Apple App Store
-    taking locales into account.
-
-    Use the locale from the current request. Check if the locale matches one of
-    the Store's supported countries, return the localized page's URL or fall
-    back to the default (English) page if not.
-
-    The optional ct_param is a campaign value for the app analytics.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ firefox_ios_url() }}
-
-    For en-US this would output:
-
-        https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926
-
-    For es-ES this would output:
-
-        https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926
-
-    For ja this would output:
-
-        https://itunes.apple.com/jp/app/firefox-private-safe-browser/id989804926
-
-    """
-    locale = getattr(ctx["request"], "locale", "en-US")
-    link = firefox_ios.get_download_url("release", locale)
-
-    if ct_param:
-        return link + "?ct=" + ct_param
-
-    return link
-
-
 @library.filter
 def htmlattr(_list, **kwargs):
     """
@@ -566,13 +554,6 @@ def htmlattr(_list, **kwargs):
 
 
 @library.filter
-def shuffle(_list):
-    """Return a shuffled list"""
-    random.shuffle(_list)
-    return _list
-
-
-@library.filter
 def slugify(text):
     """
     Converts to lowercase, removes non-word characters (alphanumerics and
@@ -584,17 +565,17 @@ def slugify(text):
 
 @library.filter
 def bleach_tags(text):
-    return bleach.clean(text, tags=[], strip=True).replace("&amp;", "&")
+    return bleach.clean(text, tags=set(), strip=True).replace("&amp;", "&")
 
 
 # from jingo
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def csrf(context):
     """Equivalent of Django's ``{% crsf_token %}``."""
-    return jinja2.Markup(CsrfTokenNode().render(context))
+    return Markup(CsrfTokenNode().render(context))
 
 
 @library.filter
@@ -615,27 +596,32 @@ def f(s, *args, **kwargs):
 def datetime(t, fmt=None):
     """Call ``datetime.strftime`` with the given format string."""
     if fmt is None:
-        fmt = _("%B %e, %Y")
-    if not six.PY3:
-        # The datetime.strftime function strictly does not
-        # support Unicode in Python 2 but is Unicode only in 3.x.
-        fmt = fmt.encode("utf-8")
-    return smart_text(t.strftime(fmt)) if t else ""
+        fmt = "%B %e, %Y"
+    return smart_str(t.strftime(fmt)) if t else ""
 
 
 @library.filter
 def ifeq(a, b, text):
     """Return ``text`` if ``a == b``."""
-    return jinja2.Markup(text if a == b else "")
+    return Markup(text if a == b else "")
 
 
 @library.global_function
-@jinja2.contextfunction
-def app_store_url(ctx, product):
+@jinja2.pass_context
+def app_store_url(ctx, product, campaign=None):
     """Returns a localised app store URL for a given product"""
-    base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
     locale = getattr(ctx["request"], "locale", "en-US")
     countries = settings.APPLE_APPSTORE_COUNTRY_MAP
+    params = "?pt=373246&ct={cmp}&mt=8"
+
+    if product == "focus" and locale == "de":
+        base_url = getattr(settings, "APPLE_APPSTORE_KLAR_LINK")
+    else:
+        base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
+
+    if campaign:
+        base_url = base_url + params.format(cmp=campaign)
+
     if locale in countries:
         return base_url.format(country=countries[locale])
     else:
@@ -643,157 +629,42 @@ def app_store_url(ctx, product):
 
 
 @library.global_function
-@jinja2.contextfunction
-def play_store_url(ctx, product):
+@jinja2.pass_context
+def play_store_url(ctx, product, campaign=None):
     """Returns a localised play store URL for a given product"""
+    locale = lang_short(ctx)
     base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
-    return f"{base_url}&hl={lang_short(ctx)}"
+    params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+
+    if product == "focus" and locale == "de":
+        base_url = getattr(settings, "GOOGLE_PLAY_KLAR_LINK")
+    else:
+        base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
+
+    if campaign:
+        base_url = base_url + params.format(cmp=campaign)
+
+    if locale:
+        base_url = base_url + f"&hl={locale}"
+
+    return base_url
 
 
 @library.global_function
-@jinja2.contextfunction
-def structured_data_id(ctx, id, domain=None):
-    """
-    Returns an identifier for a structured data object based on
-    a supplied id e.g. https://www.mozilla.org/#firefoxbrowser
-    """
-    canonical = settings.CANONICAL_URL if not domain else domain
-    locale = getattr(ctx["request"], "locale", "en-US")
-    suffix = ""
-
-    if locale != "en-US":
-        suffix = "-" + locale.lower()
-
-    return canonical + "/#" + id + suffix
-
-
-@library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def lang_short(ctx):
     """Returns a shortened locale code e.g. en."""
     locale = getattr(ctx["request"], "locale", "en-US")
     return locale.split("-")[0]
 
 
-def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, adgroup, creative=None):
-    link = adjust_url
-    params = "campaign=www.mozilla.org&adgroup=" + adgroup
-    redirect_url = None
-
-    # Get the appropriate app store URL to use as a fallback redirect.
-    if redirect == "ios":
-        countries = settings.APPLE_APPSTORE_COUNTRY_MAP
-        if locale in countries:
-            redirect_url = app_store_url.format(country=countries[locale])
-        else:
-            redirect_url = app_store_url.replace("/{country}/", "/")
-    elif redirect == "android":
-        redirect_url = google_play_url
-
-    # Optional creative parameter.
-    if creative:
-        params += "&creative=" + creative
-
-    if redirect_url:
-        link += "?redirect=" + urlquote(redirect_url, safe="") + "&" + params
-    else:
-        link += "?" + params
-
-    return link
-
-
 @library.global_function
-@jinja2.contextfunction
-def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Firefox on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ firefox_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_FIREFOX_URL
-    app_store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
-    play_store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
+@jinja2.pass_context
+def native_language_name(ctx):
+    """Returns translated native language name e.g. `tr` locale would render `Türkçe`"""
     locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
-
-
-@library.global_function
-@jinja2.contextfunction
-def focus_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Focus/Klar on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ focus_adjust_url('ios', 'fights-for-you-page') }}
-    """
-    klar_locales = ["de"]
-    adjust_url = settings.ADJUST_FOCUS_URL
-    app_store_url = settings.APPLE_APPSTORE_FOCUS_LINK
-    play_store_url = settings.GOOGLE_PLAY_FOCUS_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    if locale in klar_locales:
-        adjust_url = settings.ADJUST_KLAR_URL
-        app_store_url = settings.APPLE_APPSTORE_KLAR_LINK
-        play_store_url = settings.GOOGLE_PLAY_KLAR_LINK
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
-
-
-@library.global_function
-@jinja2.contextfunction
-def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Pocket on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ pocket_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_POCKET_URL
-    app_store_url = settings.APPLE_APPSTORE_POCKET_LINK
-    play_store_url = settings.GOOGLE_PLAY_POCKET_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
-
-
-@library.global_function
-@jinja2.contextfunction
-def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
-    """
-    Return an adjust.com link for Lockwise on mobile.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ lockwise_adjust_url('ios', 'accounts-page') }}
-    """
-    adjust_url = settings.ADJUST_LOCKWISE_URL
-    app_store_url = settings.APPLE_APPSTORE_LOCKWISE_LINK
-    play_store_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
-    locale = getattr(ctx["request"], "locale", "en-US")
-
-    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+    language = product_details.languages.get(locale)
+    return language["native"] if language else locale
 
 
 def _fxa_product_url(product_url, entrypoint, optional_parameters=None):
@@ -835,16 +706,16 @@ def _fxa_product_button(
 
     markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{button_text}" f"</a>"
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def pocket_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a getpocket.com link with required params for FxA authentication.
+    Render a getpocket.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -861,12 +732,12 @@ def pocket_fxa_button(
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def monitor_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a monitor.firefox.com link with required params for FxA authentication.
+    Render a monitor.mozilla.org link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -876,19 +747,19 @@ def monitor_fxa_button(
 
         {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
-    product_url = "https://monitor.firefox.com/oauth/init"
+    product_url = "https://monitor.mozilla.org/user/dashboard"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def relay_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):
     """
-    Render a relay.firefox.com link with required params for FxA authentication.
+    Render a relay.firefox.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -896,21 +767,20 @@ def relay_fxa_button(
     In Template
     -----------
 
-        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
+        {{ relay_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Relay') }}
     """
-    product_url = "https://relay.firefox.com/accounts/fxa/login/?process=login"
+    product_url = settings.RELAY_PRODUCT_URL + "accounts/fxa/login/?process=login"
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
     )
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None):
     """
-    Returns `href` and `data-mozillaonline-link` attributes as a string fragment.
-    This is useful for inline links that appear inside a string of localized copy,
-    such as a paragraph.
+    Returns `href` attribute as a string fragment. This is useful for inline links
+    that appear inside a string of localized copy, such as a paragraph.
 
     Examples
     ========
@@ -927,15 +797,14 @@ def fxa_link_fragment(ctx, entrypoint, action="signup", optional_parameters=None
         action = "?action=email"
 
     fxa_url = _fxa_product_url(f"{settings.FXA_ENDPOINT}{action}", entrypoint, optional_parameters)
-    mozillaonline_url = _fxa_product_url(f"{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}", entrypoint, optional_parameters)
 
-    markup = f'href="{fxa_url}" data-mozillaonline-link="{mozillaonline_url}" ' f'data-mozillaonline-action="{settings.FXA_ENDPOINT_MOZILLAONLINE}"'
+    markup = f'href="{fxa_url}"'
 
-    return jinja2.Markup(markup)
+    return Markup(markup)
 
 
 @library.global_function
-@jinja2.contextfunction
+@jinja2.pass_context
 def fxa_button(
     ctx,
     entrypoint,
@@ -948,7 +817,7 @@ def fxa_button(
     optional_attributes=None,
 ):
     """
-    Render a accounts.firefox.com link with required params for FxA authentication.
+    Render a accounts.firefox.com link with required params for Mozilla account authentication.
 
     Examples
     ========
@@ -963,15 +832,8 @@ def fxa_button(
         action = "?action=email"
 
     product_url = f"{settings.FXA_ENDPOINT}{action}"
-    mozillaonline_product_url = f"{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}"
-
-    mozillaonline_attribute = {
-        "data-mozillaonline-link": _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters),
-        "data-mozillaonline-action": settings.FXA_ENDPOINT_MOZILLAONLINE,
-    }
 
     optional_attributes = optional_attributes or {}
-    optional_attributes.update(mozillaonline_attribute)
 
     return _fxa_product_button(
         product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes

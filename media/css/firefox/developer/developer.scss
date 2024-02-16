@@ -5,7 +5,6 @@
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
 @import 'includes/engage';
@@ -69,4 +68,22 @@ $image-path: '/media/protocol/img';
             padding-bottom: $layout-xl;
         }
     }
+}
+
+.show-linux {
+    display: none;
+
+     br {
+        display: none;
+     }
+
+     @media #{$mq-md} {
+        br {
+            display: inline;
+        }
+     }
+}
+
+.linux .show-linux {
+    display: block;
 }

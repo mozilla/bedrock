@@ -2,12 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
 from itertools import chain
 from pathlib import Path
 from unittest.mock import call, patch
 
 from django.core.cache import caches
 from django.test.utils import override_settings
+
+import markdown
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import models
@@ -41,13 +44,37 @@ class TestReleaseModel(TestCase):
         models.ProductRelease.objects.refresh()
         release_cache.clear()
 
+    def _add_in_ff100(self):
+        # TODO: remove once FF100 data is properly in the dataset
+        last = models.ProductRelease.objects.filter(channel="Nightly").last()
+        last.pk = None
+        last.version = "100.0a1"
+        last.title = "Firefox 100.0a1 Nightly"
+        last.slug = "firefox-100.0a1-nightly"
+        last.notes = []
+        last.save()
+        assert last.pk is not None
+        release_cache.clear()
+
     def test_release_major_version(self):
         rel = models.get_release("firefox", "57.0a1")
         assert rel.major_version == "57"
 
+    def test_release_major_version__ff100(self):
+        self._add_in_ff100()
+        rel = models.get_release("firefox", "100.0a1")
+        assert rel.major_version == "100"
+
     def test_get_bug_search_url(self):
         rel = models.get_release("firefox", "57.0a1")
         assert "=Firefox%2057&" in rel.get_bug_search_url()
+        rel.bug_search_url = "custom url"
+        assert "custom url" == rel.get_bug_search_url()
+
+    def test_get_bug_search_url__ff100(self):
+        self._add_in_ff100()
+        rel = models.get_release("firefox", "100.0a1")
+        assert "=Firefox%20100&" in rel.get_bug_search_url()
         rel.bug_search_url = "custom url"
         assert "custom url" == rel.get_bug_search_url()
 
@@ -108,6 +135,13 @@ class TestReleaseModel(TestCase):
         rel = models.get_release("firefox", "57.0a1")
         assert len(rel.notes) == 6
 
+    @override_settings(DEV=True)
+    def test_invalid_version(self):
+        """Should not load data for invalid versions."""
+        models.ProductRelease.objects.refresh()
+        release_cache.clear()
+        assert models.get_release("firefox", "copy-56.0") is None
+
 
 @patch.object(models.ProductRelease, "objects")
 class TestGetRelease(TestCase):
@@ -150,3 +184,18 @@ class TestGetLatestRelease(TestCase):
         # non public release
         # should NOT raise multiple objects error
         assert models.get_release("firefox for android", "56.0.3", include_drafts=True)
+
+
+class StrikethroughExtensionTestCase(TestCase):
+    def test_strikethrough_rendered_to_del(self):
+        # Show the StrikethroughExtension works
+        self.assertEqual(
+            markdown.markdown("*hello~~test~~*", extensions=[models.StrikethroughExtension()]),
+            "<p><em>hello<del>test</del></em></p>",
+        )
+
+        # And without strikethough extension - no transformation
+        self.assertEqual(
+            markdown.markdown("*hello~~test~~*"),
+            "<p><em>hello~~test~~</em></p>",
+        )

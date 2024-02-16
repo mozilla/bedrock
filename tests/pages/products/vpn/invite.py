@@ -10,7 +10,6 @@ from pages.base import BasePage
 
 
 class VPNInvitePage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/products/vpn/invite/"
 
     _email_locator = (By.ID, "id_email")

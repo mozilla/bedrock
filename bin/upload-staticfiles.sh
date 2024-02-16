@@ -12,7 +12,7 @@ if [[ "$BRANCH_NAME" == "prod" ]]; then
     BUCKETS=(prod)
 elif [[ "$BRANCH_NAME" == "stage" ]]; then
     BUCKETS=(stage)
-elif [[ "$BRANCH_NAME" == "master" ]]; then
+elif [[ "$BRANCH_NAME" == "main" ]]; then
     BUCKETS=(dev)
 else
     # nothing to do if not prod deployment

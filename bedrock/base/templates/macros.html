@@ -48,110 +48,64 @@
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': ftl('download-button-google-play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
-<a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% if product == 'Firefox' %} data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
-  {{ high_res_img('img/firefox/android/btn-google-play.png', optional_img_attributes) }}
+<a class="ga-product-download {{ class_name }}"{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% if product == 'Firefox' %} data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
+  {{ resp_img(
+    url='img/firefox/android/btn-google-play.png',
+    srcset={
+      'img/firefox/android/btn-google-play-high-res.png': '2x'
+    },
+    optional_attributes=optional_img_attributes
+  ) }}
 </a>
 {%- endmacro %}
 
-
-{# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
-{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, spinner_color='#000', button_class=None) %}
-  <section id="{{ id }}" class="send-to-device {{ class }}" data-spinner-color="{{ spinner_color }}">
-    <div class="form-container">
-      {% if include_title %}
-        <h2 class="form-heading">
-        {% if title_text %}
-          {{ title_text }}
-        {% else %}
-          {{ ftl('send-to-device-send-firefox') }}
-        {% endif %}
-        </h2>
-      {% endif %}
-      <h2 class="mzp-u-title-xs thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
-      <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
-        <ul class="mzp-c-form-errors hidden">
-          <li class="email">{{ ftl('send-to-device-please-enter-an-email') }}</li>
-          <li class="system">{{ ftl('send-to-device-an-error-occured') }}</li>
-        </ul>
-        <div class="send-to-device-form-fields">
-          <div class="platform-container">
-            <input type="hidden" name="platform" value="{{ platform }}">
-            <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
-            <input type="hidden" name="message-set" value="{{ message_set }}">
-            <input type="hidden" name="product" value="{{ product }}">
-          </div>
-          <div class="mzp-c-field mzp-l-stretch">
-            <label class="mzp-c-field-label" for="{{ id }}-input">
-              {% if input_label %}
-                {{ input_label }}
-              {% else %}
-                {{ ftl('send-to-device-enter-your-email') }}
-              {% endif %}
-            </label>
-            <input id="{{ id }}-input" class="mzp-c-field-control send-to-device-input" name="s2d-email" type="text" required>
-          </div>
-          <div class="mzp-c-button-container mzp-l-stretch">
-            <button type="submit" class="button mzp-c-button {% if button_class %} {{ button_class }} {% else %} mzp-t-product {% endif %}">{{ ftl('send-to-device-send') }}</button>
-          </div>
-          <p class="mzp-c-button-info email">
-            {% if legal_note_email %}
-              {{ legal_note_email }}
-            {% else %}
-              {{ ftl('send-to-device-intended-recipient-email') }}
-            {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
-          </p>
-        </div>
-        <div class="thank-you hidden">
-          <p class="email">{{ ftl('send-to-device-check-your-device-email') }}</p>
-          <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
-        </div>
-        <div class="loading-spinner"></div>
-      </form>
-    </div>
-  </section>
+{% macro apple_app_store_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.APPLE_APPSTORE_FIREFOX_LINK, id='', product='Firefox', target='') -%}
+{% set optional_img_attributes = {'width': '152', 'height': '45'} %}
+<a class="ga-product-download {{ class_name }}"{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="iOS"{% endif %}{% if product == 'Firefox' %} {% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
+  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}"{% for attr, val in optional_img_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
+</a>
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
-  <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">
-    <input type="hidden" name="action" value="email" />
-    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
-    <input type="hidden" name="form_type" value="email" />
+  <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">
+    <input type="hidden" name="action" value="email">
+    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint">
+    <input type="hidden" name="form_type" value="email">
     {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
-    <input type="hidden" name="flow_id" value="" />
-    <input type="hidden" name="flow_begin_time" value="" />
-    <input type="hidden" name="device_id" value="" />
-    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source" />
-    <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
+    <input type="hidden" name="flow_id" value="">
+    <input type="hidden" name="flow_begin_time" value="">
+    <input type="hidden" name="device_id" value="">
+    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source">
+    <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium">
 
     {% if entrypoint_experiment %}
-      <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment" />
+      <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment">
     {% endif %}
 
     {% if entrypoint_variation %}
-      <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation" />
+      <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation">
     {% endif %}
 
     {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}
     {% if utm_campaign %}
-      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign">
     {% else %}
-      <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+      <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">
     {% endif %}
 
     {# utm_content is optional. It should only be declared when there is new messaging associated with the form. (For example: `get-the-rest-of-firefox`) #}
     {% if utm_content %}
-      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content" />
+      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content">
     {% endif %}
 
     {# utm_term is optional. It is used for paid search keywords. This should be provided if needed. #}
     {% if utm_term %}
-      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term" />
+      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term">
     {% endif %}
 
     {% if style %}
-      <input type="hidden" name="style" value="{{ style }}" />
+      <input type="hidden" name="style" value="{{ style }}">
     {% endif %}
 
     <header class="mzp-c-form-header">
@@ -163,18 +117,15 @@
       {% if intro_text %}
         {{ intro_text }}
       {% else %}
-        {{ ftl('fxa-form-enter-your-email') }}
+        {{ ftl('fxa-form-enter-your-email-v2', fallback='fxa-form-enter-your-email') }}
       {% endif %}
       </p>
     </header>
 
     <div class="fxa-email-field-container">
       <div class="mzp-c-field mzp-l-stretch">
-        <label for="mzp-c-field-label">{{ ftl('fxa-form-email-address') }}</label>
+        <label class="mzp-c-field-label" for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required>
-        <p class="mzp-c-field-info">
-          {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
-        </p>
       </div>
 
       <div class="mzp-c-button-container mzp-l-stretch">
@@ -193,44 +144,62 @@
         {% endif %}
         </button>
       </div>
+
     </div>
+    <p class="mzp-c-field-info">
+      {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
+    </p>
 
   </form>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/coding.html#image #}
-{% macro image(
-  url,
-  alt="",
-  class=None,
-  width=None,
-  height=None,
-  loading=None,
-  include_highres=False,
-  include_l10n=False
+{% macro sub_nav(
+  title,
+  links
 ) -%}
-  {% if include_highres %}
-    {% set unclean = {
-      'alt': alt,
-      'class': class,
-      'width': width,
-      'height': height,
-      'loading': loading,
-      'l10n': include_l10n
-    } %}
-    {% set optional_attributes = dict() %}
-    {% for key, value in unclean.items() %}
-      {% if value is not none and value is not false %}{{ optional_attributes.update({ key: value }) }}{% endif %}
-    {% endfor %}
-    {{ high_res_img(url, optional_attributes) }}
+{% if 'releasenotes' in request.path %}
+  <!-- remove 'releasenotes' and version number -->
+  {% set root_path = ("/").join(request.path.split("/")[0:-3]) %}
+  <!-- Firefox Desktop, Android, and iOS include channel in request path -->
+  {% if release.channel == 'Release' %}
+    {% set current_page = ("{}/notes/").format(root_path) %}
   {% else %}
-    {% if url.startswith('https')  %}
-      {% set src = url %}
-    {% elif include_l10n %}
-      {% set src = l10n_img(url) %}
-    {% else %}
-      {% set src = static(url) %}
-    {% endif %}
-    <img src="{{ src }}" alt="{{ alt }}" {% if class %}class="{{ class }}" {% endif %}{% if loading %}loading="{{ loading }}" {% endif %}{% if width %}width="{{ width }}" {% endif %}{% if height %}height="{{ height }}" {% endif %}/>
+  <!-- Beta/Developer and Nightly need the channel added -->
+    {% set current_page = ("{}/{}/notes/").format(root_path, release.channel.lower()) %}
   {% endif %}
+{% else %}
+  {% set current_page = request.path %}
+{% endif %}
+<nav class="c-sub-navigation">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 class="c-sub-navigation-title is-summary">
+        {% if title.href %}
+          <a href="{{ title.href }}" data-link-type="nav" data-link-position="subnav" data-link-text="{{ title.cta_name }}">
+            {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
+            {{ title.text }}
+          </a>
+        {% else %}
+          {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
+          {{ title.text }}
+        {% endif %}
+      </h2>
+      <ul class="c-sub-navigation-list is-details is-closed">
+        {% for link in links %}
+        <li class="c-sub-navigation-item">
+          <a
+            href="{{ link.href }}"
+            data-link-type="nav"
+            data-link-position="subnav"
+            data-link-text="{{ link.cta_name }}"
+            {% if current_page == link.href %} aria-current="page"{% endif %}
+          >
+            {{ link.text }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
 {%- endmacro %}

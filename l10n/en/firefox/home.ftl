@@ -6,28 +6,30 @@
 
 firefox-home-firefox-protect-your = { -brand-name-firefox } - Protect your life online with privacy-first products
 firefox-home-firefox-is-more-than = { -brand-name-firefox } is more than a browser. Learn more about { -brand-name-firefox } products that handle your data with respect and are built for privacy anywhere you go online.
+
+# Obsolete string
 firefox-home-the-browser-is-just = The browser is just the beginning
+
+firefox-home-firefox-is-just = { -brand-name-firefox } is just the beginning.
+
+# Obsolete string
 firefox-home-meet-our-family-of = Meet our family of products
+
+firefox-home-meet-mozillas-family  = Meet { -brand-name-mozilla }’s family of products
 firefox-home-get-trackers-off = Get 2,000+ trackers off your trail — including { -brand-name-facebook }
 firefox-home-know-when-hackers-strike = Know when hackers strike — and stay a step ahead
 firefox-home-start-getting-breach = Start getting breach reports
-
-# Obsolete string
-firefox-home-keep-your-passwords = Keep your passwords safe on every device
-
-# Obsolete string
-firefox-home-learn-more-about-lockwise = Learn more about { -brand-name-lockwise }
+firefox-home-un-spam-your-life = Un-spam your life with { -brand-name-relay }
+firefox-home-try-relay = Try { -brand-name-relay }
 
 # The strong tags around "respect" add a special underline. The underline breaks if it is on two words, so please omit the strong tags if they need to be around multiple words in your language.
 firefox-home-get-the-respect-you = Get the <strong>respect</strong> you deserve
 
+# Obsolete string
 firefox-home-every-single-firefox = Every single { -brand-name-firefox } product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>
 
-# Obsolete string
-firefox-home-share-large-files-without = Share large files without prying eyes
+firefox-home-every-single-mozilla = Every single { -brand-name-mozilla } product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>
 
-# Obsolete string
-firefox-home-start-sending-files = Start sending files safely
 firefox-home-trade-clickbait-for = Trade clickbait for quality content
 firefox-home-learn-more-about-pocket = Learn more about { -brand-name-pocket }
 firefox-home-protection-for-your-whole = Protection for your whole device, on every device.
@@ -57,7 +59,11 @@ firefox-home-relay = { -brand-name-relay }
 ## The strings below are visually hidden in the page and replaced by logo wordmark images. They are still important for a11y and SEO.
 
 firefox-home-firefox-browser = { -brand-name-firefox-browser }
+firefox-home-mozilla-monitor = { -brand-name-mozilla-monitor }
+
+# Obsolete string
 firefox-home-firefox-monitor = { -brand-name-firefox-monitor }
+
 firefox-home-firefox-lockwise = { -brand-name-firefox-lockwise }
 firefox-home-firefox-send = { -brand-name-firefox-send }
-
+firefox-home-firefox-relay = { -brand-name-firefox-relay }

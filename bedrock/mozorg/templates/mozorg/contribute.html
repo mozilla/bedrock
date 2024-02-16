@@ -8,7 +8,15 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% set show_mozilla_connect_banner = switch('mozilla-connect-banner') %}
+
 {% block page_css %}
+  {% if show_mozilla_connect_banner %}
+    {{ css_bundle('mozilla-connect-banner') }}
+  {% endif %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('contribute') }}
 {% endblock %}
 
@@ -18,8 +26,14 @@
 
 {% set utm_params = '?utm_source=mozilla.org-contribute&utm_medium=referral&utm_campaign=contribute-page' %}
 
+{% block page_banner %}
+  {% if show_mozilla_connect_banner %}
+    {% include 'includes/banners/mozilla-connect.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
-<main role="main">
+<main>
   <div class="mzp-l-content contribute-intro">
     <header class="contribute-intro-content">
       <h1 class="contribute-intro-heading">{{ ftl('contribute-page-heading') }}</h1>
@@ -37,12 +51,22 @@
     <h2 class="mzp-c-section-heading">{{ ftl('contribute-how-heading') }}</h2>
     <div class="mzp-l-card-quarter contribute-card-container">
       <section class="mzp-c-card contribute-card">
-        <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/activities/localize-mozilla/{{ utm_params }}">
+        <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://pontoon.mozilla.org/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-translate.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-translate-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-translate-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-translate.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -58,10 +82,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://firefox-source-docs.mozilla.org/contributing/contributing_to_mozilla.html{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-contribute.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-contribute-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-contribute-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-contribute.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -77,10 +111,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/activities/answer-support-questions/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-support.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-support-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-support-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-support.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -96,10 +140,20 @@
       <section class="mzp-c-card contribute-card">
         <a class="mzp-c-card-block-link contribute-card-wrapper" href="https://community.mozilla.org/{{ utm_params }}">
           <div class="mzp-c-card-media-wrapper">
-            <picture>
-              <source srcset="{{ static('img/contribute/contribute-card-community.png') }}" media="(max-width: 480px)">
-              <img class="mzp-c-card-image" srcset="{{ static('img/contribute/contribute-card-community-lg.png') }}" alt="">
-            </picture>
+            {{ picture(
+              url='img/contribute/contribute-card-community-lg.png',
+              sources=[
+                {
+                  'media': '(max-width: 480px)',
+                  'srcset': {
+                    'img/contribute/contribute-card-community.png': 'default'
+                  }
+                }
+              ],
+              optional_attributes={
+                'class': 'mzp-c-card-image'
+              }
+            ) }}
           </div>
           <div class="mzp-c-card-content contribute-card-content">
             <div class="contribute-card-content-tags">
@@ -137,7 +191,7 @@
         </li>
 
         <li class="contribute-mission-card">
-          <a href="{{ donate_url('contribute-page') }}">
+          <a href="{{ donate_url(content='contribute-page') }}">
             <h3 class="contribute-mission-donate-icon">{{ ftl('contribute-donate') }}</h3>
             <p>{{ ftl('contribute-help-fund') }}</p>
           </a>
@@ -154,7 +208,12 @@
   </section>
 
   {% call split(
-    image_url='img/contribute/contribute-madeby-feature.jpg',
+    image=resp_img(
+      url='img/contribute/contribute-madeby-feature.jpg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_after=False,
     media_class='mzp-l-split-h-center',
     block_class='mzp-t-split-nospace'
@@ -167,7 +226,12 @@
   <section class="mzp-l-content">
     <aside class="mzp-c-newsletter">
       <div class="mzp-c-newsletter-image">
-        {{ high_res_img('img/contribute/newsletter.png', {'alt': ''}) }}
+        {{ resp_img(
+          url='img/contribute/newsletter.png',
+          srcset={
+            'img/contribute/newsletter-high-res.png': '2x'
+          }
+        ) }}
       </div>
 
       <div class="newsletter-content">
@@ -214,5 +278,8 @@
 {% endblock content %}
 
 {% block js %}
-  {{ js_bundle('contribute') }}
+  {% if show_mozilla_connect_banner %}
+    {{ js_bundle('mozilla-connect-banner') }}
+  {% endif %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

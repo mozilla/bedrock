@@ -4,13 +4,10 @@
 
 from django.conf import settings
 from django.http import Http404
-from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 from bedrock.legal_docs.models import LegalDoc
 from lib import l10n_utils
-
-CACHE_TIMEOUT = settings.LEGAL_DOCS_CACHE_TIMEOUT
 
 
 def load_legal_doc(doc_name, locale):
@@ -37,7 +34,7 @@ def load_legal_doc(doc_name, locale):
     return doc
 
 
-class LegalDocView(TemplateView):
+class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
     """
     Generic view for loading a legal doc and displaying it with a template.
 
@@ -46,16 +43,11 @@ class LegalDocView(TemplateView):
     * legal_doc_name: The name of the folder in the legal_docs repo.
     * legal_doc_context_name: (default 'doc') template variable name for legal doc.
 
-    This view automatically adds the `cache_page` decorator. The default timeout
-    is 10 minutes, configurable by setting the `LEGAL_DOCS_CACHE_TIMEOUT` setting to change
-    the default for all views, or the `cache_timeout` property for an single instance.
-
     See `bedrock/privacy/views.py` for usage examples.
     """
 
     legal_doc_name = None
     legal_doc_context_name = "doc"
-    cache_timeout = CACHE_TIMEOUT
 
     def get_legal_doc(self):
         locale = l10n_utils.get_locale(self.request)
@@ -63,8 +55,22 @@ class LegalDocView(TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
+        _ftl_files = []
+        if settings.IS_MOZORG_MODE:
+            _ftl_files = [
+                "mozorg/about/legal",
+                "privacy/index",
+            ]
+        elif settings.IS_POCKET_MODE:
+            _ftl_files = [
+                "pocket/legal",
+            ]
         return l10n_utils.render(
-            self.request, self.get_template_names()[0], context, ftl_files=["mozorg/about/legal", "privacy/index"], **response_kwargs
+            self.request,
+            self.get_template_names()[0],
+            context,
+            ftl_files=_ftl_files,
+            **response_kwargs,
         )
 
     def get_context_data(self, **kwargs):
@@ -76,8 +82,3 @@ class LegalDocView(TemplateView):
         context[self.legal_doc_context_name] = legal_doc["content"]
         context["active_locales"] = legal_doc["active_locales"]
         return context
-
-    @classmethod
-    def as_view(cls, **initkwargs):
-        cache_timeout = initkwargs.pop("cache_timeout", cls.cache_timeout)
-        return cache_page(cache_timeout)(super().as_view(**initkwargs))

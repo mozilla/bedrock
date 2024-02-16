@@ -9,7 +9,6 @@ from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxBrowsersPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/browsers/"
 
     _primary_download_button_locator = (By.ID, "qa-desktop-download")

@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class FirefoxWelcomePage13(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/welcome/13/"
 
     _get_vpn_button_locator = (By.CSS_SELECTOR, ".c-main-cta .mzp-c-button")

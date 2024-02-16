@@ -1,0 +1,51 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@import '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+/* stylelint-disable declaration-no-important */
+
+.newsletter-recovery-form {
+    .mzp-c-field {
+        padding-bottom: $label-v-spacing;
+    }
+
+    .mzp-c-form-errors {
+        display: block;
+
+        &.hidden {
+            display: none !important;
+        }
+
+        li {
+            display: list-item;
+
+            &.hidden {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.newsletter-recovery-form-success-msg {
+    display: block;
+
+    &.hidden {
+        display: none !important;
+    }
+}
+
+.newsletter-recovery-form-fields {
+    display: block;
+
+    &.hidden {
+        display: none !important;
+    }
+}
+
+/* stylelint-enable declaration-no-important */

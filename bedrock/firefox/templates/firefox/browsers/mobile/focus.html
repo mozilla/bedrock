@@ -4,8 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
-{% from "macros-protocol.html" import split, call_out_compact with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -16,10 +16,11 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
-{% set android_url = focus_adjust_url('android', 'mobile-focus-page') %}
-{% set ios_url = focus_adjust_url('ios', 'mobile-focus-page') %}
+{% set android_url = play_store_url('focus', 'firefox-browsers-mobile-focus') %}
+{% set ios_url = app_store_url('focus', 'firefox-browsers-mobile-focus') %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-browsers-mobile') }}
 
   {% if show_firefox_app_store_banner %}
@@ -28,7 +29,7 @@
 {% endblock %}
 
 {% block page_title %}{{ ftl('mobile-focus-firefox-focus-the-privacy') }}{% endblock %}
-{% block page_desc %}{{ ftl('mobile-focus-firefox-focus-is-your-dedicated') }}{% endblock %}
+{% block page_desc %}{{ ftl('mobile-focus-firefox-focus-is-your-dedicated-v2') }}{% endblock %}
 
 {% block body_class %}{{ super() }} mobile-focus{% endblock %}
 
@@ -45,24 +46,11 @@
 {% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title"><a href="{{ url('firefox.browsers.mobile.index') }}">{{ ftl('sub-navigation-firefox-for-mobile', fallback='navigation-firefox-browser-for-mobile') }}</a></h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Android">{{ ftl('sub-navigation-android') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-type="nav" data-link-position="subnav" data-link-name="iOS">{{ ftl('sub-navigation-ios') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox Focus">{{ ftl('sub-navigation-firefox-focus') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.mobile.compare') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Compare Mobile Browsers">{{ ftl('sub-navigation-compare-mobile-browsers') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  {% include 'firefox/browsers/mobile/includes/sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
-<main role="main">
+<main>
   {% call split(
     block_class='mzp-l-split-center-on-sm-md c-page-header',
     media_class='mzp-l-split-h-center',
@@ -71,40 +59,54 @@
   ) %}
     <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-focus">{{ ftl('mobile-focus-firefox-focus') }}</div>
     <h1 class="mzp-u-title-xl">{{ ftl('mobile-focus-simply-private-mobile') }}</h1>
-    <p class="c-tagline">{{ ftl('mobile-focus-firefox-focus-dedicated-with') }}</p>
+    <p class="c-tagline">{{ ftl('mobile-focus-firefox-focus-dedicated-with-v2') }}</p>
     <p>{{ ftl('mobile-focus-firefox-focus-is-available') }}</p>
 
     <ul class="mobile-download-buttons">
+
       <li class="android">
         {{ google_play_button(href=android_url, id='playStoreLink-primary') }}
       </li>
       <li class="ios">
-        <a id="appStoreLink-primary" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-        </a>
+        {{ apple_app_store_button(href=ios_url, id='appStoreLink-primary') }}
       </li>
     </ul>
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/disappear-your-history.svg',
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/disappear-your-history.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
-    <h3>{{ ftl('mobile-focus-delete-your-history', fallback='mobile-focus-disappear-your-history') }}</h3>
+    <h3>{{ ftl('mobile-focus-delete-your-history') }}</h3>
     <p>{{ ftl('mobile-focus-easily-erase-your') }}</p>
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg',
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/take-private-mode-to-the-next-level.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
   ) %}
     <h3>{{ ftl('mobile-focus-take-private-mode') }}</h3>
-    <p>{{ ftl('mobile-focus-private-browsing-on-v2', fallback='mobile-focus-private-browsing-on') }}</p>
+    <p>{{ ftl('mobile-focus-private-browsing-on-v2') }}</p>
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/tracking-protection.svg',
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/tracking-protection.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
@@ -113,44 +115,47 @@
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/focus/ad-blocking.svg',
-    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl',
-  ) %}
-    <h3>{{ ftl('mobile-focus-ad-blocking') }}</h3>
-    <p>{{ ftl('mobile-focus-focus-blocks-the-v2', fallback='mobile-focus-focus-blocks-the') }}</p>
-  {% endcall %}
-
-  {% call split(
-    image_url='img/firefox/browsers/mobile/focus/see-it-all-faster.svg',
-    block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
+    image=resp_img(
+      url='img/firefox/browsers/mobile/focus/see-it-all-faster.svg',
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
+    block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-background-secondary'
   ) %}
     <h3>{{ ftl('mobile-focus-see-it-all') }}</h3>
-    <p>{{ ftl('mobile-focus-focus-removes-trackers-v2', fallback='mobile-focus-focus-removes-trackers') }}</p>
+    <p>{{ ftl('mobile-focus-focus-removes-trackers-v3') }}</p>
   {% endcall %}
 
   {% call split(
-    image_url='img/firefox/browsers/mobile/about-hero.png',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/mobile/about-hero-800.png',
+      srcset={
+        'img/firefox/browsers/mobile/about-hero-500.png': '500w',
+        'img/firefox/browsers/mobile/about-hero-800.png': '800w',
+        'img/firefox/browsers/mobile/about-hero-1100.png': '1100w'
+      },
+      sizes={
+        '(min-width: 768px)': '760px',
+        'default': '250px'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'height': '664',
+        'width': '760',
+        'loading': 'lazy'
+      }
+    ),
     block_class='about-mozilla mzp-l-split-center-on-sm-md mzp-t-content-xl mzp-t-split-nospace',
     theme_class='mzp-t-dark',
     media_class='mzp-l-split-media-overflow mzp-l-split-h-center',
-    media_after=True
+    media_after=True,
   ) %}
     <h3>{{ ftl('mobile-focus-made-by-mozilla') }}</h3>
     <p>{{ ftl('mobile-focus-we-believe-everyone') }}</p>
   {% endcall %}
 
 </main>
-{% endblock %}
-
-{% block structured_data %}
-  {
-    "@context": "https://schema.org/",
-    "@graph": [
-      {% include 'includes/structured-data/software/firefox-focus-software.json' %}
-    ]
-  }
 {% endblock %}
 
 {% block js %}

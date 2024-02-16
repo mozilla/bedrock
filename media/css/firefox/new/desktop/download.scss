@@ -4,19 +4,16 @@
 
 @use 'sass:math';
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/card';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
-@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../../protocol/components/sub-navigation';
 @import '../../sticky-promo';
 
@@ -622,6 +619,10 @@ button.mzp-c-cta-link {
         max-width: $content-xl + $layout-xl * 2;
     }
 
+    .c-block-body > p {
+        margin-bottom: $v-grid-md;
+    }
+
     [lang='ar'] & h2 {
         @include font-size(40px);
     }
@@ -630,8 +631,9 @@ button.mzp-c-cta-link {
         margin-bottom: $v-grid-md;
     }
 
-    p {
-        margin-bottom: $v-grid-md;
+    // issue 13317
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
     }
 }
 
@@ -670,7 +672,6 @@ button.mzp-c-cta-link {
 }
 
 .noodle-browser {
-    @include at2x('/media/img/firefox/new/desktop/hero-mr1.png', 514px, 371px);
     background-color: $color-light-gray-10;
     border-radius: 4px;
     box-shadow: $box-shadow-md;
@@ -939,7 +940,7 @@ button.mzp-c-cta-link {
         @include text-body-sm;
         @include bidi((
             (border-left, 1px solid $color-marketing-gray-20, border-right, 0),
-            (text-align, center, center), // needs higher specificity for RTL
+            (text-align, center, center), /* needs higher specificity for RTL*/
         ));
         border-top: 1px solid $color-marketing-gray-20;
         font-weight: normal;
@@ -1197,10 +1198,6 @@ button.mzp-c-cta-link {
             text-align: left;
         }
     }
-
-    p {
-        margin-bottom: 0;
-    }
 }
 
 // --------------------------------------------------------------------------
@@ -1230,47 +1227,9 @@ button.mzp-c-cta-link {
 .c-mobile {
     @include light-links;
     background-color: $color-violet-70;
-    background-position:
-        bottom -120px right 10px,
-        top right -200px,
-        bottom -100px left 20px,
-        top 100px left -50px,
-        bottom right -500px,
-        top 15% left 100px;
-    background-repeat: no-repeat;
     color: $color-white;
     position: relative;
     overflow-x: hidden;
-
-    @media #{$mq-md} {
-        background-position:
-            bottom left 120px,
-            top right,
-            bottom left 20px,
-            top 100px left,
-            bottom right,
-            top 15% center;
-    }
-
-    @media #{$mq-lg} {
-        background-position:
-            bottom left 100px,
-            top right,
-            bottom left 40%,
-            top 100px left,
-            bottom right,
-            top 15% center;
-    }
-
-    .loaded & {
-        background-image:
-            url('/media/img/firefox/new/desktop/mobile/circle-bottom.svg'),
-            url('/media/img/firefox/new/desktop/mobile/circle-top-right.svg'),
-            url('/media/img/firefox/new/desktop/mobile/oval-bottom.svg'),
-            url('/media/img/firefox/new/desktop/mobile/oval-left.svg'),
-            url('/media/img/firefox/new/desktop/mobile/elbow-bottom-right.svg'),
-            url('/media/img/firefox/new/desktop/mobile/elbow.svg');
-    }
 
     h2 {
         color: $color-white;
@@ -1419,6 +1378,11 @@ button.mzp-c-cta-link {
 
     .mzp-c-button-download-container {
         margin-bottom: 0;
+
+        // Issue 13585
+        .mzp-c-button:focus {
+            color: $color-link-hover;
+        }
 
         // Hide the privacy link as there's already a one visible prior to clicking download.
         .mzp-c-button-download-privacy-link {

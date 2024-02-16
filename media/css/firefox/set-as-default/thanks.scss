@@ -2,24 +2,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // * -------------------------------------------------------------------------- */
 // Main Hero
 
-.thanks-hero.mzp-t-product-firefox {
-    .mzp-c-hero-title {
-        @include text-title-xl;
-        @include background-size(60px 60px);
-        padding-top: 84px;
-    }
+.mzp-c-callout.mzp-t-product-firefox.mzp-t-hero {
+    background: $color-white;
 
-    .mzp-c-hero-desc {
+    .mzp-c-callout-desc {
         @include text-title-xs;
     }
 

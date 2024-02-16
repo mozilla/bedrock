@@ -10,27 +10,12 @@ from babel.dates import format_date
 from babel.numbers import format_number
 from django_jinja import library
 
-from lib.l10n_utils.dotlang import translate
 from lib.l10n_utils.translation import get_language
 
 babel_format_locale_map = {
     "hsb": "de",
     "dsb": "de",
 }
-
-
-@jinja2.contextfunction
-def gettext(ctx, text):
-    """
-    A no-op for backwards compatability.
-
-    Once we remove all uses of `_(...)` in templates this can be removed.
-    """
-    return translate(text)
-
-
-# backward compatible for imports
-_ = gettext
 
 
 def get_locale(lang):
@@ -51,7 +36,7 @@ def current_locale():
 
 
 @library.filter
-@jinja2.contextfilter
+@jinja2.pass_context
 def l10n_format_date(ctx, date, format="long"):
     """
     Formats a date according to the current locale. Wraps around
@@ -62,7 +47,7 @@ def l10n_format_date(ctx, date, format="long"):
 
 
 @library.filter
-@jinja2.contextfilter
+@jinja2.pass_context
 def l10n_format_number(ctx, number):
     """
     Formats a number according to the current locale. Wraps around

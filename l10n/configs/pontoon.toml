@@ -45,7 +45,6 @@ locales = [
     "he",
     "hr",
     "hsb",
-    "hto",
     "hu",
     "hy-AM",
     "ia",
@@ -70,27 +69,23 @@ locales = [
     "ne-NP",
     "nl",
     "nn-NO",
-    "nv",
     "oc",
     "pa-IN",
-    "pai",
-    "pbb",
     "pl",
     "pt-BR",
     "pt-PT",
-    "qvi",
     "rm",
     "ro",
     "ru",
     "sco",
     "si",
     "sk",
+    "skr",
     "sl",
     "son",
     "sq",
     "sr",
     "sv-SE",
-    "sw",
     "ta",
     "te",
     "tg",
@@ -107,7 +102,6 @@ locales = [
     "zam",
     "zh-CN",
     "zh-TW",
-    "zu",
 ]
 
 [[paths]]
@@ -148,19 +142,6 @@ locales = [
     reference = "en/firefox/products/**/*.ftl"
     l10n = "{locale}/firefox/products/**/*.ftl"
 [[paths]]
-    reference = "en/firefox/retention/**/*.ftl"
-    l10n = "{locale}/firefox/retention/**/*.ftl"
-    locales = [
-        "de",
-        "es-ES",
-        "fr",
-        "id",
-        "pl",
-        "pt-BR",
-        "ru",
-        "zh-TW"
-    ]
-[[paths]]
     reference = "en/firefox/set-as-default/**/*.ftl"
     l10n = "{locale}/firefox/set-as-default/**/*.ftl"
 [[paths]]
@@ -169,9 +150,6 @@ locales = [
 [[paths]]
     reference = "en/firefox/welcome/page2.ftl"
     l10n = "{locale}/firefox/welcome/page2.ftl"
-[[paths]]
-    reference = "en/firefox/welcome/page3.ftl"
-    l10n = "{locale}/firefox/welcome/page3.ftl"
 [[paths]]
     reference = "en/firefox/welcome/page4.ftl"
     l10n = "{locale}/firefox/welcome/page4.ftl"
@@ -189,8 +167,10 @@ locales = [
     l10n = "{locale}/firefox/welcome/page10.ftl"
     locales = [
         "es-ES",
+        "fi",
         "it",
         "nl",
+        "sv-SE",
     ]
 [[paths]]
     reference = "en/firefox/welcome/page11.ftl"
@@ -209,6 +189,9 @@ locales = [
         "nl",
     ]
 [[paths]]
+    reference = "en/firefox/welcome/page14.ftl"
+    l10n = "{locale}/firefox/welcome/page14.ftl"
+[[paths]]
     reference = "en/firefox/whatsnew/whatsnew-account.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew-account.ftl"
 [[paths]]
@@ -218,11 +201,29 @@ locales = [
     reference = "en/firefox/whatsnew/whatsnew.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew.ftl"
 [[paths]]
+    reference = "en/firefox/whatsnew/whatsnew-115-vpn.ftl"
+    l10n = "{locale}/firefox/whatsnew/whatsnew-115-vpn.ftl"
+    locales = [
+        "cs",
+        "da",
+        "el",
+        "hu",
+        "pt-PT",
+        "sk",
+        "sl",
+    ]
+[[paths]]
+    reference = "en/firefox/whatsnew/whatsnew-developer-mdnplus.ftl"
+    l10n = "{locale}/firefox/whatsnew/whatsnew-developer-mdnplus.ftl"
+[[paths]]
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
     reference = "en/mozorg/home.ftl"
     l10n = "{locale}/mozorg/home.ftl"
+[[paths]]
+    reference = "en/mozorg/home-new.ftl"
+    l10n = "{locale}/mozorg/home-new.ftl"
 [[paths]]
     reference = "en/mozorg/home-mr2-promo.ftl"
     l10n = "{locale}/mozorg/home-mr2-promo.ftl"
@@ -261,6 +262,9 @@ locales = [
     reference = "en/mozorg/about/manifesto.ftl"
     l10n = "{locale}/mozorg/about/manifesto.ftl"
 [[paths]]
+    reference = "en/mozorg/about/this-site.ftl"
+    l10n = "{locale}/mozorg/about/this-site.ftl"
+[[paths]]
     reference = "en/mozorg/about/shared.ftl"
     l10n = "{locale}/mozorg/about/shared.ftl"
 [[paths]]
@@ -282,6 +286,12 @@ locales = [
         "zh-TW",
     ]
 [[paths]]
+    reference = "en/mozorg/try-picture-in-picture.ftl"
+    l10n = "{locale}/mozorg/try-picture-in-picture.ftl"
+    locales = [
+        "it"
+    ]
+[[paths]]
     reference = "en/newsletter/opt-out-confirmation.ftl"
     l10n = "{locale}/newsletter/opt-out-confirmation.ftl"
     locales = [
@@ -297,8 +307,14 @@ locales = [
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
 [[paths]]
+    reference = "en/products/mozsocial/*.ftl"
+    l10n = "{locale}/products/mozsocial/*.ftl"
+[[paths]]
     reference = "en/products/vpn/landing.ftl"
     l10n = "{locale}/products/vpn/landing.ftl"
+[[paths]]
+    reference = "en/products/vpn/download.ftl"
+    l10n = "{locale}/products/vpn/download.ftl"
 [[paths]]
     reference = "en/products/vpn/shared.ftl"
     l10n = "{locale}/products/vpn/shared.ftl"
@@ -311,3 +327,15 @@ locales = [
 [[paths]]
     reference = "en/products/vpn/resource-center.ftl"
     l10n = "{locale}/products/vpn/resource-center.ftl"
+[[paths]]
+    reference = "en/products/vpn/platform-post-download.ftl"
+    l10n = "{locale}/products/vpn/platform-post-download.ftl"
+[[paths]]
+    reference = "en/products/vpn/landing-2023.ftl"
+    l10n = "{locale}/products/vpn/landing-2023.ftl"
+[[paths]]
+    reference = "en/products/vpn/pricing-2023.ftl"
+    l10n = "{locale}/products/vpn/pricing-2023.ftl"
+[[paths]]
+    reference = "en/products/vpn/features.ftl"
+    l10n = "{locale}/products/vpn/features.ftl"

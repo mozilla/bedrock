@@ -6,27 +6,25 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Website Markup Usage Policy') }}{% endblock %}
+{% block page_title %}Website Markup Usage Policy{% endblock %}
 
 {% block article_title %}
-  {{ _('Website Markup Usage Policy') }}
+  Website Markup Usage Policy
 {% endblock %}
 
 {% block article_content %}
-  <p>{% trans %}
   You may use the HTML and CSS files on www.mozilla.org or other mozilla.org
   websites for your web site - as long as you don't use the visual design or
   style (the colors, gradients, fonts, etc.).  In other words, you can use
   the HTML and/or CSS code, but it should not look like you took our page
   and dropped in your logo.
-  {% endtrans %}</p>
 
-  <p>{% trans trademarks=url('foundation.trademarks.policy') %}
+  <p>{% with trademarks=url('foundation.trademarks.policy') %}
       mozilla.org does not intend to exercise any copyright it may have in
       any HTML/CSS underlying its pages to prevent you from copying or reusing
       that HTML/CSS. However, this does not grant you any right to use the
       trademarks, trade names, service marks, or trade dress of Mozilla
       Foundation. For information on our trademark policy, see the
       <a href="{{ trademarks }}">Trademark and Logo Usage Policies</a>.
-  {% endtrans %}</p>
+  {% endwith %}</p>
 {% endblock %}

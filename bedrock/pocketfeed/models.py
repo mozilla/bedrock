@@ -5,7 +5,7 @@
 from django.db import models
 from django.db.utils import DatabaseError
 
-from jinja2 import Markup
+from markupsafe import Markup
 from sentry_sdk import capture_exception
 
 from bedrock.pocketfeed.api import complete_articles_data, get_articles_data
@@ -87,7 +87,7 @@ class PocketArticle(models.Model):
     url = models.URLField()
     domain = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    image_src = models.URLField(null=True)  # points to Pocket's image CDN
+    image_src = models.URLField(null=True)  # points to Pocket's image CDN  # noqa: DJ001
     time_shared = models.DateTimeField()
     created_date = models.DateTimeField(auto_now_add=True)
 

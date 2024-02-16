@@ -6,4 +6,4 @@
 
 set -e
 
-cd locale && git pull --quiet origin master
+cd locale && git pull --quiet origin main

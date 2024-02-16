@@ -15,7 +15,7 @@ from django.utils.timezone import make_aware, utc
 
 import bleach
 from django_extensions.db.fields.json import JSONField
-from jinja2 import Markup
+from markupsafe import Markup
 from sentry_sdk import capture_exception
 
 from bedrock.wordpress.api import complete_posts_data, get_posts_data
@@ -26,7 +26,7 @@ def make_datetime(datestr):
 
 
 def strip_tags(text):
-    return bleach.clean(text, tags=[], strip=True).strip()
+    return bleach.clean(text, tags=set(), strip=True).strip()
 
 
 def post_to_dict(blog_slug, post):

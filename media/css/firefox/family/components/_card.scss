@@ -1,0 +1,17 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-card {
+    @include f3.border;
+    background-color: f3.$white;
+    padding: $layout-xs;
+
+    *:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}

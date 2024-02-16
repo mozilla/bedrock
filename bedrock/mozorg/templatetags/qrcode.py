@@ -9,7 +9,7 @@ from django.core.cache import caches
 
 import qrcode as qr
 from django_jinja import library
-from jinja2 import Markup
+from markupsafe import Markup
 from qrcode.image.svg import SvgPathImage
 
 cache = caches["qrcode"]

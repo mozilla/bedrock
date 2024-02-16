@@ -1,0 +1,55 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.newsletter-main {
+    background-color: $color-violet-60;
+    padding: $layout-lg 0;
+}
+
+.mzp-c-newsletter-title,
+.mzp-c-newsletter-desc {
+    color: $color-white;
+}
+
+.mzp-c-newsletter-content {
+    label,
+    legend {
+        color: $color-white;
+    }
+
+    input[type='email'] {
+        background-color: $color-violet-60;
+        border-color: $color-white;
+        color: $color-white;
+
+        &::placeholder {
+            color: $color-white;
+            opacity: 0.7;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: $color-white;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+}
+
+.mzp-c-newsletter-thanks {
+    h3,
+    p {
+        color: $color-white;
+    }
+}

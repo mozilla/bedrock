@@ -14,11 +14,9 @@
 
 {% block extrahead %}
   {{ super() }}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('firefox_new_thanks') }}
-{% endblock %}
-
-{% block string_data %}
-  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
 {% endblock %}
 
 {% block site_header %}
@@ -27,8 +25,10 @@
   {% endwith %}
 {% endblock %}
 
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-download-thanks' %}
+
 {% block content %}
-<main role="main">
+<main>
   <div class="mzp-l-content">
     <div class="mzp-c-notification-bar mzp-t-success show-auto-download-notification">
       {# fallback_url is replaced by the platform download link via JS, but if
@@ -39,17 +39,17 @@
     </div>
   </div>
 
-  <section class="mzp-c-call-out mzp-t-product-firefox">
+  <section class="mzp-c-callout mzp-t-product-firefox">
     <div class="mzp-l-content">
-      <h1 class="mzp-c-call-out-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
+      <h1 class="mzp-c-callout-title show-windows show-mac show-else">{{ ftl('firefox-new-firefox-is-more-than-a-browser') }}</h1>
 
-      <h1 class="mzp-c-call-out-title show-linux-arm">{{ ftl('firefox-new-download-interrupted') }}</h1>
+      <h1 class="mzp-c-callout-title show-linux">{{ ftl('firefox-new-download-almost-there') }}<br>{{ ftl('firefox-new-download-select-linux') }}</h1>
 
-      <h1 class="mzp-c-call-out-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
+      <h1 class="mzp-c-callout-title show-unknown">{{ ftl('firefox-new-download-interrupted') }}</h1>
 
     {% if ftl_has_messages('firefox-new-if-you-see-a-prompt', 'firefox-new-visit-support-for-more') %}
-      <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10">
-        <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-10-black.svg') }}" alt="{{ ftl('firefox-new-windows-10') }}" width="132" height="24">
+      <aside class="c-windows-disclaimer mzp-c-emphasis-box show-windows-10-plus">
+        <img class="c-windows-disclaimer-logo" src="{{ static('img/logos/windows/logo-windows-black.svg') }}" alt="{{ ftl('firefox-new-windows') }}" width="132" height="28">
         <p>{{ ftl('firefox-new-if-you-see-a-prompt', attrs='href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app%s" rel="external noopener" data-cta-type="link" data-cta-text="Get help with your installation"'|safe|format(referrals)) }}</p>
 
         <p><a href="https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Visit Support for More Details">{{ ftl('firefox-new-visit-support-for-more') }}</a></p>
@@ -57,11 +57,30 @@
     {% endif %}
 
       <div class="c-support-install">
+        {# shown to all Windows users from the release of Firefox 103 onward. #}
+        {% if switch('firefox-103-taskbar-message') and ftl_has_messages('firefox-new-taskbar') %}
+          <p class="show-windows">
+            <a href="https://support.mozilla.org/kb/how-unpin-firefox-taskbar-windows-10{{ referrals }}">
+              {{ ftl('firefox-new-taskbar') }}
+            </a>
+          </p>
+        {% endif %}
+
+        <div class="show-linux">
+          <div class="c-linux-button-group">
+            <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}"
+              class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-32-v2') }}</a>
+            <a href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}"
+              class="mzp-c-button mzp-t-product">{{ ftl('download-button-linux-64-v2') }}</a>
+          </div>
+          {% set attrs = 'href="https://support.mozilla.org/kb/install-firefox-linux%s#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener"
+          data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe|format(referrals) %}
+          <p class="linux-deb-text">{{ ftl('download-button-using-debian', attrs=attrs) }}</p>
+        </div>
         {# Edge-case platform support messaging #}
-        <span class="show-linux-arm">{{ ftl('firefox-new-please-follow', fallback='download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</span>
-        <span class="show-unknown">
+        <p class="show-unknown">
           {{ ftl('firefox-new-your-system-may-not', url=firefox_url('desktop', 'all'))}}
-        </span>
+        </p>
       </div>
 
       {{ download_firefox(force_direct=true, dom_id='thanks-download-button') }}
@@ -75,8 +94,5 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('tracking-pixel') %}
-    {{ js_bundle('firefox_new_pixel') }}
-  {% endif %}
   {{ js_bundle('firefox_new_thanks') }}
 {% endblock %}

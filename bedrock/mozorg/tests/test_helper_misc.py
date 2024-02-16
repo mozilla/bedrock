@@ -13,8 +13,9 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import pytest
+from bs4 import BeautifulSoup
 from django_jinja.backend import Jinja2
-from jinja2 import Markup
+from markupsafe import Markup
 from pyquery import PyQuery as pq
 
 from bedrock.base.templatetags.helpers import static
@@ -25,20 +26,7 @@ from lib.l10n_utils.fluent import fluent_l10n
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")
 
-TEST_DONATE_LINK = (
-    "https://donate.mozilla.org/{locale}/"
-    "?presets={presets}&amount={default}"
-    "&utm_source=mozilla.org&utm_medium=referral&utm_content={source}"
-    "&currency={currency}"
-)
-
-TEST_DONATE_PARAMS = {
-    "en-US": {"currency": "usd", "presets": "100,50,25,15", "default": "50"},
-    "es-MX": {"currency": "eur", "presets": "100,50,25,15", "default": "15"},
-}
-
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
-TEST_FXA_MOZILLAONLINE_ENDPOINT = "https://accounts.firefox.com.cn/"
 
 jinja_env = Jinja2.get_default()
 
@@ -173,6 +161,7 @@ class TestVideoTag(TestCase):
     def test_empty(self):
         # No video, no output.
         assert render("{{ video() }}") == ""
+        assert render("{{ video('missing-ext') }}") == ""
 
     def test_video(self):
         # A few common variations
@@ -207,91 +196,13 @@ class TestVideoTag(TestCase):
         assert extensions == [".webm", ".ogv"]
 
 
-@override_settings(STATIC_URL="/media/")
-@patch("bedrock.mozorg.templatetags.misc.find_static", return_value=True)
-class TestPlatformImg(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, url, optional_attributes=None):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ platform_img('{url}', {optional_attributes}) }}}}", {"request": req})
-
-    def _render_l10n(self, url):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
-
-    def test_platform_img_no_optional_attributes(self, find_static):
-        """Should return expected markup without optional attributes"""
-        markup = self._render("test.png")
-        self.assertIn('data-src-windows="/media/test-windows.png"', markup)
-        self.assertIn('data-src-mac="/media/test-mac.png"', markup)
-        markup = self._render("img/test.png")
-        self.assertIn('data-src-windows="/media/img/test-windows.png"', markup)
-        self.assertIn('data-src-mac="/media/img/test-mac.png"', markup)
-
-    def test_platform_img_with_optional_attributes(self, find_static):
-        """Should return expected markup with optional attributes"""
-        markup = self._render("test.png", {"data-test-attr": "test"})
-        self.assertIn('data-test-attr="test"', markup)
-
-    def test_platform_img_with_high_res(self, find_static):
-        """Should return expected markup with high resolution image attrs"""
-        markup = self._render("test.png", {"high-res": True})
-        self.assertIn('data-src-windows-high-res="/media/test-windows-high-res.png"', markup)
-        self.assertIn('data-src-mac-high-res="/media/test-mac-high-res.png"', markup)
-        self.assertIn('data-high-res="true"', markup)
-        markup = self._render("img/test.png", {"high-res": True})
-        self.assertIn('data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
-        self.assertIn('data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
-        self.assertIn('data-high-res="true"', markup)
-
-    def test_platform_img_with_l10n(self, find_static):
-        """Should return expected markup with l10n image path"""
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        markup = self._render("test.png", {"l10n": True})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-        markup = self._render("/img/test.png", {"l10n": True})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-
-    def test_platform_img_with_l10n_and_optional_attributes(self, find_static):
-        """
-        Should return expected markup with l10n image path and optional
-        attributes
-        """
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        markup = self._render("test.png", {"l10n": True, "data-test-attr": "test"})
-        self.assertIn('data-src-windows="' + l10n_url_win + '"', markup)
-        self.assertIn('data-src-mac="' + l10n_url_mac + '"', markup)
-        self.assertIn('data-test-attr="test"', markup)
-
-    def test_platform_img_with_l10n_and_high_res(self, find_static):
-        """
-        Should return expected markup with l10n image path and high resolution
-        attributes
-        """
-        l10n_url_win = self._render_l10n("test-windows.png")
-        l10n_hr_url_win = misc.convert_to_high_res(l10n_url_win)
-        l10n_url_mac = self._render_l10n("test-mac.png")
-        l10n_hr_url_mac = misc.convert_to_high_res(l10n_url_mac)
-        markup = self._render("test.png", {"l10n": True, "high-res": True})
-        self.assertIn('data-src-windows-high-res="' + l10n_hr_url_win + '"', markup)
-        self.assertIn('data-src-mac-high-res="' + l10n_hr_url_mac + '"', markup)
-        self.assertIn('data-high-res="true"', markup)
-
-
 class TestPressBlogUrl(TestCase):
     rf = RequestFactory()
 
     def _render(self, locale):
         req = self.rf.get("/")
         req.locale = locale
-        return render("{{{{ press_blog_url() }}}}".format("/"), {"request": req})
+        return render("{{{{ press_blog_url() }}}}".format("/"), {"request": req})  # noqa: F523
 
     def test_press_blog_url_no_locale(self):
         """No locale, fallback to default press blog"""
@@ -325,46 +236,25 @@ class TestPressBlogUrl(TestCase):
         assert self._render("oc") == "https://blog.mozilla.org/press/"
 
 
-@override_settings(
-    DONATE_LINK=TEST_DONATE_LINK,
-    DONATE_PARAMS=TEST_DONATE_PARAMS,
-)
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale, source=""):
+    def _render(self, content=""):
         req = self.rf.get("/")
-        req.locale = locale
-        return render(f"{{{{ donate_url('{source}') }}}}", {"request": req})
+        return render(f"{{{{ donate_url(content='{content}') }}}}", {"request": req})
 
-    def test_donate_url_no_locale(self):
-        """No locale, fallback to generic link"""
-        assert self._render("", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
+    def test_donate_url_with_content_param(self):
+        """Should include campaign specific parameters when supplied"""
+        assert self._render(content="footer") == (
+            "https://foundation.mozilla.org/?form=donate&amp;c_id=7014x000000eQOH&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_campaign=moco&amp;utm_content=footer"
         )
 
-    def test_donate_url_english(self):
-        """en-US locale, default page"""
-        assert self._render("en-US", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/en-US/"
-            "?presets=100,50,25,15&amp;amount=50"
-            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_content=mozillaorg_footer&amp;currency=usd"
-        )
-
-    def test_donate_url_spanish(self):
-        """es-MX locale, a localized page"""
-        assert self._render("es-MX", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/es-MX/"
-            "?presets=100,50,25,15&amp;amount=15"
-            "&amp;utm_source=mozilla.org&amp;utm_medium=referral"
-            "&amp;utm_content=mozillaorg_footer&amp;currency=eur"
-        )
-
-    def test_donate_url_unsupported_locale(self):
-        """Unsupported locale, fallback to generic link"""
-        assert self._render("es-ES", "mozillaorg_footer") == (
-            "https://donate.mozilla.org/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer"
+    def test_donate_url_no_params(self):
+        """Should exclude campaign specific parameters when not supplied"""
+        assert self._render() == (
+            "https://foundation.mozilla.org/?form=donate&amp;c_id=7014x000000eQOH&amp;utm_source=mozilla.org&amp;utm_medium=referral"
+            "&amp;utm_campaign=moco"
         )
 
 
@@ -450,7 +340,7 @@ class TestMozillaInstagramUrl(TestCase):
 
     def test_mozilla_instagram_url_german(self):
         """de locale, a local account"""
-        assert self._render("de") == "https://www.instagram.com/unfcktheinternet/"
+        assert self._render("de") == "https://www.instagram.com/mozilla_deutschland/"
 
     def test_mozilla_instagram_url_other_locale(self):
         """No account for locale, fallback to default account"""
@@ -458,51 +348,283 @@ class TestMozillaInstagramUrl(TestCase):
 
 
 @override_settings(STATIC_URL="/media/")
-class TestHighResImg(TestCase):
+class TestRespImg(TestCase):
     rf = RequestFactory()
 
-    def _render(self, url, optional_attributes=None):
+    def _render(self, url, srcset=None, sizes=None, optional_attributes=None):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render(f"{{{{ high_res_img('{url}', {optional_attributes}) }}}}", {"request": req})
+        return render(f"{{{{ resp_img('{url}', {srcset}, {sizes}, {optional_attributes}) }}}}", {"request": req})
 
     def _render_l10n(self, url):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(f"{{{{ l10n_img('{url}') }}}}", {"request": req})
 
-    def test_high_res_img_no_optional_attributes(self):
+    def test_resp_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
-        expected = '<img class="" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x">'
-        markup = self._render("img/test.png")
+        expected = (
+            '<img src="/media/img/panda-500.png" '
+            'srcset="/media/img/panda-500.png 500w,/media/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+        )
         self.assertEqual(markup, expected)
 
-    def test_high_res_img_with_optional_attributes(self):
+    def test_resp_img_absolute_urls(self):
+        """Should return expected markup when absolute image URLs are passed"""
+        expected = (
+            '<img src="https://www.example.com/img/panda-500.png" '
+            'srcset="https://www.example.com/img/panda-500.png 500w,https://www.example.com/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-500.png",
+            {"https://www.example.com/img/panda-500.png": "500w", "https://www.example.com/img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
-        markup = self._render("img/test.png", {"data-test-attr": "test", "class": "logo"})
-        expected = '<img class="logo" src="/media/img/test.png" ' 'srcset="/media/img/test-high-res.png 1.5x" ' 'data-test-attr="test">'
+        expected = (
+            '<img loading="lazy" src="/media/img/panda-500.png" '
+            'srcset="/media/img/panda-500.png 500w,/media/img/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
+            'alt="Red Panda" class="panda-hero">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"class": "panda-hero", "alt": "Red Panda", "loading": "lazy"},
+        )
         self.assertEqual(markup, expected)
 
-    def test_high_res_img_with_l10n(self):
+    def test_resp_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
+        expected = (
+            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "panda-500.png",
+            {"panda-500.png": "500w", "panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True},
+        )
         self.assertEqual(markup, expected)
 
-        l10n_url = self._render_l10n("img/test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x">'
+        expected = (
+            '<img src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" alt="">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True},
+        )
         self.assertEqual(markup, expected)
 
-    def test_high_res_img_with_l10n_and_optional_attributes(self):
+    def test_resp_img_with_l10n_and_optional_attributes(self):
         """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n("test.png")
-        l10n_hr_url = misc.convert_to_high_res(l10n_url)
-        markup = self._render("test.png", {"l10n": True, "data-test-attr": "test"})
-        expected = '<img class="" src="' + l10n_url + '" ' 'srcset="' + l10n_hr_url + ' 1.5x" data-test-attr="test">'
+        expected = (
+            '<img loading="lazy" src="/media/img/l10n/en-US/panda-500.png" '
+            'srcset="/media/img/l10n/en-US/panda-500.png 500w,/media/img/l10n/en-US/panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)" '
+            'alt="Red Panda" class="panda-hero">'
+        )
+        markup = self._render(
+            "img/panda-500.png",
+            {"img/panda-500.png": "500w", "img/panda-1000.png": "1000w"},
+            {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+            {"l10n": True, "class": "panda-hero", "alt": "Red Panda", "loading": "lazy"},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_srcset_without_sizes(self):
+        """Should return expected markup when using srcset without sizes"""
+        expected = '<img src="/media/img/panda.png" srcset="/media/img/panda-high-res.png 2x" alt="">'
+        markup = self._render("img/panda.png", {"img/panda-high-res.png": "2x"})
+        self.assertEqual(markup, expected)
+
+    def test_resp_img_without_srcset_or_sizes(self):
+        """Should return expected markup when using without srcset or sizes"""
+        expected = '<img src="/media/img/panda.png" alt="">'
+        markup = self._render("img/panda.png")
+        self.assertEqual(markup, expected)
+
+
+@override_settings(STATIC_URL="/media/")
+class TestPicture(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, url, sources, optional_attributes=None):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ picture('{url}', {sources}, {optional_attributes}) }}}}", {"request": req})
+
+    def test_picture_media_srcset_only(self):
+        """Should return expected markup when specifying media and srcset"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
+            '<img src="/media/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_absolute_urls(self):
+        """Should return expected markup when absolute image urls are passed"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="https://www.example.com/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="https://www.example.com/img/panda-desktop.png">'
+            '<img src="https://www.example.com/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "https://www.example.com/img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"https://www.example.com/img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"https://www.example.com/img/panda-desktop.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_media_multiple_srcset_sizes(self):
+        """Should return expected markup when specifying media with multiple srcset and sizes"""
+        expected = (
+            "<picture>"
+            '<source media="(prefers-reduced-motion: reduce)" '
+            'srcset="/media/img/sleeping-panda-500.png 500w,/media/img/sleeping-panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<source media="(prefers-reduced-motion: no-preference)" '
+            'srcset="/media/img/dancing-panda-500.gif 500w,/media/img/dancing-panda-1000.gif 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<img src="/media/img/dancing-panda-500.gif" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/dancing-panda-500.gif",
+            [
+                {
+                    "media": "(prefers-reduced-motion: reduce)",
+                    "srcset": {"img/sleeping-panda-500.png": "500w", "img/sleeping-panda-1000.png": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+                {
+                    "media": "(prefers-reduced-motion: no-preference)",
+                    "srcset": {"img/dancing-panda-500.gif": "500w", "img/dancing-panda-1000.gif": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_srcset_only(self):
+        """Should return expected markup when specifying type and srcset"""
+        expected = '<picture><source type="image/webp" srcset="/media/img/red-panda.webp"><img src="/media/img/red-panda.png" alt=""></picture>'
+        markup = self._render("img/red-panda.png", [{"type": "image/webp", "srcset": {"img/red-panda.webp": "default"}}])
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_media_srcset(self):
+        """Should return expected markup when specifying type, media, and srcset"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" type="image/webp" srcset="/media/img/red-panda.webp">'
+            '<source media="(max-width: 799px)" type="image/png" srcset="/media/img/red-panda.png">'
+            '<img src="/media/img/red-panda.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/red-panda.png",
+            [
+                {"media": "(max-width: 799px)", "type": "image/webp", "srcset": {"img/red-panda.webp": "default"}},
+                {"media": "(max-width: 799px)", "type": "image/png", "srcset": {"img/red-panda.png": "default"}},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_type_srcset_sizes(self):
+        """Should return expected markup when specifying type, srcset, and sizes"""
+        expected = (
+            "<picture>"
+            '<source type="image/webp" srcset="/media/img/sleeping-panda-500.webp 500w,/media/img/sleeping-panda-1000.webp 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<source type="image/png" srcset="/media/img/sleeping-panda-500.png 500w,/media/img/sleeping-panda-1000.png 1000w" '
+            'sizes="(min-width: 1000px) calc(50vw - 200px),calc(100vw - 50px)">'
+            '<img src="/media/img/red-panda.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/red-panda.png",
+            [
+                {
+                    "type": "image/webp",
+                    "srcset": {"img/sleeping-panda-500.webp": "500w", "img/sleeping-panda-1000.webp": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+                {
+                    "type": "image/png",
+                    "srcset": {"img/sleeping-panda-500.png": "500w", "img/sleeping-panda-1000.png": "1000w"},
+                    "sizes": {"(min-width: 1000px)": "calc(50vw - 200px)", "default": "calc(100vw - 50px)"},
+                },
+            ],
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_l10n_images(self):
+        """Should return expected markup when specifying L10n images"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/l10n/en-US/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/l10n/en-US/panda-desktop.png">'
+            '<img src="/media/img/l10n/en-US/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+            {"l10n": True},
+        )
+        self.assertEqual(markup, expected)
+
+    def test_picture_with_optional_attributes(self):
+        """Should return expected markup with optional attributes"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png">'
+            '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png">'
+            '<img loading="lazy" src="/media/img/panda-mobile.png" alt="Red Panda" class="panda-hero">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+            ],
+            {"alt": "Red Panda", "loading": "lazy", "class": "panda-hero"},
+        )
         self.assertEqual(markup, expected)
 
 
@@ -541,38 +663,41 @@ class TestAbsoluteURLFilter(TestCase):
         assert misc.absolute_url("https://www.mozilla.org/en-US/firefox/new/") == expected
 
 
-class TestFirefoxIOSURL(TestCase):
-    rf = RequestFactory()
+@pytest.mark.parametrize(
+    "html, cleaned",
+    [
+        ("pre <script>alert('oops')</script> post", "pre alert('oops') post"),
+        ("pre <script>alert('oops') post", "pre alert('oops') post"),
+        ("pre <style>body {background-color: red;}</style> post", "pre body {background-color: red;} post"),
+        ("pre <div onclick='foo()'></div> post", "pre  post"),
+        ("pre <p>foo &amp; bar</p> post", "pre foo & bar post"),
+        ("pre <p>mid</p> post", "pre mid post"),
+    ],
+)
+def test_bleach_tags(html, cleaned):
+    s = misc.bleach_tags(html)
+    assert s == cleaned, f"{s} != {cleaned}"
 
-    def _render(self, locale, ct_param=None):
-        req = self.rf.get("/")
-        req.locale = locale
 
-        if ct_param:
-            return render("{{ firefox_ios_url('%s') }}" % ct_param, {"request": req})
+def test_attrs():
+    context = {"elem": BeautifulSoup("<h1>Test</h1>", "lxml")}
+    template = "{% do elem.select('h1')|htmlattr(class='dude', id='abides',) %}{{ elem | safe }}"
+    assert render(template, context) == '<html><body><h1 class="dude" id="abides">Test</h1></body></html>'
 
-        return render("{{ firefox_ios_url() }}", {"request": req})
 
-    def test_firefox_ios_url_no_locale(self):
-        """No locale, fallback to default URL"""
-        assert self._render("") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_default(self):
-        """should fallback to default URL"""
-        assert self._render("ar") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-        assert self._render("zu") == "https://itunes.apple.com/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_localized(self):
-        """should return localized URL"""
-        assert self._render("en-US") == "https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926"
-        assert self._render("es-ES") == "https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926"
-        assert self._render("ja") == "https://itunes.apple.com/jp/app/firefox-private-safe-browser/id989804926"
-
-    def test_firefox_ios_url_param(self):
-        """should return default or localized URL with ct param"""
-        assert self._render("", "mozorg") == ("https://itunes.apple.com/app/firefox-private-safe-browser/id989804926?ct=mozorg")
-        assert self._render("en-US", "mozorg") == ("https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926?ct=mozorg")
-        assert self._render("es-ES", "mozorg") == ("https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926?ct=mozorg")
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("Hello, World!", "hello-world"),
+        (" multiple---dash and  space ", "multiple-dash-and-space"),
+        ("underscore_in-value", "underscore_in-value"),
+        ("spam & eggs", "spam-eggs"),
+        ("__strip__underscore-value___", "strip__underscore-value"),
+    ],
+)
+def test_slugify(text, expected):
+    template = "{{ '%s' | slugify }}" % text
+    assert render(template) == expected
 
 
 # from jingo
@@ -648,69 +773,140 @@ def test_csrf():
 class TestAppStoreURL(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale):
+    def _render(self, product, campaign, locale):
         req = self.rf.get("/")
         req.locale = locale
-        product = "lockwise"
-        return render("{{ app_store_url('%s') }}" % product, {"request": req})
+        return render(
+            "{{{{ app_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            {"request": req},
+        )
 
-    def test_app_store_url_no_locale(self):
+    def test_firefox_app_store_url_no_locale(self):
         """No locale, fallback to default URL"""
-        assert self._render("") == "https://itunes.apple.com/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "") == "https://apps.apple.com/app/apple-store/id989804926"
 
-    def test_app_store_url_default(self):
+    def test_firefox_app_store_url_default(self):
         """should fallback to default URL"""
-        assert self._render("ar") == "https://itunes.apple.com/app/id1314000270?mt=8"
-        assert self._render("zu") == "https://itunes.apple.com/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "ar") == "https://apps.apple.com/app/apple-store/id989804926"
+        assert self._render("firefox", "", "zu") == "https://apps.apple.com/app/apple-store/id989804926"
 
-    def test_app_store_url_localized(self):
+    def test_firefox_app_store_url_localized(self):
         """should return localized URL"""
-        assert self._render("en-US") == "https://itunes.apple.com/us/app/id1314000270?mt=8"
-        assert self._render("es-ES") == "https://itunes.apple.com/es/app/id1314000270?mt=8"
-        assert self._render("de") == "https://itunes.apple.com/de/app/id1314000270?mt=8"
+        assert self._render("firefox", "", "en-US") == "https://apps.apple.com/us/app/apple-store/id989804926"
+        assert self._render("firefox", "", "es-ES") == "https://apps.apple.com/es/app/apple-store/id989804926"
+        assert self._render("firefox", "", "de") == "https://apps.apple.com/de/app/apple-store/id989804926"
+
+    def test_firefox_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("firefox", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+
+    def test_focus_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("focus", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("focus", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("focus", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id1073435754?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+
+    def test_pocket_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("pocket", "firefox-home", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "de")
+            == "https://apps.apple.com/de/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
+        )
 
 
 class TestPlayStoreURL(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale):
+    def _render(self, product, campaign, locale):
         req = self.rf.get("/")
         req.locale = locale
-        product = "lockwise"
-        return render("{{ play_store_url('%s') }}" % product, {"request": req})
+        return render(
+            "{{{{ play_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            {"request": req},
+        )
 
-    def test_play_store_url_localized(self):
+    def test_firefox_play_store_url_no_locale(self):
+        """No locale, fallback to default URL"""
+        assert self._render("firefox", "", "") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+
+    def test_firefox_play_store_url_localized(self):
         """should return localized URL"""
-        assert self._render("en-US") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=en"
-        assert self._render("es-ES") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=es"
-        assert self._render("de") == "https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=de"
+        assert self._render("firefox", "", "en-US") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=en"
+        assert self._render("firefox", "", "es-ES") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=es"
+        assert self._render("firefox", "", "de") == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;hl=de"
 
+    def test_firefox_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("firefox", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("firefox", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
 
-class TestStructuredDataID(TestCase):
-    rf = RequestFactory()
+    def test_focus_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("focus", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("focus", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("focus", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.klar&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
 
-    def _render(self, locale, domain=None):
-        req = self.rf.get("/")
-        req.locale = locale
-        sd_id = "firefoxbrowser"
-
-        if domain:
-            return render(f"{{{{ structured_data_id('{sd_id}', '{domain}') }}}}", {"request": req})
-
-        return render("{{ structured_data_id('%s') }}" % sd_id, {"request": req})
-
-    def test_structured_data_localized_id(self):
-        """should return localized id"""
-        assert self._render("en-US") == "https://www.mozilla.org/#firefoxbrowser"
-        assert self._render("es-ES") == "https://www.mozilla.org/#firefoxbrowser-es-es"
-        assert self._render("de") == "https://www.mozilla.org/#firefoxbrowser-de"
-
-    def test_structured_data_custom_domain_id(self):
-        """should return id for a custom domain"""
-        domain = "https://foundation.mozilla.org"
-        assert self._render("en-US", domain) == "https://foundation.mozilla.org/#firefoxbrowser"
-        assert self._render("es-ES", domain) == "https://foundation.mozilla.org/#firefoxbrowser-es-es"
-        assert self._render("de", domain) == "https://foundation.mozilla.org/#firefoxbrowser-de"
+    def test_pocket_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("pocket", "firefox-home", "en-US")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "es-ES")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+        )
+        assert (
+            self._render("pocket", "firefox-home", "de")
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
 
 
 class TestLangShort(TestCase):
@@ -729,184 +925,68 @@ class TestLangShort(TestCase):
         assert self._render("de") == "de"
 
 
-class TestFirefoxAdjustUrl(TestCase):
+class TestNativeLanguageName(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale, redirect, adgroup, creative=None):
+    def _render(self, locale, domain=None):
         req = self.rf.get("/")
         req.locale = locale
 
-        if creative:
-            return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
+        return render("{{ native_language_name() }}", {"request": req})
 
-        return render(f"{{{{ firefox_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
+    def test_native_language_names(self):
+        """should return a native language name"""
+        assert self._render("en-US") == "English (US)"
+        assert self._render("de") == "Deutsch"
+        assert self._render("tr") == "Türkçe"
 
-    def test_firefox_ios_adjust_url(self):
-        """Firefox for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_firefox_ios_adjust_url_creative(self):
-        """Firefox for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
-        )
-
-    def test_firefox_android_adjust_url(self):
-        """Firefox for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/2uo1qc?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_firefox_no_redirect_adjust_url(self):
-        """Firefox for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/2uo1qc?campaign=www.mozilla.org&amp;adgroup=test-page"
+    def test_unknown_locale_code(self):
+        """should return locale code if unknown"""
+        assert self._render("aaa") == "aaa"
 
 
-class TestFocusAdjustUrl(TestCase):
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(RELAY_PRODUCT_URL="https://relay.firefox.com/")
+class TestRelayFxAButton(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale, redirect, adgroup, creative=None):
+    def _render(
+        self,
+        entrypoint,
+        button_text,
+        class_name=None,
+        is_button_class=True,
+        include_metrics=True,
+        optional_parameters=None,
+        optional_attributes=None,
+    ):
         req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ focus_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_focus_ios_adjust_url(self):
-        """Firefox Focus with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        req.locale = "en-US"
+        return render(
+            "{{{{ relay_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}) }}}}".format(
+                entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
+            ),
+            {"request": req},
         )
 
-    def test_focus_ios_adjust_url_creative(self):
-        """Firefox Focus with an App Store URL redirect and creative param"""
-        assert (
-            self._render("fr", "ios", "test-page", "experiment-name") == "https://app.adjust.com/b8s7qo?"
-            "redirect=https%3A%2F%2Fitunes.apple.com%2Ffr%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
+    def test_relay_fxa_button(self):
+        """Should return expected markup"""
+        markup = self._render(
+            entrypoint="mozilla.org-whatsnew",
+            button_text="Sign In to Relay",
+            class_name="relay-main-cta-button",
+            is_button_class=True,
+            include_metrics=True,
+            optional_parameters={"utm_campaign": "whatsnew96"},
+            optional_attributes={"data-cta-text": "Sign In to Relay", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
         )
-
-    def test_focus_android_adjust_url(self):
-        """Firefox Focus for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/b8s7qo?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
+        expected = (
+            '<a href="https://relay.firefox.com/accounts/fxa/login/?process=login&entrypoint=mozilla.org-whatsnew&form_type=button'
+            '&utm_source=mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew96" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product relay-main-cta-button" '
+            'data-cta-text="Sign In to Relay" data-cta-type="fxa-relay" data-cta-position="primary">Sign In to Relay</a>'
         )
-
-    def test_focus_no_redirect_adjust_url(self):
-        """Firefox Focus for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/b8s7qo?campaign=www.mozilla.org&amp;adgroup=test-page"
-
-    def test_klar_ios_adjust_url(self):
-        """Firefox Klar with an App Store URL redirect"""
-        assert (
-            self._render("de", "ios", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fklar-by-firefox%2Fid1073435754"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_klar_android_adjust_url(self):
-        """Firefox Klar for mobile with a Play Store redirect"""
-        assert (
-            self._render("de", "android", "test-page") == "https://app.adjust.com/jfcx5x?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.klar"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-
-class TestLockwiseAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ lockwise_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_lockwise_ios_adjust_url(self):
-        """Firefox Lockwise for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_lockwise_ios_adjust_url_creative(self):
-        """Firefox Lockwise for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/6tteyjo"
-            "?redirect=https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fid1314000270%3Fmt%3D8"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
-        )
-
-    def test_lockwise_android_adjust_url(self):
-        """Firefox Lockwise for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/6tteyjo?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dmozilla.lockbox"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_lockwise_no_redirect_adjust_url(self):
-        """Firefox Lockwise for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/6tteyjo?campaign=www.mozilla.org&amp;adgroup=test-page"
-
-
-class TestPocketAdjustUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale, redirect, adgroup, creative=None):
-        req = self.rf.get("/")
-        req.locale = locale
-
-        if creative:
-            return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}', '{creative}') }}}}", {"request": req})
-
-        return render(f"{{{{ pocket_adjust_url('{redirect}', '{adgroup}') }}}}", {"request": req})
-
-    def test_pocket_ios_adjust_url(self):
-        """Pocket for mobile with an App Store URL redirect"""
-        assert (
-            self._render("en-US", "ios", "test-page") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_pocket_ios_adjust_url_creative(self):
-        """Pocket for mobile with an App Store URL redirect and creative param"""
-        assert (
-            self._render("de", "ios", "test-page", "experiment-name") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fpocket-save-read-grow%2Fid309601447"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name"
-        )
-
-    def test_pocket_android_adjust_url(self):
-        """Pocket for mobile with a Play Store redirect"""
-        assert (
-            self._render("en-US", "android", "test-page") == "https://app.adjust.com/m54twk?redirect="
-            "https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.ideashower.readitlater.pro"
-            "&amp;campaign=www.mozilla.org&amp;adgroup=test-page"
-        )
-
-    def test_pocket_no_redirect_adjust_url(self):
-        """Pocket for mobile with no redirect"""
-        assert self._render("en-US", None, "test-page") == "https://app.adjust.com/m54twk?campaign=www.mozilla.org&amp;adgroup=test-page"
+        self.assertEqual(markup, expected)
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
@@ -980,7 +1060,7 @@ class TestMonitorFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign In to Monitor", "data-cta-type": "fxa-monitor", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://monitor.firefox.com/oauth/init?entrypoint=mozilla.org-firefox-accounts&form_type=button'
+            '<a href="https://monitor.mozilla.org/user/dashboard?entrypoint=mozilla.org-firefox-accounts&form_type=button'
             '&utm_source=mozilla.org-firefox-accounts&utm_medium=referral&utm_campaign=skyline" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button '
             'monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '
@@ -990,50 +1070,6 @@ class TestMonitorFxAButton(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
-class TestRelayFxAButton(TestCase):
-    rf = RequestFactory()
-
-    def _render(
-        self,
-        entrypoint,
-        button_text,
-        class_name=None,
-        is_button_class=True,
-        include_metrics=True,
-        optional_parameters=None,
-        optional_attributes=None,
-    ):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(
-            "{{{{ relay_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}) }}}}".format(
-                entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
-            ),
-            {"request": req},
-        )
-
-    def test_relay_fxa_button(self):
-        """Should return expected markup"""
-        markup = self._render(
-            entrypoint="mozilla.org-whatsnew",
-            button_text="Sign In to Relay",
-            class_name="relay-main-cta-button",
-            is_button_class=True,
-            include_metrics=True,
-            optional_parameters={"utm_campaign": "whatsnew96"},
-            optional_attributes={"data-cta-text": "Sign In to Relay", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
-        )
-        expected = (
-            '<a href="https://relay.firefox.com/accounts/fxa/login/?process=login&entrypoint=mozilla.org-whatsnew&form_type=button'
-            '&utm_source=mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew96" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product relay-main-cta-button" '
-            'data-cta-text="Sign In to Relay" data-cta-type="fxa-relay" data-cta-position="primary">Sign In to Relay</a>'
-        )
-        self.assertEqual(markup, expected)
-
-
-@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
-@override_settings(FXA_ENDPOINT_MOZILLAONLINE=TEST_FXA_MOZILLAONLINE_ENDPOINT)
 class TestFxAButton(TestCase):
     rf = RequestFactory()
 
@@ -1073,10 +1109,7 @@ class TestFxAButton(TestCase):
             '<a href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
             '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
-            'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
-            'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
-            '&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
-            'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up</a>'
+            'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary">Sign Up</a>'
         )
         self.assertEqual(markup, expected)
 
@@ -1096,10 +1129,7 @@ class TestFxAButton(TestCase):
             '<a href="https://accounts.firefox.com/signin?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
             '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
-            'fxa-main-cta-button" data-cta-text="Sign In" data-cta-type="fxa-sync" data-cta-position="primary" '
-            'data-mozillaonline-link="https://accounts.firefox.com.cn/signin?entrypoint=mozilla.org-firefox-whatsnew73'
-            '&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
-            'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign In</a>'
+            'fxa-main-cta-button" data-cta-text="Sign In" data-cta-type="fxa-sync" data-cta-position="primary">Sign In</a>'
         )
         self.assertEqual(markup, expected)
 
@@ -1119,16 +1149,12 @@ class TestFxAButton(TestCase):
             '<a href="https://accounts.firefox.com/?action=email&entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
             '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
-            'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
-            'data-mozillaonline-link="https://accounts.firefox.com.cn/?action=email&entrypoint=mozilla.org-firefox-whatsnew73'
-            '&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
-            'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up</a>'
+            'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary">Sign Up</a>'
         )
         self.assertEqual(markup, expected)
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
-@override_settings(FXA_ENDPOINT_MOZILLAONLINE=TEST_FXA_MOZILLAONLINE_ENDPOINT)
 class TestFxALinkFragment(TestCase):
     rf = RequestFactory()
 
@@ -1142,9 +1168,15 @@ class TestFxALinkFragment(TestCase):
         markup = self._render(entrypoint="mozilla.org-firefox-whatsnew73", action="signup", optional_parameters={"utm_campaign": "whatsnew73"})
         expected = (
             'href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
-            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
-            'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
-            '&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
-            'data-mozillaonline-action="https://accounts.firefox.com.cn/"'
+            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"'
+        )
+        self.assertEqual(markup, expected)
+
+    def test_fxa_button_email(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint="mozilla.org-firefox-whatsnew73", action="email", optional_parameters={"utm_campaign": "whatsnew73"})
+        expected = (
+            'href="https://accounts.firefox.com/?action=email&entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"'
         )
         self.assertEqual(markup, expected)

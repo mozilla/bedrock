@@ -2,13 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-mozilla';
 @import 'includes/base';
 @import 'includes/dark-mode';
 
@@ -31,7 +32,11 @@ $image-path: '/media/protocol/img';
 
 .wnp-main-title {
     @include text-title-md;
-    color: get-theme('title-text-color');
+    color: $title-text-color;
+
+    @supports (--css: variables) {
+        color: var(--title-text-color);
+    }
 }
 
 .wnp-main-tagline {
@@ -68,12 +73,20 @@ $image-path: '/media/protocol/img';
         color: $color-white;
 
         h2.thank-you {
-            color: get-theme('title-text-color-inverse');
+            color: $title-text-color-inverse;
+
+            @supports (--css: variables) {
+                color: var(--title-text-color-inverse);
+            }
         }
     }
 
     .wnp-main-title {
-        color: get-theme('title-text-color-inverse');
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
 
         strong {
             color: $color-violet-20;

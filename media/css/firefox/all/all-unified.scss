@@ -4,11 +4,11 @@
 
 @use 'sass:color';
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/forms/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms';
 @import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
@@ -90,6 +90,15 @@ $image-path: '/media/protocol/img';
         [data-product='ios_release'] {
             display: block;
         }
+    }
+}
+
+// display additional instructions when linux is selected
+
+.c-download[data-platform="linux"],
+.c-download[data-platform="linux64"] {
+    .c-linux-debian {
+        display: block;
     }
 }
 
@@ -239,6 +248,11 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-linux-debian {
+    @include bidi(((text-align, left, right), ));
+    display: none;
+}
+
 .c-download-button {
     a {
         display: inline-block;
@@ -275,8 +289,8 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .mzp-c-sidemenu {
-        background: $color-white;
+    .mzp-c-sidemenu-main {
+        display: block;
     }
 }
 

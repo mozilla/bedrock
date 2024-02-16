@@ -9,17 +9,18 @@ This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
 import base64
-import urllib.parse
-from urllib.parse import unquote
+import inspect
+import time
 from warnings import warn
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
-from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.http import Http404, HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
+from bedrock.base import metrics
 from lib.l10n_utils import translation
 
 from . import urlresolvers
@@ -27,17 +28,22 @@ from . import urlresolvers
 
 class LocaleURLMiddleware:
     """
-    1. Search for the locale.
-    2. Save it in the request.
-    3. Strip them from the URL.
+    This middleware adjusts the `path_info` for reverse URL resolving.
+
+    We split `request.path_info` into `locale` and `path`. The `path` portion
+    is saved back to `request.path_info` for reverse URL resolving, while the
+    `locale` will either be one we support or empty string.
+
     """
 
     def __init__(self, get_response=None):
-        if not settings.USE_I18N or not settings.USE_L10N:
+        if not settings.USE_L10N:
             warn(
-                "USE_I18N or USE_L10N is False but LocaleURLMiddleware is "
-                "loaded. Consider removing bedrock.base.middleware."
-                "LocaleURLMiddleware from your MIDDLEWARE setting."
+                """
+                The `USE_L10N` setting is False but LocaleURLMiddleware is
+                loaded. Consider removing bedrock.base.middleware.LocaleURLMiddleware
+                from your MIDDLEWARE setting.
+                """.strip()
             )
         self.get_response = get_response
 
@@ -50,26 +56,8 @@ class LocaleURLMiddleware:
     def process_request(self, request):
         prefixer = urlresolvers.Prefixer(request)
         urlresolvers.set_url_prefix(prefixer)
-        full_path = prefixer.fix(prefixer.shortened_path)
 
-        if not (request.path in settings.SUPPORTED_LOCALE_IGNORE or full_path == request.path):
-            query_string = request.META.get("QUERY_STRING", "")
-            full_path = urllib.parse.quote(full_path.encode("utf-8"))
-
-            if query_string:
-                full_path = "?".join([full_path, unquote(query_string, errors="ignore")])
-
-            response = HttpResponsePermanentRedirect(full_path)
-
-            # Vary on Accept-Language if we changed the locale
-            old_locale = prefixer.locale
-            new_locale, _ = urlresolvers.split_path(full_path)
-            if old_locale != new_locale:
-                response["Vary"] = "Accept-Language"
-
-            return response
-
-        request.path_info = "/" + prefixer.shortened_path
+        request.path_info = f"/{prefixer.shortened_path}"
         request.locale = prefixer.locale
         translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 
@@ -83,7 +71,8 @@ class BasicAuthMiddleware:
     def __init__(self, get_response=None):
         if not settings.BASIC_AUTH_CREDS:
             raise MiddlewareNotUsed
-        self.get_response = None
+
+        self.get_response = get_response
 
     def __call__(self, request):
         response = self.process_request(request)
@@ -98,7 +87,7 @@ class BasicAuthMiddleware:
                 auth = request.headers["Authorization"].split()
                 if len(auth) == 2:
                     if auth[0].lower() == "basic":
-                        provided_auth = base64.b64decode(auth[1])
+                        provided_auth = base64.b64decode(auth[1]).decode()
                         if provided_auth == required_auth:
                             # we're good. continue on.
                             return None
@@ -111,3 +100,65 @@ class BasicAuthMiddleware:
 
 class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
     pass
+
+
+class MetricsStatusMiddleware(MiddlewareMixin):
+    """Send status code counts to statsd"""
+
+    def _record(self, status_code):
+        metrics.incr("response.status", tags=[f"status_code:{status_code}"])
+
+    def process_response(self, request, response):
+        self._record(response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        if isinstance(exception, Http404):
+            self._record(404)
+        else:
+            self._record(500)
+
+
+class MetricsViewTimingMiddleware(MiddlewareMixin):
+    """Send request timing to statsd"""
+
+    def __init__(self, get_response=None):
+        if not settings.ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE:
+            raise MiddlewareNotUsed
+
+        self.get_response = get_response
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        if inspect.isfunction(view_func):
+            view = view_func
+        else:
+            view = view_func.__class__
+
+        request._start_time = time.time()
+        request._view_module = getattr(view, "__module__", "none")
+        request._view_name = getattr(view, "__name__", "none")
+
+    def _record_timing(self, request, status_code):
+        if hasattr(request, "_start_time") and hasattr(request, "_view_module") and hasattr(request, "_view_name"):
+            # View times.
+            view_time = int((time.time() - request._start_time) * 1000)
+            metrics.timing(
+                "view.timings",
+                view_time,
+                tags=[
+                    f"view_path:{request._view_module}.{request._view_name}.{request.method}",
+                    f"module:{request._view_module}.{request.method}",
+                    f"method:{request.method}",
+                    f"status_code:{status_code}",
+                ],
+            )
+
+    def process_response(self, request, response):
+        self._record_timing(request, response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        if isinstance(exception, Http404):
+            self._record_timing(request, 404)
+        else:
+            self._record_timing(request, 500)

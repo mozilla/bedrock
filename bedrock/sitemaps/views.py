@@ -7,14 +7,15 @@ from django.views.generic import TemplateView
 
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
+from lib.l10n_utils import RequireSafeMixin
 
 
 @method_decorator(cache_control_expires(1), name="dispatch")
-class SitemapView(TemplateView):
+class SitemapView(RequireSafeMixin, TemplateView):
     content_type = "text/xml"
 
     def _get_locale(self):
-        if self.kwargs["is_none"]:
+        if "is_none" in self.kwargs:
             # is_none here refers to the sitemap_none.xml URL. the value of that kwarg
             # when on that URL will be "_none" and will be None if not on that URL.
             # For that page we set the locale to the special value as that is what the entries

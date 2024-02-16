@@ -1,0 +1,46 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block article_title %}{{ ftl('pinned-tabs-pinned-browser-tabs') }}{% endblock %}
+{% block page_desc %}{{ ftl('pinned-tabs-keep-your-favorite-pages-open') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('pinned-tabs-pinning-a-tab-in-firefox-allows') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/pinned-tabs.png",
+    srcset={
+        "img/firefox/features/pinned-tabs-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>{{ ftl('pinned-tabs-theyre-small-and-you-cant-close') }}</p>
+
+<p>{{ ftl('pinned-tabs-you-can-see-when-your-pinned-tabs') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/pinned-tab-notification.png",
+    srcset={
+        "img/firefox/features/pinned-tab-notification-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>{{ ftl('pinned-tabs-if-you-click-on-a-link-within') }}</p>
+{% endblock article_content %}

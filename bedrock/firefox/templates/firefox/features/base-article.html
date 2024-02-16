@@ -1,0 +1,69 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from 'macros-protocol.html' import split %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox-features-article') }}
+{% endblock page_css %}
+
+{% block article_title_short %}{% endblock %}
+{% block article_title %}{% endblock %}
+
+{% block page_title %}{{ self.article_title() }}{% endblock %}
+
+{% block content %}
+<nav class="mzp-c-breadcrumb">
+  <ol class="mzp-c-breadcrumb-list">
+    <li class="mzp-c-breadcrumb-item">
+      <a href="{{ url('firefox.features.index') }}">{{ ftl('features-shared-firefox-features') }}</a>
+    </li>
+    <li class="mzp-c-breadcrumb-item">
+    {% if self.article_title_short() %}
+      {{ self.article_title_short() }}
+    {% else %}
+      {{ self.article_title() }}
+    {% endif %}
+    </li>
+  </ol>
+</nav>
+
+<div class="feature-article-container">
+  <div class="mzp-l-content mzp-t-content-md">
+    <article class="mzp-c-article feature-article">
+      <h1 class="mzp-c-article-title">{{ self.article_title() }}</h1>
+      {% block article_content %}{% endblock %}
+    </article>
+  </div>
+</div>
+
+{% block footer_cta %}
+  {% call split (
+    image=resp_img('img/firefox/features/footer-browser.png',
+        srcset={
+          'img/firefox/features/footer-browser-high-res.png': '2x'
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "400"
+        }
+      ),
+    block_class='c-feature-footer mzp-l-split-reversed mzp-t-content-lg',
+  ) %}
+    <h3>{{ ftl('features-shared-footer-cta-title') }}</h3>
+    <p>{{ ftl('features-shared-footer-cta-desc') }}</p>
+    {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='features-footer-download', button_class='mzp-t-product mzp-t-lg', download_location='footer') }}
+  {% endcall %}
+{% endblock %}
+
+{% endblock content %}
+
+{% block js %}
+  {{ js_bundle('firefox_features_article') }}
+{% endblock %}

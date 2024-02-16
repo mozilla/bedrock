@@ -1,0 +1,28 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% if LANG == 'de' %}
+  {% set small_text = 'Vorgestelltes Produkt' %}
+  {% set heading_text = 'Entdecke die besten Artikel aus 2023' %}
+  {% set cta_text = 'Zum Best of 2023' %}
+{% else %}
+  {% set small_text = 'Featured product' %}
+  {% set heading_text = 'Discover the top articles of 2023' %}
+  {% set cta_text = 'See the winners' %}
+{% endif %}
+
+<aside class="pocket-feature mzp-l-content">
+  <div class="feature-wrapper">
+    <div class="image-wrapper">
+      <img loading="lazy" src="{{ static('img/home/2023/pocket-best-of.png') }}" alt="Pocket: Best of 2023">
+    </div>
+    <div class="feature-info">
+      <small>{{ small_text }}</small>
+      <h2>{{ heading_text }}</h2>
+    </div>
+    <a href="https://www.getpocket.com/2023/" rel="external noopener" target="_blank" class="mzp-c-button c-t-pocket" data-cta-text="See the winners"
+      data-cta-type="link" data-cta-position="mid-page banner">{{ cta_text }}</a>
+  </div>
+</aside>

@@ -9,10 +9,11 @@
 {% extends "products/vpn/base.html" %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-article') }}
   {{ css_bundle('mozilla-vpn-article') }}
 {% endblock %}
 
-{% block site_header %}
+{# {% block site_header %}
   {% with
     custom_nav_cta=vpn_nav_cta_link()
   %}
@@ -22,7 +23,7 @@
 
 {% block sub_navigation %}
   {% include 'products/vpn/includes/subnav-more.html' %}
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
   {% block hero %}
@@ -58,8 +59,4 @@
       </div>
     {% endcall %}
   </div>
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('mozilla-vpn-article') }}
 {% endblock %}

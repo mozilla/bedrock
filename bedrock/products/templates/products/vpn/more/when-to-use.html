@@ -1,7 +1,7 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
 {% extends "products/vpn/more/base-article.html" %}
@@ -10,7 +10,7 @@
 {% block page_desc %}{{ ftl('vpn-when-to-use-here-are-five') }}{% endblock %}
 
 {% block article %}
-<p class="mzp-c-article-intro">{{ ftl('vpn-when-to-use-as-more-of', vpn=url('products.vpn.more.what-is-a-vpn')) }}</p>
+<p class="mzp-c-article-intro">{{ ftl('vpn-when-to-use-as-more-of', vpn=url('products.vpn.more.redirect', "what-is-a-vpn")) }}</p>
 
 <ol class="mzp-u-list-styled">
   <li>{{ ftl('vpn-when-to-use-concealing-your-true') }}</li>
@@ -39,6 +39,9 @@
 <p>{{ ftl('vpn-when-to-use-a-vpn-provides', book=url('firefox.privacy.book')) }}</p>
 
 <h3>{{ ftl('vpn-when-to-use-mozilla-vpn-a') }}</h3>
-<p>{{ ftl('vpn-when-to-use-the-most-important', cnet='https://www.cnet.com/news/why-you-should-be-skeptical-about-a-vpns-no-logs-claims/', pcmag='https://www.pcmag.com/news/7-vpn-services-found-recording-user-logs-despite-no-log-pledge') }}</p>
-<p>{{ ftl('vpn-when-to-use-weve-done-the', mozvpn=url('products.vpn.landing'), principles=url('privacy.principles'), mission=url('mozorg.mission')) }}</p>
+<p>{{ ftl('vpn-when-to-use-the-most-important',
+  cnet='https://www.cnet.com/news/why-you-should-be-skeptical-about-a-vpns-no-logs-claims/',
+  pcmag='https://www.pcmag.com/news/7-vpn-services-found-recording-user-logs-despite-no-log-pledge') }}</p>
+<p>{{ ftl('vpn-when-to-use-weve-done-the', mozvpn=url('products.vpn.landing'), principles=url('privacy.principles'),
+  mission=url('mozorg.mission')) }}</p>
 {% endblock %}

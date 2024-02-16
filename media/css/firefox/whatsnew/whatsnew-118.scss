@@ -1,0 +1,127 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+.wnp-content-main {
+    background: $color-yellow-20;
+    text-align: center;
+}
+
+.wnp-swap {
+    margin-bottom: $layout-md;
+}
+
+.wnp-swap-blurb-here {
+    text-align: right;
+    padding-right: calc(50% + $spacing-sm);
+    padding-bottom: $spacing-md;
+    position: relative;
+}
+
+.wnp-swap-blurb-there {
+    text-align: left;
+    padding-left: calc(50% + $spacing-sm);
+    position: relative;
+}
+
+.wnp-swap-text-here,
+.wnp-swap-text-there {
+    @include font-firefox;
+    display: inline-block;
+    position: relative;
+    background-color: $color-white;
+    padding: $spacing-md;
+    border-radius: $border-radius-sm;
+    font-weight: bold;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 10px;
+        border: 10px solid transparent;
+        border-top-color: $color-white;
+        border-left-width: 3px;
+    }
+}
+
+.wnp-swap-text-there {
+    bottom: 0;
+    right: 0;
+    background-color: #0290EE;
+    color: $color-white;
+
+    &::after {
+        left: auto;
+        right: 10px;
+        border-top-color: #0290EE;
+        border-left-width: 10px;
+        border-right-width: 3px;
+    }
+}
+
+#arrow-here {
+    position: absolute;
+    top: 100%;
+    right: calc(50% + $spacing-sm);
+}
+
+#arrow-there {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: calc(50% + $spacing-sm);
+}
+
+#translate-icon {
+    vertical-align: bottom;
+}
+
+#wnp-cta {
+    position: relative;
+}
+
+#cta-default {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+#cta-try,
+#cta-default {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.no-js .is-firefox-default,
+.is-firefox-default {
+    #cta-try {
+        visibility: visible;
+        animation: fade-in 150ms ease forwards;
+    }
+}
+
+.fx-not-default {
+    #cta-default {
+        visibility: visible;
+        animation: fade-in 150ms ease forwards;
+    }
+}
+
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+html[lang='de'],
+html[lang='fr'],
+html[lang='en-GB'] {
+    .c-utilities {
+        display: none;
+    }
+}

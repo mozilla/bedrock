@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block article_title_short %}{{ ftl('features-add-ons-firefox-add-ons') }}{% endblock %}
+{% block article_title %}{{ ftl('features-add-ons-firefox-add-ons-and-browser-extensions') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-add-ons-extensions-also-known-as-add-ons') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/addons.png",
+    srcset={
+        "img/firefox/features/addons-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<p>
+  {{ ftl('features-add-ons-there-are-firefox-add-ons-that',
+    fbcontainer='href="%s"'|safe|format(url('firefox.facebookcontainer.index')),
+    translate='href="https://addons.mozilla.org/firefox/addon/simple-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    language='href="https://addons.mozilla.org/firefox/addon/languagetool/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+    customize='href="%s"'|safe|format(url('firefox.features.customize')),
+    amo='href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
+  ) }}
+</p>
+{% endblock article_content %}

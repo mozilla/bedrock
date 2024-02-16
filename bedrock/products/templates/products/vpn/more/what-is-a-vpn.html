@@ -1,7 +1,7 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
 {% extends "products/vpn/more/base-article.html" %}
@@ -47,10 +47,13 @@
 
 <h3>{{ ftl('vpn-what-is-are-vpns-safe') }}</h3>
 <p>{{ ftl('vpn-what-is-its-very-hard') }}</p>
-<p>{{ ftl('vpn-what-is-weve-done-the', mozvpn=url('products.vpn.landing'), principles=url('privacy.principles'), mission=url('mozorg.mission')) }}</p>
+<p>{{ ftl('vpn-what-is-weve-done-the', mozvpn=url('products.vpn.landing'), principles=url('privacy.principles'),
+  mission=url('mozorg.mission')) }}</p>
 
 <h3>{{ ftl('vpn-what-is-can-vpns-protect') }}</h3>
-<p>{{ ftl('vpn-what-is-while-a-vpn', url='https://blog.mozilla.org/en/products/firefox/stay-safe-in-your-online-life-too/?utm_source=www.mozilla.org-what-is-a-vpn&utm_medium=referral&utm_campaign=products-vpn-more') }}</p>
+<p>{{ ftl('vpn-what-is-while-a-vpn',
+  url='https://blog.mozilla.org/en/products/firefox/stay-safe-in-your-online-life-too/?utm_source=www.mozilla.org-what-is-a-vpn&utm_medium=referral&utm_campaign=products-vpn-more')
+  }}</p>
 
 <h3>{{ ftl('vpn-what-is-are-vpns-legal') }}</h3>
 <p>{{ ftl('vpn-what-is-installing-and-using') }}</p>
@@ -59,5 +62,6 @@
 <p>{{ ftl('vpn-what-is-vpns-can-be', mozvpn=url('products.vpn.landing')) }}</p>
 
 <h3>{{ ftl('vpn-what-is-mozilla-vpn-fast') }}</h3>
-<p>{{ ftl('vpn-what-is-mozilla-vpn-is-a-v3', fallback='vpn-what-is-mozilla-vpn-is-a', mozvpn=url('products.vpn.landing')) }}</p>
+<p>{{ ftl('vpn-what-is-mozilla-vpn-is-a-v3', fallback='vpn-what-is-mozilla-vpn-is-a',
+  mozvpn=url('products.vpn.landing')) }}</p>
 {% endblock %}

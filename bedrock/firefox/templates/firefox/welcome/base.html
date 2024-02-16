@@ -21,7 +21,9 @@
 <main class="mzp-t-firefox">
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
-      <img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor.svg') }}" alt="Firefox" width="216" height="40" class="c-header-logo">
+      {% block shoulder_logo %}
+        <img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor.svg') }}" alt="Firefox" width="216" height="40" class="c-header-logo">
+      {% endblock %}
       {% block shoulder_cta %}
         <p class="c-shoulder-cta">
           <a class="mzp-c-button mzp-t-secondary mzp-t-md mzp-t-product" href="{{ url('firefox.accounts') }}">

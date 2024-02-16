@@ -2,15 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 $brand-theme: 'firefox';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // -------------------------------------------------------------------------- //
@@ -163,6 +159,6 @@ $brand-theme: 'firefox';
 // -------------------------------------------------------------------------- //
 // Call Out
 
-.mzp-c-call-out-compact.mzp-t-dark {
+.mzp-c-callout-compact.mzp-t-dark {
     background: $color-ink-80;
 }

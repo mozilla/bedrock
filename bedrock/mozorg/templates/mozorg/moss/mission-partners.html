@@ -6,239 +6,193 @@
 
 {% extends "mozorg/moss/base.html" %}
 
-{% block page_title %}{{ _('Mission Partners') }} — {{ super() }}{% endblock %}
+{% block page_title %}Mission Partners — {{ super() }}{% endblock %}
 
 {% block body_id %}moss-mission-partners{% endblock %}
 
 {% block page_heading %}
-  {{ _('Mission Partners') }}
+  Mission Partners
 {% endblock %}
 
 {% block page_content %}
 <div class="t-medium">
   <section class="mzp-l-content">
-    <h2 class="moss-section-heading">{{ _('About') }}</h2>
+    <h2 class="moss-section-heading">About</h2>
 
     <p>
-    {% trans url1=url('mozorg.about.manifesto') %}
+    {% with url1=url('mozorg.about.manifesto') %}
       The Mission Partners track is open to any open source or free software
       project that is undertaking an activity which significantly furthers
       Mozilla’s <a href="{{ url1 }}">mission</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <div class="moss-cta">
-      <p>{{ _('Ready to go?') }}</p>
+      <p>Ready to go?</p>
 
-      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a>
+      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a>
     </div>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('What your application should include') }}</h2>
+    <h2 class="moss-section-heading">What your application should include</h2>
 
     <p>
-    {% trans %}
       Award applications should be submitted by a leader of the project.
-    {% endtrans %}
 
-    {% trans %}
       Your application needs to meet the following criteria:
-    {% endtrans %}
     </p>
 
     <ul class="moss-list moss-list-third">
       <li>
-        <h3 class="moss-section-subhead">{{ _('Enhancement') }}</h3>
+        <h3 class="moss-section-subhead">Enhancement</h3>
 
         <p>
-        {% trans %}
           The project should be to write or enhance some software or software
           documentation which is under an OSI open source and/or an FSF free
           software license (non-software exceptions will be considered on a
           case-by-case basis).
-        {% endtrans %}
         </p>
       </li>
       <li>
-        <h3 class="moss-section-subhead">{{ _('Project Origin') }}</h3>
+        <h3 class="moss-section-subhead">Project Origin</h3>
 
         <p>
-        {% trans %}
           The project’s home can be anywhere in the world where we can make
           payment without undue burden.
-        {% endtrans %}
         </p>
       </li>
       <li>
-        <h3 class="moss-section-subhead">{{ _('Usefulness') }}</h3>
+        <h3 class="moss-section-subhead">Usefulness</h3>
 
         <p>
-        {% trans %}
           Activities which are not sufficient for an award on their own include:
           writing open source software (notwithstanding manifesto principle #7);
           building something cool with web technologies; and translating open
           source software into another language.
-        {% endtrans %}
         </p>
       </li>
       <li>
-        <h3 class="moss-section-subhead">{{ _('Mozilla Mission') }}</h3>
+        <h3 class="moss-section-subhead">Mozilla Mission</h3>
 
         <p>
-        {% trans %}
           The project should benefit Mozilla’s mission.
-        {% endtrans %}
 
-        {% trans %}
           This is normally demonstrated by tying the objective of the project to
           specific Mozilla manifesto principles or other demonstrated priorities.
-        {% endtrans %}
         </p>
       </li>
     </ul>
 
     <p>
-    {% trans %}
       We expect the vast majority of MOSS awards to be singular rather than
       regular — that is, support for doing a particular defined thing, rather than
       ongoing support for a project in general.
-    {% endtrans %}
 
-    {% trans %}
       However a previous award proposal, successful or unsuccessful, does not
       disqualify a project from applying again.
-    {% endtrans %}
 
-    {% trans %}
       The minimum award for the Mission Partners track is $10,000, and the maximum
       is $250,000.
-    {% endtrans %}
     </p>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('How we’ll make our decision') }}</h2>
+    <h2 class="moss-section-heading">How we’ll make our decision</h2>
 
     <p>
-    {% trans %}
       All criteria are indicative rather than determinative — that is to say, they
       will make us more or less likely to make an award, but none will guarantee a
       particular outcome.
-    {% endtrans %}
     </p>
 
     <p>
-      {{ _('Selection criteria:') }}
+      Selection criteria:
     </p>
 
     <ul class="mzp-u-list-styled">
       <li>
         <p>
-        {% trans %}
           How significantly does the project advance the Mozilla mission?
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           What sort of reputation does the project have in general, if any?
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           This includes reputation in technical, inclusion and other areas
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           Is the project known for something besides the code we are relying on?
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           Will this award make a significant impact on the project?'
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           Is the level of funding appropriate for the task to be accomplished?
-        {% endtrans %}
         </p>
       </li>
       <li>
         <p>
-        {% trans %}
           Does the person (or group) who will receive the money have a track
           record of delivering?
-        {% endtrans %}
         </p>
       </li>
     </ul>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('How to apply') }}</h2>
+    <h2 class="moss-section-heading">How to apply</h2>
 
     <p>
-    {% trans %}
       To get started with your application, simply follow the link below.
-    {% endtrans %}
 
-    {% trans %}
       MOSS applications are considered by the committee on a rolling basis each month; typically, you can expect to hear back from us within two months of submitting your application.
-    {% endtrans %}
 
-    {% trans moss_email='mailto:MOSS@mozilla.com' %}
+    {% with moss_email='mailto:MOSS@mozilla.com' %}
       If you have any questions regarding your application, please
       <a href="{{ moss_email }}">email the MOSS team</a>.
-    {% endtrans %}
+    {% endwith %}
     </p>
 
     <div class="moss-cta">
       <p>
-        {{ _('I’m ready!') }}
+        I’m ready!
       </p>
 
-      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">{{ _('Apply Now') }}</a>
+      <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="mzp-c-button">Apply Now</a>
     </div>
   </section>
 
   <section class="mzp-l-content moss-section">
-    <h2 class="moss-section-heading">{{ _('FAQs') }}</h2>
+    <h2 class="moss-section-heading">FAQs</h2>
 
     <dl class="mzp-u-list-styled">
 
       <dt>
-        {{ _('What about tax?') }}
+        What about tax?
       </dt>
 
       <dd>
-      {% trans %}
         Recipients are responsible to determine the tax implications of receiving
         an award, based on their respective countries’ tax laws and compliance
         requirements.
-      {% endtrans %}
 
-      {% trans %}
         Amounts applied for should be sized such that any tax or other liability
         that will be incurred is accounted for.
-      {% endtrans %}
 
-      {% trans %}
         Mozilla reserves the right to use different payment mechanisms or tax
         characterizations for different awards in the MOSS program based on a
         number of factors specific to the award.
-      {% endtrans %}
       </dd>
     </dl>
   </section>

@@ -1,0 +1,84 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-family';
+
+.ctd-promo {
+    .ctd-promo-non-fx,
+    .ctd-promo-fx {
+        h2 {
+            @include font-firefox;
+        }
+
+        p {
+            @include text-body-lg;
+        }
+
+        small {
+            margin-bottom: $spacing-md;
+        }
+
+        .mzp-c-wordmark {
+            background-position: center;
+            margin-left: auto;
+            margin-right: auto;
+
+            &.mzp-t-wordmark-md.mzp-t-product-firefox {
+                background-image: url('/media/img/logos/firefox/logo-word-hor.svg');
+                @include background-size(144px, 48px);
+            }
+        }
+
+
+        .mzp-c-split-container {
+            padding: 0;
+        }
+
+        .mzp-c-split-body {
+            padding: $spacing-lg;
+        }
+
+        @media #{$mq-md} {
+            .mzp-c-wordmark {
+                background-position: top left;
+                margin-left: unset
+            }
+
+            .mzp-c-split-container {
+                padding: 0 $layout-lg;
+            }
+
+            .mzp-c-split-body {
+                // Unsetting mobile padding
+                padding: 0;
+            }
+        }
+
+        @media #{$mq-xl} {
+            .mzp-c-split-container {
+                padding: 0 80px;
+            }
+        }
+    }
+
+    .ctd-promo-non-fx {
+        display: block;
+
+        .is-firefox & {
+            display: none;
+        }
+    }
+
+    .ctd-promo-fx {
+        display: none;
+
+        .is-firefox & {
+            display: block;
+        }
+    }
+}

@@ -35,6 +35,11 @@ firefox-privacy-hub-youll-always-know-where-you = You’ll always know where you
 
 # Variables:
 #   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
+firefox-privacy-hub-theres-no-hidden-agenda-here-v2 = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. If you want to dig into every data-point we collect, our code is open. And so are we.
+
+# Obsolete string
+# Variables:
+#   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
 #   $meetings (url) - link to https://wiki.mozilla.org/
 firefox-privacy-hub-theres-no-hidden-agenda-here = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. Anyone in the world can attend our <a href="{ $meetings }">weekly company meetings</a>. If you want to dig into every datapoint we collect, our code is open. And so are we.
 
@@ -49,8 +54,16 @@ firefox-privacy-hub-your-privacy-by-the-product = Your privacy, by the product
 firefox-privacy-hub-firefox-products-work-differently = { -brand-name-firefox } products work differently — because they’re designed to protect your privacy first.
 firefox-privacy-hub-learn-about-our-products = Learn about our products
 firefox-privacy-hub-firefox-privacy-by-the = { -brand-name-firefox } privacy, by the product
+
+# Obsolete string
 firefox-privacy-hub-firefox-protects-your-privacy = { -brand-name-firefox } protects your privacy in every product.
+
+firefox-privacy-hub-mozilla-protects-your-privacy = { -brand-name-mozilla } protects your privacy in every product.
+
+# Obsolete string
 firefox-privacy-hub-firefox-protects-your-privacy-strong = { -brand-name-firefox } <strong>protects</strong> your privacy in every product
+
+firefox-privacy-hub-mozilla-protects-your-privacy-strong = { -brand-name-mozilla } <strong>protects</strong> your privacy in every product.
 firefox-privacy-hub-firefox-browser = { -brand-name-firefox-browser }
 firefox-privacy-hub-2000-trackers-blocked-automatically = 2,000+ trackers blocked — automatically
 
@@ -70,28 +83,55 @@ firefox-privacy-hub-meet-four-of-the-most-common = Meet four of the most common 
 firefox-privacy-hub-always-in-your-control = Always in your control
 firefox-privacy-hub-want-to-customize-what = Want to customize what gets blocked? Your settings are only one click away.
 firefox-privacy-hub-protection-beyond-tracking = Protection beyond tracking
+firefox-privacy-hub-if-you-have-a-mozilla-account = If you have a { -brand-name-mozilla-account }, you can also see how we’re helping you protect your personal info and passwords.
+
+# Obsolete string
 firefox-privacy-hub-if-you-have-a-firefox-account = If you have a { -brand-name-firefox-account }, you can also see how we’re helping you protect your personal info and passwords.
 
 # Variables:
 #   $trackers (number) - localized number total of trackers blocked by Firefox users worldwide
 firefox-privacy-hub-more-than-s-trackers-blocked = More than { $trackers } trackers blocked each day for { -brand-name-firefox } users worldwide
 
+firefox-privacy-hub-mozilla-monitor = { -brand-name-mozilla-monitor }
+
+# Obsolete string
 firefox-privacy-hub-firefox-monitor = { -brand-name-firefox-monitor }
+
+firefox-privacy-hub-when-you-enter-your-email-v2 = When you enter your email address in { -brand-name-mozilla-monitor }, we forget it immediately after we’ve checked for a match in known data breaches — unless you authorize us to continue monitoring new breaches for your personal information.
+
+# Obsolete string
 firefox-privacy-hub-when-you-enter-your-email = When you enter your email address in { -brand-name-firefox-monitor }, we forget it immediately after we’ve checked for a match in known data breaches — unless you authorize us to continue monitoring new breaches for your personal information.
 firefox-privacy-hub-check-for-breaches = Check for breaches
 firefox-privacy-hub-firefox-lockwise = { -brand-name-firefox-lockwise }
 firefox-privacy-hub-the-passwords-and-credentials = The passwords and credentials you save in { -brand-name-firefox-lockwise } are encrypted on all your devices, so not even we can see them.
-firefox-privacy-hub-learn-more-about-lockwise = Learn more about { -brand-name-lockwise }
 firefox-privacy-hub-firefox-send = { -brand-name-firefox-send }
 firefox-privacy-hub-we-cant-see-the-names-or = We can’t see the names or content of the large files you share through { -brand-name-firefox-send } because they’re encrypted end-to-end — you choose who sees what you send, and you can even set an expiration date and password.
 firefox-privacy-hub-send-a-file = Send a file
 firefox-privacy-hub-pocket = { -brand-name-pocket }
 firefox-privacy-hub-pocket-recommends-high = { -brand-name-pocket } recommends high-quality, human-curated articles without collecting your browsing history or sharing your personal information with advertisers.
 firefox-privacy-hub-get-pocket = Get { -brand-name-pocket }
+firefox-privacy-hub-your-mozilla-account = Your { -brand-name-mozilla-account }
+
+# Obsolete string
 firefox-privacy-hub-your-firefox-account = Your { -brand-name-firefox-account }
+
+firefox-privacy-hub-all-the-information-synced-v2 = All the information synced through your { -brand-name-mozilla-account } — from browser history to passwords — is encrypted. And your account password is the only key.
+
+# Obsolete string
 firefox-privacy-hub-all-the-information-synced = All the information synced through your { -brand-name-firefox-account } — from browser history to passwords — is encrypted. And your account password is the only key.
+
+firefox-privacy-hub-take-your-privacy-and-bookmarks-v2 = Take your privacy and bookmarks everywhere with a { -brand-name-mozilla-account }.
+
+# Obsolete string
 firefox-privacy-hub-take-your-privacy-and-bookmarks = Take your privacy and bookmarks everywhere with a { -brand-name-firefox-account }.
 
+# Variables:
+#   $signin (string) - anchor link url and attributes
+#   $class_name (string) - CSS class name for sign in link
+#   $learn_more (url) - link to https://www.mozilla.org/firefox/accounts/
+firefox-privacy-hub-already-have-an-account-v2 = Already have an account? <a { $sign_in } class="{ $class_name }">Sign in</a> or <a href="{ $learn_more }">learn more</a> about joining { -brand-name-mozilla }.
+
+# Obsolete string
 # Variables:
 #   $signin (string) - anchor link url and attributes
 #   $class_name (string) - CSS class name for sign in link

@@ -4,7 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact, hero with context %}
+{% from "macros-protocol.html" import callout_compact, hero with context %}
+{% from "firefox/includes/macros.html" import firefox_download_desktop_button_windows with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,35 +16,31 @@
 {% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-article') }}
   {{ css_bundle('windows-64-bit') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block body_class %}{{ super() }} firefox-windows-64bit{% endblock %}
+
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop') }}</h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.windows') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows">{{ ftl('sub-navigation-windows') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.windows-64-bit') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 64-bit">{{ ftl('sub-navigation-windows-64-bit') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.mac') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('sub-navigation-mac') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.linux') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Linux">{{ ftl('sub-navigation-linux') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+ {% include '/firefox/includes/desktop-platform-sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
-  <div class="mzp-c-hero">
-    <div class="hero-content">
+  <div class="c-hero mzp-t-dark">
+    <div class="hero-content mzp-l-content">
       <div class="mzp-c-logo mzp-t-logo-md mzp-t-product-firefox"></div>
       <p>{{ ftl('windows-64-bit-64-bit') }}</p>
       <h1>{{ ftl('windows-64-bit-a-more-secure-firefox') }}</h1>
       <div class="download-firefox">
-        {{ download_firefox(dom_id='win64-hero-download', download_location='primary cta') }}
+        {{ firefox_download_desktop_button_windows(cta_copy=ftl('windows-64-bit-download-firefox', fallback='download-button-download-firefox'), id='win64-hero-download', build='64') }}
       </div>
     </div>
   </div>
@@ -76,27 +73,17 @@
   </article>
 </div>
 
-{% call call_out_compact(
-title=ftl('windows-64-bit-take-control-of-your'),
-class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+{% call callout_compact(
+  title=ftl('windows-64-bit-take-control-of-your'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg',
 ) %}
 <div class="download-firefox">
-  {{ download_firefox(dom_id='win64-bottom-download', download_location='secondary cta') }}
+  {{ firefox_download_desktop_button_windows(cta_copy=ftl('windows-64-bit-download-firefox', fallback='download-button-download-firefox'), id='win64-bottom-download', build='64', position='secondary cta') }}
 </div>
 {% endcall %}
 
-{% endblock %}
-
-{% block structured_data %}
-{% include 'includes/structured-data/software/firefox-windows-software.json' %}
-{% endblock %}
-
-{% block sticky_promo %}
-  {% with non_fx_only=True %}
-    {% include '/includes/sticky-promo.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('sticky_promo') }}
 {% endblock %}

@@ -5,7 +5,7 @@
 #}
 
 {% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import split with context %}
 
 {% extends "firefox/new/basic/base.html" %}
 
@@ -41,6 +41,7 @@
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_new_download') }}
+  {{ css_bundle('protocol-split') }}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -48,41 +49,24 @@
 {% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop') }}</h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.windows') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows">{{ ftl('sub-navigation-windows') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.windows-64-bit') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 64-bit">{{ ftl('sub-navigation-windows-64-bit') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.mac') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('sub-navigation-mac') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.linux') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Linux">{{ ftl('sub-navigation-linux') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+ {% include '/firefox/includes/desktop-platform-sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
-<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+<main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md t-split-hero',
+    media_class='mzp-l-split-media-overflow',
+    media_after=True,
+    image=resp_img(url=hero_img, optional_attributes={ 'class': 'mzp-c-split-media-asset' })
 
-  {# Show unsupported notification to IE 6/7 visitors on Windows XP/Vista #}
-  <!--[if lt IE 8]>
-  <div class="mzp-c-notification-bar mzp-t-warning" data-nosnippet="true">{{ ftl('firefox-new-mozilla-no-longer-provides', fallback='firefox-new-youre-using-an-insecure-outdated', url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</div>
-  <![endif]-->
-
-  {% call hero(
-    title=hero_title,
-    class='mzp-has-image hero-firefox t-narrow',
-    include_cta=True,
-    image_url=hero_img,
-    heading_level=1
   ) %}
-
+    <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox"></div>
+    <h1 class="c-download-split-title">{{ hero_title }}</h1>
     <div class="c-intro-download">
-      {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
+      {% block intro_download_button %}
+        {{ download_firefox_thanks(alt_copy=ftl('download-button-download-now'), locale_in_transition=True, download_location='primary cta') }}
+      {% endblock %}
 
       {% block small_links %}
       <ul class="small-links">
@@ -109,18 +93,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_new_download') }}
-
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
-{% endblock %}
-
-{% block structured_data %}
-  {
-    "@context": "https://schema.org/",
-    "@graph": [
-      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
-    ]
-  }
 {% endblock %}

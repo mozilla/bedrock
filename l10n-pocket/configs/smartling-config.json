@@ -1,0 +1,73 @@
+{
+  "locales": [
+    {
+      "smartling": "de-DE",
+      "application": "de"
+    },
+    {
+      "smartling": "es-ES",
+      "application": "es"
+    },
+    {
+      "smartling": "es-LA",
+      "application": "es-la"
+    },
+    {
+      "smartling": "fr-CA",
+      "application": "fr-ca"
+    },
+    {
+      "smartling": "fr-FR",
+      "application": "fr"
+    },
+    {
+      "smartling": "it-IT",
+      "application": "it"
+    },
+    {
+      "smartling": "ja-JP",
+      "application": "ja"
+    },
+    {
+      "smartling": "ko-KR",
+      "application": "ko"
+    },
+    {
+      "smartling": "nl-NL",
+      "application": "nl"
+    },
+    {
+      "smartling": "pl-PL",
+      "application": "pl"
+    },
+    {
+      "smartling": "pt-BR",
+      "application": "pt-br"
+    },
+    {
+      "smartling": "pt-PT",
+      "application": "pt"
+    },
+    {
+      "smartling": "ru-RU",
+      "application": "ru"
+    },
+    {
+      "smartling": "zh-CN",
+      "application": "zh-cn"
+    },
+    {
+      "smartling": "zh-TW",
+      "application": "zh-tw"
+    }
+  ],
+  "resourceSets": [
+    {
+      "type": "FLUENT",
+      "authorizeContent": "false",
+      "pathRegex": "en\\/(?<path>.*)\\.ftl",
+      "translationPathExpression": "${locale}/${path}.${originalFile.extension}",
+      "translationCommitMessage": "Translate ${originalFile.fullName} to ${locale}"
+    }
+  ]
+}

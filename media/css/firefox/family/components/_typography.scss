@@ -1,0 +1,21 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../utils' as f3;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+main {
+    @include text-body-xl;
+    color: f3.$black;
+}
+
+.c-subtitle {
+    @include text-title-lg;
+    color: f3.$black;
+}
+
+.c-title-uppercase {
+    text-transform: uppercase;
+    @include text-title-2xs;
+}

@@ -1,0 +1,595 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$campaign-red: #ff6a75;
+$campaign-pink: #ffbdc5;
+$campaign-mint: #d1ffee;
+$campaign-green: #2ac3a2;
+
+.js {
+    @media (prefers-reduced-motion: no-preference) {
+        @keyframes pop-in {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            35% {
+                opacity: 1;
+                transform: scale(0.2);
+            }
+
+            50% {
+                transform: scale(0.5);
+            }
+
+            65% {
+                transform: scale(0.7);
+            }
+
+            80% {
+                transform: scale(0.9);
+            }
+
+            90% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes close {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            25% {
+                opacity: 0.75;
+                transform: scale(0.9);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.7);
+            }
+
+            65% {
+                transform: scale(0.5);
+            }
+
+            80% {
+                opacity: 0.3;
+                transform: scale(0.3);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes wednesday-circles-mint {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-mint;
+            }
+        }
+
+        @keyframes wednesday-circles-red {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-red;
+            }
+        }
+
+        @keyframes wednesday-circles-pink {
+            0% {
+                fill: $campaign-green;
+            }
+
+            25%,
+            100% {
+                fill: $campaign-pink;
+            }
+        }
+
+        .animate-close {
+            animation: 0.3s ease-out 0s 1 normal forwards running close;
+        }
+
+        .animate-pop-in {
+            animation: 0.5s ease-out 0s 1 normal forwards running pop-in;
+        }
+
+        .animate-wednesday {
+            .wednesday-circle {
+                &.circle3 {
+                    animation: wednesday-circles-mint 1s infinite;
+                    animation-direction: alternate;
+                }
+
+                &.circle2 {
+                    animation: wednesday-circles-red 1s infinite;
+                    animation-direction: alternate;
+                    animation-delay: 200ms;
+                }
+
+                &.circle1 {
+                    animation: wednesday-circles-pink 1s infinite;
+                    animation-direction: alternate;
+                    animation-delay: 400ms;
+                }
+            }
+        }
+
+        // This CSS animation comes from the studio, that they got from an outside contractor. Thats why it's pretty messy
+
+        .toggle-1 {
+            animation: toggle-1-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-1-animation {
+            0% {
+                transform: translate(98px, 96px);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            10.333333% {
+                transform: translate(98px, 89px);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            39.333333%,
+            100% {
+                transform: translate(98px, 98px);
+            }
+        }
+
+        .toggle-2 {
+            animation: toggle-2-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-2-animation {
+            0% {
+                transform: translate(98px, 98px) rotate(14deg);
+                animation-timing-function: cubic-bezier(0.915, 0.02, 0.13, 0.985);
+            }
+
+            10% {
+                transform: translate(98px, 98px) rotate(17deg);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            33.333333%,
+            100% {
+                transform: translate(98px, 98px) rotate(4.7deg);
+            }
+        }
+
+        .toggle-3 {
+            animation: toggle-3-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-3-animation {
+            0% {
+                transform: translate(-84px, 12px);
+            }
+
+            10% {
+                transform: translate(-84px, 12px);
+                animation-timing-function: cubic-bezier(0.915, 0.015, 0.255, 1.455);
+            }
+
+            33%,
+            100% {
+                transform: translate(-15px, 7px);
+            }
+        }
+
+        .toggle-4 {
+            animation: toggle-4-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-4-animation {
+            0% {
+                transform: translate(127px, 195px);
+            }
+
+            20% {
+                transform: translate(127px, 195px);
+                animation-timing-function: cubic-bezier(0.915, 0.015, 0.255, 1.455);
+            }
+
+            40% {
+                transform: translate(155px, 195px);
+                animation-timing-function: cubic-bezier(0.99, 0.005, 1, 1);
+            }
+
+            60%,
+            100% {
+                transform: translate(155px, 195px);
+            }
+        }
+
+        .toggle-5 {
+            animation: toggle-5-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-5-animation {
+            0% {
+                transform: translate(46px, 54px);
+                animation-timing-function: cubic-bezier(0.92, -0.01, 0.03, 0.99);
+            }
+
+            36.666667%,
+            100% {
+                transform: translate(136px, 48px);
+            }
+        }
+
+        .toggle-6 {
+            animation: toggle-6-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-6-animation {
+            0% {
+                transform: translate(104px, 144px) rotate(33deg);
+            }
+
+            30% {
+                transform: translate(104px, 144px) rotate(33deg);
+                animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99);
+            }
+
+            33.333333% {
+                transform: translate(104px, 144px) rotate(-18deg);
+                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            45%,
+            100% {
+                transform: translate(104px, 144px) rotate(2deg);
+            }
+        }
+
+        .toggle-7 {
+            animation: toggle-7-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-7-animation {
+            0% {
+                opacity: 0;
+            }
+
+            33.333333% {
+                opacity: 0;
+                animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995);
+            }
+
+            34.333333%,
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .toggle-8 {
+            animation: toggle-8-animation 3000ms linear infinite normal forwards;
+        }
+
+        @keyframes toggle-8-animation {
+            0% {
+                transform: translate(60px, 104px) rotate(33deg);
+            }
+
+            33.333333% {
+                transform: translate(60px, 104px) rotate(33deg);
+                animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99);
+            }
+
+            36.666667% {
+                transform: translate(60px, 104px) rotate(-18deg);
+                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            48.333333%,
+            100% {
+                transform: translate(60px, 104px) rotate(2deg);
+            }
+        }
+
+        .toggle-9 {
+            animation: toggle-9-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-9-animation {
+            0% {
+                opacity: 0;
+            }
+
+            36.666667% {
+                opacity: 0;
+                animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995);
+            }
+
+            37.666667%,
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .toggle-10 {
+            animation: toggle-10-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-10-animation {
+            0% {
+                transform: translate(120px, 52px) rotate(33deg);
+            }
+
+            19% {
+                transform: translate(120px, 52px) rotate(33deg);
+                animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 0.99);
+            }
+
+            30% {
+                transform: translate(120px, 52px) rotate(-18deg);
+                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            41.666667% {
+                transform: translate(120px, 52px) rotate(2deg);
+            }
+
+            100% {
+                transform: translate(120px, 52px) rotate(2deg);
+            }
+        }
+
+        .toggle-11 {
+            animation: toggle-11-animation 3000ms linear normal forwards;
+        }
+
+        @keyframes toggle-11-animation {
+            0% {
+                opacity: 0;
+            }
+
+            23.666667% {
+                opacity: 0;
+                animation-timing-function: cubic-bezier(0.725, 0.005, 0.315, 0.995);
+            }
+
+            31% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes word-wrapper-shift {
+            0% {
+                d: path("M281.92,40.555L295.439,6.3824L23.1601,0L16.0599,44.0212L0.117188,52.3854L9.89801,104.001L285.253,110.573L305.726,95.9847L302.718,44.0212L281.92,40.555Z"
+                    );
+                animation-timing-function: cubic-bezier(0.935, 0, 0.07, 0.995);
+            }
+
+            5% {
+                d: path("M281.92,40.555L295.439,6.3824L9.89801,10.562099L16.0599,44.0212L9.89801,59.0778L31.080489,105.190514L289.205778,105.190514L305.726,95.9847L302.718,44.0212L281.92,40.555Z"
+                    );
+                animation-timing-function: cubic-bezier(0.935, 0, 0.07, 0.995);
+            }
+
+            12% {
+                d: path("M289.205778,32.6457L277.689,7.407818L-0.462316,13.190666L16.0599,44.0212L9.89801,59.0778L31.080489,105.190514L289.205778,105.190514L305.502894,87L302.718,44.0212L289.205778,32.6457Z"
+                    );
+                animation-timing-function: cubic-bezier(0.935, 0, 0.07, 0.995);
+            }
+
+            18% {
+                d: path("M277.689,38.6509L277.689,7.407818L-0.462316,13.190666L16.0599,44.0212L9.89801,59.0778L25.823355,100.459093L289.205778,105.190514L305.502894,87L302.718,44.0212L277.689,38.6509Z"
+                    );
+                animation-timing-function: cubic-bezier(0.935, 0, 0.07, 0.995);
+            }
+
+            24% {
+                d: path("M281.92,41.0606L295.439,6.3824L23.1601,0L16.0599,44.5031L0.117188,52L9.89801,104.001L285.253,110.973362L305.726,95.9847L302.718,44.5031L281.92,41.0606Z"
+                    );
+            }
+
+            100% {
+                d: path("M281.92,41.0606L295.439,6.3824L23.1601,0L16.0599,44.5031L0.117188,52L9.89801,104.001L285.253,110.973362L305.726,95.9847L302.718,44.5031L281.92,41.0606Z"
+                    );
+            }
+        }
+
+        .ctd-animated-logo.animate-active {
+            .word-wrapper {
+                animation: word-wrapper-shift 3400ms linear infinite normal forwards;
+            }
+
+            .challenge-outer {
+                animation: challenge-outer-shift 3400ms linear infinite normal forwards;
+            }
+
+            .challenge-inner {
+                animation: challenge-inner-shift 3400ms linear infinite normal forwards;
+            }
+
+            .the-outer {
+                animation: the-outer-shift 3400ms linear infinite normal forwards;
+            }
+
+            .the-inner {
+                animation: the-inner-shift 3400ms linear infinite normal forwards;
+            }
+
+            .default-outer {
+                animation: default-outer-shift 3400ms linear infinite normal forwards;
+            }
+
+            .default-inner {
+                animation: default-inner-shift 3400ms linear infinite normal forwards;
+            }
+        }
+
+        @keyframes word-wrapper-shift {
+            0% {
+                d: path("M305.726,29.345681L305.726,-0.889481L0.117188,-0.889481L-0.773815,44.0212L0.117188,52.3854L0.117188,110.573L305.726,110.573L305.726,95.9847L306.057092,44.0212L305.726,29.345681Z"
+                    );
+            }
+
+            4% {
+                d: path("M305.726,29.345681L305.726,-0.889481L0.117188,-0.889481L-0.773815,44.0212L0.117188,52.3854L0.117188,110.573L305.726,110.573L305.726,95.9847L306.057092,44.0212L305.726,29.345681Z"
+                    );
+                animation-timing-function: cubic-bezier(0.98, -0.275, 0.08, 1.335);
+            }
+
+            6.5% {
+                d: path("M281.92,40.555L295.439,6.3824L23.1601,0L16.0599,44.0212L0.117188,52.3854L9.89801,104.001L285.253,110.573L305.726,95.9847L302.718,44.0212L281.92,40.555Z"
+                    );
+                animation-timing-function: cubic-bezier(0.98, -0.275, 0.08, 1.335);
+            }
+
+            9.5% {
+                d: path("M281.92,40.555L295.439,6.3824L9.89801,10.562099L16.0599,44.0212L9.89801,59.0778L31.080489,105.190514L289.205778,105.190514L305.726,95.9847L302.718,44.0212L281.92,40.555Z"
+                    );
+                animation-timing-function: cubic-bezier(0.98, -0.275, 0.08, 1.335);
+            }
+
+            13% {
+                d: path("M289.205778,32.6457L277.689,7.407818L-0.462316,13.190666L16.0599,44.0212L9.89801,59.0778L31.080489,105.190514L289.205778,105.190514L305.502894,87L302.718,44.0212L289.205778,32.6457Z"
+                    );
+                animation-timing-function: cubic-bezier(0.98, -0.275, 0.08, 1.335);
+            }
+
+            18.75% {
+                d: path("M277.689,38.6509L277.689,7.407818L-0.462316,13.190666L16.0599,44.0212L9.89801,59.0778L25.823355,100.459093L289.205778,105.190514L305.502894,87L302.718,44.0212L277.689,38.6509Z"
+                    );
+                animation-timing-function: cubic-bezier(0.98, -0.275, 0.08, 1.335);
+            }
+
+            24.5% {
+                d: path("M281.92,41.0606L295.439,6.3824L23.1601,0L16.0599,44.5031L0.117188,52L9.89801,104.001L285.253,110.973362L305.726,95.9847L302.718,44.5031L281.92,41.0606Z"
+                    );
+            }
+
+            100% {
+                d: path("M281.92,41.0606L295.439,6.3824L23.1601,0L16.0599,44.5031L0.117188,52L9.89801,104.001L285.253,110.973362L305.726,95.9847L302.718,44.5031L281.92,41.0606Z"
+                    );
+            }
+        }
+
+
+        @keyframes challenge-outer-shift {
+            0% {
+                transform: translate(246px, 72px);
+            }
+
+            15%,
+            100% {
+                transform: translate(246px, 81px);
+            }
+        }
+
+        @keyframes challenge-inner-shift {
+            0% {
+                transform: scale(0, 0);
+            }
+
+            11% {
+                transform: scale(0, 0);
+                animation-timing-function: cubic-bezier(0.98, 0.01, 0.045, 1);
+            }
+
+            13%,
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+
+        @keyframes the-outer-shift {
+            0% {
+                transform: translate(298px, 118px);
+            }
+
+            22% {
+                transform: translate(298px, 118px);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            24%,
+            100% {
+                transform: translate(303px, 118px);
+            }
+        }
+
+        @keyframes the-inner-shift {
+            0% {
+                transform: scale(0, 0);
+            }
+
+            17% {
+                transform: scale(0, 0);
+                animation-timing-function: cubic-bezier(0.985, 0, 0.035, 0.995);
+            }
+
+            22%,
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+
+
+        @keyframes default-outer-shift {
+            0% {
+                transform: translate(180px, 126px);
+            }
+
+            17% {
+                transform: translate(180px, 126px);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            19% {
+                transform: translate(180px, 118px);
+                animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+
+            22%,
+            100% {
+                transform: translate(173px, 118px);
+            }
+        }
+
+        @keyframes default-inner-shift {
+            0% {
+                transform: scale(0, 0);
+            }
+
+            12% {
+                transform: scale(0, 0);
+                animation-timing-function: cubic-bezier(0.985, 0.01, 0.03, 0.995);
+            }
+
+            17%,
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+    }
+}

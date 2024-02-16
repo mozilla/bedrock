@@ -12,14 +12,19 @@
 {% block page_desc %}{{ ftl('page-description') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('quantum') }}
 {% endblock %}
 
 {% block content %}
 
 {% call split(
-    image_url='img/firefox/browsers/quantum/browser.jpg',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/quantum/browser.jpg',
+      srcset={ 'img/firefox/browsers/quantum/browser-high-res.jpg': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset' }
+    ),
     media_after=True,
     media_class='mzp-l-split-h-center',
     block_class='mzp-l-split-hide-media-on-sm-md'
@@ -37,7 +42,14 @@
     <ul class="mzp-l-columns mzp-t-columns-three">
       {% call picto(
         title=ftl('privacy-first'),
-        image_url='img/firefox/new/desktop/privacy.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/privacy.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('firefox-doesnt-spy') }}</p>
@@ -45,7 +57,14 @@
 
       {% call picto(
         title=ftl('super-fast'),
-        image_url='img/icons/speedometer.svg',
+        image=resp_img(
+          url='img/icons/speedometer.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('get-speed-and') }}</p>
@@ -53,7 +72,14 @@
 
       {% call picto(
         title=ftl('always-evolving'),
-        image_url='img/firefox/new/desktop/highlights.svg',
+        image=resp_img(
+          url='img/firefox/new/desktop/highlights.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
         body=True,
       ) %}
         <p>{{ ftl('find-out-about', url=url('firefox.features.index')) }}</p>

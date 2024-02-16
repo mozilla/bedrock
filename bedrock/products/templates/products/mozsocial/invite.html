@@ -1,0 +1,107 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('mozsocial-invite') }}
+{% endblock %}
+
+{% block page_title %}{{ ftl('mozsocial-invite-join-the-waitlist') }}{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content mzp-t-content-xl">
+ <section class="mzp-c-newsletter c-mozsocial-invite">
+  <div class="mzp-c-newsletter-image">
+    {{ resp_img(
+      url='img/products/mozsocial/waitlist-tree.png',
+      srcset={
+        'img/products/mozsocial/waitlist-tree-high-res.png': '2x'
+      },
+      optional_attributes={
+        "height": "424",
+        "width": "424"
+      }
+    )}}
+  </div>
+
+  <form id="newsletter-form" class="mzp-c-newsletter-form c-waitlist-form" name="newsletter-form" action="{{ action }}" method="post">
+    <div hidden>
+      {{ newsletter_form.newsletters|safe }}
+    </div>
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+    <input type="hidden" name="format" id="format-html" value="H">
+
+    <h1 class="mzp-c-form-header">{{ ftl('mozsocial-invite-welcome-to-mozillasocial') }}</h1>
+    <p class="mzp-c-form-subtitle">{{ ftl('mozsocial-invite-please-join-our-waitlist') }}</p>
+
+    <fieldset class="mzp-c-newsletter-content">
+      <div class="mzp-c-form-errors hide-from-legacy-ie hidden" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
+          <li class="error-select-country hidden">{{ ftl('newsletter-form-please-select-country') }}</li>
+          <li class="error-try-again-later hidden">{{ ftl('newsletter-form-we-are-sorry-but-there') }}</li>
+        </ul>
+      </div>
+
+      <div class="mzp-c-field">
+        <label class="mzp-c-field-label" for="id_first_name">{{ ftl('mozsocial-invite-first-name-label') }} <em class="mzp-c-fieldnote">{{ ftl('mozsocial-invite-required-label') }}</em></label>
+        <input class="mzp-c-field-control" id="id_first_name" name="first_name" type="text" required="" aria-required="true">
+      </div>
+
+      <div class="mzp-c-field">
+        <label class="mzp-c-field-label" for="id_last_name">{{ ftl('mozsocial-invite-last-name-label') }} <em class="mzp-c-fieldnote">{{ ftl('mozsocial-invite-required-label') }}</em></label>
+        <input class="mzp-c-field-control" id="id_last_name" name="last_name" type="text" required="" aria-required="true">
+      </div>
+
+      <div class="mzp-c-field">
+        <label class="mzp-c-field-label" for="id_email">{{ ftl('mozsocial-invite-your-email-address-label') }} <em class="mzp-c-fieldnote">{{ ftl('mozsocial-invite-required-label') }}</em></label>
+        <input type="email" class="mzp-js-email-field mzp-c-field-control" id="id_email" name="email" placeholder="{{ ftl('newsletter-form-yournameexamplecom') }}" required="" aria-required="true">
+      </div>
+
+      <div class="mzp-c-field">
+        <label for="id_country">{{ ftl('mozsocial-invite-country-label') }}  <em class="mzp-c-fieldnote">{{ ftl('mozsocial-invite-required-label') }}</em></label>
+        {{ newsletter_form.country|safe }}
+      </div>
+
+      <div class="mzp-c-field">
+        <label class="mzp-c-field-label" for="id_twitter">{{ ftl('mozsocial-invite-twitter-handle-label') }}</label>
+        <input class="mzp-c-field-control" id="id_twitter" name="mozilla_social_twitter_handle" type="text">
+      </div>
+
+      <div class="mzp-c-field">
+        <label class="mzp-c-field-label" for="id_mastodon">{{ ftl('mozsocial-invite-mastodon-handle-label') }}</label>
+        <input class="mzp-c-field-control" id="id_mastodon" name="mozilla_social_mastodon_handle" type="text">
+      </div>
+
+      <div class="mzp-c-choices">
+        <div class="mzp-c-choice">
+          <input class="mzp-c-choice-control" type="checkbox" id="privacy" required="" aria-required="true">
+          <label class="mzp-c-choice-label" for="privacy">{{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.subscription-services')) }}</label>
+        </div>
+      </div>
+
+      <p class="mzp-c-form-submit">
+        <button type="submit" id="newsletter-submit" class="mzp-c-button button-dark" data-cta-type="mozsocial-waitlist-signup" data-cta-text="Sign me up">
+          {{ ftl('newsletter-form-sign-me-up') }}
+        </button>
+      </p>
+    </fieldset>
+  </form>
+
+  <div id="newsletter-thanks" class="mozsocial-invite-success hidden">
+    <h3>{{ ftl('mozsocial-invite-thanks-youre-on-the-list') }}</h3>
+    <p>{{ ftl('newsletter-form-if-you-havent-previously') }}</p>
+    <p>{{ ftl('mozsocial-invite-mozillasocial-is-currently') }}</p>
+  </div>
+ </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('mozsocial-waitlist') }}
+{% endblock %}

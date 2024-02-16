@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -17,6 +17,8 @@
 {% block body_id %}manifesto-landing{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('manifesto') }}
 {% endblock %}
 
@@ -47,8 +49,8 @@
 {% set principle_number_10 = ftl('manifesto-principle-10') %}
 
 {% block content %}
-<main role="main" itemscope itemtype="http://schema.org/Article">
-  <article role="article" itemprop="articleBody">
+<main itemscope itemtype="http://schema.org/Article">
+  <article itemprop="articleBody">
     <section>
       <div class="mzp-l-content mzp-t-content-md">
         <header>
@@ -68,14 +70,14 @@
       </div>
     </section>
 
-    {% call call_out(
+    {% call callout(
       title=ftl('manifesto-show-your-support'),
       desc=ftl('manifesto-an-internet-with-these'),
       class='share-addendum',
-      include_cta=True
+      include_cta=True,
     ) %}
       <p>
-        <a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-type="social share" data-link-name="Twitter">
+        <a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-type="social share" data-link-text="Twitter">
           {{ ftl('manifesto-share-on-twitter') }}
         </a>
       </p>
@@ -129,7 +131,7 @@
           </li>
         </ol>
         <footer class="content principles-foot">
-          <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-type="social share" data-link-name="Twitter">{{ ftl('manifesto-share-on-twitter') }}</a></p>
+          <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-type="social share" data-link-text="Twitter">{{ ftl('manifesto-share-on-twitter') }}</a></p>
           <p><a class="mzp-c-cta-link" href="{{ url('mozorg.about.manifesto-details') }}">{{ ftl('manifesto-read-the-entire-manifesto') }}</a></p>
         </footer>
       </section>
@@ -137,11 +139,21 @@
     <div class="mzp-l-content">
       <aside class="mzp-c-newsletter">
         <div class="mzp-c-newsletter-image">
-          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+          {{ resp_img(
+            url='img/home/2018/newsletter-graphic.png',
+            srcset={
+              'img/home/2018/newsletter-graphic-high-res.png': '2x'
+            }
+          ) }}
         </div>
 
         <div class="newsletter-content">
-          {% if LANG.startswith('en-') %}
+          {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+            {{ email_newsletter_form(
+              newsletters='mozilla-foundation, mozilla-and-you',
+              button_class='button-dark'
+            )}}
+          {% elif LANG.startswith('en-') %}
             {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff') }}
           {% else %}
             {{ email_newsletter_form(spinner_color='#fff') }}
@@ -155,4 +167,5 @@
 
 {% block js %}
   {{ js_bundle('manifesto') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

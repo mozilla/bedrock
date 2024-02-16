@@ -8,7 +8,6 @@ from pages.base import BasePage
 
 
 class VPNLandingPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/products/vpn/{params}"
 
     # Hero
@@ -16,13 +15,13 @@ class VPNLandingPage(BasePage):
     _join_waitlist_hero_button_locator = (By.CSS_SELECTOR, '.vpn-hero .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Navigation
-    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Scroll to pricing"]')
+    _get_vpn_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Get Mozilla VPN"]')
     _join_waitlist_navigation_button_locator = (By.CSS_SELECTOR, '.c-navigation-shoulder .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
 
     # Pricing section
     _get_vpn_monthly_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-monthly .mzp-c-button")
-    _get_vpn_6_months_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-6-months .mzp-c-button")
     _get_vpn_12_months_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-12-months .mzp-c-button")
+    _get_vpn_relay_button_locator = (By.CSS_SELECTOR, ".vpn-pricing-12-months .vpn-pricing-add-on-bundle .mzp-c-button")
 
     # Waitlist features section
     _join_waitlist_features_button_locator = (By.CSS_SELECTOR, '.vpn-waitlist-feature-block .mzp-c-button[data-cta-text="Join the VPN Waitlist"]')
@@ -65,12 +64,12 @@ class VPNLandingPage(BasePage):
         return self.is_element_displayed(*self._get_vpn_monthly_button_locator)
 
     @property
-    def is_get_vpn_6_months_button_displayed(self):
-        return self.is_element_displayed(*self._get_vpn_6_months_button_locator)
-
-    @property
     def is_get_vpn_12_months_button_displayed(self):
         return self.is_element_displayed(*self._get_vpn_12_months_button_locator)
+
+    @property
+    def is_get_vpn_relay_button_displayed(self):
+        return self.is_element_displayed(*self._get_vpn_relay_button_locator)
 
     # Waitlist Features section
 

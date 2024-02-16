@@ -11,50 +11,58 @@
 
 {% block page_title %}{{ ftl('newsletters-newsletter-email-recovery') }}{% endblock page_title %}
 
+{% block page_css %}
+  {{ css_bundle('newsletter-recovery') }}
+{% endblock %}
+
 {% block content %}
-  <main role="main" class="mzp-l-content mzp-t-content-sm">
-    {% block messages %}
+  <main>
+    {% if fxa_error %}
+      <div class="mzp-c-notification-bar mzp-t-error">
+        <p>{{ ftl('newsletters-fxa-error-retry') }}</p>
+      </div>
+    {% endif %}
+
+  <div class="mzp-l-content mzp-t-content-sm">
     <h1 class="mzp-u-title-sm">{{ ftl('newsletters-manage-your-newsletter') }}</h1>
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
+
+    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
+      <header class="mzp-c-newsletter-header">
+        <p>{{ ftl('newsletters-enter-your-email-address') }}</p>
+      </header>
+
+      <div class="mzp-c-form-errors {% if not messages %}hidden{% endif %}" id="newsletter-errors">
+        <ul class="mzp-u-list-styled">
+          <li class="error-email-invalid hidden">{{ ftl('newsletters-this-is-not-a-valid-email') }}</li>
+          <li class="error-email-not-found hidden">{{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}</li>
+          <li class="error-try-again-later hidden">{{ ftl('newsletters-we-are-sorry-but-there') }}</li>
+          {# Messages for users who are redirected here via the newsletter preferences page, e.g. when a bad token is supplied. #}
+          {% if messages %}
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          {% endif %}
         </ul>
-      {% endif %}
-    {% endblock messages %}
+      </div>
 
-    {% if form %}
-      <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="mzp-c-form">
-        <header class="mzp-c-newsletter-header">
-          <p>{{ ftl('newsletters-enter-your-email-address') }}</p>
-        </header>
+      <div class="newsletter-recovery-form-success-msg hidden">
+        <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
+      </div>
 
-        {% if form.non_field_errors() %}
-          <div class="mzp-c-form-errors" id="newsletter-errors">
-            {{ form.non_field_errors()|safe }}
-          </div>
-        {% endif %}
-
-        <div class="mzp-c-field mzp-l-stretch {% if form.email.errors %} mzp-is-error{% endif %}">
-          <label for="id_email" class="mzp-c-field-label">
-            {{ ftl('newsletters-your-email-address') }}
-            {% if form.email.errors %}
-              <em class="mzp-c-fieldnote">
-                <ul class="errorlist">
-                {% for error in form.email.errors %}
-                  <li> {{ error|safe }} </li>
-                {% endfor %}
-                </ul>
-              </em>
-            {% endif %}
-          </label>
+      <div class="newsletter-recovery-form-fields">
+        <div class="mzp-c-field mzp-l-stretch">
+          <label for="id_email" class="mzp-c-field-label">{{ ftl('newsletters-your-email-address') }}</label>
           {{ field_with_attrs(form.email, class='mzp-c-field-control'|safe) }}
         </div>
         <div class="mzp-c-button-container mzp-l-stretch">
           <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ ftl('newsletters-send-me-a-link') }}</button>
         </div>
-      </form>
-    {% endif %}
+      </div>
+    </form>
+  </div>
   </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter-recovery') }}
 {% endblock %}

@@ -20,7 +20,7 @@
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}"
-               class="download-link mzp-c-button mzp-t-product"
+               class="download-link mzp-c-button mzp-t-product ga-product-download"
                data-link-type="download"
                data-download-version="{{ plat.os }}"
                {% if plat.os == 'android' %}data-download-os="Android"
@@ -50,11 +50,14 @@
       <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
+
+    {# ESR download buttons to display on unsupported systems: issue 13317 #}
+    {% include 'firefox/includes/download-unsupported.html' %}
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-        <a class="download-link button {{ button_class }} mzp-c-button mzp-t-product"
+        <a class="download-link button {{ button_class }} mzp-c-button mzp-t-product ga-product-download"
            id="{{ id }}-{{ plat.os }}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}
@@ -66,7 +69,7 @@
            {% else %}data-download-os="Desktop"{% endif %}
            {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>
           <strong class="download-title">
-            {% if alt_copy %}
+            {% if alt_copy and 'linux' not in plat.os %}
               {{ alt_copy }}
             {% else %}
               {% if plat.os == 'android' %}
@@ -81,6 +84,10 @@
                 {% endif %}
               {% elif plat.os == 'ios' %}
                 {{ ftl('download-button-firefox-ios') }}
+              {% elif plat.os == 'linux' %}
+                {{ ftl('download-button-linux-32-v2') }}
+              {% elif plat.os == 'linux64' %}
+                {{ ftl('download-button-linux-64-v2') }}
               {% else %}
                 {% if channel == 'beta' %}
                   {{ ftl('download-button-firefox-beta') }}

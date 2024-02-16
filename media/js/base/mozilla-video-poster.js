@@ -10,7 +10,7 @@
 
 /* HTML markup:
 <div class="moz-video-container">
-  <button class="moz-video-button" type="button" aria-controls="some-video">{{ _('Play video') }}</button>
+  <button class="moz-video-button" type="button" aria-controls="some-video">Play video</button>
   <video id="some-video"></video>
 </div>
 */

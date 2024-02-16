@@ -5,37 +5,12 @@
 #}
 
 
-{% from "macros-protocol.html" import hero, call_out_compact, card, split, picto with context %}
+{% from "macros-protocol.html" import callout_compact, card, split, picto with context %}
 
 {% for entry in entries -%}
+    {% if entry.component == 'callout' %}
 
-    {% if entry.component == 'hero' %}
-
-    {% if entries.index(entry) == 0: %}
-      {% set heading_level = 1 %}
-    {% else %}
-      {% set heading_level = 2 %}
-    {% endif %}
-
-      {% call hero(
-        title=entry.title,
-        tagline=entry.tagline,
-        desc=entry.body|external_html,
-        product_class=entry.product_class,
-        class=entry.theme_class + ' ' + entry.image_class,
-        include_cta=entry.include_cta,
-        heading_level=heading_level,
-        image_url=entry.image,
-        include_highres_image=False,
-      ) %}
-
-        {{ entry.cta|external_html }}
-
-      {% endcall %}
-
-    {% elif entry.component == 'callout' %}
-
-      {% call call_out_compact(
+      {% call callout_compact(
         title=entry.title,
         desc=entry.body|external_html,
         class=entry.theme_class + ' ' + entry.product_class,
@@ -76,14 +51,19 @@
               {% set size_class = 'mzp-c-card-medium' %}
             {% endif %}
 
+            {% if card_data.highres_image_url %}
+             {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '" srcset="' ~ card_data.highres_image_url ~ ' 1.5x">' %}
+            {% else %}
+               {% set image = '<img class="mzp-c-card-image" src="' ~ card_data.image_url ~ '">' %}
+            {% endif %}
+
             {{ card(
               class=size_class,
               tag_label=card_data.tag,
               title=card_data.heading,
               desc=card_data.body|external_html,
               ga_title='ga_title',
-              highres_image_url=card_data.highres_image_url,
-              image_url=card_data.image_url,
+              image=image,
               aspect_ratio=card_data.aspect_ratio,
               link_url=card_data.link,
               youtube_id=card_data.youtube_id,
@@ -100,8 +80,13 @@
       <ul class="mzp-l-content {{ entry.layout_class }}">
       {% for picto_data in entry.pictos -%}
         {% call picto(
-          image_url=picto_data.image_url,
-          image_width=entry.image_width,
+          image=resp_img(
+            url=picto_data.image_url,
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': entry.image_width
+            }
+          ),
           title=picto_data.heading,
           heading_level=entry.heading_level,
           body=picto_data.body,
@@ -117,16 +102,23 @@
 
     {% elif entry.component == 'split' %}
 
+      {% if entries.index(entry) == 0: %}
+        {% set loading = 'eager' %}
+      {% else %}
+        {% set loading = 'lazy' %}
+      {% endif %}
+
+      {% set image = '<img class="mzp-c-split-media-asset" src="' ~ entry.image ~ '" loading="' ~ loading ~ '" alt="">' %}
+
       {% call split(
         block_class=entry.block_class,
         body_class=entry.body_class,
         theme_class=entry.theme_class,
         media_class=entry.media_class,
         mobile_class=entry.mobile_class,
-        image_url=entry.image,
-        include_highres_image=False,
+        media_after=entry.media_after,
+        image=image
       ) %}
-
         {{ entry.body|external_html }}
 
       {% endcall %}

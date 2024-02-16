@@ -35,7 +35,7 @@ class PositionFilterFormTests(TestCase):
         Test locations, and that "All Offices" and an errant empty value is not
         included, and the choices are sorted.
         """
-        PositionFactory(location="All Offices,,Mountain View,Canada")
+        PositionFactory(job_locations="All Offices,,Mountain View,Canada")
 
         form = PositionFilterForm()
         self.assertEqual(

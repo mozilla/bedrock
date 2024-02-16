@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-import os
 from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
@@ -50,7 +49,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request({"dude": "abides"})
         resp = views.stub_attribution_code(req)
@@ -64,7 +65,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "b9946a63da74d1f2909b7bd5dd0e1ba4f46f3701a86f2c10bafcd5ee2bc9f918",
         )
 
     def test_no_valid_param_data(self):
@@ -73,7 +74,9 @@ class TestStubAttributionCode(TestCase):
             "utm_medium": "ae<t>her",
             "experiment": "dfb</p>s",
             "variation": "ef&bvcv",
-            "visit_id": "14</p>4538.1610<t>957",
+            "client_id": "14</p>4538.1610<t>957",
+            "session_id": "2w</br>123bg<u>957",
+            "dlsource": "fs<a>44fn</a>",
         }
         final_params = {
             "source": "www.mozilla.org",
@@ -83,7 +86,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -97,11 +102,11 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "b9946a63da74d1f2909b7bd5dd0e1ba4f46f3701a86f2c10bafcd5ee2bc9f918",
         )
 
     def test_some_valid_param_data(self):
-        params = {"utm_source": "brandt", "utm_content": "ae<t>her"}
+        params = {"utm_source": "brandt", "utm_content": "ae<t>her", "dlsource": "mozorg"}
         final_params = {
             "source": "brandt",
             "medium": "(direct)",
@@ -110,7 +115,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -124,7 +131,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b53097f17741b75cdd5b737d3c8ba03349a6093148adeada2ee69adf4fe87322",
+            "ed0705c22e56e7ed8152b08abd3df72a897ae00b30f7c802aa4a19e3a8c77503",
         )
 
     def test_campaign_data_too_long(self):
@@ -137,7 +144,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
+            "dlsource": "mozorg",
         }
         final_params = {
             "source": "brandt",
@@ -146,12 +155,14 @@ class TestStubAttributionCode(TestCase):
             "|thatThe|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe"
             "|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides"
             "|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides|I|dont|know"
-            "|about|you|but|I|take|comfort|in|thatT_",
+            "|about|you|b_",
             "content": "A144_A000_0000000",
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -167,7 +178,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "3c1611db912c51a96418eb7806fbaf1400b8d05fbf6ee4f2f1fb3c0ba74a89f4",
+            "16010b2f9581e4ba48689125b7f35e4f4420399da1f0f245e814da071c726991",
         )
 
     def test_other_data_too_long_not_campaign(self):
@@ -193,7 +204,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "firefox-new",
             "variation": "1",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
+            "dlsource": "mozorg",
         }
         final_params = {
             "source": "brandt",
@@ -203,7 +216,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "firefox-new",
             "variation": "1",
             "ua": "chrome",
-            "visit_id": "1456954538.1610960957",
+            "client_id": "1456954538.1610960957",
+            "session_id": "1668161374",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -217,7 +232,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b2dc555b2914fdec9f9a1247d244520392e4f888961a6fb57a74a1cdf041261f",
+            "98c68dcf0ff6086b9e546dda753a830127afc4981745a32a6b6c3dfe81295877",
         )
 
     def test_handles_referrer(self):
@@ -230,7 +245,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -244,7 +261,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "b53097f17741b75cdd5b737d3c8ba03349a6093148adeada2ee69adf4fe87322",
+            "ed0705c22e56e7ed8152b08abd3df72a897ae00b30f7c802aa4a19e3a8c77503",
         )
 
     def test_handles_referrer_no_source(self):
@@ -260,7 +277,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -274,7 +293,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "d075cbcbae3bcef5bda3650a259863151586e3a4709d53886ab3cc83a6963d00",
+            "cf22590be0114f16651dc61cb470269245164d50273e2f17199347c6ae6c716e",
         )
 
     def test_handles_referrer_utf8(self):
@@ -293,7 +312,9 @@ class TestStubAttributionCode(TestCase):
             "experiment": "(not set)",
             "variation": "(not set)",
             "ua": "(not set)",
-            "visit_id": "(not set)",
+            "client_id": "(not set)",
+            "session_id": "(not set)",
+            "dlsource": "mozorg",
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -307,7 +328,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "135b2245f6b70978bc8142a91521facdb31d70a1bfbdefdc1bd1dee92ce21a22",
+            "b9946a63da74d1f2909b7bd5dd0e1ba4f46f3701a86f2c10bafcd5ee2bc9f918",
         )
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
@@ -335,125 +356,16 @@ class TestStubAttributionCode(TestCase):
         assert resp["cache-control"] == "max-age=300"
 
 
-class TestSendToDeviceView(TestCase):
-    def setUp(self):
-        patcher = patch("bedrock.firefox.views.basket.subscribe")
-        self.mock_subscribe = patcher.start()
-        self.addCleanup(patcher.stop)
-
-        patcher = patch("bedrock.firefox.views.basket.request")
-        self.mock_send_sms = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def _request(self, data, expected_status=200, locale="en-US"):
-        req = RequestFactory().post("/", data)
-        req.locale = locale
-        resp = views.send_to_device_ajax(req)
-        assert resp.status_code == expected_status
-        return json.loads(resp.content)
-
-    def test_phone_or_email_required(self):
-        resp_data = self._request({"platform": "android"})
-        assert not resp_data["success"]
-        assert "s2d-email" in resp_data["errors"]
-        assert not self.mock_send_sms.called
-        assert not self.mock_subscribe.called
-
-    def test_send_android_email(self):
-        resp_data = self._request(
-            {
-                "platform": "android",
-                "s2d-email": "dude@example.com",
-                "source-url": "https://nihilism.info",
-            }
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            "dude@example.com",
-            views.SEND_TO_DEVICE_MESSAGE_SETS["default"]["email"]["android"],
-            source_url="https://nihilism.info",
-            lang="en-US",
-        )
-
-    def test_send_android_email_basket_error(self):
-        self.mock_subscribe.side_effect = views.basket.BasketException
-        resp_data = self._request(
-            {
-                "platform": "android",
-                "s2d-email": "dude@example.com",
-                "source-url": "https://nihilism.info",
-            },
-            400,
-        )
-        assert not resp_data["success"]
-        assert "system" in resp_data["errors"]
-
-    def test_send_android_bad_email(self):
-        resp_data = self._request(
-            {
-                "platform": "android",
-                "s2d-email": "@example.com",
-                "source-url": "https://nihilism.info",
-            }
-        )
-        assert not resp_data["success"]
-        assert "email" in resp_data["errors"]
-        assert not self.mock_subscribe.called
-
-    # an invalid value for 'message-set' should revert to 'default' message set
-    def test_invalid_message_set(self):
-        resp_data = self._request(
-            {
-                "platform": "ios",
-                "s2d-email": "dude@example.com",
-                "message-set": "the-dude-is-not-in",
-            }
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            "dude@example.com",
-            views.SEND_TO_DEVICE_MESSAGE_SETS["default"]["email"]["ios"],
-            source_url=None,
-            lang="en-US",
-        )
-
-    # /firefox/android/ embedded widget (bug 1221328)
-    def test_android_embedded_email(self):
-        resp_data = self._request(
-            {
-                "platform": "android",
-                "s2d-email": "dude@example.com",
-                "message-set": "fx-android",
-            }
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            "dude@example.com",
-            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-android"]["email"]["android"],
-            source_url=None,
-            lang="en-US",
-        )
-
-    # /firefox/mobile-download/desktop
-    def test_fx_mobile_download_desktop_email(self):
-        resp_data = self._request(
-            {
-                "s2d-email": "dude@example.com",
-                "message-set": "fx-mobile-download-desktop",
-            }
-        )
-        assert resp_data["success"]
-        self.mock_subscribe.assert_called_with(
-            "dude@example.com",
-            views.SEND_TO_DEVICE_MESSAGE_SETS["fx-mobile-download-desktop"]["email"]["all"],
-            source_url=None,
-            lang="en-US",
-        )
-
-
 @override_settings(DEV=False)
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirefoxNew(TestCase):
+    def test_post(self, render_mock):
+        req = RequestFactory().post("/firefox/new/")
+        req.locale = "en-US"
+        view = views.NewView.as_view()
+        resp = view(req)
+        assert resp.status_code == 405
+
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get("/firefox/new/")
@@ -520,113 +432,23 @@ class TestFirefoxNew(TestCase):
 
     # end /thanks?s=direct URL - issue 10520
 
-    # begin yandex - issue 5635 & 10607
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX="True")
-    def test_yandex_download(self, render_mock):
-        req = RequestFactory().get("/firefox/new/", HTTP_CF_IPCOUNTRY="RU")
-        req.locale = "ru"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download_yandex.html"]
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX="True")
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_yandex_show_to_ru(self, render_mock):
-        req = RequestFactory().get("/firefox/new/", HTTP_CF_IPCOUNTRY="RU")
-        req.locale = "ru"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download_yandex.html"]
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX="True")
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_yandex_hide_not_ru_country(self, render_mock):
-        req = RequestFactory().get("/firefox/new/", HTTP_CF_IPCOUNTRY="CA")
-        req.locale = "ru"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX="True")
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_yandex_hide_not_ru_locale(self, render_mock):
-        req = RequestFactory().get("/firefox/new/", HTTP_CF_IPCOUNTRY="RU")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX="False")
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_yandex_hide_switch_off(self, render_mock):
-        req = RequestFactory().get("/firefox/new/", HTTP_CF_IPCOUNTRY="RU")
-        req.locale = "ru"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    # end yandex - issue 5635 & 10607
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 302
-        assert resp["location"].endswith("/exp/firefox/new/")
-        assert resp["cache-control"] == "max-age=0, no-cache, no-store, must-revalidate"
-        req.locale = "en-US"
-        resp = view(req)
-        assert resp.status_code == 200
-        assert "cache-control" not in resp
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect_query(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?dude=abide&walter=bowl")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 302
-        assert resp["location"].endswith("/exp/firefox/new/?dude=abide&walter=bowl")
-
-    @patch.dict(os.environ, EXP_CONFIG_FX_NEW="de:100")
-    def test_experiment_redirect_automation_param(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?automation=true")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 200
-        assert "cache-control" not in resp
-
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        response = view(req)
+        response = self.client.get("/en-US/firefox/new/")
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 0
 
     def test_thanks_canonical(self):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
-        req = RequestFactory().get("/firefox/download/thanks/")
-        req.locale = "en-US"
-        view = views.DownloadThanksView.as_view()
-        response = view(req)
+        response = self.client.get("/en-US/firefox/download/thanks/")
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 1
         assert "noindex" in robots.attr("content")
+        assert "follow" in robots.attr("content")
 
 
 @override_settings(DEV=False)
@@ -670,6 +492,44 @@ class TestFirefoxHome(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/home/index-master.html"]
 
+    @patch("bedrock.firefox.views.l10n_utils.render")
+    def test_firefox_home_de(self, render_mock):
+        req = RequestFactory().get("/firefox/")
+        req.locale = "de"
+        view = views.FirefoxHomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/challenge-the-default/landing-switch.html"]
+
+
+class TestFirefoxGA(TestCase):
+    def assert_ga_attr(self, response):
+        doc = pq(response.content)
+        links = doc(".mzp-c-button")
+        for link in links.items():
+            cta_data = link.attr("data-cta-type")
+            cta_link = link.attr("data-link-type")
+            if cta_data:
+                contains_cta = any(cta_data in item for item in ["link", "button"])
+                assert contains_cta or "fxa-" in cta_data
+            elif cta_link:
+                cta_link_types = ["download", "button", "link"]
+                assert cta_link in cta_link_types
+            else:
+                assert False, f"{link} does not contain attr cta-type or link-type"
+
+    def test_firefox_home_GA(self):
+        req = RequestFactory().get("/en-US/firefox/")
+        view = views.FirefoxHomeView.as_view()
+        response = view(req)
+        self.assert_ga_attr(response)
+
+    def test_firefox_new_GA(self):
+        req = RequestFactory().get("/en-US/firefox/new/")
+        view = views.NewView.as_view()
+        response = view(req)
+        self.assert_ga_attr(response)
+
 
 class TestFirefoxWelcomePage1(TestCase):
     @patch("bedrock.firefox.views.l10n_utils.render")
@@ -678,3 +538,11 @@ class TestFirefoxWelcomePage1(TestCase):
         req.locale = "en-US"
         views.firefox_welcome_page1(req)
         render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
+
+
+# Issue 13253: Ensure that Firefox can continue to refer to this URL.
+class TestFirefoxSetAsDefaultThanks(TestCase):
+    def test_firefox_set_as_default_thanks(self):
+        resp = self.client.get("/firefox/set-as-default/thanks/", follow=True)
+        assert resp.status_code == 200, "Ensure this URL continues to work, see issue 13253"
+        assert resp.templates[0].name == "firefox/set-as-default/thanks.html"

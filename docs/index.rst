@@ -31,15 +31,16 @@ Contents
    redirects
    newsletters
    contentful
+   sitemap
    content-cards
    banners
    uitour
    send-to-device
    download-buttons
-   firefox-accounts
+   mozilla-accounts
    funnelcake
    abtest
-   analytics
-   stub-attribution
+   vpn-subscriptions
+   attribution
    architectural-decisions
    browser-support

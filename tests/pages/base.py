@@ -25,17 +25,9 @@ class BasePage(ScrollElementIntoView, Page):
         super().__init__(selenium, base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
-        browser_name = self.selenium.capabilities.get("browserName").lower()
-        browser_version = self.selenium.capabilities.get("browserVersion") or self.selenium.capabilities.get("version")
-        is_ie9 = browser_name == "internet explorer" and browser_version == "9"
-
         self.wait.until(lambda s: self.seed_url in s.current_url)
-
-        # legacy IE browsers are not served JS, so they do not get the 'loaded' conditional class name.
-        if not is_ie9:
-            el = self.find_element(By.TAG_NAME, "html")
-            self.wait.until(lambda s: "loaded" in el.get_attribute("class"))
-
+        el = self.find_element(By.TAG_NAME, "html")
+        self.wait.until(lambda s: "loaded" in el.get_attribute("class"))
         return self
 
     @property
@@ -58,7 +50,6 @@ class BasePage(ScrollElementIntoView, Page):
         return NewsletterEmbedForm(self)
 
     class Navigation(BaseRegion):
-
         _root_locator = (By.CLASS_NAME, "c-navigation")
         _toggle_locator = (By.CLASS_NAME, "c-navigation-menu-button")
         _menu_locator = (By.CLASS_NAME, "c-navigation-items")
@@ -66,9 +57,9 @@ class BasePage(ScrollElementIntoView, Page):
         _products_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-products"]')
         _about_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-about"]')
         _innovation_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-innovation"]')
-        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Desktop Browser"]')
-        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Firefox Developer Edition"]')
-        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-name="Mozilla Manifesto"]')
+        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Desktop Browser"]')
+        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Developer Edition"]')
+        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Mozilla Manifesto"]')
         _firefox_download_button_locator = (By.CSS_SELECTOR, "#protocol-nav-download-firefox > .download-link")
         _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '.c-navigation-vpn-cta-container > [data-cta-text="Get Mozilla VPN"]')
 
@@ -127,7 +118,6 @@ class BasePage(ScrollElementIntoView, Page):
             return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(BaseRegion):
-
         _root_locator = (By.ID, "colophon")
         _language_locator = (By.ID, "page-language-select")
 

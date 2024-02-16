@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import callout_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,6 +15,8 @@
 {% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-article') }}
+  {{ css_bundle('protocol-callout') }}
   {{ css_bundle('best-browser') }}
 {% endblock %}
 
@@ -78,7 +80,11 @@
         {{ ftl('best-browser-last-but-not-least') }}
       </p>
       <p>
-        {{ ftl('best-browser-firefox-is-offering', monitor='https://monitor.firefox.com/') }}
+        {% if ftl_has_messages('best-browser-firefox-is-offering-v2') and switch('mozilla-monitor-brand-name') %}
+          {{ ftl('best-browser-firefox-is-offering-v2', monitor='href="https://monitor.mozilla.org/"') }}
+        {% else %}
+          {{ ftl('best-browser-firefox-is-offering', monitor='https://monitor.mozilla.org/') }}
+        {% endif %}
       </p>
       <blockquote aria-hidden="true" role="presentation">
       <p>
@@ -112,9 +118,13 @@
   </article>
 </div>
 
-{% call call_out_compact(
+{% call callout_compact(
   title=ftl('best-browser-take-control-of-your'),
-  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+  brand=True,
+  brand_product='firefox',
+  brand_type='logo',
+  brand_size='lg',
 ) %}
 <div class="download-firefox">
   {{ download_firefox(dom_id='safebrowser-bottom-download', download_location='secondary cta') }}

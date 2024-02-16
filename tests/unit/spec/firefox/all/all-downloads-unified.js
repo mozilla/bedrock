@@ -5,13 +5,12 @@
  */
 
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
-/* global sinon */
 
 describe('all-downloads-unified.js', function () {
     describe('getSelectOption', function () {
@@ -199,7 +198,6 @@ describe('all-downloads-unified.js', function () {
 
     describe('setAttributionURL', function () {
         beforeEach(function () {
-            window.Mozilla.Cookies = sinon.stub();
             spyOn(Mozilla.StubAttribution, 'getCookie').and.returnValue({
                 attribution_code: 'some-attribution-code',
                 attribution_sig: 'some-attribution-signature'
@@ -207,11 +205,33 @@ describe('all-downloads-unified.js', function () {
         });
 
         it('should return a well formatted attribution link if data exists', function () {
-            const url =
+            const winUrl =
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
+            const macOSNightlyUrl =
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
+            const macOSBetaUrl =
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
+            const macOSDevUrl =
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
+
             spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(true);
-            expect(Mozilla.FirefoxDownloader.setAttributionURL(url)).toEqual(
+            expect(Mozilla.FirefoxDownloader.setAttributionURL(winUrl)).toEqual(
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSNightlyUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSBetaUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
+            );
+            expect(
+                Mozilla.FirefoxDownloader.setAttributionURL(macOSDevUrl)
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature'
             );
         });
 
@@ -235,6 +255,12 @@ describe('all-downloads-unified.js', function () {
         it('should return true for bouncer stage links', function () {
             const url =
                 'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=osx&lang=en-US';
+            expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
+        });
+
+        it('should return true for bouncer dev links', function () {
+            const url =
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=osx&lang=en-US';
             expect(Mozilla.FirefoxDownloader.isValidURL(url)).toBeTruthy();
         });
 
@@ -262,6 +288,8 @@ describe('all-downloads-unified.js', function () {
             id: 'ach',
             label: 'Acholi'
         };
+
+        const downloadInfo = `<div class="c-download"></div>`;
 
         const options = `<div class="c-selection-options" data-product="desktop_beta">
                 <p class="c-selection c-selection-version">
@@ -295,11 +323,13 @@ describe('all-downloads-unified.js', function () {
 
         beforeEach(function () {
             document.body.insertAdjacentHTML('beforeend', options);
+            document.body.insertAdjacentHTML('beforeend', downloadInfo);
         });
 
         afterEach(function () {
             document.querySelector('.c-selection-options').remove();
             document.querySelector('.c-locale-list').remove();
+            document.querySelector('.c-download').remove();
         });
 
         it('should set the download link as expected', function () {
@@ -370,6 +400,7 @@ describe('all-downloads-unified.js', function () {
             label: 'Multiple languages'
         };
 
+        const downloadInfo = `<div class="c-download"></div>`;
         const options = `<div class="c-selection-options" data-product="android_release">
                 <p class="c-selection c-selection-version hidden">
                     <label for="select_android_release_version" class="c-selection-label">Which version would you like?</label>
@@ -398,22 +429,24 @@ describe('all-downloads-unified.js', function () {
                     <h4 class="c-locale-label">Multiple languages</h4>
                     <ul class="c-download-list">
                         <li>
-                            <a id="playStoreLink-list" rel="external" href="https://app.adjust.com/2uo1qc?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox&amp;campaign=www.mozilla.org&amp;adgroup=all-page" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">
+                            <a id="playStoreLink-list" rel="external" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" data-link-type="download" data-download-os="Android" data-mozillaonline-link="https://play.google.com/store/apps/details?id=cn.mozilla.firefox&amp;referrer=utm_source%3Dmozilla%26utm_medium%3DReferral%26utm_campaign%3Dmozilla-org">
                                 Google Play
                             </a>
                         </li>
-                        <li><a href="/en-US/firefox/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>
+                        <li><a href="/en-US/firefox/browsers/mobile/get-app/" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">Send a download link to your phone</a></li>
                     </ul>
                 </li>
             </ol>`;
 
         beforeEach(function () {
             document.body.insertAdjacentHTML('beforeend', options);
+            document.body.insertAdjacentHTML('beforeend', downloadInfo);
         });
 
         afterEach(function () {
             document.querySelector('.c-selection-options').remove();
             document.querySelector('.c-locale-list').remove();
+            document.querySelector('.c-download').remove();
         });
 
         it('should set the download link as expected', function () {

@@ -6,5 +6,4 @@ from pages.base import BasePage
 
 
 class MissionPage(BasePage):
-
     _URL_TEMPLATE = "/{locale}/mission/"

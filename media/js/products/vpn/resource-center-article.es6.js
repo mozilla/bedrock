@@ -9,10 +9,18 @@ const upvoteBtn = document.querySelector('.vpn-c-vote-btn.up');
 const downvoteBtn = document.querySelector('.vpn-c-vote-btn.down');
 
 function trackVoteInteraction(url, vote) {
+    // UA
     window.dataLayer.push({
         event: 'vpn-article-vote',
         label: url,
         value: vote
+    });
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'vote',
+        action: vote,
+        label: 'Was this article helpful?'
     });
 }
 

@@ -15,10 +15,10 @@
         .getAttribute('data-details-close-text');
     var buttons;
 
-    window.Mzp.Details.init(
+    window.MzpDetails.init(
         '.format-headings .privacy-body section section > h3'
     );
-    window.Mzp.Details.init('.format-paragraphs .summary');
+    window.MzpDetails.init('.format-paragraphs .summary');
 
     // Add "Learn more" / "Show less" text.
     if (openText && closeText) {

@@ -1,0 +1,15 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if switch('challenge-the-default-active') %}
+  {% if LANG == 'de' %}
+    {% include 'firefox/challenge-the-default/langs/landing.de.html' %}
+  {% elif LANG == 'fr' %}
+    {% include 'firefox/challenge-the-default/langs/landing.fr.html' %}
+  {% endif %}
+{% else %}
+  {% include 'firefox/home/index-master.html' %}
+{% endif %}

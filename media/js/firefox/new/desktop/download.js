@@ -188,10 +188,18 @@
     function handleOpenProtectionReport(e) {
         e.preventDefault();
 
+        // UA
         window.dataLayer.push({
             event: 'in-page-interaction',
             eAction: 'link click',
             eLabel: 'See your protection report'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'protection report',
+            action: 'open',
+            label: 'See your protection report'
         });
 
         Mozilla.UITour.showProtectionReport();

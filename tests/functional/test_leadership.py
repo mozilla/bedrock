@@ -10,19 +10,9 @@ from pages.leadership import LeadershipPage
 
 
 @pytest.mark.nondestructive
-def test_open_corporation_biography(base_url, selenium):
+def test_open_biography(base_url, selenium):
     page = LeadershipPage(selenium, base_url).open()
     leader = random.choice(page.corporation)
-    modal = page.open_biography(leader)
-    assert modal.is_displayed
-    assert page.is_biography_displayed(leader)
-    modal.close()
-
-
-@pytest.mark.nondestructive
-def test_open_foundation_biography(base_url, selenium):
-    page = LeadershipPage(selenium, base_url).open()
-    leader = random.choice(page.foundation)
     modal = page.open_biography(leader)
     assert modal.is_displayed
     assert page.is_biography_displayed(leader)

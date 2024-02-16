@@ -12,17 +12,14 @@
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('newsletter-firefox') }}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
 
 {% block content %}
-<main role="main">
+<main>
   <div class="section-intro">
     <div class="mzp-l-content"></div>
   </div>
@@ -33,8 +30,20 @@
       <h2 class="section-title">{{ self.page_desc() }}</h2>
     </header>
     <div class="mzp-l-content mzp-t-content-sm">
-      {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='mzp-t-product mzp-t-lg') }}
+      {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-foundation, mozilla-and-you',
+          include_title=False,
+          button_class='button-dark'
+        )}}
+      {% else %}
+        {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='mzp-t-product mzp-t-lg') }}
+      {% endif %}
     </div>
   </section>
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

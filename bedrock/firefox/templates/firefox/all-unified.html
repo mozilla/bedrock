@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 {% from "product-all-unified-macros.html" import build_locale_list, bw, build_link, select_product_list, product_options with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block site_header %}
-  {% with hide_nav_download_button=True %}
+  {% with hide_nav_cta=True %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
 {% endblock %}
@@ -38,7 +38,7 @@
 {% set ios_url = ios_release_full_builds[0].platforms.ios.download_url %}
 
 {% block content %}
-<main role="main">
+<main>
   <div class="mzp-l-content">
     <div id="product-select-form" class="c-product-select-form" data-supported="true">
       <div class="c-intro">
@@ -146,6 +146,10 @@
             </tr>
           </table>
 
+          <p class="c-linux-debian">
+            {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
+          </p>
+
           <p class="c-download-error hidden">
             {{ ftl('firefox-all-sorry-we-couldnt-find') }}
           </p>
@@ -157,7 +161,7 @@
           <div id="download-android-primary" data-product="android_release" class="c-download-button">
             <ul class="c-download-list">
               <li>{{ google_play_button(href=android_url, id='playStoreLink-release') }}</li>
-              <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
             </ul>
           </div>
 
@@ -172,11 +176,9 @@
           <div id="download-ios-primary" data-product="ios_release" class="c-download-button">
             <ul class="c-download-list">
               <li>
-                <a id="appStoreLink-ios" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
-                </a>
+                {{ apple_app_store_button(href=ios_url, id='appStoreLink-ios') }}
               </li>
-              <li><a href="{{ url('firefox.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></li>
             </ul>
           </div>
         </div>
@@ -186,9 +188,6 @@
     <div id="all-downloads" class="c-all-downloads mzp-has-sidebar mzp-l-sidebar-left">
       <div class="mzp-l-sidebar">
         <nav class="mzp-c-sidemenu">
-          <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
-            <h3 class="mzp-c-sidemenu-label">{{ ftl('ui-menu') }}</h3>
-          </section>
           <section class="mzp-c-sidemenu-main" id="sidebar-menu">
             <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-which-browser-would') }}</h2>
             <ul>

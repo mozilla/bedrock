@@ -6,20 +6,17 @@
 
 {% extends 'base-protocol-mozilla.html' %}
 
-{% block page_title %}{{ ftl('newsletters-sign-up-read-up-stay-informed', fallback='newsletters-sign-up-read-up-make-a-difference') }}{% endblock page_title %}
+{% block page_title %}{{ ftl('newsletters-sign-up-read-up-stay-informed') }}{% endblock page_title %}
 
 {% block page_desc %}
-  {{ ftl('newsletters-get-smart-on-the-issues', fallback='newsletters-get-the-mozilla-newsletter') }}
+  {{ ftl('newsletters-get-smart-on-the-issues') }}
 {% endblock %}
 
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('newsletter-mozilla') }}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -35,8 +32,20 @@
   <section class="section section-subscribe" id="subscribe">
     <div class="mzp-l-content mzp-t-content-sm">
       <h2 class="section-title">{{ self.page_desc() }}</h2>
-      {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+      {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-foundation, mozilla-and-you',
+          include_title=False,
+          button_class='button-dark'
+        )}}
+      {% else %}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+      {% endif %}
     </div>
   </section>
 </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

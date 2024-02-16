@@ -13,19 +13,18 @@ URLS = flatten(
     (
         # bug 832348 **/index.html -> **/
         url_test("/any/random/url/with/index.html", "/any/random/url/with/"),
-        # bug 774675
-        url_test("/en/", "/en-US/"),
-        url_test("/es/", "/es-ES/"),
-        url_test("/pt/", "/pt-BR/"),
+        # bug 774675 + also see Issue 13211 for why /en/ isn't included here any more
+        url_test("/es/", "/es-ES/", status_code=requests.codes.found),
+        url_test("/pt/", "/pt-BR/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
-        url_test("/en-us/firefox/", "/en-US/firefox/"),
-        url_test("/es-es/firefox/", "/es-ES/firefox/"),
-        url_test("/pt-br/MPL/", "/pt-BR/MPL/"),
+        url_test("/en-us/firefox/", "/en-US/firefox/", status_code=requests.codes.found),
+        url_test("/es-es/firefox/", "/es-ES/firefox/", status_code=requests.codes.found),
+        url_test("/pt-br/firefox/", "/pt-BR/firefox/", status_code=requests.codes.found),
         # bug 880182
-        url_test("/ja-JP-mac/", "/ja/"),
+        url_test("/ja-JP-mac/", "/ja/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
-        url_test("/en-us/", "/en-US/"),
-        url_test("/pt-br/", "/pt-BR/"),
+        url_test("/en-us/", "/en-US/", status_code=requests.codes.found),
+        url_test("/pt-br/", "/pt-BR/", status_code=requests.codes.found),
         # bug 845988 - remove double slashes in URLs
         url_test("/en-US/firefox//all/", "/en-US/firefox/all/"),
         url_test("/pt-BR/////thunderbird/", "/pt-BR/thunderbird/"),
@@ -166,7 +165,7 @@ URLS = flatten(
         url_test("/firefox/aurora/{notes,system-requirements}/", "/firefox/developer/{notes,system-requirements}/"),
         url_test("/firefox/organizations/all.html", "/firefox/all/#product-desktop-esr"),
         # bug 729329
-        url_test("/mobile/sync/is/da/best/", "/firefox/sync/"),
+        url_test("/mobile/sync/is/da/best/", "/firefox/features/sync/"),
         # bug 882845
         url_test("/firefox/toolkit/download-to-your-devices/because-i-say-so/", "/firefox/new/"),
         # bug 1014823
@@ -246,7 +245,7 @@ URLS = flatten(
         url_test("/products/", "/firefox/"),
         # Bug 1110927
         url_test("/firefox/start/central.html", "/firefox/new/"),
-        url_test("/firefox/sync/firstrun.html", "/firefox/sync/"),
+        url_test("/firefox/sync/firstrun.html", "/firefox/features/sync/"),
         # bug 876810
         url_test("/hacking/commit-access-policy/", "/about/governance/policies/commit/access-policy/"),
         url_test("/hacking/committer/{,faq.html}", "/about/governance/policies/commit/"),
@@ -282,7 +281,7 @@ URLS = flatten(
         # Bug 979531, 1003727, 979664, 979654, 979660, 1150713
         url_test("/firefox/customize/", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
         url_test("/firefox/{performance,happy,speed,memory}/", "/firefox/features/fast/"),
-        url_test("/firefox/security/", "/firefox/features/independent/"),
+        url_test("/firefox/security/", "/firefox/features/private/"),
         url_test("/firefox/technology/", "https://developer.mozilla.org/docs/Tools"),
         url_test("/firefox/sms/{,sent}", "/firefox/"),
         # Previously Bug 979527 / Github #10004 "Getting Started" Page
@@ -561,7 +560,11 @@ URLS = flatten(
         url_test("/newsletter/about_mozilla/", "/contribute/"),
         url_test("/newsletter/new/", "/newsletter/"),
         # bug 1238458
+        # issue 14141
+        url_test("/firefox/browsers/mobile/compare", "/firefox/browsers/mobile/"),
         url_test("/newsletter/ios/", "/firefox/browsers/mobile/ios/"),
+        # issue 14142
+        url_test("/firefox/browsers/compare/ie/", "/firefox/browsers/compare/"),
         # bug 818323
         url_test("/projects/security/known-vulnerabilities.html", "/security/known-vulnerabilities/"),
         url_test("/projects/security/older-vulnerabilities.html", "/security/known-vulnerabilities/older-vulnerabilities/"),
@@ -772,6 +775,8 @@ URLS = flatten(
         url_test("/privacy/policies/{facebook,firefox-os,websites}/", "/privacy/{facebook,firefox-os,websites}/"),
         # https://github.com/mozilla/bedrock/issues/5745
         url_test("/privacy/firefox-cliqz", "/privacy/archive/firefox-cliqz/2018-06/"),
+        # mozilla/bedrock/#11610
+        url_test("/privacy/firefox-os/", "/privacy/archive/firefox-os/2022-05/"),
         # bug 1034859
         url_test("/en-US/about/buttons/dude.jpg", "/media/img/careers/buttons/dude.jpg"),
         # bug 1003737
@@ -826,8 +831,8 @@ URLS = flatten(
         url_test("/firefox/partners/", "https://support.mozilla.org/products/firefox-os"),
         url_test("/b2g/", "https://support.mozilla.org/products/firefox-os"),
         # from mcom-tests
-        url_test("/firefox/", "/en-US/firefox/"),
-        url_test("/firefox/new/", "/en-US/firefox/new/"),
+        url_test("/firefox/", "/en-US/firefox/", status_code=requests.codes.found),
+        url_test("/firefox/new/", "/en-US/firefox/new/", status_code=requests.codes.found),
         url_test("/mobile/37.0{,beta,a2}/releasenotes", "/firefox/android/37.0{,beta,a2}/releasenotes/"),
         url_test("/projects/firefox/3.6.13/whatsnew/", "/firefox/3.6.13/whatsnew/"),
         url_test("/apps/", "https://marketplace.firefox.com/"),
@@ -839,9 +844,7 @@ URLS = flatten(
         # Bug 1243060
         url_test("/firefox/tiles/", "https://support.mozilla.org/kb/about-tiles-new-tab"),
         # Bug 1252332
-        url_test("/sync/", "/firefox/sync/"),
-        # issue 9490
-        url_test("/firefox/features/sync/", "/firefox/sync/"),
+        url_test("/sync/", "/firefox/features/sync/"),
         url_test("/projects/bonecho/", "/firefox/channel/desktop/"),
         url_test("/projects/bonsai/", "https://wiki.mozilla.org/Bonsai"),
         url_test("/projects/camino/{,homepage.html}", "http://caminobrowser.org/"),
@@ -964,8 +967,8 @@ URLS = flatten(
         url_test("/firefox/android/faq/", "https://support.mozilla.org/products/mobile"),
         # bug 1392796
         url_test("/firefox/desktop/fast/", "/firefox/features/fast/"),
-        url_test("/firefox/desktop/trust/", "/firefox/features/independent/"),
-        url_test("/firefox/desktop/tips/", "/firefox/features/"),
+        url_test("/firefox/desktop/trust/", "/firefox/features/private/"),
+        url_test("/firefox/desktop/tips/", "/firefox/features/tips/"),
         url_test("/firefox/desktop/customize/", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
         url_test("/firefox/private-browsing/", "/firefox/features/private-browsing/"),
         # bug 1405436
@@ -973,7 +976,7 @@ URLS = flatten(
         url_test("/firefox/organic/", "/firefox/"),
         url_test("/firefox/landing/better/", "/firefox/"),
         url_test("/firefox/{new/,}addons/", "https://addons.mozilla.org"),
-        url_test("/firefox/tips/", "/firefox/features/"),
+        url_test("/firefox/tips/", "/firefox/features/tips/"),
         url_test("/firefox/new/en", "/firefox/new/"),
         # These are a wordpress artifact and result in a Left to Right Mark unicode control character
         # https://en.wikipedia.org/wiki/Left-to-right_mark
@@ -1113,8 +1116,9 @@ URLS = flatten(
         url_test("/technology/browser-history/", "/firefox/browsers/browser-history/"),
         url_test("/firefox/windows-64-bit/", "/firefox/browsers/windows-64-bit/"),
         url_test("/firefox/best-browser/", "/firefox/browsers/best-browser/"),
-        # Issue 8536
-        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/retention/thank-you/"),
+        # Issue 8536, 11891
+        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/"),
+        url_test("/firefox/retention/thank-you/", "/firefox/"),
         # Issue 8374
         url_test("/plugincheck/", "https://support.mozilla.org/kb/npapi-plugins/"),
         url_test("/ekr/", "https://blog.mozilla.org/blog/author/ekrmozilla-com/"),
@@ -1130,18 +1134,20 @@ URLS = flatten(
         url_test("/donate/", "https://donate.mozilla.org/?utm_source=mozilla.org&utm_content=shortlink"),
         url_test("/about/governance/policies/security/plugin-whitelist-policy/", "https://wiki.mozilla.org/Plugins/Firefox_Whitelist"),
         url_test("/about/governance/policies/security-group/tld-idn/", "https://wiki.mozilla.org/IDN_Display_Algorithm"),
-        # Unfck campaign
-        url_test("/firefox/{unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/unfck/"),
-        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/unfck/"),
+        # Unfck campaign, issue 11613
+        url_test("/firefox/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
+        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
         # issue 9148
         url_test("/firefox/campaign/", "/firefox/new/"),
         # Issue 9560
         url_test(
             "/openletter/",
-            "https://foundation.mozilla.org/blog/mozilla-urges-facebook-and-twitter-halt-dangerous-recommendations/",
+            "https://foundation.mozilla.org/en/campaigns/sign-letter-AICOA/",
             query={
-                "utm_source": "mozilla.org",
+                "utm_campaign": "2022antitrust",
                 "utm_content": "shortlink",
+                "utm_medium": "print",
+                "utm_source": "washingtonpost",
             },
         ),
         # Bug 1673476
@@ -1171,9 +1177,108 @@ URLS = flatten(
         url_test("/vpn/", "/products/vpn/"),
         # issue 10703
         url_test("/firefox/lockwise/", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
+        # issue 12107
+        url_test("/firefox/families/", "/firefox/family/"),
         # issue 10879
         url_test("/exp/", "/"),
-        # issue 11092
-        url_test("/about/legal/terms/vpn/", "/about/legal/terms/mozilla-vpn/"),
+        # issue 11092, issue 12156
+        url_test("/about/legal/terms/{mozilla-vpn,vpn,firefox-relay}/", "/about/legal/terms/subscription-services/"),
+        # issue 12156
+        url_test("/privacy/{mozilla-vpn,firefox-relay}/", "/privacy/subscription-services/"),
+        # Issue 11204
+        url_test("/{truecolors,truecolours,turningred}/", "/firefox/"),
+        url_test(
+            "/{truecolors,truecolours,turningred}/?utm_source=dude",
+            "/firefox/",
+            query={
+                "utm_source": "dude",
+            },
+        ),
+        # Issue 11991
+        url_test("/transparency/", "/about/policy/transparency/"),
+        # Issue 12376
+        url_test("/newsletter/country/success/", "/newsletter/updated/"),
+        url_test("/careers/internships/", "/careers/", status_code=requests.codes.found),
+        # Issue 12563
+        url_test("/exp/firefox/", "/firefox/"),
+        url_test("/exp/firefox/new/", "/firefox/new/"),
+        url_test("/exp/firefox/accounts/", "/firefox/accounts/"),
+        url_test("/exp/opt-out/", "https://www.convert.com/opt-out/"),
+        # issue 12935
+        url_test("/privacy/facebook/", "/privacy/archive/facebook/2023-04/"),
+        # Issue 11875 - Adding VPN download pages
+        url_test("/vpn/download/", "/products/vpn/download/"),
+        url_test("/vpn/download/windows/", "/products/vpn/download/windows/thanks/"),
+        url_test("/vpn/download/mac/", "/products/vpn/download/mac/thanks/"),
+        # Issue 13272
+        url_test("/about/legal/terms/firefox-private-network/", "/privacy/archive/firefox-private-network/tos-2023-06/"),
+        url_test("/privacy/firefox-private-network/", "/privacy/archive/firefox-private-network/notice-2023-06/"),
+        url_test("/privacy/betterweb/", "/privacy/archive/firefox-betterweb/2023-06/"),
+        url_test("/privacy/firefox-fire-tv/", "/privacy/archive/firefox-fire-tv/2023-06/"),
+        url_test("/privacy/firefox-reality/", "/privacy/archive/firefox-reality/notice-2023-06/"),
+        url_test("/about/legal/terms/firefox-reality/", "/privacy/archive/firefox-reality/tos-2023-06/"),
+        # Issue 13672
+        url_test("/VendorDPA/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
+        url_test("/vendordpa/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
+        # Issue 13732
+        url_test("/firefox/welcome/3/", "/firefox/accounts/"),
+        # Issue 13754
+        url_test("/rise25/", "https://rise25.mozilla.org/"),
+        url_test("/rise-25/", "https://rise25.mozilla.org/"),
+        url_test("/firefox/mobile/get-app/", "/firefox/browsers/mobile/get-app/"),
+        url_test("/contact/spaces/paris/", "/contact/spaces/"),
+        # Issue 13924
+        url_test("/foundation/annualreport/{,2022/}", "https://stateof.mozilla.org/"),
+        # Issue 14186
+        url_test("/privacy/firefox-monitor/", "/privacy/subscription-services/"),
+        # Issue 14172
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox",
+            "https://apps.apple.com/app/apple-store/id989804926",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-whatsnew",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew",
+            "https://apps.apple.com/app/apple-store/id989804926?pt=373246&ct=firefox-whatsnew&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=focus&campaign=firefox-browsers-mobile-focus",
+            "https://play.google.com/store/apps/details?id=org.mozilla.focus&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-browsers-mobile-focus",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=focus&campaign=firefox-browsers-mobile-focus",
+            "https://apps.apple.com/app/apple-store/id1055677337?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=klar&campaign=firefox-browsers-mobile-focus",
+            "https://play.google.com/store/apps/details?id=org.mozilla.klar&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-browsers-mobile-focus",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/firefox/browsers/mobile/app/?product=klar&campaign=firefox-browsers-mobile-focus",
+            "https://apps.apple.com/app/apple-store/id1073435754?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
     )
 )

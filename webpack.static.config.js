@@ -38,6 +38,14 @@ module.exports = {
                         'node_modules/@mozilla-protocol/core/protocol/img/'
                     ),
                     to: 'protocol/img/'
+                },
+                {
+                    // Copy Protocol fonts to /assets.
+                    from: path.resolve(
+                        __dirname,
+                        'node_modules/@mozilla-protocol/core/protocol/fonts/'
+                    ),
+                    to: 'protocol/fonts/'
                 }
             ]
         })

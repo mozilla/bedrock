@@ -7,9 +7,26 @@
 {# Picture element hack to make sure the map image only gets downloaded when visible on large viewports. Smaller viewports get a 1px spacer gif. #}
 
 {% macro map_image(low_res_url, high_res_url) -%}
-<picture>
-  <source srcset="{{ static(low_res_url) }} 1250w, {{ static(high_res_url) }} 2500w" media="(min-width: 760px)">
-  <source srcset="{{ static('img/contact/osm/spacer.gif') }}" media="(max-width: 759px)">
-  <img src="{{ static(low_res_url) }}" alt="" width="1250" height="380">
-</picture>
+  {{ picture(
+    url=low_res_url,
+    sources=[
+      {
+        'media': '(min-width: 760px)',
+        'srcset': {
+          low_res_url: '1250w',
+          high_res_url: '2500w'
+        }
+      },
+      {
+        'media': '(max-width: 759px)',
+        'srcset': {
+          'img/contact/osm/spacer.gif': 'default'
+        }
+      }
+    ],
+    optional_attributes={
+      'width': '1250',
+      'height': '380'
+    }
+  ) }}
 {%- endmacro %}

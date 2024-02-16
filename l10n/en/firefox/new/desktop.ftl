@@ -9,10 +9,17 @@
 # the em dash is used in meta titles to separate the title of a page from the title of the whole site
 # this title could also be written as "Download Firefox (Fast, Private & Free) — Mozilla"
 firefox-desktop-download-meta-title = Download { -brand-name-firefox-browser } — Fast, Private & Free — from { -brand-name-mozilla }
+firefox-desktop-download-meta-title-v2 = Download { -brand-name-firefox } for Desktop — from { -brand-name-mozilla }
 firefox-desktop-download-meta-desc = Get { -brand-name-firefox }, a free web browser backed by { -brand-name-mozilla }, a non-profit dedicated to internet health and privacy. Available now on { -brand-name-windows }, { -brand-name-mac-short }, { -brand-name-linux }, { -brand-name-android } and { -brand-name-ios }.
+firefox-desktop-download-meta-desc-v2 = Get { -brand-name-firefox } for { -brand-name-windows }, { -brand-name-mac-short } or { -brand-name-linux }. { -brand-name-firefox } is a free web browser backed by { -brand-name-mozilla }, a non-profit dedicated to internet health and privacy.
 firefox-desktop-download-og-title = Download the fastest { -brand-name-firefox } ever
 firefox-desktop-download-og-desc = Faster page loading, less memory usage and packed with features, the new { -brand-name-firefox } is here.
 firefox-desktop-download-firefox = { -brand-name-firefox-browser }
+
+# Variables:
+#   $update_url (url) - link to https://support.mozilla.org/kb/update-firefox-latest-release
+firefox-desktop-out-of-date = An even newer { -brand-name-firefox } is available. <a { $update_url }>Update to the latest version</a>
+
 firefox-desktop-download-get-the-browser = Get the browser that protects what’s important
 # shady is slang which suggests something is untrustworthy
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
@@ -37,14 +44,7 @@ firefox-desktop-download-blocks-social-trackers = Blocks social trackers
 firefox-desktop-download-os-availability = OS availability
 firefox-desktop-download-in-browser-screenshot = In-browser screenshot tool
 firefox-desktop-download-primary-password = Primary password
-# This will only be used when passed the parameter ?v=fx94 in the URL. Example: https://www-dev.allizom.org/firefox/new/?v=fx94
-firefox-desktop-love-your-life = Love your life online
-# This will only be used when passed the parameter ?v=fx94 in the URL. Example https://www-dev.allizom.org/firefox/new/?v=fx94
-# Color is being used as slang here, means customize here. Alternative: Customize it the way you want...
-firefox-desktop-its-your-internet = It’s your internet. Color it the way you want with thousands of tools, themes and extensions. { -brand-name-firefox } is the original alternative browser that puts people before profits.
 
-# Obsolete string
-firefox-desktop-download-master-password = Master password
 firefox-desktop-download-we-block-the-ad = We block the ad trackers. You explore the internet faster.
 firefox-desktop-download-ads-are-distracting = Ads are distracting and make web pages load slower while their trackers watch every move you make online. The { -brand-name-firefox-browser } blocks most trackers automatically, so there’s no need to dig into your security settings.
 firefox-desktop-download-see-your-report = See your protection report
@@ -137,9 +137,14 @@ firefox-desktop-download-firefox-was-created = { -brand-name-firefox } was creat
 #   $attrs (attrs) - link to https://www.mozilla.org/firefox/privacy/
 firefox-desktop-download-as-the-internet = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy  — we call it the <a { $attrs }>Personal Data Promise</a>: Take less. Keep it safe. No secrets. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
 
+# Obsolete string
 # Variables:
 #   $attrs (attrs) - link to https://accounts.firefox.com/signin
 firefox-desktop-download-firefox-is-available = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-firefox } account</a>.
+
+# Variables:
+#   $attrs (attrs) - link to https://accounts.firefox.com/signin
+firefox-desktop-download-firefox-is-available-v2 = { -brand-name-firefox } is available on all your devices; take your tabs, history and bookmarks with you. All you need is a <a { $attrs }>{ -brand-name-mozilla-account }</a> and you’ll get access to syncing and more { -brand-name-mozilla } products.
 
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/firefox-screenshots
@@ -155,7 +160,12 @@ firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozi
 
 # The phrase “Now get even more from Firefox” is in specific reference to signing up for an account, which unlocks access to all our new products and services.
 firefox-desktop-download-youve-already-got-the-browser = You’ve already got the browser. Now get even more from { -brand-name-firefox }.
-firefox-desktop-download-watch-for-hackers-with = Watch for hackers with { -brand-name-firefox-monitor }, protect passwords with { -brand-name-firefox-lockwise }, and more.
+
+firefox-desktop-download-watch-for-hackers-with-v3 = Watch for hackers with { -brand-name-mozilla-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
+
+# Obsolete string
+firefox-desktop-download-watch-for-hackers-with-v2 = Watch for hackers with { -brand-name-firefox-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
+
 firefox-desktop-download-get-more-from-firefox = Get More From { -brand-name-firefox }
 firefox-desktop-download-just-download-the-browser = Just Download The Browser
 
@@ -168,12 +178,14 @@ firefox-desktop-download-now-else = Now finish <strong>installing</strong> { -br
 firefox-desktop-download-now-windows = Now <strong>run</strong> the installer that just downloaded.
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-now-mac = Now <strong>open</strong> the file that just downloaded.
+# the strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-desktop-download-select-linux = Select a <strong>download</strong> option below
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/products/firefox/download-and-install
 firefox-desktop-download-get-help = Having trouble? <a { $attrs }>Get help with your installation</a>.
 firefox-desktop-download-in-another-language = Download in another language or for another operating system.
+firefox-desktop-download-windows = { -brand-name-windows }
 
-firefox-desktop-download-windows-10 = { -brand-name-windows } 10
 # Variables:
 #   $attrs (attrs) - link to https://support.mozilla.org/kb/windows-10-warns-me-use-microsoft-verified-app
 firefox-desktop-download-if-you-see-a-prompt = If you see a prompt stating the app you’re trying to install isn’t a { -brand-name-microsoft }-verified app, click “Install anyway” or <a { $attrs }>change app recommendation settings</a>.
@@ -182,11 +194,6 @@ firefox-desktop-download-visit-support-for-more = Visit Support for More Details
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
 firefox-desktop-download-mozilla-no-longer-provides = { -brand-name-mozilla } <a href="{ $url }">no longer provides security updates</a> on { -brand-name-windows } { -brand-name-xp } or { -brand-name-vista }, but you can still use { -brand-name-firefox }.
-
-# Outdated string
-# Variables:
-#   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
-firefox-desktop-download-youre-using-an-insecure-outdated = You’re using an insecure, outdated operating system <a href="{ $url }">no longer supported by { -brand-name-firefox }</a>.
 
 # Variables:
 #   $id (string) - HTML ID for the download link.
@@ -204,3 +211,5 @@ firefox-desktop-download-please-follow = Please follow <a href="{ $url }">these 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/all/
 firefox-desktop-download-your-system-may-not = Your system may not meet the requirements for { -brand-name-firefox }, but you can try one of <a href="{ $url }">these versions</a>.
+
+firefox-desktop-download-taskbar = { -brand-name-firefox } will be pinned to the { -brand-name-windows } taskbar after installation

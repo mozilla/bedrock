@@ -7,6 +7,7 @@
 (function () {
     'use strict';
 
+    var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
     var client = window.Mozilla.Client;
     var joinFirefoxContent = document.querySelector('.join-firefox-content');
 
@@ -14,16 +15,24 @@
         e.preventDefault();
 
         // Open the modal
-        Mzp.Modal.createModal(this, joinFirefoxContent, {
+        MzpModal.createModal(this, joinFirefoxContent, {
             title: e.target.textContent,
             className: 'join-firefox-modal'
         });
 
-        // Count the click in GA
+        // UA
         window.dataLayer.push({
             event: 'in-page-interaction',
             eAction: 'link click',
             eLabel: 'Current Firefox user downloading Firefox'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'modal',
+            action: 'open',
+            name: 'join-firefox-modal',
+            label: "You've already got the browser"
         });
     }
 

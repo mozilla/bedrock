@@ -19,14 +19,15 @@ from bedrock.contentful.constants import (
     ACTION_SAVE,
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
+    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
 from bedrock.contentful.management.commands.update_contentful import (
     MAX_MESSAGES_PER_QUEUE_POLL,
     Command as UpdateContentfulCommand,
 )
 from bedrock.contentful.models import ContentfulEntry
+from bedrock.contentful.tests.data import resource_center_page_data
 
 
 @pytest.fixture
@@ -158,7 +159,6 @@ def test_update_contentful__get_message_action(
     expected,
     command_instance,
 ):
-
     assert command_instance._get_message_action(param) == expected
 
     if expected is None:
@@ -187,7 +187,6 @@ def _build_mock_messages(actions: List) -> List[List]:
 
 
 def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock.Mock]:
-
     mock_queue = mock.Mock(name="mock_queue")
 
     def _receive_messages(*args, **kwargs):
@@ -322,7 +321,7 @@ def test_update_contentful__queue_has_viable_messages__no_viable_message_found__
     message_actions_sequence,
     command_instance,
 ):
-    # Create is the only message that will not trigger a contenful poll in Dev
+    # Create is the only message that will not trigger a Contentful poll in Dev
     assert settings.APP_NAME == "bedrock-dev"
     messages_for_queue = _build_mock_messages(message_actions_sequence)
     mock_sqs, mock_queue = _establish_mock_queue(messages_for_queue)
@@ -481,7 +480,6 @@ def test_update_contentful__refresh(
 
 
 def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
-
     output = []
     for datum_dict in mock_entry_data:
         mock_entry = mock.Mock()
@@ -492,7 +490,7 @@ def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
     return output
 
 
-@override_settings(CONTENTFUL_CONTENT_TYPES=["type_one", "type_two"])
+@override_settings(CONTENTFUL_CONTENT_TYPES_TO_SYNC=["type_one", "type_two"])
 @mock.patch("bedrock.contentful.management.commands.update_contentful.ContentfulPage")
 def test_update_contentful__get_content_to_sync(
     mock_contentful_page,
@@ -616,9 +614,9 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
             ],
             0,
         ),
@@ -626,8 +624,8 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
             ],
             1,
         ),
@@ -635,9 +633,9 @@ def test_update_contentful__get_content_to_sync(
             5,
             ["en-US"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_4", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_4", "en-US"),
             ],
             2,
         ),
@@ -651,18 +649,18 @@ def test_update_contentful__get_content_to_sync(
             3,
             ["en-US", "de", "fr", "it"],
             [
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "de"),  # simulating deletion/absence from sync
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "de"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-                (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "de"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
-                # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "de"),  # simulating deletion/absence from sync
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "de"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+                (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "de"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
+                # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
             ],
             6,
         ),
@@ -685,7 +683,7 @@ def test_update_contentful__detect_and_delete_absent_entries(
     for locale in locales_to_use:
         for idx in range(total_to_create_per_locale):
             ContentfulEntry.objects.create(
-                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
                 contentful_id=f"entry_{idx+1}",
                 locale=locale,
             )
@@ -696,16 +694,15 @@ def test_update_contentful__detect_and_delete_absent_entries(
 
 @pytest.mark.django_db
 def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(command_instance):
-
     # Make two homepages, with en-US locales (because that's how it rolls for now)
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
-        contentful_id=f"home_1",
+        contentful_id="home_1",
         locale="en-US",
     )
     ContentfulEntry.objects.create(
         content_type=CONTENT_TYPE_CONNECT_HOMEPAGE,
-        contentful_id=f"home_2",
+        contentful_id="home_2",
         locale="en-US",
     )
 
@@ -713,7 +710,7 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
     for locale in ["en-US", "fr", "it"]:
         for idx in range(3):
             ContentfulEntry.objects.create(
-                content_type=COMPOSE_MAIN_PAGE_TYPE,
+                content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
                 contentful_id=f"entry_{idx+1}",
                 locale=locale,
             )
@@ -722,27 +719,27 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
     entries_processed_in_sync = [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
         # (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-        # (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+        # (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
     ]
     retval = command_instance._detect_and_delete_absent_entries(entries_processed_in_sync)
     assert retval == 4
 
     for ctype, contentful_id, locale in [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_1", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "fr"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_1", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "it"),
     ]:
         assert ContentfulEntry.objects.get(
             content_type=ctype,
@@ -752,9 +749,9 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
 
     for ctype, contentful_id, locale in [
         (CONTENT_TYPE_CONNECT_HOMEPAGE, "home_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "en-US"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_2", "it"),
-        (COMPOSE_MAIN_PAGE_TYPE, "entry_3", "fr"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "en-US"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_2", "it"),
+        (CONTENT_TYPE_PAGE_RESOURCE_CENTER, "entry_3", "fr"),
     ]:
         assert not ContentfulEntry.objects.filter(
             content_type=ctype,
@@ -776,3 +773,89 @@ def test_log():
     with mock.patch("builtins.print") as mock_print:
         command_instance.log("This shall not be printed")
     assert not mock_print.called
+
+
+_dummy_completeness_spec = {
+    "test-content-type": [
+        # just three of anything, as it's not acted upon in this test
+        {
+            "type": list,
+            "key": "fake1",
+        },
+        {
+            "type": dict,
+            "key": "fake2",
+        },
+        {
+            "type": list,
+            "key": "fake3",
+        },
+    ]
+}
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "mock_localised_values, expected_completion_flag",
+    (
+        (["one", "two", "three"], True),
+        (["", "", ""], False),
+        (["one", None, ""], False),
+    ),
+)
+def test_update_contentful__check_localisation_complete(
+    mock_localised_values,
+    expected_completion_flag,
+    command_instance,
+):
+    entry = ContentfulEntry.objects.create(
+        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
+        contentful_id="test_1",
+        locale="en-US",
+    )
+    assert entry.localisation_complete is False
+
+    command_instance._get_value_from_data = mock.Mock(side_effect=mock_localised_values)
+    command_instance._check_localisation_complete()
+
+    entry.refresh_from_db()
+    assert entry.localisation_complete == expected_completion_flag
+
+
+@pytest.mark.parametrize(
+    "spec, expected_string",
+    (
+        (".entries[].body", "Virtual private networks (VPNs) and secure web proxies are solutions "),
+        (
+            ".info.seo.description",
+            "VPNs and proxies are solutions for online privacy and security. Here’s how these protect you and how to choose the best option.",
+        ),
+        (
+            ".info.seo.image",
+            "https://images.ctfassets.net/w5er3c7zdgmd/7o6QXGC6BXMq3aB5hu4mmn/d0dc31407051937f56a0a46767e11f6f/vpn-16x9-phoneglobe.png",
+        ),
+    ),
+)
+def test_update_contentful__get_value_from_data(spec, expected_string, command_instance):
+    assert expected_string in command_instance._get_value_from_data(
+        resource_center_page_data,
+        spec,
+    )
+
+
+@pytest.mark.parametrize(
+    "jq_all_mocked_output, expected",
+    (
+        (["   ", "", None], ""),
+        ([" Hello, World!  ", "test", None], "Hello, World! test"),
+    ),
+)
+@mock.patch("bedrock.contentful.management.commands.update_contentful.jq.all")
+def test__get_value_from_data__no_false_positives(
+    mocked_jq_all,
+    jq_all_mocked_output,
+    expected,
+    command_instance,
+):
+    mocked_jq_all.return_value = jq_all_mocked_output
+    assert command_instance._get_value_from_data(data=None, spec=None) == expected

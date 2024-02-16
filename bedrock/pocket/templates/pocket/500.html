@@ -1,0 +1,30 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% extends "pocket/base.html" %}
+
+ {% block pocket_css %}
+   {{ css_bundle('pocket-error-page') }}
+ {% endblock  %}
+
+ {% block page_title %}{{ ftl('server-error-title') }}{% endblock page_title %}
+
+{% block header %}
+  {% include 'pocket/includes/nav-platform.html' %}
+{% endblock %}
+
+ {% block content %}
+   <div class="mzp-l-content mzp-t-content-lg">
+    <h1>{{ ftl('server-error-title') }}</h1>
+    <p>{{ ftl('server-error-desc') }}</p>
+  </div>
+ {% endblock  %}
+
+{% block footer %}
+  {% include 'pocket/includes/footer-platform.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}

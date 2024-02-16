@@ -11,7 +11,6 @@ if (typeof window.Mozilla === 'undefined') {
 
 (function () {
     'use strict';
-
     var _pageBanner;
 
     var Banner = {};
@@ -20,7 +19,15 @@ if (typeof window.Mozilla === 'undefined') {
         var date = new Date();
         var cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
         date.setTime(date.getTime() + cookieDuration); // 1 day expiration
-        Mozilla.Cookies.setItem(id, true, date.toUTCString(), '/');
+        Mozilla.Cookies.setItem(
+            id,
+            true,
+            date.toUTCString(),
+            '/',
+            undefined,
+            false,
+            'lax'
+        );
     };
 
     Banner.hasCookie = function (id) {
@@ -34,12 +41,19 @@ if (typeof window.Mozilla === 'undefined') {
         // Set a cookie to not display it again.
         Banner.setCookie(Banner.id);
 
-        // Track the event in GA.
+        // UA
         window.dataLayer.push({
             event: 'in-page-interaction',
             eLabel: 'Banner Dismissal',
             'data-banner-name': Banner.id,
             'data-banner-dismissal': '1'
+        });
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'banner',
+            action: 'dismiss',
+            name: Banner.id
         });
     };
 
@@ -63,6 +77,15 @@ if (typeof window.Mozilla === 'undefined') {
 
         // display the banner
         _pageBanner.classList.add('c-banner-is-visible');
+
+        // GA4
+        window.dataLayer.push({
+            event: 'widget_action',
+            type: 'banner',
+            action: 'display',
+            name: Banner.id,
+            non_interaction: true
+        });
 
         // wire up close button
         _pageBanner

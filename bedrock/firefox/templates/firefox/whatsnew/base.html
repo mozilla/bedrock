@@ -16,7 +16,9 @@
 
 {% block content %}
 <main class="content-wrapper mzp-t-firefox">
-  {% include 'firefox/whatsnew/includes/header.html' %}
+  {% block wnp_header %}
+    {% include 'firefox/whatsnew/includes/header.html' %}
+  {% endblock %}
 
   {% block wnp_content %}{% endblock %}
 

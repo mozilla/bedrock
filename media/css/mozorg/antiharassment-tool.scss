@@ -1,0 +1,205 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
+@import '@mozilla-protocol/core/protocol/css/components/newsletter-form';
+
+$aht-color-secondary: #FDA1DE;
+
+.mzp-c-button.c-button-aht-primary {
+    background-color: $color-pink-70;
+    border-color: $color-pink-70;
+    color: $color-white;
+
+    &:hover, &:focus, &:active {
+        background-color: $color-marketing-gray-20;
+            color: $color-pink-70;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px $aht-color-secondary;
+    }
+}
+
+.mzp-c-button.c-button-aht-primary-inverse {
+    background-color: $color-white;
+    color: $color-pink-70;
+    border-color: $color-white;
+
+    &:hover, &:active, &:focus {
+        border-color: $color-pink-70;
+        color: $color-pink-70;
+        background-color: $color-white;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px $aht-color-secondary;
+    }
+}
+
+.mzp-c-button.c-button-aht-secondary {
+    background-color: transparent;
+    border-color: $color-pink-70;
+    color: $color-pink-70;
+
+    &:hover, &:active {
+        background-color: $color-marketing-gray-20;
+        border-color: $color-pink-70;
+        color: $color-pink-70;
+    }
+
+    &:focus {
+        background-color: $color-white;
+        border-color: $color-pink-70;
+        color: $color-pink-70;
+        box-shadow: 0 0 0 1px $aht-color-secondary;
+    }
+}
+
+.mzp-c-button.c-button-aht-secondary-inverse {
+    background: transparent;
+    color: $color-white;
+    border-color: $color-white;
+
+    &:hover, &:active, &:focus {
+        border-color: $color-pink-70;
+        color: $color-pink-70;
+        background-color: $color-white;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 1px $aht-color-secondary;
+    }
+}
+
+.section-heading {
+    @include font-size(40px);
+}
+
+.section-subheading {
+    @include font-size(24px);
+    font-weight: normal;
+}
+
+.c-bg-gradient {
+    background: linear-gradient(93deg, #89079E 0%, #A80070 45%, #D43262 100%);
+    color: $color-white;
+
+    .mzp-l-content {
+        text-align: center;
+    }
+
+    h1 {
+        @include font-size(60px);
+        color: $color-white;
+    }
+
+    h2 {
+        @include font-size(32px);
+        font-weight: 500;
+        color: $color-white;
+    }
+
+    p {
+        @include font-size(20px);
+    }
+
+    .c-button-group {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        @media #{$mq-md} {
+            flex-direction: row;
+            display: inline;
+        }
+    }
+}
+
+.c-help-section {
+    background-color: $color-marketing-gray-10;
+
+    .section-heading {
+        color: $color-pink-70;
+    }
+}
+
+.c-resources-section {
+    a {
+        color: $color-pink-70;
+        text-decoration: underline;
+    }
+
+    .c-resource-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 80px;
+
+        .c-resource-grid-item {
+            a {
+                font-weight: bold;
+            }
+        }
+
+        .c-resource-grid-item:nth-child(n):nth-child(-n + 4) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+
+// Bug in protocol
+.mzp-c-newsletter-form .mzp-c-form-errors {
+    display: block
+}
+
+.mzp-c-newsletter-form .mzp-c-form-errors.hidden {
+    display: none;
+}
+
+.mzp-c-newsletter-thanks {
+    display: block;
+    text-align: center;
+}
+
+.mzp-c-newsletter-thanks.hidden {
+    display: none;
+}
+
+.mzp-c-newsletter-title.section-heading {
+    margin-bottom: $layout-md;
+}
+
+.c-product-section {
+    background-color: $color-marketing-gray-10;
+
+    .section-heading {
+        text-align: center;
+    }
+
+    .mzp-l-columns {
+        margin-top: $layout-md;
+    }
+
+    .mzp-c-picto {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .mzp-c-picto-heading {
+        @include font-base;
+        @include font-size(18px);
+        margin-bottom: $spacing-lg;
+    }
+}

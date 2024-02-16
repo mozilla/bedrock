@@ -1,0 +1,57 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+
+<div class="mzp-l-content is-js-dependent">
+
+  <div class="moz-account-promo">
+    <div class="promo-product-wrapper">
+      <div class="moz-account-promo-title">
+        {% set gradient_class = 'class="gradient-text"' %}
+        <h2>{{ ftl('moz-account-promo-title', class=gradient_class) }}</h2>
+      </div>
+
+      <ul class="products-list">
+        <li class="product-item-firefox">
+          <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" alt="">
+          <span class="visually-hidden">{{ ftl('moz-account-product-firefox') }}</span>
+        </li>
+        <li>
+          <img loading="lazy" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat-white.svg') }}" alt="">
+          <span class="visually-hidden">{{ ftl('moz-account-product-vpn') }}</span>
+        </li>
+        <li>
+          <img loading="lazy" src="{{ static('protocol/img/logos/pocket/logo.svg') }}" alt="">
+          <span class="visually-hidden">{{ ftl('moz-account-product-pocket') }}</span>
+        </li>
+        <li>
+          <img loading="lazy" src="{{ static('protocol/img/logos/firefox/relay/logo-white.svg') }}" alt="">
+          <span class="visually-hidden">{{ ftl('moz-account-product-relay') }}</span>
+        </li>
+        <li class="product-item-monitor">
+          <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
+          <span class="visually-hidden">{{ ftl('moz-account-product-monitor') }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="accounts-cta-wrapper">
+      {{ fxa_email_form(
+        class_name='fxa-form',
+        entrypoint=_entrypoint,
+        button_class='mzp-c-button mzp-t-product mzp-t-lg'
+        )
+      }}
+      <p class="accounts-signin">
+        {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin') %}
+        {% set sign_in_url = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="Accounts Learn More"'|safe %}
+        {% set learn_more_url = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
+        {{ ftl('moz-account-already-have', sign_in_url=sign_in_url, learn_more_url=learn_more_url) }}
+      </p>
+    </div>
+
+    </div>
+</div>

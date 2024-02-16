@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import feature_card, split with context %}
+{% from "macros-protocol.html" import split with context %}
 {% from "macros.html" import google_play_button with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
@@ -14,33 +14,29 @@
 {% block page_desc %} {{ ftl('browsers-chromebook-so-youve-got') }} {% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
   {{ css_bundle('chromebook') }}
 {% endblock %}
 
-{% set android_url = firefox_adjust_url('android', 'firefox-browsers-chromebook') %}
+{% set android_url = play_store_url('firefox', 'firefox-browsers-chromebook') %}
+
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">{{ ftl('sub-navigation-firefox-for-desktop', fallback='navigation-firefox-browser-for-desktop') }}</h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.windows') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows">{{ ftl('sub-navigation-windows') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.windows-64-bit') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Windows 64-bit">{{ ftl('sub-navigation-windows-64-bit') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.mac') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Mac">{{ ftl('sub-navigation-mac') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.linux') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Linux">{{ ftl('sub-navigation-linux') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.chromebook') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Chromebook">{{ ftl('sub-navigation-chromebook') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+ {% include '/firefox/includes/desktop-platform-sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
   {% call split(
-    image_url='img/firefox/browsers/quantum/browser.jpg',
-    include_highres_image=True,
+    image=resp_img('img/firefox/browsers/quantum/browser.jpg',
+      srcset={ 'img/firefox/browsers/quantum/browser-high-res.jpg': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+    ),
     media_after=True,
     block_class='mzp-l-split-hide-media-on-sm-md',
     media_class='mzp-l-split-h-center'
@@ -53,7 +49,7 @@
     <h4 class="mzp-c-menu-list-title">{{ ftl('browsers-chromebook-dropdown-copy') }}</h4>
     <ul class="mzp-c-menu-list-list download-platform-list">
       <li class="mzp-c-menu-list-item">
-        <a href="{{ firefox_adjust_url('android', 'firefox-browsers-faq') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">
+        <a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">
           {{ ftl('browsers-chromebook-browsers-chromebook-get-firefox-for') }}
           <p><small>{{ ftl('browsers-chromebook-x86-based-chromebook') }}</small></p>
         </a>
@@ -71,8 +67,10 @@
   <section>
     <h2 class="mzp-c-section-heading">{{ ftl('browsers-chromebook-why-get-firefox') }}</h2>
     {% call split(
-      image_url='img/firefox/browsers/chromebook/shield.png',
-      include_highres_image=True
+      image=resp_img('img/firefox/browsers/chromebook/shield.png',
+        srcset={ 'img/firefox/browsers/chromebook/shield-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+      ),
     ) %}
       <p>{{ ftl('browsers-chromebook-while-a-chromebook') }}</p>
       <ul class="mzp-u-list-styled">
@@ -88,14 +86,34 @@
 
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/browsers/chromebook/mobile.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '436', 'height': '464'}) }}
+        {{ resp_img(
+          url='img/firefox/browsers/chromebook/mobile.png',
+          srcset={
+            'img/firefox/browsers/chromebook/mobile-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-billboard-image',
+            'width': '436',
+            'height': '464'
+          }
+        ) }}
 
         <p>{{ ftl('browsers-chromebook-install-firefox-from') }}</p>
         {{ google_play_button(href=android_url, id='playStoreLink') }}
       </div>
 
       <div class="mzp-c-card">
-        {{ high_res_img('img/firefox/browsers/chromebook/addon.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '436', 'height': '464'}) }}
+        {{ resp_img(
+          url='img/firefox/browsers/chromebook/addon.png',
+          srcset={
+            'img/firefox/browsers/chromebook/addon-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-billboard-image',
+            'width': '436',
+            'height': '464'
+          }
+        ) }}
 
         <p>{{ ftl('browsers-chromebook-install-firefox-as', url='href="https://support.mozilla.org/kb/run-firefox-chromeos?utm_source=www.mozilla.org-firefox-browsers-chromebook&amp;utm_medium=referral&amp;utm_campaign=seo" rel="external noopener" data-cta-text="Install Firefox for Chromebook" data-cta-type="link"'|safe) }}</p>
       </div>
@@ -107,4 +125,3 @@
 {% block js %}
   {{ js_bundle('chromebook') }}
 {% endblock %}
-

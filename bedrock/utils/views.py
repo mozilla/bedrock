@@ -3,10 +3,9 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.utils.functional import cached_property
-from django.views.generic import TemplateView
 
 from bedrock.utils import expand_locale_groups
-from lib.l10n_utils import LangFilesMixin, get_locale
+from lib.l10n_utils import L10nTemplateView, get_locale
 
 
 class VariationMixin:
@@ -48,5 +47,5 @@ class VariationMixin:
         return cxt
 
 
-class VariationTemplateView(VariationMixin, LangFilesMixin, TemplateView):
+class VariationTemplateView(VariationMixin, L10nTemplateView):
     pass

@@ -64,7 +64,7 @@ def complete_posts_data(blog_slug, posts):
 
 
 def get_feed_tags(feed_id):
-    tags = get_wp_data(feed_id, "tags")
+    tags = get_wp_data(feed_id, "tags") or []
     return {t["id"]: t["slug"] for t in tags}
 
 

@@ -4,81 +4,50 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact, split with context %}
+{% extends "firefox/features/base-article.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
-
-{% block page_title %}{{ ftl('features-translate-translate-the-web-title') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-translate-translate-more-than') }}{% endblock %}
+{% block page_title %}Translate a webpage with Firefox{% endblock %}
+{% block page_desc %}Firefox Translations is an added built-in translation feature that allows you to easily browse the web in your preferred language. Learn more about how this feature in Firefox works, and how Mozilla helps keep what you translate private.{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('seo') }}
-{% endblock %}
+{% block article_title_short %}Translate the web{% endblock %}
+{% block article_title %}Translate a webpage with Firefox{% endblock %}
 
-{% block sub_navigation %}
-  {% include "firefox/features/includes/subnav.html" %}
-{% endblock %}
+{% block article_content %}
+<p>One of the best things about the internet is that we can access content worldwide. Whether it's
+  news articles, blogs, or even a review of your latest tech gadget, you can find it all on the seemingly
+  never-ending web. With Firefox's latest translation feature, this tool will continuously translate a
+  webpage in real-time.</p>
 
-{% block content %}
-{% call split(
-    block_class='mzp-t-split-nospace mzp-l-split-hide-media-on-sm-md mzp-l-split-center-on-sm-md',
-    theme_class='mzp-t-dark',
-    media_class='mzp-l-split-media-overflow mzp-l-split-media-constrain-height',
-    image_url='img/firefox/features/translate/translate.png',
-    include_highres_image=True,
-  ) %}
-    <span class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></span>
-    <h1 class="mzp-u-title-xl">{{ ftl('features-translate-translate-the-web') }}</h1>
-    <div class="c-hero-desc">
-      <p>{{ ftl('features-translate-the-google-translate') }}</p>
-    </div>
-    {{ download_firefox(dom_id='features-translate-download', download_location='primary cta') }}
-{% endcall %}
+<p>While other browsers rely on cloud services, the Firefox translation language models are
+  downloaded on the user's browser and translations are done locally, so Mozilla doesn’t
+  record what webpages you translate.</p>
 
-<div class="mzp-l-content mzp-t-content-md">
-  <article class="mzp-c-article">
+<h2>When you translate a webpage it stays private</h2>
+<p>When your translations are processed locally, no data from your chosen device leaves
+  your device or relies on Cloud services for translation. This means that Mozilla doesn’t
+  know what web page you translate, and makes our translation feature stand out in comparison
+  to other translation tools.</p>
 
-    <p class="mzp-c-article-intro">{{ ftl('features-translate-the-internet-is', attrs='href="%s"'|safe|format(url('firefox.all'))) }}</p>
+<h2>What languages are currently supported?</h2>
+<p>The languages below are what currently are supported by Firefox’s Translation feature:</p>
 
-    <h2>{{ ftl('features-translate-to-google-translate') }}</h2>
-    <p>{{ ftl('features-translate-google-translate-with', attrs='href="https://addons.mozilla.org/en-US/firefox/addon/to-google-translate/" rel="external noopener"') }}</p>
+<ul class="mzp-u-list-styled">
+  <li>Spanish</li>
+  <li>English</li>
+  <li>German</li>
+  <li>Bulgarian</li>
+  <li>Portuguese</li>
+  <li>Italian</li>
+  <li>French</li>
+  <li>Polish</li>
+  <li>Dutch</li>
+</ul>
+<p>And more languages are in development!</p>
 
-
-    <p><a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/firefox/addon/to-google-translate/" rel="external noopener">{{ ftl('features-translate-get-the-extension') }}</a></p>
-    <p>{{ ftl('features-translate-once-installed-simply') }}</p>
-
-    <img src="{{ static('img/firefox/features/translate/translation.png') }}" alt="">
-
-    <h2>{{ ftl('features-translate-switch-languages-in') }}</h2>
-    <p>{{ ftl('features-translate-if-you-are', attrs='href="https://support.mozilla.org/kb/use-firefox-another-language" rel="external noopener" ') }}</p>
-    <p>{{ ftl('features-translate-with-the-to', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}</p>
-
-    {% if LANG.startswith('en-') %}
-      <p>Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bosnian, Bulgarian, Catalan, Cebuano, Chichewa, Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian Creole, Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Kinyarwanda, Korean, Kurdish, Kyrgyz, Lao, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Myanmar (Burmese), Nepali, Norwegian, Odia (Oriya), Pashto, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, Samoan, Scots Gaelic, Serbian, Sesotho, Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Vietnamese, Welsh, Xhosa, Yiddish, Yoruba and Zulu.</p>
-    {% else %}
-      {% for lang in context_test -%}
-        {% set name = context_test[lang] %}
-        {% set par = name.find(' (') %}
-        {% if par > 0 %}
-          {{ name[0:par] }},
-        {% else %}
-          {{ name }},
-        {% endif %}
-      {% endfor %}
-      {{ ftl('features-translate-and-more', attrs='href="https://translate.google.com/about/languages/" rel="external noopener" ') }}
-    {% endif %}
-
-  </article>
-</div>
-
-{% call call_out_compact(
-  title=ftl('features-translate-for-everyone'),
-  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
-) %}
-<div class="download-firefox">
-  {{ download_firefox(dom_id='translate-bottom-download', download_location='secondary cta') }}
-</div>
-{% endcall %}
-
+<h2>Firefox speaks your language</h2>
+<p>The Firefox Translation feature is another way Mozilla keeps your internet personalized and
+  more private. Mozilla doesn’t track what webpages you translate. With millions of users worldwide,
+  Mozilla wants to ensure that those who use Firefox are learning, communicating, sharing, and staying
+  informed on their own terms. <a href="{{ url('firefox.new') }}">Get started in your preferred language by downloading Firefox.</a></p>
 {% endblock %}

@@ -6,13 +6,13 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Performance Regressions Policy') }}{% endblock %}
+{% block page_title %}Performance Regressions Policy{% endblock %}
 {% set body_id = "regression" %}
 
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 <nav role="directory">
-  <p>{{ _('In this document:') }}</p>
+  <p>In this document:</p>
   <ul class="mzp-u-list-styled">
     <li><a href="#basic-policy">Basic Policy</a>: Patch authors will be notified of a regression and must respond within 3 days or their changes will be backed out.</li>
     <li><a href="#criteria">Sheriffing Criteria</a>: Minimum criteria to be met before tests will be monitored by sheriffs.</a></li>

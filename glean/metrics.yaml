@@ -1,0 +1,198 @@
+---
+$schema: moz://mozilla.org/schemas/glean/metrics/2-0-0
+
+page:
+  viewed:
+    type: datetime
+    lifetime: application
+    send_in_pings:
+      - events
+    description: |
+      The time a page was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  path:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - events
+    description: |
+      The URL path of the page that was viewed, excluding locale.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  locale:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - events
+    description: |
+      The locale of the page that was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  query_params:
+    type: labeled_string
+    lifetime: application
+    send_in_pings:
+      - events
+    description: |
+      Query parameters associated with the URL of
+      the page that was viewed.
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    labels:
+      - utm_source
+      - utm_campaign
+      - utm_medium
+      - utm_content
+      - entrypoint_experiment
+      - entrypoint_variation
+      - experiment
+      - variation
+      - v
+      - xv
+  referrer:
+    type: string
+    lifetime: application
+    send_in_pings:
+      - events
+    description: |
+      The referring URL that linked to the page that was viewed.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  http_status:
+    type: string
+    description: |
+      The HTTP status code of the page.
+    lifetime: application
+    send_in_pings:
+      - events
+    data_sensitivity:
+      - technical
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/13581
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1848981
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+  interaction:
+    type: event
+    description: |
+      An event containing metrics related to a page level
+      user interaction state that we want to measure.
+      Examples: form completion, scroll events.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          The label used to describe the event.
+          Example: 'newsletter-sign-up-success'
+        type: string
+      type:
+        description: |
+          The type of event.
+          Example: 'mozilla-and-you'
+        type: string
+  non_interaction:
+    type: event
+    description: |
+      An event containing metrics related to a page level
+      non-user initiated state that we want to measure.
+      Examples: banner impressions, conditional messaging.
+    data_sensitivity:
+      - web_activity
+      - technical
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          The label used to describe the event.
+          Example: 'banner-impression'
+        type: string
+      type:
+        description: |
+          The type of event.
+          Example: 'get-firefox-banner'
+        type: string
+
+element:
+  clicked:
+    type: event
+    description: |
+      An event containing metrics related to an element
+      in the page that was clicked.
+    data_sensitivity:
+      - web_activity
+    bugs:
+      - https://github.com/mozilla/bedrock/issues/10746
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
+    notification_emails:
+      - marketing-websites-team@mozilla.com
+    expires: never
+    extra_keys:
+      label:
+        description: |
+          Description of the page element that was
+          clicked. Examples: 'Download Firefox',
+          'Get Mozilla VPN'.
+        type: string
+      type:
+        description: |
+          The type of element that was clicked.
+          Examples: 'macOS, release, en-US',
+          '12-month plan'.
+        type: string
+      position:
+        description: |
+          The position of the element in the page.
+          Examples: 'Primary', 'Secondary',
+          'Navigation', 'Footer'.
+        type: string

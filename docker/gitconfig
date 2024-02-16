@@ -1,0 +1,7 @@
+# system git config for docker containers
+# copied to /etc/gitconfig
+
+; see https://github.com/mozilla/bedrock/issues/12705
+[safe]
+	directory = /app/data/www-l10n
+	directory = /app/data/pocket-www-l10n

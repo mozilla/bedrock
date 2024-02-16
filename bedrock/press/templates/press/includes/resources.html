@@ -5,12 +5,12 @@
 #}
 
 {% set navigation_bar = [
-  ('https://blog.mozilla.org/press/', 'resources', _('Resources')),
-  ('https://blog.mozilla.org/press/ataglance/', 'at-a-glance', _('Mozilla at a Glance')),
-  ('https://blog.mozilla.org/press/awards/', 'awards', _('Awards')),
-  ('https://blog.mozilla.org/press/kits/', 'press-kits', _('Firefox Press Kits')),
-  (url('press.press-inquiry'), 'press-inquiry', _('Press Inquiry')),
-  (url('press.speaker-request'), 'speaker-request', _('Speaker Request Form')),
+  ('https://blog.mozilla.org/press/', 'resources', 'Resources'),
+  ('https://blog.mozilla.org/press/ataglance/', 'at-a-glance', 'Mozilla at a Glance'),
+  ('https://blog.mozilla.org/press/awards/', 'awards', 'Awards'),
+  ('https://blog.mozilla.org/press/kits/', 'press-kits', 'Firefox Press Kits'),
+  (url('press.press-inquiry'), 'press-inquiry', 'Press Inquiry'),
+  (url('press.speaker-request'), 'speaker-request', 'Speaker Request Form'),
 ] -%}
 
 {{ sidemenu_lists([navigation_bar], body_id) }}

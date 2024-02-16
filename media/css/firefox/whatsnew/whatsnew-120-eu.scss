@@ -1,0 +1,137 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+
+.wnp-content-main {
+    background-color: $color-white;
+    color: $color-black;
+    padding-bottom: $spacing-md;
+    text-align: center;
+}
+
+.mzp-l-content.mzp-t-content-md {
+    padding-top: var(--v-grid-md);
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    padding: 0 $layout-lg;
+}
+
+.wnp-main-tagline, .wnp-toolbar-instructions {
+    @include text-body-lg;
+    color: $color-black;
+    padding: 0 $layout-lg;
+}
+
+.wnp-toolbar-instructions {
+    font-weight: bold;
+}
+
+.wnp-main-cta {
+    margin-top: $layout-md;
+}
+
+// if js is disabled or they are not on firefox, show the sumo link instead of the UI tour button
+.mzp-c-button.sumo-link, .mzp-c-button.uitour  {
+    display: none;
+}
+
+.no-js {
+    .mzp-c-button.uitour.uitour {
+        display: none;
+    }
+
+    .mzp-c-button.sumo-link {
+        display: inline;
+    }
+}
+
+.js {
+    .mzp-c-button.uitour {
+            display: none;
+        }
+
+        .mzp-c-button.sumo-link {
+            display: inline;
+        }
+}
+
+.is-firefox {
+    .mzp-c-button.uitour {
+        display: inline;
+    }
+
+    .mzp-c-button.sumo-link {
+        display: none;
+    }
+}
+
+
+.no-firefox {
+    .uitour {
+        display: none;
+    }
+
+    .sumo-link {
+        display: block;
+    }
+}
+
+.wnp-main-image {
+    margin: $layout-sm auto;
+}
+
+@keyframes icons {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.toolbar-icon {
+    animation: icons 1s ease 0s 1 normal forwards;
+    opacity: 0;
+}
+
+// animation
+#print {
+    animation-delay: 400ms;
+}
+
+#addons {
+    animation-delay: 1000ms;
+}
+
+#forget {
+    animation-delay: 1600ms;
+}
+
+#key {
+    animation-delay: 2200ms;
+}
+
+#private {
+    animation-delay: 2800ms;
+}
+
+
+// Disable animations
+@media (prefers-reduced-motion: reduce) {
+   .toolbar-icon {
+        animation: none;
+        opacity: 1;
+    }
+}

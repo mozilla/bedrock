@@ -8,13 +8,22 @@
     'use strict';
     var _mqWide = matchMedia('(max-width: 767px)');
     if (_mqWide.matches) {
-        window.Mzp.Details.init('.c-collapsible-section-heading');
+        window.MzpDetails.init('.c-collapsible-section-heading');
     }
-    _mqWide.addListener(function (mq) {
+
+    function handleMqChange(mq) {
         if (mq.matches) {
-            window.Mzp.Details.init('.c-collapsible-section-heading');
+            window.MzpDetails.init('.c-collapsible-section-heading');
         } else {
-            window.Mzp.Details.destroy('.c-collapsible-section-heading');
+            window.MzpDetails.destroy('.c-collapsible-section-heading');
         }
-    });
+    }
+
+    if (window.matchMedia('all').addEventListener) {
+        // evergreen
+        _mqWide.addEventListener('change', handleMqChange, false);
+    } else if (window.matchMedia('all').addListener) {
+        // IE fallback
+        _mqWide.addListener(handleMqChange);
+    }
 })();

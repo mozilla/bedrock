@@ -1,0 +1,119 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox Reality Privacy Notice — Archived, June 16, 2023{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block body_class %}{{ super() }} format-headings{% endblock %}
+
+{% block article_header_logo %}{{ static('img/logos/firefox/logo-reality.png') }}{% endblock %}
+
+{% block title %}Firefox Reality Privacy Notice{% endblock %}
+
+{% block time %}<span class="archived">Archived, June 16, 2023</span>{% endblock %}
+
+{% block lead_in %}
+  <p><time datetime="2019-07-23" itemprop="dateModified">Version 1.1, effective July 23, 2019</time></p>
+  <h2>At Mozilla, we believe that privacy is fundamental to a healthy internet.</h2>
+  <p>
+    That’s why we build Firefox Reality, and all our products, to give you greater control over the
+    information you share online and the information you share with us. We strive to collect only what
+    we need to improve Firefox Reality for everyone.
+  </p>
+  <p>
+    In this Privacy Notice, we explain what data Firefox Reality shares and point you to settings to
+    share even less. We also adhere to the practices outlined in the Mozilla
+    <a href="{{ url('privacy') }}">privacy policy</a> for how we receive, handle and share information we collect
+    from Firefox Reality.
+  </p>
+
+{% endblock %}
+
+{% block sections %}
+  <section>
+    <h2>Firefox Reality by default shares data for:</h2>
+    <section>
+      <h3 class="summary">Improving performance and stability</button></h3>
+      <ul>
+        <li>
+          <p>
+            <strong>Interaction data:</strong> Firefox Reality sends data about your interactions with
+            Firefox Reality to us (such as number of open windows; number of webpages visited; information
+            about voice searches, and session length) and Firefox Reality features offered by Mozilla or
+            our partners (such as interaction with Firefox Reality search features and search partner
+            referrals).
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Technical data:</strong> Firefox Reality sends data about your Firefox Reality version
+            and language; device operating system and hardware configuration, including VR headset and handsets;
+            memory, basic information about crashes and errors; outcome of automated processes like updates,
+            and activation to us. When Firefox Reality sends data to us, your IP address is temporarily
+            collected as part of our server logs.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Read the telemetry documentation for Firefox Reality or learn how to
+        <a href="https://support.mozilla.org/kb/send-usage-data-firefox-mobile-devices">opt-out</a> of this
+        data collection.
+      </p>
+    </section>
+    <section>
+      <h3 class="summary">Voice Search</h3>
+      <ul>
+        <li>
+          <strong>Voice Recordings:</strong> When you choose to use voice input for Firefox Reality, your voice
+          recordings are sent to Mozilla and Google’s Cloud Speech service for processing to provide you with
+          suggested text. Mozilla does not keep your recordings.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3 class="summary">Crash reports</h3>
+      <p>
+        If you turn crash reporting on Mozilla will receive a report with more information if Firefox Reality crashes.
+        Generally, crash reports include:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <strong>Device information:</strong> This tells us information about your device, such as the operating
+            system, manufacturer and graphics adapter when the crash happened.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Application information:</strong> This tells us information about the application that crashed,
+            such as the version, build and build architecture of Firefox Reality you were using.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Crash information:</strong> This provides information about the crash, including a report of
+            Firefox Reality’s subroutines at the time of the crash, and a whether a crash happened before Firefox
+            Reality finished starting up, what type of process caused the crash and the information in device memory
+            at the time of the crash.
+          </p>
+        </li>
+      </ul>
+      <p>
+        For more information, and to see examples of real crash reports, see
+        <a href="https://crash-stats.mozilla.com/">Crash Data</a>.
+      </p>
+    </section>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}
+
+{% block js %}
+  {{ js_bundle('privacy_protocol') }}
+{% endblock %}

@@ -44,3 +44,6 @@ class TestTranslationUtils(TestCase):
 
         translation.activate("ur-PK")
         self.assertTrue(translation.get_language_bidi())
+
+        translation.activate("skr")
+        self.assertTrue(translation.get_language_bidi())

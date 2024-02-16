@@ -1,0 +1,43 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
+@use './components/hero-text.scss';
+@use './components/hero-video.scss';
+@use './components/home.scss';
+@use './components/testimonials.scss';
+@use './components/diversity.scss';
+@use './components/locations.scss';
+@use './components/job-listings.scss';
+@use './components/position.scss';
+@use './components/footer.scss';
+
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/components/video';
+@use '~@mozilla-protocol/core/protocol/css/components/callout';
+@use '~@mozilla-protocol/core/protocol/css/templates/card-layout';
+@use '../protocol/components/custom-menu-list';
+
+.c-careers {
+    .c-careers-section-title {
+        text-align: center;
+    }
+
+    .c-careers-button-wrapper {
+        margin: $spacing-lg auto;
+        text-align: center;
+    }
+
+    .mzp-c-picto {
+        .mzp-c-picto-image {
+            width: 160px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.c-careers-section-intro {
+    max-width: $content-md;
+    margin: 0 auto $layout-sm;
+}

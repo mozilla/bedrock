@@ -8,7 +8,7 @@
 
 {% block page_image %}{{ static('img/firefox/features/tips/tips-and-tools.png') }}{% endblock %}
 
-{% from "macros-protocol.html" import split, call_out, zap, card, call_out_compact with context %}
+{% from "macros-protocol.html" import split, callout, zap, card, callout_compact with context %}
 
 {% block page_title %}Firefox Tips and Tools{% endblock %}
 {% block page_desc %}Our favorite Firefox tips, tricks and nerd-friendly features to help you get the most of your time online – it’s kind of like our version of a secret menu.{% endblock %}
@@ -16,7 +16,10 @@
 {% block body_id %}firefox-tips{% endblock %}
 
 {% block page_css %}
- {{ css_bundle('firefox_tips') }}
+{{ css_bundle('protocol-split') }}
+{{ css_bundle('protocol-card') }}
+{{ css_bundle('protocol-callout') }}
+{{ css_bundle('firefox_tips') }}
 {% endblock %}
 
 {% if variation == 'eyedropper' %}
@@ -32,7 +35,7 @@
 {% block content %}
   <main>
     {% call split(
-      block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+      block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace t-mobile-nospace',
       theme_class='mzp-t-dark',
       media_class='mzp-l-split-h-center',
       media_include=media_include,
@@ -56,7 +59,7 @@
         class='mzp-c-card-large',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='aHpCLDQ_2ns',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_send-tabs_hilda.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_send-tabs_hilda.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#send-tabs'
       )}}
 
@@ -68,7 +71,7 @@
         desc='Sign up for things you might not want. Firefox Relay helps you keep your real email address private and your inbox uncluttered.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='hZersfIccWE',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_email_luke.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_email_luke.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://relay.firefox.com/'
       )}}
 
@@ -80,7 +83,7 @@
         desc='Take a quick picture of something online to save or share before the moment passes.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='-Rv5MKSBNUM',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_screenshot_mj.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_screenshot_mj.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#screenshots'
       )}}
 
@@ -92,7 +95,7 @@
         desc='Make sure the websites you visit are secure and encrypted so you can surf and shop with confidence.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='D6tFXSFFkfY',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_https_chris.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_https_chris.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/security/2021/08/10/firefox-91-introduces-https-by-default-in-private-browsing/'
       )}}
 
@@ -104,7 +107,7 @@
         desc='Accidentally closed your browser? No problem. Here’s an easy way to bring all your tabs back to life.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='XyusbCSAQg8',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_restore_mei.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_restore_mei.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#restore-session'
       )}}
     </div>
@@ -119,7 +122,7 @@
         class='mzp-c-card-large',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='X6dTBZR3Heo',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_PIP_tina.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_PIP_tina.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url=url('firefox.features.picture-in-picture')
       )}}
 
@@ -131,7 +134,7 @@
         desc='See a summary of all the trackers and cookies Firefox is blocking for you.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='0cmea25xl6E',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_privacy-report_roux.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_privacy-report_roux.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url=url('firefox.privacy.products')
       )}}
 
@@ -143,7 +146,7 @@
         desc='Create a privacy fence around Facebook to keep it from tracking you around the web.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='M9DK-taZsrw',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_facebook-steve.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_facebook-steve.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url=url('firefox.facebookcontainer.index')
       )}}
 
@@ -155,7 +158,7 @@
         desc='Automatically generate strong, complex passwords that you don’t have to remember.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='CqGZtCZVDZ0',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_password_nneka.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_password_nneka.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#password-generator'
       )}}
 
@@ -167,7 +170,7 @@
         desc='Find out the exact hex color of anything you see online and duplicate it in other applications.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='NXomgmnfU_Y',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_eyedropper_bram.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_eyedropper_bram.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#eyedropper-tool'
       )}}
     </div>
@@ -181,7 +184,7 @@
         desc='Rearrange your browser tabs any way you want with ease.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='uyuBOpjPFws',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_floating-tabs_natalie.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_floating-tabs_natalie.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#tab-tips'
       )}}
 
@@ -193,7 +196,7 @@
         desc='A quick way to delete your Firefox history and cookies for the last 5 minutes, or 2 hours or 24 hours in a flash.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='sn9dib80w3c',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_forget_damiano.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_forget_damiano.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#forget'
       )}}
 
@@ -205,25 +208,33 @@
         desc='Save articles, videos and more to consume later, even when you’re offline.',
         aspect_ratio='mzp-has-aspect-16-9',
         youtube_id='MGHFog9F48A',
-        image_url='img/firefox/features/tips/fx_video-thumb_secret-menu_pocket_amy.jpg',
+        image=resp_img('img/firefox/features/tips/fx_video-thumb_secret-menu_pocket_amy.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         link_url='https://blog.mozilla.org/products/firefox/firefox-tips/firefox-secret-tips/#pocket'
       )}}
     </div>
 
-    {% call call_out(
+    {% call callout(
        title='Available now for desktop and mobile',
        heading_level=3,
-       class='mzp-t-product-firefox',
-       include_cta=True
+       class='mzp-t-product-firefox mzp-t-background-secondary',
+       include_cta=True,
+       brand=True,
+       brand_type='logo',
+       brand_product='firefox',
+       brand_size='lg'
        ) %}
         {{ download_firefox_thanks(dom_id='tips-callout-download', download_location='secondary') }}
     {% endcall %}
   </section>
 
-  {% call call_out_compact(
-      title=_('The account that protects you rather than profits off you.'),
-      class='mzp-t-product-family mzp-t-firefox mzp-t-dark hide-from-legacy-ie',
-      heading_level=3
+  {% call callout_compact(
+      title='The account that protects you rather than profits off you.',
+      class='mzp-t-product-family mzp-t-firefox  mzp-t-background-tertiary hide-from-legacy-ie',
+      heading_level=3,
+      brand=True,
+      brand_type='logo',
+      brand_product='mozilla',
+      brand_size='lg'
     ) %}
     <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ ftl('ui-learn-more') }}</a>
   {% endcall %}

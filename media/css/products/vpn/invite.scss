@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -86,13 +86,8 @@ $image-path: '/media/protocol/img';
 }
 
 .vpn-invite-success {
-    display: none;
     margin: $layout-xl 0;
     min-height: 400px;
-}
-
-.mzp-c-form-errors {
-    display: none;
 }
 
 .vpn-invite-privacy {

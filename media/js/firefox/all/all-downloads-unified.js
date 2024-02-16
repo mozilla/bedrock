@@ -172,6 +172,14 @@
         var currentPlatform = currentOptions.querySelector(
             '.c-selection-platform select'
         );
+        // Adds platform string to download-info element
+        // to show/hide additonal instructions for linux installs
+        document
+            .querySelector('.c-download')
+            .setAttribute(
+                'data-platform',
+                FirefoxDownloader.getSelectOption(currentPlatform).id
+            );
         return FirefoxDownloader.getSelectOption(currentPlatform);
     };
 
@@ -272,7 +280,7 @@
     };
 
     /**
-     * Append Firefox attribution params for windows downloads.
+     * Append Firefox attribution params for Windows and macOS downloads.
      */
     FirefoxDownloader.onDownloadButtonClick = function (e) {
         e.preventDefault();
@@ -281,6 +289,17 @@
         var version = el.getAttribute('data-download-version');
 
         if (version && /win/.test(version)) {
+            url = FirefoxDownloader.setAttributionURL(e.target.href);
+        }
+
+        // Only macOS pre-release channels for now.
+        if (
+            version &&
+            /osx/.test(version) &&
+            /product=firefox-beta-latest|product=firefox-devedition-latest|product=firefox-nightly-latest/.test(
+                url
+            )
+        ) {
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }
 
@@ -344,9 +363,11 @@
     FirefoxDownloader.isValidURL = function (url) {
         var bouncerURL = /^https:\/\/download.mozilla.org/;
         var stagingURL = /^https:\/\/bouncer-bouncer.stage.mozaws.net/;
+        var devURL = /^https:\/\/dev.bouncer.nonprod.webservices.mozgcp.net/;
+
         return (
             typeof url === 'string' &&
-            (bouncerURL.test(url) || stagingURL.test(url))
+            (bouncerURL.test(url) || stagingURL.test(url) || devURL.test(url))
         );
     };
 

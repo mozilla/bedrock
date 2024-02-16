@@ -8,33 +8,36 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title %}{{ ftl('compare-index-seven-of-the-best-browsers-in', fallback='compare-index-six-of-the-best-browsers-fallback') }}{% endblock %}
-{% block page_desc %}{{ ftl('compare-index-find-out-how-firefox-chrome', fallback='compare-index-find-out-how-firefox-fallback') }}{% endblock %}
+{% block page_title %}{{ ftl('compare-index-six-of-the-best-browsers-fallback') }}{% endblock %}
+{% block page_desc %}{{ ftl('compare-index-find-out-how-firefox-chrome-v2', fallback='compare-index-find-out-how-firefox-chrome') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('compare') }}
-  {{ css_bundle('mobile-compare-banner') }}
 {% endblock %}
 
 {% block sub_navigation %}
   {% include 'firefox/browsers/compare/includes/subnav.html' %}
 {% endblock %}
 
-{% block page_banner %}
-  {% include 'includes/banners/mobile/mobile-compare.html' %}
-{% endblock %}
-
 {% block content %}
 {% call split(
-    image_url='img/firefox/compare/compare-browser-windows.png',
-    include_highres_image=True,
+    image=resp_img(
+      url='img/firefox/compare/compare-browser-windows.png',
+      srcset={
+        'img/firefox/compare/compare-browser-windows-high-res.png': '2x'
+      },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset'
+      }
+    ),
     media_class='mzp-l-split-h-center',
     media_after=True
   ) %}
     <p class="compare-hero-pretitle">{{ ftl('compare-index-privacy-utility-portability') }}</p>
     <h1 class="compare-hero-title">{{ self.page_title() }}</h1>
     <div class="compare-hero-desc">
-      <p>{{ ftl('compare-index-looking-for-a-better-browser', fallback='compare-index-looking-for-a-better-fallback') }}</p>
+      <p>{{ ftl('compare-index-looking-for-a-better-browser-v2', fallback='compare-index-looking-for-a-better-browser') }}</p>
     </div>
 
     {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
@@ -58,7 +61,7 @@
       <div class="compare-section-summary-contents">
         <p>{{ ftl('compare-index-since-your-browser-is-your') }}</p>
 
-        <p>{{ ftl('compare-index-so-is-your-browser-the-best', fallback='compare-index-so-is-your-browser-the-fallback') }}</p>
+        <p>{{ ftl('compare-index-so-is-your-browser-the-best-v2', fallback='compare-index-so-is-your-browser-the-best') }}</p>
       </div>
     </section>
 
@@ -79,7 +82,6 @@
               <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-safari') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-brave') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-ie') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -91,13 +93,11 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
@@ -111,7 +111,6 @@
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-blocks-social-trackers') }}</th>
@@ -121,7 +120,6 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
           </tbody>
         </table>
@@ -156,7 +154,6 @@
               <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-safari') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-brave') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-ie') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -168,11 +165,9 @@
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-tab-browsing') }}</th>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
@@ -188,11 +183,9 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-automatically-fills-out-forms') }}</th>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
@@ -208,7 +201,6 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-text-to-speech') }}</th>
@@ -218,7 +210,6 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-reader-mode') }}</th>
@@ -228,11 +219,9 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-spell-checking') }}</th>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
@@ -248,7 +237,6 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-in-browser-screenshot-tool') }}</th>
@@ -257,8 +245,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
           </tbody>
         </table>
@@ -283,7 +270,6 @@
               <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-safari') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-brave') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-ie') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -295,7 +281,6 @@
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-mobile-os-availability') }}</th>
@@ -305,7 +290,6 @@
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-syncs-with-mobile') }}</th>
@@ -315,7 +299,6 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ ftl('compare-shared-password-management') }}</th>
@@ -325,22 +308,20 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
           </tbody>
         </table>
 
-      <p class="compare-content">{{ ftl('compare-index-the-first-thing-to-point-out', fallback='compare-index-the-first-thing-to-point-fallback') }}</p>
+      <p class="compare-content">{{ ftl('compare-index-the-first-thing-to-point-out-v2', fallback='compare-index-the-first-thing-to-point-out') }}</p>
 
       <p class="compare-content">{{ ftl('compare-index-almost-all-of-the-browsers') }}</p>
 
@@ -357,14 +338,13 @@
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-chrome') }} (85) |
           {{ ftl('compare-shared-brand-name-edge') }} (85) |
           {{ ftl('compare-shared-brand-name-safari') }} (14) |
           {{ ftl('compare-shared-brand-name-opera') }} (67) |
-          {{ ftl('compare-shared-brand-name-ie') }} (11) |
           {{ ftl('compare-shared-brand-name-brave') }} (1.14.81)
           <br>
           {{ ftl('compare-shared-this-page-updated-semi-quarterly') }}
@@ -393,5 +373,4 @@
 
 {% block js %}
   {{ js_bundle('sticky_promo') }}
-  {{ js_bundle('mobile_compare_banner') }}
 {% endblock %}

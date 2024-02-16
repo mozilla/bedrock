@@ -24,13 +24,18 @@ def get_url_prefix():
     return getattr(_local, "prefix", None)
 
 
-def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None):
-    """Wraps Django's reverse to prepend the correct locale."""
+def reverse(viewname, urlconf=None, args=None, kwargs=None):
+    """
+    Wraps Django's reverse to prepend the correct locale.
+
+    Note: This currently doesn't support passing `current_app`, but we're not
+    using that in bedrock. If we need it in the future this is the place to add
+    it.
+
+    """
     prefixer = get_url_prefix()
 
-    if prefixer:
-        prefix = prefix or "/"
-    url = django_reverse(viewname, urlconf, args, kwargs, prefix)
+    url = django_reverse(viewname, urlconf, args, kwargs)
     if prefixer:
         url = prefixer.fix(url)
 
@@ -91,8 +96,7 @@ def split_path(path_):
 class Prefixer:
     def __init__(self, request):
         self.request = request
-        split = split_path(request.path_info)
-        self.locale, self.shortened_path = split
+        self.locale, self.shortened_path = split_path(request.path_info)
 
     def get_language(self):
         """
@@ -117,13 +121,13 @@ class Prefixer:
                 return supported
 
     def fix(self, path):
-        path = path.lstrip("/")
         url_parts = [self.request.META["SCRIPT_NAME"]]
 
-        if path.partition("/")[0] not in settings.SUPPORTED_NONLOCALES:
+        prefix = path.lstrip("/").partition("/")[0]
+        if prefix not in settings.SUPPORTED_NONLOCALES or path not in settings.SUPPORTED_LOCALE_IGNORE:
             locale = self.locale if self.locale else self.get_language()
             url_parts.append(locale)
 
-        url_parts.append(path)
+        url_parts.append(path.lstrip("/"))
 
         return "/".join(url_parts)

@@ -1,0 +1,56 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta with context %}
+
+{% extends "products/vpn/platforms/platform-base.html" %}
+
+{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
+{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
+{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
+
+{% block page_title_full %}{{ ftl('vpn-ios-vpn-for-iphone') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('vpn-ios-looking-for-a') }}{% endblock %}
+
+{% block body_id %}mozilla-vpn-platforms-ios{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-vpn-ios-page' %}
+{% set _utm_campaign = 'vpn-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+{{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
+
+{% set subheading = self.page_title_full() %}
+{% set desc = self.page_desc() %}
+
+{% block site_header %}
+  {% with
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-platform-cta-button',
+    )
+  %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block article %}
+  <p>{{ ftl('vpn-ios-iphones-are-great') }}</p>
+  <h3>{{ ftl('vpn-shared-platform-what-is') }}</h3>
+  <p>{{ ftl('vpn-ios-mozilla-vpn-is') }}</p>
+  <h3></h3>
+  <p>{{ ftl('vpn-ios-there-are-many') }}</p>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('vpn-ios-protecting-your-personal') }}</li>
+    <li>{{ ftl('vpn-ios-enhancing-your') }}</li>
+  </ul>
+  <h3>{{ ftl('vpn-shared-platfrom-why-choose') }}</h3>
+  <p>{{ ftl('vpn-ios-mozilla-vpn-is-a-vpn') }}</p>
+  <p>{{ ftl('vpn-ios-ready-to-try') }}</p>
+{% endblock %}

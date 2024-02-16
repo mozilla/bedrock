@@ -5,6 +5,8 @@
 import codecs
 import json
 import os
+import re
+import xml.etree.ElementTree as etree
 from glob import glob
 from operator import attrgetter
 
@@ -18,10 +20,27 @@ from django.utils.functional import cached_property
 import bleach
 import markdown
 from django_extensions.db.fields.json import JSONField
+from markdown.extensions import Extension
+from markdown.inlinepatterns import InlineProcessor
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.releasenotes import version_re
 from bedrock.releasenotes.utils import memoize
+
+
+class StrikethroughInlineProcessor(InlineProcessor):
+    def handleMatch(self, m, data):
+        el = etree.Element("del")
+        el.text = m.group(1)
+        return el, m.start(0), m.end(0)
+
+
+class StrikethroughExtension(Extension):
+    def extendMarkdown(self, md):
+        STRIKETHROUGH_PATTERN = r"~~(.*?)~~"  # like ~~elided~~
+        md.inlinePatterns.register(StrikethroughInlineProcessor(STRIKETHROUGH_PATTERN, md), "del", 175)
+
 
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches["release-notes"]
@@ -32,17 +51,20 @@ markdowner = markdown.Markdown(
         "markdown.extensions.fenced_code",
         "markdown.extensions.toc",
         "markdown.extensions.nl2br",
+        StrikethroughExtension(),
     ]
 )
 # based on bleach.sanitizer.ALLOWED_TAGS
-ALLOWED_TAGS = [
+ALLOWED_TAGS = {
     "a",
     "abbr",
     "acronym",
     "b",
     "blockquote",
+    "br",
     "code",
     "div",
+    "del",
     "em",
     "h1",
     "h2",
@@ -50,7 +72,9 @@ ALLOWED_TAGS = [
     "h4",
     "h5",
     "h6",
+    "hr",
     "i",
+    "img",
     "li",
     "ol",
     "p",
@@ -58,18 +82,24 @@ ALLOWED_TAGS = [
     "strike",
     "strong",
     "ul",
-]
+}
 ALLOWED_ATTRS = [
     "alt",
     "class",
+    "height",
     "href",
     "id",
+    "src",
+    "srcset",
+    "rel",
     "title",
+    "width",
 ]
 
 
 def process_markdown(value):
-    return markdowner.reset().convert(bleach.clean(value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS))
+    rendered_html = markdowner.reset().convert(value)
+    return bleach.clean(rendered_html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
 
 
 def process_notes(notes):
@@ -117,6 +147,8 @@ class Note(RNModel):
     sort_num = None
     created = None
     modified = None
+    progressive_rollout = False
+    relevant_countries = []
 
 
 class MarkdownField(models.TextField):
@@ -132,7 +164,7 @@ class MarkdownField(models.TextField):
 class NotesField(JSONField):
     """Field that returns a list of Note objects instead of dicts"""
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection):
         if not value:
             return value
 
@@ -165,6 +197,7 @@ class ProductReleaseManager(models.Manager):
         return self.get_queryset(include_drafts).product(product_name, channel_name, version)
 
     def refresh(self):
+        version_regex = re.compile(version_re)
         release_objs = []
         rn_path = os.path.join(settings.RELEASE_NOTES_PATH, "releases")
         with transaction.atomic(using=self.db):
@@ -173,6 +206,9 @@ class ProductReleaseManager(models.Manager):
             for release_file in releases:
                 with codecs.open(release_file, "r", encoding="utf-8") as rel_fh:
                     data = json.load(rel_fh)
+                    # Make sure the version is valid and publicly accessible.
+                    if not version_regex.match(data["version"]):
+                        continue
                     # doing this to simplify queries for Firefox since it is always
                     # looked up with product=Firefox and relies on the version number
                     # and channel to determine ESR.
@@ -216,6 +252,17 @@ class ProductRelease(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        if self.product == "Firefox for Android":
+            urlname = "firefox.android.releasenotes"
+        elif self.product == "Firefox for iOS":
+            urlname = "firefox.ios.releasenotes"
+        else:
+            urlname = "firefox.desktop.releasenotes"
+
+        prefix = "aurora" if self.channel == "Aurora" else "release"
+        return reverse(urlname, args=[self.version, prefix])
+
     @cached_property
     def major_version(self):
         return str(self.version_obj.major)
@@ -231,17 +278,6 @@ class ProductRelease(models.Model):
     @property
     def is_latest(self):
         return self == get_latest_release(self.product, self.channel)
-
-    def get_absolute_url(self):
-        if self.product == "Firefox for Android":
-            urlname = "firefox.android.releasenotes"
-        elif self.product == "Firefox for iOS":
-            urlname = "firefox.ios.releasenotes"
-        else:
-            urlname = "firefox.desktop.releasenotes"
-
-        prefix = "aurora" if self.channel == "Aurora" else "release"
-        return reverse(urlname, args=[self.version, prefix])
 
     def get_sysreq_url(self):
         if self.product == "Firefox for Android":

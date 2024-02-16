@@ -1,0 +1,79 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox Better Web (beta) Privacy Notice — Archived, June 16, 2023{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block article_header_logo %}{{ static('img/privacy/logo-firefox.png') }}{% endblock %}
+
+{% block title %}Firefox Better Web (beta) Privacy Notice{% endblock %}
+
+{% block time %}<span class="archived">Archived, June 16, 2023</span>{% endblock %}
+
+{% block lead_in %}
+  <p>
+    <time datetime="2020-03-24" itemprop="dateModified">Version 0.1, Effective March 24, 2020</time>
+  </p>
+  <p>
+    Firefox Better Web (“Service”) is an experimental offering in partnership with Scroll. It is
+    currently limited to the United States.
+  </p>
+  <p>
+    At Mozilla, we design products with your privacy in mind. This privacy notice explains what
+    data is needed to offer Firefox Better Web and why.
+  </p>
+  <p>
+    To learn more about how we receive and handle information, and how you can engage with your
+    data, read the <a href="{{ url('privacy') }}">Mozilla Privacy Policy</a>
+  </p>
+{% endblock %}
+
+{% block sections %}
+  <section>
+    <h2>Things you should know:</h2>
+    <section>
+      <h3 id="betterweb">There are two parts to Firefox Better Web.</h3>
+      <ul class="mzp-u-list-styled">
+        <li>
+          An account with our partner: Scroll. Scroll collaborates with publishers in its network
+          to create ad-free versions of their content in exchange for a portion of your
+          subscription fee.
+        </li>
+        <li>
+          A Firefox browser extension. The browser extension controls your settings for Enhanced
+          Tracking Protection in Firefox.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 id="scrollaccount">Firefox Better Web Requires a Scroll Account.</h3>
+      <ul class="mzp-u-list-styled">
+        <li>
+          This service requires a Scroll account, which sends Mozilla your email address, locale,
+          and IP address. For more information about the data Scroll collects and how it uses
+          that data, see <a href="https://scroll.com/privacy">Scroll’s privacy policy</a>.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 id="fwbaddon">The Firefox Better Web Browser Add-on does not collect data.</h3>
+      <ul class="mzp-u-list-styled">
+        <li>
+          The Firefox Better Web Add-on does not collect any data. Firefox does collect technical
+          data about the Add-ons you have installed. This is explained in the
+          <a href="{{ url('privacy.notices.firefox') }}#addons">Firefox Privacy Notice</a>.
+        </li>
+      </ul>
+    </section>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}

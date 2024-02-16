@@ -2,12 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.views.generic import TemplateView
-
 from sentry_sdk import capture_exception
 
 from bedrock.wordpress.models import BlogPost
-from lib.l10n_utils import LangFilesMixin
+from lib.l10n_utils import L10nTemplateView
 
 
 class BlogPostsMixin:
@@ -46,5 +44,5 @@ class BlogPostsMixin:
         return ctx
 
 
-class BlogPostsView(BlogPostsMixin, LangFilesMixin, TemplateView):
+class BlogPostsView(BlogPostsMixin, L10nTemplateView):
     pass

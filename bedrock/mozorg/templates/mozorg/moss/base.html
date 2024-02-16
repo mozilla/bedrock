@@ -6,15 +6,18 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}{{ _('Mozilla Open Source Support') }}{% endblock %}
+{% block page_title %}Mozilla Open Source Support{% endblock %}
 
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  {{ _('Get funding for your open source and free software projects from Mozilla.') }}
+  Get funding for your open source and free software projects from Mozilla.
 {% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('moss') }}
 {% endblock %}
 
@@ -32,14 +35,19 @@
 <div class="mzp-l-content">
   <aside class="mzp-c-newsletter">
     <div class="mzp-c-newsletter-image">
-      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+      {{ resp_img(
+        url='img/home/2018/newsletter-graphic.png',
+        srcset={
+          'img/home/2018/newsletter-graphic-high-res.png': '2x'
+        }
+      ) }}
     </div>
 
     <div class="newsletter-content">
       {{ email_newsletter_form(
         newsletters='mozilla-foundation',
-        title=_('What’s next?'),
-        desc=_('Get the Mozilla newsletter for our latest tech news and more.'),
+        title='What’s next?',
+        desc='Get the Mozilla newsletter for our latest tech news and more.',
         spinner_color='#fff')
       }}
     </div>
@@ -48,5 +56,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('moss') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

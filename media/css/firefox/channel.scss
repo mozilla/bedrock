@@ -2,15 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
-@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
-@import '~@mozilla-protocol/core/protocol/css/components/call-out';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-beta';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-developer';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-nightly';
 @import '../protocol/components/sub-navigation';
 
 // * -------------------------------------------------------------------------- */
@@ -24,17 +24,11 @@ $image-path: '/media/protocol/img';
 }
 
 // * -------------------------------------------------------------------------- */
-// Hero
-.mzp-c-hero {
-    background-color: $color-marketing-gray-20;
-
-    .mzp-c-hero-desc {
-        margin: 0;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
 // Call-outs
+
+.mzp-c-call-out {
+    background-color: $color-marketing-gray-20;
+}
 
 .mzp-c-call-out-compact {
     background: transparent;
@@ -51,6 +45,14 @@ $image-path: '/media/protocol/img';
             }
         }
     }
+}
+
+.show-linux {
+    display: none;
+}
+
+.linux .show-linux {
+    display: block;
 }
 
 .l-notes {

@@ -17,10 +17,11 @@ from rich_text_renderer.block_renderers import BaseBlockRenderer
 from rich_text_renderer.text_renderers import BaseInlineRenderer
 
 from bedrock.contentful.constants import (
-    COMPOSE_MAIN_PAGE_TYPE,
+    CONTENT_TYPE_CONNECT_HOMEPAGE,
     CONTENT_TYPE_PAGE_GENERAL,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
 )
+from bedrock.contentful.models import ContentfulEntry
 from lib.l10n_utils import get_locale, render_to_string
 
 # Some of Bedrock and Contentful's locale codes slightly differ, so we translate between them.
@@ -43,6 +44,8 @@ BEDROCK_TO_CONTENTFUL_LOCALE_MAP = {
 }
 CONTENTFUL_TO_BEDROCK_LOCALE_MAP = {v: k for k, v in BEDROCK_TO_CONTENTFUL_LOCALE_MAP.items()}
 
+DEFAULT_LOCALE = "en-US"
+
 ASPECT_RATIOS = {
     "1:1": "1-1",
     "3:2": "3-2",
@@ -62,6 +65,7 @@ PRODUCT_THEMES = {
     "Mozilla": "mozilla",
     "Mozilla VPN": "vpn",
     "Pocket": "pocket",
+    "MDN Plus": "mdn-plus",
 }
 WIDTHS = {
     "Extra Small": "xs",
@@ -202,7 +206,7 @@ def _make_cta_button(entry):
 
     button_class = [
         # TODO, only add on Firefox themed pages
-        "mzp-t-product" if action != "Get Mozilla VPN" else "",
+        "mzp-t-product" if action != "Get Mozilla VPN" and action != "Get MDN Plus" else "",
         "mzp-t-secondary" if fields.get("theme") == "Secondary" else "",
         f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get("size") else "",
     ]
@@ -347,7 +351,7 @@ class InlineEntryRenderer(BaseNodeRenderer):
 
 
 class AssetBlockRenderer(BaseBlockRenderer):
-    IMAGE_HTML = '<img src="{src}" srcset="{src_highres} 1.5x" alt="{alt}" />'
+    IMAGE_HTML = '<img loading="lazy" src="{src}" srcset="{src_highres} 1.5x" alt="{alt}">'
 
     def render(self, node):
         asset_id = node["data"]["target"]["sys"]["id"]
@@ -407,10 +411,6 @@ class ContentfulPage:
         "Bottom": "mzp-l-split-pop-bottom",
     }
     CONTENT_TYPE_MAP = {
-        "componentHero": {
-            "proc": "get_hero_data",
-            "css": "c-hero",
-        },
         "componentSectionHeading": {
             "proc": "get_section_data",
             "css": "c-section-heading",
@@ -423,10 +423,10 @@ class ContentfulPage:
             "proc": "get_callout_data",
             "css": "c-call-out",
         },
-        "layout2Cards": {"proc": "get_card_layout_data", "css": "t-card-layout", "js": "c-card"},
-        "layout3Cards": {"proc": "get_card_layout_data", "css": "t-card-layout", "js": "c-card"},
-        "layout4Cards": {"proc": "get_card_layout_data", "css": "t-card-layout", "js": "c-card"},
-        "layout5Cards": {"proc": "get_card_layout_data", "css": "t-card-layout", "js": "c-card"},
+        "layout2Cards": {"proc": "get_card_layout_data", "css": "c-card"},
+        "layout3Cards": {"proc": "get_card_layout_data", "css": "c-card"},
+        "layout4Cards": {"proc": "get_card_layout_data", "css": "c-card"},
+        "layout5Cards": {"proc": "get_card_layout_data", "css": "c-card"},
         "layoutPictoBlocks": {
             "proc": "get_picto_layout_data",
             "css": ("c-picto", "t-multi-column"),
@@ -477,18 +477,28 @@ class ContentfulPage:
             if preview_image_url:
                 return f"https:{preview_image_url}"
 
+    def _get_image_from_default_locale_seo_object(
+        self,
+        contentful_id,
+        default_locale=DEFAULT_LOCALE,
+    ):
+        try:
+            entry = ContentfulEntry.objects.get(
+                contentful_id=contentful_id,
+                locale=default_locale,
+            )
+        except ContentfulEntry.DoesNotExist:
+            return ""
+        return entry.data.get("info", {}).get("seo", {}).get("image", "")
+
     def _get_info_data__slug_title_blurb(self, entry_fields, seo_fields):
-
-        if self.page.content_type.id == COMPOSE_MAIN_PAGE_TYPE:
-            # This means we're dealing with a Compose-structured setup,
-            # and the slug lives not on the Entry, nor the SEO object
-            # but just on the top-level Compose `page`
-            slug = self.page.fields().get("slug")
+        if self.page.content_type.id == CONTENT_TYPE_CONNECT_HOMEPAGE:
+            fallback_slug = "home"
         else:
-            # Non-Compose pages
-            slug = entry_fields.get("slug", "home")  # TODO: check if we can use a better fallback
+            fallback_slug = "unknown"
 
-        title = getattr(self.page, "title", "")
+        slug = entry_fields.get("slug", fallback_slug)
+        title = entry_fields.get("title", "")
         title = entry_fields.get("preview_title", title)
         blurb = entry_fields.get("preview_blurb", "")
 
@@ -503,11 +513,10 @@ class ContentfulPage:
         }
 
     def _get_info_data__category_tags_classification(self, entry_fields, page_type):
-
         data = {}
 
         # TODO: Check with plans for Contentful use - we may
-        # be able to relax this check and use it for page types
+        # be able to relax this check and use it for all page types
         # once we're in all-Compose mode
         if page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             if "category" in entry_fields:
@@ -541,7 +550,6 @@ class ContentfulPage:
         return {"locale": locale}
 
     def get_info_data(self, entry_obj, seo_obj=None):
-        # TODO, need to enable connectors
         entry_fields = entry_obj.fields()
         if seo_obj:
             seo_fields = seo_obj.fields()
@@ -574,6 +582,12 @@ class ContentfulPage:
             _seo_fields = deepcopy(seo_fields)  # NB: don't mutate the source dict
             if _preview_image:
                 _seo_fields["image"] = _preview_image
+            else:
+                if data.get("locale") != DEFAULT_LOCALE:
+                    # Fall back to stealing the SEO image from the default locale, if we can
+                    _seo_fields["image"] = self._get_image_from_default_locale_seo_object(
+                        contentful_id=entry_obj.sys["id"],
+                    )
 
             # We don't need the preview_image key if we've had it in the past, and
             # if reading it fails then we don't want it sticking around, either
@@ -590,20 +604,15 @@ class ContentfulPage:
         return data
 
     def get_content(self):
-        # Check if it is a page or a connector, or a Compose page type
-
+        # Check if it is a page or a connector
         entry_type = self.page.content_type.id
         seo_obj = None
-        if entry_type == COMPOSE_MAIN_PAGE_TYPE:
-            # Contentful Compose page, linking to content and SEO models
-            entry_obj = self.page.content  # The page with the actual content
-            seo_obj = self.page.seo  # The SEO model
-            # Note that the slug lives on self.page, not the seo_obj.
-        elif entry_type.startswith("page"):
-            entry_obj = self.page
-        elif entry_type == "connectHomepage":
+        if entry_type == "connectHomepage":
             # Legacy - TODO: remove me once we're no longer using Connect: Homepage
             entry_obj = self.page.fields()["entry"]
+        elif entry_type.startswith("page"):  # WARNING: this requires a consistent naming of page types in Contentful, too
+            entry_obj = self.page
+            seo_obj = getattr(self.page, "seo", None)
         else:
             raise ValueError(f"{entry_type} is not a recognized page type")
 
@@ -627,11 +636,11 @@ class ContentfulPage:
             if ctype_info:
                 processor = getattr(self, ctype_info["proc"])
                 entries.append(processor(item))
+
                 css = ctype_info.get("css")
                 if css:
                     if isinstance(css, str):
                         css = (css,)
-
                     page_css.update(css)
 
                 js = ctype_info.get("js")
@@ -644,16 +653,16 @@ class ContentfulPage:
         if page_type == CONTENT_TYPE_PAGE_GENERAL:
             # look through all entries and find content ones
             for key, value in fields.items():
-                if key == "component_hero":
-                    proc(value)
-                elif key == "body":
+                if key == "body":
                     entries.append(self.get_text_data(value))
                 elif key == "component_callout":
                     proc(value)
+
         elif page_type == CONTENT_TYPE_PAGE_RESOURCE_CENTER:
             # TODO: can we actually make this generic? Poss not: main_content is a custom field name
             _content = fields.get("main_content", {})
             entries.append(self.get_text_data(_content))
+
         else:
             # This covers pageVersatile, pageHome, etc
             content = fields.get("content")
@@ -676,29 +685,6 @@ class ContentfulPage:
 
         return data
 
-    def get_hero_data(self, entry_obj):
-        fields = entry_obj.fields()
-
-        hero_image_url = _get_image_url(fields["image"], 800)
-        hero_reverse = fields.get("image_side")
-        hero_body = self.render_rich_text(fields.get("body"))
-
-        product_class = _get_product_class(fields.get("product_icon")) if fields.get("product_icon") and fields.get("product_icon") != "None" else ""
-        data = {
-            "component": "hero",
-            "theme_class": _get_theme_class(fields.get("theme")),
-            "product_class": product_class,
-            "title": fields.get("heading"),
-            "tagline": fields.get("tagline"),
-            "body": hero_body,
-            "image": hero_image_url,
-            "image_class": "mzp-l-reverse" if hero_reverse == "Left" else "",
-            "include_cta": True if fields.get("cta") else False,
-            "cta": _make_cta_button(fields.get("cta")) if fields.get("cta") else "",
-        }
-
-        return data
-
     def get_section_data(self, entry_obj):
         fields = entry_obj.fields()
 
@@ -711,6 +697,9 @@ class ContentfulPage:
 
     def get_split_data(self, entry_obj):
         fields = entry_obj.fields()
+        # Checking if the split component is being used on the contentful homepage
+        # If so, we will add a class to the body which will match the style of the depreciated hero component
+        is_home_page = self.page.content_type.id == "pageHome"
 
         def get_split_class():
             block_classes = [
@@ -724,14 +713,15 @@ class ContentfulPage:
             body_classes = [
                 self.SPLIT_V_ALIGN_CLASS.get(fields.get("body_vertical_alignment"), ""),
                 self.SPLIT_H_ALIGN_CLASS.get(fields.get("body_horizontal_alignment"), ""),
+                "c-home-body" if is_home_page else "",
             ]
             return " ".join(body_classes)
 
         def get_media_class():
             media_classes = [
                 self.SPLIT_MEDIA_WIDTH_CLASS.get(fields.get("image_width"), ""),
-                self.SPLIT_V_ALIGN_CLASS.get(fields.get("image_vertical_alignment"), ""),
-                self.SPLIT_H_ALIGN_CLASS.get(fields.get("image_horizontal_alignment"), ""),
+                self.SPLIT_V_ALIGN_CLASS.get(fields.get("image_vertical_alignment"), ""),  # this field doesn't appear in Contentful Content Model
+                self.SPLIT_H_ALIGN_CLASS.get(fields.get("image_horizontal_alignment"), ""),  # this field doesn't appear in Contentful Content Model
             ]
             return " ".join(media_classes)
 
@@ -755,6 +745,7 @@ class ContentfulPage:
             "body_class": get_body_class(),
             "body": self.render_rich_text(fields.get("body")),
             "media_class": get_media_class(),
+            "media_after": fields.get("mobile_media_after"),
             "image": split_image_url,
             "mobile_class": get_mobile_class(),
         }
@@ -861,7 +852,6 @@ class ContentfulPage:
         return data
 
     def get_picto_data(self, picto_obj, image_width):
-
         fields = picto_obj.fields()
         body = self.render_rich_text(fields.get("body")) if fields.get("body") else False
 

@@ -2,24 +2,31 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
+
 from django.conf import settings
+from django.core.mail import EmailMessage
+from django.http import Http404
 from django.shortcuts import render as django_render
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
-from sentry_sdk import capture_exception
+from jsonview.decorators import json_view
+from product_details import product_details
 
-from bedrock.base.waffle import switch
-from bedrock.contentcards.models import get_page_content_cards
 from bedrock.contentful.api import ContentfulPage
-from bedrock.contentful.models import ContentfulEntry
 from bedrock.mozorg.credits import CreditsFile
-from bedrock.pocketfeed.models import PocketArticle
+from bedrock.mozorg.forms import MiecoEmailForm
+from bedrock.mozorg.models import WebvisionDoc
+from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.utils.views import VariationTemplateView
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
+from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
@@ -49,13 +56,20 @@ def forums_view(request):
     return l10n_utils.render(request, "mozorg/about/forums/forums.html")
 
 
-class Robots(TemplateView):
+class Robots(RequireSafeMixin, TemplateView):
     template_name = "mozorg/robots.txt"
     content_type = "text/plain"
 
     def get_context_data(self, **kwargs):
         hostname = self.request.get_host()
         return {"disallow_all": not hostname == "www.mozilla.org"}
+
+
+class SecurityDotTxt(RequireSafeMixin, TemplateView):
+    # https://github.com/mozilla/bedrock/issues/14173
+    # served under .well-known/security.txt
+    template_name = "mozorg/security.txt"
+    content_type = "text/plain"
 
 
 NAMESPACES = {
@@ -97,11 +111,18 @@ NAMESPACES = {
     "xul": {
         "namespace": "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
         "standard": "XML User Interface Language (XUL)",
-        "docs": "https://developer.mozilla.org/en/XUL",
+        "docs": "https://en.wikipedia.org/wiki/XUL",
     },
 }
 
 
+@require_safe
+def locales(request):
+    context = {"languages": product_details.languages}
+    return l10n_utils.render(request, "mozorg/locales.html", context)
+
+
+@require_safe
 def namespaces(request, namespace):
     context = NAMESPACES[namespace]
     context["slug"] = namespace
@@ -109,56 +130,21 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-def home_view(request):
-    locale = l10n_utils.get_locale(request)
-    donate_params = settings.DONATE_PARAMS.get(locale, settings.DONATE_PARAMS["en-US"])
+class HomeView(VariationTemplateView):
+    template_name = "mozorg/home/home-new.html"
+    old_template_name = "mozorg/home/home-old.html"
+    template_context_variations = ["1", "2", "3"]
+    activation_files = ["mozorg/home-new", "mozorg/home"]
 
-    # make sure we POST to a know locale, to avoid 404 errors.
-    donate_locale = locale if locale in settings.DONATE_PARAMS else "en-US"
+    ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
-    # presets are stored as a string but, for the home banner
-    # we need it as a list.
-    donate_params["preset_list"] = donate_params["presets"].split(",")
-    ctx = {
-        "donate_locale": donate_locale,
-        "donate_params": donate_params,
-        "pocket_articles": PocketArticle.objects.all()[:4],
-        "ftl_files": ["mozorg/home", "mozorg/home-mr2-promo"],
-        "add_active_locales": ["de", "fr"],
-    }
+    def get_template_names(self):
+        experience = self.request.GET.get("xv", None)
 
-    if locale.startswith("en-"):
-        if switch("contentful-homepage-en"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                # TODO: use a better system to get the pages than the ID
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["en-US"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the rest-of-world home page
-                template_name = "mozorg/home/home.html"
-        else:
-            template_name = "mozorg/home/home.html"
-    elif locale == "de":
-        if switch("contentful-homepage-de"):
-            try:
-                template_name = "mozorg/home/home-contentful.html"
-                ctx.update(ContentfulEntry.objects.get_page_by_id(content_id=settings.CONTENTFUL_HOMEPAGE_LOOKUP["de"]))
-            except Exception as ex:
-                capture_exception(ex)
-                # if anything goes wrong, use the old page
-                template_name = "mozorg/home/home-de.html"
-                ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-        else:
-            template_name = "mozorg/home/home-de.html"
-            ctx["page_content_cards"] = get_page_content_cards("home-de", "de")
-    elif locale == "fr":
-        template_name = "mozorg/home/home-fr.html"
-        ctx["page_content_cards"] = get_page_content_cards("home-fr", "fr")
-    else:
-        template_name = "mozorg/home/home.html"
+        if ftl_file_is_active("mozorg/home-new") and experience != "legacy":
+            return [self.template_name]
 
-    return l10n_utils.render(request, template_name, ctx)
+        return [self.old_template_name]
 
 
 @method_decorator(never_cache, name="dispatch")
@@ -173,9 +159,7 @@ class ContentfulPreviewView(L10nTemplateView):
     def render_to_response(self, context, **response_kwargs):
         page_type = context["page_type"]
         theme = context["info"]["theme"]
-        if page_type == "pageHome":
-            template = "mozorg/home/home-contentful.html"
-        elif page_type == "pagePageResourceCenter":
+        if page_type == "pagePageResourceCenter":
             template = "products/vpn/resource-center/article.html"
         elif theme == "firefox":
             template = "firefox/contentful-all.html"
@@ -183,3 +167,101 @@ class ContentfulPreviewView(L10nTemplateView):
             template = "mozorg/contentful-all.html"
 
         return l10n_utils.render(self.request, template, context, **response_kwargs)
+
+
+class WebvisionDocView(RequireSafeMixin, TemplateView):
+    """
+    Generic view for loading a webvision doc and displaying it with a template.
+
+    Class attributes in addition to standard Django TemplateView:
+
+    * doc_name: The name of the file in the webvision repo.
+    * doc_context_name: (default 'doc') template variable name for doc.
+
+    """
+
+    doc_name = None
+    doc_context_name = "doc"
+
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs.setdefault("content_type", self.content_type)
+        return l10n_utils.render(self.request, self.get_template_names()[0], context, **response_kwargs)
+
+    def get_context_data(self, **kwargs):
+        try:
+            doc = WebvisionDoc.objects.get(name=self.doc_name)
+        except WebvisionDoc.DoesNotExist:
+            raise Http404("Webvision doc not found")
+
+        context = super().get_context_data(**kwargs)
+        context[self.doc_context_name] = doc.content
+        return context
+
+
+MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
+MIECO_EMAIL_SENDER = "Mozilla.com <noreply@mozilla.com>"
+MIECO_EMAIL_TO = {
+    "mieco": ["mieco@mozilla.com"],
+    "innovations": ["innovations@mozilla.com"],
+}
+
+
+@json_view
+def mieco_email_form(request):
+    """
+    This form accepts a POST request from future.mozilla.org/mieco and will send
+    an email with the data included in the email.
+    """
+    CORS_HEADERS = {
+        "Access-Control-Allow-Origin": "https://future.mozilla.org",
+        "Access-Control-Allow-Headers": "accept, accept-encoding, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with",
+    }
+
+    if request.method == "OPTIONS":
+        return {}, 200, CORS_HEADERS
+
+    if request.method != "POST":
+        return {"error": 400, "message": "Only POST requests are allowed"}, 400, CORS_HEADERS
+
+    try:
+        json_data = json.loads(request.body.decode("utf-8"))
+    except json.decoder.JSONDecodeError:
+        return {"error": 400, "message": "Error decoding JSON"}, 400, CORS_HEADERS
+
+    form = MiecoEmailForm(
+        {
+            "email": json_data.get("email", ""),
+            "name": json_data.get("name", ""),
+            "interests": json_data.get("interests", ""),
+            "description": json_data.get("description", ""),
+            "message_id": json_data.get("message_id", ""),
+        }
+    )
+
+    if not form.is_valid():
+        return {"error": 400, "message": "Invalid form data"}, 400, CORS_HEADERS
+
+    message_id = form.cleaned_data.pop("message_id") or "mieco"
+    email_to = MIECO_EMAIL_TO[message_id]
+    email_msg = render_to_string("mozorg/emails/mieco-email.txt", {"data": form.cleaned_data}, request=request)
+    email_sub = MIECO_EMAIL_SUBJECT[message_id]
+
+    email = EmailMessage(email_sub, email_msg, MIECO_EMAIL_SENDER, email_to)
+
+    try:
+        email.send()
+    except Exception as e:
+        return {"error": 400, "message": str(e)}, 400, CORS_HEADERS
+
+    return {"status": "ok"}, 200, CORS_HEADERS
+
+
+@require_safe
+def anti_harassment_tool_view(request):
+    locale = l10n_utils.get_locale(request)
+    newsletter_form = NewsletterFooterForm("antiharassment-waitlist", locale=locale)
+    action = settings.BASKET_SUBSCRIBE_URL
+
+    ctx = {"action": action, "newsletter_form": newsletter_form}
+
+    return l10n_utils.render(request, "mozorg/antiharassment-tool.html", ctx)

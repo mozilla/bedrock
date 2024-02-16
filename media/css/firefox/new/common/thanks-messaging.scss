@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
@@ -16,12 +16,22 @@ $image-path: '/media/protocol/img';
 
 // Hide platform specific messaging by default.
 .show-windows,
-.show-windows-10,
+.show-windows-10-plus,
 .show-mac,
+.show-linux,
 .show-else,
-.show-linux-arm,
 .show-auto-download-notification {
     display: none !important;
+}
+
+.show-linux {
+    .c-linux-button-group {
+        margin-bottom: $spacing-md;
+
+        a:first-child {
+            margin-bottom: $spacing-md;
+        }
+    }
 }
 
 // Show platform specific messaging when known.
@@ -31,6 +41,18 @@ $image-path: '/media/protocol/img';
         .show-auto-download-notification {
             display: block !important;
         }
+
+        // issue 13317
+        &.fx-unsupported {
+            .show-mac,
+            .show-auto-download-notification {
+                display: none !important;
+            }
+
+            .show-unknown {
+                display: block !important;
+            }
+        }
     }
 
     &.windows {
@@ -39,28 +61,28 @@ $image-path: '/media/protocol/img';
             display: block !important;
         }
 
-        &.windows10 {
-            .show-windows-10 {
+        &.windows-10-plus {
+            .show-windows-10-plus {
+                display: block !important;
+            }
+        }
+
+        // issue 13317
+        &.fx-unsupported {
+            .show-windows,
+            .show-auto-download-notification {
+                display: none !important;
+            }
+
+            .show-unknown {
                 display: block !important;
             }
         }
     }
 
     &.linux {
-        .show-else,
-        .show-auto-download-notification {
+        .show-linux {
             display: block !important;
-        }
-
-        &.arm {
-            .show-else,
-            .show-auto-download-notification {
-                display: none !important;
-            }
-
-            .show-linux-arm {
-                display: block !important;
-            }
         }
     }
 

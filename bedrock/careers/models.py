@@ -21,6 +21,9 @@ class Position(models.Model):
     source = models.CharField(max_length=100)
     position_type = models.CharField(max_length=100)
     updated_at = models.DateTimeField(default=datetime.utcnow)
+    # Store the Greenhouse internal ID for grouping the same jobs with multiple
+    # listings per location.
+    internal_job_id = models.PositiveIntegerField()
 
     class Meta:
         ordering = (
@@ -31,12 +34,12 @@ class Position(models.Model):
     def __str__(self):
         return f"{self.job_id}@{self.source}"
 
+    def get_absolute_url(self):
+        return reverse("careers.position", kwargs={"source": self.source, "job_id": self.job_id})
+
     @property
     def location_list(self):
         return sorted(self.location.split(","))
-
-    def get_absolute_url(self):
-        return reverse("careers.position", kwargs={"source": self.source, "job_id": self.job_id})
 
     @classmethod
     def position_types(cls):
@@ -45,9 +48,24 @@ class Position(models.Model):
     @classmethod
     def locations(cls):
         return sorted(
-            {location.strip() for location in chain(*[locations.split(",") for locations in cls.objects.values_list("location", flat=True)])}
+            {
+                location.strip()
+                for location in chain(
+                    *[locations.split(",") for locations in cls.objects.exclude(job_locations="Remote").values_list("job_locations", flat=True)]
+                )
+            }
         )
 
     @classmethod
     def categories(cls):
         return sorted(set(cls.objects.values_list("department", flat=True)))
+
+    @property
+    def cover(self):
+        # Try to get the job posting of the same `internal_job_id` with "Remote"
+        # job location to use as the "cover" posting.
+        if cover := Position.objects.filter(internal_job_id=self.internal_job_id, job_locations="Remote").first():
+            return cover
+
+        # Fallback to returning `self` if there is no "Remote" location.
+        return self

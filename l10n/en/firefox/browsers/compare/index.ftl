@@ -5,7 +5,6 @@
 ### URL: https://www-dev.allizom.org/firefox/browsers/compare/
 
 # HTML page title, also used for the main title
-compare-index-seven-of-the-best-browsers-in = Seven of the best browsers in direct comparison
 compare-index-six-of-the-best-browsers-fallback = Six of the best browsers in direct comparison
 
 # Sub-headline
@@ -27,19 +26,28 @@ compare-index-how-well-does-your-browser = How well does your browser work acros
 compare-index-almost-all-of-the-browsers = Almost all of the browsers compared here allow synchronization between desktop and mobile devices. You’ll need an account to do it, which you can use to log into the browser on all devices and synchronize things like passwords, browsing history, bookmarks and settings.
 compare-index-conclusion = Conclusion:
 compare-index-and-the-winner-is = And the winner is…
+
+# Obsolete string
 compare-index-find-out-how-firefox-chrome = Find out how { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave } and { -brand-name-ie } differ in terms of privacy, utility and portability.
-compare-index-find-out-how-firefox-fallback = Find out how { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera } and { -brand-name-ie } differ in terms of privacy, utility and portability.
+
+compare-index-find-out-how-firefox-chrome-v2 = Find out how { -brand-name-firefox }, Chrome, Edge, Safari, Opera and Brave differ in terms of privacy, utility and portability.
+
+# Obsolete string
 compare-index-looking-for-a-better-browser = Looking for a better browser? We’ll compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave } and { -brand-name-ie } to help you make your decision.
-compare-index-looking-for-a-better-fallback = Looking for a better browser? We’ll compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera } and { -brand-name-ie } to help you make your decision.
+
+compare-index-looking-for-a-better-browser-v2 = Looking for a better browser? We’ll compare { -brand-name-firefox } with Chrome, Edge, Safari, Opera and Brave to help you make your decision.
+
+# Obsolete string
 compare-index-so-is-your-browser-the-best = So is your browser the best one for what you do online? The right browser can make a big difference in how you experience the web. So, without further ado, let’s compare { -brand-name-google } { -brand-name-chrome }, { -brand-name-firefox }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave }, { -brand-name-microsoft } { -brand-name-ie } and { -brand-name-edge } — and see which best suits your needs.
-compare-index-so-is-your-browser-the-fallback = So is your browser the best one for what you do online? The right browser can make a big difference in how you experience the web. So, without further ado, let’s compare { -brand-name-google } { -brand-name-chrome }, { -brand-name-firefox }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-microsoft } { -brand-name-ie } and { -brand-name-edge } — and see which best suits your needs.
+
+compare-index-so-is-your-browser-the-best-v2 = So is your browser the best one for what you do online? The right browser can make a big difference in how you experience the web. So, without further ado, let’s compare Google Chrome, { -brand-name-firefox }, Safari, Opera, Brave and Edge — and see which best suits your needs.
 compare-index-since-your-browser-is-your = Since your browser is your gateway to the internet, speed, security, privacy and utility are paramount. In recent years, { -brand-name-google } { -brand-name-chrome } has been the browser of choice for many. But at a time when online ads seem to follow us everywhere and data breaches are a fixture of news headlines, a lot of people are starting to demand more privacy and respect from their browser.
+
+# Obsolete string
 compare-index-the-first-thing-to-point-out = The first thing to point out about portability is that not all browsers run on all operating systems. While { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-brave } and { -brand-name-opera } work on all major systems and are easy to install, { -brand-name-ie } and { -brand-name-safari } only work on { -brand-name-microsoft } and Apple’s own systems. The mobile version of { -brand-name-safari } is pre-installed on Apple’s mobile devices, and most { -brand-name-android } devices come with a pre-installed browser modified by the manufacturer for the device. { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-brave }, { -brand-name-edge } and { -brand-name-opera } can easily be installed and even used side by side.
-compare-index-the-first-thing-to-point-fallback = The first thing to point out about portability is that not all browsers run on all operating systems. While { -brand-name-firefox }, { -brand-name-chrome } and { -brand-name-opera } work on all major systems and are easy to install, { -brand-name-ie }, { -brand-name-edge } and { -brand-name-safari } only work on { -brand-name-microsoft } and Apple’s own systems. The mobile version of { -brand-name-safari } is pre-installed on Apple’s mobile devices, and most { -brand-name-android } devices come with a pre-installed browser modified by the manufacturer for the device. { -brand-name-firefox }, { -brand-name-chrome }, { -brand-name-edge } and { -brand-name-opera } can easily be installed and even used side by side.
+
+compare-index-the-first-thing-to-point-out-v2 = The first thing to point out about portability is that not all browsers run on all operating systems. While { -brand-name-firefox }, Chrome, Edge, Brave and Opera work on all major systems and are easy to install, Safari only works on Apple’s own systems. The mobile version of Safari is pre-installed on Apple’s mobile devices, and most Android devices come with a pre-installed browser modified by the manufacturer for the device. { -brand-name-firefox }, Chrome, Brave, Edge and Opera can easily be installed and even used side by side.
 compare-index-browsers-have-come-a-long = Browsers have come a long way since { -brand-name-chrome } was introduced and took over the market share. Most of the modern browsers have closed the gap on portability and functionality, and in some areas, like speed and privacy, have actually surpassed { -brand-name-chrome }. Still, determining which browser is right for you will always depend on your individual needs and what you value most as you navigate online.
 compare-index-firefox-is-backed-by-the-not = { -brand-name-firefox } is backed by the not-for-profit { -brand-name-mozilla }.
 compare-index-firefox-puts-your-privacy = { -brand-name-firefox } puts your privacy first — in everything we make and do. We believe you have the right to decide how and with whom you share your personal information. { -brand-name-firefox } collects as little data as possible and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
 compare-index-based-on-the-criteria-we-outlined = Based on the criteria we outlined — privacy, utility, and portability — there’s really only one browser that meets the mark, and that’s { -brand-name-firefox }. The real area of difference isn’t in functionality, it’s privacy. { -brand-name-firefox } is the most private browser that doesn’t lock you into an ecosystem. Use it on any operating system, on all your devices, and feel secure when you do.
-
-compare-index-see-how-firefox-for-mobile = See how { -brand-name-firefox } for mobile stacks up to five other mobile browsers.
-compare-index-compare = Compare

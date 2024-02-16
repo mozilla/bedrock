@@ -9,7 +9,7 @@ set -ex
 
 . ${BASH_SOURCE%/*}/../docker/bin/set_git_env_vars.sh # sets DEPLOYMENT_DOCKER_IMAGE
 pushd $(mktemp -d)
-git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
+git clone --depth=1 -b ${CONFIG_BRANCH:=main} ${CONFIG_REPO} config_checkout
 cd config_checkout
 
 set -u

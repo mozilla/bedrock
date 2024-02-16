@@ -2,11 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import 'includes/header';
 
@@ -17,6 +16,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// set dark bg color for rubber band scrolling.
+html,
+body {
+    background-color: $color-ink-80;
+}
+
 .content-wrapper {
     background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
     @include background-size(100%);
@@ -25,6 +30,7 @@ $image-path: '/media/protocol/img';
 
 .c-page-header-logo-fx {
     background-image: none;
+    width: 216px;
 }
 
 // * -------------------------------------------------------------------------- */
@@ -32,14 +38,23 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-emphasis-box {
     @include border-box;
-    color: get-theme('body-text-color');
+    color: $body-text-color;
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
     padding: $spacing-xl;
 
+    @supports (--css: variables) {
+        color: var(--body-text-color);
+    }
+
     a:link,
     a:visited {
         color: $color-ink-80;
+
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
     }
 
     abbr {
@@ -48,7 +63,11 @@ $image-path: '/media/protocol/img';
 
     .c-emphasis-box-title {
         @include text-title-sm;
-        color: get-theme('title-text-color');
+        color: $title-text-color;
         text-align: center;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color);
+        }
     }
 }

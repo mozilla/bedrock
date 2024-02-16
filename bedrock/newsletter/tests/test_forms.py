@@ -6,7 +6,6 @@ from unittest import mock
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.forms import (
     BooleanTabularRadioSelect,
-    ManageSubscriptionsForm,
     NewsletterFooterForm,
     NewsletterForm,
 )
@@ -50,90 +49,6 @@ class TestRenderers(TestCase):
         self.assertIn('value="false" checked', output)
 
 
-class TestManageSubscriptionsForm(TestCase):
-    @mock.patch("bedrock.newsletter.forms.get_lang_choices")
-    def test_locale(self, langs_mock):
-        """Get initial lang, country from the right places"""
-        # Get initial lang and country from 'initial' if provided there,
-        # else from the locale passed in
-        # First, not passed in
-        langs_mock.return_value = [["en", "English"], ["pt", "Portuguese"]]
-        locale = "en-US"
-        form = ManageSubscriptionsForm(locale=locale, initial={})
-        self.assertEqual("en", form.initial["lang"])
-        self.assertEqual("us", form.initial["country"])
-        # now, test with them passed in.
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "pt",
-                "country": "br",
-            },
-        )
-        self.assertEqual("pt", form.initial["lang"])
-        self.assertEqual("br", form.initial["country"])
-
-    @mock.patch("bedrock.newsletter.forms.get_lang_choices")
-    def test_long_language(self, langs_mock):
-        """Fuzzy match their language preference"""
-        # Suppose their selected language in ET is a long form ("es-ES")
-        # while we only have the short forms ("es") in our list of
-        # valid languages.  Or vice-versa.  Find the match to the one
-        # in our list and use that, not the lang from ET.
-        locale = "en-US"
-        langs_mock.return_value = [["en", "English"], ["es", "Spanish"]]
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "es-ES",
-                "country": "es",
-            },
-        )
-        # Initial value is 'es'
-        self.assertEqual("es", form.initial["lang"])
-
-    def test_bad_language(self):
-        """Handle their language preference if it's not valid"""
-        # Suppose their selected language in ET is one we don't recognize
-        # at all.  Use the language from their locale instead.
-        locale = "pt-BR"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-                "country": "es",
-            },
-        )
-        self.assertEqual("pt", form.initial["lang"])
-
-    def test_bad_country(self):
-        """Handle their country preference if it's not valid"""
-        # Suppose their selected country in CTMS is one we don't recognize
-        # at all.  Use the country from their locale instead.
-        locale = "pt-BR"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-                "country": "Spain",
-            },
-        )
-        self.assertEqual("br", form.initial["country"])
-
-    def test_no_country(self):
-        """Handle their country preference if it's not set"""
-        # Suppose they have no selected country in CTMS.
-        # Use the country from their locale instead.
-        locale = "en-US"
-        form = ManageSubscriptionsForm(
-            locale=locale,
-            initial={
-                "lang": "zz",
-            },
-        )
-        self.assertEqual("us", form.initial["country"])
-
-
 @mock.patch("bedrock.newsletter.utils.get_newsletters", newsletters_mock)
 class TestNewsletterForm(TestCase):
     def test_form(self):
@@ -156,25 +71,6 @@ class TestNewsletterForm(TestCase):
         self.assertTrue(form.is_valid())
         self.assertEqual(title, form.cleaned_data["title"])
 
-    def test_multiple_newsletters(self):
-        """Should allow to subscribe to multiple newsletters at a time."""
-        newsletters = "mozilla-and-you,beta"
-        data = {
-            "email": "dude@example.com",
-            "lang": "en",
-            "privacy": "Y",
-            "fmt": "H",
-            "newsletters": newsletters,
-        }
-        form = NewsletterFooterForm(newsletters, "en-US", data=data.copy())
-        self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
-
-        # whitespace shouldn't matter
-        form = NewsletterFooterForm("mozilla-and-you , beta ", "en-US", data=data.copy())
-        self.assertTrue(form.is_valid())
-        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
-
 
 @mock.patch("bedrock.newsletter.utils.get_newsletters", newsletters_mock)
 class TestNewsletterFooterForm(TestCase):
@@ -190,7 +86,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "https://accounts.firefox.com",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -209,7 +105,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "about:devtools?dude=abiding",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -226,7 +122,7 @@ class TestNewsletterFooterForm(TestCase):
             "privacy": True,
             "fmt": "H",
             "source_url": "about:devtools" * 20,
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -276,7 +172,7 @@ class TestNewsletterFooterForm(TestCase):
             "email": "foo@example.com",
             "privacy": True,
             "fmt": "H",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
@@ -291,7 +187,7 @@ class TestNewsletterFooterForm(TestCase):
             "email": "foo@example.com",
             "privacy": False,
             "fmt": "H",
-            "newsletters": self.newsletter_name,
+            "newsletters": [self.newsletter_name],
         }
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data)
         self.assertFalse(form.is_valid())
@@ -308,7 +204,7 @@ class TestNewsletterFooterForm(TestCase):
             "lang": "fr",
             "privacy": True,
             "fmt": "H",
-            "newsletters": "",
+            "newsletters": [],
         }
         form = NewsletterFooterForm("", locale="en-US", data=data.copy())
         self.assertFalse(form.is_valid())
@@ -321,9 +217,28 @@ class TestNewsletterFooterForm(TestCase):
             "lang": "fr",
             "privacy": True,
             "fmt": "H",
-            "newsletters": invalid_newsletter,
+            "newsletters": [invalid_newsletter],
         }
         form = NewsletterFooterForm(invalid_newsletter, locale="en-US", data=data.copy())
         self.assertFalse(form.is_valid())
         self.assertIn("newsletters", form.errors)
-        self.assertEqual(form.errors["newsletters"], ["Invalid Newsletter"])
+        self.assertTrue(form.errors["newsletters"][0].startswith("Select a valid choice."))
+
+    def test_multiple_newsletters(self):
+        newsletters = ["mozilla-and-you", "beta"]
+        spacey_newsletters = [f" {n} " for n in newsletters]
+        data = {
+            "email": "dude@example.com",
+            "lang": "en",
+            "privacy": "Y",
+            "fmt": "H",
+            "newsletters": newsletters,
+        }
+        form = NewsletterFooterForm(newsletters, "en-US", data=data.copy())
+        self.assertTrue(form.is_valid(), form.errors)
+        self.assertEqual(form.cleaned_data["newsletters"], newsletters)
+
+        # whitespace shouldn't matter
+        form = NewsletterFooterForm(spacey_newsletters, "en-US", data=data.copy())
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["newsletters"], newsletters)

@@ -2,18 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
+$font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
-@import '~@mozilla-protocol/core/protocol/css/components/hero';
-@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 // * -------------------------------------------------------------------------- */
-// Hero
+// Call-out
 
-.mzp-c-hero.mzp-t-dark {
+.mzp-c-callout.mzp-t-hero {
     background-color: $color-ink-80;
 }
 

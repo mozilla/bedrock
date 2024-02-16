@@ -63,7 +63,7 @@ class Command(FTLRepoCommand):
         if GIT_HASH:
             message += f"From file changes in https://github.com/mozilla/bedrock/commit/{GIT_HASH}"
         else:
-            message += "From file changes in https://github.com/mozilla/bedrock/commits/master"
+            message += "From file changes in https://github.com/mozilla/bedrock/commits/main"
 
         return message
 
@@ -92,9 +92,10 @@ class Command(FTLRepoCommand):
 
     def push_changes(self):
         try:
-            self.l10n_repo.git("push", self.git_push_url, "HEAD")
-        except CalledProcessError:
-            raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}")
+            result = self.l10n_repo.git("push", self.git_push_url, f"HEAD:{self.branch_name}")
+            self.stdout.write(result)
+        except CalledProcessError as cpe:
+            raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}: {cpe}\n{cpe.output}")
 
         commit = self.l10n_repo.git("rev-parse", "--short", "HEAD")
         self.stdout.write(f"Pushed {commit} to {self.l10n_repo.remote_url} as {self.branch_name}")
@@ -129,7 +130,7 @@ class Command(FTLRepoCommand):
         pr = self.github.create_pull(
             title=title,
             body=body,
-            base="master",
+            base=self.l10n_repo.branch_name,
             head=self.branch_name,
         )
         self.stdout.write(f"Opened a pull-request: {pr.html_url}")

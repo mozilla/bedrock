@@ -12,6 +12,7 @@
 {% block page_desc %}{{ ftl('whether-you-searched-privacy') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-faq') }}
 {% endblock %}
 
@@ -20,17 +21,17 @@
     <nav class="c-sub-navigation">
       <div class="mzp-l-content">
         <div class="c-sub-navigation-content">
-          <h2 class="c-sub-navigation-title">
-            <a href="{{ url('firefox') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+          <h2 class="c-sub-navigation-title is-summary">
+            <a href="{{ url('firefox') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
               <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
              {{ ftl('sub-navigation-firefox') }}
             </a>
           </h2>
-          <ul class="c-sub-navigation-list">
+          <ul class="c-sub-navigation-list is-details is-closed">
             <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.browsers.what-is-a-browser') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What Is a Browser?">{{ ftl('sub-navigation-what-is-a-browser') }}</a>
+              <a href="{{ url('firefox.browsers.what-is-a-browser') }}" data-link-type="nav" data-link-position="subnav" data-link-text="What Is a Browser?">{{ ftl('sub-navigation-what-is-a-browser') }}</a>
             </li>
-            <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.browser-history') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Browser History">{{ ftl('sub-navigation-browser-history') }}</a></li>
+            <li class="c-sub-navigation-item"><a href="{{ url('firefox.browsers.browser-history') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Browser History">{{ ftl('sub-navigation-browser-history') }}</a></li>
           </ul>
         </div>
       </div>
@@ -39,10 +40,17 @@
 {% endblock %}
 
 {% block content %}
-  {% call split (
+  {% call split(
       block_class='mzp-l-split-center-on-sm-md',
-      image_url='img/firefox/browsers/quantum/browser.jpg',
-      include_highres_image=True,
+      image=resp_img(
+        url='img/firefox/browsers/quantum/browser.jpg',
+        srcset={
+          'img/firefox/browsers/quantum/browser-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'class': 'mzp-c-split-media-asset'
+        }
+      ),
       media_after=True
   ) %}
   <div class="mzp-c-logo mzp-t-logo-lg mzp-t-product-firefox"></div>
@@ -106,13 +114,14 @@
         <p>{{ ftl('firefoxs-default-search',
               url='https://support.mozilla.org/kb/change-your-default-search-settings-firefox/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo') }}</p>
       </li>
+      {% if ftl_has_messages('firefox-does-not-v2') %}
       <li>
         <h2>{{ ftl('does-firefox-have') }}</h2>
-        <p>{{ ftl('firefox-does-not',
-              url='https://fpn.firefox.com/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo',
-              url2=url('products.vpn.landing')) }}</p>
+        <p>{{ ftl('firefox-does-not-v2',
+              url=url('products.vpn.landing')) }}</p>
         <small>{{ ftl('related-questions-ip') }}</small>
       </li>
+      {% endif %}
       <li>
         <h2>{{ ftl('who-owns-firefox') }}</h2>
         <p>{{ ftl('firefox-is-made', url='https://foundation.mozilla.org/?utm_source=www.mozilla.org-firefox-faq&amp;utm_medium=referral&amp;utm_campaign=seo', url2=url('foundation.moco')) }}</p>
@@ -121,8 +130,4 @@
     </ul>
     {{ download_firefox_thanks() }}
   </section>
-
-{% if LANG == 'en-US' %}
-{% include '/firefox/includes/structured-data-firefox-faq.html' %}
-{% endif %}
 {% endblock %}

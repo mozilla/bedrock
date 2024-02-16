@@ -23,4 +23,4 @@ def test_account_form(base_url, selenium):
 def test_signed_in_call_to_action(base_url, selenium):
     page = FirefoxAccountsPage(selenium, base_url, params="?signed-in=true").open()
     assert not page.join_firefox_form.is_displayed
-    assert page.is_firefox_monitor_button_displayed
+    assert page.is_manage_button_displayed

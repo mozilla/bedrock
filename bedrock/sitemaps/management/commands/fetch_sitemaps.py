@@ -15,14 +15,14 @@ class Command(BaseCommand):
     help = "Clones or updates sitemaps info from github"
 
     def add_arguments(self, parser):
-        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output."),
+        parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
 
     def handle(self, *args, **options):
         if options["quiet"]:
             self.stdout._out = StringIO()
 
         data_path = settings.SITEMAPS_PATH.joinpath("data")
-        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO)
+        repo = GitRepo(settings.SITEMAPS_PATH, settings.SITEMAPS_REPO, settings.SITEMAPS_REPO_BRANCH)
         repo.update()
 
         for src_path in data_path.rglob("*.*"):

@@ -49,10 +49,8 @@ class TestGeoTemplateView(TestCase):
 @patch("bedrock.base.views.timeago.format")
 @pytest.mark.django_db
 def test_get_contentful_sync_info(mock_timeago_format, mock_tz_now):
-
     mock_timeago_format.return_value = "mock-formatted-time-delta"
     _now = datetime.datetime.utcnow().replace(tzinfo=utc)
-    print("_now", _now)
     mock_tz_now.return_value = _now
 
     middle = tz_now()

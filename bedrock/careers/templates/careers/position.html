@@ -12,12 +12,12 @@
 {% block body_class %}position-page{% endblock %}
 
 {% block careers_content %}
+<div class="mzp-l-content mzp-t-content-lg">
 <section class="job-post" id="job-post">
-  <div class="job-row">
-    <div>
-      <div class="job-title">
-        <strong>{{ position.title }}</strong>
-      </div>
+  <div class="job-header">
+    <div class="job-info">
+      <h1 class="job-title">{{ position.title }}</h1>
+
       <div class="title-location">
         at
         {% if position.is_mofo %}
@@ -26,37 +26,52 @@
           Mozilla Corporation
         {% endif %}
       </div>
+
       <dl class="mzp-u-list-styled">
         {% if not position.is_mofo %}
           <dt class="job-post-team-head">Team:</dt>
           <dd class="job-post-team">{{ position.department }}</dd>
         {% endif %}
         <dt class="job-post-location-head">Locations:</dt>
-        <dd class="job-post-location">{{ position.job_locations }}</dd>
+        <dd class="job-post-location">{{ postings | map(attribute='job_locations') | join(', ') }}</dd>
       </dl>
     </div>
-    <div class="appy-btn">
-      <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
+
+    <div class="job-apply">
+      <div class="mzp-c-menu-list">
+        <h3 class="mzp-c-menu-list-title">Apply Now</h3>
+        <ul class="mzp-c-menu-list-list">
+        {% for job in postings %}
+          <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="appy-btn-sm apply-sm">
-    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply Now</a>
-  </div>
+
   <div>
     {{ position.description|safe }}
   </div>
-  <div class="c-apply-button-container">
-    <a href="{{ position.apply_url }}" class="mzp-c-button">Apply for this job</a>
-    <small>
-      <a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a>
-    </small>
-  </div>
-</section>
 
-<section id="why" class="mzp-c-call-out">
-  <div class="mzp-l-content">
-    <h2 class="mzp-c-call-out-title">Why Mozilla?</h2>
-    <p class="mzp-c-call-out-desc">
+  <div class="job-apply">
+    <div class="mzp-c-menu-list">
+      <h3 class="mzp-c-menu-list-title">Apply Now</h3>
+      <ul class="mzp-c-menu-list-list">
+      {% for job in postings %}
+        <li class="mzp-c-menu-list-item"><a href="{{ job.apply_url }}">{{ job.job_locations }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <p><a rel="external" href="https://docs.google.com/document/d/e/2PACX-1vTEeCImDA-kqr0wm3JwfOv_2MS5FZ8oyL2pEWfVsZbeO87E41r2wePoOhppQ4qX6w/pub">Applicant Privacy Notice</a></p>
+</section>
+</div>
+
+<section id="why" class="mzp-c-callout">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h2 class="mzp-c-callout-title">Why Mozilla?</h2>
+    <p class="mzp-c-callout-desc">
       At Mozilla, we’re serving humanity—by maintaining a safe, open internet—while also
       helping the individual humans employed here to reach their personal and
       professional goals. With a relatively small team serving hundreds of millions of
@@ -66,7 +81,7 @@
   </div>
 </section>
 
-<br />
+<div class="mzp-l-content mzp-t-content-xl">
 
 <section class="mzp-l-card-third">
   <div class="mzp-c-card">
@@ -97,12 +112,10 @@
       <h3 class="mzp-c-card-title">Our impact is global</h3>
       <div class="mzp-c-card-desc">
         <ul class="mzp-u-list-styled">
-          <li>700+ paid staff from over 30 countries</li>
+          <li>1000+ paid staff from over 30 countries</li>
           <li>Thousands of volunteer contributors across six continents</li>
-          <li>
-            9 global offices: Mountain View, San Francisco, Portland, Vancouver,
-            Toronto, Paris, London, Berlin, and Beijing
-          </li>
+          <li>2 global offices: Berlin and Toronto</li>
+          <li>9 coworking space locations: San Francisco, San Mateo, London, Paris, Portland, Tulsa, Vancouver, Chicago, and Bellevue</li>
           <li>Hundreds of home offices globally</li>
         </ul>
       </div>
@@ -114,7 +127,7 @@
       <h3 class="mzp-c-card-title">Our benefits are world-class</h3>
       <div class="mzp-c-card-desc">
         <ul class="mzp-u-list-styled">
-          <li>Flexible work environment (nearly half of Mozillians work remotely)</li>
+          <li>Flexible work environment (majority of Mozillians work remotely)</li>
           <li>
             Industry-leading paid parental leave (up to 26 weeks of fully paid leave for
             childbearing parents and up to 12 weeks for non-childbearing parents)
@@ -126,4 +139,11 @@
     </div>
   </div>
 </section>
+</div>
+{% endblock %}
+
+{% block careers_bottom %}{% endblock %}
+
+{% block js %}
+  {{ js_bundle('careers-position') }}
 {% endblock %}

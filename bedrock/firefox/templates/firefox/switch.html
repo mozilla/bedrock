@@ -12,6 +12,7 @@
 {% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox-switch') }}
 {% endblock %}
 
@@ -20,8 +21,10 @@
 {% block content %}
 <main>
   {% call split(
-      image_url='img/firefox/switch/switch.png',
-      include_highres_image=True,
+      image=resp_img('img/firefox/switch/switch.png',
+        srcset={'img/firefox/switch/switch-high-res.png': '2x'},
+        optional_attributes={'class': 'mzp-c-split-media-asset'}
+      ),
       media_after=True,
       media_class='mzp-l-split-h-center',
       block_class='mzp-l-split-center-on-sm-md mzp-l-split-hide-media-on-sm-md'
@@ -54,13 +57,13 @@
       {% set share_url = settings.CANONICAL_URL + canonical_path %}
       <ul class="c-share-options">
         <li>
-          <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
+          <a class="facebook" data-link-type="social share" data-link-text="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
             {{ ftl('switch-share-to-facebook-updated', fallback='switch-share-to-facebook') }}
           </a>
         </li>
         <li>
           {% set tweet_text = ftl('switch-firefox-makes-switching-fast-tweet') %}
-          <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
+          <a class="twitter" data-link-type="social share" data-link-text="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
             {{ ftl('switch-send-a-tweet') }}
           </a>
         </li>
@@ -71,7 +74,7 @@
           {% set email_end = ftl('switch-check-it-out')|mailtoencode %}
 
           {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
-          <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
+          <a class="email" data-link-type="social share" data-link-text="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
             {{ ftl('switch-send-an-email') }}
           </a>
         </li>

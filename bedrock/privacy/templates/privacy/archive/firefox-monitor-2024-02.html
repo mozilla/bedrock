@@ -1,0 +1,89 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/archive/base-resp.html" %}
+
+{% block page_title %}Firefox Monitor Terms & Privacy — Archived, February 6, 2024{% endblock %}
+
+{% block body_id %}firefox-monitor-archived{% endblock %}
+
+{% block article_header_logo %}{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}{% endblock %}
+
+{% block title %}Firefox Monitor Terms & Privacy{% endblock %}
+
+{% block time %}<span class="archived">Archived, February 6, 2024</span>{% endblock %}
+
+{% block sections %}
+  <section>
+    <h2>1. Introduction</h2>
+    <p>
+      Firefox Monitor is a service provided by Mozilla to promote online safety. We strongly encourage people
+      not to reuse passwords because—if any of those accounts are compromised—then hackers can access other
+      accounts using the same account credentials. Because account credentials are often reused when
+      registering for services, we think it’s important to know which accounts have been compromised in a
+      publicly disclosed data breach.
+    </p>
+  </section>
+  <section>
+    <h2>2. Features</h2>
+    <p>
+      Using your email address, you can do a Basic Scan on our website or sign up to receive a Full Report,
+      Breach Alerts, and Safety Tips.<br> <em>Basic Scan:</em> <em>These results display most publicly known
+      breaches. They exclude “Sensitive Breaches” (those including minors’ data or participants of adult and
+      dating sites) in order to protect the privacy of those account holders</em>.<br> <strong>Full Report:
+      </strong> This includes a complete list of publicly known hacks, including Sensitive Breaches.
+      * <strong>Breach Alerts:</strong> This notifies you if your email address appears in a new data breach.
+      * <strong>Safety Tips:</strong> This sends you occasional online safety tips from Mozilla.
+    </p>
+  </section>
+  <section>
+    <h2>3. Your Responsibilities</h2>
+    <p>
+      If you become aware that your account credentials have been compromised, you should immediately update
+      your passwords and any other credentials for those accounts, as well as other services using the same or
+      similar account information. It is your responsibility to protect your online accounts using strong and
+      different passwords, security questions, two-factor authentication, password managers, and other safety
+      measures.
+    </p>
+  </section>
+  <section>
+    <h2>4. Privacy</h2>
+    <p>
+      When Mozilla receives information from you, our <a href="{{ url('privacy') }}">Mozilla Privacy Policy</a>
+      describes how we handle that information. Here are things you should know about Firefox Monitor:
+    </p>
+    <ul class="mzp-u-list-styled">
+      <li>
+        If you sign up, we (and our email providers SalesForce and Amazon) receive your email address to contact
+        you in connection with the Firefox Monitor Service, which includes Full Reports, Breach Alerts, and Safety
+        Tips. You can unsubscribe at any time.
+      </li>
+      <li>
+        The data that powers Firefox Monitor is provided by <a href="https://haveibeenpwned.com/">Have I Been Pwned?</a>
+      </li>
+      <li>
+        <a href="{{ url('privacy.notices.websites') }}#cookies">Learn more</a> about our cookies and analytics, and
+        how to opt-out.
+      </li>
+      <li>
+        <a href="https://blog.mozilla.org/security/2018/06/25/scanning-breached-accounts-k-anonymity/">Learn more</a>
+        about the measures we take to protect the privacy of your email address.
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>5. Your and Our Rights</h2>
+    <p>
+      The <a href="{{ url('legal.terms.mozilla') }}">Websites and Communications Terms</a> of Use governs Mozilla websites
+      and emails we send, including those of Firefox Monitor. <strong>It includes an indemnification, disclaimer, and
+      limitation on liability.</strong> Although Firefox Monitor and <a href="https://haveibeenpwned.com/">Have I Been
+      Pwned?</a>, strive to have current data, there is no guarantee that either will have complete or timely records
+      of all public data breaches.
+    </p>
+  </section>
+{% endblock %}
+
+{% block footnote %}<p><a href="{{ url('privacy') }}#contact">Contact Us</a></p>{% endblock %}

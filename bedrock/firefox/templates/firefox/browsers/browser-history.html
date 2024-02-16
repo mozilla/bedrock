@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import call_out_compact with context %}
+{% from "macros-protocol.html" import callout_compact with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -15,6 +15,8 @@
 {% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-article') }}
   {{ css_bundle('browser-history') }}
 {% endblock %}
 
@@ -23,18 +25,18 @@
     <nav class="c-sub-navigation">
       <div class="mzp-l-content">
         <div class="c-sub-navigation-content">
-          <h2 class="c-sub-navigation-title">
-            <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+          <h2 class="c-sub-navigation-title is-summary">
+            <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
               <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
               {{ ftl('sub-navigation-firefox') }}
             </a>
           </h2>
-          <ul class="c-sub-navigation-list">
+          <ul class="c-sub-navigation-list is-details is-closed">
             <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.browsers.what-is-a-browser') }}" data-link-type="nav" data-link-position="subnav" data-link-name="What Is a Browser?">{{ ftl('sub-navigation-what-is-a-browser') }}</a>
+              <a href="{{ url('firefox.browsers.what-is-a-browser') }}" data-link-type="nav" data-link-position="subnav" data-link-text="What Is a Browser?">{{ ftl('sub-navigation-what-is-a-browser') }}</a>
             </li>
             <li class="c-sub-navigation-item">
-              <a href="https://support.mozilla.org/kb/browsing-history-firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=browser-history" data-link-type="nav" data-link-position="subnav" data-link-name="Browsing History">{{ ftl('sub-navigation-browsing-history') }}</a>
+              <a href="https://support.mozilla.org/kb/browsing-history-firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=browser-history" data-link-type="nav" data-link-position="subnav" data-link-text="Browsing History">{{ ftl('sub-navigation-browsing-history') }}</a>
             </li>
           </ul>
         </div>
@@ -52,7 +54,7 @@
 
     {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
 
-    <img src="{{ static('img/firefox/browsers/browser-history/browser-history-a.png') }}" alt="" class="c-article-image">
+    <img src="{{ static('img/firefox/browsers/browser-history/browser-history-a.png') }}" alt="" class="c-article-image" width="954" height="372">
 
     <h2 class="c-section-title">{{ ftl('browser-history-before-web-era') }}</h2>
 
@@ -84,13 +86,13 @@
 
     <p>{{ ftl('browser-history-other-competitors') }}</p>
 
-    <img src="{{ static('img/firefox/browsers/browser-history/browser-history-b.png') }}" alt="" class="c-article-image">
+    <img src="{{ static('img/firefox/browsers/browser-history/browser-history-b.png') }}" alt="" class="c-article-image" width="954" height="372">
 
     <h2 class="mzp-c-article-title">{{ ftl('browser-history-browsing-the-web') }}</h2>
 
     <p>{{ ftl('browser-history-today-there-are', applications='https://blog.mozilla.org/firefox/no-judgment-digital-definitions-app-vs-web-app/') }}</p>
 
-    <p>{{ ftl('browser-history-in-the-future-the', vr='https://mixedreality.mozilla.org/') }}</p>
+    <p>{{ ftl('browser-history-in-the-future-the-v2') }}</p>
 
     <p>{{ ftl('browser-history-whatever-the-future') }}</p>
 
@@ -108,7 +110,7 @@
   </article>
 </div>
 
-{% call call_out_compact(
+{% call callout_compact(
   title=ftl('browser-history-take-control-of'),
   class='mzp-t-product-firefox mzp-t-firefox'
 ) %}

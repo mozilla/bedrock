@@ -2,6 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+"""IMPORTANT: bedrock/settings/__init__.py contains important logic that determines
+which site will be served.
+"""
+
 import json
 import platform
 import socket
@@ -12,9 +16,12 @@ from pathlib import Path
 
 from django.utils.functional import lazy
 
+import markus
 import sentry_sdk
 from everett.manager import ListOf
+from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import ignore_logger
 
 from bedrock.base.config_manager import config
 from bedrock.contentful.constants import (
@@ -53,6 +60,7 @@ DATABASES = {
         "NAME": data_path("bedrock.db"),
     },
 }
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 CACHES = {
     "default": {
@@ -76,7 +84,7 @@ HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
 
-# CEF Logging
+# CEF Logging - TODO: remove these if def redundant
 CEF_PRODUCT = "Bedrock"
 CEF_VENDOR = "Mozilla"
 CEF_VERSION = "0"
@@ -96,7 +104,7 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
@@ -113,6 +121,9 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = "en-US"
 
+# Languages using BiDi (right-to-left) layout. Overrides/extends Django default.
+LANGUAGES_BIDI = ["ar", "ar-dz", "fa", "he", "skr", "ur"]
+
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = "product-details"
@@ -125,117 +136,104 @@ PROD_DETAILS_JSON_REPO_BRANCH = config("PROD_DETAILS_JSON_REPO_BRANCH", default=
 # path to updated p-d data for testing before loading into DB
 PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath("public", "1.0"))
 
-# Accepted locales
-PROD_LANGUAGES = (
-    "ach",
-    "af",
-    "an",
-    "ar",
-    "ast",
-    "az",
-    "azz",
-    "be",
-    "bg",
-    "bn",
-    "br",
-    "bs",
-    "ca",
-    "cak",
-    "cs",
-    "cy",
-    "da",
-    "de",
-    "dsb",
-    "el",
-    "en-CA",
-    "en-GB",
-    "en-US",
-    "eo",
-    "es-AR",
-    "es-CL",
-    "es-ES",
-    "es-MX",
-    "et",
-    "eu",
-    "fa",
-    "ff",
-    "fi",
-    "fr",
-    "fy-NL",
-    "ga-IE",
-    "gd",
-    "gl",
-    "gn",
-    "gu-IN",
-    "he",
-    "hi-IN",
-    "hr",
-    "hsb",
-    "hu",
-    "hy-AM",
-    "ia",
-    "id",
-    "is",
-    "it",
-    "ja",
-    "ja-JP-mac",
-    "ka",
-    "kab",
-    "kk",
-    "km",
-    "kn",
-    "ko",
-    "lij",
-    "lt",
-    "ltg",
-    "lv",
-    "mk",
-    "ml",
-    "mr",
-    "ms",
-    "my",
-    "nb-NO",
-    "ne-NP",
-    "nl",
-    "nn-NO",
-    "oc",
-    "pa-IN",
-    "pl",
-    "pt-BR",
-    "pt-PT",
-    "rm",
-    "ro",
-    "ru",
-    "sco",
-    "si",
-    "sk",
-    "sl",
-    "son",
-    "sq",
-    "sr",
-    "sv-SE",
-    "ta",
-    "te",
-    "th",
-    "tl",
-    "tr",
-    "trs",
-    "uk",
-    "ur",
-    "uz",
-    "vi",
-    "xh",
-    "zh-CN",
-    "zh-TW",
-    "zu",
-)
+# Regions defined on the `/locales/` page.
+LOCALES_BY_REGION = {
+    "Americas": ["azz", "cak", "en-CA", "en-US", "es-AR", "es-CL", "es-MX", "gn", "is", "pt-BR", "trs"],
+    "Asia Pacific": [
+        "bn",
+        "hi-IN",
+        "id",
+        "ja",
+        "kk",
+        "km",
+        "ko",
+        "ml",
+        "mr",
+        "ms",
+        "my",
+        "ne-NP",
+        "pa-IN",
+        "si",
+        "ta",
+        "te",
+        "th",
+        "tl",
+        "ur",
+        "vi",
+        "zh-CN",
+        "zh-TW",
+    ],
+    "Europe": [
+        "an",
+        "ast",
+        "be",
+        "bg",
+        "br",
+        "bs",
+        "ca",
+        "cs",
+        "cy",
+        "da",
+        "de",
+        "dsb",
+        "el",
+        "en-GB",
+        "eo",
+        "es-ES",
+        "et",
+        "eu",
+        "fi",
+        "fr",
+        "fy-NL",
+        "ga-IE",
+        "gd",
+        "gl",
+        "hr",
+        "hsb",
+        "hu",
+        "hy-AM",
+        "ia",
+        "it",
+        "ka",
+        "lij",
+        "lt",
+        "ltg",
+        "lv",
+        "mk",
+        "nb-NO",
+        "nl",
+        "nn-NO",
+        "oc",
+        "pl",
+        "pt-PT",
+        "rm",
+        "ro",
+        "ru",
+        "sco",
+        "sk",
+        "sl",
+        "sq",
+        "sr",
+        "sv-SE",
+        "tr",
+        "uk",
+        "uz",
+    ],
+    "Middle East and Africa": ["ach", "af", "ar", "az", "fa", "ff", "gu-IN", "he", "kab", "kn", "skr", "son", "xh"],
+}
+
+# Our accepted production locales are the values from the above, plus an exception.
+PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
+# NOTE: This default l10n config is for mozorg.
+# In settings/__init__.py we plug in an alternative Pocket-appropriate l10n setup.
+
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
+    "affiliate",
     "banners/firefox-app-store",
-    "banners/fundraising",
     "brands",
     "download_button",
     "firefox/sticky-promo",
@@ -248,21 +246,24 @@ FLUENT_DEFAULT_FILES = [
     "send_to_device",
     "sub_navigation",
     "ui",
+    "mozilla-account-promo",
 ]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config("FLUENT_DEFAULT_PERCENT_REQUIRED", default="80", parser=int)
 FLUENT_REPO = config("FLUENT_REPO", default="mozmeao/www-l10n")
 FLUENT_REPO_URL = f"https://github.com/{FLUENT_REPO}"
+FLUENT_REPO_BRANCH = config("FLUENT_REPO_BRANCH", default="master")
 FLUENT_REPO_PATH = DATA_PATH / "www-l10n"
 # will be something like "<github username>:<github token>"
 FLUENT_REPO_AUTH = config("FLUENT_REPO_AUTH", default="")
 FLUENT_LOCAL_PATH = ROOT_PATH / "l10n"
 FLUENT_L10N_TEAM_REPO = config("FLUENT_L10N_TEAM_REPO", default="mozilla-l10n/www-l10n")
 FLUENT_L10N_TEAM_REPO_URL = f"https://github.com/{FLUENT_L10N_TEAM_REPO}"
+FLUENT_L10N_TEAM_REPO_BRANCH = config("FLUENT_L10N_TEAM_REPO_BRANCH", default="master")
 FLUENT_L10N_TEAM_REPO_PATH = DATA_PATH / "l10n-team"
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config("FLUENT_CACHE_TIMEOUT", default="10" if DEBUG else "600", parser=int)
-# order matters. first sting found wins.
+# Order matters. first string found wins.
 FLUENT_PATHS = [
     # local FTL files
     FLUENT_LOCAL_PATH,
@@ -270,7 +271,17 @@ FLUENT_PATHS = [
     FLUENT_REPO_PATH,
 ]
 
-# templates to exclude from having an "edit this page" link in the footer
+# These are defined up front, because we need them for more than just Pocket mode, but
+# note that they are also swapped in as the Fluent defaults in settings/__init__.py
+POCKET_FLUENT_REPO = config(
+    "POCKET_FLUENT_REPO",
+    default="mozilla-l10n/pocket-www-l10n",
+)
+POCKET_FLUENT_REPO_URL = f"https://github.com/{POCKET_FLUENT_REPO}"
+POCKET_FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
+POCKET_FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
+
+# Templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
 EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/nightly-notes.html",
@@ -359,19 +370,25 @@ def lazy_lang_url_map():
     return {i.lower(): i for i in langs}
 
 
-# Override Django's built-in with our native names
 def lazy_langs():
+    """
+    Override Django's built-in with our native names
+
+    Note: Unlike the above lazy methods, this one returns a list of tuples to
+    match Django's expectations.
+
+    """
     from django.conf import settings
 
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return {lang.lower(): product_details.languages[lang]["native"] for lang in langs if lang in product_details.languages}
+    return [(lang.lower(), product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
-LANGUAGES = lazy(lazy_langs, dict)()
+LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
@@ -392,6 +409,7 @@ SUPPORTED_NONLOCALES = [
     "credits",
     "gameon",
     "robots.txt",
+    ".well-known",
     "telemetry",
     "webmaker",
     "contributor-data",
@@ -419,10 +437,9 @@ NOINDEX_URLS = [
     r"^(404|500)/",
     r"^firefox/welcome/",
     r"^contribute/(embed|event)/",
-    r"^firefox/retention/thank-you/",
     r"^firefox/set-as-default/thanks/",
     r"^firefox/unsupported/",
-    r"^firefox/send-to-device-post",
+    r"^firefox/(sms-)?send-to-device-post",
     r"^firefox/feedback",
     r"^firefox/stub_attribution_code/",
     r"^firefox/dedicated-profiles/",
@@ -435,16 +452,22 @@ NOINDEX_URLS = [
     r"^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/",
     r"^newsletter/opt-out-confirmation/",
     r"^newsletter/country/success/",
+    r"^newsletter/newsletter-strings\.json",
+    r"^products/vpn/invite/waitlist/",
+    r"^products/monitor/waitlist-plus/",
+    r"^products/monitor/waitlist-scan/",
     r"/system-requirements/$",
     r".*/(firstrun|thanks)/$",
     r"^readiness/$",
     r"^healthz(-cron)?/$",
     r"^country-code\.json$",
+    r"^firefox/browsers/mobile/get-ios/",
     # exclude redirects
-    r"^foundation/annualreport/$" r"^firefox/notes/$" r"^teach/$" r"^about/legal/impressum/$",
+    r"^foundation/annualreport/$",
+    r"^firefox/notes/$",
+    r"^teach/$",
+    r"^about/legal/impressum/$",
     r"^security/announce/",
-    r"^exp/",
-    r"^external/",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -455,6 +478,7 @@ EXTRA_INDEX_URLS = {
 }
 
 SITEMAPS_REPO = config("SITEMAPS_REPO", default="https://github.com/mozmeao/www-sitemap-generator.git")
+SITEMAPS_REPO_BRANCH = config("SITEMAPS_REPO_BRANCH", default="master")
 SITEMAPS_PATH = DATA_PATH / "sitemaps"
 
 # Pages that have different URLs for different locales, e.g.
@@ -486,11 +510,13 @@ if DEBUG:
 
 
 def set_whitenoise_headers(headers, path, url):
-    if "/fonts/" in url or "/caldata/" in url:
-        cache_control = "public, max-age=604800"  # one week
-        headers["Cache-Control"] = cache_control
+    if "/fonts/" in url:
+        headers["Cache-Control"] = "public, max-age=604800"  # one week
 
     if url.startswith("/.well-known/matrix/"):
+        headers["Content-Type"] = "application/json"
+
+    if url == "/.well-known/apple-app-site-association":
         headers["Content-Type"] = "application/json"
 
 
@@ -499,8 +525,6 @@ WHITENOISE_ROOT = config("WHITENOISE_ROOT", default=path("root_files"))
 WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
 PROJECT_MODULE = "bedrock"
-
-ROOT_URLCONF = "bedrock.urls"
 
 
 def get_app_name(hostname):
@@ -520,17 +544,20 @@ def get_app_name(hostname):
 
 
 HOSTNAME = platform.node()
-APP_NAME = get_app_name(HOSTNAME)
+# Prefer APP_NAME from env, but fall back to hostname parsing. TODO: remove get_app_name() usage once fully redundant
+APP_NAME = config("APP_NAME", default=get_app_name(HOSTNAME))
 CLUSTER_NAME = config("CLUSTER_NAME", default="")
 ENABLE_HOSTNAME_MIDDLEWARE = config("ENABLE_HOSTNAME_MIDDLEWARE", default=str(bool(APP_NAME)), parser=bool)
-ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="true", parser=bool)
+ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="false", parser=bool)
 # set this to enable basic auth for the entire site
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
+ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE", default="false", parser=bool)
 
 MIDDLEWARE = [
     "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "bedrock.mozorg.middleware.HostnameMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -540,6 +567,8 @@ MIDDLEWARE = [
     "bedrock.redirects.middleware.RedirectsMiddleware",
     "bedrock.base.middleware.LocaleURLMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
+    "bedrock.base.middleware.MetricsStatusMiddleware",
+    "bedrock.base.middleware.MetricsViewTimingMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
@@ -549,7 +578,7 @@ ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=b
 if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE.append("csp.middleware.CSPMiddleware")
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     # Django contrib apps
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -561,14 +590,14 @@ INSTALLED_APPS = (
     "product_details",
     # third-party apps
     "django_jinja_markdown",
-    "pagedown",
-    "localflavor",
     "django_jinja",
     "watchman",
     # Local apps
     "bedrock.base",
     "bedrock.firefox",
     "bedrock.foundation",
+    "bedrock.landing",
+    "bedrock.stories",
     "bedrock.legal",
     "bedrock.legal_docs",
     "bedrock.mozorg",
@@ -577,7 +606,7 @@ INSTALLED_APPS = (
     "bedrock.privacy",
     "bedrock.products",
     "bedrock.externalfiles",
-    "bedrock.externalpages",
+    "bedrock.pocket",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
@@ -586,15 +615,13 @@ INSTALLED_APPS = (
     "bedrock.wordpress",
     "bedrock.sitemaps",
     "bedrock.pocketfeed",
-    "bedrock.exp",
     "bedrock.careers",
     # last so that redirects here will be last
     "bedrock.redirects",
     # libs
     "django_extensions",
     "lib.l10n_utils",
-    "captcha",
-)
+]
 
 # Must match the list at CloudFlare if the
 # VaryNoCacheMiddleware is enabled. The home
@@ -618,6 +645,7 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
 # legacy setting. backward compat.
 DISABLE_SSL = config("DISABLE_SSL", default="true", parser=bool)
 # SecurityMiddleware settings
+SECURE_REFERRER_POLICY = config("SECURE_REFERRER_POLICY", default="strict-origin-when-cross-origin")
 SECURE_HSTS_SECONDS = config("SECURE_HSTS_SECONDS", default="0", parser=int)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_BROWSER_XSS_FILTER = config("SECURE_BROWSER_XSS_FILTER", default="true", parser=bool)
@@ -641,14 +669,11 @@ WATCHMAN_CHECKS = (
 
 TEMPLATES = [
     {
-        "BACKEND": "django_jinja.backend.Jinja2",
+        "BACKEND": "django_jinja.jinja2.Jinja2",
         "APP_DIRS": True,
         "OPTIONS": {
             "match_extension": None,
-            "undefined": "jinja2.Undefined",
             "finalize": lambda x: x if x is not None else "",
-            "translation_engine": "lib.l10n_utils.template",
-            "newstyle_gettext": False,
             "context_processors": [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.debug",
@@ -667,13 +692,11 @@ TEMPLATES = [
             ],
             "extensions": [
                 "jinja2.ext.do",
-                "jinja2.ext.with_",
+                "jinja2.ext.i18n",
                 "jinja2.ext.loopcontrols",
-                "jinja2.ext.autoescape",
                 "django_jinja.builtins.extensions.CsrfExtension",
                 "django_jinja.builtins.extensions.StaticFilesExtension",
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
-                "lib.l10n_utils.template.i18n",
                 "django_jinja_markdown.extensions.MarkdownExtension",
             ],
         },
@@ -703,6 +726,15 @@ POCKET_API_URL = config("POCKET_API_URL", default="https://getpocket.com/v3/fire
 POCKET_CONSUMER_KEY = config("POCKET_CONSUMER_KEY", default="")
 POCKET_ACCESS_TOKEN = config("POCKET_ACCESS_TOKEN", default="")
 
+# Todo: move this into Pocket-only settings in a way that can also be accessed in tests
+BRAZE_API_URL_BASE = config("BRAZE_API_URL_BASE", default="https://rest.iad-05.braze.com")
+BRAZE_API_KEY = config("BRAZE_API_KEY", default="")
+BRAZE_API_NEWSLETTERS = {
+    "news": config("BRAZE_API_NEWSLETTER_ID_NEWS", default=""),
+    "hits": config("BRAZE_API_NEWSLETTER_ID_HITS", default=""),
+}
+BRAZE_POCKET_COOKIE_NAME = config("BRAZE_POCKET_COOKIE_NAME", default="a95b4b6")
+
 # Contribute numbers
 # TODO: automate these
 CONTRIBUTE_NUMBERS = {
@@ -713,6 +745,7 @@ CONTRIBUTE_NUMBERS = {
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
+BASKET_SUBSCRIBE_URL = BASKET_URL + "/news/subscribe/"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 
@@ -736,8 +769,6 @@ EMAIL_SUBJECT_PREFIX = config("EMAIL_SUBJECT_PREFIX", default="[bedrock] ")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
-# Google Analytics
-GA_ACCOUNT_CODE = ""
 
 EXTERNAL_FILES_PATH = config("EXTERNAL_FILES_PATH", default=data_path("community_data"))
 EXTERNAL_FILES_BRANCH = config("EXTERNAL_FILES_BRANCH", default="master")
@@ -860,56 +891,7 @@ PRESS_BLOGS = {
     "pt-BR": "press-br/",
 }
 
-DONATE_LINK = (
-    "https://donate.mozilla.org/{locale}/"
-    "?presets={presets}&amount={default}"
-    "&utm_source=mozilla.org&utm_medium=referral&utm_content={source}"
-    "&currency={currency}"
-)
-
-DONATE_LINK_UNKNOWN = "https://donate.mozilla.org/?utm_source=mozilla.org&utm_medium=referral&utm_content={source}"
-
-DONATE_PARAMS = {
-    "en-US": {"currency": "usd", "symbol": "$", "presets": "50,30,20,10", "default": "30"},
-    "ast": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "ca": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "cs": {"currency": "czk", "symbol": "Kč", "presets": "450,220,110,70", "default": "220"},
-    "cy": {"currency": "gbp", "symbol": "£", "presets": "40,25,15,8", "default": "25"},
-    "da": {"currency": "dkk", "symbol": "kr", "presets": "130,60,30,20", "default": "60"},
-    "de": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "dsb": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "el": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "en-CA": {"currency": "cad", "symbol": "$", "presets": "65,30,15,4", "default": "30"},
-    "en-GB": {"currency": "gbp", "symbol": "£", "presets": "40,25,15,8", "default": "25"},
-    "es-ES": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "es-MX": {"currency": "mxn", "symbol": "$", "presets": "400,200,100,60", "default": "200"},
-    "et": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "fr": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "fy-NL": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "gu-IN": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "hi-IN": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "hsb": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "hu": {"currency": "huf", "symbol": "Ft", "presets": "5600,2800,1400,850", "default": "2800"},
-    "it": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "ja": {"currency": "jpy", "symbol": "¥", "presets": "2240,1120,560,340", "default": "1120"},
-    "lv": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "ml": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "mr": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "nb-NO": {"currency": "nok", "symbol": "kr", "presets": "160,80,40,20", "default": "80"},
-    "nn-NO": {"currency": "nok", "symbol": "kr", "presets": "160,80,40,20", "default": "80"},
-    "nl": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "pa-IN": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "pl": {"currency": "pln", "symbol": "zł", "presets": "80,40,20,10", "default": "40"},
-    "pt-BR": {"currency": "brl", "symbol": "R$", "presets": "80,40,20,10", "default": "40"},
-    "pt-PT": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "ru": {"currency": "rub", "symbol": "₽", "presets": "1300,800,500,200", "default": "800"},
-    "sk": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "sl": {"currency": "eur", "symbol": "€", "presets": "50,30,20,10", "default": "30"},
-    "sv-SE": {"currency": "sek", "symbol": "kr", "presets": "180,90,45,30", "default": "90"},
-    "ta": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "te": {"currency": "inr", "symbol": "₹", "presets": "1000,500,250,150", "default": "500"},
-    "zh-TW": {"currency": "twd", "symbol": "NT$", "presets": "480,240,150,70", "default": "240"},
-}
+DONATE_LINK = "https://foundation.mozilla.org/?form=donate&c_id=7014x000000eQOH&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco{content}"
 
 # Official Firefox Twitter accounts
 FIREFOX_TWITTER_ACCOUNTS = {
@@ -928,39 +910,32 @@ MOZILLA_TWITTER_ACCOUNTS = {
 # Official Firefox Instagram accounts
 MOZILLA_INSTAGRAM_ACCOUNTS = {
     "en-US": "https://www.instagram.com/mozilla/",
-    "de": "https://www.instagram.com/unfcktheinternet/",
+    "de": "https://www.instagram.com/mozilla_deutschland/",
 }
 
-# Firefox Accounts product links
+# Mozilla accounts product links
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
-FXA_ENDPOINT_MOZILLAONLINE = config("FXA_ENDPOINT_MOZILLAONLINE", default="https://accounts.firefox.com.cn/")
+# Affiliate micro service (CJMS) endpoint (issue 11212)
+CJMS_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
 
 # Google Play and Apple App Store settings
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE  # noqa
-from .appstores import GOOGLE_PLAY_FIREFOX_LINK_UTMS  # noqa
-from .appstores import (
-    ADJUST_FIREFOX_URL,
-    ADJUST_FOCUS_URL,
-    ADJUST_KLAR_URL,
-    ADJUST_LOCKWISE_URL,
-    ADJUST_POCKET_URL,
+from .appstores import (  # noqa: E402, F401
     AMAZON_FIREFOX_FIRE_TV_LINK,
     APPLE_APPSTORE_COUNTRY_MAP,
     APPLE_APPSTORE_FIREFOX_LINK,
     APPLE_APPSTORE_FOCUS_LINK,
     APPLE_APPSTORE_KLAR_LINK,
-    APPLE_APPSTORE_LOCKWISE_LINK,
     APPLE_APPSTORE_POCKET_LINK,
     GOOGLE_PLAY_FIREFOX_BETA_LINK,
     GOOGLE_PLAY_FIREFOX_LINK,
-    GOOGLE_PLAY_FIREFOX_LITE_LINK,
+    GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,
+    GOOGLE_PLAY_FIREFOX_LINK_UTMS,
     GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
     GOOGLE_PLAY_FIREFOX_SEND_LINK,
     GOOGLE_PLAY_FOCUS_LINK,
     GOOGLE_PLAY_KLAR_LINK,
-    GOOGLE_PLAY_LOCKWISE_LINK,
     GOOGLE_PLAY_POCKET_LINK,
 )
 
@@ -990,11 +965,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     "fx-whatsnew": {
         "email": {
             "all": "download-firefox-mobile-whatsnew",
-        }
-    },
-    "fx-whatsnew-96": {
-        "email": {
-            "all": "download-firefox-mobile-whatsnew-96",
         }
     },
     "fx-focus": {
@@ -1039,8 +1009,8 @@ CONTENTFUL_SPACE_KEY = config("CONTENTFUL_SPACE_KEY", raise_error=False)
 CONTENTFUL_ENVIRONMENT = config("CONTENTFUL_ENVIRONMENT", default="master")
 CONTENTFUL_SPACE_API = ("preview" if DEV else "cdn") + ".contentful.com"
 CONTENTFUL_API_TIMEOUT = config("CONTENTFUL_API_TIMEOUT", default="5", parser=int)
-CONTENTFUL_CONTENT_TYPES = config(
-    "CONTENTFUL_CONTENT_TYPES",
+CONTENTFUL_CONTENT_TYPES_TO_SYNC = config(
+    "CONTENTFUL_CONTENT_TYPES_TO_SYNC",
     default=CONTENTFUL_DEFAULT_CONTENT_TYPES,
     parser=ListOf(str),
 )
@@ -1057,8 +1027,8 @@ CONTENTFUL_HOMEPAGE_LOOKUP = {
     "de": "4k3CxqZGjxXOjR1I0dhyto",
 }
 
-CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE = config(
-    "CONTENTFUL_LOCALE_ACTIVATION_PERCENTAGE",
+CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE = config(
+    "CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE",
     default="1" if DEV is True else "60",
     parser=float,
 )
@@ -1069,13 +1039,21 @@ RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
 
 WWW_CONFIG_PATH = config("WWW_CONFIG_PATH", default=data_path("www_config"))
 WWW_CONFIG_REPO = config("WWW_CONFIG_REPO", default="https://github.com/mozmeao/www-config.git")
-WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="master")
+WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="main")
+
+MONITOR_SWITCH_WAITLIST = "SWITCH_MONITOR_WAITLIST"
+MONITOR_SWITCH_WAITLIST_DEFAULT = "off"
+MONITOR_ENDPOINT = config("MONITOR_ENDPOINT", default="https://monitor.mozilla.org/api/v1/stats")
+MONITOR_TOKEN = config("MONITOR_TOKEN", default="")
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
-LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="master" if DEV else "prod")
+LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
 LEGAL_DOCS_DMS_URL = config("LEGAL_DOCS_DMS_URL", default="")
-LEGAL_DOCS_CACHE_TIMEOUT = config("LEGAL_DOCS_CACHE_TIMEOUT", default="60" if DEV else "600", parser=int)
+
+WEBVISION_DOCS_PATH = DATA_PATH / "webvisions"
+WEBVISION_DOCS_REPO = config("WEBVISION_DOCS_REPO", default="https://github.com/mozilla/webvision.git")
+WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
 
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
 MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")
@@ -1094,7 +1072,16 @@ LOGGING = {
     "formatters": {
         "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(message)s"},
     },
-    "handlers": {"console": {"class": "logging.StreamHandler", "stream": sys.stdout, "formatter": "verbose"}},
+    "handlers": {
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        },
+    },
     "loggers": {
         "django.db.backends": {
             "level": "ERROR",
@@ -1104,10 +1091,19 @@ LOGGING = {
     },
 }
 
+# DisallowedHost gets a lot of action thanks to scans/bots/scripts,
+# but we need not take any action because it's already HTTP 400-ed.
+# Note that we ignore at the Sentry client level
+ignore_logger("django.security.DisallowedHost")
+
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
-GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
+GA_ACCOUNT_CODE = ""  # DELETE ME: Deprecated?
+GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")  # NB: Will be used in both modes (bedrock and pocket).
+# Pocket mode will be running both GA UA and GA4 for a while going forward
+GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")  # NB: Not used in all Bedrock modes (Pocket only).
+
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
 STUB_ATTRIBUTION_RATE = config("STUB_ATTRIBUTION_RATE", default=str(1 if DEV else 0), parser=float)
@@ -1138,14 +1134,41 @@ DEAD_MANS_SNITCH_URL = config("DEAD_MANS_SNITCH_URL", default="")  # see cron.py
 # There is also a DB_UPDATE_SCRIPT_DMS_URL defined in env vars, which is called directly from
 # the bash script bin/run-db-update.sh
 
-# Sentry config for Backend and Frontend
+# SENTRY CONFIG
 SENTRY_DSN = config("SENTRY_DSN", default="")
+# Data scrubbing before Sentry
+# https://github.com/laiyongtao/sentry-processor
+SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
+    "email",
+    # "token",  # token is on the default blocklist, which we also use via `with_default_keys`
+]
+SENTRY_IGNORE_ERRORS = (
+    BrokenPipeError,
+    ConnectionResetError,
+)
+
+
+def before_send(event, hint):
+    if hint and "exc_info" in hint:
+        exc_type, exc_value, tb = hint["exc_info"]
+        if isinstance(exc_value, SENTRY_IGNORE_ERRORS):
+            return None
+
+    processor = DesensitizationProcessor(
+        with_default_keys=True,
+        sensitive_keys=SENSITIVE_FIELDS_TO_MASK_ENTIRELY,
+    )
+    event = processor.process(event, hint)
+    return event
+
+
 if SENTRY_DSN:
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         release=config("GIT_SHA", default=""),
         server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
         integrations=[DjangoIntegration()],
+        before_send=before_send,
     )
 
 # Frontend uses the same DSN as backend by default, but we'll
@@ -1155,96 +1178,31 @@ SENTRY_FRONTEND_DSN = config(
     default=SENTRY_DSN,
 )
 
-# Django-CSP
-CSP_DEFAULT_SRC = ["'self'", "*.mozilla.net", "*.mozilla.org", "*.mozilla.com"]
-EXTRA_CSP_DEFAULT_SRC = config("CSP_DEFAULT_SRC", parser=ListOf(str), default="")
-if EXTRA_CSP_DEFAULT_SRC:
-    CSP_DEFAULT_SRC += EXTRA_CSP_DEFAULT_SRC
+# Statsd metrics via markus
+if DEBUG:
+    MARKUS_BACKENDS = [
+        {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
+    ]
+else:
+    STATSD_HOST = config("STATSD_HOST", default=get_default_gateway_linux())
+    STATSD_PORT = config("STATSD_PORT", default="8125", parser=int)
+    STATSD_NAMESPACE = config("APP_NAME", default="bedrock-local")
 
-CSP_IMG_SRC = CSP_DEFAULT_SRC + [
-    "data:",
-    "mozilla.org",
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "adservice.google.com",
-    "adservice.google.de",
-    "adservice.google.dk",
-    "creativecommons.org",
-    "cdn-3.convertexperiments.com",
-    "logs.convertexperiments.com",
-    "images.ctfassets.net",
-    "cdn.cookielaw.org",
-]
-CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
-    # TODO fix things so that we don't need this
-    "'unsafe-inline'",
-    # TODO snap.svg.js passes a string to Function() which is
-    # blocked without unsafe-eval. Find a way to remove that.
-    "'unsafe-eval'",
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "tagmanager.google.com",
-    "www.youtube.com",
-    "s.ytimg.com",
-    "cdn-3.convertexperiments.com",
-    "app.convert.com",
-    "data.track.convertexperiments.com",
-    "1003350.track.convertexperiments.com",
-    "1003343.track.convertexperiments.com",
-    "cdn.cookielaw.org",
-]
-CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
-    # TODO fix things so that we don't need this
-    "'unsafe-inline'",
-    "app.convert.com",
-]
-CSP_CHILD_SRC = CSP_DEFAULT_SRC + [
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "www.youtube-nocookie.com",
-    "trackertest.org",  # mozilla service for tracker detection
-    "www.surveygizmo.com",
-    "accounts.firefox.com",
-    "accounts.firefox.com.cn",
-    "www.youtube.com",
-]
-CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "logs.convertexperiments.com",
-    "1003350.metrics.convertexperiments.com",
-    "1003343.metrics.convertexperiments.com",
-    "sentry.prod.mozaws.net",
-    "cdn.cookielaw.org",
-    "privacyportal.onetrust.com",
-    FXA_ENDPOINT,
-    FXA_ENDPOINT_MOZILLAONLINE,
-]
-CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
-CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
+    MARKUS_BACKENDS = [
+        {
+            "class": "markus.backends.datadog.DatadogMetrics",
+            "options": {
+                "statsd_host": STATSD_HOST,
+                "statsd_port": STATSD_PORT,
+                "statsd_namespace": STATSD_NAMESPACE,
+            },
+        },
+    ]
 
-CSP_EXTRA_FRAME_SRC = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
-if CSP_EXTRA_FRAME_SRC:
-    CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
+markus.configure(backends=MARKUS_BACKENDS)
 
-# support older browsers (mainly Safari)
-CSP_FRAME_SRC = CSP_CHILD_SRC
-
-# FONT CSP to use fonts from getpocket.com
-CSP_FONT_SRC = ["'self'", "assets.getpocket.com"]
-# Bug 1331069 - Double Click tracking pixel for download page.
-AVAILABLE_TRACKING_PIXELS = {
-    "doubleclick": (
-        "https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;"
-        "tag_for_child_directed_treatment=;tfua=;npa=;ord=1"
-    ),
-}
-ENABLED_PIXELS = config("ENABLED_PIXELS", default="doubleclick", parser=ListOf(str))
-TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
-
-if config("SWITCH_TRACKING_PIXEL", default=str(DEV), parser=bool):
-    if "doubleclick" in ENABLED_PIXELS:
-        CSP_IMG_SRC += ("ad.doubleclick.net",)
+# Django-CSP settings are in settings/__init__.py, where they are
+# set according to site mode
 
 # Bug 1345467: Funnelcakes are now explicitly configured in the environment.
 # Set experiment specific variables like the following:
@@ -1254,12 +1212,11 @@ if config("SWITCH_TRACKING_PIXEL", default=str(DEV), parser=bool):
 #
 # where "103" in the variable name is the funnelcake ID.
 
-# Issue 7508 - Convert.com experiment sandbox
-CONVERT_PROJECT_ID = "10039-1003350" if DEV else "10039-1003343"
+# VPN ==========================================================================================
 
 # URL for Mozilla VPN sign-in links
 # ***This URL *MUST* end in a traling slash!***
-VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage-vpn.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
+VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
 
 # URL for Mozilla VPN subscription links
 # ***This URL *MUST* end in a traling slash!***
@@ -1270,209 +1227,375 @@ VPN_PRODUCT_ID = config("VPN_PRODUCT_ID", default="prod_FiJ42WCzZNRSbS" if DEV e
 
 # VPN variable subscription plan IDs by currency/language.
 VPN_PLAN_ID_MATRIX = {
-    "chf": {
-        "de": {
+    "chf": {  # Swiss franc
+        "de": {  # German
             "12-month": {
                 "id": "price_1J4sAUKb9q6OnNsLfYDKbpdY" if DEV else "price_1J5JssJNcmPzuWtR616BH4aU",
-                "price": "CHF 5.99",
-                "total": "CHF 71.88",
+                "price": "5.99",
+                "total": "71.88",
+                "currency": "CHF",
                 "saving": 45,
-            },
-            "6-month": {
-                "id": "price_1J4sB1Kb9q6OnNsLD5WQ4N5y" if DEV else "price_1J5JtWJNcmPzuWtRMd2siphH",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sC2Kb9q6OnNsLIgz3DDu8" if DEV else "price_1J5Ju3JNcmPzuWtR3GpNYSWj",
-                "price": "CHF 10.99",
+                "price": "10.99",
                 "total": None,
+                "currency": "CHF",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
-        "fr": {
+        "fr": {  # French
             "12-month": {
                 "id": "price_1J4sM2Kb9q6OnNsLsGLZwTP9" if DEV else "price_1J5JunJNcmPzuWtRo9dLxn6M",
-                "price": "CHF 5.99",
-                "total": "CHF 71.88",
+                "price": "5.99",
+                "total": "71.88",
+                "currency": "CHF",
                 "saving": 45,
-            },
-            "6-month": {
-                "id": "price_1J4sMWKb9q6OnNsL3eL2v91Q" if DEV else "price_1J5JvLJNcmPzuWtRayB4d7Ij",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sNGKb9q6OnNsLl3OEuKqT" if DEV else "price_1J5JvjJNcmPzuWtR3wwy1dcR",
-                "price": "CHF 10.99",
+                "price": "10.99",
+                "currency": "CHF",
                 "total": None,
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
-        "it": {
+        "it": {  # Italian
             "12-month": {
                 "id": "price_1J4sWMKb9q6OnNsLkrTo2uUW" if DEV else "price_1J5JwWJNcmPzuWtRgrx5fjOc",
-                "price": "CHF 5.99",
-                "total": "CHF 71.88",
+                "price": "5.99",
+                "total": "71.88",
+                "currency": "CHF",
                 "saving": 45,
-            },
-            "6-month": {
-                "id": "price_1J4sWsKb9q6OnNsLXBVXh664" if DEV else "price_1J5JwvJNcmPzuWtRH2HuhWM5",
-                "price": "CHF 7.99",
-                "total": "CHF 47.94",
-                "saving": 27,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4sXWKb9q6OnNsLVoGiXcW5" if DEV else "price_1J5JxGJNcmPzuWtRrp5e1SUB",
-                "price": "CHF 10.99",
+                "price": "10.99",
                 "total": None,
+                "currency": "CHF",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
             },
         },
     },
-    "euro": {
-        "de": {
+    "czk": {  # Czech koruna
+        "cs": {  # Czech
             "12-month": {
-                "id": "price_1IXw5oKb9q6OnNsLPMkWOid7" if DEV else "price_1IgwblJNcmPzuWtRynC7dqQa",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "id": "price_1N7ObPKb9q6OnNsLf9okHbUl" if DEV else "price_1N7PDwJNcmPzuWtR1IxSkZ0c",
+                "price": "119",
+                "total": "1428",
+                "currency": "CZK",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1IXw5NKb9q6OnNsLLIyYuhWF" if DEV else "price_1IgwaHJNcmPzuWtRuUfSR4l7",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "1416", "price": "1428", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
-                "price": "9,99‎ €",
+                "id": "price_1N7Oc2Kb9q6OnNsLkYPFVHtx" if DEV else "price_1N7PESJNcmPzuWtRTgmv8Ve4",
+                "price": "237",
                 "total": None,
+                "currency": "CZK",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "0", "price": "237", "period": "monthly"},
             },
         },
-        "en": {
+    },
+    "dkk": {  # Danish krone
+        "da": {  # Dansk
+            "12-month": {
+                "id": "price_1N7Oa1Kb9q6OnNsLh9F1hDhi" if DEV else "price_1N7PCQJNcmPzuWtRNqtksScA",
+                "price": "37",
+                "total": "444",
+                "currency": "DKK",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "456", "price": "444", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OapKb9q6OnNsLTvIbY6DY" if DEV else "price_1N7PCsJNcmPzuWtRXIMBFQbq",
+                "price": "75",
+                "total": None,
+                "currency": "DKK",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "0", "price": "75", "period": "monthly"},
+            },
+        },
+    },
+    "euro": {  # Euro
+        "bg": {  # Bulgarian
+            "12-month": {
+                "id": "price_1N7OdmKb9q6OnNsLO0Rf6LUt" if DEV else "price_1N7PGEJNcmPzuWtRzTe85nzw",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OeJKb9q6OnNsLvGDxhcaj" if DEV else "price_1N7PHRJNcmPzuWtRjZ8D8kwx",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "de": {  # German
+            "12-month": {
+                "id": "price_1IXw5oKb9q6OnNsLPMkWOid7" if DEV else "price_1IgwblJNcmPzuWtRynC7dqQa",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N9CInKb9q6OnNsLQYotCVpd" if DEV else "price_1IgwZVJNcmPzuWtRg9Wssh2y",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "el": {  # Greek
+            "12-month": {
+                "id": "price_1N7Or1Kb9q6OnNsLhHrEcbwd" if DEV else "price_1N7PPyJNcmPzuWtRkUbirJmB",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OrgKb9q6OnNsLk5xS9DYr" if DEV else "price_1N7PQIJNcmPzuWtR2BQdQbtL",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "en": {  # English
             "12-month": {
                 "id": "price_1JcuArKb9q6OnNsLXAnkCSUE" if DEV else "price_1JcdvBJNcmPzuWtROLbEH9d2",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1JcuADKb9q6OnNsLGNIwLcdA" if DEV else "price_1Jcdu8JNcmPzuWtRK6u5TUoZ",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1Jcu7uKb9q6OnNsLG4JAAXuw" if DEV else "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
-                "price": "9,99‎ €",
+                "price": "9.99",
                 "total": None,
+                "currency": "EUR",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
-        "es": {
+        "es": {  # Spanish
             "12-month": {
                 "id": "price_1J4pE7Kb9q6OnNsLnvvyRClI" if DEV else "price_1J5JCdJNcmPzuWtRrvQMFLlP",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J4pEcKb9q6OnNsLKrjmFqUc" if DEV else "price_1J5JDFJNcmPzuWtRrC4IeXTs",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4pFSKb9q6OnNsLEyiFLbvB" if DEV else "price_1J5JDgJNcmPzuWtRqQtIbktk",
-                "price": "9,99‎ €",
+                "price": "9.99",
                 "total": None,
+                "currency": "EUR",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
-        "fr": {
+        "fr": {  # French
             "12-month": {
-                "id": "price_1IXw5oKb9q6OnNsLPMkWOid7" if DEV else "price_1IgnlcJNcmPzuWtRjrNa39W4",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "id": "price_1N9CFcKb9q6OnNsL1r7W4EiX" if DEV else "price_1IgnlcJNcmPzuWtRjrNa39W4",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1IXw5NKb9q6OnNsLLIyYuhWF" if DEV else "price_1IgoxGJNcmPzuWtRG7l48EoV",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1IXw4eKb9q6OnNsLqnVP4PvO" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
-                "price": "9,99‎ €",
+                "id": "price_1N9CHBKb9q6OnNsLlYDTJ3px" if DEV else "price_1IgowHJNcmPzuWtRzD7SgAYb",
+                "price": "9.99",
                 "total": None,
+                "currency": "EUR",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
-        "it": {
+        "hu": {  # Hungarian
+            "12-month": {
+                "id": "price_1N7OcfKb9q6OnNsLuXLBVp8T" if DEV else "price_1N7PF1JNcmPzuWtRujxNI9yh",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OdBKb9q6OnNsLJENr3u8W" if DEV else "price_1N7PFbJNcmPzuWtRlVNtHvgG",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "it": {  # Italian
             "12-month": {
                 "id": "price_1J4p3CKb9q6OnNsLK2oBxgsV" if DEV else "price_1J4owvJNcmPzuWtRomVhWQFq",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J4p5rKb9q6OnNsL3uDibRbN" if DEV else "price_1J5J7eJNcmPzuWtRKdQi4Tkk",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4p6wKb9q6OnNsLTb6kCDsC" if DEV else "price_1J5J6iJNcmPzuWtRK5zfoguV",
-                "price": "9,99‎ €",
+                "price": "9.99",
                 "total": None,
+                "currency": "EUR",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
-        "nl": {
+        "nl": {  # Dutch
             "12-month": {
                 "id": "price_1J4ryxKb9q6OnNsL3fPF8mxI" if DEV else "price_1J5JRGJNcmPzuWtRXwXA84cm",
-                "price": "4,99 €",
-                "total": "59,88 €",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J4rzWKb9q6OnNsLKUR9kmFG" if DEV else "price_1J5JRmJNcmPzuWtRyFGj0tkN",
-                "price": "6,99 €",
-                "total": "41,94 €",
-                "saving": 30,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J4s0MKb9q6OnNsLS19LMKBb" if DEV else "price_1J5JSkJNcmPzuWtR54LPH2zi",
-                "price": "9,99‎ €",
+                "price": "9.99",
                 "total": None,
+                "currency": "EUR",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "pt": {  # Portuguese
+            "12-month": {
+                "id": "price_1N7OSoKb9q6OnNsLdJDSaCBW" if DEV else "price_1N7PBOJNcmPzuWtRykt8Uyzm",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OUEKb9q6OnNsLXlaW6Ovc" if DEV else "price_1N7PBsJNcmPzuWtRzS5kTc5B",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "ro": {  # Romanian
+            "12-month": {
+                "id": "price_1N7ORMKb9q6OnNsLVMHfYXQq" if DEV else "price_1N7PADJNcmPzuWtRxHjlrDiy",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OS5Kb9q6OnNsLA2BVYqTG" if DEV else "price_1N7PAmJNcmPzuWtR1zOoPIao",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "sk": {  # Slovak
+            "12-month": {
+                "id": "price_1N7OjyKb9q6OnNsLRnctp7yW" if DEV else "price_1N7PKUJNcmPzuWtRrnyAM0wd",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OkVKb9q6OnNsL5Vzz6X9D" if DEV else "price_1N7PKyJNcmPzuWtROTKgdgW0",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+            },
+        },
+        "sl": {  # Slovenian
+            "12-month": {
+                "id": "price_1N7OmEKb9q6OnNsLI2fRSJX3" if DEV else "price_1N7PMcJNcmPzuWtR8TWsjoHe",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "EUR",
+                "saving": 50,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OmiKb9q6OnNsLvXqreUUk" if DEV else "price_1N7PN6JNcmPzuWtRpN8HAr7L",
+                "price": "9.99",
+                "total": None,
+                "currency": "EUR",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         },
     },
-    "usd": {
-        "en": {
+    "pln": {  # Polish złoty
+        "en": {  # English
+            "12-month": {
+                "id": "price_1N7OOaKb9q6OnNsLSUzW83h9" if DEV else "price_1N7P8TJNcmPzuWtRI7pI29bO",
+                "price": "22",
+                "total": "264",
+                "currency": "PLN",
+                "saving": 48,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "276", "price": "264", "period": "yearly"},
+            },
+            "monthly": {
+                "id": "price_1N7OQWKb9q6OnNsLMLHUFggO" if DEV else "price_1N7P98JNcmPzuWtRbUaI24OH",
+                "price": "45",
+                "total": None,
+                "currency": "PLN",
+                "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "0", "price": "45", "period": "monthly"},
+            },
+        },
+    },
+    "usd": {  # US dollar
+        "en": {  # English
             "12-month": {
                 "id": "price_1J0Y1iKb9q6OnNsLXwdOFgDr" if DEV else "price_1Iw85dJNcmPzuWtRyhMDdtM7",
-                "price": "US$4.99",
-                "total": "US$59.88",
+                "price": "4.99",
+                "total": "59.88",
+                "currency": "USD",
                 "saving": 50,
-            },
-            "6-month": {
-                "id": "price_1J0Y12Kb9q6OnNsL4SB2hhmp" if DEV else "price_1Iw87cJNcmPzuWtRefuyqsOd",
-                "price": "US$7.99",
-                "total": "US$47.94",
-                "saving": 20,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
                 "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
-                "price": "US$9.99",
+                "price": "9.99",
                 "total": None,
+                "currency": "USD",
                 "saving": None,
+                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "period": "monthly"},
             },
         }
     },
@@ -1482,38 +1605,94 @@ VPN_PLAN_ID_MATRIX = {
 # Each country can support both a default language and (optionally)
 # a set of one or more alternative languages.
 VPN_VARIABLE_PRICING = {
-    "AT": {
+    "AT": {  # Austria
         "default": VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
-    "BE": {
+    "BE": {  # Belgium
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
         "de": VPN_PLAN_ID_MATRIX["euro"]["de"],
         "fr": VPN_PLAN_ID_MATRIX["euro"]["fr"],
     },
-    "CH": {
+    "BG": {  # Bulgaria
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "CH": {  # Switzerland
         "default": VPN_PLAN_ID_MATRIX["chf"]["de"],
         "fr": VPN_PLAN_ID_MATRIX["chf"]["fr"],
         "it": VPN_PLAN_ID_MATRIX["chf"]["it"],
     },
-    "DE": {
+    "CY": {  # Cyprus
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+        "el": VPN_PLAN_ID_MATRIX["euro"]["el"],
+    },
+    "CZ": {  # Czech Republic
+        "default": VPN_PLAN_ID_MATRIX["czk"]["cs"],
+    },
+    "DE": {  # Germany
         "default": VPN_PLAN_ID_MATRIX["euro"]["de"],
     },
-    "ES": {
-        "default": VPN_PLAN_ID_MATRIX["euro"]["es"],
+    "DK": {  # Denmark
+        "default": VPN_PLAN_ID_MATRIX["dkk"]["da"],
     },
-    "FR": {
-        "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
-    },
-    "IE": {
+    "EE": {  # Estonia
         "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
     },
-    "IT": {
+    "ES": {  # Spain
+        "default": VPN_PLAN_ID_MATRIX["euro"]["es"],
+    },
+    "FI": {  # Finland
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "FR": {  # France
+        "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
+    },
+    "HR": {  # Croatia
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "HU": {  # Hungary
+        "default": VPN_PLAN_ID_MATRIX["euro"]["hu"],
+    },
+    "IE": {  # Ireland
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "IT": {  # Italy
         "default": VPN_PLAN_ID_MATRIX["euro"]["it"],
     },
-    "NL": {
+    "LT": {  # Lithuania
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "LU": {  # Luxembourg
+        "default": VPN_PLAN_ID_MATRIX["euro"]["fr"],
+        "de": VPN_PLAN_ID_MATRIX["euro"]["de"],
+    },
+    "LV": {  # Latvia
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "MT": {  # Malta
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "NL": {  # The Netherlands
         "default": VPN_PLAN_ID_MATRIX["euro"]["nl"],
     },
-    "US": {
+    "PL": {  # Poland
+        "default": VPN_PLAN_ID_MATRIX["pln"]["en"],
+    },
+    "PT": {  # Portugal
+        "default": VPN_PLAN_ID_MATRIX["euro"]["pt"],
+    },
+    "RO": {  # Romania
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "SE": {  # Sweden
+        "default": VPN_PLAN_ID_MATRIX["euro"]["en"],
+    },
+    "SI": {  # Slovenia
+        "default": VPN_PLAN_ID_MATRIX["euro"]["sl"],
+    },
+    "SK": {  # Slovakia
+        "default": VPN_PLAN_ID_MATRIX["euro"]["sk"],
+    },
+    "US": {  # USA
         "default": VPN_PLAN_ID_MATRIX["usd"]["en"],
     },
 }
@@ -1552,12 +1731,144 @@ VPN_COUNTRY_CODES = [
     "IT",  # Italy
     "IE",  # Ireland
     "NL",  # Netherlands
+    "SE",  # Sweden
+    "FI",  # Finland
+    "BG",  # Bulgaria
+    "CY",  # Cyprus
+    "CZ",  # Czech Republic
+    "DK",  # Denmark
+    "EE",  # Estonia
+    "HR",  # Croatia
+    "HU",  # Hungary
+    "LT",  # Lithuania
+    "LU",  # Luxembourg
+    "LV",  # Latvia
+    "MT",  # Malta
+    "PL",  # Poland
+    "PT",  # Portugal
+    "RO",  # Romania
+    "SI",  # Slovenia
+    "SK",  # Slovakia
 ]
 
-VPN_AVAILABLE_COUNTRIES = 15
-VPN_CONNECT_SERVERS = 400
+VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
+VPN_AVAILABLE_COUNTRIES = 33
+VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
 
 # VPN client ID for referral parameter tracking (issue 10811)
 VPN_CLIENT_ID = "e6eb0d1e856335fc"
+
+# Countries where we can't legally sell or advertise Mozilla VPN (e.g via /whatsnew)
+# See: https://github.com/mozilla/bedrock/issues/11572
+VPN_EXCLUDED_COUNTRY_CODES = [
+    "AE",  # United Arab Emirates
+    "BY",  # Belarus
+    "CN",  # China
+    "CU",  # Cuba
+    "IQ",  # Iraq
+    "IR",  # Iran
+    "KP",  # North Korea
+    "OM",  # Oman
+    "RU",  # Russia
+    "SD",  # Sudan
+    "SY",  # Syria
+    "TM",  # Turkmenistan
+    "TR",  # Turkey
+]
+
+# Countries where we block Mozilla VPN downloads
+# See: https://github.com/mozilla/bedrock/issues/11659
+VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
+    "CN",  # China
+    "CU",  # Cuba
+    "IR",  # Iran
+    "KP",  # North Korea
+    "SD",  # Sudan
+    "SY",  # Syria
+]
+
+# VPN / RELAY BUNDLE ============================================================================
+
+# Product ID for VPN & Relay bundle subscriptions.
+VPN_RELAY_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
+
+# VPN & Relay bundle plan IDs by currency/language.
+VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
+    "usd": {
+        "en": {
+            "12-month": {
+                "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
+                "price": "6.99",
+                "total": "83.88",
+                "currency": "USD",
+                "saving": 40,
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn + relay",
+                    "currency": "USD",
+                    "discount": "83.88",
+                    "price": "83.88",
+                    "period": "yearly",
+                },
+            },
+        }
+    },
+}
+
+# Map of country codes to allocated VPN & Relay bundle currency/language plan IDs.
+# Each country can support both a default language and (optionally) a set of one
+# or more alternative languages.
+VPN_RELAY_BUNDLE_PRICING = {
+    "US": {
+        "default": VPN_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
+    },
+}
+
+# Countries where VPN & Relay bundle is available.
+# Phone masking is only supported in these countries.
+VPN_RELAY_BUNDLE_COUNTRY_CODES = [
+    "CA",  # Canada
+    "US",  # United States of America
+]
+
+# List of locales that are supported in the Mozilla VPN client application.
+VPN_SUPPORTED_LOCALES = [
+    "co",
+    "cs",
+    "cy",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "fy",
+    "hsb",
+    "hu",
+    "ia",
+    "id",
+    "is",
+    "it",
+    "ja",
+    "lo",
+    "nl",
+    "pa",
+    "pl",
+    "pt",
+    "ru",
+    "sk",
+    "sl",
+    "sq",
+    "sv",
+    "tr",
+    "uk",
+    "zh",
+]
+
+# RELAY =========================================================================================
+
+RELAY_PRODUCT_URL = config(
+    "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
+)

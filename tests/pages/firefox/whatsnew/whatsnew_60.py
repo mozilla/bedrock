@@ -9,7 +9,6 @@ from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxWhatsNew60Page(BasePage):
-
     _URL_TEMPLATE = "/{locale}/firefox/60.0/whatsnew/{params}"
 
     _account_button_locator = (By.CSS_SELECTOR, ".wnp-content-main .js-fxa-product-button")

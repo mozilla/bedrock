@@ -13,6 +13,7 @@ from django.test import RequestFactory
 from django.utils.timezone import now as tz_now
 
 import boto3
+import jq
 from sentry_sdk import capture_exception
 from sentry_sdk.api import capture_message
 
@@ -25,8 +26,8 @@ from bedrock.contentful.constants import (
     ACTION_SAVE,
     ACTION_UNARCHIVE,
     ACTION_UNPUBLISH,
-    COMPOSE_MAIN_PAGE_TYPE,
     CONTENT_TYPE_CONNECT_HOMEPAGE,
+    LOCALISATION_COMPLETENESS_CHECK_CONFIG,
     MAX_MESSAGES_PER_QUEUE_POLL,
 )
 from bedrock.contentful.models import ContentfulEntry
@@ -50,7 +51,7 @@ class Command(BaseCommand):
             dest="quiet",
             default=False,
             help="If no error occurs, swallow all output.",
-        ),
+        )
         parser.add_argument(
             "-f",
             "--force",
@@ -58,7 +59,7 @@ class Command(BaseCommand):
             dest="force",
             default=False,
             help="Load the data even if nothing new from Contentful.",
-        ),
+        )
 
     def log(self, msg) -> None:
         if not self.quiet:
@@ -237,7 +238,6 @@ class Command(BaseCommand):
         return viable_message_found
 
     def _detect_and_delete_absent_entries(self, contentful_data_attempted_for_sync) -> int:
-
         q_obj = Q()
         for ctype, _contentful_id, _locale in contentful_data_attempted_for_sync:
             if ctype == CONTENT_TYPE_CONNECT_HOMEPAGE:
@@ -249,7 +249,7 @@ class Command(BaseCommand):
                     # not how we express it in Bedrock, so we need to remap it
                     locale=self._remap_locale_for_bedrock(_locale),
                 )
-            q_obj.add(base_q, Q.OR)
+            q_obj |= base_q
 
         _entries_to_delete = ContentfulEntry.objects.exclude(q_obj)
         self.log(f"Entries to be deleted: {_entries_to_delete}")
@@ -265,7 +265,7 @@ class Command(BaseCommand):
                 message="Deleted more objects than expected based on these ids slated for deletion. Check the Contentful sync!",
                 level="warning",
             )
-        return res[1]["contentful.ContentfulEntry"]
+        return res[1]["contentful.ContentfulEntry"] if res[0] > 0 else 0
 
     def _remap_locale_for_bedrock(self, locale: str) -> str:
         return CONTENTFUL_TO_BEDROCK_LOCALE_MAP.get(locale, locale)
@@ -291,7 +291,9 @@ class Command(BaseCommand):
     def _get_content_to_sync(
         self,
         available_locales,
-    ) -> list((str, str),):
+    ) -> list(
+        (str, str),
+    ):
         """Fetches which content types and ids to query, individually, from the Contentful API"""
         content_to_sync = []
 
@@ -300,7 +302,7 @@ class Command(BaseCommand):
 
             # TODO: Change to syncing only `page` content types when we're in an all-Compose setup
             # TODO: treat the connectHomepage differently because its locale is an overloaded name field
-            for ctype in settings.CONTENTFUL_CONTENT_TYPES:
+            for ctype in settings.CONTENTFUL_CONTENT_TYPES_TO_SYNC:
                 for entry in ContentfulPage.client.entries(
                     {
                         "content_type": ctype,
@@ -315,7 +317,83 @@ class Command(BaseCommand):
 
         return content_to_sync
 
-    def _refresh_from_contentful(self) -> Tuple[int, int, int]:
+    def _get_value_from_data(self, data: dict, spec: dict) -> str:
+        """Extract a single value from `data` based on the provided `spec`,
+        which is written as a jq filter directive.
+
+        This will get all the strings in the data and return them as a
+        single string. As such, this is not intended for extracing
+        presentation-ready data, but is useful to check if we have viable
+        data at all."""
+
+        # jq docs: https://stedolan.github.io/jq/
+        # jq.py docs: https://github.com/mwilliamson/jq.py
+
+        try:
+            values = jq.all(spec, data)
+        except TypeError as e:
+            capture_exception(e)
+            return ""
+
+        for i, val in enumerate(values):
+            if val:
+                values[i] = val.strip()
+            elif val is None:
+                values[i] = ""
+        return " ".join(values).strip()
+
+    def _check_localisation_complete(self) -> None:
+        """In the context of Contentful-sourced data, we consider localisation
+        to be complete for a specific locale if ALL of the required aspects,
+        as defined in the config are present. We do NOT check whether
+        the content makes sense or contains as much content as other locales,
+        just that they exist in a 'truthy' way.
+        """
+
+        self.log("\n====================================\nChecking localisation completeness")
+        seen_count = 0
+        viable_for_localisation_count = 0
+        localisation_not_configured_count = 0
+        localisation_complete_count = 0
+
+        for contentful_entry in ContentfulEntry.objects.all():
+            completeness_spec = LOCALISATION_COMPLETENESS_CHECK_CONFIG.get(contentful_entry.content_type)
+            seen_count += 1
+            if completeness_spec:
+                viable_for_localisation_count += 1
+                entry_localised_fields_found = set()
+                data = contentful_entry.data
+                collected_values = []
+                for step in completeness_spec:
+                    _value_for_step = self._get_value_from_data(data, step)
+                    if _value_for_step:
+                        entry_localised_fields_found.add(step)
+                    collected_values.append(_value_for_step)
+                contentful_entry.localisation_complete = all(collected_values)
+                contentful_entry.save()
+                if contentful_entry.localisation_complete:
+                    localisation_complete_count += 1
+            else:
+                localisation_not_configured_count += 1
+            self.log(
+                f"\nChecking {contentful_entry.content_type}:{contentful_entry.locale}:{contentful_entry.contentful_id}"
+                f"-> Localised? {contentful_entry.localisation_complete}"
+            )
+            if completeness_spec and not contentful_entry.localisation_complete:
+                _missing_fields = set(completeness_spec).difference(entry_localised_fields_found)
+                self.log(f"These fields were missing localised content: {_missing_fields}")
+
+        self.log(
+            (
+                "Localisation completeness checked:"
+                f"\nFully localised: {localisation_complete_count} of {viable_for_localisation_count} candidates."
+                f"\nNot configured for localisation: {localisation_not_configured_count}."
+                f"\nTotal entries checked: {seen_count}."
+                "\n====================================\n"
+            )
+        )
+
+    def _refresh_from_contentful(self) -> Tuple[int, int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0
@@ -337,7 +415,6 @@ class Command(BaseCommand):
         # when we have a lot of locales in play. For now, the heavier-IO approach should be OK.
 
         for ctype, page_id, locale_code in content_to_sync:
-
             request = self.rf.get("/")
             request.locale = locale_code
             try:
@@ -361,13 +438,6 @@ class Command(BaseCommand):
                 capture_exception(ex)
                 error_count += 1
                 continue
-
-            # Compose-authored pages have a page_type of `page`
-            # but really we want the entity the Compose page references
-            if ctype == COMPOSE_MAIN_PAGE_TYPE:
-                # TODO: make this standard when we _only_ have Compose pages,
-                # because they all have a parent type of COMPOSE_MAIN_PAGE_TYPE
-                ctype = page_data["page_type"]
 
             hash = data_hash(page_data)
             _info = page_data["info"]
@@ -437,5 +507,7 @@ class Command(BaseCommand):
         except Exception as ex:
             self.log(ex)
             capture_exception(ex)
+
+        self._check_localisation_complete()
 
         return added_count, updated_count, deleted_count, error_count

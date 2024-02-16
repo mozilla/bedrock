@@ -9,24 +9,24 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('stub-attribution.js', function () {
-    const GA_VISIT_ID = '1456954538.1610960957';
+    const GA_CLIENT_ID = '1456954538.1610960957';
+    const GA_SESSION_ID = '1668161374';
+    const STUB_SESSION_ID = '1234567890';
+    const DLSOURCE = 'mozorg';
 
     beforeEach(function () {
-        // stub out Mozilla.Cookie lib
-        window.Mozilla.Cookies = sinon.stub();
-        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
-        window.Mozilla.Cookies.setItem = sinon.stub();
-        window.Mozilla.Cookies.getItem = sinon.stub();
-        window.Mozilla.Cookies.hasItem = sinon.stub();
+        window.Mozilla.dntEnabled = sinon.stub();
 
-        // stub out GA client ID
-        spyOn(Mozilla.StubAttribution, 'getGAVisitID').and.returnValue(
-            GA_VISIT_ID
-        );
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
+    });
+
+    afterEach(function () {
+        Mozilla.Analytics.customReferrer = '';
     });
 
     describe('init', function () {
@@ -40,12 +40,20 @@ describe('stub-attribution.js', function () {
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 utm_content: 'rel-esr',
                 referrer: '',
-                ua: 'chrome'
+                ua: 'chrome',
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
             spyOn(Mozilla.StubAttribution, 'requestAuthentication');
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
+            spyOn(window.dataLayer, 'push');
+
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
+            );
         });
 
         it('should update download links if session cookie exists', function () {
@@ -73,6 +81,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).toHaveBeenCalledWith(cookieData);
@@ -98,10 +107,16 @@ describe('stub-attribution.js', function () {
                 Mozilla.StubAttribution,
                 'getAttributionData'
             ).and.returnValue(data);
+
             Mozilla.StubAttribution.init();
+
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).toHaveBeenCalledWith(data);
+            expect(window.dataLayer.push).toHaveBeenCalledWith({
+                event: 'stub-session-id',
+                eLabel: STUB_SESSION_ID
+            });
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -131,6 +146,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -160,6 +176,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -189,6 +206,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -218,6 +236,7 @@ describe('stub-attribution.js', function () {
             expect(
                 Mozilla.StubAttribution.requestAuthentication
             ).not.toHaveBeenCalled();
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
             ).not.toHaveBeenCalled();
@@ -234,8 +253,13 @@ describe('stub-attribution.js', function () {
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
-        it('should return false if platform is not windows', function () {
-            window.site.platform = 'osx';
+        it('should return false if platform is not windows or macOS', function () {
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
+            window.site.platform = 'linux';
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
+            window.site.platform = 'ios';
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
+            window.site.platform = 'android';
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
@@ -246,6 +270,12 @@ describe('stub-attribution.js', function () {
 
         it('should return true for windows users who satisfy all other requirements', function () {
             window.site.platform = 'windows';
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
+            expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
+        });
+
+        it('should return true for macOS users who satisfy all other requirements', function () {
+            window.site.platform = 'osx';
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
@@ -261,7 +291,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -277,7 +308,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -291,7 +323,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -305,7 +338,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -319,7 +353,8 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -335,7 +370,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -349,7 +385,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:cm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -363,7 +400,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -377,7 +415,8 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -395,7 +434,8 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -411,7 +451,8 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -427,7 +468,8 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: STUB_SESSION_ID
             };
             /* eslint-enable camelcase */
 
@@ -495,7 +537,14 @@ describe('stub-attribution.js', function () {
     });
 
     describe('waitForGoogleAnalytics', function () {
-        it('should fire a callback with the GA visit ID', function () {
+        beforeEach(function () {
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
+            );
+        });
+
+        it('should fire a callback when GA client ID and session ID are found', function () {
             const callback = jasmine.createSpy('callback');
 
             Mozilla.StubAttribution.waitForGoogleAnalytics(callback);
@@ -503,7 +552,30 @@ describe('stub-attribution.js', function () {
         });
     });
 
+    describe('getReferrer', function () {
+        it('should return a custom referrer when set', function () {
+            const expected = 'http://www.google.com';
+            Mozilla.Analytics.customReferrer = expected;
+            expect(Mozilla.StubAttribution.getReferrer()).toEqual(expected);
+        });
+
+        it('should return standard document referrer otherwise', function () {
+            const expected = 'http://www.bing.com';
+            Mozilla.Analytics.customReferrer = '';
+            expect(Mozilla.StubAttribution.getReferrer(expected)).toEqual(
+                expected
+            );
+        });
+    });
+
     describe('getAttributionData', function () {
+        beforeEach(function () {
+            // stub out GA client ID
+            spyOn(Mozilla.StubAttribution, 'getGAClientID').and.returnValue(
+                GA_CLIENT_ID
+            );
+        });
+
         it('should return attribution data if utm params are present', function () {
             const referrer = '';
 
@@ -524,7 +596,9 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -554,7 +628,9 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -568,7 +644,7 @@ describe('stub-attribution.js', function () {
             expect(result).toEqual(data);
         });
 
-        it('should return only UA and GA data if neither utm params and referrer are present', function () {
+        it('should return only generic data if neither utm params and referrer are present', function () {
             const referrer = '';
 
             /* eslint-disable camelcase */
@@ -584,7 +660,9 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: '',
                 ua: 'chrome',
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
@@ -616,18 +694,20 @@ describe('stub-attribution.js', function () {
                 ua: 'chrome',
                 experiment: 'firefox-new',
                 variation: 1,
-                visit_id: GA_VISIT_ID
+                client_id: GA_CLIENT_ID,
+                session_id: jasmine.any(String),
+                dlsource: DLSOURCE
             };
             /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
             );
-            spyOn(window._SearchParams.prototype, 'get').and.callFake(function (
-                key
-            ) {
-                return key === 'experiment' ? 'firefox-new' : 1;
-            });
+            spyOn(window._SearchParams.prototype, 'get').and.callFake(
+                function (key) {
+                    return key === 'experiment' ? 'firefox-new' : 1;
+                }
+            );
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue(
                 'chrome'
             );
@@ -766,17 +846,40 @@ describe('stub-attribution.js', function () {
         /* eslint-enable camelcase */
 
         const winUrl =
-            'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
+            'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64Url =
-            'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
+            'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const transitionalUrl =
             'https://www.mozilla.org/firefox/download/thanks/';
+        const winStageUrl =
+            'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US';
+        const win64StageUrl =
+            'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
+        const winDevUrl =
+            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US';
+        const win64DevUrl =
+            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
+        const macOSNightlyUrl =
+            'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
+        const macOSBetaUrl =
+            'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
+        const macOSDevUrl =
+            'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
 
         beforeEach(function () {
             const downloadMarkup = `<ul class="download-list">
                     <li><a id="link-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winUrl}">Download</a></li>
                     <li><a id="link-direct-win" class="download-link" data-download-version="win" href="${winUrl}">Download</a></li>
                     <li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="${win64Url}">Download</a></li>
+                    <li><a id="link-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win" class="download-link" data-download-version="win" href="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win64" class="download-link" data-download-version="win64" href="${win64StageUrl}">Download</a></li>
+                    <li><a id="link-dev-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winDevUrl}">Download</a></li>
+                    <li><a id="link-dev-direct-win" class="download-link" data-download-version="win" href="${winDevUrl}">Download</a></li>
+                    <li><a id="link-dev-direct-win64" class="download-link" data-download-version="win64" href="${win64DevUrl}">Download</a></li>
+                    <li><a id="link-macos-nightly" class="download-link" data-download-version="osx" href="${macOSNightlyUrl}">Download</a></li>
+                    <li><a id="link-macos-beta" class="download-link" data-download-version="osx" href="${macOSBetaUrl}">Download</a></li>
+                    <li><a id="link-macos-dev" class="download-link" data-download-version="osx" href="${macOSDevUrl}">Download</a></li>
                 </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
@@ -795,18 +898,67 @@ describe('stub-attribution.js', function () {
             expect(document.getElementById('link-transitional').href).toEqual(
                 'https://www.mozilla.org/firefox/download/thanks/'
             );
+
+            // prod download links
             expect(
                 document
                     .getElementById('link-transitional')
                     .getAttribute('data-direct-link')
             ).toEqual(
-                'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(document.getElementById('link-direct-win').href).toEqual(
-                'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(document.getElementById('link-direct-win64').href).toEqual(
-                'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+
+            // stage download links
+            expect(
+                document
+                    .getElementById('link-stage-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win64').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+
+            // dev download links
+            expect(
+                document
+                    .getElementById('link-dev-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-dev-direct-win').href).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-dev-direct-win64').href
+            ).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+
+            // macOS pre-release links
+            expect(document.getElementById('link-macos-nightly').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-macos-beta').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-macos-dev').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
         });
 
@@ -911,13 +1063,19 @@ describe('stub-attribution.js', function () {
                 Mozilla.StubAttribution.COOKIE_CODE_ID,
                 data.attribution_code,
                 jasmine.any(String),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
             expect(Mozilla.Cookies.setItem).toHaveBeenCalledWith(
                 Mozilla.StubAttribution.COOKIE_SIGNATURE_ID,
                 data.attribution_sig,
                 jasmine.any(String),
-                '/'
+                '/',
+                undefined,
+                false,
+                'lax'
             );
         });
 
@@ -1008,6 +1166,130 @@ describe('stub-attribution.js', function () {
         it('should return false if exceeds sample rate', function () {
             spyOn(window.Math, 'random').and.returnValue(0.6);
             expect(Mozilla.StubAttribution.withinAttributionRate()).toBeFalsy();
+        });
+    });
+
+    describe('getGAClientID', function () {
+        it('should return a valid Google Analytics client ID', function () {
+            window.ga = sinon.stub();
+            window.ga.getAll = sinon.stub().returns([
+                {
+                    get: () => GA_CLIENT_ID
+                }
+            ]);
+
+            expect(Mozilla.StubAttribution.getGAClientID()).toEqual(
+                GA_CLIENT_ID
+            );
+        });
+
+        it('should return a null if Google Analytics client ID is invalid', function () {
+            window.ga = sinon.stub();
+            window.ga.getAll = sinon.stub().returns([
+                {
+                    get: () => ''
+                }
+            ]);
+
+            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
+        });
+
+        it('should return a null if accessing Google Analytics object throws an error', function () {
+            window.ga = sinon.stub().throws(function () {
+                return new Error();
+            });
+            expect(Mozilla.StubAttribution.getGAClientID()).toBeNull();
+        });
+    });
+
+    describe('createSessionID', function () {
+        it('should return a 10 digit randomly generated number as a string', function () {
+            const result = Mozilla.StubAttribution.createSessionID();
+
+            expect(typeof result).toEqual('string');
+            expect(/^\d{10}$/.test(result)).toBeTruthy();
+        });
+    });
+
+    describe('getGtagData', function () {
+        it('should return a valid Google Analytics client ID and session ID', function () {
+            const dataLayer = [
+                {
+                    event: 'page-id-loaded',
+                    pageId: 'Homepage',
+                    'gtm.uniqueEventId': 1
+                },
+                {
+                    'gtm.start': 1678700450438,
+                    event: 'gtm.js',
+                    'gtm.uniqueEventId': 2
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'client_id'
+                    }
+                },
+                {
+                    h: {
+                        0: 'get',
+                        1: 'G-YBFC8BJZW8',
+                        2: 'session_id'
+                    }
+                },
+                {
+                    h: {
+                        event: 'gtagApiGet',
+                        gtagApiResult: {
+                            client_id: GA_CLIENT_ID,
+                            session_id: GA_SESSION_ID
+                        },
+                        'gtm.uniqueEventId': 11
+                    }
+                },
+                {
+                    event: 'gtm.dom',
+                    'gtm.uniqueEventId': 12
+                },
+                {
+                    event: 'gtm.load',
+                    'gtm.uniqueEventId': 13
+                }
+            ];
+
+            expect(Mozilla.StubAttribution.getGtagData(dataLayer)).toEqual({
+                client_id: GA_CLIENT_ID,
+                session_id: GA_SESSION_ID
+            });
+        });
+    });
+
+    it('should return null values if client ID and session ID are not found', function () {
+        const dataLayer = [
+            {
+                event: 'page-id-loaded',
+                pageId: 'Homepage',
+                'gtm.uniqueEventId': 1
+            },
+            {
+                'gtm.start': 1678700450438,
+                event: 'gtm.js',
+                'gtm.uniqueEventId': 2
+            },
+            {
+                event: 'gtm.dom',
+                'gtm.uniqueEventId': 12
+            },
+            {
+                event: 'gtm.load',
+                'gtm.uniqueEventId': 13
+            }
+        ];
+
+        expect(Mozilla.StubAttribution.getGtagData(dataLayer)).toEqual({
+            client_id: null,
+            session_id: null
         });
     });
 });

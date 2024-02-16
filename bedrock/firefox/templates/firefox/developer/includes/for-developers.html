@@ -7,13 +7,13 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% call split(
-  block_id='nextgen',
-  image_url='img/firefox/developer/stylo-engine.svg',
+  block_id='fordevs',
+  image=resp_img('img/firefox/developer/stylo-engine.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
   block_class='t-performance'
 ) %}
   <h2 class="c-title">{{ ftl('firefox-developer-firefox-browser') }}</h2>
   <p class="c-subtitle">{{ ftl('firefox-developer-made-for-developers') }}</p>
-  <p>{{ ftl('firefox-developer-all-the-latest') }}</p>
+  <p>{{ ftl('firefox-developer-all-the-latest-v2', fallback='firefox-developer-all-the-latest') }}</p>
   <p>{{ ftl('firefox-developer-a-separate-profile') }}</p>
   <p>{{ ftl('firefox-developer-preferences-tailored') }}</p>
 {% endcall %}

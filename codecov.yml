@@ -7,3 +7,7 @@ coverage:
     patch:
       default:
         informational: true
+comment:
+  require_changes: true
+github_checks:
+    annotations: false

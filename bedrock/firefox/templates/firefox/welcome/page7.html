@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import hero with context %}
+{% from "macros-protocol.html" import callout with context %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -15,12 +15,16 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-7' %}
 {% set _utm_campaign = 'welcome-7-fbcontainer' %}
 
+{%block page_css %}
+ {{ super()}}
+ {{ css_bundle('protocol-callout') }}
+{% endblock %}
 
 {% block content_intro %}
-{% call hero(
+{% call callout(
     title=ftl('page7-its-okay-to-like-facebook'),
     desc=ftl('page7-if-you-still-kinda-like-facebook'),
-    class='mzp-t-firefox mzp-t-dark',
+    class='mzp-t-firefox mzp-t-dark mzp-t-hero',
     include_cta=True,
     heading_level=1
   ) %}
@@ -104,11 +108,38 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
       </div>
-      <h3 class="c-picto-block-title">{{ ftl('page7-stay-ahead-of-hackers') }}</h3>
+      <h3 class="c-picto-block-title">
+        {% if LANG == "en-US" %}
+            Reclaim your stolen info from hackers
+        {% else %}
+          {{ ftl('page7-stay-ahead-of-hackers') }}
+        {% endif %}
+      </h3>
       <div class="c-picto-block-body">
-        <p>{{ ftl('page7-firefox-monitor-lets-you-find') }}</p>
-        <a href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
-          <strong>{{ ftl('page7-get-firefox-monitor') }}</strong>
+        {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+        <p>
+          {% if mozilla_monitor %}
+            {% if LANG == "en-US" %}
+              Mozilla Monitor lets you see if you’ve been part of a data breach. And if you have, it automatically gets your private info back for you and continually monitors your identity for new leaks.
+            {% else %}
+              {{ ftl('page7-firefox-monitor-lets-you-find-v2', fallback='page7-firefox-monitor-lets-you-find') }}
+            {% endif %}
+          {% else %}
+            {{ ftl('page7-firefox-monitor-lets-you-find') }}
+          {% endif %}
+        </p>
+        <a href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+          <strong>
+            {% if mozilla_monitor %}
+              {% if LANG == "en-US" %}
+                Check for breaches now
+              {% else %}
+                {{ ftl('page7-get-mozilla-monitor', fallback='page7-get-firefox-monitor') }}
+              {% endif %}
+            {% else %}
+              {{ ftl('page7-get-firefox-monitor') }}
+            {% endif %}
+          </strong>
         </a>
       </div>
     </div>

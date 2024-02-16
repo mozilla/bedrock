@@ -288,7 +288,7 @@ redirectpatterns = (
     redirect(r"^contribute/local/asia\.html$", "/contact/communities/asia-south-pacific/"),
     redirect(r"^contribute/local/southpole\.html$", "/contact/communities/antarctica/"),
     # bug 1393622
-    redirect(r"contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver)/?$", "/contact/spaces/"),
+    redirect(r"contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver|portland)/?$", "/contact/spaces/"),
     redirect("^contribute/buttons/", "https://affiliates.mozilla.org/"),
     # bug 875052
     redirect(r"^about/get-involved", "/contribute/"),
@@ -503,8 +503,9 @@ redirectpatterns = (
     redirect(r"^technology/update-your-browser/?$", "firefox.browsers.update-browser"),
     redirect(r"^technology/incognito-browser/?$", "firefox.browsers.incognito-browser"),
     redirect(r"^technology/browser-history/?$", "firefox.browsers.browser-history"),
-    # Issue 8536
-    redirect(r"^etc/firefox/retention(/.*)?", "firefox.retention.thank-you"),
+    # Issue 8536, 11891
+    redirect(r"^etc/firefox/retention(/.*)?", "firefox"),
+    redirect(r"^firefox/retention/thank-you/?", "firefox"),
     # Issue 8374
     redirect(r"^plugincheck/?$", "https://support.mozilla.org/kb/npapi-plugins/"),
     # Vanity URL for EKR's blog
@@ -525,10 +526,12 @@ redirectpatterns = (
     # Issue 9560
     redirect(
         r"^openletter/?$",
-        "https://foundation.mozilla.org/blog/mozilla-urges-facebook-and-twitter-halt-dangerous-recommendations/",
+        "https://foundation.mozilla.org/en/campaigns/sign-letter-AICOA/",
         query={
-            "utm_source": "mozilla.org",
+            "utm_campaign": "2022antitrust",
             "utm_content": "shortlink",
+            "utm_medium": "print",
+            "utm_source": "washingtonpost",
         },
     ),
     # Bug 1673476
@@ -537,6 +540,25 @@ redirectpatterns = (
     redirect(r"^grants(/.*)?$", "mozorg.moss.index"),
     # Issue 9984
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
-    # Issue 10335
-    redirect(r"^vpn/?$", "products.vpn.landing"),
+    # Issue 11204
+    redirect(r"^(truecolou?rs|turningred)/?$", "firefox"),
+    # Issue 11991
+    redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
+    redirect(r"^santa-locator/?$", "mozorg.santa-locator"),
+    # Issue 12563
+    redirect(r"^/exp/firefox/?$", "firefox"),
+    redirect(r"^/exp/firefox/new/?$", "firefox.new"),
+    redirect(r"^/exp/firefox/accounts/?$", "firefox.accounts"),
+    redirect(r"^/exp/opt-out/?$", "https://www.convert.com/opt-out/"),
+    # Issue 13211
+    redirect(r"^/en/$", "/en-US/", permanent=True),
+    # Issue 13554
+    redirect(r"^about/leadership/senior-leadership/$", "/about/leadership/#senior"),
+    redirect(r"^about/leadership/mozilla-foundation/$", "/about/leadership/#foundation"),
+    redirect(r"^about/leadership/reps-council/$", "/about/leadership/#reps"),
+    redirect(r"^about/leadership/boards-of-directors/$", "/about/leadership/#boards"),
+    # Issue 13672
+    redirect(r"/VendorDPA/?$", "https://assets.mozilla.net/pdf/VendorDPA.pdf", re_flags="i"),
+    # Issue 13754
+    redirect(r"^rise-?25/?$", "https://rise25.mozilla.org/"),
 )

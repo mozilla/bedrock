@@ -7,8 +7,5 @@
 {% extends "firefox/new/basic/thanks.html" %}
 
 {% block js %}
-  {% if switch('tracking-pixel') %}
-    {{ js_bundle('firefox_new_pixel') }}
-  {% endif %}
   {{ js_bundle('firefox_new_thanks_direct') }}
 {% endblock %}

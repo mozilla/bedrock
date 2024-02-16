@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import pytest
-from jinja2 import Markup
+from markupsafe import Markup
 
 from bedrock.contentful.templatetags.helpers import (
     ALLOWED_ATTRS,
@@ -42,7 +42,7 @@ def test__allowed_attrs(attr, allowed):
         ),
         (
             '<a id="test" foo="bar" href="#test">test</a>',
-            '<a href="#test" id="test">test</a>',
+            '<a id="test" href="#test">test</a>',
         ),
     ),
     ids=[
@@ -54,7 +54,7 @@ def test_external_html(content, expected):
     # light test of our bleaching
     output = external_html(content)
 
-    assert type(content) == str
+    assert isinstance(content, str)
     assert output == Markup(expected)
 
 
@@ -76,7 +76,7 @@ def test_allowed_attrs_const__remains_what_we_expect():
 def test_allowed_tags_const__remains_what_we_expect():
     # Regression safety net so that any amendment to ALLOWED_TAGS is 100% deliberate
 
-    assert ALLOWED_TAGS == [
+    assert ALLOWED_TAGS == {
         "a",
         "abbr",
         "acronym",
@@ -103,4 +103,4 @@ def test_allowed_tags_const__remains_what_we_expect():
         "strike",
         "strong",
         "ul",
-    ]
+    }

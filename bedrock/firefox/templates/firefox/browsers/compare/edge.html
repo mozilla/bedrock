@@ -37,11 +37,21 @@
 <div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
     <section class="compare-details-section-summary">
-      <p class="compare-details-section-intro">{{ ftl('compare-edge-with-windows-10-microsoft-introduced-updated', fallback='compare-edge-with-windows-10-microsoft-introduced') }}</p>
+      <p class="compare-details-section-intro">{{ ftl('compare-edge-with-windows-10-microsoft-introduced-updated') }}</p>
 
       <p>{{ ftl('compare-edge-here-well-compare-our-firefox') }}</p>
 
-      {{ high_res_img('img/firefox/compare/compare-browser-edge.png', {'alt': '', 'width': '545', 'height': '424', 'class': 'compare-details-image'}) }}
+      {{ resp_img(
+        url='img/firefox/compare/compare-browser-edge.png',
+        srcset={
+          'img/firefox/compare/compare-browser-edge-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '545',
+          'height': '424',
+          'class': 'compare-details-image'
+        }
+      ) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -64,7 +74,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default', fallback='compare-shared-blocks-third-party-tracking') }}</th>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking-default') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -83,11 +93,11 @@
 
       <p>{{ ftl('compare-edge-edge-is-integrated-into-the') }}</p>
 
-      <p>{{ ftl('compare-edge-at-firefox-we-pride-ourselves', fallback='compare-edge-at-firefox-our-privacy-fallback', attrs='href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox'))) }}</p>
+      <p>{{ ftl('compare-edge-at-firefox-we-pride-ourselves', fallback='compare-edge-at-firefox-our-privacy-fallback', attrs='href="%s" data-cta-text="Privacy Notices"  data-cta-type="link"'|safe|format(url('privacy.notices.firefox'))) }}</p>
 
       <img src="{{ static('img/firefox/compare/compare-privacy-eyes.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
-      <p>{{ ftl('compare-edge-your-privacy-protections-shows', attrs='href="%s" data-cta-text="Privacy Protections" data-cta-type="link"'|safe|format(url('firefox.privacy.products'))) }}</p>
+      <p>{{ ftl('compare-edge-your-privacy-protections-shows', attrs='href="%s" data-cta-text="Privacy Protections" data-cta-text="Privacy Products" data-cta-type="link"'|safe|format(url('firefox.privacy.products'))) }}</p>
 
       <p>{{ ftl('compare-edge-in-firefox-private-browsing') }}</p>
 
@@ -170,7 +180,7 @@
 
       <p>{{ ftl('compare-edge-edge-has-some-nice-ui-features') }}</p>
 
-      <p>{{ ftl('compare-edge-firefox-features-a-scrolling', attrs='href="%s" data-cta-type="link" data-cta-name="Pocket feature"'|safe|format(url('firefox.pocket'))) }}</p>
+      <p>{{ ftl('compare-edge-firefox-features-a-scrolling', attrs='href="%s" data-cta-text="Pocket" data-cta-type="link"'|safe|format(url('firefox.pocket'))) }}</p>
 
       <p>{{ ftl('compare-edge-firefox-and-edge-both-offer', fallback='compare-edge-firefox-and-edge-both-offer-fallback') }}</p>
 
@@ -217,7 +227,7 @@
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ ftl('compare-shared-primary-password', fallback='compare-shared-master-password') }}</th>
+              <th scope="row">{{ ftl('compare-shared-primary-password') }}</th>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
@@ -226,7 +236,7 @@
 
       <p>{{ ftl('compare-edge-with-internet-explorer-microsoft', fallback='compare-edge-with-internet-explorer-fallback') }}</p>
 
-      <p>{{ ftl('compare-edge-firefox-has-been-available', attrs='href="%s" data-cta-type="link" data-cta-name="free account"'|safe|format(url('firefox.accounts'))) }}</p>
+      <p>{{ ftl('compare-edge-firefox-has-been-available', attrs='href="%s" data-cta-text="Accounts" data-cta-type="link"'|safe|format(url('firefox.accounts'))) }}</p>
 
       <p>{{ ftl('compare-edge-edge-also-allows-you-to-connect', fallback='compare-edge-edge-also-allows-you-to-fallback') }}</p>
 
@@ -239,13 +249,13 @@
         <h2>{{ ftl('compare-shared-overall-assessment') }}</h2>
       </header>
 
-      <p>{{ ftl('compare-edge-aside-from-sucking-up-a-lot', attrs='href="%s" data-cta-type="link" data-cta-name="Mozilla"'|safe|format(url('mozorg.home'))) }}</p>
+      <p>{{ ftl('compare-edge-aside-from-sucking-up-a-lot', attrs='href="%s" data-cta-text="Home" data-cta-type="link"'|safe|format(url('mozorg.home'))) }}</p>
 
       <p>{{ ftl('compare-edge-the-bottom-line-is-that-while') }}</p>
 
       <div class="compare-content compare-version-disclaimer">
         <p>
-          {{ ftl('compare-shared-the-comparisons-made-here-updated', fallback='compare-shared-the-comparisons-made-here') }}
+          {{ ftl('compare-shared-the-comparisons-made-here-updated') }}
           <br>
           {{ ftl('compare-shared-brand-name-firefox') }} (81) |
           {{ ftl('compare-shared-brand-name-edge') }} (85)

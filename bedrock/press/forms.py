@@ -13,7 +13,6 @@ from bedrock.mozorg.forms import (
     TimeInput,
     URLInput,
 )
-from lib.l10n_utils.dotlang import _, _lazy
 
 SPEAKER_REQUEST_FILE_SIZE_LIMIT = 5242880  # 5MB
 
@@ -46,7 +45,7 @@ class PressInquiryForm(forms.Form):
         honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:
-            raise forms.ValidationError(_("Your submission could not be processed"))
+            raise forms.ValidationError("Your submission could not be processed")
 
 
 class SpeakerRequestForm(forms.Form):
@@ -55,7 +54,7 @@ class SpeakerRequestForm(forms.Form):
         max_length=255,
         required=True,
         error_messages={
-            "required": _lazy("Please enter a name for the event."),
+            "required": "Please enter a name for the event.",
         },
         widget=forms.TextInput(
             attrs={
@@ -69,22 +68,22 @@ class SpeakerRequestForm(forms.Form):
         max_length=2000,
         required=True,
         error_messages={
-            "required": _lazy("Please enter a URL."),
-            "invalid": _lazy("Please enter a valid URL."),
+            "required": "Please enter a URL.",
+            "invalid": "Please enter a valid URL.",
         },
         widget=URLInput(
             attrs={
                 "class": "required",
                 "required": "required",
                 "aria-required": "true",
-                "placeholder": _lazy("http://www.my-event.com"),
+                "placeholder": "http://www.my-event.com",
             }
         ),
     )
     sr_event_date = forms.CharField(
         required=True,
         error_messages={
-            "required": _lazy("Please provide a date."),
+            "required": "Please provide a date.",
         },
         widget=DateInput(
             attrs={
@@ -97,7 +96,7 @@ class SpeakerRequestForm(forms.Form):
     sr_event_time = forms.CharField(
         required=True,
         error_messages={
-            "required": _lazy("Please provide a time."),
+            "required": "Please provide a time.",
         },
         widget=TimeInput(
             attrs={
@@ -145,7 +144,7 @@ class SpeakerRequestForm(forms.Form):
         max_length=254,  # max length allowed for emails
         required=True,
         error_messages={
-            "invalid": _lazy("Please enter a valid email address"),
+            "invalid": "Please enter a valid email address",
         },
         widget=EmailInput(
             attrs={
@@ -160,7 +159,7 @@ class SpeakerRequestForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                "placeholder": _lazy("http://www.my-company.com"),
+                "placeholder": "http://www.my-company.com",
             }
         ),
     )
@@ -260,11 +259,11 @@ class SpeakerRequestForm(forms.Form):
     sr_presentation_type = forms.MultipleChoiceField(
         required=False,
         choices=(
-            ("keynote", _lazy("Keynote")),
-            ("presentation", _lazy("Presentation")),
-            ("fireside chat", _lazy("Fireside Chat")),
-            ("panel", _lazy("Panel")),
-            ("other", _lazy("Other")),
+            ("keynote", "Keynote"),
+            ("presentation", "Presentation"),
+            ("fireside chat", "Fireside Chat"),
+            ("panel", "Panel"),
+            ("other", "Other"),
         ),
         widget=forms.CheckboxSelectMultiple(),
     )
@@ -302,7 +301,7 @@ class SpeakerRequestForm(forms.Form):
 
         if attachment:
             if attachment.size > SPEAKER_REQUEST_FILE_SIZE_LIMIT:
-                raise forms.ValidationError(_("Attachment must not exceed 5MB"))
+                raise forms.ValidationError("Attachment must not exceed 5MB")
 
         return attachment
 
@@ -311,4 +310,4 @@ class SpeakerRequestForm(forms.Form):
         honeypot = cleaned_data.pop("office_fax", None)
 
         if honeypot:
-            raise forms.ValidationError(_("Your submission could not be processed"))
+            raise forms.ValidationError("Your submission could not be processed")

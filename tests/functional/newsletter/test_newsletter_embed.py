@@ -11,7 +11,10 @@ from pages.home import HomePage
 from pages.mission import MissionPage
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
+from pages.newsletter.index import NewsletterPage
+from pages.newsletter.knowledge_is_power import KnowledgeIsPowerNewsletterPage
 from pages.newsletter.mozilla import MozillaNewsletterPage
+from pages.newsletter.security_privacy_news import SecurityPrivacyNewsletterPage
 
 
 @pytest.mark.smoke
@@ -23,9 +26,12 @@ from pages.newsletter.mozilla import MozillaNewsletterPage
         AboutPage,
         MissionPage,
         pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+        NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
+        KnowledgeIsPowerNewsletterPage,
+        SecurityPrivacyNewsletterPage,
     ],
 )
 def test_newsletter_default_values(page_class, base_url, selenium):
@@ -47,13 +53,17 @@ def test_newsletter_default_values(page_class, base_url, selenium):
         MissionPage,
         ContributePage,
         pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+        NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
+        KnowledgeIsPowerNewsletterPage,
+        SecurityPrivacyNewsletterPage,
     ],
 )
 def test_newsletter_sign_up_success(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
+    assert not page.newsletter.sign_up_successful
     page.newsletter.expand_form()
     page.newsletter.type_email("success@example.com")
     page.newsletter.select_country("United Kingdom")
@@ -73,15 +83,19 @@ def test_newsletter_sign_up_success(page_class, base_url, selenium):
         MissionPage,
         ContributePage,
         pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+        NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
+        KnowledgeIsPowerNewsletterPage,
+        SecurityPrivacyNewsletterPage,
     ],
 )
 def test_newsletter_sign_up_failure(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
+    assert not page.newsletter.is_form_error_displayed
     page.newsletter.expand_form()
-    page.newsletter.type_email("invalid@email")
+    page.newsletter.type_email("failure@example.com")
     page.newsletter.select_country("United Kingdom")
     page.newsletter.select_text_format()
     page.newsletter.accept_privacy_policy()

@@ -3,14 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-
+/* eslint-env es6 */
 module.exports = {
     env: {
         browser: true,
-        commonjs: true,
-        jasmine: true
+        commonjs: true
     },
-    extends: ['eslint:recommended', 'plugin:json/recommended', 'prettier'],
+    extends: ['eslint:recommended', 'prettier'],
+    ignorePatterns: ['contentful_migrations/migrations/*.cjs'],
     rules: {
         // Require strict mode directive in top level functions
         // https://eslint.org/docs/rules/strict
@@ -79,13 +79,17 @@ module.exports = {
             }
         },
         {
-            // JS Karma test files.
+            // JS Jasmine test files.
             files: ['tests/unit/**/*.js'],
             env: {
-                es2017: true
+                es2017: true,
+                jasmine: true
             },
             parserOptions: {
                 sourceType: 'module'
+            },
+            globals: {
+                sinon: 'writable'
             }
         },
         {
@@ -93,7 +97,7 @@ module.exports = {
             files: [
                 'webpack.config.js',
                 'webpack.static.config.js',
-                'tests/unit/karma.conf.js'
+                'webpack.test.config.js'
             ],
             env: {
                 node: true,
@@ -106,7 +110,6 @@ module.exports = {
     ],
     globals: {
         Mozilla: 'writable',
-        Mzp: 'writable',
         site: 'writable'
     }
 };

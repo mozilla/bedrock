@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import datetime
 import time
 from email.utils import formatdate
 
@@ -20,13 +19,16 @@ class CacheMiddleware:
         return self.process_response(request, response)
 
     def process_response(self, request, response):
-        cache = request.method != "POST" and response.status_code != 404 and "Cache-Control" not in response
-        if cache:
-            d = datetime.datetime.now() + datetime.timedelta(minutes=10)
-            stamp = time.mktime(d.timetuple())
+        if request.method not in ("GET", "HEAD"):
+            return response
+        if response.streaming or "cache-control" in response:
+            return response
 
-            response["Cache-Control"] = "max-age=600"
-            response["Expires"] = formatdate(timeval=stamp, localtime=False, usegmt=True)
+        # Expiration time in seconds, now + 10 minutes.
+        stamp = int(time.time() + 600)
+
+        response["Cache-Control"] = "max-age=600"
+        response["Expires"] = formatdate(timeval=stamp, localtime=False, usegmt=True)
         return response
 
 

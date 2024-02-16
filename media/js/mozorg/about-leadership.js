@@ -4,6 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
+var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+
 // create namespace
 if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
@@ -25,7 +28,7 @@ if (typeof window.Mozilla === 'undefined') {
             modalContent.removeAttribute('id');
             modalContent.setAttribute('aria-role', 'article');
 
-            Mzp.Modal.createModal(e.target, content, {
+            MzpModal.createModal(e.target, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function () {
                     content.appendChild(modalContent);
@@ -37,12 +40,24 @@ if (typeof window.Mozilla === 'undefined') {
         });
     }
 
+    function getHash() {
+        var hash = window.location.hash;
+        if (hash.indexOf('#') > -1) {
+            hash = hash.split('#')[1];
+        }
+
+        return hash;
+    }
+
     // trigger modal on page load if hash is present and matches a person with a bio
     if (window.location.hash) {
-        var target = document.getElementById(window.location.hash.substr(1));
+        var hash = getHash();
+        var target = document.getElementById(hash);
 
         if (target && target.classList.contains('has-bio')) {
             target.click();
         }
     }
+
+    MzpSideMenu.init();
 })(window.Mozilla);

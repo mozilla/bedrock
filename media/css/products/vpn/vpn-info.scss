@@ -14,10 +14,8 @@
 }
 
 .c-list-content {
-    @include bidi((
-        (margin-left, $layout-xs, 0),
-        (margin-right, 0, $layout-xs)
-    ));
+    @include bidi(((margin-left, $layout-xs, 0),
+            (margin-right, 0, $layout-xs)));
 }
 
 .vpn-cta {

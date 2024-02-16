@@ -570,6 +570,7 @@ URLS = flatten(
         url_test("/donate_form.pdf", "https://donate.mozilla.org/"),
         url_test("/donate.html", "https://donate.mozilla.org/"),
         url_test("/download-mozilla.html", "http://developer.mozilla.org/en/Download_Mozilla_Source_Code"),
+        url_test("/en/", "/en-US/"),  # Issue 13211
         url_test("/feedback.html", "/contact/"),
         url_test("/firebird", "http://www.firefox.com"),
         url_test("/foundation/privacy-policy.html", "/privacy/websites/"),

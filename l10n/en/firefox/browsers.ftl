@@ -5,14 +5,17 @@
 ### URL: https://www-dev.allizom.org/firefox/browsers/
 
 # HTML page title
-firefox-browsers-get-the-browsers-that-put = Get the browsers that put your privacy first — and always have
+firefox-browsers-page-title = Download { -brand-name-firefox } for Desktop, Mobile, or Enterprise
 
 # HTML page description
-firefox-browsers-get-the-privacy-you-deserve = Get the privacy you deserve. Enhanced Tracking Protection is automatic in every { -brand-name-firefox } browser.
+firefox-browsers-page-desc = Choose from Desktop, { -brand-name-ios }, { -brand-name-android }, or let us email you a mobile download link.
 
+# Obsolete string
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-browsers-get-the-browsers-strong = Get the <strong>browsers</strong> that put your privacy first — and always have
 
+# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
+firefox-browsers-get-the-browsers-strong-v2 = Get the browser that puts your privacy first — and <strong>always</strong> has
 firefox-browsers-desktop = Desktop
 firefox-browsers-seriously-private-browsing = Seriously private browsing. { -brand-name-firefox } automatically blocks 2000+ online trackers from collecting information about what you do online.
 firefox-browsers-download-for-desktop = Download for Desktop
@@ -35,7 +38,7 @@ firefox-browsers-join-firefox-and-get-the-most = Join { -brand-name-firefox } an
 # Variables:
 #   $fxa_attr (string) - anchor link url and attributes
 #   $accounts_attr (string) - anchor link url and attributes
-firefox-browsers-already-have-an-account-sign = Already have an account? <a { $fxa_attr }>Sign In</a> or <a { $accounts_attr }>learn more</a> about joining Firefox.
+firefox-browsers-already-have-an-account-sign-v2 = Already have an account? <a { $fxa_attr }>Sign in</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
 
 firefox-browsers-android = { -brand-name-android }
 firefox-browsers-ios = { -brand-name-ios }

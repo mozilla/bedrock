@@ -16,6 +16,9 @@
 {% block page_ios_icon %}{{ static('img/favicons/firefox/browser/developer/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('firefox_developer') }}
 {% endblock %}
 
@@ -32,16 +35,16 @@
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">
-        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Firefox">
+      <h2 class="c-sub-navigation-title is-summary">
+        <a href="{{ url('firefox.browsers.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
           <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
          {{ ftl('sub-navigation-firefox') }}
         </a>
       </h2>
-      <ul class="c-sub-navigation-list">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.enterprise.index') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Enterprise">{{ ftl('sub-navigation-enterprise') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-name="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-name="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
+      <ul class="c-sub-navigation-list is-details is-closed">
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.enterprise.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Enterprise">{{ ftl('sub-navigation-enterprise') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
+        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-text="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
       </ul>
     </div>
   </div>
@@ -49,7 +52,7 @@
 {% endblock %}
 
 {% block content %}
-<main role="main">
+<main>
   <section class="t-intro">
     <div class="mzp-l-content">
       <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-developer"></div>
@@ -58,21 +61,28 @@
 
       {{ download_firefox('alpha', platform='desktop', dom_id='intro-download', download_location='primary cta') }}
 
+      <p class="show-linux">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/products/firefox/install-and-update-firefox#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener"
+      data-cta-type="link" data-cta-text="Get help with your installation"')}}</p>
       <p class="intro-feedback-note">
         {{ ftl('firefox-developer-firefox-developer-edition-sends') }}
         <a href="{{ url('privacy.notices.firefox') }}#pre-release" class="more">{{ ftl('ui-learn-more') }}</a>
       </p>
     </div>
     <div class="intro-image">
-      {{ high_res_img('img/firefox/developer/hero-screenshot.png', {'alt': '', 'width': '1200', 'height': '337'}) }}
+      {{ resp_img(
+        url='img/firefox/developer/hero-screenshot.png',
+        srcset={
+          'img/firefox/developer/hero-screenshot-high-res.png': '2x'
+        },
+        optional_attributes={
+          'width': '1200',
+          'height': '337'
+        }
+      ) }}
     </div>
   </section>
 
-  {% if ftl_has_messages('firefox-developer-made-for-developers', 'firefox-developer-all-the-latest') %}
-    {% include '/firefox/developer/includes/for-developers.html' %}
-  {% else %}
-    {% include '/firefox/developer/includes/performance.html' %}
-  {% endif %}
+  {% include '/firefox/developer/includes/for-developers.html' %}
 
   {% include '/firefox/developer/includes/highlights.html' %}
 
@@ -82,8 +92,10 @@
     {% include '/firefox/developer/includes/engage.html' %}
 
     {% call split(
-      image_url='img/firefox/developer/browser.png',
-      include_highres_image=True,
+      image=resp_img('img/firefox/developer/browser.png',
+        srcset={ 'img/firefox/developer/browser-high-res.png': '2x' },
+        optional_attributes={ 'class': 'mzp-c-split-media-asset' }
+      ),
       block_class='mzp-l-split-reversed mzp-l-split-center-on-sm-md',
       media_after=True
     ) %}
@@ -113,9 +125,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_developer') }}
-{% endblock %}
-
-{% block structured_data %}
-  {% include 'includes/structured-data/software/firefox-developer-software.json' %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

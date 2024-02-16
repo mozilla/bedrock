@@ -1,0 +1,104 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<footer class="pocket-footer-container">
+    <div class="pocket-footer-content">
+        <nav class="pocket-footer-primary">
+            <section class="pocket-footer-section">
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-products') }}</h6>
+                <ul class="pocket-footer-list">
+                    <li>
+                        <a href="https://getpocket.com/explore/must-reads?src=footer_v2">{{ ftl('pocket-footer-must-read-articles') }}</a>
+                    </li>
+                    <li>
+                        <a href="https://getpocket.com/explore/pocket-hits?src=footer_v2">{{ ftl('pocket-footer-daily-newsletter')}}</a>
+                    </li>
+                    <li>
+                        <a href="https://getpocket.com/premium?src=footer_v2">{{ ftl('pocket-footer-pocket-premium') }}</a>
+                    </li>
+                    <li>
+                         <a href="{{ url('pocket.welcome') }}?src=footer_v2">{{ ftl('pocket-footer-save-to-pocket-extensions') }}</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="pocket-footer-section">
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-company') }}</h6>
+                <ul class="pocket-footer-list">
+                    <li>
+                      <a href="{{ url('pocket.about') }}?src=footer_v2">{{ ftl('pocket-footer-about') }}</a>
+                    </li>
+                    <li>
+                      <a href="{{ url('pocket.jobs') }}?src=footer_v2">{{ ftl('pocket-footer-careers') }}</a>
+
+                    </li>
+                    <li>
+                        <a href="https://getpocket.com/blog?src=footer_v2">{{ ftl('pocket-footer-blog') }}</a>
+
+                    </li>
+                </ul>
+            </section>
+            <section class="pocket-footer-section">
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-resources') }}</h6>
+                <ul class="pocket-footer-list">
+                    <li>
+                         <a href="https://help.getpocket.com/?src=footer_v2">{{ ftl('pocket-footer-get-help') }}</a>
+
+                    </li>
+                    <li>
+                          <a href="https://getpocket.com/developer/?src=footer_v2">{{ ftl('pocket-footer-developer-api') }}</a>
+
+                    </li>
+                    <li>
+                        <a href="https://getpocket.com/publisher/?src=footer_v2">{{ ftl('pocket-footer-pocket-for-publishers') }}</a>
+                    </li>
+                    <li>
+                        <a href="https://getpocket.com/sponsor/?src=footer_v2">{{ ftl('pocket-footer-advertise') }}</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="pocket-footer-section">
+                <h6 class="pocket-footer-heading">{{ ftl('pocket-footer-get-the-app') }}</h6>
+                <ul class="pocket-footer-list download-links">
+                    <li>
+                        <a class="app-download-link"
+                            href="https://apps.apple.com/us/app/pocket-save-read-grow/id309601447" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="{{ static('img/pocket/apple-app-store-badge.svg') }}" alt="{{ ftl('pocket-footer-download-on-apple-app-store') }}">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-download-link google-play-badge"
+                            href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="{{ static('img/pocket/google-play-badge.png') }}" alt="{{ ftl('pocket-footer-get-it-google-play') }}">
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+        <div class="pocket-footer-secondary">
+          <div class="pocket-footer-legal-details">
+            <p class="pocket-footer-secondary-desc">
+            {{ ftl('pocket-footer-pocket-is-part-of-mozilla-family',
+            mozorgabout='https://www.mozilla.org/about/') }}</p>
+            <div class="legal" aria-label="{{ ftl('pocket-footer-aria-label-legal') }}">
+              <span>© {{ ftl('pocket-footer-mozilla-corporation-year', current_year=current_year|string) }}</span>
+              <a href="{{ url('pocket.privacy') }}?src=footer_v2">{{ ftl ('pocket-footer-privacy-policy') }}</a>
+              <a href="{{ url('pocket.tos') }}?src=footer_v2">{{ ftl ('pocket-footer-terms-of-service') }}</a>
+              <button id="ot-sdk-btn" class="ot-sdk-show-settings">{{ ftl ('pocket-footer-cookie-preferences') }}</button>
+            </div>
+          </div>
+          <ul class="pocket-footer-socials">
+            <li class="pocket-footer-socials-item">
+              <a href="https://twitter.com/pocket" class="pocket-footer-socials-item-link twitter" target="_blank" rel="external noopener noreferrer"><span>{{ ftl ('pocket-footer-twitter-brand-name') }}</span></a>
+            </li>
+            <li class="pocket-footer-socials-item">
+              <a href="https://facebook.com/pocket" class="pocket-footer-socials-item-link facebook" target="_blank" rel="external noopener noreferrer"><span>{{ ftl ('pocket-footer-facebook-brand-name') }}</span></a>
+            </li>
+          </ul>
+        </div>
+    </div>
+</footer>

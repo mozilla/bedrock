@@ -2,32 +2,38 @@ DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker-compose)
 DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
+POCKET_MODE = Pocket
 
 all: help
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build         - build docker images for dev"
-	@echo "  run           - docker-compose up the entire system for dev"
-	@echo "  stop          - stop all docker containers"
-	@echo "  kill          - kill all docker containers (more forceful than stop)"
-	@echo "  pull          - pull the latest production images from Docker Hub"
-	@echo "  run-shell     - open a bash shell in a fresh container"
-	@echo "  shell         - open a bash shell in the running app"
-	@echo "  djshell       - start the Django Python shell in the running app"
-	@echo "  fresh-data    - pull the latest database and update all external data"
-	@echo "  clean         - remove all build, test, coverage and Python artifacts"
-	@echo "  rebuild       - force a rebuild of all of the docker images"
-	@echo "  lint          - check style with Flake8, ESlint, Stylelint, and Prettier"
-	@echo "  format        - format front-end code using Stylelint and Prettier"
-	@echo "  test          - run tests against local files"
-	@echo "  test-image    - run tests against files in docker image"
-	@echo "  test-cdn      - run CDN tests against TEST_DOMAIN"
-	@echo "  docs          - generate Sphinx HTML documentation with server and live reload using Docker"
-	@echo "  livedocs      - generate Sphinx HTML documentation with server and live reload"
-	@echo "  build-docs    - generate Sphinx HTML documentation using Docker"
-	@echo "  build-ci      - build docker images for use in our CI pipeline"
-	@echo "  test-ci       - run tests against files in docker image built by CI"
+	@echo "  build                      - build docker images for dev"
+	@echo "  run                        - docker-compose up the entire system for dev"
+	@echo "  stop                       - stop all docker containers"
+	@echo "  kill                       - kill all docker containers (more forceful than stop)"
+	@echo "  pull                       - pull the latest production images from Docker Hub"
+	@echo "  run-shell                  - open a bash shell in a fresh container"
+	@echo "  shell                      - open a bash shell in the running app"
+	@echo "  djshell                    - start the Django Python shell in the running app"
+	@echo "  fresh-data                 - pull the latest database and update all external data"
+	@echo "  clean                      - remove all build, test, coverage and Python artifacts"
+	@echo "  rebuild                    - force a rebuild of all of the docker images"
+	@echo "  lint                       - check style with Ruff, ESlint, Stylelint, and Prettier"
+	@echo "  format                     - format front-end code using Stylelint and Prettier"
+	@echo "  test                       - run tests against local files"
+	@echo "  test-image                 - run tests against files in docker image"
+	@echo "  test-cdn                   - run CDN tests against TEST_DOMAIN"
+	@echo "  docs                       - generate Sphinx HTML documentation with server and live reload using Docker"
+	@echo "  livedocs                   - generate Sphinx HTML documentation with server and live reload"
+	@echo "  build-docs                 - generate Sphinx HTML documentation using Docker"
+	@echo "  build-ci                   - build docker images for use in our CI pipeline"
+	@echo "  test-ci                    - run tests against files in docker image built by CI"
+	@echo "  compile-requirements       - update Python requirements files using pip-compile"
+	@echo "  check-requirements         - get a report on stale/old Python dependencies in use"
+	@echo "  install-local-python-deps  - install Python dependencies for local development"
+	@echo "  preflight  				- refresh installed dependencies and fetch latest DB ahead of local dev"
+	@echo "  clean-local-deps  			- remove all local installed Python dependencies"
 
 .env:
 	@if [ ! -f .env ]; then \
@@ -54,11 +60,19 @@ pull: .env
 
 rebuild: clean build
 
+# Run in Mozorg-only mode, using Bedrock to serve ONLY Mozorg pages
 run: .docker-build-pull
 	${DC} up assets app
 
 run-prod: .docker-build-pull
 	${DC} up release-local
+
+# Run in Pocket-only mode, using Bedrock to serve ONLY Pocket pages _at the root path_
+run-pocket: .docker-build-pull
+	-SITE_MODE=${POCKET_MODE} ${DC} up assets app
+
+run-pocket-prod: .docker-build-pull
+	-SITE_MODE=${POCKET_MODE} ${DC} up release-local
 
 stop:
 	${DC} stop
@@ -95,12 +109,12 @@ clean:
 	git clean -d -f
 
 lint: .docker-build-pull
-	${DC} run test flake8
+	${DC} run test ruff
 	${DC} run assets npm run lint
 
 format: .docker-build-pull
 	${DC} run assets npm run format
-	${DC} run app black .
+	${DC} run app ruff format .
 
 test: .docker-build-pull
 	${DC} run --rm test
@@ -132,10 +146,39 @@ test_infra/fixtures/tls.json:
 build-ci: .docker-build-pull
 	${DC_CI} build --pull release
 #	tag intermediate images using cache
-	${DC_CI} build app assets builder app-base
+	${DC_CI} build app builder assets app-base
 	touch .docker-build-ci
 
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn
+#########################
+# Requirements management
+#########################
+
+compile-requirements: .docker-build-pull
+	${DC} run --rm compile-requirements
+
+check-requirements: .docker-build-pull
+	${DC} run --rm test pip list -o
+
+######################################################
+# For use in local-machine development (not in Docker)
+######################################################
+
+install-local-python-deps:
+	# Dev requirements are a superset of prod requirements, but we install
+	# them in the same separate steps that we use for our Docker-based build,
+	# so that it mirrors Production and Dev image building
+	pip install -r requirements/prod.txt
+	pip install -r requirements/dev.txt
+
+preflight:
+	${MAKE} install-local-python-deps
+	$ npm install
+	$ bin/sync-all.sh
+
+clean-local-deps:
+	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
+
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps

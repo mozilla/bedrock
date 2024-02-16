@@ -15,7 +15,7 @@ There are two primary methods of installing bedrock: Docker and Local. Whichever
 
 .. code-block:: bash
 
-    $ git clone git://github.com/mozilla/bedrock.git
+    $ git clone https://github.com/mozilla/bedrock.git
 
 .. code-block:: bash
 
@@ -27,14 +27,14 @@ and may be preferred by people for various reasons.
 You should also install our git pre-commit hooks. Our setup uses the `pre-commit <https://pre-commit.com/>`_
 framework. Install the framework using the instructions on their site depending on your platform, then run
 ``pre-commit install``. After that it will check your Python, JS, and CSS files before you commit to save you
-time waiting for the tests to run in our CI before noticing a linting error.
+time waiting for the tests to run in our :abbr:`CI (Continuous Integration)` before noticing a linting error.
 
 Docker Installation
 -------------------
 
 .. note::
 
-    This method assumes you have `Docker installed for your platform <https://www.docker.com/community-edition#/download>`_.
+    This method assumes you have `Docker installed for your platform <https://www.docker.com/>`_.
     If not please do that now or skip to the ``Local Installation`` section.
 
 This is the simplest way to get started developing for bedrock. If you're on Linux or Mac (and possibly Windows 10 with the
@@ -109,49 +109,127 @@ If you make a change to ``media/static-bundles.json``, you'll need to restart Do
 Local Installation
 ------------------
 
-These instructions assume you have Python 3.6+, pip, and NodeJS installed. If you don't have `pip` installed
+These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-You need to create a virtual environment for Python libraries:
+Bedrock currently uses Python 3.9.10. The recommended way to install and use that version is
+with `pyenv <https://github.com/pyenv/pyenv>`_ and to create a virtualenv using
+`pyenv-virtualenv <https://github.com/pyenv/pyenv-virtualenv>`_ that will isolate Bedrock's
+dependencies from other things installed on the system.
 
-1. Create a virtual env in the folder `venv` ::
+The following assumes you are on MacOS, using ``zsh`` as your shell and `Homebrew <https://brew.sh/>`_
+as your package manager. If you are not, there are installation instructions for a variety of
+platforms and shells in the READMEs for the two pyenv projects.
 
-    $ python3 -m venv venv
+**Install Python 3.9.10 with pyenv**
 
-2. Activate the virtual env. On Windows, run: venv\Scripts\activate.bat ::
+1. Install ``pyenv`` itself ::
 
-    $ source venv/bin/activate
+    $ brew install pyenv
+
+2. Configure your shell to init ``pyenv`` on start - this is noted in the project's
+`own docs <https://github.com/pyenv/pyenv>`_, in more detail, but omits that setting
+`PYENV_ROOT` and adding it to the path is needed::
+
+    $ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+3. Restart your login session for the changes to profile files to take effect - if you're not
+using ``zsh``, the ``pyenv`` docs have other routes ::
+
+    $ zsh -l
+
+4. Install the latest Python 3.9.x (eg 3.9.10), then test it's there::
+
+    $ pyenv install 3.9.10
+
+   If you'd like to make Python 3.9.10 your default globally, you can do so with::
+
+    $ pyenv global 3.9.10
+
+   If you only want to make Python 3.9.10 available in the current shell, while you set up the
+   Python virtualenv (below), you can do so with::
+
+    $ pyenv shell 3.9.10
+
+5. Verify that you have the correct version of Python installed::
+
+    $ python --version
+    Python 3.9.10
+
+
+.. note ::
+
+    At the time of writing, Python 3.9.10 was the 3.9 release that worked with least complication
+    across the core team's local-development platforms, incl both Intel and Apple Silicon Macs.
+    It's also the version of 3.9 in the ``slim-bullseye`` image used for the Dockerized version.
+
+**Install a plugin to manage virtualenvs via pyenv and create a virtualenv for Bedrock's dependencies**
+
+1. Install ``pyenv-virtualenv`` ::
+
+    $ brew install pyenv-virtualenv
+
+2. Configure your shell to init ``pyenv-virtualenv`` on start - again, this is noted in the
+``pyenv-virtualenv`` project's `own documentation <https://github.com/pyenv/pyenv-virtualenv>`_,
+in more detail. The following will slot in a command that will work as long as you have
+pyenv-virtualenv installed::
+
+    $ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+
+3. Restart your login session for the changes to profile files to take effect ::
+
+    $ zsh -l
+
+4. Make a virtualenv we can use - in this example we'll call it ``bedrock`` but use whatever you want ::
+
+    $ pyenv virtualenv 3.9.10 bedrock
+
+**Use the virtualenv**
+
+1. Switch to the virtualenv - this is the command you will use any time you need this virtualenv ::
+
+    $ pyenv activate bedrock
+
+2. If you'd like to auto activate the virtualenv when you cd into the bedrock directory, and
+deactivate it when you exit the directory, you can do so with::
+
+    $ echo 'bedrock' > .python-version
 
 3. Securely upgrade pip ::
 
     $ pip install --upgrade pip
 
-4. Installs dependencies ::
+4. Install / update dependencies ::
 
-    $ pip install -r requirements/dev.txt
+    $ make install-local-python-deps
+
+.. note::
+
+    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting
+    the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple
+    Silicon, 3.9.10 should 'just work':
+
+    .. code-block:: bash
+
+        $ export ARCHFLAGS="-arch i386 -arch x86_64"
 
 
-If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again
+    .. code-block:: bash
 
-.. code-block:: bash
+        $ make install-local-python-deps
 
-    $ export ARCHFLAGS="-arch i386 -arch x86_64"
+    If you are on Linux, you may need at least the following packages or their equivalent for your distro::
 
-.. code-block:: bash
+        python3-dev libxslt-dev
 
-    $ pip install -r requirements/dev.txt
-
-If you are on Linux, you will need at least the following packages or their equivalent for your distro::
-
-    $ python3-dev libxslt-dev
-
-Sync the database and all of the external data locally. This gets product-details, security-advisories,
+**Sync the database and all of the external data locally.** This gets product-details, security-advisories,
 credits, release notes, localizations, legal-docs etc::
 
     $ bin/bootstrap.sh
 
-Next, you need to have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed.
-The node dependencies for running the site can be installed with ``npm install``::
+**Install the node dependencies to run the site**. This will only work if you already have `Node.js <https://nodejs.org/>`_ and `npm <https://www.npmjs.com/>`_ installed::
 
     $ npm install
 
@@ -161,6 +239,12 @@ The node dependencies for running the site can be installed with ``npm install``
     packages that get installed are the exact ones we meant (similar to pip hash checking mode for python). Refer
     to the `npm documentation <https://docs.npmjs.com/>`_
     for adding or upgrading Node.js dependencies.
+
+.. note::
+
+    As a convenience, there is a ``make preflight`` command which automatically brings your installed Python and NPM
+    dependencies up to date and also fetches the latest DB containing the latest site
+    content. This is a good thing to run after pulling latest changes from the ``main`` branch.
 
 .. _run-python-tests:
 
@@ -204,17 +288,15 @@ To test a single app, specify the app by name in the command above. e.g.::
 
     $ py.test bedrock/firefox
 
-.. note::
-
-    If your local tests run fine, but when you submit a pull-request the tests fail in
-    `CircleCI <https://circleci.com/gh/mozilla/bedrock>`_, it could be due to the
-    difference in settings between what you have in ``.env``
-    and what CircleCI uses: ``docker/envfiles/demo.env``. You can run tests as close to Circle
-    as possible by moving your ``.env`` file to another name (e.g. ``.env-backup``), then
-    copying ``docker/envfiles/demo.env`` to ``.env``, and running tests again.
 
 Make it run
 ===========
+
+
+.. ATTENTION::
+   Regardless of whether you run Bedrock via Docker or directly on your machine,
+   the URL of the site is ``http://localhost:8000`` - `not` ``8080``
+
 
 Docker
 ------
@@ -233,20 +315,7 @@ run the server::
 
 If you are not inside a virtualenv, you can activate it by doing::
 
-    $ source venv/bin/activate
-
-Browsersync
------------
-
-Both the Docker and Local methods of running the site use `Browsersync <https://www.browsersync.io/>`_ to serve
-the development static-assets (CSS, JS, etc.) as well as refresh the browser tab for you when you change files. The
-refreshing of the page works by injecting a small JS snippet into the page that listens to the browsersync service
-and will refresh the page when it receives a signal. It also injects a script that shows a small notification in the
-top-right corner of the page to inform you that a refresh is happening and when the page connects to or is disconnected
-from the browsersync service. We've not seen issues with this, but since it is modifying the page it is possible that this
-could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This
-notification can be disabled in the browsersync options in ``webpack.config.js`` by setting ``notify: false`` in the
-``BrowserSyncPlugin`` config.
+    $ pyenv activate bedrock
 
 Prod Mode
 ---------
@@ -275,12 +344,28 @@ image first:
 
     $ make build-prod run-prod
 
+
+Pocket Mode
+-----------
+
+By default, Bedrock will serve the content of ``www.mozilla.org``. However, it is also possible to
+make Bedrock serve the content pages for Pocket (``getpocket.com``). This is done, ultimately, by
+setting a ``SITE_MODE`` env var to the value of ``Pocket``.
+
+For local development, setting this env var is already supported in the standard ways to run the site:
+
+* Docker: ``make run-pocket`` and ``make run-pocket prod``
+* Local run/Node/webpack and Django runserver: ``npm run in-pocket-mode``
+* ``SITE_MODE=Pocket ./manage.py runserver`` for plain ol' Django runserver, in Pocket mode
+
+For demos on servers, remember to set the SITE_MODE env var to be the value you need (``Pocket`` or ``Mozorg`` – or nothing, which is the same as setting ``Mozorg``)
+
 Documentation
 -------------
 
 This is a great place for coders and non-coders alike to contribute! Please note most of the documentation is currently in `reStructuredText <https://bashtage.github.io/sphinx-material/basics.html>`_ but we also support `Markdown <https://www.markdownguide.org/>`_ files.
 
-If you see a typo or similarly small change, you can use the "Edit in GitHub" link to propose a fix through GitHub. Note: you will not see your change directly committed to the master branch. You will commit the change to a separate branch so it can be reviewed by a staff member before merging to master.
+If you see a typo or similarly small change, you can use the "Edit in GitHub" link to propose a fix through GitHub. Note: you will not see your change directly committed to the main branch. You will commit the change to a separate branch so it can be reviewed by a staff member before merging to main.
 
 If you want to make a bigger change or `find a Documentation issue on the repo <https://github.com/mozilla/bedrock/labels/Documentation>`_, it is best to edit and preview locally before submitting a pull request. You can do this with Docker or Local installations. Run the commands from your root folder. They will build documentation and start a live server to auto-update any changes you make to a documentation file.
 
@@ -350,12 +435,12 @@ To test switches locally:
 #. Enable the switch in your ``.env`` file.
 #. Restart your web server.
 
-To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
+To configure switches/env vars for a demo branch. Follow the `demo-site instructions here <https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites>`_.
 
 Traffic Cop
 -----------
 
-Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments
+Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozmeao/trafficcop/>`_ experiments
 on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You
 can see the current state of these switches and other configuration values in our `configuration
 repo <https://mozmeao.github.io/www-config/configs/>`_.
