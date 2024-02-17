@@ -21,6 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
     for (var i = 0; i < bios.length; i++) {
         var bio = bios[i];
         bio.setAttribute('aria-role', 'button');
+        bio.setAttribute('tabindex', '0');
 
         bio.addEventListener('click', function (e) {
             e.preventDefault();
@@ -32,11 +33,19 @@ if (typeof window.Mozilla === 'undefined') {
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function () {
                     content.appendChild(modalContent);
+                    modalContent.focus();
                 },
                 onDestroy: function () {
                     modalContent.parentNode.removeChild(modalContent);
                 }
             });
+        });
+
+        bio.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (this === document.activeElement) this.click();
+            }
         });
     }
 
