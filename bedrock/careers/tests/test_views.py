@@ -39,11 +39,12 @@ class PositionTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["position"].job_id, job_id_2)
 
-    def test_position_view_404_uses_custom_template(self):
+    def test_position_view_404_has_appropriate_wording(self):
         url = reverse("careers.position", kwargs={"job_id": "aabbccdd", "source": "gh"})
         response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 404)
-        self.assertTemplateUsed(response, "careers/404.html")
+        self.assertTrue("<title>404: Job Not Found</title>" in str(response.content))
+        self.assertTrue(b"Sorry, we can\xe2\x80\x99t find that job posting" in response.content)
 
 
 class BlogTests(TestCase):

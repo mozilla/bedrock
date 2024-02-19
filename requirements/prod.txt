@@ -315,6 +315,7 @@ django==4.2.11 \
     #   django-watchman
     #   djangorestframework
     #   wagtail
+    #   wagtail-localize
 django-allow-cidr==0.7.1 \
     --hash=sha256:11126c5bb9df3a61ff9d97304856ba7e5b26d46c6d456709a6d9e28483bff47f \
     --hash=sha256:382c5d7a9807279e3e96e4f4892b59163a2b30128c596902bf5f80e133e1ccbb
@@ -1153,6 +1154,10 @@ pillow-heif==0.16.0 \
     --hash=sha256:fba5c46f84031f1186bdea2a0c95f82958f8c29321200e73d7ac5e79ee460c83 \
     --hash=sha256:fea4410ce02e295079db5b2617579ba016671d334ac1888a1d4b34aedb56b866
     # via willow
+polib==1.2.0 \
+    --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
+    --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
+    # via wagtail-localize
 proto-plus==1.23.0 \
     --hash=sha256:89075171ef11988b3fa157f5dbd8b9cf09d65fffee97e29ce403cd8defba19d2 \
     --hash=sha256:a829c79e619e1cf632de091013a4173deed13a55f326ef84f05af6f50ff4c82c
@@ -1474,6 +1479,7 @@ typing-extensions==4.11.0 \
     #   fluent-syntax
     #   pygithub
     #   qrcode
+    #   wagtail-localize
 tzlocal==5.2 \
     --hash=sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8 \
     --hash=sha256:8d399205578f1a9342816409cc1e46a93ebd5755e39ea2d85334bea911bf0e6e
@@ -1489,6 +1495,12 @@ urllib3==2.2.1 \
 wagtail==5.2.3 \
     --hash=sha256:7b186b37ba044fd68c1a3c584ac0d913daa4ea95b95aa4c80412e4a0cb04e563 \
     --hash=sha256:ad64595124c84c4b00b73b863029a7722e06b4dba17b76177d2f4944f579bca7
+    # via
+    #   -r requirements/prod.in
+    #   wagtail-localize
+wagtail-localize==1.8 \
+    --hash=sha256:53f04de9bd0985b79c075c480572250fb65ba9f127d076c9e93d944e39b6ca47 \
+    --hash=sha256:66c3d86e994a6ac5acf1dd569cfd22f2661150abc6099cae2d6fa30a3495d0fc
     # via -r requirements/prod.in
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \

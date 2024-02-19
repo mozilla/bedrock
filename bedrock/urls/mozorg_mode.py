@@ -8,6 +8,7 @@ from django.utils.module_loading import import_string
 
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.documents import urls as wagtaildocs_urls
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
@@ -41,6 +42,7 @@ urlpatterns += (
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),
+    path("_documents/", include(wagtaildocs_urls)),
 )
 
 if settings.DEV:
@@ -72,6 +74,8 @@ if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage
     )
     # Note that statics are handled via Whitenoise's middleware
 
-
-# Wagtail is the catch-all route, and it will raise a 404 if needed
-urlpatterns += (path("", include(wagtail_urls)),)
+# Wagtail is the catch-all route, and it will raise a 404 if needed.
+# Note that we're also using localised URLs here
+urlpatterns += bedrock_i18n_patterns(
+    path("", include(wagtail_urls)),
+)

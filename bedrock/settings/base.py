@@ -108,6 +108,12 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 # to load the internationalization machinery.
 USE_I18N = True
 
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale
+USE_L10N = True
+
+WAGTAIL_I18N_ENABLED = True  # for wagtail-localize
+
 USE_TZ = True
 
 USE_ETAGS = config("USE_ETAGS", default=str(not DEBUG), parser=bool)
@@ -646,6 +652,8 @@ INSTALLED_APPS = [
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.images",
+    "wagtail_localize",
+    "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
@@ -1847,11 +1855,16 @@ WAGTAIL_SITE_NAME = config(
     "WAGTAIL_SITE_NAME",
     default="Mozorg (selective)",
 )
+
 WAGTAILADMIN_BASE_URL = config(
     "WAGTAILADMIN_BASE_URL",
     default="",
 )
 
+# We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
+WAGTAIL_ENABLE_UPDATE_CHECK = False
+
+# Custom setting that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
     default="False",
@@ -1889,6 +1902,7 @@ def lazy_wagtail_langs():
     return retval
 
 
+WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options

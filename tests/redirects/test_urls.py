@@ -23,7 +23,12 @@ def test_410_url(url, base_url):
 @pytest.mark.nondestructive
 @pytest.mark.django_db
 def test_404_url(base_url):
-    assert_valid_url("/en-US/abck", status_code=requests.codes.not_found, base_url=base_url)
+    assert_valid_url(
+        "/en-US/abck",
+        base_url=base_url,
+        final_status_code=requests.codes.not_found,
+        follow_redirects=True,
+    )
 
 
 @pytest.mark.headless
