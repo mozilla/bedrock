@@ -102,13 +102,13 @@ CEF_DEVICE_VERSION = "0"
 # system time zone.
 TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
+
+WAGTAIL_I18N_ENABLED = True  # for wagtail-localize
 
 USE_TZ = True
 
@@ -602,6 +602,7 @@ MIDDLEWARE = [
     # must come before LocaleURLMiddleware
     "bedrock.redirects.middleware.RedirectsMiddleware",
     "bedrock.base.middleware.LocaleURLMiddleware",
+    # "django.middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
@@ -640,6 +641,8 @@ INSTALLED_APPS = [
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.images",
+    "wagtail_localize",
+    "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
@@ -738,13 +741,13 @@ TEMPLATES = [
             "wagtailembeds",
             "wagtailforms",
             "wagtailimages",
-            "wagtaillocales",
             "wagtailredirects",
             "wagtailsearch",
             "wagtailsettings",
             "wagtailsites",
             "wagtailsnippets",
             "wagtailusers",
+            "wagtail_localize",
             # skipped as unlikely to be used, but surfacing their existence
             # "wagtailsearchpromotions",
             # "wagtailstyleguide",
@@ -2298,11 +2301,16 @@ WAGTAIL_SITE_NAME = config(
     "WAGTAIL_SITE_NAME",
     default="Mozorg (selective)",
 )
+
 WAGTAILADMIN_BASE_URL = config(
     "WAGTAILADMIN_BASE_URL",
     default="",
 )
 
+# We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
+WAGTAIL_ENABLE_UPDATE_CHECK = False
+
+# Custom setting that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
     default="False",
@@ -2324,6 +2332,26 @@ if WAGTAIL_ENABLE_ADMIN:
         # Until https://github.com/wagtail/wagtail/issues/1288 is resolved, exclude the Wagtail admin
         "/cms-admin/",
     )
+
+
+def lazy_wagtail_langs():
+    enabled_wagtail_langs = [
+        # NB: these must be lowercase to match with the output of the lazy func that populates settings.LANGUAGES
+        ("en-us", "English"),
+        # TODO: expand to other locales supported by our translationc vendor
+        # ("de", "Deutsch"),
+        # ("fr", "Français"),
+        # ("es", "Español"),
+        # ("es", "Español mexicano"),
+        # ("it", "Italiano"),
+        # more to come
+    ]
+    enabled_language_codes = [x[0] for x in LANGUAGES]
+    retval = [wagtail_lang for wagtail_lang in enabled_wagtail_langs if wagtail_lang[0] in enabled_language_codes]
+    return retval
+
+
+WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Storage
 # If config is available, we use Google Cloud Storage, else (for local dev)

@@ -55,3 +55,4 @@ supervisor==4.2.5
 timeago==1.0.16
 whitenoise==6.6.0
 Wagtail==5.2.3
+wagtail-localize==1.8
