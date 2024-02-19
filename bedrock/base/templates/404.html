@@ -10,7 +10,7 @@
 
 {% block html_attrs %}data-http-status="404"{% endblock %}
 
-{% block page_title %}{{ ftl('not-found-page-not-found-page-page-not-found') }}{% endblock %}
+{% block page_title %}{%- if "/careers/" in request.path -%}404: Job Not Found{%- else -%}{{ ftl('not-found-page-not-found-page-page-not-found') }}{%- endif -%}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('page_not_found') }}
@@ -21,8 +21,19 @@
 
 {% block content %}
   <main class="mzp-l-content message-section">
-    <h1 class="error-title">{{ ftl('not-found-page-sorry-we-cant-find-that-page') }}</h1>
-    <p>{{ftl('not-found-page-were-all-about-a-healthy-internet') }}</p>
+
+    {% if "/careers/" in request.path %}
+      <h1 class="error-title">Sorry, we can’t find that job posting</h1>
+      <p>
+        The link you followed doesn’t seem to be for an open position.
+        <a href="{{ url('careers.listings') }}">
+          Check out our current job listings.
+        </a>
+      </p>
+    {% else %}
+      <h1 class="error-title">{{ ftl('not-found-page-sorry-we-cant-find-that-page') }}</h1>
+      <p>{{ftl('not-found-page-were-all-about-a-healthy-internet') }}</p>
+    {% endif %}
 
     <p class="hide-back" id="go-back">
       <a class="back-button">{{ ftl('not-found-page-go-back') }}</a>
