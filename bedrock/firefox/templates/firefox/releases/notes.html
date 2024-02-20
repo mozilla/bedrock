@@ -17,10 +17,13 @@
 {# product_name may be over-ridden with more appropriate content to avoid bad names like: Firefox Release Release #}
 {% set product_name = product_name|default(release.product + ' ' + release.channel) %}
 
-{# product_class is the class or classes applied to theme components for Release, Beta, Nightly, etc #}
-{# product_class may be over-ridden where the default firefox release theme is not apprpriate #}
-{% set product_class = product_class|default('mzp-t-product-firefox') %}
+{# brand_product is appended to the class `mzp-t-product-` to set the product logo (release, beta, nightly, etc) #}
+{% set brand_product = brand_product|default('firefox') %}
 
+{# header_class is applied to the page header as an additional style hook if needed #}
+{% set header_class = header_class|default('') %}
+
+{# theme_class is applied to the body as an additional style hook if needed #}
 {% set theme_class = '' %}
 {% set ver = release.major_version_int %}
 {% if release.product != 'Firefox for iOS' %}
@@ -115,10 +118,10 @@
             heading_level=1,
             title=primary_heading,
             desc=call_out_desc|safe,
-            class='mzp-t-firefox mzp-t-background-tertiary ' + product_class,
+            class='mzp-t-firefox mzp-t-background-tertiary ' + header_class,
             include_cta=True,
             brand=True,
-            brand_product='firefox',
+            brand_product=brand_product,
             brand_type='logo',
             brand_size='lg',
           ) %}
@@ -346,9 +349,9 @@
 
     {% call callout_compact(
       title=download_title,
-      class='mzp-t-firefox mzp-t-background-secondary ' + product_class,
+      class='mzp-t-firefox mzp-t-background-secondary ' + header_class,
       brand=True,
-      brand_product='firefox',
+      brand_product=brand_product,
       brand_type='logo',
       brand_size='lg'
     ) %}
