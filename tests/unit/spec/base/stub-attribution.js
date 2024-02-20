@@ -865,6 +865,8 @@ describe('stub-attribution.js', function () {
             'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US';
         const macOSDevUrl =
             'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US';
+        const macOSEsrUrl =
+            'https://download.mozilla.org/?product=firefox-esr-latest&os=osx&lang=en-US';
         const macOSUrl =
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US';
 
@@ -882,6 +884,7 @@ describe('stub-attribution.js', function () {
                     <li><a id="link-macos-nightly" class="download-link" data-download-version="osx" href="${macOSNightlyUrl}">Download</a></li>
                     <li><a id="link-macos-beta" class="download-link" data-download-version="osx" href="${macOSBetaUrl}">Download</a></li>
                     <li><a id="link-macos-dev" class="download-link" data-download-version="osx" href="${macOSDevUrl}">Download</a></li>
+                    <li><a id="link-macos-esr" class="download-link" data-download-version="osx" href="${macOSEsrUrl}">Download</a></li>
                     <li><a id="link-macos" class="download-link" data-download-version="osx" href="${macOSUrl}">Download</a></li>
                 </ul>`;
 
@@ -962,6 +965,9 @@ describe('stub-attribution.js', function () {
             );
             expect(document.getElementById('link-macos-dev').href).toEqual(
                 'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(document.getElementById('link-macos-esr').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-esr-latest&os=osx&lang=en-US'
             );
             expect(document.getElementById('link-macos').href).toEqual(
                 'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
