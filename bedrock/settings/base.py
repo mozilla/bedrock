@@ -328,6 +328,11 @@ EXCLUDE_EDIT_TEMPLATES = [
     "security/product-advisories.html",
     "security/known-vulnerabilities.html",
 ]
+# Also allow entire directories to be skipped
+EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
+    "cms",
+]
+
 IGNORE_LANG_DIRS = [
     ".git",
     "configs",
@@ -601,9 +606,9 @@ MIDDLEWARE = [
     "bedrock.base.middleware.BasicAuthMiddleware",
     # must come before LocaleURLMiddleware
     "bedrock.redirects.middleware.RedirectsMiddleware",
-    "bedrock.base.middleware.LocaleURLMiddleware",
-    # "django.middleware.locale.LocaleMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    # also must come before LocaleURLMiddleware
+    "django.middleware.locale.LocaleMiddleware",  # for wagtail-localize
+    "bedrock.base.middleware.LocaleURLMiddleware",  # for fluent localization
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
@@ -634,6 +639,10 @@ INSTALLED_APPS = [
     "django_jinja",
     "watchman",
     # Wagtail CMS and related, necessary apps'wagtail.contrib.forms',
+    "wagtail_localize",
+    "wagtail_localize.locales",  # This temporarily replaces "wagtail.locales" and will be reverted in a future release
+    # "wagtail.locales",
+    "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.documents",
     "wagtail.embeds",
@@ -641,8 +650,6 @@ INSTALLED_APPS = [
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.images",
-    "wagtail_localize",
-    "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
@@ -650,6 +657,7 @@ INSTALLED_APPS = [
     "taggit",
     # Local apps
     "bedrock.base",
+    "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
     "bedrock.foundation",
     "bedrock.landing",
@@ -730,6 +738,8 @@ TEMPLATES = [
         "BACKEND": "bedrock.base.template.backends.SelectiveWagtailTemplateUsage",
         "APP_DIRS": True,  # and we customise WHICH dirs we will render from below:
         "CUSTOM_ALLOWED_DIRS": [
+            # Templates in this dir are ones we author using DTL
+            "cms",
             # these are all template dirs in the Wagtail codebase
             "modeladmin",
             "simple_translation",
@@ -748,6 +758,7 @@ TEMPLATES = [
             "wagtailsnippets",
             "wagtailusers",
             "wagtail_localize",
+            "wagtaillocales",
             # skipped as unlikely to be used, but surfacing their existence
             # "wagtailsearchpromotions",
             # "wagtailstyleguide",
@@ -2310,7 +2321,7 @@ WAGTAILADMIN_BASE_URL = config(
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
-# Custom setting that we use to plug in/unplug the admin UI entirely
+# Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
     default="False",
@@ -2340,7 +2351,7 @@ def lazy_wagtail_langs():
         ("en-us", "English"),
         # TODO: expand to other locales supported by our translationc vendor
         # ("de", "Deutsch"),
-        # ("fr", "Français"),
+        ("fr", "Français"),
         # ("es", "Español"),
         # ("es", "Español mexicano"),
         # ("it", "Italiano"),
@@ -2352,6 +2363,23 @@ def lazy_wagtail_langs():
 
 
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+
+# Custom settings, not a core Wagtail ones, to scope out RichText options
+WAGTAIL_RICHEXT_FEATURES_FULL = [
+    # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
+    # Order here is the order used in the editor UI
+    "h2",
+    "h3",
+    "hr",
+    "bold",
+    "italic",
+    "strikethrough",
+    "code",
+    "blockquote",
+    "link",
+    "ol",
+    "ul",
+]
 
 # Storage
 # If config is available, we use Google Cloud Storage, else (for local dev)

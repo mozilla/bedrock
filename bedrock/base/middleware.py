@@ -16,6 +16,8 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import Http404, HttpResponse
+from django.urls import resolve
+from django.urls.exceptions import Resolver404
 from django.utils.deprecation import MiddlewareMixin
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
@@ -57,9 +59,20 @@ class LocaleURLMiddleware:
         prefixer = urlresolvers.Prefixer(request)
         urlresolvers.set_url_prefix(prefixer)
 
-        request.path_info = f"/{prefixer.shortened_path}"
-        request.locale = prefixer.locale
         translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
+        request.locale = prefixer.locale
+
+        try:
+            match = resolve(request.path)
+        except Resolver404:
+            match = None
+
+        if match and match._func_path == "wagtail.views.serve":
+            # Do NOT adjust path_info for wagtail-rendered pages - it'll
+            # result in a double prefix - e.g. /fr/fr
+            return
+
+        request.path_info = f"/{prefixer.shortened_path}"
 
 
 class BasicAuthMiddleware:
