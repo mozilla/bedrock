@@ -1,0 +1,178 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../lib' as r25;
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Hero
+
+.r25-hero {
+    background-color: transparent;
+
+    .r25-hero-intro {
+        @include text-body-lg;
+    }
+
+    .r25-hero-cta {
+        align-items: center;
+        display: grid;
+        gap: $spacing-lg;
+        grid-template-areas: "notice notice"
+                             "video button";
+        justify-content: center;
+
+        .r25-hero-notice {
+            background: $color-black radial-gradient(170% 170% at 70% 80%, fade-out(r25.$orange, 0.8) 0%, fade-out(r25.$red, 1) 100%);
+            border-image: linear-gradient(to bottom, fade-out($color-white, 0.8), fade-out($color-white, 1) 90%) 1;
+            border-style: solid;
+            border-width: 1px 1px 0;
+            display: block;
+            grid-area: notice;
+            margin: 0 auto;
+            max-width: $content-sm;
+            padding: $spacing-sm $spacing-lg;
+            text-align: center;
+
+            br {
+                display: none;
+            }
+        }
+
+        .video-play {
+            display: block;
+            grid-area: video;
+            position: relative;
+
+            img,
+            video {
+                border: 1px solid fade-out($color-white, 0.8);
+            }
+
+            &::after {
+                background: url("/media/img/mozorg/rise25/play-button.svg") center center no-repeat;
+                background-size: 50px 50px;
+                top: 50%;
+                content: "";
+                display: block;
+                margin: -27px 0 0 -27px;
+                height: 54px;
+                width: 54px;
+                position: absolute;
+                left: 50%;
+                transition: background-size 100ms ease-in-out;
+                z-index: 2;
+            }
+
+            &:focus-visible {
+                outline: 0;
+            }
+
+            &:hover::after,
+            &:focus::after {
+                background-size: 54px 54px;
+            }
+        }
+
+        .r25-c-button {
+            grid-area: button;
+
+            span {
+                display: none;
+            }
+
+            &::after {
+                content: " ↓";
+            }
+        }
+
+        @media #{$mq-md} {
+            row-gap: $spacing-xl;
+            grid-template-areas: "notice"
+                                 "button";
+
+            .r25-hero-notice {
+                grid-area: notice;
+            }
+
+            .r25-c-button {
+                grid-area: button;
+
+                span {
+                    display: inline;
+                }
+            }
+
+            .video-play {
+                display: none;
+            }
+        }
+
+        @media #{$mq-xl} {
+            grid-template-areas: "button notice";
+            column-gap: $spacing-xl;
+
+            .r25-hero-notice br {
+                display: block;
+            }
+        }
+    }
+
+    .r25-hero-video {
+        display: none;
+
+        .video-play {
+            &::after {
+                @include border-box;
+                background: url("/media/img/mozorg/rise25/play-button.svg") right 2px center no-repeat;
+                background-size: 50px 50px;
+                bottom: $spacing-lg;
+                color: $color-white;
+                content: "Play video";
+                display: block;
+                font-weight: bold;
+                min-height: 50px;
+                padding: $spacing-md 70px $spacing-md;
+                position: absolute;
+                right: $spacing-lg;
+                transition: background-size 100ms ease-in-out, background-position 100ms ease-in-out;
+                z-index: 2;
+            }
+
+            &:focus-visible {
+                outline: 0;
+            }
+
+            &:hover::after,
+            &:focus::after {
+                background-size: 54px 54px;
+                background-position: right 0 center;
+            }
+        }
+
+        video,
+        img {
+            border: 1px solid fade-out($color-white, 0.8);
+        }
+
+        .fallback {
+            display: none;
+        }
+
+        @media #{$mq-md} {
+            display: block;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            video {
+                display: none;
+            }
+
+            .fallback {
+                display: inline-block;
+            }
+        }
+    }
+}

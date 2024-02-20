@@ -1,0 +1,237 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% block page_title %}Rise25 Awards: Call for Nominations{% endblock %}
+{% block page_desc %}Do you know someone who’s not just talking about the future of AI but actively shaping it for the better? We’re on the hunt for 25 individuals whose AI projects blend innovation with genuine social impact.{% endblock %}
+{% block page_image %}{{ static('img/mozorg/rise25/page-image.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('rise25') }}
+{% endblock %}
+
+{% block body_class %}rise25{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=rise25&utm_content=nominations-page' %}
+
+{% block content %}
+
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md r25-hero',
+    media_class='mzp-l-split-v-center',
+    media_include='mozorg/rise25/includes/hero-video.html',
+    media_after=True,
+  ) %}
+    <h1 class="r25-c-wordmark">Rise25</h1>
+    <h2 class="r25-fancy-title">AI for the people</h2>
+    <p class="r25-hero-intro">Do you know someone who’s not just talking about the future of AI but actively shaping it for the better? We’re on the hunt for 25 individuals whose AI projects blend innovation with genuine social impact.</p>
+    <p class="r25-hero-cta">
+      <strong class="r25-hero-notice">Call for nominees closes on<br> <time datetime="2024-03-29">March 29, 2024</time></strong>
+
+      <a href="#nominate" class="r25-c-button t-fancy">Nominate <span>someone</span></a>
+
+      <a class="video-play js-video-play" href="https://youtu.be/LbGtijF8qb0" role="button" title="Play the video">
+        {{ resp_img(
+          url='img/mozorg/rise25/hero-thumb.jpg',
+          srcset={
+            'img/mozorg/rise25/hero-thumb-high-res.jpg': '1.5x'
+          },
+          optional_attributes={
+            'width': '178',
+            'height': '100',
+            'class': 'fallback',
+            'alt': ''
+          }
+        ) }}
+      </a>
+    </p>
+  {% endcall %}
+
+  <section class="mzp-l-content r25-promote">
+    <div class="r25-promote-container">
+      <div class="r25-promote-body">
+        <h3>Join us in spreading the word</h3>
+        <p>Share the Rise25 call for nominations and help celebrate those shaping the future of AI to benefit people, not large corporations.</p>
+        {% include "mozorg/rise25/includes/social-share.html" %}
+      </div>
+
+      <div class="r25-promote-video">
+        <video class="video" preload="auto" playsinline autoplay loop muted poster="{{ static('img/mozorg/rise25/winners-poster-high-res.jpg') }}" width="450" height="450">
+          <source src="https://assets.mozilla.net/rise25/rise25-2023-winners.webm" type="video/webm">
+        </video>
+
+        {{ resp_img(
+          url='img/mozorg/rise25/winners-poster.jpg',
+          srcset={
+            'img/mozorg/rise25/winners-poster-high-res.jpg': '1.5x'
+          },
+          optional_attributes={
+            'width': '450',
+            'height': '450',
+            'class': 'fallback',
+            'alt': ''
+          }
+        ) }}
+
+        <p class="r25-c-past-cta"><a href="https://rise25.mozilla.org/{{ utm_params }}" rel="external noopener" target="_blank">See last year’s Rise25 winners</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="nominate" class="mzp-l-content r25-nominate">
+    <h2 class="r25-section-title">Nomination Categories</h2>
+
+    <div id="advocates" class="r25-c-category r25-t-red">
+      <div class="r25-c-category-body">
+        <h3 class="r25-c-category-title">Advocates</h3>
+        <p class="r25-c-category-desc">Guiding AI towards a responsible future.</p>
+        <p class="r25-c-category-expand">
+          These are the policymakers, activists and thinkers ensuring AI is
+          developed ethically, inclusively and transparently. This category also
+          includes those who are adept at translating complex AI concepts for the
+          broader public — including journalists, content creators and cultural
+          commentators. They champion digital rights and accessible AI, striving
+          to make AI a force for societal good.
+        </p>
+      </div>
+
+      <p class="r25-c-category-cta">
+        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+      </p>
+    </div>
+
+    <div id="builders" class="r25-c-category r25-t-teal">
+      <div class="r25-c-category-body">
+        <h3 class="r25-c-category-title">Builders</h3>
+        <p class="r25-c-category-desc">Developing AI through ethical innovation.</p>
+        <p class="r25-c-category-expand">
+          They’re the architects of trustworthy AI, including engineers and data
+          scientists dedicated to the principles of open source, open data and
+          open science. They focus on technical proficiency and responsible and
+          ethical construction. Their work ensures AI is secure, accessible and
+          reliable, aiming to create tools that empower and advance society.
+        </p>
+      </div>
+
+      <p class="r25-c-category-cta">
+        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+      </p>
+    </div>
+
+    <div id="artists" class="r25-c-category r25-t-green">
+      <div class="r25-c-category-body">
+        <h3 class="r25-c-category-title">Artists</h3>
+        <p class="r25-c-category-desc">Reimagining AI’s creative potential.</p>
+        <p class="r25-c-category-expand">
+          They transcend traditional AI applications, like synthesizing visuals
+          or using large language models. Their projects, whether interactive
+          websites, films, or digital media, challenge our perceptions and
+          demonstrate how AI can amplify and empower human creativity. Their work
+          provokes thought and offers fresh perspectives on the intersection of
+          AI and art.
+        </p>
+      </div>
+
+      <p class="r25-c-category-cta">
+        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+      </p>
+    </div>
+
+    <div id="entrepreneurs" class="r25-c-category r25-t-purple">
+      <div class="r25-c-category-body">
+        <h3 class="r25-c-category-title">Entrepreneurs</h3>
+        <p class="r25-c-category-desc">Fueling AI’s evolution with visionary ventures.</p>
+        <p class="r25-c-category-expand">
+          These daring individuals are transforming imaginative ideas into reality.
+          They’re crafting businesses and solutions with AI to meet societal needs,
+          improve everyday life and forge new technological paths. They embody
+          innovation, steering startups and projects with a commitment to ethical
+          standards, inclusiveness and enhancing human welfare through technology.
+        </p>
+      </div>
+
+      <p class="r25-c-category-cta">
+        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+      </p>
+    </div>
+
+    <div id="change-agents" class="r25-c-category r25-t-orange">
+      <div class="r25-c-category-body">
+        <h3 class="r25-c-category-title">Change Agents</h3>
+        <p class="r25-c-category-desc">Cultivating inclusive AI.</p>
+        <p class="r25-c-category-expand">
+          Challengers lead the way in diversifying AI, bringing varied community
+          voices into tech. They focus on inclusivity in AI development, ensuring
+          technology serves and represents everyone, especially those historically
+          excluded from the tech narrative. They are community leaders, corporate
+          leaders, activists and outside-the-box thinkers finding ways to amplify
+          the impacts of AI for marginalized communities. Their work fosters an
+          AI environment of equality and empowerment.
+        </p>
+      </div>
+
+      <p class="r25-c-category-cta">
+        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-md">
+    <div class="r25-blog">
+      <div class="r25-blog-body">
+        <h3 class="r25-blog-title">Who’s shaping the future of AI? We’re on the hunt.</h3>
+        <p class="r25-blog-cta"><a href="https://blog.mozilla.org/en/mozilla-announces-call-for-entries-for-the-2nd-annual-rise25-awards-in-dublin-ireland/{{ utm_params }}" rel="external noopener" target="_blank">Read our blog post</a></p>
+      </div>
+
+      {{ resp_img(
+        url='img/mozorg/rise25/kay-lopez.jpg',
+        srcset={
+          'img/mozorg/rise25/kay-lopez-high-res.jpg': '1.5x'
+        },
+        optional_attributes={
+          'width': '230',
+          'height': '128',
+          'class': 'r25-blog-image'
+        }
+      ) }}
+    </div>
+
+    <div class="r25-spread-secondary">
+      <h3>Help us spread the word!</h3>
+      {% include "mozorg/rise25/includes/social-share.html" %}
+    </div>
+  </section>
+
+  <section id="faq" class="mzp-l-content">
+    <h2 class="r25-section-title">FAQs</h2>
+
+    <div class="mzp-c-details r25-faq">
+      <h3 class="r25-faq-heading">Why should I nominate someone for Rise25?</h3>
+      <p>The selected honorees will be celebrated in Dublin this August and invited
+        to join the Rise25 cohort with past and current winners and part of the
+        Mozilla community. Mozilla will be covering the flight and hotel expenses
+        for the honorees and a plus one.</p>
+
+      <h3 class="r25-faq-heading">How much does it cost to enter?</h3>
+      <p>There are no nomination fees or costs associated with the nomination form.</p>
+
+      <h3 class="r25-faq-heading">How will honorees be notified?</h3>
+      <p>Mozilla will reach out to honorees via email this summer.</p>
+
+      <h3 class="r25-faq-heading">Who can I contact for more information?</h3>
+      <p>Give us a shout at <a href="mailto:rise25@mozilla.com">rise25@mozilla.com</a>.</p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('protocol-modal') }}
+  {{ js_bundle('rise25-landing') }}
+{% endblock %}
