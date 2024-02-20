@@ -288,7 +288,16 @@
         var url = e.target.href;
         var version = el.getAttribute('data-download-version');
 
-        if (version && /win|osx/.test(version)) {
+        if (version && /win/.test(version)) {
+            url = FirefoxDownloader.setAttributionURL(e.target.href);
+        }
+
+        // Exclude macOS ESR links for now.
+        if (
+            version &&
+            /osx/.test(version) &&
+            !/product=firefox-esr/.test(url)
+        ) {
             url = FirefoxDownloader.setAttributionURL(e.target.href);
         }
 
