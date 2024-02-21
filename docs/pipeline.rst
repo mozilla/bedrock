@@ -236,4 +236,3 @@ may be commits on that branch which aren't in yours – so, if you have the
 .. _Docker Hub: https://hub.docker.com/r/mozmeao/bedrock/tags
 .. _production: https://www.mozilla.org
 .. _demo sites: https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites
-.. _Stub Attribution: https://bedrock.readthedocs.io/en/latest/attribution/0002-firefox-desktop.html
