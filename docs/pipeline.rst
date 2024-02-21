@@ -29,6 +29,7 @@ Dev
 - *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
+- `Stub Attribution`_ service: Bouncer staging
 
 Staging
 ~~~~~~~
@@ -36,6 +37,7 @@ Staging
 - *Pocket Marketing pages URL:* https://www.tekcopteg.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* stage, deployed on git push
+- `Stub Attribution`_ service: Bouncer production
 
 Production
 ~~~~~~~~~~
@@ -43,9 +45,14 @@ Production
 - *Pocket Marketing pages URL:* https://getpocket.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
+- `Stub Attribution`_ service: Bouncer production
+
+.. note::
+    By default, the Demo servers on GCP point to the Bouncer Dev service. 
+    To change this, you will have adjust GCP Secrets - see the `demo sites`_ docs
+
 
 You can check the currently deployed git commit by checking /revision.txt on any of these URLs.
-
 
 Tests in the lifecycle of a change
 ----------------------------------
@@ -228,3 +235,5 @@ may be commits on that branch which aren't in yours – so, if you have the
 .. _public staging environment: https://www.allizom.org
 .. _Docker Hub: https://hub.docker.com/r/mozmeao/bedrock/tags
 .. _production: https://www.mozilla.org
+.. _demo sites: https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites
+.. _Stub Attribution: https://bedrock.readthedocs.io/en/latest/attribution/0002-firefox-desktop.html
