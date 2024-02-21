@@ -12,7 +12,11 @@ home-were-not-normal = We’re not a normal tech company. The things we create p
 
 # Quotes around string to represent it being a quote by Mitchell Baker
 home-the-health-of = “The health of the internet and online life is why we exist.”
+
+# Obsolete string
 home-mitchell-baker = Mitchell Baker, { -brand-name-mozilla } CEO
+
+home-mitchell-baker-v2 = Mitchell Baker, Executive Chair of the Board, { -brand-name-mozilla-foundation }
 
 home-mozilla-makes-privacy = { -brand-name-mozilla } makes privacy-respecting products
 home-product-firefox-browsing = Private & secure browsing
