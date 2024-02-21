@@ -29,7 +29,7 @@ Dev
 - *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
-- `Stub Attribution`_ service: Bouncer staging
+- *Firefox download URLs:* Bouncer staging
 
 Staging
 ~~~~~~~
