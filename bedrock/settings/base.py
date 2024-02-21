@@ -1185,7 +1185,7 @@ SENTRY_FRONTEND_DSN = config(
 )
 
 # Statsd metrics via markus
-if DEBUG:
+if DEBUG and not config("DISABLE_LOCAL_MARKUS", default="False", parser=bool):
     MARKUS_BACKENDS = [
         {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
     ]
