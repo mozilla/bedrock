@@ -37,7 +37,7 @@ Staging
 - *Pocket Marketing pages URL:* https://www.tekcopteg.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* stage, deployed on git push
-- `Stub Attribution`_ service: Bouncer production
+- *Firefox download URL:* https://download.mozilla.org/
 
 Production
 ~~~~~~~~~~
