@@ -8,7 +8,8 @@
 
 {% set page_id = 'data-gtm-page-id="/firefox/auroranotes/"' %}
 {% set product_name = 'Firefox Developer Edition' %}
-{% set product_class = 'mzp-t-dark mzp-t-product-developer' %}
+{% set header_class = 'mzp-t-dark t-developer' %}
+{% set brand_product = 'developer' %}
 {% set download_button_primary %}
  {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy='Download Firefox Developer Edition', dom_id="download-dev-edition-primary") }}
 {% endset %}
