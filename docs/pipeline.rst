@@ -48,7 +48,7 @@ Production
 - *Firefox download URL:* https://download.mozilla.org/
 
 .. note::
-    By default, the Demo servers on GCP point to the Bouncer Dev service. 
+    By default, the Demo servers on GCP point to the Bouncer Dev service at https://dev.bouncer.nonprod.webservices.mozgcp.net/
     To change this, you will have adjust GCP Secrets - see the `demo sites`_ docs
 
 
