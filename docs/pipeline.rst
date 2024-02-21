@@ -45,7 +45,7 @@ Production
 - *Pocket Marketing pages URL:* https://getpocket.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
-- `Stub Attribution`_ service: Bouncer production
+- *Firefox download URL:* https://download.mozilla.org/
 
 .. note::
     By default, the Demo servers on GCP point to the Bouncer Dev service. 
