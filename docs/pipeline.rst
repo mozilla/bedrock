@@ -29,7 +29,7 @@ Dev
 - *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
-- *Firefox download URLs:* Bouncer staging
+- *Firefox download URL:* https://bouncer-bouncer.stage.mozaws.net/
 
 Staging
 ~~~~~~~
