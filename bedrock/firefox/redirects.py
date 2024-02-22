@@ -593,4 +593,6 @@ redirectpatterns = (
     redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
     # issue 14172
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
+    # issue 14231
+    redirect(r"^firefox/flashback/?$", "firefox"),
 )
