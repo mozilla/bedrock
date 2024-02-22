@@ -156,25 +156,3 @@ $icon-size-md: 32px;
         display: block;
     }
 }
-
-// Easter egg
-@keyframes duckroll {
-    0% {
-        width: 32px;
-        height: 32px;
-    }
-
-    100% {
-        width: 300px;
-        height: 300px;
-    }
-}
-
-.c-menu-item-link[href^='https://hubs.mozilla.com'] .c-menu-item-icon {
-    transition: width 150ms ease, height 150ms ease;
-    z-index: 100;
-}
-
-.c-menu-item-link[href^='https://hubs.mozilla.com']:hover .c-menu-item-icon {
-    animation: duckroll 23s ease-in-out 23s forwards;
-}
