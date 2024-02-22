@@ -19,23 +19,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {{ css_bundle('firefox_whatsnew_120_na') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-firefox-whatsnew-120-na', ['en-US', 'en-CA']) %}
-    {{ js_bundle('firefox_whatsnew_120_experiment_na') }}
-  {% endif %}
-{% endblock %}
-
 {% block site_header %}{% endblock %}
 
-{% if variant == '1' %}
-  {% set qr_code = static('img/firefox/whatsnew/whatsnew120-na/qr-video.png') %}
-  {% set install_fakespot_url = 'https://addons.mozilla.org/en-US/firefox/addon/fakespot-fake-reviews-amazon/?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-video&utm_content=Fakespot'%}
-  {% set sync_tabs_url = 'https://support.mozilla.org/en-US/kb/send-tab-firefox-desktop-other-devices?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-video&utm_content=Firefox'%}
-{% else %}
-  {% set qr_code = static('img/firefox/whatsnew/whatsnew120-na/qr-novideo.png') %}
-  {% set install_fakespot_url = 'https://addons.mozilla.org/en-US/firefox/addon/fakespot-fake-reviews-amazon/?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Fakespot'%}
-  {% set sync_tabs_url = 'https://support.mozilla.org/en-US/kb/send-tab-firefox-desktop-other-devices?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Firefox'%}
-{% endif %}
+{% set qr_code = static('img/firefox/whatsnew/whatsnew120-na/qr-novideo.png') %}
+{% set install_fakespot_url = 'https://addons.mozilla.org/en-US/firefox/addon/fakespot-fake-reviews-amazon/?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Fakespot'%}
+{% set sync_tabs_url = 'https://support.mozilla.org/en-US/kb/send-tab-firefox-desktop-other-devices?utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew-120-na-nonvideo&utm_content=Firefox'%}
 
 {% block wnp_content %}
 <section class="wnp-content-main">
@@ -104,7 +92,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <a class="mzp-c-button mzp-t-secondary qr-code-btn">
         {% include 'firefox/whatsnew/includes/fx120/qr.svg' %}<span>Get Firefox for mobile</span></a>
         <div class="mzp-u-modal-content">
-          <img src="{{ qr_code }}" width="200">
+          {{ qrcode('https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew-120', 13) }}
           <h4> Scan QR code to get Firefox on your phone</h4>
         </div>
       {% endcall %}
