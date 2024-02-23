@@ -502,8 +502,11 @@ STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
 STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 )
-STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",)
 STATICFILES_DIRS = (path("assets"),)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 if DEBUG:
     STATICFILES_DIRS += (path("media"),)
 
@@ -554,6 +557,7 @@ BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
 ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE", default="false", parser=bool)
 
 MIDDLEWARE = [
+    # IMPORTANT: this may be extended later in this file or via settings/__init__.py
     "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -562,7 +566,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
-    # must come before LocaleURLMiddleware
+    # RedirectsMiddleware must come before LocaleURLMiddleware
     "bedrock.redirects.middleware.RedirectsMiddleware",
     "bedrock.base.middleware.LocaleURLMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
@@ -570,7 +574,9 @@ MIDDLEWARE = [
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=bool)
@@ -579,6 +585,7 @@ if ENABLE_CSP_MIDDLEWARE:
 
 INSTALLED_APPS = [
     # Django contrib apps
+    "django.contrib.sessions",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.staticfiles",
@@ -591,6 +598,19 @@ INSTALLED_APPS = [
     "django_jinja_markdown",
     "django_jinja",
     "watchman",
+    # Wagtail CMS and related, necessary apps'wagtail.contrib.forms',
+    "wagtail.contrib.redirects",
+    "wagtail.documents",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
     # Local apps
     "bedrock.base",
     "bedrock.firefox",
@@ -666,10 +686,16 @@ WATCHMAN_CHECKS = (
     "watchman.checks.databases",
 )
 
+
+def _is_bedrock_custom_app(app_name):
+    return app_name.startswith("bedrock.")
+
+
 TEMPLATES = [
     {
         "BACKEND": "django_jinja.jinja2.Jinja2",
-        "APP_DIRS": True,
+        "APP_DIRS": False,
+        "DIRS": [f"bedrock/{name.split('.')[1]}/templates" for name in INSTALLED_APPS if _is_bedrock_custom_app(name)],
         "OPTIONS": {
             "match_extension": None,
             "finalize": lambda x: x if x is not None else "",
@@ -697,6 +723,24 @@ TEMPLATES = [
                 "django_jinja.builtins.extensions.StaticFilesExtension",
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
                 "django_jinja_markdown.extensions.MarkdownExtension",
+                "wagtail.jinja2tags.core",
+                "wagtail.admin.jinja2tags.userbar",
+                "wagtail.images.jinja2tags.images",
+            ],
+        },
+    },
+    {
+        # Wagtail needs the standard Django template backend
+        # https://docs.wagtail.org/en/stable/reference/jinja2.html#configuring-django
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "APP_DIRS": True,  # and we customise WHICH dirs we will render from below:
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -1878,3 +1922,28 @@ VPN_SUPPORTED_LOCALES = [
 RELAY_PRODUCT_URL = config(
     "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
 )
+
+# WAGTAIL =======================================================================================
+
+WAGTAIL_SITE_NAME = config(
+    "WAGTAIL_SITE_NAME",
+    default="Mozorg (selective)",
+)
+WAGTAILADMIN_BASE_URL = config(
+    "WAGTAILADMIN_BASE_URL",
+    default="",
+)
+
+WAGTAIL_ENABLE_ADMIN = config(
+    "WAGTAIL_ENABLE_ADMIN",
+    default="False",
+    parser=bool,
+)
+
+if WAGTAIL_ENABLE_ADMIN:
+    for midddleware_spec in [
+        "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+    ]:
+        MIDDLEWARE.insert(3, midddleware_spec)

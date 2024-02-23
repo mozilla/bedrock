@@ -6,6 +6,8 @@ from django.conf import settings
 from django.urls import include, path
 from django.utils.module_loading import import_string
 
+from wagtail import urls as wagtail_urls
+from wagtail.admin import urls as wagtailadmin_urls
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
@@ -48,3 +50,9 @@ if settings.DEBUG:
         path("404/", import_string(handler404)),
         path("500/", import_string(handler500)),
     )
+
+if settings.WAGTAIL_ENABLE_ADMIN:
+    urlpatterns += (path("cms-admin/", include(wagtailadmin_urls)),)
+
+# Wagtail is the catch-all route, and it will raise a 404 if needed
+urlpatterns += (path("", include(wagtail_urls)),)
