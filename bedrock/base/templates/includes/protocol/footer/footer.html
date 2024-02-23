@@ -26,6 +26,10 @@
             <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-text="Careers">{{ ftl('footer-careers') }}</a></li>
             <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-text="Contact">{{ ftl('footer-contact') }}</a></li>
             <li><a href="{{ donate_url(content='footer') }}" data-link-type="footer" data-link-text="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
+          {% if LANG == "de" %}
+            {# Legal requirement in Germany see issue #14240 #}
+            <li><a href="{{ url('legal.impressum') }}" data-link-type="footer" data-link-text="Impressum">Impressum</a></li>
+          {% endif %}
           </ul>
         </section>
 
