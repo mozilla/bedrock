@@ -616,6 +616,13 @@
     },
     {
       "files": [
+        "css/mozorg/mozilla-account-promo.scss",
+        "css/products/landing.scss"
+      ],
+      "name": "products"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
@@ -1510,6 +1517,12 @@
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
+    },
+    {
+      "files": [
+        "js/mozorg/products.es6.js"
+      ],
+      "name": "products"
     },
     {
       "files": [

@@ -8,6 +8,7 @@ from bedrock.mozorg.util import page
 from bedrock.products import views
 
 urlpatterns = (
+    page("", "products/landing.html", ftl_files=["firefox/products"]),
     path("vpn/", views.vpn_landing_page, name="products.vpn.landing"),
     path("vpn/pricing/", views.vpn_pricing_page, name="products.vpn.pricing"),
     path("vpn/features/", views.vpn_features_page, name="products.vpn.features"),
