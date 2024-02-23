@@ -143,8 +143,6 @@ redirectpatterns = (
     redirect(r"^firefox/hello/npssurvey/?$", "https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey", permanent=False),
     # Bug 1221739
     redirect(r"^firefox/hello/feedbacksurvey/?$", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", permanent=False),
-    # bug 1148127
-    redirect(r"^products/?$", "firefox"),
     # Bug 1110927
     redirect(r"^(products/)?firefox/start/central\.html$", "firefox.new"),
     redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
@@ -442,7 +440,7 @@ redirectpatterns = (
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r"^products/firefox/start/?$", "http://start.mozilla.org"),
     # issue 9008
-    redirect(r"^products/firefox(/.*)?$", "firefox.products.index"),
+    redirect(r"^products/firefox(/.*)?$", "products.landing"),
     # bug 1260423
     redirect(r"^firefox/choose/?$", "firefox.new"),
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test

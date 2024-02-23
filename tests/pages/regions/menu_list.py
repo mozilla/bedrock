@@ -15,7 +15,7 @@ class MenuList(BaseRegion):
 
     @property
     def list_is_open(self):
-        return self.page.is_element_displayed(*self._list_locator)
+        return self.is_element_displayed(*self._list_locator)
 
     def click(self):
         self.scroll_element_into_view(*self._title_button_locator).click()

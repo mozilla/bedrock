@@ -7,7 +7,7 @@
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' %}
 
 <li class="c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="c-menu-title" href="{{ url('firefox.products.index') }}" aria-haspopup="true" aria-controls="c-menu-panel-products">{{ ftl('navigation-v2-products') }}</a>
+  <a class="c-menu-title" href="{{ url('products.landing') }}" aria-haspopup="true" aria-controls="c-menu-panel-products">{{ ftl('navigation-v2-products') }}</a>
   <div class="c-menu-panel" id="c-menu-panel-products">
     <div class="c-menu-panel-container">
       <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-products">{{ ftl('navigation-v2-close-products-menu') }}</button>
@@ -90,7 +90,7 @@
             </section>
           </li>
         </ul>
-        <p class="c-menu-category-link"><a href="{{ url('firefox.products.index') }}" data-link-text="View all Products" data-link-type="nav" data-link-position="topnav" data-link-group="products">{{ ftl('navigation-v2-view-all-products') }}</a></p>
+        <p class="c-menu-category-link"><a href="{{ url('products.landing') }}" data-link-text="View all Products" data-link-type="nav" data-link-position="topnav" data-link-group="products">{{ ftl('navigation-v2-view-all-products') }}</a></p>
       </div>
     </div><!-- close .c-menu-panel-container -->
   </div><!-- close .c-menu-panel -->

@@ -241,8 +241,6 @@ URLS = flatten(
         url_test("/hello/", "https://support.mozilla.org/kb/hello-status"),
         url_test("/firefox/hello/start", "https://support.mozilla.org/kb/hello-status"),
         url_test("/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start", "https://support.mozilla.org/kb/hello-status"),
-        # bug 1148127
-        url_test("/products/", "/firefox/"),
         # Bug 1110927
         url_test("/firefox/start/central.html", "/firefox/new/"),
         url_test("/firefox/sync/firstrun.html", "/firefox/features/sync/"),
@@ -876,9 +874,9 @@ URLS = flatten(
         url_test("/projects/xul/", "https://developer.mozilla.org/docs/Mozilla/Tech/XUL"),
         url_test("/quality/", "http://quality.mozilla.org/"),
         url_test("/quality/help/", "http://quality.mozilla.org/get-involved"),
-        # Bug 654614 /blocklist -> addons.m.o/blocked
+        # Bug 654614 /blocklist -> addons.m.o/blocked, Issue 14221
         url_test("/blocklist/", "https://addons.mozilla.org/blocked/"),
-        url_test("/products/firefox/{,stuff/}", "/firefox/products/"),
+        url_test("/products/firefox/{,stuff/}", "/products/"),
         # Bug 784411
         url_test("/about/mission/", "/mission/"),
         # Bug 1171763, 1347752 - /research/ -> research.m.o
@@ -1280,5 +1278,7 @@ URLS = flatten(
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
+        # Issue 14221
+        url_test("/firefox/products/", "/products/"),
     )
 )
