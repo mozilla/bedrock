@@ -24,6 +24,9 @@ def template_source_url(template):
     if template in settings.EXCLUDE_EDIT_TEMPLATES:
         return None
 
+    if template.split("/")[0] in settings.EXCLUDE_EDIT_TEMPLATES_DIRECTORIES:
+        return None
+
     try:
         absolute_path = loader.get_template(template).template.filename
     except TemplateDoesNotExist:

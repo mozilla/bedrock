@@ -310,6 +310,11 @@ EXCLUDE_EDIT_TEMPLATES = [
     "security/product-advisories.html",
     "security/known-vulnerabilities.html",
 ]
+# Also allow entire directories to be skipped
+EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
+    "cms",
+]
+
 IGNORE_LANG_DIRS = [
     ".git",
     "configs",
@@ -661,6 +666,7 @@ INSTALLED_APPS = [
     "taggit",
     # Local apps
     "bedrock.base",
+    "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
     "bedrock.foundation",
     "bedrock.legal",
@@ -1864,7 +1870,7 @@ WAGTAILADMIN_BASE_URL = config(
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
-# Custom setting that we use to plug in/unplug the admin UI entirely
+# Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
     default="False",
