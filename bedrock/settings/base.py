@@ -299,6 +299,11 @@ EXCLUDE_EDIT_TEMPLATES = [
     "security/product-advisories.html",
     "security/known-vulnerabilities.html",
 ]
+# Also allow entire directories to be skipped
+EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
+    "cms",
+]
+
 IGNORE_LANG_DIRS = [
     ".git",
     "configs",
@@ -616,6 +621,7 @@ INSTALLED_APPS = [
     "taggit",
     # Local apps
     "bedrock.base",
+    "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
     "bedrock.foundation",
     "bedrock.landing",
@@ -1941,7 +1947,7 @@ WAGTAILADMIN_BASE_URL = config(
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
-# Custom setting that we use to plug in/unplug the admin UI entirely
+# Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
     default="False",
@@ -1983,6 +1989,24 @@ def lazy_wagtail_langs():
 
 
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+
+# Custom settings, not a core Wagtail ones, to scope out RichText options
+WAGTAIL_RICHEXT_FEATURES_FULL = [
+    # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
+    # Order here is the order used in the editor UI
+    "h2",
+    "h3",
+    "hr",
+    "bold",
+    "italic",
+    "strikethrough",
+    "code",
+    "blockquote",
+    "link",
+    "ol",
+    "ul",
+]
+
 
 # Storage
 # If config is available, we use Google Cloud Storage, else (for local dev)
