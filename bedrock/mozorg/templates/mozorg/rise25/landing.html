@@ -9,7 +9,7 @@
 {% from "macros-protocol.html" import split with context %}
 
 {% block page_title %}Rise25 Awards: Call for Nominations{% endblock %}
-{% block page_desc %}Do you know someone who’s not just talking about the future of AI but actively shaping it for the better? We’re on the hunt for 25 individuals whose AI projects blend innovation with genuine social impact.{% endblock %}
+{% block page_desc %}We’re seeking 25 visionaries using AI to drive social impact, offering them global recognition at our Dublin awards event.{% endblock %}
 {% block page_image %}{{ static('img/mozorg/rise25/page-image.jpg') }}{% endblock %}
 
 {% block page_css %}
@@ -31,7 +31,11 @@
   ) %}
     <h1 class="r25-c-wordmark">Rise25</h1>
     <h2 class="r25-fancy-title">AI for the people</h2>
-    <p class="r25-hero-intro">Do you know someone who’s not just talking about the future of AI but actively shaping it for the better? We’re on the hunt for 25 individuals whose AI projects blend innovation with genuine social impact.</p>
+    <p class="r25-hero-intro">We’re seeking 25 visionaries using AI to drive social
+      impact, offering them global recognition at our Dublin awards event. By sharing
+      their stories widely, we’ll amplify their work and connect them with a community
+      dedicated to supporting responsible AI initiatives that benefit humanity. Know
+      an innovator making a difference with AI?</p>
     <p class="r25-hero-cta">
       <strong class="r25-hero-notice">Call for nominees closes on<br> <time datetime="2024-03-29">March 29, 2024</time></strong>
 
@@ -187,17 +191,19 @@
     <div class="r25-blog">
       <div class="r25-blog-body">
         <h3 class="r25-blog-title">Who’s shaping the future of AI? We’re on the hunt.</h3>
-        <p class="r25-blog-cta"><a href="https://blog.mozilla.org/en/mozilla-announces-call-for-entries-for-the-2nd-annual-rise25-awards-in-dublin-ireland/{{ utm_params }}" rel="external noopener" target="_blank">Read our blog post</a></p>
+        <p class="r25-blog-cta">
+          <a href="https://blog.mozilla.org/en/mozilla/mozilla-rise25-ai-nominations/{{ utm_params }}" rel="external noopener" target="_blank">Read our blog post</a>
+        </p>
       </div>
 
       {{ resp_img(
-        url='img/mozorg/rise25/kay-lopez.jpg',
+        url='img/mozorg/rise25/blog-thumbnail.jpg',
         srcset={
-          'img/mozorg/rise25/kay-lopez-high-res.jpg': '1.5x'
+          'img/mozorg/rise25/blog-thumbnail-high-res.jpg': '1.5x'
         },
         optional_attributes={
           'width': '230',
-          'height': '128',
+          'height': '153',
           'class': 'r25-blog-image'
         }
       ) }}
@@ -223,7 +229,7 @@
       <p>There are no nomination fees or costs associated with the nomination form.</p>
 
       <h3 class="r25-faq-heading">How will honorees be notified?</h3>
-      <p>Mozilla will reach out to honorees via email this summer.</p>
+      <p>Mozilla will reach out to honorees via email later this year.</p>
 
       <h3 class="r25-faq-heading">Who can I contact for more information?</h3>
       <p>Give us a shout at <a href="mailto:rise25@mozilla.com">rise25@mozilla.com</a>.</p>

@@ -32,7 +32,7 @@ window.onYouTubeIframeAPIReady = function () {
             'https://www.mozilla.org/rise25/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
         );
         var tweetText = encodeURIComponent(
-            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n\n Five people from five categories will be selected and honored at an upcoming event. Submit your nomination today!\n'
+            'Mozilla is on the hunt for 25 visionaries making AI better for the people — not big corporations. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Submit your nomination today! \n\n'
         );
         return (
             'https://www.twitter.com/intent/tweet?url=' +
@@ -47,7 +47,7 @@ window.onYouTubeIframeAPIReady = function () {
             'https://www.mozilla.org/rise25/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=facebook&utm_content=rise25-share'
         );
         var shareText = encodeURIComponent(
-            'Mozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better.\n\n Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Submit your nomination today!\n'
+            'Mozilla is on the hunt for 25 visionaries making AI better for the people — not big corporations. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Submit your nomination today! \n\n'
         );
         return (
             'https://facebook.com/sharer.php?u=' +
@@ -91,11 +91,9 @@ window.onYouTubeIframeAPIReady = function () {
     })();
 
     (function () {
-        var subject = encodeURIComponent(
-            'Mozilla is looking for the next 25 rising stars'
-        );
+        var subject = encodeURIComponent('Who will you nominate for Rise 25?');
         var body = encodeURIComponent(
-            'In search of the game-changers shaping the internet. \n\nHelp us find the visionaries and builders shaping the future of the internet. \n\nMozilla is searching for the next 25 rising stars who are shaping the future of the internet for the better. Five people from five categories will be selected and honored at an upcoming event. The categories are: Activists, Builders, Artists, Creators, and Activists. Who will you nominate? \n\n Submit your nominations: https://www.mozilla.org/rise25/'
+            'Mozilla is searching for 25 visionaries making AI better for the people — not big corporations. Seeking individuals across 5 categories: Advocates, Builders, Artists, Entrepreneurs, and Change Agents. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Nominations close March 29. Get your nomination in today! \n\nNominate someone: https://www.mozilla.org/rise25/'
         );
         for (var index = 0; index < emailShare.length; index++) {
             var element = emailShare[index];

@@ -17,38 +17,27 @@
     }
 
     .r25-hero-cta {
-        align-items: center;
-        display: grid;
-        gap: $spacing-lg;
-        grid-template-areas: "notice notice"
-                             "video button";
-        justify-content: center;
-
         .r25-hero-notice {
-            background: $color-black radial-gradient(170% 170% at 70% 80%, fade-out(r25.$orange, 0.8) 0%, fade-out(r25.$red, 1) 100%);
-            border-image: linear-gradient(to bottom, fade-out($color-white, 0.8), fade-out($color-white, 1) 90%) 1;
-            border-style: solid;
-            border-width: 1px 1px 0;
             display: block;
-            grid-area: notice;
-            margin: 0 auto;
+            margin: 0 auto $spacing-lg;
             max-width: $content-sm;
-            padding: $spacing-sm $spacing-lg;
             text-align: center;
 
-            br {
-                display: none;
+            @supports (background-clip: text)  {
+                background-image: linear-gradient(110deg, $color-white -5%, r25.$orange 108%);
+                background-clip: text;
+                color: fade-out($color-white, 0.8);
             }
         }
 
         .video-play {
             display: block;
-            grid-area: video;
             position: relative;
+            margin: $spacing-xl auto 0;
 
             img,
             video {
-                border: 1px solid fade-out($color-white, 0.8);
+                border: 1px solid fade-out($color-black, 0.5);
             }
 
             &::after {
@@ -77,32 +66,55 @@
         }
 
         .r25-c-button {
-            grid-area: button;
-
             span {
                 display: none;
             }
 
             &::after {
                 content: " ↓";
+                white-space: nowrap;
+            }
+        }
+
+        @media #{$mq-sm} {
+            align-items: center;
+            display: grid;
+            gap: $spacing-lg;
+            grid-template-areas: "notice notice"
+                                 "video button";
+            justify-content: center;
+
+            .r25-hero-notice {
+                grid-area: notice;
+
+                br {
+                    display: none;
+                }
+            }
+
+            .video-play {
+                grid-area: video;
+                margin: 0;
+            }
+
+            .r25-c-button {
+                grid-area: button;
             }
         }
 
         @media #{$mq-md} {
+            justify-content: start;
             row-gap: $spacing-xl;
             grid-template-areas: "notice"
                                  "button";
 
             .r25-hero-notice {
-                grid-area: notice;
+                text-align: start;
+                margin: 0;
             }
 
-            .r25-c-button {
-                grid-area: button;
-
-                span {
-                    display: inline;
-                }
+            .r25-c-button span {
+                display: inline;
             }
 
             .video-play {
@@ -110,10 +122,12 @@
             }
         }
 
-        @media #{$mq-xl} {
+        @media #{$mq-lg} {
             grid-template-areas: "button notice";
-            column-gap: $spacing-xl;
+            column-gap: $spacing-2xl;
+        }
 
+        @media #{$mq-xl} {
             .r25-hero-notice br {
                 display: block;
             }
@@ -154,7 +168,7 @@
 
         video,
         img {
-            border: 1px solid fade-out($color-white, 0.8);
+            border: 1px solid fade-out($color-black, 0.5);
         }
 
         .fallback {

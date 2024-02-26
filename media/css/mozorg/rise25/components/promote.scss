@@ -34,7 +34,8 @@
 
         img,
         video {
-            border: 1px solid fade-out($color-white, 0.8);
+            margin: 0 auto;
+            border: 1px solid fade-out($color-black, 0.5);
         }
     }
 
@@ -102,14 +103,15 @@
 
         &::after {
             content: " →";
-            position: relative;
-            left: 0;
-            transition: left 100ms ease-in;
+            transition: margin 100ms ease-in, padding 100ms ease-in;
+            white-space: nowrap;
         }
 
         &:hover::after,
         &:focus::after {
             left: $spacing-xs;
+            margin-right: -$spacing-xs;
+            padding-left: $spacing-xs;
         }
 
         @supports (background-clip: text)  {
