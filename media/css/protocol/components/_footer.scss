@@ -31,6 +31,10 @@ $image-path: '/media/protocol/img';
             &.mastodon {
                 background-image: url('/media/img/logos/social/mastodon-white.svg');
             }
+
+            &.twitter {
+                background-image: url('#{$image-path}/icons/social/x/white.svg');
+            }
         }
     }
 }
