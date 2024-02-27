@@ -40,7 +40,6 @@ opt-out-confirmation-youtube = { -brand-name-youtube }
 opt-out-confirmation-facebook = { -brand-name-facebook }
 
 # Link to https://twitter.com/firefox
-opt-out-confirmation-x = X
 opt-out-confirmation-x-formerly-twitter = X (formerly Twitter)
 
 # Obsolete string
