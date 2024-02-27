@@ -1,0 +1,167 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use "~@mozilla-protocol/core/protocol/css/includes/lib" as * with ($image-path: "/media/protocol/img");
+
+@use 'lib' as r25;
+
+@use "./components/hero.scss";
+@use "./components/promote.scss";
+@use "./components/social.scss";
+@use "./components/category.scss";
+@use "./components/blog.scss";
+@use "./components/faq.scss";
+
+@use "~@mozilla-protocol/core/protocol/css/components/modal";
+@use "~@mozilla-protocol/core/protocol/css/components/video";
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    src:
+        url("/media/fonts/rise25/Inter-ExtraBold.woff2") format("woff2"),
+        url("/media/fonts/rise25/Inter-ExtraBold.woff") format("woff");
+}
+
+// * -------------------------------------------------------------------------- */
+// Smooth scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Common elements
+
+body.rise25 {
+    #outer-wrapper {
+        background-color: $color-black;
+        background-image: linear-gradient(135deg, fade-out(r25.$orange, 0.5) -100px, fade-out(r25.$orange, 1) 500px),
+            linear-gradient(-135deg, fade-out(r25.$teal, 0.25) -100px, fade-out(r25.$teal, 1) 500px);
+        color: #d9d9d9;
+    }
+
+    h1, h2, h3 {
+        @include font-base;
+        color: #d9d9d9;
+    }
+
+    .r25-fancy-title {
+        @include text-title-xl;
+        font-weight: 900;
+        display: inline-block;
+
+        @supports (background-clip: text) {
+            background-image: linear-gradient(110deg, r25.$teal -10%, r25.$purple 35%, r25.$red 60%, r25.$orange 108%);
+            background-clip: text;
+            color: fade-out($color-white, 0.8);
+        }
+    }
+}
+
+.r25-c-wordmark {
+    @include image-replaced;
+    background: url("/media/img/mozorg/rise25/rise25-wordmark-white.svg") center top no-repeat;
+    background-size: contain;
+    display: block;
+    height: 30px;
+    margin: 0 auto $spacing-md;
+    width: 150px;
+
+    @media #{$mq-md} {
+        margin: 0 0 $spacing-md;
+    }
+}
+
+.r25-section-title {
+    @include text-title-xl;
+}
+
+.r25-c-button {
+    @include border-box;
+    @include font-size(16px);
+    background: $color-black;
+    border-radius: 2em;
+    box-shadow: 0 -1px 2px fade-out($color-white, 0.4);
+    color: $color-white;
+    display: inline-block;
+    font-weight: bold;
+    padding: $spacing-sm $spacing-xl;
+    text-align: center;
+    text-decoration: none !important;  /* stylelint-disable-line declaration-no-important */
+    transition: background-color 100ms ease-in, color 100ms ease-in;
+    white-space: nowrap;
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+
+    &:hover,
+    &:focus {
+        background: $color-white;
+        color: $color-black;
+    }
+
+    &.t-fancy {
+        background: hotpink linear-gradient(115deg, fade-out(r25.$orange, 0.2) -10%, fade-out(r25.$red, 0.2) 35%, fade-out(r25.$purple, 0.2) 70%, fade-out(r25.$teal, 0.2) 105%);
+        border: 0;
+        box-shadow: none;
+        padding: 6px $spacing-md;
+        text-shadow: 0 1px 0 fade-out($color-black, 0.8);
+
+        &:hover,
+        &:focus {
+            background-color: darkmagenta;
+            color: $color-white;
+        }
+
+        @media #{$mq-md} {
+            padding: 12px $spacing-xl;
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Thanks page
+
+.r25-thanks-body {
+    text-align: center;
+
+    .r25-c-wordmark {
+        margin: 0 auto $layout-md;
+    }
+
+    .r25-fancy-title {
+        max-width: $content-md;
+    }
+}
+
+.r25-thanks-newsletter {
+    .mzp-c-newsletter-form {
+        @include white-links;
+
+        .mzp-c-newsletter-title {
+            @include text-body-lg;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 auto $spacing-lg;
+        }
+
+        .mzp-c-newsletter-content {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+
+        .mzp-c-button {
+            width: auto;
+            border: 0;
+        }
+    }
+}

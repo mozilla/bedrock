@@ -1,0 +1,129 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../lib' as r25;
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Past winners and spread the word
+
+.r25-promote {
+    .r25-promote-body {
+        background-image: linear-gradient(330deg, fade-out(r25.$purple, 0.6) -100px, fade-out(r25.$purple, 1) 80%);
+        border-image: linear-gradient(350deg, fade-out(r25.$purple, 0.5), fade-out(r25.$purple, 1) 70%) 1;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding: $spacing-xl;
+        margin-top: -$spacing-2xl;
+        text-align: center;
+    }
+
+    .r25-promote-video {
+        text-align: center;
+        margin-top: $layout-md;
+
+        .video {
+            display: none;
+        }
+
+        .fallback {
+            display: block;
+        }
+
+        img,
+        video {
+            margin: 0 auto;
+            border: 1px solid fade-out($color-black, 0.5);
+        }
+    }
+
+    @media #{$mq-md} {
+        .r25-promote-container {
+            align-items: center;
+            background-image: linear-gradient(-40deg, fade-out(r25.$purple, 0.6) -100px, fade-out(r25.$purple, 1) 80%);
+            border-image: linear-gradient(-45deg, fade-out(r25.$purple, 0.5), fade-out(r25.$purple, 1) 80%) 1;
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            column-gap: $spacing-2xl;
+            display: grid;
+            grid-template-areas: "video body";
+            grid-template-columns: 40% 1fr;
+            margin-top: -$spacing-2xl;
+            padding: $spacing-2xl;
+        }
+
+        .r25-promote-body {
+            @include text-body-xl;
+            background: transparent none;
+            border-image: none;
+            border: 0;
+            grid-area: body;
+            margin: 0;
+            padding: 0;
+            text-align: start;
+        }
+
+        .r25-promote-video {
+            grid-area: video;
+            margin: 0 auto;
+
+            .video {
+                display: block;
+            }
+
+            .fallback {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$mq-md} and (prefers-reduced-motion: reduce) {
+        .r25-promote-video {
+            .video {
+                display: none;
+            }
+
+            .fallback {
+                display: block;
+            }
+        }
+    }
+}
+
+.r25-c-past-cta {
+    margin: $spacing-md 0 0;
+
+    a:link,
+    a:visited {
+        @include text-body-lg;
+        font-weight: bold;
+        text-decoration: none;
+
+        &::after {
+            content: " →";
+            transition: margin 100ms ease-in, padding 100ms ease-in;
+            white-space: nowrap;
+        }
+
+        &:hover::after,
+        &:focus::after {
+            left: $spacing-xs;
+            margin-right: -$spacing-xs;
+            padding-left: $spacing-xs;
+        }
+
+        @supports (background-clip: text)  {
+            background-image: linear-gradient(110deg, r25.$orange -5%, r25.$red 35%, r25.$purple 70%, r25.$teal 108%);
+            background-clip: text;
+            color: fade-out($color-white, 0.8);
+            transition: color 100ms ease-in;
+
+            &:hover,
+            &:focus {
+                color: $color-white;
+            }
+        }
+    }
+}

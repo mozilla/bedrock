@@ -160,6 +160,8 @@ urlpatterns = (
         active_locales=["en-US", "de", "fr", "it"],
     ),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
+    page("rise25/", "mozorg/rise25/landing.html"),
+    page("rise25/thanks/", "mozorg/rise25/thanks.html"),
 )
 
 if settings.DEV:

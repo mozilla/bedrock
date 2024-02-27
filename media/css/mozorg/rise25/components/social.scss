@@ -1,0 +1,134 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../lib' as r25;
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// * -------------------------------------------------------------------------- */
+// Social share widget
+
+.r25-c-social-share {
+    --social-share-color: #bbb;
+    @include text-body-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--social-share-color);
+
+    .social-share-title {
+        font-weight: 900;
+        margin-bottom: 0;
+        margin-right: $spacing-sm;
+        text-transform: uppercase;
+    }
+
+    @media #{$mq-md} {
+        justify-content: flex-start;
+    }
+
+    .social-share-list {
+        display: flex;
+        margin: 0;
+
+        .visually-hidden {
+            @include visually-hidden;
+        }
+
+        a,
+        button {
+            background: transparent;
+            width: 30px;
+            height: 30px;
+            margin-left: $spacing-xs;
+            margin-right: $spacing-xs;
+            border: 1px solid var(--social-share-color);
+            border-radius: $border-radius-lg;
+            display: flex;
+            color: var(--social-share-color);
+            align-items: center;
+            justify-content: center;
+            appearance: none;
+
+            &:hover,
+            &:focus {
+                --social-share-color: #fff;
+            }
+        }
+
+        button {
+            height: 32px;
+            width: 32px;
+            position: relative;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .social-share-copy,
+            .social-share-copied {
+                @include text-body-sm;
+                background: $color-white;
+                border-radius: $border-radius-sm;
+                bottom: -50px;
+                color: $color-black;
+                display: block;
+                height: auto;
+                left: -100%;
+                opacity: 0;
+                padding: $spacing-xs $spacing-sm;
+                pointer-events: none;
+                position: absolute;
+                text-align: center;
+                width: max-content;
+
+                &::after {
+                    border-color: transparent transparent #fff;
+                    border-style: solid;
+                    border-width: 9px;
+                    content: '';
+                    left: calc(25% + 1px);
+                    opacity: 0;
+                    position: absolute;
+                    top: 1px;
+                    transform: translateY(-100%);
+                }
+            }
+
+            .social-share-copied {
+                display: none;
+                opacity: 1;
+                left: -75%;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent transparent #fff;
+                    opacity: 1;
+                    top: 1px;
+                    left: calc(25% + 1px);
+                    transform: translateY(-100%);
+                }
+            }
+
+            @media #{$mq-md} {
+                .social-share-copied {
+                    &::before {
+                        bottom: $spacing-xs;
+                    }
+                }
+
+                &:hover,
+                &:active {
+                    .social-share-copy,
+                    .social-share-copy::after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

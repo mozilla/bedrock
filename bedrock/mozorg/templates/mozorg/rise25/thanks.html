@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}Thanks for submitting your nomination for Rise 25{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('rise25') }}
+{% endblock %}
+
+{% block body_class %}rise25{% endblock %}
+
+{% block content %}
+<section class="mzp-l-content mzp-t-content-lg r25-thanks-body">
+  <div class="r25-c-wordmark"></div>
+  <h1 class="r25-fancy-title">Thanks for submitting your nomination</h1>
+</section>
+
+<section class="mzp-l-content mzp-t-content-md r25-thanks-newsletter">
+  {{ email_newsletter_form(
+    newsletters='knowledge-is-power',
+    include_title=True,
+    title='Want to keep in touch? Stay connected with our mission to create a happier, healthier, and safer internet.',
+    button_class='r25-c-button t-fancy',
+    spinner_color='#fff'
+  ) }}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}

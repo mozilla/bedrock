@@ -1307,6 +1307,12 @@
         "css/mozorg/antiharassment-tool.scss"
       ],
       "name": "antiharassment-tool"
+    },
+    {
+      "files": [
+        "css/mozorg/rise25/rise25.scss"
+      ],
+      "name": "rise25"
     }
   ],
   "js": [
@@ -1978,7 +1984,12 @@
         "js/mozorg/home/monitor-banner-init.js"
       ],
       "name": "monitor-banner"
+    },
+    {
+      "files": [
+        "js/mozorg/rise25/rise25.js"
+      ],
+      "name": "rise25-landing"
     }
-
   ]
 }
