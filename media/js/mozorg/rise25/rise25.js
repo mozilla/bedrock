@@ -29,7 +29,7 @@ window.onYouTubeIframeAPIReady = function () {
 
     function generateTweet() {
         var tweetUrl = encodeURIComponent(
-            'https://www.mozilla.org/rise25/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
+            'https://www.mozilla.org/rise25/nominate/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
         );
         var tweetText = encodeURIComponent(
             'Mozilla is on the hunt for 25 visionaries making AI better for the people — not big corporations. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Submit your nomination today! \n\n'
@@ -44,7 +44,7 @@ window.onYouTubeIframeAPIReady = function () {
 
     function generateFacebookShare() {
         var shareUrl = encodeURIComponent(
-            'https://www.mozilla.org/rise25/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=facebook&utm_content=rise25-share'
+            'https://www.mozilla.org/rise25/nominate/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=facebook&utm_content=rise25-share'
         );
         var shareText = encodeURIComponent(
             'Mozilla is on the hunt for 25 visionaries making AI better for the people — not big corporations. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Submit your nomination today! \n\n'
@@ -59,7 +59,9 @@ window.onYouTubeIframeAPIReady = function () {
 
     function handleCopyLink(e) {
         e.preventDefault;
-        navigator.clipboard.writeText('https://www.mozilla.com/rise25/');
+        navigator.clipboard.writeText(
+            'https://www.mozilla.com/rise25/nominate/'
+        );
 
         var copyText = e.currentTarget.querySelector('.social-share-copy');
         var copiedText = e.currentTarget.querySelector('.social-share-copied');
@@ -93,7 +95,7 @@ window.onYouTubeIframeAPIReady = function () {
     (function () {
         var subject = encodeURIComponent('Who will you nominate for Rise 25?');
         var body = encodeURIComponent(
-            'Mozilla is searching for 25 visionaries making AI better for the people — not big corporations. Seeking individuals across 5 categories: Advocates, Builders, Artists, Entrepreneurs, and Change Agents. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Nominations close March 29. Get your nomination in today! \n\nNominate someone: https://www.mozilla.org/rise25/'
+            'Mozilla is searching for 25 visionaries making AI better for the people — not big corporations. Seeking individuals across 5 categories: Advocates, Builders, Artists, Entrepreneurs, and Change Agents. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Nominations close March 29. Get your nomination in today! \n\nNominate someone: https://www.mozilla.org/rise25/nominate/'
         );
         for (var index = 0; index < emailShare.length; index++) {
             var element = emailShare[index];

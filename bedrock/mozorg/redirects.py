@@ -561,4 +561,6 @@ redirectpatterns = (
     redirect(r"/VendorDPA/?$", "https://assets.mozilla.net/pdf/VendorDPA.pdf", re_flags="i"),
     # Issue 14221
     redirect(r"^firefox/products/?$", "/products/"),
+    # Issue 14255
+    redirect(r"^rise25/?$", "/rise25/nominate/"),
 )
