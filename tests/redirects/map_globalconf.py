@@ -1277,5 +1277,7 @@ URLS = flatten(
         ),
         # Issue 14221
         url_test("/firefox/products/", "/products/"),
+        # Issue 14255
+        url_test("/rise25/", "/rise25/nominate/"),
     )
 )
