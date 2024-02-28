@@ -179,6 +179,12 @@ $image-path: '/media/protocol/img';
         @include hidden;
     }
 
+    .elsewhere {
+        .elsewhere-website {
+            @include visually-hidden;
+        }
+    }
+
     a {
         color: $color-black;
         text-decoration: none;
