@@ -6,18 +6,24 @@
 
 from os import getenv
 
-bind = f'0.0.0.0:{getenv("PORT", "8000")}'
+bind = f"0.0.0.0:{getenv('PORT', 8000)}"
 workers = getenv("WEB_CONCURRENCY", 2)
 accesslog = "-"
 errorlog = "-"
 loglevel = getenv("LOGLEVEL", "info")
 
+worker_class = getenv("GUNICORN_WORKER_CLASS", "gevent")
+worker_connections = int(getenv("WSGI_WORKER_CONNECTIONS", 1000))
+worker_tmp_dir = "/dev/shm"
+
 # Larger keep-alive values maybe needed when directly talking to ELBs
 # See https://github.com/benoitc/gunicorn/issues/1194
-keepalive = getenv("WSGI_KEEP_ALIVE", 2)
-worker_class = getenv("GUNICORN_WORKER_CLASS", "meinheld.gmeinheld.MeinheldWorker")
-worker_connections = getenv("APP_GUNICORN_WORKER_CONNECTIONS", "1000")
-worker_tmp_dir = "/dev/shm"
+keepalive = int(getenv("WSGI_KEEP_ALIVE", 60))
+timeout = int(getenv("WSGI_TIMEOUT", 30))
+graceful_timeout = int(getenv("WSGI_GRACEFUL_TIMEOUT", 10))
+max_requests = getenv("WSGI_MAX_REQUESTS", 1300)
+max_requests_jitter = getenv("WSGI_MAX_REQUESTS_JITTER", 30)
+reuse_port = getenv("WSGI_REUSE_PORT", True)
 
 
 # Called just after a worker has been forked.

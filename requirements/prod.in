@@ -27,9 +27,10 @@ envcat==0.1.1
 everett==3.3.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
+gevent==24.2.1
 glean-parser==10.0.3  # Must match the required version in the Glean NPM package.
-greenlet==0.4.17  # Pinned for stability but subdep of Meinheld
-gunicorn==19.7.1
+greenlet==3.0.3
+gunicorn==21.2.0
 honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.3  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
@@ -38,7 +39,6 @@ lxml==5.1.0  # Needed as a top-level dep so that it's available for BeautifulSou
 Markdown==3.5.2
 markus[datadog]==4.2.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
-meinheld==1.0.2
 newrelic==9.6.0
 Pillow==10.2.0
 PyGithub==2.2.0
