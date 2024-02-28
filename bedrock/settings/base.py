@@ -359,10 +359,14 @@ def lazy_lang_group():
 
 
 def lazy_lang_url_map():
+    # This used to be a mapping of all-lowercase locale codes to
+    # mixed-case locale codes. However, we've moved away from that
+    # and LANGUAGES is now mixed-case. As such, I think this can go in
+    # the woodchipper - SJ
     from django.conf import settings
 
     langs = settings.DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return {i.lower(): i for i in langs}
+    return {i: i for i in langs}
 
 
 def lazy_langs():
@@ -370,15 +374,17 @@ def lazy_langs():
     Override Django's built-in with our native names
 
     Note: Unlike the above lazy methods, this one returns a list of tuples to
-    match Django's expectations.
-
+    match Django's expectations, BUT it has mixed-case lang codes, rather
+    than core Django's all-lowercase codes. This is because we work with
+    mixed-case codes and we'll need them in LANGUAGES when we use
+    Wagtail-Localize, as that has to be configured with a subset of LANGUAGES
     """
     from django.conf import settings
 
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return [(lang.lower(), product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
+    return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
