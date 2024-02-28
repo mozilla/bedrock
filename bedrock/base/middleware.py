@@ -21,37 +21,6 @@ from django.utils.deprecation import MiddlewareMixin
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from bedrock.base import metrics
-from lib.l10n_utils import translation
-
-from . import urlresolvers
-
-
-class LocaleURLMiddleware:
-    """
-    This middleware adjusts the `path_info` for reverse URL resolving.
-
-    We split `request.path_info` into `locale` and `path`. The `path` portion
-    is saved back to `request.path_info` for reverse URL resolving, while the
-    `locale` will either be one we support or empty string.
-
-    """
-
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        response = self.process_request(request)
-        if response:
-            return response
-        return self.get_response(request)
-
-    def process_request(self, request):
-        prefixer = urlresolvers.Prefixer(request)
-        urlresolvers.set_url_prefix(prefixer)
-
-        request.path_info = f"/{prefixer.shortened_path}"
-        request.locale = prefixer.locale
-        translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 
 
 class BasicAuthMiddleware:

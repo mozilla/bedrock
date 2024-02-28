@@ -562,11 +562,12 @@ MIDDLEWARE = [
     "bedrock.mozorg.middleware.HostnameMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    # VaryNoCacheMiddleware must be above LocaleMiddleware"
+    # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
-    # must come before LocaleURLMiddleware
-    "bedrock.redirects.middleware.RedirectsMiddleware",
-    "bedrock.base.middleware.LocaleURLMiddleware",
+    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before LocaleMiddleware
+    "django.middleware.locale.LocaleMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
