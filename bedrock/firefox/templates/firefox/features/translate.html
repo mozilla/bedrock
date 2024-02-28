@@ -6,33 +6,24 @@
 
 {% extends "firefox/features/base-article.html" %}
 
-{% block page_title %}Translate a webpage with Firefox{% endblock %}
-{% block page_desc %}Firefox Translations is an added built-in translation feature that allows you to easily browse the web in your preferred language. Learn more about how this feature in Firefox works, and how Mozilla helps keep what you translate private.{% endblock %}
+{% block page_desc %}{{ ftl('features-translate-firefox-translations-is-an-added') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
 
-{% block article_title_short %}Translate the web{% endblock %}
-{% block article_title %}Translate a webpage with Firefox{% endblock %}
+{% block article_title_short %}{{ ftl('features-translate-translate-the-web') }}{% endblock %}
+{% block article_title %}{{ ftl('features-translate-translate-a-webpage-with-firefox') }}{% endblock %}
 
 {% block article_content %}
-<p>One of the best things about the internet is that we can access content worldwide. Whether it's
-  news articles, blogs, or even a review of your latest tech gadget, you can find it all on the seemingly
-  never-ending web. With Firefox's latest translation feature, this tool will continuously translate a
-  webpage in real-time.</p>
+<p>{{ ftl('features-translate-one-of-the-best-things-about') }}</p>
+<p>{{ ftl('features-translate-while-other-browsers-rely-on') }}</p>
 
-<p>While other browsers rely on cloud services, the Firefox translation language models are
-  downloaded on the user's browser and translations are done locally, so Mozilla doesn’t
-  record what webpages you translate.</p>
+<h2>{{ ftl('features-translate-when-you-translate-a-webpage') }}</h2>
+<p>{{ ftl('features-translate-when-your-translations-are') }}</p>
 
-<h2>When you translate a webpage it stays private</h2>
-<p>When your translations are processed locally, no data from your chosen device leaves
-  your device or relies on Cloud services for translation. This means that Mozilla doesn’t
-  know what web page you translate, and makes our translation feature stand out in comparison
-  to other translation tools.</p>
-
-<h2>What languages are currently supported?</h2>
-<p>The languages below are what currently are supported by Firefox’s Translation feature:</p>
+<h2>{{ ftl('features-translate-what-languages-are-currently') }}</h2>
+<p>{{ ftl('features-translate-the-languages-below-are-what') }}</p>
 
 <ul class="mzp-u-list-styled">
+{% if LANG.startswith('en-') %}
   <li>Spanish</li>
   <li>English</li>
   <li>German</li>
@@ -42,12 +33,21 @@
   <li>French</li>
   <li>Polish</li>
   <li>Dutch</li>
+{% else %}
+  {% for lang in context_test -%}
+    {% set name = context_test[lang] %}
+    {% set par = name.find(' (') %}
+    {% if par > 0 %}
+      <li>{{ name[0:par] }}</li>
+    {% else %}
+      <li>{{ name }}</li>
+    {% endif %}
+  {% endfor %}
+{% endif %}
 </ul>
-<p>And more languages are in development!</p>
 
-<h2>Firefox speaks your language</h2>
-<p>The Firefox Translation feature is another way Mozilla keeps your internet personalized and
-  more private. Mozilla doesn’t track what webpages you translate. With millions of users worldwide,
-  Mozilla wants to ensure that those who use Firefox are learning, communicating, sharing, and staying
-  informed on their own terms. <a href="{{ url('firefox.new') }}">Get started in your preferred language by downloading Firefox.</a></p>
+<p>{{ ftl('features-translate-and-more-languages-are-in') }}</p>
+
+<h2>{{ ftl('features-translate-firefox-speaks-your-language') }}</h2>
+<p>{{ ftl('features-translate-the-firefox-translation-feature', download=url('firefox.new')) }}</p>
 {% endblock %}
