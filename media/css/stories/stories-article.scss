@@ -501,7 +501,7 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             margin: $spacing-sm;
 
             &.twitter {
-                background-image: url('/media/img/stories/icons/twitter-icon.svg');
+                background-image: url('#{$image-path}/icons/social/x/black.svg');
             }
 
             &.instagram {
@@ -509,11 +509,11 @@ html.mzp-has-sticky-navigation .c-navigation.mzp-is-sticky {
             }
 
             &.linkedin {
-                background-image: url('/media/img/stories/icons/linkedin-icon.svg');
+                background-image: url('#{$image-path}/icons/social/linkedin/black.svg');
             }
 
             &.pocket {
-                background-image: url('/media/img/stories/icons/pocket-icon.svg');
+                background-image: url('#{$image-path}/icons/social/pocket/black.svg');
             }
             @media (prefers-reduced-motion: no-preference) {
                 &:hover {

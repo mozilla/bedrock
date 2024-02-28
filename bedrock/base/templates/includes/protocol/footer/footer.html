@@ -75,7 +75,7 @@
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading-social">{{ ftl('footer-follow-mozilla') }}</h5>
           <ul class="mzp-c-footer-links-social">
-            <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-twitter') }}<span> (@mozilla)</span></a></li>
+            <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-x-formerly-twitter', fallback='footer-twitter') }}<span> (@mozilla)</span></a></li>
             <li><a class="mastodon" href="https://mozilla.social/@Mozilla" rel="me" data-link-type="footer" data-link-text="Mastodon (@mozilla)">{{ ftl('footer-mastodon') }}<span> (@mozilla)</span></a></li>
             <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-instagram') }}<span> (@mozilla)</span></a></li>
             <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-type="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-linkedin') }}<span> (@mozilla)</span></a></li>
@@ -85,7 +85,7 @@
 
           <h5 class="mzp-c-footer-heading-social">{{ ftl('footer-follow-firefox') }}</h5>
           <ul class="mzp-c-footer-links-social">
-            <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-twitter') }}<span> (@firefox)</span></a></li>
+            <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-x-formerly-twitter', fallback='footer-twitter') }}<span> (@firefox)</span></a></li>
             <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-instagram') }}<span> (@firefox)</span></a></li>
             <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-youtube') }}<span> (@firefoxchannel)</span></a></li>
           </ul>

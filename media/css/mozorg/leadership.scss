@@ -160,7 +160,7 @@ $image-path: '/media/protocol/img';
         }
 
         a.website::before { background-image: url('/media/protocol/img/icons/globe.svg'); }
-        a.twitter::before { background-image: url('/media/protocol/img/icons/social/twitter/black.svg'); }
+        a.twitter::before { background-image: url('/media/protocol/img/icons/social/x/black.svg'); }
         a.mastodon::before { background-image: url('/media/img/logos/social/mastodon-black.svg'); }
         a.profile::before { background-image: url('/media/protocol/img/icons/accounts.svg'); }
         a.file::before { background-image: url('/media/protocol/img/icons/file-image.svg'); }
@@ -177,6 +177,12 @@ $image-path: '/media/protocol/img';
     .utility,
     .person-bio {
         @include hidden;
+    }
+
+    .elsewhere {
+        .elsewhere-website {
+            @include visually-hidden;
+        }
     }
 
     a {

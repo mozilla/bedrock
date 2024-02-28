@@ -69,29 +69,28 @@ aside {
                 display: block;
                 @include image-replaced;
                 background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+                background-repeat: no-repeat;
+                background-size: 27px auto;
+                width: 28px;
+                height: 28px;
 
                 &.twitter {
-                    background-position: 0 0;
-                    width: 18px;
-                    height: 15px;
+                    background-position: -3px 5px;
+                    background-size: 34px;
                 }
 
                 &.instagram {
-                    background-position: 0 -18px;
-                    width: 18px;
-                    height: 19px;
+                    background-position: 0 -27px;
+                    background-repeat: no-repeat;
                 }
 
                 &.youtube {
-                    background-position: 0 -45px;
-                    width: 17px;
-                    height: 14px;
+                    background-position: -1px -66px;
+                    background-size: 30px auto;
                 }
 
                 &.facebook {
-                    background-position: 0 -83px;
-                    width: 18px;
-                    height: 18px;
+                    background-position: 0 -88px;
                 }
             }
         }

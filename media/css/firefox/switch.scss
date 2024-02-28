@@ -134,6 +134,7 @@ $image-path: '/media/protocol/img';
     }
 
     &.twitter::before {
+        background-size: 27px auto;
         background-position: 0 3px;
     }
 

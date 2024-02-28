@@ -207,23 +207,11 @@ $pocket-image-path: '/media/img/pocket';
             width: 20px;
 
             &.twitter {
-                background-image: url('/media/img/pocket/platform-footer/twitter-logo.svg');
-
-                &:hover,
-                &:focus,
-                &:active {
-                    background-image: url('#{$image-path}/icons/social/twitter/brand.svg');
-                }
+                background-image: url('#{$image-path}/icons/social/x/black.svg');
             }
 
             &.facebook {
-                background-image: url('/media/img/pocket/platform-footer/facebook-logo.svg');
-
-                &:hover,
-                &:focus,
-                &:active {
-                    background-image: url('#{$image-path}/icons/social/facebook/brand.svg');
-                }
+                background-image: url('#{$image-path}/icons/social/facebook/black.svg');
             }
 
             span {

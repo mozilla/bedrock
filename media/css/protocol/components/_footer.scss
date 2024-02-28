@@ -31,6 +31,10 @@ $image-path: '/media/protocol/img';
             &.mastodon {
                 background-image: url('/media/img/logos/social/mastodon-white.svg');
             }
+
+            &.twitter {
+                background-image: url('#{$image-path}/icons/social/x/white.svg');
+            }
         }
     }
 }
@@ -63,7 +67,7 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-footer-links-social li a {
         &.twitter {
-            background-image: url('#{$image-path}/icons/social/twitter/black.svg');
+            background-image: url('#{$image-path}/icons/social/x/black.svg');
         }
 
         &.instagram {

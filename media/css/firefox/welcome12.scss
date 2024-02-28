@@ -183,11 +183,15 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-footer-links-social li {
             a.twitter {
-                background-image: url('/media/protocol/img/icons/social/twitter/white.svg');
+                background-image: url('/media/protocol/img/icons/social/x/white.svg');
             }
 
             a.instagram {
                 background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            a.mastodon {
+                background-image: url('/media/img/logos/social/mastodon-white.svg');
             }
 
             a.youtube {

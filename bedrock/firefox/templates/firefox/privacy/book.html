@@ -384,8 +384,8 @@
   <h2>{{ ftl('privacy-book-questions-feedback') }}</h2>
   <p>{{ ftl('privacy-book-do-you-have') }}</p>
 
-  <h3>Twitter</h3>
-  <a class="twitter" href="https://twitter.com/firefox" data-link-type="privacy-book" data-link-text="Twitter (@firefox)">{{ ftl('privacy-book-twitter') }}<span> (@firefox)</span></a>
+  <h3>{{ ftl('privacy-book-x-formerly-twitter', fallback='privacy-book-twitter') }}</h3>
+  <a class="twitter" href="https://twitter.com/firefox" data-link-type="privacy-book" data-link-text="Twitter (@firefox)">{{ ftl('privacy-book-x', fallback="privacy-book-twitter") }}<span> (@firefox)</span></a>
 </section>
 
 {% endblock %}
