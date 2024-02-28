@@ -56,7 +56,6 @@ firefox-products-pocket = { -brand-name-pocket }
 firefox-products-discover-the-best-content = Discover the best content on the web — and consume it wherever and whenever you want.
 firefox-products-get-pocket = Get { -brand-name-pocket }
 firefox-products-learn-more-about-pocket = Learn more about { -brand-name-pocket }
-firefox-products-join-firefox-and-get-the-most = Join { -brand-name-firefox } and get the most out of every product — across every device.
 
 # Variables:
 #   $fxa_attr (string) - anchor link url and attributes

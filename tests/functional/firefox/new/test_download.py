@@ -22,12 +22,3 @@ def test_click_download_button(base_url, selenium):
     page = DownloadPage(selenium, base_url).open()
     thank_you_page = page.download_firefox()
     assert thank_you_page.seed_url in selenium.current_url
-
-
-@pytest.mark.nondestructive
-@pytest.mark.skip_if_not_firefox(reason="Join Firefox form is only displayed to Firefox users")
-def test_firefox_account_modal(base_url, selenium):
-    page = DownloadPage(selenium, base_url).open()
-    modal = page.open_join_firefox_modal()
-    assert modal.is_displayed
-    modal.close()

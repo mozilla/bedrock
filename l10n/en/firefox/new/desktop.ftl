@@ -158,16 +158,10 @@ firefox-desktop-download-firefox-automatically = { -brand-name-firefox } automat
 #   $attrs (attrs) - link to https://addons.mozilla.org/firefox/extensions/
 firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozilla } support</a> has you covered.
 
-# The phrase “Now get even more from Firefox” is in specific reference to signing up for an account, which unlocks access to all our new products and services.
-firefox-desktop-download-youve-already-got-the-browser = You’ve already got the browser. Now get even more from { -brand-name-firefox }.
-
 firefox-desktop-download-watch-for-hackers-with-v3 = Watch for hackers with { -brand-name-mozilla-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
 
 # Obsolete string
 firefox-desktop-download-watch-for-hackers-with-v2 = Watch for hackers with { -brand-name-firefox-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
-
-firefox-desktop-download-get-more-from-firefox = Get More From { -brand-name-firefox }
-firefox-desktop-download-just-download-the-browser = Just Download The Browser
 
 ## URL: https://www-dev.allizom.org/firefox/download/thanks/
 
