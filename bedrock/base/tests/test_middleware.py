@@ -4,61 +4,12 @@
 
 from contextlib import suppress
 
-from django.test import Client, RequestFactory, TestCase
+from django.test import Client, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
 
 from jinja2.exceptions import UndefinedError
 from markus.testing import MetricsMock
-
-from bedrock.base.middleware import LocaleURLMiddleware
-
-
-@override_settings(DEV=True)
-class TestLocaleURLMiddleware(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-        self.middleware = LocaleURLMiddleware()
-
-    @override_settings(DEV_LANGUAGES=("de", "fr"))
-    def test_matching_locale(self):
-        locale = "fr"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "fr")
-
-    @override_settings(DEV_LANGUAGES=("de", "fr"))
-    def test_non_matching_locale(self):
-        locale = "zh"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, full_path)
-        self.assertEqual(req.locale, "")
-
-    @override_settings(DEV_LANGUAGES=("zh-CN", "zh-TW"))
-    def test_matching_main_language_to_sub_language(self):
-        locale = "zh"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "zh-CN")
-
-    @override_settings(DEV_LANGUAGES=("es-ES", "fr"))
-    def test_matching_canonical(self):
-        locale = "es"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "es-ES")
 
 
 @override_settings(
