@@ -2,6 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+"""URL paths which must be prefixed with a language code.
+
+These are included in the main URLConf via i18n_patterns,
+which will take care of the prefixing an appropriate language code
+"""
+
 from django.conf import settings
 from django.urls import path
 
@@ -28,8 +34,6 @@ urlpatterns = (
     page("about/policy/patents/guide/", "mozorg/about/policy/patents/guide.html"),
     page("about/this-site/", "mozorg/about/this-site.html", ftl_files=["mozorg/about/this-site.ftl"]),
     page("book/", "mozorg/book.html"),
-    path("credits/", views.credits_view, name="mozorg.credits"),
-    page("credits/faq/", "mozorg/credits-faq.html"),
     page("about/history/", "mozorg/about/history.html", ftl_files=["mozorg/about/history"]),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
@@ -103,18 +107,6 @@ urlpatterns = (
     page("moss/foundational-technology/", "mozorg/moss/foundational-technology.html"),
     page("moss/mission-partners/", "mozorg/moss/mission-partners.html"),
     page("moss/secure-open-source/", "mozorg/moss/secure-open-source.html"),
-    path("robots.txt", views.Robots.as_view(), name="robots.txt"),
-    path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
-    # namespaces
-    path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
-    path("2005/app-update", views.namespaces, {"namespace": "update"}),
-    path("2006/addons-blocklist", views.namespaces, {"namespace": "addons-bl"}),
-    path("2006/browser/search/", views.namespaces, {"namespace": "mozsearch"}),
-    path("keymaster/gatekeeper/there.is.only.xul", views.namespaces, {"namespace": "xul"}),
-    path("microsummaries/0.1", views.namespaces, {"namespace": "microsummaries"}),
-    path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
-    path("xbl", views.namespaces, {"namespace": "xbl"}),
-    path("locales/", views.locales, name="mozorg.locales"),
     # Diversity and inclusion redirect
     redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
     # Main paths

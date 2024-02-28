@@ -404,31 +404,34 @@ SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
     "static",
-    "certs",
-    "images",
-    "credits",
-    "robots.txt",
-    ".well-known",
-    "telemetry",
-    "webmaker",
-    "contributor-data",
-    "healthz",
-    "readiness",
-    "healthz-cron",
-    "2004",
-    "2005",
-    "2006",
-    "keymaster",
-    "microsummaries",
-    "xbl",
-    "revision.txt",
-    "locales",
-    "sitemap_none.xml",
+    "certs",  # Is this still used?
+    "images",  # In redirects only
+    "contribute.json",  # served from root_files I think
+    "credits",  # in mozorg urls
+    "gameon",  # redirect only
+    "robots.txt",  # in mozorg urls
+    ".well-known",  # in mozorg urls
+    "telemetry",  # redirect only
+    "webmaker",  # redirect only
+    "contributor-data",  # Is this still used?
+    "healthz",  # Needed for k8s
+    "readiness",  # Needed for k8s
+    "healthz-cron",  # status dash, in urls/mozorg_mode.py
+    "2004",  # in mozorg urls
+    "2005",  # in mozorg urls
+    "2006",  # in mozorg urls
+    "keymaster",  # in mozorg urls
+    "microsummaries",  # in mozorg urls
+    "xbl",  # in mozorg urls
+    "revision.txt",  # from root_files
+    "locales",  # in mozorg urls
+    "sitemap_none.xml",  # in sitemap urls
 ]
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
-SUPPORTED_LOCALE_IGNORE = ["/sitemap.xml"]
-
+SUPPORTED_LOCALE_IGNORE = [
+    "/sitemap.xml",  # in sitemap urls
+]
 # Pages that we don't want to be indexed by search engines.
 # Only impacts sitemap generator. If you need to disallow indexing of
 # specific URLs, add them to mozorg/templates/mozorg/robots.txt.
