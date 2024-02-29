@@ -18,7 +18,10 @@ navigation-firefox-for-fire-tv = { -brand-name-firefox } for { -brand-name-fire-
 navigation-watch-videos-and-browse = Watch videos and browse the internet on your { -brand-name-amazon } { -brand-name-fire-tv }.
 navigation-firefox-browsers-put = { -brand-name-firefox } browsers put your privacy first — and always have.
 navigation-take-the-passwords-youve = Take the passwords you’ve saved in { -brand-name-firefox } with you everywhere.
+
+# Obsolete string
 navigation-join-firefox = Join { -brand-name-firefox }
+
 navigation-access-all-of-firefox = Access all of { -brand-name-firefox } with a single login — and get more from every product when you do.
 navigation-meet-the-firefox-family = Meet the { -brand-name-firefox } Family
 navigation-firefox-blog = { -brand-name-firefox } Blog

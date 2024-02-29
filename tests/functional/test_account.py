@@ -6,12 +6,12 @@ from urllib.parse import unquote
 
 import pytest
 
-from pages.firefox.accounts import FirefoxAccountsPage
+from pages.account import MozillaAccountPage
 
 
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url, params="?signed-in=false").open()
+    page = MozillaAccountPage(selenium, base_url, params="?signed-in=false").open()
     page.join_firefox_form.type_email("success@example.com")
     page.join_firefox_form.click_continue()
     url = unquote(selenium.current_url)
@@ -21,6 +21,6 @@ def test_account_form(base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.skip_if_not_firefox(reason="Signed-in state is shown only to Firefox users.")
 def test_signed_in_call_to_action(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url, params="?signed-in=true").open()
+    page = MozillaAccountPage(selenium, base_url, params="?signed-in=true").open()
     assert not page.join_firefox_form.is_displayed
     assert page.is_manage_button_displayed

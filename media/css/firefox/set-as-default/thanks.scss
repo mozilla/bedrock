@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-mozilla';
 
 // * -------------------------------------------------------------------------- */
 // Main Hero
@@ -108,7 +109,7 @@ $image-path: '/media/protocol/img';
 
         &.join .thanks-extra-links-heading {
             @include background-size(30px 30px);
-            background-image: url('/media/img/firefox/set-as-default/thanks/firefox-logomark-black.svg');
+            background-image: url('/media/img/firefox/set-as-default/thanks/mozilla-logo.svg');
         }
 
         &.help .thanks-extra-links-heading {
