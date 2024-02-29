@@ -36,7 +36,6 @@ urlpatterns = (
         ),
     ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),
-    page("firefox/accounts/", "firefox/accounts.html", ftl_files=["firefox/accounts"]),
     page("firefox/browsers/", "firefox/browsers/index.html", ftl_files=["firefox/browsers"]),
     page("firefox/flashback/", "firefox/flashback/index.html", active_locales=["en-US", "de", "fr"]),
     page("firefox/channel/desktop/", "firefox/channel/desktop.html", ftl_files=["firefox/channel"]),
