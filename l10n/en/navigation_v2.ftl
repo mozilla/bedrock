@@ -77,8 +77,6 @@ navigation-v2-more-about-mozilla = More About { -brand-name-mozilla }
 
 navigation-v2-innovation = Innovation
 navigation-v2-close-innovation-menu = Close Innovation menu
-navigation-v2-mozilla-hubs = { -brand-name-mozilla-hubs }
-navigation-v2-gather-in-this-interactive-online = Gather in this interactive, online, multi-dimensional social space.
 navigation-v2-firefox-developer-edition = { -brand-name-firefox-developer-edition }
 navigation-v2-get-the-firefox-browser-built = Get the { -brand-name-firefox } browser built just for developers.
 navigation-v2-mdn-web-docs = { -brand-name-mdn-web-docs }
