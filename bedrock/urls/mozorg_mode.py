@@ -3,13 +3,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls.i18n import i18n_patterns
 from django.urls import include, path
 from django.utils.module_loading import import_string
 
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
+from bedrock.base.i18n import bedrock_i18n_patterns
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
@@ -18,7 +18,7 @@ handler404 = "bedrock.base.views.page_not_found_view"
 locale404 = "lib.l10n_utils.locale_selection"
 
 # Paths that should have a locale prefix
-urlpatterns = i18n_patterns(
+urlpatterns = bedrock_i18n_patterns(
     # Main pages
     path("foundation/", include("bedrock.foundation.urls")),
     path("about/legal/", include("bedrock.legal.urls")),
@@ -41,15 +41,14 @@ urlpatterns += (
     path("healthz-cron/", base_views.cron_health_check),
 )
 
-
 if settings.DEV:
-    urlpatterns += i18n_patterns(
+    urlpatterns += bedrock_i18n_patterns(
         # Add /404-locale/ for localizers.
         path("404-locale/", import_string(locale404)),
     )
 
 if settings.DEBUG:
-    urlpatterns += i18n_patterns(
+    urlpatterns += bedrock_i18n_patterns(
         path("404/", import_string(handler404)),
         path("500/", import_string(handler500)),
     )

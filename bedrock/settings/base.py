@@ -104,7 +104,7 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 USE_TZ = True
 
@@ -387,8 +387,25 @@ def lazy_langs():
     return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
+def LANGUAGE_MAP_WITH_FALLBACKS():
+    """
+    Return a complete dict of language -> URL mappings, including the canonical
+    short locale maps (e.g. es -> es-ES and en -> en-US).
+    :return: dict
+    """
+    lum = lazy_lang_url_map()
+    langs = dict(list(lum.items()) + list(CANONICAL_LOCALES.items()))
+    # Add missing short locales to the list. This will automatically map
+    # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
+    # order. To override this behavior, explicitly define a preferred locale
+    # map with the CANONICAL_LOCALES setting.
+    langs.update((k.split("-")[0], v) for k, v in lum.items() if k.split("-")[0] not in langs)
+    return langs
+
+
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
+LANGUAGE_MAP_WITH_FALLBACKS = lazy(LANGUAGE_MAP_WITH_FALLBACKS, dict)()
 LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900

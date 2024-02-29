@@ -14,7 +14,7 @@ from django.views.generic import TemplateView
 from product_details import product_details
 
 from bedrock.base import metrics
-from bedrock.base.urlresolvers import _get_language_map, split_path
+from bedrock.base.i18n import split_path
 
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
@@ -215,14 +215,11 @@ def get_best_translation(translations, accept_languages, strict=False):
     If none found, it returns the first language code for the first available translation.
 
     """
-    lang_map = _get_language_map()
-    # translations contains mixed-case items e.g. "en-US" while the keys
-    # of `lang_map` are all lowercase. But this works because the values
-    # of the `lang_map` dict are mixed-case like translations and the
-    # comparison below is with the values.
+    lang_map = settings.LANGUAGE_MAP_WITH_FALLBACKS
+    # translations contains mixed-case items e.g. "en-US" and the keys
+    # of `lang_map` are (now) also mixed case.
     valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
     for lang in accept_languages:
-        lang.lower()
         if lang in valid_lang_map:
             return valid_lang_map[lang]
         pre = lang.split("-")[0]
