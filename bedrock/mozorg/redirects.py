@@ -544,7 +544,9 @@ redirectpatterns = (
     redirect(r"^(truecolou?rs|turningred)/?$", "firefox"),
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
-    redirect(r"^santa-locator/?$", "mozorg.santa-locator"),
+    # Issue 14231
+    redirect(r"^santa-?locator/?$", "mozorg.home"),
+    redirect(r"^landing/firefox/fx100/?$", "firefox"),
     # Issue 12563
     redirect(r"^/exp/firefox/?$", "firefox"),
     redirect(r"^/exp/firefox/new/?$", "firefox.new"),

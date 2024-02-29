@@ -151,7 +151,6 @@ urlpatterns = (
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
-    page("santalocator/", "mozorg/santa-locator.html"),
     page("advertising/", "mozorg/advertising.html"),
     page(
         "try-picture-in-picture/",

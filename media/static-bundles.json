@@ -391,12 +391,6 @@
     },
     {
       "files": [
-        "css/firefox/flashback/flashback.scss"
-      ],
-      "name": "flashback"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-119-eu-trio.scss"
       ],
       "name": "firefox_whatsnew_119_eu_trio"
@@ -1244,12 +1238,6 @@
     },
     {
       "files": [
-        "css/landing/landing-shared.scss"
-      ],
-      "name": "landing-shared"
-    },
-    {
-      "files": [
         "css/stories/stories-shared.scss"
       ],
       "name": "mozilla-stories-shared"
@@ -1271,12 +1259,6 @@
         "css/firefox/family/styles.scss"
       ],
       "name": "firefox-family"
-    },
-    {
-      "files": [
-        "css/mozorg/santa-locator.scss"
-      ],
-      "name": "santa_locator"
     },
     {
       "files": [
@@ -1918,12 +1900,6 @@
     },
     {
       "files": [
-        "js/landing/landing-shared.js"
-      ],
-      "name": "landing-shared"
-    },
-    {
-      "files": [
         "js/stories/stories-article.es6.js"
       ],
       "name": "stories-article"
@@ -1944,12 +1920,6 @@
         "js/firefox/family/default-open-first-detail-init.es6.js"
       ],
       "name": "firefox-family"
-    },
-    {
-      "files": [
-        "js/mozorg/santa-locator.js"
-      ],
-      "name": "santa_locator"
     },
     {
       "files": [
