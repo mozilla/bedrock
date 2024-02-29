@@ -6,7 +6,7 @@
 
 {% extends "firefox/features/base-article.html" %}
 
-{% block page_desc %}{{ ftl('features-translate-firefox-translations-is-an-added') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-translate-firefox-translations-is-a-built-in') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/translate/og.png') }}{% endblock %}
 
 {% block article_title_short %}{{ ftl('features-translate-translate-the-web') }}{% endblock %}
@@ -49,5 +49,5 @@
 <p>{{ ftl('features-translate-and-more-languages-are-in') }}</p>
 
 <h2>{{ ftl('features-translate-firefox-speaks-your-language') }}</h2>
-<p>{{ ftl('features-translate-the-firefox-translation-feature', download=url('firefox.new')) }}</p>
+<p>{{ ftl('features-translate-the-firefox-translations-feature', download='href="%s" data-cta-type="link" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.new'))) }}</p>
 {% endblock %}
