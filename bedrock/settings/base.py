@@ -592,6 +592,7 @@ MIDDLEWARE = [
     # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
+    "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come before RedirectsMiddleware
     "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before LocaleMiddleware
     "django.middleware.locale.LocaleMiddleware",
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",

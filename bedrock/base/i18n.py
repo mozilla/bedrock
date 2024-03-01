@@ -26,6 +26,18 @@ class LocalePrefixPattern(django.urls.LocalePrefixPattern):
         return f"{language_code}/"
 
 
+def path_needs_lang_code(path):
+    """Convenient way to spot if a path needs a prefix or not"""
+    if path in settings.SUPPORTED_LOCALE_IGNORE:
+        return False
+
+    for pathroot in settings.SUPPORTED_NONLOCALES:
+        if path.startswith(f"{pathroot}/"):
+            return False
+
+    return True
+
+
 def bedrock_i18n_patterns(*urls, prefix_default_language=True):
     """
     Similar to Django's i18n_patterns but uses out "LocalePrefixPattern", defined above
@@ -40,45 +52,67 @@ def bedrock_i18n_patterns(*urls, prefix_default_language=True):
     ]
 
 
-def normalize_language(language):
+def normalize_language(language, enforce_lowercase=False):
     """
-    Given a language code, returns the language code supported by Bedrock in the
-    proper case, for example "eN-us" --> "en-US" or "sC" --> "it", or None if
-    SUMO doesn't support the language code.
+    Given a language code, returns the language code supported by Bedrock
+    in the proper case, for example "eN-us" --> "en-US" - or None if
+    Bedrock doesn't support the language code.
+
+    Also then converts it to a specified fallback language if the actual
+    presented code is not available _and_ we have a fallback specced in
+    settings.
+
+    `enforce_lowercase` is used for Pocket Mode, basically
     """
     if not language:
         return None
 
-    lang, partition, territory = language.partition("-")
-    if territory:
-        lc_language = f"{lang}-{territory}"
+    if enforce_lowercase:
+        lang_code = language.lower()
     else:
-        lc_language = lang
-    return settings.LANGUAGE_MAP_WITH_FALLBACKS.get(lc_language)
+        lang, _partition, territory = language.partition("-")
+
+        if territory:
+            # Support patterns like ja-JP-mac
+            if "-" in territory:
+                _territory, _partition, rest = territory.partition("-")
+                territory = f"{_territory.upper()}-{rest}"
+            else:
+                territory = territory.upper()
+
+            lang_code = f"{lang}-{territory}"
+        else:
+            lang_code = lang
+
+    try:
+        return settings.LANGUAGE_MAP_WITH_FALLBACKS[lang_code]
+    except KeyError:
+        pre = lang_code.split("-")[0]
+        return settings.LANGUAGE_MAP_WITH_FALLBACKS.get(pre)
 
 
-def find_supported(lang):
-    # lang = lang.lower()
-    if lang in settings.LANGUAGE_MAP_WITH_FALLBACKS:
-        return settings.LANGUAGE_MAP_WITH_FALLBACKS[lang]
-    pre = lang.split("-")[0]
-    if pre in settings.LANGUAGE_MAP_WITH_FALLBACKS:
-        return settings.LANGUAGE_MAP_WITH_FALLBACKS[pre]
-
-
-def split_path(path_):
+def split_path_and_polish_lang(path_):
     """
-    Split the requested path into (locale, path).
+    Split the requested path into (lang, path) and
+    switches to a supported lang if available
 
     locale will be empty if it isn't found.
+
+    Returns:
+        - lang code (str)
+        - remaining URL path (str)
+        - whether or not the lang code changed (bool)
+
     """
     path = path_.lstrip("/")
 
     # Use partition instead of split since it always returns 3 parts
     first, _, rest = path.partition("/")
 
-    supported = find_supported(first)
+    supported = normalize_language(first)
+    different = first != supported
+
     if supported:
-        return supported, rest
+        return supported, rest, different
     else:
-        return "", path
+        return "", path, False
