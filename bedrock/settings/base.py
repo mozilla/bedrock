@@ -593,8 +593,8 @@ MIDDLEWARE = [
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
     "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come before RedirectsMiddleware
-    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before LocaleMiddleware
-    "django.middleware.locale.LocaleMiddleware",
+    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLangPatchingLocaleMiddleware
+    "bedrock.base.middleware.BedrockLangPatchingLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",

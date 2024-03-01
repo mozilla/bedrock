@@ -10,12 +10,16 @@ the locale codes.
 """
 
 import base64
+import contextlib
 import inspect
 import time
+from functools import wraps
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.middleware.locale import LocaleMiddleware
+from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.translation.trans_real import parse_accept_lang_header
 
@@ -75,6 +79,55 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         # 2) If the lang code needed to be fixed up redirect to the normalized one
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
+
+
+class BedrockLangPatchingLocaleMiddleware(LocaleMiddleware):
+    """Light middleware wrapped around Django's own i18n middleware
+    that ensures we normalize language codes - i..e. we ensure they are in
+    mixed case we use, rather than Django's internal all-lowercase codes.
+
+    It needs to be kept super-light so that it doesn't diverge too far from
+    the stock LocaleMiddleware, lest we wake up dragons when we use
+    wagtail-localize, which squarely depends on django's LocaleMiddleware.
+
+    Note: this is not SUMO's LocaleMiddleware, this just a tribute.
+    (https://github.com/escattone/kitsune/blob/main/kitsune/sumo/middleware.py#L128)
+    """
+
+    def process_request(self, request):
+        with normalized_get_language():
+            return super().process_request(request)
+
+    def process_response(self, request, response):
+        with normalized_get_language():
+            return super().process_response(request, response)
+
+
+@contextlib.contextmanager
+def normalized_get_language():
+    """
+    Ensures that any use of django.utils.translation.get_language()
+    within its context will return a normalized language code. This
+    context manager only works when the "get_language" function is
+    acquired from the "django.utils.translation" module at call time,
+    so for example, if it's called like "translation.get_language()".
+
+    Note that this does not cover every call to translation.get_language()
+    as there are calls to it on Django startup and more, but this gives us an
+    extra layer of (idempotent) fixing up within the request/response cycle.
+    """
+    get_language = translation.get_language
+
+    @wraps(get_language)
+    def get_normalized_language():
+        return normalize_language(get_language())
+
+    translation.get_language = get_normalized_language
+
+    try:
+        yield
+    finally:
+        translation.get_language = get_language
 
 
 class BasicAuthMiddleware:
