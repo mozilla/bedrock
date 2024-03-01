@@ -167,3 +167,9 @@ class BedrockLangCodeFixupMiddlewareTests(TestCase):
         self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN. MUST DO EVERYTHING THAT IS PROMISED IN THE DOCSTRING")
 
         self.fail("Ensure we have unicode tests too")
+
+
+class BedrockLangPatchingLocaleMiddlewareTests(TestCase):
+    def test_reminder(self):
+        # Ensure all methods of the middleware are tested
+        self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN")
