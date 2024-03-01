@@ -159,3 +159,11 @@ class TestMetricsViewTimingMiddleware(TestCase):
                 "view.timings",
                 tags=["view_path:bedrock.base.tests.urls.returns_500.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:500"],
             )
+
+
+class BedrockLangCodeFixupMiddlewareTests(TestCase):
+    def test_reminder(self):
+        # Ensure all methods of the middleware are tested
+        self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN. MUST DO EVERYTHING THAT IS PROMISED IN THE DOCSTRING")
+
+        self.fail("Ensure we have unicode tests too")

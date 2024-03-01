@@ -11,7 +11,7 @@ from django.urls import re_path
 
 import pytest
 
-from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_path
+from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_path_and_polish_lang
 
 
 @pytest.mark.parametrize(
@@ -28,7 +28,7 @@ from bedrock.base.urlresolvers import Prefixer, find_supported, reverse, split_p
     ],
 )
 def test_split_path(path, result):
-    res = split_path(path)
+    res = split_path_and_polish_lang(path)
     assert res == result
 
 
