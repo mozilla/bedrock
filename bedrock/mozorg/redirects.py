@@ -549,7 +549,7 @@ redirectpatterns = (
     redirect(r"^/exp/firefox/?$", "firefox"),
     redirect(r"^/exp/firefox/new/?$", "firefox.new"),
     redirect(r"^accounts/?$", "mozorg.account"),
-    redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
+    # redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
     redirect(r"^/exp/opt-out/?$", "https://www.convert.com/opt-out/"),
     # Issue 13211
     redirect(r"^/en/$", "/en-US/", permanent=True),

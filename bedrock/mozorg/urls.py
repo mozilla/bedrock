@@ -16,7 +16,7 @@ urlpatterns = (
     page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
-    page("account/", "mozorg/account.html", ftl_files=["mozorg/account"]),
+    page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),
     page("about/leadership/", "mozorg/about/leadership/index.html"),
     page("about/policy/lean-data/", "mozorg/about/policy/lean-data/index.html"),
     page("about/policy/lean-data/build-security/", "mozorg/about/policy/lean-data/build-security.html"),

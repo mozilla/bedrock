@@ -6,13 +6,13 @@
 
 {% from "macros.html" import fxa_email_form with context %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
 
 {% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}{% endblock %}
 
-{% block page_desc %}{{ ftl('firefox-accounts-securely-sync-your') }}{% endblock %}
+{% block page_desc %}{{ ftl('mozilla-accounts-securely-sync-your', fallback='firefox-accounts-securely-sync-your') }}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-split mzp-l-split-reversed">
+<section class="mzp-c-split mzp-t-content-xl">
   <div class="mzp-c-split-container">
     <div class="mzp-c-split-media">
       <div class="mzp-c-emphasis-box l-accounts">
@@ -65,7 +65,7 @@
       </div>
     </div>
     <div class="mzp-c-split-body">
-
+      <h1 class="accounts-header">{{ ftl('mozilla-account-header') }}</h1>
       <div class="accounts-products">
         <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
 
@@ -123,6 +123,7 @@
 
       <p class="c-accounts-tagline">{{ ftl('firefox-accounts-get-it-all-on-every') }}</p>
 
+    </div>
     </div>
 
 </section>

@@ -538,6 +538,7 @@ redirectpatterns = (
     # issue 6979
     redirect(r"^firefoxfightsforyou/?", "firefox"),
     # issue 14240
+    redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
     redirect(r"^firefox/accounts/?$", "mozorg.account"),
     # issue 7210
     redirect(r"^firefox/account/?$", "mozorg.account"),
