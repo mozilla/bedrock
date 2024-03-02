@@ -85,7 +85,7 @@ class TestDownloadButtons(TestCase):
 
     def test_button_locale_in_transition(self):
         """
-        If the locale_in_transition parameter is True, the link to scene2 should include the locale
+        If the locale_in_transition parameter is True, the link to /thanks should include the locale
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")

@@ -178,6 +178,37 @@ that is used to sign the attribution code must be set via an environment variabl
     It only needs to match the value used to verify data passed to the stub installer
     for full end-to-end testing via Telemetry.
 
+
+Manual testing for code reviews
+-------------------------------
+
+You might not need to test all these depending on what is changing this is an exhaustive
+testing guide. This guide assumes demo1, make sure you're testing on the right URL.
+
+1. Use Chrome on Windows or MacOS with DNT and adblocking disabled.
+2. Open https://www-demo1.allizom.org/en-US/?utm_source=ham&utm_campaign=pineapple
+3. Using Dev Tools, open the Application tab and inspect cookies.
+4. Look for a cookie called `moz-stub-attribution-code` and copy the value (it should be a base64 encoded string).
+5. Decode the base64 string (e.g. using https://base64decode.org) and check that:
+    - `dlsource` parameter value is mozorg
+    - `client_id`, `client_id_ga4` and `session_id` parameters exist
+    - `client_id` and `client_id_ga4` should look something like 0700077325.1656063224
+      (the numbers will differ but the format with the middle period should look the same).
+    - `source` and `campaign` have the values ham and pineapple, respectively.
+    - The ua value should be chrome (assuming you tested in Chrome).
+    - Everything else should be (not set).
+6. Inspect the "Download Firefox" button in the top right and verify the download URL contains `attribution_code` and `attribution_sig` params.
+7. Click "Download Firefox".
+8. Inspect the "Try downloading again" link and check for the `attribution_code` and `attribution_sig` params.
+   - decode the value of `attribution_code` to check it has the expected values
+
+Other places on the site you may want to check:
+
+- `firefox/all`_ (inspect the network request to check that the attribution params were added on click)
+- `firefox/new`_
+- `firefox/enterprise`_
+
+
 .. _Telemetry: https://telemetry.mozilla.org/
 .. _privacy policy: https://www.mozilla.org/privacy/websites/
 .. _Application Logic Flow Chart: https://www.figma.com/file/q5mJpicWBpzAYuQ3fV00ix/Firefox-Stub-Attribution-Flow?node-id=0%3A1&t=EFe91WQzQ7cXHSiB-1
@@ -186,3 +217,6 @@ that is used to sign the attribution code must be set via an environment variabl
 .. _Return to AMO: https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO
 .. _Do Not Track (DNT): https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature
 .. _DNT helper: https://github.com/mozmeao/dnt-helper
+.. _firefox/all: https://www-demo1.allizom.org/en-US/firefox/all/
+.. _firefox/new: https://www-demo1.allizom.org/en-US/firefox/new/
+.. _firefox/enterprise: https://www-demo1.allizom.org/en-US/firefox/enterprise/

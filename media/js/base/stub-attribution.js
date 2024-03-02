@@ -341,10 +341,10 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Gets the client ID from the GA object.
+     * Gets the UA client ID from the GA object.
      * @returns {String} client ID.
      */
-    StubAttribution.getGAClientID = function () {
+    StubAttribution.getUAClientID = function () {
         try {
             var clientID = window.ga.getAll()[0].get('clientId');
 
@@ -355,6 +355,56 @@ if (typeof window.Mozilla === 'undefined') {
         } catch (e) {
             return null;
         }
+    };
+
+    /**
+     * Attempts to retrieve the GA4 client from the dataLayer
+     * The GTAG GET API tag will write it to the dataLayer once GTM has loaded it
+     * https://www.simoahava.com/gtmtips/write-client-id-other-gtag-fields-datalayer/
+     */
+    StubAttribution.getGtagClientID = function (dataLayer) {
+        // need to pass in dataLayer for testing purposes, use global dataLayer if it's not passed
+        dataLayer =
+            typeof dataLayer !== 'undefined' ? dataLayer : window.dataLayer;
+
+        var clientID = null;
+
+        function _findAPI(obj) {
+            for (var key in obj) {
+                if (
+                    typeof obj[key] === 'object' &&
+                    Object.prototype.hasOwnProperty.call(obj, key)
+                ) {
+                    if (key === 'gtagApiResult') {
+                        if (typeof obj[key].client_id === 'string') {
+                            clientID = obj[key].client_id;
+                        } else {
+                            return clientID;
+                        }
+                        break;
+                    } else {
+                        _findAPI(obj[key]);
+                    }
+                }
+            }
+        }
+
+        try {
+            if (typeof dataLayer === 'object') {
+                dataLayer.forEach(function (layer) {
+                    _findAPI(layer);
+                });
+            }
+        } catch (e) {
+            // GA4
+            window.dataLayer.push({
+                event: 'log',
+                label: 'getGtagClientID error: ' + e
+            });
+            return null;
+        }
+
+        return clientID;
     };
 
     /**
@@ -369,28 +419,33 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * A crude check to see if Google Analytics has loaded. Periodically
-     * attempts to retrieve the client ID from the global `ga` object.
+     * A crude check to see if Google Analytics has loaded.
      * @param {Function} callback
      */
-    StubAttribution.waitForGoogleAnalytics = function (callback) {
+    StubAttribution.waitForGoogleAnalyticsThen = function (callback) {
         var timeout;
         var pollRetry = 0;
         var interval = 100;
         var limit = 20; // (100 x 20) / 1000 = 2 seconds
 
+        // Tries to get client IDs at a set interval
         function _checkGA() {
             clearTimeout(timeout);
-            var clientID = StubAttribution.getGAClientID();
+            var clientIDUA = StubAttribution.getUAClientID();
+            var clientIDGA4 = StubAttribution.getGtagClientID();
 
-            if (clientID) {
+            if (clientIDUA && clientIDGA4) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
                     pollRetry += 1;
                     timeout = window.setTimeout(_checkGA, interval);
                 } else {
-                    callback(false);
+                    if (clientIDUA || clientIDGA4) {
+                        callback(true);
+                    } else {
+                        callback(false);
+                    }
                 }
             }
         }
@@ -422,7 +477,8 @@ if (typeof window.Mozilla === 'undefined') {
             params.get('variation') || StubAttribution.experimentVariation;
         var referrer = StubAttribution.getReferrer(ref);
         var ua = StubAttribution.getUserAgent();
-        var clientID = StubAttribution.getGAClientID();
+        var clientIDUA = StubAttribution.getUAClientID();
+        var clientIDGA4 = StubAttribution.getGtagClientID();
 
         /* eslint-disable camelcase */
         var data = {
@@ -434,8 +490,12 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            client_id: clientID,
-            session_id: clientID ? StubAttribution.createSessionID() : null,
+            client_id: clientIDUA,
+            client_id_ga4: clientIDGA4,
+            session_id:
+                clientIDUA || clientIDGA4
+                    ? StubAttribution.createSessionID()
+                    : null,
             dlsource: StubAttribution.DLSOURCE
         };
         /* eslint-enable camelcase */
@@ -490,13 +550,13 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Determine if the current page is scene2 of /firefox/new/.
-     * This is needed as scene2 auto-initiates the download. There is little point
+     * Determine if the current page is /download/thanks
+     * This is needed as /thanks auto-initiates the download. There is little point
      * trying to make an XHR request here before the download begins, and we don't
      * want to make the request a dependency on the download starting.
      * @return {Boolean}.
      */
-    StubAttribution.isFirefoxNewScene2 = function (location) {
+    StubAttribution.isFirefoxDownloadThanks = function (location) {
         location =
             typeof location !== 'undefined' ? location : window.location.href;
         return location.indexOf('/firefox/download/thanks/') > -1;
@@ -558,11 +618,12 @@ if (typeof window.Mozilla === 'undefined') {
             data = StubAttribution.getCookie();
             StubAttribution.updateBouncerLinks(data);
 
-            // As long as the user is not already on scene2 of the main download page,
+            // As long as the user is not already on the automatic download page,
             // make the XHR request to the stub authentication service.
-        } else if (!StubAttribution.isFirefoxNewScene2()) {
-            // Wait for GA to load so that we can pass along visit ID.
-            StubAttribution.waitForGoogleAnalytics(function () {
+        } else if (!StubAttribution.isFirefoxDownloadThanks()) {
+            // Wait for UA & GA4 to load and return client IDs
+            StubAttribution.waitForGoogleAnalyticsThen(function () {
+                // get attribution data
                 data = StubAttribution.getAttributionData();
 
                 if (
@@ -570,15 +631,19 @@ if (typeof window.Mozilla === 'undefined') {
                     StubAttribution.withinAttributionRate() &&
                     StubAttribution.hasValidData(data)
                 ) {
+                    // if data is valid and we are in sample rate:
+                    // request authentication from stub attribution service
                     StubAttribution.requestAuthentication(data);
 
-                    // Send the session ID to GA as non-interaction event.
-                    if (data.client_id && data.session_id) {
+                    // Send the session ID to UA and GA4
+                    if (data.client_id) {
                         // UA
                         window.dataLayer.push({
                             event: 'stub-session-id',
                             eLabel: data.session_id
                         });
+                    }
+                    if (data.client_id_ga4) {
                         // GA4
                         window.dataLayer.push({
                             event: 'stub_session_set',
@@ -587,115 +652,7 @@ if (typeof window.Mozilla === 'undefined') {
                     }
                 }
             });
-
-            // Wait for GTM to load the GTAG GET API so that we can pass along client and session ID
-            StubAttribution.waitForGTagAPI(function (data) {
-                var gtagData = data;
-
-                if (gtagData && StubAttribution.withinAttributionRate()) {
-                    // GA4 - send an event indicating we did or did not get session ID from GTM
-                    if (gtagData.client_id && gtagData.session_id) {
-                        window.dataLayer.push({
-                            event: 'stub_session_test',
-                            label: 'session found'
-                        });
-                    } else {
-                        window.dataLayer.push({
-                            event: 'stub_session_test',
-                            label: 'session not-found'
-                        });
-                    }
-                }
-            });
         }
-    };
-
-    /**
-     * Attempts to retrieve the GA4 client and session ID from the dataLayer
-     * The GTAG GET API tag will write it to the dataLayer once GTM has loaded it
-     * https://www.simoahava.com/gtmtips/write-client-id-other-gtag-fields-datalayer/
-     */
-    StubAttribution.getGtagData = function (dataLayer) {
-        dataLayer =
-            typeof dataLayer !== 'undefined' ? dataLayer : window.dataLayer;
-
-        var result = {
-            client_id: null,
-            session_id: null
-        };
-
-        var _findObject = function (name, obj) {
-            for (var key in obj) {
-                if (
-                    typeof obj[key] === 'object' &&
-                    Object.prototype.hasOwnProperty.call(obj, key)
-                ) {
-                    if (key === name) {
-                        if (
-                            typeof obj[key].client_id === 'string' &&
-                            typeof obj[key].session_id === 'string'
-                        ) {
-                            result = obj[key];
-                        } else {
-                            return result;
-                        }
-                        break;
-                    } else {
-                        _findObject(name, obj[key]);
-                    }
-                }
-            }
-        };
-
-        try {
-            if (typeof dataLayer === 'object') {
-                dataLayer.forEach(function (layer) {
-                    _findObject('gtagApiResult', layer);
-                });
-            }
-        } catch (error) {
-            // GA4
-            window.dataLayer.push({
-                event: 'stub_session_test',
-                label: 'error'
-            });
-        }
-
-        return result;
-    };
-
-    /**
-     * A crude check to see if GTAG GET API has been loaded by GTM. Periodically
-     * attempts to retrieve the client and session ID.
-     * @param {Function} callback
-     */
-    StubAttribution.waitForGTagAPI = function (callback) {
-        var timeout;
-        var pollRetry = 0;
-        var interval = 100;
-        var limit = 20; // (100 x 20) / 1000 = 2 seconds
-
-        function _checkGtagAPI() {
-            clearTimeout(timeout);
-            var data = StubAttribution.getGtagData();
-
-            if (
-                typeof data === 'object' &&
-                typeof data.client_id === 'string' &&
-                typeof data.session_id === 'string'
-            ) {
-                callback(data);
-            } else {
-                if (pollRetry <= limit) {
-                    pollRetry += 1;
-                    timeout = window.setTimeout(_checkGtagAPI, interval);
-                } else {
-                    callback(false);
-                }
-            }
-        }
-
-        _checkGtagAPI();
     };
 
     window.Mozilla.StubAttribution = StubAttribution;

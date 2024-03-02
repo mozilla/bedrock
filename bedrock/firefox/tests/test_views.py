@@ -50,6 +50,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
@@ -75,6 +76,7 @@ class TestStubAttributionCode(TestCase):
             "experiment": "dfb</p>s",
             "variation": "ef&bvcv",
             "client_id": "14</p>4538.1610<t>957",
+            "client_id_ga4": "14</p>4538.1610<t>957",
             "session_id": "2w</br>123bg<u>957",
             "dlsource": "fs<a>44fn</a>",
         }
@@ -87,6 +89,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
@@ -116,6 +119,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
@@ -145,6 +149,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "chrome",
             "client_id": "1456954538.1610960957",
+            "client_id_ga4": "2456954538.1610960957",
             "session_id": "1668161374",
             "dlsource": "mozorg",
         }
@@ -161,6 +166,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "chrome",
             "client_id": "1456954538.1610960957",
+            "client_id_ga4": "2456954538.1610960957",
             "session_id": "1668161374",
             "dlsource": "mozorg",
         }
@@ -205,6 +211,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "1",
             "ua": "chrome",
             "client_id": "1456954538.1610960957",
+            "client_id_ga4": "2456954538.1610960957",
             "session_id": "1668161374",
             "dlsource": "mozorg",
         }
@@ -217,6 +224,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "1",
             "ua": "chrome",
             "client_id": "1456954538.1610960957",
+            "client_id_ga4": "2456954538.1610960957",
             "session_id": "1668161374",
             "dlsource": "mozorg",
         }
@@ -246,6 +254,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
@@ -278,6 +287,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
@@ -313,6 +323,7 @@ class TestStubAttributionCode(TestCase):
             "variation": "(not set)",
             "ua": "(not set)",
             "client_id": "(not set)",
+            "client_id_ga4": "(not set)",
             "session_id": "(not set)",
             "dlsource": "mozorg",
         }
