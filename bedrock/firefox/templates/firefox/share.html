@@ -17,16 +17,20 @@
 {% if LANG == "de" %}
   {% set main_title = "Hol deine Freund*innen ins <br><strong>Team Firefox</strong>"|safe %}
   {% set main_tagline = "Wir haben eine kleine Nachricht vorbereitet, die du mit deinen Liebsten teilen kannst, damit du dir nicht selbst etwas ausdenken musst. Wird keiner merken – versprochen!" %}
-  {% set share_message = "Hey! Ich wollte dir nur sagen, dass du echt schöne Augen hast. Ihre perfekte Form erinnert mich an das Firefox-Logo. Kennst du Firefox? Das ist dieser private, super verlässliche Browser. Eigentlich echt gut, hier ist ein Link, falls du dir den mal angucken willst: LINK. <br> Wie gehts dir eigentlich?"|safe%}
+  {% set share_message = "Hey! Ich wollte dir nur sagen, dass du echt schöne Augen hast. Ihre perfekte Form erinnert mich an das Firefox-Logo. Kennst du Firefox? Das ist dieser private, super verlässliche Browser. Eigentlich echt gut, hier ist ein Link, falls du dir den mal angucken willst: LINK. <br><br> Wie gehts dir eigentlich?"|safe%}
   {% set share_cta = "Kopieren und teilen" %}
   {% set text_copied = "Text kopiert!" %}
+  {% set other_socials = "Or share on the following channels:" %}
+  {% set whatsapp_alt_text = "Mit WhatsApp teilen" %}
   {% set sign_off = "<strong>Powered by Mozilla.</strong> <br> Für dich und das Web. Schon seit 1998."|safe %}
 {% elif LANG == "fr" %}
   {% set main_title = "Invitez vos amis à rejoindre la <br> <strong>team Firefox</strong>"|safe %}
   {% set main_tagline = "Nous avons préparé un message personnel pour vos amis, afin que vous n'ayez pas à le faire vous-même. Ils ne se douteront de rien, c'est promis !" %}
-  {% set share_message = "Salut ! Je voulais juste te dire que tu as de beaux yeux. Leur forme parfaite me rappelle le logo de Firefox. Tu connais Firefox ? Ce navigateur privé, super fiable. Il est plutôt pas mal en vrai, voici un lien si tu veux le tester : LIEN.<br> Sinon, comment vas-tu ?"|safe%}
+  {% set share_message = "Salut ! Je voulais juste te dire que tu as de beaux yeux. Leur forme parfaite me rappelle le logo de Firefox. Tu connais Firefox ? Ce navigateur privé, super fiable. Il est plutôt pas mal en vrai, voici un lien si tu veux le tester : LIEN.<br><br> Sinon, comment vas-tu ?"|safe%}
   {% set share_cta = "Copier et partager" %}
   {% set text_copied = "Texte copié !" %}
+  {% set other_socials = "Ou partager sur un des canaux suivants : " %}
+  {% set whatsapp_alt_text = "Partager avec WhatsApp" %}
   {% set sign_off = "<strong>Conçu par Mozilla.</strong> <br> Pensé pour vous depuis 1998."|safe %}
 {% else %}
   {% set main_title = "Make your friends join <br> <strong>Team Firefox</strong>"|safe %}
@@ -34,6 +38,8 @@
   {% set share_message = "Hey! I just wanted to tell you that you have beautiful eyes. Their perfect shape reminds me of the Firefox-icon. You know Firefox? That private, super dependable browser. It’s pretty good actually, here is a link if you want to check it out: LINK.<br> <br> Anyway, how are you?"|safe%}
   {% set share_cta = "Copy and share" %}
   {% set text_copied = "Text copied!" %}
+  {% set other_socials = "Or share on the following channels:" %}
+  {% set whatsapp_alt_text = "Share with Whatsapp" %}
   {% set sign_off = "<strong>Powered by Mozilla.</strong> <br> Putting people before profits since 1998."|safe %}
 {% endif %}
 
@@ -51,6 +57,16 @@
         <span id="share-cta">{{ share_cta }}</span>
         <span id="text-copied">{{ text_copied }}</span>
       </button>
+    </div>
+
+    <div class="other-socials">
+      <p>{{ other_socials }}</p>
+
+      <div>
+        <a href="" id="share-whatsapp"><img src="{{ static('img/firefox/share-page/whatsapp.svg') }}" alt="{{ whatsapp_alt_text }}"></a>
+      </div>
+      <a href="" id="share-telegram"><img src="{{ static('img/firefox/share-page/telegram.svg') }}" alt="{{ whatsapp_alt_text }}"></a>
+      </div>
     </div>
   </section>
 

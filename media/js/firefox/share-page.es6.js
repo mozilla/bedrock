@@ -10,7 +10,14 @@
     const copyButtonText = document.getElementById('share-cta');
     const textCopiedMessage = document.getElementById('text-copied');
     const text = document.getElementById('text-to-copy').innerText;
+    const shareWhatsappIcon = document.getElementById('share-whatsapp');
     let timeout;
+
+    const value = encodeURIComponent(text);
+
+    shareWhatsappIcon.setAttribute('href', 'https://wa.me/?text=' + value);
+
+    console.log(shareWhatsappIcon);
 
     copyButton.addEventListener('click', copyText);
 
