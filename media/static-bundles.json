@@ -735,6 +735,12 @@
     },
     {
       "files": [
+        "css/firefox/share.scss"
+      ],
+      "name": "firefox_share"
+    },
+    {
+      "files": [
         "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/what-is-a-browser.scss"
       ],
@@ -1942,6 +1948,12 @@
         "js/mozorg/rise25/rise25.js"
       ],
       "name": "rise25-landing"
+    },
+    {
+      "files": [
+        "js/firefox/share-page.es6.js"
+      ],
+      "name": "firefox_share"
     }
   ]
 }
