@@ -43,6 +43,9 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
     2) Normalises language codes that are in the path - eg en-us -> en-US and also
     goes to a prefix code if we don't have support (eg de-AT -> de)
 
+    3) If no redirect is needed, sets request.locale to be the normalized
+    lang code we've got from the URL
+
     Querystrings are preserved in GET redirects.
 
     """
@@ -79,6 +82,10 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         # 2) If the lang code needed to be fixed up redirect to the normalized one
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
+
+        # 3) Annotate the request with the lang code, so that it's
+        # readily available to templates, etc
+        request.locale = lang_code
 
 
 class BedrockLangPatchingLocaleMiddleware(LocaleMiddleware):
