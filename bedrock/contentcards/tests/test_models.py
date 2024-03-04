@@ -56,7 +56,7 @@ class TestContentCardModel(TestCase):
         self.assertEqual(card1.page_name, "home")
         self.assertEqual(card1.card_name, "card_1")
         self.assertEqual(card1.locale, "en-US")
-        with self.activate("de"):
+        with self.activate_locale("de"):
             card_data = card1.card_data
 
         self.assertDictEqual(
