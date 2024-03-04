@@ -6,17 +6,11 @@
 # and we don't need anything nearly as complex.
 
 from django.conf import settings
-
-from _threading_local import local
-
-_active = local()
+from django.utils import translation
 
 
 def activate(language):
-    """
-    Installs the given language as the language for the current thread.
-    """
-    _active.value = language
+    return translation.activate(language)
 
 
 def deactivate():
@@ -24,12 +18,15 @@ def deactivate():
     Uninstalls the currently active language so that further _ calls
     will resolve against the default language, again.
     """
-    if hasattr(_active, "value"):
-        del _active.value
+    return translation.deactivate()
 
 
 def _fix_case(locale):
-    """Convert lowercase locales to uppercase: en-us -> en-US"""
+    """Convert lowercase locales to uppercase: en-us -> en-US
+
+    Note: this is less exhaustive than bedrock.base.i18n.normalize_language
+    because we don't want it to potentially fall back to to a lang prefix
+    """
     parts = locale.split("-")
     if len(parts) == 1:
         return locale
@@ -37,16 +34,8 @@ def _fix_case(locale):
         return f"{parts[0]}-{parts[1].upper()}"
 
 
-def get_language(fix_case=False):
-    """Returns the currently selected language."""
-    lang = getattr(_active, "value", None)
-    if lang is None:
-        return settings.LANGUAGE_CODE
-
-    if fix_case:
-        lang = _fix_case(lang)
-
-    return lang
+def get_language():
+    return _fix_case(translation.get_language())
 
 
 def get_language_bidi():

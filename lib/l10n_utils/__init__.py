@@ -14,7 +14,8 @@ from django.views.generic import TemplateView
 from product_details import product_details
 
 from bedrock.base import metrics
-from bedrock.base.i18n import split_path_and_polish_lang
+from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
+from lib.l10n_utils import translation
 
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
@@ -57,6 +58,7 @@ def redirect_to_best_locale(request, translations):
     strict = request.path_info == "/" and request.headers.get("Accept-Language") is None
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
     locale = get_best_translation(translations, get_accept_languages(request), strict)
+
     if locale:
         return redirect_to_locale(request, locale)
     return locale_selection(request, translations)
@@ -194,7 +196,8 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
 
 def get_locale(request):
-    return getattr(request, "locale", settings.LANGUAGE_CODE)
+    _locale = getattr(request, "locale", translation.get_language())
+    return normalize_language(_locale)
 
 
 def get_accept_languages(request):
