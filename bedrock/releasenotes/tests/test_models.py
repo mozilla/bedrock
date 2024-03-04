@@ -93,7 +93,7 @@ class TestReleaseModel(TestCase):
     def test_note_fixed_in_release(self):
         rel = models.get_release("firefox", "55.0a1")
         note = rel.notes[11]
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             assert note.fixed_in_release.get_absolute_url() == "/en-US/firefox/55.0a1/releasenotes/"
 
     def test_field_processors(self):

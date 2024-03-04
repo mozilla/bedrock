@@ -30,7 +30,7 @@ class TestInstallerHelp(TestCase):
         self.patcher = patch.dict(jinja_env.globals, download_firefox=self.button_mock)
         self.patcher.start()
         self.view_name = "firefox.installer-help"
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             self.url = reverse(self.view_name)
 
     def tearDown(self):
