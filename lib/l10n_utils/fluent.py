@@ -144,7 +144,7 @@ def l10nize(f):
 
         # can not use += here because that mutates the original list
         ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
-        locale = kwargs.get("locale") or translation.get_language(True)
+        locale = kwargs.get("locale") or translation.get_language()
         locales = [locale]
         if locale != "en":
             locales.append("en")
@@ -234,7 +234,7 @@ def get_active_locales(ftl_files, force=False):
 
 def ftl_file_is_active(ftl_file, locale=None):
     """Return True if the given FTL file is active in the given locale."""
-    locale = locale or translation.get_language(True)
+    locale = locale or translation.get_language()
     return locale in get_active_locales(ftl_file)
 
 
