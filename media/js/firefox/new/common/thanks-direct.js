@@ -125,7 +125,7 @@
         !Mozilla.StubAttribution.hasCookie()
     ) {
         // Wait for GA to load so that we can pass along visit ID.
-        Mozilla.StubAttribution.waitForGoogleAnalytics(function () {
+        Mozilla.StubAttribution.waitForGoogleAnalyticsThen(function () {
             var data = Mozilla.StubAttribution.getAttributionData();
 
             // make sure we check referrer for AMO (issue 11467)
