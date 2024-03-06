@@ -5,9 +5,10 @@
 # URLS only available with settings.DEV is enabled
 from django.urls import path
 
+from bedrock.base.i18n import bedrock_i18n_patterns
 from bedrock.mozorg import views
 
-urlpatterns = (
+urlpatterns = bedrock_i18n_patterns(
     path(
         "contentful-preview/<content_id>/",
         views.ContentfulPreviewView.as_view(),
