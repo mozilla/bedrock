@@ -24,15 +24,16 @@ ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 
 urlpatterns = (
-    path("firefox/", views.FirefoxHomeView.as_view(), name="firefox"),
+    # path("firefox/", views.FirefoxHomeView.as_view(), name="firefox"),
+    page("firefox/", "firefox/home/index-master.html", ftl_files=["firefox/home"]),
     path(
         "firefox/challenge-the-default/",
         VariationTemplateView.as_view(
             template_name="firefox/challenge-the-default/landing-switch.html",
-            active_locales=["fr"],
-            variation_locales=["fr"],
+            active_locales=["de", "es-ES", "fr", "it", "pl"],
+            variation_locales=["de", "fr"],
             ftl_files=["firefox/home"],
-            template_context_variations=["1", "2", "3", "4", "5"],
+            template_context_variations=["1", "2", "3", "4", "5", "6"],
         ),
     ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),

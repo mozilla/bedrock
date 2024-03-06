@@ -243,12 +243,27 @@ $campaign-red: #ff6a75;
         @media #{$mq-md} {
             h1 {
                 @include font-size(64px);
+
+                [lang="pl"] & {
+                    @include font-size(48px);
+                }
             }
 
             .mzp-c-button {
                 text-align: left;
             }
         }
+    }
+
+    .icon-firefox {
+        @include background-size(0.85em 0.85em);
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
+        background-position: top left;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 0.85em;
+        vertical-align: middle;
+        width: 0.85em;
     }
 
     // issue 13317
@@ -324,23 +339,6 @@ main[data-variant="6"] {
             }
         }
     }
-
-    .icon-firefox {
-        @include background-size(40px 40px);
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
-        background-position: top left;
-        background-repeat: no-repeat;
-        display: inline-block;
-        height: 40px;
-        vertical-align: middle;
-        width: 40px;
-
-        @media #{$mq-lg} {
-            @include background-size(90px 90px);
-            height: 90px;
-            width: 90px;
-        }
-    }
 }
 
 @media #{$mq-lg} {
@@ -348,17 +346,14 @@ main[data-variant="6"] {
         .c-ctd-hero .c-hero-text h1 {
             @include font-size(90px);
         }
-
-        .icon-firefox {
-            @include background-size(80px 80px);
-            height: 80px;
-            width: 80px;
-        }
     }
 }
 
-// Custom overrides for French
-[lang="fr"] {
+// Custom overrides for various locales
+[lang="fr"],
+[lang="pl"],
+[lang="it"],
+[lang="es-ES"] {
     main[data-variant="none"],
     main[data-variant="1"],
     main[data-variant="4"] {
@@ -374,23 +369,6 @@ main[data-variant="6"] {
                     h1 {
                         @include font-size(84px);
                     }
-                }
-            }
-
-            .icon-firefox {
-                @include background-size(40px 40px);
-                background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
-                background-position: top left;
-                background-repeat: no-repeat;
-                display: inline-block;
-                height: 40px;
-                vertical-align: middle;
-                width: 40px;
-
-                @media #{$mq-lg} {
-                    @include background-size(80px 80px);
-                    height: 80px;
-                    width: 80px;
                 }
             }
         }

@@ -362,12 +362,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </summary>
         <p>{{ cred_private_body }}</p>
       </details>
+    {% if cred_ethical_title %}
       <details class="mzp-c-details">
         <summary>
           <h3>{{ cred_ethical_title }}</h3>
         </summary>
         <p>{{ cred_ethical_body }}</p>
       </details>
+    {% endif %}
       <details class="mzp-c-details">
         <summary>
           <h3>{{ cred_change_title }}</h3>
@@ -380,6 +382,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </summary>
         <p>{{ cred_community_body }}</p>
       </details>
+
     </div>
   </section>
 

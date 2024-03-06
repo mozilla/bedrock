@@ -44,11 +44,9 @@ $campaign-green: #2ac3a2;
 }
 
 // stagger the CTA animation in the nav bar with the animation in the hero
-
 .nav-button-is-ready .c-navigation-shoulder .mzp-c-button {
     animation-delay: 2s;
 }
-
 
 // show buttons depending on browser state:
 // - If using firefox:
@@ -60,8 +58,6 @@ $campaign-green: #2ac3a2;
 .mzp-c-button.is-not-default, .mzp-c-button.is-default {
     display: none;
 }
-
-
 
 // have to re-define the default styles from protocol since mzp-t-product is baked into the download-thanks template
 .c-button-download-thanks .mzp-c-button.not-firefox {
@@ -153,11 +149,29 @@ html:not(.is-firefox) {
         background-position: -3024px;
     }
 
-    [lang="fr"] & {
-        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+    [lang="es-ES"] &,
+    [lang="fr"] &,
+    [lang="it"] &,
+    [lang="pl"] & {
         background-size: 126px 50px;
         background-position: center center;
         animation: none;
+    }
+
+    [lang="es-ES"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-es.svg');
+    }
+
+    [lang="fr"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+    }
+
+    [lang="it"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-it.svg');
+    }
+
+    [lang="pl"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-pl.svg');
     }
 }
 
@@ -178,11 +192,29 @@ html:not(.is-firefox) {
         background-position: -6000px;
     }
 
-    [lang="fr"] & {
-        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+    [lang="es"] &,
+    [lang="fr"] &,
+    [lang="it"] &,
+    [lang="pl"] & {
         background-size: 250px 100px;
         background-position: center center;
         animation: none;
+    }
+
+    [lang="es"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-es.svg');
+    }
+
+    [lang="fr"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-fr.svg');
+    }
+
+    [lang="it"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-it.svg');
+    }
+
+    [lang="pl"] & {
+        background-image: url('/media/img/firefox/challenge-the-default/logo-ctd-pl.svg');
     }
 }
 

@@ -727,35 +727,6 @@ def ios_testflight(request):
     return l10n_utils.render(request, "firefox/testflight.html", ctx)
 
 
-class FirefoxHomeView(L10nTemplateView):
-    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"], "firefox/challenge-the-default/landing-switch.html": ["firefox/home"]}
-
-    # place expected ?v= values in this list
-    variations = ["1", "2", "3", "4", "5", "6"]
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        variation = self.request.GET.get("v", None)
-
-        # ensure variation matches pre-defined value
-        if variation not in self.variations:
-            variation = None
-
-        ctx["variation"] = variation
-
-        return ctx
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if locale == "de":
-            template_name = "firefox/challenge-the-default/landing-switch.html"
-        else:
-            template_name = "firefox/home/index-master.html"
-
-        return [template_name]
-
-
 BREACH_TIPS_URLS = {
     "de": "https://blog.mozilla.org/firefox/de/was-macht-man-nach-einem-datenleck/",
     "fr": "https://blog.mozilla.org/firefox/fr/que-faire-en-cas-de-fuite-de-donnees/",
