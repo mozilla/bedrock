@@ -29,10 +29,10 @@ urlpatterns = (
         "firefox/challenge-the-default/",
         VariationTemplateView.as_view(
             template_name="firefox/challenge-the-default/landing-switch.html",
-            active_locales=["fr"],
-            variation_locales=["fr"],
+            active_locales=["de", "es-ES", "fr", "it", "pl"],
+            variation_locales=["de", "fr"],
             ftl_files=["firefox/home"],
-            template_context_variations=["1", "2", "3", "4", "5"],
+            template_context_variations=["1", "2", "3", "4", "5", "6"],
         ),
     ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),
