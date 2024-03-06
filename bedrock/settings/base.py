@@ -14,6 +14,7 @@ import sys
 from os.path import abspath
 from pathlib import Path
 
+from django.conf.locale import LANG_INFO  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
 from django.utils.functional import lazy
 
 import markus
