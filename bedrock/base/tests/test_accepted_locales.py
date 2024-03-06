@@ -87,10 +87,17 @@ class AcceptedLocalesTest(TestCase):
         settings.DEV = True
         # simulate the successful result of the DEV_LANGUAGES list
         # comprehension defined in settings.
-        settings.DEV_LANGUAGES = ["en-US", "fr"]
+        settings.DEV_LANGUAGES = [
+            "en-US",
+            "fr",
+            "de",
+            "es-MX",
+        ]
         assert settings.LANGUAGE_URL_MAP == {
-            "en-us": "en-US",
+            "en-US": "en-US",
             "fr": "fr",
+            "de": "de",
+            "es-MX": "es-MX",
         }, "DEV is True, but DEV_LANGUAGES are not used to define the allowed locales."
 
     def test_prod_languages(self):
@@ -100,4 +107,4 @@ class AcceptedLocalesTest(TestCase):
 
         """
         settings.DEV = False
-        assert settings.LANGUAGE_URL_MAP == {"en-us": "en-US"}, "DEV is False, but PROD_LANGUAGES are not used to define the allowed locales."
+        assert settings.LANGUAGE_URL_MAP == {"en-US": "en-US"}, "DEV is False, but PROD_LANGUAGES are not used to define the allowed locales."
