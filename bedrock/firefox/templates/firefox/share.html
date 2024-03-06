@@ -21,13 +21,8 @@
   {% set page_description = "Wir glauben, als gute*r Freund*in solltest du sie auf die sonnige Seite des Internets einladen. Wir haben da mal was vorbereitet." %}
   {% set main_tagline = "Wir haben eine kleine Nachricht vorbereitet, die du mit deinen Liebsten teilen kannst, damit du dir nicht selbst etwas ausdenken musst. Wird keiner merken – versprochen!" %}
   {% set share_message = "Hey! Ich wollte dir nur sagen, dass du echt schöne Augen hast. Ihre perfekte Form erinnert mich an das Firefox-Logo. Kennst du Firefox? Das ist dieser private, super verlässliche Browser. Eigentlich echt gut, hier ist ein Link, falls du dir den mal angucken willst: <a href='https://mzl.la/ctd-de'>mzl.la/ctd-de</a>. <br><br> Wie gehts dir eigentlich?"|safe%}
-  {% set share_message_email = "Hey! Ich wollte dir nur sagen, dass du echt schöne Augen hast. Ihre perfekte Form erinnert mich an das Firefox-Logo. Kennst du Firefox? Das ist dieser private, super verlässliche Browser. Eigentlich echt gut, hier ist ein Link, falls du dir den mal angucken willst: https://mzl.la/ctd-de. %0D%0D Wie gehts dir eigentlich?"|safe%}
   {% set share_cta = "Kopieren und teilen" %}
   {% set text_copied = "Text kopiert!" %}
-  {% set other_socials = "Oder teile direkt via" %}
-  {% set whatsapp_alt_text = "Via Whatsapp teilen" %}
-  {% set whatsapp_url = "https://mzl.la/4bZN9ak" %}
-  {% set email_alt_text = "Via E-Mail teilen" %}
   {% set email_subject = "Komm ins Team Firefox!" %}
   {% set sign_off = "<strong>Powered by Mozilla.</strong> <br> Für dich und das Web. Schon seit 1998."|safe %}
 
@@ -36,13 +31,8 @@
   {% set page_description = "Nous pensons que, comme un bon ami, il est temps de les inviter à découvrir le bon côté de l'internet. Nous avons donc préparé quelque chose pour vous." %}
   {% set main_tagline = "Nous avons préparé un message personnel pour vos amis, afin que vous n'ayez pas à le faire vous-même. Ils ne se douteront de rien, c'est promis !" %}
   {% set share_message = "Salut ! Je voulais juste te dire que tu as de beaux yeux. Leur forme parfaite me rappelle le logo de Firefox. Tu connais Firefox ? Ce navigateur privé, super fiable. Il est plutôt pas mal en vrai, voici un lien si tu veux le tester : <a href='https://mzl.la/ctd-fr'>mzl.la/ctd-fr</a>.<br><br> Sinon, comment vas-tu ?"|safe%}
-  {% set share_message_email = "Salut ! Je voulais juste te dire que tu as de beaux yeux. Leur forme parfaite me rappelle le logo de Firefox. Tu connais Firefox ? Ce navigateur privé, super fiable. Il est plutôt pas mal en vrai, voici un lien si tu veux le tester : https://mzl.la/ctd-fr.%0D%0D Sinon, comment vas-tu ?"|safe%}
   {% set share_cta = "Copier et partager" %}
   {% set text_copied = "Texte copié !" %}
-  {% set other_socials = "Ou partager sur un des canaux suivants : " %}
-  {% set whatsapp_alt_text = "Partager sur Whatsapp" %}
-  {% set whatsapp_url = "https://mzl.la/4a0zYE3" %}
-  {% set email_alt_text = "Envoyer par email" %}
   {% set email_subject = "Rejoins la team Firefox !" %}
   {% set sign_off = "<strong>Conçu par Mozilla.</strong> <br> Pensé pour vous depuis 1998."|safe %}
 
@@ -62,15 +52,6 @@
         <span id="share-cta">{{ share_cta }}</span>
         <span id="text-copied">{{ text_copied }}</span>
       </button>
-    </div>
-
-    <div class="other-socials">
-      <p>{{ other_socials }}</p>
-      <div class="other-socials-wrapper">
-        <a href="{{ whatsapp_url }}" id="share-whatsapp" data-cta-text="Share on Whatsapp"><img src="{{ static('img/firefox/share-page/whatsapp.svg') }}" alt=""><span>{{ whatsapp_alt_text }}</span></a>
-
-        <a href="mailto:?subject={{email_subject}}&body={{ share_message_email}}" id="share-email" data-cta-text="Send by e-mail"><img src="{{ static('img/firefox/share-page/email.svg') }}" alt=""><span>{{ email_alt_text }}</span></a>
-      </div>
     </div>
   </section>
 

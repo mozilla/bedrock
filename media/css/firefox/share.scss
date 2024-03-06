@@ -67,20 +67,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.other-socials {
-    .other-socials-wrapper {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-
-        a {
-            span {
-                @include visually-hidden;
-            }
-        }
-    }
-}
-
 .sign-off {
     margin: $layout-xl 0;
     text-align: center;
