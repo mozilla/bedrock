@@ -5,7 +5,6 @@
 # mimic django's language activation machinery. it checks for .mo files
 # and we don't need anything nearly as complex.
 
-from django.conf import settings
 from django.utils import translation
 
 
@@ -39,11 +38,4 @@ def get_language():
 
 
 def get_language_bidi():
-    """
-    Returns selected language's BiDi layout.
-
-    * False = left-to-right layout
-    * True = right-to-left layout
-    """
-    base_lang = get_language().split("-")[0]
-    return base_lang in settings.LANGUAGES_BIDI
+    return translation.get_language_bidi()
