@@ -442,11 +442,11 @@ SUPPORTED_NONLOCALES = [
     "xbl",  # in mozorg urls
     "revision.txt",  # from root_files
     "locales",  # in mozorg urls
-    "sitemap_none.xml",  # in sitemap urls
 ]
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
 SUPPORTED_LOCALE_IGNORE = [
+    "/sitemap_none.xml",  # in sitemap urls
     "/sitemap.xml",  # in sitemap urls
 ]
 # Pages that we don't want to be indexed by search engines.
