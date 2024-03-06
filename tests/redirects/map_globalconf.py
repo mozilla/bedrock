@@ -1040,7 +1040,10 @@ URLS = flatten(
         url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "https://activate.mozilla.community/"),
         url_test("/contribute/friends/", "/contribute/"),
         # Issue 7287
-        url_test("/accounts/", "/firefox/accounts/"),
+        url_test("/accounts/", "/account/"),
+        # Issue 14230
+        url_test("/firefox/accounts/", "/account/"),
+        url_test("/firefox/account/", "/account/"),
         # Issue 7435
         url_test("/about/history/details/", "/about/history/"),
         # Issue 7436
@@ -1200,7 +1203,7 @@ URLS = flatten(
         # Issue 12563
         url_test("/exp/firefox/", "/firefox/"),
         url_test("/exp/firefox/new/", "/firefox/new/"),
-        url_test("/exp/firefox/accounts/", "/firefox/accounts/"),
+        url_test("/exp/firefox/accounts/", "/account/"),
         url_test("/exp/opt-out/", "https://www.convert.com/opt-out/"),
         # issue 12935
         url_test("/privacy/facebook/", "/privacy/archive/facebook/2023-04/"),
@@ -1219,7 +1222,7 @@ URLS = flatten(
         url_test("/VendorDPA/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
         url_test("/vendordpa/", "https://assets.mozilla.net/pdf/VendorDPA.pdf"),
         # Issue 13732
-        url_test("/firefox/welcome/3/", "/firefox/accounts/"),
+        url_test("/firefox/welcome/3/", "/account/"),
         url_test("/firefox/mobile/get-app/", "/firefox/browsers/mobile/get-app/"),
         url_test("/contact/spaces/paris/", "/contact/spaces/"),
         # Issue 13924

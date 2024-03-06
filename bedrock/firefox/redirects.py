@@ -534,17 +534,18 @@ redirectpatterns = (
     # issue 9391
     redirect(r"^/firefox/election/?$", "firefox"),
     # fxa
-    redirect(r"^firefox/accounts/features/?", "firefox.accounts"),
+    redirect(r"^firefox/accounts/features/?", "mozorg.account"),
     # bug 1577449
     redirect(r"^firefox/features/send-tabs/?", "https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices"),
     # issue 6512
     redirect(r"^firefox/firefox\.html$", "firefox.new"),
     # issue 6979
     redirect(r"^firefoxfightsforyou/?", "firefox"),
+    # issue 14240
+    redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
+    redirect(r"^firefox/accounts/?$", "mozorg.account"),
     # issue 7210
-    redirect(r"^firefox/account/?$", "firefox.accounts"),
-    # issue 7287
-    redirect(r"^accounts/?$", "firefox.accounts"),
+    redirect(r"^firefox/account/?$", "mozorg.account"),
     # issue 7436
     redirect(r"^firefox/feedback/?$", "https://support.mozilla.org/questions/new/desktop"),
     # issue 7491
@@ -593,7 +594,7 @@ redirectpatterns = (
     redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
     redirect(r"^firefox/sync/?$", "firefox.features.sync"),
     # issue 13732
-    redirect(r"^firefox/welcome/3/?$", "firefox.accounts"),
+    redirect(r"^firefox/welcome/3/?$", "mozorg.account"),
     redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
     # issue 14172
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),

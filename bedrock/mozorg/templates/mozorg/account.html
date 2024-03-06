@@ -6,13 +6,13 @@
 
 {% from "macros.html" import fxa_email_form with context %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
 
 {% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}{% endblock %}
 
-{% block page_desc %}{{ ftl('firefox-accounts-securely-sync-your') }}{% endblock %}
+{% block page_desc %}{{ ftl('mozilla-accounts-securely-sync-your', fallback='firefox-accounts-securely-sync-your') }}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
@@ -24,7 +24,7 @@
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('protocol-split') }}
-  {{ css_bundle('firefox_accounts_2019') }}
+  {{ css_bundle('mozilla_account') }}
 {% endblock %}
 
 {% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default{% endblock %}
@@ -33,27 +33,8 @@
   {% include 'includes/protocol/navigation/navigation.html' %}
 {% endblock %}
 
-{% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
-        <a href="{{ url('firefox.accounts') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox Accounts">
-          {{ ftl('sub-navigation-mozilla-account', fallback='sub-navigation-firefox-accounts') }}
-        </a>
-      </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('firefox.features.sync') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Sync">{{ ftl('sub-navigation-sync') }}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-{% endblock %}
-
 {% block content %}
-<section class="mzp-c-split mzp-l-split-reversed">
+<section class="mzp-c-split mzp-t-content-xl">
   <div class="mzp-c-split-container">
     <div class="mzp-c-split-media">
       <div class="mzp-c-emphasis-box l-accounts">
@@ -84,7 +65,7 @@
       </div>
     </div>
     <div class="mzp-c-split-body">
-
+      <h1 class="accounts-header">{{ ftl('mozilla-account-header') }}</h1>
       <div class="accounts-products">
         <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
 
@@ -143,11 +124,12 @@
       <p class="c-accounts-tagline">{{ ftl('firefox-accounts-get-it-all-on-every') }}</p>
 
     </div>
+    </div>
 
 </section>
 
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_accounts_2019') }}
+  {{ js_bundle('mozilla_account') }}
 {% endblock %}

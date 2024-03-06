@@ -699,9 +699,9 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts-2019.scss"
+        "css/mozorg/account.scss"
       ],
-      "name": "firefox_accounts_2019"
+      "name": "mozilla_account"
     },
     {
       "files": [
@@ -1540,9 +1540,9 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/firefox/accounts-2019.es6.js"
+        "js/mozorg/account.es6.js"
       ],
-      "name": "firefox_accounts_2019"
+      "name": "mozilla_account"
     },
     {
       "files": [
