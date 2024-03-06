@@ -59,7 +59,10 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
     def _get_normalized_lang_code_from_request(self, request):
         accept_language_header = request.META.get("HTTP_ACCEPT_LANGUAGE", "")
         parsed_lang_list = parse_accept_lang_header(accept_language_header)
-        return normalize_language(parsed_lang_list[0][0])
+        try:
+            return normalize_language(parsed_lang_list[0][0])
+        except IndexError:
+            return None
 
     def process_request(self, request):
         lang_code, subpath, lang_code_changed = split_path_and_polish_lang(request.path)

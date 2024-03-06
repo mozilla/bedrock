@@ -28,19 +28,18 @@ class LocalePrefixPattern(django.urls.LocalePrefixPattern):
 
 def path_needs_lang_code(path):
     """Convenient way to spot if a path needs a prefix or not"""
-    if path in settings.SUPPORTED_LOCALE_IGNORE:
+    if f"/{path}" in settings.SUPPORTED_LOCALE_IGNORE:
         return False
 
-    for pathroot in settings.SUPPORTED_NONLOCALES:
-        if path.startswith(f"{pathroot}/"):
-            return False
+    if path.split("/")[0] in settings.SUPPORTED_NONLOCALES:
+        return False
 
     return True
 
 
 def bedrock_i18n_patterns(*urls, prefix_default_language=True):
     """
-    Similar to Django's i18n_patterns but uses out "LocalePrefixPattern", defined above
+    Similar to Django's i18n_patterns but uses our "LocalePrefixPattern", defined above
     """
     if not settings.USE_I18N:
         return list(urls)

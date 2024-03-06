@@ -195,8 +195,13 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     return django_render(request, template, context, **kwargs)
 
 
-def get_locale(request):
-    _locale = getattr(request, "locale", translation.get_language())
+def get_locale(request=None):
+    _locale = None
+    if request and hasattr(request, "locale"):
+        _locale = request.locale
+
+    _locale = _locale or translation.get_language()
+
     return normalize_language(_locale)
 
 

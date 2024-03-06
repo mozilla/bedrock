@@ -13,7 +13,7 @@ import pytest
 from django_jinja.backend import Jinja2
 from markus.testing import MetricsMock
 
-from bedrock.base.urlresolvers import Prefixer
+from bedrock.base.i18n import split_path_and_polish_lang
 from lib import l10n_utils
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
@@ -32,8 +32,9 @@ class TestRender(TestCase):
         request = RequestFactory().get(path)
         if accept_lang:
             request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
-        prefixer = Prefixer(request)
-        request.locale = prefixer.locale
+        locale_from_path, _subpath, _lang_code_changed = split_path_and_polish_lang(request.path)
+        assert not _lang_code_changed, "Did not expect lang code to change"
+        request.locale = locale_from_path
 
         ctx = {}
         if active_locales:
@@ -49,7 +50,7 @@ class TestRender(TestCase):
                 self.assertEqual(response.status_code, 302)
                 self.assertEqual(response["Location"], destination)
                 self.assertEqual(response["Vary"], "Accept-Language")
-                mm.assert_incr_once("locale.redirect", tags=[f"from_locale:{prefixer.locale or 'none'}", f"to_locale:{destination.split('/')[1]}"])
+                mm.assert_incr_once("locale.redirect", tags=[f"from_locale:{locale_from_path or 'none'}", f"to_locale:{destination.split('/')[1]}"])
 
             elif status == 404:
                 self.assertEqual(response.status_code, 404)
