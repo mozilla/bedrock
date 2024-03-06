@@ -98,7 +98,7 @@ def split_path_and_polish_lang(path_):
     locale will be empty if it isn't found.
 
     Returns:
-        - lang code (str)
+        - lang code (str, may be empty)
         - remaining URL path (str)
         - whether or not the lang code changed (bool)
 
@@ -106,12 +106,12 @@ def split_path_and_polish_lang(path_):
     path = path_.lstrip("/")
 
     # Use partition instead of split since it always returns 3 parts
-    first, _, rest = path.partition("/")
+    extracted_lang, _, rest = path.partition("/")
 
-    supported = normalize_language(first)
-    different = first != supported
+    supported_lang = normalize_language(extracted_lang)
+    different = extracted_lang != supported_lang
 
-    if supported:
-        return supported, rest, different
+    if extracted_lang and supported_lang:
+        return supported_lang, rest, different
     else:
         return "", path, False
