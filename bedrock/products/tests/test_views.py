@@ -381,7 +381,9 @@ class TestVPNResourceListingView(TestCase):
         expected_status=200,
     ):
         querystring = querystring if querystring else {}
-        resp = self.client.get(reverse("products.vpn.resource-center.landing"), querystring, HTTP_ACCEPT_LANGUAGE=locale, follow=True)
+        with self.activate_locale(locale):
+            dest = reverse("products.vpn.resource-center.landing")
+            resp = self.client.get(dest, querystring, headers={"accept-language": locale}, follow=True)
         assert resp.status_code == expected_status
         return resp
 
@@ -392,7 +394,7 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(passed_context["active_locales"], ["en-US", "fr", "ja"])
         self.assertEqual(
             passed_context["category_list"],
-            [{"name": "Test Category", "url": "/products/vpn/resource-center/?category=Test+Category"}],
+            [{"name": "Test Category", "url": "/fr/products/vpn/resource-center/?category=Test+Category"}],
         )
         self.assertEqual(passed_context["selected_category"], "")
         self.assertEqual(
@@ -419,8 +421,9 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self._request(locale="xx")
-        self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
+        with self.activate_locale("xx"):
+            resp = self.client.get("/products/vpn/resource-center/", follow=True)
+            self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
     @override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
@@ -449,8 +452,8 @@ class TestVPNResourceListingView(TestCase):
         self.assertEqual(
             passed_context["category_list"],
             [
-                {"name": "Test Category", "url": "/products/vpn/resource-center/?category=Test+Category"},
-                {"name": "other category", "url": "/products/vpn/resource-center/?category=other+category"},
+                {"name": "Test Category", "url": "/en-US/products/vpn/resource-center/?category=Test+Category"},
+                {"name": "other category", "url": "/en-US/products/vpn/resource-center/?category=other+category"},
             ],
         )
         self.assertEqual(passed_context["selected_category"], "other category")
@@ -522,14 +525,14 @@ class TestVPNResourceArticleView(TestCase):
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="de")
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "de"})
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="xx")
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "xx"})
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
