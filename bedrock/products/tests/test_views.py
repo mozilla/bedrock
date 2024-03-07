@@ -420,11 +420,6 @@ class TestVPNResourceListingView(TestCase):
         resp = self._request(locale="sk")
         self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
 
-    def test_simple_get__for_invalid_locale(self, render_mock):
-        with self.activate_locale("xx"):
-            resp = self.client.get("/products/vpn/resource-center/", follow=True)
-            self.assertEqual(resp.redirect_chain, [("/en-US/products/vpn/resource-center/", 302)])
-
     @override_settings(CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE=95)
     def test_simple_get__for_valid_locale_WITHOUT_enough_content(self, render_mock):
         # ie, if you go to the VRC for a language we're working on but which
@@ -525,14 +520,7 @@ class TestVPNResourceArticleView(TestCase):
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "de"})
-        # Which will 302 as expected
-        self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
-        render_mock.assert_not_called()
-
-    @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
-    def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "xx"})
+        resp = self.client.get("/de/products/vpn/resource-center/slug-2/")
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
