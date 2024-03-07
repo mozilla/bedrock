@@ -5,6 +5,7 @@
 # mimic django's language activation machinery. it checks for .mo files
 # and we don't need anything nearly as complex.
 
+from django.conf import settings
 from django.utils import translation
 
 
@@ -24,8 +25,10 @@ def _fix_case(locale):
     """Convert lowercase locales to uppercase: en-us -> en-US
 
     Note: this is less exhaustive than bedrock.base.i18n.normalize_language
-    because we don't want it to potentially fall back to to a lang prefix
+    because we don't want it to potentially fall back to to a two-char lang code
     """
+    if not locale:
+        return None
     parts = locale.split("-")
     if len(parts) == 1:
         return locale
@@ -34,7 +37,8 @@ def _fix_case(locale):
 
 
 def get_language():
-    return _fix_case(translation.get_language())
+    lang = _fix_case(translation.get_language())
+    return lang or settings.LANGUAGE_CODE
 
 
 def get_language_bidi():
