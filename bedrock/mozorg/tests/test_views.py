@@ -197,8 +197,8 @@ class TestWebvisionRedirect(TestCase):
         # here instead of in the redirects tests.
         WebvisionDoc.objects.create(name="summary", content="")
         resp = self.client.get("/webvision/", follow=True, HTTP_ACCEPT_LANGUAGE="en")
-        self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
-        self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
+        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+        self.assertEqual(resp.redirect_chain[0], ("/en-US/about/webvision/", 301))
 
 
 class TestMiecoEmail(TestCase):

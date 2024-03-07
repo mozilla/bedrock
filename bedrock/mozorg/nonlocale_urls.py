@@ -9,11 +9,16 @@ which will mean they are NOT prefixed with a language code.
 
 Note that these were derived from the list of SUPPORTED_NONLOCALES and
 SUPPORTED_LOCALE_IGNORE that were used in our former i18n machinery.
+
+Also, redirects from mozorg.urls were moved into here, so that they
+don't get miss a lookup if they lack a locale code at the start of their path
 """
 
 
 from django.conf import settings
 from django.urls import path
+
+from bedrock.redirects.util import redirect
 
 from . import views
 from .dev_urls import urlpatterns as dev_only_urlpatterns
@@ -34,6 +39,11 @@ urlpatterns = (
     path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
     path("xbl", views.namespaces, {"namespace": "xbl"}),
     path("locales/", views.locales, name="mozorg.locales"),
+    # redirects that don't need a lang code prefix
+    redirect(r"^projects/calendar/", "https://www.thunderbird.net/calendar/", locale_prefix=False),  # Bug 981063, catch all for old calendar urls.
+    redirect(r"^contact/spaces/paris/$", "mozorg.contact.spaces.spaces-landing", locale_prefix=False),
+    redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
+    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=True, prepend_locale=False),
 )
 
 if settings.DEV:
