@@ -394,6 +394,11 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx122-eu.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx123-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx123-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-na-video.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-na-static.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-eu-compare.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-de-voices-video.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-de-voices-share.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -468,6 +473,29 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("124."):
+            if locale in ["de", "en-GB", "es-ES", "fr", "it", "pl"]:
+                if locale == "de":
+                    if variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx124-de-voices-video.html"
+                    elif variant == "3":
+                        template = "firefox/whatsnew/whatsnew-fx124-de-voices-share.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx124-eu-compare.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx124-eu-compare.html"
+            elif locale == "en-US":
+                if country == "GB":
+                    template = "firefox/whatsnew/whatsnew-fx124-eu-compare.html"
+                elif country == "US":
+                    if variant == "2":
+                        template = "firefox/whatsnew/whatsnew-fx124-na-static.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx124-na-video.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("123."):

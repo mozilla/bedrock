@@ -463,6 +463,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-124-na.scss"
+      ],
+      "name": "firefox_whatsnew_124_na"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-124-eu-compare.scss"
+      ],
+      "name": "firefox_whatsnew_124_eu_compare"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-124-eu-voices.scss"
+      ],
+      "name": "firefox_whatsnew_124_eu_voices"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1640,6 +1658,30 @@
         "js/firefox/whatsnew/whatsnew-123-na.js"
       ],
       "name": "firefox_whatsnew_123_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-124-experiment-na.es6.js"
+      ],
+      "name": "firefox_whatsnew_124_na_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-124-eu-compare.js"
+      ],
+      "name": "firefox_whatsnew_124_eu_compare"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-124-eu-voices.es6.js"
+      ],
+      "name": "firefox_whatsnew_124_eu_voices"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-124-experiment-de.es6.js"
+      ],
+      "name": "firefox_whatsnew_124_de_experiment"
     },
     {
       "files": [

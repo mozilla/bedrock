@@ -1,0 +1,75 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_124_eu_voices') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('wnp124-experiment-de', ['de']) %}
+    {{ js_bundle('firefox_whatsnew_124_de_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    {{ video_inline_embed(
+      id='OkCoJwwRh54',
+      title='6 inspirierende Geschichten – 1 Tisch',
+      image=resp_img(
+        url='img/firefox/whatsnew/whatsnew124-eu/ctd-voices-thumbnail-800.jpg',
+        srcset={
+            'img/firefox/whatsnew/whatsnew124-eu/ctd-voices-thumbnail-600.jpg': "600w",
+            'img/firefox/whatsnew/whatsnew124-eu/ctd-voices-thumbnail-800.jpg': "800w",
+            'img/firefox/whatsnew/whatsnew124-eu/ctd-voices-thumbnail-1200.jpg': "1200w"
+        },
+        sizes={
+            '(min-width: 900px)': '688px',
+            'default': '100vw'
+        },
+        optional_attributes={
+          'width': '688',
+          'height': '387'
+        }
+      ),
+    ) }}
+    <h1 class="wnp-main-title">6 inspirierende Geschichten <br>– 1 Tisch</h1>
+    <p>
+      Wir haben Riccardo Simonetti, Sigurd Larsen, Esther Perbandt, Kelvyn Colt, Düzen Tekkal und Robin
+      Karakash zusammengebracht, damit sie über die Standards in unserer Gesellschaft und das Hinterfragen
+      eben dieser Standards reden.
+    </p>
+    <p>
+      Das ist Challenge the default: Voices!
+    </p>
+
+    <a href="https://www.youtube.com/@MozillaDE" class="wnp-main-cta mzp-c-button mzp-t-product" data-cta-text="Das ganze Video auf YouTube" data-cta-type="button">
+      Das ganze Video auf YouTube
+    </a>
+  </div>
+</section>
+
+<p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}
