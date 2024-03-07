@@ -18,15 +18,14 @@ from functools import wraps
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.middleware.locale import LocaleMiddleware
+from django.middleware.locale import LocaleMiddleware as DjangoLocaleMiddleware
 from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
-from django.utils.translation.trans_real import parse_accept_lang_header
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from bedrock.base import metrics
-from bedrock.base.i18n import normalize_language, path_needs_lang_code, split_path_and_polish_lang
+from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
 
 
 class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
@@ -35,15 +34,10 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
 
     It:
 
-    1) Prefixes 'bare' paths (e.g. /about/) with the most appropriate locale we
-    can give at this point (it's possible the view will be unavailable in that
-    lang, but we don't know this at this point unless we go through to basically
-    l10n_utils.render())
-
-    2) Normalises language codes that are in the path - eg en-us -> en-US and also
+    1) Normalises language codes that are in the path - eg en-us -> en-US and also
     goes to a prefix code if we don't have support (eg de-AT -> de)
 
-    3) If no redirect is needed, sets request.locale to be the normalized
+    2) If no redirect is needed, sets request.locale to be the normalized
     lang code we've got from the URL
 
     Querystrings are preserved in GET redirects.
@@ -56,42 +50,17 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
             dest += f"?{request.GET.urlencode()}"
         return HttpResponseRedirect(dest)
 
-    def _get_normalized_lang_code_from_request(self, request):
-        accept_language_header = request.META.get("HTTP_ACCEPT_LANGUAGE", "")
-        parsed_lang_list = parse_accept_lang_header(accept_language_header)
-        try:
-            return normalize_language(parsed_lang_list[0][0])
-        except IndexError:
-            return None
-
     def process_request(self, request):
         lang_code, subpath, lang_code_changed = split_path_and_polish_lang(request.path)
 
-        # Add a lang code prefix if none exists, but only if we need one
-        if not lang_code and path_needs_lang_code(subpath):
-            # Set up a solid fallback
-            new_lang_code = settings.LANGUAGE_CODE
-
-            # Ideally, though, we'll get it from the header (and note that
-            # we have no cookies, so don't need to check there.)
-            if accepted_lang := self._get_normalized_lang_code_from_request(request):
-                # Go with the browser's first/default lang - we don't check
-                # here whether the page has content in that locale - that's
-                # handled in the l10n_utils.render function
-                new_lang_code = accepted_lang
-
-            return self._redirect(request, new_lang_code, subpath)
-
-        # 2) If the lang code needed to be fixed up redirect to the normalized one
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
 
-        # 3) Annotate the request with the lang code, so that it's
-        # readily available to templates, etc
-        request.locale = lang_code
+        request.locale = lang_code if lang_code else None
+        request.LANGUAGE_CODE = request.locale
 
 
-class BedrockLangPatchingLocaleMiddleware(LocaleMiddleware):
+class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
     """Light middleware wrapped around Django's own i18n middleware
     that ensures we normalize language codes - i..e. we ensure they are in
     mixed case we use, rather than Django's internal all-lowercase codes.

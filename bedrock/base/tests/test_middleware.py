@@ -169,7 +169,7 @@ class BedrockLangCodeFixupMiddlewareTests(TestCase):
         self.fail("Ensure we have unicode tests too")
 
 
-class BedrockLangPatchingLocaleMiddlewareTests(TestCase):
+class BedrockLocaleMiddlewareTests(TestCase):
     def test_reminder(self):
         # Ensure all methods of the middleware are tested
         self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN")
