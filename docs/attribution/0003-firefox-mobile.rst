@@ -45,3 +45,13 @@ Would render:
 https://apps.apple.com/us/app/apple-store/id1055677337?pt=373246&ct=firefox-home&mt=8
 https://play.google.com/store/apps/details?id=org.mozilla.focus&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&hl=en
 ```
+
+Where can I find mobile attribution data?
+-----------------------------------------
+
+You can find Firefox Android client attribution data in `Looker`_. Firefox iOS data
+is currently only available in `App Store Connect`_, however this will also be added to
+Looker in the near future.
+
+.. _Looker: https://mozilla.cloud.looker.com/looks/1997
+.. _App Store Connect: https://appstoreconnect.apple.com/
