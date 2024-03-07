@@ -4,6 +4,7 @@
 
 import django.urls
 from django.conf import settings
+from django.utils.translation.trans_real import parse_accept_lang_header
 
 from lib.l10n_utils import translation
 
@@ -28,10 +29,10 @@ class LocalePrefixPattern(django.urls.LocalePrefixPattern):
 
 def path_needs_lang_code(path):
     """Convenient way to spot if a path needs a prefix or not"""
-    if f"/{path}" in settings.SUPPORTED_LOCALE_IGNORE:
+    if path in settings.SUPPORTED_LOCALE_IGNORE:
         return False
 
-    if path.split("/")[0] in settings.SUPPORTED_NONLOCALES:
+    if path.lstrip("/").split("/")[0] in settings.SUPPORTED_NONLOCALES:
         return False
 
     return True
@@ -115,3 +116,27 @@ def split_path_and_polish_lang(path_):
         return supported_lang, rest, different
     else:
         return "", path, False
+
+
+def get_language(request):
+    """
+    Return a locale code we support on the site using the
+    user's Accept-Language header to determine which is best. This
+    mostly follows the RFCs but read bug 439568 for details.
+    """
+    accept_lang = request.headers.get("Accept-Language")
+    if accept_lang:
+        best = get_best_language(accept_lang)
+        if best:
+            return best
+
+    return settings.LANGUAGE_CODE
+
+
+def get_best_language(accept_lang):
+    """Given an Accept-Language header, return the best-matching language."""
+    ranked = parse_accept_lang_header(accept_lang)
+    for lang, _ in ranked:
+        supported = normalize_language(lang)
+        if supported:
+            return supported

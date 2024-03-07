@@ -782,7 +782,7 @@ BREACH_TIPS_URLS = {
 
 @require_safe
 def firefox_welcome_page1(request):
-    locale = l10n_utils.get_locale()
+    locale = l10n_utils.get_locale(request)
 
     # get localized blog post URL for 2019 page
     breach_tips_query = (

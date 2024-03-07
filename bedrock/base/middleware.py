@@ -25,7 +25,12 @@ from django.utils.deprecation import MiddlewareMixin
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from bedrock.base import metrics
-from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
+from bedrock.base.i18n import (
+    get_language,
+    normalize_language,
+    path_needs_lang_code,
+    split_path_and_polish_lang,
+)
 
 
 class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
@@ -53,11 +58,14 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
     def process_request(self, request):
         lang_code, subpath, lang_code_changed = split_path_and_polish_lang(request.path)
 
+        if not lang_code and path_needs_lang_code(request.path):
+            lang_code = get_language(request)
+            return self._redirect(request, lang_code, subpath)
+
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
 
         request.locale = lang_code if lang_code else None
-        request.LANGUAGE_CODE = request.locale
 
 
 class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
