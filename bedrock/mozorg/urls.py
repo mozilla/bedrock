@@ -6,12 +6,14 @@
 
 These are included in the main URLConf via i18n_patterns,
 which will take care of the prefixing an appropriate language code
+
+IMPORTANT: if a redirect is needed for a non-localed URL (eg /webvision/)
+it must go in mozorg.nonlocale_urls, not this file
+
 """
 
 from django.conf import settings
 from django.urls import path
-
-from bedrock.redirects.util import redirect
 
 from . import views
 from .dev_urls import urlpatterns as dev_only_urlpatterns
@@ -35,9 +37,6 @@ urlpatterns = (
     page("about/this-site/", "mozorg/about/this-site.html", ftl_files=["mozorg/about/this-site.ftl"]),
     page("book/", "mozorg/book.html"),
     page("about/history/", "mozorg/about/history.html", ftl_files=["mozorg/about/history"]),
-    # Bug 981063, catch all for old calendar urls.
-    # must be here to avoid overriding the above
-    redirect(r"^projects/calendar/", "https://www.thunderbird.net/calendar/", locale_prefix=False),
     page("mission/", "mozorg/mission.html", ftl_files=["mozorg/mission"]),
     path("about/forums/", views.forums_view, name="mozorg.about.forums.forums"),
     page("about/forums/etiquette/", "mozorg/about/forums/etiquette.html"),
@@ -107,8 +106,7 @@ urlpatterns = (
     page("moss/foundational-technology/", "mozorg/moss/foundational-technology.html"),
     page("moss/mission-partners/", "mozorg/moss/mission-partners.html"),
     page("moss/secure-open-source/", "mozorg/moss/secure-open-source.html"),
-    # Diversity and inclusion redirect
-    redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
+    # Diversity and inclusion redirect has moved to mozorg.nonlocale_urls
     # Main paths
     page("diversity/2021/", "mozorg/diversity/2021/index.html"),
     page("diversity/2021/mozilla-foundation-data/", "mozorg/diversity/2021/mofo-data.html"),
@@ -125,7 +123,7 @@ urlpatterns = (
     page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # Webvision
-    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
+    # there's also a redirect in mozorg.nonlocale_urls
     path(
         "about/webvision/",
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),

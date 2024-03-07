@@ -219,8 +219,16 @@ LOCALES_BY_REGION = {
     "Middle East and Africa": ["ach", "af", "ar", "az", "fa", "ff", "gu-IN", "he", "kab", "kn", "skr", "son", "xh"],
 }
 
+
+def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
+    if langs.index(default_lang):
+        langs.pop(langs.index(default_lang))
+    langs.insert(0, default_lang)
+    return langs
+
+
 # Our accepted production locales are the values from the above, plus an exception.
-PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
+PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), [])) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
@@ -310,8 +318,8 @@ def get_dev_languages():
         return list(PROD_LANGUAGES)
 
 
-DEV_LANGUAGES = get_dev_languages()
-DEV_LANGUAGES.append("en-US")
+DEV_LANGUAGES = _put_default_lang_first(get_dev_languages())
+
 
 # Map short locale names to long, preferred locale names. This
 # will be used in urlresolvers to determine the
@@ -593,9 +601,9 @@ MIDDLEWARE = [
     # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
-    "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come before RedirectsMiddleware
-    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLangPatchingLocaleMiddleware
-    "bedrock.base.middleware.BedrockLangPatchingLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
+    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLocaleMiddleware
+    "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come after RedirectsMiddleware
+    "bedrock.base.middleware.BedrockLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
