@@ -112,7 +112,7 @@ Local Installation
 These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-Bedrock currently uses Python 3.9.10. The recommended way to install and use that version is
+Bedrock currently uses Python 3.11.x. The recommended way to install and use that version is
 with `pyenv <https://github.com/pyenv/pyenv>`_ and to create a virtualenv using
 `pyenv-virtualenv <https://github.com/pyenv/pyenv-virtualenv>`_ that will isolate Bedrock's
 dependencies from other things installed on the system.
@@ -121,7 +121,7 @@ The following assumes you are on MacOS, using ``zsh`` as your shell and `Homebre
 as your package manager. If you are not, there are installation instructions for a variety of
 platforms and shells in the READMEs for the two pyenv projects.
 
-**Install Python 3.9.10 with pyenv**
+**Install Python 3.11.x with pyenv**
 
 1. Install ``pyenv`` itself ::
 
@@ -140,30 +140,24 @@ using ``zsh``, the ``pyenv`` docs have other routes ::
 
     $ zsh -l
 
-4. Install the latest Python 3.9.x (eg 3.9.10), then test it's there::
+4. Install the latest Python 3.11.x (e.g. 3.11.8), then test it's there::
 
-    $ pyenv install 3.9.10
+    $ pyenv install 3.11.8
 
-   If you'd like to make Python 3.9.10 your default globally, you can do so with::
+   If you'd like to make Python 3.11 your default globally, you can do so with::
 
-    $ pyenv global 3.9.10
+    $ pyenv global 3.11.8
 
-   If you only want to make Python 3.9.10 available in the current shell, while you set up the
+   If you only want to make Python 3.11 available in the current shell, while you set up the
    Python virtualenv (below), you can do so with::
 
-    $ pyenv shell 3.9.10
+    $ pyenv shell 3.11.8
 
 5. Verify that you have the correct version of Python installed::
 
     $ python --version
-    Python 3.9.10
+    Python 3.11.8
 
-
-.. note ::
-
-    At the time of writing, Python 3.9.10 was the 3.9 release that worked with least complication
-    across the core team's local-development platforms, incl both Intel and Apple Silicon Macs.
-    It's also the version of 3.9 in the ``slim-bullseye`` image used for the Dockerized version.
 
 **Install a plugin to manage virtualenvs via pyenv and create a virtualenv for Bedrock's dependencies**
 
@@ -184,7 +178,7 @@ pyenv-virtualenv installed::
 
 4. Make a virtualenv we can use - in this example we'll call it ``bedrock`` but use whatever you want ::
 
-    $ pyenv virtualenv 3.9.10 bedrock
+    $ pyenv virtualenv 3.11.8 bedrock
 
 **Use the virtualenv**
 
@@ -209,7 +203,7 @@ deactivate it when you exit the directory, you can do so with::
 
     If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting
     the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple
-    Silicon, 3.9.10 should 'just work':
+    Silicon, 3.11.8 should 'just work':
 
     .. code-block:: bash
 

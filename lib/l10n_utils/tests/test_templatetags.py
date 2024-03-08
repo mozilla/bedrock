@@ -4,7 +4,7 @@
 
 import os
 import re
-from typing import List, MutableSet
+from collections.abc import MutableSet
 from unittest.mock import patch
 
 import pytest
@@ -78,11 +78,11 @@ def test_ftl_bleach_allowlists_are_comprehensive():
     tags_found = set()
     attrs_found = set()
 
-    def _clean_tag_matches(tag_matches: List) -> MutableSet:
-        return set([x.replace("<", "") for x in tag_matches])
+    def _clean_tag_matches(tag_matches: list) -> MutableSet:
+        return {x.replace("<", "") for x in tag_matches}
 
-    def _clean_attr_matches(attr_matches: List) -> MutableSet:
-        return set([x.replace("=", "").strip() for x in attr_matches if "?" not in x])
+    def _clean_attr_matches(attr_matches: list) -> MutableSet:
+        return {x.replace("=", "").strip() for x in attr_matches if "?" not in x}
 
     for starting_dir in [
         "l10n/",

@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from collections import defaultdict
-from typing import List
 
 from django.conf import settings
 
@@ -15,7 +14,7 @@ def locales_with_available_content(
     content_type: str,
     classification: str,
     default_locale: str = "en-US",
-) -> List[str]:
+) -> list[str]:
     """
     Returns a list of locale names for which we have 'enough' content in that
     locale to merit showing a listing page.

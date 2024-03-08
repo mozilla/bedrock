@@ -4,7 +4,6 @@
 
 import json
 from hashlib import sha256
-from typing import Dict, Tuple, Union
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -34,7 +33,7 @@ from bedrock.contentful.models import ContentfulEntry
 from bedrock.utils.management.decorators import alert_sentry_on_exception
 
 
-def data_hash(data: Dict) -> str:
+def data_hash(data: dict) -> str:
     str_data = json.dumps(data, sort_keys=True)
     return sha256(str_data.encode("utf8")).hexdigest()
 
@@ -84,7 +83,7 @@ class Command(BaseCommand):
             # This will always get shown, even if --quiet is passed
             print("Contentful credentials not configured")
 
-    def refresh(self) -> Tuple[bool, int, int, int, int]:
+    def refresh(self) -> tuple[bool, int, int, int, int]:
         update_ran = False
 
         added_count = -1
@@ -100,7 +99,7 @@ class Command(BaseCommand):
 
         return update_ran, added_count, updated_count, deleted_count, errors_count
 
-    def _get_message_action(self, msg: str) -> Union[str, None]:
+    def _get_message_action(self, msg: str) -> str | None:
         # Format for these messages is:
         # ContentManagement.Entry.publish,<currently_irrelevant_string>,<currently_irrelevant_string>
         try:
@@ -384,16 +383,14 @@ class Command(BaseCommand):
                 self.log(f"These fields were missing localised content: {_missing_fields}")
 
         self.log(
-            (
-                "Localisation completeness checked:"
-                f"\nFully localised: {localisation_complete_count} of {viable_for_localisation_count} candidates."
-                f"\nNot configured for localisation: {localisation_not_configured_count}."
-                f"\nTotal entries checked: {seen_count}."
-                "\n====================================\n"
-            )
+            "Localisation completeness checked:"
+            f"\nFully localised: {localisation_complete_count} of {viable_for_localisation_count} candidates."
+            f"\nNot configured for localisation: {localisation_not_configured_count}."
+            f"\nTotal entries checked: {seen_count}."
+            "\n====================================\n"
         )
 
-    def _refresh_from_contentful(self) -> Tuple[int, int, int, int]:
+    def _refresh_from_contentful(self) -> tuple[int, int, int, int]:
         self.log("Pulling from Contentful")
         updated_count = 0
         added_count = 0

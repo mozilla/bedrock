@@ -15,7 +15,7 @@ class BasePage(Page):
     _platform_nav_locator = (By.CSS_SELECTOR, ".pocket-header.platform")
 
     def __init__(self, selenium, pocket_base_url, locale="en", **url_kwargs):
-        super(BasePage, self).__init__(selenium, pocket_base_url, locale=locale, **url_kwargs)
+        super().__init__(selenium, pocket_base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)

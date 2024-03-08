@@ -65,7 +65,7 @@ def add_or_update_advisory(data, html):
     :return: SecurityAdvisory
     """
     mfsa_id = data.pop("mfsa_id")
-    year, order = [int(x) for x in mfsa_id.split("-")]
+    year, order = (int(x) for x in mfsa_id.split("-"))
     kwargs = {
         "id": mfsa_id,
         "title": data.pop("title"),

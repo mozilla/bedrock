@@ -2,7 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from pypom.view import WebView
+# Fix for pypom being incompatible with Python 3.10+ due to
+# "Moved Collections Abstract Base Classes to the collections.abc module."
+import collections
+
+collections.Iterable = collections.abc.Iterable
+
+# The above is set before importing ``WebView`` to avoid ``AttributeError``.
+from pypom.view import WebView  # noqa: E402
 
 
 def scroll_element_into_view(self, strategy, locator, x=0, y=0):
