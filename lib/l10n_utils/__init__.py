@@ -15,7 +15,6 @@ from product_details import product_details
 
 from bedrock.base import metrics
 from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
-from lib.l10n_utils import translation
 
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
@@ -53,9 +52,13 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
     return loader.render_to_string(template_name, context, request, using)
 
 
+def _is_root_path_with_no_language_clues(request):
+    return request.path_info == "/" and not request.headers.get("Accept-Language")
+
+
 def redirect_to_best_locale(request, translations):
-    # Strict only for the root URL.
-    strict = request.path_info == "/" and request.headers.get("Accept-Language") is None
+    # Strict only for the root URL when we have no language clues
+    strict = _is_root_path_with_no_language_clues(request)
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
     locale = get_best_translation(translations, get_accept_languages(request), strict)
 
@@ -66,10 +69,10 @@ def redirect_to_best_locale(request, translations):
 
 def redirect_to_locale(request, locale, permanent=False):
     redirect_class = HttpResponsePermanentRedirect if permanent else HttpResponseRedirect
-    subpath = split_path_and_polish_lang(request.get_full_path())[1]
+    original_prefix, subpath, _ = split_path_and_polish_lang(request.get_full_path())
     response = redirect_class("/" + "/".join([locale, subpath]))
     # Record count of redirects to this locale.
-    metrics.incr("locale.redirect", tags=[f"from_locale:{get_locale(request) or 'none'}", f"to_locale:{locale}"])
+    metrics.incr("locale.redirect", tags=[f"from_locale:{original_prefix or 'none'}", f"to_locale:{locale}"])
     # Add the Vary header to avoid wrong redirects due to a cache
     response["Vary"] = "Accept-Language"
     return response
@@ -175,10 +178,11 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
         # matching locale.
 
         # Does that path's locale match the request's locale?
-        if locale in translations:
+        # AND is it NOT for the root path with no discernable lang?
+        if locale in translations and not _is_root_path_with_no_language_clues(request):
             # Redirect to the locale if:
             # - The URL is the root path but is missing the trailing slash OR
-            # - The locale isn't in current prefix in the URL.
+            # - The locale isn't the current prefix in the URL
             if request.path == f"/{locale}" or locale != request.path.lstrip("/").partition("/")[0]:
                 return redirect_to_locale(request, locale)
         else:
@@ -195,14 +199,12 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     return django_render(request, template, context, **kwargs)
 
 
-def get_locale(request=None):
-    _locale = None
-    if request and hasattr(request, "locale"):
-        _locale = request.locale
-
-    _locale = _locale or translation.get_language()
-
-    return normalize_language(_locale)
+def get_locale(request):
+    # request.locale is added in bedrock.base.middleware.BedrockLangCodeFixupMiddleware
+    lang = getattr(request, "locale", None)
+    if not lang:
+        lang = settings.LANGUAGE_CODE
+    return normalize_language(lang)
 
 
 def get_accept_languages(request):

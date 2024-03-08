@@ -17,7 +17,8 @@ class TestTranslationUtils(TestCase):
         self.assertEqual(translation.get_language(), settings.LANGUAGE_CODE)
 
         translation.activate("non-default")
-        self.assertEqual(translation.get_language(), "non-default")
+        # 2024 Update: we're making Django work with uppercased territories in lang codes
+        self.assertEqual(translation.get_language(), "non-DEFAULT")
 
     def test_activate_deactivate(self):
         """Should activate and deactivate languages"""
