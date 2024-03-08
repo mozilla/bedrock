@@ -777,7 +777,7 @@ class TestAppStoreURL(TestCase):
         req = self.rf.get("/")
         req.locale = locale
         return render(
-            "{{{{ app_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            f"{{{{ app_store_url('{product}', '{campaign}') }}}}",
             {"request": req},
         )
 
@@ -849,7 +849,7 @@ class TestPlayStoreURL(TestCase):
         req = self.rf.get("/")
         req.locale = locale
         return render(
-            "{{{{ play_store_url('{0}', '{1}') }}}}".format(product, campaign),
+            f"{{{{ play_store_url('{product}', '{campaign}') }}}}",
             {"request": req},
         )
 

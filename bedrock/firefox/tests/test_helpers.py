@@ -605,7 +605,7 @@ def test_send_to_device_form(test_input, expected):
     request = RequestFactory().get("/firefox/browsers/mobile/")
     request.locale = locale
     markup = render(
-        "{{{{ send_to_device({0}) }}}}".format(test_input),
+        f"{{{{ send_to_device({test_input}) }}}}",
         {"request": request, "fluent_l10n": fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)},
     )
     doc = pq(markup)

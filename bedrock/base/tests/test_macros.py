@@ -72,7 +72,7 @@ EXPECTED_NAV_HTML = {
 def test_sub_nav_markup(test_input, expected):
     mock_request = {"request": {"path": "/current"}}
     # need to import with context for the request key to pass along the path value
-    markup = render("{% from 'macros.html' import sub_nav with context %}" + "{{{{ sub_nav({0}) }}}}".format(test_input), mock_request)
+    markup = render("{% from 'macros.html' import sub_nav with context %}" + f"{{{{ sub_nav({test_input}) }}}}", mock_request)
     doc = pq(markup)
 
     nav_title = doc(".c-sub-navigation-title")

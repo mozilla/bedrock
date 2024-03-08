@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from typing import List, Tuple
 from unittest import mock
 
 from django.conf import settings
@@ -171,7 +170,7 @@ def test_update_contentful__purge_queue(command_instance):
     assert mock_queue.purge.call_count == 1
 
 
-def _build_mock_messages(actions: List) -> List[List]:
+def _build_mock_messages(actions: list) -> list[list]:
     messages = []
     for i, action in enumerate(actions):
         msg = mock.Mock(name=f"msg-{i}-{action}")
@@ -186,7 +185,7 @@ def _build_mock_messages(actions: List) -> List[List]:
     return batched_messages
 
 
-def _establish_mock_queue(batched_messages: List[List]) -> Tuple[mock.Mock, mock.Mock]:
+def _establish_mock_queue(batched_messages: list[list]) -> tuple[mock.Mock, mock.Mock]:
     mock_queue = mock.Mock(name="mock_queue")
 
     def _receive_messages(*args, **kwargs):
@@ -479,7 +478,7 @@ def test_update_contentful__refresh(
     assert retval == expected
 
 
-def _build_mock_entries(mock_entry_data: List[dict]) -> List[mock.Mock]:
+def _build_mock_entries(mock_entry_data: list[dict]) -> list[mock.Mock]:
     output = []
     for datum_dict in mock_entry_data:
         mock_entry = mock.Mock()
