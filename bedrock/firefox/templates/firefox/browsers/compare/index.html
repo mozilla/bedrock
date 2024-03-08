@@ -325,6 +325,22 @@
 
       <p class="compare-content">{{ ftl('compare-index-almost-all-of-the-browsers') }}</p>
 
+    {% if ftl_has_messages('compare-shared-performance-strong', 'compare-index-how-well-does-firefox-perform', 'compare-index-firefox-is-powered-by-the-world') %}
+      <section class="compare-section-performance">
+        <header class="compare-section-header">
+          <h2>{{ ftl('compare-shared-performance-strong') }}</h2>
+          <p>{{ ftl('compare-index-how-well-does-firefox-perform') }}</p>
+        </header>
+
+        <p class="compare-content">{{ ftl('compare-index-firefox-is-powered-by-the-world') }}</p>
+        <p class="compare-content">{{ ftl('compare-index-firefox-engineers-focus-on-improving',
+          url1='href="%s"'|safe|format(url('firefox.features.fast')),
+          url2='href="https://github.com/WebKit/Speedometer/" rel="external noopener"',
+          url3='href="https://hacks.mozilla.org/2023/10/down-and-to-the-right-firefox-got-faster-for-real-users-in-2023/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-browser-compare" rel="external noopener"') }}</p>
+        <p class="compare-content">{{ ftl('compare-index-mozilla-cares-about-the-web-so', download='href="%s"'|safe|format(url('firefox.new'))) }}</p>
+      </section>
+    {% endif %}
+
       <section class="compare-section-conclusion">
         <header class="compare-section-header">
             <h2>{{ ftl('compare-index-conclusion') }}</h2>

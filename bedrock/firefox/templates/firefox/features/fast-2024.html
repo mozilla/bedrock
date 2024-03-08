@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block page_image %}{{ static('img/firefox/features/fast-high-res.png') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-fast-firefox-is-faster-than-ever') }}{% endblock %}
+
+{% block article_title %}{{ ftl('features-fast-firefox-keeps-getting-faster') }}{% endblock %}
+
+{% block article_content %}
+<h2>{{ ftl('features-fast-how-is-browser-speed-measured') }}</h2>
+<p>{{ ftl('features-fast-speedometer-is-the-most-widely') }}</p>
+<p>{{ ftl('features-fast-the-new-speedomer-3-benchmark') }}</p>
+
+<h2>{{ ftl('features-fast-faster-every-day') }}</h2>
+<p>{{ ftl('features-fast-firefox-is-powered-by-the-world') }}</p>
+<p>{{ ftl('features-fast-all-browsers-had-to-make', link='href="https://hacks.mozilla.org/2023/10/down-and-to-the-right-firefox-got-faster-for-real-users-in-2023/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"') }}</p>
+
+<h2>{{ ftl('features-fast-towards-a-faster-web') }}</h2>
+<p>{{ ftl('features-fast-theres-been-an-encouraging', link='href="%s#performance"'|safe|format(url('mozorg.about.webvision.full'))) }}</p>
+{% endblock article_content %}

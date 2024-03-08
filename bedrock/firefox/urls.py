@@ -60,7 +60,7 @@ urlpatterns = (
     ),
     page("firefox/features/adblocker/", "firefox/features/adblocker.html", ftl_files=["firefox/features/adblocker", "firefox/features/shared"]),
     page("firefox/features/bookmarks/", "firefox/features/bookmarks.html", ftl_files=["firefox/features/bookmarks-2023", "firefox/features/shared"]),
-    page("firefox/features/fast/", "firefox/features/fast.html", ftl_files=["firefox/features/fast-2023", "firefox/features/shared"]),
+    path("firefox/features/fast/", views.firefox_features_fast.as_view(), name="firefox.features.fast"),
     page(
         "firefox/features/block-fingerprinting/",
         "firefox/features/fingerprinting.html",

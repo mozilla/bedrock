@@ -42,10 +42,10 @@
 <div class="mzp-l-content">
   <div class="mzp-l-card-half">
     {{ card (
-      title=ftl('features-index-is-firefox-a-fast-browser'),
-      ga_title="Is Firefox a fast browser?",
+      title=ftl('features-index-firefox-keeps-getting-faster', fallback='features-index-is-firefox-a-fast-browser'),
+      ga_title="Firefox keeps getting faster",
       aspect_ratio="mzp-has-aspect-16-9",
-      desc=ftl('features-index-firefox-uses-less-memory-than'),
+      desc=ftl('features-index-the-latest-browser-speed-benchmarks', fallback='features-index-firefox-uses-less-memory-than'),
       image=resp_img(
         url="img/firefox/features/fast.png",
         srcset={
