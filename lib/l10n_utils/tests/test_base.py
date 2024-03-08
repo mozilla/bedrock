@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from unittest.mock import ANY, Mock, call, patch
+from unittest.mock import ANY, call, patch
 
 from django.test import TestCase
 from django.test.client import RequestFactory
@@ -13,7 +13,7 @@ import pytest
 from django_jinja.backend import Jinja2
 from markus.testing import MetricsMock
 
-from bedrock.base.i18n import split_path_and_polish_lang
+from bedrock.base.i18n import get_best_language, split_path_and_polish_lang
 from lib import l10n_utils
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
@@ -32,9 +32,11 @@ class TestRender(TestCase):
         request = RequestFactory().get(path)
         if accept_lang:
             request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
+
         locale_from_path, _subpath, _lang_code_changed = split_path_and_polish_lang(request.path)
         assert not _lang_code_changed, "Did not expect lang code to change"
-        request.locale = locale_from_path
+
+        request.locale = locale_from_path or get_best_language(accept_lang)
 
         ctx = {}
         if active_locales:
@@ -66,6 +68,7 @@ class TestRender(TestCase):
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # Test no accept language header and locale-less root path returns 200.
+        # This is a special case where we render the 404-locale.html template at /
         self._test("/", template, "", "", 200, active_locales=locales)
 
         # Test no accept language header and locale-less path returns 302.
@@ -247,7 +250,6 @@ class TestL10nTemplateView(TestCase):
         render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files="dude", activation_files=["dude", "donny"])
 
 
-@patch.object(l10n_utils, "_get_language_map", Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}))
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
@@ -274,7 +276,6 @@ def test_get_best_translation(translations, accept_languages, expected):
     assert l10n_utils.get_best_translation(translations, accept_languages) == expected
 
 
-@patch.object(l10n_utils, "_get_language_map", Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}))
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
