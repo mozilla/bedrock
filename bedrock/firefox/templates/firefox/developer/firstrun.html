@@ -26,27 +26,22 @@
 
 {% block content %}
 <main>
-  <section class="t-intro">
-      <div class="mzp-l-content">
-        <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-developer"></div>
-        <h1 class="intro-title">
-          {{ ftl('firefox-developer-welcome-to-firefox-browser', fallback='firefox-developer-welcome-to-the-all-new') }}
-        </h1>
-        <p class="intro-tagline">{{ ftl('firefox-developer-firefox-has-been-rebuilt') }}</p>
-
-        {% include '/firefox/developer/includes/intro-features.html' %}
-    </div>
+  <section class="mzp-l-content mzp-t-content-md t-center">
+      <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-developer mzp-l-logo-center"></div>
+      <h1>
+        {{ ftl('firefox-developer-welcome-to-firefox-browser', fallback='firefox-developer-welcome-to-the-all-new') }}
+      </h1>
   </section>
 
-  {% include '/firefox/developer/includes/alt-newsletter.html' %}
+  {% with hide_heading=True %}
+    {% include '/firefox/developer/includes/features.html' %}
+  {% endwith %}
 
   {% include '/firefox/developer/includes/highlights.html' %}
 
-  {% include '/firefox/developer/includes/for-developers.html' %}
+  {% include '/firefox/developer/includes/alt-newsletter.html' %}
 
-  {% include '/firefox/developer/includes/features.html' %}
-
-  <section class="t-engage mzp-t-dark">
+  <section class="mzp-t-dark t-engage">
     {% include '/firefox/developer/includes/engage.html' %}
   </section>
 </main>

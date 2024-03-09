@@ -4,20 +4,53 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<ul class="c-gallery-grid">
-  <li class="c-gallery-item">
-    <img class="icon" src="{{ static('img/firefox/developer/devtools-icon.svg') }}" alt="" width="96" height="96">
-    <h3 class="c-title">{{ ftl('firefox-developer-firefox-devtools') }}</h3>
+{% from "macros-protocol.html" import picto with context %}
+
+<div class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-nospace mzp-t-picto-center">
+
+  {% call picto(
+    title=ftl('firefox-developer-firefox-devtools'),
+    body=True,
+    image=resp_img(
+      url='img/firefox/developer/devtools-icon.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '96',
+        'loading': 'lazy'
+      }
+    ),
+  ) %}
     <p><a href="#devtools" class="mzp-c-cta-link">{{ ftl('ui-learn-more') }}</a></p>
-  </li>
-  <li class="c-gallery-item">
-    <img class="icon" src="{{ static('img/firefox/developer/css-grid-icon.svg') }}" alt="" width="96" height="96">
-    <h3 class="c-title">{{ ftl('firefox-developer-master-css-grid') }}</h3>
+  {% endcall %}
+
+  {% call picto(
+    title=ftl('firefox-developer-master-css-grid'),
+    body=True,
+    image=resp_img(
+      url='img/firefox/developer/css-grid-icon.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '96',
+        'loading': 'lazy'
+      }
+    ),
+  ) %}
     <p><a href="#cssgrid" class="mzp-c-cta-link">{{ ftl('ui-learn-more') }}</a></p>
-  </li>
-  <li class="c-gallery-item">
-    <img class="icon" src="{{ static('img/firefox/developer/next-gen-icon.svg') }}" alt="" width="96" height="96">
-    <h3 class="c-title">{{ ftl('firefox-developer-built-for-developers') }}</h3>
+  {% endcall %}
+
+  {% call picto(
+    title=ftl('firefox-developer-built-for-developers'),
+    body=True,
+    image=resp_img(
+      url='img/firefox/developer/next-gen-icon.svg',
+      optional_attributes={
+        'class': 'mzp-c-picto-image',
+        'width': '96',
+        'loading': 'lazy'
+      }
+    ),
+  ) %}
     <p><a href="#fordevs" class="mzp-c-cta-link">{{ ftl('ui-learn-more')}}</a></p>
-  </li>
-</ul>
+  {% endcall %}
+
+</div>

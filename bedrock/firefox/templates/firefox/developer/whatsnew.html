@@ -22,35 +22,33 @@
 {% block body_class %}firefox-developer firefox-developer-whatsnew{% endblock %}
 
 {% block content %}
-<main>
-  <section class="t-intro">
-    <div class="mzp-l-content">
-      <div class="mzp-c-wordmark mzp-t-wordmark-lg mzp-t-product-developer"></div>
+<main class="mzp-t-dark">
+  <div class="mzp-l-content mzp-t-content-md t-center">
+    <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-developer mzp-l-logo-center"></div>
+    <h1>{{ ftl('firefox-developer-congrats-you-now-have-latest') }}</h1>
+    {% set attrs = 'href="' ~ url('firefox.notes', channel='aurora') ~ '"' %}
+    {% if LANG.startswith('en-') %}
+      <p>View the <a {{ attrs|safe }}>release notes</a> to see what’s new.</p>
+    {% else %}
+      <p>{{ ftl('firefox-developer-view-the-release', attrs=attrs) }}</p>
+    {% endif %}
+  </div>
+  <div class="mzp-l-content mzp-t-content-md t-center ">
+    <h2 class="mzp-u-title-sm"><a href="https://firefox-source-docs.mozilla.org/devtools-user/" rel="external" class="c-docs">
+      {{ ftl('firefox-developer-developer-tools-user') }}
+      {% include '/firefox/developer/includes/arrow-right.svg' %}
+    </a></h2>
+  </div>
 
-      {% if ftl_has_messages('firefox-developer-congrats-you-now-have', 'firefox-developer-welcome-to-your-new-favorite') %}
-        <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have-latest', fallback='firefox-developer-congrats-you-now-have') }}</h1>
-        <p class="intro-tagline">{{ ftl('firefox-developer-welcome-to-your-new-favorite') }}</p>
-      {% else %}
-        <h1 class="intro-title">{{ ftl('firefox-developer-congrats-you-now-have-firefox') }}</h1>
-        <p class="intro-tagline">{{ ftl('firefox-developer-this-isnt-just-an-update') }}</p>
-      {% endif %}
-
-      {% include '/firefox/developer/includes/intro-features.html' %}
-    </div>
-  </section>
+  {% include '/firefox/developer/includes/mdn-features.html' %}
 
   {% include '/firefox/developer/includes/alt-newsletter.html' %}
 
-  {% include '/firefox/developer/includes/highlights.html' %}
-
-  {% include '/firefox/developer/includes/for-developers.html' %}
-
-  {% include '/firefox/developer/includes/features.html' %}
-
-  <section class="t-engage mzp-t-dark">
+  <section class="mzp-t-dark t-engage">
     {% include '/firefox/developer/includes/engage.html' %}
     {% include '/firefox/developer/includes/nightly.html' %}
   </section>
+
 </main>
 {% endblock %}
 

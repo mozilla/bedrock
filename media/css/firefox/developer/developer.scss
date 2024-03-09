@@ -5,70 +5,44 @@
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
-@import 'includes/engage';
-@import 'includes/features';
-@import 'includes/gallery-grid';
-@import 'includes/highlights';
-@import 'includes/intro';
-@import 'includes/newsletter';
-@import 'includes/performance';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-developer';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
-// *------------------------------------------------------------------*/
-// Title and subtitles for entire page
 
-.c-title {
-    @include text-body-md;
+.t-center {
+    text-align: center;
 }
 
-.c-subtitle {
-    @include text-title-sm;
-    line-height: $text-title-line-height;
-    font-weight: bold;
-    margin-bottom: $spacing-md;
-
-    .t-highlights & {
-        @include text-title-xs;
-    }
-
-    .t-features & {
-        margin: 0 auto $layout-md;
-        max-width: $content-lg;
-
-        br {
-            display: none;
-        }
-    }
+.t-features .mzp-c-section-heading,
+.t-features h3 {
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
-@media #{$mq-md} {
-    .c-subtitle {
-        .t-features & {
-            margin-bottom: $layout-xl;
+// highlights images are non-standard aspect ratio
+.t-highlights .mzp-c-card.mzp-has-aspect-16-9 .mzp-c-card-media-wrapper {
+    padding-bottom: 50.3%;
+}
 
-            br {
-                display: block;
-            }
-        }
+.t-engage .mzp-c-split {
+    padding-top: 0;
+}
+
+@supports (display:grid){
+    .mzp-l-columns::after {
+        display: none;
     }
 }
 
-// *------------------------------------------------------------------*/
-// Padding for page content sections
-
-.t-highlights,
-.t-features {
-    &.mzp-l-content {
-        padding-top: $layout-md;
-        padding-bottom: $layout-sm;
-
-        @media #{$mq-lg} {
-            padding-top: $layout-xl;
-            padding-bottom: $layout-xl;
-        }
-    }
-}
+// index
 
 .show-linux {
     display: none;
@@ -86,4 +60,31 @@ $image-path: '/media/protocol/img';
 
 .linux .show-linux {
     display: block;
+}
+
+.intro-feedback-note {
+    @include text-body-xs;
+    margin: $spacing-sm auto 0;
+    max-width: $content-xs;
+}
+
+
+// whats new
+
+.c-docs svg {
+    vertical-align: middle;
+    height: 18px;
+
+    [dir='rtl'] & {
+        transform: rotate(180deg);
+    }
+}
+
+
+// first run
+
+.firefox-developer-firstrun .t-features {
+    .mzp-l-content {
+        padding-top: 0;
+    }
 }
