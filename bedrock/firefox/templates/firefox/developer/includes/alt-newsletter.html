@@ -4,19 +4,27 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="t-newsletter">
-  <div class="mzp-l-content">
-    {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(
-        'app-dev',
-        title='Mozilla Developer Newsletter',
-        desc='Get developer news, tricks and resources <br> sent straight to your inbox.'|safe,
-        button_class='mzp-t-product mzp-t-lg',
-        include_language=False) }}
-    {% else %}
-      {{ email_newsletter_form(
-        spinner_color='#fff',
-        button_class='mzp-c-button mzp-t-product mzp-t-lg') }}
-    {% endif %}
-  </div>
-</section>
+{% from "macros-protocol.html" import split with context %}
+
+{% call split(
+  block_id='newsletter',
+  image=resp_img('img/firefox/developer/mail.svg', optional_attributes={
+    'width': '200',
+    'loading': 'lazy'
+  }),
+  block_class='mzp-l-split-reversed mzp-l-split-body-wide mzp-t-content-lg mzp-l-split-center-on-sm-md',
+  media_class='mzp-l-split-h-center'
+) %}
+  {% if LANG.startswith('en-') %}
+  {{ email_newsletter_form(
+    'app-dev',
+    title='Mozilla Developer Newsletter',
+    desc='Get developer news, tricks and resources sent straight to your inbox.'|safe,
+    button_class='mzp-t-product mzp-t-lg',
+    include_language=False) }}
+  {% else %}
+  {{ email_newsletter_form(
+    spinner_color='#0c99d5',
+    button_class='mzp-c-button mzp-t-product mzp-t-lg') }}
+  {% endif %}
+{% endcall %}
