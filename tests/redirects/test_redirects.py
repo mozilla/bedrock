@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 """Test redirects from the global.conf file."""
+
 from operator import itemgetter
 
 import pytest
