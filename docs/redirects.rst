@@ -212,7 +212,7 @@ and to it you can add both a ``product`` and ``campaign`` query parameter. For
 example, the following URL would redirect to either Firefox on the Apple App Store
 or on the Google Play Store, with the specified campaign parameter.
 
-.. code_block::
+.. code-block::
 
     https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew
 
