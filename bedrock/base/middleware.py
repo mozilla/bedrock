@@ -8,6 +8,7 @@ Taken from zamboni.amo.middleware.
 This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
+
 import base64
 import inspect
 import time

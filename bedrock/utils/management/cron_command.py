@@ -8,6 +8,7 @@ cron job.
 
 If a lock already exists, the command will exit silently.
 """
+
 import abc
 from contextlib import contextmanager
 

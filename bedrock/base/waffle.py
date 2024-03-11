@@ -5,6 +5,7 @@
 """
 Replacement library (function really) for Waffle that uses environment variables.
 """
+
 from django.conf import settings
 
 from bedrock.base.waffle_config import config
