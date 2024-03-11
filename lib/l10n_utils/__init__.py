@@ -226,7 +226,7 @@ def get_best_translation(translations, accept_languages, strict=False):
     If none found, it returns the first language code for the first available translation.
 
     """
-    lang_map = settings.LANGUAGE_MAP_WITH_FALLBACKS
+    lang_map = settings.LANGUAGE_URL_MAP_WITH_FALLBACKS
     # translations contains mixed-case items e.g. "en-US" and the keys
     # of `lang_map` are (now) also mixed case.
     valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}

@@ -2,13 +2,115 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.test import override_settings
+
 import pytest
 
-from bedrock.base.i18n import split_path_and_polish_lang
+from bedrock.base.i18n import normalize_language, path_needs_lang_code, split_path_and_polish_lang
 
 
-def test_normalize_language():
-    assert False, "WRITE ME, incl ja-JP-mac case"
+@override_settings(IS_MOZORG_MODE=True, IS_POCKET_MODE=False)
+@pytest.mark.parametrize(
+    "lang_code, expected",
+    (
+        (None, None),
+        ("", None),
+        # General normalization
+        ("EN-US", "en-US"),
+        ("en-US", "en-US"),
+        ("eN-gB", "en-GB"),
+        ("ja-jp-mac", "ja"),
+        ("JA-JP-MAC", "ja"),
+        # from CANONICAL_LOCALES
+        ("en", "en-US"),
+        ("es", "es-ES"),
+        ("ja-jp-mac", "ja"),
+        ("no", "nb-NO"),
+        ("pt", "pt-BR"),
+        ("sv", "sv-SE"),
+        ("zh-hant", "zh-TW"),
+        ("zh-hant-tw", "zh-TW"),
+        ("zh-hk", "zh-TW"),
+        ("zh-hant-hk", "zh-TW"),
+    ),
+)
+def test_normalize_language_mozorg_mode(lang_code, expected):
+    assert normalize_language(lang_code) == expected
+
+
+@override_settings(
+    IS_MOZORG_MODE=False,
+    IS_POCKET_MODE=True,
+    LANGUAGE_URL_MAP_WITH_FALLBACKS={
+        # patch in what we set in settings.__init__
+        "de": "de",
+        "en": "en",
+        "es": "es",
+        "es-la": "es-la",
+        "fr-ca": "fr-ca",
+        "fr": "fr",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "nl": "nl",
+        "pl": "pl",
+        "pt-br": "pt-br",
+        "pt": "pt",
+        "ru": "ru",
+        "zh-cn": "zh-cn",
+        "zh-tw": "zh-tw",
+    },
+)
+@pytest.mark.parametrize(
+    "lang_code, expected",
+    (
+        (None, None),
+        ("", None),  # General normalization
+        ("de", "de"),
+        ("de-DE", "de"),
+        ("DE", "de"),
+        ("en", "en"),
+        ("en-US", "en"),
+        ("EN", "en"),
+        ("es", "es"),
+        ("ES", "es"),
+        ("es-la", "es-la"),
+        ("es-LA", "es-la"),
+        ("ES-LA", "es-la"),
+        ("fr-ca", "fr-ca"),
+        ("fr-CA", "fr-ca"),
+        ("FR-CA", "fr-ca"),
+        ("fr", "fr"),
+        ("FR", "fr"),
+        ("it", "it"),
+        ("IT", "it"),
+        ("ja", "ja"),
+        ("JA", "ja"),
+        ("ko", "ko"),
+        ("KO", "ko"),
+        ("nl", "nl"),
+        ("NL", "nl"),
+        ("pl", "pl"),
+        ("PL", "pl"),
+        ("pt-br", "pt-br"),
+        ("pt-BR", "pt-br"),
+        ("PT-BR", "pt-br"),
+        ("pt", "pt"),
+        ("PT", "pt"),
+        ("pt-PT", "pt"),
+        ("PT-PT", "pt"),
+        ("ru", "ru"),
+        ("RU", "ru"),
+        ("zh-cn", "zh-cn"),
+        ("zh-CN", "zh-cn"),
+        ("ZH-CN", "zh-cn"),
+        ("zh-tw", "zh-tw"),
+        ("zh-TW", "zh-tw"),
+        ("ZH-TW", "zh-tw"),
+    ),
+)
+def test_normalize_language_pocket_mode(lang_code, expected):
+    assert normalize_language(lang_code) == expected
 
 
 # @override_settings(LANGUAGE_URL_MAP={"es-ar": "es-AR", "en-gb": "en-GB", "es-us": "es-US"}, CANONICAL_LOCALES={"es": "es-ES", "en": "en-US"})
@@ -31,30 +133,70 @@ def test_normalize_language():
 #         assert find_supported("dude") is None
 
 
-def test_find_supported():
-    assert False, "WRITE ME"
-
-
-def test_path_needs_lang_code():
-    assert False, "WRITE ME"
+@pytest.mark.parametrize(
+    "path, expected",
+    (
+        ("media", False),
+        ("static", False),
+        ("certs", False),
+        ("images", False),
+        ("contribute.json", False),
+        ("credits", False),
+        ("gameon", False),
+        ("robots.txt", False),
+        (".well-known", False),
+        ("telemetry", False),
+        ("webmaker", False),
+        ("contributor-data", False),
+        ("healthz", False),
+        ("readiness", False),
+        ("healthz-cron", False),
+        ("2004", False),
+        ("2005", False),
+        ("2006", False),
+        ("keymaster", False),
+        ("microsummaries", False),
+        ("xbl", False),
+        ("revision.txt", False),
+        ("locales", False),
+        ("/sitemap_none.xml", False),
+        ("/sitemap.xml", False),
+        # Some example paths that do need them
+        ("/about/", True),
+        ("about", True),
+        ("/products/", True),
+        ("products/", True),
+        ("security/some/path/here", True),
+        # Note that NOT needing a lang string is based on affirmation, so anything
+        # that isn't affirmed (e.g. cos it already has a lang code) is a default True
+        ("/en-US/products/", True),
+    ),
+)
+def test_path_needs_lang_code(path, expected):
+    assert path_needs_lang_code(path) == expected
 
 
 @pytest.mark.parametrize(
     "path, result",
     [
         # Basic
-        ("en-US/some/action", ("en-US", "some/action")),
+        (
+            "en-US/some/action",
+            ("en-US", "some/action", False),
+        ),
         # First slash doesn't matter
-        ("/en-US/some/action", ("en-US", "some/action")),
-        # Nor does capitalization
-        ("En-uS/some/action", ("en-US", "some/action")),
+        ("/en-US/some/action", ("en-US", "some/action", False)),
+        # Nor does capitalization, but it counts as a 'changed' code
+        ("En-uS/some/action", ("en-US", "some/action", True)),
         # Unsupported languages return a blank language
-        ("unsupported/some/action", ("", "unsupported/some/action")),
-        # Unicode handling
-        ("fR-Ca/Françoi/test", ("fr-CA", "Fran%C3%A7oi/test")),
+        ("unsupported/sOmE/action", ("", "unsupported/sOmE/action", False)),
+        # Fallback to a lang-only lang code, not a territory
+        ("de-AT/test", ("de", "test", True)),
+        # Unicode handling + polishing of locale
+        ("fR-Ca/François/test", ("fr", "François/test", True)),
     ],
 )
-def test_split_path(path, result):
+def test_split_path_and_polish_lang(path, result):
     res = split_path_and_polish_lang(path)
     assert res == result
 

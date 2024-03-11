@@ -368,10 +368,6 @@ def lazy_lang_group():
 
 
 def lazy_lang_url_map():
-    # This used to be a mapping of all-lowercase locale codes to
-    # mixed-case locale codes. However, we've moved away from that
-    # and LANGUAGES is now mixed-case. As such, I think this can go in
-    # the woodchipper - SJ
     from django.conf import settings
 
     langs = settings.DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
@@ -387,6 +383,9 @@ def lazy_langs():
     than core Django's all-lowercase codes. This is because we work with
     mixed-case codes and we'll need them in LANGUAGES when we use
     Wagtail-Localize, as that has to be configured with a subset of LANGUAGES
+
+    :return: list of tuples
+
     """
     from django.conf import settings
 
@@ -396,25 +395,29 @@ def lazy_langs():
     return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
-def LANGUAGE_MAP_WITH_FALLBACKS():
+def language_url_map_with_fallbacks():
     """
     Return a complete dict of language -> URL mappings, including the canonical
-    short locale maps (e.g. es -> es-ES and en -> en-US).
+    short locale maps (e.g. es -> es-ES and en -> en-US), as well as fallback
+    mappings for language variations we don't support directly but via a nearest
+    match
+
     :return: dict
     """
     lum = lazy_lang_url_map()
     langs = dict(list(lum.items()) + list(CANONICAL_LOCALES.items()))
-    # Add missing short locales to the list. This will automatically map
-    # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
-    # order. To override this behavior, explicitly define a preferred locale
+    # Add missing short locales to the list. By default, this will automatically
+    # map en to en-GB (not en-US), etc. in alphabetical order.
+    # To override this behavior, explicitly define a preferred locale
     # map with the CANONICAL_LOCALES setting.
     langs.update((k.split("-")[0], v) for k, v in lum.items() if k.split("-")[0] not in langs)
+
     return langs
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
-LANGUAGE_MAP_WITH_FALLBACKS = lazy(LANGUAGE_MAP_WITH_FALLBACKS, dict)()
+LANGUAGE_URL_MAP_WITH_FALLBACKS = lazy(language_url_map_with_fallbacks, dict)()  # used in normalize_language
 LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900
