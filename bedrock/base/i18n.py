@@ -52,43 +52,51 @@ def bedrock_i18n_patterns(*urls, prefix_default_language=True):
     ]
 
 
-def normalize_language(language, enforce_lowercase=False):
+def normalize_language(language):
     """
     Given a language code, returns the language code supported by Bedrock
     in the proper case, for example "eN-us" --> "en-US" - or None if
     Bedrock doesn't support the language code.
 
-    Also then converts it to a specified fallback language if the actual
+    We also convert it to a specified fallback language if the actual
     presented code is not available _and_ we have a fallback specced in
     settings.
 
-    `enforce_lowercase` is used for Pocket Mode, basically
     """
+
     if not language:
         return None
 
-    if enforce_lowercase:
+    if settings.IS_POCKET_MODE:
         lang_code = language.lower()
     else:
-        lang, _partition, territory = language.partition("-")
+        lang_code = language
 
-        if territory:
-            # Support patterns like ja-JP-mac
-            if "-" in territory:
-                _territory, _partition, rest = territory.partition("-")
-                territory = f"{_territory.upper()}-{rest}"
-            else:
-                territory = territory.upper()
+    if lang_code in settings.LANGUAGE_URL_MAP_WITH_FALLBACKS:
+        return settings.LANGUAGE_URL_MAP_WITH_FALLBACKS[lang_code]
 
-            lang_code = f"{lang}-{territory}"
+    # Reformat the lang code to be mixed-case, as we expect
+    # them to be for our lookup
+    lang, _partition, territory = language.partition("-")
+    lang = lang.lower()  # this part is _always_ lowercase
+
+    if territory:
+        # Support patterns like ja-JP-mac
+        if "-" in territory:
+            _territory, _partition, rest = territory.partition("-")
+            territory = f"{_territory.upper()}-{rest}"
         else:
-            lang_code = lang
+            territory = territory.upper()
+
+        lang_code = f"{lang}-{territory}"
+    else:
+        lang_code = lang
 
     try:
-        return settings.LANGUAGE_MAP_WITH_FALLBACKS[lang_code]
+        return settings.LANGUAGE_URL_MAP_WITH_FALLBACKS[lang_code]
     except KeyError:
         pre = lang_code.split("-")[0]
-        return settings.LANGUAGE_MAP_WITH_FALLBACKS.get(pre)
+        return settings.LANGUAGE_URL_MAP_WITH_FALLBACKS.get(pre)
 
 
 def split_path_and_polish_lang(path_):

@@ -74,7 +74,7 @@ if IS_POCKET_MODE:
     }
 
     FALLBACK_LOCALES = {
-        # TODO: Drop after confirming no longer used _anywhere_
+        # Not needed in Bedrock
     }
 
     PROD_LANGUAGES = [
@@ -101,6 +101,9 @@ if IS_POCKET_MODE:
     # No reason to have separate Dev and Prod lang sets for Pocket mode
     DEV_LANGUAGES = PROD_LANGUAGES
     LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
+
+    # We don't want any fallback lang support for Pocket mode, so let's override the Bedrock base default
+    LANGUAGE_URL_MAP_WITH_FALLBACKS = LANGUAGE_URL_MAP
 
     COOKIE_CONSENT_SCRIPT_SRC = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
     COOKIE_CONSENT_DATA_DOMAIN = "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e-test" if DEV else "a7ff9c31-9f59-421f-9a8e-49b11a3eb24e"

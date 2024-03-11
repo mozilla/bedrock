@@ -7,8 +7,10 @@
 These are included in the main URLConf via the regular `patterns` function,
 which will mean they are NOT prefixed with a language code.
 
-Note that these were derived from the list of SUPPORTED_NONLOCALES and
-SUPPORTED_LOCALE_IGNORE that were used in our former i18n machinery.
+Note that these are derived from the list of SUPPORTED_NONLOCALES and
+SUPPORTED_LOCALE_IGNORE that were used in our former i18n machinery, and
+which (currently) remain in use, so these two sources need to be kept in
+sync with the urlpatterns below
 
 Also, redirects from mozorg.urls were moved into here, so that they
 don't get miss a lookup if they lack a locale code at the start of their path
