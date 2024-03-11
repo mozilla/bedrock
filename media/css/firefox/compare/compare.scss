@@ -226,6 +226,14 @@
     }
 }
 
+.compare-section-performance .compare-section-header h2 strong {
+    @include zap('/media/protocol/img/zaps/zap-09.svg');
+
+    &::after {
+        top: 100%;
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // Comparison tables
 

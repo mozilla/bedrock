@@ -806,6 +806,21 @@ def firefox_features_translate(request):
     return l10n_utils.render(request, template_name, context, ftl_files=["firefox/features/translate", "firefox/features/shared"])
 
 
+class firefox_features_fast(L10nTemplateView):
+    ftl_files_map = {
+        "firefox/features/fast.html": ["firefox/features/fast-2023", "firefox/features/shared"],
+        "firefox/features/fast-2024.html": ["firefox/features/fast-2024", "firefox/features/shared"],
+    }
+
+    def get_template_names(self):
+        if ftl_file_is_active("firefox/features/fast-2024"):
+            template_name = "firefox/features/fast-2024.html"
+        else:
+            template_name = "firefox/features/fast.html"
+
+        return [template_name]
+
+
 class FirefoxContentful(L10nTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

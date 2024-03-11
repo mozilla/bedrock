@@ -51,3 +51,17 @@ compare-index-browsers-have-come-a-long = Browsers have come a long way since { 
 compare-index-firefox-is-backed-by-the-not = { -brand-name-firefox } is backed by the not-for-profit { -brand-name-mozilla }.
 compare-index-firefox-puts-your-privacy = { -brand-name-firefox } puts your privacy first — in everything we make and do. We believe you have the right to decide how and with whom you share your personal information. { -brand-name-firefox } collects as little data as possible and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
 compare-index-based-on-the-criteria-we-outlined = Based on the criteria we outlined — privacy, utility, and portability — there’s really only one browser that meets the mark, and that’s { -brand-name-firefox }. The real area of difference isn’t in functionality, it’s privacy. { -brand-name-firefox } is the most private browser that doesn’t lock you into an ecosystem. Use it on any operating system, on all your devices, and feel secure when you do.
+
+compare-index-how-well-does-firefox-perform = How well does { -brand-name-firefox } perform?
+compare-index-firefox-is-powered-by-the-world = { -brand-name-firefox } is powered by the world-class { -brand-name-gecko } engine, with shockingly fast styling and page layout, modern JavaScript features and a never ending drumbeat of new performance improvements to keep our users happy and push the entire web platform forward.
+
+# "Speedometer 3" is a brand name
+# Variables
+#   $url1 (url) - link to /firefox/features/fast/
+#   $url2 (url) - link to https://github.com/WebKit/Speedometer/
+#   $url3 (url) - link to https://hacks.mozilla.org/2023/10/down-and-to-the-right-firefox-got-faster-for-real-users-in-2023/
+compare-index-firefox-engineers-focus-on-improving = { -brand-name-firefox } engineers focus on improving performance and responsiveness, delivering a <a { $url1 }>fast browsing experience</a> that helps you find what you need quickly and get things done without any friction. We’ve been collaborating with teams from other browser makers on a project called <a { $url2 }>Speedometer 3</a>, an industry-standard performance benchmark that benefits all browsers and the entire open web. This has led to <a { $url3 }>huge improvements for { -brand-name-firefox } users</a> with speed you can really feel, including faster page loads and smoother interactions.
+
+# Variables:
+#   $download (url) - link to /firefox/new/
+compare-index-mozilla-cares-about-the-web-so = { -brand-name-mozilla } cares about the web so we welcome competition. When other browsers have to make investments to compete with { -brand-name-firefox } on performance, that’s great for their users and great for our mission. And { -brand-name-firefox } stands up against all of them: we encourage anyone using another browser to <a { $download }>download { -brand-name-firefox }</a> and see for yourself.
