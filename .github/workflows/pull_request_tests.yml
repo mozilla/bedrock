@@ -29,8 +29,8 @@ jobs:
   test-python:
     runs-on: ubuntu-20.04  # For consistency with above
     steps:
-      - uses: actions/setup-python@v4
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"  # matches current Python in production
       - name: "Run Python tests (on Docker)"
