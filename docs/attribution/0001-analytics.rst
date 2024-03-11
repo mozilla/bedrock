@@ -384,7 +384,7 @@ link element.
 
 
 Product Downloads
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 .. Important::
 
