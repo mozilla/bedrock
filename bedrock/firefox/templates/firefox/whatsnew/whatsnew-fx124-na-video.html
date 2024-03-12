@@ -1,0 +1,73 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_124_na') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('wnp124-experiment-na', ['en-US']) %}
+    {{ js_bundle('firefox_whatsnew_124_na_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h1 class="wnp-main-title">Keep your private info, well, private</h1>
+
+    {{ video_inline_embed(
+      id='WOBGckoAgq8',
+      title='6 inspirierende Geschichten – 1 Tisch',
+      image=resp_img(
+        url='img/firefox/whatsnew/whatsnew124-na/monitor-plus-thumbnail-600.png',
+        srcset={
+            'img/firefox/whatsnew/whatsnew124-na/monitor-plus-thumbnail-600.png': "600w",
+            'img/firefox/whatsnew/whatsnew124-na/monitor-plus-thumbnail-1200.png': "1200w"
+        },
+        sizes={
+            '(min-width: 900px)': '688px',
+            'default': '100vw'
+        },
+        optional_attributes={
+          'width': '688',
+          'height': '387'
+        }
+      ),
+    ) }}
+
+    <p class="wnp-main-tagline">
+      Monitor Plus automatically requests removal of your personal information — like your home
+      address or family members’ names — so it's taken down from sites trying to sell it or give
+      it away.
+    </p>
+
+    <a href="https://monitor.mozilla.org/?utm_medium=firefox-desktop&utm_source=whatsnew&utm_campaign=welcome-page124&utm_content=v1-us" class="wnp-main-cta mzp-c-button mzp-t-product" data-cta-text="Start with a free scan" data-cta-type="button" target="_blank" rel="noopener">
+      Start with a free scan
+    </a>
+  </div>
+</section>
+
+<p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}
