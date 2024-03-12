@@ -12,7 +12,6 @@ the locale codes.
 import base64
 import inspect
 import time
-from warnings import warn
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
@@ -37,14 +36,6 @@ class LocaleURLMiddleware:
 
     """
 
-        if not settings.USE_L10N:
-            warn(
-                """
-                The `USE_L10N` setting is False but LocaleURLMiddleware is
-                loaded. Consider removing bedrock.base.middleware.LocaleURLMiddleware
-                from your MIDDLEWARE setting.
-                """.strip()
-            )
     def __init__(self, get_response):
         self.get_response = get_response
 
