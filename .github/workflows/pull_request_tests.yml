@@ -17,8 +17,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install chromium-browser firefox xvfb
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: "Install JS dependencies"
@@ -29,8 +29,8 @@ jobs:
   test-python:
     runs-on: ubuntu-20.04  # For consistency with above
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"  # matches current Python in production
       - name: "Run Python tests (on Docker)"
@@ -44,7 +44,7 @@ jobs:
           name: coverage-results
           path: python_coverage
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           # A CodeCov token is normally NOT needed for public repos, but this workaround is suggested here:
           # https://community.codecov.com/t/upload-issues-unable-to-locate-build-via-github-actions-api/3954/18
