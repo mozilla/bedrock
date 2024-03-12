@@ -53,7 +53,7 @@ class TestRobots(TestCase):
         self.assertTrue(self.view.get_context_data()["disallow_all"])
 
     def test_robots_no_redirect(self):
-        response = self.client.get("/robots.txt", HTTP_HOST="www.mozilla.org")
+        response = self.client.get("/robots.txt", headers={"host": "www.mozilla.org"})
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data["disallow_all"])
         self.assertEqual(response.get("Content-Type"), "text/plain")
@@ -65,7 +65,7 @@ class TestSecurityDotTxt(TestCase):
         self.view = views.SecurityDotTxt()
 
     def test_no_redirect(self):
-        response = self.client.get("/.well-known/security.txt", HTTP_HOST="www.mozilla.org")
+        response = self.client.get("/.well-known/security.txt", headers={"host": "www.mozilla.org"})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get("Content-Type"), "text/plain")
         self.assertContains(response, "security@mozilla.org")
@@ -196,7 +196,7 @@ class TestWebvisionRedirect(TestCase):
         # Since the webvision URL requires a WebvisionDoc to exist, we test this
         # here instead of in the redirects tests.
         WebvisionDoc.objects.create(name="summary", content="")
-        resp = self.client.get("/webvision/", follow=True, HTTP_ACCEPT_LANGUAGE="en")
+        resp = self.client.get("/webvision/", follow=True, headers={"accept-language": "en"})
         self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
         self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
 

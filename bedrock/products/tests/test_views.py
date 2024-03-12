@@ -381,7 +381,7 @@ class TestVPNResourceListingView(TestCase):
         expected_status=200,
     ):
         querystring = querystring if querystring else {}
-        resp = self.client.get(reverse("products.vpn.resource-center.landing"), querystring, HTTP_ACCEPT_LANGUAGE=locale, follow=True)
+        resp = self.client.get(reverse("products.vpn.resource-center.landing"), querystring, headers={"accept-language": locale}, follow=True)
         assert resp.status_code == expected_status
         return resp
 
@@ -522,14 +522,14 @@ class TestVPNResourceArticleView(TestCase):
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_unavailable_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="de")
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "de"})
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
     def test_simple_get__for_invalid_locale(self, render_mock):
-        resp = self.client.get("/products/vpn/resource-center/slug-2/", HTTP_ACCEPT_LANGUAGE="xx")
+        resp = self.client.get("/products/vpn/resource-center/slug-2/", headers={"accept-language": "xx"})
         # Which will 302 as expected
         self.assertEqual(resp.headers["location"], "/en-US/products/vpn/resource-center/slug-2/")
         render_mock.assert_not_called()
