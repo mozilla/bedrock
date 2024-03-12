@@ -63,7 +63,7 @@ class SimpleRadioSelect(widgets.RadioSelect):
 
 class BooleanTabularRadioSelect(widgets.RadioSelect):
     """
-    A Select Widget intended to be used with NullBooleanField.
+    A Select Widget intended to be used with BooleanField.
     """
 
     template_name = "newsletter/forms/tabular_radio_select.html"
