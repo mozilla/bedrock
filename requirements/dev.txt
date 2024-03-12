@@ -431,9 +431,9 @@ diskcache==5.6.3 \
     # via
     #   -r requirements/prod.txt
     #   glean-parser
-django==3.2.23 \
-    --hash=sha256:82968f3640e29ef4a773af2c28448f5f7a08d001c6ac05b32d02aeee6509508b \
-    --hash=sha256:d48608d5f62f2c1e260986835db089fa3b79d6f58510881d316b8d88345ae6e1
+django==4.2.11 \
+    --hash=sha256:6e6ff3db2d8dd0c986b4eec8554c8e4f919b5c1ff62a5b4390c17aff2ed6e5c4 \
+    --hash=sha256:ddc24a0a8280a0430baa37aff11f28574720af05888c62b7cfe71d219f4599d3
     # via
     #   -r requirements/prod.txt
     #   django-allow-cidr
@@ -1196,7 +1196,6 @@ pytz==2024.1 \
     # via
     #   -r requirements/prod.txt
     #   apscheduler
-    #   django
     #   fluent-runtime
 pyxdg==0.28 \
     --hash=sha256:3267bb3074e934df202af2ee0868575484108581e6f3cb006af1da35395e88b4 \
