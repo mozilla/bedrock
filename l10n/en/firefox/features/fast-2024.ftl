@@ -12,7 +12,7 @@ features-fast-how-is-browser-speed-measured = How is browser speed measured?
 features-fast-speedometer-is-the-most-widely = The most widely used browser performance benchmark to measure web application responsiveness is called Speedometer. While other browser benchmarks exist, Speedometer 3 is the new standard for how we measure the speed of your browsing experience. The latest tests better reflect the web of today — working with visually rich charts, editing text, interacting with complicated and heavy web pages like news sites — and it measures a full picture of the browser’s performance.
 features-fast-the-new-speedomer-3-benchmark = The new Speedometer 3 benchmark is the first major browser benchmark that’s ever been developed through a collaboration supported by every major browser, designed to benefit the entire web.
 features-fast-faster-every-day = Faster every day
-features-fast-firefox-is-powered-by-the-world = { -brand-name-firefox } is powered by the world-class { -brand-name-gecko } engine, with shockingly fast styling and page layout, modern JavaScript features and a never ending drumbeat of new performance improvements to keep our users happy and push the web platform forward.
+features-fast-firefox-is-powered-by-the-world = { -brand-name-firefox } is powered by the world-class { -brand-name-gecko } engine, with shockingly fast styling and page layout, modern JavaScript features and a never-ending drumbeat of new performance improvements to keep our users happy and push the web platform forward.
 
 # Variables
 #   $link (url) - link to https://hacks.mozilla.org/2023/10/down-and-to-the-right-firefox-got-faster-for-real-users-in-2023/
