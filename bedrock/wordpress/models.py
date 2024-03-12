@@ -4,6 +4,7 @@
 
 import operator
 import random
+from datetime import timezone
 from functools import reduce
 
 from django.conf import settings
@@ -11,7 +12,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.utils import DatabaseError
 from django.utils.dateparse import parse_datetime
-from django.utils.timezone import make_aware, utc
+from django.utils.timezone import make_aware
 
 import bleach
 from django_extensions.db.fields.json import JSONField
@@ -22,7 +23,7 @@ from bedrock.wordpress.api import complete_posts_data, get_posts_data
 
 
 def make_datetime(datestr):
-    return make_aware(parse_datetime(datestr), timezone=utc)
+    return make_aware(parse_datetime(datestr), timezone=timezone.utc)
 
 
 def strip_tags(text):

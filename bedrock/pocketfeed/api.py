@@ -6,7 +6,7 @@ import datetime
 import re
 
 from django.conf import settings
-from django.utils.timezone import make_aware, utc
+from django.utils.timezone import make_aware
 
 import requests
 from sentry_sdk import capture_exception
@@ -35,7 +35,7 @@ def complete_articles_data(articles):
         article["pocket_id"] = article["id"]
 
         # convert time_shared from unix timestamp to datetime
-        article["time_shared"] = make_aware(datetime.datetime.fromtimestamp(int(article["time_shared"])), utc)
+        article["time_shared"] = make_aware(datetime.datetime.fromtimestamp(int(article["time_shared"])), datetime.timezone.utc)
 
         # remove data points we don't need
         del article["comment"]
