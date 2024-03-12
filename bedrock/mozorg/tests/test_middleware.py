@@ -13,7 +13,7 @@ from bedrock.mozorg.tests import TestCase
 
 class TestCacheMiddleware(TestCase):
     def setUp(self):
-        self.middleware = CacheMiddleware()
+        self.middleware = CacheMiddleware(get_response=HttpResponse)
         self.request = HttpRequest()
         self.response = HttpResponse()
 
@@ -54,7 +54,7 @@ class TestCacheMiddleware(TestCase):
 
 class TestClacksOverheadMiddleware(TestCase):
     def setUp(self):
-        self.middleware = ClacksOverheadMiddleware()
+        self.middleware = ClacksOverheadMiddleware(get_response=HttpResponse)
         self.request = HttpRequest()
         self.response = HttpResponse()
 
@@ -77,7 +77,7 @@ class TestClacksOverheadMiddleware(TestCase):
 class TestHostnameMiddleware(TestCase):
     @override_settings(HOSTNAME="foobar", CLUSTER_NAME="oregon-b")
     def test_base(self):
-        self.middleware = HostnameMiddleware()
+        self.middleware = HostnameMiddleware(get_response=HttpResponse)
         self.request = HttpRequest()
         self.response = HttpResponse()
 

@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.http.response import HttpResponse
 from django.test import RequestFactory
 
 from bedrock.mozorg.tests import TestCase
@@ -12,7 +13,7 @@ patterns = [
     redirect(r"^dude/already/10th/", "/far/out/"),
     redirect(r"^walter/prior/restraint/", "/finishes/coffee/"),
 ]
-middleware = RedirectsMiddleware(resolver=get_resolver(patterns))
+middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=get_resolver(patterns))
 
 
 class TestRedirectsMiddleware(TestCase):

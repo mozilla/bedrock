@@ -4,6 +4,7 @@
 
 from contextlib import suppress
 
+from django.http import HttpResponse
 from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -18,7 +19,7 @@ from bedrock.base.middleware import LocaleURLMiddleware
 class TestLocaleURLMiddleware(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
-        self.middleware = LocaleURLMiddleware()
+        self.middleware = LocaleURLMiddleware(get_response=HttpResponse)
 
     @override_settings(DEV_LANGUAGES=("de", "fr"))
     def test_matching_locale(self):
