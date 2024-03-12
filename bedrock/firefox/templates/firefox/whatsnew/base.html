@@ -24,4 +24,11 @@
 
   {% include 'firefox/whatsnew/includes/release-notes.html' %}
 </main>
+
+{% endblock %}
+
+{% block site_footer %}
+  {% with theme_class='mzp-t-light' %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}
