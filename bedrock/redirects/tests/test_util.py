@@ -4,6 +4,7 @@
 from unittest.mock import patch
 from urllib.parse import parse_qs, urlparse
 
+from django.http import HttpResponse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.urls import URLPattern
@@ -96,12 +97,12 @@ class TestNoRedirectUrlPattern(TestCase):
                 redirect(r"^iam/the/.*/$", "/coo/coo/cachoo/"),
             ]
         )
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/iam/the/walrus/"))
         self.assertIsNone(resp)
 
         # including locale
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/pt-BR/iam/the/walrus/"))
         self.assertIsNone(resp)
 
@@ -119,7 +120,7 @@ class TestNoRedirectUrlPattern(TestCase):
                 no_redirect(r"^iam/the/walrus/$", re_flags="i"),
             ]
         )
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/IAm/The/Walrus/"))
         self.assertIsNone(resp)
 
@@ -298,7 +299,7 @@ class TestRedirectUrlPattern(TestCase):
         Should be able to capture info from URL and use in redirection.
         """
         resolver = get_resolver([redirect(r"^iam/the/(?P<name>.+)/$", "/donnie/the/{name}/")])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/iam/the/walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/donnie/the/walrus/"
@@ -308,7 +309,7 @@ class TestRedirectUrlPattern(TestCase):
         Should prepend locale value automatically.
         """
         resolver = get_resolver([redirect(r"^iam/the/(?P<name>.+)/$", "/donnie/the/{name}/")])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/pt-BR/iam/the/walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/pt-BR/donnie/the/walrus/"
@@ -318,7 +319,7 @@ class TestRedirectUrlPattern(TestCase):
         Should get locale value in kwargs and not break if no locale in URL.
         """
         resolver = get_resolver([redirect(r"^iam/the/(?P<name>.+)/$", "/donnie/the/{name}/")])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/iam/the/walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/donnie/the/walrus/"
@@ -328,7 +329,7 @@ class TestRedirectUrlPattern(TestCase):
         Should be able to ignore the original locale.
         """
         resolver = get_resolver([redirect(r"^iam/the/(?P<name>.+)/$", "/donnie/the/{name}/", prepend_locale=False)])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/zh-TW/iam/the/walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/donnie/the/walrus/"
@@ -342,7 +343,7 @@ class TestRedirectUrlPattern(TestCase):
         to pass through if there are no named ones.
         """
         resolver = get_resolver([redirect(r"^iam/the/(.+)/$", "/donnie/the/{}/", locale_prefix=False)])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/iam/the/walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/donnie/the/walrus/"
@@ -352,7 +353,7 @@ class TestRedirectUrlPattern(TestCase):
         Should be able to define an optional unnamed capture.
         """
         resolver = get_resolver([redirect(r"^iam/the(/.+)?/$", "/donnie/the{}/", locale_prefix=False)])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/iam/the/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/donnie/the/"
@@ -367,7 +368,7 @@ class TestRedirectUrlPattern(TestCase):
                 redirect(r"^iam/the/walrus/$", "/dammit/donnie/", re_flags="i"),
             ]
         )
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/IAm/The/Walrus/"))
         assert resp.status_code == 301
         assert resp["Location"] == "/dammit/donnie/"
@@ -393,7 +394,7 @@ class TestRedirectUrlPattern(TestCase):
         https://sentry.prod.mozaws.net/marketing/bedrock-prod-eu-west/issues/349078/
         """
         resolver = get_resolver([redirect(r"^editor/(?P<page>.*)$", "http://www-archive.mozilla.org/editor/{page}")])
-        middleware = RedirectsMiddleware(resolver=resolver)
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
         resp = middleware.process_request(self.rf.get("/editor/midasdemo/securityprefs.html%3C/span%3E%3C/a%3E%C2%A0"))
         assert resp.status_code == 301
         assert resp["Location"] == "http://www-archive.mozilla.org/editor/midasdemo/securityprefs.html%C2%A0"

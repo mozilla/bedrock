@@ -11,7 +11,7 @@ from django.utils.cache import add_never_cache_headers
 
 
 class CacheMiddleware:
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
@@ -35,7 +35,7 @@ class CacheMiddleware:
 class ClacksOverheadMiddleware:
     # bug 1144901
 
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
@@ -50,7 +50,7 @@ class ClacksOverheadMiddleware:
 
 
 class HostnameMiddleware:
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         if not settings.ENABLE_HOSTNAME_MIDDLEWARE:
             raise MiddlewareNotUsed
 
@@ -69,7 +69,7 @@ class HostnameMiddleware:
 
 
 class VaryNoCacheMiddleware:
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         if not settings.ENABLE_VARY_NOCACHE_MIDDLEWARE:
             raise MiddlewareNotUsed
         self.get_response = get_response

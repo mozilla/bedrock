@@ -37,7 +37,6 @@ class LocaleURLMiddleware:
 
     """
 
-    def __init__(self, get_response=None):
         if not settings.USE_L10N:
             warn(
                 """
@@ -46,6 +45,7 @@ class LocaleURLMiddleware:
                 from your MIDDLEWARE setting.
                 """.strip()
             )
+    def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
@@ -69,7 +69,7 @@ class BasicAuthMiddleware:
     Set the BASIC_AUTH_CREDS environment variable to enable.
     """
 
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         if not settings.BASIC_AUTH_CREDS:
             raise MiddlewareNotUsed
 
@@ -123,7 +123,7 @@ class MetricsStatusMiddleware(MiddlewareMixin):
 class MetricsViewTimingMiddleware(MiddlewareMixin):
     """Send request timing to statsd"""
 
-    def __init__(self, get_response=None):
+    def __init__(self, get_response):
         if not settings.ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE:
             raise MiddlewareNotUsed
 
