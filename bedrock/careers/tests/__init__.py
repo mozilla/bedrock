@@ -2,10 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import zoneinfo
+
 from django.conf import settings
 
 import factory
-import pytz
 
 from bedrock.careers.models import Position
 
@@ -19,7 +20,7 @@ class PositionFactory(factory.django.DjangoModelFactory):
     description = factory.Faker("sentence")
     source = "gh"
     position_type = factory.Faker("random_element", elements=["Full-Time", "Part-Time", "Contractor", "Intern"])
-    updated_at = factory.Faker("date_time", tzinfo=pytz.UTC)
+    updated_at = factory.Faker("date_time", tzinfo=zoneinfo.ZoneInfo("UTC"))
 
     class Meta:
         model = Position
