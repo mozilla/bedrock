@@ -756,30 +756,31 @@ def ios_testflight(request):
 
 
 class FirefoxHomeView(L10nTemplateView):
-    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"], "firefox/challenge-the-default/landing-switch.html": ["firefox/home"]}
+    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"]}
 
     # place expected ?v= values in this list
-    variations = ["1", "2", "3", "4", "5", "6"]
+    variations = []
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        variation = self.request.GET.get("v", None)
+        variant = self.request.GET.get("v", None)
 
-        # ensure variation matches pre-defined value
-        if variation not in self.variations:
-            variation = None
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
 
-        ctx["variation"] = variation
+        ctx["variant"] = variant
 
         return ctx
 
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
+        variant = self.request.GET.get("v", None)
 
-        if locale == "de":
-            template_name = "firefox/challenge-the-default/landing-switch.html"
-        else:
-            template_name = "firefox/home/index-master.html"
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        template_name = "firefox/home/index-master.html"
 
         return [template_name]
 

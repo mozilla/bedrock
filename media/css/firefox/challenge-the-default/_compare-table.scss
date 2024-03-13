@@ -216,10 +216,11 @@
 
         .kitten-modal-grid {
             display: grid;
-            grid-template-rows: 360px;
-            grid-template-columns: 1fr;
             grid-gap: $spacing-lg;
-            justify-items: center;
+            grid-template-columns: 1fr;
+            grid-template-rows: 360px;
+            min-height: 340px;
+            place-items: center center;
 
             @media #{$mq-md} {
                 grid-template-columns: 1fr 1fr;
@@ -237,6 +238,10 @@
                 @media #{$mq-md} {
                     @include font-size(60px);
                     align-self: initial;
+
+                    [lang="pl"] & {
+                        @include font-size(42px);
+                    }
                 }
             }
 
