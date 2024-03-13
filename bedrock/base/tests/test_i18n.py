@@ -6,7 +6,13 @@ from django.test import override_settings
 
 import pytest
 
-from bedrock.base.i18n import normalize_language, path_needs_lang_code, split_path_and_polish_lang
+from bedrock.base.i18n import (
+    LocalePrefixPattern,
+    normalize_language,
+    path_needs_lang_code,
+    split_path_and_polish_lang,
+)
+from lib.l10n_utils import translation
 
 
 @override_settings(IS_MOZORG_MODE=True, IS_POCKET_MODE=False)
@@ -201,20 +207,23 @@ def test_split_path_and_polish_lang(path, result):
     assert res == result
 
 
-def test_locale_prefix_pattern():
-    assert False, "WRITE ME AND SEE HOW SUMO TESTS THIS."
-    # Handle:
-    # default/none-specified,
-    # perfect fit
-    # lang-code-only fallback fit
-    # total miss
+@pytest.mark.parametrize(
+    "language_to_activate, expected_prefix",
+    (
+        ("en-US", "en-US/"),  # perfect fit
+        ("en-us", "en-US/"),  # case fixup
+        ("de", "de/"),  # perfect fit
+        ("de-AT", "de/"),  # lang-code-only fallback fit
+        ("", "en-US/"),  # default/fallback
+        (None, "en-US/"),  # default/fallback
+        ("abc", "en-US/"),  # default/fallback
+    ),
+)
+def test_locale_prefix_pattern_works(language_to_activate, expected_prefix):
+    pattern = LocalePrefixPattern()
 
-    # Old prefixer tests covered:
-    # assert prefixer.get_best_language("en") == "en-US"
-    # assert prefixer.get_best_language("en-CA") == "en-US"
-    # assert prefixer.get_best_language("en-GB") == "en-GB"
-    # assert prefixer.get_best_language("en-US") == "en-US"
-    # assert prefixer.get_best_language("es") == "es-ES"
-    # assert prefixer.get_best_language("es-AR") == "es-AR"
-    # assert prefixer.get_best_language("es-CL") == "es-ES"
-    # assert prefixer.get_best_language("es-MX") == "es-ES"
+    if language_to_activate:
+        translation.activate(language_to_activate)
+
+    assert pattern.language_prefix == expected_prefix
+    translation.deactivate()

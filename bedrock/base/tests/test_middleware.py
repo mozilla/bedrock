@@ -8,8 +8,11 @@ from django.test import Client, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
 
+import pytest
 from jinja2.exceptions import UndefinedError
 from markus.testing import MetricsMock
+
+from bedrock.base.middleware import BedrockLangCodeFixupMiddleware
 
 
 @override_settings(
@@ -161,15 +164,53 @@ class TestMetricsViewTimingMiddleware(TestCase):
             )
 
 
-class BedrockLangCodeFixupMiddlewareTests(TestCase):
-    def test_reminder(self):
-        # Ensure all methods of the middleware are tested
-        self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN. MUST DO EVERYTHING THAT IS PROMISED IN THE DOCSTRING")
+@pytest.mark.parametrize(
+    "request_path, expected_status_code, expected_dest, expected_request_locale",
+    (
+        ("/", 302, "/en-US/", None),
+        ("/en-us/", 302, "/en-US/", None),
+        ("/en-US/", 200, None, "en-US"),
+        ("/de/", 200, None, "de"),
+        ("/en-US/i/am/a/path/", 200, None, "en-US"),
+        ("/de/i/am/a/path/", 200, None, "de"),
+        ("/en-us/path/to/thing/", 302, "/en-US/path/to/thing/", None),
+        ("/de-AT/path/to/thing/", 302, "/de/path/to/thing/", None),
+        ("/es-mx/path/here?to=thing&test=true", 302, "/es-MX/path/here?to=thing&test=true", None),
+        ("/en-us/path/to/an/éclair/", 302, "/en-US/path/to/an/%C3%A9clair/", None),
+        ("/it/path/to/an/éclair/", 200, None, "it"),
+        ("/ach/", 200, None, "ach"),
+    ),
+    ids=[
+        "Bare root path",
+        "Lowercase lang code for root path",
+        "No change needed for root path with good locale 1",
+        "No change needed for root path with good locale 2",
+        "No change needed for deep path with good locale 1",
+        "No change needed for deep path with good locale 2",
+        "Lowercase lang code for deeper path",
+        "Unsuported lang goes to root supported lang code",
+        "Querystrings are preserved during fixup",
+        "Unicode preserved during fixup",
+        "Unicode preserved during pass-through",
+        "Three-letter locale acceptable",
+    ],
+)
+def test_BedrockLangCodeFixupMiddleware(
+    request_path,
+    expected_status_code,
+    expected_dest,
+    expected_request_locale,
+    rf,
+):
+    request = rf.get(request_path)
 
-        self.fail("Ensure we have unicode tests too")
+    middleware = BedrockLangCodeFixupMiddleware()
 
+    resp = middleware.process_request(request)
 
-class BedrockLocaleMiddlewareTests(TestCase):
-    def test_reminder(self):
-        # Ensure all methods of the middleware are tested
-        self.fail("WRITE ME ONCE OVERALL FLOW IS STABLE AGAIN")
+    if resp:
+        assert resp.status_code == 302
+        assert resp.headers["location"] == expected_dest
+    else:
+        # the request will have been annotated by the middleware
+        assert request.locale == expected_request_locale
