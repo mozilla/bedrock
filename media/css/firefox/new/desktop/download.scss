@@ -10,7 +10,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @import '~@mozilla-protocol/core/protocol/css/components/zap';
@@ -1336,95 +1335,5 @@ button.mzp-c-cta-link {
             opacity: 1;
             transform: scaleX(1) scaleY(1);
         }
-    }
-}
-
-// --------------------------------------------------------------------------
-//  Join Firefox modal
-
-.join-firefox-content {
-    background: $color-white;
-    color: $color-ink-80;
-    margin-top: $spacing-lg;
-    padding: $spacing-lg;
-    text-align: center;
-
-    .join-firefox-title {
-        @include text-title-sm;
-    }
-
-    .join-firefox-button {
-        margin-bottom: $spacing-lg;
-
-        // Overriding visited link styling from Protocol
-        // https://github.com/mozilla/bedrock/issues/9866
-        // https://github.com/mozilla/protocol/issues/758
-        &:link,
-        &:visited {
-            color: $color-white;
-
-            &:hover,
-            &:active,
-            &:focus {
-                color: $color-white;
-            }
-        }
-    }
-
-    .mzp-c-button,
-    .mzp-c-button-download-container {
-        width: 100%;
-    }
-
-    .mzp-c-button-download-container {
-        margin-bottom: 0;
-
-        // Issue 13585
-        .mzp-c-button:focus {
-            color: $color-link-hover;
-        }
-
-        // Hide the privacy link as there's already a one visible prior to clicking download.
-        .mzp-c-button-download-privacy-link {
-            display: none;
-        }
-    }
-}
-
-/**
- * Custom narrow modal style.
- * These should be standardized into a narrow theme.
- * https://github.com/mozilla/protocol/issues/358
- */
-.mzp-c-modal {
-    .mzp-c-modal-window > .mzp-c-modal-inner {
-        background: transparent;
-        padding: $spacing-xl 0 0;
-
-        header {
-            // Hide header visually and add top padding to compensate
-            @include visually-hidden;
-        }
-    }
-
-    .mzp-c-modal-close {
-        @include bidi(((right, 0, left, auto),));
-    }
-}
-
-/**
- * Custom narrow modal style.
- * These should be standardized into a narrow theme.
- * https://github.com/mozilla/protocol/issues/358
- */
-.other-platforms-modal {
-    .mzp-c-modal-window > .mzp-c-modal-inner {
-        max-width: 960px;
-    }
-}
-
-.join-firefox-modal {
-    .mzp-c-modal-window > .mzp-c-modal-inner {
-        max-width: 580px;
     }
 }
