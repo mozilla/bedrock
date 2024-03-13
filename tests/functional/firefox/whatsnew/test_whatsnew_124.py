@@ -9,7 +9,7 @@ from pages.firefox.whatsnew.whatsnew_124 import FirefoxWhatsNew124Page
 
 @pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("params", [("?v=1"), ("?v=2")])
+@pytest.mark.parametrize("params", [("?v=1&geo=us"), ("?v=2&geo=us")])
 def test_monitor_free_scan_button_displayed(params, base_url, selenium):
     page = FirefoxWhatsNew124Page(selenium, base_url, params=params).open()
     assert page.is_monitor_free_scan_button_displayed
