@@ -58,7 +58,8 @@
       it away.
     </p>
 
-    <a href="https://monitor.mozilla.org/?utm_medium=firefox-desktop&utm_source=whatsnew&utm_campaign=welcome-page124&utm_content=v1-us" class="wnp-main-cta mzp-c-button mzp-t-product" data-cta-text="Start with a free scan" data-cta-type="button" target="_blank" rel="noopener">
+    {% set utm_content = 'v1-us' if variant == '1' else 'us' %}
+    <a href="https://monitor.mozilla.org/?utm_medium=firefox-desktop&utm_source=whatsnew&utm_campaign=whatsnew-page124&utm_content={{ utm_content }}" class="wnp-main-cta mzp-c-button mzp-t-product" data-cta-text="Start with a free scan" data-cta-type="button" target="_blank" rel="noopener">
       Start with a free scan
     </a>
   </div>
