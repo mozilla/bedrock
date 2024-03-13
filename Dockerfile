@@ -22,7 +22,7 @@ RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
 ########
 # assets builder and dev server
 #
-FROM node:20-slim AS assets
+FROM node:20.8.0-slim AS assets
 
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
@@ -38,7 +38,7 @@ ENV PATH="/.venv/bin:$PATH"
 COPY package.json package-lock.json ./
 
 # install dependencies
-RUN npm ci
+RUN npm ci --verbose
 
 # copy supporting files and media
 COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
@@ -46,7 +46,7 @@ COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean
 
-RUN npm run build
+RUN npm run build --verbose
 
 
 ########
