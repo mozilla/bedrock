@@ -25,6 +25,7 @@ log = commonware.log.getLogger("redirects.util")
 LOCALE_RE = r"^(?P<locale>\w{2,3}(?:-\w{2})?/)?"
 HTTP_RE = re.compile(r"^https?://", re.IGNORECASE)
 PROTOCOL_RELATIVE_RE = re.compile(r"^//+")
+
 # redirects registry
 redirectpatterns = []
 
@@ -126,6 +127,13 @@ def no_redirect(pattern, locale_prefix=True, re_flags=None):
         return None
 
     return re_path(pattern, _view)
+
+
+def _drop_lang_code(path):
+    first, slash, rest = path.lstrip("/").partition("/")
+    if first in [x[0] for x in settings.LANGUAGES]:
+        return slash + rest
+    return path
 
 
 def redirect(
@@ -230,6 +238,10 @@ def redirect(
         else:
             try:
                 redirect_url = reverse(to_value, args=to_args, kwargs=to_kwargs)
+                # reverse() will give us, by default, a redirection
+                # with settings.LANGAUGE_CODE as the prefixed language.
+                # We don't want this by default, only if explicitly requested
+                redirect_url = _drop_lang_code(redirect_url)
             except NoReverseMatch:
                 # Assume it's a URL
                 redirect_url = to_value
