@@ -327,14 +327,14 @@ DEV_LANGUAGES = _put_default_lang_first(get_dev_languages())
 CANONICAL_LOCALES = {
     "en": "en-US",
     "es": "es-ES",
-    "ja-jp-mac": "ja",
+    "ja-JP-mac": "ja",
     "no": "nb-NO",
     "pt": "pt-BR",
     "sv": "sv-SE",
-    "zh-hant": "zh-TW",  # Bug 1263193
-    "zh-hant-tw": "zh-TW",  # Bug 1263193
-    "zh-hk": "zh-TW",  # Bug 1338072
-    "zh-hant-hk": "zh-TW",  # Bug 1338072
+    "zh-Hant": "zh-TW",  # Bug 1263193
+    "zh-Hant-TW": "zh-TW",  # Bug 1263193
+    "zh-HK": "zh-TW",  # Bug 1338072
+    "zh-Hant-HK": "zh-TW",  # Bug 1338072
 }
 
 # Unlocalized pages are usually redirected to the English (en-US) equivalent,
