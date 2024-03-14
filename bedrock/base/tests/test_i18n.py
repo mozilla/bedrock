@@ -30,14 +30,28 @@ from lib.l10n_utils import translation
         # from CANONICAL_LOCALES
         ("en", "en-US"),
         ("es", "es-ES"),
-        ("ja-jp-mac", "ja"),
+        ("ja-JP-mac", "ja"),
         ("no", "nb-NO"),
         ("pt", "pt-BR"),
         ("sv", "sv-SE"),
+        # mixed/ideal case
+        ("zh-Hant", "zh-TW"),
+        ("zh-Hant-TW", "zh-TW"),
+        ("zh-HK", "zh-TW"),
+        ("zh-Hant-HK", "zh-TW"),
+        # all lowercase
         ("zh-hant", "zh-TW"),
         ("zh-hant-tw", "zh-TW"),
         ("zh-hk", "zh-TW"),
         ("zh-hant-hk", "zh-TW"),
+        # lowercase country
+        ("zh-Hant", "zh-TW"),
+        ("zh-Hant-tw", "zh-TW"),
+        ("zh-hk", "zh-TW"),
+        ("zh-Hant-hk", "zh-TW"),
+        # lowercase middle part
+        ("zh-Hant-TW", "zh-TW"),
+        ("zh-hant-HK", "zh-TW"),
     ),
 )
 def test_normalize_language_mozorg_mode(lang_code, expected):

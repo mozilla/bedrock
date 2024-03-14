@@ -4,6 +4,7 @@
 
 import django.urls
 from django.conf import settings
+from django.utils.text import capfirst
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 from lib.l10n_utils import translation
@@ -77,18 +78,28 @@ def normalize_language(language):
 
     # Reformat the lang code to be mixed-case, as we expect
     # them to be for our lookup
-    lang, _partition, territory = language.partition("-")
+    lang, _partition, classifier = language.partition("-")
     lang = lang.lower()  # this part is _always_ lowercase
 
-    if territory:
-        # Support patterns like ja-JP-mac
-        if "-" in territory:
-            _territory, _partition, rest = territory.partition("-")
-            territory = f"{_territory.upper()}-{rest}"
-        else:
-            territory = territory.upper()
+    _special_cases = ["hant"]
 
-        lang_code = f"{lang}-{territory}"
+    if classifier:
+        if "-" in classifier or classifier in _special_cases:
+            _classifier, _partition, rest = classifier.partition("-")
+            if _classifier.lower() in _special_cases:
+                # support zh-hant-tw -> zh-Hant-TW
+                _classifier = capfirst(_classifier)
+                if rest:
+                    classifier = f"{_classifier}-{rest.upper()}"
+                else:
+                    classifier = _classifier
+            else:
+                # Support patterns like ja-JP-mac
+                classifier = f"{_classifier.upper()}-{rest}"
+        else:
+            classifier = classifier.upper()
+
+        lang_code = f"{lang}-{classifier}"
     else:
         lang_code = lang
 
