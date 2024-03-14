@@ -376,7 +376,7 @@ link element.
 `data-link-text` must be present to trigger the event:
 
 - data-link-text (examples: “Monitor”, “Features”, “Instagram (mozilla)”, “Mozilla VPN”)
-- data-link-position (examples: topnav, subnav, sticky-promo, topnav - firefox, footer - company)
+- data-link-position (examples: topnav, subnav, topnav - firefox, footer - company)
 
 ```
 <a href="" data-link-text=""></a>

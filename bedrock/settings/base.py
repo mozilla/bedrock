@@ -236,7 +236,6 @@ FLUENT_DEFAULT_FILES = [
     "banners/firefox-app-store",
     "brands",
     "download_button",
-    "firefox/sticky-promo",
     "footer",
     "fxa_form",
     "mozorg/about/shared",

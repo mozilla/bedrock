@@ -98,12 +98,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss"
-      ],
-      "name": "sticky_promo"
-    },
-    {
-      "files": [
         "css/firefox/new/basic/download.scss"
       ],
       "name": "firefox_new_download"
@@ -653,7 +647,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
@@ -759,7 +752,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
@@ -778,14 +770,12 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/incognito-browser.scss"
       ],
       "name": "incognito-browser"
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/browser-history.scss"
       ],
       "name": "browser-history"
@@ -810,7 +800,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/best-browser.scss"
       ],
       "name": "best-browser"
@@ -818,14 +807,12 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss"
       ],
       "name": "compare"
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/compare/compare.scss",
         "css/firefox/compare/compare-details.scss"
       ],
@@ -942,7 +929,6 @@
     },
     {
       "files": [
-        "css/firefox/sticky-promo.scss",
         "css/firefox/browsers/quantum.scss"
       ],
       "name": "quantum"
@@ -1389,7 +1375,6 @@
     },
     {
       "files": [
-        "js/firefox/sticky-promo.es6.js",
         "js/firefox/new/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
@@ -1407,12 +1392,6 @@
         "js/firefox/new/common/thanks-direct.js"
       ],
       "name": "firefox_new_thanks_direct"
-    },
-    {
-      "files": [
-        "js/firefox/sticky-promo.es6.js"
-      ],
-      "name": "sticky_promo"
     },
     {
       "files": [
@@ -1497,7 +1476,6 @@
     },
     {
       "files": [
-        "js/firefox/sticky-promo.es6.js",
         "js/firefox/home/master.js"
       ],
       "name": "firefox-master"
@@ -1513,7 +1491,6 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/firefox/sticky-promo.es6.js",
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
@@ -1831,7 +1808,6 @@
     },
     {
       "files": [
-        "js/firefox/sticky-promo.es6.js",
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
