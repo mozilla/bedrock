@@ -315,6 +315,152 @@ def firefox_all(request):
     return l10n_utils.render(request, "firefox/all-unified.html", context, ftl_files=ftl_files)
 
 
+@require_safe
+def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
+    ftl_files = "firefox/all"
+
+    product_map = {
+        "desktop-release": {
+            "slug": "desktop-release",
+            "product": firefox_desktop,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
+        },
+        "desktop-beta": {
+            "slug": "desktop-beta",
+            "product": firefox_desktop,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files),
+        },
+        "desktop-developer": {
+            "slug": "desktop-developer",
+            "product": firefox_desktop,
+            "channel": "devedition",
+            "name": ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files),
+        },
+        "desktop-nightly": {
+            "slug": "desktop-nightly",
+            "product": firefox_desktop,
+            "channel": "nightly",
+            "name": ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files),
+        },
+        "desktop-esr": {
+            "slug": "desktop-esr",
+            "product": firefox_desktop,
+            "channel": "esr",
+            "name": ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files),
+        },
+        "android-release": {
+            "slug": "android-release",
+            "product": firefox_android,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox-android", ftl_files=ftl_files),
+        },
+        "android-beta": {
+            "slug": "android-beta",
+            "product": firefox_android,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files),
+        },
+        "android-nightly": {
+            "slug": "android-nightly",
+            "product": firefox_android,
+            "channel": "nightly",
+            "name": ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files),
+        },
+        "ios-release": {
+            "slug": "ios-release",
+            "product": firefox_ios,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
+        },
+    }
+
+    platform_map = {
+        "win64": "Windows 64-bit",
+        "win64-msi": "Windows 64-bit MSI",
+        "win64-aarch64": "Windows ARM64/AArch64",
+        "win": "Windows 32-bit",
+        "win-msi": "Windows 32-bit MSI",
+        "osx": "macOS",
+        "linux64": "Linux 64-bit",
+        "linux": "Linux 32-bit",
+    }
+
+    product = product_slug and product_map.get(product_slug) or None
+    platform_name = None
+    locale_name = None
+    download_url = None
+
+    # The mobile products don't drill down, so short-circuit them here.
+    if product:
+        if product_slug.startswith("android"):
+            platform = "android"
+            platform_name = "Android"
+            locale = "en-US"
+            locale_name = "Multiple Languages"
+            download_url = product["product"].get_download_url(channel=product["channel"])
+        elif product_slug.startswith("ios"):
+            platform = "ios"
+            platform_name = "iOS"
+            locale = "en-US"
+            locale_name = "Multiple Languages"
+            download_url = product["product"].get_download_url()
+        else:
+            platform_name = platform and platform_map[platform]
+            locale_name = None
+            if locale:
+                build = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0]
+                locale_name = f"{build['name_en']} - {build['name_native']}"
+
+    context = {
+        "product": product,
+        "platform": platform,
+        "platform_name": platform_name,
+        "locale": locale,
+        "locale_name": locale_name,
+    }
+
+    # Show download link
+    if locale:
+        if not download_url:
+            download_url = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0][
+                "platforms"
+            ][platform]["download_url"]
+        context.update(
+            download_url=download_url,
+        )
+
+    # Show platforms with download links
+    elif platform:
+        locales = []
+        for b in product["product"].get_filtered_full_builds(product["channel"]):
+            locale_name = f"{b['name_en']} - {b['name_native']}"
+            if b["locale"] == request.locale:
+                # If locale matches request's locale, put it at the top.
+                locales.insert(0, (b["locale"], locale_name))
+            else:
+                locales.append((b["locale"], locale_name))
+
+        context.update(
+            locales=locales,
+        )
+
+    # Show locales.
+    elif product_slug:
+        context.update(
+            platforms=product["product"].platforms(product["channel"]),
+        )
+
+    # Show products.
+    else:
+        context.update(
+            products=[{"slug": k, "name": v["name"]} for k, v in product_map.items()],
+        )
+
+    return l10n_utils.render(request, "firefox/all-drilldown.html", context, ftl_files=ftl_files)
+
+
 def detect_channel(version):
     match = re.match(r"\d{1,3}", version)
     if match:
