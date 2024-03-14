@@ -83,6 +83,10 @@ describe('WaitListForm', function () {
         </div>`;
 
         document.body.insertAdjacentHTML('beforeend', form);
+
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
     });
 
     afterEach(function () {
