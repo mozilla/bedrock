@@ -10,6 +10,12 @@
 
 .wnp-content-main {
     text-align: center;
+    background-color: $color-marketing-gray-10;
+
+    & > .mzp-l-content {
+        padding-top: $spacing-xl;
+        padding-bottom: $spacing-xl;
+    }
 }
 
 .wnp-main-cta {
@@ -21,7 +27,9 @@
 }
 
 .wnp-main-tagline {
-    margin-top: $spacing-xl;
+    @include bidi(((text-align, left, right),));
+    @include text-body-lg;
+    margin: $spacing-2xl 0 0;
 }
 
 .video-play::after {
@@ -35,5 +43,9 @@
     .wnp-content-main,
     .wnp-main-title {
         color: $color-white;
+    }
+
+    .wnp-content-main {
+        background-color: inherit;
     }
 }
