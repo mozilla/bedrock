@@ -300,7 +300,9 @@ describe('TrackProductDownload.handleLink', function () {
     const download_button = `<a href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=win64&amp;lang=en-CA" id="download-button-primary" class="mzp-c-button mzp-t-product c-download-button">Download Now</a>`;
 
     beforeEach(function () {
-        window.dataLayer = [];
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
 
         document.body.insertAdjacentHTML('beforeend', download_button);
         const downloadButton = document.getElementById(
@@ -318,7 +320,6 @@ describe('TrackProductDownload.handleLink', function () {
 
     afterEach(function () {
         document.getElementById('download-button-primary').remove();
-        window.dataLayer = [];
     });
 
     it('should call the full chain of functions', function () {
