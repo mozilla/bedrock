@@ -9,15 +9,14 @@ from pages.firefox.whatsnew.whatsnew_124 import FirefoxWhatsNew124Page
 
 @pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("params", [("?v=1&geo=us"), ("?v=2&geo=us")])
-def test_monitor_free_scan_button_displayed(params, base_url, selenium):
-    page = FirefoxWhatsNew124Page(selenium, base_url, params=params).open()
-    assert page.is_monitor_free_scan_button_displayed
+def test_set_as_default_button_displayed_en(base_url, selenium):
+    page = FirefoxWhatsNew124Page(selenium, base_url, params="?v=1").open()
+    assert page.is_set_as_default_button_displayed
 
 
 @pytest.mark.skip_if_not_firefox(reason="Whatsnew pages are shown to Firefox only.")
 @pytest.mark.nondestructive
-def test_set_as_default_button_displayed(base_url, selenium):
+def test_set_as_default_button_displayed_de(base_url, selenium):
     page = FirefoxWhatsNew124Page(selenium, base_url, locale="de", params="?v=1").open()
     assert page.is_set_as_default_button_displayed
 

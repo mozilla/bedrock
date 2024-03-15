@@ -457,9 +457,9 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-124-na.scss"
+        "css/firefox/whatsnew/whatsnew-124-na-pdf.scss"
       ],
-      "name": "firefox_whatsnew_124_na"
+      "name": "firefox_whatsnew_124_na_pdf"
     },
     {
       "files": [
@@ -1632,9 +1632,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-124-experiment-na.es6.js"
+        "js/firefox/whatsnew/whatsnew-124-na-pdf.js"
       ],
-      "name": "firefox_whatsnew_124_na_experiment"
+      "name": "firefox_whatsnew_124_na_pdf"
     },
     {
       "files": [
