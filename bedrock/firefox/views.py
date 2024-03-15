@@ -394,8 +394,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx122-eu.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx123-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx123-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx124-na-video.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx124-na-static.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx124-na-pdf.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx124-eu-compare.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx124-de-voices-video.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx124-de-voices-share.html": ["firefox/whatsnew/whatsnew"],
@@ -489,13 +488,8 @@ class WhatsnewView(L10nTemplateView):
             elif locale == "en-US":
                 if country == "GB":
                     template = "firefox/whatsnew/whatsnew-fx124-eu-compare.html"
-                elif country == "US":
-                    if variant == "2":
-                        template = "firefox/whatsnew/whatsnew-fx124-na-static.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx124-na-video.html"
                 else:
-                    template = "firefox/whatsnew/index.html"
+                    template = "firefox/whatsnew/whatsnew-fx124-na-pdf.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("123."):
