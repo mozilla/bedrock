@@ -157,7 +157,7 @@ class TestHomePageLocales(TestCase):
 # viable when the tests were being run in CI or via Makefile, so
 # instead we're explicitly including the urlconf that is loaded
 # when settings.DEV is True
-@pytest.mark.urls("bedrock.mozorg.dev_urls")
+@pytest.mark.urls("bedrock.mozorg.tests.contentful_test_urlconf")
 def test_contentful_preview_view(
     contentfulpage_mock,
     render_mock,

@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from unittest.mock import ANY, call, patch
+from unittest.mock import ANY, Mock, call, patch
 
 from django.test import TestCase
 from django.test.client import RequestFactory
@@ -272,6 +272,11 @@ class TestL10nTemplateView(TestCase):
         (["am", "an"], ["mk", "gu-IN"], "an"),
     ),
 )
+@patch.object(
+    l10n_utils,
+    "language_url_map_with_fallbacks",
+    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
+)
 def test_get_best_translation(translations, accept_languages, expected):
     assert l10n_utils.get_best_translation(translations, accept_languages) == expected
 
@@ -297,6 +302,11 @@ def test_get_best_translation(translations, accept_languages, expected):
         # "am" is not a valid language in the list of PROD_LANGUAGES
         (["am", "an"], ["mk", "gu-IN"], None),
     ),
+)
+@patch.object(
+    l10n_utils,
+    "language_url_map_with_fallbacks",
+    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
 )
 def test_get_best_translation__strict(translations, accept_languages, expected):
     # Strict is used for the root path, to return the list of localized home pages for bots.

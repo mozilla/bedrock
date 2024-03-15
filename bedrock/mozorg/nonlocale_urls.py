@@ -17,11 +17,9 @@ don't get miss a lookup if they lack a locale code at the start of their path
 """
 
 
-from django.conf import settings
 from django.urls import path
 
 from . import views
-from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = (
@@ -40,6 +38,3 @@ urlpatterns = (
     path("xbl", views.namespaces, {"namespace": "xbl"}),
     path("locales/", views.locales, name="mozorg.locales"),
 )
-
-if settings.DEV:
-    urlpatterns += dev_only_urlpatterns

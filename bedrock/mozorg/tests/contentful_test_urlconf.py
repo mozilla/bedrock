@@ -2,12 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+# A test-friendly version of dev_urls that includes them as i18n_pattern-ed URLs
+# like they would be in production
+
 # URLS only available with settings.DEV is enabled
 from django.urls import path
 
+from bedrock.base.i18n import bedrock_i18n_patterns
 from bedrock.mozorg import views
 
-urlpatterns = (
+urlpatterns = bedrock_i18n_patterns(
     path(
         "contentful-preview/<content_id>/",
         views.ContentfulPreviewView.as_view(),
