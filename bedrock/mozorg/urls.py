@@ -19,7 +19,7 @@ from . import views
 from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
-urlpatterns = (
+urlpatterns = [
     path("", views.HomeView.as_view(), name="mozorg.home"),
     page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
@@ -151,7 +151,7 @@ urlpatterns = (
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
     page("rise25/thanks/", "mozorg/rise25/thanks.html"),
-)
+]
 
 if settings.DEV:
     urlpatterns += dev_only_urlpatterns

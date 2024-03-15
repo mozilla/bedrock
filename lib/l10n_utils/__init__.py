@@ -15,6 +15,7 @@ from product_details import product_details
 
 from bedrock.base import metrics
 from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
+from bedrock.settings.base import language_url_map_with_fallbacks
 
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
@@ -226,7 +227,7 @@ def get_best_translation(translations, accept_languages, strict=False):
     If none found, it returns the first language code for the first available translation.
 
     """
-    lang_map = settings.LANGUAGE_URL_MAP_WITH_FALLBACKS
+    lang_map = language_url_map_with_fallbacks()
     # translations contains mixed-case items e.g. "en-US" and the keys
     # of `lang_map` are (now) also mixed case.
     valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
