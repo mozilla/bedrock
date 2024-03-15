@@ -52,6 +52,11 @@ from lib.l10n_utils import translation
         # lowercase middle part
         ("zh-Hant-TW", "zh-TW"),
         ("zh-hant-HK", "zh-TW"),
+        # misses/no matches
+        ("dude", None),
+        ("the-DUDE", None),
+        ("xx", None),
+        ("dq", None),
     ),
 )
 def test_normalize_language_mozorg_mode(lang_code, expected):
@@ -131,26 +136,6 @@ def test_normalize_language_mozorg_mode(lang_code, expected):
 )
 def test_normalize_language_pocket_mode(lang_code, expected):
     assert normalize_language(lang_code) == expected
-
-
-# @override_settings(LANGUAGE_URL_MAP={"es-ar": "es-AR", "en-gb": "en-GB", "es-us": "es-US"}, CANONICAL_LOCALES={"es": "es-ES", "en": "en-US"})
-# class TestFindSupported(TestCase):
-#     def test_find_supported(self):
-#         assert find_supported("en-CA") == "en-US"
-#         assert find_supported("en-US") == "en-US"
-#         assert find_supported("en-GB") == "en-GB"
-#         assert find_supported("en") == "en-US"
-#         assert find_supported("es-MX") == "es-ES"
-#         assert find_supported("es-AR") == "es-AR"
-#         assert find_supported("es") == "es-ES"
-
-#     def test_find_supported_none(self):
-#         """
-#         Should return None if it can't find any supported locale.
-#         """
-#         assert find_supported("de") is None
-#         assert find_supported("fr") is None
-#         assert find_supported("dude") is None
 
 
 @pytest.mark.parametrize(
