@@ -65,7 +65,7 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
 
-        request.locale = lang_code if lang_code else None
+        request.locale = lang_code if lang_code else ""
 
 
 class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
