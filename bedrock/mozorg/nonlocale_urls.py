@@ -16,7 +16,6 @@ Also, redirects from mozorg.urls were moved into here, so that they
 don't get miss a lookup if they lack a locale code at the start of their path
 """
 
-
 from django.urls import path
 
 from . import views
