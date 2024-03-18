@@ -21,11 +21,13 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.middleware.locale import LocaleMiddleware as DjangoLocaleMiddleware
 from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
+from django.utils.translation import trans_real
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from bedrock.base import metrics
 from bedrock.base.i18n import (
+    check_for_bedrock_language,
     get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
@@ -98,11 +100,13 @@ class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
 
     def process_request(self, request):
         with normalized_get_language():
-            return super().process_request(request)
+            with simplified_check_for_language():
+                return super().process_request(request)
 
     def process_response(self, request, response):
         with normalized_get_language():
-            return super().process_response(request, response)
+            with simplified_check_for_language():
+                return super().process_response(request, response)
 
 
 @contextlib.contextmanager
@@ -130,6 +134,29 @@ def normalized_get_language():
         yield
     finally:
         translation.get_language = get_language
+
+
+@contextlib.contextmanager
+def simplified_check_for_language():
+    """Ensures that calls to trans_real.check_for_language within
+    its context will not check for the existence of files in
+    `appname/LANG_CODE/locale` and therefore avoid a false negative about
+    the langs we support (our lang files are in ./data/l10n-team/LANG_CODE)
+    but check_for_language is opinionated and expects only the Django directory
+    pattern for lang files."""
+
+    check_for_language = trans_real.check_for_language
+
+    @wraps(check_for_language)
+    def simpler_check_for_language(lang_code):
+        return check_for_bedrock_language(lang_code)
+
+    trans_real.check_for_language = simpler_check_for_language
+
+    try:
+        yield
+    finally:
+        trans_real.check_for_language = check_for_language
 
 
 class BasicAuthMiddleware:

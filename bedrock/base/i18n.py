@@ -159,3 +159,7 @@ def get_best_language(accept_lang):
         supported = normalize_language(lang)
         if supported:
             return supported
+
+
+def check_for_bedrock_language(lang_code):
+    return lang_code in [x[0] for x in settings.LANGUAGES]
