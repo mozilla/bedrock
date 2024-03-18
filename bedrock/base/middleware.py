@@ -26,7 +26,7 @@ from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 
 from bedrock.base import metrics
 from bedrock.base.i18n import (
-    get_language,
+    get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
     split_path_and_polish_lang,
@@ -74,7 +74,7 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
             return self._redirect(request, cleaned_lang_via_querystring, subpath)
 
         if not lang_code and path_needs_lang_code(request.path):
-            lang_code = get_language(request)
+            lang_code = get_language_from_headers(request)
             return self._redirect(request, lang_code, subpath)
 
         if lang_code and lang_code_changed:

@@ -137,7 +137,7 @@ def split_path_and_polish_lang(path_):
         return "", path, False
 
 
-def get_language(request):
+def get_language_from_headers(request):
     """
     Return a locale code we support on the site using the
     user's Accept-Language header to determine which is best. This
