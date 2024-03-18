@@ -222,7 +222,14 @@ Obsolete strings
 ~~~~~~~~~~~~~~~~
 
 When new strings are added to a page sometimes they update or replace old strings. Obsolete strings & IDs should be removed from ftl files
-immediately if they are not being used as a fallback. If they are being kept as a fallback they should be removed after 1-2 months.
+immediately if they are not being used as a fallback. If they are being kept as a fallback they should be removed after 2 months.
+
+When you add a comment marking as string as obsolete add the date it can be removed to the comment.
+
+.. code-block:: fluent
+
+    # Obsolete string (expires: 2024-03-18)
+    example-old-string = Fifty thousand year old twisted bark threads.
 
 
 Fallback
@@ -234,7 +241,7 @@ suffix to the new string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
 .. code-block:: fluent
 
     example-block-title-v2 = Security, reliability and speed — on every device, anywhere you go.
-    # Obsolete string
+    # Obsolete string (expires: 2024-03-18)
     example-block-title = Security, reliability and speed — from name you can trust.
 
 
