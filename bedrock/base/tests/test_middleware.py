@@ -179,6 +179,10 @@ class TestMetricsViewTimingMiddleware(TestCase):
         ("/en-us/path/to/an/éclair/", 302, "/en-US/path/to/an/%C3%A9clair/", None),
         ("/it/path/to/an/éclair/", 200, None, "it"),
         ("/ach/", 200, None, "ach"),
+        ("/de/path/to/thing/?lang=fr", 302, "/fr/path/to/thing/", None),
+        ("/de/path/to/thing/?lang=vv", 302, "/en-US/path/to/thing/", None),
+        ("/de/path/to/thing/?lang", 302, "/en-US/path/to/thing/", None),
+        ("/de/path/to/thing/?lang=fr&test=true&foo=bar", 302, "/fr/path/to/thing/?test=true&foo=bar", None),
     ),
     ids=[
         "Bare root path",
@@ -193,6 +197,10 @@ class TestMetricsViewTimingMiddleware(TestCase):
         "Unicode preserved during fixup",
         "Unicode preserved during pass-through",
         "Three-letter locale acceptable",
+        "?lang querystring for valid locale",
+        "?lang querystring for invalid locale",
+        "?lang querystring with no value",
+        "?lang querystring for valid locale and further querystrings",
     ],
 )
 def test_BedrockLangCodeFixupMiddleware(

@@ -58,6 +58,21 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
     def process_request(self, request):
         lang_code, subpath, lang_code_changed = split_path_and_polish_lang(request.path)
 
+        # Handle the non-JS language selection as a priority. Once we're switched
+        # the subsequent checks will clean up things more, if needed.
+        # Fixes https://github.com/mozilla/bedrock/issues/5931
+        lang_via_querystring = request.GET.get("lang", None)
+        if lang_via_querystring is not None:
+            cleaned_lang_via_querystring = normalize_language(lang_via_querystring)
+            # Drop the lang querystring to avoid a redirect loop;
+            # request.GET is immutable so we have to edit a copy
+            if not cleaned_lang_via_querystring:
+                cleaned_lang_via_querystring = settings.LANGUAGE_CODE
+            qs = request.GET.copy()
+            del qs["lang"]
+            request.GET = qs
+            return self._redirect(request, cleaned_lang_via_querystring, subpath)
+
         if not lang_code and path_needs_lang_code(request.path):
             lang_code = get_language(request)
             return self._redirect(request, lang_code, subpath)
