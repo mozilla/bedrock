@@ -8,6 +8,7 @@ import pytest
 
 from bedrock.base.i18n import (
     LocalePrefixPattern,
+    check_for_bedrock_language,
     normalize_language,
     path_needs_lang_code,
     split_path_and_polish_lang,
@@ -226,3 +227,26 @@ def test_locale_prefix_pattern_works(language_to_activate, expected_prefix):
 
     assert pattern.language_prefix == expected_prefix
     translation.deactivate()
+
+
+@pytest.mark.parametrize(
+    "lang_code, expected_result",
+    (
+        ("en-US", True),
+        ("fr", True),
+        ("sco", True),
+        ("hsb", True),
+        ("ach", False),
+        ("de", False),
+    ),
+)
+@override_settings(
+    LANGUAGES=[
+        ("en-US", "English"),
+        ("fr", "French"),
+        ("sco", "Scots"),
+        ("hsb", "Hornjoserbsce"),
+    ]
+)
+def test_check_for_bedrock_language(lang_code, expected_result):
+    assert check_for_bedrock_language(lang_code) == expected_result
