@@ -1,7 +1,7 @@
 name: Create l10n cleanup task
 on:
   schedule:
-    - cron: 0 09 14 */3 *
+    - cron: 0 09 14 */2 *
 
 jobs:
   create_issue:
@@ -39,9 +39,9 @@ jobs:
           BODY: |
             ### Remove obsolete strings
 
-            Search the code base for strings marked `obsolete` that are more than 3 months old.
+            Search the code base for strings marked `obsolete` that are more than 2 months old.
             If you find strings that have no date, either find the date by looking at git history
-            or add an expiry date and leave it to be removed in 3 months.
+            or add an expiry date and leave it to be removed in 2 months.
 
             - [ ] Remove old obsolete strings
 
@@ -49,6 +49,9 @@ jobs:
 
             Compare the files in /l10n/en-US/ to the /en/ folder in the www-l10n repo and remove
             files from www-l10n that no longer exist in bedrock.
+
+            If you have both repos installed and up to date you can run this command:
+            `diff -r www-l10n/en bedrock/l10n/en | grep ".ftl"`
 
             - [ ] Remove files
             - [ ] Remove references in www-l10n/configs/pontoon.toml
