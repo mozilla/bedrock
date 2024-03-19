@@ -3,12 +3,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.test import override_settings
+from django.urls import URLResolver
 
 import pytest
 
 from bedrock.base.i18n import (
     LocalePrefixPattern,
+    bedrock_i18n_patterns,
     check_for_bedrock_language,
+    get_best_language,
+    get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
     split_path_and_polish_lang,
@@ -256,3 +260,45 @@ def test_local_prefix_pattern_fallback_mode():
 )
 def test_check_for_bedrock_language(lang_code, expected_result):
     assert check_for_bedrock_language(lang_code) == expected_result
+
+
+@pytest.mark.parametrize("use_i18n", (True, False))
+def test_bedrock_i18n_patterns(use_i18n):
+    from bedrock.careers import urls as career_urls
+
+    with override_settings(USE_I18N=use_i18n):
+        patterns = bedrock_i18n_patterns(career_urls)
+    if use_i18n:
+        assert isinstance(patterns[0], URLResolver)
+    else:
+        assert patterns[0] == career_urls
+
+
+@pytest.mark.parametrize(
+    "headers, expected",
+    (
+        ({"HTTP_ACCEPT_LANGUAGE": "sco,de-DE;q=0.8,fr;q=0.6,en-GB;q=0.4,en-US;q=0.2"}, "sco"),
+        ({"HTTP_ACCEPT_LANGUAGE": "fr,de-DE;q=0.8,sco;q=0.6,en-GB;q=0.4,en-US;q=0.2"}, "fr"),
+        ({"HTTP_ACCEPT_LANGUAGE": "es-mx,es-es;q=0.8"}, "es-MX"),
+        ({"HTTP_ACCEPT_LANGUAGE": "de-AT,de;q=0.8,sco;q=0.6,en-GB;q=0.4,en-US;q=0.2"}, "de"),
+        ({}, "en-US"),
+    ),
+)
+def test_get_language_from_headers(rf, headers, expected):
+    request = rf.get("/", **headers)
+    assert get_language_from_headers(request) == expected
+
+
+@pytest.mark.parametrize(
+    "header, expected",
+    (
+        ("sco,de-DE;q=0.8,fr;q=0.6,en-GB;q=0.4,en-US;q=0.2", "sco"),
+        ("fr,de-DE;q=0.8,sco;q=0.6,en-GB;q=0.4,en-US;q=0.2", "fr"),
+        ("es-at,es-es;q=0.8", "es-ES"),
+        ("de-AT,de;q=0.8,sco;q=0.6,en-GB;q=0.4,en-US;q=0.2", "de"),
+        ("am", None),
+        ("", None),
+    ),
+)
+def test_get_best_language(header, expected):
+    assert get_best_language(header) == expected
