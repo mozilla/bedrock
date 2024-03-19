@@ -64,6 +64,37 @@ function init() {
 
         defaultFalse();
     });
+
+    // Log account status
+    Mozilla.Client.getFxaDetails((details) => {
+        if (details.setup) {
+            // UA
+            window.dataLayer.push({
+                event: 'non-interaction',
+                eAction: 'whatsnew-124-na',
+                eLabel: 'firefox-signed-in'
+            });
+
+            // GA4
+            window.dataLayer.push({
+                event: 'dimension_set',
+                firefox_is_signed_in: true
+            });
+        } else {
+            // UA
+            window.dataLayer.push({
+                event: 'non-interaction',
+                eAction: 'whatsnew-124-na',
+                eLabel: 'firefox-signed-out'
+            });
+
+            // GA4
+            window.dataLayer.push({
+                event: 'dimension_set',
+                firefox_is_signed_in: false
+            });
+        }
+    });
 }
 
 if (
