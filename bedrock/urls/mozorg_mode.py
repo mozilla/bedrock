@@ -30,7 +30,6 @@ urlpatterns = (
     path("", include("bedrock.newsletter.urls")),
     path("", include("bedrock.sitemaps.urls")),
     path("careers/", include("bedrock.careers.urls")),
-    path("stories/", include("bedrock.stories.urls")),
     path("healthz/", watchman_views.ping, name="watchman.ping"),
     path("readiness/", watchman_views.status, name="watchman.status"),
     path("healthz-cron/", base_views.cron_health_check),

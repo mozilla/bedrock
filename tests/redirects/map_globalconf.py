@@ -1280,8 +1280,10 @@ URLS = flatten(
         ),
         # Issue 14221
         url_test("/firefox/products/", "/products/"),
-        # Issue 14255
+        # Issue 14252
         url_test("/rise25/", "/rise25/nominate/"),
+        # Issue 14255
+        url_test("/stories/", "https://blog.mozilla.org/category/products/firefox/"),
         # Issue 14231
         url_test("/firefox/flashback/", "/firefox/"),
         url_test("/landing/firefox/fx100/", "/firefox/"),

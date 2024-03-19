@@ -1248,24 +1248,6 @@
     },
     {
       "files": [
-        "css/stories/stories-shared.scss"
-      ],
-      "name": "mozilla-stories-shared"
-    },
-    {
-      "files": [
-        "css/stories/stories-landing.scss"
-      ],
-      "name": "mozilla-stories-landing"
-    },
-    {
-      "files": [
-        "css/stories/stories-article.scss"
-      ],
-      "name": "mozilla-stories-article"
-    },
-    {
-      "files": [
         "css/firefox/family/styles.scss"
       ],
       "name": "firefox-family"
@@ -1903,12 +1885,6 @@
         "js/privacy/data-preferences-init.es6.js"
       ],
       "name": "privacy-data-preferences"
-    },
-    {
-      "files": [
-        "js/stories/stories-article.es6.js"
-      ],
-      "name": "stories-article"
     },
     {
       "files": [
