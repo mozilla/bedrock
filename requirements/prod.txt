@@ -47,13 +47,13 @@ bleach[css]==6.1.0 \
     # via
     #   -r requirements/prod.in
     #   bleach
-boto3==1.34.61 \
-    --hash=sha256:4b40bf2c8494647c9e88c180537dc9fc0c1047a9fffbb1e5b0da6596f1e59b7b \
-    --hash=sha256:992e994c7e481a5d3259c699574882b79d631a46f7c369bea350b7ccb0651317
+boto3==1.34.65 \
+    --hash=sha256:b611de58ab28940a36c77d7ef9823427ebf25d5ee8277b802f9979b14e780534 \
+    --hash=sha256:db97f9c29f1806cf9020679be0dd5ffa2aff2670e28e0e2046f98b979be498a4
     # via -r requirements/prod.in
-botocore==1.34.61 \
-    --hash=sha256:079f3288d38f97fd5656c25c44a94bea0e7090b938abfdeea463eaadb210c4a0 \
-    --hash=sha256:72df4af7e4e6392552c882d48c74e4be9bf7be4cd8d829711b312fbae13d7034
+botocore==1.34.65 \
+    --hash=sha256:399a1b1937f7957f0ee2e0df351462b86d44986b795ced980c11eb768b0e61c5 \
+    --hash=sha256:3b0012d7293880c0a4883883047e93f2888d7317b5e9e8a982a991b90d951f3e
     # via
     #   boto3
     #   s3transfer
@@ -268,9 +268,9 @@ cryptography==42.0.5 \
     # via
     #   pyjwt
     #   pyopenssl
-datadog==0.49.0 \
-    --hash=sha256:2f1c79d3f79cfa2266c94fe9539fef3226c6a83afa7bc8367e3d02aec20fffd3 \
-    --hash=sha256:adc1c7fdaea7b66419bf20eab20d9e59c3106caa2e6ae1ec52f26d10240fb22c
+datadog==0.49.1 \
+    --hash=sha256:4a56d57490ea699a0dfd9253547485a57b4120e93489defadcf95c66272374d6 \
+    --hash=sha256:4cb7a7991af6cadb868fe450cd456473e65f11fc678b7d7cf61044ff1c6074d8
     # via markus
 deprecated==1.2.14 \
     --hash=sha256:6fac8b097794a90302bdbb17b9b815e732d3c4720583ff1b198499d78470466c \
@@ -666,9 +666,9 @@ lxml==5.1.0 \
     --hash=sha256:f4c9bda132ad108b387c33fabfea47866af87f4ea6ffb79418004f0521e63204 \
     --hash=sha256:f643ffd2669ffd4b5a3e9b41c909b72b2a1d5e4915da90a77e119b8d48ce867a
     # via -r requirements/prod.in
-markdown==3.5.2 \
-    --hash=sha256:d43323865d89fc0cb9b20c75fc8ad313af307cc087e84b657d9eec768eddeadd \
-    --hash=sha256:e1ac7b3dc550ee80e602e71c1d168002f062e49f1b11e26a36264dafd4df2ef8
+markdown==3.6 \
+    --hash=sha256:48f276f4d8cfb8ce6527c8f79e2ee29708508bf4d40aa410fbc3b4ee832c850f \
+    --hash=sha256:ed4f41f6daecbeeb96e576ce414c41d2d876daa9a16cb35fa8ed8c2ddfad0224
     # via
     #   -r requirements/prod.in
     #   django-jinja-markdown
@@ -962,9 +962,9 @@ qrcode==7.4.2 \
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
     # via -r requirements/prod.in
-referencing==0.33.0 \
-    --hash=sha256:39240f2ecc770258f28b642dd47fd74bc8b02484de54e1882b74b35ebd779bd5 \
-    --hash=sha256:c775fedf74bc0f9189c2a3be1c12fd03e8c23f4d371dce795df44e06c5b412f7
+referencing==0.34.0 \
+    --hash=sha256:5773bd84ef41799a5a8ca72dc34590c041eb01bf9aa02632b4a973fb0181a844 \
+    --hash=sha256:d53ae300ceddd3169f1ffa9caf2cb7b769e92657e4fafb23d34b93679116dfd4
     # via
     #   jsonschema
     #   jsonschema-specifications
@@ -1085,9 +1085,9 @@ rpds-py==0.18.0 \
     # via
     #   jsonschema
     #   referencing
-s3transfer==0.10.0 \
-    --hash=sha256:3cdb40f5cfa6966e812209d0994f2a4709b561c88e90cf00c2696d2df4e56b2e \
-    --hash=sha256:d0c8bbf672d5eebbe4e57945e23b972d963f07d82f661cabf678a5c88831595b
+s3transfer==0.10.1 \
+    --hash=sha256:5683916b4c724f799e600f41dd9e10a9ff19871bf87623cc8f491cb4f5fa0a19 \
+    --hash=sha256:ceb252b11bcf87080fb7850a224fb6e05c8a776bab8f2b64b7f25b969464839d
     # via boto3
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
@@ -1139,9 +1139,9 @@ tzlocal==5.2 \
     --hash=sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8 \
     --hash=sha256:8d399205578f1a9342816409cc1e46a93ebd5755e39ea2d85334bea911bf0e6e
     # via apscheduler
-urllib3==2.0.7 \
-    --hash=sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84 \
-    --hash=sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e
+urllib3==2.2.1 \
+    --hash=sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d \
+    --hash=sha256:d0570876c61ab9e520d776c38acbbb5b05a776d3f9ff98a5c8fd5162a444cf19
     # via
     #   botocore
     #   pygithub
