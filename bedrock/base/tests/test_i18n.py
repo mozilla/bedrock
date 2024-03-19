@@ -229,6 +229,12 @@ def test_locale_prefix_pattern_works(language_to_activate, expected_prefix):
     translation.deactivate()
 
 
+@override_settings(LANGUAGE_CODE="en-GB")
+def test_local_prefix_pattern_fallback_mode():
+    pattern = LocalePrefixPattern(prefix_default_language=False)
+    assert pattern.language_prefix == ""
+
+
 @pytest.mark.parametrize(
     "lang_code, expected_result",
     (
