@@ -5,206 +5,60 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../protocol/components/custom-menu-list';
-@import '../protocol/components/fxa-form';
+@import '../protocol/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// * -------------------------------------------------------------------------- */
-// Put spacing into variables so it's easier to adjust spacing at each break point
 
-// xs
-$v-grid-xs: $layout-xs;
-$h-grid-xs: $layout-xs;
-
-// md
-$v-grid-md: $layout-md;
-$h-grid-md: $layout-lg;
-
-// lg
-$v-grid-lg: $layout-lg;
-$h-grid-lg: $layout-xl;
-
-// * -------------------------------------------------------------------------- */
-// Protocol over-rides
-
-.mzp-c-menu-list {
-    // match the bottom margin of <p>
-    margin-bottom: 1.25em;
+// https://github.com/mozilla/protocol/issues/893
+.mzp-c-button svg {
+    display: inline-block;
+    height: 1.2em;
+    width: 1.2em;
+    vertical-align: text-bottom;
+    @include bidi((
+        (margin-left, 0.5ch, 0),
+        (margin-right, 0, 0.5ch),
+        (transform,  scale(1, 1), scale(-1, 1)),
+    ));
 }
 
-.mzp-c-menu-list-title {
-    margin-bottom: 0;
-}
-
-.mzp-t-download .mzp-c-menu-list-item.t-web a:hover::after {
+// hide the privacy notice to match the other buttons
+.mzp-c-button-download-privacy-link {
     display: none;
 }
 
-// vertical spacing
-main .mzp-l-content {
-    padding-bottom: $v-grid-xs;
-    padding-top: $v-grid-xs;
+// the space between the buttons was getting a link underline, this removes that
+a[id^='playStoreLink'],
+a[id^='appStoreLink'] {
+    display: inline-block;
+}
 
-    @media #{$mq-md} {
-        padding-bottom: $v-grid-md;
-        padding-top: $v-grid-md;
-    }
 
-    @media #{$mq-lg} {
-        padding-bottom: $v-grid-lg;
-        padding-top: $v-grid-lg;
+// --------------------------------------------------------------------------
+// conditional content classes
+
+.show-android,
+.show-ios {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.android .hide-android,
+.ios .hide-ios {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.show-else {
+    .android &,
+    .ios & {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
     }
 }
 
-// make buttons in drop down menus look like links
-.c-menu-list-link {
-    &,
-    &.mzp-c-button.mzp-t-product {
-        background-color: inherit;
-        color: $color-link;
-        display: block;
-        font-family: inherit;
-        font-weight: normal;
-        padding: $spacing-sm 30px $spacing-sm $spacing-sm;
-        border: 0;
-
-        &:hover {
-            color: $color-link-hover;
-            background-color: $color-marketing-gray-20;
-        }
-    }
+.ios .show-ios {
+    display: inline-block !important; /* stylelint-disable-line declaration-no-important */
 }
 
-// * -------------------------------------------------------------------------- */
-// landing grid
-
-.c-landing-grid-item {
-    margin-bottom: $v-grid-xs * 2; // vertical spacing
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 400px;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-
-    &.c-landing-grid-wide {
-        max-width: 100%;
-    }
-
-    > p:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.c-landing-grid-title {
-    @include font-size(24px);
-    margin-bottom: $spacing-md;
-    margin-top: $spacing-xl;
-
-    a {
-        color: $color-ink-80;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-
-    + p {
-        margin-bottom: $spacing-xl;
-    }
-}
-
-.c-landing-grid-img {
-    display: block;
-    margin: 0 auto;
-}
-
-// two column grid for browsers that don't support display:grid
-// works in RTL without bidi styles \o/
-@media #{$mq-md} {
-    .c-landing-grid-item {
-        float: left;
-        margin-bottom: $v-grid-md * 2;
-        margin-left: $h-grid-md;
-        max-width: 100%;
-        width: calc(50% - #{$h-grid-md * 0.5});
-
-        &:nth-child(odd) {
-            clear: left;
-            margin-left: 0;
-        }
-    }
-}
-
-@media #{$mq-lg} {
-    .c-landing-grid-item {
-        margin-bottom: $v-grid-lg * 2;
-        margin-left: $h-grid-lg;
-        width: calc(50% - #{$h-grid-lg * 0.5});
-    }
-}
-
-// column grid for browsers that do support grid
-@supports (display:grid) {
-    // two column
-    @media #{$mq-md} {
-        .c-landing-grid {
-            @include grid-column-gap($h-grid-md);
-            @include grid-row-gap(#{$v-grid-md * 2});
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        // need to remove :after added by .mzp-l-content or we get an extra grid row
-        // added for clearfix purposes but grids don't need a clearfix
-        .c-landing-grid::after {
-            content: none;
-        }
-
-        .c-landing-grid-item {
-            margin-bottom: 0; // vertical spacing now set as row-gap instead of margin-bottom
-            margin-left: 0;
-            width: auto; // over-ride 50% width from float layout
-        }
-
-        .c-landing-grid-img {
-            max-width: 100%;
-        }
-    }
-
-    // three column
-    @media #{$mq-lg} {
-        .c-landing-grid {
-            @include grid-column-gap($h-grid-lg);
-            @include grid-row-gap(#{$v-grid-lg * 2});
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// Desktop download menu
-
-// issue 13317
-.fx-unsupported .menu-desktop {
-    display: none;
-}
-
-// * -------------------------------------------------------------------------- */
-// Mobile download links
-
-#menu-browsers {
-    .ios & .menu-desktop,
-    .ios & .menu-android,
-    .android & .menu-desktop,
-    .android & .menu-ios {
-        a {
-            pointer-events: none;
-            color: $color-marketing-gray-50;
-        }
-    }
+.android .show-android {
+    display: inline-block !important; /* stylelint-disable-line declaration-no-important */
 }

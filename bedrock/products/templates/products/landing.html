@@ -4,7 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros.html" import google_play_button, fxa_email_form with context %}
+{% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
+{% from "macros-protocol.html" import picto with context %}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -15,11 +16,11 @@
   {%- elif LANG == 'en-GB' -%}
     Mozilla’s products — Mozilla (UK)
   {%- else -%}
-    {{ ftl('firefox-products-firefox-beginning', fallback='firefox-products-firefox-is-more-than-a-browser') }} - Mozilla
+    {{ ftl('firefox-products-mozilla-products') }} - Mozilla
   {%- endif -%}
 {%- endblock -%}
 
-{% block page_desc %}{{ ftl('firefox-products-mozillas-family-of-products', fallback='firefox-products-its-a-whole-family-of-products') }}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-products-mozillas-family-of-products') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split')}}
@@ -27,124 +28,202 @@
   {{ css_bundle('products') }}
 {% endblock %}
 
-{% set android_url = play_store_url('firefox', 'products') %}
-{% set ios_url = app_store_url('firefox', 'products') %}
+{% set fx_android_url = play_store_url('firefox', 'products') %}
+{% set fx_ios_url = app_store_url('firefox', 'products') %}
+{% set fc_android_url = play_store_url('focus', 'products') %}
+{% set fc_ios_url = app_store_url('focus', 'firefox-browsers-mobile-focus') %}
+{% set pocket_android_url = play_store_url('pocket', 'products') %}
+{% set pocket_ios_url = app_store_url('pocket', 'products') %}
+
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=products' %}
 {% set _entrypoint = 'mozilla.org-products' %}
+
+{% set icon_external = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M13 4h7v7M12 12l8-8M8 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1"/></g></svg>' %}
 
 {% block content %}
 <main>
   <header class="mzp-l-content">
-    <h1>Products</h1>
+    <h1>{{ ftl('firefox-products-products') }}</h1>
     <p>
-      {{ ftl('firefox-products-firefox-beginning-emphasis', fallback='firefox-products-firefox-is-more-than-a-browser-emphasis') }}.
-      {{ ftl('firefox-products-mozillas-family-of-products', fallback='firefox-products-its-a-whole-family-of-products') }}.
+      {{ ftl('firefox-products-firefox-beginning-v2', fallback='firefox-products-firefox-is-more-than-a-browser-emphasis') }}
+      {{ ftl('firefox-products-mozillas-family-of-products-sentence', fallback='firefox-products-mozillas-family-of-products') }}
     </p>
   </header>
-
-  <div class="mzp-l-content c-landing-grid">
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/products/landing/monitor.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
-      <h2 class="c-landing-grid-title">
-        <a href="https://monitor.mozilla.org{{ referrals }}" data-cta-type="link" data-cta-text="{% if mozilla_monitor %}Mozilla Monitor{% else %}Firefox Monitor{% endif %}">
-          {% if mozilla_monitor %}
-            {{ ftl('firefox-products-mozilla-monitor', fallback='firefox-products-firefox-monitor') }}
-          {% else %}
-            {{ ftl('firefox-products-firefox-monitor') }}
-          {% endif %}
-        </a>
-      </h2>
-        <p>{% if LANG == 'en-US' %}See if you’ve been part of a data breach. If so, let us automatically get your private info back for you and continually monitor your identity for new leaks.{% else %}{{ ftl('firefox-products-see-if-your-personal-information') }}{% endif %}</p>
-        <p><a class="mzp-c-cta-link" href="https://monitor.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{% if LANG == 'en-US' %}Check for breaches now{% else %}{{ ftl('firefox-products-check-for-breaches') }}{% endif %}</a></p>
-    </div>
-
-    <div class="c-landing-grid-item">
-      {{ resp_img(
-        url='img/products/landing/browsers.jpg',
-        srcset={
-          'img/products/landing/browsers-high-res.jpg': '2x'
-        },
+  <section class="mzp-l-content mzp-l-columns mzp-t-content-nospace mzp-t-columns-three">
+    <!-- Firefox  -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='protocol/img/logos/firefox/browser/logo.svg',
         optional_attributes={
-          'class': 'c-landing-grid-img',
-          'width': '350',
-          'height': '247'
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
         }
-      ) }}
-      <h2 class="c-landing-grid-title "><a href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ ftl('firefox-products-firefox', fallback = 'firefox-products-firefox-browsers') }}</a></h2>
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h3>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
-      <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ ftl('download-button-download') }}</h3>
-        <ul class="mzp-c-menu-list-list" id="menu-browsers">
-          {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
-          <!--[if IE]>
-            <li class="mzp-c-menu-list-item menu-desktop"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-products-desktop') }}</a></li>
-          <![endif]-->
-          <!--[if !IE]><!-->
-            {# Download link should be locale neutral see issue 7982 #}
-            <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ ftl('firefox-products-desktop') }}</a></li>
-          <!--<![endif]-->
-          <li class="mzp-c-menu-list-item menu-android"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
-        </ul>
-      </div>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="See all browsers">{{ ftl('firefox-products-see-all-browsers') }}</a></p>
-    </div>
+      <div class="show-else">{{ download_firefox_thanks(button_class='mzp-t-lg') }}</div>
+      <p class="show-android">{{ google_play_button(href=fx_android_url, id='playStoreLink-firefox') }}</p>
+      <p class="show-ios">{{ apple_app_store_button(href=fx_ios_url, id='appStoreLink-firefox') }}</p>
+    {% endcall %}
 
-  {% if ftl_has_messages('firefox-products-surf-stream-and-get-work-done') %}
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/products/landing/vpn.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      <h2 class="c-landing-grid-title"><a href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="Mozilla VPN">{{ ftl('firefox-products-mozilla-vpn') }}</a></h2>
-      <p>{{ ftl('firefox-products-surf-stream-and-get-work-done') }}</p>
-      <p><a class="mzp-c-cta-link" href="{{ url('products.vpn.landing') }}" rel="external noopener" data-cta-type="link" data-cta-text="Get Mozilla VPN">{{ ftl('firefox-products-get-mozilla-vpn') }}</a></p>
-    </div>
-  {% endif %}
-
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/products/landing/pocket.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      <h2 class="c-landing-grid-title"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}">{{ ftl('firefox-products-pocket') }}</a></h2>
-      <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
-      <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-products-get-pocket') }}</h3>
-        <ul class="mzp-c-menu-list-list" id="menu-pocket">
-          <li class="mzp-c-menu-list-item t-web"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket for Desktop">{{ ftl('firefox-products-desktop') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ play_store_url('pocket', 'products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ app_store_url('pocket', 'products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">{{ ftl('firefox-products-ios') }}</a></li>
-        </ul>
-      </div>
-
-      <p><a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">{{ ftl('firefox-products-learn-more-about-pocket') }}</a></p>
-    </div>
-
-    {% if ftl_has_messages('firefox-products-protect-your-real') %}
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/products/landing/relay.svg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      <h2 class="c-landing-grid-title"><a href="https://relay.firefox.com/">{{ ftl('firefox-products-relay') }}</a></h2>
-      <p>{{ ftl('firefox-products-protect-your-real') }}</p>
-
-      <p><a class="mzp-c-cta-link" href="https://relay.firefox.com/" rel="external noopener" data-cta-type="link" data-cta-text="Relay">{{ ftl('firefox-products-learn-more-about-relay') }}</a></p>
-    </div>
-    {% endif %}
-
-    {% if ftl_has_messages('firefox-products-your-dedicated-privacy') %}
-    <div class="c-landing-grid-item">
-      <img src="{{ static('img/products/landing/firefox-focus.jpg') }}" class="c-landing-grid-img" alt="" width="350" height="247">
-      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.browsers.mobile.focus') }}">{{ ftl('firefox-products-firefox-focus') }}</a></h2>
+    <!-- Focus -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='protocol/img/logos/firefox/browser/focus/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Focus" data-cta-position="heading">{{ ftl('firefox-products-firefox-focus') }}</a></h3>
       <p>{{ ftl('firefox-products-your-dedicated-privacy') }}</p>
+      <p>
+        <span class="hide-ios">{{ google_play_button(href=fc_android_url, id='playStoreLink-focus') }}</span>
+        <span class="hide-android">{{ apple_app_store_button(href=fc_ios_url, id='appStoreLink-focus') }}</span>
+      </p>
+    {% endcall %}
 
-      <div id="menu-focus-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ ftl('download-button-download') }}</h3>
-        <ul class="mzp-c-menu-list-list" id="menu-mobile">
-          <li class="mzp-c-menu-list-item"><a href="{{ play_store_url('focus', 'products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-products-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ app_store_url('focus', 'products') }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-products-ios') }}</a></li>
-        </ul>
-      </div>
+    <!-- Relay -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/relay/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="https://relay.firefox.com/{{ referrals }}" data-cta-type="link" data-cta-text="Relay" data-cta-position="heading">{{ ftl('firefox-products-relay') }}</a></h3>
+      <p>{{ ftl('firefox-products-protect-your-real') }}</p>
+      <p><a class="mzp-c-button mzp-t-product" href="https://relay.firefox.com/#pricing" rel="external noopener" data-cta-type="link" data-cta-text="Get Relay">{{ ftl('firefox-products-get-relay') }} {{ icon_external|safe }}</a>
+    {% endcall %}
 
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-type="link" data-cta-text="Focus Learn More">{{ ftl('ui-learn-more') }}</a></p>
-    </div>
-    {% endif %}
+    <!-- Monitor -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='protocol/img/logos/firefox/monitor/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="https://monitor.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="Monitor" data-cta-position="heading">{{ ftl('firefox-products-mozilla-monitor') }}</a></h3>
+      <p>{% if country_code == 'US' %}See if you’ve been part of a data breach. If so, let us automatically get your private info back for you and continually monitor your identity for new leaks.{% else %}{{ ftl('firefox-products-see-if-your-personal-information') }}{% endif %}</p>
+      <p><a class="mzp-c-button mzp-t-product" href="https://monitor.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{% if LANG == 'en-US' %}Check for breaches now{% else %}{{ ftl('firefox-products-check-for-breaches') }}{% endif %} {{ icon_external|safe }}</a></p>
+    {% endcall %}
 
-  </div>
+    <!-- VPN -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='protocol/img/logos/mozilla/vpn/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="{{ url('products.vpn.landing') }}" data-cta-type="link" data-cta-text="VPN" data-cta-position="heading">{{ ftl('firefox-products-mozilla-vpn') }}</a></h3>
+      <p>{{ ftl('firefox-products-surf-stream-and-get-work-done') }}</p>
+      <p><a class="mzp-c-button mzp-t-product" href="{{ url('products.vpn.landing') + '#pricing' }}" rel="external noopener" data-cta-type="link" data-cta-text="Get VPN">{{ ftl('firefox-products-get-mozilla-vpn') }}</a></p>
+    {% endcall %}
+
+    <!-- MDN Plus -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/mdn/mdn-plus-logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+    <h3 class="mzp-c-picto-heading"><a href="https://developer.mozilla.org/{{ referrals }}" data-cta-type="link" data-cta-text="MDN Plus" data-cta-position="heading">{{ ftl('firefox-products-mdn-plus') }}</a></h3>
+      <p>{{ ftl('firefox-products-resources-for-developers') }}</p>
+      <p>
+        <a href="https://developer.mozilla.org/plus/{{ referrals }}" rel="external noopener" class="mzp-c-button mzp-t-product" data-cta-type="link" data-cta-text="Support MDN">{{ ftl('firefox-products-support-mdn') }} {{ icon_external|safe }}</a>
+      </p>
+    {% endcall %}
+
+    <!-- Thunderbird -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/thunderbird/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="https://www.thunderbird.net/{{ referrals }}" data-cta-type="link" data-cta-text="Thunderbird" data-cta-position="heading">{{ ftl('firefox-products-thunderbird') }}</a></h3>
+      <p>{{ ftl('firefox-products-access-all') }}</p>
+      <p><a class="mzp-c-button mzp-t-product" href="https://www.thunderbird.net/#free-your-inbox" rel="external noopener" data-cta-type="link" data-cta-text="Thunderbird Download">{{ ftl('firefox-products-download-thunderbird') }} {{ icon_external|safe }}</a></p>
+    {% endcall %}
+
+    <!-- Fakespot -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/fakespot/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h3 class="mzp-c-picto-heading"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-type="link" data-cta-text="Fakespot" data-cta-position="heading">{{ ftl('firefox-products-fakespot') }}</a> <span class="mzp-u-title-3xs">{{ ftl('firefox-products-by-mozilla') }}</span></h3>
+      <p>{{ ftl('firefox-products-fakespot-has-your') }}</p>
+      <p><a class="mzp-c-button mzp-t-product" href="https://www.fakespot.com/analyzer" rel="external noopener" data-cta-type="link" data-cta-text="Analyze a url with Fakespot">{{ ftl('firefox-products-analyze') }} {{ icon_external|safe }}</a></p>
+    {% endcall %}
+
+    <!-- Pocket -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='protocol/img/logos/pocket/logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+    <h3 class="mzp-c-picto-heading"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" data-cta-type="link" data-cta-text="Pocket" data-cta-position="heading">{{ ftl('firefox-products-pocket') }}</a> <span class="mzp-u-title-3xs">{{ ftl('firefox-products-by-mozilla') }}</span></h3>
+      <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
+      <p class="show-else"><a href="https://getpocket.com/signup{{ referrals }}" rel="external noopener" class="mzp-c-button mzp-t-product" data-cta-type="link" data-cta-text="Pocket sign up">{{ ftl('firefox-products-get-pocket') }} {{ icon_external|safe }}</a></p>
+      <p class="show-android">{{ google_play_button(href=pocket_android_url, id='playStoreLink-pocket') }}</p>
+      <p class="show-ios">{{ apple_app_store_button(href=pocket_ios_url, id='appStoreLink-pocket') }}</p>
+    {% endcall %}
+
+
+  </section>
+
 
   {% include 'mozorg/includes/mozilla-account-form-promo.html' %}
 
