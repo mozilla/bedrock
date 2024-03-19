@@ -25,7 +25,7 @@
 <main class="mzp-t-dark">
   <div class="mzp-l-content mzp-t-content-md t-center">
     <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-developer mzp-l-logo-center"></div>
-    <h1>{{ ftl('firefox-developer-congrats-you-now-have-latest') }}</h1>
+    <h1>{{ ftl('firefox-developer-congrats-you-now-have-latest-v2', fallback='firefox-developer-congrats-you-now-have-latest') }}</h1>
     {% set attrs = 'href="' ~ url('firefox.notes', channel='aurora') ~ '"' %}
     {% if LANG.startswith('en-') %}
       <p>View the <a {{ attrs|safe }}>release notes</a> to see what’s new.</p>
@@ -33,14 +33,19 @@
       <p>{{ ftl('firefox-developer-view-the-release', attrs=attrs) }}</p>
     {% endif %}
   </div>
-  <div class="mzp-l-content mzp-t-content-md t-center ">
+
+  {% if ftl_has_messages('firefox-developer-developer-tools-user') %}
+  <div class="mzp-l-content mzp-t-content-md t-center">
     <h2 class="mzp-u-title-sm"><a href="https://firefox-source-docs.mozilla.org/devtools-user/" rel="external" class="c-docs">
       {{ ftl('firefox-developer-developer-tools-user') }}
       {% include '/firefox/developer/includes/arrow-right.svg' %}
     </a></h2>
   </div>
+  {% endif %}
 
-  {% include '/firefox/developer/includes/mdn-features.html' %}
+  {% if ftl_has_messages('firefox-developer-resources-for-developers', 'firefox-developer-mdn-is-a') %}
+    {% include '/firefox/developer/includes/mdn-features.html' %}
+  {% endif %}
 
   {% include '/firefox/developer/includes/alt-newsletter.html' %}
 
