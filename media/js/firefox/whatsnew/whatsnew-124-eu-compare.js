@@ -26,19 +26,6 @@
         document.querySelector('.wnp-loading').classList.add('hide');
         document.querySelector('.is-not-default').classList.add('hide');
         document.querySelector('.is-default').classList.add('show');
-
-        // UA
-        window.dataLayer.push({
-            event: 'non-interaction',
-            eAction: 'whatsnew-124-eu-compare',
-            eLabel: 'firefox-default'
-        });
-
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_default: true
-        });
     }
 
     function showNotDefault() {
@@ -46,19 +33,6 @@
         document.querySelector('.wnp-loading').classList.add('hide');
         document.querySelector('.is-default').classList.add('hide');
         document.querySelector('.is-not-default').classList.add('show');
-
-        // UA
-        window.dataLayer.push({
-            event: 'non-interaction',
-            eAction: 'whatsnew-124-eu-compare',
-            eLabel: 'firefox-not-default'
-        });
-
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_default: false
-        });
     }
 
     function initDefault() {

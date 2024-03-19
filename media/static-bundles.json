@@ -1638,15 +1638,23 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-124-eu-events.js",
         "js/firefox/whatsnew/whatsnew-124-eu-compare.js"
       ],
       "name": "firefox_whatsnew_124_eu_compare"
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-124-eu-events.js",
         "js/firefox/whatsnew/whatsnew-124-eu-voices.es6.js"
       ],
-      "name": "firefox_whatsnew_124_eu_voices"
+      "name": "firefox_whatsnew_124_eu_voices_share"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-124-eu-events.js"
+      ],
+      "name": "firefox_whatsnew_124_eu_voices_static"
     },
     {
       "files": [
