@@ -4,86 +4,62 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="t-highlights mzp-l-content mzp-t-content-lg">
-  <div class="c-gallery-grid">
-    {% if ftl_has_messages('firefox-developer-new-tools', 'firefox-developer-firefox-devtools-now-grays-out') %}
-      <div class="c-gallery-item" id="devtools">
-        <a href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools" rel="external" width="416" height="208">
-          {{ resp_img(
-            url='img/firefox/developer/hero-inactive-css.png',
-            srcset={
-              'img/firefox/developer/hero-inactive-css-high-res.png': '2x'
-            },
-            optional_attributes={
-              'alt': ftl('firefox-developer-inactive-css'),
-              'class': 'highlight-image'
-            }
-          ) }}
-        </a>
-        <h2 class="c-title">{{ ftl('firefox-developer-new-tools') }}</h2>
-        <h3 class="c-subtitle">{{ ftl('firefox-developer-inactive-css') }}</h3>
-        <p>{{ ftl('firefox-developer-firefox-devtools-now-grays-out') }}</p>
-        <p>
-          <a class="mzp-c-cta-link" rel="external" href="https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools">
-            {{ ftl('ui-learn-more') }}
-          </a>
-        </p>
-      </div>
-    {% endif %}
-    <div class="c-gallery-item" id="devtools">
-      <a href="https://mozilladevelopers.github.io/playground/debugger/" rel="external">
-        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="{{ ftl('firefox-developer-firefox-devtools') }}" width="416" height="208">
-      </a>
-      <h2 class="c-title">{{ ftl('firefox-developer-new-tools') }}</h2>
-      <h3 class="c-subtitle">{{ ftl('firefox-developer-firefox-devtools') }}</h3>
-      <p>{{ ftl('firefox-developer-the-new-firefox-devtools') }}</p>
-      <p>
-        <a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/debugger/">
-          {{ ftl('ui-learn-more') }}
-        </a>
-      </p>
-    </div>
+{% from "macros-protocol.html" import card with context %}
 
-    <div class="c-gallery-item" id="cssgrid">
-      <a href="https://mozilladevelopers.github.io/playground/css-grid/" rel="external">
-        <img class="highlight-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="{{ ftl('firefox-developer-master-css-grid') }}" width="416" height="208">
-      </a>
-      <h2 class="c-title">{{ ftl('firefox-developer-master-innovative-features') }}</h2>
-      <h3 class="c-subtitle">{{ ftl('firefox-developer-master-css-grid') }}</h3>
-      <p>{{ ftl('firefox-developer-firefox-is-the-only-browser') }}</p>
-      <p>
-        <a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/css-grid/">
-          {{ ftl('ui-learn-more') }}
-        </a>
-      </p>
-    </div>
+<section class="t-highlights mzp-l-content mzp-l-card-half mzp-t-content-xl">
+  {{ card(
+    attributes='id="inactive"',
+    class='mzp-c-card-medium',
+    tag_label=ftl('firefox-developer-new-tools'),
+    ga_title='Pioneers of The Open Web',
+    title=ftl('firefox-developer-inactive-css'),
+    desc=ftl('firefox-developer-firefox-devtools-now-grays-out'),
+    image=resp_img('img/firefox/developer/hero-inactive-css.png', srcset={'img/firefox/developer/hero-inactive-css-high-res.png': '2x'}, optional_attributes={'alt': ftl('firefox-developer-inactive-css'), "loading": "lazy", "class": "mzp-c-card-image", "height": "280", "width": "560"}),
+    aspect_ratio='mzp-has-aspect-16-9',
+    link_url='https://hacks.mozilla.org/2019/10/firefox-70-a-bountiful-release-for-all/#developertools',
+    link_rel='external',
+    cta=ftl('ui-learn-more')
+  )}}
 
-    {% if ftl_has_messages('firefox-developer-faster-innovation', 'firefox-developer-the-new-fonts-panel') %}
-      {% if not ftl_has_messages('firefox-developer-new-tools', 'firefox-developer-firefox-devtools-now-grays-out') %}
-        <div class="c-gallery-item">
-          <a rel="external" href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_css_shapes/">
-            <img class="highlight-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="{{ ftl('firefox-developer-shapes-editor') }}" width="416" height="208">
-          </a>
-          <h2 class="c-title">{{ ftl('firefox-developer-convenient-features') }}</h2>
-          <h3 class="c-subtitle">{{ ftl('firefox-developer-shapes-editor') }}</h3>
-          <p>
-            {{ ftl('firefox-developer-firefox-devtools-has-a-brand-new-v2', fallbacl='firefox-developer-firefox-devtools-has-a-brand-new') }}
-          </p>
-          <p><a class="mzp-c-cta-link" rel="external" href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_css_shapes/">{{ ftl('ui-learn-more') }}</a></p>
-        </div>
-      {% endif %}
+  {{ card(
+    attributes='id="devtools"',
+    class='mzp-c-card-medium',
+    tag_label=ftl('firefox-developer-new-tools'),
+    ga_title='Pioneers of The Open Web',
+    title=ftl('firefox-developer-firefox-devtools'),
+    desc=ftl('firefox-developer-the-new-firefox-devtools'),
+    image=resp_img('img/firefox/developer/hero-debugger-ani.gif', optional_attributes={'alt': ftl('firefox-developer-firefox-devtools'), "loading": "lazy", "class": "mzp-c-card-image", "height": "280", "width": "560"}),
+    aspect_ratio='mzp-has-aspect-16-9',
+    link_url='https://mozilladevelopers.github.io/playground/debugger/',
+    link_rel='external',
+    cta=ftl('ui-learn-more')
+  )}}
 
-      <div class="c-gallery-item">
-        <a rel="external" href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_fonts/">
-          <img class="highlight-image" src="{{ static('img/firefox/developer/hero-fonts.gif') }}" alt="{{ ftl('firefox-developer-fonts-panel') }}" width="416" height="208">
-        </a>
-        <h2 class="c-title">{{ ftl('firefox-developer-faster-innovation') }}</h2>
-        <h3 class="c-subtitle">{{ ftl('firefox-developer-fonts-panel') }}</h3>
-        <p>
-          {{ ftl('firefox-developer-the-new-fonts-panel') }}
-        </p>
-        <p><a class="mzp-c-cta-link" rel="external" href="https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_fonts/">{{ ftl('ui-learn-more') }}</a></p>
-      </div>
-    {% endif %}
-  </div>
+  {{ card(
+    attributes='id="cssgrid"',
+    class='mzp-c-card-medium',
+    tag_label=ftl('firefox-developer-master-innovative-features'),
+    ga_title='Pioneers of The Open Web',
+    title=ftl('firefox-developer-master-css-grid'),
+    desc=ftl('firefox-developer-firefox-is-the-only-browser'),
+    image=resp_img('img/firefox/developer/hero-cssgrid-ani.gif', optional_attributes={'alt': ftl('firefox-developer-master-css-grid'), "loading": "lazy", "class": "mzp-c-card-image", "height": "280", "width": "560"}),
+    aspect_ratio='mzp-has-aspect-16-9',
+    link_url='https://mozilladevelopers.github.io/playground/css-grid/',
+    link_rel='external',
+    cta=ftl('ui-learn-more')
+  )}}
+
+  {{ card(
+    attributes='id="fonts"',
+    class='mzp-c-card-medium',
+    tag_label=ftl('firefox-developer-faster-innovation'),
+    ga_title='Pioneers of The Open Web',
+    title=ftl('firefox-developer-fonts-panel'),
+    desc=ftl('firefox-developer-the-new-fonts-panel'),
+    image=resp_img('img/firefox/developer/hero-fonts.gif', optional_attributes={'alt': ftl('firefox-developer-fonts-panel'), "loading": "lazy", "class": "mzp-c-card-image", "height": "280", "width": "560"}),
+    aspect_ratio='mzp-has-aspect-16-9',
+    link_url='https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_fonts/',
+    link_rel='external',
+    cta=ftl('ui-learn-more')
+  )}}
 </section>
