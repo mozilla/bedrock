@@ -8,6 +8,20 @@
 Contentful :abbr:`CMS (Content Management System)` Integration
 ==============================================================
 
+.. important::
+
+    We are no longer syncing content from Contentful, but we still hold
+    that content frozen in our database and use it to render pages.
+
+    Pages previously managed with Contentful will be the first pages to
+    be (re)implemented using our upcoming part-of-Bedrock CMS system. At that
+    point, we will remove all Contentful-related code from the codebase.
+
+    In the meantime, if content changes are needed to pages formerly managed via
+    Contentful, we can do this via data migration – just ask the backend team.
+
+    **Please do not add new pages to Bedrock using Contentful.**
+
 Overview
 --------
 
@@ -59,6 +73,13 @@ Once rendered the pages get cached on the :abbr:`CDN (Content Delivery Network)`
 
 Contentful Apps
 ---------------
+
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
+
 
 Installed on Environment level. Make sure you are in the environment you want to edit before accessing an app.
 Use *Apps* link in top navigation of Contentful Web App to find an environment's installed apps.
@@ -339,6 +360,13 @@ the `ContentfulPage` class in api.py. The renderers themselves are also defined 
 L10N
 ----
 
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
+
+
 Smartling - our selected approach
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -426,6 +454,12 @@ with different components is valuable to the German and French teams.
 Assets
 ------
 
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
+
 Images that are uploaded in Contentful will be served to site visitors from the Contentful
 :abbr:`CDN (Content Delivery Network)`. The cost of using the CDN are not by request so we
 don't have to worry about how many times an image will be requested.
@@ -446,6 +480,12 @@ wide. In the future this could be a user configurable option.
 
 Preview
 -------
+
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
 
 Content previews are configured under *Settings* > *Content preview* on a per-content model
 basis. At the moment previews are only configured for pages, and display on demo5.
@@ -502,6 +542,13 @@ Editor (WIP)
 
 Development practices
 ---------------------
+
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
+
 
 This section outlines tasks generally required if developing features against Contentful.
 
@@ -678,6 +725,12 @@ Close the Djanjo shell with ``exit()`` or ``CTRL+D``
 
 Useful Contentful Docs
 ----------------------
+
+.. important::
+
+    We are no longer syncing content from Contentful – see the note at the top of this page.
+
+    **Please do not add new pages to Bedrock using Contentful.**
 
 https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping/specify-focus-area
 
