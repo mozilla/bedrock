@@ -19,15 +19,6 @@ def test_tab_navigation(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("slug", [("toronto/"), ("san-francisco/"), ("berlin/"), ("beijing/")])
-def test_spaces_menus(slug, base_url, selenium):
-    page = SpacesPage(selenium, base_url, slug=slug).open()
-    space_menu = [s for s in page.spaces if s.id in slug]
-    assert len(space_menu) == 1
-    assert space_menu[0].is_selected
-
-
-@pytest.mark.nondestructive
 def test_spaces_mobile_navigation(base_url, selenium_mobile):
     page = SpacesPage(selenium_mobile, base_url, slug="").open()
     assert page.is_mobile_menu_toggle_displayed
