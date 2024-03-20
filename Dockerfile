@@ -41,7 +41,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --verbose
 
 # copy supporting files and media
-COPY .eslintrc.js .eslintignore .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
+COPY eslint.config.js .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean

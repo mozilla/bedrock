@@ -18,7 +18,7 @@ describe('core-datalayer.js', function () {
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
             expect(Mozilla.Analytics.pageHasDownload()).toBe('true');
 
-            var content = document.querySelector('.download');
+            const content = document.querySelector('.download');
             content.parentNode.removeChild(content);
         });
 

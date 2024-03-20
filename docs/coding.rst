@@ -174,10 +174,10 @@ you want to write modern syntax but still support older browsers.
     concious of performance.
 
 For pages that are served to Firefox browsers only, such as ``/whatsnew``, it is
-also possible to write native ES2015+ syntax and serve that directly in production.
+also possible to write native modern JS syntax and serve that directly in production.
 Here there is no need to include the ``.es6.js`` file extension. Instead, you can
-simply use ``.js`` instead. The rules that which files you can do this in are defined
-in our `ESLint config <https://github.com/mozilla/bedrock/blob/main/.eslintrc.js>`_.
+simply use ``.js`` instead. The rules that define which files can do this can be
+found in our `ESLint config <https://github.com/mozilla/bedrock/blob/main/eslint.config.js>`_.
 
 Writing URL Patterns
 --------------------

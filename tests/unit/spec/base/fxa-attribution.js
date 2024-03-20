@@ -610,7 +610,7 @@ describe('fxa-attribution.js', function () {
         });
 
         afterEach(function () {
-            var content = document.getElementById('test-links');
+            const content = document.getElementById('test-links');
             content.parentNode.removeChild(content);
         });
 
