@@ -1,0 +1,59 @@
+name: Create l10n cleanup task
+on:
+  schedule:
+    - cron: 0 09 14 */2 *
+
+jobs:
+  create_issue:
+    name: Create l10n cleanup task
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create l10n cleanup task
+        run: |
+          if [[ $CLOSE_PREVIOUS == true ]]; then
+            previous_issue_number=$(gh issue list \
+              --label "$LABELS" \
+              --json number \
+              --jq '.[0].number')
+            if [[ -n $previous_issue_number ]]; then
+              gh issue close "$previous_issue_number"
+              gh issue unpin "$previous_issue_number"
+            fi
+          fi
+          new_issue_url=$(gh issue create \
+            --title "$TITLE" \
+            --assignee "$ASSIGNEES" \
+            --label "$LABELS" \
+            --body "$BODY")
+          if [[ $PINNED == true ]]; then
+            gh issue pin "$new_issue_url"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: Remove obsolete l10n strings and ftl files
+          ASSIGNEES:
+          LABELS: L10N
+          BODY: |
+            ### Remove obsolete strings
+
+            Search the code base for strings marked `obsolete` that are more than 2 months old.
+            If you find strings that have no date, either find the date by looking at git history
+            or add an expiry date and leave it to be removed in 2 months.
+
+            - [ ] Remove old obsolete strings
+
+            ### Remove obsolete ftl files
+
+            Compare the files in /l10n/en-US/ to the /en/ folder in the www-l10n repo and remove
+            files from www-l10n that no longer exist in bedrock.
+
+            If you have both repos installed and up to date you can run this command:
+            `diff -r www-l10n/en bedrock/l10n/en | grep ".ftl"`
+
+            - [ ] Remove files
+            - [ ] Remove references in www-l10n/configs/pontoon.toml
+          PINNED: false
+          CLOSE_PREVIOUS: true
