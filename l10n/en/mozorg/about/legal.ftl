@@ -38,3 +38,4 @@ legal-hubs = { -brand-name-mozilla-hubs }
 legal-hubs-terms = { -brand-name-mozilla-hubs } Terms of Service
 legal-mozilla-subscription-services = { -brand-name-mozilla } Subscription Services
 legal-content-moderation = Content Moderation Practices
+legal-amo-policies = AMO Polcies

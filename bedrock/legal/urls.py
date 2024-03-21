@@ -71,5 +71,10 @@ urlpatterns = (
         LegalDocView.as_view(template_name="legal/content-moderation.html", legal_doc_name="content_moderation_practices"),
         name="legal.content-moderation",
     ),
+    path(
+        "amo-policies/",
+        LegalDocView.as_view(template_name="legal/amo-policies.html", legal_doc_name="amo_policies"),
+        name="legal.amo-policies",
+    ),
     path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
 )
