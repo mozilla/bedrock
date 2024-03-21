@@ -102,6 +102,11 @@ if IS_POCKET_MODE:
     DEV_LANGUAGES = PROD_LANGUAGES
     LANGUAGE_CODE = "en"  # Pocket uses `en` not `en-US`
 
+    # Pocket mode doesn't need language names available for a lang picker, so we can just do this
+    # rather than fish around in product_details.languages. This is extra-handy because Pocket Mode
+    # uses language codes that don't all appear in product_details.languages
+    LANGUAGES = [(lang, lang) for lang in PROD_LANGUAGES]
+
     # We don't want any fallback lang support for Pocket mode, so let's override the Bedrock base default
     LANGUAGE_URL_MAP_WITH_FALLBACKS = LANGUAGE_URL_MAP
 
