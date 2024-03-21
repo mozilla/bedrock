@@ -53,8 +53,13 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
 
     def _redirect(self, request, lang_code, subpath):
         dest = f"/{lang_code}/{subpath}"
+
+        # log the redirect without querystrings, in case there's a token or similar we don't want to end up in Markus
+        metrics.incr("bedrock.langfixup.redirect", tags=[f"from:{request.path}", f"to:{dest}"])
+
         if request.GET:
             dest += f"?{request.GET.urlencode()}"
+
         return HttpResponseRedirect(dest)
 
     def process_request(self, request):
