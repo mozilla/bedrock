@@ -750,33 +750,8 @@ def ios_testflight(request):
 
 
 class FirefoxHomeView(L10nTemplateView):
-    ftl_files_map = {"firefox/home/index-master.html": ["firefox/home"]}
-
-    # place expected ?v= values in this list
-    variations = []
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        variant = self.request.GET.get("v", None)
-
-        # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
-
-        ctx["variant"] = variant
-
-        return ctx
-
-    def get_template_names(self):
-        variant = self.request.GET.get("v", None)
-
-        # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
-
-        template_name = "firefox/home/index-master.html"
-
-        return [template_name]
+    ftl_files_map = {"firefox/index.html": ["firefox/browsers"]}
+    template_name = "firefox/index.html"
 
 
 BREACH_TIPS_URLS = {
