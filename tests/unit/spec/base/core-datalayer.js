@@ -27,22 +27,6 @@ describe('core-datalayer.js', function () {
         });
     });
 
-    describe('pageHasVideo', function () {
-        it('will return "true" when HTML5 video is present on page.', function () {
-            const videoMarkup = '<video id="video-content"></video>';
-
-            document.body.insertAdjacentHTML('beforeend', videoMarkup);
-            expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
-
-            const content = document.getElementById('video-content');
-            content.parentNode.removeChild(content);
-        });
-
-        it('will return "false" when download button is not present on page.', function () {
-            expect(Mozilla.Analytics.pageHasVideo()).toBe('false');
-        });
-    });
-
     describe('getPageVersion', function () {
         it('will return the Firefox version number form the URL if present', function () {
             expect(

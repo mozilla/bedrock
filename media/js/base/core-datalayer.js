@@ -32,17 +32,6 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
             : 'false';
     };
 
-    /** Returns whether page has video.
-     * @param {String} path - URL path name fallback if page ID does not exist.
-     * @return {String} string.
-     */
-    analytics.pageHasVideo = function () {
-        if (!isModernBrowser) {
-            return 'false';
-        }
-        return document.querySelector('video') !== null ? 'true' : 'false';
-    };
-
     /** Returns page version.
      * @param {String} path - URL path name fallback if page ID does not exist.
      * @return {String} version number from URL.

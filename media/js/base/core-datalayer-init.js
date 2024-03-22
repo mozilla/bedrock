@@ -16,7 +16,6 @@
         var dataLayerCore = {
             event: 'core-datalayer-loaded',
             pageHasDownload: analytics.pageHasDownload(),
-            pageHasVideo: analytics.pageHasVideo(),
             pageVersion: analytics.getPageVersion(),
             releaseWindowVersion: analytics.getLatestFxVersion()
         };
