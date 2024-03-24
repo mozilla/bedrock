@@ -53,13 +53,13 @@ def render_to_string(template_name, context=None, request=None, using=None, ftl_
     return loader.render_to_string(template_name, context, request, using)
 
 
-def _is_root_path_with_no_language_clues(request):
+def is_root_path_with_no_language_clues(request):
     return request.path_info == "/" and not request.headers.get("Accept-Language")
 
 
 def redirect_to_best_locale(request, translations):
     # Strict only for the root URL when we have no language clues
-    strict = _is_root_path_with_no_language_clues(request)
+    strict = is_root_path_with_no_language_clues(request)
     # Note that translations is list of locale strings (eg ["en-GB", "ru", "fr"])
     locale = get_best_translation(translations, get_accept_languages(request), strict)
 
@@ -180,7 +180,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
         # Does that path's locale match the request's locale?
         # AND is it NOT for the root path with no discernable lang?
-        if locale in translations and not _is_root_path_with_no_language_clues(request):
+        if locale in translations and not is_root_path_with_no_language_clues(request):
             # Redirect to the locale if:
             # - The URL is the root path but is missing the trailing slash OR
             # - The locale isn't the current prefix in the URL

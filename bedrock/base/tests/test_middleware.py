@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from contextlib import suppress
+from unittest import mock
 
 from django.test import Client, TestCase
 from django.test.utils import override_settings
@@ -11,8 +12,12 @@ from django.urls import reverse
 import pytest
 from jinja2.exceptions import UndefinedError
 from markus.testing import MetricsMock
+from pytest_django.asserts import assertTemplateUsed
 
-from bedrock.base.middleware import BedrockLangCodeFixupMiddleware
+from bedrock.base.middleware import (
+    BedrockLangCodeFixupMiddleware,
+    BedrockLocaleMiddleware,
+)
 
 
 @override_settings(
@@ -167,7 +172,12 @@ class TestMetricsViewTimingMiddleware(TestCase):
 @pytest.mark.parametrize(
     "request_path, expected_status_code, expected_dest, expected_request_locale",
     (
-        ("/", 302, "/en-US/", None),
+        (
+            "/",
+            302,
+            "/de/",  # because accept-language header has de as default lang,
+            None,
+        ),
         ("/en-us/", 302, "/en-US/", None),
         ("/en-US/", 200, None, "en-US"),
         ("/de/", 200, None, "de"),
@@ -210,7 +220,10 @@ def test_BedrockLangCodeFixupMiddleware(
     expected_request_locale,
     rf,
 ):
-    request = rf.get(request_path)
+    request = rf.get(
+        request_path,
+        HTTP_ACCEPT_LANGUAGE="de-DE,en-GB;q=0.4,en-US;q=0.2",
+    )
 
     middleware = BedrockLangCodeFixupMiddleware()
 
@@ -222,3 +235,33 @@ def test_BedrockLangCodeFixupMiddleware(
     else:
         # the request will have been annotated by the middleware
         assert request.locale == expected_request_locale
+
+
+@pytest.mark.django_db
+def test_BedrockLangCodeFixupMiddleware__no_lang_info_gets_locale_page__end_to_end(client):
+    """Quick end-to-end test confirming the custom 404-locale template is rendered
+    at the / path when there is no accept-language header"""
+
+    resp = client.get("/", follow=False)
+    assert "HTTP_ACCEPT_LANGUAGE" not in resp.request
+    assert resp.status_code == 200
+    # this template use actually happens in lib.l10n_utils.render
+    assertTemplateUsed(resp, "404-locale.html")
+
+
+@mock.patch("django.middleware.locale.LocaleMiddleware.process_request")
+@mock.patch("django.middleware.locale.LocaleMiddleware.process_response")
+def test_BedrockLocaleMiddleware_skips_super_call_if_path_is_for_root_and_has_no_lang_clues(
+    mock_django_localemiddleware_process_response,
+    mock_django_localemiddleware_process_request,
+    rf,
+):
+    fake_request = rf.get("/")
+    assert "HTTP_ACCEPT_LANGUAGE" not in fake_request
+    middleware = BedrockLocaleMiddleware(fake_request)
+    middleware.process_request(fake_request)
+    assert not mock_django_localemiddleware_process_request.called
+
+    fake_response = mock.Mock(name="fake response")
+    middleware.process_response(fake_request, fake_response)
+    assert not mock_django_localemiddleware_process_response.called

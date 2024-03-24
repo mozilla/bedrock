@@ -33,6 +33,7 @@ from bedrock.base.i18n import (
     path_needs_lang_code,
     split_path_and_polish_lang,
 )
+from lib.l10n_utils import is_root_path_with_no_language_clues
 
 
 class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
@@ -80,7 +81,7 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
             request.GET = qs
             return self._redirect(request, cleaned_lang_via_querystring, subpath)
 
-        if not lang_code and path_needs_lang_code(request.path):
+        if not lang_code and path_needs_lang_code(request.path) and not is_root_path_with_no_language_clues(request):
             lang_code = get_language_from_headers(request)
             return self._redirect(request, lang_code, subpath)
 
@@ -91,9 +92,13 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
 
 
 class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
-    """Light middleware wrapped around Django's own i18n middleware
-    that ensures we normalize language codes - i..e. we ensure they are in
+    """Middleware that usually* wraps Django's own i18n middleware in order to
+    ensure we normalize language codes - i..e. we ensure they are in
     mixed case we use, rather than Django's internal all-lowercase codes.
+
+    *for one specific situation, though, we skip Django's LocaleMiddleware entirely:
+    we have a special SEO-helping page that gets returned to robots/spiders that
+    don't declare an accept-language header, showing a list of locales to pick.
 
     It needs to be kept super-light so that it doesn't diverge too far from
     the stock LocaleMiddleware, lest we wake up dragons when we use
@@ -104,11 +109,22 @@ class BedrockLocaleMiddleware(DjangoLocaleMiddleware):
     """
 
     def process_request(self, request):
-        with normalized_get_language():
-            with simplified_check_for_language():
-                return super().process_request(request)
+        if is_root_path_with_no_language_clues(request):
+            # Skip using Django's LocaleMiddleware
+            metrics.incr(
+                "bedrock.localemiddleware.skipdjangolocalemiddleware",
+                tags=[f"path:{request.path}"],
+            )
+        else:
+            with normalized_get_language():
+                with simplified_check_for_language():
+                    return super().process_request(request)
 
     def process_response(self, request, response):
+        if is_root_path_with_no_language_clues(request):
+            # Skip using Django's LocaleMiddleware on the response cycle too
+            return response
+
         with normalized_get_language():
             with simplified_check_for_language():
                 return super().process_response(request, response)
