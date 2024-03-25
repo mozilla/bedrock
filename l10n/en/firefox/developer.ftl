@@ -8,7 +8,10 @@
 
 firefox-developer-page-title = { -brand-name-firefox-developer-edition }
 firefox-developer-firefox-developer-edition-desc = { -brand-name-firefox-developer-edition } is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging
-firefox-developer-firefox-browser = { -brand-name-firefox } { -brand-name-developer-edition }
+firefox-developer-firefox-developer-edition = { -brand-name-firefox-developer-edition }
+
+# Obsolete string (expires: 2024-05-14)
+firefox-developer-firefox-browser = { -brand-name-firefox-browser } { -brand-name-developer-edition }
 firefox-developer-welcome-to-your-new-favorite = Welcome to your new favorite browser. Get the latest features, fast performance, and the development tools you need to build for the open web.
 firefox-developer-speak-up = Speak up
 firefox-developer-feedback-makes-us = Feedback makes us better. Tell us how we can improve the browser and Developer tools.
@@ -20,7 +23,6 @@ firefox-developer-design-code-test = Design. Code. Test. Refine.
 
 # Line break for visual formatting
 firefox-developer-build-and-perfect = Build and Perfect your sites<br> with { -brand-name-firefox-devtools }
-
 firefox-developer-inspector = Inspector
 firefox-developer-inspect-and-refine = Inspect and refine code to build pixel-perfect layouts.
 firefox-developer-learn-about-page-inspector = Learn more about Page Inspector
@@ -71,27 +73,28 @@ firefox-developer-fonts-panel = Fonts Panel
 firefox-developer-the-new-fonts-panel = The new fonts panel in { -brand-name-firefox-devtools } gives developers quick access to all of the information they need about the fonts being used in an element. It also includes valuable information such as the font source, weight, style and more.
 firefox-developer-firefox-developer-edition-sends = { -brand-name-firefox-developer-edition } automatically sends feedback to { -brand-name-mozilla }.
 firefox-developer-download-the-firefox-browser = Download the { -brand-name-firefox } browser made for developers
-firefox-developer-welcome-to-the-all-new = Welcome to the all-new { -brand-name-firefox-quantum }: { -brand-name-developer-edition }
 firefox-developer-firefox-has-been-rebuilt = { -brand-name-firefox } has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.
-firefox-developer-welcome-to-firefox-browser = Welcome to { -brand-name-firefox } { -brand-name-developer-edition }
+firefox-developer-welcome-to-firefox-developer-edition = Welcome to { -brand-name-firefox-developer-edition }
+
+# Obsolete string (expires: 2024-05-14)
+firefox-developer-welcome-to-firefox-browser = Welcome to { -brand-name-firefox-browser } { -brand-name-developer-edition }
 firefox-developer-made-for-developers = The browser made for developers
 firefox-developer-all-the-latest-v2 = All the latest developer tools in beta in addition to features like the Multi-line Console Editor and WebSocket Inspector.
 firefox-developer-a-separate-profile = A <strong>separate profile and path</strong> so you can easily run it alongside Release or { -brand-name-beta } { -brand-name-firefox }.
 firefox-developer-preferences-tailored = Preferences <strong>tailored for web developers</strong>: Browser and remote debugging are enabled by default, as are the dark theme and developer toolbar button.
-firefox-developer-congrats-you-now-have-latest-v2 = You now have the latest version of { -brand-name-firefox } { -brand-name-developer-edition }.
+firefox-developer-congrats-you-now-have-latest-v2 = You now have the latest version of { -brand-name-firefox-developer-edition }.
+
 # Obsolete string (expires: 2024-05-14)
 firefox-developer-congrats-you-now-have-latest = Congrats. You now have the latest version of { -brand-name-firefox-browser } { -brand-name-developer-edition }.
-
 
 # Variables:
 #   $attrs (string) - link to the most recent Firefox Developer Edition release notes
 firefox-developer-view-the-release = View the <a { $attrs }>release notes</a> (English only) to see what’s new.
-# this is a link to https://firefox-source-docs.mozilla.org/devtools-user/
 firefox-developer-developer-tools-user = Developer Tools User Docs
 firefox-developer-mdn-web-docs = { -brand-name-mdn-web-docs }
 firefox-developer-resources-for-developers = Resources for Developers, by Developers
 firefox-developer-mdn-references = { -brand-name-mdn } References
-firefox-developer-mdn-is-a = { -brand-name-mdn } is an open-source, collaborative project documenting Web platform technologies, including CSS, HTML, JavaScript and Web APIs.
+firefox-developer-mdn-is-a = { -brand-name-mdn } is an open-source, collaborative project documenting web platform technologies, including CSS, HTML, JavaScript and web APIs.
 firefox-developer-mdn-curriculum = { -brand-name-mdn } Curriculum
 firefox-developer-a-structured-guide = A structured guide to the essential skills and practices for being a successful front-end developer, along with recommended learning resources.
 firefox-developer-mdn-plus = { -brand-name-mdn-plus }
