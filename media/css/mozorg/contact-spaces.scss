@@ -51,33 +51,14 @@ $image-path: '/media/protocol/img';
 }
 
 /* -------------------------------------------------------------------------- */
-// Large map
+// Hero image
 
-.map {
-    background: $color-marketing-gray-20;
-    display: none;
-    position: relative;
-
-    img {
-        display: none;
-    }
-
-    small {
-        @include text-body-xs;
-        @include bidi(((right, 0, left, auto),));
-        background: rgba(255, 255, 255, 0.7);
-        bottom: 0;
-        padding: 0 $spacing-xs;
-        position: absolute;
-    }
-
-    @media #{$mq-md} {
-        display: block;
-
-        img {
-            display: block;
-        }
-    }
+.hero-image {
+    background-image: url('/media/img/contact/osm/spaces/toronto-office.jpeg');
+    background-size: cover;
+    height: 450px;
+    background-position: center -200px;
+    background-repeat: no-repeat;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -113,6 +94,7 @@ $image-path: '/media/protocol/img';
             padding: 0 $spacing-sm;
             position: relative;
             text-decoration: none;
+            font-weight: 700;
             z-index: 10;
         }
 

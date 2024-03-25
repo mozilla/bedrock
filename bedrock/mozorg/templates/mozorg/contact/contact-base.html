@@ -31,13 +31,7 @@
       </p>
     </header>
 
-    <div class="map">
-      {% block map %}{% endblock %}
-      <small>
-        {% with link_openstreetmap='http://openstreetmap.org/copyright' %}
-          © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
-        {% endwith %}
-      </small>
+    <div class="hero-image">
     </div>
 
     <div class="page-content">
@@ -45,37 +39,13 @@
         {% include 'mozorg/contact/includes/tab-nav.html' %}
       {% endblock %}
 
-      {% block contact_main %}
-        <div">
-          <div class="mzp-l-main">
-            {% block contact_entry %}{% endblock %}
-          </div>
-
-          <div class="mzp-l-sidebar">
-            {% block contact_nav %}{% endblock %}
-          </div>
-        </div>
-      {% endblock %}
+      {% block contact_main %}{% endblock %}
 
       {% block meta_category %}{% endblock %}
-
-      <p class="attribution">
-      {% with link_openstreetmap='http://openstreetmap.org/copyright' %}
-        Maps © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
-      {% endwith %}
-        Community photos courtesy of Mozilla contributors, used with permission.
-      </p>
 
     </div>{# end page-content #}
 
   </div>
 </main>
 
-{% endblock %}
-
-{% block js %}
-  {# Issue 9322 #}
-  {% if self.body_id() != 'contact-landing' %}
-    {{ js_bundle('protocol-sidemenu') }}
-  {% endif %}
 {% endblock %}
