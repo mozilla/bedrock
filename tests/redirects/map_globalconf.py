@@ -879,8 +879,6 @@ URLS = flatten(
         url_test("/products/firefox/{,stuff/}", "/products/"),
         # Bug 784411
         url_test("/about/mission/", "/mission/"),
-        # Bug 1171763, 1347752 - /research/ -> research.m.o
-        url_test("/research/{,projects/,researchers/}", "https://research.mozilla.org/"),
         # Bug 1260423
         url_test("/firefox/choose", "/firefox/new/"),
         url_test("/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun", "/firefox/browsers/mobile/"),
@@ -1288,5 +1286,8 @@ URLS = flatten(
         url_test("/firefox/flashback/", "/firefox/"),
         url_test("/landing/firefox/fx100/", "/firefox/"),
         url_test("/{santa-locator,santalocator}/", "/"),
+        # Issue 14351
+        url_test("/research/", "https://foundation.mozilla.org/research/"),
+        url_test("/research/cc/", "https://foundation.mozilla.org/research/"),
     )
 )

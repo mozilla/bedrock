@@ -99,8 +99,6 @@ redirectpatterns = (
     redirect(r"^about/mission\.html$", "/mission/"),
     # Bug 784411 /about/mission/ -> /mission/
     redirect(r"^about/mission/?$", "/mission/"),
-    # Bug 1171763, 1347752 - /research/ -> research.m.o
-    redirect(r"^research(/.*)?$", "https://research.mozilla.org/"),
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ ->
     # wm.o/videos/
     redirect(r"webmaker/?$", "https://webmaker.org"),
@@ -568,4 +566,7 @@ redirectpatterns = (
     redirect(r"^stories/?$", "https://blog.mozilla.org/category/products/firefox/"),
     # Issue 14255
     redirect(r"^rise25/?$", "/rise25/nominate/"),
+    # Issue 14351
+    redirect(r"^research/?$", "https://foundation.mozilla.org/research/"),
+    redirect(r"^research/cc/?$", "https://foundation.mozilla.org/research/"),
 )
