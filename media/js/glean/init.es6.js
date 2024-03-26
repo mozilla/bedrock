@@ -6,7 +6,6 @@
 
 import Glean from '@mozilla/glean/web';
 import GleanMetrics from '@mozilla/glean/metrics';
-import { BrowserSendBeaconUploader } from '@mozilla/glean/web';
 import { recordCustomPageMetrics, pageEvent } from './page.es6';
 import { clickEvent } from './elements.es6';
 import Utils from './utils.es6';
@@ -26,8 +25,7 @@ function initGlean() {
 
     Glean.initialize('bedrock', Utils.isTelemetryEnabled(), {
         channel: channel,
-        serverEndpoint: endpoint,
-        httpClient: BrowserSendBeaconUploader // use sendBeacon since Firefox does not yet support keepalive using fetch()
+        serverEndpoint: endpoint
     });
 
     /**
