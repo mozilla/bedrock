@@ -24,4 +24,19 @@ function copyText() {
         textCopiedMessage.style.display = 'none';
         copyButtonText.style.display = 'block';
     }, 2500);
+
+    // UA
+    window.dataLayer.push({
+        event: 'in-page-interaction',
+        eAction: 'button click',
+        eLabel: 'Copy and share'
+    });
+
+    // GA4
+    window.dataLayer.push({
+        event: 'widget_action',
+        type: 'copy',
+        action: 'click',
+        name: 'Copy and share'
+    });
 }
