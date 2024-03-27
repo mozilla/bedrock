@@ -1101,7 +1101,7 @@ URLS = flatten(
             },
         ),
         # Issue 6824
-        url_test("/technology/", "https://labs.mozilla.org/"),
+        url_test("/technology/", "https://future.mozilla.org/"),
         # Issue 8419
         url_test("/firefox/this-browser-comes-highly-recommended/", "/firefox/developer/"),
         # Issue 8420
