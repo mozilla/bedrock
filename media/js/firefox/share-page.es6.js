@@ -28,7 +28,7 @@ function copyText() {
     // UA
     window.dataLayer.push({
         event: 'in-page-interaction',
-        eAction: 'button click',
+        eAction: 'copy',
         eLabel: 'Copy and share'
     });
 
@@ -36,7 +36,7 @@ function copyText() {
     window.dataLayer.push({
         event: 'widget_action',
         type: 'copy',
-        action: 'click',
+        action: 'copy',
         name: 'Copy and share'
     });
 }
