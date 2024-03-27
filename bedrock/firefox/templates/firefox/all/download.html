@@ -1,0 +1,66 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+
+
+{# Show download #}
+
+<h2 class="c-step-name{% if not (product and platform and locale) %} t-step-disabled{% endif %}">
+  4. Download
+  {% if product and platform and locale %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+  {% endif %}
+</h2>
+
+{% if product and platform and locale %}
+<div class="c-step-contents">
+  {% if product.slug.startswith("desktop") %}
+    <p>
+      <a href="#all-downloads" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
+        {{ ftl('download-button-download-now') }} <img alt="" src="{{ static('protocol/img/icons/download.svg') }}" width="30" height="30">
+      </a>
+    </p>
+    {% if platform.startswith("linux") %}
+    <p class="c-linux-debian">
+      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
+    </p>
+    {% endif %}
+  {% endif %}
+
+  {% if product.slug.startswith('android') or product.slug.startswith('ios') or product.slug.startswith('mobile') %}
+
+    {% include 'firefox/all/mobile.html' %}
+
+  {% endif %}
+
+
+
+<!--
+  error
+  <p class="c-download-error hidden">
+    {{ ftl('firefox-all-sorry-we-couldnt-find') }}
+  </p>
+
+  win / mac /linux on desktop
+-->
+</div>
+{% endif %}
+<!--
+<br style="clear:both;">
+
+<h3> This entire change needs analytics / attribution </h3>
+
+
+<ul>
+  <li>product: {{product}}
+  <li>platform: {{platform}}
+</ul>
+
+
+</div> -->
