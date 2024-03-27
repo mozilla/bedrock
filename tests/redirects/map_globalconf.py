@@ -1289,5 +1289,7 @@ URLS = flatten(
         # Issue 14351
         url_test("/research/", "https://foundation.mozilla.org/research/"),
         url_test("/research/cc/", "https://foundation.mozilla.org/research/"),
+        # Issue 14222
+        url_test("/firefox/browsers/", "/firefox/"),
     )
 )

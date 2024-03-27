@@ -600,4 +600,6 @@ redirectpatterns = (
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
     # issue 14231
     redirect(r"^firefox/flashback/?$", "firefox"),
+    # issue 14222
+    redirect(r"^firefox/browsers/?$", "firefox"),
 )
