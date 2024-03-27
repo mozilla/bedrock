@@ -4,8 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "mozorg/contact/includes/macros.html" import map_image with context %}
-
 {% from "macros-protocol.html" import picto with context %}
 
 {% extends "base-protocol-mozilla.html" %}
@@ -32,6 +30,15 @@
     </header>
 
     <div class="hero-image">
+      {{ resp_img(
+        url='img/contact/osm/spaces/toronto-office-700.jpeg',
+        srcset={
+        'img/contact/osm/spaces/toronto-office-700.jpg': '500w',
+        'img/contact/osm/spaces/toronto-office-1200.jpg': '1200w',
+      },
+        optional_attributes={
+        }
+    )}}
     </div>
 
     <div class="page-content">

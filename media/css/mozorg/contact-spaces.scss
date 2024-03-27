@@ -51,17 +51,6 @@ $image-path: '/media/protocol/img';
 }
 
 /* -------------------------------------------------------------------------- */
-// Hero image
-
-.hero-image {
-    background-image: url('/media/img/contact/osm/spaces/toronto-office.jpeg');
-    background-size: cover;
-    height: 450px;
-    background-position: center -200px;
-    background-repeat: no-repeat;
-}
-
-/* -------------------------------------------------------------------------- */
 // Tab navigation
 
 .page-content {
@@ -76,11 +65,13 @@ $image-path: '/media/protocol/img';
 .category-tabs {
     @include bidi(((text-align, left, right),));
     @include text-body-sm;
+    display: flex;
 
     li {
         @include bidi(((margin, 0 $spacing-xs 0 0, 0 0 0 $spacing-xs),));
         display: inline-block;
         position: relative;
+        white-space: nowrap;
 
         &:last-child {
             @include bidi(((margin, 0, margin, 0),));
