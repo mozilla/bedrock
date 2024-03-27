@@ -1506,6 +1506,12 @@
     },
     {
       "files": [
+        "js/firefox/all/all-drill-init.es6.js"
+      ],
+      "name": "firefox_all_drill"
+    },
+    {
+      "files": [
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew"

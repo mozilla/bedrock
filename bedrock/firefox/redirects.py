@@ -33,6 +33,7 @@ def mobile_app(request, *args, **kwargs):
         "firefox-welcome-17-fr",
         "firefox-browsers-mobile-get-app",
         "firefox-browsers-mobile-focus",
+        "firefox-all",
     ]
 
     for p in product_options:

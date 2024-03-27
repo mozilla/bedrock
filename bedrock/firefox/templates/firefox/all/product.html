@@ -1,0 +1,77 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Choose product #}
+
+<h2 class="c-step-name">
+  1. {{ ftl('firefox-all-browser') }}
+  {% if product %}
+    <span class="c-step-choice">{{ product and product.name }}</span> <a href="TKTK" class="c-step-icon"><img alt="TKTK" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+  {% else %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% endif %}
+
+  {% if not product %}
+  <a id="icon-browser-help" href="#browser-help" class="c-button-help" title="{{ ftl('firefox-all-learn-about-firefox') }}">
+    {{ ftl('firefox-all-get-help') }}
+  </a>
+  {% endif %}
+
+
+</h2>
+
+{% if not product %}
+  <div class="c-step-contents">
+    <h3 class="c-product-title"><img src="{{ static('protocol/img/icons/desktop.svg') }}"> Desktop</h3>
+    <ul class="c-product-list">
+      <li class="release"><a href="{{ url('firefox.drilldown_product', product_slug='desktop-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
+      {% for p in products %}
+        {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
+          <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <h3 class="c-product-title"><img src="{{ static('protocol/img/icons/mobile.svg') }}"> Mobile</h3>
+
+    <ul class="c-product-list">
+      <li class="release"><a href="{{ url('firefox.drilldown_product', product_slug='mobile-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
+      {% for p in products %}
+        {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
+          <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+      <li class="ios-testflight"><a href="{{ url('firefox.ios.testflight') }}">Firefox iOS TestFlight</a></li>
+    </ul>
+  </div>
+
+  <div id="browser-help" class="c-help mzp-u-modal-content">
+    <h3>{{ ftl('firefox-all-learn-about-firefox') }}</h3>
+    <ul>
+      <li>
+        <h4 class="c-help-title"><a href="{{ url('firefox.new') }}">Firefox</a></h4>
+        <p class="c-help-desc">{{ ftl('firefox-all-the-standard-firefox') }}</p>
+      </li>
+      <li>
+        <h4 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#beta">Firefox <span>Beta</span></a></h4>
+        <p class="c-help-desc">{{ ftl('firefox-all-get-a-sneak-peek-at') }}</p>
+      </li>
+      <li>
+        <h4 class="c-help-title"><a href="{{ url('firefox.developer.index') }}">Firefox <span>Developer Edition</span></a></h4>
+        <p class="c-help-desc">{{ ftl('firefox-all-test-your-sites-against') }}</p>
+      </li>
+      <li>
+        <h4 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#nightly">Firefox <span>Nightly</span></a></h4>
+        <p class="c-help-desc">{{ ftl('firefox-all-the-pre-alpha-version') }}</p>
+      </li>
+      <li>
+        <h4 class="c-help-title"><a href="{{ url('firefox.enterprise.index') }}">Firefox <span>Extended Support Release</span></a></h4>
+        <p class="c-help-desc">{{ ftl('firefox-all-count-on-stability-and') }}</p>
+      </li>
+    </ul>
+  </div>
+
+{% endif %}

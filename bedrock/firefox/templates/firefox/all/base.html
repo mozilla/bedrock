@@ -1,0 +1,57 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% extends "firefox/base/base-protocol.html" %}
+
+{%- block page_title -%}
+  {{ ftl('firefox-all-download-the-firefox') }}
+{%- endblock -%}
+
+{%- block page_desc -%}
+  {{ ftl('firefox-all-everyone-deserves-access') }}
+{%- endblock -%}
+
+{% block page_css %}
+ {{ css_bundle('firefox_all_unified') }}
+{% endblock %}
+
+{% block old_ie_styles %}
+  {{ super() }}
+  {{ css_bundle('firefox_all_unified_old_ie') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+
+{% set campaign = "firefox-all" %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content">
+    <div class="c-product-info" {% if product %} data-current="{{ product.slug }}"{% endif %}>
+      <div class="c-intro">
+        <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
+        <p>{{ self.page_desc() }}</p>
+      </div>
+      <div class="c-steps">
+        {% block info %}
+        {% include 'firefox/all/product.html' %}
+        {% include 'firefox/all/platform.html' %}
+        {% include 'firefox/all/lang.html' %}
+        {% include 'firefox/all/download.html' %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_all_drill') }}
+{% endblock %}
