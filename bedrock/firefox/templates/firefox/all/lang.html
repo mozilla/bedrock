@@ -1,0 +1,28 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Choose language #}
+<h2 class="c-step-name {% if not (product and platform) %} t-step-disabled{% endif %}">
+  3. {{ ftl('firefox-all-language') }}
+  {% if product and platform and locale %}
+    <span class="c-step-choice">{{ locale_name }}</span> <a href="TKTK" class="c-step-icon"><img alt="TKTK" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+  {% elif product and platform %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+  {% endif %}
+</h2>
+
+{% if product and platform and not locale %}
+<div class="c-step-contents">
+  <h3 class="c-step-prompt">{{ ftl('firefox-all-select-your-preferred-language') }}<img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30"></h3>
+  <ul class="c-lang-list">
+    {% for locale, name in locales %}
+      <li><a href="{{ url('firefox.drilldown_locale', product_slug=product.slug, platform=platform, locale=locale) }}">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
