@@ -492,8 +492,8 @@ redirectpatterns = (
             "utm_campaign": "builders-redirect",
         },
     ),
-    # Issue 6824
-    redirect(r"^technology/?$", "https://labs.mozilla.org/"),
+    # Issue 6824, 14364
+    redirect(r"^technology/?$", "https://future.mozilla.org/"),
     # Issue 8668
     redirect(r"^contact/communities(/.*)?", "https://community.mozilla.org/groups/"),
     # Issue 8641
