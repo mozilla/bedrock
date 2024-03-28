@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.urls import re_path
+from django.urls import path
 
 import pytest
 
@@ -33,7 +33,7 @@ def test_split_path(path, result):
 
 
 # Test urlpatterns
-urlpatterns = [re_path(r"^test/$", lambda r: None, name="test.view")]
+urlpatterns = [path("test/", lambda r: None, name="test.view")]
 
 
 class FakePrefixer:

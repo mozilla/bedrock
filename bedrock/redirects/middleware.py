@@ -8,7 +8,7 @@ from .util import get_resolver
 
 
 class RedirectsMiddleware:
-    def __init__(self, get_response=None, resolver=None):
+    def __init__(self, get_response, resolver=None):
         self.get_response = get_response
         self.resolver = resolver or get_resolver()
 

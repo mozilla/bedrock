@@ -227,7 +227,7 @@ sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
     # Using the CachedStaticFilesStorage for tests breaks all the things.
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticFilesStorage"
     # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.

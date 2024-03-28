@@ -106,10 +106,6 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 # to load the internationalization machinery.
 USE_I18N = False
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
-USE_L10N = True
-
 USE_TZ = True
 
 USE_ETAGS = config("USE_ETAGS", default=str(not DEBUG), parser=bool)
@@ -495,13 +491,21 @@ CANONICAL_URL = "https://www.mozilla.org"
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        if DEBUG
+        else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
+
 MEDIA_URL = config("MEDIA_URL", default="/user-media/")
 MEDIA_ROOT = config("MEDIA_ROOT", default=path("media"))
 STATIC_URL = config("STATIC_URL", default="/media/")
 STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
-STATICFILES_STORAGE = (
-    "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-)
 STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",)
 STATICFILES_DIRS = (path("assets"),)
 if DEBUG:
@@ -645,7 +649,6 @@ DISABLE_SSL = config("DISABLE_SSL", default="true", parser=bool)
 SECURE_REFERRER_POLICY = config("SECURE_REFERRER_POLICY", default="strict-origin-when-cross-origin")
 SECURE_HSTS_SECONDS = config("SECURE_HSTS_SECONDS", default="0", parser=int)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_BROWSER_XSS_FILTER = config("SECURE_BROWSER_XSS_FILTER", default="true", parser=bool)
 SECURE_CONTENT_TYPE_NOSNIFF = config("SECURE_CONTENT_TYPE_NOSNIFF", default="true", parser=bool)
 SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=str(not DISABLE_SSL), parser=bool)
 SECURE_REDIRECT_EXEMPT = [
