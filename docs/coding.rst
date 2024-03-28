@@ -290,6 +290,19 @@ Release note templates live here: https://github.com/mozilla/bedrock/tree/main/b
 - Firefox Android: https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/
 - Firefox iOS: https://www.mozilla.org/en-US/firefox/ios/99.0/releasenotes/
 
+Optimizing Images
+-----------------
+
+Images can take a long time to load and eat up a lot of bandwidth. Always take care
+to optimize images before uploading them to the site. There are a number of great
+online resources available to help with this:
+
+- https://tinypng.com/
+- https://jakearchibald.github.io/svgomg/
+- https://squoosh.app/
+
+We also bundle the `svgo package <https://www.npmjs.com/package/svgo>`_ as a dev dependency,
+which can optimize SVGs on the command line.
 
 Embedding Images
 ----------------
