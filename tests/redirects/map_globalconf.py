@@ -187,7 +187,7 @@ URLS = flatten(
         url_test("/{m,{firefox/,}mobile}/faq/", "https://support.mozilla.org/products/mobile"),
         # bug 885799, 952429
         url_test("/projects/calendar/holidays.html", "https://www.thunderbird.net/calendar/holidays/"),
-        url_test("/en-US/projects/calendar/random/stuff/", "https://www.thunderbird.net/calendar/"),
+        url_test("/projects/calendar/random/stuff/", "https://www.thunderbird.net/calendar/"),
         # bug 1388914
         url_test("/thunderbird{,/}", "https://www.thunderbird.net/"),
         url_test("/thunderbird/channel/", "https://www.thunderbird.net/channel/"),
@@ -778,7 +778,7 @@ URLS = flatten(
         # bug 1034859
         url_test("/en-US/about/buttons/dude.jpg", "/media/img/careers/buttons/dude.jpg"),
         # bug 1003737
-        url_test("/de/impressum/", "/de/about/legal/impressum/"),
+        url_test("/de/impressum/", "/de/about/legal/impressum/", follow_redirects=True),
         # bug 1248393
         url_test("/de/about/legal/impressum/", status_code=requests.codes.ok),
         url_test("/{en-US,fr,ja}/about/legal/impressum/", "/de/about/legal/impressum/", status_code=requests.codes.found),

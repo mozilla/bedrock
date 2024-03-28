@@ -32,7 +32,7 @@ class TestReleaseViews(TestCase):
     def setUp(self):
         ProductRelease.objects.refresh()
         caches["release-notes"].clear()
-        self.activate("en-US")
+        self.activate_locale("en-US")
         self.factory = RequestFactory()
         self.request = self.factory.get("/")
 
@@ -370,7 +370,7 @@ class TestReleaseViews(TestCase):
         assert link.startswith(store_url % "org.mozilla.fenix")
 
     def test_check_url(self):
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             assert views.check_url("Firefox for Android", "45.0") == "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"
             assert views.check_url("Firefox for Android", "46.0") == "/en-US/firefox/android/46.0/system-requirements/"
             assert views.check_url("Firefox for iOS", "1.4") == "/en-US/firefox/ios/1.4/system-requirements/"
@@ -405,7 +405,7 @@ class TestReleaseNotesIndex(TestCase):
         firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
         with patch("bedrock.releasenotes.views.firefox_desktop", firefox_desktop):
             render_mock().render.return_value = HttpResponse("")
-            with self.activate("en-US"):
+            with self.activate_locale("en-US"):
                 self.client.get(reverse("firefox.releases.index"))
             releases = render_mock.call_args[0][2]["releases"]
             assert len(releases) == len(firefox_desktop.firefox_history_major_releases)
@@ -445,7 +445,7 @@ class TestReleaseNotesIndex(TestCase):
 
 class TestNotesRedirects(TestCase):
     def _test(self, url_from, url_to):
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             url = "/en-US" + url_from
         response = self.client.get(url)
         assert response.status_code == 302
@@ -510,7 +510,7 @@ class TestNotesRedirects(TestCase):
 
 class TestSysreqRedirect(TestCase):
     def _test(self, url_from, url_to):
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             url = "/en-US" + url_from
         response = self.client.get(url)
         assert response.status_code == 302

@@ -6,7 +6,6 @@ from django.conf import settings
 from django.urls import path, re_path
 
 from bedrock.mozorg.util import page
-from bedrock.redirects.util import redirect
 
 from . import views
 from .feeds import LatestPositionsFeed
@@ -21,7 +20,6 @@ urlpatterns = [
     path("diversity/", views.DiversityView.as_view(), name="careers.diversity"),
     path("teams/", views.TeamsView.as_view(), name="careers.teams"),
     path("locations/", views.LocationsView.as_view(), name="careers.locations"),
-    redirect(r"^internships/$", "careers.home", name="careers.internships", permanent=False, locale_prefix=False),
 ]
 
 
