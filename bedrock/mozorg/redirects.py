@@ -571,6 +571,7 @@ redirectpatterns = (
     redirect(r"^contact/spaces/beijing/?$", "/contact/spaces/"),
     redirect(r"^contact/spaces/san-francisco/?$", "/contact/spaces/"),
     redirect(r"^contact/spaces/toronto/?$", "/contact/spaces/"),
+    redirect(r"^contact/spaces/paris/?$", "/contact/spaces/"),
     # Issue 14255
     redirect(r"^rise25/?$", "/rise25/nominate/"),
 )

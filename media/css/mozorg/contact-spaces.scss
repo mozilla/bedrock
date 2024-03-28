@@ -101,7 +101,7 @@ $image-path: '/media/protocol/img';
             (text-align, center, center),
         ));
         position: absolute;
-        top: -40px;
+        top: -46px;
 
         li {
             width: 120px;
@@ -148,12 +148,6 @@ $image-path: '/media/protocol/img';
     .locations-wrapper {
         ul {
             margin-bottom: $spacing-xl;
-
-            li {
-                .mzp-c-picto-image {
-                    // width: 150px;
-                }
-            }
         }
     }
 

@@ -85,8 +85,6 @@ urlpatterns = (
     page("about/policy/transparency/jan-jun-2023/", "mozorg/about/policy/transparency/jan-jun-2023.html"),
     page("contact/", "mozorg/contact/contact-landing.html"),
     page("contact/spaces/", "mozorg/contact/spaces/spaces-landing.html"),
-    # Paris contact page redirect to contact landing page
-    redirect(r"^contact/spaces/paris/$", "mozorg.contact.spaces.spaces-landing", locale_prefix=False),
     page("MPL/", "mozorg/mpl/index.html"),
     page("MPL/historical/", "mozorg/mpl/historical.html"),
     page("MPL/license-policy/", "mozorg/mpl/license-policy.html"),
