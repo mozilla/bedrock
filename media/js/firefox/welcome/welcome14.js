@@ -12,8 +12,8 @@
     copyButton.addEventListener('click', copyCouponCode);
 
     async function copyCouponCode() {
-        let couponCode = copyButton.dataset.code;
-        let successMsg = copyButton.dataset.success;
+        const couponCode = copyButton.dataset.code;
+        const successMsg = copyButton.dataset.success;
 
         try {
             await navigator.clipboard.writeText(couponCode);

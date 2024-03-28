@@ -16,7 +16,7 @@ describe('mozilla-run.js', function () {
         });
 
         it('should execute callback for modern browsers', function () {
-            var obj = {
+            const obj = {
                 callback: function () {} // eslint-disable-line no-empty-function
             };
             window.site.isModernBrowser = true;

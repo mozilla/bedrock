@@ -120,7 +120,7 @@ describe('fxa-form.js', function () {
             );
 
             return FxaForm.init().then(() => {
-                var form = document.getElementById('fxa-email-form');
+                const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
                 );
@@ -152,7 +152,7 @@ describe('fxa-form.js', function () {
             /* eslint-enable camelcase */
 
             return FxaForm.init().then(function () {
-                var form = document.getElementById('fxa-email-form');
+                const form = document.getElementById('fxa-email-form');
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'
                 );
@@ -209,7 +209,7 @@ describe('fxa-form.js', function () {
             });
             /* eslint-enable camelcase */
             return FxaForm.init().then(function () {
-                var form = document.getElementById('fxa-email-form');
+                const form = document.getElementById('fxa-email-form');
                 form.querySelector('#fxa-email-field').value = 'a@a.com';
                 expect(form.getAttribute('action')).toEqual(
                     'https://accounts.firefox.com/'

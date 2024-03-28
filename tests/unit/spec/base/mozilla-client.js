@@ -374,7 +374,7 @@ describe('mozilla-client.js', function () {
     describe('_isFirefoxUpToDate', function () {
         const h = document.documentElement;
 
-        var test = (strict, isESR, userVer) => {
+        const test = (strict, isESR, userVer) => {
             return expect(
                 window.Mozilla.Client._isFirefoxUpToDate(strict, isESR, userVer)
             );
