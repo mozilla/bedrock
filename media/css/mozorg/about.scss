@@ -126,33 +126,15 @@ $city-image-size: 106px;
     &.c-city-toronto::before {
         background-image: url('/media/img/mozorg/about/city-toronto.png');
     }
-
-    &,
-    &:hover,
-    &:focus,
-    &:active {
-        color: $color-black;
-        text-decoration: none;
-
-        .c-city-title {
-            color: $color-link;
-        }
-    }
 }
 
 .c-city-title {
-    @include text-body-sm;
+    @include text-body-md;
     border-bottom: 2px solid #000;
     padding-bottom: $spacing-sm;
     margin: 0 auto $spacing-sm;
     max-width: 200px;
     text-decoration: none;
-
-    .c-city:hover &,
-    .c-city:focus &,
-    .c-city:active & {
-        text-decoration: underline;
-    }
 }
 
 .c-city-desc {
