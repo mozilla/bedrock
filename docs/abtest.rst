@@ -178,7 +178,6 @@ not Traffic Cop should initiate.
 
     if (isApprovedToRun()) {
         const cop = new TrafficCop({
-            id: 'experiment-name',
             variations: {
                 'entrypoint_experiment=experiment-name&entrypoint_variation=a': 10,
                 'entrypoint_experiment=experiment-name&entrypoint_variation=b': 10

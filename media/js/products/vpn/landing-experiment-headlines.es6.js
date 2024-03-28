@@ -50,7 +50,6 @@ const initTrafficCop = () => {
         // Avoid entering automated tests into random experiments.
         if (isApprovedToRun()) {
             const fife = new TrafficCop({
-                id: 'vpn-headlines',
                 variations: {
                     'entrypoint_experiment=vpn-headlines&entrypoint_variation=1': 33, // control
                     'entrypoint_experiment=vpn-headlines&entrypoint_variation=2': 33, // v2

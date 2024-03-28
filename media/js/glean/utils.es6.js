@@ -83,10 +83,6 @@ const Utils = {
         const referrer = typeof str === 'string' ? str : document.referrer;
         const url = Utils.filterNewsletterURL(referrer);
 
-        if (typeof window.Mozilla.Analytics !== 'undefined') {
-            return Mozilla.Analytics.getReferrer(url);
-        }
-
         return url;
     },
 
