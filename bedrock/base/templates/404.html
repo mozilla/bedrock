@@ -34,12 +34,12 @@
         {{ ftl('not-found-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
       </li>
       <li>
-        <img class="list-icon" alt="" src="{{ static('protocol/img/logos/firefox/logo-flat.svg') }}" width="30" height="30">
-        {{ ftl('not-found-page-explore-the-entire-family-for', explore=url('firefox')) }}
-      </li>
-      <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
         {{ ftl('not-found-page-download-the-firefox-browser', download=url('firefox.new')) }}
+      </li>
+      <li>
+        <img class="list-icon" alt="" src="{{ static('protocol/img/icons/default-browser.svg') }}" width="30" height="30">
+        {{ ftl('not-found-page-donate-to-mozilla-reclaim-from', donate="https://foundation.mozilla.org/?form=donate-404") }}
       </li>
     </ul>
   </main>

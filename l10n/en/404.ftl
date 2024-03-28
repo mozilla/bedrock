@@ -14,9 +14,9 @@ not-found-page-go-back = Go Back
 not-found-page-learn-about-mozilla-the-non = <a href="{ $about }">Learn</a> about { -brand-name-mozilla }, the not-for-profit behind { -brand-name-firefox }.
 
 # Variables:
-#   $explore (url) - link to https://www.mozilla.org/firefox/
-not-found-page-explore-the-entire-family-for = <a href={ $explore }>Explore</a> the entire family for { -brand-name-firefox } products designed to respect your privacy.
-
-# Variables:
 #   $download (url) - link to https://www.mozilla.org/firefox/new/
 not-found-page-download-the-firefox-browser = <a href={ $download }>Download</a> the { -brand-name-firefox } browser for your mobile device or desktop
+
+# Variables:
+#   $donate (url) - link to https://foundation.mozilla.org/?form=donate-404
+not-found-page-donate-to-mozilla-reclaim-from = <a href={ $donate }>Donate</a> to the { -brand-name-mozilla-foundation } and reclaim the internet from big tech.
