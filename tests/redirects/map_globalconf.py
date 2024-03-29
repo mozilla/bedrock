@@ -1288,7 +1288,7 @@ URLS = flatten(
         url_test("/{santa-locator,santalocator}/", "/"),
         # Issue 14351
         url_test("/research/", "https://foundation.mozilla.org/research/"),
-        url_test("/research/cc/", "https://foundation.mozilla.org/research/"),
+        url_test("/research/cc/", "https://foundation.mozilla.org/research/library/?topics=187"),
         # Issue 14222
         url_test("/firefox/browsers/", "/firefox/"),
     )
