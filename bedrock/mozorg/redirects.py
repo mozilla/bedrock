@@ -568,5 +568,5 @@ redirectpatterns = (
     redirect(r"^rise25/?$", "/rise25/nominate/"),
     # Issue 14351
     redirect(r"^research/?$", "https://foundation.mozilla.org/research/"),
-    redirect(r"^research/cc/?$", "https://foundation.mozilla.org/research/"),
+    redirect(r"^research/cc/?$", "https://foundation.mozilla.org/research/library/?topics=187"),
 )
