@@ -1,0 +1,30 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/browsers/compare/base-article.html" %}
+
+{% block page_image %}{{ static('img/firefox/compare/meta-img-chrome.jpg') }}{% endblock %}
+{% block page_desc %}{{ ftl('compare-chome-read-our-comparison') }}{% endblock %}
+
+{% block article_title %}{{ ftl('compare-chrome-firefox-vs-google-chrome') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('compare-chrome-firefoxs-default-privacy-settings', fingerprint='href="%s"'|safe|format(url('firefox.features.fingerprinting')), adblocker='href="%s"'|safe|format(url('firefox.features.adblocker'))) }}</p>
+
+<h2>{{ ftl('compare-chrome-we-block-trackers-by-default') }}</h2>
+
+<p>{{ ftl('compare-chrome-in-fact-by-default-chrome-monitors') }} <small><a href="https://support.google.com/chrome/answer/13355898#zippy=%2Cmanage-ad-topics" rel="external noopener" target="_blank">{{ ftl('compare-shared-source') }}</a></small></p>
+
+<p>{{ ftl('compare-chrome-chrome-allows-other-websites-to') }} <small><a href="https://support.google.com/chrome/answer/13355898#zippy=%2Cmanage-site-suggested-ads" rel="external noopener" target="_blank">{{ ftl('compare-shared-source') }}</a></small></p>
+
+<h2>{{ ftl('compare-chrome-google-runs-the-worlds-largest') }}</h2>
+
+<p>{{ ftl('compare-shared-since-we-dont-have-to-make') }}</p>
+
+<h2>{{ ftl('compare-shared-its-easy-to-switch') }}</h2>
+
+<p>{{ ftl('compare-chrome-switching-to-firefox-is-easy', howto='href="https://support.mozilla.org/kb/switching-chrome-firefox%s" rel="external noopener" target="_blank"'|safe|format(utm_params)) }}</p>
+{% endblock article_content %}

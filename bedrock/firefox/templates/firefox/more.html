@@ -201,6 +201,50 @@
 
     <div class="mzp-l-card-third">
       {{ card(
+        title=ftl('comparing-firefox-chrome'),
+        ga_title='Compare Chrome',
+        image=resp_img('img/firefox/more/firefox-chrome.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('big-isnt-always'),
+        link_url=url('firefox.browsers.compare.chrome')
+      )}}
+
+      {{ card(
+        title=ftl('comparing-firefox-edge'),
+        ga_title='Compare Edge',
+        image=resp_img('img/firefox/more/firefox-edge.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('youll-never-guess'),
+        link_url=url('firefox.browsers.compare.edge')
+      )}}
+
+      {{ card(
+        title=ftl('comparing-firefox-brave'),
+        ga_title='Compare Brave',
+        image=resp_img('img/firefox/more/firefox-brave.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('be-bold-and'),
+        link_url=url('firefox.browsers.compare.brave')
+      )}}
+    </div>
+
+    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('comparing-firefox-safari'),
+        ga_title='Compare Safari',
+        desc=ftl('you-dont-have'),
+        image=resp_img('img/firefox/more/firefox-safari.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        link_url=url('firefox.browsers.compare.safari')
+      )}}
+
+      {{ card(
+        title=ftl('comparing-firefox-opera'),
+        ga_title='Compare Opera',
+        image=resp_img('img/firefox/more/firefox-opera.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('be-free-to'),
+        link_url=url('firefox.browsers.compare.opera')
+      )}}
+    </div>
+
+    <div class="mzp-l-card-third">
+      {{ card(
         title=ftl('firefox-more-fingerprinter-blocking'),
         ga_title='Fingerprinter Blocking',
         image=resp_img('img/firefox/more/fingerprint.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),

@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from 'macros.html' import sub_nav with context %}
+
+{# Subnav menu for /firefox/browsers/compare/ #}
+{{ sub_nav(
+  title={
+    'text': ftl('compare-shared-compare-firefox'),
+    'href': url('firefox.browsers.compare.index'),
+    'cta_name': "Compare Firefox"
+  },
+  links=[
+  {
+    'text': 'Chrome',
+    'href': url('firefox.browsers.compare.chrome'),
+    'cta_name': "Chrome"
+  },
+  {
+    'text': 'Edge',
+    'href': url('firefox.browsers.compare.edge'),
+    'cta_name': "Edge"
+  },
+  {
+    'text': 'Safari',
+    'href': url('firefox.browsers.compare.safari'),
+    'cta_name': "Safari"
+  },
+  {
+    'text': 'Opera',
+    'href': url('firefox.browsers.compare.opera'),
+    'cta_name': "Opera"
+  },
+  {
+    'text': 'Brave',
+    'href': url('firefox.browsers.compare.brave'),
+    'cta_name': "Brave"
+  }]
+) }}
