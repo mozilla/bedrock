@@ -365,6 +365,7 @@ def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
     platform_name = None
     locale_name = None
     download_url = None
+    template_name = "firefox/all/products.html"  # TKTK
 
     # The mobile products don't drill down, so short-circuit them here.
     if product:
@@ -419,20 +420,23 @@ def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
         context.update(
             locales=locales,
         )
+        template_name = "firefox/all/installer.html"
 
     # Show locales.
     elif product_slug:
         context.update(
             platforms=product["product"].platforms(product["channel"]),
         )
+        template_name = "firefox/all/lang.html"
 
     # Show products.
     else:
         context.update(
             products=[{"slug": k, "name": v["name"]} for k, v in product_map.items()],
         )
+        template_name = "firefox/all/products.html"
 
-    return l10n_utils.render(request, "firefox/all-drilldown.html", context, ftl_files=ftl_files)
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
 
 def detect_channel(version):

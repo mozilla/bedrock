@@ -1,0 +1,93 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% extends "firefox/all/base.html" %}
+
+{% block main %}
+        {# Choose product #}
+        <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-which-browser-would') }}
+          <a id="icon-browser-help" href="#browser-help" class="c-button-help" title="{{ ftl('firefox-all-learn-about-firefox') }}">
+            {{ ftl('firefox-all-get-help') }}
+          </a>
+        </h2>
+        {% if product %}
+          <p>{{ product and product.name }}</p>
+        {% else %}
+          <h3><img src="{{ static('protocol/img/icons/desktop.svg') }}"> Desktop</h3>
+          <ul class="c-product-list">
+            {% for p in products %}
+              {% if p.slug.startswith('desktop-release') %}
+                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+
+          <p>Or get a non-standard version</p>
+
+          <ul class="c-product-list">
+            {% for p in products %}
+              {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
+                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+
+          <h3><img src="{{ static('protocol/img/icons/mobile.svg') }}"> Mobile</h3>
+          <ul class="c-product-list">
+            <li ><a href="">Firefox</a></li>
+          </ul>
+          <!-- <p>
+            {{ google_play_button(href=android_url, id='playStoreLink-primary') }} {{ apple_app_store_button(href=ios_url) }}
+          </p>
+          <p>
+            <a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send link" data-cta-position="step-one">{{ ftl('firefox-all-product-send-link') }}</a>
+          </p> -->
+
+          <p>Or get a non-standard version</p>
+
+          <ul class="c-product-list">
+            {% for p in products %}
+              {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
+                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <ul class="c-product-list">
+            <li class=""><a href="{{ url('firefox.ios.testflight') }}">Firefox iOS TestFlight</a></li>
+          </ul>
+        {% endif %}
+      </div>
+{% endblock %}
+
+{% block modal %}
+<div id="installer-help" class="c-help mzp-u-modal-content">
+  <ul>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-choose-a-64-bit-installer') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-windows-installers-for') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-arm64-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-arm64-installers-optimized') }}
+      </p>
+    </li>
+  </ul>
+</div>
+{% endblock %}

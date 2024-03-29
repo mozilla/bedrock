@@ -1,0 +1,54 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+{% set android_url = play_store_url('firefox', 'firefox-all') %}
+{% set ios_url = app_store_url('firefox', 'firefox-all') %}
+
+{%- block page_title -%}
+  {{ ftl('firefox-all-download-the-firefox') }}
+{%- endblock -%}
+
+{%- block page_desc -%}
+  {{ ftl('firefox-all-everyone-deserves-access') }}
+{%- endblock -%}
+
+{% block page_css %}
+ {{ css_bundle('firefox_all_unified') }}
+{% endblock %}
+
+{% block old_ie_styles %}
+  {{ super() }}
+  {{ css_bundle('firefox_all_unified_old_ie') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="mzp-l-content">
+    <div id="product-select-form" class="c-product-select-form" data-supported="true"{% if product %} data-current="{{ product.slug }}"{% endif %}>
+      <div class="c-intro">
+        <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
+        <p>{{ self.page_desc() }}</p>
+      </div>
+      <div class="c-selection-form">
+        {% block main %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% block modal %}
+{% endblock %}
+
+{% endblock %}

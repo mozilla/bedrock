@@ -91,6 +91,31 @@ $image-path: '/media/protocol/img';
 
 .c-product-list {
     padding-left: 36px;
+
+    li {
+        background: center left / contain no-repeat;
+        padding-left: 2em;
+        margin-bottom: 1em;
+    }
+
+    .desktop-release,
+    .desktop-esr {
+        background-image: url('#{$image-path}/logos/firefox/browser/logo.svg');
+    }
+
+    .desktop-beta,
+    .android-beta {
+        background-image: url('#{$image-path}/logos/firefox/browser/beta/logo.svg');
+    }
+
+    .desktop-developer {
+        background-image: url('#{$image-path}/logos/firefox/browser/developer/logo.svg');
+    }
+
+    .desktop-nightly,
+    .android-nightly {
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo.svg');
+    }
 }
 
 .c-selection-form {
