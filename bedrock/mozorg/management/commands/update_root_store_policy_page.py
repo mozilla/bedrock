@@ -14,14 +14,11 @@ import requests
 from bs4 import BeautifulSoup
 from markdown_it import MarkdownIt
 
-from bedrock.utils.management.decorators import alert_sentry_on_exception
-
 SOURCE_CERT_POLICY_DOCUMENT_URL = "https://raw.githubusercontent.com/mozilla/pkipolicy/master/rootstore/policy.md"
 OUTPUT_FILE_PATH = "bedrock/mozorg/templates/mozorg/about/governance/policies/security/certs/policy.html"
 WRAPPING_TEMPLATE_PATH = "bedrock/mozorg/templates/mozorg/about/governance/policies/security/certs/_policy_skeleton.html"
 
 
-@alert_sentry_on_exception
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
