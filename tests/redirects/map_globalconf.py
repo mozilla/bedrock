@@ -1223,6 +1223,11 @@ URLS = flatten(
         url_test("/firefox/welcome/3/", "/account/"),
         url_test("/firefox/mobile/get-app/", "/firefox/browsers/mobile/get-app/"),
         url_test("/contact/spaces/paris/", "/contact/spaces/"),
+        # Issue 14245
+        url_test("/contact/spaces/berlin/", "/contact/spaces/"),
+        url_test("/contact/spaces/beijing/", "/contact/spaces/"),
+        url_test("/contact/spaces/san-francisco/", "/contact/spaces/"),
+        url_test("/contact/spaces/toronto/", "/contact/spaces/"),
         # Issue 13924
         url_test("/foundation/annualreport/{,2022/}", "https://stateof.mozilla.org/"),
         # Issue 14186

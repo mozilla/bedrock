@@ -564,6 +564,12 @@ redirectpatterns = (
     redirect(r"^firefox/products/?$", "/products/"),
     # Issue 14252
     redirect(r"^stories/?$", "https://blog.mozilla.org/category/products/firefox/"),
+    # Issue 14245
+    redirect(r"^contact/spaces/berlin/?$", "/contact/spaces/"),
+    redirect(r"^contact/spaces/beijing/?$", "/contact/spaces/"),
+    redirect(r"^contact/spaces/san-francisco/?$", "/contact/spaces/"),
+    redirect(r"^contact/spaces/toronto/?$", "/contact/spaces/"),
+    redirect(r"^contact/spaces/paris/?$", "/contact/spaces/"),
     # Issue 14255
     redirect(r"^rise25/?$", "/rise25/nominate/"),
     # Issue 14351
