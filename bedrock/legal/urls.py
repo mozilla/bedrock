@@ -76,5 +76,20 @@ urlpatterns = (
         LegalDocView.as_view(template_name="legal/amo-policies.html", legal_doc_name="amo_policies"),
         name="legal.amo-policies",
     ),
+    path(
+        "formulaic-content-policies/",
+        LegalDocView.as_view(template_name="legal/formulaic-content-policies.html", legal_doc_name="formulaic_content_policies"),
+        name="legal.formulaic-content-policies",
+    ),
+    path(
+        "formulaic-tos/",
+        LegalDocView.as_view(template_name="legal/formulaic-tos.html", legal_doc_name="formulaic_tos"),
+        name="legal.formulaic-tos",
+    ),
+    path(
+        "formulaic-privacy-notice/",
+        LegalDocView.as_view(template_name="legal/formulaic-privacy-notice.html", legal_doc_name="formulaic_privacy_notice"),
+        name="legal.formulaic-privacy-notice",
+    ),
     path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
 )
