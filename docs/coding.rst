@@ -290,28 +290,19 @@ Release note templates live here: https://github.com/mozilla/bedrock/tree/main/b
 - Firefox Android: https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/
 - Firefox iOS: https://www.mozilla.org/en-US/firefox/ios/99.0/releasenotes/
 
-
 Optimizing Images
 -----------------
 
 Images can take a long time to load and eat up a lot of bandwidth. Always take care
-to optimize images before uploading them to the site.
+to optimize images before uploading them to the site. There are a number of great
+online resources available to help with this:
 
-The script ``img.sh`` can be used to optimize images locally on the command line:
+- https://tinypng.com/
+- https://jakearchibald.github.io/svgomg/
+- https://squoosh.app/
 
-#. Before you run it for the first time you will need to run ``npm install`` to install dependencies
-#. Add the image files to git's staging area ``git add *``
-#. Run the script ``./bin/img.sh``
-#. The optimized files will not automatically be staged, so be sure to add them before commiting
-
-The script will:
-
-- optimize JPG and PNG files using `tinypng <https://tinypng.com/>`_ (
-    - this step is optional since running compression on the same images over and over degrades them)
-    - you will be prompted to add a `TinyPNG API key <https://tinypng.com/developers>`_
-- optimize SVG images locally with svgo
-- check that SVGs have a viewbox (needed for IE support)
-- check that images that end in ``-high-res`` have low res versions as well
+We also bundle the `svgo package <https://www.npmjs.com/package/svgo>`_ as a dev dependency,
+which can optimize SVGs on the command line.
 
 Embedding Images
 ----------------
