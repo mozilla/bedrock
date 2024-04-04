@@ -103,8 +103,6 @@ redirectpatterns = (
     # wm.o/videos/
     redirect(r"webmaker/?$", "https://webmaker.org"),
     redirect(r"webmaker/videos/?$", "https://webmaker.org/videos/"),
-    # Bug 819317 /gameon/ -> gameon.m.o
-    redirect(r"gameon/?$", "https://gameon.mozilla.org"),
     # Bug 822817 /telemetry/ ->
     # https://wiki.mozilla.org/Telemetry/FAQ
     redirect(r"telemetry/?$", "https://wiki.mozilla.org/Telemetry/FAQ"),
