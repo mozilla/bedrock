@@ -706,12 +706,16 @@ cookie that is set applies for all ``.mozilla.org`` domains, so other sites such
 Where can I view Glean data?
 ----------------------------
 
-In early 2024 we will have an automated web property dashboard for www.mozilla.org in
-Looker. This dashboard will feature things like sessions and click events, once those
-are standardized in the Glean SDK. Until then, we have a temporary `STMO dashboard`_
-(sql.telemetry.mozilla.org) for querying page load events. We also have a data pipeline
-`event monitoring dashboard`_ in Looker that is updated hourly. This is useful for
-monitoring event patterns, spikes, and errors.
+The easiest place to see Glean data is in Looker:
+
+- `Website sessions dashboard`_
+- `Event monitoring dashboard`_
+
+.. Note::
+
+    Right now the above dashboards show only non-production traffic. This will be switched
+    to production once we're ready. Click event data will also be recorded in a future
+    update.
 
 It is also possible to create more complex queries for Glean events using any of our
 standard Telemetry tools. The easiest way to do this is via the `Glean Dictionary`_.
@@ -736,7 +740,7 @@ event data.
 .. _data review: https://wiki.mozilla.org/Data_Collection
 .. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
 .. _websites privacy notice: https://www.mozilla.org/privacy/websites/
-.. _STMO dashboard: https://sql.telemetry.mozilla.org/dashboard/bedrock-landing-page-dashboard?p_date=d_last_30_days
-.. _event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=non-prod
+.. _Website sessions dashboard: https://mozilla.cloud.looker.com/dashboards/websites::website_sessions?App+ID=bedrock&Submission+Date=7+day&Country+Name=&External+Referrer=&App+Channel=non-prod&UA+-+Browser=&Traffic+Source=
+.. _Event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=non-prod
 .. _Glean Dictionary: https://dictionary.telemetry.mozilla.org/apps/bedrock
 .. _events ping: https://dictionary.telemetry.mozilla.org/apps/bedrock/pings/events
