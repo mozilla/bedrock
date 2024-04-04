@@ -17,26 +17,23 @@
         {% else %}
           <h3><img src="{{ static('protocol/img/icons/desktop.svg') }}"> Desktop</h3>
           <ul class="c-product-list">
-            {% for p in products %}
-              {% if p.slug.startswith('desktop-release') %}
-                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
-              {% endif %}
-            {% endfor %}
+            <li class="release"><a href="{{ url('firefox.drilldown_product', product_slug='desktop-release') }}">Firefox</a></li>
           </ul>
+          <div class="c-product-channels">
+            <p>Or get a non-standard version</p>
 
-          <p>Or get a non-standard version</p>
-
-          <ul class="c-product-list">
-            {% for p in products %}
-              {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
-                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+            <ul class="c-product-list">
+              {% for p in products %}
+                {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
+                  <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
 
           <h3><img src="{{ static('protocol/img/icons/mobile.svg') }}"> Mobile</h3>
           <ul class="c-product-list">
-            <li ><a href="">Firefox</a></li>
+            <li class="release"><a href="{{ url('firefox.drilldown_product', product_slug='mobile-release') }}">Firefox</a></li>
           </ul>
           <!-- <p>
             {{ google_play_button(href=android_url, id='playStoreLink-primary') }} {{ apple_app_store_button(href=ios_url) }}
@@ -45,18 +42,20 @@
             <a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send link" data-cta-position="step-one">{{ ftl('firefox-all-product-send-link') }}</a>
           </p> -->
 
-          <p>Or get a non-standard version</p>
+          <div class="c-product-channels">
+            <p>Or get a non-standard version</p>
 
-          <ul class="c-product-list">
-            {% for p in products %}
-              {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
-                <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          <ul class="c-product-list">
-            <li class=""><a href="{{ url('firefox.ios.testflight') }}">Firefox iOS TestFlight</a></li>
-          </ul>
+            <ul class="c-product-list">
+              {% for p in products %}
+                {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
+                  <li class="{{ p.slug }}"><a href="{{ url('firefox.drilldown_product', product_slug=p.slug) }}">{{ p.name }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <ul class="c-product-list">
+              <li class=""><a href="{{ url('firefox.ios.testflight') }}">Firefox iOS TestFlight</a></li>
+            </ul>
+          </div>
         {% endif %}
       </div>
 {% endblock %}

@@ -89,15 +89,21 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-sm;
 }
 
+.c-product-channels {
+    padding-left: $spacing-xl;
+}
+
 .c-product-list {
     padding-left: 36px;
 
-    li {
+    li,
+    .release {
         background: center left / contain no-repeat;
         padding-left: 2em;
         margin-bottom: 1em;
     }
 
+    .release,
     .desktop-release,
     .desktop-esr {
         background-image: url('#{$image-path}/logos/firefox/browser/logo.svg');

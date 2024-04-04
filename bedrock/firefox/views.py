@@ -365,7 +365,7 @@ def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
     platform_name = None
     locale_name = None
     download_url = None
-    template_name = "firefox/all/products.html"  # TKTK
+    template_name = "firefox/all/product.html"  # TKTK
 
     # The mobile products don't drill down, so short-circuit them here.
     if product:
@@ -434,7 +434,7 @@ def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
         context.update(
             products=[{"slug": k, "name": v["name"]} for k, v in product_map.items()],
         )
-        template_name = "firefox/all/products.html"
+        template_name = "firefox/all/product.html"
 
     return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
