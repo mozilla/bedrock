@@ -60,11 +60,6 @@ newsletters-please-select-country = Please select a country or region
 # Form field error message
 newsletters-please-select-language = Please select a language
 
-# Form field label
-newsletters-format = Format:
-
-newsletters-text-subscribers-will-receive = Text subscribers will receive an email twice a year to confirm continuation of the subscription. Those emails may include HTML.
-
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/managing-account-data
 

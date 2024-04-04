@@ -454,20 +454,6 @@ const NewsletterManagementForm = {
         // Set language and country selection
         _setOption(langOptions, finalLang);
         _setOption(countryOptions, finalCountry);
-
-        // Finally, set the preferred email format
-        if (userData.format) {
-            const text = document.querySelector('input[value="T"]');
-            const html = document.querySelector('input[value="H"]');
-
-            if (userData.format === 'H') {
-                html.checked = true;
-                text.checked = false;
-            } else {
-                text.checked = true;
-                html.checked = false;
-            }
-        }
     },
 
     /**
@@ -507,7 +493,7 @@ const NewsletterManagementForm = {
     /**
      * Redirects for `/newsletter/updated/` page on successful unsubscribe
      * from all newsletters. The `?unsub` param is required to display the
-     * unsubscription survey form.
+     * unsubscribe survey form.
      */
     onUnsubscribeAll: () => {
         const updated = _form.getAttribute('data-updated-url');
@@ -529,6 +515,10 @@ const NewsletterManagementForm = {
         const errors = [];
         errors.push(NewsletterManagementForm.handleFormError(msg));
         NewsletterManagementForm.renderErrorMessages(errors);
+
+        if (!msg && window.console && window.console.error) {
+            console.error(e); // eslint-disable-line no-console
+        }
     },
 
     /**
@@ -645,9 +635,6 @@ const NewsletterManagementForm = {
     serialize: () => {
         const country = _form.querySelector('select[name="country"]').value;
         const lang = _form.querySelector('#id_lang').value;
-        const format = document.querySelector(
-            'input[name="format"]:checked'
-        ).value;
         const newsletters = encodeURIComponent(
             NewsletterManagementForm.getCheckedNewsletters().join(',')
         );
@@ -656,7 +643,7 @@ const NewsletterManagementForm = {
             _form.querySelector('input[name="source_url"]').value
         );
 
-        return `format=${format}&country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y&source_url=${sourceUrl}`;
+        return `country=${country}&lang=${lang}&newsletters=${newsletters}&optin=Y&source_url=${sourceUrl}`;
     },
 
     /**
