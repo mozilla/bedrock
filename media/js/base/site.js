@@ -78,40 +78,6 @@
             }
         },
 
-        getArchType: function (ua, pf) {
-            pf = pf === '' ? '' : pf || navigator.platform;
-            ua = ua || navigator.userAgent;
-
-            var re;
-
-            // ARM
-            re = /armv\d+/i;
-            if (re.test(pf) || re.test(ua)) {
-                return RegExp.lastMatch.toLowerCase();
-            }
-
-            // ARMv8 64-bit
-            if (/aarch64/.test(pf)) {
-                return 'armv8';
-            }
-
-            // We can't detect the type info. It's probably x86 but unsure.
-            // For example, iOS may be running on ARM-based Apple A7 processor
-            return 'x86';
-        },
-
-        // Returns true if CPU is an ARM processor.
-        isARM: function (architecture) {
-            var arch =
-                typeof architecture === 'string'
-                    ? architecture
-                    : window.site.archType;
-            if (arch && (arch === 'arm' || arch.match(/armv(\d+)/))) {
-                return true;
-            }
-            return false;
-        },
-
         getArchSize: function (ua, pf) {
             pf = pf === '' ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
@@ -183,12 +149,6 @@
                 }
             }
 
-            // Used to display a custom installation message and
-            // SUMO link on the /firefox/download/thanks/ page.
-            if (window.site.isARM()) {
-                classString += ' arm';
-            }
-
             // Used for 64bit download link on Linux and Firefox Beta on Windows.
             if (archSize === 64) {
                 classString += ' x64';
@@ -214,7 +174,6 @@
 
         platform: 'other',
         platformVersion: undefined,
-        archType: 'x64',
         archSize: 32,
         fxSupported: true
     };
@@ -231,7 +190,6 @@
 
     function getHighEntropyFromUAString() {
         window.site.platformVersion = window.site.getPlatformVersion();
-        window.site.archType = window.site.getArchType();
         window.site.archSize = window.site.getArchSize();
     }
 
@@ -245,11 +203,7 @@
             typeof navigator.userAgentData.getHighEntropyValues === 'function'
         ) {
             navigator.userAgentData
-                .getHighEntropyValues([
-                    'architecture',
-                    'bitness',
-                    'platformVersion'
-                ])
+                .getHighEntropyValues(['bitness', 'platformVersion'])
                 .then(function (ua) {
                     if (ua.platformVersion) {
                         if (window.site.platform === 'windows') {
@@ -260,10 +214,6 @@
                         } else {
                             window.site.platformVersion = ua.platformVersion;
                         }
-                    }
-
-                    if (ua.architecture) {
-                        window.site.archType = ua.architecture;
                     }
 
                     if (ua.bitness) {
