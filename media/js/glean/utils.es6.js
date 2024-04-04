@@ -6,7 +6,7 @@
 
 import Glean from '@mozilla/glean/web';
 import GleanMetrics from '@mozilla/glean/metrics';
-import { recordCustomPageMetrics } from './page.es6';
+import { pageEvent, recordCustomPageMetrics } from './page.es6';
 import {
     consentRequired,
     getConsentCookie,
@@ -128,7 +128,8 @@ const Utils = {
 
         Glean.initialize('bedrock', telemetryEnabled, {
             channel: channel,
-            serverEndpoint: endpoint
+            serverEndpoint: endpoint,
+            enableAutoElementClickEvents: true
         });
     },
 
@@ -150,6 +151,40 @@ const Utils = {
         });
     },
 
+    initHelpers: () => {
+        if (typeof window.Mozilla === 'undefined') {
+            window.Mozilla = {};
+        }
+
+        /**
+         * Creates global helpers on the window.Mozilla.Glean
+         * namespace, so that external JS bundles can trigger
+         * custom interaction events.
+         */
+        window.Mozilla.Glean = {
+            /**
+             * Note: pageEvent is not currently used in the codebase,
+             * but will be useful for future implementations once we
+             * align it more closely to follow the now standardized
+             * Glean click event metrics.
+             */
+            pageEvent: (obj) => {
+                try {
+                    pageEvent(obj);
+                } catch (e) {
+                    // do nothing
+                }
+            },
+            clickEvent: (obj) => {
+                try {
+                    GleanMetrics.recordElementClick(obj);
+                } catch (e) {
+                    // do nothing
+                }
+            }
+        };
+    },
+
     /**
      * Initialize Glean and fire page load event only if telemetry
      * is enabled.
@@ -160,6 +195,9 @@ const Utils = {
 
         if (telemetryEnabled) {
             Utils.initPageLoadEvent();
+
+            // Initialize global clickEvent helpers
+            Utils.initHelpers();
         }
     },
 

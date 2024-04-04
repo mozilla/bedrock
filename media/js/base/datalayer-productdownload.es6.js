@@ -231,6 +231,15 @@ TrackProductDownload.sendEvent = (eventObject) => {
     // we also want to keep the old event name around for a few months to help with the transition
     // this can be deleted as part of the UA cleanup
     TrackProductDownload.sendOldEvent(eventObject);
+
+    // track event in glean.js
+    if (typeof window.Mozilla.Glean !== 'undefined') {
+        window.Mozilla.Glean.clickEvent({
+            id: eventObject.event,
+            type: eventObject.platform,
+            label: eventObject.release_channel
+        });
+    }
 };
 
 /**
