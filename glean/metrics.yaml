@@ -161,38 +161,3 @@ page:
           The type of event.
           Example: 'get-firefox-banner'
         type: string
-
-element:
-  clicked:
-    type: event
-    description: |
-      An event containing metrics related to an element
-      in the page that was clicked.
-    data_sensitivity:
-      - web_activity
-    bugs:
-      - https://github.com/mozilla/bedrock/issues/10746
-    data_reviews:
-      - https://bugzilla.mozilla.org/show_bug.cgi?id=1767442
-    notification_emails:
-      - marketing-websites-team@mozilla.com
-    expires: never
-    extra_keys:
-      label:
-        description: |
-          Description of the page element that was
-          clicked. Examples: 'Download Firefox',
-          'Get Mozilla VPN'.
-        type: string
-      type:
-        description: |
-          The type of element that was clicked.
-          Examples: 'macOS, release, en-US',
-          '12-month plan'.
-        type: string
-      position:
-        description: |
-          The position of the element in the page.
-          Examples: 'Primary', 'Secondary',
-          'Navigation', 'Footer'.
-        type: string

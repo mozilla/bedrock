@@ -648,51 +648,33 @@ It will also first lint the schema files.
     before being made active in production. Therefore anytime we make new additions
     to these files, those changes should also undergo review.
 
-Using Glean events in individual page bundles
----------------------------------------------
+Recording Glean click events
+----------------------------
 
-Our analytics code for Glean lives in a single bundle in the base template,
-which is intended to be shared across all web pages. This bundle automatically
-initializes Glean and records page hit events. It also creates some helpers
-that can be used across different page bundles to record interaction events
-such as link clicks and form submissions.
+Glean will automatically record click events on any HTML element that has at least
+one of the following data attributes:
 
-The ``Mozilla.Glean.pageEvent()`` helper can be used to record events that are
-specific to a page, such as successful form completions:
+- ``data-glean-id``: A string indicating an identifier of the clicked element.
+- ``data-glean-type``: A string indicating the type of the clicked element.
+- ``data-glean-label``: A string indicating the label of the clicked element.
 
-.. code-block:: javascript
-
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEvent({
-            label: 'newsletter-sign-up-success',
-            type: 'mozilla-and-you' // type is optional
-        });
-    }
-
-It can also be used to record non-interaction events that are not directly
-initiated by a visitor:
-
-.. code-block:: javascript
-
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEvent({
-            label: 'firefox-default',
-            nonInteraction: true
-        });
-    }
-
-The ``Mozilla.Glean.clickEvent()`` helper can be used to record click events
-that are specific to an element in a page, such as a link or button.
+Bedrock also has a custom ``Mozilla.Glean.clickEvent()`` helper that can be used
+to record click events directly via JavaScript:
 
 .. code-block:: javascript
 
     if (typeof window.Mozilla.Glean !== 'undefined') {
         window.Mozilla.Glean.clickEvent({
-            label: 'firefox-download',
-            type: 'macOS, release, en-US', // type is optional
-            position: 'primary' // position is optional
+            id: 'firefox_download',
+            type: 'macos',
+            label: 'release'
         });
     }
+
+.. Important::
+
+    When calling ``Mozilla.Glean.clickEvent()`` directly, make sure to always
+    check if the ``Mozilla.Glean`` object is defined first.
 
 How can visitors opt out of Glean?
 ----------------------------------

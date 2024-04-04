@@ -55,8 +55,8 @@ const WaitListForm = {
 
         // Glean
         if (typeof window.Mozilla.Glean !== 'undefined') {
-            window.Mozilla.Glean.pageEvent({
-                label: 'newsletter-sign-up-success',
+            window.Mozilla.Glean.clickEvent({
+                id: 'newsletter_subscribe',
                 type: newsletter
             });
         }

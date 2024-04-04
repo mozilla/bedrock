@@ -164,6 +164,7 @@ describe('utils.js', function () {
 
                 spyOn(Utils, 'initGlean');
                 spyOn(Utils, 'initPageLoadEvent');
+                spyOn(Utils, 'initHelpers');
             });
 
             it('should return wait for a mozConsentStatus event before initializing Glean', function () {
@@ -186,6 +187,7 @@ describe('utils.js', function () {
 
                 expect(Utils.initGlean).toHaveBeenCalledWith(true);
                 expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+                expect(Utils.initHelpers).toHaveBeenCalled();
             });
 
             it('should init Glean to send a deletion request if mozConsentStatus event rejects analytics', function () {
@@ -203,6 +205,7 @@ describe('utils.js', function () {
 
                 expect(Utils.initGlean).toHaveBeenCalledWith(false);
                 expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+                expect(Utils.initHelpers).not.toHaveBeenCalled();
             });
 
             it('should load Glean on /thanks/ if a consent cookie exists that accepts analytics', function () {
@@ -220,6 +223,7 @@ describe('utils.js', function () {
 
                 expect(Utils.initGlean).toHaveBeenCalledWith(true);
                 expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+                expect(Utils.initHelpers).toHaveBeenCalled();
             });
 
             it('should not load GTM on /thanks/ if a consent cookie exists that rejects analytics', function () {
@@ -252,6 +256,7 @@ describe('utils.js', function () {
 
                 expect(Utils.initGlean).not.toHaveBeenCalled();
                 expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+                expect(Utils.initHelpers).not.toHaveBeenCalled();
             });
         });
 
@@ -263,12 +268,14 @@ describe('utils.js', function () {
 
                 spyOn(Utils, 'initGlean');
                 spyOn(Utils, 'initPageLoadEvent');
+                spyOn(Utils, 'initHelpers');
             });
 
             it('should init Glean and fire page load by default', function () {
                 Utils.bootstrapGlean();
                 expect(Utils.initGlean).toHaveBeenCalled();
                 expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+                expect(Utils.initHelpers).toHaveBeenCalled();
             });
 
             it('should init Glean to send a deletion request if consent cookie rejects analytics', function () {
@@ -283,6 +290,7 @@ describe('utils.js', function () {
                 Utils.bootstrapGlean();
                 expect(Utils.initGlean).toHaveBeenCalledWith(false);
                 expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+                expect(Utils.initHelpers).not.toHaveBeenCalled();
             });
         });
     });

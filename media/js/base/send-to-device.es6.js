@@ -185,9 +185,9 @@ SendToDevice.prototype.onFormSuccess = function () {
 
     // Glean
     if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.pageEvent({
-            label: 'send-to-device-success',
-            type: 'email-address'
+        window.Mozilla.Glean.clickEvent({
+            id: 'send_to_device',
+            type: 'email'
         });
     }
 };
