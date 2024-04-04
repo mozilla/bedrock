@@ -398,7 +398,7 @@ redirectpatterns = (
     redirect(r"^projects/venkman(/.*)?$", "https://developer.mozilla.org/docs/Archive/Mozilla/Venkman"),
     redirect(r"^projects/webservices/examples/babelfish-wsdl(/.*)?$", "https://developer.mozilla.org/docs/SOAP_in_Gecko-based_Browsers"),
     redirect(r"^projects/xbl(/.*)?$", "https://www.w3.org/TR/xbl/"),
-    redirect(r"^projects/xforms(/.*)?$", "https://wiki.mozilla.org/XForms"),
+    redirect(r"^projects/xforms(/?\D+)?$", "https://wiki.mozilla.org/XForms"),
     redirect(r"^projects/xpcom(/.*)?$", "https://developer.mozilla.org/docs/Mozilla/Tech/XPCOM"),
     redirect(r"^projects/xpinstall(/.*)?$", "https://developer.mozilla.org/docs/Archive/Mozilla/XPInstall"),
     redirect(r"^projects/xslt(/.*)?$", "https://developer.mozilla.org/docs/Web/XSLT"),
