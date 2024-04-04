@@ -406,7 +406,6 @@ SUPPORTED_NONLOCALES = [
     "images",
     "contribute.json",
     "credits",
-    "gameon",
     "robots.txt",
     ".well-known",
     "telemetry",
