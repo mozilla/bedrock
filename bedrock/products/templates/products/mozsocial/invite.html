@@ -34,7 +34,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       {{ newsletter_form.newsletters|safe }}
     </div>
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
-    <input type="hidden" name="format" id="format-html" value="H">
 
     <h1 class="mzp-c-form-header">{{ ftl('mozsocial-invite-welcome-to-mozillasocial') }}</h1>
     <p class="mzp-c-form-subtitle">{{ ftl('mozsocial-invite-please-join-our-waitlist') }}</p>

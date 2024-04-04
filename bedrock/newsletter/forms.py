@@ -10,7 +10,7 @@ from django.forms import widgets
 
 from product_details import product_details
 
-from bedrock.mozorg.forms import FORMATS, EmailInput, PrivacyWidget, strip_parenthetical
+from bedrock.mozorg.forms import EmailInput, PrivacyWidget, strip_parenthetical
 from bedrock.newsletter import utils
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
@@ -130,7 +130,6 @@ class ManageSubscriptionsForm(forms.Form):
     @param kwargs: Other standard form kwargs
     """
 
-    format = forms.ChoiceField(widget=SimpleRadioSelect, choices=FORMATS, initial="H")
     remove_all = forms.BooleanField(required=False)
 
     country = forms.ChoiceField(choices=[], required=False)  # will set choices based on locale
@@ -183,7 +182,6 @@ class NewsletterFooterForm(forms.Form):
     # currently used on /contribute/friends/ (custom markup)
     first_name = forms.CharField(widget=forms.TextInput, required=False)
     last_name = forms.CharField(widget=forms.TextInput, required=False)
-    fmt = forms.ChoiceField(widget=SimpleRadioSelect, choices=FORMATS, initial="H")
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.CharField(required=False)
     newsletters = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple())

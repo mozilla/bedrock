@@ -11,9 +11,8 @@ from django.forms import widgets
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
-from lib.l10n_utils.fluent import ftl, ftl_lazy
+from lib.l10n_utils.fluent import ftl
 
-FORMATS = (("H", ftl_lazy("newsletter-form-html")), ("T", ftl_lazy("newsletter-form-text")))
 LANGS_TO_STRIP = ["en-US", "es"]
 PARENTHETIC_RE = re.compile(r" \([^)]+\)$")
 

@@ -13,8 +13,6 @@ class NewsletterEmbedForm(Region):
     _email_locator = (By.ID, "id_email")
     _form_details_locator = (By.ID, "newsletter-details")
     _country_locator = (By.ID, "id_country")
-    _html_format_locator = (By.ID, "format-html")
-    _text_format_locator = (By.ID, "format-text")
     _privacy_policy_checkbox_locator = (By.ID, "privacy")
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="privacy"] a')
     _submit_button_locator = (By.ID, "newsletter-submit")
@@ -52,22 +50,6 @@ class NewsletterEmbedForm(Region):
     def select_country(self, value):
         el = self.find_element(*self._country_locator)
         Select(el).select_by_visible_text(value)
-
-    @property
-    def html_format_selected(self):
-        el = self.find_element(*self._html_format_locator)
-        return el.is_selected()
-
-    def select_html_format(self):
-        self.find_element(*self._html_format_locator).click()
-
-    @property
-    def text_format_selected(self):
-        el = self.find_element(*self._text_format_locator)
-        return el.is_selected()
-
-    def select_text_format(self):
-        self.find_element(*self._text_format_locator).click()
 
     @property
     def privacy_policy_accepted(self):
