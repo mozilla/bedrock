@@ -397,7 +397,7 @@ DOTLANG_CACHE = config("DOTLANG_CACHE", default="1800" if DEBUG else "600", pars
 DEV_GEO_COUNTRY_CODE = config("DEV_GEO_COUNTRY_CODE", default="US")
 
 # Paths that don't require a locale code in the URL.
-# matches the first url component (e.g. mozilla.org/gameon/)
+# matches the first url component (e.g. mozilla.org/credits)
 SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
