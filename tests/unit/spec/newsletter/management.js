@@ -65,11 +65,6 @@ describe('management.es6.js', function () {
                                 <option value="fr">Français</option>
                             </select>
                         </div>
-                        <div>
-                            <label for="id_format_0">Format:</label>
-                            <label for="id_format_0"><input type="radio" name="format" value="H" required="" id="id_format_0" checked="">HTML</label>
-                            <label for="id_format_1"><input type="radio" name="format" value="T" required="" id="id_format_1">Text</label>
-                        </div>
                     </div>
                 </div>
                 <div class="c-column">
@@ -289,7 +284,6 @@ describe('management.es6.js', function () {
             const nonFxaUser = {
                 email: 'example@example.com',
                 country: 'us',
-                format: 'H',
                 lang: 'en',
                 newsletters: [
                     'about-mozilla',
@@ -359,17 +353,13 @@ describe('management.es6.js', function () {
             expect(lang.options[lang.selectedIndex].value).toEqual(
                 userData.lang
             );
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(userData.format);
         });
 
         it('should derive country and lang from page locale when missing from user data', function () {
             const country = document.getElementById('id_country');
             const lang = document.getElementById('id_lang');
             const partialUserData = {
-                email: 'example@example.com',
-                format: 'H'
+                email: 'example@example.com'
             };
 
             spyOn(NewsletterManagementForm, 'getPageLocale').and.returnValue(
@@ -381,17 +371,13 @@ describe('management.es6.js', function () {
             );
             expect(country.options[country.selectedIndex].value).toEqual('gb');
             expect(lang.options[lang.selectedIndex].value).toEqual('en');
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(partialUserData.format);
         });
 
         it('should default to English / US when page locale info does not match available options', function () {
             const country = document.getElementById('id_country');
             const lang = document.getElementById('id_lang');
             const partialUserData = {
-                email: 'example@example.com',
-                format: 'T'
+                email: 'example@example.com'
             };
 
             spyOn(NewsletterManagementForm, 'getPageLocale').and.returnValue(
@@ -403,9 +389,6 @@ describe('management.es6.js', function () {
             );
             expect(country.options[country.selectedIndex].value).toEqual('us');
             expect(lang.options[lang.selectedIndex].value).toEqual('en');
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(partialUserData.format);
         });
 
         it('should default to English / US when user data does not match available options', function () {
@@ -414,7 +397,6 @@ describe('management.es6.js', function () {
             const partialUserData = {
                 email: 'example@example.com',
                 country: 'xx',
-                format: 'T',
                 lang: 'xx'
             };
 
@@ -427,9 +409,6 @@ describe('management.es6.js', function () {
             );
             expect(country.options[country.selectedIndex].value).toEqual('us');
             expect(lang.options[lang.selectedIndex].value).toEqual('en');
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(partialUserData.format);
         });
 
         it('should default to English / US when user data does not match available options', function () {
@@ -438,7 +417,6 @@ describe('management.es6.js', function () {
             const partialUserData = {
                 email: 'example@example.com',
                 country: 'xx',
-                format: 'T',
                 lang: 'xx'
             };
 
@@ -451,9 +429,6 @@ describe('management.es6.js', function () {
             );
             expect(country.options[country.selectedIndex].value).toEqual('us');
             expect(lang.options[lang.selectedIndex].value).toEqual('en');
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(partialUserData.format);
         });
 
         it('should fuzzy match language codes returned from basket', function () {
@@ -462,7 +437,6 @@ describe('management.es6.js', function () {
             const partialUserData = {
                 email: 'example@example.com',
                 country: 'es',
-                format: 'H',
                 lang: 'es-ES'
             };
 
@@ -475,9 +449,6 @@ describe('management.es6.js', function () {
             );
             expect(country.options[country.selectedIndex].value).toEqual('es');
             expect(lang.options[lang.selectedIndex].value).toEqual('es');
-            expect(
-                document.querySelector('input[name="format"]:checked').value
-            ).toEqual(partialUserData.format);
         });
     });
 
@@ -748,7 +719,6 @@ describe('management.es6.js', function () {
             const nonFxAUser = {
                 email: 'example@example.com',
                 country: 'us',
-                format: 'H',
                 lang: 'en',
                 newsletters: [
                     'about-mozilla',
@@ -796,7 +766,6 @@ describe('management.es6.js', function () {
             const nonFxAUser = {
                 email: 'example@example.com',
                 country: 'us',
-                format: 'H',
                 lang: 'en',
                 newsletters: [
                     'about-mozilla',
@@ -1005,7 +974,7 @@ describe('management.es6.js', function () {
                     `https://basket.mozilla.org/news/user/${TOKEN_MOCK}/`
                 );
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
+                    'country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1026,7 +995,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
+                    'country=us&lang=en&newsletters=mozilla-and-you%2Cmozilla-foundation%2Ccommon-voice%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,
@@ -1049,7 +1018,7 @@ describe('management.es6.js', function () {
                 document.querySelector('button[type="submit"]').click();
 
                 expect(xhrRequests[0].requestBody).toEqual(
-                    'format=H&country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
+                    'country=us&lang=en&newsletters=mozilla-foundation%2Cabout-mozilla&optin=Y&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Fexisting%2F'
                 );
                 xhrRequests[0].respond(
                     200,
