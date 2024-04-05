@@ -218,7 +218,7 @@ def newsletter_subscribe(request):
         if form.is_valid():
             data = form.cleaned_data
 
-            kwargs = {"format": data["fmt"]}
+            kwargs = {}
             # add optional data
             kwargs.update(
                 {
@@ -258,7 +258,7 @@ def newsletter_subscribe(request):
                 errors.append(ftl("newsletter-form-please-enter-a-valid"))
             if "privacy" in form.errors:
                 errors.append(ftl("newsletter-form-you-must-agree-to"))
-            for fieldname in ("newsletters", "fmt", "lang", "country"):
+            for fieldname in ("newsletters", "lang", "country"):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
 
