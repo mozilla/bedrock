@@ -451,6 +451,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-125.scss"
+      ],
+      "name": "firefox_whatsnew_125"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -1547,6 +1553,18 @@
         "js/firefox/whatsnew/whatsnew-124-na-pdf.js"
       ],
       "name": "firefox_whatsnew_124_na_pdf"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-125-na.js"
+      ],
+      "name": "firefox_whatsnew_125_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-125-eu.js"
+      ],
+      "name": "firefox_whatsnew_125_eu"
     },
     {
       "files": [
