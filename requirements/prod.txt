@@ -12,9 +12,9 @@ apscheduler==3.10.4 \
     --hash=sha256:e6df071b27d9be898e486bc7940a7be50b4af2e9da7c08f0744a96d4bd4cef4a \
     --hash=sha256:fb91e8a768632a4756a585f79ec834e0e27aad5860bac7eaa523d9ccefd87661
     # via -r requirements/prod.in
-asgiref==3.7.2 \
-    --hash=sha256:89b2ef2247e3b562a16eef663bc0e2e703ec6468e2fa8a5cd61cd449786d4f6e \
-    --hash=sha256:9e0ce3aa93a819ba5b45120216b23878cf6e8525eb3848653452b4192b92afed
+asgiref==3.8.1 \
+    --hash=sha256:3e1e3ecc849832fe52ccf2cb6686b7a55f82bb1d6aee72a58826471390335e47 \
+    --hash=sha256:c343bd80a0bec947a9860adb4c432ffa7db769836c64238fc34bdc3fec84d590
     # via
     #   django
     #   django-cors-headers
@@ -51,9 +51,9 @@ boto3==1.34.65 \
     --hash=sha256:b611de58ab28940a36c77d7ef9823427ebf25d5ee8277b802f9979b14e780534 \
     --hash=sha256:db97f9c29f1806cf9020679be0dd5ffa2aff2670e28e0e2046f98b979be498a4
     # via -r requirements/prod.in
-botocore==1.34.65 \
-    --hash=sha256:399a1b1937f7957f0ee2e0df351462b86d44986b795ced980c11eb768b0e61c5 \
-    --hash=sha256:3b0012d7293880c0a4883883047e93f2888d7317b5e9e8a982a991b90d951f3e
+botocore==1.34.75 \
+    --hash=sha256:06113ee2587e6160211a6bd797e135efa6aa21b5bde97bf455c02f7dff40203c \
+    --hash=sha256:1d7f683d99eba65076dfb9af3b42fa967c64f11111d9699b65757420902aa002
     # via
     #   boto3
     #   s3transfer
@@ -853,9 +853,9 @@ pillow==10.2.0 \
     --hash=sha256:f379abd2f1e3dddb2b61bc67977a6b5a0a3f7485538bcc6f39ec76163891ee48 \
     --hash=sha256:fe4c15f6c9285dc54ce6553a3ce908ed37c8f3825b5a51a15c91442bb955b868
     # via -r requirements/prod.in
-pycparser==2.21 \
-    --hash=sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9 \
-    --hash=sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206
+pycparser==2.22 \
+    --hash=sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6 \
+    --hash=sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc
     # via cffi
 pygithub==2.2.0 \
     --hash=sha256:41042ea53e4c372219db708c38d2ca1fd4fadab75475bac27d89d339596cfad1 \
