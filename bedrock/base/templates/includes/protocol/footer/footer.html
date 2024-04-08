@@ -39,9 +39,6 @@
           </h5>
           <ul class="mzp-c-footer-list">
             <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-text="Privacy Hub">{{ ftl('footer-privacy-hub', fallback='footer-privacy') }}</a></li>
-          {% if ftl_has_messages('footer-browser-comparison') %}
-            <li><a href="{{ url('firefox.browsers.compare.index') }}" data-link-type="footer" data-link-text="Browser Comparison">{{ ftl('footer-browser-comparison') }}</a></li>
-          {% endif %}
             <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-type="footer" data-link-text="Brand Standards">{{ ftl('footer-brand-standards') }}</a></li>
           </ul>
         </section>

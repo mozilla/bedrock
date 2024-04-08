@@ -407,7 +407,7 @@ redirectpatterns = (
     redirect(r"^quality(/.*)?$", "http://quality.mozilla.org/"),
     # Bug 654614 /blocklist -> addons.m.o/blocked
     redirect(r"^blocklist(/.*)?$", "https://addons.mozilla.org/blocked/"),
-    redirect(r"^products/firebird/compare/?$", "/firefox/browsers/compare/"),
+    redirect(r"^products/firebird/compare/?$", "firefox.new"),
     redirect(r"^products/firebird/?$", "firefox"),
     redirect(r"^products/firebird/download/$", "firefox.new"),
     redirect(r"^products/firefox/add-engines\.html$", "https://addons.mozilla.org/search-engines.php"),
@@ -507,7 +507,7 @@ redirectpatterns = (
     redirect(r"^firefox/browsers/mobile/compare/?$", "firefox.browsers.mobile.index"),
     redirect(r"^firefox/ios/?$", "firefox.browsers.mobile.ios"),
     # issue 14142
-    redirect(r"^firefox/browsers/compare/ie/?$", "firefox.browsers.compare.index"),
+    redirect(r"^firefox/browsers/compare(/.*)?$", "firefox.new"),
     # issue 9502
     redirect(r"^firefox/quantum/?", "/firefox/browsers/quantum/"),
     # bug 1421584, issue 7491
