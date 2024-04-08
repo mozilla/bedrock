@@ -67,7 +67,6 @@ def test_newsletter_sign_up_success(page_class, base_url, selenium):
     page.newsletter.expand_form()
     page.newsletter.type_email("success@example.com")
     page.newsletter.select_country("United Kingdom")
-    page.newsletter.select_text_format()
     page.newsletter.accept_privacy_policy()
     page.newsletter.click_sign_me_up()
     assert page.newsletter.sign_up_successful
@@ -97,7 +96,6 @@ def test_newsletter_sign_up_failure(page_class, base_url, selenium):
     page.newsletter.expand_form()
     page.newsletter.type_email("failure@example.com")
     page.newsletter.select_country("United Kingdom")
-    page.newsletter.select_text_format()
     page.newsletter.accept_privacy_policy()
     page.newsletter.click_sign_me_up(expected_result="error")
     assert page.newsletter.is_form_error_displayed
