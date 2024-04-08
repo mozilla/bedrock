@@ -42,9 +42,7 @@
 {% endblock %}
 
 {% block page_banner %}
-  {%- if (LANG == 'de' or LANG.startswith('en-')) and show_pocket_banner -%}
-    {% include 'includes/banners/pocket-pencil-banner.html' %}
-  {% elif LANG == 'en-US' and switch('monitor-plus-banner') %}
+  {% if LANG == 'en-US' and switch('monitor-plus-banner') %}
     {% include 'includes/banners/monitor-plus.html' %}
   {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
@@ -279,9 +277,7 @@
 
 {% block js %}
   {{ js_bundle('newsletter') }}
-  {% if show_pocket_banner %}
-    {{ js_bundle('pocket-banner') }}
-  {% endif %}
+
   {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
     {{ js_bundle('monitor-banner') }}
   {% endif %}

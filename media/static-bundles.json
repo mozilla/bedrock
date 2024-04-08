@@ -1853,13 +1853,6 @@
     {
       "files": [
         "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/banner-init.js"
-      ],
-      "name": "pocket-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
         "js/mozorg/home/monitor-banner-init.js"
       ],
       "name": "monitor-banner"
