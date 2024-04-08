@@ -23,7 +23,6 @@
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
-{% set show_pocket_banner = switch("pocket-best-of-2023-banner") %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -31,9 +30,6 @@
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
 
-  {% if show_pocket_banner %}
-    {{ css_bundle('pocket-best-of')}}
-  {% endif %}
   {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
     {{ css_bundle('monitor-banner')}}
   {% endif %}
@@ -241,9 +237,7 @@
   </section>
 
   <!-- Mid-page promo -->
-  {% if LANG == 'de' or LANG.startswith('en-') and show_pocket_banner %}
-    {% include 'mozorg/home/includes/pocket-best-of.html'%}
-  {% elif LANG == 'en-US' and switch("monitor-plus-banner") %}
+  {% if LANG == 'en-US' and switch("monitor-plus-banner") %}
     {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
   {% else %}
     {% include 'mozorg/home/includes/featured-vpn.html' %}
