@@ -142,19 +142,6 @@
     </div>
 
   </section>
-  <section class="c-browser-compare mzp-l-content mzp-t-content-lg">
-    {% call split(
-      image=resp_img('img/firefox/browsers/dev.png',
-        srcset={ 'img/firefox/browsers/dev-high-res.png': '2x' },
-        optional_attributes={ 'class': 'mzp-c-split-media-asset'}
-      ),
-      block_class='t-compare'
-    ) %}
-      <h2>{{ ftl('browsers-mobile-see-how-firefox-for-desktop-compare') }}</h2>
-      <p class="c-compare-title mzp-has-zap-06">{{ ftl('browsers-mobile-see-how-firefox-for-desktop-strong') }}</p>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.compare.index') }}" data-cta-type="link" data-cta-text="Compare">{{ ftl('browsers-mobile-compare') }}</a></p>
-    {% endcall %}
-  </section>
 
   {% include 'mozorg/includes/mozilla-account-form-promo.html' %}
 

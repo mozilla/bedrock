@@ -562,7 +562,13 @@ URLS = flatten(
         url_test("/firefox/browsers/mobile/compare", "/firefox/browsers/mobile/"),
         url_test("/newsletter/ios/", "/firefox/browsers/mobile/ios/"),
         # issue 14142
-        url_test("/firefox/browsers/compare/ie/", "/firefox/browsers/compare/"),
+        url_test("/firefox/browsers/compare/ie/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/brave/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/chrome/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/edge/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/safari/", "/firefox/new/"),
+        url_test("/firefox/browsers/compare/opera/", "/firefox/new/"),
         # bug 818323
         url_test("/projects/security/known-vulnerabilities.html", "/security/known-vulnerabilities/"),
         url_test("/projects/security/older-vulnerabilities.html", "/security/known-vulnerabilities/older-vulnerabilities/"),

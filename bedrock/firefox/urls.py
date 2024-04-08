@@ -161,36 +161,6 @@ urlpatterns = (
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
     path("firefox/mac/", views.PlatformViewMac.as_view(), name="firefox.mac"),
     path("firefox/windows/", views.PlatformViewWindows.as_view(), name="firefox.windows"),
-    page(
-        "firefox/browsers/compare/",
-        "firefox/browsers/compare/index.html",
-        ftl_files=["firefox/browsers/compare/index", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/brave/",
-        "firefox/browsers/compare/brave.html",
-        ftl_files=["firefox/browsers/compare/brave", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/chrome/",
-        "firefox/browsers/compare/chrome.html",
-        ftl_files=["firefox/browsers/compare/chrome", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/edge/",
-        "firefox/browsers/compare/edge.html",
-        ftl_files=["firefox/browsers/compare/edge", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/opera/",
-        "firefox/browsers/compare/opera.html",
-        ftl_files=["firefox/browsers/compare/opera", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/safari/",
-        "firefox/browsers/compare/safari.html",
-        ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
-    ),
     # Issue 10182
     page("firefox/browsers/mobile/", "firefox/browsers/mobile/index.html", ftl_files=["firefox/browsers/mobile/index"]),
     page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),

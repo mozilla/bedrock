@@ -776,20 +776,6 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/compare/compare.scss"
-      ],
-      "name": "compare"
-    },
-    {
-      "files": [
-        "css/firefox/compare/compare.scss",
-        "css/firefox/compare/compare-details.scss"
-      ],
-      "name": "compare-details"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/welcome.scss"
       ],
       "name": "firefox_welcome"
@@ -1726,12 +1712,6 @@
         "js/newsletter/country-init.es6.js"
       ],
       "name": "newsletter-country"
-    },
-    {
-      "files": [
-        "js/firefox/compare-details.js"
-      ],
-      "name": "firefox_compare_details"
     },
     {
       "files": [
