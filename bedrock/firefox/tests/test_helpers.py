@@ -185,14 +185,15 @@ class TestDownloadButtons(TestCase):
         )
 
         list = doc(".download-list li")
-        assert list.length == 7
+        assert list.length == 8
         assert pq(list[0]).attr("class") == "os_win"
         assert pq(list[1]).attr("class") == "os_win64-msi"
         assert pq(list[2]).attr("class") == "os_win64-aarch64"
         assert pq(list[3]).attr("class") == "os_win-msi"
         assert pq(list[4]).attr("class") == "os_osx"
         assert pq(list[5]).attr("class") == "os_linux64"
-        assert pq(list[6]).attr("class") == "os_linux"
+        assert pq(list[6]).attr("class") == "os_linux64-aarch64"
+        assert pq(list[7]).attr("class") == "os_linux"
         # stub disabled for now for non-en-US locales
         # bug 1339870
         # assert 'stub' in pq(pq(list[1]).find('a')[0]).attr('href')
@@ -468,14 +469,15 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc(".download-platform-list li")
-        assert list.length == 7
+        assert list.length == 8
         assert pq(list[0]).attr("class") == "os_win"
         assert pq(list[1]).attr("class") == "os_win64-msi"
         assert pq(list[2]).attr("class") == "os_win64-aarch64"
         assert pq(list[3]).attr("class") == "os_osx"
         assert pq(list[4]).attr("class") == "os_linux64"
-        assert pq(list[5]).attr("class") == "os_linux"
-        assert pq(list[6]).attr("class") == "os_win-msi"
+        assert pq(list[5]).attr("class") == "os_linux64-aarch64"
+        assert pq(list[6]).attr("class") == "os_linux"
+        assert pq(list[7]).attr("class") == "os_win-msi"
 
         links = doc(".download-platform-list a")
 
