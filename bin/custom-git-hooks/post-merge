@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+import subprocess
+
+WARNING = "\033[93m"
+COMMAND = "\033[1m\033[92m"
+RESET = "\033[0m"
+
+
+def check_for_dependency_changes():
+    diff_pre_merge_head_with_current_head = "git diff ORIG_HEAD HEAD --quiet --exit-code -- package*.json requirements/*.txt"
+    exit_code = subprocess.call(diff_pre_merge_head_with_current_head.split())
+
+    if exit_code == 1:
+        print(
+            WARNING,
+            "Dependency files have changed! Remember to install new dependencies with",
+            COMMAND,
+            "make preflight",
+            RESET,
+        )
+
+
+if __name__ == "__main__":
+    check_for_dependency_changes()

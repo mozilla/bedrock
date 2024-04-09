@@ -181,4 +181,13 @@ preflight:
 clean-local-deps:
 	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps
+# Done explicitly to avoid surprises
+install-custom-git-hooks:
+	cp bin/custom-git-hooks/post-merge .git/hooks/post-merge
+	chmod u+x .git/hooks/post-merge
+
+# Done explicitly to avoid surprises
+uninstall-custom-git-hooks:
+	rm .git/hooks/post-merge
+
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks
