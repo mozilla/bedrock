@@ -8,7 +8,11 @@ const client = Mozilla.Client;
 const footerCta = document.querySelector('.c-feature-footer');
 
 (function () {
-    if (footerCta && client.isFirefoxDesktop) {
+    if (
+        (footerCta && client.isFirefoxDesktop) ||
+        (footerCta && client.isFirefoxAndroid) ||
+        (footerCta && client.isFirefoxiOS)
+    ) {
         footerCta.parentNode.removeChild(footerCta);
     }
 })(window.Mozilla);
