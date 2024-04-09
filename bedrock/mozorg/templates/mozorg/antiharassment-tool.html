@@ -100,7 +100,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       {{ newsletter_form.newsletters|safe }}
     </div>
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
-    <input type="hidden" name="format" id="format-html" value="H">
     <input type="hidden" name="country" id="id_country" value="us">
     <input type="hidden" name="lang" id="id_lang" value="en">
     <fieldset class="mzp-c-newsletter-content">
@@ -118,17 +117,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           placeholder="yourname@example.com">
       </div>
       <div id="newsletter-details" class="mzp-c-newsletter-details">
-        <fieldset class="mzp-u-inline">
-          <legend>Format</legend>
-          <p>
-            <label for="format-html" class="mzp-u-inline">
-              <input type="radio" id="format-html" name="format" value="H" checked="">HTML
-            </label>
-            <label for="format-text" class="mzp-u-inline">
-              <input type="radio" id="format-text" name="format" value="T">Text
-            </label>
-          </p>
-        </fieldset>
         <p>
           <label for="privacy" class="mzp-u-inline">
             <input type="checkbox" id="privacy" name="privacy" required="" aria-required="true">I’m okay with Mozilla handling

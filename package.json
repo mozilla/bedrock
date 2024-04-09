@@ -6,7 +6,7 @@
   "dependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
-    "@mozilla-protocol/core": "^19.0.0",
+    "@mozilla-protocol/core": "^19.1.0",
     "@mozilla/glean": "^5.0.0",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",

@@ -7,7 +7,6 @@
 const userData = {
     email: 'example@example.com',
     country: 'us',
-    format: 'H',
     lang: 'en',
     newsletters: ['about-mozilla', 'mozilla-and-you', 'mozilla-foundation'],
     has_fxa: true,
