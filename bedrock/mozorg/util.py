@@ -4,7 +4,6 @@
 
 import os
 
-from django.conf import settings
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_safe
@@ -80,27 +79,3 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
                 log.exception("decorators not iterable or does not contain callable items")
 
     return path(name, _view, name=url_name)
-
-
-def get_fb_like_locale(request_locale):
-    """
-    Returns the most appropriate locale from the list of supported Facebook
-    Like button locales. This can either be the locale itself if it's
-    supported, the next matching locale for that language if any or failing
-    any of that the default `en_US`.
-    Ref: https://www.facebook.com/translations/FacebookLocales.xml
-
-    Adapted from the facebookapp get_best_locale() util
-    """
-
-    lang = request_locale.replace("-", "_")
-
-    if lang not in settings.FACEBOOK_LIKE_LOCALES:
-        lang_prefix = lang.split("_")[0]
-
-        try:
-            lang = next(locale for locale in settings.FACEBOOK_LIKE_LOCALES if locale.startswith(lang_prefix))
-        except StopIteration:
-            lang = "en_US"
-
-    return lang

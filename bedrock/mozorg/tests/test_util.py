@@ -9,31 +9,9 @@ from django.conf import settings
 from django.test import RequestFactory
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import get_fb_like_locale, page
+from bedrock.mozorg.util import page
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
-
-
-class TestGetFacebookLikeLocale(TestCase):
-    def test_supported_locale(self):
-        """
-        Return the given locale if supported.
-        """
-        assert get_fb_like_locale("en-PI") == "en_PI"
-
-    def test_first_supported_locale_for_language(self):
-        """
-        If the given locale is not supported, iterate through
-        the supported locales and return the first one that
-        matches the language.
-        """
-        assert get_fb_like_locale("es-AR") == "es_ES"
-
-    def test_unsupported_locale(self):
-        """
-        Return the default en_US when locale isn't supported.
-        """
-        assert get_fb_like_locale("zz-ZZ") == "en_US"
 
 
 @patch("bedrock.mozorg.util.l10n_utils")
