@@ -39,9 +39,16 @@
       dedicated to supporting responsible AI initiatives that benefit humanity. Know
       an innovator making a difference with AI?</p>
     <div class="r25-hero-cta">
+    {% if switch('rise25-nominations-open') %}
       <strong class="r25-hero-notice">Call for nominees extended to<br> <time datetime="2024-04-12">April 12, 2024</time></strong>
 
       <a href="#nominate" class="r25-c-button t-fancy">Nominate <span>someone</span></a>
+    {% else %}
+      <p class="r25-hero-closed">
+        <strong>Nominations are now closed.</strong>
+        Follow us @Mozilla and stay tuned for the announcement of the Rise25 award winners.
+      </p>
+    {% endif %}
 
       {{ video_modal_embed(
           id='LbGtijF8qb0',
@@ -109,10 +116,11 @@
           to make AI a force for societal good.
         </p>
       </div>
-
-      <p class="r25-c-category-cta">
-        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
-      </p>
+      {% if switch('rise25-nominations-open') %}
+        <p class="r25-c-category-cta">
+          <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+        </p>
+      {% endif %}
     </div>
 
     <div id="builders" class="r25-c-category r25-t-teal">
@@ -127,10 +135,11 @@
           reliable, aiming to create tools that empower and advance society.
         </p>
       </div>
-
-      <p class="r25-c-category-cta">
-        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
-      </p>
+      {% if switch('rise25-nominations-open') %}
+        <p class="r25-c-category-cta">
+          <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+        </p>
+      {% endif %}
     </div>
 
     <div id="artists" class="r25-c-category r25-t-green">
@@ -146,10 +155,11 @@
           AI and art.
         </p>
       </div>
-
-      <p class="r25-c-category-cta">
-        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
-      </p>
+      {% if switch('rise25-nominations-open') %}
+        <p class="r25-c-category-cta">
+          <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+        </p>
+      {% endif %}
     </div>
 
     <div id="entrepreneurs" class="r25-c-category r25-t-purple">
@@ -164,10 +174,11 @@
           standards, inclusiveness and enhancing human welfare through technology.
         </p>
       </div>
-
-      <p class="r25-c-category-cta">
-        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
-      </p>
+      {% if switch('rise25-nominations-open') %}
+        <p class="r25-c-category-cta">
+          <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+        </p>
+      {% endif %}
     </div>
 
     <div id="change-agents" class="r25-c-category r25-t-orange">
@@ -184,10 +195,11 @@
           AI environment of equality and empowerment.
         </p>
       </div>
-
-      <p class="r25-c-category-cta">
-        <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
-      </p>
+      {% if switch('rise25-nominations-open') %}
+        <p class="r25-c-category-cta">
+          <a class="r25-c-button" href="https://mozilla.formstack.com/forms/rise25" rel="external noopener" target="_blank">Nominate</a>
+        </p>
+      {% endif %}
     </div>
   </section>
 
