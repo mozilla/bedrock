@@ -400,7 +400,6 @@ SUPPORTED_NONLOCALES = [
     "static",
     "certs",
     "images",
-    "contribute.json",
     "credits",
     "robots.txt",
     ".well-known",
