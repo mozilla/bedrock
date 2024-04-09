@@ -231,7 +231,7 @@ class TestFirefoxAll(TestCase):
 
         desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds("nightly"))
         assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 8
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 9
 
         desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds("esr"))
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds

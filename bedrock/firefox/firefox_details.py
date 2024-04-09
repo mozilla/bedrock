@@ -39,6 +39,7 @@ class FirefoxDesktop(_ProductDetails):
             ("win-msi", "Windows 32-bit MSI"),
             ("osx", "macOS"),
             ("linux64", "Linux 64-bit"),
+            ("linux64-aarch64", "Linux ARM64/AArch64"),
             ("linux", "Linux 32-bit"),
         ]
     )
@@ -46,7 +47,7 @@ class FirefoxDesktop(_ProductDetails):
     # Recommended/modern vs traditional/legacy platforms
     platform_classification = OrderedDict(
         [
-            ("recommended", ("win64", "win64-msi", "win64-aarch64", "osx", "linux64")),
+            ("recommended", ("win64", "win64-msi", "win64-aarch64", "osx", "linux64", "linux64-aarch64")),
             ("traditional", ("linux", "win", "win-msi")),
         ]
     )
@@ -89,6 +90,10 @@ class FirefoxDesktop(_ProductDetails):
                     platforms[platform] = self.platform_labels[platform]
         else:
             platforms = self.platform_labels.copy()
+
+        # Linux ARM64/AArch64 installers are only currently available for Nightly builds.
+        if channel != "nightly":
+            del platforms["linux64-aarch64"]
 
         return list(platforms.items())
 
