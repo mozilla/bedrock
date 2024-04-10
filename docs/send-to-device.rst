@@ -52,7 +52,7 @@ The Jinja macro supports parameters as follows (* indicates a required parameter
 +======================+========================================================================+======================+====================================================================+
 |    platform*         | Platform ID for the receiving device. Defaults to 'all'.               | String               | 'all', 'android', 'ios'                                            |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
-|    message_set*      | ID for the email that should be received. Defaults to 'default'.       | String               | 'default', 'fx-mobile-download-desktop', 'download-firefox-rocket' |
+|    message_set*      | ID for the email that should be received. Defaults to 'default'.       | String               | 'default', 'fx-mobile-download-desktop', 'fx-whatsnew'             |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+
 |    dom_id*           | HTML form ID. Defaults to 'send-to-device'.                            | String               | 'send-to-device'                                                   |
 +----------------------+------------------------------------------------------------------------+----------------------+--------------------------------------------------------------------+

@@ -824,12 +824,6 @@ const stringData = {
     'download-firefox-android': {
         title: 'Download Firefox for Android'
     },
-    'download-firefox-androidsn': {
-        title: 'Get Firefox for Android'
-    },
-    'download-firefox-androidsnus': {
-        title: 'Get Firefox for Android'
-    },
     'download-firefox-ios': {
         title: 'Download Firefox for iOS'
     },
@@ -916,12 +910,6 @@ const stringData = {
     marketplace: {
         description: 'Discover the latest, coolest HTML5 apps on Firefox OS.',
         title: 'Firefox OS'
-    },
-    'marketplace-android': {
-        title: 'Android'
-    },
-    'marketplace-desktop': {
-        title: 'Desktop'
     },
     mobile: {
         description:
