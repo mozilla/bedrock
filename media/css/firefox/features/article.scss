@@ -87,3 +87,10 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.c-firefox-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: $spacing-2xl;
+}
