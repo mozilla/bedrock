@@ -1060,8 +1060,8 @@ URLS = flatten(
         url_test("/enterprise/", "/firefox/enterprise/"),
         # Issue 7970
         url_test("/moss/mission-partners-india/", "/moss/mission-partners/"),
-        # Issue 7983
-        url_test("/privacy/products/", "/firefox/privacy/products/"),
+        # Issue 7983, 14248
+        url_test("/privacy/products/", "/firefox/privacy/"),
         # Issue #8206
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}tracking-protection/start/", "https://support.mozilla.org/kb/tracking-protection"),
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}content-blocking/start/", "https://support.mozilla.org/kb/content-blocking"),
