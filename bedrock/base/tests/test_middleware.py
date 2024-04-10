@@ -5,6 +5,7 @@
 from contextlib import suppress
 from unittest import mock
 
+from django.http import HttpResponse
 from django.test import Client, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -225,7 +226,7 @@ def test_BedrockLangCodeFixupMiddleware(
         HTTP_ACCEPT_LANGUAGE="de-DE,en-GB;q=0.4,en-US;q=0.2",
     )
 
-    middleware = BedrockLangCodeFixupMiddleware()
+    middleware = BedrockLangCodeFixupMiddleware(get_response=HttpResponse)
 
     resp = middleware.process_request(request)
 
