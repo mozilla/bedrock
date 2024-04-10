@@ -860,15 +860,6 @@ SEND_TO_DEVICE_LOCALES = ["de", "en-GB", "en-US", "es-AR", "es-CL", "es-ES", "es
 SEND_TO_DEVICE_MESSAGE_SETS = {
     "default": {
         "email": {
-            "android": "download-firefox-android",
-            "ios": "download-firefox-ios",
-            "all": "download-firefox-mobile",
-        }
-    },
-    "fx-android": {
-        "email": {
-            "android": "get-android-embed",
-            "ios": "download-firefox-ios",
             "all": "download-firefox-mobile",
         }
     },
@@ -879,32 +870,12 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     },
     "fx-whatsnew": {
         "email": {
-            "all": "download-firefox-mobile-whatsnew",
-        }
-    },
-    "fx-focus": {
-        "email": {
-            "all": "download-focus-mobile-whatsnew",
-        }
-    },
-    "fx-klar": {
-        "email": {
-            "all": "download-klar-mobile-whatsnew",
-        }
-    },
-    "download-firefox-rocket": {
-        "email": {
-            "all": "download-firefox-rocket",
+            "all": "download-firefox-mobile",
         }
     },
     "firefox-mobile-welcome": {
         "email": {
             "all": "firefox-mobile-welcome",
-        }
-    },
-    "lockwise-welcome-download": {
-        "email": {
-            "all": "lockwise-welcome-download",
         }
     },
 }

@@ -32,12 +32,6 @@
   "download-firefox-android": {
     "title": "{{ ftl('newsletters-download-firefox-for-android')|striptags }}"
   },
-  "download-firefox-androidsn": {
-    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
-  },
-  "download-firefox-androidsnus": {
-    "title": "{{ ftl('newsletters-get-firefox-for-android')|striptags }}"
-  },
   "download-firefox-ios": {
     "title": "{{ ftl('newsletters-download-firefox-for-ios')|striptags }}"
   },
@@ -109,12 +103,6 @@
   "marketplace": {
     "description": "{{ ftl('newsletters-discover-the-latest')|striptags }}",
     "title": "{{ ftl('newsletters-firefox-os')|striptags }}"
-  },
-  "marketplace-android": {
-    "title": "{{ ftl('newsletters-android')|striptags }}"
-  },
-  "marketplace-desktop": {
-    "title": "{{ ftl('newsletters-desktop')|striptags }}"
   },
   "mobile": {
     "description": "{{ ftl('newsletters-keep-up-with-releases')|striptags }}",

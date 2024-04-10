@@ -545,28 +545,17 @@ class TestFirefoxURL(TestCase):
             "",
             {"newsletter_id": "download-firefox-mobile"},
         ),
+        # Android and iOS platforms should have the same newsletter_id since they share the same email template.
         (
             "platform='android'",
-            {"newsletter_id": "download-firefox-android"},
-        ),
-        (
-            "platform='ios'",
-            {"newsletter_id": "download-firefox-ios"},
-        ),
-        (
-            "platform='all'",
             {"newsletter_id": "download-firefox-mobile"},
         ),
         (
-            "message_set='fx-android', platform='android'",
-            {"newsletter_id": "get-android-embed"},
+            "platform='ios'",
+            {"newsletter_id": "download-firefox-mobile"},
         ),
         (
-            "message_set='fx-android', platform='ios'",
-            {"newsletter_id": "download-firefox-ios"},
-        ),
-        (
-            "message_set='fx-android'",
+            "platform='all'",
             {"newsletter_id": "download-firefox-mobile"},
         ),
         (
@@ -575,27 +564,11 @@ class TestFirefoxURL(TestCase):
         ),
         (
             "message_set='fx-whatsnew'",
-            {"newsletter_id": "download-firefox-mobile-whatsnew"},
-        ),
-        (
-            "message_set='fx-focus'",
-            {"newsletter_id": "download-focus-mobile-whatsnew"},
-        ),
-        (
-            "message_set='fx-klar'",
-            {"newsletter_id": "download-klar-mobile-whatsnew"},
-        ),
-        (
-            "message_set='download-firefox-rocket'",
-            {"newsletter_id": "download-firefox-rocket"},
+            {"newsletter_id": "download-firefox-mobile"},
         ),
         (
             "message_set='firefox-mobile-welcome'",
             {"newsletter_id": "firefox-mobile-welcome"},
-        ),
-        (
-            "message_set='lockwise-welcome-download'",
-            {"newsletter_id": "lockwise-welcome-download"},
         ),
     ],
 )
