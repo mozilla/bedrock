@@ -13,7 +13,7 @@ import pytest
 from django_jinja.backend import Jinja2
 from markus.testing import MetricsMock
 
-from bedrock.base.i18n import get_best_language, split_path_and_polish_lang
+from bedrock.base.i18n import get_best_language, split_path_and_normalize_language
 from lib import l10n_utils
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
@@ -33,7 +33,7 @@ class TestRender(TestCase):
         if accept_lang:
             request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
 
-        locale_from_path, _subpath, _lang_code_changed = split_path_and_polish_lang(request.path)
+        locale_from_path, _subpath, _lang_code_changed = split_path_and_normalize_language(request.path)
         assert not _lang_code_changed, "Did not expect lang code to change"
 
         request.locale = locale_from_path or get_best_language(accept_lang)

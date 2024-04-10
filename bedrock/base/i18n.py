@@ -110,7 +110,7 @@ def normalize_language(language):
         return settings.LANGUAGE_URL_MAP_WITH_FALLBACKS.get(pre)
 
 
-def split_path_and_polish_lang(path_):
+def split_path_and_normalize_language(path_):
     """
     Split the requested path into (lang, path) and
     switches to a supported lang if available

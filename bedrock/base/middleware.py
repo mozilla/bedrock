@@ -31,7 +31,7 @@ from bedrock.base.i18n import (
     get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
-    split_path_and_polish_lang,
+    split_path_and_normalize_language,
 )
 from lib.l10n_utils import is_root_path_with_no_language_clues
 
@@ -64,7 +64,7 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         return HttpResponseRedirect(dest)
 
     def process_request(self, request):
-        lang_code, subpath, lang_code_changed = split_path_and_polish_lang(request.path)
+        lang_code, subpath, lang_code_changed = split_path_and_normalize_language(request.path)
 
         # Handle the non-JS language selection as a priority. Once we're switched
         # the subsequent checks will clean up things more, if needed.

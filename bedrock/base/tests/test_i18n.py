@@ -15,7 +15,7 @@ from bedrock.base.i18n import (
     get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
-    split_path_and_polish_lang,
+    split_path_and_normalize_language,
 )
 from lib.l10n_utils import translation
 
@@ -206,8 +206,8 @@ def test_path_needs_lang_code(path, expected):
         ("fR-Ca/François/test", ("fr", "François/test", True)),
     ],
 )
-def test_split_path_and_polish_lang(path, result):
-    res = split_path_and_polish_lang(path)
+def test_split_path_and_normalize_language(path, result):
+    res = split_path_and_normalize_language(path)
     assert res == result
 
 

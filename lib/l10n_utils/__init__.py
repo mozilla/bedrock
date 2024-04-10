@@ -14,7 +14,7 @@ from django.views.generic import TemplateView
 from product_details import product_details
 
 from bedrock.base import metrics
-from bedrock.base.i18n import normalize_language, split_path_and_polish_lang
+from bedrock.base.i18n import normalize_language, split_path_and_normalize_language
 from bedrock.settings.base import language_url_map_with_fallbacks
 
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
@@ -70,7 +70,7 @@ def redirect_to_best_locale(request, translations):
 
 def redirect_to_locale(request, locale, permanent=False):
     redirect_class = HttpResponsePermanentRedirect if permanent else HttpResponseRedirect
-    original_prefix, subpath, _ = split_path_and_polish_lang(request.get_full_path())
+    original_prefix, subpath, _ = split_path_and_normalize_language(request.get_full_path())
     response = redirect_class("/" + "/".join([locale, subpath]))
     # Record count of redirects to this locale.
     metrics.incr("locale.redirect", tags=[f"from_locale:{original_prefix or 'none'}", f"to_locale:{locale}"])
