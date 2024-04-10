@@ -79,14 +79,7 @@
   <h3 class="c-picto-block-title">{{ ftl('welcome-page4-get-data-trackers-off-your') }}</h3>
   <div class="c-picto-block-body">
     <p>
-      {% set frende = ['en-US', 'en-GB', 'en-CA', 'de', 'fr', 'es-ES'] %}
-      {% set privacy = 'https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' %}
-
-      {% if LANG in frende %}
-        {% set privacy = url('firefox.privacy.products') %}
-      {% endif %}
-
-      {{ ftl('welcome-page4-enhanced-tracking-protection', privacy=privacy) }}
+      {{ ftl('welcome-page4-enhanced-tracking-protection', privacy='https://support.mozilla.org/kb/trackers-and-scripts-firefox-blocks-enhanced-track/?utm_source='+_entrypoint+'&utm_medium=referral&utm_campaign='+_utm_campaign+'&entrypoint='+_entrypoint) }}
     </p>
   </div>
 </div>

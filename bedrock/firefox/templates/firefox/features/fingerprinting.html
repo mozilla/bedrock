@@ -34,7 +34,7 @@
 
 {% set url_details = 'href="https://blog.mozilla.org/security/2020/01/07/firefox-72-fingerprinting/" rel="external noopener"' %}
 <p>{{ ftl('features-fingerprinting-the-latest-firefox', url_details=url_details) }}</p>
-{% set url_protections='href="%s"'|safe|format(url('firefox.privacy.products')) %}
+{% set url_protections = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_protections-dashboard" rel="external noopener"' %}
 <p>{{ ftl('features-fingerprinting-and-its-not', url_protections=url_protections) }}</p>
 
 {% set url_download='href="%s"'|safe|format(url('firefox.new')) %}
