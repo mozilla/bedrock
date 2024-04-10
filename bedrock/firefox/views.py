@@ -396,6 +396,11 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx124-na-pdf.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx126beta-de.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx126beta-en-US.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx126beta-en-CA.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx126beta-en-GB.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx126beta-fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -470,6 +475,23 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/developer/whatsnew.html"
             elif show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif channel == "beta":
+            if version.startswith("126."):
+                if locale.startswith("en-"):
+                    if locale == "en-GB" or country == "GB":
+                        template = "firefox/whatsnew/whatsnew-fx126beta-en-GB.html"
+                    elif locale == "en-CA" or country == "CA":
+                        template = "firefox/whatsnew/whatsnew-fx126beta-en-CA.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx126beta-en-US.html"
+                elif locale == "de":
+                    template = "firefox/whatsnew/whatsnew-fx126beta-de.html"
+                elif locale == "fr":
+                    template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("125."):

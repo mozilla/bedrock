@@ -383,6 +383,46 @@ class TestWhatsNew(TestCase):
 
     # end dev edition whatsnew tests
 
+    # begin beta whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_126_0_0beta_en_US(self, render_mock):
+        """Should use whatsnew-fx126beta-en-US template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="126.0beta")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx126beta-en-US.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_126_0_0beta_en_CA(self, render_mock):
+        """Should use whatsnew-fx126beta-en-CA template for en-CA locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-CA"
+        self.view(req, version="126.0beta")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx126beta-en-CA.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_126_0_0beta_de(self, render_mock):
+        """Should use whatsnew-fx126beta-de template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="126.0beta")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx126beta-de.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_126_0_0beta_pl(self, render_mock):
+        """Should use default template for pl locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "pl"
+        self.view(req, version="126.0beta")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
+    # end beta whatsnew tests
+
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
         """Prefixed oldversion shouldn't impact version sniffing."""
