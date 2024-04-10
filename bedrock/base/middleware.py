@@ -42,10 +42,13 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
 
     It:
 
-    1) Normalises language codes that are in the path - eg en-us -> en-US and also
+    1) Redirects to a new language-coded path if we detect the lang=XX querystring.
+    This is basically a no-JS way for us to handle language switching.
+
+    2) Normalises language codes that are in the path - eg en-us -> en-US and also
     goes to a prefix code if we don't have support (eg de-AT -> de)
 
-    2) If no redirect is needed, sets request.locale to be the normalized
+    3) If no redirect is needed, sets request.locale to be the normalized
     lang code we've got from the URL
 
     Querystrings are preserved in GET redirects.
@@ -64,11 +67,16 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         return HttpResponseRedirect(dest)
 
     def process_request(self, request):
+        # Initially see if we can separate a lang code from the rest of the URL
+        # path, along with a hint about whether the lang code changed, which
+        # suggests we will need to redirect using `lang_code` as a new prefix.
+
         lang_code, subpath, lang_code_changed = split_path_and_normalize_language(request.path)
 
-        # Handle the non-JS language selection as a priority. Once we're switched
-        # the subsequent checks will clean up things more, if needed.
-        # Fixes https://github.com/mozilla/bedrock/issues/5931
+        # Check for any no-JS language - doing this eagerly is good, as any further
+        # fixups due to the actual lang code in the lang=XX querystring will be
+        # handled by the rest of this function when we come back to it.
+        # Also fixes https://github.com/mozilla/bedrock/issues/5931
         lang_via_querystring = request.GET.get("lang", None)
         if lang_via_querystring is not None:
             cleaned_lang_via_querystring = normalize_language(lang_via_querystring)
@@ -81,13 +89,19 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
             request.GET = qs
             return self._redirect(request, cleaned_lang_via_querystring, subpath)
 
+        # If we're not redirecting based on a querystring, do we need to find
+        # a language code? If so, find from the headers and redirect.
         if not lang_code and path_needs_lang_code(request.path) and not is_root_path_with_no_language_clues(request):
             lang_code = get_language_from_headers(request)
             return self._redirect(request, lang_code, subpath)
 
+        # Or if we have a lang code, but it's not the one that was in the
+        # original URL path – e.g. fixing es-mx to es-MX - we also need to redirect
         if lang_code and lang_code_changed:
             return self._redirect(request, lang_code, subpath)
 
+        # If we get this far, the path contains a validly formatted lang code
+        # OR the path does not need a lang code. We annotate the request appropriately
         request.locale = lang_code if lang_code else ""
 
 
