@@ -110,7 +110,7 @@ COPY ./tests ./tests
 
 RUN bin/run-sync-all.sh
 
-RUN chown webdev.webdev -R .
+RUN chown webdev:webdev -R .
 
 # for bpython
 RUN mkdir /home/webdev/
@@ -136,7 +136,7 @@ COPY --from=assets /app/assets /app/assets
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # Change User
-RUN chown webdev.webdev -R .
+RUN chown webdev:webdev -R .
 USER webdev
 
 # build args
