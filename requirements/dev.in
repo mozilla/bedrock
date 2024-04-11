@@ -5,21 +5,21 @@ braceexpand==0.1.7
 factory-boy==3.3.0
 freezegun==1.4.0
 markdown-it-py>=2.2.0
-pipdeptree==2.16.1
+pipdeptree==2.17.0
 py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
 pyquery==2.0.0
 pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
-pytest-cov==4.1.0
+pytest-cov==5.0.0
 pytest-datadir==1.5.0
 pytest-django==4.8.0
-pytest-mock==3.12.0
+pytest-mock==3.14.0
 pytest-parallel==0.1.1
 pytest-rerunfailures==14.0
 pytest-selenium==4.0.1
 responses==0.25.0
-ruff==0.3.3
+ruff==0.3.5
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.12.2
 # Related to moz-l10n-lint, used in CI

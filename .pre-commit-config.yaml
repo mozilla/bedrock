@@ -64,8 +64,8 @@ repos:
           - license_header/mpl2_header.txt
           - --comment-style
           - "|#|"
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.3.3
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.5
     hooks:
       - id: ruff
       - id: ruff-format
