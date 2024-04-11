@@ -78,6 +78,12 @@
     left: calc(50% + $spacing-sm);
 }
 
-#translate-icon {
-    vertical-align: bottom;
+.translate-icon {
+    @include image-replaced;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url('/media/img/firefox/whatsnew/whatsnew126beta/translate-icon.svg');
+    background-size: contain;
+    vertical-align: text-bottom;
 }
