@@ -49,9 +49,9 @@ boto3==1.34.79 \
     --hash=sha256:139dd2d94eaa0e3213ff37ba7cf4cb2e3823269178fe8f3e33c965f680a9ddde \
     --hash=sha256:265b0b4865e8c07e27abb32a31d2bd9129bb009b1d89ca0783776ec084886123
     # via -r requirements/prod.in
-botocore==1.34.80 \
-    --hash=sha256:354a00f03faba52acc6f1a84fa4f035d48541633be98ccc24b59dc544f679f8b \
-    --hash=sha256:8402262e819f3d46df504bbd781e770858c0130b90f660699f75ef3a63abca5a
+botocore==1.34.82 \
+    --hash=sha256:2fd14676152f9d64541099090cc64973fdf8232744256454de443583e35e497d \
+    --hash=sha256:8f839e9a88e7ac7185e406be4cf9926673374e8a6ecc295302f56f7e3c618692
     # via
     #   boto3
     #   s3transfer
@@ -483,9 +483,9 @@ html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
     # via -r requirements/prod.in
-idna==3.6 \
-    --hash=sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca \
-    --hash=sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
+idna==3.7 \
+    --hash=sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc \
+    --hash=sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0
     # via requests
 jinja2==3.1.3 \
     --hash=sha256:7d6d50dd97d52cbc355597bd845fabfbac3f551e1f99619e39a35ce8c370b5fa \
