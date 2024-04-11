@@ -32,12 +32,13 @@
 .wnp-swap-text-here,
 .wnp-swap-text-there {
     @include font-firefox;
-    display: inline-block;
-    position: relative;
     background-color: $color-white;
-    padding: $spacing-md;
     border-radius: $border-radius-sm;
+    display: inline-block;
     font-weight: bold;
+    padding: $spacing-md;
+    position: relative;
+    text-align: center;
 
     &::after {
         content: '';
