@@ -195,30 +195,3 @@ against a remote instance of the site (e.g. production) it will run a lot
 quicker by running the tests in parallel. To do this, you can add ``-n auto``
 to the command line. Replace ``auto`` with an integer if you want to set the
 maximum number of concurrent processes.
-
-Mobile app store redirects
---------------------------
-
-Occasionally we need to create a link that can auto redirect to either the Apple
-App Store or the Google Play Store depending on user agent. A common use case is
-to embed inside a QR Code, which people can then scan on their phone to get a
-shortcut to the app. To make this easier bedrock has a special redirect URL to
-which you can add product and campaign query strings. When someone hits the
-redirect URL, bedrock will attempt to detect their mobile platform and then auto
-redirect to the appropriate app store.
-
-The base redirect URL is ``https://www.mozilla.org/firefox/browsers/mobile/app/``,
-and to it you can add both a ``product`` and ``campaign`` query parameter. For
-example, the following URL would redirect to either Firefox on the Apple App Store
-or on the Google Play Store, with the specified campaign parameter.
-
-.. code-block::
-
-    https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew
-
-.. note::
-
-    The ``product`` and ``campaign`` parameters are limited to a set of strictly
-    trusted values. To add more product and campaign options, you can add those
-    values to the ``mobile_app`` helper function in
-    `firefox/redirects.py <https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/redirects.py>`_.
