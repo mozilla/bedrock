@@ -258,6 +258,13 @@ if DEV:
 CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
 CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
 
+# Report violations on a small proportion of requests
+CSP_REPORT_PERCENTAGE = config(
+    "CSP_REPORT_PERCENTAGE",
+    default="0",
+    parser=float,
+)
+
 CSP_EXTRA_FRAME_SRC = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
 if CSP_EXTRA_FRAME_SRC:
     CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
