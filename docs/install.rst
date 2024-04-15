@@ -240,6 +240,8 @@ credits, release notes, localizations, legal-docs etc::
     dependencies up to date and also fetches the latest DB containing the latest site
     content. This is a good thing to run after pulling latest changes from the ``main`` branch.
 
+    We also have a git hook that will alert you if ``make preflight`` needs to be run. You can install it with ``make install-custom-git-hooks``
+
 .. _run-python-tests:
 
 Run the tests
