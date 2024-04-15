@@ -197,12 +197,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/includes/pocket-best-of.scss"
-      ],
-      "name": "pocket-best-of"
-    },
-    {
-      "files": [
         "css/mozorg/home/includes/monitor-banner.scss"
       ],
       "name": "monitor-banner"
@@ -1852,13 +1846,6 @@
         "js/products/mozsocial/invite.es6.js"
       ],
       "name": "mozsocial-waitlist"
-    },
-    {
-      "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/banner-init.js"
-      ],
-      "name": "pocket-banner"
     },
     {
       "files": [
