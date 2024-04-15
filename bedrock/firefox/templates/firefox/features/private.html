@@ -17,8 +17,9 @@
 <p>{{ ftl('features-private-sidenote-we-are-not-big-tech') }}</p>
 
 {% if LANG in ['fr', 'de'] %}
-  <div class="c-firefox-download">
-    {{ download_firefox_thanks(dom_id='download-button-primary', download_location='primary') }}
+  <div class="c-firefox-midpage-cta">
+    <h3>{{ ftl('features-shared-footer-cta-title') }}</h3>
+    {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='features-midpage-download', button_class='mzp-t-product mzp-t-lg', download_location='primary') }}
   </div>
 {% endif %}
 

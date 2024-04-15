@@ -6,13 +6,18 @@
 
 const client = Mozilla.Client;
 const footerCta = document.querySelector('.c-feature-footer');
+const midPageCta = document.querySelector('.c-firefox-midpage-cta');
 
 (function () {
     if (
         (footerCta && client.isFirefoxDesktop) ||
         (footerCta && client.isFirefoxAndroid) ||
-        (footerCta && client.isFirefoxiOS)
+        (footerCta && client.isFirefoxiOS) ||
+        (midPageCta && client.isFirefoxDesktop) ||
+        (midPageCta && client.isFirefoxAndroid) ||
+        (midPageCta && client.isFirefoxiOS)
     ) {
         footerCta.parentNode.removeChild(footerCta);
+        midPageCta.parentNode.removeChild(midPageCta);
     }
 })(window.Mozilla);
