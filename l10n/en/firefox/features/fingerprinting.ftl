@@ -36,7 +36,7 @@ features-fingerprinting-the-practice-of = The practice of fingerprinting allows 
 # $url_details (string) - https://blog.mozilla.org/security/2020/01/07/firefox-72-fingerprinting/
 features-fingerprinting-the-latest-firefox = The latest { -brand-name-firefox } browser protects you against fingerprinting by blocking third-party requests to companies that are known to participate in fingerprinting. We’ve worked hard to enable this privacy protection while not breaking the websites you enjoy visiting. (Read more here, if you want the <a { $url_details }>technical details</a>.)
 
-# $url_protections (string) - https://www.mozilla.org/firefox/privacy/products/
+# $url_protections (string) - https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_protections-dashboard
 features-fingerprinting-and-its-not = And it’s not a deep setting you need to dig around to find. In the latest { -brand-name-firefox } browser, fingerprint blocking is the standard, default setting. Visit your <a { $url_protections }>privacy protections dashboard</a> to see how you’re being tracked behind the scenes and how { -brand-name-firefox } prevents it.
 
 # $url_download (string) - link to firefox/new

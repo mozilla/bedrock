@@ -52,7 +52,7 @@ protecting-your-privacy = Protecting your privacy is our number one priority, an
 is-firefox-safe = Is { -brand-name-firefox } safe?
 
 # Variables:
-# $url (url) - link to https://www.mozilla.org/firefox/privacy/products/
+# $url (url) - link to https://www.mozilla.org/firefox/features/private/
 
 not-only-is = Not only is { -brand-name-firefox } safe to use, it also helps keep your data and private information safe. The { -brand-name-firefox-browser } automatically blocks known third party trackers, social media trackers, cryptominers and fingerprinters from collecting your data. <a href="{ $url }">Learn more about the privacy in our products.</a>
 
