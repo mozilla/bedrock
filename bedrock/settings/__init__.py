@@ -154,10 +154,7 @@ if IS_POCKET_MODE:
     _csp_connect_extra_for_dev = [
         "com-getpocket-prod1.mini.snplow.net",
     ]
-    _csp_font_src = [
-        "'self'",
-        "assets.getpocket.com",
-    ]
+    _csp_font_src = []
 
 else:
     # Mozorg mode
@@ -217,9 +214,7 @@ else:
         "cjms.services.mozilla.com",
     ]
     _csp_connect_extra_for_dev = []
-    _csp_font_src = [
-        "'self'",
-    ]
+    _csp_font_src = []
 
 sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
 
