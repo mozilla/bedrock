@@ -248,6 +248,7 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + _csp_img_src
 
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + _csp_script_src
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + _csp_style_src
+CSP_FONT_SRC = CSP_DEFAULT_SRC + _csp_font_src
 CSP_CHILD_SRC = CSP_DEFAULT_SRC + _csp_child_src
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + _csp_connect_src
 
@@ -264,7 +265,6 @@ if CSP_EXTRA_FRAME_SRC:
 
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
-CSP_FONT_SRC = _csp_font_src
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
 if DEV:
