@@ -52,4 +52,39 @@
     }
   ) }}
 </figure>
+
+<h2>{{ ftl('pdf-editor-add-image-with-alt-text') }}</h2>
+
+<p>{{ ftl('pdf-editor-open-pdf-click-image-icon') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/edit-pdf-alt-text.png",
+    srcset={
+        "img/firefox/features/edit-pdf-alt-text-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ ftl('pdf-editor-create-a-highlight') }}</h2>
+
+<p>{{ ftl('pdf-editor-select-text-you-want-to') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/edit-pdf-highlight.png",
+    srcset={
+        "img/firefox/features/edit-pdf-highlight-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
 {% endblock article_content %}
