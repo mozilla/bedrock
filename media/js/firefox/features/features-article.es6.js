@@ -6,13 +6,12 @@
 
 const client = Mozilla.Client;
 const footerCta = document.querySelector('.c-feature-footer');
+const midPageCta = document.querySelector('.c-firefox-midpage-cta');
 
-(function () {
-    if (
-        (footerCta && client.isFirefoxDesktop) ||
-        (footerCta && client.isFirefoxAndroid) ||
-        (footerCta && client.isFirefoxiOS)
-    ) {
-        footerCta.parentNode.removeChild(footerCta);
-    }
-})(window.Mozilla);
+if (midPageCta && client.isFirefox) {
+    midPageCta.parentNode.removeChild(midPageCta);
+}
+
+if (footerCta && client.isFirefox) {
+    footerCta.parentNode.removeChild(footerCta);
+}
