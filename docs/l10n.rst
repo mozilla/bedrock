@@ -224,7 +224,7 @@ Obsolete strings
 When new strings are added to a page sometimes they update or replace old strings. Obsolete strings & IDs should be removed from ftl files
 immediately if they are not being used as a fallback. If they are being kept as a fallback they should be removed after 2 months.
 
-When you add a comment marking as string as obsolete add the date it can be removed to the comment.
+When you add a comment marking a string as obsolete, add the date when it can be removed to the comment.
 
 .. code-block:: fluent
 
