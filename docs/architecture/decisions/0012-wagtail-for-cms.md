@@ -17,6 +17,8 @@ We previously used Contentful as a headless CMS, but have decided
 
 ## Consequences
 
+* The integration of a Django-based CMS into the Bedrock codebase will allow for a significantly faster and clearer developer experience when creating content-managed pages, plus the option (over time) for members of the org to create new pages based on CMS templates with no development needed, unless the pages have new designs.
+
 * There is a significant amount of engineering work needed, including:
   * We'll need to integrate Wagtail into Bedrock, which first necessitates  refactoring away our bespoke i18n mechanism and using Django's own i18n logic.
   * We'll need to develop workflows around adding Wagtail-managed pages that the whole team understands
