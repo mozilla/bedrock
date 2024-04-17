@@ -7,8 +7,11 @@
 # Short title used in the subnav
 pdf-editor-pdf-editor = PDF Editor
 
-# page title
+# Obsolete string (expires: 2024-06-17)
 pdf-editor-add-text-to-pdfs = Add text to PDFs with { -brand-name-firefox } PDF Editor
+
+# page title
+pdf-editor-add-text-to-pdfs-v2 = Edit PDFs for free with { -brand-name-firefox } PDF Editor
 
 # HTML page description
 pdf-editor-view-and-edit-pdf-files-right-in = View and edit PDF files right in { -brand-name-firefox }.
@@ -20,3 +23,7 @@ pdf-editor-add-text = Add text
 pdf-editor-open-the-pdf-in-firefox-click-text = Open the PDF in { -brand-name-firefox }. Click the Text button to choose a color and text size before selecting where on the document you wish to add text. It’s that easy!
 pdf-editor-add-drawings-or-your-signature = Add drawings (or your signature)
 pdf-editor-open-the-pdf-in-firefox-click-draw = Open the PDF in { -brand-name-firefox }. Click the Draw icon to choose a color, thickness and opacity before then being able to draw on the document. It probably won’t be any messier than your usual signature!
+pdf-editor-add-image-with-alt-text = Add image with alt text
+pdf-editor-open-pdf-click-image-icon = Open the PDF in { -brand-name-firefox }. Click the image icon, which will then prompt you to upload an image. Adjust size and placement of your image as needed. Click the “+Alt text” button on the image to add a photo description to make your PDF more accessible.
+pdf-editor-create-a-highlight = Create a highlight
+pdf-editor-select-text-you-want-to = Open the PDF in { -brand-name-firefox }. Select the text you want to highlight, then click the highlight icon that appears below your selection, or right click to find the highlight option in the context menu. Click the icon in the top right to freehand highlight sections of the PDF.
