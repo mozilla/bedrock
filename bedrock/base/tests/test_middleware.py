@@ -3,63 +3,22 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from contextlib import suppress
+from unittest import mock
 
 from django.http import HttpResponse
-from django.test import Client, RequestFactory, TestCase
+from django.test import Client, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
 
+import pytest
 from jinja2.exceptions import UndefinedError
 from markus.testing import MetricsMock
+from pytest_django.asserts import assertTemplateUsed
 
-from bedrock.base.middleware import LocaleURLMiddleware
-
-
-@override_settings(DEV=True)
-class TestLocaleURLMiddleware(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-        self.middleware = LocaleURLMiddleware(get_response=HttpResponse)
-
-    @override_settings(DEV_LANGUAGES=("de", "fr"))
-    def test_matching_locale(self):
-        locale = "fr"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "fr")
-
-    @override_settings(DEV_LANGUAGES=("de", "fr"))
-    def test_non_matching_locale(self):
-        locale = "zh"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, full_path)
-        self.assertEqual(req.locale, "")
-
-    @override_settings(DEV_LANGUAGES=("zh-CN", "zh-TW"))
-    def test_matching_main_language_to_sub_language(self):
-        locale = "zh"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "zh-CN")
-
-    @override_settings(DEV_LANGUAGES=("es-ES", "fr"))
-    def test_matching_canonical(self):
-        locale = "es"
-        path = "/the/dude/"
-        full_path = f"/{locale}{path}"
-        req = self.rf.get(full_path)
-        self.middleware.process_request(req)
-        self.assertEqual(req.path_info, path)
-        self.assertEqual(req.locale, "es-ES")
+from bedrock.base.middleware import (
+    BedrockLangCodeFixupMiddleware,
+    BedrockLocaleMiddleware,
+)
 
 
 @override_settings(
@@ -209,3 +168,101 @@ class TestMetricsViewTimingMiddleware(TestCase):
                 "view.timings",
                 tags=["view_path:bedrock.base.tests.urls.returns_500.GET", "module:bedrock.base.tests.urls.GET", "method:GET", "status_code:500"],
             )
+
+
+@pytest.mark.parametrize(
+    "request_path, expected_status_code, expected_dest, expected_request_locale",
+    (
+        (
+            "/",
+            302,
+            "/de/",  # because accept-language header has de as default lang,
+            None,
+        ),
+        ("/en-us/", 302, "/en-US/", None),
+        ("/en-US/", 200, None, "en-US"),
+        ("/de/", 200, None, "de"),
+        ("/en-US/i/am/a/path/", 200, None, "en-US"),
+        ("/de/i/am/a/path/", 200, None, "de"),
+        ("/en-us/path/to/thing/", 302, "/en-US/path/to/thing/", None),
+        ("/de-AT/path/to/thing/", 302, "/de/path/to/thing/", None),
+        ("/es-mx/path/here?to=thing&test=true", 302, "/es-MX/path/here?to=thing&test=true", None),
+        ("/en-us/path/to/an/éclair/", 302, "/en-US/path/to/an/%C3%A9clair/", None),
+        ("/it/path/to/an/éclair/", 200, None, "it"),
+        ("/sco/", 200, None, "sco"),
+        ("/de/path/to/thing/?lang=fr", 302, "/fr/path/to/thing/", None),
+        ("/de/path/to/thing/?lang=vv", 302, "/en-US/path/to/thing/", None),
+        ("/de/path/to/thing/?lang", 302, "/en-US/path/to/thing/", None),
+        ("/de/path/to/thing/?lang=fr&test=true&foo=bar", 302, "/fr/path/to/thing/?test=true&foo=bar", None),
+    ),
+    ids=[
+        "Bare root path",
+        "Lowercase lang code for root path",
+        "No change needed for root path with good locale 1",
+        "No change needed for root path with good locale 2",
+        "No change needed for deep path with good locale 1",
+        "No change needed for deep path with good locale 2",
+        "Lowercase lang code for deeper path",
+        "Unsuported lang goes to root supported lang code",
+        "Querystrings are preserved during fixup",
+        "Unicode escaped during fixup",
+        "Unicode accepted during pass-through",
+        "Three-letter locale acceptable",
+        "?lang querystring for valid locale",
+        "?lang querystring for invalid locale",
+        "?lang querystring with no value",
+        "?lang querystring for valid locale and further querystrings",
+    ],
+)
+def test_BedrockLangCodeFixupMiddleware(
+    request_path,
+    expected_status_code,
+    expected_dest,
+    expected_request_locale,
+    rf,
+):
+    request = rf.get(
+        request_path,
+        HTTP_ACCEPT_LANGUAGE="de-DE,en-GB;q=0.4,en-US;q=0.2",
+    )
+
+    middleware = BedrockLangCodeFixupMiddleware(get_response=HttpResponse)
+
+    resp = middleware.process_request(request)
+
+    if resp:
+        assert resp.status_code == 302
+        assert resp.headers["location"] == expected_dest
+    else:
+        # the request will have been annotated by the middleware
+        assert request.locale == expected_request_locale
+
+
+@pytest.mark.django_db
+def test_BedrockLangCodeFixupMiddleware__no_lang_info_gets_locale_page__end_to_end(client):
+    """Quick end-to-end test confirming the custom 404-locale template is rendered
+    at the / path when there is no accept-language header"""
+
+    resp = client.get("/", follow=False)
+    assert "HTTP_ACCEPT_LANGUAGE" not in resp.request
+    assert resp.status_code == 200
+    # this template use actually happens in lib.l10n_utils.render
+    assertTemplateUsed(resp, "404-locale.html")
+
+
+@mock.patch("django.middleware.locale.LocaleMiddleware.process_request")
+@mock.patch("django.middleware.locale.LocaleMiddleware.process_response")
+def test_BedrockLocaleMiddleware_skips_super_call_if_path_is_for_root_and_has_no_lang_clues(
+    mock_django_localemiddleware_process_response,
+    mock_django_localemiddleware_process_request,
+    rf,
+):
+    fake_request = rf.get("/")
+    assert "HTTP_ACCEPT_LANGUAGE" not in fake_request
+    middleware = BedrockLocaleMiddleware(fake_request)
+    middleware.process_request(fake_request)
+    assert not mock_django_localemiddleware_process_request.called
+
+    fake_response = mock.Mock(name="fake response")
+    middleware.process_response(fake_request, fake_response)
+    assert not mock_django_localemiddleware_process_response.called

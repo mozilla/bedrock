@@ -12,10 +12,10 @@ moz-l10n-lint l10n-pocket/l10n-vendor.toml
 python manage.py lint_ftl -q
 python manage.py version
 python manage.py migrate --noinput
-py.test lib bedrock \
+pytest lib bedrock \
     --cov-config=.coveragerc \
     --cov-report=html \
     --cov-report=term-missing \
     --cov-report=xml:python_coverage/coverage.xml \
     --cov=.
-py.test -r a tests/redirects
+pytest -r a tests/redirects

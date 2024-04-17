@@ -20,7 +20,7 @@ from bedrock.mozorg.tests import TestCase
 class TestFraudReport(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             self.url = reverse("legal.fraud-report")
 
         self.data = {

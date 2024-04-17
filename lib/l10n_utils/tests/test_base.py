@@ -13,7 +13,7 @@ import pytest
 from django_jinja.backend import Jinja2
 from markus.testing import MetricsMock
 
-from bedrock.base.urlresolvers import Prefixer
+from bedrock.base.i18n import get_best_language, split_path_and_normalize_language
 from lib import l10n_utils
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
@@ -32,8 +32,11 @@ class TestRender(TestCase):
         request = RequestFactory().get(path)
         if accept_lang:
             request.META["HTTP_ACCEPT_LANGUAGE"] = accept_lang
-        prefixer = Prefixer(request)
-        request.locale = prefixer.locale
+
+        locale_from_path, _subpath, _lang_code_changed = split_path_and_normalize_language(request.path)
+        assert not _lang_code_changed, "Did not expect lang code to change"
+
+        request.locale = locale_from_path or get_best_language(accept_lang)
 
         ctx = {}
         if active_locales:
@@ -49,7 +52,7 @@ class TestRender(TestCase):
                 self.assertEqual(response.status_code, 302)
                 self.assertEqual(response["Location"], destination)
                 self.assertEqual(response["Vary"], "Accept-Language")
-                mm.assert_incr_once("locale.redirect", tags=[f"from_locale:{prefixer.locale or 'none'}", f"to_locale:{destination.split('/')[1]}"])
+                mm.assert_incr_once("locale.redirect", tags=[f"from_locale:{locale_from_path or 'none'}", f"to_locale:{destination.split('/')[1]}"])
 
             elif status == 404:
                 self.assertEqual(response.status_code, 404)
@@ -65,6 +68,7 @@ class TestRender(TestCase):
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # Test no accept language header and locale-less root path returns 200.
+        # This is a special case where we render the 404-locale.html template at /
         self._test("/", template, "", "", 200, active_locales=locales)
 
         # Test no accept language header and locale-less path returns 302.
@@ -246,7 +250,6 @@ class TestL10nTemplateView(TestCase):
         render_mock.assert_called_with(self.req, ["dude.html"], ANY, ftl_files="dude", activation_files=["dude", "donny"])
 
 
-@patch.object(l10n_utils, "_get_language_map", Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}))
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
@@ -269,11 +272,15 @@ class TestL10nTemplateView(TestCase):
         (["am", "an"], ["mk", "gu-IN"], "an"),
     ),
 )
+@patch.object(
+    l10n_utils,
+    "language_url_map_with_fallbacks",
+    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
+)
 def test_get_best_translation(translations, accept_languages, expected):
     assert l10n_utils.get_best_translation(translations, accept_languages) == expected
 
 
-@patch.object(l10n_utils, "_get_language_map", Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}))
 @pytest.mark.parametrize(
     "translations, accept_languages, expected",
     (
@@ -295,6 +302,11 @@ def test_get_best_translation(translations, accept_languages, expected):
         # "am" is not a valid language in the list of PROD_LANGUAGES
         (["am", "an"], ["mk", "gu-IN"], None),
     ),
+)
+@patch.object(
+    l10n_utils,
+    "language_url_map_with_fallbacks",
+    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
 )
 def test_get_best_translation__strict(translations, accept_languages, expected):
     # Strict is used for the root path, to return the list of localized home pages for bots.

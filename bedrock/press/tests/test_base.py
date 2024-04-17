@@ -18,7 +18,7 @@ class TestPressInquiry(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.view = press_views.PressInquiryView.as_view()
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             self.url = reverse("press.press-inquiry")
 
         self.data = {
@@ -147,7 +147,7 @@ class TestSpeakerRequest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.view = press_views.SpeakerRequestView.as_view()
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             self.url = reverse("press.speaker-request")
 
         self.data = {

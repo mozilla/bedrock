@@ -1644,7 +1644,7 @@ class TestVPNProductReferralLink(TestCase):
         optional_attributes=None,
         optional_parameters=None,
     ):
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             req = self.rf.get("/")
             req.locale = "en-US"
 

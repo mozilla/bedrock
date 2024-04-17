@@ -2,16 +2,24 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+"""URL paths which must be prefixed with a language code.
+
+These are included in the main URLConf via i18n_patterns,
+which will take care of the prefixing an appropriate language code
+
+IMPORTANT: if a redirect is needed for a non-localed URL (eg /webvision/)
+it must go in mozorg.nonlocale_urls, not this file
+
+"""
+
 from django.conf import settings
 from django.urls import path
-
-from bedrock.redirects.util import redirect
 
 from . import views
 from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
-urlpatterns = (
+urlpatterns = [
     path("", views.HomeView.as_view(), name="mozorg.home"),
     page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
@@ -28,12 +36,7 @@ urlpatterns = (
     page("about/policy/patents/guide/", "mozorg/about/policy/patents/guide.html"),
     page("about/this-site/", "mozorg/about/this-site.html", ftl_files=["mozorg/about/this-site.ftl"]),
     page("book/", "mozorg/book.html"),
-    path("credits/", views.credits_view, name="mozorg.credits"),
-    page("credits/faq/", "mozorg/credits-faq.html"),
     page("about/history/", "mozorg/about/history.html", ftl_files=["mozorg/about/history"]),
-    # Bug 981063, catch all for old calendar urls.
-    # must be here to avoid overriding the above
-    redirect(r"^projects/calendar/", "https://www.thunderbird.net/calendar/", locale_prefix=False),
     page("mission/", "mozorg/mission.html", ftl_files=["mozorg/mission"]),
     path("about/forums/", views.forums_view, name="mozorg.about.forums.forums"),
     page("about/forums/etiquette/", "mozorg/about/forums/etiquette.html"),
@@ -103,20 +106,7 @@ urlpatterns = (
     page("moss/foundational-technology/", "mozorg/moss/foundational-technology.html"),
     page("moss/mission-partners/", "mozorg/moss/mission-partners.html"),
     page("moss/secure-open-source/", "mozorg/moss/secure-open-source.html"),
-    path("robots.txt", views.Robots.as_view(), name="robots.txt"),
-    path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
-    # namespaces
-    path("2004/em-rdf", views.namespaces, {"namespace": "em-rdf"}),
-    path("2005/app-update", views.namespaces, {"namespace": "update"}),
-    path("2006/addons-blocklist", views.namespaces, {"namespace": "addons-bl"}),
-    path("2006/browser/search/", views.namespaces, {"namespace": "mozsearch"}),
-    path("keymaster/gatekeeper/there.is.only.xul", views.namespaces, {"namespace": "xul"}),
-    path("microsummaries/0.1", views.namespaces, {"namespace": "microsummaries"}),
-    path("projects/xforms/2005/type", views.namespaces, {"namespace": "xforms-type"}),
-    path("xbl", views.namespaces, {"namespace": "xbl"}),
-    path("locales/", views.locales, name="mozorg.locales"),
-    # Diversity and inclusion redirect
-    redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
+    # Diversity and inclusion redirect has moved to mozorg.nonlocale_urls
     # Main paths
     page("diversity/2021/", "mozorg/diversity/2021/index.html"),
     page("diversity/2021/mozilla-foundation-data/", "mozorg/diversity/2021/mofo-data.html"),
@@ -133,7 +123,7 @@ urlpatterns = (
     page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # Webvision
-    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=False),
+    # there's also a redirect in mozorg.nonlocale_urls
     path(
         "about/webvision/",
         views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),
@@ -156,7 +146,7 @@ urlpatterns = (
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
     page("rise25/thanks/", "mozorg/rise25/thanks.html"),
-)
+]
 
 if settings.DEV:
     urlpatterns += dev_only_urlpatterns

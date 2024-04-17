@@ -14,6 +14,7 @@ import sys
 from os.path import abspath
 from pathlib import Path
 
+from django.conf.locale import LANG_INFO  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
 from django.utils.functional import lazy
 
 import markus
@@ -104,7 +105,7 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 USE_TZ = True
 
@@ -218,8 +219,16 @@ LOCALES_BY_REGION = {
     "Middle East and Africa": ["ach", "af", "ar", "az", "fa", "ff", "gu-IN", "he", "kab", "kn", "skr", "son", "xh"],
 }
 
+
+def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
+    if langs.index(default_lang):
+        langs.pop(langs.index(default_lang))
+    langs.insert(0, default_lang)
+    return langs
+
+
 # Our accepted production locales are the values from the above, plus an exception.
-PROD_LANGUAGES = sorted(sum(LOCALES_BY_REGION.values(), []) + ["ja-JP-mac"])
+PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), [])) + ["ja-JP-mac"])
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
@@ -309,8 +318,8 @@ def get_dev_languages():
         return list(PROD_LANGUAGES)
 
 
-DEV_LANGUAGES = get_dev_languages()
-DEV_LANGUAGES.append("en-US")
+DEV_LANGUAGES = _put_default_lang_first(get_dev_languages())
+
 
 # Map short locale names to long, preferred locale names. This
 # will be used in urlresolvers to determine the
@@ -318,14 +327,14 @@ DEV_LANGUAGES.append("en-US")
 CANONICAL_LOCALES = {
     "en": "en-US",
     "es": "es-ES",
-    "ja-jp-mac": "ja",
+    "ja-JP-mac": "ja",
     "no": "nb-NO",
     "pt": "pt-BR",
     "sv": "sv-SE",
-    "zh-hant": "zh-TW",  # Bug 1263193
-    "zh-hant-tw": "zh-TW",  # Bug 1263193
-    "zh-hk": "zh-TW",  # Bug 1338072
-    "zh-hant-hk": "zh-TW",  # Bug 1338072
+    "zh-Hant": "zh-TW",  # Bug 1263193
+    "zh-Hant-TW": "zh-TW",  # Bug 1263193
+    "zh-HK": "zh-TW",  # Bug 1338072
+    "zh-Hant-HK": "zh-TW",  # Bug 1338072
 }
 
 # Unlocalized pages are usually redirected to the English (en-US) equivalent,
@@ -362,7 +371,7 @@ def lazy_lang_url_map():
     from django.conf import settings
 
     langs = settings.DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return {i.lower(): i for i in langs}
+    return {i: i for i in langs}
 
 
 def lazy_langs():
@@ -370,7 +379,12 @@ def lazy_langs():
     Override Django's built-in with our native names
 
     Note: Unlike the above lazy methods, this one returns a list of tuples to
-    match Django's expectations.
+    match Django's expectations, BUT it has mixed-case lang codes, rather
+    than core Django's all-lowercase codes. This is because we work with
+    mixed-case codes and we'll need them in LANGUAGES when we use
+    Wagtail-Localize, as that has to be configured with a subset of LANGUAGES
+
+    :return: list of tuples
 
     """
     from django.conf import settings
@@ -378,11 +392,32 @@ def lazy_langs():
     from product_details import product_details
 
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    return [(lang.lower(), product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
+    return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
+
+
+def language_url_map_with_fallbacks():
+    """
+    Return a complete dict of language -> URL mappings, including the canonical
+    short locale maps (e.g. es -> es-ES and en -> en-US), as well as fallback
+    mappings for language variations we don't support directly but via a nearest
+    match
+
+    :return: dict
+    """
+    lum = lazy_lang_url_map()
+    langs = dict(list(lum.items()) + list(CANONICAL_LOCALES.items()))
+    # Add missing short locales to the list. By default, this will automatically
+    # map en to en-GB (not en-US), etc. in alphabetical order.
+    # To override this behavior, explicitly define a preferred locale
+    # map with the CANONICAL_LOCALES setting.
+    langs.update((k.split("-")[0], v) for k, v in lum.items() if k.split("-")[0] not in langs)
+
+    return langs
 
 
 LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
+LANGUAGE_URL_MAP_WITH_FALLBACKS = lazy(language_url_map_with_fallbacks, dict)()  # used in normalize_language
 LANGUAGES = lazy(lazy_langs, list)()
 
 FEED_CACHE = 3900
@@ -398,31 +433,34 @@ SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
     "static",
-    "certs",
-    "images",
-    "credits",
-    "robots.txt",
-    ".well-known",
-    "telemetry",
-    "webmaker",
-    "contributor-data",
-    "healthz",
-    "readiness",
-    "healthz-cron",
-    "2004",
-    "2005",
-    "2006",
-    "keymaster",
-    "microsummaries",
-    "xbl",
-    "revision.txt",
-    "locales",
-    "sitemap_none.xml",
+    "certs",  # Is this still used?
+    "images",  # In redirects only
+    "contribute.json",  # served from root_files I think
+    "credits",  # in mozorg urls
+    "gameon",  # redirect only
+    "robots.txt",  # in mozorg urls
+    ".well-known",  # in mozorg urls
+    "telemetry",  # redirect only
+    "webmaker",  # redirect only
+    "contributor-data",  # Is this still used?
+    "healthz",  # Needed for k8s
+    "readiness",  # Needed for k8s
+    "healthz-cron",  # status dash, in urls/mozorg_mode.py
+    "2004",  # in mozorg urls
+    "2005",  # in mozorg urls
+    "2006",  # in mozorg urls
+    "keymaster",  # in mozorg urls
+    "microsummaries",  # in mozorg urls
+    "xbl",  # in mozorg urls
+    "revision.txt",  # from root_files
+    "locales",  # in mozorg urls
 ]
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
-SUPPORTED_LOCALE_IGNORE = ["/sitemap.xml"]
-
+SUPPORTED_LOCALE_IGNORE = [
+    "/sitemap_none.xml",  # in sitemap urls
+    "/sitemap.xml",  # in sitemap urls
+]
 # Pages that we don't want to be indexed by search engines.
 # Only impacts sitemap generator. If you need to disallow indexing of
 # specific URLs, add them to mozorg/templates/mozorg/robots.txt.
@@ -562,11 +600,13 @@ MIDDLEWARE = [
     "bedrock.mozorg.middleware.HostnameMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    # VaryNoCacheMiddleware must be above LocaleMiddleware"
+    # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
-    # must come before LocaleURLMiddleware
-    "bedrock.redirects.middleware.RedirectsMiddleware",
-    "bedrock.base.middleware.LocaleURLMiddleware",
+    "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLocaleMiddleware
+    "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come after RedirectsMiddleware
+    "bedrock.base.middleware.BedrockLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
     "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",

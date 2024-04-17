@@ -22,18 +22,18 @@ class TestNewsletterFooter(TestCase):
         """
         The correct country for the locale should be initially selected.
         """
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_country option[selected="selected"]').val() == "us"
 
         # no country in locale, no country selected
-        with self.activate("fr"):
+        with self.activate_locale("fr"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_country option[selected="selected"]').val() == ""
 
-        with self.activate("pt-BR"):
+        with self.activate_locale("pt-BR"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_country option[selected="selected"]').val() == "br"
@@ -44,19 +44,19 @@ class TestNewsletterFooter(TestCase):
         The correct language for the locale should be initially selected or
         'en' if it's not an option.
         """
-        with self.activate("fr"):
+        with self.activate_locale("fr"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_lang option[selected="selected"]').val() == "fr"
 
         # with hyphenated regional locale, should have only lang
-        with self.activate("pt-BR"):
+        with self.activate_locale("pt-BR"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_lang option[selected="selected"]').val() == "pt"
 
         # not supported. should default to ''
-        with self.activate("af"):
+        with self.activate_locale("af"):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_lang option[selected="selected"]').val() == ""

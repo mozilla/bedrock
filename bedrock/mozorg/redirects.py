@@ -573,4 +573,8 @@ redirectpatterns = (
     # Issue 14351
     redirect(r"^research/?$", "https://foundation.mozilla.org/research/"),
     redirect(r"^research/cc/?$", "https://foundation.mozilla.org/research/library/?topics=187"),
+    # redirects that don't need a lang code prefix
+    redirect(r"^contact/spaces/paris/$", "mozorg.contact.spaces.spaces-landing", locale_prefix=False),
+    redirect(r"^diversity/$", "mozorg.diversity.2022.index", name="diversity", locale_prefix=False),
+    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", name="webvision", locale_prefix=True, prepend_locale=False),
 )

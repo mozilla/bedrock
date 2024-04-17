@@ -23,13 +23,13 @@ class TestViews(TestCase):
     @patch.dict(os.environ, FUNNELCAKE_5_LOCALES="en-US", FUNNELCAKE_5_PLATFORMS="win")
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5"})
             assert b"product=firefox-stub-f5&" in resp.content
 
     def test_download_button_bad_funnelcake(self):
         """The download button should not have a bad funnelcake ID."""
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5dude"})
             assert b"product=firefox-stub&" in resp.content
             assert b"product=firefox-stub-f5dude&" not in resp.content
@@ -157,7 +157,7 @@ class TestHomePageLocales(TestCase):
 # viable when the tests were being run in CI or via Makefile, so
 # instead we're explicitly including the urlconf that is loaded
 # when settings.DEV is True
-@pytest.mark.urls("bedrock.mozorg.dev_urls")
+@pytest.mark.urls("bedrock.mozorg.tests.contentful_test_urlconf")
 def test_contentful_preview_view(
     contentfulpage_mock,
     render_mock,
@@ -191,8 +191,27 @@ class TestWebvisionDocView(TestCase):
         self.assertEqual(resp.status_code, 404)
 
 
-class TestWebvisionRedirect(TestCase):
-    def test_redirect(self):
+class TestMozorgRedirects(TestCase):
+    """Test redirects that are in bedrock.mozorg.nonlocale_urls"""
+
+    def test_projects_calendar_redirect(self):
+        resp = self.client.get("/projects/calendar/", follow=True)
+        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+        self.assertEqual(resp.redirect_chain[0], ("https://www.thunderbird.net/calendar/", 301))
+
+    def test_paris_office_redirect(self):
+        resp = self.client.get("/contact/spaces/paris/", follow=True, headers={"accept-language": "en"})
+        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+        self.assertEqual(resp.redirect_chain[0], ("/contact/spaces/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/en-US/contact/spaces/", 302))
+
+    def test_diversity_redirect(self):
+        resp = self.client.get("/diversity/", follow=True, headers={"accept-language": "en"})
+        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+        self.assertEqual(resp.redirect_chain[0], ("/diversity/2022/", 301))
+        self.assertEqual(resp.redirect_chain[1], ("/en-US/diversity/2022/", 302))
+
+    def test_webvision_redirect(self):
         # Since the webvision URL requires a WebvisionDoc to exist, we test this
         # here instead of in the redirects tests.
         WebvisionDoc.objects.create(name="summary", content="")
@@ -205,7 +224,7 @@ class TestMiecoEmail(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.view = views.mieco_email_form
-        with self.activate("en-US"):
+        with self.activate_locale("en-US"):
             self.url = reverse("mozorg.email_mieco")
 
         self.data = {
