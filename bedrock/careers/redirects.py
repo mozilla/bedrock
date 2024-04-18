@@ -6,5 +6,5 @@ from bedrock.redirects.util import redirect
 
 redirectpatterns = (
     # kept seprarate from urls.py
-    redirect(r"^careers/internships/$", "careers.home", name="careers.internships", permanent=False, locale_prefix=False),
+    redirect(r"^careers/internships/$", "careers.home", permanent=False, locale_prefix=False),
 )
