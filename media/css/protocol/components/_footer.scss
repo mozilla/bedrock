@@ -9,27 +9,28 @@ $image-path: '/media/protocol/img';
 /* Protocol overrides */
 
 // * -------------------------------------------------------------------------- */
-// Footer social icon links
-// bedrock override until icons are added to protocol-assets
-// https://github.com/mozilla/protocol-assets/issues/84
+// Footer social icon for Mastodon
+// Bedrock override until Mastodon icon dimensions are updated
+// https://github.com/mozilla/protocol-assets/pull/93
 
 .mzp-c-footer-links-social {
     li {
         a {
             &.linkedin {
-                background-image: url('/media/img/logos/social/linkedin-white.svg');
+                background-image: url('#{$image-path}/icons/social/linkedin/white.svg');
             }
 
             &.tiktok {
-                background-image: url('/media/img/logos/social/tiktok-white.svg');
+                background-image: url('#{$image-path}/icons/social/tiktok/white.svg');
             }
 
             &.spotify {
-                background-image: url('/media/img/logos/social/spotify-white.svg');
+                background-image: url('#{$image-path}/icons/social/spotify/white.svg');
             }
 
             &.mastodon {
-                background-image: url('/media/img/logos/social/mastodon-white.svg');
+                background-image: url('#{$image-path}/icons/social/mastodon/white.svg');
+                background-size: contain;
             }
 
             &.twitter {

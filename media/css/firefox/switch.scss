@@ -120,41 +120,27 @@ $image-path: '/media/protocol/img';
     position: relative;
 
     &::before {
-        @include bidi(((left, 0, right, auto),));
-        background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
-        background-size: 24px auto;
-        background-repeat: no-repeat;
-        content: '';
-        display: inline-block;
-        height: 22px;
-        width: 24px;
-        vertical-align: bottom;
+        background-size: cover;
         position: absolute;
-        bottom: 0;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
     }
 
     &.twitter::before {
-        background-size: 27px auto;
-        background-position: 0 3px;
+        background-image: url('#{$image-path}/icons/social/x/black.svg');
     }
 
     &.facebook {
         &::before {
-            background-position: 4px -81px;
-        }
-
-        @media #{$mq-md} {
-            @include bidi(((padding-left, 18px + $spacing-sm, padding-right, 0),));
-
-            &::before {
-                background-position: 0 -81px;
-                width: 18px;
-            }
+            background-image: url('#{$image-path}/icons/social/facebook/black.svg');
         }
     }
 
     &.email::before {
-        background-position: 0 -109px;
+        background-image: url('#{$image-path}/icons/mail.svg');
     }
 }
 
