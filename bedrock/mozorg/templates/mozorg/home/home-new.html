@@ -207,12 +207,13 @@
     <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
     <p>{{ ftl('home-mozilla-consists-of') }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
-      <span>{{ ftl('home-learn-about-mofo') }}</span>
-      <img src="{{ static('img/home/2023/external-link-white.png') }}" alt="" class="external-link-white">
-      <img src="{{ static('img/home/2023/external-link-black.png') }}" alt="" class="external-link-black">
+      {{ ftl('home-learn-about-mofo') }}
+      <span class="mzp-c-button-icon-end">
+        <img src="{{ static('protocol/img/icons/open-in-new.svg') }}" alt="">
+      </span>
     </a>
     {% endcall %}
-          <hr>
+    <hr>
     <!-- Contribute -->
     {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',

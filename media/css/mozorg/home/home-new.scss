@@ -188,30 +188,17 @@ header {
     }
 
     .c-foundation {
-        a {
+        a.mzp-c-button[rel~="external"] {
             display: inline-flex;
             align-items: center;
 
             img {
                 margin-left: $spacing-sm;
+                filter: invert(100%);
             }
 
-            .external-link-white {
-                display: block;
-            }
-
-            .external-link-black {
-                display: none;
-            }
-
-            &:hover {
-                .external-link-white {
-                    display: none;
-                }
-
-                .external-link-black {
-                    display: block;
-                }
+            &:hover img {
+                filter: none;
             }
         }
     }
