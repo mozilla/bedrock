@@ -434,7 +434,7 @@ SUPPORTED_NONLOCALES = [
     "media",
     "static",
     "certs",
-    "images",  # In redirects only
+    "images",  # root_files
     "credits",  # in mozorg urls
     "robots.txt",  # in mozorg urls
     ".well-known",  # in mozorg urls
