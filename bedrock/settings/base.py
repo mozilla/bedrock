@@ -433,16 +433,13 @@ SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
     "static",
-    "certs",  # Is this still used?
+    "certs",
     "images",  # In redirects only
-    "contribute.json",  # served from root_files I think
     "credits",  # in mozorg urls
-    "gameon",  # redirect only
     "robots.txt",  # in mozorg urls
     ".well-known",  # in mozorg urls
     "telemetry",  # redirect only
     "webmaker",  # redirect only
-    "contributor-data",  # Is this still used?
     "healthz",  # Needed for k8s
     "readiness",  # Needed for k8s
     "healthz-cron",  # status dash, in urls/mozorg_mode.py
