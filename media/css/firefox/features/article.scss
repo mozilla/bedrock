@@ -9,31 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/callout';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
-.mzp-c-breadcrumb {
-    padding-top: $spacing-md;
-    padding-bottom: $spacing-md;
-
-    .mzp-c-breadcrumb-item a {
-        color: inherit;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    @media #{$mq-md} {
-        .mzp-c-breadcrumb-list {
-            padding: 8px 64px;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .mzp-c-breadcrumb-list {
-            padding: 8px 96px;
-        }
-    }
-}
-
 .feature-article-container {
     padding-top: $spacing-2xl;
     position: relative;
