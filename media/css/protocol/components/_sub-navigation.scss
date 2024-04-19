@@ -175,3 +175,24 @@
         }
     }
 }
+
+// * -------------------------------------------------------------------------- */
+// Overrides to align with subnav https://github.com/mozilla/bedrock/issues/14081
+
+    nav.mzp-c-breadcrumb {
+        padding: $spacing-md 0;
+
+        .mzp-c-breadcrumb-list {
+            max-width: $content-max;
+            margin: 0 auto;
+            padding: 0 $spacing-lg;
+
+            @media #{$mq-md} {
+                padding: 0 $layout-lg;
+            }
+
+            @media #{$mq-lg} {
+                padding: 0 $layout-xl;
+            }
+        }
+    }
