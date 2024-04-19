@@ -8,19 +8,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 
-// https://github.com/mozilla/protocol/issues/893
-.mzp-c-button svg {
-    display: inline-block;
-    height: 1.2em;
-    width: 1.2em;
-    vertical-align: text-bottom;
-    @include bidi((
-        (margin-left, 0.5ch, 0),
-        (margin-right, 0, 0.5ch),
-        (transform,  scale(1, 1), scale(-1, 1)),
-    ));
-}
-
 // hide the privacy notice to match the other buttons
 .mzp-c-button-download-privacy-link {
     display: none;
