@@ -68,29 +68,25 @@ aside {
             a {
                 display: block;
                 @include image-replaced;
-                background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
                 background-repeat: no-repeat;
                 background-size: 27px auto;
                 width: 28px;
                 height: 28px;
 
                 &.twitter {
-                    background-position: -3px 5px;
-                    background-size: 34px;
+                    background-image: url('#{$image-path}/icons/social/x/black.svg');
                 }
 
                 &.instagram {
-                    background-position: 0 -27px;
-                    background-repeat: no-repeat;
+                    background-image: url('#{$image-path}/icons/social/instagram/black.svg');
                 }
 
                 &.youtube {
-                    background-position: -1px -66px;
-                    background-size: 30px auto;
+                    background-image: url('#{$image-path}/icons/social/youtube/black.svg');
                 }
 
                 &.facebook {
-                    background-position: 0 -88px;
+                    background-image: url('#{$image-path}/icons/social/facebook/black.svg');
                 }
             }
         }

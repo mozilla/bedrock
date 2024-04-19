@@ -55,6 +55,7 @@ $image-path: '/media/protocol/img';
 // For dark mode
 @media (prefers-color-scheme: dark) {
     .wnp-main-title,
+    .wnp-main-tagline,
     .c-picto-block .c-picto-block-title {
         color: $title-text-color-inverse;
 

@@ -15,20 +15,13 @@
 {% block stub_attribution %}{% endblock %}
 
 {% block content %}
-<main class="content-wrapper mzp-t-firefox">
-  {% block wnp_header %}
-    {% include 'firefox/whatsnew/includes/header.html' %}
-  {% endblock %}
+  <main class="content-wrapper mzp-t-firefox">
+    {% block wnp_header %}
+      {% include 'firefox/whatsnew/includes/header.html' %}
+    {% endblock %}
 
-  {% block wnp_content %}{% endblock %}
+    {% block wnp_content %}{% endblock %}
 
-  {% include 'firefox/whatsnew/includes/release-notes.html' %}
-</main>
-
-{% endblock %}
-
-{% block site_footer %}
-  {% with theme_class='mzp-t-light' %}
-    {% include 'includes/protocol/footer/footer.html' %}
-  {% endwith %}
+    {% include 'firefox/whatsnew/includes/release-notes.html' %}
+  </main>
 {% endblock %}
