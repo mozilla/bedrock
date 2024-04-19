@@ -120,6 +120,15 @@ def get_static_urls():
     for key, values in resolvers.get_resolver(None).reverse_dict.lists():
         for value in values:
             path = value[0][0][0]
+
+            # Re: https://github.com/mozilla/bedrock/issues/14480
+            # Since the refactor to use Django's i18n mechanism, not our
+            # original Prefixer, resolved URLs are automatically prepended
+            # with settings.LANGUAGE_CODE, which downstream use of this data
+            # is not expecting. The simplest fix is to drop that part of the path.
+            _lang_prefix = f"{settings.LANGUAGE_CODE}/"
+            path = path.replace(_lang_prefix, "", 1)
+
             # Exclude pages that we don't want be indexed by search engines.
             # Some other URLs are also unnecessary for the sitemap.
             if any(exclude.search(path) for exclude in excludes):
