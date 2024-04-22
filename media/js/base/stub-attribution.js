@@ -456,19 +456,31 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Gets utm parameters and referrer information from the web page if they exist.
      * @param {String} ref - Optional referrer to facilitate testing.
+     * @param {Boolean} omitNonEssentialFields - Optional flag to omit fields that are nonEssential for RTAMO.
      * @return {Object} - Stub attribution data object.
      */
-    StubAttribution.getAttributionData = function (ref) {
+    StubAttribution.getAttributionData = function (
+        ref,
+        omitNonEssentialFields
+    ) {
         var params = new window._SearchParams();
         var utms = params.utmParams();
-        var experiment =
-            params.get('experiment') || StubAttribution.experimentName;
-        var variation =
-            params.get('variation') || StubAttribution.experimentVariation;
+        var experiment = omitNonEssentialFields
+            ? null
+            : params.get('experiment') || StubAttribution.experimentName;
+        var variation = omitNonEssentialFields
+            ? null
+            : params.get('variation') || StubAttribution.experimentVariation;
         var referrer = typeof ref === 'string' ? ref : document.referrer;
-        var ua = StubAttribution.getUserAgent();
-        var clientIDUA = StubAttribution.getUAClientID();
-        var clientIDGA4 = StubAttribution.getGtagClientID();
+        var ua = omitNonEssentialFields
+            ? 'other'
+            : StubAttribution.getUserAgent();
+        var clientIDUA = omitNonEssentialFields
+            ? null
+            : StubAttribution.getUAClientID();
+        var clientIDGA4 = omitNonEssentialFields
+            ? null
+            : StubAttribution.getGtagClientID();
 
         /* eslint-disable camelcase */
         var data = {

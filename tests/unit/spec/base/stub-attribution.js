@@ -775,6 +775,48 @@ describe('stub-attribution.js', function () {
             const result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
+
+        it('should omit non-essential attribution data when `omitNonEssentialFields=true` is passed', function () {
+            const referrer = 'https://addons.mozilla.org/';
+
+            /* eslint-disable camelcase */
+            const utms = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20'
+            };
+            /* eslint-enable camelcase */
+
+            /* eslint-disable camelcase */
+            const data = {
+                utm_source: 'addons.mozilla.org',
+                utm_medium: 'referral',
+                utm_campaign: 'non-fx-button',
+                utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
+                referrer: 'https://addons.mozilla.org/',
+                ua: 'other',
+                dlsource: DLSOURCE
+            };
+            /* eslint-enable camelcase */
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
+                utms
+            );
+            spyOn(window._SearchParams.prototype, 'get').and.callFake(
+                function (key) {
+                    return key === 'experiment' ? 'firefox-new' : 1;
+                }
+            );
+            spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue(
+                'chrome'
+            );
+            const result = Mozilla.StubAttribution.getAttributionData(
+                referrer,
+                true
+            );
+            expect(result).toEqual(data);
+        });
     });
 
     describe('requestAuthentication', function () {
