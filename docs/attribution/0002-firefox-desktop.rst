@@ -155,6 +155,14 @@ RTAMO initially worked for only a limited subset of addons recommended by Mozill
 functionality was recently expanded by the AMO team to cover all publically listed addons,
 under a project called `Extended RTAMO (ERTAMO)`.
 
+.. Important::
+
+   Because RTAMO is a user facing feature, expressly requested by the user from the AMO
+   page, we deem the RTAMO flow as an essential/necessary use of attribution data. We do
+   however limit the amount of data we collect to only what's essential for the RTAMO to
+   function as a feature. Non-essential fields such as the Google Analytics client ID are
+   omitted. We also continue to respect Do Not Track (DNT) as a valid opt-out signal.
+
 How can visitors opt out?
 -------------------------
 
