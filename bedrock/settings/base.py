@@ -20,6 +20,7 @@ from django.utils.functional import lazy
 import markus
 import sentry_sdk
 from everett.manager import ListOf
+from greenlet import GreenletExit
 from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
@@ -1068,6 +1069,7 @@ SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
 SENTRY_IGNORE_ERRORS = (
     BrokenPipeError,
     ConnectionResetError,
+    GreenletExit,
 )
 
 
