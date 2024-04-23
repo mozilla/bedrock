@@ -215,12 +215,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/includes/pocket-promo.scss"
-      ],
-      "name": "home-pocket-promo"
-    },
-    {
-      "files": [
         "css/mozorg/home/ctd-promo-de.scss"
       ],
       "name": "ctd-promo"
