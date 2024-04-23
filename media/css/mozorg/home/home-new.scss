@@ -192,6 +192,10 @@ header {
             display: inline-flex;
             align-items: center;
 
+            span {
+                flex-shrink: 0;
+            }
+
             img {
                 margin-left: $spacing-sm;
                 filter: invert(100%);
