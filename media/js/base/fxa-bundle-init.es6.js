@@ -6,6 +6,10 @@
 
 import FxaLink from './fxa-link.es6.js';
 import FxaAttribution from './fxa-attribution.es6.js';
+import FxaCoupon from './fxa-coupon.es6.js';
+
+// Pass coupon URL query parameters through to Mozilla account subscription links.
+FxaCoupon.init(window.location.href);
 
 if (typeof window._SearchParams !== 'undefined') {
     const urlParams = new window._SearchParams();
