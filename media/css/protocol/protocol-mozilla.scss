@@ -92,3 +92,54 @@ template {
 .mzp-c-wordmark.t-product-mozilla-monitor {
     background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
 }
+
+
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    src: url("/media/fonts/mozilla/MozillaSansNormalBETA03-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    src: url("/media/fonts/mozilla/MozillaSansNormalBETA03-Bold.woff2") format("woff2");
+  }
+
+
+  @font-face {
+    font-display: swap;
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/media/fonts/mozilla/MozillaSemi-SlabNormalBETA03-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-display: swap;
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: bold;
+    src: url('/media/fonts/mozilla/MozillaSemi-SlabNormalBETA03-Bold.woff2') format("woff2");
+  }
+
+
+
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: normal;
+    src: url("/media/fonts/mozilla/MozillaSemi-SlabNormalBETA03-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Metropolis;
+    font-style: normal;
+    font-weight: bold;
+    src: url("/media/fonts/mozilla/MozillaSemi-SlabNormalBETA03-Bold.woff2") format("woff2");
+}
