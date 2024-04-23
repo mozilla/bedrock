@@ -35,8 +35,8 @@ FxaLink.getHostName = function (url) {
 
 /**
  * Intercept event handler for FxA links and forms, lets the browser drive the FxA Flow using
- * the `showFirefoxAccounts` UITour API. Attaches several UTM parameters from the current page
- * that will be forwarded to the browser and later on to FxA services.
+ * the `showFirefoxAccounts` UITour API. Attaches several UTM parameters from the current link
+ * href that will be forwarded to the browser and later on to FxA services.
  * @param event {Event}
  * @private
  */
