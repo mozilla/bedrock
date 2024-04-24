@@ -38,7 +38,13 @@ class AbstractBedrockCMSPage(WagtailBasePage):
     class Meta:
         abstract = True
 
-    def _serve_with_fluent_string_support(self, request, *args, **kwargs):
+    def _patch_request_for_bedrock(self, request):
+        # Add hints that help us integrate CMS pages with core Bedrock logic
+        request.is_cms_page = True
+        request._locales_available_via_cms = [self.locale.language_code] + [x.locale.language_code for x in self.get_translations()]
+        return request
+
+    def _render_with_fluent_string_support(self, request, *args, **kwargs):
         # Normally, Wagtail's serve() returns a TemplateResponse, so we
         # can swap that for our Fluent-compatible rendering method
         template = self.get_template(request, *args, **kwargs)
@@ -50,14 +56,18 @@ class AbstractBedrockCMSPage(WagtailBasePage):
     def serve(self, request, *args, **kwargs):
         # Need to replicate behaviour in https://github.com/wagtail/wagtail/blob/stable/5.2.x/wagtail/models/__init__.py#L1928
         request.is_preview = False
-        response = self._serve_with_fluent_string_support(request, *args, **kwargs)
-        response = super().serve(request, *args, **kwargs)
+
+        request = self._patch_request_for_bedrock(request)
+
+        response = self._render_with_fluent_string_support(request, *args, **kwargs)
+
         if len(self.get_view_restrictions()):
             add_never_cache_headers(response)
         return response
 
     def serve_preview(self, request, *args, **kwargs):
-        return self._serve_with_fluent_string_support(request, *args, **kwargs)
+        request = self._patch_request_for_bedrock(request)
+        return self._render_with_fluent_string_support(request, *args, **kwargs)
 
 
 class StructuralPage(AbstractBedrockCMSPage):
