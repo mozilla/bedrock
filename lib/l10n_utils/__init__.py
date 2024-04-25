@@ -182,7 +182,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     context["translations"] = get_translations_native_names(translations)
 
     # Ensure the path requires a locale prefix.
-    if not non_locale_url and not is_cms_page:
+    if not non_locale_url:
         # If the requested path's locale is different from the best matching
         # locale stored on the `request`, and that locale is one of the active
         # translations, redirect to it. Otherwise we need to find the best
