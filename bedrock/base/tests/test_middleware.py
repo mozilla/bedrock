@@ -233,6 +233,7 @@ def test_BedrockLangCodeFixupMiddleware(
     if resp:
         assert resp.status_code == 302
         assert resp.headers["location"] == expected_dest
+        assert resp.headers["vary"].lower() == "accept-language"
     else:
         # the request will have been annotated by the middleware
         assert request.locale == expected_request_locale

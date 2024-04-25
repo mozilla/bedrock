@@ -42,8 +42,10 @@ jobs:
       matrix:
         include:
           - LABEL: "General CDN Tests"
+            SHARD_LABEL: "general-cdn-tests"
             MARK_EXPRESSION: "cdn and not cdnprod"
           - LABEL: "Prod-only CDN Tests"
+            SHARD_LABEL: "prod-only-cdn-tests"
             MARK_EXPRESSION: cdnprod
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org' }} # Mozorg base URL
@@ -77,7 +79,7 @@ jobs:
       - name: Store artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{github.run_id}}-${{ matrix.SHARD_LABEL }}
           path: results-${{github.run_id}}
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
