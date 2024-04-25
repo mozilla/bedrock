@@ -397,31 +397,31 @@
     },
     {
       "files": [
-      "css/firefox/whatsnew/whatsnew-120-na.scss"
+        "css/firefox/whatsnew/whatsnew-120-na.scss"
       ],
       "name": "firefox_whatsnew_120_na"
     },
     {
       "files": [
-      "css/firefox/whatsnew/whatsnew-120-eu-vpn.scss"
+        "css/firefox/whatsnew/whatsnew-120-eu-vpn.scss"
       ],
       "name": "firefox_whatsnew_120_eu_vpn"
     },
     {
       "files": [
-      "css/firefox/whatsnew/whatsnew-120-eu.scss"
+        "css/firefox/whatsnew/whatsnew-120-eu.scss"
       ],
       "name": "firefox_whatsnew_120_eu"
     },
     {
       "files": [
-      "css/firefox/whatsnew/whatsnew-121.scss"
+        "css/firefox/whatsnew/whatsnew-121.scss"
       ],
       "name": "firefox_whatsnew_121"
     },
     {
       "files": [
-      "css/firefox/whatsnew/whatsnew-122-eu.scss"
+        "css/firefox/whatsnew/whatsnew-122-eu.scss"
       ],
       "name": "firefox_whatsnew_122_eu"
     },
@@ -1190,25 +1190,25 @@
       "name": "careers"
     },
     {
-      "files":[
+      "files": [
         "css/mozorg/diversity/diversity.scss"
       ],
       "name": "diversity"
     },
     {
-      "files":[
+      "files": [
         "css/mozorg/sustainability.scss"
       ],
       "name": "sustainability"
     },
     {
-      "files":[
+      "files": [
         "css/mozorg/advertising.scss"
       ],
       "name": "mozilla-ads"
     },
     {
-      "files":[
+      "files": [
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"
@@ -1254,6 +1254,12 @@
         "css/mozorg/rise25/rise25.scss"
       ],
       "name": "rise25"
+    },
+    {
+      "files": [
+        "css/cms/base.scss"
+      ],
+      "name": "cms-base"
     }
   ],
   "js": [
@@ -1316,7 +1322,7 @@
       ],
       "name": "firefox_welcome_page15_experiment"
     },
-       {
+    {
       "files": [
         "js/firefox/welcome/welcome16.js"
       ],
@@ -1653,7 +1659,6 @@
     {
       "files": [
         "js/base/mozilla-article.js"
-
       ],
       "name": "basic-article"
     },
