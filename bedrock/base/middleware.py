@@ -64,7 +64,9 @@ class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
         if request.GET:
             dest += f"?{request.GET.urlencode()}"
 
-        return HttpResponseRedirect(dest)
+        response = HttpResponseRedirect(dest)
+        response["Vary"] = "Accept-Language"
+        return response
 
     def process_request(self, request):
         # Initially see if we can separate a lang code from the rest of the URL
