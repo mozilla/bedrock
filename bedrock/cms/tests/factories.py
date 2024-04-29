@@ -21,3 +21,8 @@ class SimpleRichTextPageFactory(wagtail_factories.PageFactory):
 class LocaleFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = wagtail_models.Locale
+
+
+class StructuralPageFactory(wagtail_factories.PageFactory):
+    class Meta:
+        model = models.StructuralPage

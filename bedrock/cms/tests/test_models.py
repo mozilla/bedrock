@@ -7,6 +7,7 @@ from unittest import mock
 import pytest
 
 from bedrock.cms.models import AbstractBedrockCMSPage, SimpleRichTextPage
+from bedrock.cms.tests.factories import StructuralPageFactory
 
 pytestmark = [
     pytest.mark.django_db,
@@ -45,3 +46,24 @@ def test_cache_control_headers_on_pages_with_view_restrictions(
     response = client.get(_relative_url)
 
     assert response.get("Cache-Control") == expected_headers
+
+
+def test_StructuralPage_serve_methods(
+    minimal_site,
+    rf,
+):
+    "Show that structural pages redirect to their parent rather than serve anything"
+
+    root_page = SimpleRichTextPage.objects.first()
+    sp = StructuralPageFactory(parent=root_page, slug="folder-page")
+    sp.save()
+
+    _relative_url = sp.relative_url(minimal_site)
+    assert _relative_url == "/en-US/folder-page/"
+
+    request = rf.get(_relative_url)
+    live_result = sp.serve(request)
+    assert live_result.headers["location"] == root_page.url
+
+    preview_result = sp.serve_preview(request)
+    assert preview_result.headers["location"] == root_page.url
