@@ -9,6 +9,7 @@
 {% extends "base-protocol-mozilla.html" %}
 
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=account' %}
 
 {% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}{% endblock %}
 
@@ -81,26 +82,15 @@
           {% endif %}
         </ul>
 
-        <a href="https://monitor.mozilla.org/">
-          {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
-          <h4 class="mzp-c-wordmark mzp-t-wordmark-sm {% if mozilla_monitor %}t-product-mozilla-monitor{% else %}mzp-t-product-monitor{% endif %}">
-            {% if mozilla_monitor %}
-              {{ ftl('firefox-accounts-mozilla-monitor', fallback='firefox-accounts-firefox-monitor') }}
-            {% else %}
-              {{ ftl('firefox-accounts-firefox-monitor') }}
-            {% endif %}
-          </h4>
-        </a>
+        <a href="https://monitor.mozilla.org/{{ referrals }}" rel="external noopener"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm t-product-mozilla-monitor">{{ ftl('firefox-accounts-mozilla-monitor', fallback='firefox-accounts-firefox-monitor') }}</h4></a>
         <ul class="mzp-u-list-styled">
           <li>{% if LANG == 'en-US' %}Get automated removal of your exposed info from sites that are selling it{% else %}{{ ftl('firefox-accounts-get-email-alerts') }}{% endif %}</li>
         </ul>
 
-        {% if ftl_has_messages('firefox-accounts-protect-your-identity') %}
-        <a href="https://relay.firefox.com/"> <h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-relay">{{ ftl('firefox-accounts-firefox-relay') }}</h4></a>
+        <a href="https://relay.firefox.com/{{ referrals }}" rel="external noopener"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-relay">{{ ftl('firefox-accounts-firefox-relay') }}</h4></a>
         <ul class="mzp-u-list-styled">
           <li>{{ ftl('firefox-accounts-protect-your-identity') }}</li>
         </ul>
-        {% endif %}
 
         <a href="{{ url('products.vpn.landing') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-vpn">{{ ftl('firefox-accounts-mozilla-vpn') }}</h4></a>
         <ul class="mzp-u-list-styled">
@@ -112,13 +102,11 @@
           {% endif %}
         </ul>
 
-        <a href="https://getpocket.com/"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-pocket">{{ ftl('firefox-accounts-pocket') }}</h4></a>
-        {% if ftl_has_messages('firefox-accounts-protect-your-identity') %}
+        <a href="https://getpocket.com/{{ referrals }}" rel="external noopener"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-pocket">{{ ftl('firefox-accounts-pocket') }}</h4></a>
         <ul class="mzp-u-list-styled">
           <li>{{ ftl('firefox-accounts-save-articles') }}</li>
           <li>{{ ftl('firefox-accounts-read-in-a') }}</li>
         </ul>
-        {% endif %}
       </div>
 
       <p class="c-accounts-tagline">{{ ftl('firefox-accounts-get-it-all-on-every') }}</p>

@@ -49,7 +49,7 @@
   {% endif %}
 {% endblock %}
 
-{% set utm_params = '?utm_source=www.mozilla.org&utm_campaign=homepage&utm_medium=referral' %}
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage' %}
 
 {% block content %}
 
@@ -172,7 +172,7 @@
             ),
             body=True,
             ) %}
-          <a href="https://monitor.mozilla.org/" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link" rel="external noopener">{{ ftl('home-cta-get-monitor')}}</a>
+          <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
         {% endcall %}
       {% endif %}
     </ul>
@@ -206,7 +206,7 @@
     ) %}
     <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
     <p>{{ ftl('home-mozilla-consists-of') }}</p>
-    <a href="https://foundation.mozilla.org/" class="mzp-c-button" rel="external noopener">
+    <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       <span>{{ ftl('home-learn-about-mofo') }}</span>
       <img src="{{ static('img/home/2023/external-link-white.png') }}" alt="" class="external-link-white">
       <img src="{{ static('img/home/2023/external-link-black.png') }}" alt="" class="external-link-black">
