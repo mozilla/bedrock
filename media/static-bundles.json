@@ -353,17 +353,9 @@
     },
     {
       "files": [
-        "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew.scss"
       ],
       "name": "firefox_whatsnew"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/whatsnew/whatsnew-account.scss"
-      ],
-      "name": "firefox_whatsnew_account"
     },
     {
       "files": [

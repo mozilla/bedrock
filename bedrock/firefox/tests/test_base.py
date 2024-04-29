@@ -281,7 +281,7 @@ class TestWhatsNew(TestCase):
         self.view(req, version="70.0")
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
-        assert template == ["firefox/whatsnew/index-account.html"]
+        assert template == ["firefox/whatsnew/index.html"]
         assert ctx["version"] == "70.0"
         assert ctx["analytics_version"] == "70"
         assert ctx["entrypoint"] == "mozilla.org-whatsnew70"
@@ -478,7 +478,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get("/en-US/firefox/whatsnew/")
         self.view(req, version="60.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index-account.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     @override_settings(DEV=True)
     @patch.object(fx_views, "ftl_file_is_active", lambda *x: False)
