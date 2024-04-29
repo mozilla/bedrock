@@ -5,7 +5,6 @@
 #}
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros.html" import google_play_button, apple_app_store_button with context %}
 {% set android_url = play_store_url('firefox', 'firefox-all') %}
 {% set ios_url = app_store_url('firefox', 'firefox-all') %}
 
@@ -41,14 +40,42 @@
         <p>{{ self.page_desc() }}</p>
       </div>
       <div class="c-selection-form">
-        {% block main %}
-        {% endblock %}
+        {% include 'firefox/all/product.html' %}
+        {% include 'firefox/all/platform.html' %}
+        {% include 'firefox/all/lang.html' %}
+        {% include 'firefox/all/download.html' %}
       </div>
     </div>
   </div>
 </main>
 
-{% block modal %}
-{% endblock %}
 
+<div id="installer-help" class="c-help mzp-u-modal-content">
+  <ul>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-choose-a-64-bit-installer') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-windows-installers-for') }}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ ftl('firefox-all-arm64-installers') }}</h2>
+      <p class="c-help-desc">
+        {{ ftl('firefox-all-arm64-installers-optimized') }}
+      </p>
+    </li>
+  </ul>
+</div>
 {% endblock %}

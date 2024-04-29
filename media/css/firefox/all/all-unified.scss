@@ -13,6 +13,12 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
 
+.all-step {
+    font-weight: bold;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: $layout-sm;
+}
+
 .c-product-select-form {
     @include clearfix;
     position: relative;
@@ -99,8 +105,12 @@ $image-path: '/media/protocol/img';
     li,
     .release {
         background: center left / contain no-repeat;
-        padding-left: 2em;
-        margin-bottom: 1em;
+        padding-left: 40px;
+        margin-bottom: 0.6rem;
+    }
+
+    .release {
+        margin-bottom: 1.2rem;
     }
 
     .release,

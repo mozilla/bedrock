@@ -1,0 +1,28 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+
+{# Choose platform #}
+<div class="all-step">
+  2. {{ ftl('firefox-all-platform') }}
+  {% if product and platform %}
+    {{ platform_name }}
+    <a href="TKTK">X</a>
+  {% endif %}
+</div>
+
+{% if product and not platform %}
+    <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-select-your-preferred-installer') }}
+      <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
+        {{ ftl('firefox-all-get-help') }}
+      </a>
+    </h2>
+    <ul>
+      {% for platform, name in platforms %}
+        <li><a href="{{ url('firefox.drilldown_platform', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
+      {% endfor %}
+    </ul>
+{% endif %}
