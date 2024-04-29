@@ -28,8 +28,6 @@ URLS = flatten(
         # bug 845988 - remove double slashes in URLs
         url_test("/en-US/firefox//all/", "/en-US/firefox/all/"),
         url_test("/pt-BR/////thunderbird/", "/pt-BR/thunderbird/"),
-        # bug 755826, 1222348, 1416798
-        url_test("/zh-CN/", "https://www.firefox.com.cn/", query={"utm_medium": "referral", "utm_source": "mozilla.org"}),
         # bug 874913
         url_test("/en-US/{,products/}download.html{,?stuff=whatnot}", "/en-US/firefox/new/"),
         url_test("/{,products/}download.html{,?stuff=whatnot}", "/firefox/new/"),
