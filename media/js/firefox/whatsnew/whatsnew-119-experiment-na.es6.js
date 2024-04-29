@@ -38,8 +38,6 @@ const initTrafficCop = () => {
         }
     } else if (TrafficCop) {
         const riggs = new TrafficCop({
-            id: 'wnp-119-experiment-na',
-            cookieExpires: 0,
             variations: {
                 'v=1': 50, // Three boxes
                 'v=2': 50 // Addons

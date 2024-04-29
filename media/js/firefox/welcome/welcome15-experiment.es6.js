@@ -24,7 +24,6 @@ const initTrafficCop = () => {
         }
     } else if (TrafficCop) {
         const cop = new TrafficCop({
-            id: 'welcome-15-exp',
             variations: {
                 'v=1': 50,
                 'v=2': 50
