@@ -582,7 +582,9 @@ everett==3.3.0 \
 factory-boy==3.3.0 \
     --hash=sha256:a2cdbdb63228177aa4f1c52f4b6d83fab2b8623bf602c7dedd7eb83c0f69c04c \
     --hash=sha256:bc76d97d1a65bbd9842a6d722882098eb549ec8ee1081f9fb2e8ff29f0c300f1
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   wagtail-factories
 faker==25.1.0 \
     --hash=sha256:2107618cf306bb188dcfea3e5cfd94aa92d65c7293a2437c1e96a99c83274755 \
     --hash=sha256:24e28dce0b89683bb9e017e042b971c8c4909cff551b6d46f1e207674c7c2526
@@ -2031,7 +2033,12 @@ wagtail==5.2.3 \
     --hash=sha256:ad64595124c84c4b00b73b863029a7722e06b4dba17b76177d2f4944f579bca7
     # via
     #   -r requirements/prod.txt
+    #   wagtail-factories
     #   wagtail-localize
+wagtail-factories==4.1.0 \
+    --hash=sha256:067e3e1a30721a90eaa1514c8214aae7a171490bbedf026eeaa904a2ed9abcd0 \
+    --hash=sha256:6abd435518fdf0cdd3d9920acb2abbd9005936d6fecfdf6fdde3e404834d4b0c
+    # via -r requirements/dev.in
 wagtail-localize==1.8 \
     --hash=sha256:53f04de9bd0985b79c075c480572250fb65ba9f127d076c9e93d944e39b6ca47 \
     --hash=sha256:66c3d86e994a6ac5acf1dd569cfd22f2661150abc6099cae2d6fa30a3495d0fc
