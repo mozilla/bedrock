@@ -156,9 +156,6 @@ newsletters-check-for-data-breaches = Check for data breaches
 
 newsletters-mozilla-monitor-is-a-free = { -brand-name-mozilla-monitor } is a free service that lets you see if you’ve been involved in an online data breach.
 
-# Obsolete string
-newsletters-firefox-monitor-is-a-free = { -brand-name-firefox-monitor } is a free service that lets you see if you’ve been involved in an online data breach.
-
 newsletters-sign-in-to-monitor = Sign In to { -brand-name-monitor }
 newsletters-meet-our-parent-brand = Meet our parent brand
 newsletters-mozilla-the-non-for-profit = { -brand-name-mozilla }, the not-for-profit behind { -brand-name-firefox }, puts people over profit in everything we say, build, and do.

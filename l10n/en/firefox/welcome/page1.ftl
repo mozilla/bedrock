@@ -7,9 +7,6 @@
 # HTML page title
 welcome-page1-more-than-a-browser-mozilla = More than a browser - { -brand-name-mozilla-monitor } is your lookout for hackers
 
-# Outdated string
-welcome-page1-more-than-a-browser-firefox = More than a browser - { -brand-name-firefox-monitor } is your lookout for hackers
-
 # HTML page description
 welcome-page1-take-the-next-step-to-protect = Take the next step to protect your privacy online with the { -brand-name-firefox } family of products.
 
