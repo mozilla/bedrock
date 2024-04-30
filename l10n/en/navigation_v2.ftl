@@ -20,8 +20,6 @@ navigation-v2-firefox-for-ios = { -brand-name-firefox } for { -brand-name-ios }
 navigation-v2-get-the-mobile-browser = Get the mobile browser for your { -brand-name-iphone } or { -brand-name-ipad }.
 navigation-v2-firefox-focus = { -brand-name-firefox-focus }
 navigation-v2-simply-private-mobile = Simply private mobile browsing.
-navigation-v2-privacy-promise = Privacy Promise
-navigation-v2-learn-how-firefox-treats = Learn how { -brand-name-firefox } treats your data with respect.
 navigation-v2-firefox-blog = { -brand-name-firefox } Blog
 navigation-v2-read-about-new-firefox-features = Read about new { -brand-name-firefox } features and ways to stay safe online.
 navigation-v2-release-notes = Release Notes
@@ -33,10 +31,6 @@ navigation-v2-view-all-firefox-browsers = View all { -brand-name-firefox-browser
 navigation-v2-products = Products
 navigation-v2-close-products-menu = Close Products menu
 navigation-v2-mozilla-monitor = { -brand-name-mozilla-monitor }
-
-# Obsolete string
-navigation-v2-firefox-monitor = { -brand-name-firefox-monitor }
-
 navigation-v2-see-if-your-email-has = See if your email has appeared in a company’s data breach.
 navigation-v2-pocket = { -brand-name-pocket }
 navigation-v2-save-and-discover-the-best = Save and discover the best stories from across the web.
@@ -44,8 +38,6 @@ navigation-v2-facebook-container = { -brand-name-facebook-container }
 navigation-v2-help-prevent-facebook-from = Help prevent { -brand-name-facebook } from collecting your data outside their site.
 navigation-v2-mozilla-vpn = { -brand-name-mozilla-vpn }
 navigation-v2-get-protection-beyond-your-browser = Get protection beyond your browser, on all your devices.
-navigation-v2-product-promise = Product Promise
-navigation-v2-learn-how-each-firefox-product = Learn how each { -brand-name-firefox } product protects and respects your data.
 navigation-v2-firefox-relay = { -brand-name-firefox-relay }
 navigation-v2-firefox-relay-beta = { -brand-name-firefox-relay } (beta)
 navigation-v2-sign-up-for-new-accounts = Sign up for new accounts without handing over your email address.
