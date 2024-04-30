@@ -107,31 +107,6 @@ if (typeof window.Mozilla === 'undefined') {
         }
     };
 
-    // Bug 1264843: link to China build of Fx4A, for display within Fx China repack
-    Utils.maybeSwitchToChinaRepackImages = function (client) {
-        if (!client.distribution) {
-            return;
-        }
-
-        var distribution = client.distribution.toLowerCase();
-
-        // only swap out images for China Repack builds (issue 10157)
-        if (distribution !== 'mozillaonline') {
-            return;
-        }
-
-        var images = document.querySelectorAll(
-            'img[data-' + distribution + '-link]'
-        );
-
-        for (var j = 0; j < images.length; j++) {
-            var distributionSrc = images[j].getAttribute(
-                'data-' + distribution + '-link'
-            );
-            images[j].setAttribute('src', distributionSrc);
-        }
-    };
-
     // client-side redirects (handy for testing)
     Utils.doRedirect = function (destination) {
         if (destination) {

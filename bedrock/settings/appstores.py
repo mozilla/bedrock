@@ -13,9 +13,6 @@ GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mo
 # key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
 GOOGLE_PLAY_FIREFOX_LINK_UTMS = GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + quote("utm_source=mozilla&utm_medium=Referral&utm_campaign=mozilla-org")
 
-# Bug 1264843, Issue 13108: link to China build of Fx4A, for display within Fx China repack
-GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = "https://www.firefox.com.cn/mobile/get-app/"
-
 # Link to Firefox for iOS on the Apple App Store.
 APPLE_APPSTORE_FIREFOX_LINK = "https://apps.apple.com/{country}/app/apple-store/id989804926"
 

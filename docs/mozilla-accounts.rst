@@ -263,10 +263,8 @@ Firefox Sync and UITour
 Since Firefox 80 the accounts link and email form macros use :ref:`UITour<ui-tour>` to show the
 Mozilla accounts page and log the browser into Sync or an account. For non-Firefox browsers or if
 UITour is not available, the flow uses normal links that allow users to log into the Mozilla accounts
-website only, without connecting the Firefox Desktop client. This UITour flow allows the Firefox browser
-to determine the correct Mozilla accounts server and authentication flow (this includes handling the
-China Repack build of Firefox). This transition was introduced to later migrate Firefox Desktop to an
-OAuth based client authentication flow.
+website only, without connecting the Firefox Desktop client. This transition was introduced to later
+migrate Firefox Desktop to an OAuth based client authentication flow.
 
 The script that handles this logic is ``/media/js/base/fxa-link.js``, and will automatically apply
 to any link with a ``js-fxa-cta-link`` class name. The current code automatically detects if you are in the

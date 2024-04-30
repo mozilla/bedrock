@@ -206,7 +206,6 @@ else:
         "trackertest.org",  # mozilla service for tracker detection
         "www.surveygizmo.com",
         "accounts.firefox.com",
-        "accounts.firefox.com.cn",
         "www.youtube.com",
         "js.stripe.com",
     ]

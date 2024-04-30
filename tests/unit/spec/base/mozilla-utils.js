@@ -58,38 +58,6 @@ describe('mozilla-utils.js', function () {
         });
     });
 
-    describe('maybeSwitchToChinaRepackImages', function () {
-        const defaultSrc = '/img/placeholder.png';
-        const partnerASrc = '/img/foo.png';
-
-        beforeEach(function () {
-            const img = `<img class="test-image" src="${defaultSrc}" data-mozillaonline-link="${partnerASrc}">`;
-            document.body.insertAdjacentHTML('beforeend', img);
-        });
-
-        afterEach(function () {
-            document.querySelectorAll('.test-image').forEach((e) => {
-                e.parentNode.removeChild(e);
-            });
-        });
-
-        it('should use specified image for mozillaonline distributions', function () {
-            Mozilla.Utils.maybeSwitchToChinaRepackImages({
-                distribution: 'mozillaonline'
-            });
-            const img = document.querySelector('.test-image');
-            expect(img.src).toContain(partnerASrc);
-        });
-
-        it('should use default image for other distributions', function () {
-            Mozilla.Utils.maybeSwitchToChinaRepackImages({
-                distribution: 'regata os'
-            });
-            const img = document.querySelector('.test-image');
-            expect(img.src).toContain(defaultSrc);
-        });
-    });
-
     describe('getDownloadAttributionValues', function () {
         it('should return expected values for Windows', function () {
             const site = {
