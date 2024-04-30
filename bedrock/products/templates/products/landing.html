@@ -37,7 +37,7 @@
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=products' %}
 {% set _entrypoint = 'mozilla.org-products' %}
 
-{% set icon_external = '<span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M13 4h7v7M12 12l8-8M8 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1"/></g></svg></span>' %}
+{% set icon_external = '<span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"><path d="M13 4h7v7M12 12l8-8M8 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1"/></g></svg></span>' %}
 {% set icon_download ='<span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 13c.2 0 .4-.1.5-.2l4.4-4.4-1.1-1.1-3.1 3.1V1H7.2v9.4L4.1 7.3l-1 1.1 4.4 4.4c.1.1.3.2.5.2z" /><path d="M13.5 12v2c0 .3-.2.5-.5.5H3c-.3 0-.5-.2-.5-.5v-2H1v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2h-1.5z" /></svg></span>' %}
 
 {% block content %}
@@ -95,10 +95,10 @@
     {% call picto(
       body=True,
       image=resp_img(
-        url='img/logos/relay/logo.svg',
+        url='protocol/img/logos/firefox/relay/logo-white.svg',
         optional_attributes={
           'class': 'mzp-c-picto-image',
-          'width': '57',
+          'width': '64',
           'height': '64',
           'loading': 'lazy'
         }
