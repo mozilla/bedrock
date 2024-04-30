@@ -81,17 +81,17 @@ NAMESPACES = {
     "em-rdf": {
         "namespace": "http://www.mozilla.org/2004/em-rdf",
         "standard": "Extension Manifest",
-        "docs": "https://developer.mozilla.org/en/Install_Manifests",
+        "docs": "https://developer.mozilla.org/Add-ons/Distribution",
     },
     "microsummaries": {
         "namespace": "http://www.mozilla.org/microsummaries/0.1",
         "standard": "Microsummaries",
-        "docs": "https://developer.mozilla.org/en/Microsummary_XML_grammar_reference",
+        "docs": "https://wiki.mozilla.org/Microsummaries",
     },
     "mozsearch": {
         "namespace": "http://www.mozilla.org/2006/browser/search/",
         "standard": "MozSearch plugin format",
-        "docs": "https://developer.mozilla.org/en/Creating_MozSearch_plugins",
+        "docs": "https://web.archive.org/web/20061116161614/http://developer.mozilla.org/en/docs/Creating_MozSearch_plugins",
     },
     "update": {
         "namespace": "http://www.mozilla.org/2005/app-update",
@@ -101,12 +101,12 @@ NAMESPACES = {
     "xbl": {
         "namespace": "http://www.mozilla.org/xbl",
         "standard": "XML Binding Language (XBL)",
-        "docs": "https://developer.mozilla.org/en/XBL",
+        "docs": "https://www.w3.org/TR/xbl/",
     },
     "xforms-type": {
         "namespace": "http://www.mozilla.org/projects/xforms/2005/type",
         "standard": "XForms mozType extension",
-        "docs": "https://developer.mozilla.org/en/XForms/Custom_Controls",
+        "docs": "https://wiki.mozilla.org/XForms",
     },
     "xul": {
         "namespace": "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
