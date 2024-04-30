@@ -65,7 +65,8 @@
     ) %}
       <h3 class="mzp-c-picto-heading"><a href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h3>
       <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
-      <div class="show-else">{{ download_firefox_thanks(button_class='mzp-t-lg') }}</div>
+      {% set alt_copy = ftl('download-button-download-firefox') + " " + icon_download|safe %}
+      <div class="show-else">{{ download_firefox_thanks(alt_copy=alt_copy, button_class='mzp-t-lg') }}</div>
       <p class="show-android">{{ google_play_button(href=fx_android_url, id='playStoreLink-firefox') }}</p>
       <p class="show-ios">{{ apple_app_store_button(href=fx_ios_url, id='appStoreLink-firefox') }}</p>
     {% endcall %}
