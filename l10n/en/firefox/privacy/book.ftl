@@ -110,9 +110,6 @@ privacy-book-dont-have-time = <strong>Don’t have time?</strong> Set up a { -br
 
 privacy-book-breach-alert-if-v2 = <strong>Breach alert:</strong> If your data actually becomes public through a known breach, it is crucial to react as quickly as possible and change your passwords. { -brand-name-mozilla-monitor } is a handy tool that will send you a message if that happens.
 
-# Obsolete string
-privacy-book-breach-alert-if = <strong>Breach alert:</strong> If your data actually becomes public through a known breach, it is crucial to react as quickly as possible and change your passwords. { -brand-name-firefox-monitor } is a handy tool that will send you a message if that happens.
-
 privacy-book-stay-safe-online = Stay safe online:
 
 privacy-book-there-are-a = There are a bunch of tools that can help improve your level of privacy and security. And that’s great! However, you’ll still require passwords to protect your accounts. Would you expect the newest high-end home security system to protect you from burglars if you had no apartment door? Here’s what to do:

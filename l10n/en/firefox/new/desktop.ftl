@@ -160,9 +160,6 @@ firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozi
 
 firefox-desktop-download-watch-for-hackers-with-v3 = Watch for hackers with { -brand-name-mozilla-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
 
-# Obsolete string
-firefox-desktop-download-watch-for-hackers-with-v2 = Watch for hackers with { -brand-name-firefox-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
-
 ## URL: https://www-dev.allizom.org/firefox/download/thanks/
 
 firefox-desktop-download-almost-there = Almost there!
