@@ -16,18 +16,6 @@
 
             utils.initMobileDownloadLinks();
             utils.trackDownloadThanksButton();
-
-            /* Bug 1264843: In partner distribution of desktop Firefox, switch the
-            downloads to corresponding partner build of Firefox for Android. */
-            if (typeof Mozilla.Client !== 'undefined') {
-                var client = Mozilla.Client;
-
-                if (client.isFirefoxDesktop) {
-                    client.getFirefoxDetails(
-                        utils.maybeSwitchToChinaRepackImages
-                    );
-                }
-            }
         });
     }
 

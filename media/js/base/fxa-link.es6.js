@@ -8,8 +8,7 @@ const FxaLink = {};
 const client = Mozilla.Client;
 const allowedList = [
     'https://accounts.firefox.com/',
-    'https://accounts.stage.mozaws.net/',
-    'https://accounts.firefox.com.cn/'
+    'https://accounts.stage.mozaws.net/'
 ];
 
 /**
