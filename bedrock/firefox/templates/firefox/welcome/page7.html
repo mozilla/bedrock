@@ -116,29 +116,20 @@
         {% endif %}
       </h3>
       <div class="c-picto-block-body">
-        {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
         <p>
-          {% if mozilla_monitor %}
             {% if LANG == "en-US" %}
               Mozilla Monitor lets you see if you’ve been part of a data breach. And if you have, it automatically gets your private info back for you and continually monitors your identity for new leaks.
             {% else %}
-              {{ ftl('page7-firefox-monitor-lets-you-find-v2', fallback='page7-firefox-monitor-lets-you-find') }}
+              {{ ftl('page7-firefox-monitor-lets-you-find-v2')}}
             {% endif %}
-          {% else %}
-            {{ ftl('page7-firefox-monitor-lets-you-find') }}
-          {% endif %}
         </p>
         <a href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
           <strong>
-            {% if mozilla_monitor %}
               {% if LANG == "en-US" %}
                 Check for breaches now
               {% else %}
-                {{ ftl('page7-get-mozilla-monitor', fallback='page7-get-firefox-monitor') }}
+                {{ ftl('page7-get-mozilla-monitor') }}
               {% endif %}
-            {% else %}
-              {{ ftl('page7-get-firefox-monitor') }}
-            {% endif %}
           </strong>
         </a>
       </div>

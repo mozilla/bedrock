@@ -148,27 +148,19 @@
       image=resp_img('img/firefox/privacy/products/monitor.svg', optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
       media_class='mzp-l-split-h-center'
     ) %}
-      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
-      <div class="mzp-c-wordmark mzp-t-wordmark-md {% if mozilla_monitor %}t-product-mozilla-monitor{% else %}mzp-t-product-monitor{% endif %}">
+
+      <div class="mzp-c-wordmark mzp-t-wordmark-md t-product-mozilla-monitor">
         <h2>
-          {% if mozilla_monitor %}
-            {{ ftl('firefox-privacy-hub-mozilla-monitor', fallback='firefox-privacy-hub-firefox-monitor') }}
-          {% else %}
-            {{ ftl('firefox-privacy-hub-firefox-monitor') }}
-          {% endif %}
+          {{ ftl('firefox-privacy-hub-mozilla-monitor') }}
         </h2>
       </div>
       <p>
-        {% if mozilla_monitor %}
           {% if LANG == 'en-US' %}
             When you enter your email address in Mozilla Monitor, we forget it immediately after we’ve checked to see where your
             personal details have been exposed — unless you authorize us to continue monitoring your info for future exposures.
           {% else %}
-            {{ ftl('firefox-privacy-hub-when-you-enter-your-email-v2', fallback='firefox-privacy-hub-when-you-enter-your-email') }}
+            {{ ftl('firefox-privacy-hub-when-you-enter-your-email-v2') }}
           {% endif %}
-        {% else %}
-          {{ ftl('firefox-privacy-hub-when-you-enter-your-email') }}
-        {% endif %}
       </p>
       <p>
         <a class="mzp-c-cta-link" href="https://monitor.mozilla.org/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-text="Check for breaches" data-cta-position="secondary">

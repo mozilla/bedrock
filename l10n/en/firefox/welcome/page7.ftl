@@ -22,12 +22,6 @@ page7-stay-ahead-of-hackers = Stay ahead of hackers
 
 page7-firefox-monitor-lets-you-find-v2 = { -brand-name-mozilla-monitor } lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)
 
-# Obsolete string
-page7-firefox-monitor-lets-you-find = { -brand-name-firefox-monitor } lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)
-
 page7-get-mozilla-monitor = Get { -brand-name-mozilla-monitor }
-
-# Obsolete string
-page7-get-firefox-monitor = Get { -brand-name-firefox-monitor }
 
 page7-why-am-i-seeing-this = Why am I seeing this?

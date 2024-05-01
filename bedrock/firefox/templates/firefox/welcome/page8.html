@@ -57,13 +57,9 @@
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
       </div>
-      {% set mozilla_monitor = switch('mozilla-monitor-brand-name') %}
+
       <h3 class="c-picto-block-title">
-        {% if mozilla_monitor %}
-          {{ ftl('welcome-page8-mozilla-monitor', fallback='welcome-page8-firefox-monitor') }}
-        {% else %}
-          {{ ftl('welcome-page8-firefox-monitor') }}
-        {% endif %}
+          {{ ftl('welcome-page8-mozilla-monitor')}}
       </h3>
       <div class="c-picto-block-body">
       {% if LANG == "en-US" %}

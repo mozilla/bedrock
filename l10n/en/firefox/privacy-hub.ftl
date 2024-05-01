@@ -94,13 +94,8 @@ firefox-privacy-hub-more-than-s-trackers-blocked = More than { $trackers } track
 
 firefox-privacy-hub-mozilla-monitor = { -brand-name-mozilla-monitor }
 
-# Obsolete string
-firefox-privacy-hub-firefox-monitor = { -brand-name-firefox-monitor }
-
 firefox-privacy-hub-when-you-enter-your-email-v2 = When you enter your email address in { -brand-name-mozilla-monitor }, we forget it immediately after we’ve checked for a match in known data breaches — unless you authorize us to continue monitoring new breaches for your personal information.
 
-# Obsolete string
-firefox-privacy-hub-when-you-enter-your-email = When you enter your email address in { -brand-name-firefox-monitor }, we forget it immediately after we’ve checked for a match in known data breaches — unless you authorize us to continue monitoring new breaches for your personal information.
 firefox-privacy-hub-check-for-breaches = Check for breaches
 firefox-privacy-hub-firefox-lockwise = { -brand-name-firefox-lockwise }
 firefox-privacy-hub-the-passwords-and-credentials = The passwords and credentials you save in { -brand-name-firefox-lockwise } are encrypted on all your devices, so not even we can see them.
