@@ -991,9 +991,9 @@ qrcode==7.4.2 \
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
     # via -r requirements/prod.in
-referencing==0.34.0 \
-    --hash=sha256:5773bd84ef41799a5a8ca72dc34590c041eb01bf9aa02632b4a973fb0181a844 \
-    --hash=sha256:d53ae300ceddd3169f1ffa9caf2cb7b769e92657e4fafb23d34b93679116dfd4
+referencing==0.35.0 \
+    --hash=sha256:191e936b0c696d0af17ad7430a3dc68e88bc11be6514f4757dc890f04ab05889 \
+    --hash=sha256:8080727b30e364e5783152903672df9b6b091c926a146a759080b62ca3126cd6
     # via
     #   jsonschema
     #   jsonschema-specifications
