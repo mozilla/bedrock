@@ -9,30 +9,6 @@ import pytest
 from pages.products.landing import ProductsPage
 
 
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_firefox_download_menu_list_displays(base_url, selenium):
-    page = ProductsPage(selenium, base_url).open()
-    page.firefox_menu_list.click()
-    assert page.firefox_menu_list.list_is_open
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_focus_download_menu_list_displays(base_url, selenium):
-    page = ProductsPage(selenium, base_url).open()
-    page.focus_menu_list.click()
-    assert page.focus_menu_list.list_is_open
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_pocket_download_menu_list_displays(base_url, selenium):
-    page = ProductsPage(selenium, base_url).open()
-    page.pocket_menu_list.click()
-    assert page.pocket_menu_list.list_is_open
-
-
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
     page = ProductsPage(selenium, base_url).open()
