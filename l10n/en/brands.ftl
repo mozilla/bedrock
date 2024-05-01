@@ -101,6 +101,10 @@
 
 -brand-name-pocket = Pocket
 
+## Fakespot
+
+-brand-name-fakespot = Fakespot
+
 ## Mozilla projects
 
 -brand-name-bugzilla = Bugzilla
