@@ -1444,6 +1444,10 @@ protobuf==4.25.3 \
     #   google-api-core
     #   googleapis-common-protos
     #   proto-plus
+psycopg==3.1.18 \
+    --hash=sha256:31144d3fb4c17d78094d9e579826f047d4af1da6a10427d91dfcfb6ecdf6f12b \
+    --hash=sha256:4d5a0a5a8590906daa58ebd5f3cfc34091377354a1acced269dd10faf55da60e
+    # via -r requirements/prod.txt
 py==1.11.0 \
     --hash=sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719 \
     --hash=sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378
@@ -2014,6 +2018,7 @@ typing-extensions==4.11.0 \
     #   dj-database-url
     #   fluent-runtime
     #   fluent-syntax
+    #   psycopg
     #   pygithub
     #   qrcode
     #   wagtail-localize
