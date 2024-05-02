@@ -17,6 +17,7 @@ from pathlib import Path
 from django.conf.locale import LANG_INFO  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
 from django.utils.functional import lazy
 
+import dj_database_url
 import markus
 import sentry_sdk
 from everett.manager import ListOf
@@ -63,10 +64,11 @@ IS_POCKET_MODE = site_mode == "Pocket"
 IS_MOZORG_MODE = not IS_POCKET_MODE
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": data_path("bedrock.db"),
-    },
+    "default": config(
+        "DATABASE_URL",
+        default=f"sqlite:////{data_path('bedrock.db')}",
+        parser=dj_database_url.parse,
+    )
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
