@@ -86,3 +86,21 @@ $image-path: '/media/protocol/img';
     padding-bottom: $spacing-md;
     padding-top: $spacing-md;
 }
+
+// * -------------------------------------------------------------------------- */
+// Fancy up the donate link
+
+.mzp-c-footer { /* stylelint-disable no-duplicate-selectors  */
+    a.footer-donate  {
+        font-weight: bold;
+
+        .mzp-c-button-icon-start path {
+            fill: $color-red-50;
+        }
+
+        &:hover .mzp-c-button-icon-start path,
+        &:focus .mzp-c-button-icon-start path {
+            fill: $color-white;
+        }
+    }
+}

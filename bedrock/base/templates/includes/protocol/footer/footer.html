@@ -19,13 +19,20 @@
           </h5>
           <ul class="mzp-c-footer-list">
             <li><a href="{{ url('mozorg.about.manifesto') }}" data-link-type="footer" data-link-text="Mozilla Manifesto">{{ ftl('footer-mozilla-manifesto') }}</a></li>
-            <li><a href="{{ press_blog_url() }}?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Press Center">{{ ftl('footer-press-center') }}</a></li>
-          {% if ftl_has_messages('footer-corporate-blog') %}
-            <li><a href="https://blog.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Corporate Blog">{{ ftl('footer-corporate-blog') }}</a></li>
-          {% endif %}
+            <li><a href="https://blog.mozilla.org/category/mozilla/news/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Press Center">{{ ftl('footer-press-center') }}</a></li>
+            <li><a href="https://blog.mozilla.org/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Mozilla Blog">{{ ftl('footer-mozilla-blog', fallback='footer-corporate-blog') }}</a></li>
             <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-text="Careers">{{ ftl('footer-careers') }}</a></li>
             <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-text="Contact">{{ ftl('footer-contact') }}</a></li>
-            <li><a href="{{ donate_url(content='footer') }}" data-link-type="footer" data-link-text="Donate">{{ ftl('footer-donate', fallback='navigation-donate') }}</a></li>
+            <li>
+              <a class="mzp-c-button mzp-t-dark mzp-t-secondary footer-donate" href="{{ donate_url(location='moco-donate-footer') }}" data-link-type="button" data-link-text="Donate">
+                <span class="mzp-c-button-icon-start">
+                  <svg width="16" height="16" viewBox="0 0 16 16">
+                    <path fill="#fff" d="M1.2,2.2c-1.5,1.5-1.5,4.2,0,5.7L8,15c2.3-2.4,4.5-4.7,6.9-7c1.5-1.5,1.5-4.2,0-5.7c-1.5-1.5-4-1.5-5.6,0L8,3.5 L6.7,2.3C5.1,0.6,2.7,0.6,1.2,2.2"/>
+                  </svg>
+                </span>
+                {{ ftl('footer-donate') }}
+              </a>
+            </li>
           {% if LANG == "de" %}
             {# Legal requirement in Germany see issue #14240 #}
             <li><a href="{{ url('legal.impressum') }}" data-link-type="footer" data-link-text="Impressum">Impressum</a></li>

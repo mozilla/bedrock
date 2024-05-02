@@ -844,7 +844,7 @@ PRESS_BLOGS = {
     "pt-BR": "press-br/",
 }
 
-DONATE_LINK = "https://foundation.mozilla.org/?form=donate&c_id=7014x000000eQOH&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco{content}"
+DONATE_LINK = "https://foundation.mozilla.org/{location}"
 
 # Official Firefox Twitter accounts
 FIREFOX_TWITTER_ACCOUNTS = {
