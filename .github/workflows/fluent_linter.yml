@@ -26,10 +26,10 @@ jobs:
       - name: Set up Python 3
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - name: Install Python dependencies
         run: |
-          pip install moz-fluent-linter==0.3.*
+          pip install moz-fluent-linter==0.4.*
       - name: Lint mozilla.org files
         run: |
           moz-fluent-lint l10n/en --config .github/l10n/linter_config.yml
