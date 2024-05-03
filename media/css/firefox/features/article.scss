@@ -74,6 +74,11 @@ $image-path: '/media/protocol/img';
         @include text-title-2xs;
     }
 
+    .c-lang-list {
+        columns: 2;
+        column-gap: $spacing-lg;
+    }
+
     .footnote {
         @include text-body-sm;
     }
@@ -85,6 +90,11 @@ $image-path: '/media/protocol/img';
             margin: $spacing-xl ($spacing-2xl * -1);
             padding: $spacing-xl $spacing-2xl;
         }
+
+        .c-lang-list {
+            columns: 3;
+        }
+
     }
 }
 

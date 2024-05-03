@@ -800,17 +800,7 @@ def firefox_welcome_page1(request):
 
 @require_safe
 def firefox_features_translate(request):
-    translate_langs = [
-        "es-ES",
-        "en-US",
-        "de",
-        "bg",
-        "pt-PT",
-        "it",
-        "fr",
-        "pl",
-        "nl",
-    ]
+    translate_langs = ["bg", "nl", "en-US", "et", "fi", "fr", "de", "el", "hu", "it", "pl", "pt-PT", "ru", "sl", "es-ES", "tr", "uk"]
 
     names = get_translations_native_names(sorted(translate_langs))
 
