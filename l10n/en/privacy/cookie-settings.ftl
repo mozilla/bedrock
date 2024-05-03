@@ -26,7 +26,7 @@ cookie-settings-turn-on-javascript = Please turn on JavaScript to update your Co
 cookie-settings-category-necessary-heading = Necessary
 cookie-settings-category-necessary-what-are-subheading = What are Necessary Cookies?
 cookie-settings-category-necessary-what-are-desc = These technologies are required to support essential website features, such as logging into a secure area of a website or adding items to an online shopping basket, and cannot be turned off.
-cookie-settings-category-necessary-how-does-desc = { -brand-name-mozilla } uses Necessary Cookies only to provide essential website features, such as logging in using your { -brand-name-mozilla } account or purchasing a software subscription at checkout. Without these technologies, essential website features may not function.
+cookie-settings-category-necessary-how-does-desc-v2 = { -brand-name-mozilla } uses Necessary Cookies only to provide essential website features, such as logging in using your { -brand-name-mozilla-account } or purchasing a software subscription at checkout. Without these technologies, essential website features may not function.
 
 ## Preference cookies section
 
