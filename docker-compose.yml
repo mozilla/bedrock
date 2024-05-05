@@ -48,6 +48,16 @@ services:
       - ./l10n/:/app/l10n:delegated
       - ./assets/:/app/assets:delegated
 
+  # Standalone postgres database - for local runserver development.
+  # TODO: add this as a dependency of app/test/release
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
   # run the tests against local changes
   test:
     image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
