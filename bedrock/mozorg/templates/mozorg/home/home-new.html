@@ -154,6 +154,24 @@
         <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
+      <!-- Fakespot -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-fakespot-detect'),
+        image=resp_img(
+          url='img/logos/fakespot/logo-blue.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
+      {% endcall %}
+
       {% set monitor_desc = 'Automatically reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
       {% if show_monitor_picto %}
@@ -189,6 +207,13 @@
   </div>
 
   <section class="c-mission mzp-l-content">
+
+    <!-- Trustworthy AI -->
+    <div class="c-trustworthy-ai mzp-l-content mzp-t-content-lg mzp-t-content-nospac">
+      <h2>{{ ftl('home-trustworthy-ai') }}</h2>
+      <p>{{ ftl('home-work-on-ai') }}</p>
+    </div>
+
     <!-- Foundation -->
     {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace c-foundation',
@@ -208,12 +233,70 @@
     <p>{{ ftl('home-mozilla-consists-of') }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
-      <span class="mzp-c-button-icon-end">
-        <img src="{{ static('protocol/img/icons/open-in-new.svg') }}" alt="">
-      </span>
     </a>
     {% endcall %}
-    <hr>
+
+    <!-- Mozilla entities -->
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three c-mozilla-entities">
+      {% call picto(
+        base_el='li',
+        title=ftl('home-mozilla-corporation'),
+        image=resp_img(
+          url='protocol/img/logos/mozilla/logo.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="About the Corporation" data-cta-type="link">{{ ftl('home-about-the-corporation') }}</a>
+      {% endcall %}
+
+        {% call picto(
+        base_el='li',
+        title=ftl('home-mozilla-ventures'),
+        image=resp_img(
+          url='img/logos/mozilla/mozilla-vc.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="Visit Mozilla Ventures" data-cta-type="link">{{ ftl('home-visit-ventures') }}</a>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title=ftl('home-mozilla-ai'),
+        image=resp_img(
+          url='img/logos/mozilla/mozilla-ai.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="Visit Mozilla AI" data-cta-type="link">{{ ftl('home-visit-ai') }}</a>
+      {% endcall %}
+    </ul>
+
+      <!-- Mid-page promo -->
+    {% if LANG == 'en-US' and switch("monitor-plus-banner") %}
+      {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
+    {% else %}
+      {% include 'mozorg/home/includes/featured-vpn.html' %}
+    {% endif %}
+
     <!-- Contribute -->
     {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
@@ -234,13 +317,6 @@
     <a href="{{ url('mozorg.contribute') }}" class="mzp-c-button">{{ ftl('home-volunteer-with-mozilla') }}</a>
     {% endcall %}
   </section>
-
-  <!-- Mid-page promo -->
-  {% if LANG == 'en-US' and switch("monitor-plus-banner") %}
-    {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
-  {% else %}
-    {% include 'mozorg/home/includes/featured-vpn.html' %}
-  {% endif %}
 
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">

@@ -169,12 +169,17 @@ header {
         padding: 0;
     }
 
-    h2 {
-        text-align: center;
-    }
-
     hr {
         border-width: 1px;
+    }
+
+    .c-trustworthy-ai {
+        padding-top: 0;
+
+        h2,
+        p {
+            text-align: center;
+        }
     }
 
     @media #{$mq-md} {
@@ -205,6 +210,10 @@ header {
                 filter: none;
             }
         }
+    }
+
+    .c-mozilla-entities {
+        text-align: center;
     }
 }
 

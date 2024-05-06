@@ -29,15 +29,28 @@ home-product-vpn-trust = A VPN you can trust
 home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
 home-product-monitor-data = Data breach alerts
 home-cta-get-monitor = Get { -brand-name-monitor }
+home-product-fakespot-detect = Detect fake shopping reviews
+home-cta-get-fakespot = Get { -brand-name-fakespot }
+
 
 home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the world there’s a business to be made with trustworthy AI. That includes putting things like human rights, data protection and transparency at the core of how these complex systems work.”
 
 # Politico is a brand name for a news organization
 home-politico-cite = Politico
 
+home-trustworthy-ai = Trustworthy AI
+home-work-on-ai = { -brand-name-mozilla }’s work on AI is not new — we’ve been funding, building and advocating for trustworthy AI approaches for years. We are accelerating progress toward Trustworthy AI to promote openness, competition, and accountability in AI.
+
 home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a non-profit? Actually, both.
 home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla-corporation } is wholly owned by the non-profit 501(c) { -brand-name-mozilla-foundation }. Which means we aren’t beholden to any shareholders — only to our mission.
 home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
+
+home-mozilla-corporation = { -brand-name-mozilla-corporation }
+home-about-the-corporation = About the Corporation
+home-mozilla-ventures = { -brand-name-mozilla} Ventures
+home-visit-ventures = Visit { -brand-name-mozilla} Ventures
+home-mozilla-ai = { -brand-name-mozilla } AI
+home-visit-ai = Visit { -brand-name-mozilla } AI
 
 home-join-the-fight = Join the fight for a healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.
