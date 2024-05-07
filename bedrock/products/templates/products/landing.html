@@ -64,7 +64,7 @@
       ),
     ) %}
       <h3 class="mzp-c-picto-heading"><a href="{{ url('firefox') }}" data-cta-type="link" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h3>
-      <p>{{ ftl('firefox-products-get-the-browsers-that-block') }}</p>
+      <p>{{ ftl('firefox-products-get-the-browser-that-blocks') }}</p>
       {% set alt_copy = ftl('download-button-download-firefox') + " " + icon_download|safe %}
       <div class="show-else">{{ download_firefox_thanks(alt_copy=alt_copy, button_class='mzp-t-secondary mzp-t-lg') }}</div>
       <p class="show-android">{{ google_play_button(href=fx_android_url, id='playStoreLink-firefox') }}</p>
@@ -197,7 +197,7 @@
         }
       ),
     ) %}
-      <h3 class="mzp-c-picto-heading"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-type="link" data-cta-text="Fakespot" data-cta-position="heading">{{ ftl('firefox-products-fakespot') }}</a> <span class="mzp-u-title-3xs">{{ ftl('firefox-products-by-mozilla') }}</span></h3>
+      <h3 class="mzp-c-picto-heading"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-type="link" data-cta-text="Fakespot" data-cta-position="heading">{{ ftl('firefox-products-fakespot') }}</a></h3>
       <p>{{ ftl('firefox-products-fakespot-has-your') }}</p>
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.fakespot.com/analyzer{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Analyze a url with Fakespot">{{ ftl('firefox-products-analyze') }} {{ icon_external|safe }}</a></p>
     {% endcall %}
@@ -215,7 +215,7 @@
         }
       ),
     ) %}
-    <h3 class="mzp-c-picto-heading"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" data-cta-type="link" data-cta-text="Pocket" data-cta-position="heading">{{ ftl('firefox-products-pocket') }}</a> <span class="mzp-u-title-3xs">{{ ftl('firefox-products-by-mozilla') }}</span></h3>
+    <h3 class="mzp-c-picto-heading"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" data-cta-type="link" data-cta-text="Pocket" data-cta-position="heading">{{ ftl('firefox-products-pocket') }}</a></h3>
       <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
       <p class="show-else"><a href="https://getpocket.com/signup{{ referrals }}" rel="external noopener" class="mzp-c-button mzp-t-product mzp-t-secondary" data-cta-type="link" data-cta-text="Pocket sign up">{{ ftl('firefox-products-get-pocket') }} {{ icon_external|safe }}</a></p>
       <p class="show-android">{{ google_play_button(href=pocket_android_url, id='playStoreLink-pocket') }}</p>

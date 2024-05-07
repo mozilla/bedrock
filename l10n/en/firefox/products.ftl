@@ -18,13 +18,10 @@ firefox-products-firefox-beginning = { -brand-name-firefox } is just the beginni
 
 firefox-products-mozillas-family-of-products-sentence = { -brand-name-mozilla }’s family of products are all designed to keep you safer and smarter online.
 
-# appears after the name of a product with independant branding. Example: Fakespot by Mozilla
-firefox-products-by-mozilla = by { -brand-name-mozilla }
-
 ## Firefox
 
 firefox-products-firefox = { -brand-name-firefox }
-firefox-products-get-the-browsers-that-block = Get the browsers that block 2000+ data trackers automatically. Enhanced Tracking Protection comes standard in every { -brand-name-firefox } browser.
+firefox-products-get-the-browser-that-blocks = Get the browser that blocks 2000+ data trackers automatically. Enhanced Tracking Protection comes standard in every { -brand-name-firefox } browser.
 
 ## Focus
 
@@ -52,7 +49,7 @@ firefox-products-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
 ## MDN Plus
 
 firefox-products-mdn-plus = { -brand-name-mdn-plus }
-firefox-products-resources-for-developers = Resources for developers, by developers. Support MDN and make it your own with collections, notifications, and playgrounds.
+firefox-products-resources-for-developers = Resources for developers, by developers. Support { -brand-name-mdn } and make it your own with collections, notifications, and playgrounds.
 firefox-products-support-mdn = Support { -brand-name-mdn }
 
 ## Thunderbird
@@ -66,11 +63,11 @@ firefox-products-download-thunderbird = Download { -brand-name-thunderbird }
 firefox-products-fakespot = { -brand-name-fakespot }
 # scam artists are people who are trying to sell fakes or steal money
 # 'weeding' is a gardening term, here it is used to mean "removing unwanted things without touching the good ones"
-firefox-products-fakespot-has-your = { -brand-name-fakespot } has your back when you’re shopping online — weeding out scam artists and finding you the best deals.
+firefox-products-fakespot-has-your = { -brand-name-fakespot } has your back when you’re shopping online — weeding out scam artists and finding you the best deals. Made by { -brand-name-mozilla }.
 firefox-products-analyze = Analyze a URL
 
 ## Pocket
 
 firefox-products-pocket = { -brand-name-pocket }
-firefox-products-discover-the-best-content = Discover the best content on the web — and consume it wherever and whenever you want.
+firefox-products-discover-the-best-content = Discover the best content on the web — and consume it wherever and whenever you want. Made by { -brand-name-mozilla }.
 firefox-products-get-pocket = Get { -brand-name-pocket }
