@@ -216,7 +216,7 @@
       ),
     ) %}
     <h3 class="mzp-c-picto-heading"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" data-cta-type="link" data-cta-text="Pocket" data-cta-position="heading">{{ ftl('firefox-products-pocket') }}</a></h3>
-      <p>{{ ftl('firefox-products-discover-the-best-content') }}</p>
+      <p>{{ ftl('firefox-products-discover-the-best-content-v2', fallback='firefox-products-discover-the-best-content') }}</p>
       <p class="show-else"><a href="https://getpocket.com/signup{{ referrals }}" rel="external noopener" class="mzp-c-button mzp-t-product mzp-t-secondary" data-cta-type="link" data-cta-text="Pocket sign up">{{ ftl('firefox-products-get-pocket') }} {{ icon_external|safe }}</a></p>
       <p class="show-android">{{ google_play_button(href=pocket_android_url, id='playStoreLink-pocket') }}</p>
       <p class="show-ios">{{ apple_app_store_button(href=pocket_ios_url, id='appStoreLink-pocket') }}</p>
