@@ -69,5 +69,7 @@ firefox-products-analyze = Analyze a URL
 ## Pocket
 
 firefox-products-pocket = { -brand-name-pocket }
-firefox-products-discover-the-best-content = Discover the best content on the web — and consume it wherever and whenever you want. Made by { -brand-name-mozilla }.
+firefox-products-discover-the-best-content-v2 = Discover the best content on the web — and consume it wherever and whenever you want. Made by { -brand-name-mozilla }.
+# Obsolete string (expires: 2024-07-08)
+firefox-products-discover-the-best-content = Discover the best content on the web — and consume it wherever and whenever you want.
 firefox-products-get-pocket = Get { -brand-name-pocket }
