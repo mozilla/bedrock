@@ -165,21 +165,10 @@ header {
 }
 
 .c-mission {
-    .mzp-c-split-container {
-        padding: 0;
-    }
-
-    hr {
-        border-width: 1px;
-    }
-
     .c-trustworthy-ai {
-        padding-top: 0;
-
-        h2,
-        p {
-            text-align: center;
-        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     @media #{$mq-md} {
@@ -192,28 +181,19 @@ header {
         }
     }
 
-    .c-foundation {
-        a.mzp-c-button[rel~="external"] {
-            display: inline-flex;
+    .c-mozilla-entities {
+        text-align: center;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             align-items: center;
-
-            span {
-                flex-shrink: 0;
-            }
-
-            img {
-                margin-left: $spacing-sm;
-                filter: invert(100%);
-            }
-
-            &:hover img {
-                filter: none;
-            }
         }
     }
 
-    .c-mozilla-entities {
-        text-align: center;
+    .c-volunteer {
+        padding-top: 0;
     }
 }
 

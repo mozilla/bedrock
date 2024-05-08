@@ -78,9 +78,7 @@
   <section class="c-products mzp-l-content mzp-t-content-xl">
     <h2>{{ ftl('home-mozilla-makes-privacy') }}</h2>
 
-    {% set show_monitor_picto =  ftl_has_messages('home-product-monitor-data', 'home-cta-get-monitor') %}
-
-    <ul class="{% if show_monitor_picto %}c-product-columns{% else %}mzp-l-columns mzp-t-columns-four{% endif %}">
+    <ul class="c-product-columns mzp-l-columns mzp-t-columns-four">
 
       <!-- Firefox -->
       {% call picto(
@@ -174,7 +172,6 @@
 
       {% set monitor_desc = 'Automatically reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
-      {% if show_monitor_picto %}
         <!-- Monitor -->
         {% call picto(
           base_el='li',
@@ -192,7 +189,6 @@
             ) %}
           <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
         {% endcall %}
-      {% endif %}
     </ul>
   </section>
 
@@ -206,17 +202,18 @@
     </div>
   </div>
 
-  <section class="c-mission mzp-l-content">
+  <section class="c-mission">
 
     <!-- Trustworthy AI -->
-    <div class="c-trustworthy-ai mzp-l-content mzp-t-content-lg mzp-t-content-nospac">
+    <div class="c-trustworthy-ai mzp-l-content mzp-t-content-md">
       <h2>{{ ftl('home-trustworthy-ai') }}</h2>
       <p>{{ ftl('home-work-on-ai') }}</p>
+      <a href="" rel="" class="mzp-c-button">{{ ftl('home-read-the-report') }}</a>
     </div>
 
     <!-- Foundation -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace c-foundation',
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace mzp-t-content-xl c-foundation',
         image=resp_img(
           url='img/home/2023/mofo-split.png',
           srcset={
@@ -237,7 +234,7 @@
     {% endcall %}
 
     <!-- Mozilla entities -->
-    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three c-mozilla-entities">
+    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-lg c-mozilla-entities">
       {% call picto(
         base_el='li',
         title=ftl('home-mozilla-corporation'),
@@ -246,8 +243,8 @@
           optional_attributes={
             'class': 'mzp-c-picto-image',
             'loading': 'lazy',
-            'width': '50',
-            'height': '50'
+            'width': '51',
+            'height': '51'
           }
           ),
           body=True,
@@ -263,8 +260,8 @@
           optional_attributes={
             'class': 'mzp-c-picto-image',
             'loading': 'lazy',
-            'width': '50',
-            'height': '50'
+            'width': '70',
+            'height': '70'
           }
           ),
           body=True,
@@ -280,8 +277,8 @@
           optional_attributes={
             'class': 'mzp-c-picto-image',
             'loading': 'lazy',
-            'width': '50',
-            'height': '50'
+            'width': '70',
+            'height': '70'
           }
           ),
           body=True,
@@ -299,7 +296,7 @@
 
     <!-- Contribute -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+        block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-volunteer',
         image=resp_img(
           url='img/home/2023/contribute-split.png',
           srcset={
