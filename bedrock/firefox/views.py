@@ -480,7 +480,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif channel == "beta":
-            if version.startswith("126."):
+            if version.startswith("126.") or version.startswith("127."):
                 if locale.startswith("en-"):
                     if locale == "en-GB" or country == "GB":
                         template = "firefox/whatsnew/whatsnew-fx126beta-en-GB.html"
