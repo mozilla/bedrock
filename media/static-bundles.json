@@ -451,6 +451,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-126-na.scss"
+      ],
+      "name": "firefox_whatsnew_126_na"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-126-eu.scss"
+      ],
+      "name": "firefox_whatsnew_126_eu"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-126beta.scss"
       ],
       "name": "firefox_whatsnew_126beta"
@@ -1565,6 +1577,12 @@
         "js/firefox/whatsnew/whatsnew-125-eu.js"
       ],
       "name": "firefox_whatsnew_125_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-126.js"
+      ],
+      "name": "firefox_whatsnew_126"
     },
     {
       "files": [
