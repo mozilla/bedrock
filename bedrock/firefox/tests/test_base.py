@@ -895,7 +895,7 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_126_0_0_es_es(self, render_mock):
-        """Should use whatsnew-fx126-eu template for fr locale"""
+        """Should use whatsnew-fx126-eu template for es-ES locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "es-ES"
         self.view(req, version="126.0")
