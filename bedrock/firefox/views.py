@@ -368,7 +368,11 @@ def firefox_drilldown(request, product_slug=None, platform=None, locale=None):
     template_name = "firefox/all/base.html"
 
     # The mobile products don't drill down, so short-circuit them here.
-    if product:
+    if product_slug == "mobile-release":
+        context = {}
+        template_name = "firefox/all/mobile.html"
+        return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+    elif product:
         if product_slug.startswith("android"):
             platform = "android"
             platform_name = "Android"
