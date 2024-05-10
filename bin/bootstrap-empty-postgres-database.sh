@@ -4,10 +4,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# CRITICAL: Assumes that DATABASE_URL is set to point to postgres
+# CRITICAL: Assumes that Django's DATABASE_URL is set to point to postgres
 # CRITICAL: Assumes that the bedrock deployment has a copy of the sqlite database downloaded
 
-# Usage ./bin/bootstrap_empty_postgres_database.sh
+# Usage ./bin/bootstrap-empty-postgres-database.sh
 
 # 1. Set up the database with the full Django schema, but no data.
 # Note that PROD_DETAILS_STORAGE needs to not be DB-backed for this
