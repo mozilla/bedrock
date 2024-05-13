@@ -1861,7 +1861,7 @@ RELAY_PRODUCT_URL = config(
 
 WAGTAIL_SITE_NAME = config(
     "WAGTAIL_SITE_NAME",
-    default="Mozorg (selective)",
+    default="Mozilla.org",
 )
 
 # Disable use of Gravatar URLs.
