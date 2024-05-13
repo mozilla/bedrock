@@ -506,7 +506,7 @@ class TestVPNResourceArticleView(TestCase):
     def test_simple_get__no_active_locales_for_slug_at_all__gives_404(self):
         # change all entries so that get_active_locales helper will return []
         ContentfulEntry.objects.all().update(classification="something-that-will-not-match-query")
-        resp = self.client.get("/en-US/products/vpn/resource-center/slug-4/", follow=True)
+        resp = self.client.get("/en-US/products/vpn/resource-center/slug-4/")
         assert resp.status_code == 404
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
