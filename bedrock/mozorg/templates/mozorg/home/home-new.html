@@ -30,8 +30,8 @@
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
 
-  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
-    {{ css_bundle('monitor-banner')}}
+  {% if switch('mofo-donate-promo') %}
+    {{ css_bundle('mofo-donate-promo')}}
   {% endif %}
   {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
     {{ css_bundle('ctd-promo') }}
@@ -105,10 +105,10 @@
         image=resp_img(
           url='protocol/img/logos/pocket/logo.svg',
           optional_attributes={
-            'class': 'mzp-c-picto-image',
+            'class': 'mzp-c-picto-image c-product-pocket',
             'loading': 'lazy',
-            'width': '50',
-            'height': '50'
+            'width': '45',
+            'height': '45'
           }
           ),
           body=True,
@@ -167,10 +167,10 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
+        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
       {% endcall %}
 
-      {% set monitor_desc = 'Automatically reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
+      {% set monitor_desc = 'Reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
         <!-- Monitor -->
         {% call picto(
@@ -205,11 +205,25 @@
   <section class="c-mission">
 
     <!-- Trustworthy AI -->
-    <div class="c-trustworthy-ai mzp-l-content mzp-t-content-md">
-      <h2>{{ ftl('home-trustworthy-ai') }}</h2>
-      <p>{{ ftl('home-work-on-ai') }}</p>
-      <a href="" rel="" class="mzp-c-button">{{ ftl('home-read-the-report') }}</a>
-    </div>
+
+    {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-trustworthy-ai',
+        image=resp_img(
+          url='img/home/2023/contribute-split.png',
+          srcset={
+            'img/home/2023/contribute-split-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'loading': 'lazy'
+          }
+        ),
+        media_after=False
+    ) %}
+    <h2>{{ ftl('home-trustworthy-ai') }}</h2>
+    <p>{{ ftl('home-work-on-ai') }}</p>
+    <a href="" rel="" class="mzp-c-button">{{ ftl('home-read-the-report') }}</a>
+    {% endcall %}
 
     <!-- Foundation -->
     {% call split(
@@ -288,8 +302,8 @@
     </ul>
 
       <!-- Mid-page promo -->
-    {% if LANG == 'en-US' and switch("monitor-plus-banner") %}
-      {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
+    {% if LANG == 'en-US' and switch("mofo-donate-promo") %}
+      {% include 'mozorg/home/includes/mofo-donate-promo.html' %}
     {% else %}
       {% include 'mozorg/home/includes/featured-vpn.html' %}
     {% endif %}
@@ -352,9 +366,6 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
-    {{ js_bundle('monitor-banner') }}
-  {% endif %}
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}

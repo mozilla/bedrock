@@ -71,3 +71,9 @@ home-featured-product = Featured product
 
 # HTML for visual formatting. "Blur" here is used as a metaphor for hiding or obscuring something.
 home-feature-blur-your-location = Blur your location & activity using <span>{ -brand-name-mozilla-vpn }</span>
+
+
+# Mozilla Foundation donation promo
+home-mofo-build-our-movement = Build our movement
+home-mofo-donate-to-mofo-today = Donate to { -brand-name-mozilla-foundation } today to ensure the internet remains open and accessible to all.
+home-mofo-donate = Donate
