@@ -8,30 +8,25 @@
 
 {% extends "firefox/all/base.html" %}
 
+{% set android_url = play_store_url('firefox', 'firefox-all') %}
+{% set ios_url = app_store_url('firefox', 'firefox-all') %}
+
 {% block info %}
-android
-<div id="download-android-primary" data-product="android_release" class="c-download-button">
-  <ul class="c-download-list">
-    <li>{{ google_play_button(href=android_url, id='playStoreLink-release') }}</li>
-    <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="banner">{{ ftl('firefox-all-product-send-link') }}</a></li>
-  </ul>
-</div>
 
-<div id="download-android-beta-primary" data-product="android_beta" class="c-download-button">
-  {{ google_play_button(href=android_beta_url, id='playStoreLink-beta') }}
-</div>
+<figure class="qr-code-wrapper mzp-c-emphasis-box">
+  {{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-all", 12) }}
+  <figcaption>Scan QR code to get Firefox on your phone ftl TKTK</figcaption>
+</figure>
 
-<div id="download-android-nightly-primary" data-product="android_nightly" class="c-download-button">
-  {{ google_play_button(href=android_nightly_url, id='playStoreLink-nightly') }}
-</div>
+<ul class="c-store-badges">
+  <li class="c-store-badge-google">
+    {{ google_play_button(href=android_url, id='playStoreLink') }}
+  </li>
+  <li class="c-store-badge-apple">
+    {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
+  </li>
+</ul>
 
-ios
-<div id="download-ios-primary" data-product="ios_release" class="c-download-button">
-  <ul class="c-download-list">
-    <li>
-      {{ apple_app_store_button(href=ios_url, id='appStoreLink-ios') }}
-    </li>
-    <li><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Get It Now" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></li>
-  </ul>
-</div>
+<p><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send a link" data-cta-position="primary">{{ ftl('firefox-all-product-send-link') }}</a></p>
+
 {% endblock %}

@@ -12,6 +12,12 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+
+
+.c-center {
+    text-align: center;
+}
 
 .all-step {
     font-weight: bold;
@@ -311,6 +317,37 @@ $image-path: '/media/protocol/img';
 // Custom narrow modal style.
 // These should be standardized into a narrow theme.
 // https://github.com/mozilla/protocol/issues/358
+
+
+
+.qr-code-wrapper {
+    background: $color-white;
+    border-radius: $border-radius-lg;
+    border: 2px solid $color-marketing-gray-20;
+    box-shadow: $box-shadow-sm;
+    margin: $layout-sm auto;
+    max-width: 220px;
+    padding: $spacing-lg;
+
+    figcaption {
+        color: $color-black;
+        font-weight: bold;
+        line-height: 1.125;
+        padding: 0 $spacing-lg;
+    }
+}
+
+.c-store-badges {
+    text-align: center;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing-sm $spacing-lg;
+    }
+}
+
+
+
 
 .mzp-c-modal.help-modal {
     .mzp-c-modal-window > .mzp-c-modal-inner {

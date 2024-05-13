@@ -26,6 +26,17 @@
 
 
 
+
+<div id="download-android-beta-primary" data-product="android_beta" class="c-download-button">
+  {{ google_play_button(href=android_beta_url, id='playStoreLink-beta') }}
+</div>
+
+<div id="download-android-nightly-primary" data-product="android_nightly" class="c-download-button">
+  {{ google_play_button(href=android_nightly_url, id='playStoreLink-nightly') }}
+</div>
+
+
+
 <!--
   error
   <p class="c-download-error hidden">
@@ -36,5 +47,9 @@
 -->
 
 {% endif %}
+
+
+
+<h1> This entire change needs analytics / attribution </h1>
 
 </div>
