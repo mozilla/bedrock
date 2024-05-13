@@ -1864,6 +1864,11 @@ WAGTAIL_SITE_NAME = config(
     default="Mozorg (selective)",
 )
 
+# Disable use of Gravatar URLs.
+# Important: if this is enabled in the future, make sure you redact the
+# `wagtailusers_profile.avatar` column when exporting the DB to sqlite
+WAGTAIL_GRAVATAR_PROVIDER_URL = None
+
 WAGTAILADMIN_BASE_URL = config(
     "WAGTAILADMIN_BASE_URL",
     default="",
