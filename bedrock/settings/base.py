@@ -651,7 +651,6 @@ INSTALLED_APPS = [
     "django_jinja",
     "watchman",
     # Wagtail CMS and related, necessary apps
-    "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.documents",
     "wagtail.embeds",
