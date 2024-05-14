@@ -206,18 +206,23 @@ class TestMozorgRedirects(TestCase):
         self.assertEqual(resp.redirect_chain[1], ("/en-US/contact/spaces/", 302))
 
     def test_diversity_redirect(self):
-        resp = self.client.get("/diversity/", follow=True, headers={"accept-language": "en"})
-        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
-        self.assertEqual(resp.redirect_chain[0], ("/diversity/2022/", 301))
-        self.assertEqual(resp.redirect_chain[1], ("/en-US/diversity/2022/", 302))
+        for path in ("/diversity/", "/diversity"):
+            with self.subTest(path):
+                resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
+                # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+                self.assertEqual(resp.redirect_chain[0], ("/diversity/2022/", 301))
+                self.assertEqual(resp.redirect_chain[1], ("/en-US/diversity/2022/", 302))
 
     def test_webvision_redirect(self):
         # Since the webvision URL requires a WebvisionDoc to exist, we test this
         # here instead of in the redirects tests.
         WebvisionDoc.objects.create(name="summary", content="")
-        resp = self.client.get("/webvision/", follow=True, headers={"accept-language": "en"})
-        self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
-        self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
+
+        for path in ("/webvision/", "/webvision"):
+            with self.subTest(path):
+                resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
+                self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
+                self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
 
 
 class TestMiecoEmail(TestCase):
