@@ -574,6 +574,4 @@ redirectpatterns = (
     # redirects that don't need a lang code prefix
     redirect(r"^diversity/?$", "mozorg.diversity.2022.index", locale_prefix=False),
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
-    # Diversity redirect that does need a lang prefix - must come after the non-prefixed one
-    redirect(r"^diversity/?$", "mozorg.diversity.2022.index", locale_prefix=True, permanent=False),
 )
