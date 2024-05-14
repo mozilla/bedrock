@@ -205,13 +205,20 @@ class TestMozorgRedirects(TestCase):
         self.assertEqual(resp.redirect_chain[0], ("/contact/spaces/", 301))
         self.assertEqual(resp.redirect_chain[1], ("/en-US/contact/spaces/", 302))
 
-    def test_diversity_redirect(self):
+    def test_diversity_redirect__no_lang_code(self):
         for path in ("/diversity/", "/diversity"):
             with self.subTest(path):
                 resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
                 # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
                 self.assertEqual(resp.redirect_chain[0], ("/diversity/2022/", 301))
                 self.assertEqual(resp.redirect_chain[1], ("/en-US/diversity/2022/", 302))
+
+    def test_diversity_redirect__with_lang_code(self):
+        for path in ("/en-US/diversity/", "/en-US/diversity"):
+            with self.subTest(path):
+                resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
+                # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
+                self.assertEqual(resp.redirect_chain[0], ("/en-US/diversity/2022/", 302))
 
     def test_webvision_redirect(self):
         # Since the webvision URL requires a WebvisionDoc to exist, we test this
