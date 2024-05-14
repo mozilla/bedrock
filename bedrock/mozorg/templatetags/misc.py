@@ -367,8 +367,14 @@ def press_blog_url(ctx):
 
 @library.global_function
 @jinja2.pass_context
-def donate_url(ctx, content=""):
-    """Output a formatted donation link to the donation page
+def donate_url(ctx, location=""):
+    """Output a formatted donation link to the donation popup form.
+
+    Location parameter indicates the page or position of the link for attribution.
+    The value must be preconfigured in FundraiseUp before it can be accepted.
+    Undefined values will not trigger the donation widget.
+    If no location parameter is supplied the fallback URL is the standalone
+    /donate/ page.
 
     Examples
     ========
@@ -380,20 +386,19 @@ def donate_url(ctx, content=""):
 
     This would output:
 
-        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco
+        https://foundation.mozilla.org/donate/
 
-        {{ donate(content='footer')}}
+        {{ donate(location='contribute')}}
 
     This would output:
 
-        https://foundation.mozilla.org/?form=donate&utm_source=mozilla.org&utm_medium=referral&utm_campaign=moco&utm_content=footer
-
+        https://foundation.mozilla.org/?form=contribute
 
     """
 
-    content = "&utm_content=" + content if content else ""
+    location = "?form=" + location if location else "donate/"
 
-    return settings.DONATE_LINK.format(content=content)
+    return settings.DONATE_LINK.format(location=location)
 
 
 @library.global_function

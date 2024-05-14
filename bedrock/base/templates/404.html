@@ -39,7 +39,7 @@
       </li>
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/default-browser.svg') }}" width="30" height="30">
-        {{ ftl('not-found-page-donate-to-mozilla-reclaim-from', donate='href="https://foundation.mozilla.org/?form=donate-404"') }}
+        {{ ftl('not-found-page-donate-to-mozilla-reclaim-from', donate='href="%s"'|safe|format(donate_url(location='donate-404'))) }}
       </li>
     </ul>
   </main>

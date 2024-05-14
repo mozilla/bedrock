@@ -798,8 +798,8 @@ URLS = flatten(
         url_test("/foundation/donate_form.pdf", "https://static.mozilla.com/foundation/documents/donate_form.pdf"),
         # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
         # there are other pages under openwebfund that still need to be served from Bedrock.
-        url_test("/foundation/openwebfund/", "https://donate.mozilla.org/?source=owf_redirect"),
-        url_test("/foundation/donate.html", "https://donate.mozilla.org/?source=donate_redirect"),
+        url_test("/foundation/openwebfund/", "https://foundation.mozilla.org/donate/"),
+        url_test("/foundation/donate.html", "https://foundation.mozilla.org/donate/"),
         # FIXUPs for changing foo/bar.html to foo/bar/
         # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines
         url_test("/foundation/{about,careers,licensing,moco,mocosc}.html", "/foundation/{about,careers,licensing,moco,mocosc}/"),
@@ -890,14 +890,14 @@ URLS = flatten(
         url_test("/hacking", "https://firefox-source-docs.mozilla.org/"),
         # issue 10736
         url_test("/jobs", "/careers/"),
-        url_test("/join", "https://donate.mozilla.org/"),
+        url_test("/join", "https://foundation.mozilla.org/donate/"),
         # Bug 1293539
         url_test("/firefox/{48.0,48.0.1,49.0a1,49.0a2}/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
         url_test("/firefox/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
         # Bug 1262593
         url_test("/unix/remote.html", "http://www-archive.mozilla.org/unix/remote.html"),
         # Bug 1313023
-        url_test("/story", "https://donate.mozilla.org/?source=story_redirect"),
+        url_test("/story", "https://foundation.mozilla.org/donate/"),
         # Bug 1277196
         url_test(
             "/firefox/firstrun/learnmore",
@@ -1134,7 +1134,7 @@ URLS = flatten(
         # Issue 8375
         url_test("/internet-health/{,privacy-security/}", "https://foundation.mozilla.org/internet-health/"),
         # Issue 8949
-        url_test("/donate/", "https://donate.mozilla.org/?utm_source=mozilla.org&utm_content=shortlink"),
+        url_test("/donate/", "https://foundation.mozilla.org/donate/"),
         url_test("/about/governance/policies/security/plugin-whitelist-policy/", "https://wiki.mozilla.org/Plugins/Firefox_Whitelist"),
         url_test("/about/governance/policies/security-group/tld-idn/", "https://wiki.mozilla.org/IDN_Display_Algorithm"),
         # Unfck campaign, issue 11613
