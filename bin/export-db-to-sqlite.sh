@@ -28,29 +28,30 @@ python manage.py dumpdata \
 python manage.py dumpdata \
     wagtailcore.Locale \
     --indent 2 \
-    --natural-primary \
     --natural-foreign \
     --output /tmp/export_wagtail_locales.json || all_well=false
 
 
-
 # Noted exclusions:
 # * ProductRelease can't be dumped because it references non-Django model Note
-# * WagtailSearch indices need rebuilding and search history is not important
 # * Sessions are transient and not needed
 # * ContentTypes are dumped separately
 # * Wagtail Locales are dumped separately
 # * PageSubscription is based on User data, which is not ported over
+# * Renditions are not needed as they can be regenerated
+# * ReferenceIndex is not needed as it can be regenerated
+# * WagtailSearch indices need rebuilding and search history is not important
 
 
 python manage.py dumpdata \
-    --natural-primary \
     --natural-foreign \
+    --exclude=contenttypes \
     --exclude=releasenotes.ProductRelease \
     --exclude=sessions.Session \
-    --exclude=contenttypes \
     --exclude=wagtailcore.Locale \
     --exclude=wagtailcore.PageSubscription \
+    --exclude=wagtailimages.Rendition \
+    --exclude=wagtailcore.ReferenceIndex \
     --exclude=wagtailsearch \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
