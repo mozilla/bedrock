@@ -182,6 +182,10 @@ else:
         "www.google-analytics.com",
         "creativecommons.org",
         "images.ctfassets.net",
+        "*.fundraiseup.com",  # issue 14575
+        "ucarecdn.com",  # issue 14575
+        "pay.google.com",  # issue 14575
+        "*.paypalobjects.com",  # issue 14575
     ]
     _csp_script_src = [
         # TODO fix things so that we don't need this
@@ -195,6 +199,10 @@ else:
         "www.youtube.com",
         "s.ytimg.com",
         "js.stripe.com",
+        "*.fundraiseup.com",  # issue 14575
+        "pay.google.com",  # issue 14575
+        "*.paypal.com",  # issue 14575
+        "*.paypalobjects.com",  # issue 14575
     ]
     _csp_style_src = [
         # TODO fix things so that we don't need this
@@ -208,6 +216,10 @@ else:
         "accounts.firefox.com",
         "www.youtube.com",
         "js.stripe.com",
+        "*.fundraiseup.com",  # issue 14575
+        "*.stripe.com",  # issue 14575
+        "*.paypal.com",  # issue 14575
+        "pay.google.com",  # issue 14575
     ]
     _csp_connect_src = [
         "www.googletagmanager.com",
@@ -219,9 +231,21 @@ else:
         FXA_ENDPOINT,
         "stage.cjms.nonprod.cloudops.mozgcp.net",
         "cjms.services.mozilla.com",
+        "fndrsp.net",  # issue 14575
+        "fndrsp-checkout.net",  # issue 14575
+        "*.fundraiseup.com",  # issue 14575
+        "*.stripe.com",  # issue 14575
+        "*.paypal.com",  # issue 14575
+        "*.paypalobjects.com",  # issue 14575
+        "pay.google.com",  # issue 14575
+        "https://google.com/pay",  # issue 14575
+        "api.addressy.com",  # issue 14575
     ]
     _csp_connect_extra_for_dev = []
-    _csp_font_src = []
+    _csp_font_src = [
+        "*.fundraiseup.com",  # issue 14575
+        "*.stripe.com",  # issue 14575
+    ]
 
 sys.stdout.write(f"Using SITE_MODE of '{site_mode}'\n")
 
