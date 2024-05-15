@@ -9,7 +9,6 @@ commonware==0.6.0
 contentful==2.1.1
 contextlib2==21.6.0
 dirsync==2.2.5
-db-to-sqlite==1.5
 dj-database-url==2.1.0
 django-allow-cidr==0.7.1
 django-cors-headers==4.3.1

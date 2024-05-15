@@ -262,16 +262,7 @@ click==8.1.7 \
     --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
     # via
     #   -r requirements/prod.txt
-    #   click-default-group
-    #   db-to-sqlite
     #   glean-parser
-    #   sqlite-utils
-click-default-group==1.2.4 \
-    --hash=sha256:9b60486923720e7fc61731bdb32b617039aba820e22e1c88766b1125592eaa5f \
-    --hash=sha256:eb3f3c99ec0d456ca6cd2a7f08f7d4e91771bef51b01bdd9580cc6450fe1251e
-    # via
-    #   -r requirements/prod.txt
-    #   sqlite-utils
 commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
@@ -435,10 +426,6 @@ datadog==0.49.1 \
     # via
     #   -r requirements/prod.txt
     #   markus
-db-to-sqlite==1.5 \
-    --hash=sha256:1d6ca66287ac53bddd7515197cea58480d2d4673ced8e5c8d3e05c6ec1e84be9 \
-    --hash=sha256:b2bcd1f76a3fd77b69487d62d1f0ebe6ef89d74770f22d99c4334fcca611ba2d
-    # via -r requirements/prod.txt
 defusedxml==0.7.1 \
     --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69 \
     --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61
@@ -850,7 +837,6 @@ greenlet==3.0.3 \
     #   -r requirements/prod.txt
     #   bpython
     #   gevent
-    #   sqlalchemy
 gunicorn==22.0.0 \
     --hash=sha256:350679f91b24062c86e386e198a15438d53a7a8207235a78ba1b53df4c4378d9 \
     --hash=sha256:4a0b436239ff76fb33f11c07a16482c521a7e09c1ce3cc293c2330afe01bec63
@@ -1427,10 +1413,8 @@ pluggy==1.5.0 \
     --hash=sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1 \
     --hash=sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669
     # via
-    #   -r requirements/prod.txt
     #   pypom
     #   pytest
-    #   sqlite-utils
 polib==1.2.0 \
     --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
     --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
@@ -1679,7 +1663,6 @@ python-dateutil==2.9.0.post0 \
     #   contentful
     #   faker
     #   freezegun
-    #   sqlite-utils
 pytz==2024.1 \
     --hash=sha256:2a29735ea9c18baf14b448846bde5a48030ed267578472d8955cd0e7443a9812 \
     --hash=sha256:328171f4e3623139da4983451950b28e95ac706e13f3f2630a879749e7a8b319
@@ -2046,71 +2029,6 @@ soupsieve==2.5 \
     # via
     #   -r requirements/prod.txt
     #   beautifulsoup4
-sqlalchemy==2.0.30 \
-    --hash=sha256:0094c5dc698a5f78d3d1539853e8ecec02516b62b8223c970c86d44e7a80f6c7 \
-    --hash=sha256:0138c5c16be3600923fa2169532205d18891b28afa817cb49b50e08f62198bb8 \
-    --hash=sha256:0a089e218654e740a41388893e090d2e2c22c29028c9d1353feb38638820bbeb \
-    --hash=sha256:0b3f4c438e37d22b83e640f825ef0f37b95db9aa2d68203f2c9549375d0b2260 \
-    --hash=sha256:16863e2b132b761891d6c49f0a0f70030e0bcac4fd208117f6b7e053e68668d0 \
-    --hash=sha256:1f9a727312ff6ad5248a4367358e2cf7e625e98b1028b1d7ab7b806b7d757513 \
-    --hash=sha256:2383146973a15435e4717f94c7509982770e3e54974c71f76500a0136f22810b \
-    --hash=sha256:2753743c2afd061bb95a61a51bbb6a1a11ac1c44292fad898f10c9839a7f75b2 \
-    --hash=sha256:296230899df0b77dec4eb799bcea6fbe39a43707ce7bb166519c97b583cfcab3 \
-    --hash=sha256:2a4f4da89c74435f2bc61878cd08f3646b699e7d2eba97144030d1be44e27584 \
-    --hash=sha256:2b1708916730f4830bc69d6f49d37f7698b5bd7530aca7f04f785f8849e95255 \
-    --hash=sha256:2ecabd9ccaa6e914e3dbb2aa46b76dede7eadc8cbf1b8083c94d936bcd5ffb49 \
-    --hash=sha256:311710f9a2ee235f1403537b10c7687214bb1f2b9ebb52702c5aa4a77f0b3af7 \
-    --hash=sha256:37a4b4fb0dd4d2669070fb05b8b8824afd0af57587393015baee1cf9890242d9 \
-    --hash=sha256:3a365eda439b7a00732638f11072907c1bc8e351c7665e7e5da91b169af794af \
-    --hash=sha256:3b48154678e76445c7ded1896715ce05319f74b1e73cf82d4f8b59b46e9c0ddc \
-    --hash=sha256:3b69e934f0f2b677ec111b4d83f92dc1a3210a779f69bf905273192cf4ed433e \
-    --hash=sha256:3cb5a646930c5123f8461f6468901573f334c2c63c795b9af350063a736d0134 \
-    --hash=sha256:408f8b0e2c04677e9c93f40eef3ab22f550fecb3011b187f66a096395ff3d9fd \
-    --hash=sha256:40ad017c672c00b9b663fcfcd5f0864a0a97828e2ee7ab0c140dc84058d194cf \
-    --hash=sha256:5a79d65395ac5e6b0c2890935bad892eabb911c4aa8e8015067ddb37eea3d56c \
-    --hash=sha256:5a8e3b0a7e09e94be7510d1661339d6b52daf202ed2f5b1f9f48ea34ee6f2d57 \
-    --hash=sha256:69c9db1ce00e59e8dd09d7bae852a9add716efdc070a3e2068377e6ff0d6fdaa \
-    --hash=sha256:7108d569d3990c71e26a42f60474b4c02c8586c4681af5fd67e51a044fdea86a \
-    --hash=sha256:77d2edb1f54aff37e3318f611637171e8ec71472f1fdc7348b41dcb226f93d90 \
-    --hash=sha256:7d74336c65705b986d12a7e337ba27ab2b9d819993851b140efdf029248e818e \
-    --hash=sha256:8409de825f2c3b62ab15788635ccaec0c881c3f12a8af2b12ae4910a0a9aeef6 \
-    --hash=sha256:955991a09f0992c68a499791a753523f50f71a6885531568404fa0f231832aa0 \
-    --hash=sha256:99650e9f4cf3ad0d409fed3eec4f071fadd032e9a5edc7270cd646a26446feeb \
-    --hash=sha256:9a5baf9267b752390252889f0c802ea13b52dfee5e369527da229189b8bd592e \
-    --hash=sha256:a0ef36b28534f2a5771191be6edb44cc2673c7b2edf6deac6562400288664221 \
-    --hash=sha256:a1429a4b0f709f19ff3b0cf13675b2b9bfa8a7e79990003207a011c0db880a13 \
-    --hash=sha256:a7bfc726d167f425d4c16269a9a10fe8630ff6d14b683d588044dcef2d0f6be7 \
-    --hash=sha256:a943d297126c9230719c27fcbbeab57ecd5d15b0bd6bfd26e91bfcfe64220621 \
-    --hash=sha256:ae8c62fe2480dd61c532ccafdbce9b29dacc126fe8be0d9a927ca3e699b9491a \
-    --hash=sha256:b60203c63e8f984df92035610c5fb76d941254cf5d19751faab7d33b21e5ddc0 \
-    --hash=sha256:b6bf767d14b77f6a18b6982cbbf29d71bede087edae495d11ab358280f304d8e \
-    --hash=sha256:b6c7ec2b1f4969fc19b65b7059ed00497e25f54069407a8701091beb69e591a5 \
-    --hash=sha256:bba002a9447b291548e8d66fd8c96a6a7ed4f2def0bb155f4f0a1309fd2735d5 \
-    --hash=sha256:bc0c53579650a891f9b83fa3cecd4e00218e071d0ba00c4890f5be0c34887ed3 \
-    --hash=sha256:c4f61ada6979223013d9ab83a3ed003ded6959eae37d0d685db2c147e9143797 \
-    --hash=sha256:c62d401223f468eb4da32627bffc0c78ed516b03bb8a34a58be54d618b74d472 \
-    --hash=sha256:e42203d8d20dc704604862977b1470a122e4892791fe3ed165f041e4bf447a1b \
-    --hash=sha256:edc16a50f5e1b7a06a2dcc1f2205b0b961074c123ed17ebda726f376a5ab0953 \
-    --hash=sha256:efedba7e13aa9a6c8407c48facfdfa108a5a4128e35f4c68f20c3407e4376aa9 \
-    --hash=sha256:f1dc3eabd8c0232ee8387fbe03e0a62220a6f089e278b1f0aaf5e2d6210741ad \
-    --hash=sha256:f69e4c756ee2686767eb80f94c0125c8b0a0b87ede03eacc5c8ae3b54b99dc46 \
-    --hash=sha256:f7703c2010355dd28f53deb644a05fc30f796bd8598b43f0ba678878780b6e4c \
-    --hash=sha256:fa561138a64f949f3e889eb9ab8c58e1504ab351d6cf55259dc4c248eaa19da6
-    # via
-    #   -r requirements/prod.txt
-    #   db-to-sqlite
-sqlite-fts4==1.0.3 \
-    --hash=sha256:0359edd8dea6fd73c848989e1e2b1f31a50fe5f9d7272299ff0e8dbaa62d035f \
-    --hash=sha256:78b05eeaf6680e9dbed8986bde011e9c086a06cb0c931b3cf7da94c214e8930c
-    # via
-    #   -r requirements/prod.txt
-    #   sqlite-utils
-sqlite-utils==3.36 \
-    --hash=sha256:b71e829755c2efbdcd6931a31968dee4e8bd71b3c14f0fe648b22377027c5bec \
-    --hash=sha256:dcc311394fe86dc16f65037b0075e238efcfd2e12e65d53ed196954502996f3c
-    # via
-    #   -r requirements/prod.txt
-    #   db-to-sqlite
 sqlparse==0.5.0 \
     --hash=sha256:714d0a4932c059d16189f58ef5411ec2287a4360f17cdd0edd2d09d4c5087c93 \
     --hash=sha256:c204494cd97479d0e39f28c93d46c0b2d5959c7b9ab904762ea6c7af211c8663
@@ -2121,12 +2039,6 @@ supervisor==4.2.5 \
     --hash=sha256:2ecaede32fc25af814696374b79e42644ecaba5c09494c51016ffda9602d0f08 \
     --hash=sha256:34761bae1a23c58192281a5115fb07fbf22c9b0133c08166beffc70fed3ebc12
     # via -r requirements/prod.txt
-tabulate==0.9.0 \
-    --hash=sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c \
-    --hash=sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f
-    # via
-    #   -r requirements/prod.txt
-    #   sqlite-utils
 tblib==3.0.0 \
     --hash=sha256:80a6c77e59b55e83911e1e607c649836a69c103963c5f28a46cbeef44acf8129 \
     --hash=sha256:93622790a0a29e04f0346458face1e144dc4d32f493714c6c3dff82a4adb77e6
@@ -2178,7 +2090,6 @@ typing-extensions==4.11.0 \
     #   fluent-syntax
     #   pygithub
     #   qrcode
-    #   sqlalchemy
     #   wagtail-localize
 tzlocal==5.2 \
     --hash=sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8 \
