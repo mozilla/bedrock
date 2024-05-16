@@ -175,6 +175,10 @@ header {
         align-items: center;
     }
 
+    .c-foundation {
+        padding-top: 0;
+    }
+
     @media #{$mq-md} {
         .mzp-c-split-container {
             padding: 0 80px;
@@ -182,17 +186,6 @@ header {
 
         h2 {
             @include bidi(((text-align, left, right),));
-        }
-    }
-
-    .c-mozilla-entities {
-        text-align: center;
-
-        li {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
         }
     }
 

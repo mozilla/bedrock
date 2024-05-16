@@ -23,7 +23,11 @@ home-product-firefox-browsing = Private & secure browsing
 home-cta-get-firefox = Get { -brand-name-firefox }
 home-product-pocket-articles = The web’s most intriguing articles
 home-cta-get-pocket = Get { -brand-name-pocket}
+
+# Obsolete string (expires: 2024-07-16)
 home-product-relay-masks = Easy-to-use email & phone masks
+
+home-product-relay-hide-your = Hide your phone number and email from spammers
 home-cta-get-relay = Get { -brand-name-relay }
 home-product-vpn-trust = A VPN you can trust
 home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
@@ -38,20 +42,20 @@ home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the 
 # Politico is a brand name for a news organization
 home-politico-cite = Politico
 
-home-trustworthy-ai = Trustworthy AI
-home-work-on-ai = { -brand-name-mozilla }’s work on AI is not new — we’ve been funding, building and advocating for trustworthy AI approaches for years. We are accelerating progress toward Trustworthy AI to promote openness, competition, and accountability in AI.
-home-read-the-report = Read the report
+home-join-us-in-shaping = Join us in shaping trustworthy AI
+home-work-on-ai = { -brand-name-mozilla }’s work with AI isn’t just a new thing—we’ve spent years funding, building and advocating for AI that’s open, fair and developed responsibly. Our focus is on creating AI that serves the people, prioritizes transparency and supports the public good, not corporate agendas.
+home-read-more = Read more
 
+# Obsolete string (expires: 2024-07-16)
 home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a non-profit? Actually, both.
-home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla-corporation } is wholly owned by the non-profit 501(c) { -brand-name-mozilla-foundation }. Which means we aren’t beholden to any shareholders — only to our mission.
-home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
 
-home-mozilla-corporation = { -brand-name-mozilla-corporation }
-home-about-the-corporation = About the Corporation
-home-mozilla-ventures = { -brand-name-mozilla-ventures }
-home-visit-ventures = Visit { -brand-name-mozilla-ventures }
-home-mozilla-ai = { -brand-name-mozilla-ai }
-home-visit-ai = Visit { -brand-name-mozilla-ai }
+# Obsolete string (expires: 2024-07-16)
+home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla-corporation } is wholly owned by the non-profit 501(c) { -brand-name-mozilla-foundation }. Which means we aren’t beholden to any shareholders — only to our mission.
+
+home-so-what-is-mozilla = So, what is { -brand-name-mozilla }?
+home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, { -brand-name-mozilla-ventures }and { -brand-name-mozilla-ai }. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
+
+home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
 
 home-join-the-fight = Join the fight for a healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.

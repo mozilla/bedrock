@@ -119,7 +119,7 @@
       <!-- Relay -->
       {% call picto(
         base_el='li',
-        title=ftl('home-product-relay-masks'),
+        title=ftl('home-product-relay-hide-your', fallback='home-product-relay-masks'),
         image=resp_img(
           url='protocol/img/logos/firefox/relay/logo-white.svg',
           optional_attributes={
@@ -170,7 +170,7 @@
         <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
       {% endcall %}
 
-      {% set monitor_desc = 'Reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
+      {% set monitor_desc = 'Protect your private info from data brokers' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
         <!-- Monitor -->
         {% call picto(
@@ -205,13 +205,12 @@
   <section class="c-mission">
 
     <!-- Trustworthy AI -->
-
     {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-trustworthy-ai',
         image=resp_img(
-          url='img/home/2023/contribute-split.png',
+          url='img/home/2023/colorwaves.jpg',
           srcset={
-            'img/home/2023/contribute-split-high-res.png': '2x'
+            'img/home/2023/colorwaves-high-res.jpg': '2x'
           },
           optional_attributes={
             'class': 'mzp-c-split-media-asset',
@@ -220,14 +219,14 @@
         ),
         media_after=False
     ) %}
-    <h2>{{ ftl('home-trustworthy-ai') }}</h2>
+    <h2>{{ ftl('home-join-us-in-shaping') }}</h2>
     <p>{{ ftl('home-work-on-ai') }}</p>
-    <a href="" rel="" class="mzp-c-button">{{ ftl('home-read-the-report') }}</a>
+    <a href="https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/{{utm_params}}" rel="external noopener" class="mzp-c-button">{{ ftl('home-read-more') }}</a>
     {% endcall %}
 
     <!-- Foundation -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace mzp-t-content-xl c-foundation',
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-content-xl c-foundation',
         image=resp_img(
           url='img/home/2023/mofo-split.png',
           srcset={
@@ -240,69 +239,15 @@
         ),
         media_after=False
     ) %}
-    <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
-    <p>{{ ftl('home-mozilla-consists-of') }}</p>
+    <h2>{{ ftl('home-so-what-is-mozilla', fallback='home-is-mozilla-a-corporation')}}</h2>
+    <p>{{ ftl('home-at-its-core', fallback='home-mozilla-consists-of') }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
     </a>
     {% endcall %}
 
-    <!-- Mozilla entities -->
-    <ul class="mzp-l-content mzp-l-columns mzp-t-columns-three mzp-t-content-lg c-mozilla-entities">
-      {% call picto(
-        base_el='li',
-        title=ftl('home-mozilla-corporation'),
-        image=resp_img(
-          url='protocol/img/logos/mozilla/logo.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy',
-            'width': '51',
-            'height': '51'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="About the Corporation" data-cta-type="link">{{ ftl('home-about-the-corporation') }}</a>
-      {% endcall %}
-
-        {% call picto(
-        base_el='li',
-        title=ftl('home-mozilla-ventures'),
-        image=resp_img(
-          url='img/logos/mozilla/mozilla-vc.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy',
-            'width': '70',
-            'height': '70'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="Visit Mozilla Ventures" data-cta-type="link">{{ ftl('home-visit-ventures') }}</a>
-      {% endcall %}
-
-      {% call picto(
-        base_el='li',
-        title=ftl('home-mozilla-ai'),
-        image=resp_img(
-          url='img/logos/mozilla/mozilla-ai.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy',
-            'width': '70',
-            'height': '70'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="" class="mzp-c-button mzp-t-secondary" data-cta-text="Visit Mozilla AI" data-cta-type="link">{{ ftl('home-visit-ai') }}</a>
-      {% endcall %}
-    </ul>
-
-      <!-- Mid-page promo -->
-    {% if LANG == 'en-US' and switch("mofo-donate-promo") %}
+    <!-- Mid-page promo -->
+    {% if switch("mofo-donate-promo") %}
       {% include 'mozorg/home/includes/mofo-donate-promo.html' %}
     {% else %}
       {% include 'mozorg/home/includes/featured-vpn.html' %}
