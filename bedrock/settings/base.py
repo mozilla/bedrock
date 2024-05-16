@@ -56,6 +56,12 @@ DEV = config("DEV", parser=bool, default="false")
 PROD = config("PROD", parser=bool, default="false")
 
 DEBUG = config("DEBUG", parser=bool, default="false")
+
+site_mode = config("SITE_MODE", default="Mozorg")
+
+IS_POCKET_MODE = site_mode == "Pocket"
+IS_MOZORG_MODE = not IS_POCKET_MODE
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -111,8 +117,6 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
-
-WAGTAIL_I18N_ENABLED = True  # for wagtail-localize
 
 USE_TZ = True
 
@@ -1915,7 +1919,12 @@ def lazy_wagtail_langs():
 
 
 WAGTAIL_I18N_ENABLED = True
-WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+if IS_MOZORG_MODE:
+    WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+else:
+    # Note: we'll never actually use this as Pocket mode won't be
+    # Wagtailed, but we need something valid so Pocket mode will boot up
+    WAGTAIL_CONTENT_LANGUAGES = [("en", "English")]
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
 WAGTAIL_RICHEXT_FEATURES_FULL = [

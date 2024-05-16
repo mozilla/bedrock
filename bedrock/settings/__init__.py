@@ -15,13 +15,8 @@ from .base import *  # noqa: F403, F405
 
 # 1. OPERATION MODE SELECTION and specific config
 # Which site do we want Bedrock to serve?
-POCKET_SITE_MODE = "Pocket"
-MOZORG_SITE_MODE = "Mozorg"
 
-site_mode = config("SITE_MODE", default=MOZORG_SITE_MODE)
-
-IS_POCKET_MODE = site_mode == POCKET_SITE_MODE
-IS_MOZORG_MODE = not IS_POCKET_MODE
+# IS_POCKET_MODE and IS_MOZORG_MODE are set in settings.base
 
 if IS_POCKET_MODE:
     ROOT_URLCONF = "bedrock.urls.pocket_mode"
