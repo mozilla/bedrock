@@ -61,5 +61,5 @@ Thumbs.db
 tmp/*
 venv
 tests/unit/dist/
-/user-media
+/custom-media
 /local-credentials/*.json

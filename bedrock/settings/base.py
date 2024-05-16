@@ -552,8 +552,8 @@ STORAGES = {
     },
 }
 
-MEDIA_URL = config("MEDIA_URL", default="/user-media/")
-MEDIA_ROOT = config("MEDIA_ROOT", default=path("user-media"))
+MEDIA_URL = config("MEDIA_URL", default="/custom-media/")
+MEDIA_ROOT = config("MEDIA_ROOT", default=path("custom-media"))
 STATIC_URL = config("STATIC_URL", default="/media/")
 STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
 STATICFILES_DIRS = (path("assets"),)
@@ -1962,5 +1962,5 @@ if GS_BUCKET_NAME and GS_PROJECT_ID:
     GS_FILE_OVERWRITE = False
 else:
     SUPPORTED_NONLOCALES += [
-        "user-media",  # using local filesystem storage (for dev)
+        "custom-media",  # using local filesystem storage (for dev)
     ]

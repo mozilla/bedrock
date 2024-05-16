@@ -67,7 +67,7 @@ if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage
 
     urlpatterns += (
         re_path(
-            r"^user-media/(?P<path>.*)$",
+            r"^custom-media/(?P<path>.*)$",
             serve,
             {"document_root": settings.MEDIA_ROOT},
         ),
