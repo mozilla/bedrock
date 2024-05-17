@@ -92,7 +92,7 @@ class TestReleaseModel(TestCase):
 
     def test_note_fixed_in_release(self):
         rel = models.get_release("firefox", "55.0a1")
-        note = rel.notes[11]
+        note = rel.get_notes()[11]
         with self.activate_locale("en-US"):
             assert note.fixed_in_release.get_absolute_url() == "/en-US/firefox/55.0a1/releasenotes/"
 
@@ -110,7 +110,7 @@ class TestReleaseModel(TestCase):
         assert rel.version_obj.major == 57
 
         # notes
-        note = rel.notes[0]
+        note = rel.get_notes()[0]
         # datetime conversion
         assert note.created.year == 2017
         # datetime conversion
@@ -126,14 +126,14 @@ class TestReleaseModel(TestCase):
         Should also only include public notes."""
         assert models.get_release("firefox for android", "56.0.3") is None
         rel = models.get_release("firefox", "57.0a1")
-        assert len(rel.notes) == 4
+        assert len(rel.get_notes()) == 4
 
     @override_settings(DEV=True)
     def test_is_public_field_processor_dev_true(self):
         """Should always be true when DEV is true."""
         models.get_release("firefox for android", "56.0.3")
         rel = models.get_release("firefox", "57.0a1")
-        assert len(rel.notes) == 6
+        assert len(rel.get_notes()) == 6
 
     @override_settings(DEV=True)
     def test_invalid_version(self):

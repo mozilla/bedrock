@@ -4,6 +4,8 @@
 
 from django.db import migrations, models
 
+import django_extensions.db.fields.json as json_module
+
 import bedrock.releasenotes.models
 
 
@@ -28,7 +30,7 @@ class Migration(migrations.Migration):
                 ("system_requirements", bedrock.releasenotes.models.MarkdownField(blank=True)),
                 ("created", models.DateTimeField()),
                 ("modified", models.DateTimeField()),
-                ("notes", bedrock.releasenotes.models.NotesField(blank=True)),
+                ("notes", json_module.JSONField(blank=True)),
             ],
         ),
     ]

@@ -161,16 +161,6 @@ class MarkdownField(models.TextField):
         return value
 
 
-class NotesField(JSONField):
-    """Field that returns a list of Note objects instead of dicts"""
-
-    def from_db_value(self, value, expression, connection):
-        if not value:
-            return value
-
-        return process_notes(self.to_python(value))
-
-
 class ProductReleaseQuerySet(models.QuerySet):
     def product(self, product_name, channel_name=None, version=None):
         if product_name.lower() == "firefox extended support release":
@@ -242,7 +232,7 @@ class ProductRelease(models.Model):
     system_requirements = MarkdownField(blank=True)
     created = models.DateTimeField()
     modified = models.DateTimeField()
-    notes = NotesField(blank=True)
+    notes = JSONField(blank=True)
 
     objects = ProductReleaseManager()
 
@@ -320,6 +310,11 @@ class ProductRelease(models.Model):
     def equivalent_desktop_release(self):
         if self.product == "Firefox for Android":
             return self.equivalent_release_for_product("Firefox")
+
+    def get_notes(self):
+        if not self.notes:
+            return self.notes
+        return process_notes(self.notes)
 
 
 @memoize(LONG_RN_CACHE_TIMEOUT)
