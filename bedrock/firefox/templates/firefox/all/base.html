@@ -37,12 +37,12 @@
 {% block content %}
 <main>
   <div class="mzp-l-content">
-    <div id="product-select-form" class="c-product-select-form" data-supported="true"{% if product %} data-current="{{ product.slug }}"{% endif %}>
+    <div class="c-product-info" {% if product %} data-current="{{ product.slug }}"{% endif %}>
       <div class="c-intro">
         <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
         <p>{{ self.page_desc() }}</p>
       </div>
-      <div class="c-selection-form">
+      <div class="c-steps">
         {% block info %}
         {% include 'firefox/all/product.html' %}
         {% include 'firefox/all/platform.html' %}

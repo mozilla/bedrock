@@ -6,23 +6,29 @@
 
 
 {# Choose platform #}
-<div class="all-step">
+
+<h2 class="c-step-name">
   2. {{ ftl('firefox-all-platform') }}
   {% if product and platform %}
-    {{ platform_name }}
-    <a href="TKTK">X</a>
+    <span class="c-step-choice">{{ platform_name }}</span> <a href="TKTK" class="c-step-icon"><img alt="TKTK" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+  {% elif product %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}
-</div>
+</h2>
 
 {% if product and not platform %}
-    <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-select-your-preferred-installer') }}
-      <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
-        {{ ftl('firefox-all-get-help') }}
-      </a>
-    </h2>
-    <ul>
-      {% for platform, name in platforms %}
-        <li><a href="{{ url('firefox.drilldown_platform', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
-      {% endfor %}
-    </ul>
+<div class="c-step-contents">
+  <h3 class="c-step-prompt">{{ ftl('firefox-all-select-your-preferred-installer') }}
+    <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
+      {{ ftl('firefox-all-get-help') }}
+    </a>
+  </h3>
+  <ul class="c-platform-list">
+    {% for platform, name in platforms %}
+      <li><a href="{{ url('firefox.drilldown_platform', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
 {% endif %}

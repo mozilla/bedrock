@@ -5,19 +5,25 @@
 #}
 
 {# Choose language #}
-<div class="all-step">
+
+<h2 class="c-step-name">
   3. {{ ftl('firefox-all-language') }}
   {% if product and platform and locale %}
-    {{ locale_name }}
-    <a href="TKTK">X</a>
+    <span class="c-step-choice">{{ locale_name }}</span> <a href="TKTK" class="c-step-icon"><img alt="TKTK" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+  {% elif product and platform %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}
-</div>
+</h2>
 
 {% if product and platform and not locale %}
-  <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-select-your-preferred-language') }}</h2>
-  <ul>
+<div class="c-step-contents">
+  <h3 class="c-step-prompt">{{ ftl('firefox-all-select-your-preferred-language') }}<img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30"></h3>
+  <ul class="c-lang-list">
     {% for locale, name in locales %}
       <li><a href="{{ url('firefox.drilldown_locale', product_slug=product.slug, platform=platform, locale=locale) }}">{{ name }}</a></li>
     {% endfor %}
   </ul>
+</div>
 {% endif %}
