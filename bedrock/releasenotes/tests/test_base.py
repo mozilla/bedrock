@@ -81,7 +81,7 @@ class TestReleaseViews(TestCase):
         """
         mock_release = get_release_or_404.return_value
         mock_release.major_version = "34"
-        mock_release.notes.return_value = []
+        mock_release.get_notes.return_value = []
 
         views.release_notes(self.request, "27.0")
         get_release_or_404.assert_called_with("27.0", "Firefox", True)

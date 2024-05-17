@@ -98,7 +98,7 @@ def release_notes(request, version, product="Firefox"):
 
     # add MDN link to all non-iOS releases. bug 1553566
     # avoid adding duplicate notes
-    release_notes = copy(release.notes)
+    release_notes = copy(release.get_notes())
     if release.product != "Firefox for iOS":
         release_notes.insert(
             0,
@@ -206,7 +206,7 @@ def nightly_feed(request):
         except NoReverseMatch:
             continue
 
-        for note in release.notes:
+        for note in release.get_notes():
             if note.id in notes:
                 continue
 
