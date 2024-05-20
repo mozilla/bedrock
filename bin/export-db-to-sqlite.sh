@@ -65,7 +65,7 @@ python manage.py dumpdata \
 check_status 99
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
-rm $output_db
+rm -f $output_db
 
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
     DATABASE_URL=sqlite://$output_db \
@@ -117,3 +117,5 @@ check_status 96
 DATABASE_URL=sqlite://$output_db python manage.py scrub_exported_cms_data || all_well=false
 
 check_status 95
+
+echo "Export to $output_db successful"
