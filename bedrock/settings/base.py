@@ -56,6 +56,12 @@ DEV = config("DEV", parser=bool, default="false")
 PROD = config("PROD", parser=bool, default="false")
 
 DEBUG = config("DEBUG", parser=bool, default="false")
+
+site_mode = config("SITE_MODE", default="Mozorg")
+
+IS_POCKET_MODE = site_mode == "Pocket"
+IS_MOZORG_MODE = not IS_POCKET_MODE
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -107,6 +113,10 @@ TIME_ZONE = config("TIME_ZONE", default="America/Los_Angeles")
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale
+USE_L10N = True
 
 USE_TZ = True
 
@@ -304,6 +314,11 @@ EXCLUDE_EDIT_TEMPLATES = [
     "security/product-advisories.html",
     "security/known-vulnerabilities.html",
 ]
+# Also allow entire directories to be skipped
+EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
+    "cms",
+]
+
 IGNORE_LANG_DIRS = [
     ".git",
     "configs",
@@ -466,6 +481,7 @@ NOINDEX_URLS = [
     r"^(404|500)/",
     r"^firefox/welcome/",
     r"^contribute/(embed|event)/",
+    r"^cms-admin/",
     r"^firefox/set-as-default/thanks/",
     r"^firefox/unsupported/",
     r"^firefox/(sms-)?send-to-device-post",
@@ -536,12 +552,15 @@ STORAGES = {
     },
 }
 
-MEDIA_URL = config("MEDIA_URL", default="/user-media/")
-MEDIA_ROOT = config("MEDIA_ROOT", default=path("media"))
+MEDIA_URL = config("MEDIA_URL", default="/custom-media/")
+MEDIA_ROOT = config("MEDIA_ROOT", default=path("custom-media"))
 STATIC_URL = config("STATIC_URL", default="/media/")
 STATIC_ROOT = config("STATIC_ROOT", default=path("static"))
-STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",)
 STATICFILES_DIRS = (path("assets"),)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 if DEBUG:
     STATICFILES_DIRS += (path("media"),)
 
@@ -592,6 +611,7 @@ BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
 ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE", default="false", parser=bool)
 
 MIDDLEWARE = [
+    # IMPORTANT: this may be extended later in this file or via settings/__init__.py
     "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -610,7 +630,9 @@ MIDDLEWARE = [
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=bool)
@@ -619,6 +641,7 @@ if ENABLE_CSP_MIDDLEWARE:
 
 INSTALLED_APPS = [
     # Django contrib apps
+    "django.contrib.sessions",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.staticfiles",
@@ -631,8 +654,24 @@ INSTALLED_APPS = [
     "django_jinja_markdown",
     "django_jinja",
     "watchman",
+    # Wagtail CMS and related, necessary apps
+    "wagtail.contrib.redirects",
+    "wagtail.documents",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.images",
+    "wagtail_localize",
+    "wagtail_localize.locales",  # This replaces "wagtail.locales"
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
     # Local apps
     "bedrock.base",
+    "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
     "bedrock.foundation",
     "bedrock.legal",
@@ -703,10 +742,16 @@ WATCHMAN_CHECKS = (
     "watchman.checks.databases",
 )
 
+
+def _is_bedrock_custom_app(app_name):
+    return app_name.startswith("bedrock.")
+
+
 TEMPLATES = [
     {
         "BACKEND": "django_jinja.jinja2.Jinja2",
-        "APP_DIRS": True,
+        "APP_DIRS": False,
+        "DIRS": [f"bedrock/{name.split('.')[1]}/templates" for name in INSTALLED_APPS if _is_bedrock_custom_app(name)],
         "OPTIONS": {
             "match_extension": None,
             "finalize": lambda x: x if x is not None else "",
@@ -733,6 +778,24 @@ TEMPLATES = [
                 "django_jinja.builtins.extensions.StaticFilesExtension",
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
                 "django_jinja_markdown.extensions.MarkdownExtension",
+                "wagtail.jinja2tags.core",
+                "wagtail.admin.jinja2tags.userbar",
+                "wagtail.images.jinja2tags.images",
+            ],
+        },
+    },
+    {
+        # Wagtail needs the standard Django template backend
+        # https://docs.wagtail.org/en/stable/reference/jinja2.html#configuring-django
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -1103,7 +1166,7 @@ SENTRY_FRONTEND_DSN = config(
 )
 
 # Statsd metrics via markus
-if DEBUG:
+if DEBUG and not config("DISABLE_LOCAL_MARKUS", default="False", parser=bool):
     MARKUS_BACKENDS = [
         {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
     ]
@@ -1796,3 +1859,108 @@ VPN_SUPPORTED_LOCALES = [
 RELAY_PRODUCT_URL = config(
     "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
 )
+
+# WAGTAIL =======================================================================================
+
+WAGTAIL_SITE_NAME = config(
+    "WAGTAIL_SITE_NAME",
+    default="Mozilla.org",
+)
+
+# Disable use of Gravatar URLs.
+# Important: if this is enabled in the future, make sure you redact the
+# `wagtailusers_profile.avatar` column when exporting the DB to sqlite
+WAGTAIL_GRAVATAR_PROVIDER_URL = None
+
+WAGTAILADMIN_BASE_URL = config(
+    "WAGTAILADMIN_BASE_URL",
+    default="",
+)
+
+# We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
+WAGTAIL_ENABLE_UPDATE_CHECK = False
+
+# Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
+WAGTAIL_ENABLE_ADMIN = config(
+    "WAGTAIL_ENABLE_ADMIN",
+    default="False",
+    parser=bool,
+)
+
+if WAGTAIL_ENABLE_ADMIN:
+    # Enable Middleware essential for admin
+
+    for midddleware_spec in [
+        "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+    ]:
+        MIDDLEWARE.insert(3, midddleware_spec)
+
+    SUPPORTED_NONLOCALES.append(
+        "cms-admin",
+    )
+
+
+def lazy_wagtail_langs():
+    enabled_wagtail_langs = [
+        ("en-US", "English"),
+        # TODO: expand to other locales supported by our translation vendor
+        # ("de", "Deutsch"),
+        ("fr", "Français"),
+        # ("es", "Español"),
+        # ("es", "Español mexicano"),
+        # ("it", "Italiano"),
+        # more to come
+    ]
+    enabled_language_codes = [x[0] for x in LANGUAGES]
+    retval = [wagtail_lang for wagtail_lang in enabled_wagtail_langs if wagtail_lang[0] in enabled_language_codes]
+    return retval
+
+
+WAGTAIL_I18N_ENABLED = True
+if IS_MOZORG_MODE:
+    WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+else:
+    # Note: we'll never actually use this as Pocket mode won't be
+    # Wagtailed, but we need something valid so Pocket mode will boot up
+    WAGTAIL_CONTENT_LANGUAGES = [("en", "English")]
+
+# Custom settings, not a core Wagtail ones, to scope out RichText options
+WAGTAIL_RICHEXT_FEATURES_FULL = [
+    # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
+    # Order here is the order used in the editor UI
+    "h2",
+    "h3",
+    "hr",
+    "bold",
+    "italic",
+    "strikethrough",
+    "code",
+    "blockquote",
+    "link",
+    "ol",
+    "ul",
+]
+
+
+# Storage
+# If config is available, we use Google Cloud Storage, else (for local dev)
+# fall back to filesytem storage
+
+GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
+GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
+GS_OBJECT_PARAMETERS = {
+    "cache_control": "max-age=2592000, public, immutable",
+    # 2592000 == 30 days / 1 month
+}
+
+
+if GS_BUCKET_NAME and GS_PROJECT_ID:
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    GS_DEFAULT_ACL = "publicRead"
+    GS_FILE_OVERWRITE = False
+else:
+    SUPPORTED_NONLOCALES += [
+        "custom-media",  # using local filesystem storage (for dev)
+    ]

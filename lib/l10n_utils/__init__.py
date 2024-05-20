@@ -24,6 +24,9 @@ def template_source_url(template):
     if template in settings.EXCLUDE_EDIT_TEMPLATES:
         return None
 
+    if template.split("/")[0] in settings.EXCLUDE_EDIT_TEMPLATES_DIRECTORIES:
+        return None
+
     try:
         absolute_path = loader.get_template(template).template.filename
     except TemplateDoesNotExist:
@@ -127,6 +130,9 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     name_prefix = request.path_info.split("/", 2)[1]
     non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
 
+    # is this a CMS page?
+    is_cms_page = hasattr(request, "is_cms_page") and request.is_cms_page
+
     # Make sure we have a single template
     if isinstance(template, list):
         template = template[0]
@@ -147,9 +153,13 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     context["template"] = template
     context["template_source_url"] = template_source_url(template)
 
+    # if it's a CMS page, draw the active locales from the Page data.
     # if `active_locales` is given use it as the full list of active translations
     translations = []
-    if "active_locales" in context:
+
+    if is_cms_page and request._locales_available_via_cms:
+        translations = request._locales_available_via_cms
+    elif "active_locales" in context:
         translations = context["active_locales"]
         del context["active_locales"]
     else:
@@ -196,7 +206,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
         except TemplateDoesNotExist:
             pass
 
-    # Render originally requested/default template
+    # Render originally requested/default template.
     return django_render(request, template, context, **kwargs)
 
 

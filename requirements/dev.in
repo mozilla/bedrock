@@ -22,6 +22,7 @@ responses==0.25.0
 ruff==0.4.2
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.12.2
+wagtail-factories==4.1.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==9.0.2

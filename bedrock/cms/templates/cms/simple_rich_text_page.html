@@ -1,0 +1,25 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "cms/base-protocol.html" %}
+
+{% block page_title_prefix %}{{page.title}}{% endblock %}
+
+{% block content %}
+
+<div class="mzp-l-content">
+  <header>
+    <h1 class="mzp-c-article-title" itemprop="name">
+      {{ page.title }}
+    </h1>
+  </header>
+
+  <div itemprop="articleBody" class="mzp-c-article">
+    {{page.content|richtext}}
+  </div>
+</div>
+
+{% endblock %}

@@ -113,8 +113,6 @@ def switch_image_urls_to_local(apps, schema_editor):
             if page.slug != "unknown":
                 _print("No changes needed to page body\n")
 
-    _print("All done.")
-
 
 class Migration(migrations.Migration):
     dependencies = [

@@ -187,7 +187,7 @@ class TestWebvisionDocView(TestCase):
         self.assertEqual(resp.context["doc"], {"title": "<h1>Summary</h1>"})
 
     def test_missing_doc_is_404(self):
-        resp = self.client.get(reverse("mozorg.about.webvision.full"))
+        resp = self.client.get(reverse("mozorg.about.webvision.full"), follow=True)
         self.assertEqual(resp.status_code, 404)
 
 
