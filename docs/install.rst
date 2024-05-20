@@ -90,10 +90,8 @@ files and/or package.json file then simply running::
 
     **For Apple Silicon / M1 users**
 
-    If you find that when you're building you hit issues with Puppeteer not installing, these will help:
-
-    * `Set up a Rosetta Terminal <https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-910101797>`_.
-    * Follow these `Puppeter installation tips: <https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758>`_.
+    If you find that when you're building you hit issues compiling assets, try unchecking
+    ``Use Rosetta for x86_64/amd64 emulation on Apple Silicon`` in the Docker Desktop settings.
 
 **Asset bundles**
 
