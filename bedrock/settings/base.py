@@ -392,14 +392,6 @@ def lazy_lang_url_map():
     return {i: i for i in langs}
 
 
-def _get_product_details():
-    "This is to avoid lazy_langs from needing the product_details table on immediate startup"
-
-    from product_details import product_details
-
-    return product_details
-
-
 def lazy_langs():
     """
     Override Django's built-in with our native names
@@ -415,10 +407,11 @@ def lazy_langs():
     """
     from django.conf import settings
 
-    langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-    _product_details = _get_product_details()
+    from product_details import product_details
 
-    return [(lang, _product_details.languages[lang]["native"]) for lang in langs if lang in _product_details.languages]
+    langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
+
+    return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
 
 def language_url_map_with_fallbacks():
