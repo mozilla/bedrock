@@ -9,6 +9,14 @@
 
 # Usage ./bin/fill-empty-postgres-database.sh
 
+# 0. Are we configured appropriately?
+ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
+
+if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
+    echo "ERROR: Django's active database does not point to a Postgres database."
+    exit 100
+fi
+
 # 1. Set up the database with the full Django schema, but no data.
 # Note that PROD_DETAILS_STORAGE needs to not be DB-backed for this
 # initial load, to avoid a chicken-and-egg import situation

@@ -24,6 +24,16 @@ check_status() {
     fi
 }
 
+# 0. Are we configured appropriately?
+ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
+
+if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
+    echo "ERROR: Django's active database does not point to a Postgres database."
+    all_well=false
+fi
+
+check_status 100
+
 # 1. Dump out to json from the default, source DB
 
 python manage.py dumpdata \

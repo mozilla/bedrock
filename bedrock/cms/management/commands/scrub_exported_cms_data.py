@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.core.management.base import BaseCommand
@@ -27,6 +28,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.quiet = options["quiet"]
+
+        if settings.DATABASES["default"]["ENGINE"] != "django.db.backends.sqlite3":
+            raise Exception("This command may only be run against a sqlite database")
 
         user_results = User.objects.all().delete()
         self.output("Deleted Users:", user_results)
