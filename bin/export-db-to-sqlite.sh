@@ -10,11 +10,19 @@
 # Usage:
 # ./bin/export-db-to-sqlite.sh /path/to/output.db
 
-# CRITICAL: requires DATABASE_URL in the environment, pointing to the source DB
+# CRITICAL: requires DATABASE_URL in the environment (or temporarily set at the
+# time of running), pointing to the source *Postgres* DB
 
 output_db=$1
 
 all_well=true
+
+check_status() {
+    if [[ $all_well == false ]]; then
+        echo "ERROR: there was a problem with the export process. Error code: $1"
+        exit $1
+    fi
+}
 
 # 1. Dump out to json from the default, source DB
 
@@ -54,21 +62,16 @@ python manage.py dumpdata \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
 
-if [[ $all_well == false ]];
-    then exit 99
-fi
+check_status 99
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
-rm $output_db || all_well=false
+rm $output_db
+
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
     DATABASE_URL=sqlite://$output_db \
     ./manage.py migrate || all_well=false
 
-if [[ $all_well == false ]];
-    then exit 98
-fi
-
-cp $output_db /tmp/exported_pre_truncation.db
+check_status 98
 
 # 3. We want to use all the data from the JSON, so let's drop the ones
 # that have been automatically populated including all the Wagtail ones
@@ -101,22 +104,16 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
         "/tmp/export_wagtail_locales.json" \
         || all_well=false
 
-if [[ $all_well == false ]]; then
-    exit 97
-fi
+check_status 97
 
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
     DATABASE_URL=sqlite://$output_db \
     python manage.py loaddata "/tmp/export_remainder.json" || all_well=false
 
-if [[ $all_well == false ]]; then
-    exit 96
-fi
+check_status 96
 
 # 5. There are things we can't omit or redact in the steps above, so
 # load the DB and programatically prune it, too
 DATABASE_URL=sqlite://$output_db python manage.py scrub_exported_cms_data || all_well=false
 
-if [[ $all_well == false ]]; then
-    exit 95
-fi
+check_status 95
