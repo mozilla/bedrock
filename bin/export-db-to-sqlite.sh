@@ -33,7 +33,6 @@ python manage.py dumpdata \
 
 
 # Noted exclusions:
-# * ProductRelease can't be dumped because it references non-Django model Note
 # * Sessions are transient and not needed
 # * ContentTypes are dumped separately
 # * Wagtail Locales are dumped separately
@@ -46,7 +45,6 @@ python manage.py dumpdata \
 python manage.py dumpdata \
     --natural-foreign \
     --exclude=contenttypes \
-    --exclude=releasenotes.ProductRelease \
     --exclude=sessions.Session \
     --exclude=wagtailcore.Locale \
     --exclude=wagtailcore.PageSubscription \
@@ -121,11 +119,4 @@ DATABASE_URL=sqlite://$output_db python manage.py scrub_exported_cms_data || all
 
 if [[ $all_well == false ]]; then
     exit 95
-fi
-
-# 6. Fill in release notes, which we couldn't load from a JSON dump so had to exclude
-DATABASE_URL=sqlite://$output_db python manage.py update_release_notes || all_well=false
-
-if [[ $all_well == false ]]; then
-    exit 94
 fi
