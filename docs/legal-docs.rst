@@ -22,7 +22,7 @@ For example the code:
     {{ doc.select('body > section > [datetime] ~ p')|join|safe }}
 
 
-Means something like:
+means something like:
 
 From the document, find the ``body`` element, then find the ``section`` element that is its direct descendant,
 then look for a direct descendant with a ``datetime`` attribute, select all ``p`` that are its siblings. Join
