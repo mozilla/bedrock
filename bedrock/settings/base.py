@@ -690,6 +690,7 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "csp",
     # Local apps
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases

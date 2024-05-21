@@ -18,6 +18,11 @@ from .base import *  # noqa: F403, F405
 
 # IS_POCKET_MODE and IS_MOZORG_MODE are set in settings.base
 
+# Some CSP constants to ease the quoting of common values.
+SELF = "'self'"
+UNSAFE_EVAL = "'unsafe-eval'"
+UNSAFE_INLINE = "'unsafe-inline'"
+
 if IS_POCKET_MODE:
     ROOT_URLCONF = "bedrock.urls.pocket_mode"
 
@@ -114,7 +119,7 @@ if IS_POCKET_MODE:
 
     # CSP settings for POCKET, expanded upon later:
     _csp_default_src = [
-        "'self'",
+        SELF,
         "*.getpocket.com",
     ]
     _csp_img_src = [
@@ -126,18 +131,18 @@ if IS_POCKET_MODE:
     ]
     _csp_script_src = [
         # TODO fix use of OptanonWrapper() so that we don't need this
-        "'unsafe-inline'",
+        UNSAFE_INLINE,
         # TODO onetrust cookie consent breaks
         # blocked without unsafe-eval. Find a way to remove that.
         "www.mozilla.org",
-        "'unsafe-eval'",
+        UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
     ]
     _csp_style_src = [
-        "'unsafe-inline'",
+        UNSAFE_INLINE,
         "www.mozilla.org",
     ]
     _csp_child_src = [
@@ -165,7 +170,7 @@ else:
 
     # CSP settings for MOZORG, expanded upon later:
     _csp_default_src = [
-        "'self'",
+        SELF,
         "*.mozilla.net",
         "*.mozilla.org",
         "*.mozilla.com",
@@ -180,10 +185,10 @@ else:
     ]
     _csp_script_src = [
         # TODO fix things so that we don't need this
-        "'unsafe-inline'",
+        UNSAFE_INLINE,
         # TODO snap.svg.js passes a string to Function() which is
         # blocked without unsafe-eval. Find a way to remove that.
-        "'unsafe-eval'",
+        UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "tagmanager.google.com",
@@ -193,7 +198,7 @@ else:
     ]
     _csp_style_src = [
         # TODO fix things so that we don't need this
-        "'unsafe-inline'",
+        UNSAFE_INLINE,
     ]
     _csp_child_src = [
         "www.googletagmanager.com",
@@ -236,32 +241,33 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
 
 # 3. DJANGO-CSP SETTINGS
-CSP_DEFAULT_SRC = _csp_default_src
-EXTRA_CSP_DEFAULT_SRC = config("CSP_DEFAULT_SRC", parser=ListOf(str), default="")
-if EXTRA_CSP_DEFAULT_SRC:
-    CSP_DEFAULT_SRC += EXTRA_CSP_DEFAULT_SRC
-
-CSP_IMG_SRC = CSP_DEFAULT_SRC + _csp_img_src
-
-CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + _csp_script_src
-CSP_STYLE_SRC = CSP_DEFAULT_SRC + _csp_style_src
-CSP_FONT_SRC = CSP_DEFAULT_SRC + _csp_font_src
-CSP_CHILD_SRC = CSP_DEFAULT_SRC + _csp_child_src
-CSP_CONNECT_SRC = CSP_DEFAULT_SRC + _csp_connect_src
-
+extra_csp_default_src = config("CSP_DEFAULT_SRC", default="", parser=ListOf(str))
+if extra_csp_default_src:
+    _csp_default_src = list(set(_csp_default_src + extra_csp_default_src))
 if DEV:
     if _csp_connect_extra_for_dev:
-        CSP_CONNECT_SRC.extend(_csp_connect_extra_for_dev)
+        _csp_connect_src = list(set(_csp_connect_src + _csp_connect_extra_for_dev))
+_csp_child_src = list(set(_csp_default_src + _csp_child_src))
+csp_extra_frame_src = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
+if csp_extra_frame_src:
+    _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
 
-CSP_REPORT_ONLY = config("CSP_REPORT_ONLY", default="false", parser=bool)
-CSP_REPORT_URI = config("CSP_REPORT_URI", default="") or None
+CONTENT_SECURITY_POLICY = {
+    "REPORT_ONLY": config("CSP_REPORT_ONLY", default="false", parser=bool),
+    "DIRECTIVES": {
+        "default-src": _csp_default_src,
+        "img-src": list(set(_csp_default_src + _csp_img_src)),
+        "script-src": list(set(_csp_default_src + _csp_script_src)),
+        "style-src": list(set(_csp_default_src + _csp_style_src)),
+        "font-src": list(set(_csp_default_src + _csp_font_src)),
+        "child-src": _csp_child_src,
+        "connect-src": list(set(_csp_default_src + _csp_connect_src)),
+        # support older browsers (mainly Safari)
+        "frame-src": _csp_child_src,
+        "report-uri": config("CSP_REPORT_URI", default="") or None,
+    }
+}
 
-CSP_EXTRA_FRAME_SRC = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
-if CSP_EXTRA_FRAME_SRC:
-    CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
-
-# support older browsers (mainly Safari)
-CSP_FRAME_SRC = CSP_CHILD_SRC
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
 if DEV:
