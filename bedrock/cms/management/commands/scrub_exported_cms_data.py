@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+import sys
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -24,7 +25,7 @@ class Command(BaseCommand):
 
     def output(self, *args):
         if not self.quiet:
-            print(*args)
+            sys.stdout.write(" ".join([str(x) for x in args]))
 
     def handle(self, *args, **options):
         self.quiet = options["quiet"]
