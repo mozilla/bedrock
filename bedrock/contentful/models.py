@@ -113,9 +113,11 @@ class ContentfulEntryManager(models.Manager):
 
 
 class ContentfulEntry(models.Model):
-    contentful_id = models.CharField(max_length=20)
-    content_type = models.CharField(max_length=20)
-    locale = models.CharField(max_length=5)
+    contentful_id = models.CharField(max_length=32)
+    content_type = models.CharField(max_length=32)
+    locale = models.CharField(
+        max_length=24
+    )  # this is longer than the 5 needed because there are a couple of pages that have non-lang-codes set as their locale
     localisation_complete = models.BooleanField(default=False)
     last_modified = models.DateTimeField(default=now)
     url_base = models.CharField(max_length=255, blank=True)

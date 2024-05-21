@@ -15,8 +15,8 @@ from bedrock.base.urlresolvers import reverse
 
 @total_ordering
 class Product(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100, db_index=True)
     product = models.CharField(max_length=50)
     product_slug = models.SlugField()
 
@@ -66,10 +66,10 @@ class SecurityAdvisory(models.Model):
     id = models.CharField(max_length=8, primary_key=True, db_index=True)
     title = models.CharField(max_length=200)
     impact = models.CharField(max_length=100, blank=True)
-    reporter = models.CharField(max_length=100, blank=True)
+    reporter = models.CharField(max_length=500, blank=True)
     announced = models.DateField(null=True)
-    year = models.SmallIntegerField()
-    order = models.SmallIntegerField()
+    year = models.IntegerField()
+    order = models.IntegerField()
     fixed_in = models.ManyToManyField(Product, related_name="advisories")
     extra_data = JSONField()
     html = models.TextField()
@@ -137,11 +137,11 @@ class HallOfFamer(models.Model):
 
 class MitreCVE(models.Model):
     id = models.CharField(max_length=15, primary_key=True, db_index=True)
-    year = models.SmallIntegerField()
-    order = models.SmallIntegerField()
+    year = models.IntegerField()
+    order = models.IntegerField()
     title = models.CharField(max_length=200, blank=True)
     impact = models.CharField(max_length=100, blank=True)
-    reporter = models.CharField(max_length=100, blank=True)
+    reporter = models.CharField(max_length=500, blank=True)
     description = models.TextField()
     products = JSONField(default="[]")
     mfsa_ids = JSONField(default="[]")
