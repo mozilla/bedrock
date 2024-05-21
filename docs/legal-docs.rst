@@ -28,7 +28,7 @@ From the document, find the ``body`` element, then find the ``section`` element 
 then look for a direct descendant with a ``datetime`` attribute, select all ``p`` that are its siblings. Join
 that array of data, and then print it without filtering it for unsafe characters.
 
-If you would like to see the structure of the html you're working with you can print it all to the page
+If you would like to see the structure of the html you're working with, you can print it all to the page
 with ``{{ doc.select('body') }}``.
 
 
