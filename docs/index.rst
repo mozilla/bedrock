@@ -32,6 +32,7 @@ Contents
    newsletters
    contentful
    sitemap
+   legal-docs
    content-cards
    banners
    uitour
