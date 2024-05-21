@@ -51,7 +51,6 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "prestart": "npm run glean",
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
     "in-pocket-mode": "SITE_MODE=Pocket npm start",
     "lint-js": "npx eslint .",
@@ -63,7 +62,7 @@
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
     "prebuild": "npm run glean && npm run static",
     "build": "webpack --mode=production --bail --progress",
-    "prewatch": "npm run static",
+    "prewatch": "npm run glean && npm run static",
     "watch": "webpack serve --mode=development --progress",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
