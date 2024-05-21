@@ -68,7 +68,7 @@ The `V1.2 subscription services`_ notice is a good example of this template. It 
 
     A line will appear under the last paragraph of the lead-in.
 
-    ## This will be displayed as an h2 heading and the sibling elements will not be collapsed until a h3 is encountered
+    ## This will be displayed as an h2 heading and the sibling elements will not be collapsed until an h3 is encountered
 
     This paragraph will be visible
 
