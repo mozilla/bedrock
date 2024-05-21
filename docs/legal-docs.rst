@@ -8,7 +8,7 @@
 Legal Docs
 ==========
 
-Privacy noitices and their applicable translations are markdown files managed by the legal
+Privacy notices and their applicable translations are markdown files managed by the legal
 team in the `legal-docs`_ repository.
 
 When the markdown files are imported into bedrock they are parsed using the default python
