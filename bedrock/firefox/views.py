@@ -334,15 +334,6 @@ def show_57_dev_firstrun(version):
     return version >= Version("57.0")
 
 
-def show_default_account_whatsnew(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version("60.0")
-
-
 class FirstrunView(L10nTemplateView):
     ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"]}
 
@@ -402,7 +393,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx126beta-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx126-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx126-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126-mobile.html": ["firefox/whatsnew/whatsnew-account", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in

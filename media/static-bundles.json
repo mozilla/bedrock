@@ -1488,7 +1488,6 @@
     },
     {
       "files": [
-        "js/base/send-to-device.es6.js",
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew"
@@ -1498,15 +1497,6 @@
         "js/firefox/whatsnew/nightly.js"
       ],
       "name": "firefox_whatsnew_nightly"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/send-to-device.es6.js",
-        "js/firefox/whatsnew/whatsnew.es6.js"
-      ],
-      "name": "firefox_whatsnew_account"
     },
     {
       "files": [
