@@ -862,6 +862,8 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 default_email_backend = "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend"
 
+DEFAULT_FROM_EMAIL = "Mozilla.com <noreply@mozilla.com>"
+
 EMAIL_BACKEND = config("EMAIL_BACKEND", default=default_email_backend)
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
 EMAIL_PORT = config("EMAIL_PORT", default="25", parser=int)

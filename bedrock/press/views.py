@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
@@ -15,7 +16,7 @@ from .forms import PressInquiryForm, SpeakerRequestForm
 
 PRESS_INQUIRY_EMAIL_SUBJECT = "New Press Inquiry"
 PRESS_INQUIRY_EMAIL_TO = ["press@mozilla.com"]
-SPEAKER_REQUEST_EMAIL_FROM = PRESS_INQUIRY_EMAIL_FROM = "Mozilla.com <noreply@mozilla.com>"
+SPEAKER_REQUEST_EMAIL_FROM = PRESS_INQUIRY_EMAIL_FROM = settings.DEFAULT_FROM_EMAIL
 SPEAKER_REQUEST_EMAIL_SUBJECT = "New speaker request form submission"
 SPEAKER_REQUEST_EMAIL_TO = ["press@mozilla.com"]
 
