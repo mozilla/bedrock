@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -11,7 +12,7 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.legal.forms import FraudReportForm
 from lib import l10n_utils
 
-FRAUD_REPORT_EMAIL_FROM = "Mozilla.com <noreply@mozilla.com>"
+FRAUD_REPORT_EMAIL_FROM = settings.DEFAULT_FROM_EMAIL
 FRAUD_REPORT_EMAIL_SUBJECT = "New trademark infringement report: %s; %s"
 FRAUD_REPORT_EMAIL_TO = ["trademarks@mozilla.com"]
 

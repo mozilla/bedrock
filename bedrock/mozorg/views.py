@@ -199,7 +199,7 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
 
 
 MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
-MIECO_EMAIL_SENDER = "Mozilla.com <noreply@mozilla.com>"
+MIECO_EMAIL_SENDER = settings.DEFAULT_FROM_EMAIL
 MIECO_EMAIL_TO = {
     "mieco": ["mieco@mozilla.com"],
     "innovations": ["innovations@mozilla.com"],
