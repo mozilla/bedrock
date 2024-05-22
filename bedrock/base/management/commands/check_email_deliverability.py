@@ -36,9 +36,13 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
+        if not all([settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD]):
+            self.stdout.write("Email not configured for sending. Exiting")
+            sys.exit(0)
+
         email = kwargs.get("email")
         if not email:
-            self.stdout.write(self.style.WARNING("Unable to send test email: no destination address available"))
+            self.stdout.write("Unable to send test email: no destination address available")
             sys.exit(1)
 
         subject = "Test email to confirm email deliverability"
@@ -51,4 +55,4 @@ class Command(BaseCommand):
             recipient_list=[email],
             fail_silently=False,
         )
-        self.stdout.write(self.style.SUCCESS(f"Test email sent successfully to {email}"))
+        self.stdout.write(f"Test email sent successfully to {email}")
