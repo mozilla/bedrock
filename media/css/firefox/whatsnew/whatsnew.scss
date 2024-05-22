@@ -7,8 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 @import 'includes/base';
 @import 'includes/dark-mode';
 
@@ -19,15 +17,20 @@ $image-path: '/media/protocol/img';
     padding: 0;
     text-align: center;
 
+    & > .mzp-l-content {
+        padding-top: $layout-sm;
+        padding-bottom: $layout-sm;
+    }
+
     @media #{$mq-tall} {
         padding-top: $layout-md;
         margin-bottom: $layout-lg;
-    }
-}
 
-.mzp-c-logo {
-    margin-left: auto;
-    margin-right: auto;
+        & > .mzp-l-content {
+            padding-top: $layout-lg;
+            padding-bottom: $layout-lg;
+        }
+    }
 }
 
 .wnp-main-title {
@@ -43,36 +46,36 @@ $image-path: '/media/protocol/img';
     @include text-body-lg;
 }
 
-.send-to-device {
-    margin: 0 auto;
+.qr-wrapper {
+    position: relative;
+    width: 210px;
+    height: 315px;
+    margin: $spacing-lg auto;
+    background: transparent url('/media/img/firefox/whatsnew/qr-wrapper-foxphone.svg') center top no-repeat;
+    background-size: 210px 315px;
+
+    .qr-code {
+        position: absolute;
+        top: 118px;
+        left: 50%;
+        margin-left: -90px;
+    }
 }
 
-#qr-wrapper {
-    margin: $spacing-lg auto;
+.mobile-download-buttons li {
+    padding-top: $spacing-sm;
+    display: inline-block;
 }
 
 // * -------------------------------------------------------------------------- */
 // For dark mode
 @media (prefers-color-scheme: dark) {
     .wnp-main-title,
-    .wnp-main-tagline,
-    .c-picto-block .c-picto-block-title {
+    .wnp-main-tagline {
         color: $title-text-color-inverse;
 
         @supports (--css: variables) {
             color: var(--title-text-color-inverse);
-        }
-    }
-
-    .send-to-device {
-        color: $color-white;
-
-        h2.thank-you {
-            color: $title-text-color-inverse;
-
-            @supports (--css: variables) {
-                color: var(--title-text-color-inverse);
-            }
         }
     }
 }

@@ -334,15 +334,6 @@ def show_57_dev_firstrun(version):
     return version >= Version("57.0")
 
 
-def show_default_account_whatsnew(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version("60.0")
-
-
 class FirstrunView(L10nTemplateView):
     ftl_files_map = {"firefox/developer/firstrun.html": ["firefox/developer"]}
 
@@ -379,7 +370,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/developer/whatsnew.html": ["firefox/developer"],
         "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
         "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/index-account.html": ["firefox/whatsnew/whatsnew-account", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx119-eu-relay.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html": ["firefox/whatsnew/whatsnew"],
@@ -579,14 +569,11 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         else:
-            if show_default_account_whatsnew(version) and ftl_file_is_active("firefox/whatsnew/whatsnew-account"):
-                template = "firefox/whatsnew/index-account.html"
-            else:
-                template = "firefox/whatsnew/index.html"
+            template = "firefox/whatsnew/index.html"
 
         # do not promote Mozilla VPN in excluded countries.
         if country in settings.VPN_EXCLUDED_COUNTRY_CODES and template in self.vpn_excluded_templates:
-            template = "firefox/whatsnew/index-account.html"
+            template = "firefox/whatsnew/index.html"
 
         # return a list to conform with original intention
         return [template]

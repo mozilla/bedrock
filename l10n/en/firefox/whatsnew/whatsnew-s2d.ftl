@@ -14,3 +14,6 @@ whatsnew-s2d-you-got-it-get-firefox-for = You got it. Get { -brand-name-firefox 
 whatsnew-s2d-send-firefox-to-your-phone = Send { -brand-name-firefox } to your phone<br> and unleash your Internet.
 
 whatsnew-s2d-download-firefox-for-your = Download { -brand-name-firefox } for your smartphone and tablet.
+
+# An accessible label for a QR code image
+whatsnew-s2d-qr-code-alt = Scan this QR code
