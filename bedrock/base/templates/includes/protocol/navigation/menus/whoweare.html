@@ -12,7 +12,7 @@
     <div class="c-menu-panel-container">
       <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-about">{{ ftl('navigation-v2-close-who-we-are-menu', fallback='navigation-close-about-menu') }}</button>
       <div class="c-menu-panel-content">
-        <ul class="mzp-l-rows-three">
+        <ul class="mzp-l-rows-four">
           <li>
             <section class="c-menu-item mzp-has-icon">
               <a class="c-menu-item-link" href="{{ url('mozorg.about.manifesto') }}" data-link-text="Mozilla Manifesto" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">
@@ -73,6 +73,18 @@
               </a>
             </section>
           </li>
+
+          {% if ftl_has_messages('navigation-v2-impact', 'navigation-v2-find-out-how') %}
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="{{ url('mozorg.impact-report.index') }}" data-link-text="Impact" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="c-menu-item-icon"><g transform="translate(4 1)" fill="none"><path d="M.4 14.7 4 12v7l-2.4 1.8A1 1 0 0 1 0 20v-4.5a1 1 0 0 1 .4-.8zM15.6 14.7 12 12v7l2.4 1.8A1 1 0 0 0 16 20v-4.5a1 1 0 0 0-.4-.8z" stroke="#42435a" stroke-width="2"/><path d="M5.137 4.14 7.127.569a1 1 0 0 1 1.747 0l1.989 3.57A9 9 0 0 1 12 8.52V19.02H4V8.52a9 9 0 0 1 1.137-4.38z" stroke="#42435a" stroke-width="2"/><circle cx="8" cy="8" r="1.5" fill="#42435a"/><path d="M7.95 16v6" stroke="#42435a" stroke-linecap="round" stroke-width="2"/></g></svg>
+                <h4 class="c-menu-item-title">{{ ftl('navigation-v2-impact') }}</h4>
+                <p class="c-menu-item-desc">{{ ftl('navigation-v2-find-out-how') }}</p>
+              </a>
+            </section>
+          </li>
+          {% endif %}
 
         </ul>
         <p class="c-menu-category-link">

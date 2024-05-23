@@ -17,6 +17,7 @@ from django.views.generic import TemplateView
 from jsonview.decorators import json_view
 from product_details import product_details
 
+from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
@@ -191,6 +192,16 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context[self.doc_context_name] = doc.content
         return context
+
+
+class ImpactPageView(TemplateView):
+    def render_to_response(self, context, **response_kwargs):
+        template = "mozorg/impact-report/index.html"
+
+        if not switch("impact-report-active"):
+            raise Http404
+
+        return l10n_utils.render(self.request, template, context, **response_kwargs)
 
 
 MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
