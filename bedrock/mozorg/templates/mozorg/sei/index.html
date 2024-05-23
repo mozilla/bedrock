@@ -1,0 +1,133 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% from "macros-protocol.html" import split, picto, card with context %}
+
+{% block page_title %}Social and Environmental Impact{% endblock %}
+{% block page_desc %}Mozilla supports making the internet more equitable, inclusive, and sustainable.{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('sei') }}
+{% endblock %}
+
+{% block content %}
+  <main>
+    <header class="mzp-l-content mzp-t-content-md">
+      <h1>Our Social and Environmental Impact</h1>
+      <h2>Learn how we are making the internet more equitable, inclusive, and sustainable</h2>
+    </header>
+
+    <section class="c-report">
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace c-foundation',
+        image=resp_img(
+          url='img/home/2023/mofo-split.png',
+          srcset={
+            'img/home/2023/mofo-split-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'loading': 'lazy'
+          }
+        ),
+        media_after=False
+    ) %}
+        <h2>2024 Social and Environmental Impact report</h2>
+        <p>Our holistic report by the Mozilla Corporation and Mozilla Foundation on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging (DEIB) commitments in 2023 to provide transparency to our employees, customers, and community.</p>
+        <a href="" class="mzp-c-button">Download the report
+          <span class="mzp-c-button-icon-end">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                <path d="M8 13c.2 0 .4-.1.5-.2l4.4-4.4-1.1-1.1-3.1 3.1V1H7.2v9.4L4.1 7.3l-1 1.1 4.4 4.4c.1.1.3.2.5.2z" />
+                <path d="M13.5 12v2c0 .3-.2.5-.5.5H3c-.3 0-.5-.2-.5-.5v-2H1v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2h-1.5z" />
+            </svg>
+        </span>
+        </a>
+    {% endcall %}
+    </section>
+
+    <section class="c-cards mzp-l-content">
+      <h3>Join us in making an impact!</h3>
+      <div class="mzp-l-card-quarter">
+
+        {{ card(
+          title='Help the planet',
+          ga_title='Help the planet',
+          image=resp_img('img/mozorg/sei/pocket-planet.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+          desc='Ways each of us can protect and preserve Earth.',
+          link_url='https://getpocket.com/collections/how-to-help-the-planet-environment'
+          )}}
+
+        {{ card(
+          title='Fight racism',
+          ga_title='Fight racism',
+          image=resp_img('img/mozorg/sei/pocket-afrozilla-resource.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+          desc='A resource list compiled by Afrozilla',
+          link_url='https://getpocket.com/collections/moving-from-ally-to-accomplice-in-the-anti-racist-fight-an-afrozilla-resource-list'
+          )}}
+
+        {{ card(
+          title='Make your website more accessible',
+          ga_title='Make your website more accessible',
+          image=resp_img('img/mozorg/sei/a11y-gaad.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+          desc='Tips, hints, and guidelines',
+          link_url='https://developer.mozilla.org/en-US/blog/accessibility-celebrating-gaad-2023/'
+          )}}
+
+        {{ card(
+          title='Become a Fellow',
+          ga_title='Become a Fellow',
+          image=resp_img('img/mozorg/sei/mofo-fellow.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+          desc='Address challenges facing a healthy internet.',
+          link_url='https://foundation.mozilla.org/en/what-we-fund/fellowships/'
+          )}}
+        </div>
+    </section>
+
+    <section class="c-past-reports mzp-l-content">
+      <h3>Explore our past reports</h3>
+      <table class="mzp-u-data-table c-past-reports-table">
+        <thead>
+          <tr>
+            <th>Sustainability</th>
+            <th>Diversity & Inclusion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="{{ url('mozorg.sustainability.index') }}">2023 Sustainability Report</a> (2020-2022 data)</td>
+            <td><a href="{{ url('mozorg.diversity.2022.index') }}">2023 Diversity & Inclusion Report</a></td>
+          </tr>
+          <tr>
+            <td><a href="https://blog.mozilla.org/en/mozilla/release-mozillas-greenhouse-gas-emissions-baseline/">Mozilla’s Greenhouse Gas emissions baseline</a> and <a href="https://blog.mozilla.org/wp-content/blogs.dir/278/files/2021/02/Mozillas-2019-Greenhouse-Gas-emissions-baseline_2020-11-18.pdf">Inventory Report</a> (2019 data)</td>
+            <td><a href="{{ url('mozorg.diversity.2021.index') }}">2022 Diversity & Inclusion Report</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="https://foundation.mozilla.org/en/blog/mozilla-foundation-2020-diversity-disclosure/">2020 Mozilla Foundation D&I Report</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2019-results/">2020 Mozilla Corporation D&I Report</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2018-results/">2019 Mozilla Corporation D&I Report</a></td></tr>
+          <tr>
+            <td></td>
+            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla/">2018 Mozilla Corporation D&I Report</a></td></tr>
+          <tr>
+            <td></td>
+            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla-foundation/">2018 Mozilla Foundation D&I Report</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+{% endblock %}

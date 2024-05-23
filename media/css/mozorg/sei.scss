@@ -1,0 +1,36 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+header {
+    text-align: center;
+
+    h2 {
+        @include text-title-xs;
+        font-weight: 500;
+    }
+}
+
+.c-past-reports {
+    padding-top: 0;
+
+    h3 {
+        text-align: center;
+    }
+}
+
+.c-past-reports-table {
+    margin: 0 auto;
+    margin-top: $spacing-2xl;
+    table-layout: fixed;
+
+    th,
+    td {
+        max-width: 420px;
+    }
+}

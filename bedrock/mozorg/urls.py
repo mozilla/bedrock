@@ -123,6 +123,8 @@ urlpatterns = [
     page("sustainability/", "mozorg/sustainability/index.html"),
     page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
+    # SEI page
+    page("sei/", "mozorg/sei/index.html"),
     # Webvision
     # there's also a redirect in mozorg.nonlocale_urls
     path(

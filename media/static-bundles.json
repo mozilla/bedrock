@@ -1194,7 +1194,13 @@
       "name": "sustainability"
     },
     {
-      "files": [
+    "files":[
+      "css/mozorg/sei.scss"
+    ],
+    "name": "sei"
+    },
+    {
+      "files":[
         "css/mozorg/advertising.scss"
       ],
       "name": "mozilla-ads"
