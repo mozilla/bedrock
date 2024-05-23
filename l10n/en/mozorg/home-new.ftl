@@ -31,7 +31,11 @@ home-product-relay-hide-your = Hide your phone number and email from spammers
 home-cta-get-relay = Get { -brand-name-relay }
 home-product-vpn-trust = A VPN you can trust
 home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
+
+# Obsolete string (expires 2024-07-23)
 home-product-monitor-data = Data breach alerts
+
+home-product-monitor-protect-your = Protectr your private info from data brokers
 home-cta-get-monitor = Get { -brand-name-monitor }
 home-product-fakespot-detect = Detect fake shopping reviews
 home-cta-get-fakespot = Get { -brand-name-fakespot }
@@ -53,7 +57,11 @@ home-is-mozilla-a-corporation = Is { -brand-name-mozilla } a corporation or a no
 home-mozilla-consists-of = { -brand-name-mozilla } consists of two organizations. The { -brand-name-mozilla-corporation } is wholly owned by the non-profit 501(c) { -brand-name-mozilla-foundation }. Which means we aren’t beholden to any shareholders — only to our mission.
 
 home-so-what-is-mozilla = So, what is { -brand-name-mozilla }?
-home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, { -brand-name-mozilla-ventures }and { -brand-name-mozilla-ai }. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
+
+# Variables
+#   $ventures - link to https://mozilla.vc/
+#   $mozai - link to https://www.mozilla.ai/
+home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
 
 home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
 

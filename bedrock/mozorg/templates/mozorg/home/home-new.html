@@ -116,6 +116,24 @@
         <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
+      <!-- Fakespot -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-fakespot-detect'),
+        image=resp_img(
+          url='img/logos/fakespot/logo-blue.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
+      {% endcall %}
+
       <!-- Relay -->
       {% call picto(
         base_el='li',
@@ -152,30 +170,12 @@
         <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
-      <!-- Fakespot -->
-      {% call picto(
-        base_el='li',
-        title=ftl('home-product-fakespot-detect'),
-        image=resp_img(
-          url='img/logos/fakespot/logo-blue.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy',
-            'width': '50',
-            'height': '50'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
-      {% endcall %}
 
-      {% set monitor_desc = 'Protect your private info from data brokers' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
         <!-- Monitor -->
         {% call picto(
           base_el='li',
-          title=monitor_desc,
+          title=ftl('home-product-monitor-protect-your', fallback='home-product-monitor-data'),
           image=resp_img(
             url='protocol/img/logos/firefox/monitor/logo.svg',
             optional_attributes={
@@ -224,6 +224,10 @@
     <a href="https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/{{utm_params}}" rel="external noopener" class="mzp-c-button">{{ ftl('home-read-more') }}</a>
     {% endcall %}
 
+    {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
+
+    {% set moz_ai = 'href="%s" data-cta-type="link" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
+
     <!-- Foundation -->
     {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-content-xl c-foundation',
@@ -240,7 +244,7 @@
         media_after=False
     ) %}
     <h2>{{ ftl('home-so-what-is-mozilla', fallback='home-is-mozilla-a-corporation')}}</h2>
-    <p>{{ ftl('home-at-its-core', fallback='home-mozilla-consists-of') }}</p>
+    <p>{{ ftl('home-at-its-core', fallback='home-mozilla-consists-of', ventures=moz_ventures, mozai=moz_ai) }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
     </a>
