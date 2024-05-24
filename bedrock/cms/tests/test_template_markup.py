@@ -1,15 +1,21 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import os
 import re
 from collections import defaultdict
 
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from django.conf import settings
 
 from bedrock.cms.models.images import AUTOMATIC_RENDITION_FILTER_SPECS
 
-wagtail_jinja_image_tag_regex_pattern = re.compile(r"(?<!_)image\(.*(?<!=)\"(?P<filter_spec>[\w\-]*)\".*\)")
+wagtail_jinja_image_tag_regex_pattern = re.compile(
+    r"(?<!_)image\("  # starting with `image(` but not `*_image(` to avoid false match on hero_image()
+    r".*"  # anything, such as the dot-pattern to get hold of the image on a block
+    r"(?<!=)\"([\w\-]*)\""  # a filter spec pattern as an arg (eg "fill-200x200" or "width-1200"), but not a key=value attr pair
+    r".*\)"  # any other optional args to the image() call and its closing paren
+)
 
 
 def test_templates_only_contain_valid_image_tag_calls():
