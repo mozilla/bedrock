@@ -6,7 +6,7 @@ from contextlib import suppress
 from unittest import mock
 
 from django.http import HttpResponse
-from django.test import Client, TestCase
+from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
 
@@ -18,6 +18,7 @@ from pytest_django.asserts import assertTemplateUsed
 from bedrock.base.middleware import (
     BedrockLangCodeFixupMiddleware,
     BedrockLocaleMiddleware,
+    CSPMiddlewareByPathPrefix,
 )
 
 
@@ -267,3 +268,62 @@ def test_BedrockLocaleMiddleware_skips_super_call_if_path_is_for_root_and_has_no
     fake_response = mock.Mock(name="fake response")
     middleware.process_response(fake_request, fake_response)
     assert not mock_django_localemiddleware_process_response.called
+
+
+@pytest.fixture
+def csp_middleware():
+    return CSPMiddlewareByPathPrefix(lambda req: HttpResponse())
+
+
+@override_settings(CONTENT_SECURITY_POLICY={"DIRECTIVES": {"default-src": ["default.com"]}})
+def test_no_csp_path_overrides(csp_middleware):
+    rf = RequestFactory()
+    request = rf.get("/u/thedude/")
+    response = csp_middleware.process_response(request, HttpResponse())
+    assert not hasattr(response, "_csp_config")
+    assert not hasattr(response, "_csp_config_ro")
+    assert "Content-Security-Policy" in response.headers
+    assert "Content-Security-Policy-Report-Only" not in response.headers
+    assert response.headers["Content-Security-Policy"] == "default-src default.com"
+
+
+@override_settings(
+    CONTENT_SECURITY_POLICY={"DIRECTIVES": {"default-src": ["default.com"]}},
+    CSP_PATH_OVERRIDES={"/u/thedude": {"DIRECTIVES": {"default-src": ["override.com"]}}},
+)
+def test_csp_path_overrides(csp_middleware):
+    rf = RequestFactory()
+    request = rf.get("/u/thedude/")
+    response = csp_middleware.process_response(request, HttpResponse())
+    assert response._csp_config == {"default-src": ["override.com"]}
+    assert not hasattr(response, "_csp_config_ro")
+    assert "Content-Security-Policy" in response.headers
+    assert "Content-Security-Policy-Report-Only" not in response.headers
+    assert response.headers["Content-Security-Policy"] == "default-src override.com"
+
+
+@override_settings(CONTENT_SECURITY_POLICY={"DIRECTIVES": {"default-src": ["default.com"]}}, CSP_PATH_OVERRIDES={"/u/thedude": {"DIRECTIVES": {}}})
+def test_csp_path_overrides_nullify(csp_middleware):
+    rf = RequestFactory()
+    request = rf.get("/u/thedude/")
+    response = csp_middleware.process_response(request, HttpResponse())
+    assert response._csp_config == {}
+    assert not hasattr(response, "_csp_config_ro")
+    assert "Content-Security-Policy" not in response.headers
+    assert "Content-Security-Policy-Report-Only" not in response.headers
+
+
+@override_settings(
+    CONTENT_SECURITY_POLICY={"DIRECTIVES": {"default-src": ["default.com"]}},
+    CSP_PATH_OVERRIDES={"/u/thedude": {"REPORT_ONLY": True, "DIRECTIVES": {"default-src": ["override.com"]}}},
+)
+def test_csp_path_overrides_report_only(csp_middleware):
+    rf = RequestFactory()
+    request = rf.get("/u/thedude/")
+    response = csp_middleware.process_response(request, HttpResponse())
+    assert response._csp_config_ro == {"default-src": ["override.com"]}
+    assert not hasattr(response, "_csp_config")
+    assert "Content-Security-Policy" in response.headers
+    assert "Content-Security-Policy-Report-Only" in response.headers
+    assert response.headers["Content-Security-Policy"] == "default-src default.com"
+    assert response.headers["Content-Security-Policy-Report-Only"] == "default-src override.com"
