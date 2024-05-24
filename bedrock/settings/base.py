@@ -1948,6 +1948,7 @@ WAGTAIL_RICHEXT_FEATURES_FULL = [
     "ul",
 ]
 
+WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
 
 # Storage
 # If config is available, we use Google Cloud Storage, else (for local dev)
