@@ -265,8 +265,10 @@ CONTENT_SECURITY_POLICY = {
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
         "report-uri": config("CSP_REPORT_URI", default="") or None,
-    }
+    },
 }
+
+CSP_PATH_OVERRIDES = {}
 
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE

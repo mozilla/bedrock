@@ -24,6 +24,7 @@ from django.utils.deprecation import MiddlewareMixin
 from django.utils.translation import trans_real
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
+from csp.middleware import CSPMiddleware
 
 from bedrock.base import metrics
 from bedrock.base.i18n import (
@@ -296,3 +297,27 @@ class MetricsViewTimingMiddleware(MiddlewareMixin):
             self._record_timing(request, 404)
         else:
             self._record_timing(request, 500)
+
+
+class CSPMiddlewareByPathPrefix(CSPMiddleware):
+    """
+    A subclass of CSPMiddleware that allows for different CSP policies based path prefix.
+
+    This is useful for allowing different CSP policies for different parts of the site, such as the
+    wagtail admin interface.
+
+    The paths and policies are defined in the settings.CSP_PATH_OVERRIDES dictionary, where the key
+    is the path prefix and the value is the CSP policy as expected by django-csp.
+    """
+
+    def process_response(self, request, response):
+        if hasattr(settings, "CSP_PATH_OVERRIDES"):
+            for prefix, config in settings.CSP_PATH_OVERRIDES.items():
+                if request.path.startswith(prefix):
+                    if config.get("REPORT_ONLY", False):
+                        response._csp_config_ro = config.get("DIRECTIVES", {})
+                    else:
+                        response._csp_config = config.get("DIRECTIVES", {})
+                    break
+
+        return super().process_response(request, response)

@@ -658,7 +658,7 @@ MIDDLEWARE = [
 
 ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=bool)
 if ENABLE_CSP_MIDDLEWARE:
-    MIDDLEWARE.append("csp.middleware.CSPMiddleware")
+    MIDDLEWARE.append("bedrock.base.middleware.CSPMiddlewareByPathPrefix")
 
 INSTALLED_APPS = [
     # Django contrib apps
