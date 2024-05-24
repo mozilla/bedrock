@@ -121,6 +121,7 @@
     {% block sentry_client %}
       {% if settings.SENTRY_FRONTEND_DSN and switch('sentry-js') %}
         <!--[if !IE]><!-->
+          {# Sentry only runs on evergreen browsers so we exclude it from IE. #}
           {{ js_bundle('sentry') }}
         <!--<![endif]-->
       {% endif %}
@@ -128,6 +129,7 @@
 
     {% block site_js %}
       <!--[if !IE]><!-->
+        {# Standard site JS bundles served to all evergreen browsers plus IE 10 and above. #}
         {{ js_bundle('lib') }}
         {{ js_bundle('ui') }}
         {{ js_bundle('fxa') }}
@@ -135,6 +137,7 @@
       <!--<![endif]-->
 
       <!--[if IE 9]>
+        {# IE9 has its own lib JS bundle containing dependencies for anaytics and consent management. #}
         {{ js_bundle('lib-ie') }}
       <![endif]-->
     {% endblock %}
@@ -143,12 +146,14 @@
     {% block stub_attribution %}
       {% if settings.STUB_ATTRIBUTION_RATE %}
         <!--[if IE 9]><!-->
+          {# Stub attribution is run on all evergreen browsers plus IE9 and above. #}
           {{ js_bundle('stub-attribution') }}
         <!--<![endif]-->
       {% endif %}
     {% endblock %}
 
     <!--[if !IE]><!-->
+    {# Glean only runs on evergreen browsers so we exclude it from IE. #}
     {% block glean %}
       {% if switch('glean-analytics') %}
         {{ js_bundle('glean') }}
@@ -162,6 +167,7 @@
 
     {% block consent_banner_js %}
     <!--[if IE 9]><!-->
+      {# Consent banner is shown to all evergreen browsers plus IE9 and above #}
       {{ js_bundle('consent-banner') }}
     <!--<![endif]-->
     {% endblock %}

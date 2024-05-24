@@ -44,11 +44,6 @@
 
       <h1>{{ ftl('cookie-settings-page-title') }}</h1>
 
-      {# noscript warning to enable JavaScript #}
-      <noscript>
-        <p><strong>{{ ftl('cookie-settings-turn-on-javascript') }}</strong></p>
-      </noscript>
-
       <p>{{ ftl('cookie-settings-explainer') }}</p>
 
       <p>{{ ftl('cookie-settings-page-intro-v2', fallback='cookie-settings-page-intro') }}</p>
@@ -158,6 +153,11 @@
           {{ ftl('cookie-settings-save-changes') }}
         </button>
 
+        {# noscript warning to enable JavaScript #}
+        <noscript>
+          <p><strong>{{ ftl('cookie-settings-turn-on-javascript') }}</strong></p>
+        </noscript>
+
         <p class="hidden cookie-consent-form-submit-success" tabindex="-1">{{ ftl('cookie-settings-your-cookie-settings-have') }}</p>
       </div>
 
@@ -181,6 +181,7 @@
 {% block consent_banner_js %}
   {{ super() }}
   <!--[if IE 9]> -->
+    {# Cookie settings page is supported on all evergreen browsers plus IE9 and above #}
     {{ js_bundle('cookie-settings-form') }}
   <!--<![endif]-->
 {% endblock %}
