@@ -170,13 +170,7 @@ header {
 
 .c-mission {
     .c-trustworthy-ai {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .c-foundation {
-        padding-top: 0;
+        padding-bottom: 0;
     }
 
     @media #{$mq-md} {

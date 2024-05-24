@@ -16,3 +16,5 @@ def test_product_buttons_are_dis(locale, base_url, selenium):
     assert page.is_pocket_download_button_displayed
     assert page.is_relay_download_button_displayed
     assert page.is_mozilla_vpn_download_button_displayed
+    assert page.is_monitor_download_button_displayed
+    assert page.is_fakespot_download_button_displayed

@@ -42,9 +42,7 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if LANG == 'en-US' and switch('monitor-plus-banner') %}
-    {% include 'includes/banners/monitor-plus.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
@@ -205,24 +203,27 @@
   <section class="c-mission">
 
     <!-- Trustworthy AI -->
-    {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-trustworthy-ai',
-        image=resp_img(
-          url='img/home/2023/colorwaves.jpg',
-          srcset={
-            'img/home/2023/colorwaves-high-res.jpg': '2x'
-          },
-          optional_attributes={
-            'class': 'mzp-c-split-media-asset',
-            'loading': 'lazy'
-          }
-        ),
-        media_after=False
-    ) %}
-    <h2>{{ ftl('home-join-us-in-shaping') }}</h2>
-    <p>{{ ftl('home-work-on-ai') }}</p>
-    <a href="https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/{{utm_params}}" rel="external noopener" class="mzp-c-button">{{ ftl('home-read-more') }}</a>
-    {% endcall %}
+
+    {% if ftl_has_messages('home-join-us-in-shaping', 'home-work-on-ai') %}
+      {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-trustworthy-ai',
+          image=resp_img(
+            url='img/home/2023/colorwaves.jpg',
+            srcset={
+              'img/home/2023/colorwaves-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'class': 'mzp-c-split-media-asset',
+              'loading': 'lazy'
+            }
+          ),
+          media_after=False
+      ) %}
+      <h2>{{ ftl('home-join-us-in-shaping') }}</h2>
+      <p>{{ ftl('home-work-on-ai') }}</p>
+      <a href="https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/{{utm_params}}" rel="external noopener" class="mzp-c-button">{{ ftl('home-read-more') }}</a>
+      {% endcall %}
+    {% endif %}
 
     {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
 
