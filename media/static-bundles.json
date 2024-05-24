@@ -203,6 +203,12 @@
     },
     {
       "files": [
+        "css/mozorg/home/includes/mofo-donate-promo.scss"
+      ],
+      "name": "mofo-donate-promo"
+    },
+    {
+      "files": [
         "css/mozorg/home/home-old.scss"
       ],
       "name": "home-old"

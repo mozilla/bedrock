@@ -30,8 +30,8 @@
   {{ css_bundle('protocol-newsletter') }}
   {{ css_bundle('home-new') }}
 
-  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
-    {{ css_bundle('monitor-banner')}}
+  {% if switch('mofo-donate-promo') %}
+    {{ css_bundle('mofo-donate-promo')}}
   {% endif %}
   {% if LANG == 'de' and switch('de-ctd-homepage-promo') %}
     {{ css_bundle('ctd-promo') }}
@@ -42,9 +42,7 @@
 {% endblock %}
 
 {% block page_banner %}
-  {% if LANG == 'en-US' and switch('monitor-plus-banner') %}
-    {% include 'includes/banners/monitor-plus.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
@@ -78,9 +76,7 @@
   <section class="c-products mzp-l-content mzp-t-content-xl">
     <h2>{{ ftl('home-mozilla-makes-privacy') }}</h2>
 
-    {% set show_monitor_picto =  ftl_has_messages('home-product-monitor-data', 'home-cta-get-monitor') %}
-
-    <ul class="{% if show_monitor_picto %}c-product-columns{% else %}mzp-l-columns mzp-t-columns-four{% endif %}">
+    <ul class="c-product-columns mzp-l-columns mzp-t-columns-four">
 
       <!-- Firefox -->
       {% call picto(
@@ -107,6 +103,24 @@
         image=resp_img(
           url='protocol/img/logos/pocket/logo.svg',
           optional_attributes={
+            'class': 'mzp-c-picto-image c-product-pocket',
+            'loading': 'lazy',
+            'width': '45',
+            'height': '45'
+          }
+          ),
+          body=True,
+          ) %}
+        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+      {% endcall %}
+
+      <!-- Fakespot -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-fakespot-detect'),
+        image=resp_img(
+          url='img/logos/fakespot/logo-blue.svg',
+          optional_attributes={
             'class': 'mzp-c-picto-image',
             'loading': 'lazy',
             'width': '50',
@@ -115,13 +129,13 @@
           ),
           body=True,
           ) %}
-        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
       {% endcall %}
 
       <!-- Relay -->
       {% call picto(
         base_el='li',
-        title=ftl('home-product-relay-masks'),
+        title=ftl('home-product-relay-hide-your', fallback='home-product-relay-masks'),
         image=resp_img(
           url='protocol/img/logos/firefox/relay/logo-white.svg',
           optional_attributes={
@@ -154,13 +168,12 @@
         <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
-      {% set monitor_desc = 'Automatically reclaim your private info' if LANG == 'en-US' else ftl('home-product-monitor-data')  %}
 
-      {% if show_monitor_picto %}
+
         <!-- Monitor -->
         {% call picto(
           base_el='li',
-          title=monitor_desc,
+          title=ftl('home-product-monitor-protect-your', fallback='home-product-monitor-data'),
           image=resp_img(
             url='protocol/img/logos/firefox/monitor/logo.svg',
             optional_attributes={
@@ -174,7 +187,6 @@
             ) %}
           <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
         {% endcall %}
-      {% endif %}
     </ul>
   </section>
 
@@ -188,10 +200,38 @@
     </div>
   </div>
 
-  <section class="c-mission mzp-l-content">
+  <section class="c-mission">
+
+    <!-- Trustworthy AI -->
+
+    {% if ftl_has_messages('home-join-us-in-shaping', 'home-work-on-ai') %}
+      {% call split(
+          block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-trustworthy-ai',
+          image=resp_img(
+            url='img/home/2023/colorwaves.jpg',
+            srcset={
+              'img/home/2023/colorwaves-high-res.jpg': '2x'
+            },
+            optional_attributes={
+              'class': 'mzp-c-split-media-asset',
+              'loading': 'lazy'
+            }
+          ),
+          media_after=False
+      ) %}
+      <h2>{{ ftl('home-join-us-in-shaping') }}</h2>
+      <p>{{ ftl('home-work-on-ai') }}</p>
+      <a href="https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/{{utm_params}}" rel="external noopener" class="mzp-c-button">{{ ftl('home-read-more') }}</a>
+      {% endcall %}
+    {% endif %}
+
+    {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
+
+    {% set moz_ai = 'href="%s" data-cta-type="link" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
+
     <!-- Foundation -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-split-nospace c-foundation',
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed mzp-t-content-xl c-foundation',
         image=resp_img(
           url='img/home/2023/mofo-split.png',
           srcset={
@@ -204,19 +244,23 @@
         ),
         media_after=False
     ) %}
-    <h2>{{ ftl('home-is-mozilla-a-corporation')}}</h2>
-    <p>{{ ftl('home-mozilla-consists-of') }}</p>
+    <h2>{{ ftl('home-so-what-is-mozilla', fallback='home-is-mozilla-a-corporation')}}</h2>
+    <p>{{ ftl('home-at-its-core', fallback='home-mozilla-consists-of', ventures=moz_ventures, mozai=moz_ai) }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
-      <span class="mzp-c-button-icon-end">
-        <img src="{{ static('protocol/img/icons/open-in-new.svg') }}" alt="">
-      </span>
     </a>
     {% endcall %}
-    <hr>
+
+    <!-- Mid-page promo -->
+    {% if switch("mofo-donate-promo") %}
+      {% include 'mozorg/home/includes/mofo-donate-promo.html' %}
+    {% else %}
+      {% include 'mozorg/home/includes/featured-vpn.html' %}
+    {% endif %}
+
     <!-- Contribute -->
     {% call split(
-        block_class='mzp-l-split-center-on-sm-md mzp-t-split-nospace',
+        block_class='mzp-l-split-center-on-sm-md mzp-t-content-xl c-volunteer',
         image=resp_img(
           url='img/home/2023/contribute-split.png',
           srcset={
@@ -234,13 +278,6 @@
     <a href="{{ url('mozorg.contribute') }}" class="mzp-c-button">{{ ftl('home-volunteer-with-mozilla') }}</a>
     {% endcall %}
   </section>
-
-  <!-- Mid-page promo -->
-  {% if LANG == 'en-US' and switch("monitor-plus-banner") %}
-    {% include 'mozorg/home/includes/monitor-mid-banner.html' %}
-  {% else %}
-    {% include 'mozorg/home/includes/featured-vpn.html' %}
-  {% endif %}
 
   <section class="c-about">
     <div class="c-about-wrapper mzp-l-content mzp-t-content-lg">
@@ -279,9 +316,6 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if switch('monitor-plus-banner') and LANG == 'en-US' %}
-    {{ js_bundle('monitor-banner') }}
-  {% endif %}
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}

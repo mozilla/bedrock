@@ -130,7 +130,12 @@ header {
                 height: 200px;
                 width: 275px;
                 margin: 0 0 $layout-lg;
+
+                .c-product-pocket {
+                    padding: 3px;
+                }
             }
+
 
             @media #{$mq-md} {
                 align-items: flex-start;
@@ -141,10 +146,9 @@ header {
 
     h3 {
         @include font-base;
-        @include font-size(19px);
+        @include text-body-md;
         font-weight: bold;
         line-height: 1.2;
-        margin-bottom: $spacing-lg;
     }
 
     @media #{$mq-md} {
@@ -165,16 +169,8 @@ header {
 }
 
 .c-mission {
-    .mzp-c-split-container {
-        padding: 0;
-    }
-
-    h2 {
-        text-align: center;
-    }
-
-    hr {
-        border-width: 1px;
+    .c-trustworthy-ai {
+        padding-bottom: 0;
     }
 
     @media #{$mq-md} {
@@ -187,24 +183,8 @@ header {
         }
     }
 
-    .c-foundation {
-        a.mzp-c-button[rel~="external"] {
-            display: inline-flex;
-            align-items: center;
-
-            span {
-                flex-shrink: 0;
-            }
-
-            img {
-                margin-left: $spacing-sm;
-                filter: invert(100%);
-            }
-
-            &:hover img {
-                filter: none;
-            }
-        }
+    .c-volunteer {
+        padding-top: 0;
     }
 }
 
