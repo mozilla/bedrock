@@ -168,25 +168,24 @@
         <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
+      <!-- Monitor -->
+      {% call picto(
+        base_el='li',
+        title=ftl('home-product-monitor-protect-your', fallback='home-product-monitor-data'),
+        image=resp_img(
+          url='protocol/img/logos/firefox/monitor/logo.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'width': '50',
+            'height': '50'
+          }
+          ),
+          body=True,
+          ) %}
+         <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
+      {% endcall %}
 
-
-        <!-- Monitor -->
-        {% call picto(
-          base_el='li',
-          title=ftl('home-product-monitor-protect-your', fallback='home-product-monitor-data'),
-          image=resp_img(
-            url='protocol/img/logos/firefox/monitor/logo.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'loading': 'lazy',
-              'width': '50',
-              'height': '50'
-            }
-            ),
-            body=True,
-            ) %}
-          <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
-        {% endcall %}
     </ul>
   </section>
 
@@ -226,7 +225,6 @@
     {% endif %}
 
     {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
-
     {% set moz_ai = 'href="%s" data-cta-type="link" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
 
     <!-- Foundation -->
