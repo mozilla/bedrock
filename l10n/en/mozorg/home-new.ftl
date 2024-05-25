@@ -35,11 +35,10 @@ home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
 # Obsolete string (expires 2024-07-23)
 home-product-monitor-data = Data breach alerts
 
-home-product-monitor-protect-your = Protectr your private info from data brokers
+home-product-monitor-protect-your = Protect your private info from data brokers
 home-cta-get-monitor = Get { -brand-name-monitor }
 home-product-fakespot-detect = Detect fake shopping reviews
 home-cta-get-fakespot = Get { -brand-name-fakespot }
-
 
 home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the world there’s a business to be made with trustworthy AI. That includes putting things like human rights, data protection and transparency at the core of how these complex systems work.”
 
@@ -60,7 +59,7 @@ home-so-what-is-mozilla = So, what is { -brand-name-mozilla }?
 
 # Variables
 #   $ventures - link to https://mozilla.vc/
-#   $mozai - link to https://www.mozilla.ai/
+#   $mozai - link to https://mozilla.ai/
 home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
 
 home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
@@ -83,7 +82,6 @@ home-featured-product = Featured product
 
 # HTML for visual formatting. "Blur" here is used as a metaphor for hiding or obscuring something.
 home-feature-blur-your-location = Blur your location & activity using <span>{ -brand-name-mozilla-vpn }</span>
-
 
 # Mozilla Foundation donation promo
 home-mofo-build-our-movement = Build our movement
