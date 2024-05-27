@@ -896,22 +896,6 @@ FXA_NEWSLETTERS = [
 ]
 FXA_NEWSLETTERS_LOCALES = ["en", "de", "fr"]
 
-# Regional press blogs map to locales
-PRESS_BLOG_ROOT = "https://blog.mozilla.org/"
-PRESS_BLOGS = {
-    "de": "press-de/",
-    "en-GB": "press-uk/",
-    "en-US": "press/",
-    "es-AR": "press-es/",
-    "es-CL": "press-es/",
-    "es-ES": "press-es/",
-    "es-MX": "press-es/",
-    "fr": "press-fr/",
-    "it": "press-it/",
-    "pl": "press-pl/",
-    "pt-BR": "press-br/",
-}
-
 DONATE_LINK = "https://foundation.mozilla.org/{location}"
 
 # Official Firefox Twitter accounts
