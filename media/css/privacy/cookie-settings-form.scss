@@ -8,6 +8,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
+// Temporary fix until https://github.com/mozilla/protocol/issues/933 is resolved
 .mzp-c-breadcrumb {
     padding-top: $spacing-md;
     padding-bottom: $spacing-md;

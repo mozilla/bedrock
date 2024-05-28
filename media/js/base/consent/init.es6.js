@@ -81,6 +81,7 @@ function openBanner() {
     // Show banner
     document.getElementById('moz-consent-banner').classList.add('is-visible');
 
+    // Add padding to the footer
     setTimeout(updateBodyPadding, 0);
     window.addEventListener('resize', onResize, false);
 }
@@ -103,6 +104,7 @@ function closeBanner() {
         .getElementById('moz-consent-banner')
         .classList.remove('is-visible');
 
+    // Remove padding from the footer
     document.body.style.paddingBottom = '0';
     window.removeEventListener('resize', onResize, false);
 }
