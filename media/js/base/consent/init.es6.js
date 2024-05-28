@@ -53,6 +53,19 @@ function updateBodyPadding() {
 const onResize = debounce(updateBodyPadding, 200);
 
 /**
+ * If user clicks back button from /cookie-settings/ and
+ * the page is in bfcache, reload the page if they have
+ * set a consent cookie to avoid showing the banner again
+ * inadvertently.
+ * @param {Object} e - The page navigation event.
+ */
+function handleBfCacheNavigation(e) {
+    if (e.persisted && hasConsentCookie()) {
+        window.location.reload();
+    }
+}
+
+/**
  * Opens the consent banner and binds button click event listeners.
  */
 function openBanner() {
@@ -63,6 +76,7 @@ function openBanner() {
     document
         .getElementById('moz-consent-banner-button-reject')
         .addEventListener('click', MozConsentBanner.onRejectClick, false);
+    window.addEventListener('pageshow', handleBfCacheNavigation, false);
 
     // Show banner
     document.getElementById('moz-consent-banner').classList.add('is-visible');
@@ -82,6 +96,7 @@ function closeBanner() {
     document
         .getElementById('moz-consent-banner-button-reject')
         .removeEventListener('click', MozConsentBanner.onRejectClick, false);
+    window.removeEventListener('pageshow', handleBfCacheNavigation, false);
 
     // Hide banner
     document
