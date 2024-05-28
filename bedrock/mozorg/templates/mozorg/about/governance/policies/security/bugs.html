@@ -127,7 +127,7 @@
     <li>to establish, for each bug, the amount of information a distributor can reveal immediately (before a fix is available) without putting other distributors and their customers at risk.</li>
   </ul>
 
-  <p>{% with known='http://www.mozilla.org/projects/security/known-vulnerabilities.html' %}
+  <p>{% with known=url('security.known-vulnerabilities') %}
   A typical warning will mention the application or module affected, the affected versions, and a workaround (e.g. disabling JavaScript). If the group decides to publish a warning, the module owner, a peer, or some other person they may designate will post this message to the <a href="{{ known }}"> Known Vulnerabilities</a> page (which will be the authoritative source for this information) and will also send a copy of this message to an appropriate moderated mailing list and/or newsgroup (e.g., netscape.public.mozilla.announce and/or some other newsgroup/list established specifically for this purpose). Mozilla distributors who wish to inform their users of the existence of a vulnerability may repost any information from the Known Vulnerabilities page to their own websites, mailing lists, release notes, etc., but should not disclose any additional information about the bug.
   {% endwith %}</p>
 
