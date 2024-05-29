@@ -53,9 +53,9 @@ boto3==1.34.101 \
     --hash=sha256:1d854b5880e185db546b4c759fcb664bf3326275064d2b44229cc217e8be9d7e \
     --hash=sha256:79b93f3370ea96ce838042bc2eac0c996aee204b01e7e6452eb77abcbe697d6a
     # via -r requirements/prod.in
-botocore==1.34.112 \
-    --hash=sha256:053495953910bcf95d336ab1adb13efb70edc5462932eff180560737ad069319 \
-    --hash=sha256:637f568a6c3322fb7e5ee55e0c5367324a15a331e87a497783ac6209253dde30
+botocore==1.34.114 \
+    --hash=sha256:5705f74fda009656a218ffaf4afd81228359160f2ab806ab8222d07e9da3a73b \
+    --hash=sha256:606d1e55984d45e41a812badee292755f4db0233eed9cca63ea3bb8f5755507f
     # via
     #   boto3
     #   s3transfer
@@ -225,7 +225,9 @@ charset-normalizer==3.3.2 \
 click==8.1.7 \
     --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
     --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
-    # via glean-parser
+    # via
+    #   glean-parser
+    #   rq
 commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
@@ -314,6 +316,7 @@ django==4.2.11 \
     #   django-modelcluster
     #   django-mozilla-product-details
     #   django-permissionedforms
+    #   django-rq
     #   django-storages
     #   django-taggit
     #   django-treebeard
@@ -374,6 +377,10 @@ django-permissionedforms==0.1 \
     --hash=sha256:4340bb20c4477fffb13b4cc5cccf9f1b1010b64f79956c291c72d2ad2ed243f8 \
     --hash=sha256:d341a961a27cc77fde8cc42141c6ab55cc1f0cb886963cc2d6967b9674fa47d6
     # via wagtail
+django-rq==2.10.2 \
+    --hash=sha256:5fe340e071c141a23ea0859df73c48b0a3df33a851835b2a8f8c4fca7a8b1849 \
+    --hash=sha256:d1690b6a409934a0ea23c208ccb00d69477899f8edc61106ce5395c19dcdfb1e
+    # via -r requirements/prod.in
 django-storages[google]==1.14.2 \
     --hash=sha256:1db759346b52ada6c2efd9f23d8241ecf518813eb31db9e2589207174f58f6ad \
     --hash=sha256:51b36af28cc5813b98d5f3dfe7459af638d84428c8df4a03990c7d74d1bea4e5
@@ -1375,6 +1382,12 @@ qrcode==7.4.2 \
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
     # via -r requirements/prod.in
+redis==5.0.4 \
+    --hash=sha256:7adc2835c7a9b5033b7ad8f8918d09b7344188228809c98df07af226d39dec91 \
+    --hash=sha256:ec31f2ed9675cc54c21ba854cfe0462e6faf1d83c8ce5944709db8a4700b9c61
+    # via
+    #   django-rq
+    #   rq
 referencing==0.35.1 \
     --hash=sha256:25b42124a6c8b632a425174f24087783efb348a6f1e0008e63cd4466fedf703c \
     --hash=sha256:eda6d3234d62814d1c64e305c1331c9a3a6132da475ab6382eaa997b21ee75de
@@ -1501,6 +1514,10 @@ rpds-py==0.18.1 \
     # via
     #   jsonschema
     #   referencing
+rq==1.16.2 \
+    --hash=sha256:52e619f6cb469b00e04da74305045d244b75fecb2ecaa4f26422add57d3c5f09 \
+    --hash=sha256:5c5b9ad5fbaf792b8fada25cc7627f4d206a9a4455aced371d4f501cc3f13b34
+    # via django-rq
 rsa==4.9 \
     --hash=sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7 \
     --hash=sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21

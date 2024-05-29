@@ -72,6 +72,19 @@ DATABASES = {
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+REDIS_URL = config("REDIS_URL", None)
+if REDIS_URL:
+    REDIS_URL = REDIS_URL.rstrip("/0")
+    RQ_QUEUES = {
+        "default": {
+            "URL": f"{REDIS_URL}/0",
+        },
+        "image_renditions": {
+            "URL": f"{REDIS_URL}/1",
+        },
+    }
+
+
 CACHES = {
     "default": {
         "BACKEND": "bedrock.base.cache.SimpleDictCache",
@@ -700,6 +713,7 @@ INSTALLED_APPS = [
     # libs
     "django_extensions",
     "lib.l10n_utils",
+    "django_rq",
 ]
 
 # Must match the list at CloudFlare if the

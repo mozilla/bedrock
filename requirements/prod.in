@@ -23,6 +23,7 @@ django-mozilla-product-details==1.0.3
 django-storages[google]==1.14.2
 django-watchman==1.3.0
 Django==4.2.11
+django-rq==2.10.2
 docutils==0.21.2
 envcat==0.1.1
 everett==3.3.0
