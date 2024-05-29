@@ -72,18 +72,16 @@ DATABASES = {
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-REDIS_URL = config("REDIS_URL", None)
+REDIS_URL = config("REDIS_URL", default="")
 if REDIS_URL:
     REDIS_URL = REDIS_URL.rstrip("/0")
     RQ_QUEUES = {
-        "default": {
-            "URL": f"{REDIS_URL}/0",
-        },
-        "image_renditions": {
-            "URL": f"{REDIS_URL}/1",
-        },
+        # Same Redis DBs/connections
+        "default": {"URL": f"{REDIS_URL}/0"},
+        "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
-
+else:
+    RQ_QUEUES = {}
 
 CACHES = {
     "default": {
@@ -498,6 +496,7 @@ NOINDEX_URLS = [
     r"^firefox/welcome/",
     r"^contribute/(embed|event)/",
     r"^cms-admin/",
+    r"^django-admin/",
     r"^firefox/set-as-default/thanks/",
     r"^firefox/unsupported/",
     r"^firefox/(sms-)?send-to-device-post",
@@ -806,6 +805,9 @@ TEMPLATES = [
         # https://docs.wagtail.org/en/stable/reference/jinja2.html#configuring-django
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "APP_DIRS": True,
+        "DIRS": [
+            "bedrock/admin/templates",
+        ],
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -1893,6 +1895,12 @@ WAGTAIL_ENABLE_ADMIN = config(
 if WAGTAIL_ENABLE_ADMIN:
     # Enable Middleware essential for admin
 
+    INSTALLED_APPS += [
+        # django.contrib.admin needs SessionMiddleware and AuthenticationMiddleware to be specced, and fails
+        # hard if it's in INSTALLED_APPS when they are not, so we have to defer adding it till here
+        "django.contrib.admin",
+    ]
+
     for midddleware_spec in [
         "django.middleware.csrf.CsrfViewMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -1900,8 +1908,12 @@ if WAGTAIL_ENABLE_ADMIN:
     ]:
         MIDDLEWARE.insert(3, midddleware_spec)
 
-    SUPPORTED_NONLOCALES.append(
-        "cms-admin",
+    SUPPORTED_NONLOCALES.extend(
+        [
+            "cms-admin",
+            "django-admin",
+            "django-rq",
+        ]
     )
 
 
