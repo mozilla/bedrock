@@ -175,6 +175,36 @@ urlpatterns = (
     page("firefox/browsers/update-your-browser/", "firefox/browsers/update-browser.html"),
     page("firefox/browsers/what-is-a-browser/", "firefox/browsers/what-is-a-browser.html", ftl_files=["firefox/browsers/history/what-is-a-browser"]),
     page("firefox/browsers/windows-64-bit/", "firefox/browsers/windows-64-bit.html", ftl_files=["firefox/browsers/windows-64-bit"]),
+    page(
+        "firefox/browsers/compare/",
+        "firefox/browsers/compare/index.html",
+        ftl_files=["firefox/browsers/compare/index", "firefox/browsers/compare/shared"],
+    ),
+    page(
+        "firefox/browsers/compare/brave/",
+        "firefox/browsers/compare/brave.html",
+        ftl_files=["firefox/browsers/compare/brave", "firefox/browsers/compare/shared"],
+    ),
+    page(
+        "firefox/browsers/compare/chrome/",
+        "firefox/browsers/compare/chrome.html",
+        ftl_files=["firefox/browsers/compare/chrome", "firefox/browsers/compare/shared"],
+    ),
+    page(
+        "firefox/browsers/compare/edge/",
+        "firefox/browsers/compare/edge.html",
+        ftl_files=["firefox/browsers/compare/edge", "firefox/browsers/compare/shared"],
+    ),
+    page(
+        "firefox/browsers/compare/opera/",
+        "firefox/browsers/compare/opera.html",
+        ftl_files=["firefox/browsers/compare/opera", "firefox/browsers/compare/shared"],
+    ),
+    page(
+        "firefox/browsers/compare/safari/",
+        "firefox/browsers/compare/safari.html",
+        ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
+    ),
     # Issue 7765, 7709
     page("firefox/privacy/", "firefox/privacy/index.html", ftl_files=["firefox/privacy-hub"]),
     page("firefox/privacy/products/", "firefox/privacy/products.html", ftl_files=["firefox/privacy-hub"]),

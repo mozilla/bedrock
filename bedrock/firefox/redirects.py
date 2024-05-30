@@ -506,8 +506,6 @@ redirectpatterns = (
     # issue 14141
     redirect(r"^firefox/browsers/mobile/compare/?$", "firefox.browsers.mobile.index"),
     redirect(r"^firefox/ios/?$", "firefox.browsers.mobile.ios"),
-    # issue 14142
-    redirect(r"^firefox/browsers/compare(/.*)?$", "firefox.new", permanent=False),
     # issue 9502
     redirect(r"^firefox/quantum/?", "/firefox/browsers/quantum/"),
     # bug 1421584, issue 7491

@@ -1,0 +1,60 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.compare-article-container {
+    padding-top: $spacing-2xl;
+    position: relative;
+
+    &::before {
+        background: url('/media/img/firefox/compare/article-header.svg') center top no-repeat;
+        background-size: cover;
+        content: '';
+        display: block;
+        height: 50vh;
+        max-height: 800px;
+        min-height: 250px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    & > .mzp-l-content {
+        padding: 0;
+    }
+
+    @media #{$mq-md} {
+        padding-top: $layout-xl;
+    }
+}
+
+.compare-article {
+    background-color: $color-white;
+    box-sizing: border-box;
+    padding: $spacing-lg;
+
+    & > .mzp-c-article-title {
+        border-bottom: 1px solid $color-marketing-gray-30;
+        margin-bottom: 0.75em;
+        padding-bottom: 0.5em;
+        position: relative;
+    }
+
+    h2 {
+        @include text-title-xs;
+        margin-top: $layout-sm;
+    }
+
+    h3 {
+        @include text-title-2xs;
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-2xl;
+    }
+}

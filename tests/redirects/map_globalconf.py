@@ -559,14 +559,6 @@ URLS = flatten(
         # issue 14141
         url_test("/firefox/browsers/mobile/compare", "/firefox/browsers/mobile/"),
         url_test("/newsletter/ios/", "/firefox/browsers/mobile/ios/"),
-        # issue 14142
-        url_test("/firefox/browsers/compare/ie/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/brave/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/chrome/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/edge/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/safari/", "/firefox/new/", status_code=302),
-        url_test("/firefox/browsers/compare/opera/", "/firefox/new/", status_code=302),
         # bug 818323
         url_test("/projects/security/known-vulnerabilities.html", "/security/known-vulnerabilities/"),
         url_test("/projects/security/older-vulnerabilities.html", "/security/known-vulnerabilities/older-vulnerabilities/"),
