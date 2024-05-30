@@ -172,6 +172,12 @@
     },
     {
       "files": [
+        "css/security/client-bug-bounty.scss"
+      ],
+      "name": "client-bug-bounty"
+    },
+    {
+      "files": [
         "css/security/hall-of-fame.scss"
       ],
       "name": "security-bug-bounty-hall-of-fame"

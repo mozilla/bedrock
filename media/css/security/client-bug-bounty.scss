@@ -1,0 +1,24 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+
+.mzp-u-data-table {
+    td:has(> ul) {
+        border-top: 0;
+        margin-top: 32px;
+    }
+
+    ul.multiple-item-list {
+        margin-bottom: 0;
+    }
+
+    td.two-col-cell {
+        text-align: center;
+    }
+
+    td.two-col-cell:not(.first-of-section) {
+        border-top: 0;
+    }
+}
