@@ -7,7 +7,7 @@ $font-path: '/media/protocol/fonts';
 .mzp-u-data-table {
     td:has(> ul) {
         border-top: 0;
-        margin-top: 32px;
+        margin-top: $spacing-xl;
     }
 
     ul.multiple-item-list {
