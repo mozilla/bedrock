@@ -15,7 +15,7 @@
   {% if product and platform and locale %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
   {% else %}
-    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+    <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}
 </h2>
 

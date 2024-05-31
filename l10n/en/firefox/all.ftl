@@ -13,10 +13,10 @@ firefox-all-everyone-deserves-access = Everyone deserves access to the internet 
 # Variables:
 #   $product_label (string) e.g. Firefox, Firefox Nightly
 firefox-all-qrcode = Scan QR code to get <em>{ $product_name }</em>
-firefox-all-choose-product = Choose a product to continue
+firefox-all-choose-browser = Choose a browser to continue
 firefox-all-choose-platform = Choose a platform to continue
-firefox-all-choose-language = Choose a language to cointinue
-firefox-all-change-product = Choose a different product
+firefox-all-choose-language = Choose a language to continue
+firefox-all-change-browser = Choose a different product
 firefox-all-change-platform = Choose a different platform
 firefox-all-change-language = Choose a different language
 
