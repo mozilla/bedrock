@@ -22,22 +22,23 @@
 <div class="c-mobile">
 
   <figure class="qr-code-wrapper">
-    <figcaption>Scan QR code to get {{ product.name }} on your phone ftl TKTK</figcaption>
     {{ qrcode(qr_url, 12) }}
-  </figure>
 
-  <ul class="c-store-badges">
-    {% if product.slug.startswith(('mobile', 'android')) %}
-    <li class="c-store-badge-google">
-      {{ google_play_button(href=android_url, id='playStoreLink') }}
-    </li>
-    {% endif %}
-    {% if product.slug.startswith(('mobile', 'ios')) %}
-    <li class="c-store-badge-apple">
-      {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
-    </li>
-    {% endif %}
-  </ul>
+    <figcaption>
+      <ul class="c-store-badges">
+        {% if product.slug.startswith(('mobile', 'android')) %}
+        <li class="c-store-badge-google">
+          {{ google_play_button(href=android_url, id='playStoreLink') }}
+        </li>
+        {% endif %}
+        {% if product.slug.startswith(('mobile', 'ios')) %}
+        <li class="c-store-badge-apple">
+          {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
+        </li>
+        {% endif %}
+      </ul>
+    </figcaption>
+  </figure>
 
   {% if product.slug.startswith('mobile') %}
   <p><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send a link">{{ ftl('firefox-all-product-send-link') }}</a></p>
