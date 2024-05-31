@@ -60,7 +60,7 @@ Images are stored in the same media bucket that fixed/hard-coded Bedrock
 images get put in, and coexist alongside them, being namespaced into a
 directory called ``custom-media/``.
 
-If a surface uses an image, image use must be made explicit via template markup
+If a surface uses an image, images use must be made explicit via template markup
 — we need to state both *where* and *how* an image will be used in the template,
 including specifying the size the image will be. This is because — by design
 and by default — Wagtail can generate any size version that the template
