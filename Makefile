@@ -36,6 +36,7 @@ help:
 	@echo "  uninstall-custom-git-hooks     - uninstall custom git hooks"
 	@echo "  clean-local-deps               - remove all local installed Python dependencies"
 	@echo "  preflight                      - refresh installed dependencies and fetch latest DB ahead of local dev"
+	@echo "  run-local-task-queue			- run rqworker on your local machine. Requires redis to be running"
 
 .env:
 	@if [ ! -f .env ]; then \
@@ -180,6 +181,13 @@ preflight:
 	$ npm install
 	$ bin/sync-all.sh
 
+run-local-task-queue:
+	# We temporarily source the .env for the command's duration only
+	(source ".env" && \
+		[ -n "$$REDIS_URL" ] || { echo "REDIS_URL env var is not set"; exit 1; } && \
+		./bin/run-worker.sh)
+
+
 clean-local-deps:
 	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
 
@@ -192,4 +200,4 @@ install-custom-git-hooks:
 uninstall-custom-git-hooks:
 	rm .git/hooks/post-merge
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks run-local-task-queue
