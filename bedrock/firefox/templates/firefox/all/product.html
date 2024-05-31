@@ -9,7 +9,7 @@
 <h2 class="c-step-name">
   1. {{ ftl('firefox-all-browser') }}
   {% if product %}
-    <span class="c-step-choice">{{ product and product.name }}</span> <a href="TODO" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-browser') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+    <span class="c-step-choice">{{ product and product.name }}</span> <a href="{{ url('firefox.drilldown') }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-browser') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
   {% else %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
   {% endif %}
