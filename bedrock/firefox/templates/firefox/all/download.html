@@ -23,7 +23,7 @@
 <div class="c-step-contents">
   {% if product.slug.startswith("desktop") %}
     <p><br>
-      <a href="TODO" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
+      <a href="{{ download_url }}" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
         {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
       </a>
     </p>
