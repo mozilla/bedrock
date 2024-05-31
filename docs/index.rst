@@ -31,6 +31,7 @@ Contents
    redirects
    newsletters
    contentful
+   cms
    sitemap
    legal-docs
    content-cards
