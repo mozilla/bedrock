@@ -25,6 +25,8 @@ from greenlet import GreenletExit
 from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
+from sentry_sdk.integrations.redis import RedisIntegration
+from sentry_sdk.integrations.rq import RqIntegration
 
 from bedrock.base.config_manager import config
 from bedrock.contentful.constants import (
@@ -1159,7 +1161,7 @@ if SENTRY_DSN:
         dsn=SENTRY_DSN,
         release=config("GIT_SHA", default=""),
         server_name=".".join(x for x in [APP_NAME, CLUSTER_NAME] if x),
-        integrations=[DjangoIntegration()],
+        integrations=[DjangoIntegration(), RedisIntegration(), RqIntegration()],
         before_send=before_send,
     )
 
