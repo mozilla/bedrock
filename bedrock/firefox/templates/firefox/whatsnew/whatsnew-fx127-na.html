@@ -1,0 +1,108 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_127_na') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h1 class="wnp-main-title">Join the community</h1>
+
+    {{ picture(
+      url='img/firefox/whatsnew/whatsnew126-na/extensions.svg',
+      optional_attributes={
+        'class': 'wnp-main-image',
+        'alt': 'My Firefox: More Speed, More Security, More Fun.',
+        'width': '554',
+        'height': '300'
+      }
+    ) }}
+
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="https://connect.mozilla.org" data-cta-type="button" data-cta-text="Join the community" target="_blank" rel="noopener">
+        Join the community
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-content-sub">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
+
+      {% call picto(
+        title="Connect is creative",
+        heading_level=2,
+        body=True,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew127-eu/pip-lecture.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      {% endcall %}
+
+      {% call picto(
+        title="A first look at new features",
+        heading_level=2,
+        body=True,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew127-eu/pip-lecture.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      {% endcall %}
+
+      {% call picto(
+        title="Community centered",
+        heading_level=2,
+        body=True,
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew127-eu/pip-lecture.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy'
+          }
+        )
+      ) %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      {% endcall %}
+
+    </div>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+</section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_127_na') }}
+{% endblock %}

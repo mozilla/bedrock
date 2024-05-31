@@ -1,0 +1,25 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+.wnp-content-main {
+    background-color: $color-marketing-gray-10;
+    color: $color-black;
+    text-align: center;
+}
+
+.wnp-main-image {
+    display: block;
+    margin: 0 auto $spacing-2xl;
+}
+
+.wnp-main-cta {
+    display: block;
+    margin-bottom: $layout-xl;
+}
