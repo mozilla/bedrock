@@ -173,10 +173,16 @@ $image-path: '/media/protocol/img';
         font-weight: bold;
         line-height: 1.125;
         padding: 0 $spacing-lg;
+        text-align: center;
+
+        em {
+            display: block;
+        }
     }
 }
 
 .c-store-badges {
+    margin-bottom: 0;
     text-align: center;
 
     li {
@@ -185,18 +191,19 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-get-app {
-    background: center right url('/media/img/firefox/all/icon-get.svg') no-repeat;
-    background-size: auto 1em;
-    display: inline-block;
-    margin-top: $spacing-sm;
-    padding-right: 20px;
-}
+// .c-get-app {
+//     background: center right url('/media/img/firefox/all/icon-get.svg') no-repeat;
+//     background-size: auto 1em;
+//     display: inline-block;
+//     margin-top: $spacing-sm;
+//     padding-right: 20px;
+// }
 
 // help buttons & modals
 
 .c-button-help {
-    @include at2x('/media/img/firefox/all/icon-question.png', 21px, 21px);
+    background-image: url('/media/img/firefox/all/icon-question.svg');
+    background-size: 16px 16px;
     @include image-replaced;
     background-position: top left;
     background-repeat: no-repeat;
