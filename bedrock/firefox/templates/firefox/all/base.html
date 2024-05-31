@@ -14,12 +14,7 @@
 {%- endblock -%}
 
 {% block page_css %}
- {{ css_bundle('firefox_all_unified') }}
-{% endblock %}
-
-{% block old_ie_styles %}
-  {{ super() }}
-  {{ css_bundle('firefox_all_unified_old_ie') }}
+ {{ css_bundle('firefox_all') }}
 {% endblock %}
 
 {% block site_header %}
@@ -28,8 +23,15 @@
   {% endwith %}
 {% endblock %}
 
-
 {% set campaign = "firefox-all" %}
+
+{% if product and platform %}
+  {% set current_step = ftl('firefox-all-choose-language') %}
+{% elif product %}
+  {% set current_step = ftl('firefox-all-choose-platform') %}
+{% else %}
+  {% set current_step = ftl('firefox-all-choose-browser') %}
+{% endif %}
 
 {% block content %}
 <main>
@@ -51,5 +53,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_all_drill') }}
+  {{ js_bundle('firefox_all') }}
 {% endblock %}
