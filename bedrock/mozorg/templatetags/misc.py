@@ -330,43 +330,6 @@ def video(ctx, *args, **kwargs):
 
 @library.global_function
 @jinja2.pass_context
-def press_blog_url(ctx):
-    """Output a link to the press blog taking locales into account.
-
-    Uses the locale from the current request. Checks to see if we have
-    a press blog that matches this locale, returns the localized press blog
-    url or falls back to the US press blog url if not.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ press_blog_url() }}
-
-    For en-US this would output:
-
-        https://blog.mozilla.org/press/
-
-    For en-GB this would output:
-
-        https://blog.mozilla.org/press-uk/
-
-    For de this would output:
-
-        https://blog.mozilla.org/press-de/
-
-    """
-    locale = getattr(ctx["request"], "locale", "en-US")
-    if locale not in settings.PRESS_BLOGS:
-        locale = "en-US"
-
-    return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
-
-
-@library.global_function
-@jinja2.pass_context
 def donate_url(ctx, location=""):
     """Output a formatted donation link to the donation popup form.
 

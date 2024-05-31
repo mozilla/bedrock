@@ -196,46 +196,6 @@ class TestVideoTag(TestCase):
         assert extensions == [".webm", ".ogv"]
 
 
-class TestPressBlogUrl(TestCase):
-    rf = RequestFactory()
-
-    def _render(self, locale):
-        req = self.rf.get("/")
-        req.locale = locale
-        return render("{{{{ press_blog_url() }}}}".format("/"), {"request": req})  # noqa: F523
-
-    def test_press_blog_url_no_locale(self):
-        """No locale, fallback to default press blog"""
-        assert self._render("") == "https://blog.mozilla.org/press/"
-
-    def test_press_blog_url_english(self):
-        """en-US locale, default press blog"""
-        assert self._render("en-US") == "https://blog.mozilla.org/press/"
-
-    def test_press_blog_url_europe(self):
-        """Major European locales have their own blog"""
-        assert self._render("es-ES") == "https://blog.mozilla.org/press-es/"
-        assert self._render("fr") == "https://blog.mozilla.org/press-fr/"
-        assert self._render("de") == "https://blog.mozilla.org/press-de/"
-        assert self._render("pl") == "https://blog.mozilla.org/press-pl/"
-        assert self._render("it") == "https://blog.mozilla.org/press-it/"
-        assert self._render("en-GB") == "https://blog.mozilla.org/press-uk/"
-
-    def test_press_blog_url_latam(self):
-        """South American Spanishes use the es-ES blog"""
-        assert self._render("es-AR") == "https://blog.mozilla.org/press-es/"
-        assert self._render("es-CL") == "https://blog.mozilla.org/press-es/"
-        assert self._render("es-MX") == "https://blog.mozilla.org/press-es/"
-
-    def test_press_blog_url_brazil(self):
-        """Brazilian Portuguese has its own br blog"""
-        assert self._render("pt-BR") == "https://blog.mozilla.org/press-br/"
-
-    def test_press_blog_url_other_locale(self):
-        """No blog for locale, fallback to default press blog"""
-        assert self._render("oc") == "https://blog.mozilla.org/press/"
-
-
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
