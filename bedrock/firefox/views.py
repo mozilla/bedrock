@@ -237,6 +237,7 @@ def firefox_all(request):
     latest_release_version_ios = product_ios.latest_version(channel_release)
 
     lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
+    plat_mobile = ftl("firefox-all-plat-multi", ftl_files=ftl_files)
 
     context = {
         "products": products.items(),

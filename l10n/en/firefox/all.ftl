@@ -30,6 +30,7 @@ firefox-all-platform = Platform:
 firefox-all-language = Language:
 firefox-all-download = Download:
 firefox-all-lang-multi = Multiple languages
+firefox-all-plat-mobile = Android and iOS
 firefox-all-sorry-we-couldnt-find = Sorry, we couldn’t find the download you’re looking for. Please try again, or select a download from the list below.
 firefox-all-the-pre-alpha-version = The pre-alpha version for power users who like to hunt crashes and test new features as they’re coded.
 firefox-all-64-bit-installers = 64-bit installers
