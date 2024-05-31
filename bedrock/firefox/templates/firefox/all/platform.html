@@ -14,7 +14,7 @@
   {% elif product %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
   {% else %}
-    <img alt="TKTK" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+    <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}
 
   {% if product and not platform %}
@@ -31,34 +31,34 @@
         <li><a href="{{ url('firefox.drilldown_platform', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
       {% endfor %}
     </ul>
-  </div>
-  <div id="installer-help" class="c-help mzp-u-modal-content">
-    <h3>{{ ftl('firefox-all-learn-about-installers')}}</h3>
-    <ul>
-      <li>
-        <h4 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h4>
-        <p class="c-help-desc">
-          {{ ftl('firefox-all-choose-a-64-bit-installer') }}
-        </p>
-      </li>
-      <li>
-        <h4 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h4>
-        <p class="c-help-desc">
-          {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
-        </p>
-      </li>
-      <li>
-        <h4 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h4>
-        <p class="c-help-desc">
-          {{ ftl('firefox-all-windows-installers-for') }}
-        </p>
-      </li>
-      <li>
-        <h4 class="c-help-title">{{ ftl('firefox-all-arm64-installers') }}</h4>
-        <p class="c-help-desc">
-          {{ ftl('firefox-all-arm64-installers-optimized') }}
-        </p>
-      </li>
-    </ul>
+    <div id="installer-help" class="c-help mzp-u-modal-content">
+      <h3>{{ ftl('firefox-all-learn-about-installers')}}</h3>
+      <ul>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-choose-a-64-bit-installer') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-windows-installers-for') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-arm64-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-arm64-installers-optimized') }}
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
 {% endif %}
