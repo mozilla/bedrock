@@ -104,7 +104,7 @@ Wagtail will resize the original image to suit, on the fly, and store this
 "rendition" (a resized version, basically) in the cloud bucket. It will also add
 a reference to the database so that Wagtail knows that the rendition already exists.
 
-In production, the "Web" deployment has **read-only&& access to the DB and
+In production, the "Web" deployment has **read-only** access to the DB and
 to the cloud storage, so it will not be able to generate new renditions on the fly.
 Instead, we pre-generate those renditions when the image is saved.
 
