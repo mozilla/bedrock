@@ -74,16 +74,18 @@ DATABASES = {
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+TASK_QUEUE_AVAILABLE = False
+RQ_QUEUES = {}
+
 REDIS_URL = config("REDIS_URL", default="")
 if REDIS_URL:
+    TASK_QUEUE_AVAILABLE = True
     REDIS_URL = REDIS_URL.rstrip("/0")
     RQ_QUEUES = {
         # Same Redis DBs/connections
         "default": {"URL": f"{REDIS_URL}/0"},
         "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
-else:
-    RQ_QUEUES = {}
 
 CACHES = {
     "default": {
