@@ -1578,9 +1578,9 @@ wagtail==5.2.3 \
     # via
     #   -r requirements/prod.in
     #   wagtail-localize
-wagtail-localize==1.8 \
-    --hash=sha256:53f04de9bd0985b79c075c480572250fb65ba9f127d076c9e93d944e39b6ca47 \
-    --hash=sha256:66c3d86e994a6ac5acf1dd569cfd22f2661150abc6099cae2d6fa30a3495d0fc
+wagtail-localize==1.9 \
+    --hash=sha256:a680fc33c17145e6726f03a57b2ec465405847ae7cb77943ecc0e56463ad68c7 \
+    --hash=sha256:f4fa9c36d8dbab5c27d1b675ed6fd7b9e8f012cf4bb308464168de7ebbad8324
     # via -r requirements/prod.in
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
