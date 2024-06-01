@@ -1022,9 +1022,9 @@ newrelic==9.9.0 \
     --hash=sha256:f0d8c8f66aba3629f0f17a1d2314beb2984ad7c485dd318ef2d5f257c040981d \
     --hash=sha256:f48898e268dcaa14aa1b6d5c8b8d10f3f4396589a37be10a06bb5ba262ef0541
     # via -r requirements/prod.in
-openpyxl==3.1.2 \
-    --hash=sha256:a6f5977418eff3b2d5500d54d9db50c8277a368436f4e4f8ddb1be3422870184 \
-    --hash=sha256:f91456ead12ab3c6c2e9491cf33ba6d08357d802192379bb482f1033ade496f5
+openpyxl==3.1.3 \
+    --hash=sha256:25071b558db709de9e8782c3d3e058af3b23ffb2fc6f40c8f0c45a154eced2c3 \
+    --hash=sha256:8dd482e5350125b2388070bb2477927be2e8ebc27df61178709bc8c8751da2f9
     # via wagtail
 packaging==24.0 \
     --hash=sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5 \
