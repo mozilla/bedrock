@@ -14,9 +14,11 @@ const FxaFormConsent = {
      */
     initForm: (consent) => {
         const skipAttribution = !consent ? true : false;
-        FxaForm.init(skipAttribution).catch(() => {
-            // do nothing
-        });
+        if (FxaForm.isSupported()) {
+            FxaForm.init(skipAttribution).catch(() => {
+                // do nothing
+            });
+        }
     },
 
     /**

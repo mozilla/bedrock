@@ -12,9 +12,11 @@ const FxaProductButtonConsent = {
      * Initialize FxA metrics flow request.
      */
     initMetricsFlow: () => {
-        FxaProductButton.init().catch(() => {
-            // do nothing
-        });
+        if (FxaProductButton.isSupported()) {
+            FxaProductButton.init().catch(() => {
+                // do nothing
+            });
+        }
     },
 
     /**
