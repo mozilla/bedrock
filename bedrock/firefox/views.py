@@ -172,6 +172,12 @@ def sign_attribution_codes(codes):
 def firefox_all(request, product_slug=None, platform=None, locale=None):
     ftl_files = "firefox/all"
 
+    # A product object for android OR ios.
+    class MobileRelease:
+        slug = "mobile-release"
+
+    mobile_release = MobileRelease()
+
     product_map = {
         "desktop-release": {
             "slug": "desktop-release",
@@ -227,6 +233,13 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
             "channel": "release",
             "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
         },
+        # mobile-release is a special case for both android and ios.
+        "mobile-release": {
+            "slug": "mobile-release",
+            "product": mobile_release,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox-mobile", ftl_files=ftl_files),
+        },
     }
 
     platform_map = {
@@ -246,24 +259,20 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
     download_url = None
     template_name = "firefox/all/base.html"
 
-    # The mobile products don't drill down, so short-circuit them here.
-    if product_slug == "mobile-release":
-        context = {}
-        template_name = "firefox/all/mobile.html"
-        return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
-    elif product:
-        if product_slug.startswith("android"):
-            platform = "android"
-            platform_name = "Android"
+    if product:
+        if product_slug.startswith(("mobile", "android", "ios")):
             locale = "en-US"
             locale_name = "Multiple Languages"
-            download_url = product["product"].get_download_url(channel=product["channel"])
+            download_url = True  # Set to True to avoid trying to generate this later below.
+        if product_slug.startswith("mobile"):
+            platform = "mobile"
+            platform_name = "Mobile (iOS or Android)"
+        elif product_slug.startswith("android"):
+            platform = "android"
+            platform_name = "Android"
         elif product_slug.startswith("ios"):
             platform = "ios"
             platform_name = "iOS"
-            locale = "en-US"
-            locale_name = "Multiple Languages"
-            download_url = product["product"].get_download_url()
         else:
             platform_name = platform and platform_map[platform]
             locale_name = None
