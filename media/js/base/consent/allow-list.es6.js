@@ -4,12 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+const MozAllowList = ['/firefox/challenge-the-default/', '/products/vpn/*'];
 
-    function onLoad() {
-        window.Mozilla.Banner.init('monitor-banner');
-    }
-
-    window.Mozilla.run(onLoad);
-})();
+export default MozAllowList;

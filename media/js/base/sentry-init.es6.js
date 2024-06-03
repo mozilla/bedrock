@@ -4,8 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-(function () {
-    'use strict';
+import SentryConsent from './sentry-consent.es6';
 
-    Mozilla.StubAttribution.init();
-})();
+SentryConsent.init();

@@ -103,7 +103,10 @@
       <div class="mzp-c-footer-legal">
         <ul class="mzp-c-footer-terms">
           <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-text="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
-          <li><a href="{{ url('privacy.notices.websites') }}#user-choices" data-link-type="footer" data-link-text="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
+          <li>
+            {# Link to /privacy/websites/cookie-settings/ is a legal requirement and should not be removed. It must be present on every page (Issue 14213). #}
+            <a href="{{ url('privacy.cookie-settings') }}" data-link-type="footer" data-link-text="Cookies">{{ ftl('footer-websites-cookies') }}</a>
+          </li>
           <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-text="Legal">{{ ftl('footer-websites-legal') }}</a></li>
           <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
           {% if ftl_has_messages('footer-about-this-site') %}

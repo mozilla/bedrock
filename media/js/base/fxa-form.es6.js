@@ -7,7 +7,6 @@
 const FxaForm = {};
 
 let formElem;
-let email;
 let entrypointInput;
 let entrypointExp;
 let entrypointVar;
@@ -15,7 +14,6 @@ let utmCampaign;
 let utmContent;
 let utmSource;
 let utmTerm;
-let skipAttribution;
 
 const utms = [
     'utm_source',
@@ -34,6 +32,12 @@ const fxaParams = [
 ];
 
 const acceptedParams = utms.concat(fxaParams);
+
+/**
+ * Flag to skip non-essential attribution data.
+ * Default to true.
+ */
+FxaForm.skipAttribution = true;
 
 /**
  * Creates a hidden form input.
@@ -158,8 +162,17 @@ FxaForm.fetchTokens = function () {
  * @returns {Object} extraURLParams
  */
 FxaForm.getExtraURLParams = function () {
+    const utmSource = document.getElementById('fxa-email-form-utm-source');
+    const utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
+    const entrypointExp = document.getElementById(
+        'fxa-email-form-entrypoint-experiment'
+    );
+    const entrypointVar = document.getElementById(
+        'fxa-email-form-entrypoint-variation'
+    );
+
     // Only include basic page source/campaign if attribution is skipped.
-    if (skipAttribution) {
+    if (FxaForm.skipAttribution) {
         return utmSource.value && utmCampaign.value
             ? {
                   utm_source: utmSource.value,
@@ -175,6 +188,8 @@ FxaForm.getExtraURLParams = function () {
     if (entrypointVar && entrypointVar.value) {
         extraURLParams['entrypoint_variation'] = entrypointVar.value;
     }
+
+    const formElem = document.getElementById('fxa-email-form');
 
     if (formElem) {
         const deviceId = formElem.querySelector('[name="device_id"]');
@@ -208,6 +223,10 @@ FxaForm.getExtraURLParams = function () {
 FxaForm.interceptFxANavigation = function (event) {
     event.preventDefault();
     const extraURLParams = FxaForm.getExtraURLParams();
+    const entrypointInput = document.getElementById(
+        'fxa-email-form-entrypoint'
+    );
+    let email = document.getElementById('fxa-email-field');
 
     let entrypoint = null;
     if (entrypointInput && entrypointInput.value) {
@@ -226,10 +245,17 @@ FxaForm.interceptFxANavigation = function (event) {
 };
 
 /**
- * Configures Sync for Firefox browsers.
+ * Sets the service context parameters for Sync on Firefox desktop.
  */
 FxaForm.setServiceContext = function () {
-    const contextField = formElem.querySelector('[name="context"]');
+    const form = document.getElementById('fxa-email-form');
+
+    // If the form is not present, do nothing.
+    if (!form) {
+        return;
+    }
+
+    const contextField = form.querySelector('[name="context"]');
     const userVer = parseFloat(Mozilla.Client._getFirefoxVersion());
     const useUITourForFxA =
         userVer >= 80 && typeof Mozilla.UITour !== 'undefined';
@@ -238,16 +264,19 @@ FxaForm.setServiceContext = function () {
         // context is required for all Firefox desktop clients.
         if (!contextField) {
             const context = FxaForm.createInput('context', 'fx_desktop_v3');
-            formElem.appendChild(context);
+            form.appendChild(context);
         }
 
         Mozilla.UITour.ping(() => {
             // intercept the flow and submit the form using the UITour API.
-            formElem.addEventListener('submit', FxaForm.interceptFxANavigation);
+            form.addEventListener('submit', FxaForm.interceptFxANavigation);
         });
     }
 };
 
+/**
+ * Configures Sync for Firefox browsers.
+ */
 FxaForm.configureSync = function () {
     // Configure Sync for Firefox desktop browsers.
     if (Mozilla.Client._isFirefoxDesktop()) {
@@ -271,10 +300,9 @@ FxaForm.init = function (skipAttr) {
         return false;
     }
 
-    skipAttribution = skipAttr;
+    FxaForm.skipAttribution = typeof skipAttr === 'boolean' ? skipAttr : true;
 
     formElem = document.getElementById('fxa-email-form');
-    email = document.getElementById('fxa-email-field');
     entrypointInput = document.getElementById('fxa-email-form-entrypoint');
     entrypointExp = document.getElementById(
         'fxa-email-form-entrypoint-experiment'
@@ -289,7 +317,7 @@ FxaForm.init = function (skipAttr) {
 
     return new window.Promise((resolve, reject) => {
         if (formElem) {
-            if (!skipAttribution) {
+            if (!FxaForm.skipAttribution) {
                 // Pass through UTM params from the URL to the form.
                 const utms = FxaForm.getUTMParams();
                 Object.keys(utms).forEach((i) => {
@@ -305,11 +333,9 @@ FxaForm.init = function (skipAttr) {
                 });
 
                 FxaForm.fetchTokens().then(() => {
-                    FxaForm.configureSync();
                     resolve();
                 });
             } else {
-                FxaForm.configureSync();
                 resolve();
             }
         } else {

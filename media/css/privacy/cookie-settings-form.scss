@@ -1,0 +1,150 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+
+// Temporary fix until https://github.com/mozilla/protocol/issues/933 is resolved
+.mzp-c-breadcrumb {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    &.is-hidden {
+        display: none;
+    }
+
+    .mzp-c-breadcrumb-list {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .mzp-c-breadcrumb-item a {
+        &:link,
+        &:visited {
+            text-decoration: underline;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 64px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px 96px;
+        }
+    }
+}
+
+main {
+    .mzp-l-content {
+        background: $color-white;
+    }
+
+    .cookie-consent-header {
+        p {
+            @include text-body-lg;
+        }
+    }
+
+    .cookie-consent-form {
+        border-top: 1px solid $color-light-gray-40;
+        margin: $spacing-lg 0;
+        padding: $spacing-2xl 0;
+        position: relative;
+    }
+
+    .cookie-category {
+        margin: $layout-lg 0 $layout-xl;
+    }
+
+    .cookie-category-details-section {
+        margin-top: $spacing-lg;
+    }
+
+    .cookie-category-title {
+        margin-bottom: 0;
+    }
+
+    .cookie-summary {
+        border-bottom: 1px solid $color-light-gray-40;
+    }
+
+    .cookie-summary-title {
+        @include text-body-lg;
+        font-weight: normal;
+    }
+
+    .cookie-detail {
+        padding: $spacing-md;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .cookie-control {
+        position: relative;
+
+        .cookie-control-label {
+            display: inline-block;
+            margin-top: $spacing-lg;
+        }
+    }
+
+    .cookie-settings-section {
+        clear: both;
+        margin-bottom: $layout-xl;
+    }
+
+    .cookie-consent-form-submit {
+        .mzp-c-button {
+            margin-bottom: $spacing-lg;
+        }
+
+        .cookie-consent-form-submit-success {
+            @include animation(mzp-a-fade-in 200ms ease-in 0ms 1 normal both);
+        }
+    }
+
+    @media #{$mq-md} {
+        .cookie-category-title {
+            @include bidi(((margin-right, $spacing-lg, margin-left, $spacing-lg),));
+            display: inline-block;
+        }
+
+        .cookie-control {
+            @include bidi(((float, right, left),));
+            display: inline-block;
+            position: relative;
+
+            .cookie-control-label {
+                display: inline;
+                margin-top: 0;
+            }
+        }
+
+        .cookie-consent-form-submit {
+            @include bidi(((text-align, right, left),));
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include background-size(600px, auto);
+        background-image: url('/media/img/privacy/cookie-settings/arrows-bg.png');
+        background-repeat: repeat-x;
+        padding-top: $layout-xl;
+    }
+}

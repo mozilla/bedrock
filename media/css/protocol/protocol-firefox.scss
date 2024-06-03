@@ -30,6 +30,9 @@
 @import '~@mozilla-protocol/core/protocol/css/components/language-switcher';
 @import 'components/download-button';
 
+// Consent banner
+@import '~@mozmeao/consent-banner/styles';
+
 // Custom global components for nav and footer
 // These will later be backported to Protocol
 @import 'components/footer';

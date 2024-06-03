@@ -133,6 +133,10 @@ describe('fxa-product-button.js', function () {
             e.parentNode.removeChild(e);
         });
 
-        expect(FxaProductButton.init()).toBeFalsy();
+        spyOn(FxaProductButton, 'fetchTokens');
+
+        return FxaProductButton.init().catch(() => {
+            expect(FxaProductButton.fetchTokens).not.toHaveBeenCalled();
+        });
     });
 });

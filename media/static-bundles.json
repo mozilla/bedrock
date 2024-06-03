@@ -936,7 +936,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/hero.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-plus-relay.scss",
@@ -947,7 +946,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/common-refresh.scss"
       ],
       "name": "mozilla-vpn-common-refresh"
@@ -966,7 +964,6 @@
     },
     {
       "files": [
-        "css/products/shared/affiliate.scss",
         "css/products/vpn/components/block.scss",
         "css/products/vpn/components/pricing-basic.scss",
         "css/products/vpn/common.scss"
@@ -1276,6 +1273,12 @@
         "css/cms/base.scss"
       ],
       "name": "cms-base"
+    },
+    {
+      "files": [
+        "css/privacy/cookie-settings-form.scss"
+      ],
+      "name": "cookie-settings-form"
     }
   ],
   "js": [
@@ -1287,18 +1290,25 @@
     },
     {
       "files": [
-        "js/base/sentry.es6.js"
+        "js/base/sentry-init.es6.js"
       ],
       "name": "sentry"
     },
     {
       "files": [
         "js/base/site.js",
-        "js/base/dnt-helper.js",
+        "js/base/consent/privacy-helpers.js",
         "js/base/mozilla-cookie-helper.js",
         "js/base/core-datalayer-page-id.js"
       ],
       "name": "site"
+    },
+    {
+      "files": [
+        "js/base/site-ie.js",
+        "js/base/mozilla-cookie-helper.js"
+      ],
+      "name": "site-ie"
     },
     {
       "files": [
@@ -1366,20 +1376,10 @@
     },
     {
       "files": [
-        "js/base/stub-attribution.js",
-        "js/base/stub-attribution-init.js"
+        "js/base/stub-attribution/stub-attribution.js",
+        "js/base/stub-attribution/stub-attribution-init.es6.js"
       ],
       "name": "stub-attribution"
-    },
-    {
-      "files": [
-        "js/base/dnt-helper.js",
-        "js/base/mozilla-cookie-helper.js",
-        "js/base/search-params.js",
-        "js/base/stub-attribution.js",
-        "js/base/stub-attribution-init-ie.js"
-      ],
-      "name": "stub-attribution-ie"
     },
     {
       "files": [
@@ -1446,8 +1446,7 @@
     },
     {
       "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/base/banners/firefox-app-store-banner-init.js"
+        "js/base/banners/firefox-app-store-banner.es6.js"
       ],
       "name": "firefox-app-store-banner"
     },
@@ -1467,9 +1466,15 @@
     },
     {
       "files": [
-        "js/base/gtm-snippet.js"
+        "js/base/gtm/gtm-snippet-init.es6.js"
       ],
       "name": "gtm-snippet"
+    },
+    {
+      "files": [
+        "js/base/gtm/ie/gtm-snippet-ie-init.es6.js"
+      ],
+      "name": "gtm-snippet-ie"
     },
     {
       "files": [
@@ -1493,7 +1498,7 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/mozorg/account.es6.js"
+        "js/base/fxa-form-init.es6.js"
       ],
       "name": "mozilla_account"
     },
@@ -1635,6 +1640,13 @@
     },
     {
       "files": [
+        "js/libs/classlist.js",
+        "js/base/search-params.js"
+      ],
+      "name": "lib-ie"
+    },
+    {
+      "files": [
         "js/base/protocol/init-details.es6.js",
         "js/base/protocol/protocol-menu.js",
         "js/base/protocol/protocol-navigation.js",
@@ -1648,8 +1660,6 @@
     },
     {
       "files": [
-        "js/base/fxa-link.es6.js",
-        "js/base/fxa-attribution.es6.js",
         "js/base/fxa-bundle-init.es6.js"
       ],
       "name": "fxa"
@@ -1661,6 +1671,18 @@
         "js/base/datalayer-productdownload-init.es6.js"
       ],
       "name": "data"
+    },
+    {
+      "files": [
+        "js/base/consent/init.es6.js"
+      ],
+      "name": "consent-banner"
+    },
+    {
+      "files": [
+        "js/privacy/cookie-settings-form-init.es6.js"
+      ],
+      "name": "cookie-settings-form"
     },
     {
       "files": [
@@ -1770,6 +1792,12 @@
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"
+    },
+    {
+      "files": [
+        "js/products/shared/stripe-init.es6.js"
+      ],
+      "name": "stripe"
     },
     {
       "files": [
@@ -1884,8 +1912,7 @@
     },
     {
       "files": [
-        "js/base/banners/mozilla-banner.js",
-        "js/mozorg/home/monitor-banner-init.js"
+        "js/mozorg/home/monitor-banner.es6.js"
       ],
       "name": "monitor-banner"
     },

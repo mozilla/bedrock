@@ -6,6 +6,7 @@ from pypom import Page, Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
+from pages.regions.consent_banner import ConsentBanner
 from pages.regions.newsletter import NewsletterEmbedForm
 
 
@@ -48,6 +49,10 @@ class BasePage(ScrollElementIntoView, Page):
     @property
     def newsletter(self):
         return NewsletterEmbedForm(self)
+
+    @property
+    def consent_banner(self):
+        return ConsentBanner(self)
 
     class Navigation(BaseRegion):
         _root_locator = (By.CLASS_NAME, "c-navigation")

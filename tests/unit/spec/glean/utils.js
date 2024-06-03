@@ -143,23 +143,147 @@ describe('utils.js', function () {
         });
     });
 
-    describe('isTelemetryEnabled', function () {
-        it('should return true if opt out cookie does not exist', function () {
-            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
-            const result = Utils.isTelemetryEnabled();
-            expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-1st-party-data-opt-out'
+    describe('bootstrapGlean', function () {
+        afterEach(function () {
+            document
+                .getElementsByTagName('html')[0]
+                .removeAttribute('data-needs-consent');
+
+            window.removeEventListener(
+                'mozConsentStatus',
+                Utils.handleConsent,
+                false
             );
-            expect(result).toBeTrue();
         });
 
-        it('should return false if opt out cookie exists', function () {
-            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
-            const result = Utils.isTelemetryEnabled();
-            expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(
-                'moz-1st-party-data-opt-out'
-            );
-            expect(result).toBeFalse();
+        describe('EU visitors (explicit consent required)', function () {
+            beforeEach(function () {
+                document
+                    .getElementsByTagName('html')[0]
+                    .setAttribute('data-needs-consent', 'True');
+
+                spyOn(Utils, 'initGlean');
+                spyOn(Utils, 'initPageLoadEvent');
+            });
+
+            it('should return wait for a mozConsentStatus event before initializing Glean', function () {
+                Utils.bootstrapGlean();
+                expect(Utils.initGlean).not.toHaveBeenCalled();
+            });
+
+            it('should init Glean and fire page load if mozConsentStatus event accepts analytics', function () {
+                Utils.bootstrapGlean();
+                expect(Utils.initGlean).not.toHaveBeenCalled();
+
+                window.dispatchEvent(
+                    new CustomEvent('mozConsentStatus', {
+                        detail: {
+                            analytics: true,
+                            preference: true
+                        }
+                    })
+                );
+
+                expect(Utils.initGlean).toHaveBeenCalledWith(true);
+                expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+            });
+
+            it('should init Glean to send a deletion request if mozConsentStatus event rejects analytics', function () {
+                Utils.bootstrapGlean();
+                expect(Utils.initGlean).not.toHaveBeenCalled();
+
+                window.dispatchEvent(
+                    new CustomEvent('mozConsentStatus', {
+                        detail: {
+                            analytics: false,
+                            preference: false
+                        }
+                    })
+                );
+
+                expect(Utils.initGlean).toHaveBeenCalledWith(false);
+                expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+            });
+
+            it('should load Glean on /thanks/ if a consent cookie exists that accepts analytics', function () {
+                const obj = {
+                    analytics: true,
+                    preference: false
+                };
+
+                spyOn(Utils, 'isFirefoxDownloadThanks').and.returnValue(true);
+                spyOn(window.Mozilla.Cookies, 'getItem').and.returnValue(
+                    JSON.stringify(obj)
+                );
+
+                Utils.bootstrapGlean();
+
+                expect(Utils.initGlean).toHaveBeenCalledWith(true);
+                expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+            });
+
+            it('should not load GTM on /thanks/ if a consent cookie exists that rejects analytics', function () {
+                const obj = {
+                    analytics: false,
+                    preference: false
+                };
+                spyOn(Utils, 'isFirefoxDownloadThanks').and.returnValue(true);
+                spyOn(window.Mozilla.Cookies, 'getItem').and.returnValue(
+                    JSON.stringify(obj)
+                );
+
+                Utils.bootstrapGlean();
+
+                expect(Utils.initGlean).not.toHaveBeenCalled();
+                expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+            });
+
+            it('should not load GTM if a consent cookie exists but URL is not /thanks/', function () {
+                const obj = {
+                    analytics: true,
+                    preference: false
+                };
+                spyOn(Utils, 'isFirefoxDownloadThanks').and.returnValue(false);
+                spyOn(window.Mozilla.Cookies, 'getItem').and.returnValue(
+                    JSON.stringify(obj)
+                );
+
+                Utils.bootstrapGlean();
+
+                expect(Utils.initGlean).not.toHaveBeenCalled();
+                expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('Non-EU visitors (explicit consent not required)', function () {
+            beforeEach(function () {
+                document
+                    .getElementsByTagName('html')[0]
+                    .setAttribute('data-needs-consent', 'False');
+
+                spyOn(Utils, 'initGlean');
+                spyOn(Utils, 'initPageLoadEvent');
+            });
+
+            it('should init Glean and fire page load by default', function () {
+                Utils.bootstrapGlean();
+                expect(Utils.initGlean).toHaveBeenCalled();
+                expect(Utils.initPageLoadEvent).toHaveBeenCalled();
+            });
+
+            it('should init Glean to send a deletion request if consent cookie rejects analytics', function () {
+                const obj = {
+                    analytics: false,
+                    preference: false
+                };
+                spyOn(window.Mozilla.Cookies, 'getItem').and.returnValue(
+                    JSON.stringify(obj)
+                );
+
+                Utils.bootstrapGlean();
+                expect(Utils.initGlean).toHaveBeenCalledWith(false);
+                expect(Utils.initPageLoadEvent).not.toHaveBeenCalled();
+            });
         });
     });
 });
