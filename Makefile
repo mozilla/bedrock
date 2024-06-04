@@ -36,7 +36,7 @@ help:
 	@echo "  uninstall-custom-git-hooks     - uninstall custom git hooks"
 	@echo "  clean-local-deps               - remove all local installed Python dependencies"
 	@echo "  preflight                      - refresh installed dependencies and fetch latest DB ahead of local dev"
-	@echo "  run-local-task-queue			- run rqworker on your local machine. Requires redis to be running"
+	@echo "  run-local-task-queue           - run rqworker on your local machine. Requires redis to be running"
 
 .env:
 	@if [ ! -f .env ]; then \
