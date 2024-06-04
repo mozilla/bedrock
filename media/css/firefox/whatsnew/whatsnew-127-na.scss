@@ -9,14 +9,19 @@
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .wnp-content-main {
-    background-color: $color-marketing-gray-10;
+    background-color: #feebee;
     color: $color-black;
     text-align: center;
 }
 
 .wnp-main-image {
+    border-radius: $border-radius-lg;
     display: block;
     margin: 0 auto $spacing-2xl;
+}
+
+.mzp-c-picto-image {
+    width: 85px;
 }
 
 .wnp-main-cta {

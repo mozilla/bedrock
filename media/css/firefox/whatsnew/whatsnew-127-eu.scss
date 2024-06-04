@@ -57,6 +57,7 @@ $brand-theme: "firefox";
 
 .wnp-content-extra {
     margin-top: $layout-xl;
+    text-align: center;
 
     .wnp-extra-title {
         @include text-title-sm;
@@ -65,6 +66,7 @@ $brand-theme: "firefox";
 
     .mzp-c-picto-heading {
         @include text-title-2xs;
+        font-weight: normal;
     }
 }
 

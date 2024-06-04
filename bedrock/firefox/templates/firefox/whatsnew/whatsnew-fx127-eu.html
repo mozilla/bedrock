@@ -105,16 +105,17 @@
     <h3 class="wnp-extra-title">{{ sub_title }}</h3>
 
     <div class="mzp-l-columns mzp-t-columns-three">
+
       {{ picto(
-        title=item_lecture,
-        heading_level=4,
-        image=resp_img(
-          url='img/firefox/whatsnew/whatsnew127-eu/pip-lecture.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy'
-          }
-        )
+      title=item_lecture,
+      heading_level=4,
+      image=resp_img(
+        url='img/firefox/whatsnew/whatsnew127-eu/pip-lecture.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      )
       ) }}
 
       {{ picto(
@@ -140,7 +141,7 @@
           }
         )
       ) }}
-    </div>
+      </div>
   </div>
 </section>
 {% endblock %}
