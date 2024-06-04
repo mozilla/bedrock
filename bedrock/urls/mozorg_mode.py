@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.contrib import admin
 from django.urls import include, path
 from django.utils.module_loading import import_string
 
@@ -58,7 +59,11 @@ if settings.DEBUG:
     )
 
 if settings.WAGTAIL_ENABLE_ADMIN:
-    urlpatterns += (path("cms-admin/", include(wagtailadmin_urls)),)
+    urlpatterns += (
+        path("cms-admin/", include(wagtailadmin_urls)),
+        path("django-admin/", admin.site.urls),  # needed to show django-rq UI
+        path("django-rq/", include("django_rq.urls")),  # task queue management
+    )
 
 if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage":
     # Serve media files from Django itself - production won't use this

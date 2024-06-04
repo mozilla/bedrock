@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% comment %}
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+{% endcomment %}
+
+{% block title %}Bedrock Django admin{% endblock %}
+
+{% block branding %}<h1>Bedrock administration</h1>{% endblock %}
+
+{% block userlinks %}
+  <a href="{% url 'rq_home' %}"> View task queue</a> / {{block.super}}
+{% endblock userlinks %}

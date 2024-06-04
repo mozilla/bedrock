@@ -6,6 +6,8 @@ from django.db import models
 
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 
+from bedrock.base.tasks import defer_task
+
 AUTOMATIC_RENDITION_FILTER_SPECS = [f"width-{size}" for size in range(2400, 0, -200)] + ["width-100"]
 
 
@@ -46,11 +48,15 @@ class BedrockImage(AbstractImage):
         all be 1600px wide. Yes, this is wasteful, but it's the price we pay for
         having to pre-generate renditions that match a certain set of possible
         sizes we'll be expecting in template markup.
-
-        **** TODO: move this to be async via a worker queue ****
         """
 
-        self.get_renditions(*AUTOMATIC_RENDITION_FILTER_SPECS)
+        # If a background worker queue is available, this call will use it
+        # to generate renditions, else it will immediately generate them
+        defer_task(
+            self.get_renditions,
+            queue_name="image_renditions",
+            func_args=AUTOMATIC_RENDITION_FILTER_SPECS,
+        )
 
 
 class BedrockRendition(AbstractRendition):

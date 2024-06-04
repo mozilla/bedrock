@@ -37,6 +37,7 @@ Contents
    content-cards
    banners
    uitour
+   task-queue
    send-to-device
    download-buttons
    mozilla-accounts
