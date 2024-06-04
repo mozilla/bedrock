@@ -1194,13 +1194,13 @@
       "name": "sustainability"
     },
     {
-    "files":[
-      "css/mozorg/impact.scss"
-    ],
-    "name": "impact"
+    "files": [
+        "css/mozorg/impact.scss"
+      ],
+      "name": "impact"
     },
     {
-      "files":[
+      "files": [
         "css/mozorg/advertising.scss"
       ],
       "name": "mozilla-ads"
