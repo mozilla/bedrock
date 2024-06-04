@@ -22,8 +22,9 @@ def defer_task(func, *, queue_name="default", func_args=None, func_kwargs=None):
     func_kwargs = func_kwargs or {}
 
     if settings.TASK_QUEUE_AVAILABLE:
+        logger.info(f"Sending {func} to the task queue '{queue_name}'")
         queue = django_rq.get_queue(queue_name)
         queue.enqueue(func, *func_args, **func_kwargs)
     else:
-        logger.info("Task queue not available. Immediately executing task")
+        logger.info(f"Task queue '{queue_name}' not available. Immediately executing {func}")
         func(*func_args, **func_kwargs)
