@@ -120,8 +120,9 @@ if (typeof window.Mozilla === 'undefined') {
     // then, each key name needs to be preceded by data- as this uses data attributes
     // to work. After this, you can access all strings defined inside the
     // string_data block in JS using Mozilla.Utils.trans('key-of-string'); Thank @mkelly
-    var _strings = document.getElementById('strings');
     Utils.trans = function (stringId) {
+        var _strings = document.getElementById('strings');
+
         if (_strings) {
             return _strings.getAttribute('data-' + stringId);
         } else {

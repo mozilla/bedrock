@@ -924,7 +924,7 @@ describe('management.es6.js', function () {
             spyOn(FormUtils, 'getUserToken').and.returnValue('');
             spyOn(NewsletterManagementForm, 'redirectToRecoveryPage');
 
-            return NewsletterManagementForm.init().catch(() => {
+            return NewsletterManagementForm.init().then(() => {
                 expect(
                     NewsletterManagementForm.redirectToRecoveryPage
                 ).toHaveBeenCalled();

@@ -29,7 +29,7 @@ describe('mozilla-utils.js', function () {
 
         it('should correctly return translation value', function () {
             const translation = Mozilla.Utils.trans('global-next');
-            expect(translation === 'Next');
+            expect(translation).toEqual('Next');
         });
     });
 
