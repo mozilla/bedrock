@@ -15,7 +15,7 @@ from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop
+from bedrock.firefox.firefox_details import FirefoxDesktop, firefox_desktop
 from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
@@ -209,60 +209,55 @@ class TestFirefoxAll(TestCase):
     def tearDown(self):
         self.patcher.stop()
 
-    def test_all_builds_results(self):
-        """
-        The unified page should display builds for all products
-        """
+    def test_all_step_1(self):
         resp = self.client.get(reverse("firefox.all"))
         doc = pq(resp.content)
-        assert len(doc(".c-all-downloads-build")) == 9
 
-        desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds("release"))
-        assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
-        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 8
+        # Step 1 is active, steps 2,3,4 are disabled.
+        assert len(doc(".t-step-disabled")) == 3
+        # 5 desktop products, 4 mobile products.
+        assert len(doc(".c-product-list > li")) == 9
 
-        desktop_beta_builds = len(self.firefox_desktop.get_filtered_full_builds("beta"))
-        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
-        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 8
+    def test_all_step_2(self):
+        resp = self.client.get(reverse("firefox.all_product", kwargs={"product_slug": "desktop-release"}))
+        doc = pq(resp.content)
 
-        desktop_developer_builds = len(self.firefox_desktop.get_filtered_full_builds("alpha"))
-        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
-        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 8
+        # Step 1 is done, step 2 is active, steps 3,4 are disabled.
+        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
+        assert len(doc(".t-step-disabled")) == 2
+        # platforms for desktop-release
+        assert len(doc(".c-platform-list > li")) == 8
 
-        desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds("nightly"))
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 9
+    def test_all_step_3(self):
+        resp = self.client.get(reverse("firefox.all_platform", kwargs={"product_slug": "desktop-release", "platform": "win64"}))
+        doc = pq(resp.content)
 
-        desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds("esr"))
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 8
+        # Step 1,2 is done, step 3 is active, step 4 are disabled.
+        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
+        assert doc(".c-steps > h2").eq(1).find(".c-step-choice").text() == "Windows 64-bit"
+        assert len(doc(".t-step-disabled")) == 1
+        # first locale matches request.locale
+        assert doc(".c-lang-list > li").eq(0).text() == "English (US) - English (US)"
+        # number of locales equals the number of builds
+        assert len(doc(".c-lang-list > li")) == len(firefox_desktop.get_filtered_full_builds("release"))
 
-        android_release_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
-        assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
+    def test_all_step_4(self):
+        resp = self.client.get(reverse("firefox.all_locale", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
+        doc = pq(resp.content)
 
-        android_beta_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
-        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 1
-
-        android_nightly_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
-        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 1
-
-        ios_release_builds = 1
-        assert len(doc('.c-locale-list[data-product="ios_release"] > li')) == ios_release_builds
-        assert len(doc('.c-locale-list[data-product="ios_release"] > li[data-language="multi"] > ul > li > a')) == 2
-
-    def test_no_locale_details(self):
-        """
-        When a localized build has been added to the Firefox details while the
-        locale details are not updated yet, the filtered build list should not
-        include the localized build.
-        """
-        builds = self.firefox_desktop.get_filtered_full_builds("release")
-        assert "uz" in self.firefox_desktop.firefox_primary_builds
-        assert "uz" not in self.firefox_desktop.languages
-        assert len([build for build in builds if build["locale"] == "uz"]) == 0
+        # Step 1,2,3 is done, step 4 is active, no more steps
+        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
+        assert doc(".c-steps > h2").eq(1).find(".c-step-choice").text() == "Windows 64-bit"
+        assert doc(".c-steps > h2").eq(2).find(".c-step-choice").text() == "English (US) - English (US)"
+        assert len(doc(".t-step-disabled")) == 0
+        # The download button should be present and correct.
+        assert len(doc(".c-download-button")) == 1
+        assert (
+            doc(".c-download-button").attr("href")
+            == list(filter(lambda b: b["locale"] == "en-US", firefox_desktop.get_filtered_full_builds("release")))[0]["platforms"]["win64"][
+                "download_url"
+            ]
+        )
 
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
