@@ -115,8 +115,22 @@ we need to.
 Infrastructure notes
 --------------------
 
-To come
+SSO setup
+~~~~~~~~~
+
+When the env vars `OIDC_RP_CLIENT_ID` and `OIDC_RP_CLIENT_SECRET` are present and
+`USE_SSO_AUTH` is set to True in settings, Bedrock will use Mozilla SSO instead of
+username + password to sign in. The deployed sites will have these set, but we
+also have credentials available for using SSO locally if you need to develop something
+that needs it - see our password vault.
+
+Note that Bedrock in SSO mode will not support 'drive by' user creation even if
+they have an @mozilla.com identity. Only users who already exist in the Wagtail
+admin as a User will be allowed to log in. You can create new users using Django's
+`createsuperuser`_ command, setting both the username and email do be your
+``flast@mozilla.com`` LDAP address
 
 .. _wagtail: https://wagtail.org/
 .. _Editor Guide: https://guide.wagtail.org/en-latest/
 .. _Wagtail Images docs: https://docs.wagtail.org/en/stable/topics/images.html
+.. _createsuperuser: https://docs.djangoproject.com/en/5.0/ref/django-admin/#createsuperuser
