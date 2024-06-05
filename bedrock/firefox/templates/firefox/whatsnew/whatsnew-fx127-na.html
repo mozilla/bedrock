@@ -18,16 +18,18 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox_whatsnew_127_na') }}
 {% endblock %}
 
 {% block wnp_content %}
 <section class="wnp-content-main">
   <div class="mzp-l-content mzp-t-content-lg">
-    <h1 class="wnp-main-title">Join the community</h1>
-
-    {{ picture(
-      url='img/firefox/whatsnew/whatsnew127-na/join-community.png',
+    {{ resp_img(
+      url='img/firefox/whatsnew/whatsnew127-na/join-community.jpg',
+      srcset={
+        'img/firefox/whatsnew/whatsnew127-na/join-community-high-res.jpg': '2x'
+      },
       optional_attributes={
         'class': 'wnp-main-image',
         'width': '554',
@@ -35,16 +37,16 @@
       }
     ) }}
 
+    <h1 class="wnp-main-title">Join our community</h1>
+
     <p class="wnp-main-cta">
-      <a class="mzp-c-button mzp-t-product" href="https://connect.mozilla.org/?{{ utm_params }}" data-cta-type="button" data-cta-text="Join the community" target="_blank" rel="noopener">
-        Join the community
+      <a class="mzp-c-button mzp-t-product" href="https://connect.mozilla.org/?{{ utm_params }}" data-cta-type="button" data-cta-text="Connect with Mozilla" target="_blank" rel="noopener">
+        Connect with Mozilla
       </a>
     </p>
   </div>
-</section>
 
-<section class="wnp-content-sub">
-  <div class="mzp-l-content mzp-t-content-xl">
+  <div class="value-props mzp-l-content mzp-t-content-xl">
     <div class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
 
       {% call picto(
@@ -99,6 +101,10 @@
 
     </div>
   </div>
+</section>
+
+<section class="wnp-content-sub">
+
 </section>
 
 <section class="wnp-footer">

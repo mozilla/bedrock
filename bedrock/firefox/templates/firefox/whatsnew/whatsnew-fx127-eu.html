@@ -19,8 +19,8 @@
 
 {% if LANG == 'fr' %}
   {% set main_title = '1:0 pour l’équipe multitâche' %}
-  {% set tagline_one = 'Profitez de ce summer of sports avec l’incrustation vidéo de Firefox, et regardez les matchs, ou courses, pendant que vous travaillez.' %}
-  {% set tagline_two = 'Testez la fonctionnalité avec la vidéo ci-dessus. Appuyez sur “lecture” et cliquez sur <strong>le bouton Incrustation vidéo</strong> pour faire sortir la vidéo.'|safe %}
+  {% set tagline_one = 'Profitez de cet été sportif avec l’incrustation vidéo de Firefox, et regardez les matchs et jeux pendant que vous travaillez.' %}
+  {% set tagline_two = 'Testez la fonctionnalité avec la vidéo ci-dessus. Appuyez sur lecture et cliquez sur <strong>le bouton Incrustation vidéo</strong> pour faire sortir la vidéo.'|safe %}
   {% set cta = 'Choisir Firefox comme navigateur par défaut' %}
   {% set sub_title = 'Idées d’utilisation de l’incrustation vidéo' %}
   {% set item_lecture = 'Assistez à une réunion tout en prenant des notes' %}
@@ -36,7 +36,7 @@
   {% set item_cook = 'Ein Koch-Tutorial angucken, während du das Rezept anschaust' %}
   {% set item_entertain = 'Die Kinder entertainen und nebenbei eine E-Mail fertig schreiben' %}
 {% elif LANG == 'es-ES' %}
-  {% set main_title = 'Multitarea: 1 <br>FOMO: 0'|safe %}
+  {% set main_title = 'Multitarea: 1 <br><abbr title="Fear of missing out" lang="en">FOMO</abbr>: 0'|safe %}
   {% set tagline_one = 'No te quedes fuera de juego. Ahora, con la función Picture-in-Picture de Firefox puedes ver los partidos mientras trabajas.' %}
   {% set tagline_two = 'Pruébalo con el vídeo de arriba. Presiona play y coloca el cursor sobre el vídeo. Luego haz clic en <strong>el botón de Picture-in-Picture</strong> para hacer que el vídeo se desplace fuera.'|safe %}
   {% set cta = 'Configura Firefox como tu navegador por defecto' %}
@@ -45,26 +45,25 @@
   {% set item_cook = 'Mantén un ojo en el vídeo tutorial mientras con el otro lees la receta.' %}
   {% set item_entertain = 'Entretén a los niños a la vez que respondes un email urgente.' %}
 {% elif LANG == 'it' %}
-  {% set main_title = 'Multitasking: 1 <br>FOMO: 0'|safe %}
+  {% set main_title = 'Multitasking: 1 <br><abbr title="Fear of missing out" lang="en">FOMO</abbr>: 0'|safe %}
   {% set tagline_one = 'Perché rinunciare a fare qualcosa quando puoi fare più cose allo stesso tempo? Con la funzione Picture-in-Picture di Firefox puoi guardare tutti i video che vuoi mentre lavori.' %}
-  {% set tagline_two = 'Provala con il video qui sopra! Premi Play e sposta il cursore sul video. Poi clicca sull’ <strong>pulsante Picture-in-Picture</strong> per vedere il video in pop-up.'|safe %}
+  {% set tagline_two = 'Provala con il video qui sopra! Premi Play e sposta il cursore sul video. Poi clicca su <strong>pulsante Picture-in-Picture</strong> per vedere il video in pop-up.'|safe %}
   {% set cta = 'Scegli Firefox come browser predefinito' %}
-  {% set sub_title = 'Ecco quando la funzione Picture-in-Picture può tornarti utile' %}
+  {% set sub_title = 'Ecco quando Picture-in-Picture può tornarti utile' %}
   {% set item_lecture = 'Puoi guardare una lezione o seguire un meeting mentre prendi appunti.' %}
   {% set item_cook = 'Puoi tenere un occhio su una ricetta e un altro sul suo video tutorial mentre cucini.' %}
   {% set item_entertain = 'Puoi mettere su un video per i tuoi bimbi mentre stai lavorando.' %}
 {% elif LANG == 'pl' %}
-  {% set main_title = 'Multitasking: 1 <br>FOMO: 0'|safe %}
-  {% set tagline_one = 'Jedno oko na Maroko, a drugie, na co tylko chcesz! Z nową funkcją Firefoksa Picture-in-Picture możesz oglądać mecz i pracować w tym samym czasie.' %}
-  {% set tagline_two = 'Wypróbuj tę funkcję z filmikiem powyżej.
-  Naciśnij przycisk odtwarzania i najedź kursorem na wideo. Następnie kliknij w <strong>przycisk „Obraz w obrazie</strong>, aby wyświetlić filmik w okienku pop-up.'|safe %}
-  {% set cta = 'Ustaw Firefoksa jako swoją domyślną przeglądarkę' %}
-  {% set sub_title = 'Oto, jak możesz używać funkcji Picture-in-Picture' %}
+  {% set main_title = 'Multitasking: 1 <br><abbr title="Fear of missing out" lang="en">FOMO</abbr>: 0'|safe %}
+  {% set tagline_one = 'Jedno oko na Maroko, a drugie, na co tylko chcesz! Z nową funkcją Firefoksa Picture-in-Picture możesz jednocześnie oglądać mecz i pracować.' %}
+  {% set tagline_two = 'Przekonaj się, jak to działa na przykładzie powyższego filmiku. Naciśnij przycisk odtwarzania i najedź kursorem na wideo. Następnie kliknij w <strong>przycisk „Obraz w obrazie</strong>, aby wyświetlić filmik w okienku pop-up.'|safe %}
+  {% set cta = 'Co możesz robić dzięki funkcji Picture-in-Picture' %}
+  {% set sub_title = 'Co możesz robić dzięki funkcji Picture-in-Picture' %}
   {% set item_lecture = 'Możesz słuchać wykładu lub brać udział w spotkaniach, robiąc w tym samym czasie notatki' %}
   {% set item_cook = 'Możesz jednym okiem zaglądać na treść przepisu, a drugim oglądać tutorial, jak przygotować danie, nad którym właśnie pracujesz' %}
   {% set item_entertain = 'Możesz puszczać bajki dzieciom i pracować w tym samym czasie' %}
 {% else %}
-  {% set main_title = 'Multitasking: 1. <br>FOMO: 0.'|safe %}
+  {% set main_title = 'Multitasking: 1. <br><abbr title="Fear of missing out">FOMO</abbr>: 0.'|safe %}
   {% set tagline_one = 'Keep your eye on the ball: with Firefox’s picture-in-picture feature, you can watch games while you work.' %}
   {% set tagline_two = 'Try it out with the video above. Press play and hover your cursor over the video. Then click <strong>the Picture-in-Picture button</strong> to pop the video out.'|safe %}
   {% set cta = 'Set Firefox as your default browser' %}
@@ -82,7 +81,7 @@
 
     {{ video_inline_embed(
       id='F-nFQryDB0s',
-      title='Introducing the new Firefox... jk. It’s red pandas.',
+      title='Introducing the new Firefox… jk. It’s red pandas.',
       image=resp_img(
         url='img/firefox/whatsnew/whatsnew127-eu/video-poster.jpg',
         optional_attributes={
@@ -147,7 +146,6 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_update') }}
   {{ js_bundle('video-inline-embed') }}
   {{ js_bundle('firefox_whatsnew_127_eu') }}
 {% endblock %}

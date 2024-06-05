@@ -5,7 +5,6 @@
 @import 'includes/base';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import '~@mozilla-protocol/core/protocol/css/components/picto';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .wnp-content-main {
@@ -27,4 +26,8 @@
 .wnp-main-cta {
     display: block;
     margin-bottom: $layout-xl;
+}
+
+.mzp-l-content.value-props {
+    padding-top: 0;
 }
