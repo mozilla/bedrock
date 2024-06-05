@@ -146,7 +146,6 @@ describe('fxa-form.js', function () {
         spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(
             false
         );
-        /* eslint-disable camelcase */
         spyOn(FxaForm, 'getUTMParams').and.returnValue({
             utm_source: 'desktop-snippet',
             utm_content: 'rel-esr',
@@ -154,7 +153,6 @@ describe('fxa-form.js', function () {
             utm_term: 4242,
             utm_campaign: 'F100_4242_otherstuff_in_here'
         });
-        /* eslint-enable camelcase */
 
         // Configure Sync for Firefox desktop before initializing attribution.
         FxaForm.configureSync();
@@ -205,7 +203,6 @@ describe('fxa-form.js', function () {
             }
         );
         spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
-        /* eslint-disable camelcase */
         spyOn(FxaForm, 'getUTMParams').and.returnValue({
             utm_source: 'desktop-snippet',
             utm_content: 'rel-esr',
@@ -213,7 +210,6 @@ describe('fxa-form.js', function () {
             utm_term: 4242,
             utm_campaign: 'F100_4242_otherstuff_in_here'
         });
-        /* eslint-enable camelcase */
 
         // Configure Sync for Firefox desktop before initializing attribution.
         FxaForm.configureSync();
@@ -250,7 +246,6 @@ describe('fxa-form.js', function () {
             );
 
             form.querySelector('#fxa-email-form-submit').click();
-            /* eslint-disable camelcase */
             expect(
                 window.Mozilla.UITour.showFirefoxAccounts
             ).toHaveBeenCalledWith(
@@ -270,7 +265,6 @@ describe('fxa-form.js', function () {
                 'mozilla.org-privacy-products',
                 'a@a.com'
             );
-            /* eslint-enable camelcase */
         });
     });
 
@@ -288,7 +282,6 @@ describe('fxa-form.js', function () {
             }
         );
         spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
-        /* eslint-disable camelcase */
         spyOn(FxaForm, 'getUTMParams').and.returnValue({
             utm_source: 'desktop-snippet',
             utm_content: 'rel-esr',
@@ -296,7 +289,6 @@ describe('fxa-form.js', function () {
             utm_term: 4242,
             utm_campaign: 'F100_4242_otherstuff_in_here'
         });
-        /* eslint-enable camelcase */
 
         // Configure Sync for Firefox desktop before initializing attribution.
         FxaForm.configureSync();
@@ -333,7 +325,6 @@ describe('fxa-form.js', function () {
             );
 
             form.querySelector('#fxa-email-form-submit').click();
-            /* eslint-disable camelcase */
             expect(
                 window.Mozilla.UITour.showFirefoxAccounts
             ).toHaveBeenCalledWith(
@@ -353,7 +344,6 @@ describe('fxa-form.js', function () {
                 'mozilla.org-privacy-products',
                 'a@a.com'
             );
-            /* eslint-enable camelcase */
         });
     });
 

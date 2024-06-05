@@ -87,12 +87,10 @@ describe('fxa-link.js', function () {
                     window.Mozilla.UITour.showFirefoxAccounts
                 ).toHaveBeenCalledWith(
                     {
-                        /* eslint-disable camelcase */
                         utm_source: 'mozilla.org-firefoxnav',
                         utm_campaign: 'nav',
                         utm_content: 'join-sign-in',
                         utm_medium: 'referral'
-                        /* eslint-enable camelcase */
                     },
                     'mozilla.org-firefoxnav'
                 );
@@ -140,7 +138,6 @@ describe('fxa-link.js', function () {
                     window.Mozilla.UITour.showFirefoxAccounts
                 ).toHaveBeenCalledWith(
                     {
-                        /* eslint-disable camelcase */
                         flow_id: 'flow',
                         flow_begin_time: '100',
                         device_id: 'dev',
@@ -150,7 +147,6 @@ describe('fxa-link.js', function () {
                         utm_campaign: 'nav',
                         utm_content: 'join-sign-in',
                         utm_medium: 'referral'
-                        /* eslint-enable camelcase */
                     },
                     'mozilla.org-firefoxnav'
                 );

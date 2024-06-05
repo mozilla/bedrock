@@ -117,14 +117,12 @@ if (typeof window.Mozilla === 'undefined') {
      */
     StubAttribution.getCookie = function () {
         return {
-            /* eslint-disable camelcase */
             attribution_code: Mozilla.Cookies.getItem(
                 StubAttribution.COOKIE_CODE_ID
             ),
             attribution_sig: Mozilla.Cookies.getItem(
                 StubAttribution.COOKIE_SIGNATURE_ID
             )
-            /* eslint-enable camelcase */
         };
     };
 
@@ -482,7 +480,6 @@ if (typeof window.Mozilla === 'undefined') {
             ? null
             : StubAttribution.getGtagClientID();
 
-        /* eslint-disable camelcase */
         var data = {
             utm_source: utms.utm_source,
             utm_medium: utms.utm_medium,
@@ -500,7 +497,6 @@ if (typeof window.Mozilla === 'undefined') {
                     : null,
             dlsource: StubAttribution.DLSOURCE
         };
-        /* eslint-enable camelcase */
 
         // Remove any undefined values.
         for (var key in data) {

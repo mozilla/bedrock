@@ -4,8 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// eslint-disable-next-line
-
 (function () {
     'use strict';
     var backLink = document.getElementById('go-back');

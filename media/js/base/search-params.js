@@ -92,8 +92,6 @@
 
         var utms = this.utmParams();
 
-        /* eslint-disable camelcase */
-
         // set to default value if not specified in URL
         if (!utms.utm_campaign) {
             // utm_* values will be encoded on the product side, so no need to
@@ -110,8 +108,6 @@
             // no need to encode - will be done on product side
             utms.utm_content = matches[1];
         }
-
-        /* eslint-enable camelcase */
 
         // ensure all values are strings, as no numeric values are allowed
         // into UITour.showFirefoxAccounts

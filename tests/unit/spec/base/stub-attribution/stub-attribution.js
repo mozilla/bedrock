@@ -28,7 +28,6 @@ describe('stub-attribution.js', function () {
         let data = {};
 
         beforeEach(function () {
-            /* eslint-disable camelcase */
             data = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
@@ -40,7 +39,6 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             spyOn(Mozilla.StubAttribution, 'requestAuthentication');
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
@@ -56,12 +54,10 @@ describe('stub-attribution.js', function () {
         });
 
         it('should update download links if session cookie exists', function () {
-            /* eslint-disable camelcase */
             const cookieData = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
-            /* eslint-enable camelcase */
             spyOn(
                 Mozilla.StubAttribution,
                 'withinAttributionRate'
@@ -275,7 +271,6 @@ describe('stub-attribution.js', function () {
 
     describe('hasValidData', function () {
         it('should return true for valid attribution data', function () {
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
@@ -287,13 +282,11 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeTruthy();
         });
 
         it('should return true for valid RTAMO data', function () {
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -305,11 +298,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeTruthy();
 
-            /* eslint-disable camelcase */
             const data2 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -321,11 +312,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data2)).toBeTruthy();
 
-            /* eslint-disable camelcase */
             const data3 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -337,11 +326,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data3)).toBeTruthy();
 
-            /* eslint-disable camelcase */
             const data4 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -353,13 +340,11 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data4)).toBeTruthy();
         });
 
         it('should return false for RTAMO data that does not have AMO as the referrer', function () {
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -371,11 +356,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeFalsy();
 
-            /* eslint-disable camelcase */
             const data2 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -387,11 +370,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data2)).toBeFalsy();
 
-            /* eslint-disable camelcase */
             const data3 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -403,11 +384,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data3)).toBeFalsy();
 
-            /* eslint-disable camelcase */
             const data4 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -419,13 +398,11 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data4)).toBeFalsy();
         });
 
         it('should return false if utm_content is too long', function () {
-            /* eslint-disable camelcase */
             const data1 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -439,11 +416,9 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data1)).toBeFalsy();
 
-            /* eslint-disable camelcase */
             const data2 = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -457,13 +432,11 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data2)).toBeFalsy();
         });
 
         it('should return false for RTAMO data if referrer is not set', function () {
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -475,7 +448,6 @@ describe('stub-attribution.js', function () {
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
-            /* eslint-enable camelcase */
 
             expect(Mozilla.StubAttribution.hasValidData(data)).toBeFalsy();
         });
@@ -626,16 +598,13 @@ describe('stub-attribution.js', function () {
         it('should return attribution data if utm params are present', function () {
             const referrer = '';
 
-            /* eslint-disable camelcase */
             const utms = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 utm_content: 'rel-esr'
             };
-            /* eslint-enable camelcase */
 
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'desktop-snippet',
                 utm_medium: 'referral',
@@ -648,7 +617,6 @@ describe('stub-attribution.js', function () {
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
             };
-            /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
@@ -663,16 +631,13 @@ describe('stub-attribution.js', function () {
         it('should return attribution data if referrer is present', function () {
             const referrer = 'https://www.mozilla.org/en-US/';
 
-            /* eslint-disable camelcase */
             const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
                 utm_content: undefined
             };
-            /* eslint-enable camelcase */
 
-            /* eslint-disable camelcase */
             const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
@@ -681,7 +646,6 @@ describe('stub-attribution.js', function () {
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
             };
-            /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
@@ -696,16 +660,13 @@ describe('stub-attribution.js', function () {
         it('should return only generic data if neither utm params and referrer are present', function () {
             const referrer = '';
 
-            /* eslint-disable camelcase */
             const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
                 utm_content: undefined
             };
-            /* eslint-enable camelcase */
 
-            /* eslint-disable camelcase */
             const data = {
                 referrer: '',
                 ua: 'chrome',
@@ -714,7 +675,6 @@ describe('stub-attribution.js', function () {
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
             };
-            /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
@@ -729,16 +689,13 @@ describe('stub-attribution.js', function () {
         it('should return optional experimental parameters if present', function () {
             const referrer = '';
 
-            /* eslint-disable camelcase */
             const utms = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
                 utm_content: undefined
             };
-            /* eslint-enable camelcase */
 
-            /* eslint-disable camelcase */
             const data = {
                 referrer: '',
                 ua: 'chrome',
@@ -749,7 +706,6 @@ describe('stub-attribution.js', function () {
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
             };
-            /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
@@ -769,16 +725,13 @@ describe('stub-attribution.js', function () {
         it('should omit non-essential attribution data when `omitNonEssentialFields=true` is passed', function () {
             const referrer = 'https://addons.mozilla.org/';
 
-            /* eslint-disable camelcase */
             const utms = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
                 utm_campaign: 'non-fx-button',
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20'
             };
-            /* eslint-enable camelcase */
 
-            /* eslint-disable camelcase */
             const data = {
                 utm_source: 'addons.mozilla.org',
                 utm_medium: 'referral',
@@ -788,7 +741,6 @@ describe('stub-attribution.js', function () {
                 ua: 'other',
                 dlsource: DLSOURCE
             };
-            /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(
                 utms
@@ -830,12 +782,10 @@ describe('stub-attribution.js', function () {
         });
 
         it('should handle a request successfully', function () {
-            /* eslint-disable camelcase */
             const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
-            /* eslint-enable camelcase */
 
             const callback = function () {}; // eslint-disable-line no-empty-function
             Mozilla.StubAttribution.successCallback = callback;
@@ -892,12 +842,10 @@ describe('stub-attribution.js', function () {
         });
 
         it('should handle the data as expected', function () {
-            /* eslint-disable camelcase */
             const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
-            /* eslint-enable camelcase */
 
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
             spyOn(Mozilla.StubAttribution, 'setCookie');
@@ -912,12 +860,10 @@ describe('stub-attribution.js', function () {
         });
 
         it('should only handle the request once', function () {
-            /* eslint-disable camelcase */
             const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
-            /* eslint-enable camelcase */
 
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
             spyOn(Mozilla.StubAttribution, 'setCookie');
@@ -931,12 +877,10 @@ describe('stub-attribution.js', function () {
     });
 
     describe('updateBouncerLinks', function () {
-        /* eslint-disable camelcase */
         const data = {
             attribution_code: 'test-code',
             attribution_sig: 'test-sig'
         };
-        /* eslint-enable camelcase */
 
         const winUrl =
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
@@ -1096,14 +1040,12 @@ describe('stub-attribution.js', function () {
         let expectedUrl = '';
 
         beforeEach(function () {
-            /* eslint-disable camelcase */
             params = {
                 attribution_code:
                     'source%3Dbrandt%26medium%3Daether%26campaign%3D%28not+set%29%26content%3D%28not+set%29%26timestamp%3D1478181983',
                 attribution_sig:
                     '241c4ef87bd2554154c5658d99230660d4c242abbe1ac87b89ac0e9dd56b2f4e'
             };
-            /* eslint-enable camelcase */
 
             originalUrl =
                 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
@@ -1139,12 +1081,10 @@ describe('stub-attribution.js', function () {
                     ? 'foo'
                     : 'bar';
             });
-            /* eslint-disable camelcase */
             expect(Mozilla.StubAttribution.getCookie()).toEqual({
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             });
-            /* eslint-enable camelcase */
             expect(Mozilla.Cookies.getItem.calls.count()).toEqual(2);
         });
     });
@@ -1155,12 +1095,10 @@ describe('stub-attribution.js', function () {
         });
 
         it('should set session cookies as expected', function () {
-            /* eslint-disable camelcase */
             const data = {
                 attribution_code: 'foo',
                 attribution_sig: 'bar'
             };
-            /* eslint-enable camelcase */
 
             Mozilla.StubAttribution.setCookie(data);
             expect(Mozilla.Cookies.setItem.calls.count()).toEqual(2);
