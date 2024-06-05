@@ -43,7 +43,7 @@ describe('datalayer-begincheckout.es6.js', function () {
                 '12.00'
             );
 
-            expect(returnObj === expectedObj);
+            expect(returnObj).toEqual(expectedObj);
         });
     });
 
