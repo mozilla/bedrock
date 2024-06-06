@@ -6,19 +6,19 @@ SKIP LICENSE INSERTION This Source Code Form is subject to the terms of the Mozi
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endcomment %}
 
-{% load i18n auth_tags %}
+{% load auth_tags %}
 
 {% block login_form %}
   {% should_use_sso_auth as sso_auth_enabled %}
 
   {% if sso_auth_enabled %}
-      <a href="{% url 'oidc_authentication_init' %}" class="button button-longrunning" data-clicked-text="{% trans 'Signing in…' %}">
+      <a href="{% url 'oidc_authentication_init' %}" class="button button-longrunning" data-clicked-text="Signing in...">
         <span class="icon icon-spinner"></span>
         <em>
-          {% trans 'Sign in with Mozilla SSO' %}
+          Sign in with Mozilla SSO
         </em>
       </a>
-      <h3>{% trans "If you lack SSO access, please ask your contact within Mozilla." %}</h3>
+      <h3>If you lack SSO access, please ask your contact within Mozilla.</h3>
 
   {% else %}
       {{block.super}}

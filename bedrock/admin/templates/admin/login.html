@@ -6,7 +6,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endcomment %}
 
-{% load i18n auth_tags %}
+{% load auth_tags %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
 
     {% if form.errors and not form.non_field_errors %}
     <p class="errornote">
-    {% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
+       Please correct the error{{form.errors.items|length|pluralize}} below.
     </p>
     {% endif %}
 
@@ -32,27 +32,23 @@
 
       {% if user.is_authenticated %}
       <p class="errornote">
-      {% blocktranslate trimmed %}
           You are authenticated as {{ username }}, but are not authorized to
           access this page. Would you like to login to a different account?
-      {% endblocktranslate %}
       </p>
       {% endif %}
 
       <p class="module">
         <a class="button" href="{% url 'oidc_authentication_init' %}">
-          {% trans 'Sign in with Mozilla SSO' %}
+          Sign in with Mozilla SSO
         </a>
       </p>
       <p>
         {% url 'admin:index' as admin_url %}
-        {% blocktrans with admin_url=admin_url%}
         Note that after sign-in, you will be sent back to the CMS admin. Please re-access {{admin_url}} manually.
-        {% endblocktrans %}
       </p>
       <p>
         <em>
-          {% trans "If you lack SSO access, please ask your contact within Mozilla." %}
+          If you lack SSO access, please ask your contact within Mozilla.
         </em>
       </p>
 
