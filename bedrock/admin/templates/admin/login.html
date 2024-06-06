@@ -1,5 +1,5 @@
 {% extends "admin/login.html" %}
-
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
 {% comment %}
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -45,11 +45,14 @@
         </a>
       </p>
       <p>
-        Note that after sign-in, you will be sent back to the CMS admin. Please re-access {% url 'admin:index' %} manually.
+        {% url 'admin:index' as admin_url %}
+        {% blocktrans with admin_url=admin_url%}
+        Note that after sign-in, you will be sent back to the CMS admin. Please re-access {{admin_url}} manually.
+        {% endblocktrans %}
       </p>
       <p>
         <em>
-          If you lack SSO access, please ask your contact within Mozilla.
+          {% trans "If you lack SSO access, please ask your contact within Mozilla." %}
         </em>
       </p>
 

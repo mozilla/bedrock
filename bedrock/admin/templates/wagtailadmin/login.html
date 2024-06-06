@@ -1,7 +1,7 @@
 {% extends "wagtailadmin/login.html" %}
-
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
 {% comment %}
- This Source Code Form is subject to the terms of the Mozilla Public
+SKIP LICENSE INSERTION This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endcomment %}
@@ -18,7 +18,7 @@
           {% trans 'Sign in with Mozilla SSO' %}
         </em>
       </a>
-      <h3>If you lack SSO access, please ask your contact within Mozilla.</h3>
+      <h3>{% trans "If you lack SSO access, please ask your contact within Mozilla." %}</h3>
 
   {% else %}
       {{block.super}}
