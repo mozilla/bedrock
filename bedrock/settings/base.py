@@ -1929,7 +1929,7 @@ OIDC_RP_SIGN_ALGO = "RS256"
 # How frequently do we check with the provider that the user still exists and is authorised?
 OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = config(
     "OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS",
-    default="3300",  # 55 mins, trying to balance usable session times with re-checks
+    default="64800",  # 18 hours
     parser=int,
 )
 
