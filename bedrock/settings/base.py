@@ -485,8 +485,6 @@ SUPPORTED_NONLOCALES = [
     "xbl",  # in mozorg urls
     "revision.txt",  # from root_files
     "locales",  # in mozorg urls
-    "404",
-    "500",
     "csrf_403",
 ]
 
