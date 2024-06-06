@@ -51,8 +51,6 @@ firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_
 
 firefox_focus_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-focus.html", legal_doc_name="focus_privacy_notice")
 
-hubs_notices = PrivacyDocView.as_view(template_name="privacy/notices/hubs.html", legal_doc_name="hubs_privacy_notice")
-
 thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thunderbird.html", legal_doc_name="thunderbird_privacy_policy")
 
 websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/websites.html", legal_doc_name="websites_privacy_notice")
