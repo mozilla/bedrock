@@ -485,7 +485,11 @@ SUPPORTED_NONLOCALES = [
     "xbl",  # in mozorg urls
     "revision.txt",  # from root_files
     "locales",  # in mozorg urls
+    "404",
+    "500",
+    "csrf_403",
 ]
+
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
 SUPPORTED_LOCALE_IGNORE = [
@@ -1968,6 +1972,10 @@ if USE_SSO_AUTH:
     # Don't require a password when creating a user,
     # and blank password means cannot log in unless via SSO
     WAGTAILUSERS_PASSWORD_ENABLED = False
+
+# Custom CSRF failure view to show custom CSRF messaging, which is
+# more likely to appear with SSO auth enabled, when sessions expire
+CSRF_FAILURE_VIEW = "bedrock.base.views.csrf_failure"
 
 # WAGTAIL =======================================================================================
 

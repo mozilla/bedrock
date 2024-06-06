@@ -57,6 +57,7 @@ if settings.DEBUG:
         path("404/", import_string(handler404)),
         path("500/", import_string(handler500)),
     )
+    urlpatterns += (path("csrf_403/", base_views.csrf_failure, {}),)
 
 if settings.WAGTAIL_ENABLE_ADMIN:
     # If adding new a new path here, you must also add an entry to

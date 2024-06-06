@@ -5,6 +5,7 @@
 import datetime
 from unittest.mock import patch
 
+from django.conf import settings
 from django.test import RequestFactory, TestCase
 from django.utils.timezone import now as tz_now
 
@@ -73,3 +74,8 @@ def test_get_contentful_sync_info(mock_timeago_format, mock_tz_now):
     # Also check the no-data context dict:
     ContentfulEntry.objects.all().delete()
     assert get_contentful_sync_info() == {}
+
+
+@pytest.mark.django_db
+def test_csrf_view_is_custom_one():
+    assert settings.CSRF_FAILURE_VIEW == "bedrock.base.views.csrf_failure"
