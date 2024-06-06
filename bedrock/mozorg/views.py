@@ -32,11 +32,6 @@ credits_file = CreditsFile("credits")
 TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
 
 
-def csrf_failure(request, reason=""):
-    template_vars = {"reason": reason}
-    return l10n_utils.render(request, "mozorg/csrf-failure.html", template_vars, status=403)
-
-
 @xframe_allow
 def hacks_newsletter(request):
     return l10n_utils.render(request, "mozorg/newsletter/hacks.mozilla.org.html")
