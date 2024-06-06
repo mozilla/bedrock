@@ -2,7 +2,7 @@
   This Source Code Form is subject to the terms of the Mozilla Public
   License, v. 2.0. If a copy of the MPL was not distributed with this
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
- #}
+#}
 
  <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -10,15 +10,8 @@
     <meta charset="utf-8" />
     <title>CSRF mismatch detected.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-      body {
-        color: #000;
-        background-color: #fff;
-        font: 100%/1.5 sans-serif;
-        padding: 40px;
-      }
-    </style>
-  </head>
+    {{ css_bundle('csrf-failure') }}
+    </head>
   <body>
     <h1>Access denied</h1>
     <p>

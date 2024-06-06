@@ -4,6 +4,10 @@
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-main {
+body {
     min-height: 350px;
+    color: #000;
+    background-color: #fff;
+    font: 100%/1.5 sans-serif;
+    padding: 40px;
 }
