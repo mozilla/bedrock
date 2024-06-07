@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
 {% comment %}
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -11,5 +11,8 @@
 {% block branding %}<h1>Bedrock administration</h1>{% endblock %}
 
 {% block userlinks %}
-  <a href="{% url 'rq_home' %}"> View task queue</a> / {{block.super}}
+  <a href="{% url 'wagtailadmin_home' %}"> Go to CMS home</a> /
+  <a href="{% url 'rq_home' %}"> View task queue</a> /
+  <a href="{% url 'admin:logout' %}"> Logout</a>
+  {% include "admin/color_theme_toggle.html" %}
 {% endblock userlinks %}
