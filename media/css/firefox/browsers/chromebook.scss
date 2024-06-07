@@ -27,3 +27,7 @@ $image-path: '/media/protocol/img';
 .mzp-c-section-heading + .mzp-c-split {
     padding-top: 0;
 }
+
+.mzp-c-split {
+    overflow-x: unset;
+}
