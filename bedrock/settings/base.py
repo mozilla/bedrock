@@ -802,7 +802,6 @@ TEMPLATES = [
                 "django_jinja.builtins.extensions.DjangoFiltersExtension",
                 "django_jinja_markdown.extensions.MarkdownExtension",
                 "wagtail.jinja2tags.core",
-                "wagtail.admin.jinja2tags.userbar",
                 "wagtail.images.jinja2tags.images",
             ],
         },
