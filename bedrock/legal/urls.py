@@ -47,11 +47,6 @@ urlpatterns = (
         name="legal.terms.services",
     ),
     path(
-        "terms/hubs/",
-        LegalDocView.as_view(template_name="legal/terms/hubs.html", legal_doc_name="hubs_tos"),
-        name="legal.terms.hubs",
-    ),
-    path(
         "terms/subscription-services/",
         LegalDocView.as_view(template_name="legal/terms/subscription-services.html", legal_doc_name="subscription_services_tos"),
         name="legal.terms.subscription-services",

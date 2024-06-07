@@ -16,7 +16,6 @@ urlpatterns = (
     path("firefox-focus/", views.firefox_focus_notices, name="privacy.notices.firefox-focus"),
     # bug 1319207 - special URL for Firefox Focus in de locale
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
-    path("hubs/", views.hubs_notices, name="privacy.notices.hubs"),
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
@@ -93,6 +92,18 @@ urlpatterns = (
     page(
         "archive/firefox-monitor/2024-02/",
         "privacy/archive/firefox-monitor-2024-02.html",
+        ftl_files=["privacy/index"],
+        active_locales=["en-US"],
+    ),
+    page(
+        "archive/mozilla-hubs/tos-2024-06/",
+        "privacy/archive/mozilla-hubs-tos-2024-06.html",
+        ftl_files=["privacy/index"],
+        active_locales=["en-US"],
+    ),
+    page(
+        "archive/mozilla-hubs/notice-2024-06/",
+        "privacy/archive/mozilla-hubs-notice-2024-06.html",
         ftl_files=["privacy/index"],
         active_locales=["en-US"],
     ),

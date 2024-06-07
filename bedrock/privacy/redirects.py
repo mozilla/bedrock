@@ -32,4 +32,6 @@ redirectpatterns = (
     redirect(r"^privacy/firefox-reality/?$", "privacy.archive.firefox-reality-notice-2023-06"),
     # issue 14186
     redirect(r"^privacy/firefox-monitor/?$", "privacy.notices.subscription-services"),
+    # issue 14647
+    redirect(r"^privacy/hubs/?$", "privacy.archive.mozilla-hubs-notice-2024-06"),
 )
