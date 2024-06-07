@@ -492,8 +492,8 @@ django-crum==0.7.9 \
     --hash=sha256:037cc8b822975bb1d41cd24269b59a512cc77448fadc3f34ab9a17b229b4b471 \
     --hash=sha256:65e9bc0f070a663fafc4d9e357f45fd4e6f01838b20a9e2fb7670f5706754288
     # via -r requirements/prod.txt
-django-csp @ https://github.com/mozilla/django-csp/archive/3413de318a8a56725d5b68faecd2fc9c0d162097.zip \
-    --hash=sha256:f74d22200d3cb1b921022c23ccaf2cfff055966d382b068c7b5834e31b448f1c
+django-csp @ https://github.com/mozilla/django-csp/archive/9b2cee0866e47f5beb8f21f7375c2b721333efab.zip \
+    --hash=sha256:ffa20676c0d8a10fa107d1c1eb9466e7e8029bbc60b44d402f71c0e66832e2b3
     # via -r requirements/prod.txt
 django-extensions==3.2.3 \
     --hash=sha256:44d27919d04e23b3f40231c4ab7af4e61ce832ef46d610cc650d53e68328410a \

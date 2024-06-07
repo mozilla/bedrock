@@ -14,7 +14,7 @@ django-allow-cidr==0.7.1
 django-cors-headers==4.3.1
 django-crum==0.7.9
 # django-csp momentarily pinned to a commit that refactors django-csp prior to 4.0 release.
-https://github.com/mozilla/django-csp/archive/3413de318a8a56725d5b68faecd2fc9c0d162097.zip#egg=django-csp
+https://github.com/mozilla/django-csp/archive/9b2cee0866e47f5beb8f21f7375c2b721333efab.zip#egg=django-csp
 django-extensions==3.2.3
 django-jinja-markdown==1.1
 django-jinja==2.11.0
