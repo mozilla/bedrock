@@ -5,6 +5,8 @@
 import logging.config
 import sys
 
+from csp.constants import SELF, UNSAFE_EVAL, UNSAFE_INLINE
+
 from .base import *  # noqa: F403, F405
 
 # This file:
@@ -17,11 +19,6 @@ from .base import *  # noqa: F403, F405
 # Which site do we want Bedrock to serve?
 
 # IS_POCKET_MODE and IS_MOZORG_MODE are set in settings.base
-
-# Some CSP constants to ease the quoting of common values.
-SELF = "'self'"
-UNSAFE_EVAL = "'unsafe-eval'"
-UNSAFE_INLINE = "'unsafe-inline'"
 
 if IS_POCKET_MODE:
     ROOT_URLCONF = "bedrock.urls.pocket_mode"
@@ -268,6 +265,8 @@ CONTENT_SECURITY_POLICY = {
     },
 }
 
+# Mainly for overriding CSP settings for CMS admin.
+# Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 CSP_PATH_OVERRIDES = {}
 
 
