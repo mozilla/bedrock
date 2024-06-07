@@ -1,0 +1,39 @@
+{% extends "wagtailadmin/login.html" %}
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
+{% comment %}
+This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+{% endcomment %}
+
+{% load auth_tags %}
+
+{% block login_form %}
+  {% should_use_sso_auth as sso_auth_enabled %}
+
+  {% if sso_auth_enabled %}
+      <a href="{% url 'oidc_authentication_init' %}" class="button button-longrunning" data-clicked-text="Signing in...">
+        <span class="icon icon-spinner"></span>
+        <em>
+          Sign in with Mozilla SSO
+        </em>
+      </a>
+      <h3>If you lack SSO access to this site, please ask your manager or in #www</h3>
+
+  {% else %}
+      {{block.super}}
+  {% endif %}
+
+{% endblock login_form %}
+
+
+{% block submit_buttons %}
+  {% should_use_sso_auth as sso_auth_enabled %}
+
+  {% if sso_auth_enabled %}
+    {# No need to show the button content if SSO is enabled#}
+  {% else %}
+    {{block.super}}
+  {% endif %}
+
+{% endblock submit_buttons %}

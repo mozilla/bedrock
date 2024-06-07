@@ -1,0 +1,34 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+ <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSRF mismatch detected.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ css_bundle('csrf-failure') }}
+    </head>
+  <body>
+    <h1>Access denied</h1>
+    <p>
+      Cross-site request forgery (CSRF) mismatch detected.
+    </p>
+    {% if request.user.is_staff %}
+    <p>
+      This is most likely because your SSO session expired or had to be renewed.
+    </p>
+    <p>
+      It's likely and regrettable that you have lost work since your last save.
+      <br>
+      If this is happening a lot, please <a href="https://github.com/mozilla/bedrock">open a bug report</a>.
+    </p>
+    {% endif %}
+    <p>
+      Please go back using your browser's back button and try again. Reloading this page will not fix the problem.
+    </p>
+    </body>
+</html>

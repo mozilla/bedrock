@@ -1,0 +1,63 @@
+{% extends "admin/login.html" %}
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
+{% comment %}
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+{% endcomment %}
+
+{% load auth_tags %}
+
+{% block content %}
+
+  {% should_use_sso_auth as sso_auth_enabled %}
+
+  {% if sso_auth_enabled %}
+
+    {% if form.errors and not form.non_field_errors %}
+    <p class="errornote">
+       Please correct the error{{form.errors.items|length|pluralize}} below.
+    </p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="errornote">
+        {{ error }}
+    </p>
+    {% endfor %}
+    {% endif %}
+
+    <div id="content-main">
+
+      {% if user.is_authenticated %}
+      <p class="errornote">
+          You are authenticated as {{ username }}, but are not authorized to
+          access this page. Would you like to login to a different account?
+      </p>
+      {% endif %}
+
+      <p class="module">
+        <a class="button" href="{% url 'oidc_authentication_init' %}">
+          Sign in with Mozilla SSO
+        </a>
+      </p>
+      <p>
+        {% url 'admin:index' as admin_url %}
+        Note that after sign-in, you will be sent back to the CMS admin. Please re-access {{admin_url}} manually.
+      </p>
+      <p>
+        <em>
+          If you lack SSO access to this site, please ask your manager or in #www.
+        </em>
+      </p>
+
+    </div>
+
+  {% else %}
+
+    {{block.super}}
+
+  {% endif %}
+
+{% endblock content %}

@@ -485,7 +485,9 @@ SUPPORTED_NONLOCALES = [
     "xbl",  # in mozorg urls
     "revision.txt",  # from root_files
     "locales",  # in mozorg urls
+    "csrf_403",
 ]
+
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
 SUPPORTED_LOCALE_IGNORE = [
@@ -717,6 +719,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "lib.l10n_utils",
     "django_rq",
+    "mozilla_django_oidc",  # needs to be loaded after django.contrib.auth
 ]
 
 # Must match the list at CloudFlare if the
@@ -1082,6 +1085,10 @@ LOGGING = {
             "level": "ERROR",
             "handlers": ["console"],
             "propagate": False,
+        },
+        "mozilla_django_oidc": {
+            "handlers": ["console"],
+            "level": "DEBUG",
         },
     },
 }
@@ -1907,6 +1914,67 @@ RELAY_PRODUCT_URL = config(
     "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
 )
 
+
+# Authentication with Mozilla OpenID Connect / Auth0 ============================================
+
+LOGIN_ERROR_URL = "/cms-admin/"
+LOGIN_REDIRECT_URL_FAILURE = "/cms-admin/"
+LOGIN_REDIRECT_URL = "/cms-admin/"
+LOGOUT_REDIRECT_URL = "/cms-admin/"
+
+OIDC_RP_SIGN_ALGO = "RS256"
+
+# How frequently do we check with the provider that the user still exists and is authorised?
+OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = config(
+    "OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS",
+    default="64800",  # 18 hours
+    parser=int,
+)
+
+OIDC_CREATE_USER = False  # We don't want drive-by signups
+
+OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default="", parser=str)
+OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default="", parser=str)
+
+OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.mozilla.auth0.com/authorize"
+OIDC_OP_TOKEN_ENDPOINT = "https://auth.mozilla.auth0.com/oauth/token"
+OIDC_OP_USER_ENDPOINT = "https://auth.mozilla.auth0.com/userinfo"
+OIDC_OP_DOMAIN = "auth.mozilla.auth0.com"
+OIDC_OP_JWKS_ENDPOINT = "https://auth.mozilla.auth0.com/.well-known/jwks.json"
+
+# If True (which should only be for local work in your .env), then show
+# username and password fields when signing up, not the SSO button
+USE_SSO_AUTH = config("USE_SSO_AUTH", default="True", parser=bool)
+
+if USE_SSO_AUTH:
+    AUTHENTICATION_BACKENDS = (
+        # Deliberately OIDC only, else no entry by any other means
+        "mozilla_django_oidc.auth.OIDCAuthenticationBackend",
+    )
+else:
+    AUTHENTICATION_BACKENDS = (
+        # Regular username + password auth
+        "django.contrib.auth.backends.ModelBackend",
+    )
+
+# Note that AUTHENTICATION_BACKENDS is overridden in tests, so take care
+# to check/amend those if you add additional auth backends
+
+# Extra Wagtail config to disable password usage (SSO should be the only route)
+# https://docs.wagtail.org/en/v4.2.4/reference/settings.html#wagtail-password-management-enabled
+# Don't let users change or reset their password
+if USE_SSO_AUTH:
+    WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
+    WAGTAIL_PASSWORD_RESET_ENABLED = False
+
+    # Don't require a password when creating a user,
+    # and blank password means cannot log in unless via SSO
+    WAGTAILUSERS_PASSWORD_ENABLED = False
+
+# Custom CSRF failure view to show custom CSRF messaging, which is
+# more likely to appear with SSO auth enabled, when sessions expire
+CSRF_FAILURE_VIEW = "bedrock.base.views.csrf_failure"
+
 # WAGTAIL =======================================================================================
 
 WAGTAIL_SITE_NAME = config(
@@ -1944,6 +2012,7 @@ if WAGTAIL_ENABLE_ADMIN:
     ]
 
     for midddleware_spec in [
+        "mozilla_django_oidc.middleware.SessionRefresh",  # In case someone has their Auth0 revoked while logged in, revalidate it
         "django.middleware.csrf.CsrfViewMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
@@ -1955,6 +2024,7 @@ if WAGTAIL_ENABLE_ADMIN:
             "cms-admin",
             "django-admin",
             "django-rq",
+            "oidc",
         ]
     )
 
