@@ -69,9 +69,9 @@ boto3==1.34.101 \
     --hash=sha256:1d854b5880e185db546b4c759fcb664bf3326275064d2b44229cc217e8be9d7e \
     --hash=sha256:79b93f3370ea96ce838042bc2eac0c996aee204b01e7e6452eb77abcbe697d6a
     # via -r requirements/prod.txt
-botocore==1.34.119 \
-    --hash=sha256:4bdf7926a1290b2650d62899ceba65073dd2693e61c35f5cdeb3a286a0aaa27b \
-    --hash=sha256:b253f15b24b87b070e176af48e8ef146516090429d30a7d8b136a4c079b28008
+botocore==1.34.121 \
+    --hash=sha256:1a8f94b917c47dfd84a0b531ab607dc53570efb0d073d8686600f2d2be985323 \
+    --hash=sha256:25b05c7646a9f240cde1c8f839552a43f27e71e15c42600275dea93e219f7dd9
     # via
     #   -r requirements/prod.txt
     #   boto3
@@ -599,9 +599,9 @@ factory-boy==3.3.0 \
     # via
     #   -r requirements/dev.in
     #   wagtail-factories
-faker==25.5.0 \
-    --hash=sha256:84d454fc9fef0b73428e00bdf45a36c04568c75f22727e990071580840cfbb84 \
-    --hash=sha256:edb85040a47ef1b30ccd8c4b6f07ee3cb4bd64aab1483be4efe75816ee2e2e36
+faker==25.6.0 \
+    --hash=sha256:7fe5f48ebfd43b9cdf9149a087a4dad3cf3e1618e2f69247deea1cb56bff85f9 \
+    --hash=sha256:e1d271759d9030db33eab68d3951ec0ac251cdc14c295d6bcc34a02f39ef0e84
     # via factory-boy
 filetype==1.2.0 \
     --hash=sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb \
@@ -678,9 +678,9 @@ google-api-core==2.19.0 \
     #   -r requirements/prod.txt
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.29.0 \
-    --hash=sha256:672dff332d073227550ffc7457868ac4218d6c500b155fe6cc17d2b13602c360 \
-    --hash=sha256:d452ad095688cd52bae0ad6fafe027f6a6d6f560e810fec20914e17a09526415
+google-auth==2.30.0 \
+    --hash=sha256:8df7da660f62757388b8a7f249df13549b3373f24388cb5d2f1dd91cc18180b5 \
+    --hash=sha256:ab630a1320f6720909ad76a7dbdb6841cdf5c66b328d690027e4867bdfb16688
     # via
     #   -r requirements/prod.txt
     #   google-api-core
@@ -1748,9 +1748,9 @@ qrcode==7.4.2 \
 querystringsafe-base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
     # via -r requirements/prod.txt
-redis==5.0.4 \
-    --hash=sha256:7adc2835c7a9b5033b7ad8f8918d09b7344188228809c98df07af226d39dec91 \
-    --hash=sha256:ec31f2ed9675cc54c21ba854cfe0462e6faf1d83c8ce5944709db8a4700b9c61
+redis==5.0.5 \
+    --hash=sha256:30b47d4ebb6b7a0b9b40c1275a19b87bb6f46b3bed82a89012cf56dea4024ada \
+    --hash=sha256:3417688621acf6ee368dec4a04dd95881be24efd34c79f00d31f62bb528800ae
     # via
     #   -r requirements/prod.txt
     #   django-rq
