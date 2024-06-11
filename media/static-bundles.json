@@ -1469,62 +1469,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-119-eu-relay.es6.js"
-      ],
-      "name": "firefox_whatsnew_119_eu_relay"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-119-experiment-eu.es6.js"
-      ],
-      "name": "firefox_whatsnew_119_experiment_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-119-experiment-na.es6.js"
-      ],
-      "name": "firefox_whatsnew_119_experiment_na"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-120-na.es6.js"
-      ],
-      "name": "firefox_whatsnew_120_na"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-120-eu.es6.js"
-      ],
-      "name": "firefox_whatsnew_120_eu"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/firefox/whatsnew/whatsnew-122-eu.js"
-      ],
-      "name": "firefox_whatsnew_122_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-123-eu.js"
-      ],
-      "name": "firefox_whatsnew_123_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-123-na.js"
-      ],
-      "name": "firefox_whatsnew_123_na"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-124-na-pdf.js"
-      ],
-      "name": "firefox_whatsnew_124_na_pdf"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/whatsnew-125-na.js"
       ],
       "name": "firefox_whatsnew_125_na"
