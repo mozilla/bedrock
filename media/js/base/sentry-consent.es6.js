@@ -6,12 +6,12 @@
 
 import {
     BrowserClient,
-    Dedupe,
-    GlobalHandlers,
-    HttpContext,
-    TryCatch,
+    browserApiErrorsIntegration,
+    dedupeIntegration,
     defaultStackParser,
-    getCurrentHub,
+    getCurrentScope,
+    globalHandlersIntegration,
+    httpContextIntegration,
     makeFetchTransport
 } from '@sentry/browser';
 
@@ -24,7 +24,8 @@ import {
 
 const SentryConsent = {
     /**
-     * Initialize Sentry JS Client.
+     * Enable tree shaking of unused Sentry JS integrations.
+     * https://docs.sentry.io/platforms/javascript/configuration/tree-shaking/
      */
     initClient: () => {
         // Get Data Source Name (DSN)
@@ -38,14 +39,15 @@ const SentryConsent = {
             transport: makeFetchTransport,
             stackParser: defaultStackParser,
             integrations: [
-                new Dedupe(),
-                new GlobalHandlers(),
-                new HttpContext(),
-                new TryCatch()
+                dedupeIntegration(),
+                globalHandlersIntegration(),
+                httpContextIntegration,
+                browserApiErrorsIntegration()
             ]
         });
 
-        getCurrentHub().bindClient(client);
+        getCurrentScope().setClient(client);
+        client.init();
     },
 
     /**
