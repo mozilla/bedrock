@@ -4,8 +4,6 @@
 
 from unittest import mock
 
-from django.conf import settings
-
 import pytest
 
 from bedrock.cms.models import AbstractBedrockCMSPage, SimpleRichTextPage
@@ -16,10 +14,6 @@ pytestmark = [
 ]
 
 
-@pytest.mark.skipif(
-    settings.WAGTAIL_ENABLE_PAGE_SERVING is False,
-    reason="Disabled while Wagtail page serving is not in use",
-)
 @mock.patch("bedrock.cms.models.SimpleRichTextPage.get_view_restrictions")
 @pytest.mark.parametrize(
     "fake_restrictions, expected_headers",
@@ -54,10 +48,6 @@ def test_cache_control_headers_on_pages_with_view_restrictions(
     assert response.get("Cache-Control") == expected_headers
 
 
-@pytest.mark.skipif(
-    settings.WAGTAIL_ENABLE_PAGE_SERVING is False,
-    reason="Disabled while Wagtail page serving is not in use",
-)
 def test_StructuralPage_serve_methods(
     minimal_site,
     rf,
