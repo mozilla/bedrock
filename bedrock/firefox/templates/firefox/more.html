@@ -115,21 +115,13 @@
         link_url=url('firefox.browsers.update-browser'),
       )}}
     </div>
-    <div class="mzp-l-card-quarter">
+    <div class="mzp-l-card-third">
       {{ card(
         title=ftl('choose-which-firefox'),
         ga_title='Firefox All',
         image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('we-believe-everyone'),
         link_url=url('firefox.all')
-      )}}
-
-      {{ card(
-        title=ftl('firefox-more-firefox-sync'),
-        ga_title='Features Safe Browser',
-        image=resp_img('img/firefox/more/firefox-sync.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-access-your-sync'),
-        link_url=url('firefox.features.sync')
       )}}
 
       {{ card(
@@ -141,11 +133,11 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-firefox-quantum'),
-        ga_title='Firefox Browsers',
-        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-quantum-was-revolution'),
-        link_url=url('firefox.browsers.quantum')
+        title=ftl('firefox-more-firefox-sync'),
+        ga_title='Features Safe Browser',
+        image=resp_img('img/firefox/more/firefox-sync.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-access-your-sync'),
+        link_url=url('firefox.features.sync')
       )}}
     </div>
     <div class="mzp-l-card-third">
@@ -224,22 +216,14 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-translate-the-web'),
-        ga_title='Translate',
-        image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-translate-more-than'),
-        link_url=url('firefox.features.translate')
-      )}}
-    </div>
-    <div class="mzp-l-card-third">
-      {{ card(
         title=ftl('firefox-more-protection'),
         ga_title='Features Private Browsing',
         image=resp_img('img/firefox/more/private-browsing.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('were-obsessed-with'),
         link_url=url('firefox.features.private-browsing')
       )}}
-
+    </div>
+    <div class="mzp-l-card-third">
       {{ card(
         title=ftl('firefox-more-avoid-misinformation-heading'),
         ga_title='Avoid Misinformation',
@@ -249,11 +233,19 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-a-guide-to'),
-        ga_title='Safe Passwords',
-        image=resp_img('img/firefox/more/passwords.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-more-and-more'),
-        link_url='https://support.mozilla.org/kb/create-secure-passwords-keep-your-identity-safe'
+        title=ftl('firefox-more-translate-the-web'),
+        ga_title='Translate',
+        image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-translate-more-than'),
+        link_url=url('firefox.features.translate')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-firefox-quantum'),
+        ga_title='Firefox Browsers',
+        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-quantum-was-revolution'),
+        link_url=url('firefox.browsers.quantum')
       )}}
     </div>
   </div>
