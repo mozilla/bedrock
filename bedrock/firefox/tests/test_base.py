@@ -225,8 +225,8 @@ class TestFirefoxAll(TestCase):
         # Step 1 is done, step 2 is active, steps 3,4 are disabled.
         assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
         assert len(doc(".t-step-disabled")) == 2
-        # platforms for desktop-release
-        assert len(doc(".c-platform-list > li")) == 8
+        # platforms for desktop-release, including Windows Store
+        assert len(doc(".c-platform-list > li")) == 9
 
     def test_all_step_3(self):
         resp = self.client.get(reverse("firefox.all_platform", kwargs={"product_slug": "desktop-release", "platform": "win64"}))
