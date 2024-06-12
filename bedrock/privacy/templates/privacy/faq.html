@@ -38,7 +38,7 @@
         {{ ftl('privacy-faq-we-put-people-in-control-of') }}
       </li>
       <li>
-        {{ ftl('privacy-faq-we-adhere-to-no-surprises-principle') }}
+        {{ ftl('privacy-faq-we-adhere-to-no-surprises-principle-v2', fallback='privacy-faq-we-adhere-to-no-surprises-principle') }}
       </li>
     </ul>
 
@@ -52,7 +52,7 @@
       </dt>
       <dd>
         <p>
-          {{ ftl('privacy-faq-firefox-the-web-browser-that') }}
+          {{ ftl('privacy-faq-firefox-the-web-browser-that-v2', fallback='privacy-faq-firefox-the-web-browser-that') }}
         </p>
       </dd>
       <dt>
@@ -83,7 +83,7 @@
       </dt>
       <dd>
         <p>
-          {{ ftl('privacy-faq-mozilla-does-collect-a-limited', privacy=url('privacy.notices.firefox'), data='https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/') }}
+          {{ ftl('privacy-faq-mozilla-does-collect-a-limited-v2', fallback='privacy-faq-mozilla-does-collect-a-limited', privacy=url('privacy.notices.firefox'), data='https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/') }}
         </p>
         <p>
           {{ ftl('privacy-faq-we-make-our-documentation-public') }}
@@ -100,7 +100,7 @@
           {{ ftl('privacy-faq-the-first-is-what-we-call-technical') }}
         </p>
         <p>
-          {{ ftl('privacy-faq-the-second-is-what-we-call-interaction') }}
+          {{ ftl('privacy-faq-the-second-is-what-we-call-interaction-v2', fallback='privacy-faq-the-second-is-what-we-call-interaction') }}
         </p>
       </dd>
       <dt>
@@ -108,10 +108,10 @@
       </dt>
       <dd>
         <p>
-          {{ ftl('privacy-faq-sort-of-in-addition-to-the-data') }}
+          {{ ftl('privacy-faq-sort-of-in-addition-to-the-data-v2', fallback='privacy-faq-sort-of-in-addition-to-the-data') }}
         </p>
         <p>
-          {{ ftl('privacy-faq-we-may-also-collect-additional', link='https://support.mozilla.org/kb/shield') }}
+          {{ ftl('privacy-faq-we-may-also-collect-additional-v2', fallback='privacy-faq-we-may-also-collect-additional', link='https://support.mozilla.org/kb/shield') }}
         </p>
         <p>
           {{ ftl('privacy-faq-mozillas-pre-release-versions') }}
