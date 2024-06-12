@@ -9,7 +9,7 @@
   3. {{ ftl('firefox-all-language') }}
   {% if product and platform and locale %}
     <span class="c-step-choice">{{ locale_name }}</span>
-    {% if product.slug.startswith('desktop') %}
+    {% if product.slug.startswith('desktop') and platform != "win-store" %}
       <a href="{{ url('firefox.all_platform', product_slug=product.slug, platform=platform) }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-language') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
     {% endif %}
   {% elif product and platform %}
