@@ -248,6 +248,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         "win64-aarch64": "Windows ARM64/AArch64",
         "win": "Windows 32-bit",
         "win-msi": "Windows 32-bit MSI",
+        "win-store": "Windows Store",
         "osx": "macOS",
         "linux64": "Linux 64-bit",
         "linux": "Linux 32-bit",
@@ -273,6 +274,14 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         elif product_slug.startswith("ios"):
             platform = "ios"
             platform_name = "iOS"
+        elif product_slug in ("desktop-release", "desktop-beta") and platform == "win-store":
+            platform_name = "Windows Store"
+            locale = "en-US"
+            locale_name = "Multiple Languages"
+            download_url = {
+                "desktop-release": "https://www.microsoft.com/store/apps/9NZVDKPMR9RD",
+                "desktop-beta": "https://www.microsoft.com/store/apps/9NZW26FRNDLN",
+            }.get(product_slug)
         else:
             platform_name = platform and platform_map[platform]
             locale_name = None
@@ -315,9 +324,11 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
 
     # Show locales.
     elif product_slug:
-        context.update(
-            platforms=product["product"].platforms(product["channel"]),
-        )
+        platforms = product["product"].platforms(product["channel"])
+        if product_slug in ["desktop-release", "desktop-beta"]:
+            idx = platforms.index(("osx", "macOS"))
+            platforms.insert(idx, ("win-store", "Windows Store"))
+        context.update(platforms=platforms)
 
     # Show products.
     else:
