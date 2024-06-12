@@ -12,12 +12,6 @@ import commonware.log
 
 from lib import l10n_utils
 
-try:
-    import newrelic.agent
-except ImportError:
-    newrelic = False
-
-
 log = commonware.log.getLogger("mozorg.util")
 
 
@@ -54,10 +48,6 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @csrf_exempt
     @require_safe
     def _view(request):
-        if newrelic:
-            # Name this in New Relic to differentiate pages
-            newrelic.agent.set_transaction_name("mozorg.util.page:" + url_name.replace(".", "_"))
-
         kwargs.setdefault("urlname", url_name)
         return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)
 
