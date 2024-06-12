@@ -31,7 +31,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 </figure>
 
 <h3>{{ ftl('vpn-ip-address-does-it-travel') }}</h3>
-<p>{{ ftl('vpn-ip-address-no-your-ip-v2', fallback='vpn-ip-address-no-your-ip') }}</p>
+<p>{{ ftl('vpn-ip-address-no-your-ip-v2') }}</p>
 
 <h3>{{ ftl('vpn-ip-address-does-your-ip') }}</h3>
 <p>{{ ftl('vpn-ip-address-yes-even-if') }}</p>
@@ -66,6 +66,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 <p>{{ ftl('vpn-ip-address-there-are-also', url=url('products.vpn.more.redirect', 'when-to-use-a-vpn')) }}</p>
 
 <h3>{{ ftl('vpn-ip-address-how-do-you') }}</h3>
-<p>{{ ftl('vpn-ip-address-a-vpn-is-v2', fallback='vpn-ip-address-a-vpn-is', vpn=url('products.vpn.more.redirect', 'when-to-use-a-vpn'),
+<p>{{ ftl('vpn-ip-address-a-vpn-is-v2', vpn=url('products.vpn.more.redirect', 'when-to-use-a-vpn'),
   mozvpn=url('products.vpn.landing'), countries=settings.VPN_CONNECT_COUNTRIES) }}</p>
 {% endblock %}
