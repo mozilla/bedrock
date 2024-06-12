@@ -18,10 +18,6 @@ pytestmark = [
 ]
 
 
-@pytest.mark.skipif(
-    settings.WAGTAIL_ENABLE_PAGE_SERVING is False,
-    reason="Disabled while Wagtail page serving is not in use",
-)
 def test_locale_redirect_logic_is_skipped_for_cms_page(
     minimal_site,
     mocker,
@@ -68,10 +64,6 @@ def test_locale_redirect_will_work_for_cms_pages(
     assert redirect_to_best_locale_spy.call_count == 0
 
 
-@pytest.mark.skipif(
-    settings.WAGTAIL_ENABLE_PAGE_SERVING is False,
-    reason="Disabled while Wagtail page serving is not in use",
-)
 def test_locale_redirect_will_work_for_cms_pages__default_locale_not_available(
     minimal_site,
     mocker,
@@ -98,10 +90,6 @@ def test_locale_redirect_will_work_for_cms_pages__default_locale_not_available(
     assert redirect_to_best_locale_spy.call_count == 1
 
 
-@pytest.mark.skipif(
-    settings.WAGTAIL_ENABLE_PAGE_SERVING is False,
-    reason="Disabled while Wagtail page serving is not in use",
-)
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
 def test_locales_are_drawn_from_page_translations(minimal_site, rf, serving_method):
     assert Locale.objects.count() == 2  # en-US and fr

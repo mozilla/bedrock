@@ -1993,13 +1993,6 @@ WAGTAILADMIN_BASE_URL = config(
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
-# Custom setting (not a Wagtail core one) that we use to plug in/unplug access to CMS-backed views
-WAGTAIL_ENABLE_PAGE_SERVING = config(
-    "WAGTAIL_ENABLE_PAGE_SERVING",
-    default="False",
-    parser=bool,
-)
-
 # Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
 WAGTAIL_ENABLE_ADMIN = config(
     "WAGTAIL_ENABLE_ADMIN",
