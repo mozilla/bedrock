@@ -498,7 +498,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/index.html"]
 
-
     # begin 125.0 whatsnew tests
 
     @override_settings(DEV=True)
