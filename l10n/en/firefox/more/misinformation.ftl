@@ -14,7 +14,7 @@ misinformation-ultimately-harmful = Ultimately, both misinformation and disinfor
 misinformation-false-info-heading = Where does false information show up?
 
 # Variables:
-#   $tracking (url) - link to https://blog.mozilla.org/firefox/how-to-stop-web-trackers/
+#   $tracking (url) - link to https://blog.mozilla.org/products/firefox/firefox-privacy-protections/
 misinformation-widespread-online = You can come across misinformation and disinformation everywhere but it is most widespread and impactful when shared online. Algorithms and <a href="{ $tracking }">tracking</a> have increased the ability for misinformation and disinformation to reach a larger audience on websites, blogs, forums and social networks.
 
 misinformation-tracking-advertising = You may have heard about tracking primarily in the context of advertising. However, it’s also a powerful tool when it comes to the spread of false information. Why is that? When you browse the internet or your social network feed, your behavior, interests, contacts in some instances and more are tracked by various parties across websites in order to create an extremely detailed profile of you to sell to others without your knowledge or consent. These profiles are used for personalized advertising but can also serve to present any kind of targeted information to you.
