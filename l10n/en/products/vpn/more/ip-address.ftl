@@ -21,8 +21,6 @@ vpn-ip-address-does-it-travel = Does it travel with you?
 # Variables
 #   $url (url) - https://www.mozilla.org/products/vpn/more/when-to-use-a-vpn/
 vpn-ip-address-no-your-ip-v2 = No. Your IP address is only associated with one location unless you are using a VPN (we will get more into that later). When you are at your home and connecting to the internet you pay for, you are using one. However, if you check your email at home in the morning, then scan the news at a local coffee shop while waiting for your coffee, and then work from an office, you will have used different IP addresses at each location.
-# Outdated string
-vpn-ip-address-no-your-ip = No. Your IP address is only associated with one location unless you are <a href="{ $url }">using a VPN</a> (we will get more into that later). When you are at your home and connecting to the internet you pay for, you are using one. However, if you check your email at home in the morning, then scan the news at a local coffee shop while waiting for your coffee, and then work from an office, you will have used different IP addresses at each location.
 vpn-ip-address-does-your-ip = Does your IP address change?
 vpn-ip-address-yes-even-if = Yes. Even if you are only using the internet at home, the IP address for your home can change. You can contact your internet service provider (ISP) to change it, but even something as routine as restarting your modem or router because of internet connection problems could result in a change.
 vpn-ip-address-can-more-than = Can more than one device have the same IP address?
@@ -52,10 +50,3 @@ vpn-ip-address-how-do-you = How do you hide it?
 #   $mozvpn (url) - https://www.mozilla.org/products/vpn/
 #   $countries (number) - number of countries where Mozilla VPN has servers, e.g. "30". The + after indicates the number may be higher, where "30+" means "30 or more".
 vpn-ip-address-a-vpn-is-v2 = A VPN is a way to hide your IP address. <a href="{ $vpn }">When you use a VPN</a>, your external IP address will be coming from the VPN server’s external IP, rather than your location’s external IP address. So if your connecting VPN server is located in California, your external IP will look like it’s connected from California, no matter where you actually are. Plus, your online activity is sent over an encrypted, secure connection to your VPN server, giving you additional security and privacy. <a href="{ $mozvpn }">{ -brand-name-mozilla-vpn }</a> is one way to hide your IP address. We don’t keep your network activity logs, and we don’t partner with third parties who build profiles of what you do online. We offer full-device protection for up to five devices with servers in { $countries }+ countries, you can connect to anywhere, from anywhere.
-
-# Obsolete string
-# Variables
-#   $vpn (url)- https://www.mozilla.org/products/vpn/more/what-is-a-vpn/
-#   $mozvpn (url) - https://www.mozilla.org/products/vpn/
-#   $countries (number) - number of countries where Mozilla VPN has servers, e.g. "30". The + after indicates the number may be higher, where "30+" means "30 or more".
-vpn-ip-address-a-vpn-is = A VPN is a way to hide your IP address. <a href="{ $vpn }">When you use a VPN</a>, your external IP address will be coming from the VPN server’s external IP, rather than your location’s external IP address. So if your connecting VPN server is located in California, your external IP will look like it’s connected from California, no matter where you actually are. Plus, your online activity is sent over an encrypted, secure connection to your VPN server, giving you additional security and privacy. <a href="{ $mozvpn }">{ -brand-name-mozilla-vpn }</a> is one way to hide your IP address. We don’t keep activity logs or partner with third-party analytics platforms. We offer full-device protection for up to five devices with servers in { $countries }+ countries, you can connect to anywhere, from anywhere.
