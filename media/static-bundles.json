@@ -135,6 +135,12 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/thanks-install-win.scss"
+      ],
+      "name": "firefox-thanks-install-win"
+    },
+    {
+      "files": [
         "css/firefox/new/desktop/thanks-ie.scss"
       ],
       "name": "firefox_desktop_download_thanks_ie"
@@ -1304,9 +1310,15 @@
     },
     {
       "files": [
-        "js/firefox/new/desktop/thanks-smoke-test.es6.js"
+        "js/firefox/new/desktop/thanks-install-win-exp.es6.js"
       ],
-      "name": "firefox-thanks-smoke-test"
+      "name": "firefox-thanks-install-win-exp"
+    },
+    {
+      "files": [
+        "js/firefox/new/desktop/thanks-install-win.es6.js"
+      ],
+      "name": "firefox-thanks-install-win"
     },
     {
       "files": [

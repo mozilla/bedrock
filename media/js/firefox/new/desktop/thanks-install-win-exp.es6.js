@@ -22,28 +22,20 @@ function isWindows10Plus() {
 }
 
 const initTrafficCop = () => {
-    if (href.indexOf('v=1') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': '1',
-            'data-ex-name': 'firefox-thanks-smoke-test'
-        });
-        // GA4
+    if (
+        href.indexOf('experiment=firefox-thanks-install-win&variation=1') !== -1
+    ) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'firefox-thanks-smoke-test',
+            id: 'firefox-thanks-install-win',
             variant: '1'
         });
-    } else if (href.indexOf('v=2') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': '2',
-            'data-ex-name': 'firefox-thanks-smoke-test'
-        });
-        // GA4
+    } else if (
+        href.indexOf('experiment=firefox-thanks-install-win&variation=2') !== -1
+    ) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'firefox-thanks-smoke-test',
+            id: 'firefox-thanks-install-win',
             variant: '2'
         });
     } else if (TrafficCop) {
@@ -53,8 +45,8 @@ const initTrafficCop = () => {
         if (isApprovedToRun() && isWindows10Plus() && isEdgeBrowser()) {
             const cop = new TrafficCop({
                 variations: {
-                    'v=1': 10,
-                    'v=2': 10
+                    'experiment=firefox-thanks-install-win&variation=1': 10, // control
+                    'experiment=firefox-thanks-install-win&variation=2': 10 // install messaging
                 }
             });
             cop.init();
