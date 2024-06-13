@@ -1358,6 +1358,12 @@
     },
     {
       "files": [
+        "js/firefox/new/desktop/thanks-smoke-test.es6.js"
+      ],
+      "name": "firefox-thanks-smoke-test"
+    },
+    {
+      "files": [
         "js/base/stub-attribution/stub-attribution.js",
         "js/base/stub-attribution/stub-attribution-init.es6.js"
       ],

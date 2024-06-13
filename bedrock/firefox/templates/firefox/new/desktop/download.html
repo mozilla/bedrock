@@ -23,6 +23,12 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-thanks-smoke-test', ['en-US']) and country_code == "US" %}
+    {{ js_bundle('firefox-thanks-smoke-test') }}
+  {% endif %}
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('protocol-card') }}

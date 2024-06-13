@@ -676,7 +676,7 @@ class NewView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = []
+    variations = ["1", "2"]
 
     def get(self, *args, **kwargs):
         # Remove legacy query parameters (Bug 1236791)
