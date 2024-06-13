@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-protocol.html" import callout, split, picto with context %}
+{% from "macros-protocol.html" import callout, picto %}
 
 {% extends "firefox/privacy/base.html" %}
 
@@ -22,131 +22,53 @@
 {% set _entrypoint = 'mozilla.org-privacy' %}
 {% set _utm_campaign = 'privacy' %}
 
+{% block sub_navigation %}
+{% endblock %}
+
 {% block hub_content %}
 
-  {% call split(
-    image=picture('img/firefox/privacy/promise/privacy-hero-700.png',
-      sources=[
-        {
-          'media': '(min-width: 768px)',
-          'srcset': {
-            'img/firefox/privacy/promise/privacy-hero-500.png': '500w',
-            'img/firefox/privacy/promise/privacy-hero-700.png': '700w',
-            'img/firefox/privacy/promise/privacy-hero-900.png': '900w',
-            'img/firefox/privacy/promise/privacy-hero-1100.png': '1100w',
-          },
-          'sizes': {
-            'default': 'calc(50vw - 192px)'
-          }
-        },
-        {
-          'media': '(max-width: 767px)',
-          'srcset': {
-            'img/placeholder.png': 'default'
-          }
+{% call callout(
+  title='Personal Data Promise',
+  heading_level=2)
+%}
+{% endcall %}
+
+<div class="privacy-promise-learn-more">
+  <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
+    {% call picto(
+      title=ftl('firefox-privacy-hub-why-trust-firefox'),
+      body=True,
+      image=resp_img(
+        url='img/icons/mountain-purple.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '150',
+          'loading': 'lazy'
         }
-      ],
-      optional_attributes={ 'class': 'mzp-c-split-media-asset', 'height': '626', 'width': '680' }
-    ),
-    block_class='privacy-promise-hero mzp-l-split-hide-media-on-sm-md mzp-t-split-nospace t-mobile-nospace',
-    theme_class='mzp-t-dark',
-    media_class='mzp-l-split-v-end'
-  ) %}
-    <h1>{{ ftl('firefox-privacy-hub-firefox-products-are-designed')|safe }}</h1>
-    <p>{{ ftl('firefox-privacy-hub-you-should-be-able-to-decide') }}</p>
-  {% endcall %}
-
-  {{ callout(
-    title=ftl('firefox-privacy-hub-thats-why-everything-we-make'),
-    class='call-out-data-promise')
-  }}
-
-  <div>
-    {% call split(
-      image=resp_img('img/firefox/privacy/promise/less.jpg', srcset={ 'img/firefox/privacy/promise/less-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-      block_class='privacy-promise-feature mzp-l-split-reversed'
-    ) %}
-      <h2>{{ ftl('firefox-privacy-hub-take-less') }}</h2>
-      <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-make-a-point-of-knowing') }}</h3>
-      <p>{{ ftl('firefox-privacy-hub-all-tech-companies-collect') }}</p>
-    {% endcall %}
-
-    {% call split(
-      image=resp_img('img/firefox/privacy/promise/safe.jpg', srcset={ 'img/firefox/privacy/promise/safe-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-      block_class='privacy-promise-feature'
-    ) %}
-      <h2>{{ ftl('firefox-privacy-hub-keep-it-safe') }}</h2>
-      <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-do-the-hard-work-to-protect') }}</h3>
+      ),
+      base_el='li') %}
       <p>
-        {# Our lean-data page is en-US only, so only link to it for English locales. #}
-        {% if LANG.startswith('en') %}
-          Data security is complicated — or at least it should be. Which is why we take the extra steps
-          to classify the data we have, maintain rules for how we store and protect each type, and never
-          stop iterating on our processes. We prioritize your privacy. We invest in it. We’re committed
-          to it. We even <a href="{{ url('mozorg.about.policy.lean-data.index') }}">teach other companies how to do it</a>.
-        {% else %}
-          {{ ftl('firefox-privacy-hub-data-security-is-complicated') }}
-        {% endif %}
+        {{ ftl('firefox-privacy-hub-because-we-put-people-first', foundation='https://foundation.mozilla.org/?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint) }}
       </p>
+      <p><a href="{{ url('mozorg.mission') }}">{{ ftl('firefox-privacy-hub-learn-more-about-our-mission') }}</a></p>
     {% endcall %}
 
-    {% call split(
-      image=resp_img('img/firefox/privacy/promise/secrets.jpg', srcset={ 'img/firefox/privacy/promise/secrets-high-res.jpg': '2x' }, optional_attributes={ 'class': 'mzp-c-split-media-asset'}),
-      block_class='privacy-promise-feature mzp-l-split-reversed'
-    ) %}
-      <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
-      <h3 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h3>
-      <p>
-        {% if ftl_has_messages('firefox-privacy-hub-theres-no-hidden-agenda-here-v2') %}
-          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here-v2', privacy=url('privacy.notices.firefox')) }}
-        {% else %}
-          {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
-                meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
-                privacy=url('privacy.notices.firefox')) }}
-        {% endif %}
-      </p>
+    {% call picto(
+      title=ftl('firefox-privacy-hub-your-privacy-by-the-product'),
+      body=True,
+      image=resp_img(
+        url='img/icons/privacy-shield.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '150',
+          'loading': 'lazy'
+        }
+      ),
+      base_el='li') %}
+      <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>
+      <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('firefox-privacy-hub-learn-about-our-products') }}</a></p>
     {% endcall %}
-  </div>
-
-  <div class="privacy-promise-learn-more">
-      <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
-      {% call picto(
-        title=ftl('firefox-privacy-hub-why-trust-firefox'),
-        body=True,
-        image=resp_img(
-          url='img/icons/mountain-purple.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '150',
-            'loading': 'lazy'
-          }
-        ),
-        base_el='li'
-      ) %}
-        <p>
-          {{ ftl('firefox-privacy-hub-because-we-put-people-first',
-                 foundation='https://foundation.mozilla.org/?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint) }}
-        </p>
-        <p><a href="{{ url('mozorg.mission') }}">{{ ftl('firefox-privacy-hub-learn-more-about-our-mission') }}</a></p>
-      {% endcall %}
-
-      {% call picto(
-        title=ftl('firefox-privacy-hub-your-privacy-by-the-product'),
-        body=True,
-        image=resp_img(
-          url='img/icons/privacy-shield.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '150',
-            'loading': 'lazy'
-          }
-        ),
-        base_el='li'
-      ) %}
-        <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>
-        <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('firefox-privacy-hub-learn-about-our-products') }}</a></p>
-      {% endcall %}
-    </ul>
-  </div>
+  </ul>
+</div>
 
 {% endblock %}
