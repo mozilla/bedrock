@@ -12,6 +12,7 @@ import {
     getCurrentScope,
     globalHandlersIntegration,
     httpContextIntegration,
+    inboundFiltersIntegration,
     makeFetchTransport
 } from '@sentry/browser';
 
@@ -21,6 +22,18 @@ import {
     getConsentCookie,
     gpcEnabled
 } from './consent/utils.es6';
+
+/**
+ * Filter out non-useful / non-actionable errors.
+ */
+const options = {
+    ignoreErrors: [
+        '$ is not defined',
+        'Event `Event` (type=unhandledrejection) captured as promise rejection',
+        'NetworkError when attempting to fetch resource',
+        'Non-Error promise rejection captured'
+    ]
+};
 
 const SentryConsent = {
     /**
@@ -39,10 +52,11 @@ const SentryConsent = {
             transport: makeFetchTransport,
             stackParser: defaultStackParser,
             integrations: [
+                browserApiErrorsIntegration(),
                 dedupeIntegration(),
                 globalHandlersIntegration(),
                 httpContextIntegration,
-                browserApiErrorsIntegration()
+                inboundFiltersIntegration(options)
             ]
         });
 
