@@ -28,8 +28,9 @@ import {
  */
 const options = {
     ignoreErrors: [
-        'NetworkError when attempting to fetch resource',
+        '$ is not defined',
         'Event `Event` (type=unhandledrejection) captured as promise rejection',
+        'NetworkError when attempting to fetch resource',
         'Non-Error promise rejection captured'
     ]
 };
