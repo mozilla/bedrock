@@ -10,19 +10,6 @@ $brand-theme: 'firefox';
 @import '../../protocol/components/sub-navigation';
 
 /* -------------------------------------------------------------------------- */
-// Privacy Notice Call Out
-
-.call-out-privacy {
-    background-color: $color-white;
-
-    .mzp-c-callout-title {
-        @include text-title-xs;
-        background: url('/media/img/firefox/privacy/icon-privacy.svg') top center no-repeat;
-        padding-top: 70px + $spacing-lg;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
 // Reduce vertical padding on stacked split components
 
 .mzp-c-split + .mzp-c-split {

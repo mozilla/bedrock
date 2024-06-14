@@ -7,17 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// * -------------------------------------------------------------------------- */
-// Picto Cards
-
-.mzp-l-columns .mzp-c-picto {
-    margin-bottom: $layout-md;
-    @media #{$mq-md} {
-        margin-bottom: 0;
-        padding: $spacing-2xl $spacing-2xl 0;
-    }
-}
-
 .privacy-promise-learn-more {
     background-color: $color-marketing-gray-10;
 }
