@@ -1616,12 +1616,6 @@
     },
     {
       "files": [
-        "js/firefox/privacy/products.js"
-      ],
-      "name": "firefox-privacy-products"
-    },
-    {
-      "files": [
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
