@@ -50,5 +50,5 @@ firefox-enterprise-pkg-installer = PKG installer
 firefox-enterprise-windows-32-bit = { -brand-name-windows } 32-bit
 
 # Variables:
-#   $firefox_all (url) - link to https://www.mozilla.org/firefox/all/#product-desktop-esr
+#   $firefox_all (url) - link to https://www.mozilla.org/firefox/all/desktop-esr/
 firefox-enterprise-download-firefox-esr-or-rapid = Download { -brand-name-firefox-esr } or Rapid Release for<br> <a href="{ $firefox_all }">another language or platform.</a>
