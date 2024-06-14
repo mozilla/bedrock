@@ -7,6 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+.privacy-promise-title h1{
+    @include text-title-xl;
+}
+
 .privacy-promise-learn-more {
     background-color: $color-marketing-gray-10;
 }

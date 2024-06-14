@@ -27,7 +27,7 @@
 
 {% block hub_content %}
 
-<div class="mzp-l-content mzp-t-picto-center">
+<div class="mzp-l-content mzp-t-picto-center privacy-promise-title">
   {% call picto(
     title=ftl('firefox-privacy-personal-data-promise'),
     body=True,
@@ -35,7 +35,7 @@
       url='img/firefox/privacy/icon-privacy-promise.svg',
       optional_attributes={
         'class': 'mzp-c-picto-image',
-        'width': '50',
+        'width': '75',
         'loading': 'lazy'
       }
     ),
@@ -43,9 +43,8 @@
   {% endcall %}
 </div>
 
-
 <div class="mzp-l-content mzp-t-content-lg">
-  <div class="mzp-l-content mzp-l-columns mzp-t-columns-two">
+  <div class="mzp-l-columns mzp-t-columns-two">
     <div>
       <h2>{{ ftl('firefox-privacy-hub-take-less') }}</h2>
       <h4 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-make-a-point-of-knowing') }}</h4>
@@ -69,7 +68,7 @@
     </div>
   </div>
 
-  <div class="mzp-l-content">
+  <div>
     <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
     <h4 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h4>
     <p>
@@ -83,6 +82,7 @@
     </p>
   </div>
 </div>
+
 <div class="privacy-promise-learn-more">
   <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
     {% call picto(
