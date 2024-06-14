@@ -238,7 +238,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
             "slug": "mobile-release",
             "product": mobile_release,
             "channel": "release",
-            "name": ftl("firefox-all-product-firefox-mobile", ftl_files=ftl_files),
+            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
         },
     }
 

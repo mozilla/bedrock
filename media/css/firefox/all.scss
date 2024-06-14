@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/includes/forms';
-@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
 
@@ -70,7 +69,7 @@ $image-path: '/media/protocol/img';
 
 .c-step-name {
     @include text-body-lg;
-    clear: right;
+    @include bidi(((clear, left, right),));
     font-weight: bold;
     margin-top: $spacing-xl;
 
@@ -84,7 +83,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-step-icon {
-    float: right;
+    @include bidi(((float, right, left),));
 }
 
 .c-step-choice {
@@ -92,7 +91,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-step-contents {
-    padding-left: $spacing-lg;
+    @include bidi(((padding-left, $spacing-lg, 0),));
 }
 
 .c-step-prompt {
@@ -191,13 +190,17 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// .c-get-app {
-//     background: center right url('/media/img/firefox/all/icon-get.svg') no-repeat;
-//     background-size: auto 1em;
-//     display: inline-block;
-//     margin-top: $spacing-sm;
-//     padding-right: 20px;
-// }
+.c-get-app {
+    @include bidi((
+        (padding-right, 20px, padding-left, 0),
+        (background-position, center right, center left),
+    ));
+    background-image: url('/media/img/firefox/all/icon-get.svg');
+    background-repeat: no-repeat;
+    background-size: auto 1em;
+    display: inline-block;
+    margin-top: $spacing-sm;
+}
 
 // help buttons & modals
 
