@@ -48,7 +48,7 @@
             {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin') %}
             {% set sign_in_url = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="Accounts Learn More"'|safe %}
             {% set learn_more_url = 'href="'|safe ~ url('mozorg.account') ~ '"'|safe %}
-            {{ ftl('moz-account-already-have', sign_in_url=sign_in_url, learn_more_url=learn_more_url) }}
+            {{ ftl('moz-account-already-have-v2', fallback='moz-account-already-have', sign_in_url=sign_in_url, learn_more_url=learn_more_url) }}
           </small>
         </div>
       </div>
