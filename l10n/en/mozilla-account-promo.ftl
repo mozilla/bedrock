@@ -17,8 +17,6 @@ moz-account-already-have-v2 = Already have an account? <a { $sign_in_url }>Sign 
 #   $learn_more_url - link to https://www.mozilla.org/en-US/firefox/accounts/
 moz-account-already-have = Already have an account? <a { $sign_in_url }>Sign in</a> or <a { $learn_more_url }>learn more</a> about { -brand-name-mozilla }
 
-moz-account-get-a-mozilla-account = Get a { -brand-name-mozilla-account }
-
 moz-account-product-firefox = { -brand-name-firefox }
 moz-account-product-monitor = { -brand-name-monitor }
 moz-account-product-pocket = { -brand-name-pocket }
