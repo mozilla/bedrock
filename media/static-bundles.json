@@ -786,12 +786,6 @@
     },
     {
       "files": [
-        "css/firefox/seo.scss"
-      ],
-      "name": "seo"
-    },
-    {
-      "files": [
         "css/firefox/more/misinformation.scss"
       ],
       "name": "misinformation"
