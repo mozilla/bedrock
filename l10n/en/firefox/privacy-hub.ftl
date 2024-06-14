@@ -6,6 +6,7 @@
 
 # HTML page title
 firefox-privacy-hub-firefox-privacy-promise = { -brand-name-firefox } Privacy Promise
+firefox-privacy-personal-data-promise = Personal Data Promise
 
 # HTML page description
 firefox-privacy-hub-firefox-takes-less-data-keeps = { -brand-name-firefox } takes less data, keeps it safe, and with no secrets.
