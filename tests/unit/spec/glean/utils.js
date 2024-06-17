@@ -13,7 +13,7 @@ import Utils from '../../../../media/js/glean/utils.es6';
 
 describe('utils.js', function () {
     describe('filterURL', function () {
-        it('should return the a complete URL including query parameters', function () {
+        it('should retain original URLs including query parameters', function () {
             const url1 = 'https://www.mozilla.org/en-US/';
             expect(Utils.filterURL(url1)).toEqual(url1);
 
