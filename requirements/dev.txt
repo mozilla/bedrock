@@ -624,9 +624,9 @@ freezegun==1.5.0 \
     --hash=sha256:200a64359b363aa3653d8aac289584078386c7c3da77339d257e46a01fb5c77c \
     --hash=sha256:ec3f4ba030e34eb6cf7e1e257308aee2c60c3d038ff35996d7475760c9ff3719
     # via -r requirements/dev.in
-glean-parser==14.0.1 \
-    --hash=sha256:3275ca235885c99da659fa7d9bf929b8fb020df79d26fcbec317328c369cd039 \
-    --hash=sha256:3e9e5f99ad8592300e364b70d6247b21c445774a73a2ad274677fb58a0065809
+glean-parser==14.1.2 \
+    --hash=sha256:38be7d4e0fab0f83340e3427914e08a8631c7fab088a8c60e9b543cab6ea830c \
+    --hash=sha256:c3e87165fe0a0fcbcb28b76bbad025601a86eb447c5779472b62915c46cd44ab
     # via -r requirements/prod.txt
 google-api-core==2.19.0 \
     --hash=sha256:8661eec4078c35428fd3f69a2c7ee29e342896b70f01d1a1cbcb334372dd6251 \
