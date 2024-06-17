@@ -23,7 +23,7 @@ jobs:
         run: xvfb-run npm test
 
   test-python:
-    runs-on: ubuntu-20.04  # For consistency with above
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
