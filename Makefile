@@ -65,10 +65,10 @@ rebuild: clean build
 
 # Run in Mozorg-only mode, using Bedrock to serve ONLY Mozorg pages
 run: .docker-build-pull
-	${DC} up assets app worker
+	${DC} up assets app
 
 run-prod: .docker-build-pull
-	${DC} up release-local worker
+	${DC} up release-local
 
 # Run in Pocket-only mode, using Bedrock to serve ONLY Pocket pages _at the root path_
 run-pocket: .docker-build-pull
