@@ -35,9 +35,6 @@ sub-navigation-firefox-for-mobile = { -brand-name-firefox } for Mobile
 
 sub-navigation-chromebook = { -brand-name-chromebook }
 
-# Obsolete string
-sub-navigation-firefox-accounts = { -brand-name-firefox-accounts }
-
 sub-navigation-mozilla-account = { -brand-name-mozilla-account }
 sub-navigation-sync = { -brand-name-sync }
 sub-navigation-windows = { -brand-name-windows }
@@ -54,8 +51,3 @@ sub-navigation-private-browsing = Private Browsing
 sub-navigation-what-is-a-browser = What is a Browser?
 sub-navigation-browsing-history = Browsing History
 sub-navigation-browser-history = Browser History
-sub-navigation-privacy = Privacy
-sub-navigation-our-promise= Our Promise
-sub-navigation-our-products = Our Products
-sub-navigation-little-book-of-privacy = Little Book of Privacy
-sub-navigation-safe-passwords = Safe Passwords
