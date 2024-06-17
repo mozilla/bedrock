@@ -311,7 +311,6 @@ def firefox_url(platform, page, channel=None):
     """
 
     kwargs = {}
-    anchor = None
 
     # Tweak the channel name for the naming URL pattern in urls.py
     if channel == "release":
@@ -328,22 +327,22 @@ def firefox_url(platform, page, channel=None):
     if page == "all":
         if platform == "desktop":
             if channel == "beta":
-                anchor = "product-desktop-beta"
+                product = "desktop-beta"
             elif channel == "developer":
-                anchor = "product-desktop-developer"
+                product = "desktop-developer"
             elif channel == "nightly":
-                anchor = "product-desktop-nightly"
+                product = "desktop-nightly"
             elif channel == "organizations":
-                anchor = "product-desktop-esr"
+                product = "desktop-esr"
             else:
-                anchor = "product-desktop-release"
+                product = "desktop-release"
         elif platform == "android":
             if channel == "beta":
-                anchor = "product-android-beta"
+                product = "android-beta"
             elif channel == "nightly":
-                anchor = "product-android-nightly"
+                product = "android-nightly"
             else:
-                anchor = "product-android-release"
+                product = "android-release"
     else:
         if channel:
             kwargs["channel"] = channel
@@ -354,8 +353,11 @@ def firefox_url(platform, page, channel=None):
     if platform in ["android", "ios"] and page == "sysreq":
         return settings.FIREFOX_MOBILE_SYSREQ_URL
 
-    anchor = "#" + anchor if anchor else ""
-    return reverse(f"firefox.{page}", kwargs=kwargs) + anchor
+    if page == "all" and product:
+        kwargs["product_slug"] = product
+        return reverse("firefox.all.platforms", kwargs=kwargs)
+
+    return reverse(f"firefox.{page}", kwargs=kwargs)
 
 
 @library.global_function
