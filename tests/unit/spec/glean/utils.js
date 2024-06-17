@@ -22,7 +22,7 @@ describe('utils.js', function () {
             expect(Utils.filterURL(url2)).toEqual(url2);
         });
 
-        it('should remove newsletter tokens from know URLs', function () {
+        it('should remove newsletter tokens from known URLs', function () {
             const url1 =
                 'https://www.mozilla.org/en-US/newsletter/existing/a1a2a3a4-abc1-12ab-a123-12345a12345b/?utm_source=test&utm_campaign=test';
             expect(Utils.filterURL(url1)).toEqual(
