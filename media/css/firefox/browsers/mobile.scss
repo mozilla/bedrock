@@ -53,11 +53,6 @@ $image-path: '/media/protocol/img';
         margin-left: 0;
         margin-right: 0;
     }
-
-    // define '.mzp-t-product-klar' until https://github.com/mozilla/protocol/issues/930
-    &.mzp-t-product-focus.mzp-t-product-klar {
-        background-image: url('/media/protocol/img/logos/firefox/browser/klar/logo-word-hor.svg');
-    }
 }
 
 .c-tagline {
