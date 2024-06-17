@@ -219,7 +219,7 @@ class TestFirefoxAll(TestCase):
         assert len(doc(".c-product-list > li")) == 9
 
     def test_all_step_2(self):
-        resp = self.client.get(reverse("firefox.all_product", kwargs={"product_slug": "desktop-release"}))
+        resp = self.client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "desktop-release"}))
         doc = pq(resp.content)
 
         # Step 1 is done, step 2 is active, steps 3,4 are disabled.
@@ -229,7 +229,7 @@ class TestFirefoxAll(TestCase):
         assert len(doc(".c-platform-list > li")) == 9
 
     def test_all_step_3(self):
-        resp = self.client.get(reverse("firefox.all_platform", kwargs={"product_slug": "desktop-release", "platform": "win64"}))
+        resp = self.client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "win64"}))
         doc = pq(resp.content)
 
         # Step 1,2 is done, step 3 is active, step 4 are disabled.
@@ -242,7 +242,7 @@ class TestFirefoxAll(TestCase):
         assert len(doc(".c-lang-list > li")) == len(firefox_desktop.get_filtered_full_builds("release"))
 
     def test_all_step_4(self):
-        resp = self.client.get(reverse("firefox.all_locale", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
+        resp = self.client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
         doc = pq(resp.content)
 
         # Step 1,2,3 is done, step 4 is active, no more steps
