@@ -6,7 +6,7 @@
 
 import Glean from '@mozilla/glean/web';
 import GleanMetrics from '@mozilla/glean/metrics';
-import { pageEvent, recordCustomPageMetrics } from './page.es6';
+import { pageEvent } from './page.es6';
 import {
     consentRequired,
     getConsentCookie,
@@ -14,12 +14,16 @@ import {
 } from '../base/consent/utils.es6';
 
 const Utils = {
-    filterNewsletterURL: (str) => {
+    /**
+     * Takes a URL string and filters out any sensitive information,
+     * such as newsletter tokens, before returning the URL.
+     * See issue https://github.com/mozilla/bedrock/issues/13583
+     * @param {String} URL
+     * @returns {String} filtered URL
+     */
+    filterURL: (str) => {
         try {
             const url = new URL(str);
-
-            // Ensure we don't include tokens in newsletter page load event pings
-            // Issue https://github.com/mozilla/bedrock/issues/13583
             const newsletterPaths = [
                 '/newsletter/existing/',
                 '/newsletter/country/'
@@ -43,63 +47,6 @@ const Utils = {
         } catch (e) {
             return str;
         }
-    },
-
-    getUrl: (str) => {
-        const url = typeof str === 'string' ? str : window.location.href;
-        return Utils.filterNewsletterURL(url);
-    },
-
-    getPathFromUrl: (str) => {
-        let pathName =
-            typeof str === 'string' ? str : document.location.pathname;
-        pathName = pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
-        const newsletterPaths = [
-            '/newsletter/existing/',
-            '/newsletter/country/'
-        ];
-
-        // Ensure we don't include tokens in newsletter page pings
-        // Issue https://github.com/mozilla/bedrock/issues/13583
-        newsletterPaths.forEach((path) => {
-            if (pathName.includes(path)) {
-                pathName = path;
-            }
-        });
-
-        return pathName;
-    },
-
-    getLocaleFromUrl: (str) => {
-        const pathName =
-            typeof str === 'string' ? str : document.location.pathname;
-        const locale = pathName.match(/^\/(\w{2}-\w{2}|\w{2,3})\//);
-        // If there's no locale in the path then assume language is `en-US`;
-        return locale && locale.length > 0 ? locale[1] : 'en-US';
-    },
-
-    getQueryParamsFromUrl: (str) => {
-        const query = typeof str === 'string' ? str : window.location.search;
-
-        if (typeof window._SearchParams !== 'undefined') {
-            return new window._SearchParams(query);
-        }
-
-        return false;
-    },
-
-    getReferrer: (str) => {
-        const referrer = typeof str === 'string' ? str : document.referrer;
-        const url = Utils.filterNewsletterURL(referrer);
-
-        return url;
-    },
-
-    getHttpStatus: () => {
-        const pageId = document
-            .getElementsByTagName('html')[0]
-            .getAttribute('data-http-status');
-        return pageId && pageId === '404' ? '404' : '200';
     },
 
     /**
@@ -137,8 +84,6 @@ const Utils = {
      * Record page load event and add custom metrics.
      */
     initPageLoadEvent: () => {
-        recordCustomPageMetrics();
-
         /**
          * Manually call Glean's default page_load event. Here
          * we override `url` and `referrer` since we need to
@@ -146,8 +91,8 @@ const Utils = {
          * are sent.
          */
         GleanMetrics.pageLoad({
-            url: Utils.getUrl(),
-            referrer: Utils.getReferrer()
+            url: Utils.filterURL(window.location.href),
+            referrer: Utils.filterURL(document.referrer)
         });
     },
 
