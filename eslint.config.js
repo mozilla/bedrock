@@ -41,7 +41,17 @@ const baseRules = {
 
     // Disallow the use of `console`
     // https://eslint.org/docs/rules/no-console
-    'no-console': 'error'
+    'no-console': 'error',
+
+    // Allow unused vars in caught errors for older
+    // browsers that don't support optional catch binding
+    // https://eslint.org/docs/latest/rules/no-unused-vars#options
+    'no-unused-vars': [
+        'error',
+        {
+            caughtErrors: 'none'
+        }
+    ]
 };
 
 const extendedRules = {

@@ -57,8 +57,7 @@
         .r25-promote-body {
             @include text-body-xl;
             background: transparent none;
-            border-image: none;
-            border: 0;
+            border: none;
             grid-area: body;
             margin: 0;
             padding: 0;
