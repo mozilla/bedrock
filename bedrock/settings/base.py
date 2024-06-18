@@ -2084,7 +2084,6 @@ GS_OBJECT_PARAMETERS = {
 
 if GS_BUCKET_NAME and GS_PROJECT_ID:
     STORAGES["default"] = {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}
-    GS_DEFAULT_ACL = "publicRead"
     GS_FILE_OVERWRITE = False
 else:
     SUPPORTED_NONLOCALES += [
