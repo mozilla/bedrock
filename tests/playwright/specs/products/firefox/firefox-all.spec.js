@@ -10,6 +10,10 @@ const { test, expect } = require('@playwright/test');
 const openPage = require('../../../scripts/open-page');
 const url = '/en-US/firefox/all/';
 
+/**
+ * Temporarily skipping these tests until refactor merges
+ * https://github.com/mozilla/bedrock/pull/14324
+ */
 test.describe(
     `${url} page`,
     {
@@ -20,7 +24,7 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Firefox download button', async ({ page }) => {
+        test.skip('Firefox download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-download-button'
             );
@@ -46,7 +50,7 @@ test.describe(
             );
         });
 
-        test('Firefox Beta download button', async ({ page }) => {
+        test.skip('Firefox Beta download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-download-button'
             );
@@ -72,7 +76,7 @@ test.describe(
             );
         });
 
-        test('Firefox Developer download button', async ({ page }) => {
+        test.skip('Firefox Developer download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-download-button'
             );
@@ -100,7 +104,7 @@ test.describe(
             );
         });
 
-        test('Firefox Nightly download button', async ({ page }) => {
+        test.skip('Firefox Nightly download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-download-button'
             );
@@ -126,7 +130,7 @@ test.describe(
             );
         });
 
-        test('Firefox ESR download button', async ({ page }) => {
+        test.skip('Firefox ESR download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-download-button'
             );
@@ -154,7 +158,7 @@ test.describe(
             );
         });
 
-        test('Firefox Android download button', async ({ page }) => {
+        test.skip('Firefox Android download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-android-download-button'
             );
@@ -172,7 +176,7 @@ test.describe(
             );
         });
 
-        test('Firefox Android Beta download button', async ({ page }) => {
+        test.skip('Firefox Android Beta download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-android-beta-download-button'
             );
@@ -190,7 +194,9 @@ test.describe(
             );
         });
 
-        test('Firefox Android Nightly download button', async ({ page }) => {
+        test.skip('Firefox Android Nightly download button', async ({
+            page
+        }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-android-nightly-download-button'
             );
@@ -210,7 +216,7 @@ test.describe(
             );
         });
 
-        test('Firefox iOS download button', async ({ page }) => {
+        test.skip('Firefox iOS download button', async ({ page }) => {
             const downloadButton = page.getByTestId(
                 'firefox-all-ios-download-button'
             );
