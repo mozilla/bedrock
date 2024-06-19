@@ -133,72 +133,13 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-firefox-quantum'),
-        ga_title='Firefox Browsers',
-        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-quantum-was-revolution'),
-        link_url=url('firefox.browsers.quantum')
-      )}}
-    </div>
-    <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('firefox-more-little-book'),
-        ga_title='Little Book of Privacy',
-        image=resp_img('img/firefox/more/little-book-of-privacy.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc= ftl('firefox-more-you-can-reclaim'),
-        link_url=url('firefox.privacy.book')
-      )}}
-
-      {{ card(
-        title=ftl('incognito-browser-what'),
-        ga_title='Features Private Browsing',
-        image=resp_img('img/firefox/more/incognito-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-calls-it'),
-        link_url=url('firefox.browsers.incognito-browser')
-      )}}
-
-      {{ card(
-        title=ftl('firefox-more-is-firefox-a-private-browser'),
-        ga_title='Features Private',
-        image=resp_img('img/firefox/more/private.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-were-focused-on-your-right-to'),
-        link_url=url('firefox.features.private')
-      )}}
-    </div>
-    <div class="mzp-l-card-quarter">
-      {{ card(
-        title=ftl('the-ad-blocker'),
-        ga_title='Featires Adblocker',
-        image=resp_img('img/firefox/more/firefox-adblocker.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('so-many-ads'),
-        link_url=url('firefox.features.adblocker'),
-      )}}
-
-      {{ card(
-        title=ftl('firefox-more-protection'),
-        ga_title='Features Private Browsing',
-        image=resp_img('img/firefox/more/private-browsing.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('were-obsessed-with'),
-        link_url=url('firefox.features.private-browsing')
-      )}}
-
-      {{ card(
         title=ftl('firefox-more-firefox-sync'),
         ga_title='Features Safe Browser',
         image=resp_img('img/firefox/more/firefox-sync.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('firefox-more-access-your-sync'),
         link_url=url('firefox.features.sync')
       )}}
-
-      {{ card(
-        title=ftl('firefox-more-avoid-misinformation-heading'),
-        ga_title='Avoid Misinformation',
-        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-avoid-misinformation-desc'),
-        link_url=url('firefox.more.misinformation')
-      )}}
     </div>
-
     <div class="mzp-l-card-third">
       {{ card(
         title=ftl('comparing-firefox-chrome'),
@@ -224,7 +165,6 @@
         link_url=url('firefox.browsers.compare.brave')
       )}}
     </div>
-
     <div class="mzp-l-card-third">
       {{ card(
         title=ftl('comparing-firefox-safari'),
@@ -241,15 +181,55 @@
         desc=ftl('be-free-to'),
         link_url=url('firefox.browsers.compare.opera')
       )}}
-    </div>
 
-    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('incognito-browser-what'),
+        ga_title='Features Private Browsing',
+        image=resp_img('img/firefox/more/incognito-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-calls-it'),
+        link_url=url('firefox.browsers.incognito-browser')
+      )}}
+    </div>
+    <div class="mzp-l-card-quarter">
+      {{ card(
+        title=ftl('firefox-more-is-firefox-a-private-browser'),
+        ga_title='Features Private',
+        image=resp_img('img/firefox/more/private.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-were-focused-on-your-right-to'),
+        link_url=url('firefox.features.private')
+      )}}
+
+      {{ card(
+        title=ftl('the-ad-blocker'),
+        ga_title='Features Adblocker',
+        image=resp_img('img/firefox/more/firefox-adblocker.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('so-many-ads'),
+        link_url=url('firefox.features.adblocker'),
+      )}}
+
       {{ card(
         title=ftl('firefox-more-fingerprinter-blocking'),
         ga_title='Fingerprinter Blocking',
         image=resp_img('img/firefox/more/fingerprint.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
         desc=ftl('firefox-more-fingerprinting-is-a'),
         link_url=url('firefox.features.fingerprinting')
+      )}}
+
+      {{ card(
+        title=ftl('firefox-more-protection'),
+        ga_title='Features Private Browsing',
+        image=resp_img('img/firefox/more/private-browsing.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('were-obsessed-with'),
+        link_url=url('firefox.features.private-browsing')
+      )}}
+    </div>
+    <div class="mzp-l-card-third">
+      {{ card(
+        title=ftl('firefox-more-avoid-misinformation-heading'),
+        ga_title='Avoid Misinformation',
+        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-avoid-misinformation-desc'),
+        link_url=url('firefox.more.misinformation')
       )}}
 
       {{ card(
@@ -261,11 +241,11 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-a-guide-to'),
-        ga_title='Safe Passwords',
-        desc=ftl('firefox-more-more-and-more'),
-        image=resp_img('img/firefox/more/passwords.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        link_url=url('firefox.privacy.passwords')
+        title=ftl('firefox-more-firefox-quantum'),
+        ga_title='Firefox Browsers',
+        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-quantum-was-revolution'),
+        link_url=url('firefox.browsers.quantum')
       )}}
     </div>
   </div>
