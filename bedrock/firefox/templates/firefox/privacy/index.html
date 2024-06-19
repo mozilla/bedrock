@@ -26,7 +26,7 @@
 
 <div class="mzp-l-content mzp-t-picto-center privacy-promise-title">
   {% call picto(
-    title=ftl('firefox-privacy-personal-data-promise'),
+    title=ftl('firefox-privacy-hub-firefox-privacy-promise'),
     body=True,
     image=resp_img(
       url='img/firefox/privacy/icon-privacy-promise.svg',
@@ -36,7 +36,7 @@
         'loading': 'lazy'
       }
     ),
-    heading_level=1,) %}
+    heading_level=1) %}
   {% endcall %}
 </div>
 
@@ -44,13 +44,13 @@
   <div class="mzp-l-columns mzp-t-columns-two">
     <div>
       <h2>{{ ftl('firefox-privacy-hub-take-less') }}</h2>
-      <h4 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-make-a-point-of-knowing') }}</h4>
+      <p><strong>{{ ftl('firefox-privacy-hub-we-make-a-point-of-knowing') }}</strong></p>
       <p>{{ ftl('firefox-privacy-hub-all-tech-companies-collect') }}</p>
     </div>
 
     <div>
       <h2>{{ ftl('firefox-privacy-hub-keep-it-safe') }}</h2>
-      <h4 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-we-do-the-hard-work-to-protect') }}</h4>
+      <p><strong>{{ ftl('firefox-privacy-hub-we-do-the-hard-work-to-protect') }}</strong></p>
       <p>
         {# Our lean-data page is en-US only, so only link to it for English locales. #}
         {% if LANG.startswith('en') %}
@@ -67,20 +67,14 @@
 
   <div>
     <h2>{{ ftl('firefox-privacy-hub-no-secrets') }}</h2>
-    <h4 class="privacy-promise-sub-title">{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</h4>
+    <p><strong>{{ ftl('firefox-privacy-hub-youll-always-know-where-you') }}</strong></p>
     <p>
-      {% if ftl_has_messages('firefox-privacy-hub-theres-no-hidden-agenda-here-v2') %}
-        {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here-v2', privacy=url('privacy.notices.firefox')) }}
-      {% else %}
-        {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here',
-          meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint,
-          privacy=url('privacy.notices.firefox')) }}
-      {% endif %}
+      {{ ftl('firefox-privacy-hub-theres-no-hidden-agenda-here-v2', privacy=url('privacy.notices.firefox')) }}
     </p>
   </div>
 </div>
 
-<div class="privacy-promise-learn-more">
+<div class="mzp-t-background-secondary">
   <ul class="mzp-l-content mzp-l-columns mzp-t-columns-two mzp-t-picto-center">
     {% call picto(
       title=ftl('firefox-privacy-hub-why-trust-firefox'),
@@ -113,7 +107,6 @@
       ),
       base_el='li') %}
       <p>{{ ftl('firefox-privacy-hub-firefox-products-work-differently') }}</p>
-      <p><a href="{{ url('firefox.privacy.products') }}">{{ ftl('firefox-privacy-hub-learn-about-our-products') }}</a></p>
       <p>{{ ftl('firefox-privacy-hub-read-the-privacy-notice-for', url=url('privacy.notices.firefox')) }}</p>
     {% endcall %}
   </ul>

@@ -6,7 +6,6 @@
 
 # HTML page title
 firefox-privacy-hub-firefox-privacy-promise = { -brand-name-firefox } Privacy Promise
-firefox-privacy-personal-data-promise = Personal Data Promise
 
 # HTML page description
 firefox-privacy-hub-firefox-takes-less-data-keeps = { -brand-name-firefox } takes less data, keeps it safe, and with no secrets.
@@ -25,12 +24,6 @@ firefox-privacy-hub-youll-always-know-where-you = You’ll always know where you
 #   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
 firefox-privacy-hub-theres-no-hidden-agenda-here-v2 = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. If you want to dig into every data-point we collect, our code is open. And so are we.
 
-# Obsolete string
-# Variables:
-#   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
-#   $meetings (url) - link to https://wiki.mozilla.org/
-firefox-privacy-hub-theres-no-hidden-agenda-here = There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust. Our <a href="{ $privacy }">Privacy Notice</a> is actually readable. Anyone in the world can attend our <a href="{ $meetings }">weekly company meetings</a>. If you want to dig into every datapoint we collect, our code is open. And so are we.
-
 firefox-privacy-hub-why-trust-firefox = Why trust { -brand-name-firefox }?
 
 # Variables:
@@ -40,12 +33,6 @@ firefox-privacy-hub-because-we-put-people-first = Because we put people first. I
 firefox-privacy-hub-learn-more-about-our-mission = Learn more about our mission
 firefox-privacy-hub-your-privacy-by-the-product = Your privacy, by the product
 firefox-privacy-hub-firefox-products-work-differently = { -brand-name-firefox } products work differently — because they’re designed to protect your privacy first.
-firefox-privacy-hub-learn-about-our-products = Learn about our products
-firefox-privacy-hub-firefox-lockwise = { -brand-name-firefox-lockwise }
-firefox-privacy-hub-the-passwords-and-credentials = The passwords and credentials you save in { -brand-name-firefox-lockwise } are encrypted on all your devices, so not even we can see them.
-firefox-privacy-hub-firefox-send = { -brand-name-firefox-send }
-firefox-privacy-hub-we-cant-see-the-names-or = We can’t see the names or content of the large files you share through { -brand-name-firefox-send } because they’re encrypted end-to-end — you choose who sees what you send, and you can even set an expiration date and password.
-firefox-privacy-hub-send-a-file = Send a file
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/privacy/firefox/
