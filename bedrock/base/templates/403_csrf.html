@@ -17,12 +17,12 @@
     <p>
       Cross-site request forgery (CSRF) mismatch detected.
     </p>
-    {% if request.user.is_staff %}
+    {% if settings.WAGTAIL_ENABLE_ADMIN %}
     <p>
       This is most likely because your SSO session expired or had to be renewed.
     </p>
     <p>
-      It's likely and regrettable that you have lost work since your last save.
+      If you were editing content, it's likely — and regrettable — that you have lost work since your last save.
       <br>
       If this is happening a lot, please <a href="https://github.com/mozilla/bedrock">open a bug report</a>.
     </p>
