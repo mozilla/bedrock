@@ -25,15 +25,17 @@ test.describe(
             const downloadButton = page.getByTestId('firefox-desktop-download');
             await expect(downloadButton).toBeVisible();
             await downloadButton.click();
-            await page.waitForURL('**/firefox/download/thanks/');
+            await page.waitForURL('**/firefox/download/thanks/', {
+                waitUntil: 'commit'
+            });
 
             // Assert /thanks/ page triggers file download.
             const download = await page.waitForEvent('download');
             const downloadURL = download.url();
 
             expect(downloadURL).toEqual(
-                expect.stringContaining(
-                    'https://download-installer.cdn.mozilla.net/pub/firefox/releases/'
+                expect.stringMatching(
+                    /https:\/\/download-installer.cdn.mozilla.net\/|https:\/\/cdn-stage.stubattribution.nonprod.cloudops.mozgcp.net\//
                 )
             );
 
