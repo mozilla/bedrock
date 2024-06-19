@@ -602,6 +602,6 @@ redirectpatterns = (
     redirect(r"^firefox/browsers/?$", "firefox"),
     # issue 14248
     redirect(r"^firefox/privacy/products/?$", "products.landing"),
-    # issue 14248
     redirect(r"^firefox/privacy/safe-passwords/?$", "firefox.features.password-manager"),
+    redirect(r"^firefox/privacy/book/?$", "https://support.mozilla.org/kb/how-stay-safe-web"),
 )
