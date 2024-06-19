@@ -39,7 +39,10 @@ test.describe(
                 await expect(downloadLink).toBeVisible();
                 await downloadLink.click();
                 await page.waitForURL(
-                    '**/products/vpn/download/windows/thanks/'
+                    '**/products/vpn/download/windows/thanks/',
+                    {
+                        waitUntil: 'commit'
+                    }
                 );
 
                 // Assert /thanks/ page triggers file download.
@@ -72,7 +75,9 @@ test.describe(
 
                 await expect(downloadLink).toBeVisible();
                 await downloadLink.click();
-                await page.waitForURL('**/products/vpn/download/mac/thanks/');
+                await page.waitForURL('**/products/vpn/download/mac/thanks/', {
+                    waitUntil: 'commit'
+                });
 
                 // Assert /thanks/ page triggers file download.
                 const download = await page.waitForEvent('download');

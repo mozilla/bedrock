@@ -81,7 +81,9 @@ test.describe(
 
             // Change page language from /en-US/ to /de/
             await languageSelect.selectOption('de');
-            await page.waitForURL('**/de/?automation=true');
+            await page.waitForURL('**/de/?automation=true', {
+                waitUntil: 'commit'
+            });
 
             // Assert page language is now German
             await expect(languageSelect).toHaveValue('de');

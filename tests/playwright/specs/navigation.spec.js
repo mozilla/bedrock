@@ -67,7 +67,9 @@ test.describe(
 
             // Click Firefox desktop link
             await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/');
+            await page.waitForURL('**/firefox/new/', {
+                waitUntil: 'commit'
+            });
 
             // Assert Firefox menu is closed after navigation
             await expect(firefoxMenu).not.toBeVisible();
@@ -163,7 +165,9 @@ test.describe(
 
             // Click Firefox desktop link
             await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/');
+            await page.waitForURL('**/firefox/new/', {
+                waitUntil: 'commit'
+            });
 
             // Assert nav menu is closed again after navigation
             await expect(navigationMenuItems).not.toBeVisible();
