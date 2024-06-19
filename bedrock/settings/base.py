@@ -2085,6 +2085,11 @@ GS_OBJECT_PARAMETERS = {
 if GS_BUCKET_NAME and GS_PROJECT_ID:
     STORAGES["default"] = {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}
     GS_FILE_OVERWRITE = False
+    # Bucket has a uniform policy (public read, authenticated write) so we don't want to
+    # try to sign URLs with querystrings here, as that will cause GCS to respond with
+    # 400 Bad Request because signed URLs are not compatible with uniform access control.
+    # See the notes for https://django-storages.readthedocs.io/en/latest/backends/gcloud.html#gs-default-acl
+    GS_QUERYSTRING_AUTH = False
 else:
     SUPPORTED_NONLOCALES += [
         "custom-media",  # using local filesystem storage (for dev)
