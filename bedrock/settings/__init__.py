@@ -282,17 +282,6 @@ if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
         "ketama": True,
     }
 
-# cache for lang files
-CACHES["l10n"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "l10n",
-    "TIMEOUT": DOTLANG_CACHE,
-    "OPTIONS": {
-        "MAX_ENTRIES": 5000,
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
 # cache for Fluent files
 CACHES["fluent"] = {
     "BACKEND": "bedrock.base.cache.SimpleDictCache",

@@ -13,6 +13,8 @@ import warnings
 from django.core.cache import CacheKeyWarning, cache, caches
 from django.test import RequestFactory, TestCase, override_settings
 
+from markus.testing import MetricsMock
+
 
 # functions/classes for complex data type tests
 def f():
@@ -30,13 +32,13 @@ def custom_key_func(key, key_prefix, version):
 
 
 _caches_setting_base = {
-    "default": {},
-    "prefix": {"KEY_PREFIX": f"cacheprefix{os.getpid()}"},
-    "v2": {"VERSION": 2},
-    "custom_key": {"KEY_FUNCTION": custom_key_func},
-    "custom_key2": {"KEY_FUNCTION": "bedrock.base.tests.test_simple_dict_cache.custom_key_func"},
-    "cull": {"OPTIONS": {"MAX_ENTRIES": 30}},
-    "zero_cull": {"OPTIONS": {"CULL_FREQUENCY": 0, "MAX_ENTRIES": 30}},
+    "default": {"LOCATION": "default"},
+    "prefix": {"LOCATION": "default", "KEY_PREFIX": f"cacheprefix{os.getpid()}"},
+    "v2": {"LOCATION": "default", "VERSION": 2},
+    "custom_key": {"LOCATION": "default", "KEY_FUNCTION": custom_key_func},
+    "custom_key2": {"LOCATION": "default", "KEY_FUNCTION": "bedrock.base.tests.test_simple_dict_cache.custom_key_func"},
+    "cull": {"LOCATION": "cull", "OPTIONS": {"MAX_ENTRIES": 30}},
+    "zero_cull": {"LOCATION": "zero_cull", "OPTIONS": {"CULL_FREQUENCY": 0, "MAX_ENTRIES": 30}},
 }
 
 
@@ -331,10 +333,22 @@ class SimpleDictCacheTests(TestCase):
         self.assertEqual(count, final_count)
 
     def test_cull(self):
-        self._perform_cull_test(caches["cull"], 50, 29)
+        # Size +10=10 -> +10=20 -> +10=30 (cull down to 20) -> +10=30 (cull down to 20) -> +9=29
+        with MetricsMock() as mm:
+            self._perform_cull_test(caches["cull"], 50, 29)
+            assert len(mm.filter_records("incr", "cache.cull", value=1, tags=["cache:cull"])) == 2
+            mm.assert_gauge("cache.size", value=10, tags=["cache:cull"])
+            mm.assert_gauge("cache.size", value=20, tags=["cache:cull"])
+            assert len(mm.filter_records("gauge", "cache.size", value=30, tags=["cache:cull"])) == 2
 
     def test_zero_cull(self):
-        self._perform_cull_test(caches["zero_cull"], 50, 19)
+        # Size +10=10 -> +10=20 -> +10=30 (cull down to zero) -> +10=10 -> +9=19
+        with MetricsMock() as mm:
+            self._perform_cull_test(caches["zero_cull"], 50, 19)
+            mm.assert_incr("cache.cull", 1, tags=["cache:zero_cull"])
+            assert len(mm.filter_records("gauge", "cache.size", value=10, tags=["cache:zero_cull"])) == 2
+            mm.assert_gauge("cache.size", value=20, tags=["cache:zero_cull"])
+            mm.assert_gauge("cache.size", value=30, tags=["cache:zero_cull"])
 
     def test_invalid_keys(self):
         """

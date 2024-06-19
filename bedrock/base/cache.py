@@ -4,6 +4,8 @@
 
 from django.core.cache.backends.locmem import DEFAULT_TIMEOUT, LocMemCache
 
+from bedrock.base import metrics
+
 
 class SimpleDictCache(LocMemCache):
     """A local memory cache that doesn't pickle values.
@@ -12,6 +14,19 @@ class SimpleDictCache(LocMemCache):
     inserted into a dict. If you put something mutable in here, then
     mutate it elsewhere, the cached data will also be changed.
     """
+
+    def __init__(self, name, params):
+        super().__init__(name, params)
+        self._name = name
+
+    def _set(self, key, value, timeout=DEFAULT_TIMEOUT):
+        super()._set(key, value, timeout)
+        if len(self._cache) % 10 == 0:
+            metrics.gauge("cache.size", value=len(self._cache), tags=[f"cache:{self._name}"])
+
+    def _cull(self):
+        super()._cull()
+        metrics.incr("cache.cull", tags=[f"cache:{self._name}"])
 
     def add(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
         key = self.make_key(key, version=version)
