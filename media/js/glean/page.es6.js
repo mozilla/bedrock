@@ -5,49 +5,6 @@
  */
 
 import * as page from '../libs/glean/page.js';
-import Utils from './utils.es6';
-
-const defaultParams = {
-    utm_source: '',
-    utm_campaign: '',
-    utm_medium: '',
-    utm_content: '',
-    entrypoint_experiment: '',
-    entrypoint_variation: '',
-    experiment: '',
-    variation: '',
-    v: '', // short param for 'variation'
-    xv: '' // short param for 'experience version'.
-};
-
-function recordCustomPageMetrics() {
-    page.viewed.set();
-    page.path.set(Utils.getPathFromUrl());
-    page.locale.set(Utils.getLocaleFromUrl());
-    page.referrer.set(Utils.getReferrer());
-    page.httpStatus.set(Utils.getHttpStatus());
-
-    const params = Utils.getQueryParamsFromUrl();
-    const finalParams = {};
-
-    // validate only known & trusted query params
-    // for inclusion in Glean metrics.
-    for (const param in defaultParams) {
-        if (Object.prototype.hasOwnProperty.call(defaultParams, param)) {
-            const allowedChars = /^[\w/.%-]+$/;
-            let v = params.get(param);
-
-            if (v) {
-                v = decodeURIComponent(v);
-                finalParams[param] = allowedChars.test(v) ? v : '';
-            } else {
-                finalParams[param] = '';
-            }
-
-            page.queryParams[param].set(finalParams[param]);
-        }
-    }
-}
 
 function pageEvent(obj) {
     if (typeof obj !== 'object' && typeof obj.label !== 'string') {
@@ -77,4 +34,4 @@ function pageEvent(obj) {
     }
 }
 
-export { recordCustomPageMetrics, pageEvent };
+export { pageEvent };
