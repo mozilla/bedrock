@@ -103,7 +103,7 @@
 
     {% if vpn_available %}
       <p class="c-main-cta">
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Save on Mozilla VPN" data-cta-position="primary" data-testid="get-mozilla-vpn-hero-button">
           {{ vpn_saving(country_code=country_code, lang=LANG, bundle_relay=False, ftl_string='vpn-shared-save-percent-on') }}
         </a>
         <small>
@@ -112,7 +112,7 @@
       </p>
 
     {% else %}
-      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="primary">
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="primary" data-testid="join-waitlist-hero-button">
         {{ ftl('vpn-shared-waitlist-link') }}
       </a>
     {% endif %}
@@ -169,7 +169,7 @@
       <header class="c-pricing-main-header">
         <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
 
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-not-available-button">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </header>

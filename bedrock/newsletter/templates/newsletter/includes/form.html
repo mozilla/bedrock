@@ -7,7 +7,7 @@
 {% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% if not success %}
-  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post">
+  <form id="newsletter-form" class="mzp-c-newsletter-form" action="{{ action }}" method="post" data-testid="newsletter-form">
     {% if not is_multi_newsletter_form %}
       <div hidden>
         {{ form.newsletters|safe }}
@@ -33,7 +33,7 @@
     {% endif %}
 
     <fieldset class="mzp-c-newsletter-content">
-      <div class="mzp-c-form-errors {% if not form.errors %}hidden{% endif %}" id="newsletter-errors">
+      <div class="mzp-c-form-errors {% if not form.errors %}hidden{% endif %}" id="newsletter-errors" data-testid="newsletter-error-message">
         {{ form.non_field_errors()|safe }}
         <ul class="mzp-u-list-styled">
           <li class="error-email-invalid {% if not form.email.errors %}hidden{% endif %}">
@@ -93,13 +93,13 @@
 
         <p>
           <label for="privacy" class="mzp-u-inline">
-            <input type="checkbox" id="privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
+            <input type="checkbox" id="privacy" name="privacy" required aria-required="true" data-testid="newsletter-privacy-checkbox"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
           </label>
         </p>
       </div>
 
       <p class="mzp-c-form-submit">
-        <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up">
+        <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up" data-testid="newsletter-submit-button">
           {% if submit_text %}
             {{ submit_text }}
           {% else %}
@@ -123,7 +123,7 @@
     </fieldset>
   </form>
 
-  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden">
+  <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden" data-testid="newsletter-thanks-message">
     {% if thankyou_content %}
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>

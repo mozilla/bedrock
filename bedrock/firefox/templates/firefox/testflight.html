@@ -49,7 +49,7 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
       <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
       <fieldset class="mzp-c-newsletter-content">
-        <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+        <div class="mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
           <ul class="mzp-u-list-styled">
             <li class="error-email-invalid hidden">
               Please enter a valid email address
@@ -68,13 +68,13 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
 
         <div>
           <label for="id_email">Email</label>
-          <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true">
+          <input type="email" class="mzp-js-email-field" id="id_email" name="email" required aria-required="true" data-testid="newsletter-email-input">
         </div>
 
         <div id="newsletter-details" class="mzp-c-newsletter-details">
           <input type="hidden" name="country" id="id_country"  aria-required="false">
             <label for="id_terms" class="mzp-u-inline">
-              <input id="id_terms" name="terms" required aria-required="true" type="checkbox">
+              <input id="id_terms" name="terms" required aria-required="true" type="checkbox" data-testid="newsletter-terms-checkbox">
               I have read and agree to these
               <a href="#terms-conditions">Terms and Conditions</a>
             </label>
@@ -84,12 +84,12 @@ Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestF
         </div>
 
         <p class="mzp-c-form-submit">
-          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit">Submit</button>
+          <button class="mzp-c-button mzp-t-product" id="newsletter-submit" type="submit" data-testid="newsletter-submit-button">Submit</button>
         </p>
       </fieldset>
     </form>
 
-    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden">
+    <div id="newsletter-thanks" class="mzp-c-newsletter-thanks hidden" data-testid="newsletter-thanks-message">
       <h3>Congrats!</h3>
       <h4>You have been added to the Firefox for iOS testing program.</h4>
       <p>

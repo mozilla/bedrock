@@ -7,8 +7,8 @@
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=innovation' %}
 
 <li class="c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="c-menu-title" href="https://future.mozilla.org/?{{ utm_params }}" aria-haspopup="true" aria-controls="c-menu-panel-innovation">{{ ftl('navigation-v2-innovation') }}</a>
-  <div class="c-menu-panel" id="c-menu-panel-innovation">
+  <a class="c-menu-title" href="https://future.mozilla.org/?{{ utm_params }}" aria-haspopup="true" aria-controls="c-menu-panel-innovation" data-testid="navigation-link-innovation">{{ ftl('navigation-v2-innovation') }}</a>
+  <div class="c-menu-panel" id="c-menu-panel-innovation" data-testid="navigation-menu-innovation">
     <div class="c-menu-panel-container">
       <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-innovation">{{ ftl('navigation-v2-close-innovation-menu') }}</button>
       <div class="c-menu-panel-content">

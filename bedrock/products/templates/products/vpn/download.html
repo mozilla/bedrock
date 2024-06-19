@@ -37,7 +37,7 @@
   <section class="vpn-downloads">
       <header class="vpn-download-header">
         {% if block_download %}
-        <div class="mzp-l-content vpn-download-blocked">
+        <div class="mzp-l-content vpn-download-blocked" data-testid="vpn-download-blocked-message">
           <h1>{{ self.page_title_full() }}</h1>
           <p>{{ ftl('vpn-download-not-available-in-country') }}</p>
         </div>
@@ -66,7 +66,7 @@
 
       {% if not block_download %}
 
-      <div class="vpn-download-options mzp-l-content">
+      <div class="vpn-download-options mzp-l-content" data-testid="vpn-download-options">
 
         <!-- Primary list -->
       <div class="vpn-download-primary-platform">
@@ -79,7 +79,7 @@
             <h2>{{ ftl('vpn-download-for-windows-long') }}</h2>
             <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
             <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
-            <a class="mzp-c-button" href="{{ url('products.vpn.windows-download') }}" data-cta-type="button" data-cta-text="VPN Download (Windows)">
+            <a class="mzp-c-button" href="{{ url('products.vpn.windows-download') }}" data-cta-type="button" data-cta-text="VPN Download (Windows)" data-testid="vpn-download-link-primary-windows">
             {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
             </a>
           </div>
@@ -93,7 +93,7 @@
             <h2>{{ ftl('vpn-download-for-mac-long', fallback='vpn-download-for-mac') }}</h2>
             <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
             <p>{{ ftl('vpn-download-version-requirements', version='10.15') }}</p>
-            <a class="mzp-c-button" href="{{ url('products.vpn.mac-download') }}" data-cta-type="button" data-cta-text="VPN Download (macOS)" class="platform-download-link">
+            <a class="mzp-c-button" href="{{ url('products.vpn.mac-download') }}" data-cta-type="button" data-cta-text="VPN Download (macOS)" class="platform-download-link" data-testid="vpn-download-link-primary-mac">
             {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
             </a>
           </div>
@@ -154,7 +154,7 @@
             <h2>{{ ftl('vpn-download-for-windows-v2') }}</h2>
             <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
           </div>
-          <a href="{{ url('products.vpn.windows-download') }}" data-cta-type="button" data-cta-text="VPN Download (Windows)" class="platform-download-link">
+          <a href="{{ url('products.vpn.windows-download') }}" data-cta-type="button" data-cta-text="VPN Download (Windows)" class="platform-download-link" data-testid="vpn-download-link-secondary-windows">
             <span class="">{{ ftl('vpn-download-for-windows-long') }}</span>
           </a>
         </li>
@@ -167,7 +167,7 @@
             <h2>{{ ftl('vpn-download-for-mac') }}</h2>
             <p>{{ ftl('vpn-download-version-requirements', version='10.15') }}</p>
           </div>
-          <a href="{{ url('products.vpn.mac-download') }}" data-cta-type="button" data-cta-text="VPN Download (macOS)" class="platform-download-link">
+          <a href="{{ url('products.vpn.mac-download') }}" data-cta-type="button" data-cta-text="VPN Download (macOS)" class="platform-download-link" data-testid="vpn-download-link-secondary-mac">
             <span class="visually-hidden">{{ ftl('vpn-download-for-mac-long') }}</span>
           </a>
         </li>

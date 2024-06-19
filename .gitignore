@@ -57,9 +57,10 @@ tests/functional/assets
 tests/functional/driver.log
 tests/functional/results.html
 tests/unit/coverage
+tests/unit/dist/
+tests/playwright/test-results/
 Thumbs.db
 tmp/*
 venv
-tests/unit/dist/
 /custom-media
 /local-credentials/*.json

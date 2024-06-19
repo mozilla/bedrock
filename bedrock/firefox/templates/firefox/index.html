@@ -120,7 +120,7 @@
         <![endif]-->
         <!--[if !IE]><!-->
           {# Download link should be locale neutral see issue 7982 #}
-          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
+          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-testid="firefox-desktop-download">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
         <!--<![endif]-->
       </p>
 
@@ -149,10 +149,10 @@
         {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
       </div>
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ ftl('firefox-browsers-download-for-mobile') }}</h3>
+        <h3 class="mzp-c-menu-list-title" data-testid="firefox-mobile-download-menu-button">{{ ftl('firefox-browsers-download-for-mobile') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
-          <li class="mzp-c-menu-list-item"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">{{ ftl('firefox-browsers-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ ftl('firefox-browsers-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-testid="firefox-android-menu-link">{{ ftl('firefox-browsers-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-testid="firefox-ios-menu-link">{{ ftl('firefox-browsers-ios') }}</a></li>
           <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">{{ ftl('firefox-browsers-send-me-a-link') }}</a></li>
         </ul>
       </div>

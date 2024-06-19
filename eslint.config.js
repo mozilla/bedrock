@@ -154,6 +154,24 @@ module.exports = [
         }
     },
     {
+        // JS Playwright test files.
+        files: ['tests/playwright/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'script',
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                ...globals.commonjs
+            }
+        },
+        rules: {
+            ...baseRules,
+            ...extendedRules,
+            ...nodeRules
+        }
+    },
+    {
         // JS build files for local dev.
         files: [
             'eslint.config.js',

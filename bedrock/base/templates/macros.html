@@ -68,7 +68,7 @@
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
-  <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}">
+  <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}" data-test-id="fxa-form">
     <input type="hidden" name="action" value="email">
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint">
     <input type="hidden" name="form_type" value="email">
@@ -125,7 +125,7 @@
     <div class="fxa-email-field-container">
       <div class="mzp-c-field mzp-l-stretch">
         <label class="mzp-c-field-label" for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
-        <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required>
+        <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required data-testid="fxa-form-email-field">
       </div>
 
       <div class="mzp-c-button-container mzp-l-stretch">
@@ -136,6 +136,7 @@
           data-cta-type="fxa-sync"
           data-cta-text="Register"
           data-cta-position="primary"
+          data-testid="fxa-form-submit-button"
         >
         {% if button_text %}
           {{ button_text }}
