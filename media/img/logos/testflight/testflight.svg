@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:grid x="12.021" y="10.955" width="100" height="100"/>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="matrix(1.159591, 0, 0, 1.159591, -1.914617, -1.915226)" style="">
+    <g transform="translate(3.312500, 2.680870)" stroke="#000000" stroke-width="2">
+      <path d="M 8.724 0.002 C 13.025 -0.018 9.227 5.761 10.509 8.274 C 11.827 10.858 18.769 11.739 16.266 14.794 C 13.932 17.643 11.476 11.436 8.724 11.434 C 5.916 11.432 3.38 17.717 0.992 14.781 C -1.519 11.694 5.542 10.848 6.889 8.274 C 8.211 5.748 4.423 0.022 8.724 0.002 Z" style="fill: rgb(255, 255, 255);"/>
+      <circle cx="8.687" cy="9.319" r="2" style="fill: rgb(255, 255, 255);"/>
+    </g>
+  </g>
+</svg>
