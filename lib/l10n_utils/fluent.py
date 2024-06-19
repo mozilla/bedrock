@@ -254,7 +254,7 @@ def ftl_has_messages(l10n, *message_ids, require_all=True):
 
 def translate(l10n, message_id, fallback=None, **kwargs):
     # check the `locale` bundle for the message if we have a fallback defined
-    if fallback and not l10n.has_message(message_id):
+    if fallback and l10n.has_message(fallback) and not l10n.has_message(message_id):
         message_id = fallback
 
     return l10n.format_value(message_id, kwargs)
