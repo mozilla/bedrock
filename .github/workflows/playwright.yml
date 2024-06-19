@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: cd tests/playwright && npm ci && npm run install-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: cd tests/playwright && npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
