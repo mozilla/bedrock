@@ -479,17 +479,10 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-127-eu.scss"
+        "css/firefox/privacy/promise.scss"
       ],
-      "name": "firefox_whatsnew_127_eu"
+      "name": "firefox-privacy-promise"
     },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-127-na.scss"
-      ],
-      "name": "firefox_whatsnew_127_na"
-    },
-
     {
       "files": [
         "css/privacy/privacy-email.scss"
