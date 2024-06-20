@@ -602,9 +602,8 @@ GS_OBJECT_PARAMETERS = {
 }
 
 if GS_BUCKET_NAME and GS_PROJECT_ID:
-    GS_CUSTOM_ENDPOINT = MEDIA_URL  # hostname that proxies the storage bucket
+    GS_CUSTOM_ENDPOINT = MEDIA_URL.rstrip("/")  # hostname that proxies the storage bucket
     GS_FILE_OVERWRITE = False
-    GS_LOCATION = "custom-media"  # path within the bucket to upload to (and used when generating URLs)
 
     # The GCS bucket has a uniform policy (public read, authenticated write) so we don't want
     # to try to sign URLs with querystrings here, as that will cause GCS to respond with
