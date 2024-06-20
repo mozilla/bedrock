@@ -88,7 +88,7 @@ if REDIS_URL:
 
 CACHES = {
     "default": {
-        "BACKEND": "bedrock.base.cache.SimpleDictCache",
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "default",
         "TIMEOUT": 600,
         "OPTIONS": {

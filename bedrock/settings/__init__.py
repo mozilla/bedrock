@@ -284,7 +284,7 @@ if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
 
 # cache for Fluent files
 CACHES["fluent"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     "LOCATION": "fluent",
     "TIMEOUT": FLUENT_CACHE_TIMEOUT,
     "OPTIONS": {
@@ -295,7 +295,7 @@ CACHES["fluent"] = {
 
 # cache for product details
 CACHES["product-details"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     "LOCATION": "product-details",
     "OPTIONS": {
         "MAX_ENTRIES": 200,  # currently 104 json files
@@ -305,7 +305,7 @@ CACHES["product-details"] = {
 
 # cache for release notes
 CACHES["release-notes"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     "LOCATION": "release-notes",
     "TIMEOUT": 5,
     "OPTIONS": {
@@ -316,7 +316,7 @@ CACHES["release-notes"] = {
 
 # cache for externalfiles
 CACHES["externalfiles"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     "LOCATION": "externalfiles",
     "OPTIONS": {
         "MAX_ENTRIES": 10,  # currently 2 files
@@ -326,7 +326,7 @@ CACHES["externalfiles"] = {
 
 # cache for generated QR codes
 CACHES["qrcode"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
+    "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     "LOCATION": "qrcode",
     "TIMEOUT": None,
     "OPTIONS": {
