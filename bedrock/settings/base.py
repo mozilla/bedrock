@@ -561,9 +561,22 @@ CANONICAL_URL = "https://www.mozilla.org"
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
 
+# If config is available, we use Google Cloud Storage, else (for local dev)
+# fall back to filesytem storage
+
+GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
+GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
+
 STORAGES = {
+    # In production only the CMS/Editing deployment has write access
+    # to the cloud storage bucket. As such, be careful if you introduce
+    # file uploads to other parts of Bedrock that use "default" storage -
+    # it will not allow uploads for the Web deployment. You will have to
+    # specify a different, dedicated storage backend for the file-upload process.
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage"
+        if GS_BUCKET_NAME and GS_PROJECT_ID
+        else "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
@@ -583,6 +596,25 @@ STATICFILES_FINDERS = [
 ]
 if DEBUG:
     STATICFILES_DIRS += (path("media"),)
+
+GS_OBJECT_PARAMETERS = {
+    "cache_control": "max-age=2592000, public, immutable"  # 2592000 == 30 days / 1 month
+}
+
+if GS_BUCKET_NAME and GS_PROJECT_ID:
+    GS_CUSTOM_ENDPOINT = MEDIA_URL  # hostname that proxies the storage bucket
+    GS_FILE_OVERWRITE = False
+    GS_LOCATION = "custom-media"  # path within the bucket to upload to (and used when generating URLs)
+
+    # The GCS bucket has a uniform policy (public read, authenticated write) so we don't want
+    # to try to sign URLs with querystrings here, as that will cause GCS to respond with
+    # 400 Bad Request because signed URLs are not compatible with uniform access control.
+    # See the notes for https://django-storages.readthedocs.io/en/latest/backends/gcloud.html#gs-default-acl
+    GS_QUERYSTRING_AUTH = False
+else:
+    SUPPORTED_NONLOCALES += [
+        "custom-media",  # using local filesystem storage (for dev)
+    ]
 
 
 def set_whitenoise_headers(headers, path, url):
@@ -2069,28 +2101,3 @@ WAGTAIL_RICHEXT_FEATURES_FULL = [
 ]
 
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
-
-# Storage
-# If config is available, we use Google Cloud Storage, else (for local dev)
-# fall back to filesytem storage
-
-GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
-GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
-GS_OBJECT_PARAMETERS = {
-    "cache_control": "max-age=2592000, public, immutable",
-    # 2592000 == 30 days / 1 month
-}
-
-
-if GS_BUCKET_NAME and GS_PROJECT_ID:
-    STORAGES["default"] = {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}
-    GS_FILE_OVERWRITE = False
-    # Bucket has a uniform policy (public read, authenticated write) so we don't want to
-    # try to sign URLs with querystrings here, as that will cause GCS to respond with
-    # 400 Bad Request because signed URLs are not compatible with uniform access control.
-    # See the notes for https://django-storages.readthedocs.io/en/latest/backends/gcloud.html#gs-default-acl
-    GS_QUERYSTRING_AUTH = False
-else:
-    SUPPORTED_NONLOCALES += [
-        "custom-media",  # using local filesystem storage (for dev)
-    ]
