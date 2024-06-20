@@ -26,12 +26,6 @@ def mobile_app(request, *args, **kwargs):
 
     campaign_options = [
         "firefox-whatsnew",
-        "firefox-whatsnew-120",
-        "firefox-whatsnew-121-us",
-        "firefox-whatsnew-121-gb",
-        "firefox-whatsnew-121-de",
-        "firefox-whatsnew-121-fr",
-        "firefox-whatsnew-122",
         "firefox-welcome-4",
         "firefox-welcome-6",
         "firefox-welcome-17-en",
