@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import "../../protocol/components/video";
+
+
+.wnp-content-main {
+    background-color: #F8F6F4;
+    text-align: center
+}
+
+.c-video-wrapper {
+    z-index: 10;
+
+    .mzp-c-video {
+        overflow: visible;
+        position: relative;
+
+        @media (min-width: 920px) {
+            &::before {
+            background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/video-pseudo-background.png");
+            background-repeat: no-repeat;
+            content: "";
+            height: 556px;
+            width: 710px;
+            position: absolute;
+            left: 30px;
+            top: 19px;
+            background-size: contain;
+            z-index: -1;
+        }
+        }
+    }
+}
+
+.wnp-main-title {
+    @include text-title-lg;
+    margin-top: $spacing-lg;
+    @media #{$mq-md} {
+        margin-top: $layout-xl;
+    }
+}
+
+.wnp-main-tagline {
+    @include text-body-xl;
+}
+
+.has-pip-icon strong {
+    @include image-replaced;
+    @include background-size(2.25ex, 2.25ex);
+    background-image: url("/media/img/firefox/whatsnew/whatsnew127-eu/pip-icon.svg");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 2.25ex;
+    margin-bottom: -0.5ex;
+    width: 2.25ex;
+}
