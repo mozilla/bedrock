@@ -11,7 +11,7 @@ exclude: >
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
     -   id: check-shebang-scripts-are-executable
     -   id: check-yaml
@@ -20,7 +20,7 @@ repos:
         args:
           - --markdown-linebreak-ext=md
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.4
+    rev: v1.5.5
     hooks:
     -   id: insert-license
         language: python
@@ -65,12 +65,12 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.7
+    rev: v0.4.10
     hooks:
       - id: ruff
       - id: ruff-format
   - repo: https://github.com/mozilla-l10n/moz-fluent-linter
-    rev: v0.4.5
+    rev: v0.4.6
     hooks:
       - id: fluent_linter
         files: \.ftl$
