@@ -16,20 +16,10 @@
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-card') }}
-  {{ css_bundle('firefox-privacy-common') }}
-{% endblock %}
-
-{% block sub_navigation %}
-  {% include 'firefox/privacy/includes/sub-nav.html' %}
 {% endblock %}
 
 {% block content %}
 <main>
   {% block hub_content %}{% endblock %}
-
-  {{ callout(
-    title=ftl('firefox-privacy-hub-read-the-privacy-notice-for', url=url('privacy.notices.firefox')),
-    class='call-out-privacy')
-  }}
 </main>
 {% endblock %}

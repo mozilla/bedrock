@@ -600,4 +600,8 @@ redirectpatterns = (
     redirect(r"^firefox/flashback/?$", "firefox"),
     # issue 14222
     redirect(r"^firefox/browsers/?$", "firefox"),
+    # issue 14248
+    redirect(r"^firefox/privacy/products/?$", "products.landing"),
+    redirect(r"^firefox/privacy/safe-passwords/?$", "firefox.features.password-manager"),
+    redirect(r"^firefox/privacy/book/?$", "https://support.mozilla.org/kb/how-stay-safe-web"),
 )

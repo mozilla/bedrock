@@ -479,21 +479,9 @@
     },
     {
       "files": [
-        "css/firefox/privacy/common.scss"
-      ],
-      "name": "firefox-privacy-common"
-    },
-    {
-      "files": [
         "css/firefox/privacy/promise.scss"
       ],
       "name": "firefox-privacy-promise"
-    },
-    {
-      "files": [
-        "css/firefox/privacy/products.scss"
-      ],
-      "name": "firefox-privacy-products"
     },
     {
       "files": [
@@ -791,12 +779,6 @@
     },
     {
       "files": [
-        "css/firefox/seo.scss"
-      ],
-      "name": "seo"
-    },
-    {
-      "files": [
         "css/firefox/more/misinformation.scss"
       ],
       "name": "misinformation"
@@ -927,12 +909,6 @@
         "css/firefox/browsers/chromebook.scss"
       ],
       "name": "chromebook"
-    },
-    {
-      "files": [
-        "css/firefox/privacy/book.scss"
-      ],
-      "name": "privacy-book"
     },
     {
       "files": [
@@ -1630,12 +1606,6 @@
         "js/firefox/whatsnew/whatsnew-127-na.js"
       ],
       "name": "firefox_whatsnew_127_na"
-    },
-    {
-      "files": [
-        "js/firefox/privacy/products.js"
-      ],
-      "name": "firefox-privacy-products"
     },
     {
       "files": [

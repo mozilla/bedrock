@@ -1297,5 +1297,9 @@ URLS = flatten(
         # issue 14647
         url_test("/privacy/hubs/", "/privacy/archive/mozilla-hubs/notice-2024-06/"),
         url_test("/about/legal/terms/hubs/", "/privacy/archive/mozilla-hubs/tos-2024-06/"),
+        # issue 14248
+        url_test("/firefox/privacy/products/", "/products/"),
+        url_test("/firefox/privacy/safe-passwords/", "/firefox/features/password-manager/"),
+        url_test("/firefox/privacy/book/", "https://support.mozilla.org/kb/how-stay-safe-web"),
     )
 )
