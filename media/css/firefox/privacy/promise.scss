@@ -7,6 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-h1{
+h1.mzp-c-picto-heading {
     @include text-title-xl;
 }
