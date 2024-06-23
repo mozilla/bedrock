@@ -371,19 +371,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
         "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx119-eu-relay.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx119-na-addons.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx119-na-trio.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx120-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx120-eu-vpn.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx120-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx121.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx122-eu.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx123-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx123-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx124-na-pdf.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx126beta-de.html": ["firefox/whatsnew/whatsnew"],
@@ -399,11 +386,7 @@ class WhatsnewView(L10nTemplateView):
 
     # specific templates that should not be rendered in
     # countries where we can't advertise Mozilla VPN.
-    vpn_excluded_templates = [
-        "firefox/whatsnew/whatsnew-fx120-eu-vpn.html",
-        "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html",
-        "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html",
-    ]
+    vpn_excluded_templates = []
 
     # place expected ?v= values in this list
     variations = ["1", "2", "3", "4"]
@@ -516,68 +499,6 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx125-eu.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx125-na.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("124."):
-            if locale == "en-US":
-                template = "firefox/whatsnew/whatsnew-fx124-na-pdf.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("123."):
-            if locale in ["de", "en-GB", "fr"]:
-                template = "firefox/whatsnew/whatsnew-fx123-eu.html"
-            elif locale in ["en-US", "en-CA"]:
-                if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx123-eu.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx123-na.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("122."):
-            if locale in ["de", "en-GB", "es-ES", "fr", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx122-eu.html"
-            elif locale in ["en-US", "en-CA"]:
-                if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx122-eu.html"
-                else:
-                    template = "firefox/whatsnew/index.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("121."):
-            if locale in ["en-US", "en-CA", "en-GB", "de", "fr"]:
-                template = "firefox/whatsnew/whatsnew-fx121.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("120."):
-            if country in WNP117_VPN_EXPANSION_COUNTRIES:
-                template = "firefox/whatsnew/whatsnew-fx120-eu-vpn.html"
-            elif locale in ["en-US", "en-CA"]:
-                template = "firefox/whatsnew/whatsnew-fx120-na.html"
-            elif locale in ["de", "fr", "en-GB"]:
-                template = "firefox/whatsnew/whatsnew-fx120-eu.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("119."):
-            if locale in ["de", "fr", "en-GB"]:
-                if variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx119-eu-relay.html"
-                elif variant == "2":
-                    template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"
-            elif locale.startswith("en-"):
-                if country == "GB":
-                    if variant == "3":
-                        template = "firefox/whatsnew/whatsnew-fx119-eu-relay.html"
-                    elif variant == "2":
-                        template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v2.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx119-eu-trio-v1.html"
-                else:
-                    if variant == "2":
-                        template = "firefox/whatsnew/whatsnew-fx119-na-addons.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx119-na-trio.html"
             else:
                 template = "firefox/whatsnew/index.html"
         else:
