@@ -207,8 +207,6 @@ urlpatterns = (
     ),
     # Issue 7765, 7709
     page("firefox/privacy/", "firefox/privacy/index.html", ftl_files=["firefox/privacy-hub"]),
-    page("firefox/privacy/products/", "firefox/privacy/products.html", ftl_files=["firefox/privacy-hub"]),
-    page("firefox/privacy/safe-passwords/", "firefox/privacy/passwords.html", ftl_files=["firefox/privacy-hub", "firefox/privacy/passwords"]),
     # Issue 8432
     # Issue 13253: Ensure that Firefox can continue to refer to this URL.
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
@@ -219,7 +217,6 @@ urlpatterns = (
     page("firefox/browsers/quantum/", "firefox/browsers/quantum.html", ftl_files="firefox/browsers/quantum"),
     page("firefox/faq/", "firefox/faq.html", ftl_files="firefox/faq"),
     page("firefox/browsers/chromebook/", "firefox/browsers/chromebook.html", ftl_files="firefox/browsers/chromebook"),
-    page("firefox/privacy/book/", "firefox/privacy/book.html", ftl_files="firefox/privacy/book"),
     # Issue 9957
     page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
     # Firefox for Families evergreen page, Issue #12004
