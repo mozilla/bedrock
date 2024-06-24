@@ -3,6 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+# Note from 2024 CMS work:
+# This script is still valid and is used to keep Bedrock's primary database up to date.
+
 # We deliberately don't set -e here because we don't want a failure to block subsequent tasks
 set -x
 
@@ -34,7 +37,6 @@ python manage.py update_security_advisories --quiet || failure_detected=true
 python manage.py update_wordpress --quiet || failure_detected=true
 python manage.py update_release_notes --quiet || failure_detected=true
 python manage.py update_content_cards --quiet || failure_detected=true
-# python manage.py update_contentful --quiet || failure_detected=true  # Deliberately disabled
 python manage.py update_externalfiles --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_www_config --quiet || failure_detected=true
@@ -44,8 +46,7 @@ python manage.py update_sitemaps_data --quiet || failure_detected=true
 python manage.py sync_greenhouse --quiet || failure_detected=true
 
 # if [[ "$AUTH" == true ]]; then
-#     # jobs that require some auth. don't run these during build.
-#     # The old Pocket Articles feed is an example of this
+#     # Some jobs require some auth. Don't run these during build of the Docker images
 # fi
 
 # If all is well, ping DMS to avoid an alert being raised.
