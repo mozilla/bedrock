@@ -286,6 +286,7 @@ def test_get_language_from_headers(rf, headers, expected):
     assert get_language_from_headers(request) == expected
 
 
+@override_settings(DEV=False)
 @pytest.mark.parametrize(
     "header, expected",
     (
