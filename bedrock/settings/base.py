@@ -13,6 +13,7 @@ import struct
 import sys
 from os.path import abspath
 from pathlib import Path
+from urllib.parse import urlparse
 
 from django.conf.locale import LANG_INFO  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
 from django.utils.functional import lazy
@@ -601,8 +602,35 @@ GS_OBJECT_PARAMETERS = {
     "cache_control": "max-age=2592000, public, immutable"  # 2592000 == 30 days / 1 month
 }
 
+
+def _get_media_cdn_hostname_for_storage_backend(media_url):
+    # settings.MEDIA_URL (passed in here as media_url) is a custom route on our CDN
+    # that points to a cloud bucket, which we use for uploaded media from the CMS.
+    #
+    # Specifically, due to infra constraints, it has to point to a _sub-path_ in the bucket,
+    # not the top/root of it. It also needs to be distinct from the CDN route that points to our
+    # collected static assets (which are at https://<CDN_HOSTNAME>/media/ - that is STATIC_URL)
+    #
+    # With all this in mind, MEDIA_URL, when set, points to https://<CDN_HOSTNAME>/media/cms/
+    #
+    # When django-storages computes the URL for a object in that CMS bucket, it wants
+    # just the hostname of the bucket, not the full CDN/proxy path to the subdir in the bucket,
+    # because it opinionatedly concatenates it with GS_LOCATION (defined below, which ensures
+    # the files are uploaded to the sub-path mentioned above).
+    #
+    # TLDR: We just need the root of the CDN, from MEDIA_URL.
+
+    if media_url.startswith("http"):
+        media_url_parsed = urlparse(media_url)
+        media_cdn_hostname = f"{media_url_parsed.scheme}://{media_url_parsed.hostname}"
+    else:
+        media_cdn_hostname = media_url
+
+    return media_cdn_hostname
+
+
 if GS_BUCKET_NAME and GS_PROJECT_ID:
-    GS_CUSTOM_ENDPOINT = MEDIA_URL.rstrip("/")  # hostname that proxies the storage bucket
+    GS_CUSTOM_ENDPOINT = _get_media_cdn_hostname_for_storage_backend(MEDIA_URL)  # hostname that proxies the storage bucket
     GS_FILE_OVERWRITE = False
     GS_LOCATION = "media/cms"  # path within the bucket to upload to
 
