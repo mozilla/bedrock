@@ -264,7 +264,16 @@ CONTENT_SECURITY_POLICY = {
 
 # Mainly for overriding CSP settings for CMS admin.
 # Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
-CSP_PATH_OVERRIDES = {}
+
+# /cms-admin/images/ loads just-uploaded images as blobs.
+CMS_ADMIN_IMAGES_CSP = CONTENT_SECURITY_POLICY.copy()
+CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
+
+CSP_PATH_OVERRIDES = {
+    # The first path prefix that matches the request.path.startswith will be used, so order them
+    # from most specific to least.
+    "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
+}
 CSP_PATH_OVERRIDES_REPORT_ONLY = {}
 
 
