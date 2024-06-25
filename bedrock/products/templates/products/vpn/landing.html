@@ -51,10 +51,6 @@
   {% endwith %}
 {% endblock %}
 
-{% block sub_navigation %}
-  {% include 'products/vpn/includes/subnav.html' %}
-{% endblock %}
-
 {% block content %}
 <main {% if show_relay_promo_block %}class="has-relay-promo"{% endif %}>
   {% block hero %}
