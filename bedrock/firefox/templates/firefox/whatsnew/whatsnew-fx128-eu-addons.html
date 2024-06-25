@@ -1,0 +1,58 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_128_eu') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+   <div class="mzp-l-content mzp-t-content-xl">
+    <h1 class="wnp-main-title">A browser that's truly yours</h1>
+
+    {{ picture(
+      url='img/firefox/whatsnew/whatsnew126-na/extensions.svg',
+      optional_attributes={
+        'class': 'wnp-main-image',
+        'alt': 'My Firefox: More Speed, More Security, More Fun.',
+        'width': '554',
+        'height': '300'
+      }
+    ) }}
+
+    <p class="wnp-main-tagline">
+      Discover extensions that make your browsing even faster, safer and more fun.
+    </p>
+
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="https://addons.mozilla.org/en-US/firefox/?{{ utm_params }}" data-cta-type="button" data-cta-text="Personalize your Firefox" target="_blank" rel="noopener">
+        Personalize your Firefox
+      </a>
+    </p>
+
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_128_eu') }}
+{% endblock %}

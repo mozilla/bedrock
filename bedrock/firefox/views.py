@@ -383,6 +383,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx127-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx127-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx128-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx128-eu-addons.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx128-eu-donate.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -473,11 +475,19 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("128."):
-            if locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx128-eu.html"
-            elif locale in ["en-US", "en-CA"]:
+            if locale in ["de", "fr", "en-GB"]:
+                if variant == "2" or variant == "3":
+                    template = template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+            elif locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
+                template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+            elif locale.startswith("en-"):
                 if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx128-eu.html"
+                    if variant == "1":
+                        template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+                    elif variant == "2" or variant == "3":
+                        template = template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx128-na.html"
             else:

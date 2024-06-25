@@ -405,6 +405,12 @@
       ],
       "name": "firefox_whatsnew_127_na"
     },
+        {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-128-eu.scss"
+      ],
+      "name": "firefox_whatsnew_128_eu"
+    },
     {
       "files": [
         "css/firefox/whatsnew/whatsnew-128-na.scss"
@@ -1496,6 +1502,12 @@
         "js/firefox/whatsnew/whatsnew-127-na.js"
       ],
       "name": "firefox_whatsnew_127_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-128-experiment-eu.es6.js"
+      ],
+      "name": "firefox_whatsnew_128_eu"
     },
     {
       "files": [

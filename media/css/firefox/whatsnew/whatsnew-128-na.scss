@@ -22,17 +22,17 @@
 
         @media (min-width: 920px) {
             &::before {
-            background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/video-pseudo-background.png");
-            background-repeat: no-repeat;
-            content: "";
-            height: 556px;
-            width: 710px;
-            position: absolute;
-            left: 30px;
-            top: 19px;
-            background-size: contain;
-            z-index: -1;
-        }
+                background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/video-pseudo-background.png");
+                background-repeat: no-repeat;
+                content: "";
+                height: 556px;
+                width: 710px;
+                position: absolute;
+                left: 30px;
+                top: 19px;
+                background-size: contain;
+                z-index: -1;
+            }
         }
     }
 }

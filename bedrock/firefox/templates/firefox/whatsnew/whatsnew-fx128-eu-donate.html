@@ -1,0 +1,40 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_128_eu') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-128-eu') %}
+    {{ js_bundle('firefox_whatsnew_128_eu') }}
+  {% endif %}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  {% if variant == "2" %}
+  <h1>DONATE BBBBB</h1>
+  sfsdf
+  {% elif variant == "3" %}
+  <h1>DONATE CCCCCCCC</h1>
+  dfsgdfg
+  {% endif %}
+</section>
+
+{% endblock %}
+
