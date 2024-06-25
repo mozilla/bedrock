@@ -5,6 +5,8 @@
 @import 'includes/base';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
 
 .wnp-content-main {
     background-color: $color-marketing-gray-10;
@@ -12,30 +14,30 @@
     text-align: center;
 }
 
-.wnp-main-title {
-    display: inline-block;
-    margin-bottom: $layout-md;
-    position: relative;
+.wnp-content-addons {
+    .wnp-main-title {
+        display: inline-block;
+        margin-bottom: $layout-md;
+        position: relative;
 
-    @media #{$mq-lg} {
-        padding-left: 48px + $spacing-md;
-
-        &::before {
-            background: url('/media/img/firefox/whatsnew/whatsnew126-na/jigsaw-piece.svg') top left no-repeat;
-            content: '';
-            display: block;
-            height: 48px;
-            left: 0;
-            margin: 0 auto $spacing-lg;
-            position: absolute;
-            top: 0;
-            width: 48px;
+        @media #{$mq-lg} {
+            &::before {
+                background: url('/media/img/firefox/whatsnew/whatsnew128-eu/jigsaw-piece.svg') top left no-repeat;
+                content: '';
+                display: block;
+                height: 48px;
+                left: -70px;
+                margin: 0 auto $spacing-lg;
+                position: absolute;
+                top: 0;
+                width: 48px;
+            }
         }
     }
 }
 
 .wnp-main-tagline {
-    @include text-body-lg;
+    @include text-body-xl;
     margin-top: $layout-md;
 }
 
@@ -47,4 +49,38 @@
 .wnp-main-cta {
     display: block;
     margin-bottom: $layout-xl;
+}
+
+.wnp-content-donate {
+    .wnp-main-cta {
+        a {
+            @include text-body-xl;
+            padding: $spacing-md $spacing-2xl;
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        background: $color-dark-gray-40;
+    }
+
+    .wnp-main-title,
+    .wnp-main-tagline {
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
+    }
+
+    .wnp-content-addons {
+        .wnp-main-title {
+            @media #{$mq-lg} {
+                &::before {
+                    background: url('/media/img/firefox/whatsnew/whatsnew128-eu/jigsaw-piece-white.svg') top left no-repeat;
+                }
+            }
+        }
+    }
 }

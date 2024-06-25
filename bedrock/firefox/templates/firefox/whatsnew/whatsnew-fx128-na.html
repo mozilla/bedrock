@@ -26,22 +26,22 @@
 <section class="wnp-content-main mzp-l-content">
   <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace c-video-wrapper">
     {{ video_inline_embed(
-      id='F-nFQryDB0s',
-      title='Introducing the new Firefox… jk. It’s red pandas.',
+      id='lCWS8n7Gp2c',
+      title='Stick the landing with Firefox',
       image=resp_img(
-        url='img/firefox/whatsnew/whatsnew128-na/gymnist.png',
+        url='img/firefox/whatsnew/whatsnew128-na/gymnast.png',
         optional_attributes={
           'width': '1024',
           'height': '576'
         }
       ),
     ) }}
-    <h1 class="wnp-main-title">Gold-medal multitasking</h1>
+    <h1 class="wnp-main-title">World-class multitasking</h1>
 
-    <p class="wnp-main-tagline has-pip-icon">Picture-in-Picture lets you watch every Olympic milestone without putting your life on pause. Just click <strong>the Picture-in-Picture button</strong> to pop out any video.</p>
+    <p class="wnp-main-tagline has-pip-icon">Picture-In-Picture lets you watch every cartwheel and handspring without putting your life on pause. Just click <strong>the Picture-in-Picture button</strong> to pop out any video.</p>
 
     <p class="wnp-main-cta">
-      <a class="mzp-c-button mzp-t-product" href="https://connect.mozilla.org/?{{ utm_params }}" data-cta-type="button" data-cta-text="Learn more" target="_blank" rel="noopener">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.features.picture-in-picture') }}?{{ utm_params }}" data-cta-type="button" data-cta-text="Learn more">
         Learn more
       </a>
     </p>
@@ -50,6 +50,7 @@
 
 <section class="wnp-footer">
   <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
 </section>
 {% endblock %}
 

@@ -6,6 +6,7 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import "../../protocol/components/video";
+@import 'includes/mofo-donate-cta';
 
 
 .wnp-content-main {
@@ -34,6 +35,10 @@
                 z-index: -1;
             }
         }
+
+        img {
+            border-radius: 20px;
+        }
     }
 }
 
@@ -52,10 +57,29 @@
 .has-pip-icon strong {
     @include image-replaced;
     @include background-size(2.25ex, 2.25ex);
-    background-image: url("/media/img/firefox/whatsnew/whatsnew127-eu/pip-icon.svg");
+    background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/pip-icon.svg");
     background-repeat: no-repeat;
     display: inline-block;
     height: 2.25ex;
     margin-bottom: -0.5ex;
     width: 2.25ex;
+}
+
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        background: $color-dark-gray-40;
+    }
+
+    .wnp-main-title,
+    .wnp-main-tagline {
+        color: $title-text-color-inverse;
+
+        @supports (--css: variables) {
+            color: var(--title-text-color-inverse);
+        }
+    }
+
+    .has-pip-icon strong {
+        background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/pip-icon-white.svg");
+    }
 }

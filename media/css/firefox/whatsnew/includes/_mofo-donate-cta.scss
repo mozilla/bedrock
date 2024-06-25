@@ -1,0 +1,23 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'dark-mode';
+
+/* stylelint-disable declaration-no-important */
+
+@media (prefers-color-scheme: dark) {
+    .wnp-donate-wrapper {
+        .mzp-c-button {
+            color: $color-white !important;
+            border-color: $color-white !important;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-black !important;
+            }
+        }
+    }
+}
