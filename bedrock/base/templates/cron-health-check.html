@@ -80,6 +80,8 @@
         <td><a href="https://github.com/mozilla/bedrock/commit/{{ server_info.git_sha }}">{{ server_info.git_sha[:10] }}</a></td>
       </tr>
       {% endif %}
+
+      {% if SQLITE_DB_IN_USE %}
       {% if server_info.db_git_sha %}
       <tr>
         <td>DB Git SHA</td>
@@ -104,6 +106,13 @@
       <tr>
         <td>DB File</td>
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
+      </tr>
+      {% endif %}
+      {% endif %}
+      {% if most_recent_data_change_ts %}
+      <tr title="Timestamp of the most recent change to a data source">
+        <td>Latest data change</td>
+        <td>{{most_recent_data_change_ts}}</td>
       </tr>
       {% endif %}
       <tr>
