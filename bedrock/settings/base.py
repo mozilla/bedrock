@@ -65,11 +65,18 @@ site_mode = config("SITE_MODE", default="Mozorg")
 IS_POCKET_MODE = site_mode == "Pocket"
 IS_MOZORG_MODE = not IS_POCKET_MODE
 
+db_connection_max_age_secs = config("DB_CONN_MAX_AGE", default="0", parser=int)
+db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="False", parser=bool)
+db_default_url = config(
+    "DATABASE_URL",
+    default=f"sqlite:////{data_path('bedrock.db')}",
+)
+
 DATABASES = {
-    "default": config(
-        "DATABASE_URL",
-        default=f"sqlite:////{data_path('bedrock.db')}",
-        parser=dj_database_url.parse,
+    "default": dj_database_url.parse(
+        db_default_url,
+        conn_max_age=db_connection_max_age_secs,
+        conn_health_checks=db_conn_health_checks,
     )
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
