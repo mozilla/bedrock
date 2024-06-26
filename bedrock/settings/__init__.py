@@ -248,7 +248,6 @@ if csp_extra_frame_src:
     _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
 
 CONTENT_SECURITY_POLICY = {
-    "REPORT_ONLY": config("CSP_REPORT_ONLY", default="false", parser=bool),
     "DIRECTIVES": {
         "default-src": _csp_default_src,
         "img-src": list(set(_csp_default_src + _csp_img_src)),
@@ -266,6 +265,7 @@ CONTENT_SECURITY_POLICY = {
 # Mainly for overriding CSP settings for CMS admin.
 # Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 CSP_PATH_OVERRIDES = {}
+CSP_PATH_OVERRIDES_REPORT_ONLY = {}
 
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE

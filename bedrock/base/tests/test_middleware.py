@@ -315,7 +315,8 @@ def test_csp_path_overrides_nullify(csp_middleware):
 
 @override_settings(
     CONTENT_SECURITY_POLICY={"DIRECTIVES": {"default-src": ["default.com"]}},
-    CSP_PATH_OVERRIDES={"/u/thedude": {"REPORT_ONLY": True, "DIRECTIVES": {"default-src": ["override.com"]}}},
+    CONTENT_SECURITY_POLICY_REPORT_ONLY={"DIRECTIVES": {"default-src": ["default.com", "other.com"]}},
+    CSP_PATH_OVERRIDES_REPORT_ONLY={"/u/thedude": {"DIRECTIVES": {"default-src": ["override.com"]}}},
 )
 def test_csp_path_overrides_report_only(csp_middleware):
     rf = RequestFactory()

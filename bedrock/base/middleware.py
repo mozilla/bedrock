@@ -311,13 +311,16 @@ class CSPMiddlewareByPathPrefix(CSPMiddleware):
     """
 
     def process_response(self, request, response):
-        if hasattr(settings, "CSP_PATH_OVERRIDES"):
-            for prefix, config in settings.CSP_PATH_OVERRIDES.items():
+        if CSP_PATH_OVERRIDES := getattr(settings, "CSP_PATH_OVERRIDES", None):
+            for prefix, config in CSP_PATH_OVERRIDES.items():
                 if request.path.startswith(prefix):
-                    if config.get("REPORT_ONLY", False):
-                        response._csp_config_ro = config.get("DIRECTIVES", {})
-                    else:
-                        response._csp_config = config.get("DIRECTIVES", {})
+                    response._csp_config = config.get("DIRECTIVES", {})
+                    break
+
+        if CSP_PATH_OVERRIDES_RO := getattr(settings, "CSP_PATH_OVERRIDES_REPORT_ONLY", None):
+            for prefix, config in CSP_PATH_OVERRIDES_RO.items():
+                if request.path.startswith(prefix):
+                    response._csp_config_ro = config.get("DIRECTIVES", {})
                     break
 
         return super().process_response(request, response)
