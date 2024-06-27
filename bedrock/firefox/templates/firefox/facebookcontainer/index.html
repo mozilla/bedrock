@@ -21,6 +21,10 @@
   {{ css_bundle('firefox_facebook_container') }}
 {% endblock %}
 
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
 {% block content %}
 <main>
   {% call split(
