@@ -18,21 +18,6 @@
     .wnp-main-title {
         display: inline-block;
         margin-bottom: $layout-md;
-        position: relative;
-
-        @media #{$mq-lg} {
-            &::before {
-                background: url('/media/img/firefox/whatsnew/whatsnew128-eu/jigsaw-piece.svg') top left no-repeat;
-                content: '';
-                display: block;
-                height: 48px;
-                left: -70px;
-                margin: 0 auto $spacing-lg;
-                position: absolute;
-                top: 0;
-                width: 48px;
-            }
-        }
     }
 }
 
@@ -71,16 +56,6 @@
 
         @supports (--css: variables) {
             color: var(--title-text-color-inverse);
-        }
-    }
-
-    .wnp-content-addons {
-        .wnp-main-title {
-            @media #{$mq-lg} {
-                &::before {
-                    background: url('/media/img/firefox/whatsnew/whatsnew128-eu/jigsaw-piece-white.svg') top left no-repeat;
-                }
-            }
         }
     }
 }

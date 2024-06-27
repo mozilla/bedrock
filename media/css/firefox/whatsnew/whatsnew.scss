@@ -43,6 +43,10 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-nimbus-128-title {
+    @include text-title-xl;
+}
+
 .wnp-main-tagline {
     @include text-body-lg;
 }

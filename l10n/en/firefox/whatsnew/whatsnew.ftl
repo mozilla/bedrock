@@ -25,3 +25,5 @@ whatsnew-release-notes = Read the <a href="{ $url }">Release Notes</a> to know m
 whatsnew-signoff = <strong>Powered by { -brand-name-mozilla }.</strong> Putting people before profits since 1998.
 
 whatsnew-donate = Donate to the { -brand-name-mozilla-foundation }
+
+whatsnew-thanks-for-choosing = Thanks for choosing { -brand-name-firefox }

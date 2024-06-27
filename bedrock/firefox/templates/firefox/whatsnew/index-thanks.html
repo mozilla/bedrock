@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h1 class="wnp-main-title c-nimbus-128-title">{{ ftl('whatsnew-thanks-for-choosing') }}</h1>
+  </div>
+</section>
+
+<div class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
