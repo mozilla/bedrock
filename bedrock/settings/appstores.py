@@ -105,3 +105,9 @@ AMAZON_FIREFOX_FIRE_TV_LINK = "https://www.amazon.com/Mozilla-Firefox-for-Fire-T
 
 # Link to Firefox Send on the Google Play Store.
 GOOGLE_PLAY_FIREFOX_SEND_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
+
+# Link to Firefox on the Microsoft Windows Store.
+MICROSOFT_WINDOWS_STORE_FIREFOX_LINK = "https://apps.microsoft.com/detail/9nzvdkpmr9rd"
+
+# Link to Firefox Beta on the Microsoft Windows Store.
+MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_LINK = "https://apps.microsoft.com/detail/9nzw26frndln"

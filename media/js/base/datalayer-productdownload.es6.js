@@ -12,6 +12,7 @@ const iTunesURL = /^https:\/\/itunes.apple.com/;
 const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
 const marketURL = /^market:\/\/play.google.com/;
+const msStoreUrl = /^https:\/\/apps.microsoft.com/;
 
 if (typeof window.dataLayer === 'undefined') {
     window.dataLayer = [];
@@ -31,7 +32,8 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
             iTunesURL.test(downloadURL) ||
             appStoreURL.test(downloadURL) ||
             playStoreURL.test(downloadURL) ||
-            marketURL.test(downloadURL)
+            marketURL.test(downloadURL) ||
+            msStoreUrl.test(downloadURL)
         ) {
             return true;
         } else {
@@ -46,7 +48,7 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
  * Create the product_download event object
  * @param {string} product
  * @param {string} platform
- * @param {string} method - site, store, or adjust
+ * @param {string} method - site or store
  * @param {string} release_channel - optional, we don't get it for ios downloads
  * @param {string} download_language - optional, we don't get it for mobile downloads
  * @returns {Object}
@@ -182,6 +184,21 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             'store',
             'release'
         );
+    } else if (msStoreUrl.test(downloadURL)) {
+        let channel = 'unrecognized';
+        if (downloadURL.indexOf('/9nzvdkpmr9rd') !== -1) {
+            channel = 'release';
+        } else if (downloadURL.indexOf('/9nzw26frndln') !== -1) {
+            channel = 'beta';
+        }
+
+        // MS Store
+        eventObject = TrackProductDownload.getEventObject(
+            'firefox',
+            'win',
+            'store',
+            channel
+        );
     }
 
     return eventObject;
@@ -223,6 +240,37 @@ TrackProductDownload.sendEventFromURL = (downloadURL) => {
 };
 
 /**
+ * Send product_download event to glean.js
+ * @param {Object} - product details formatted into a product_download event
+ */
+TrackProductDownload.sendGleanEvent = (eventObject) => {
+    if (typeof window.Mozilla.Glean !== 'undefined') {
+        /**
+         * Glean is more limited when it comes to the number of
+         * default click event fields, so we need to combine
+         * some meta data into the label.
+         */
+        let label = eventObject.method;
+
+        // release_channel is optional
+        if (eventObject.release_channel) {
+            label += `,${eventObject.release_channel}`;
+        }
+
+        // download_language is optional
+        if (eventObject.download_language) {
+            label += `,${eventObject.download_language}`;
+        }
+
+        window.Mozilla.Glean.clickEvent({
+            id: eventObject.event,
+            type: `${eventObject.platform}`,
+            label: label
+        });
+    }
+};
+
+/**
  * Sends an event to the data layer
  * @param {Object} - product details formatted into a product_download event
  */
@@ -233,13 +281,7 @@ TrackProductDownload.sendEvent = (eventObject) => {
     TrackProductDownload.sendOldEvent(eventObject);
 
     // track event in glean.js
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.clickEvent({
-            id: eventObject.event,
-            type: eventObject.platform,
-            label: eventObject.release_channel
-        });
-    }
+    TrackProductDownload.sendGleanEvent(eventObject);
 };
 
 /**
