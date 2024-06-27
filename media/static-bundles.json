@@ -840,6 +840,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome18.scss"
+      ],
+      "name": "firefox_welcome_page18"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"

@@ -1,0 +1,73 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import "~@mozilla-protocol/core/protocol/css/templates/multi-column";
+
+.c-page-header {
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+}
+
+.c-content-main {
+    background: $color-marketing-gray-10;
+    color: $color-black;
+    text-align: center;
+
+    .c-main-image {
+        margin: $layout-md auto;
+    }
+}
+
+.page-body {
+    color: $color-black;
+
+    .mzp-c-picto-heading {
+        @include text-title-sm;
+        font-weight: normal;
+    }
+}
+
+.c-main-tagline {
+    @include text-body-xl;
+
+    @media #{$mq-md} {
+        padding: 0 $layout-xl;
+    }
+}
+
+.page-footer {
+    text-align: center;
+}
+
+// * -------------------------------------------------------------------------- */
+// Dark mode
+
+@media (prefers-color-scheme: dark) {
+    #outer-wrapper {
+        background: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .c-content-main {
+        background: $color-dark-gray-50;
+    }
+
+    .c-content-main,
+    .c-main-title,
+    .c-main-subheading,
+    .page-body,
+    .mzp-c-picto-heading {
+        color: $color-white;
+    }
+
+    .c-utilities {
+        @include white-links;
+    }
+}
