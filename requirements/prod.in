@@ -42,7 +42,7 @@ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibil
 mozilla-django-oidc==4.0.1
 newrelic==9.11.0
 Pillow==10.3.0
-psycopg2-binary==2.9.9
+psycopg[binary]==3.1.19
 PyGithub==2.3.0
 pyOpenSSL==24.1.0
 PyYAML==6.0.1
