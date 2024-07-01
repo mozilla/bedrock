@@ -12,7 +12,6 @@
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('stub-attribution.js', function () {
-    const GA_CLIENT_ID = '1456954538.1610960957';
     const GA4_CLIENT_ID = '4442748357.1686074738';
     const GA_SESSION_ID = '1668161374';
     const STUB_SESSION_ID = '1234567890';
@@ -35,7 +34,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -44,10 +42,6 @@ describe('stub-attribution.js', function () {
             spyOn(Mozilla.StubAttribution, 'updateBouncerLinks');
             spyOn(window.dataLayer, 'push');
 
-            // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
             spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
                 GA4_CLIENT_ID
             );
@@ -109,9 +103,8 @@ describe('stub-attribution.js', function () {
                 Mozilla.StubAttribution.requestAuthentication
             ).toHaveBeenCalledWith(data);
             expect(window.dataLayer.push).toHaveBeenCalledWith({
-                // TODO: add check for GA4 event
-                event: 'stub-session-id',
-                eLabel: STUB_SESSION_ID
+                event: 'stub_session_set',
+                id: STUB_SESSION_ID
             });
             expect(
                 Mozilla.StubAttribution.updateBouncerLinks
@@ -278,7 +271,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -294,7 +286,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -308,7 +299,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -322,7 +312,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -336,7 +325,6 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -352,7 +340,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -366,7 +353,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta:cm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -380,7 +366,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%25253AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: 'https://example.com/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -394,7 +379,6 @@ describe('stub-attribution.js', function () {
                 utm_content: '%72%74%61%3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ',
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -412,7 +396,6 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -428,7 +411,6 @@ describe('stub-attribution.js', function () {
                 )}3AdUJsb2NrMEByYXltb25kaGlsbC5uZXQ`,
                 referrer: 'https://addons.mozilla.org/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -444,7 +426,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rta%3Acm9uaW4td2FsbGV0QGF4aWVpbmZpbml0eS5jb20',
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: STUB_SESSION_ID
             };
@@ -520,11 +501,7 @@ describe('stub-attribution.js', function () {
         afterEach(function () {
             jasmine.clock().uninstall();
         });
-        it('should fire a callback when GA client ID and session ID are found', function () {
-            // stub out UA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
+        it('should fire a callback when GA4 client ID and session ID are found', function () {
             // stub out GA4 client ID
             spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
                 GA4_CLIENT_ID
@@ -535,43 +512,7 @@ describe('stub-attribution.js', function () {
             expect(callback).toHaveBeenCalledWith(true);
         });
 
-        it('should fire a callback when UA client ID is found but GA4 client ID is not', function () {
-            // stub out UA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
-            // stub out GA4 client ID
-            spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
-                null
-            );
-            const callback = jasmine.createSpy('callback');
-
-            Mozilla.StubAttribution.waitForGoogleAnalyticsThen(callback);
-            jasmine.clock().tick(2100);
-            expect(callback).toHaveBeenCalledWith(true);
-        });
-
-        it('should fire a callback when UA client ID is not found but GA4 client ID is found', function () {
-            // stub out UA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                null
-            );
-            // stub out GA4 client ID
-            spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
-                GA4_CLIENT_ID
-            );
-            const callback = jasmine.createSpy('callback');
-
-            Mozilla.StubAttribution.waitForGoogleAnalyticsThen(callback);
-            jasmine.clock().tick(2100);
-            expect(callback).toHaveBeenCalledWith(true);
-        });
-
-        it('should fire a callback when it times out looking for UA and GA4 ids', function () {
-            // stub out UA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                null
-            );
+        it('should fire a callback when it times out looking for GA4 ids', function () {
             // stub out GA4 client ID
             spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
                 null
@@ -586,10 +527,6 @@ describe('stub-attribution.js', function () {
 
     describe('getAttributionData', function () {
         beforeEach(function () {
-            // stub out GA client ID
-            spyOn(Mozilla.StubAttribution, 'getUAClientID').and.returnValue(
-                GA_CLIENT_ID
-            );
             spyOn(Mozilla.StubAttribution, 'getGtagClientID').and.returnValue(
                 GA4_CLIENT_ID
             );
@@ -612,7 +549,6 @@ describe('stub-attribution.js', function () {
                 utm_content: 'rel-esr',
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
@@ -641,7 +577,6 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: 'https://www.mozilla.org/en-US/',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
@@ -670,7 +605,6 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: '',
                 ua: 'chrome',
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
@@ -701,7 +635,6 @@ describe('stub-attribution.js', function () {
                 ua: 'chrome',
                 experiment: 'firefox-new',
                 variation: 1,
-                client_id: GA_CLIENT_ID,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
                 dlsource: DLSOURCE
@@ -1209,39 +1142,6 @@ describe('stub-attribution.js', function () {
         it('should return false if exceeds sample rate', function () {
             spyOn(window.Math, 'random').and.returnValue(0.6);
             expect(Mozilla.StubAttribution.withinAttributionRate()).toBeFalsy();
-        });
-    });
-
-    describe('getUAClientID', function () {
-        it('should return a valid UA client ID', function () {
-            window.ga = sinon.stub();
-            window.ga.getAll = sinon.stub().returns([
-                {
-                    get: () => GA_CLIENT_ID
-                }
-            ]);
-
-            expect(Mozilla.StubAttribution.getUAClientID()).toEqual(
-                GA_CLIENT_ID
-            );
-        });
-
-        it('should return a null if UA client ID is invalid', function () {
-            window.ga = sinon.stub();
-            window.ga.getAll = sinon.stub().returns([
-                {
-                    get: () => ''
-                }
-            ]);
-
-            expect(Mozilla.StubAttribution.getUAClientID()).toBeNull();
-        });
-
-        it('should return a null if accessing ga object throws an error', function () {
-            window.ga = sinon.stub().throws(function () {
-                return new Error();
-            });
-            expect(Mozilla.StubAttribution.getUAClientID()).toBeNull();
         });
     });
 
