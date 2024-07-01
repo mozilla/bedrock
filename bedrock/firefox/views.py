@@ -52,7 +52,6 @@ STUB_VALUE_NAMES = [
     ("experiment", "(not set)"),
     ("variation", "(not set)"),
     ("ua", "(not set)"),
-    ("client_id", "(not set)"),
     ("client_id_ga4", "(not set)"),
     ("session_id", "(not set)"),
     ("dlsource", "mozorg"),
