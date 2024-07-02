@@ -1125,7 +1125,13 @@
       "name": "sustainability"
     },
     {
-      "files": [
+    "files":[
+      "css/mozorg/impact.scss"
+    ],
+    "name": "impact"
+    },
+    {
+      "files":[
         "css/mozorg/advertising.scss"
       ],
       "name": "mozilla-ads"
