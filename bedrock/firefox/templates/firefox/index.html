@@ -43,42 +43,7 @@
 {% set _entrypoint = 'mozilla.org-firefox-home' %}
 
 {% block sub_navigation %}
-  {% if ftl_has_messages('sub-navigation-firefox', 'sub-navigation-what-is-a-browser', 'sub-navigation-browsing-history') %}
-    <nav class="c-sub-navigation">
-      <div class="mzp-l-content">
-        <div class="c-sub-navigation-content">
-          <h2 class="c-sub-navigation-title is-summary">
-            <a href="{{ url('firefox') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
-              <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
-              {{ ftl('sub-navigation-firefox') }}
-            </a>
-          </h2>
-          <ul class="c-sub-navigation-list is-details is-closed">
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.browsers.what-is-a-browser') }}" data-link-type="nav" data-link-position="subnav" data-link-text="What Is a Browser?">
-                {{ ftl('sub-navigation-what-is-a-browser') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.browsers.browser-history') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Browser History">
-                {{ ftl('sub-navigation-browser-history') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.faq') }}" data-link-type="nav" data-link-position="subnav" data-link-text="FAQ">
-                {{ ftl('sub-navigation-faq') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('firefox.more') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Learn More">
-                {{ ftl('sub-navigation-learn-more') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  {% endif %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
 {% endblock %}
 
 {% block content %}

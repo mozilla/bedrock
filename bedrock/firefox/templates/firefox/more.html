@@ -57,7 +57,51 @@
   {% endcall %}
 
   <div class="mzp-l-content">
-    <div class="mzp-l-card-quarter">
+    <div class="mzp-l-card-third">
+
+      {{ card(
+        title=ftl('what-is-a'),
+        ga_title='What is a browser',
+        image=resp_img('img/firefox/more/what-is-a-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('a-web-browser'),
+        link_url=url('firefox.browsers.what-is-a-browser'),
+      )}}
+
+      {{ card(
+        title=ftl('the-history-of'),
+        ga_title='Browser History',
+        image=resp_img('img/firefox/more/browser-history.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-has-been'),
+        link_url=url('firefox.browsers.browser-history')
+      )}}
+
+      {{ card(
+        title=ftl('incognito-browser-what'),
+        ga_title='Features Private Browsing',
+        image=resp_img('img/firefox/more/incognito-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-calls-it'),
+        link_url=url('firefox.browsers.incognito-browser')
+      )}}
+
+    </div>
+    <div class="mzp-l-card-third">
+
+      {{ card(
+        title=ftl('firefox-more-avoid-misinformation-heading'),
+        ga_title='Avoid Misinformation',
+        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-avoid-misinformation-desc'),
+        link_url=url('firefox.more.misinformation')
+      )}}
+
+      {{ card(
+        title=ftl('update-your-browser'),
+        ga_title='Update Browser',
+        image=resp_img('img/firefox/more/update-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('the-firefox-browser'),
+        link_url=url('firefox.browsers.update-browser'),
+      )}}
+
       {{ card(
         title=ftl('firefox-fights-for'),
         ga_title='Firefox Windows',
@@ -65,6 +109,9 @@
         desc=ftl('easy-migration-of'),
         link_url=url('firefox.windows')
       )}}
+
+    </div>
+    <div class="mzp-l-card-third">
 
       {{ card(
         title=ftl('firefox-respects-your'),
@@ -89,40 +136,9 @@
         desc=ftl('we-worry-about'),
         link_url=url('firefox.browsers.windows-64-bit')
       )}}
+
     </div>
     <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('the-history-of'),
-        ga_title='Browser History',
-        image=resp_img('img/firefox/more/browser-history.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-has-been'),
-        link_url=url('firefox.browsers.browser-history')
-      )}}
-
-      {{ card(
-        title=ftl('what-is-a'),
-        ga_title='What is a browser',
-        image=resp_img('img/firefox/more/what-is-a-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('a-web-browser'),
-        link_url=url('firefox.browsers.what-is-a-browser'),
-      )}}
-
-      {{ card(
-        title=ftl('update-your-browser'),
-        ga_title='Update Browser',
-        image=resp_img('img/firefox/more/update-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('the-firefox-browser'),
-        link_url=url('firefox.browsers.update-browser'),
-      )}}
-    </div>
-    <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('choose-which-firefox'),
-        ga_title='Firefox All',
-        image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('we-believe-everyone'),
-        link_url=url('firefox.all')
-      )}}
 
       {{ card(
         title=ftl('firefox-more-firefox-chromebook'),
@@ -133,79 +149,23 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-firefox-sync'),
-        ga_title='Features Safe Browser',
-        image=resp_img('img/firefox/more/firefox-sync.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-access-your-sync'),
-        link_url=url('firefox.features.sync')
+        title=ftl('firefox-more-firefox-quantum'),
+        ga_title='Firefox Browsers',
+        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('firefox-more-quantum-was-revolution'),
+        link_url=url('firefox.browsers.quantum')
       )}}
+
+      {{ card(
+        title=ftl('choose-which-firefox'),
+        ga_title='Firefox All',
+        image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+        desc=ftl('we-believe-everyone'),
+        link_url=url('firefox.all')
+      )}}
+
     </div>
     <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('comparing-firefox-chrome'),
-        ga_title='Compare Chrome',
-        image=resp_img('img/firefox/more/firefox-chrome.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('big-isnt-always'),
-        link_url=url('firefox.browsers.compare.chrome')
-      )}}
-
-      {{ card(
-        title=ftl('comparing-firefox-edge'),
-        ga_title='Compare Edge',
-        image=resp_img('img/firefox/more/firefox-edge.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('youll-never-guess'),
-        link_url=url('firefox.browsers.compare.edge')
-      )}}
-
-      {{ card(
-        title=ftl('comparing-firefox-brave'),
-        ga_title='Compare Brave',
-        image=resp_img('img/firefox/more/firefox-brave.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('be-bold-and'),
-        link_url=url('firefox.browsers.compare.brave')
-      )}}
-    </div>
-    <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('comparing-firefox-safari'),
-        ga_title='Compare Safari',
-        desc=ftl('you-dont-have'),
-        image=resp_img('img/firefox/more/firefox-safari.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        link_url=url('firefox.browsers.compare.safari')
-      )}}
-
-      {{ card(
-        title=ftl('comparing-firefox-opera'),
-        ga_title='Compare Opera',
-        image=resp_img('img/firefox/more/firefox-opera.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('be-free-to'),
-        link_url=url('firefox.browsers.compare.opera')
-      )}}
-
-      {{ card(
-        title=ftl('incognito-browser-what'),
-        ga_title='Features Private Browsing',
-        image=resp_img('img/firefox/more/incognito-browser.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-calls-it'),
-        link_url=url('firefox.browsers.incognito-browser')
-      )}}
-    </div>
-    <div class="mzp-l-card-quarter">
-      {{ card(
-        title=ftl('firefox-more-is-firefox-a-private-browser'),
-        ga_title='Features Private',
-        image=resp_img('img/firefox/more/private.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-were-focused-on-your-right-to'),
-        link_url=url('firefox.features.private')
-      )}}
-
-      {{ card(
-        title=ftl('the-ad-blocker'),
-        ga_title='Features Adblocker',
-        image=resp_img('img/firefox/more/firefox-adblocker.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('so-many-ads'),
-        link_url=url('firefox.features.adblocker'),
-      )}}
 
       {{ card(
         title=ftl('firefox-more-fingerprinter-blocking'),
@@ -216,23 +176,6 @@
       )}}
 
       {{ card(
-        title=ftl('firefox-more-protection'),
-        ga_title='Features Private Browsing',
-        image=resp_img('img/firefox/more/private-browsing.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('were-obsessed-with'),
-        link_url=url('firefox.features.private-browsing')
-      )}}
-    </div>
-    <div class="mzp-l-card-third">
-      {{ card(
-        title=ftl('firefox-more-avoid-misinformation-heading'),
-        ga_title='Avoid Misinformation',
-        image=resp_img('img/firefox/more/avoid-misinformation.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-avoid-misinformation-desc'),
-        link_url=url('firefox.more.misinformation')
-      )}}
-
-      {{ card(
         title=ftl('firefox-more-translate-the-web'),
         ga_title='Translate',
         image=resp_img('img/firefox/more/firefox-all.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
@@ -240,13 +183,6 @@
         link_url=url('firefox.features.translate')
       )}}
 
-      {{ card(
-        title=ftl('firefox-more-firefox-quantum'),
-        ga_title='Firefox Browsers',
-        image=resp_img('img/firefox/more/firefox-quantum.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-        desc=ftl('firefox-more-quantum-was-revolution'),
-        link_url=url('firefox.browsers.quantum')
-      )}}
     </div>
   </div>
 </main>
