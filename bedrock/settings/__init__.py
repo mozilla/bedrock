@@ -248,6 +248,7 @@ if csp_extra_frame_src:
     _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
 
 CONTENT_SECURITY_POLICY = {
+    "REPORT_PERCENTAGE": config("CSP_REPORT_PERCENTAGE", default="100", parser=int),
     "DIRECTIVES": {
         "default-src": _csp_default_src,
         "img-src": list(set(_csp_default_src + _csp_img_src)),
