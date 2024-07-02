@@ -27,6 +27,7 @@ firefox-developer-inspector = Inspector
 firefox-developer-inspect-and-refine = Inspect and refine code to build pixel-perfect layouts.
 firefox-developer-learn-about-page-inspector = Learn more about Page Inspector
 firefox-developer-console = Console
+firefox-developer-logs-and-javascript = View logs and use JavaScript to interact with sites in real time.
 firefox-developer-track-css = Track CSS, JavaScript, security and network issues.
 firefox-developer-learn-about-web-console = Learn more about Web Console
 firefox-developer-debugger = Debugger
