@@ -480,17 +480,19 @@ class WhatsnewView(L10nTemplateView):
         elif version.startswith("128."):
             if locale in ["de", "fr", "en-GB"]:
                 if variant == "2" or variant == "3":
-                    template = template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
+                    template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
-            elif locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
+            elif locale in ["es-ES", "it", "pl"]:
                 template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
             elif locale.startswith("en-"):
                 if country == "GB":
                     if variant == "1":
                         template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
-                    elif variant == "2" or variant == "3":
+                    if variant == "2" or variant == "3":
                         template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
                 else:
                     if nimbus_branch == "experiment-wnp-128-na-pip":
                         if nimbus_variant == "v1":

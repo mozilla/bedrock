@@ -22,14 +22,7 @@
   {{ css_bundle('firefox_whatsnew_128_eu') }}
 {% endblock %}
 
-{% if LANG == 'en-GB' %}
-  {% set main_title = "A browser that's truly yours" %}
-  {% set image_alt_text = "My Firefox: More Speed, More Security, More Fun." %}
-  {% set main_tagline = "Discover extensions that make your browsing even faster, safer and more fun." %}
-  {% set page_cta = "Personalise your Firefox" %}
-  {% set cta_link = "https://addons.mozilla.org/en-GB/firefox/" %}
-
-  {% elif LANG == 'fr' %}
+{% if LANG == 'fr' %}
   {% set main_title = "Un navigateur qui vous ressemble" %}
   {% set image_alt_text = "Mon Firefox: Plus de vitesse. Plus de sécurité. Plus de fun." %}
   {% set main_tagline = "Découvrez des extensions qui rendent votre navigation encore plus rapide, plus sûre et plus fun." %}
@@ -51,8 +44,8 @@
   {% set cta_link = "https://addons.mozilla.org/es/firefox/" %}
 
 {% elif LANG == 'it' %}
-{% set main_title = "Un browser che si adatta a te" %}
-{% set image_alt_text = "Il mio Firefox: Più veloce. Più sicuro. Più divertente." %}
+  {% set main_title = "Un browser che si adatta a te" %}
+  {% set image_alt_text = "Il mio Firefox: Più veloce. Più sicuro. Più divertente." %}
   {% set main_tagline = "Scopri tutte le estensioni che rendono la tua navigazione ancora più veloce, sicura e divertente." %}
   {% set page_cta = "Personalizza il tuo Firefox" %}
   {% set cta_link = "https://addons.mozilla.org/it/firefox/" %}
@@ -63,6 +56,13 @@
   {% set main_tagline = "Odkryj rozszerzenia, z którymi przeglądanie będzie jeszcze szybsze, jeszcze bezpieczniejsze i jeszcze fajniejsze" %}
   {% set page_cta = "Spersonalizuj swojego Firefoksa" %}
   {% set cta_link = "https://addons.mozilla.org/pl/firefox/" %}
+
+{% else %}
+  {% set main_title = "A browser that’s truly yours" %}
+  {% set image_alt_text = "My Firefox: More Speed. More Security. More Fun." %}
+  {% set main_tagline = "Discover extensions that make your browsing even faster, safer and more fun." %}
+  {% set page_cta = "Personalise your Firefox" %}
+  {% set cta_link = "https://addons.mozilla.org/en-GB/firefox/" %}
 {% endif %}
 
 {% block wnp_content %}

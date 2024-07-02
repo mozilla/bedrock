@@ -12,23 +12,11 @@ const href = window.location.href;
 const initTrafficCop = () => {
     if (href.indexOf('v=') !== -1) {
         if (href.indexOf('v=1') !== -1) {
-            // UA
-            window.dataLayer.push({
-                'data-ex-variant': 'wnp128-add-ons',
-                'data-ex-name': 'wnp-128-experiment-eu'
-            });
+            return;
         } else if (href.indexOf('v=2') !== -1) {
-            // UA
-            window.dataLayer.push({
-                'data-ex-variant': 'wnp128-donate-b',
-                'data-ex-name': 'wnp-128-experiment-eu'
-            });
+            return;
         } else if (href.indexOf('v=3') !== -1) {
-            // UA
-            window.dataLayer.push({
-                'data-ex-variant': 'wnp128-donate-c',
-                'data-ex-name': 'wnp-128-experiment-eu'
-            });
+            return;
         }
     } else if (TrafficCop) {
         const cop = new TrafficCop({
