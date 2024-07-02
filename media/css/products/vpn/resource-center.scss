@@ -82,6 +82,11 @@ $image-path: '/media/protocol/img';
     color: #666;
 }
 
+#outer-wrapper .mzp-c-breadcrumb {
+    // when stacked with subnav of the same color this makes it stand out
+    background: none;
+}
+
 .vpn-article-container {
     background: url('/media/img/products/vpn/resource-center/resource_center_article_gradient.svg');
     background-repeat: no-repeat;
