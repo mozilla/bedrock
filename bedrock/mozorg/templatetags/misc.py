@@ -22,7 +22,7 @@ from django_jinja import library
 from markupsafe import Markup
 from product_details import product_details
 
-from bedrock.base.templatetags.helpers import static
+from bedrock.base.templatetags.helpers import static, urlparams
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
 
@@ -626,6 +626,23 @@ def play_store_url(ctx, product, campaign=None):
         base_url = base_url + f"&hl={locale}"
 
     return base_url
+
+
+@library.global_function
+@jinja2.pass_context
+def ms_store_url(ctx, product, mode="direct", campaign=None):
+    """
+    Returns a Microsoft Windows Store URL for a given product.
+    Installer mode parameter options include "direct" or "full", or "mini".
+    See https://apps.microsoft.com/badge for details.
+    """
+    base_url = getattr(settings, f"MICROSOFT_WINDOWS_STORE_{product.upper()}_LINK")
+    params = {
+        "mode": mode,
+        "cid": campaign,
+    }
+
+    return urlparams(base_url, **params)
 
 
 @library.global_function
