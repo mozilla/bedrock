@@ -933,9 +933,9 @@ markupsafe==2.1.5 \
     # via
     #   django-jinja-markdown
     #   jinja2
-markus[datadog]==4.2.0 \
-    --hash=sha256:156398b7de56db4e8ef420a80fcce1c49b6d3d41405874a3e128cb209cf4bfd8 \
-    --hash=sha256:9dd41ce53b25a3e806b0d065808fec00c4ec945e80cf5a72431bf9b61b44d7fb
+markus[datadog]==5.0.0 \
+    --hash=sha256:14fe47ebe3d3447cc5eebcd4691f71e7f38dee6338e4eb5d72d64d67f289c6ff \
+    --hash=sha256:fd0f0de0914a3ae645cc1eac760dca2fa28943fbbb3671692e09916f7f2e2237
     # via -r requirements/prod.in
 mdx-outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline \
     --hash=sha256:a78e112f80628246dd45858fe18404aaa8efb8dc81949bb1fbb87e91f9654afa
