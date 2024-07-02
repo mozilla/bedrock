@@ -22,6 +22,12 @@
   {{ css_bundle('firefox_whatsnew_128_eu') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-whatsnew-128-eu') %}
+    {{ js_bundle('firefox_whatsnew_128_eu') }}
+  {% endif %}
+{% endblock %}
+
 {% if LANG == 'fr' %}
   {% set main_title = "Un navigateur qui vous ressemble" %}
   {% set image_alt_text = "Mon Firefox: Plus de vitesse. Plus de sécurité. Plus de fun." %}

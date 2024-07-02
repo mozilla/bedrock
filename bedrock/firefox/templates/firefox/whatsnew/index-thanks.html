@@ -30,7 +30,10 @@
 
 <div class="wnp-footer">
   <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
-  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+
+  {% if LANG in ["en-US", "en-CA", "en-GB", "fr", "de", "es-ES", "it", "pl"] or ftl_has_messages('whatsnew-donate-to-mofo') %}
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  {% endif %}
 </div>
 {% endblock %}
 

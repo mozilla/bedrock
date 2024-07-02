@@ -487,8 +487,6 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
             elif locale.startswith("en-"):
                 if country == "GB":
-                    if variant == "1":
-                        template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
                     if variant == "2" or variant == "3":
                         template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
                     else:
