@@ -22,6 +22,14 @@ The ``tests`` directory comprises of:
 * ``/pages`` contains Python page objects.
 * ``/unit`` contains the Jasmine tests and Jasmine Browser Runner config file.
 
+.. note::
+
+    As of July 2024, bedrock has started to use `Playwright`_ for some integration tests, with
+    the aim of replacing Selenium in the near future. Playwright is a Node.js library for
+    automating modern browsers, and aims to make it easier to write, run, and debug tests.
+    This documentation will be updated as we transition to Playwright, but for now you can
+    find more information in the `README`_ file in the ``tests/playwright`` directory.
+
 Installation
 ------------
 
@@ -353,3 +361,5 @@ via product details are well formed and return valid 200 responses.
 .. _Basket: https://github.com/mozilla/basket
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
 .. _chromedriver: https://chromedriver.chromium.org/downloads
+.. _Playwright: https://playwright.dev
+.. _README: https://github.com/mozilla/bedrock/blob/main/tests/playwright/README.md
