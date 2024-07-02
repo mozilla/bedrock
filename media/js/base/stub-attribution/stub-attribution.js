@@ -339,23 +339,6 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Gets the UA client ID from the GA object.
-     * @returns {String} client ID.
-     */
-    StubAttribution.getUAClientID = function () {
-        try {
-            var clientID = window.ga.getAll()[0].get('clientId');
-
-            if (clientID && typeof clientID === 'string' && clientID !== '') {
-                return clientID;
-            }
-            return null;
-        } catch (e) {
-            return null;
-        }
-    };
-
-    /**
      * Attempts to retrieve the GA4 client from the dataLayer
      * The GTAG GET API tag will write it to the dataLayer once GTM has loaded it
      * https://www.simoahava.com/gtmtips/write-client-id-other-gtag-fields-datalayer/
@@ -429,17 +412,16 @@ if (typeof window.Mozilla === 'undefined') {
         // Tries to get client IDs at a set interval
         function _checkGA() {
             clearTimeout(timeout);
-            var clientIDUA = StubAttribution.getUAClientID();
             var clientIDGA4 = StubAttribution.getGtagClientID();
 
-            if (clientIDUA && clientIDGA4) {
+            if (clientIDGA4) {
                 callback(true);
             } else {
                 if (pollRetry <= limit) {
                     pollRetry += 1;
                     timeout = window.setTimeout(_checkGA, interval);
                 } else {
-                    if (clientIDUA || clientIDGA4) {
+                    if (clientIDGA4) {
                         callback(true);
                     } else {
                         callback(false);
@@ -473,9 +455,6 @@ if (typeof window.Mozilla === 'undefined') {
         var ua = omitNonEssentialFields
             ? 'other'
             : StubAttribution.getUserAgent();
-        var clientIDUA = omitNonEssentialFields
-            ? null
-            : StubAttribution.getUAClientID();
         var clientIDGA4 = omitNonEssentialFields
             ? null
             : StubAttribution.getGtagClientID();
@@ -489,12 +468,8 @@ if (typeof window.Mozilla === 'undefined') {
             ua: ua,
             experiment: experiment,
             variation: variation,
-            client_id: clientIDUA,
             client_id_ga4: clientIDGA4,
-            session_id:
-                clientIDUA || clientIDGA4
-                    ? StubAttribution.createSessionID()
-                    : null,
+            session_id: clientIDGA4 ? StubAttribution.createSessionID() : null,
             dlsource: StubAttribution.DLSOURCE
         };
 
@@ -615,7 +590,7 @@ if (typeof window.Mozilla === 'undefined') {
             // As long as the user is not already on the automatic download page,
             // make the XHR request to the stub authentication service.
         } else if (!StubAttribution.isFirefoxDownloadThanks()) {
-            // Wait for UA & GA4 to load and return client IDs
+            // Wait for GA4 to load and return client IDs
             StubAttribution.waitForGoogleAnalyticsThen(function () {
                 // get attribution data
                 data = StubAttribution.getAttributionData();
@@ -629,16 +604,8 @@ if (typeof window.Mozilla === 'undefined') {
                     // request authentication from stub attribution service
                     StubAttribution.requestAuthentication(data);
 
-                    // Send the session ID to UA and GA4
-                    if (data.client_id) {
-                        // UA
-                        window.dataLayer.push({
-                            event: 'stub-session-id',
-                            eLabel: data.session_id
-                        });
-                    }
+                    // Send the session ID to GA4
                     if (data.client_id_ga4) {
-                        // GA4
                         window.dataLayer.push({
                             event: 'stub_session_set',
                             id: data.session_id

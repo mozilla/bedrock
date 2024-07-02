@@ -88,7 +88,7 @@ Attribution data
 +------------------+-----------------------------------------------------------------------------------------+----------------------------+
 | ``variation``    | Query param identifying the experiment variation that was seen by the visitor.          |                            |
 +------------------+-----------------------------------------------------------------------------------------+----------------------------+
-| ``client_id``    | Google Analytics Client ID.                                                             | ``1715265578.1681917481``  |
+| ``client_id_ga4``| Google Analytics 4 Client ID.                                                           | ``1715265578.1681917481``  |
 +------------------+-----------------------------------------------------------------------------------------+----------------------------+
 | ``session_id``   | A random 10 digit string identifier used to associate attribution data with GA session. | ``9770365798``             |
 +------------------+-----------------------------------------------------------------------------------------+----------------------------+
@@ -199,8 +199,8 @@ testing guide. This guide assumes demo1, make sure you're testing on the right U
 4. Look for a cookie called `moz-stub-attribution-code` and copy the value (it should be a base64 encoded string).
 5. Decode the base64 string (e.g. using https://base64decode.org) and check that:
     - `dlsource` parameter value is mozorg
-    - `client_id`, `client_id_ga4` and `session_id` parameters exist
-    - `client_id` and `client_id_ga4` should look something like 0700077325.1656063224
+    - `client_id_ga4` and `session_id` parameters exist
+    - `client_id_ga4` should look something like 0700077325.1656063224
       (the numbers will differ but the format with the middle period should look the same).
     - `source` and `campaign` have the values ham and pineapple, respectively.
     - The ua value should be chrome (assuming you tested in Chrome).
