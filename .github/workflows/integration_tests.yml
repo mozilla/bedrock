@@ -106,10 +106,29 @@ jobs:
           path: results-${{github.run_id}}-${{matrix.label}}
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
+  playwright-tests:
+    runs-on: ubuntu-latest
+    needs: [notify-of-test-run-start, integration-tests]
+    env:
+      PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
+      CI: true
+      CI_JOB_ID: ${{ github.run_id }}
+      DRIVER: ""
+      LABEL: playwright-tests
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Install dependencies
+      run: cd tests/playwright && npm ci && npm run install-deps
+    - name: Run Playwright tests
+      run: cd tests/playwright && npx playwright test
+
   notify-of-test-run-completion:
     if: always()
     runs-on: ubuntu-latest
-    needs: [notify-of-test-run-start, integration-tests]
+    needs: [notify-of-test-run-start, integration-tests, playwright-tests]
     steps:
       - uses: actions/checkout@v4
       - name: Notify via Slack of test-run outcome
