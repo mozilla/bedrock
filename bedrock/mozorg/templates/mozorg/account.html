@@ -15,13 +15,6 @@
 
 {% block page_desc %}{{ ftl('mozilla-accounts-securely-sync-your', fallback='firefox-accounts-securely-sync-your') }}{% endblock %}
 
-{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
-
-{% block page_favicon %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endblock %}
-
-{% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('protocol-split') }}
