@@ -371,6 +371,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
         "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/index-thanks.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx126beta-de.html": ["firefox/whatsnew/whatsnew"],
@@ -382,6 +383,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx126-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx127-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx127-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx128-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx128-eu-addons.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx128-eu-donate.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -430,6 +434,8 @@ class WhatsnewView(L10nTemplateView):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get("version") or ""
         variant = self.request.GET.get("v", None)
+        nimbus_branch = self.request.GET.get("branch", None)
+        nimbus_variant = self.request.GET.get("variant", None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
@@ -469,6 +475,30 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("128."):
+            if locale in ["de", "fr", "en-GB"]:
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+            elif locale in ["es-ES", "it", "pl"]:
+                template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+            elif locale.startswith("en-"):
+                if country == "GB":
+                    if variant == "2" or variant == "3":
+                        template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
+                else:
+                    if nimbus_branch == "experiment-wnp-128-na-pip":
+                        if nimbus_variant == "v1":
+                            template = "firefox/whatsnew/index-thanks.html"
+                        else:
+                            template = "firefox/whatsnew/whatsnew-fx128-na.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx128-na.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("127."):
