@@ -1590,9 +1590,9 @@ whitenoise==6.7.0 \
     --hash=sha256:58c7a6cd811e275a6c91af22e96e87da0b1109e9a53bb7464116ef4c963bf636 \
     --hash=sha256:a1ae85e01fdc9815d12fa33f17765bc132ed2c54fa76daf9e39e879dd93566f6
     # via -r requirements/prod.in
-willow[heif]==1.6.3 \
-    --hash=sha256:143cefd30d3bb816cdff857c454da24991dda35a0315ea795101675e0b14262f \
-    --hash=sha256:f4b17a16c6315864604dadb6cdf2987d0b685e295cca74c6da28b94167a3126e
+willow[heif]==1.8.0 \
+    --hash=sha256:48ccf5ce48ccd29c37a32497cd7af50983f8570543c4de2988b15d583efc66be \
+    --hash=sha256:ef3df6cde80d4914e719188147bef1d71c240edb118340e0c5957ecc8fe08315
     # via wagtail
 wrapt==1.16.0 \
     --hash=sha256:0d2691979e93d06a95a26257adb7bfd0c93818e89b1406f5a28f36e0d8c1e1fc \
