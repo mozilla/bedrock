@@ -131,7 +131,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Notify via Slack of test-run success
-        if: ${{ needs.integration-tests.result == "success" && needs.playwright-tests.result == "success" }}
+        if: ${{ needs.integration-tests.result == 'success' && needs.playwright-tests.result == 'success' }}
         uses: ./.github/actions/slack
         with:
           env_name: test
@@ -142,7 +142,7 @@ jobs:
           ref: ${{ inputs.branch }}
           message: "Integration tests completed. Status: success"
       - name: Notify via Slack of test-run failure
-        if: ${{ needs.integration-tests.result == "failure" || needs.playwright-tests.result == "failure" }}
+        if: ${{ needs.integration-tests.result == 'failure' || needs.playwright-tests.result == 'failure' }}
         uses: ./.github/actions/slack
         with:
           env_name: test
@@ -153,7 +153,7 @@ jobs:
           ref: ${{ inputs.branch }}
           message: "Integration tests completed. Status: failure"
       - name: Notify via Slack of test-run cancelled
-        if: ${{ needs.integration-tests.result == "cancelled" || needs.playwright-tests.result == "cancelled" }}
+        if: ${{ needs.integration-tests.result == 'cancelled' || needs.playwright-tests.result == 'cancelled' }}
         uses: ./.github/actions/slack
         with:
           env_name: test
