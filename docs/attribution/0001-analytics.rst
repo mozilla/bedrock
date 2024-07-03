@@ -686,7 +686,7 @@ metrics types and events we record.
    Before running any Glean commands locally, always make sure you have first
    activated your virtual environment by running ``pyenv activate bedrock``.
 
-When bedrock starts, we automatically run ``npm run glean`` which parses these
+When Bedrock starts, we automatically run ``npm run glean`` which parses these
 schema files and then generates some JavaScript library code in
 ``./media/js/libs/glean/``. This library code is not committed to the repository
 on purpose, in order to avoid people altering it and becoming out of sync with
