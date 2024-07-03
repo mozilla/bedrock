@@ -6,10 +6,16 @@
 
 # look for the required files and fail quickly if it's not there
 STARTUP_FILES=(
-    "data/bedrock.db"
     "data/last-run-update_locales"
     "data/last-run-download_database"
 )
+# If DATABASE_URL is defined, that means we're using Postgres not sqlite.
+# However, if DATABASE_URL is NOT defined, we need to be sure the sqlite DB file
+# is already present at startup
+if [[ -z "$DATABASE_URL" ]]; then
+    STARTUP_FILES+=("data/bedrock.db")
+fi
+
 for fname in "${STARTUP_FILES[@]}"; do
     if [[ ! -f "$fname" ]]; then
         echo "$fname not found";
