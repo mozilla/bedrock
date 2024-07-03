@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.w-rich-text {
+    ul {
+        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
+        list-style: disc;
+
+        li {
+            margin-bottom: 0.25em;
+        }
+
+        ul {
+            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
+            list-style: circle;
+            margin-bottom: 0;
+        }
+
+        ol {
+            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
+            list-style: decimal;
+            margin-bottom: 0;
+        }
+    }
+
+    ol {
+        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
+        list-style: decimal;
+
+        li {
+            margin-bottom: 0.25em;
+        }
+
+        ol {
+            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
+            list-style: lower-alpha;
+            margin-bottom: 0;
+        }
+
+        ul {
+            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
+            list-style: disc;
+            margin-bottom: 0;
+        }
+    }
+}
