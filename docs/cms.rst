@@ -130,7 +130,7 @@ admin as a User will be allowed to log in. You can create new users using Django
 `createsuperuser`_ command, setting both the username and email do be your
 ``flast@mozilla.com`` LDAP address
 
-.. _wagtail: https://wagtail.org/
+.. _Wagtail CMS: https://wagtail.org/
 .. _Editor Guide: https://guide.wagtail.org/en-latest/
 .. _Wagtail Images docs: https://docs.wagtail.org/en/stable/topics/images.html
 .. _createsuperuser: https://docs.djangoproject.com/en/5.0/ref/django-admin/#createsuperuser

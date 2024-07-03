@@ -577,79 +577,72 @@ How can visitors opt out of GA?
 
 Visitors to the website can opt-out of loading Google Analytics on our
 website by enabling `Do Not Track (DNT)`_ in their web browser. We
-facilitate this by using a `DNT helper`_ that our team maintains.
+facilitate this by using a `DNT helper`_ that our team maintains. We
+also respect `Global Privacy Control (GPC)`_ as an additional opt-out
+signal.
 
+Alternatively, visitors can also opt-out of GA by visiting the
+`cookie settings page`_, which is linked to in the main site
+footer on every page.
 
 Glean
 *****
 
-Currently in an evaluation phase, bedrock is now capable of running a parallel
-first-party analytics implementation alongside :abbr:`GTM (Google Tag Manager)`,
-using Mozilla's own `Glean`_ telemetry :abbr:`SDK (Software Development Kit)`.
-See the `Glean Book`_ for more developer reference documentation.
+In addition to GA, Bedrock also runs a parallel web analytics
+implementation using Mozilla's own `Glean`_ telemetry
+:abbr:`SDK (Software Development Kit)`.
 
-Glean is currently behind a feature switch called ``SWITCH_GLEAN_ANALYTICS``.
-When the switch is enabled pages will load the Glean JavaScript bundle,
-which will do things like record page hits and link click events that we want
-to measure.
+One advantage to Glean is that it is a first-party solution, meaning
+that we have full control over the data we collect and how it is used.
+It is also less likely to be blocked by ad blockers or privacy tools.
 
-Debugging pings
----------------
+Using Glean's standardized schema for data collection, we can also take
+advantage of automated dashboard creation in Looker (see below), which
+makes it easier to query data than some other tools such as GA4's
+default dashboard.
 
-Glean supports debugging pings via a set of flags that can be enabled directly
-in the browser's web console.
+Where can I query Glean data?
+-----------------------------
 
-- ``window.Glean.setLogPings(true)`` (enable verbose ping logging in the web console).
-- ``window.Glean.setDebugViewTag('bedrock')`` (send pings to the `Glean debug dashboard`_ with the tag name ``bedrock``).
+The easiest place to view Glean data is in Looker:
 
-.. Note::
+- `Website sessions dashboard`_
+- `Event monitoring dashboard`_
 
-    After enabling Glean debugging in the web console, it will be remembered
-    when navigating across pages using ``sessionStorage``. To stop debugging,
-    you need to either close the browser tab, or delete the items from
-    ``sessionStorage``. You can disable ping logging by calling
-    ``window.Glean.setLogPings(false)``.
+If you need more detailed queries, you can click "Explore from here" from within
+each visualization to create your own queries.
+
+It is also possible to create more complex queries for raw Glean events using any
+of our standard Telemetry tools. The easiest way to do this is via the
+`Glean Dictionary`_. For example, if you view the `page load ping`_, you will see a
+table in the "Access" section (see screenshot below) that contains different
+links to query the event data.
+
+.. image:: ../images/glean-dictionary.png
+    :alt: Screenshot of the 'Access' table in the Glean Dictionary
 
 Filtering out non-production pings
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Bedrock will also set an ``app_channel`` tag with a value of either ``prod`` or
+Bedrock automatically sets an ``app_channel`` tag with a value of either ``prod`` or
 ``non-prod``, depending on the environment. This is present in all pings in the
 ``client_info`` section, and is useful for filtering out non-production data
 in telemetry dashboards.
 
-Defining metrics and pings
+If you are viewing one of the dashboards linked above, make sure you set the
+``app_channel`` filter to ``prod`` to only see production data.
+
+Recording page load events
 --------------------------
 
-All of the data we send to the Glean pipeline is defined in
-:abbr:`YAML (Yet Another Markup Language)` schema files in the ``./glean/``
-project root directory. The ``metrics.yaml`` file defines all the different
-metrics types and events we record.
+Glean automatically records a page load event when the page is loaded. This event
+contains basic information about the page, such as the URL, the page title, and the
+referrer. The page load event is recorded in the ``glean.page_load`` event. Each page
+load event is associated with a unique ``glean.page_id`` metric, which is used to
+group all events related to a single page view / session.
 
-.. Note::
-
-   Before running any Glean commands locally, always make sure you have first
-   activated your virtual environment by running ``pyenv activate bedrock``.
-
-When bedrock starts, we automatically run ``npm run glean`` which parses these
-schema files and then generates some JavaScript library code in
-``./media/js/libs/glean/``. This library code is not committed to the repository
-on purpose, in order to avoid people altering it and becoming out of sync with
-the schema. This library code is then imported into our Glean analytics code in
-``./media/js/glean/``, which is where we initiate page views and capture click
-events.
-
-Running ``npm run glean`` can also be performed independently of starting bedrock.
-It will also first lint the schema files.
-
-.. Important::
-
-    All metrics and events we record using Glean must first undergo a `data review`_
-    before being made active in production. Therefore anytime we make new additions
-    to these files, those changes should also undergo review.
-
-Recording Glean click events
-----------------------------
+Recording click events
+----------------------
 
 Glean will automatically record click events on any HTML element that has at least
 one of the following data attributes:
@@ -657,6 +650,9 @@ one of the following data attributes:
 - ``data-glean-id``: A string indicating an identifier of the clicked element.
 - ``data-glean-type``: A string indicating the type of the clicked element.
 - ``data-glean-label``: A string indicating the label of the clicked element.
+
+Each click event will also record a ``glean.page_id`` metric, so that we can associate
+the click event with the page view that triggered it.
 
 Bedrock also has a custom ``Mozilla.Glean.clickEvent()`` helper that can be used
 to record click events directly via JavaScript:
@@ -676,37 +672,61 @@ to record click events directly via JavaScript:
     When calling ``Mozilla.Glean.clickEvent()`` directly, make sure to always
     check if the ``Mozilla.Glean`` object is defined first.
 
-How can visitors opt out of Glean?
-----------------------------------
+Defining additional metrics and pings
+-------------------------------------
 
-Website visitors can opt out of Glean by visiting the first party `data preferences page`_,
-which is linked to in the `websites privacy notice`_. Clicking opt-out will set a
-cookie which Glean checks for before initializing on page load. In production, the
-cookie that is set applies for all ``.mozilla.org`` domains, so other sites such as
-``developer.mozilla.org`` can also make use of the opt-out mechanism.
-
-Where can I view Glean data?
-----------------------------
-
-The easiest place to see Glean data is in Looker:
-
-- `Website sessions dashboard`_
-- `Event monitoring dashboard`_
+Outside of the standard page load and click event metrics recorded by Glean,
+any additional metrics we send to the Glean pipeline is defined in
+:abbr:`YAML (Yet Another Markup Language)` schema files in the ``./glean/``
+project root directory. The ``metrics.yaml`` file defines all the different
+metrics types and events we record.
 
 .. Note::
 
-    Right now the above dashboards show only non-production traffic. This will be switched
-    to production once we're ready. Click event data will also be recorded in a future
-    update.
+   Before running any Glean commands locally, always make sure you have first
+   activated your virtual environment by running ``pyenv activate bedrock``.
 
-It is also possible to create more complex queries for Glean events using any of our
-standard Telemetry tools. The easiest way to do this is via the `Glean Dictionary`_.
-For example, if you view the `events ping`_, you will see a table of links in the
-"Access" section (see screenshot below) that contain different links to query the
-event data.
+When Bedrock starts, we automatically run ``npm run glean`` which parses these
+schema files and then generates some JavaScript library code in
+``./media/js/libs/glean/``. This library code is not committed to the repository
+on purpose, in order to avoid people altering it and becoming out of sync with
+the schema. This library code is then imported into our Glean analytics code in
+``./media/js/glean/``, which is where we initiate page views and capture click
+events.
 
-.. image:: ../images/glean-dictionary.png
-    :alt: Screenshot of the 'Access' table in the Glean Dictionary
+Running ``npm run glean`` can also be performed independently of starting bedrock.
+It will also first lint the schema files.
+
+.. Important::
+
+    All metrics and events we add to the YAML file first undergo a `data review`_
+    before being recorded in production. Additionally changes or updates to existing
+    metrics should also undergo a data review.
+
+Debugging pings
+---------------
+
+Glean supports debugging pings via a set of flags that can be enabled directly
+in the browser's web console.
+
+- ``window.Glean.setLogPings(true)`` (enable verbose ping logging in the web console).
+- ``window.Glean.setDebugViewTag('bedrock')`` (send pings to the `Glean debug dashboard`_
+  with the tag name ``bedrock``).
+
+.. Note::
+
+    After enabling Glean debugging in the web console, it will be remembered
+    when navigating across pages using ``sessionStorage``. To stop debugging,
+    you need to either close the browser tab, or delete the items from
+    ``sessionStorage``. You can disable ping logging by calling
+    ``window.Glean.setLogPings(false)``.
+
+How can visitors opt out of Glean?
+----------------------------------
+
+Website visitors can opt out of Glean by visiting the `cookie settings page`_,
+which is linked to in the main site footer on every page. Clicking opt-out will set a
+cookie which Glean checks for before initializing on page load.
 
 .. _Google Tag Manager (GTM): https://tagmanager.google.com/
 .. _Google Analytics: https://analytics.google.com/
@@ -714,15 +734,14 @@ event data.
 .. _begin_checkout: https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#begin_checkout
 .. _3-letter ISO 4217 format: https://en.wikipedia.org/wiki/ISO_4217#Active_codes
 .. _(See Bug #13348): https://github.com/mozilla/bedrock/issues/13348
-.. _Do Not Track (DNT): https://support.mozilla.org/en-US/kb/how-do-i-turn-do-not-track-feature
+.. _Do Not Track (DNT): https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature
+.. _Global Privacy Control (GPC): https://developer.mozilla.org/docs/Web/API/Navigator/globalPrivacyControl
 .. _DNT helper: https://github.com/mozmeao/dnt-helper
-.. _Glean: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
-.. _Glean Book: https://mozilla.github.io/glean/book/index.html
+.. _Glean: https://mozilla.github.io/glean.js/
 .. _Glean debug dashboard: https://debug-ping-preview.firebaseapp.com/
 .. _data review: https://wiki.mozilla.org/Data_Collection
-.. _data preferences page: https://www.mozilla.org/privacy/websites/data-preferences/
-.. _websites privacy notice: https://www.mozilla.org/privacy/websites/
-.. _Website sessions dashboard: https://mozilla.cloud.looker.com/dashboards/websites::website_sessions?App+ID=bedrock&Submission+Date=7+day&Country+Name=&External+Referrer=&App+Channel=non-prod&UA+-+Browser=&Traffic+Source=
-.. _Event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=non-prod
+.. _cookie settings page: https://www.mozilla.org/privacy/websites/cookie-settings/
+.. _Website sessions dashboard: https://mozilla.cloud.looker.com/dashboards/websites::website_sessions?App%20ID=bedrock&Submission%20Date=7%20day&Country%20Name=&External%20Referrer=&App%20Channel=prod&UA%20-%20Browser=&Traffic%20Source=
+.. _Event monitoring dashboard: https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&App+Name=www.mozilla.org&Window+Start+Time=28+days&Channel=prod
 .. _Glean Dictionary: https://dictionary.telemetry.mozilla.org/apps/bedrock
-.. _events ping: https://dictionary.telemetry.mozilla.org/apps/bedrock/pings/events
+.. _page load ping: https://dictionary.telemetry.mozilla.org/apps/bedrock/metrics/glean_page_load
