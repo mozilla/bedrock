@@ -80,6 +80,10 @@ main {
 
     .cookie-summary {
         border-bottom: 1px solid $color-light-gray-40;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .cookie-summary-title {
