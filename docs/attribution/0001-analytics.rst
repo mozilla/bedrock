@@ -588,7 +588,7 @@ footer on every page.
 Glean
 *****
 
-In addition to GA, bedrock also runs a parallel web analytics
+In addition to GA, Bedrock also runs a parallel web analytics
 implementation using Mozilla's own `Glean`_ telemetry
 :abbr:`SDK (Software Development Kit)`.
 
