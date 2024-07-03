@@ -12,7 +12,7 @@ from wagtail.models import Page as WagtailBasePage
 from .base import AbstractBedrockCMSPage
 
 
-class StructuralPage(AbstractBedrockCMSPage):
+class AbstractStructuralPage(AbstractBedrockCMSPage):
     """A page used to create a folder-like structure within a page tree,
     under/in which other pages live.
     Not directly viewable - will redirect to its parent page if called"""
@@ -31,12 +31,19 @@ class StructuralPage(AbstractBedrockCMSPage):
     ]
     promote_panels = []
 
+    class Meta:
+        abstract = True
+
     def serve_preview(self, request, mode_name="irrelevant"):
         # Regardless of mode_name, always redirect to the parent page
         return redirect(self.get_parent().get_full_url())
 
     def serve(self, request):
         return redirect(self.get_parent().get_full_url())
+
+
+class StructuralPage(AbstractStructuralPage):
+    pass
 
 
 class SimpleRichTextPage(AbstractBedrockCMSPage):
@@ -54,7 +61,7 @@ class SimpleRichTextPage(AbstractBedrockCMSPage):
     # `title` and `slug` fields come from Page->AbstractBedrockCMSPage
     content = RichTextField(
         blank=True,
-        features=settings.WAGTAIL_RICHEXT_FEATURES_FULL,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
     )
     # Note there are no other custom fields here
 
