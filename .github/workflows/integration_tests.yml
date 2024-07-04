@@ -127,6 +127,7 @@ jobs:
       run: cd tests/playwright && npx playwright test
 
   notify-of-test-run-completion:
+    if: always()
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, integration-tests, playwright-tests]
     steps:
