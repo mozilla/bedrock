@@ -79,19 +79,6 @@ DATABASES = {
         conn_health_checks=db_conn_health_checks,
     )
 }
-
-if DATABASES["default"]["ENGINE"] == "django.db.backends.postgresql" and config(
-    "ENABLE_CONNECTION_POOLING",
-    default="True",
-    parser=bool,
-):
-    DATABASES["default"]["ENGINE"] = "dj_db_conn_pool.backends.postgresql"
-    DATABASES["default"]["POOL_OPTIONS"] = {
-        "POOL_SIZE": config("DB_CONNECTION_POOL_SIZE", parser=int, default="10"),
-        "MAX_OVERFLOW": config("DB_CONNECTION_MAX_OVERFLOW", parser=int, default="10"),
-        "RECYCLE": config("DB_CONNECTION_RECYCLE_SECONDS", parser=int, default="-1"),
-    }
-
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 TASK_QUEUE_AVAILABLE = False
