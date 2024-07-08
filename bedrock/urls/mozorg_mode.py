@@ -84,6 +84,9 @@ if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage
     )
     # Note that statics are handled via Whitenoise's middleware
 
+if settings.ENABLE_DJANGO_SILK:
+    urlpatterns += [path("silk/", include("silk.urls", namespace="silk"))]
+
 # Wagtail is the catch-all route, and it will raise a 404 if needed.
 # Note that we're also using localised URLs here
 urlpatterns += bedrock_i18n_patterns(

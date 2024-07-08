@@ -2136,3 +2136,10 @@ WAGTAIL_RICHEXT_FEATURES_FULL = [
 ]
 
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
+
+# Django-silk for performance profiling
+if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bool):
+    print("Django-Silk profiling enabled - go to http://localhost:8000/silk/ to view metrics")
+    INSTALLED_APPS.append("silk")
+    MIDDLEWARE.insert(0, "silk.middleware.SilkyMiddleware")
+    SUPPORTED_NONLOCALES.append("silk")

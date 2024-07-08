@@ -33,6 +33,10 @@ attrs==23.2.0 \
     #   outcome
     #   referencing
     #   trio
+autopep8==2.3.1 \
+    --hash=sha256:8d6c87eba648fdcfc83e29b788910b8643171c395d9c4bcf115ece035b9c9dda \
+    --hash=sha256:a203fe0fcad7939987422140ab17a930f684763bf7335bdb6709991dd7ef6c2d
+    # via django-silk
 babel==2.15.0 \
     --hash=sha256:08706bdad8d0a3413266ab61bd6c34d0c28d6e1e7badf40a2cebe67644e2e1fb \
     --hash=sha256:8daf0e265d05768bc6c7a314cf1321e9a123afc328cc635c18622a2f30a04413
@@ -469,6 +473,7 @@ django==4.2.13 \
     #   django-mozilla-product-details
     #   django-permissionedforms
     #   django-rq
+    #   django-silk
     #   django-storages
     #   django-taggit
     #   django-treebeard
@@ -540,6 +545,10 @@ django-rq==2.10.2 \
     --hash=sha256:5fe340e071c141a23ea0859df73c48b0a3df33a851835b2a8f8c4fca7a8b1849 \
     --hash=sha256:d1690b6a409934a0ea23c208ccb00d69477899f8edc61106ce5395c19dcdfb1e
     # via -r requirements/prod.txt
+django-silk==5.1.0 \
+    --hash=sha256:34abb5852315f0f3303d45b7ab4a2caa9cf670102b614dbb2ac40a5d2d5cbffb \
+    --hash=sha256:35a2051672b0be86af4ce734a0df0b6674c8c63f2df730b3756ec6e52923707d
+    # via -r requirements/dev.in
 django-storages[google]==1.14.3 \
     --hash=sha256:31f263389e95ce3a1b902fb5f739a7ed32895f7d8b80179fe7453ecc0dfe102e \
     --hash=sha256:95a12836cd998d4c7a4512347322331c662d9114c4344f932f5e9c0fce000608
@@ -737,6 +746,10 @@ googleapis-common-protos==1.63.2 \
     # via
     #   -r requirements/prod.txt
     #   google-api-core
+gprof2dot==2024.6.6 \
+    --hash=sha256:45b14ad7ce64e299c8f526881007b9eb2c6b75505d5613e96e66ee4d5ab33696 \
+    --hash=sha256:fa1420c60025a9eb7734f65225b4da02a10fc6dd741b37fa129bc6b41951e5ab
+    # via django-silk
 granian==1.4.4 \
     --hash=sha256:02a15b1c7829373725eb4223f02ed2ea59787b2fbc9ae441c81a8ceecd63ecd4 \
     --hash=sha256:0c4a084ea7610b1c08f9516aa6c680c80fbdf7136d53bd6985d6ef9bde8591b8 \
@@ -1543,6 +1556,10 @@ pyasn1-modules==0.4.0 \
     # via
     #   -r requirements/prod.txt
     #   google-auth
+pycodestyle==2.12.0 \
+    --hash=sha256:442f950141b4f43df752dd303511ffded3a04c2b6fb7f65980574f0c31e6e79c \
+    --hash=sha256:949a39f6b86c3e1515ba1787c2022131d165a8ad271b11370a8819aa070269e4
+    # via autopep8
 pycparser==2.22 \
     --hash=sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6 \
     --hash=sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc
@@ -2070,6 +2087,7 @@ sqlparse==0.5.0 \
     # via
     #   -r requirements/prod.txt
     #   django
+    #   django-silk
 supervisor==4.2.5 \
     --hash=sha256:2ecaede32fc25af814696374b79e42644ecaba5c09494c51016ffda9602d0f08 \
     --hash=sha256:34761bae1a23c58192281a5115fb07fbf22c9b0133c08166beffc70fed3ebc12
