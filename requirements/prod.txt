@@ -325,6 +325,7 @@ django==4.2.14 \
     #   mozilla-django-oidc
     #   wagtail
     #   wagtail-localize
+    #   wagtail-localize-smartling
 django-allow-cidr==0.7.1 \
     --hash=sha256:11126c5bb9df3a61ff9d97304856ba7e5b26d46c6d456709a6d9e28483bff47f \
     --hash=sha256:382c5d7a9807279e3e96e4f4892b59163a2b30128c596902bf5f80e133e1ccbb
@@ -401,7 +402,9 @@ django-watchman==1.3.0 \
 djangorestframework==3.15.2 \
     --hash=sha256:2b8871b062ba1aefc2de01f773875441a961fefbf79f5eed1e32b2f096944b20 \
     --hash=sha256:36fe88cd2d6c6bec23dca9804bab2ba5517a8bb9d8f47ebc68981b56840107ad
-    # via wagtail
+    # via
+    #   wagtail
+    #   wagtail-localize-smartling
 docutils==0.21.2 \
     --hash=sha256:3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f \
     --hash=sha256:dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2
@@ -1365,6 +1368,7 @@ requests==2.32.3 \
     #   mozilla-django-oidc
     #   pygithub
     #   wagtail
+    #   wagtail-localize-smartling
 rich-text-renderer==0.2.8 \
     --hash=sha256:74e28bde639f737e2bc50f3dfb147bdbad4b2d7ab3f8f76a9db2d444edb8d13b \
     --hash=sha256:e4680109372b55611250ebe0745f59cbf3f8932afa6f5cb5d1f3cc282a4bf95c
@@ -1591,9 +1595,16 @@ wagtail==6.1.3 \
     # via
     #   -r requirements/prod.in
     #   wagtail-localize
+    #   wagtail-localize-smartling
 wagtail-localize==1.9 \
     --hash=sha256:a680fc33c17145e6726f03a57b2ec465405847ae7cb77943ecc0e56463ad68c7 \
     --hash=sha256:f4fa9c36d8dbab5c27d1b675ed6fd7b9e8f012cf4bb308464168de7ebbad8324
+    # via
+    #   -r requirements/prod.in
+    #   wagtail-localize-smartling
+wagtail-localize-smartling==0.2.3 \
+    --hash=sha256:0701444976c6b5392616d5dcdbf202fdce730b591e9d6794efee99c613107dc5 \
+    --hash=sha256:6bef31958c24229a663b81b889879c845bed021dde0eba44a9527eb45e6cf3ed
     # via -r requirements/prod.in
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
