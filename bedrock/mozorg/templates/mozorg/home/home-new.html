@@ -23,6 +23,7 @@
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-july2024', ["en", "de", "fr"]) %}
+{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024'), ["en"] %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
@@ -46,18 +47,42 @@
   {% endif %}
 {% endblock %}
 
+{% block site_header %}
+  {% if show_fundraising_nav_cta and variation == '1' %}
+    {% with
+      custom_nav_cta="<a class='mzp-c-button mzp-t-secondary c-fx-users' href='https://foundation.mozilla.org/?form=cta-donate-nav-fx'>
+      <span class='mzp-c-button-icon-start'>
+      <svg width='16' height='16' viewBox='0 0 16 16'>
+      <path fill='#ff0000' d='M1.2,2.2c-1.5,1.5-1.5,4.2,0,5.7L8,15c2.3-2.4,4.5-4.7,6.9-7c1.5-1.5,1.5-4.2,0-5.7c-1.5-1.5-4-1.5-5.6,0L8,3.5 L6.7,2.3C5.1,0.6,2.7,0.6,1.2,2.2'/>
+      </svg>
+      </span>Donate</a>
+
+      <a class='mzp-c-button mzp-t-secondary c-non-fx-users' href='https://foundation.mozilla.org/?form=cta-donate-nav'>
+      <span class='mzp-c-button-icon-start'>
+      <svg width='16' height='16' viewBox='0 0 16 16'>
+      <path fill='#ff0000' d='M1.2,2.2c-1.5,1.5-1.5,4.2,0,5.7L8,15c2.3-2.4,4.5-4.7,6.9-7c1.5-1.5,1.5-4.2,0-5.7c-1.5-1.5-4-1.5-5.6,0L8,3.5 L6.7,2.3C5.1,0.6,2.7,0.6,1.2,2.2'/>
+      </svg>
+      </span>Donate</a>" |safe %}
+      {% include 'includes/protocol/navigation/navigation.html' %}
+    {% endwith %}
+  {% else %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_banner %}
   {% if show_fundraising_banner %}
     {% include 'includes/banners/fundraiser.html' %}
   {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
-  {% include 'includes/banners/fundraiser.html' %}
 {% endblock %}
 
 {% block experiments %}
   {% if show_fundraising_banner and switch('fundraising-banner-experiment-july2024', ["en-US", "en-CA"]) %}
     {{ js_bundle('fundraising-banner-experiment') }}
+  {% elif show_fundraising_nav_cta %}
+    {{ js_bundle('fundraising-nav-cta')}}
   {% endif %}
 {% endblock %}
 

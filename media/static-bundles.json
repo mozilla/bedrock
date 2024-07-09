@@ -1348,6 +1348,12 @@
     },
     {
       "files": [
+        "js/mozorg/home/fundraising-nav-cta.es6.js"
+      ],
+      "name": "fundraising-nav-cta"
+    },
+    {
+      "files": [
         "js/firefox/browsers/compare-article.es6.js"
       ],
       "name": "firefox_compare_article"
