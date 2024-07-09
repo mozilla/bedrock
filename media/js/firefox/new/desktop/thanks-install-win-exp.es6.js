@@ -45,8 +45,8 @@ const initTrafficCop = () => {
         if (isApprovedToRun() && isWindows10Plus() && isEdgeBrowser()) {
             const cop = new TrafficCop({
                 variations: {
-                    'experiment=firefox-thanks-install-win&variation=1': 10, // control
-                    'experiment=firefox-thanks-install-win&variation=2': 10 // install messaging
+                    'experiment=firefox-thanks-install-win&variation=1': 25, // control
+                    'experiment=firefox-thanks-install-win&variation=2': 25 // install messaging
                 }
             });
             cop.init();
