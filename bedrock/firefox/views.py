@@ -577,6 +577,7 @@ class DownloadThanksView(L10nTemplateView):
         "firefox/new/basic/thanks_direct.html": ["firefox/new/download"],
         "firefox/new/desktop/thanks.html": ["firefox/new/desktop"],
         "firefox/new/desktop/thanks_direct.html": ["firefox/new/desktop"],
+        "firefox/new/desktop/thanks-install-win.html": ["firefox/new/desktop"],
     }
     activation_files = [
         "firefox/new/download",
@@ -584,27 +585,32 @@ class DownloadThanksView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = []
+    variations = ["1", "2"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        variant = self.request.GET.get("v", None)
+        variation = self.request.GET.get("variation", None)
 
         # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
+        if variation not in self.variations:
+            variation = None
 
-        ctx["variant"] = variant
+        ctx["variation"] = variation
 
         return ctx
 
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
         source = self.request.GET.get("s", None)
+        experiment = self.request.GET.get("experiment", None)
+        variation = self.request.GET.get("variation", None)
+        locale = l10n_utils.get_locale(self.request)
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
             if source == "direct":
                 template = "firefox/new/desktop/thanks_direct.html"
+            elif locale == "en-US" and experiment == "firefox-thanks-install-win" and variation == "2":
+                template = "firefox/new/desktop/thanks-install-win.html"
             else:
                 template = "firefox/new/desktop/thanks.html"
         else:
@@ -648,14 +654,14 @@ class NewView(L10nTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
-        # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-        variant = self.request.GET.get("v", None)
+        # note: variation and xv params only allow a-z, A-Z, 0-9, -, and _ characters
+        variation = self.request.GET.get("variation", None)
 
         # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
+        if variation not in self.variations:
+            variation = None
 
-        ctx["variant"] = variant
+        ctx["variation"] = variation
 
         reason = self.request.GET.get("reason", None)
         manual_update = True if reason == "manual-update" else False
@@ -666,12 +672,12 @@ class NewView(L10nTemplateView):
         return ctx
 
     def get_template_names(self):
-        variant = self.request.GET.get("v", None)
+        variation = self.request.GET.get("variation", None)
         experience = self.request.GET.get("xv", None)
 
         # ensure variant matches pre-defined value
-        if variant not in self.variations:
-            variant = None
+        if variation not in self.variations:
+            variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
             template = "firefox/new/desktop/download.html"

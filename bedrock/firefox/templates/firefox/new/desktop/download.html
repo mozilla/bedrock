@@ -23,9 +23,11 @@
   {% endif %}
 {% endblock %}
 
+{% set show_firefox_install_exp = switch('experiment-firefox-thanks-install-win', ['en-US']) and country_code == "US" %}
+
 {% block experiments %}
-  {% if switch('experiment-firefox-thanks-smoke-test', ['en-US']) and country_code == "US" %}
-    {{ js_bundle('firefox-thanks-smoke-test') }}
+  {% if show_firefox_install_exp %}
+    {{ js_bundle('firefox-thanks-install-win-exp') }}
   {% endif %}
 {% endblock %}
 
@@ -87,7 +89,7 @@
 
 {% endif %}
 
-<main class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+<main class="main-download" {% if variation %}data-variation="{{ variation }}"{% endif %}>
   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
     <div class="c-block-container">
       <div class="c-block-body">
@@ -591,4 +593,8 @@
 
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
+
+  {% if show_firefox_install_exp %}
+    {{ js_bundle('firefox-thanks-install-win') }}
+  {% endif %}
 {% endblock %}
