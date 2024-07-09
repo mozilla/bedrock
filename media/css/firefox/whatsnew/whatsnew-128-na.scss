@@ -15,39 +15,33 @@
 }
 
 .c-video-wrapper {
+    margin-top: $layout-md;
+    position: relative;
     z-index: 10;
 
-    .mzp-c-video {
-        overflow: visible;
-        position: relative;
-
-        @media (min-width: 920px) {
-            &::before {
-                background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/video-pseudo-background.png");
-                background-repeat: no-repeat;
-                content: "";
-                height: 556px;
-                width: 710px;
-                position: absolute;
-                left: 30px;
-                top: 19px;
-                background-size: contain;
-                z-index: -1;
-            }
+    @media (min-width: 920px) {
+        &::after {
+            background-image: url("/media/img/firefox/whatsnew/whatsnew128-na/video-pseudo-background.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: "";
+            height: 430px;
+            left: 20px;
+            position: absolute;
+            top: 14px;
+            width: 720px;
+            z-index: -1;
         }
+    }
 
-        img {
-            border-radius: 20px;
-        }
+    img {
+        border-radius: $border-radius-lg;
     }
 }
 
+
 .wnp-main-title {
     @include text-title-lg;
-    margin-top: $spacing-lg;
-    @media #{$mq-md} {
-        margin-top: $layout-xl;
-    }
 }
 
 .wnp-main-tagline {

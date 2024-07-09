@@ -23,19 +23,8 @@
 {% endblock %}
 
 {% block wnp_content %}
-<section class="wnp-content-main mzp-l-content">
-  <div class="mzp-l-content mzp-t-content-md mzp-t-content-nospace c-video-wrapper">
-    {{ video_inline_embed(
-      id='9RLq8JDY0mI',
-      title='Stick the landing with Firefox',
-      image=resp_img(
-        url='img/firefox/whatsnew/whatsnew128-na/gymnast.png',
-        optional_attributes={
-          'width': '1024',
-          'height': '576'
-        }
-      ),
-    ) }}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
     <h1 class="wnp-main-title">World-class multitasking</h1>
 
     <p class="wnp-main-tagline has-pip-icon">Picture-In-Picture lets you watch every cartwheel and handspring without putting your life on pause. Just click <strong>the Picture-in-Picture button</strong> to pop out any video.</p>
@@ -45,6 +34,23 @@
         Learn more
       </a>
     </p>
+
+    <div class="c-video-wrapper">
+      {{ video_inline_embed(
+        id='9RLq8JDY0mI',
+        title='Stick the landing with Firefox',
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew128-na/gymnast.jpg',
+          srcset={
+            'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg': '2x'
+          },
+          optional_attributes={
+            'width': '690',
+            'height': '410'
+          }
+        ),
+      ) }}
+    </div>
   </div>
 </section>
 
