@@ -24,8 +24,6 @@ firefox-more-firefox-chromebook = { -brand-name-firefox-browser } for { -brand-n
 firefox-more-while-on-chromebook = While a { -brand-name-chromebook } already has { -brand-name-chrome } installed, downloading and using { -brand-name-firefox } as your go-to browser provides you with a few benefits
 firefox-more-firefox-quantum = { -brand-name-firefox-quantum }
 firefox-more-quantum-was-revolution = { -brand-name-firefox-quantum } was a revolution in { -brand-name-firefox } development. In 2017, we created a new, lightning fast browser that constantly improves. { -brand-name-firefox-quantum } is the { -brand-name-firefox-browser }.
-firefox-more-firefox-sync = { -brand-name-firefox-sync }
-firefox-more-access-your-sync = Access and sync your bookmarks, passwords, open tabs and more — everywhere you use { -brand-name-firefox }.
 we-believe-everyone = We believe everyone should have access to the internet — that’s why we make the { -brand-name-firefox-browser } available in more than 90 languages with the help of dedicated volunteers around the world.
 firefox-fights-for = { -brand-name-firefox } fights for you on { -brand-name-windows }
 easy-migration-of = Easy migration of preferences and bookmarks when you download { -brand-name-firefox } for { -brand-name-windows }.
@@ -44,23 +42,8 @@ six-of-the-best = Six of the best browsers in direct comparison
 # Obsolete string
 we-compare-firefox = We compare { -brand-name-firefox } with { -brand-name-chrome }, { -brand-name-edge }, { -brand-name-safari }, { -brand-name-opera }, { -brand-name-brave } and { -brand-name-ie } to help you make your decision.
 
-we-compare-firefox-v2 = We compare { -brand-name-firefox } with Chrome, Edge, Safari, Opera and Brave to help you make your decision.
-comparing-firefox-chrome = Comparing { -brand-name-firefox-browser } with { -brand-name-google } { -brand-name-chrome }
-big-isnt-always = Big isn’t always best. Choose independence instead.
-comparing-firefox-brave = Comparing { -brand-name-firefox-browser } to { -brand-name-brave }
-be-bold-and = Be bold and courageous when choosing which browser is right for you.
-comparing-firefox-edge = Comparing { -brand-name-firefox-browser } with { -brand-name-microsoft } { -brand-name-edge }
-youll-never-guess = You’ll never guess which browser has the edge when it comes to speed and features..
 comparing-firefox-ie = Comparing { -brand-name-firefox-browser } with { -brand-name-microsoft } { -brand-name-ie }
 old-habits-that = Old habits that die hard but you’ll feel better when they do.
-comparing-firefox-safari = Comparing { -brand-name-firefox-browser } with { -brand-name-apple } { -brand-name-safari }
-you-dont-have = You don’t have to default to your standard browser.
-comparing-firefox-opera = Comparing { -brand-name-firefox-browser } with { -brand-name-opera }
-be-free-to = Be free to sing the praises of { -brand-name-firefox } whenever you want.
-the-ad-blocker = The ad blocker – a secret weapon against annoying ads.
-so-many-ads = So many ads, so little patience… It’s time to stop the madness.
-firefox-more-protection = { -brand-name-firefox }: More protection. Less worry.
-were-obsessed-with = We’re obsessed with protecting your privacy. That’s why we’ve made { -brand-name-firefox } Private Browsing more powerful than the others.
 incognito-browser-what = Incognito browser: What it really means
 firefox-calls-it = { -brand-name-firefox } calls it private browsing, { -brand-name-chrome } calls it incognito mode. Both let you browse the web without saving your browsing history.
 
@@ -72,6 +55,3 @@ firefox-more-a-guide-to = A guide to safer logins and passwords
 firefox-more-more-and-more = More and more of the sensitive, valuable things in our life are guarded by passwords.
 firefox-more-avoid-misinformation-heading = Avoid misinformation online – { -brand-name-firefox } is here to help
 firefox-more-avoid-misinformation-desc = Check out tips for seeing less misinformation and focusing on what’s important to you.
-
-firefox-more-is-firefox-a-private-browser = Is { -brand-name-firefox } a private browser?
-firefox-more-were-focused-on-your-right-to = We’re focused on your right to privacy. Your data, your web activity, your life online is protected with { -brand-name-firefox }.

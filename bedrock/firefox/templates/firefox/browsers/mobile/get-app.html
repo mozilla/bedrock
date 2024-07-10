@@ -29,6 +29,10 @@
 {% set android_url = play_store_url('firefox', 'firefox-browsers-mobile-get-app') %}
 {% set ios_url = app_store_url('firefox', 'firefox-browsers-mobile-get-app') %}
 
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
 {% block content %}
 <main class="mzp-l-content mzp-t-content-md mzp-t-firefox">
   <section>

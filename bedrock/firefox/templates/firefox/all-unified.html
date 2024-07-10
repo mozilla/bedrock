@@ -37,6 +37,10 @@
 {% set android_nightly_url = android_nightly_full_builds[0].platforms.android.download_url %}
 {% set ios_url = ios_release_full_builds[0].platforms.ios.download_url %}
 
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
 {% block content %}
 <main>
   <div class="mzp-l-content">

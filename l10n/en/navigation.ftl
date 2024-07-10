@@ -52,7 +52,6 @@ navigation-browsers = Browsers
 navigation-close-browsers-menu = Close Browsers menu
 navigation-download = Download
 navigation-extensions = Extensions
-navigation-support = Support
 navigation-privacy = Privacy
 navigation-get-unmatched-data-protection = Get unmatched data protection on the release cadence that suits your organization.
 navigation-made-with-respect = Made with respect

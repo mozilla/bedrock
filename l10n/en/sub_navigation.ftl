@@ -16,6 +16,7 @@ sub-navigation-compare-mobile-browsers = Compare Mobile Browsers
 sub-navigation-firefox-for-desktop = { -brand-name-firefox } for Desktop
 sub-navigation-release-notes = Release Notes
 sub-navigation-desktop = Desktop
+sub-navigation-mobile = Mobile
 sub-navigation-android = { -brand-name-android }
 sub-navigation-ios = { -brand-name-ios }
 sub-navigation-ios-support = { -brand-name-ios } Support
@@ -24,13 +25,8 @@ sub-navigation-android-beta = { -brand-name-android } { -brand-name-beta }
 sub-navigation-desktop-beta-and-developer = Desktop { -brand-name-beta } & { -brand-name-developer-edition }
 sub-navigation-desktop-nightly = Desktop { -brand-name-nightly }
 sub-navigation-features = Features
-sub-navigation-support = Support
-sub-navigation-firefox-focus = { -brand-name-firefox-focus }
 
-sub-navigation-add-ons = Add-ons
-sub-navigation-faq = FAQ
-sub-navigation-learn-more = Learn More
-sub-navigation-developer-edition = { -brand-name-developer-edition }
+sub-navigation-more = More
 sub-navigation-firefox-for-mobile = { -brand-name-firefox } for Mobile
 
 sub-navigation-chromebook = { -brand-name-chromebook }
