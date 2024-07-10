@@ -45,7 +45,7 @@ test.describe(
 
             expect(downloadURL).toEqual(
                 expect.stringMatching(
-                    /https:\/\/download-installer.cdn.mozilla.net\/|https:\/\/cdn-stage.stubattribution.nonprod.cloudops.mozgcp.net\//
+                    /https:\/\/download-installer.cdn.mozilla.net\/|https:\/\/cdn-stage.stubattribution.nonprod.cloudops.mozgcp.net\/|https:\/\/cdn.stubdownloader.services.mozilla.com\//
                 )
             );
 
