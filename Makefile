@@ -180,6 +180,7 @@ preflight:
 	${MAKE} install-local-python-deps
 	$ npm install
 	$ bin/sync-all.sh
+	$ python manage.py bootstrap_local_admin
 
 run-local-task-queue:
 	# We temporarily source the .env for the command's duration only
