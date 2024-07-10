@@ -115,20 +115,17 @@ we need to.
 Infrastructure notes
 --------------------
 
-SSO setup
-~~~~~~~~~
+SSO authentication setup
+========================
 
-When the env vars `OIDC_RP_CLIENT_ID` and `OIDC_RP_CLIENT_SECRET` are present and
-`USE_SSO_AUTH` is set to True in settings, Bedrock will use Mozilla SSO instead of
-username + password to sign in. The deployed sites will have these set, but we
-also have credentials available for using SSO locally if you need to develop something
-that needs it - see our password vault.
+When the env vars ``OIDC_RP_CLIENT_ID`` and ``OIDC_RP_CLIENT_SECRET`` are present and ``USE_SSO_AUTH`` is set to True in settings, Bedrock will use Mozilla SSO instead of Django's default username + password approach to sign in. The deployed sites will have these set, but we also have credentials available for using SSO locally if you need to develop something that needs it - see our password vault.
 
-Note that Bedrock in SSO mode will not support 'drive by' user creation even if
-they have an @mozilla.com identity. Only users who already exist in the Wagtail
-admin as a User will be allowed to log in. You can create new users using Django's
-`createsuperuser`_ command, setting both the username and email do be your
-``flast@mozilla.com`` LDAP address
+Note that Bedrock in SSO mode will `not` support 'drive by' user creation even if they have an ``@mozilla.com`` identity. Only users who already exist in the Wagtail admin as a User will be allowed to log in. You can create new users using Django's `createsuperuser`_ command, setting both the username and email to be your ``flast@mozilla.com`` LDAP address
+
+Non-SSO authentication for local builds
+=======================================
+If you just want to use a username and password locally, you can - ensure those env vars above are not set, and use Django's `createsuperuser`_ command to make an admin user in your local build.
+
 
 .. _Wagtail CMS: https://wagtail.org/
 .. _Editor Guide: https://guide.wagtail.org/en-latest/
