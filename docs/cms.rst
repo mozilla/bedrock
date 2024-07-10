@@ -415,6 +415,68 @@ This approach will not be a problem if we stick to image filter-specs from the
 'approved' list. Note that extending the list of filter-specs is possible, if
 we need to.
 
+L10N and Translation Management
+-------------------------------
+
+.. important::
+
+    Localization via Wagtail is something we are ramping up on, so please
+    do not assume the following notes are final, or that the workflows are
+    currently all rock-solid. We're learning as we go.
+
+Page-tree concept
+=================
+
+Our Wagtail setup uses the official `wagtail-localize`_ package to manage
+localization of pages.
+
+This package supports page-level localization rather than field-level localization, which means that each locale has its own distinct tree of pages, rather than each page having a stack of duplicate fields, one per destination language.
+
+These language-specific trees can be "synchronised" with the default ``en-US`` page tree, so would have the same page structure, field by field) — or they can not be synchronised, so can have their own extra pages, or some specific pages in the tree can be made not "synchronised", while others are.
+
+Basically, there is plenty of flexibility. The flipside of that flexibility is we may also create an edge-case situation that ``wagtail-localize`` won't work with, but we'll have to see and deal with it.
+
+.. note::
+
+    It's worth investing 15 mins in watching the `Wagtail Localize original demo`_ to get a good feel of how it can work.
+
+Localization process
+====================
+
+Manual updates
+~~~~~~~~~~~~~~
+
+At its most basic, there's nothing stopping us using copy-and-paste to enter translations into lang-specific pages, which might work well if we have a page in just one non-en-US lang and an in-house colleague doing the translation.
+
+Automated via Smartling
+~~~~~~~~~~~~~~~~~~~~~~~
+
+However, we also have automation available to send source strings to translation vendor Smartling. This uses the ``wagtail-localize-smartling`` package.
+
+Here's the workflow:
+
+1. CMS page "MyPage" is created in the default lang (``en-US``)
+2. The "Translate this page" option is triggered for MyPage, and relevant langs are selected from the configured langs that Smartling supports. (We don't have to translate into all of them)
+3. A translation Job is created in Smartling, awaiting authorization by our L10N team
+4. A L10N team colleague authorizes the Job and selects the relevant translation workflow(s) for the relevant lang(s)
+5. Once the jobs are completed, the localised strings flow back to Wagtail and populate a draft version of each language-specific page
+6. A human reviews these draft pages and publishes them
+
+**Notes:**
+
+* Smartling/``wagtail-localize-smartling`` will only translate pages from the base lang (``en-US``) to another lang - it won't treat, say, a Page in ``fr`` as a source-language document.
+* If a string is received from Smartling into the CMS and then manually edited on the CMS side, the change will `not` be overwritten by subsequent Smartling syncs and the manual edit needs to be added on the Smartling side for consistency and stability.
+* If a page is translated from ``en-US`` once, then has new ``en-US`` content added that is sent for translation, that will trigger a new Smartling Job. When that job is complete, it `will` overwrite any manual edits made to a translation within the CMS. This is why it's important to make sure Smartling contains any manual tweaks done to translations in the CMS.
+
+
+Automated via Pontoon
+~~~~~~~~~~~~~~~~~~~~~
+
+It should also be possible to use `Pontoon`_ with `wagtail-localize`. (There are notes on the `Pontoon integration`_ here, but we have not yet tried to enable this alongside `wagtail-localize-smartling`).
+
+Additionally using Pontoon would let us benefit from community translations across a broad range of languages. However, we have yet to try to set this up and would need to agree which parts of the site do and do not use Pontoon.
+
+
 Infrastructure notes
 ====================
 
@@ -451,3 +513,8 @@ admin user in your local build.
 .. _Custom Block types: https://docs.wagtail.org/en/stable/advanced_topics/customisation/streamfield_blocks.html#custom-streamfield-blocks
 .. _Django migrations docs: https://docs.djangoproject.com/en/4.2/topics/migrations/
 .. _Squashing migrations: https://docs.djangoproject.com/en/4.2/topics/migrations/
+.. _wagtail-localize: https://wagtail-localize.org/
+.. _wagtail-localize-smartling: https://github.com/mozilla/wagtail-localize-smartling
+.. _Pontoon: https://pontoon.mozilla.org/
+.. _Pontoon integration: https://wagtail-localize.org/stable/how-to/integrations/pontoon/
+.. _Wagtail Localize original demo: https://www.youtube.com/watch?v=mEzQcOMUzoc
