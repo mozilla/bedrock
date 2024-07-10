@@ -215,74 +215,6 @@ describe('site.js', function () {
         });
     });
 
-    describe('getArchType', function () {
-        it('should identify x86', function () {
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0',
-                    'Win64'
-                )
-            ).toBe('x86');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (Windows NT 6.3; rv:27.0) Gecko/20100101 Firefox/27.0',
-                    'Win32'
-                )
-            ).toBe('x86');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; .NET4.0E; .NET4.0C; rv:11.0) like Gecko',
-                    'Win32'
-                )
-            ).toBe('x86');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0',
-                    'MacIntel'
-                )
-            ).toBe('x86');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0',
-                    'Linux x86_64'
-                )
-            ).toBe('x86');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:27.0) Gecko/20100101 Firefox/27.0',
-                    'Linux i686'
-                )
-            ).toBe('x86');
-        });
-
-        it('should identify ARM', function () {
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (Android; Mobile; rv:27.0) Gecko/27.0 Firefox/27.0',
-                    'Linux armv7l'
-                )
-            ).toBe('armv7');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (Android 5.0.2; Mobile; rv:42.0) Gecko/42.0 Firefox/42.0',
-                    'Linux aarch64'
-                )
-            ).toBe('armv8');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre',
-                    'Linux armv6l'
-                )
-            ).toBe('armv6');
-            expect(
-                window.site.getArchType(
-                    'Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0',
-                    'Linux armv7l'
-                )
-            ).toBe('armv7');
-        });
-    });
-
     describe('getArchSize', function () {
         it('should identify 64', function () {
             expect(
@@ -469,26 +401,6 @@ describe('site.js', function () {
         });
     });
 
-    describe('isARM', function () {
-        beforeEach(function () {
-            // don't fall back to `window.site.archType` in tests.
-            sinon.stub(window.site, 'archType').value(null);
-        });
-
-        it('should return true for ARM processors', function () {
-            expect(window.site.isARM('arm')).toBeTrue();
-            expect(window.site.isARM('armv8')).toBeTrue();
-            expect(window.site.isARM('armv7')).toBeTrue();
-        });
-
-        it('should return false for other values', function () {
-            expect(window.site.isARM('x86')).toBeFalse();
-            expect(window.site.isARM('')).toBeFalse();
-            expect(window.site.isARM(null)).toBeFalse();
-            expect(window.site.isARM(undefined)).toBeFalse();
-        });
-    });
-
     describe('getPlatformClass', function () {
         beforeEach(function () {
             document.documentElement.className = 'windows no-js';
@@ -502,7 +414,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for Windows 10', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'windows',
@@ -517,7 +428,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for macOS 10.15', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass('osx', 10.15, 32);
             expect(classString).toEqual('osx js is-modern-browser');
@@ -525,7 +435,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for Linux', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'linux',
@@ -538,7 +447,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for Android', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'android',
@@ -551,7 +459,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for iOS', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'ios',
@@ -564,7 +471,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for unknown platforms', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'other',
@@ -577,7 +483,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for outdated browsers', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'windows',
@@ -590,7 +495,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for Firefox browsers', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(true);
             const classString = window.site.getPlatformClass(
                 'windows',
@@ -603,24 +507,8 @@ describe('site.js', function () {
             expect(window.site.fxSupported).toBeTrue;
         });
 
-        it('should return the appropriate HTML class for ARM based CPUs', function () {
-            spyOn(window.site, 'cutsTheMustard').and.returnValue(true);
-            spyOn(window.site, 'isARM').and.returnValue(true);
-            spyOn(window.site, 'isFirefox').and.returnValue(false);
-            const classString = window.site.getPlatformClass(
-                'windows',
-                10.0,
-                32
-            );
-            expect(classString).toEqual(
-                'windows js windows-10-plus arm is-modern-browser'
-            );
-            expect(window.site.fxSupported).toBeTrue;
-        });
-
         it('should return the appropriate HTML class for outdated Windows operating systems', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass(
                 'windows',
@@ -633,7 +521,6 @@ describe('site.js', function () {
 
         it('should return the appropriate HTML class for outdated macOS operating systems', function () {
             spyOn(window.site, 'cutsTheMustard').and.returnValue(false);
-            spyOn(window.site, 'isARM').and.returnValue(false);
             spyOn(window.site, 'isFirefox').and.returnValue(false);
             const classString = window.site.getPlatformClass('osx', 10.14, 64);
             expect(classString).toEqual('osx js fx-unsupported x64');
