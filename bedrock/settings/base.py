@@ -1030,6 +1030,8 @@ from .appstores import (  # noqa: E402, F401
     GOOGLE_PLAY_FOCUS_LINK,
     GOOGLE_PLAY_KLAR_LINK,
     GOOGLE_PLAY_POCKET_LINK,
+    MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_LINK,
+    MICROSOFT_WINDOWS_STORE_FIREFOX_LINK,
 )
 
 # Locales that should display the 'Send to Device' widget

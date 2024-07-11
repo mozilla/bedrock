@@ -66,6 +66,13 @@
 </a>
 {%- endmacro %}
 
+{% macro ms_store_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.MICROSOFT_WINDOWS_STORE_FIREFOX_LINK, id='', product='Firefox', campaign='', target='') -%}
+{% set optional_img_attributes = {'width': '152', 'height': '55'} %}
+<a class="download-ms-store-badge ga-product-download {{ class_name }}"{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
+  <img class="ms-store-badge-img" src="{{ l10n_img('firefox/windows/ms-store-badge.svg') }}" alt="{{ ftl('download-button-get-it-from-microsoft') }}"{% for attr, val in optional_img_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
+</a>
+{%- endmacro %}
+
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}" data-test-id="fxa-form">

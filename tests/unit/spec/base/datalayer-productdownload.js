@@ -294,6 +294,24 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['download_language']).toBeFalsy();
     });
+    it('should identify Firefox in the MS Store', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct&cid=firefox-home'
+        );
+        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['platform']).toBe('win');
+        expect(testEvent['method']).toBe('store');
+        expect(testEvent['release_channel']).toBe('release');
+    });
+    it('should identify Firefox Beta in the MS Store', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://apps.microsoft.com/detail/9nzw26frndln?mode=direct&cid=firefox-all'
+        );
+        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['platform']).toBe('win');
+        expect(testEvent['method']).toBe('store');
+        expect(testEvent['release_channel']).toBe('beta');
+    });
 });
 
 describe('TrackProductDownload.handleLink', function () {
@@ -342,6 +360,46 @@ describe('TrackProductDownload.handleLink', function () {
             method: 'site',
             release_channel: 'release',
             download_language: 'en-CA'
+        });
+    });
+});
+
+describe('TrackProductDownload.sendGleanEvent', function () {
+    beforeEach(function () {
+        window.Mozilla.Glean = sinon.stub();
+        window.Mozilla.Glean.clickEvent = sinon.stub();
+        spyOn(window.Mozilla.Glean, 'clickEvent');
+    });
+
+    it('should call Glean.clickEvent with required parameters', function () {
+        TrackProductDownload.sendGleanEvent({
+            event: 'firefox_download',
+            product: 'firefox',
+            platform: 'macos',
+            method: 'site'
+        });
+
+        expect(window.Mozilla.Glean.clickEvent).toHaveBeenCalledWith({
+            id: 'firefox_download',
+            type: 'macos',
+            label: 'site'
+        });
+    });
+
+    it('should call Glean.clickEvent with additional optional parameters', function () {
+        TrackProductDownload.sendGleanEvent({
+            event: 'firefox_download',
+            product: 'firefox',
+            platform: 'win64',
+            method: 'site',
+            release_channel: 'release',
+            download_language: 'en-CA'
+        });
+
+        expect(window.Mozilla.Glean.clickEvent).toHaveBeenCalledWith({
+            id: 'firefox_download',
+            type: 'win64',
+            label: 'site,release,en-CA'
         });
     });
 });

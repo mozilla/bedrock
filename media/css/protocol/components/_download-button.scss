@@ -283,3 +283,12 @@ ul.download-list {
 }
 
 /* stylelint-enable */
+
+/* Microsoft Store badge */
+.download-ms-store-badge {
+    display: inline-block;
+
+    .ms-store-badge-img {
+        margin: 0
+    }
+}
