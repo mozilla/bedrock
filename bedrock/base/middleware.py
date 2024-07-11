@@ -24,7 +24,7 @@ from django.utils.deprecation import MiddlewareMixin
 from django.utils.translation import trans_real
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
-from csp.middleware import CSPMiddleware
+from csp.contrib.rate_limiting import RateLimitedCSPMiddleware
 
 from bedrock.base import metrics
 from bedrock.base.i18n import (
@@ -299,7 +299,7 @@ class MetricsViewTimingMiddleware(MiddlewareMixin):
             self._record_timing(request, 500)
 
 
-class CSPMiddlewareByPathPrefix(CSPMiddleware):
+class CSPMiddlewareByPathPrefix(RateLimitedCSPMiddleware):
     """
     A subclass of CSPMiddleware that allows for different CSP policies based path prefix.
 
