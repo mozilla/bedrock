@@ -1582,9 +1582,9 @@ uvloop==0.19.0 \
     --hash=sha256:e27f100e1ff17f6feeb1f33968bc185bf8ce41ca557deee9d9bbbffeb72030b7 \
     --hash=sha256:f467a5fd23b4fc43ed86342641f3936a68ded707f4627622fa3f82a120e18256
     # via granian
-wagtail==5.2.3 \
-    --hash=sha256:7b186b37ba044fd68c1a3c584ac0d913daa4ea95b95aa4c80412e4a0cb04e563 \
-    --hash=sha256:ad64595124c84c4b00b73b863029a7722e06b4dba17b76177d2f4944f579bca7
+wagtail==5.2.6 \
+    --hash=sha256:133ec00787d83ab7fa06255641aa855e7fd75f07d04af473bd98fe782c736595 \
+    --hash=sha256:5497eecf8ffef7996e2ac348e90444deac71e54d3334eca27683c29da8754550
     # via
     #   -r requirements/prod.in
     #   wagtail-localize
