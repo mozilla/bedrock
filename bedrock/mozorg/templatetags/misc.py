@@ -630,13 +630,18 @@ def play_store_url(ctx, product, campaign=None):
 
 @library.global_function
 @jinja2.pass_context
-def ms_store_url(ctx, product, mode="direct", campaign=None):
+def ms_store_url(ctx, product="firefox", mode="mini", campaign=None, handler=None):
     """
     Returns a Microsoft Windows Store URL for a given product.
     Installer mode parameter options include "direct" or "full", or "mini".
     See https://apps.microsoft.com/badge for details.
     """
-    base_url = getattr(settings, f"MICROSOFT_WINDOWS_STORE_{product.upper()}_LINK")
+
+    if handler == "ms-windows-store":
+        base_url = getattr(settings, f"MICROSOFT_WINDOWS_STORE_{product.upper()}_DIRECT_LINK")
+    else:
+        base_url = getattr(settings, f"MICROSOFT_WINDOWS_STORE_{product.upper()}_WEB_LINK")
+
     params = {
         "mode": mode,
         "cid": campaign,

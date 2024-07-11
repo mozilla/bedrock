@@ -9,44 +9,50 @@ import { isApprovedToRun } from '../../../base/experiment-utils.es6.js';
 
 const href = window.location.href;
 
-function isEdgeBrowser() {
-    return (
-        navigator.userAgent.indexOf('Edg') !== -1 ||
-        navigator.userAgent.indexOf('Edge') !== -1
-    );
-}
-
 function isWindows10Plus() {
     const match = navigator.userAgent.match(/Windows NT (\d+\.\d+)/);
     return match && parseFloat(match[1]) >= 10.0;
 }
 
+function isFirefox() {
+    return (
+        /\s(Firefox|FxiOS)/.test(navigator.userAgent) &&
+        !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(
+            navigator.userAgent
+        )
+    );
+}
+
 const initTrafficCop = () => {
     if (
-        href.indexOf('experiment=firefox-thanks-install-win&variation=1') !== -1
+        href.indexOf(
+            'experiment=mozorg-firefox-vsinstaller-exp&variation=control'
+        ) !== -1
     ) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'firefox-thanks-install-win',
-            variant: '1'
+            id: 'mozorg-firefox-vsinstaller-exp',
+            variant: 'control'
         });
     } else if (
-        href.indexOf('experiment=firefox-thanks-install-win&variation=2') !== -1
+        href.indexOf(
+            'experiment=mozorg-firefox-vsinstaller-exp&variation=treatment'
+        ) !== -1
     ) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'firefox-thanks-install-win',
-            variant: '2'
+            id: 'mozorg-firefox-vsinstaller-exp',
+            variant: 'treatment'
         });
     } else if (TrafficCop) {
         /**
-         * Experiment is targeted at Windows 10 or greater using Edge browser.
+         * Experiment is targeted at Windows 10 or greater and non-Firefox browsers.
          */
-        if (isApprovedToRun() && isWindows10Plus() && isEdgeBrowser()) {
+        if (isApprovedToRun() && isWindows10Plus() && !isFirefox()) {
             const cop = new TrafficCop({
                 variations: {
-                    'experiment=firefox-thanks-install-win&variation=1': 25, // control
-                    'experiment=firefox-thanks-install-win&variation=2': 25 // install messaging
+                    'experiment=mozorg-firefox-vsinstaller-exp&variation=control': 25,
+                    'experiment=mozorg-firefox-vsinstaller-exp&variation=treatment': 25
                 }
             });
             cop.init();

@@ -1,0 +1,83 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import ms_store_button with context %}
+
+{% extends "firefox/new/desktop/download.html" %}
+
+{% set ms_store_attribution_code = 'experiment%3Dmozorg%2Dfirefox%2Dvsinstaller%2Dexp%26variation%3Dtreatment' %}
+
+{% macro custom_nav_cta() %}
+  {% set ms_store_href = ms_store_url(product='firefox', campaign=ms_store_attribution_code, handler='ms-windows-store') %}
+  <div class="mzp-c-button-download-container">
+    <a href="{{ ms_store_href }}" class="ga-product-download mzp-c-button mzp-t-product mzp-t-secondary mzp-t-md" data-cta-type="button" data-cta-text="Download Firefox">
+      Download Firefox
+    </a>
+  </div>
+
+  <div class="c-navigation-vpn-cta-container">
+    {{ vpn_product_referral_link(
+      referral_id='navigation',
+      page_anchor='#pricing',
+      link_text=ftl('navigation-v2-get-mozilla-vpn'),
+      class_name='mzp-t-product mzp-t-secondary mzp-t-md',
+      optional_attributes= {
+        'data-cta-text' : 'Get Mozilla VPN',
+        'data-cta-type' : 'button',
+        'data-cta-position' : 'navigation'
+      }
+    ) }}
+  </div>
+{% endmacro %}
+
+{% block site_header %}
+  {% with custom_nav_cta=custom_nav_cta() %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block firefox_primary_download_cta %}
+  {% set ms_store_href = ms_store_url(product='firefox', campaign=ms_store_attribution_code, handler='ms-windows-store') %}
+  {{ ms_store_button(href=ms_store_href) }}
+
+  <div class="c-intro-download-alt">
+    <a href="{{ url('firefox.download.thanks') }}" data-cta-type="link" data-cta-text="Download from the web">
+      Download from the web
+    </a>
+  </div>
+
+  <small class="mzp-c-button-download-privacy-link">
+    <a href="{{ url('privacy.notices.firefox') }}">
+      {{ ftl('download-button-firefox-privacy-notice') }}
+    </a>
+  </small>
+{% endblock %}
+
+{% block firefox_secondary_download_cta %}
+  <div class="mzp-u-centered">
+    {% set ms_store_href = ms_store_url(product='firefox', campaign=ms_store_attribution_code, handler='ms-windows-store') %}
+    {{ ms_store_button(href=ms_store_href) }}
+
+    <small class="mzp-c-button-download-privacy-link">
+      <a href="{{ url('privacy.notices.firefox') }}">
+        {{ ftl('download-button-firefox-privacy-notice') }}
+      </a>
+    </small>
+  </div>
+{% endblock %}
+
+{% block firefox_tertiary_download_cta %}
+  <div class="mzp-u-centered">
+    {% set ms_store_href = ms_store_url(product='firefox', campaign=ms_store_attribution_code, handler='ms-windows-store') %}
+    {{ ms_store_button(href=ms_store_href) }}
+
+    <small class="mzp-c-button-download-privacy-link">
+      <a href="{{ url('privacy.notices.firefox') }}">
+        {{ ftl('download-button-firefox-privacy-notice') }}
+      </a>
+    </small>
+  </div>
+{% endblock %}
