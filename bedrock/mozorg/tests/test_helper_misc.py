@@ -866,32 +866,44 @@ class TestPlayStoreURL(TestCase):
 class TestMSStoreURL(TestCase):
     rf = RequestFactory()
 
-    def _render(self, product, mode="direct", campaign=None):
+    def _render(self, product, mode="mini", campaign=None, handler=None):
         req = self.rf.get("/")
         campaign_param = f"'{campaign}'" if campaign is not None else campaign
+        handler_param = f"'{handler}'" if handler is not None else handler
         return render(
-            f"{{{{ ms_store_url('{product}', '{mode}', {campaign_param}) }}}}",
+            f"{{{{ ms_store_url('{product}', '{mode}', {campaign_param}, {handler_param}) }}}}",
             {"request": req},
         )
 
     def test_firefox_release_ms_store_url(self):
         """should return a MS Store URL for Firefox release channel"""
-        assert self._render(product="firefox") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct"
+        assert self._render(product="firefox") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini"
 
     def test_firefox_beta_ms_store_url(self):
         """should return a MS Store URL for Firefox Beta channel"""
-        assert self._render(product="firefox_beta") == "https://apps.microsoft.com/detail/9nzw26frndln?mode=direct"
+        assert self._render(product="firefox_beta") == "https://apps.microsoft.com/detail/9nzw26frndln?mode=mini"
 
     def test_firefox_ms_store_url_launch_mode(self):
         """should return a MS Store URL including different launch mode parameters"""
         assert self._render(product="firefox", mode="full") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=full"
-        assert self._render(product="firefox", mode="mini") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini"
+        assert self._render(product="firefox", mode="direct") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct"
 
     def test_firefox_ms_store_url_campaign(self):
         """should return a MS Store URL including campaign parameters"""
         assert (
             self._render(product="firefox", campaign="mozorg-firefox-home")
-            == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct&amp;cid=mozorg-firefox-home"
+            == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini&amp;cid=mozorg-firefox-home"
+        )
+
+    def test_firefox_ms_store_url_protocol_handler(self):
+        """should return a MS Store URL including campaign parameters"""
+        assert (
+            self._render(product="firefox", campaign="mozorg-firefox-home", handler="ms-windows-store")
+            == "ms-windows-store://pdp/?productid=9nzvdkpmr9rd&amp;mode=mini&amp;cid=mozorg-firefox-home"
+        )
+        assert (
+            self._render(product="firefox_beta", campaign="mozorg-firefox-home", handler="ms-windows-store")
+            == "ms-windows-store://pdp/?productid=9nzw26frndln&amp;mode=mini&amp;cid=mozorg-firefox-home"
         )
 
 

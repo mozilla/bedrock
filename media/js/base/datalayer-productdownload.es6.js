@@ -13,6 +13,7 @@ const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;
 const marketURL = /^market:\/\/play.google.com/;
 const msStoreUrl = /^https:\/\/apps.microsoft.com/;
+const msStoreUrl2 = /^ms-windows-store:\/\/pdp\//;
 
 if (typeof window.dataLayer === 'undefined') {
     window.dataLayer = [];
@@ -33,7 +34,8 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
             appStoreURL.test(downloadURL) ||
             playStoreURL.test(downloadURL) ||
             marketURL.test(downloadURL) ||
-            msStoreUrl.test(downloadURL)
+            msStoreUrl.test(downloadURL) ||
+            msStoreUrl2.test(downloadURL)
         ) {
             return true;
         } else {
@@ -184,11 +186,11 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             'store',
             'release'
         );
-    } else if (msStoreUrl.test(downloadURL)) {
+    } else if (msStoreUrl.test(downloadURL) || msStoreUrl2.test(downloadURL)) {
         let channel = 'unrecognized';
-        if (downloadURL.indexOf('/9nzvdkpmr9rd') !== -1) {
+        if (downloadURL.indexOf('9nzvdkpmr9rd') !== -1) {
             channel = 'release';
-        } else if (downloadURL.indexOf('/9nzw26frndln') !== -1) {
+        } else if (downloadURL.indexOf('9nzw26frndln') !== -1) {
             channel = 'beta';
         }
 

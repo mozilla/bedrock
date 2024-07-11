@@ -48,6 +48,18 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testPlayStoreURL).toBe(true);
     });
+    it('should recognize the MS Store as a valid URL', function () {
+        const testMsStoreURL = TrackProductDownload.isValidDownloadURL(
+            'https://apps.microsoft.com/detail/9nzvdkpmr9rd'
+        );
+        expect(testMsStoreURL).toBe(true);
+    });
+    it('should recognize ms-windows-store:// as a valid URL', function () {
+        const testMsStoreURL = TrackProductDownload.isValidDownloadURL(
+            'ms-windows-store://pdp/?productid=9nzvdkpmr9rd'
+        );
+        expect(testMsStoreURL).toBe(true);
+    });
     it('should not accept a random link to mozilla.org as a valid URL', function () {
         const testRandomURL = TrackProductDownload.isValidDownloadURL(
             'https://www.mozilla.org/en-US/firefox/all/'
@@ -306,6 +318,24 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     it('should identify Firefox Beta in the MS Store', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://apps.microsoft.com/detail/9nzw26frndln?mode=direct&cid=firefox-all'
+        );
+        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['platform']).toBe('win');
+        expect(testEvent['method']).toBe('store');
+        expect(testEvent['release_channel']).toBe('beta');
+    });
+    it('should identify Firefox in the MS Store using ms-windows-store protocol handler', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'ms-windows-store://pdp/?productid=9nzvdkpmr9rd'
+        );
+        expect(testEvent['product']).toBe('firefox');
+        expect(testEvent['platform']).toBe('win');
+        expect(testEvent['method']).toBe('store');
+        expect(testEvent['release_channel']).toBe('release');
+    });
+    it('should identify Firefox Beta in the MS Store using ms-windows-store protocol handler', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'ms-windows-store://pdp/?productid=9nzw26frndln'
         );
         expect(testEvent['product']).toBe('firefox');
         expect(testEvent['platform']).toBe('win');

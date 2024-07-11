@@ -431,27 +431,27 @@ class TestFirefoxNew(TestCase):
 
     # end /thanks?s=direct URL - issue 10520
 
-    # begin firefox download to install experiment tests - issue 14676
+    # begin firefox ms store experiment tests - issue 11090
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_thanks_install_exp_v1(self, render_mock):
-        req = RequestFactory().get("/firefox/download/thanks/?experiment=firefox-thanks-install-win&variation=1")
+    def test_ms_store_exp_v1(self, render_mock):
+        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=control")
         req.locale = "en-US"
-        view = views.DownloadThanksView.as_view()
+        view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/thanks.html"]
+        assert template == ["firefox/new/desktop/download.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_thanks_install_exp_v2(self, render_mock):
-        req = RequestFactory().get("/firefox/download/thanks/?experiment=firefox-thanks-install-win&variation=2")
+    def test_ms_store_exp_v2(self, render_mock):
+        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=treatment")
         req.locale = "en-US"
-        view = views.DownloadThanksView.as_view()
+        view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/thanks-install-win.html"]
+        assert template == ["firefox/new/desktop/download-ms-store.html"]
 
-    # end firefox download to install experiment tests - issue 14676
+    # end firefox ms store experiment tests - issue 11090
 
 
 class TestFirefoxNewNoIndex(TestCase):

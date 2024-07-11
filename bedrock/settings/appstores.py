@@ -107,7 +107,13 @@ AMAZON_FIREFOX_FIRE_TV_LINK = "https://www.amazon.com/Mozilla-Firefox-for-Fire-T
 GOOGLE_PLAY_FIREFOX_SEND_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
 
 # Link to Firefox on the Microsoft Windows Store.
-MICROSOFT_WINDOWS_STORE_FIREFOX_LINK = "https://apps.microsoft.com/detail/9nzvdkpmr9rd"
+MICROSOFT_WINDOWS_STORE_FIREFOX_WEB_LINK = "https://apps.microsoft.com/detail/9nzvdkpmr9rd"
+
+# Link to Firefox on the Microsoft Windows Store with custom protocol handler.
+MICROSOFT_WINDOWS_STORE_FIREFOX_DIRECT_LINK = "ms-windows-store://pdp/?productid=9nzvdkpmr9rd"
 
 # Link to Firefox Beta on the Microsoft Windows Store.
-MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_LINK = "https://apps.microsoft.com/detail/9nzw26frndln"
+MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK = "https://apps.microsoft.com/detail/9nzw26frndln"
+
+# Link to Firefox Beta on the Microsoft Windows Store with custom protocol handler.
+MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_DIRECT_LINK = "ms-windows-store://pdp/?productid=9nzw26frndln"

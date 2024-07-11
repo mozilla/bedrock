@@ -23,11 +23,11 @@
   {% endif %}
 {% endblock %}
 
-{% set show_firefox_install_exp = switch('experiment-firefox-thanks-install-win', ['en-US']) and country_code == "US" %}
+{% set show_firefox_ms_store_exp = switch('experiment-firefox-ms-store', ['en']) and country_code in ["US", "CA"] %}
 
 {% block experiments %}
-  {% if show_firefox_install_exp %}
-    {{ js_bundle('firefox-thanks-install-win-exp') }}
+  {% if show_firefox_ms_store_exp %}
+    {{ js_bundle('firefox-ms-store-exp') }}
   {% endif %}
 {% endblock %}
 
@@ -97,7 +97,9 @@
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
           <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
-          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% block firefox_primary_download_cta %}
+            {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% endblock %}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
@@ -392,8 +394,9 @@
           </ul>
         </div>
       </div>
-
-      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+      {% block firefox_secondary_download_cta %}
+        {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+      {% endblock %}
 
     </div>
   </section>
@@ -554,8 +557,9 @@
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
     </div>
-
-    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% block firefox_tertiary_download_cta %}
+      {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% endblock %}
   </section>
 
   <section class="c-support">
@@ -593,8 +597,4 @@
 
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
-
-  {% if show_firefox_install_exp %}
-    {{ js_bundle('firefox-thanks-install-win') }}
-  {% endif %}
 {% endblock %}
