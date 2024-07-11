@@ -4,6 +4,7 @@
 
 import logging.config
 import sys
+from copy import deepcopy
 
 from csp.constants import SELF, UNSAFE_EVAL, UNSAFE_INLINE
 
@@ -258,15 +259,21 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
-        "report-uri": config("CSP_REPORT_URI", default="") or None,
     },
 }
+
+# Start report-only CSP as a copy. We'll modify it later if needed.
+# Only set up report-only CSP if we have a report-uri set.
+if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
+    CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
 
 # Mainly for overriding CSP settings for CMS admin.
 # Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 
 # /cms-admin/images/ loads just-uploaded images as blobs.
-CMS_ADMIN_IMAGES_CSP = CONTENT_SECURITY_POLICY.copy()
+CMS_ADMIN_IMAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
 CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
 
 CSP_PATH_OVERRIDES = {
