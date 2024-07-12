@@ -196,6 +196,8 @@
 
             if (window.site.isFirefox()) {
                 classString += ' is-firefox';
+            } else {
+                classString += ' is-not-firefox';
             }
 
             // Add class to reflect browsers that get 1st class JS & CSS support.

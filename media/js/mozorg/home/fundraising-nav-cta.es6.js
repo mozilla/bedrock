@@ -12,20 +12,18 @@ const href = window.location.href;
 const init = () => {
     if (href.indexOf('v=1') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'fundraising-nav-cta-v1',
-            'data-ex-name': 'fundraising-nav-cta-july2024'
+            event: 'fundraising-nav-cta-july2024',
+            variant: 'fundraising-nav-cta-v1'
         });
     } else if (href.indexOf('v=2') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'fundraising-nav-cta-v2',
-            'data-ex-name': 'fundraising-nav-cta-july2024'
+            event: 'fundraising-nav-cta-july2024',
+            variant: 'fundraising-nav-cta-v2'
         });
     } else if (TrafficCop) {
         // Avoid entering automated tests into random experiments.
         if (isApprovedToRun()) {
             const cop = new TrafficCop({
-                id: 'fundraising-nav-cta-july2024',
-                cookieExpires: 0,
                 variations: {
                     'v=1': 50,
                     'v=2': 50
