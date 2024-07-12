@@ -23,7 +23,7 @@
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
 {% set show_fundraising_banner = switch('fundraising-banner-july2024', ["en", "de", "fr"]) %}
-{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024'), ["en"] %}
+{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) and not show_fundraising_banner %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}

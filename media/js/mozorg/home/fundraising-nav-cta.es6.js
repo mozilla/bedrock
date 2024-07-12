@@ -12,12 +12,14 @@ const href = window.location.href;
 const init = () => {
     if (href.indexOf('v=1') !== -1) {
         window.dataLayer.push({
-            event: 'fundraising-nav-cta-july2024',
+            event: 'experiment_view',
+            id: 'fundraising-nav-cta-july2024',
             variant: 'fundraising-nav-cta-v1'
         });
     } else if (href.indexOf('v=2') !== -1) {
         window.dataLayer.push({
-            event: 'fundraising-nav-cta-july2024',
+            event: 'experiment_view',
+            id: 'fundraising-nav-cta-july2024',
             variant: 'fundraising-nav-cta-v2'
         });
     } else if (TrafficCop) {
