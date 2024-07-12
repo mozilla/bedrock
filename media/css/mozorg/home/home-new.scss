@@ -8,6 +8,36 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+// July 2024 Mozilla Foundation fundraiser nav CTA experiment
+html.is-firefox {
+    .c-navigation {
+        .c-navigation-shoulder {
+            .c-fx-users {
+                display: block;
+            }
+
+            .c-non-fx-users {
+                display: none;
+            }
+        }
+    }
+}
+
+.c-navigation {
+    .c-navigation-shoulder {
+        .c-fx-users {
+            display: none;
+        }
+
+        .c-non-fx-users {
+            display: block;
+        }
+    }
+} // End of nav CTA experiment styles
+
+
+
+
 header {
     .c-header-wrapper {
         text-align: center;
