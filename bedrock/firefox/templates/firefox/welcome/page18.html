@@ -52,17 +52,20 @@
 <section class="c-content-main">
   <div class="mzp-l-content mzp-t-content-lg">
     <h1 class="c-main-title">Shop summer sales with confidence</h1>
-    <p class="c-main-tagline"><strong>Fakespot by Mozilla</strong> analyzes product reviews and checks them for authenticity so you can avoid scams and find trusted sellers.</p>
-    <p class="c-main-cta"><a href="https://fakespot.com/review-analyzer/?{{ utm_params }}" class="mzp-c-button mzp-t-product" rel="external" data-cta-text="Try it now" data-cta-type="button">Try it now</a></p>
+    <p class="c-main-tagline has-rc-icon">New in Firefox: Review Checker analyzes
+      product reviews and checks them for authenticity. Click on the price tag
+      icon <span></span> when you shop on Amazon, Best Buy, or Walmart.
+      <a href="https://support.mozilla.org/kb/review-checker-review-quality/?{{ utm_params }}" rel="external noopener" target="_blank" data-cta-type="link" data-cta-text="Learn more">Learn more</a></p>
+    <p class="c-main-cta"><a href="https://www.amazon.com/dp/B01N22BMJB" class="mzp-c-button mzp-t-product" rel="external" data-cta-text="Try it now" data-cta-type="button">Try it now</a></p>
 
-    {{ resp_img('img/firefox/welcome/page18/fakespot-hero.png',
+    {{ resp_img('img/firefox/welcome/page18/fakespot-rc.png',
       srcset={
-        'img/firefox/welcome/page18/fakespot-hero-high-res.png': '2x'
+        'img/firefox/welcome/page18/fakespot-rc-high-res.png': '2x'
       },
       optional_attributes={
         'class': 'c-main-image',
-        'height': '449',
-        'width': '820',
+        'height': '350',
+        'width': '487',
         'alt': 'Fakespot by Mozilla'
       }
     ) }}
@@ -70,71 +73,12 @@
 </section>
 {% endblock %}
 
-{% block content_body %}
-<section class="page-body">
-  <div class="mzp-l-content mzp-t-content-xl">
-    <div class="mzp-l-columns mzp-t-columns-three mzp-t-picto-center">
-
-    {% call picto(
-      title='Trust what you read',
-      heading_level=3,
-      image=resp_img(
-        url='img/firefox/welcome/page18/icon-trust.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'height': '64',
-          'width': '74'
-        }
-      ),
-      body=True,
-    ) %}
-      <p>Fakespot analyzes product reviews to let you know if they are reliable or not.</p>
-    {% endcall %}
-
-    {% call picto(
-      title='Buy from reliable sellers',
-      heading_level=3,
-      image=resp_img(
-        url='img/firefox/welcome/page18/icon-best.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'height': '64',
-          'width': '64'
-        }
-      ),
-      body=True,
-    ) %}
-      <p>Helps you see which sellers are more likely to be trustworthy.</p>
-    {% endcall %}
-
-    {% call picto(
-      title='Save time',
-      heading_level=3,
-      image=resp_img(
-        url='img/firefox/welcome/page18/icon-time.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'height': '64',
-          'width': '64'
-        }
-        ),
-        body=True,
-      ) %}
-        <p>No need to comb through every review. See pros and cons at a glance.</p>
-      {% endcall %}
-
-    </div>
-  </div>
-</section>
-{% endblock %}
+{% block content_body %}{% endblock %}
 
 {% block content_utility %}
 <p>
   <strong>
-    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/">
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?{{ utm_params }}">
       Why am I seeing this?
     </a>
   </strong>
