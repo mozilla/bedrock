@@ -2135,9 +2135,14 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         default="False",
         parser=bool,
     ),  # Set this to True to always send translations to Smartling
-    "ENVIRONMENT": config("WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND", default="production"),  # Set this to "staging" to use Smartling's staging API
+    "ENVIRONMENT": config(
+        "WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND",
+        default="production",
+    ),  # Set this to "staging" to use Smartling's staging API
     "API_TIMEOUT_SECONDS": config(
-        "WAGTAIL_LOCALIZE_SMARTLING_API_TIMEOUT_SECONDS", default="5", parser=float
+        "WAGTAIL_LOCALIZE_SMARTLING_API_TIMEOUT_SECONDS",
+        default="5",
+        parser=float,
     ),  # Timeout in seconds for requests to the Smartling API
 }
 
