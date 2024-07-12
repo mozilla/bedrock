@@ -25,21 +25,23 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.page-body {
-    color: $color-black;
-
-    .mzp-c-picto-heading {
-        @include text-title-sm;
-        font-weight: normal;
-    }
-}
-
 .c-main-tagline {
     @include text-body-xl;
 
     @media #{$mq-md} {
         padding: 0 $layout-xl;
     }
+}
+
+.has-rc-icon span {
+    @include image-replaced;
+    @include background-size(2.25ex, 2.25ex);
+    background-image: url("/media/img/firefox/welcome/page18/icon-tag.svg");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 2.25ex;
+    margin-bottom: -0.5ex;
+    width: 2.25ex;
 }
 
 .page-footer {
@@ -60,13 +62,15 @@ $image-path: '/media/protocol/img';
     }
 
     .c-content-main,
-    .c-main-title,
-    .c-main-subheading,
-    .page-body,
-    .mzp-c-picto-heading {
+    .c-main-title {
         color: $color-white;
     }
 
+    .has-rc-icon span {
+        background-image: url("/media/img/firefox/welcome/page18/icon-tag-white.svg");
+    }
+
+    .c-main-tagline,
     .c-utilities {
         @include white-links;
     }
