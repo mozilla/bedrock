@@ -36,7 +36,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           TITLE: "[bot] Remove obsolete l10n strings and ftl files"
           ASSIGNEES:
-          LABELS: L10N
+          LABELS: L10N,Frontend
           BODY: |
             ### Remove obsolete strings
 
@@ -44,7 +44,7 @@ jobs:
             If you find strings that have no date, either find the date by looking at git history
             or add an expiry date and leave it to be removed in 2 months.
 
-            - [ ] Remove old obsolete strings
+            - [ ] Remove old obsolete strings and their fallback usage
 
             ### Remove obsolete ftl files
 
