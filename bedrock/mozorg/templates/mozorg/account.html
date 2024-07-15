@@ -11,9 +11,9 @@
 {% set _entrypoint = 'mozilla.org-firefox-accounts' %}
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=account' %}
 
-{% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account', fallback='firefox-accounts-get-a-firefox-account') }}{% endblock %}
+{% block page_title %}{{ ftl('mozilla-accounts-get-a-mozilla-account') }}{% endblock %}
 
-{% block page_desc %}{{ ftl('mozilla-accounts-securely-sync-your', fallback='firefox-accounts-securely-sync-your') }}{% endblock %}
+{% block page_desc %}{{ ftl('mozilla-accounts-securely-sync-your') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
@@ -53,7 +53,7 @@
         </div>
 
         <div class="c-manage">
-          <p>{{ ftl('mozilla-accounts-already', fallback='firefox-accounts-already') }}</p>
+          <p>{{ ftl('mozilla-accounts-already') }}</p>
           <a href="https://accounts.firefox.com/settings" id="manage" data-testid="manage-account-link">{{ ftl('firefox-accounts-manage') }}</a>
         </div>
       </div>
@@ -61,7 +61,7 @@
     <div class="mzp-c-split-body">
       <h1 class="accounts-header">{{ ftl('mozilla-account-header') }}</h1>
       <div class="accounts-products">
-        <h2>{{ ftl('mozilla-account-sign-in-to', fallback='firefox-accounts-sign-in-to') }}</h2>
+        <h2>{{ ftl('mozilla-account-sign-in-to') }}</h2>
 
         <a href="{{ url('firefox') }}"><h4 class="mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-firefox">{{ ftl('firefox-accounts-firefox-browser') }}</h4></a>
         <ul class="mzp-u-list-styled">

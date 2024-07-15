@@ -24,15 +24,9 @@ browsers-mobile-looking-for-a-streamlined = Looking for a streamlined, super fas
 browsers-mobile-compare = Compare
 browsers-mobile-see-how-firefox-for-desktop-stacks-v2 = See how { -brand-name-firefox } for desktop stacks up to other browsers.
 
-# Obsolete string (expires 30 June 2024)
-browsers-mobile-see-how-firefox-for-desktop-stacks = See how { -brand-name-firefox } for desktop stacks up to seven other browsers.
-
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words; please omit the strong tags if they need to be around multiple words in your language.
 browsers-mobile-see-how-firefox-for-desktop-strong-v2 = See how { -brand-name-firefox } for <strong>desktop</strong> stacks up to other browsers.
 
-# Obsolete string (expires 30 June 2024)
-# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words; please omit the strong tags if they need to be around multiple words in your language.
-browsers-mobile-see-how-firefox-for-desktop-strong = See how { -brand-name-firefox } for <strong>desktop</strong> stacks up to seven other browsers.
 browsers-mobile-download = Download
 browsers-mobile-android = { -brand-name-android }
 browsers-mobile-ios = { -brand-name-ios }

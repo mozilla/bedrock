@@ -58,12 +58,6 @@ download-a-different-build = Download a different build
 
 ## Linux
 
-# Obsolete string
-download-button-linux-32 = Download { -brand-name-linux } 32-bit
-
-# Obsolete string
-download-button-linux-64 = Download { -brand-name-linux } 64-bit
-
 download-button-linux-32-v2 = Download for Linux 32-bit
 download-button-linux-64-v2 = Download for Linux 64-bit
 

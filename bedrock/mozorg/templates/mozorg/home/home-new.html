@@ -115,7 +115,7 @@
       <blockquote>
         <p>{{ ftl('home-the-health-of') }}
         </p>
-        <cite>{{ ftl('home-mitchell-baker-v2', fallback="home-mitchell-baker") }}</cite>
+        <cite>{{ ftl('home-mitchell-baker-v2') }}</cite>
       </blockquote>
     </div>
   </div>
@@ -182,7 +182,7 @@
       <!-- Relay -->
       {% call picto(
         base_el='li',
-        title=ftl('home-product-relay-hide-your', fallback='home-product-relay-masks'),
+        title=ftl('home-product-relay-hide-your'),
         image=resp_img(
           url='protocol/img/logos/firefox/relay/logo-white.svg',
           optional_attributes={
@@ -218,7 +218,7 @@
       <!-- Monitor -->
       {% call picto(
         base_el='li',
-        title=ftl('home-product-monitor-protect-your', fallback='home-product-monitor-data'),
+        title=ftl('home-product-monitor-protect-your'),
         image=resp_img(
           url='protocol/img/logos/firefox/monitor/logo.svg',
           optional_attributes={
@@ -289,8 +289,8 @@
         ),
         media_after=False
     ) %}
-    <h2>{{ ftl('home-so-what-is-mozilla', fallback='home-is-mozilla-a-corporation')}}</h2>
-    <p>{{ ftl('home-at-its-core', fallback='home-mozilla-consists-of', ventures=moz_ventures, mozai=moz_ai) }}</p>
+    <h2>{{ ftl('home-so-what-is-mozilla') }}</h2>
+    <p>{{ ftl('home-at-its-core', ventures=moz_ventures, mozai=moz_ai) }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
     </a>

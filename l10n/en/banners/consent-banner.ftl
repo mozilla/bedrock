@@ -7,9 +7,6 @@
 consent-banner-heading = Help us improve your { -brand-name-mozilla } experience
 consent-banner-body-v2 = In addition to Cookies necessary for this site to function, we’d like your permission to set some additional Cookies to better understand your browsing needs and improve your experience. Rest assured — we value your privacy.
 
-# Obsolete string (expires: 2024-07-22)
-consent-banner-body = In addition to cookies necessary for this site to function, we’d like your permission to set some additional Cookies to better understand your browsing needs and improve your experience. Rest assured — we value your privacy.
-
 consent-banner-button-reject = Reject All Additional Cookies
 consent-banner-button-accept = Accept All Additional Cookies
 consent-banner-settings-link = Cookie settings
