@@ -2136,7 +2136,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         parser=bool,
     ),  # Set this to True to always send translations to Smartling
     "ENVIRONMENT": config(
-        "WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND",
+        "WAGTAIL_LOCALIZE_SMARTLING_ENVIRONMENT",
         default="production",
     ),  # Set this to "staging" to use Smartling's staging API
     "API_TIMEOUT_SECONDS": config(
