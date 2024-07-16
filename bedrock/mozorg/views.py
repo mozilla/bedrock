@@ -14,7 +14,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
-from commonware.decorators import xframe_allow
 from jsonview.decorators import json_view
 from product_details import product_details
 
@@ -29,12 +28,6 @@ from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 from lib.l10n_utils.fluent import ftl_file_is_active
 
 credits_file = CreditsFile("credits")
-TECH_BLOG_SLUGS = ["hacks", "cd", "futurereleases"]
-
-
-@xframe_allow
-def hacks_newsletter(request):
-    return l10n_utils.render(request, "mozorg/newsletter/hacks.mozilla.org.html")
 
 
 @require_safe

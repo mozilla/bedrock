@@ -6,7 +6,7 @@ import logging.config
 import sys
 from copy import deepcopy
 
-from csp.constants import SELF, UNSAFE_EVAL, UNSAFE_INLINE
+import csp.constants
 
 from .base import *  # noqa: F403, F405
 
@@ -117,7 +117,7 @@ if IS_POCKET_MODE:
 
     # CSP settings for POCKET, expanded upon later:
     _csp_default_src = [
-        SELF,
+        csp.constants.SELF,
         "*.getpocket.com",
     ]
     _csp_img_src = [
@@ -129,18 +129,18 @@ if IS_POCKET_MODE:
     ]
     _csp_script_src = [
         # TODO fix use of OptanonWrapper() so that we don't need this
-        UNSAFE_INLINE,
+        csp.constants.UNSAFE_INLINE,
         # TODO onetrust cookie consent breaks
         # blocked without unsafe-eval. Find a way to remove that.
         "www.mozilla.org",
-        UNSAFE_EVAL,
+        csp.constants.UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
         "assets.getpocket.com",  # allow Pocket Snowplow analytics
     ]
     _csp_style_src = [
-        UNSAFE_INLINE,
+        csp.constants.UNSAFE_INLINE,
         "www.mozilla.org",
     ]
     _csp_child_src = [
@@ -168,7 +168,7 @@ else:
 
     # CSP settings for MOZORG, expanded upon later:
     _csp_default_src = [
-        SELF,
+        csp.constants.SELF,
         "*.mozilla.net",
         "*.mozilla.org",
         "*.mozilla.com",
@@ -183,10 +183,10 @@ else:
     ]
     _csp_script_src = [
         # TODO fix things so that we don't need this
-        UNSAFE_INLINE,
+        csp.constants.UNSAFE_INLINE,
         # TODO snap.svg.js passes a string to Function() which is
         # blocked without unsafe-eval. Find a way to remove that.
-        UNSAFE_EVAL,
+        csp.constants.UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "tagmanager.google.com",
@@ -196,7 +196,7 @@ else:
     ]
     _csp_style_src = [
         # TODO fix things so that we don't need this
-        UNSAFE_INLINE,
+        csp.constants.UNSAFE_INLINE,
     ]
     _csp_child_src = [
         "www.googletagmanager.com",
@@ -259,6 +259,7 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
+        "frame-ancestors": [csp.constants.NONE],
     },
 }
 
