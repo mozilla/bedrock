@@ -45,6 +45,9 @@ class SimpleRichTextPage(AbstractBedrockCMSPage):
 
     Not intended to be commonly used, this is more a very simple reference
     implementation.
+
+    Note that this page is actively used in tests, so removing this will
+    require relevant tests to be refactored, too
     """
 
     # 1. Define model fields
