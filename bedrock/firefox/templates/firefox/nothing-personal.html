@@ -1,0 +1,38 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-nothing-personal') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+
+      <h1 class="c-page-header-logo-fx">
+        <img src="{{ static('img/firefox/nothing-personal/fx-from-mozilla-logo.svg') }}" alt="Firefox" width="230" height="40" class="c-header-logo">
+        <span>Firefox from Mozilla</span></h1>
+
+      <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Set as default</a>
+
+      <a href="https://blog.mozilla.org/en/firefox/" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Learn more" data-cta-position="{{ position }}">Learn more</a>
+
+      {{ download_firefox_thanks(alt_copy='Download Firefox', dom_id='protocol-nav-download-firefox', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='nav') }}
+
+    </div>
+  </header>
+  <main>
+
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('nothing-personal') }}
+{% endblock %}

@@ -1,0 +1,126 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-page-header {
+    background: transparent;
+
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-top: $spacing-xl;
+            padding-bottom: $spacing-xl;
+        }
+
+        .mzp-c-notification-bar {
+            margin-top: 0;
+        }
+    }
+}
+
+.c-page-header-logo-fx {
+    display: flex;
+    justify-content: center;
+
+    span {
+        @include visually-hidden;
+    }
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    @include grid-row-gap($spacing-lg);
+
+    a {
+        justify-self: center;
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-header-logo-fx {
+        justify-content: flex-start;
+        margin: 0;
+    }
+
+    .c-page-header-inner {
+        @include grid-column-gap($spacing-lg);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        a {
+            justify-self: end;
+        }
+    }
+}
+
+// -------------------- CTA logic ----------------------- //
+// .mzp-c-button.is-not-default, .mzp-c-button.is-default {
+//     display: none;
+// }
+
+// html.is-firefox {
+//     .c-button-download-thanks {
+//         display: none;
+//     }
+
+//     &.set-default-supported {
+//         .mzp-c-button.is-not-default {
+//             display: block;
+//         }
+
+//         .mzp-c-button.is-default {
+//             display: none;
+//         }
+
+
+//         &.is-firefox-default {
+//             .mzp-c-button.is-default {
+//                 display: block;
+//             }
+
+//             .mzp-c-button.is-not-default {
+//                 display: none;
+//             }
+//         }
+//     }
+// } // -------------------- end CTA logic ----------------------- //
+
+// -------------------- CTA styles ----------------------- //
+
+.c-page-header-inner { /* stylelint-disable no-duplicate-selectors  */
+    .c-button-download-thanks {
+        small {
+            display: none;
+        }
+    }
+
+    .mzp-c-button,
+    .c-button-download-thanks > .mzp-c-button {
+        @include text-body-lg;
+        padding: $spacing-md $spacing-lg;
+        background-image: linear-gradient(to right,#FFEA80, #FF7139);
+        border-radius: 0;
+        color: $color-black;
+        border-color: $color-black;
+        transition: 0.5s ;
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: $color-black;
+            color: $color-black;
+        }
+    }
+
+}

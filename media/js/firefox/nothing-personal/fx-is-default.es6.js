@@ -4,6 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FirefoxDefault from './fx-is-default.es6';
+import FirefoxDefault from '../family/fx-is-default.es6';
 
-FirefoxDefault.init('main');
+// check if firefox is set to default on startup
+FirefoxDefault.init('html');
