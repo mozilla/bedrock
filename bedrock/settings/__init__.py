@@ -194,10 +194,7 @@ else:
         "s.ytimg.com",
         "js.stripe.com",
     ]
-    _csp_style_src = [
-        # TODO fix things so that we don't need this
-        csp.constants.UNSAFE_INLINE,
-    ]
+    _csp_style_src = []
     _csp_child_src = [
         "www.googletagmanager.com",
         "www.google-analytics.com",
@@ -263,26 +260,42 @@ CONTENT_SECURITY_POLICY = {
     },
 }
 
-# Start report-only CSP as a copy. We'll modify it later if needed.
-# Only set up report-only CSP if we have a report-uri set.
-if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
-    CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
-
-# Mainly for overriding CSP settings for CMS admin.
+# `CSP_PATH_OVERRIDES` is mainly for overriding CSP settings for CMS admin.
 # Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 
-# /cms-admin/images/ loads just-uploaded images as blobs.
+CMS_ADMIN_CSP = deepcopy(CONTENT_SECURITY_POLICY)
+# /cms-admin/ needs inline styles.
+CMS_ADMIN_CSP["DIRECTIVES"]["style-src"] += [csp.constants.UNSAFE_INLINE]
 CMS_ADMIN_IMAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
+# /cms-admin/images/ loads just-uploaded images as blobs.
 CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
 
 CSP_PATH_OVERRIDES = {
     # The first path prefix that matches the request.path.startswith will be used, so order them
     # from most specific to least.
     "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
+    "/cms-admin/": CMS_ADMIN_CSP,
 }
-CSP_PATH_OVERRIDES_REPORT_ONLY = {}
+
+# Only set up report-only CSP if we have a report-uri set.
+if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
+    CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
+
+    CMS_ADMIN_CSP_RO = deepcopy(CONTENT_SECURITY_POLICY_REPORT_ONLY)
+    # /cms-admin/ needs inline styles.
+    CMS_ADMIN_CSP_RO["DIRECTIVES"]["style-src"] += [csp.constants.UNSAFE_INLINE]
+    CMS_ADMIN_IMAGES_CSP_RO = deepcopy(CONTENT_SECURITY_POLICY_REPORT_ONLY)
+    # /cms-admin/images/ loads just-uploaded images as blobs.
+    CMS_ADMIN_IMAGES_CSP_RO["DIRECTIVES"]["img-src"] += ["blob:"]
+
+    CSP_PATH_OVERRIDES_REPORT_ONLY = {
+        # The first path prefix that matches the request.path.startswith will be used, so order them
+        # from most specific to least.
+        "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP_RO,
+        "/cms-admin/": CMS_ADMIN_CSP_RO,
+    }
 
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
