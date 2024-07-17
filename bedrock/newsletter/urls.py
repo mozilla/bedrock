@@ -43,6 +43,7 @@ urlpatterns = (
         ),
         name="newsletter.knowledge-is-power",
     ),
+    re_path("^newsletter/knowledge-is-power/confirm/(?P<token>[^/]*)/?$", views.kip_confirm, name="newsletter.knowledge-is-power.confirm"),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
     page("newsletter/security-and-privacy/", "newsletter/security-privacy-news.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/security-and-privacy/online-harassment/", "newsletter/online-harassment.html"),

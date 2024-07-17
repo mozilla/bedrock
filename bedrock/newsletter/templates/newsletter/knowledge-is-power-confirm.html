@@ -1,0 +1,47 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'base-protocol.html' %}
+
+{% block page_title %}Knowledge is Power Newsletter{% endblock page_title %}
+
+{% block page_css %}
+  {{ css_bundle('newsletter-knowledge-is-power-confirm') }}
+{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content mzp-t-content-lg mzp-u-centered">
+  <header>
+    <h1 class="page-title">Knowledge is Power Newsletter</h1>
+  </header>
+
+  <form id="confirmation-form" class="c-confirmation-form" method="post" action="{{ action }}" data-recovery-url="{{ url('newsletter.recovery') }}">
+    <input type="hidden" name="newsletters" value="{{ newsletters }}">
+    <input type="hidden" name="source_url" value="{{ source_url|absolute_url }}">
+    <p class="c-confirmation-form-tagline">Please click the button below to confirm your subscription.</p>
+    <div class="c-confirm-form-errors mzp-c-form-errors hidden" id="confirm-form-errors">
+      <p class="c-confirm-error-msg error-invalid-token hidden">
+        We are sorry, but could not find your email address in our system.
+      </p>
+      <p class="c-confirm-error-msg error-try-again-later hidden">
+        We are sorry, but there was a problem with our system. Please try again later!
+      </p>
+      <p class="c-confirm-error-msg error-update-browser hidden">
+        Please update your web browser in order to use this page.
+      </p>
+    </div>
+    <button type="submit" class="c-confirm-form-submit mzp-c-button">Subscribe</button>
+  </form>
+  <div class="c-confirmation-form-thanks hidden">
+    <p>Thank you for subscribing!</p>
+    <p>Check your inbox soon for the latest Knowledge is Power newsletter.</p>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter-knowledge-is-power-confirm') }}
+{% endblock %}
