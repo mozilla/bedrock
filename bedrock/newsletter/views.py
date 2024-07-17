@@ -284,3 +284,16 @@ def newsletter_subscribe(request):
             return l10n_utils.render(request, "newsletter/index.html", ctx, ftl_files=FTL_FILES)
 
     return l10n_utils.render(request, "newsletter/index.html", ftl_files=FTL_FILES)
+
+
+def kip_confirm(request, token):
+    """Allow a user to confirm their subscription to the knowledge-is-power newsletter"""
+
+    context = {
+        "action": f"{settings.BASKET_URL}/news/subscribe/",
+        "newsletters": "knowledge-is-power",
+        "recovery_url": reverse("newsletter.recovery"),
+        "source_url": reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": ""}),
+    }
+
+    return l10n_utils.render(request, "newsletter/knowledge-is-power-confirm.html", context)

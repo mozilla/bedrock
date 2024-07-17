@@ -18,7 +18,9 @@ const errorList = {
     NEWSLETTER_ERROR: 'Newsletter not selected',
     NOT_FOUND: 'Not Found',
     PRIVACY_POLICY_ERROR: 'Privacy policy not checked',
-    REASON_ERROR: 'Reason not selected'
+    REASON_ERROR: 'Reason not selected',
+    TOKEN_INVALID: 'Invalid basket token',
+    UPDATE_BROWSER: 'Update your browser'
 };
 
 const FormUtils = {

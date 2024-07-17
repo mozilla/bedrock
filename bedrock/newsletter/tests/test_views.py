@@ -16,6 +16,7 @@ from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.views import (
     general_error,
     invalid_email_address,
+    kip_confirm,
     newsletter_all_json,
     newsletter_strings_json,
 )
@@ -268,3 +269,17 @@ class TestNewsletterStringsJson(TestCase):
         newsletter_strings_json(req)
         template = render_mock.call_args[0][1]
         self.assertTrue(template == "newsletter/includes/newsletter-strings.json")
+
+
+@patch("bedrock.newsletter.views.l10n_utils.render", return_value=HttpResponse())
+class TestNewsletterConfirmPage(TestCase):
+    def setUp(self):
+        self.token = str(uuid.uuid4())
+        self.url = reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": self.token})
+
+    def test_newsletter_knowledge_is_power_confirm(self, render_mock):
+        req = RequestFactory().get(self.url)
+        req.locale = "en-US"
+        kip_confirm(req, self.token)
+        template = render_mock.call_args[0][1]
+        self.assertTrue(template == "newsletter/knowledge-is-power-confirm.html")
