@@ -55,6 +55,7 @@ firefox-all-windows-installers-for = Windows installers for corporate IT that si
 firefox-all-arm64-installers = ARM64/AArch64 installers
 firefox-all-arm64-installers-optimized-v2 = ARM64/AArch64 installers optimized for Windows and Linux PCs.
 
+firefox-all-testflight = Sign up to test { -brand-name-firefox } for iOS with TestFlight
 firefox-all-product-send-link = Send a download link to your phone
 
 # Variables:

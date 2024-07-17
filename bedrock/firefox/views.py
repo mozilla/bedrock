@@ -233,6 +233,12 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
             "channel": "release",
             "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
         },
+        "ios-beta": {
+            "slug": "ios-beta",
+            "product": firefox_ios,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
+        },
         # mobile-release is a special case for both android and ios.
         "mobile-release": {
             "slug": "mobile-release",
