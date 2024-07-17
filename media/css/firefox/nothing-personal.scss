@@ -2,14 +2,37 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use 'sass:color';
+
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // colors
-$browser-cream: #f8f6f4;
+$browser-background: #f8f6f4;
+$page-background: #333336;
 $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/families/FiraMono-Regular.woff2') format('woff2'),
+        url('/media/fonts/families/FiraMono-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/families/FiraMono-Bold.woff2') format('woff2'),
+        url('/media/fonts/families/FiraMono-Bold.woff') format('woff');
+}
 
 .c-page-header {
     background: transparent;
@@ -71,7 +94,8 @@ $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-5
             span {
                 display: block;
                 margin-right: $spacing-md;
-                width: 370px;
+                width: 470px;
+                font-family: 'Fira Mono', 'Andale Mono', monospace;
 
                 &::after {
                     content: "    >>>>>";
@@ -91,7 +115,7 @@ $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-5
 }
 
 html.is-firefox {
-    .c-button-download-thanks {
+    #protocol-nav-download-firefox {
         display: none;
     }
 
@@ -120,7 +144,7 @@ html.is-firefox {
 // -------------------- CTA styles ----------------------- //
 
 .c-page-header-inner { /* stylelint-disable no-duplicate-selectors  */
-    .c-button-download-thanks {
+    #protocol-nav-download-firefox {
         margin-bottom: 0;
 
         small {
@@ -129,7 +153,7 @@ html.is-firefox {
     }
 
     .mzp-c-button,
-    .c-button-download-thanks > .mzp-c-button {
+    #protocol-nav-download-firefox > .mzp-c-button {
         @include text-body-lg;
         padding: $spacing-md $spacing-lg;
         background-color: $color-yellow-20;
@@ -161,7 +185,12 @@ html.is-firefox {
 } // -------------------- end CTA styles ----------------------- //
 
 .c-page-main-content {
-    background: $color-black center top / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    position: relative;
 
     @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
         background-attachment: fixed;
@@ -171,13 +200,11 @@ html.is-firefox {
 // -------------------- Main browser bar styles ----------------------- //
 
 .c-browser {
-    $border-radius: 10px;
-    $size: 15px;
-    border-radius: $border-radius; /* this allows box shadow to have rounded corners */
+    border-radius: $border-radius-md;
 
     .c-browser-bar {
         background-image: $browser-cool-gradient;
-        background-color: $browser-cream;
+        background-color: $browser-background;
         border-top: 3px solid $color-black;
         border-left: 3px solid $color-black;
         border-right: 3px solid $color-black;
@@ -188,6 +215,7 @@ html.is-firefox {
         height: 65px;
         padding-right: $spacing-md;
         padding-left: $spacing-md;
+
 
         &.c-bar-with-heading {
             display: grid;
@@ -205,18 +233,36 @@ html.is-firefox {
         }
 
         h3 {
-            color: $browser-cream;
+            color: $browser-background;
             text-align: center;
             margin-bottom: 0;
+            font-family: 'Fira Mono', 'Andale Mono', monospace;
         }
     }
 
     .c-browser-content {
-        background-color: $browser-cream;
+        background-color: $browser-background;
         border: 3px solid $color-black;
         border-bottom-left-radius: $border-radius-lg;
         border-bottom-right-radius: $border-radius-lg;
         padding: $layout-sm;
+
+        h4,
+        h5 {
+            font-family: 'Fira Mono', 'Andale Mono', monospace;
+        }
+
+        h4 {
+            margin-bottom: $layout-md;
+        }
+
+        h5 {
+            @include text-title-xs;
+        }
+
+        p {
+            @include text-body-xl;
+        }
     }
 
     @media #{$mq-md} {
@@ -225,6 +271,7 @@ html.is-firefox {
                 grid-template-columns: repeat(3, 1fr);
 
                 h3 {
+                    @include text-title-xs;
                     white-space: nowrap;
                 }
             }
@@ -233,6 +280,10 @@ html.is-firefox {
             .c-browser-bar-dot {
                 margin-left: $spacing-md;
             }
+        }
+
+        .c-browser-content {
+            padding: $layout-md;
         }
     }
 } // -------------------- End main browser bar styles ----------------------- //
@@ -298,4 +349,124 @@ html.is-firefox {
             }
         }
     }
+}
+
+// -------------------- Sticky note styles ----------------------- //
+.c-sticky-note {
+    @include text-body-lg;
+    background-color: $color-yellow-10;
+    border: 3px solid $color-black;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    margin: $layout-md auto;
+    height: 125px;
+    padding: $spacing-lg $spacing-md;
+
+    &.c-detached {
+        display: block;
+    }
+
+    &.c-attached {
+        display: none;
+    }
+
+    // Fold effect help from https://stackoverflow.com/a/40232711
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        right: 0;
+        border-left: 0 solid transparent;
+        border-right: 80px solid transparent;
+        border-top: 80px solid $color-yellow-30;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -2.5px;
+        background: $color-yellow-10;
+        border-right: 3px solid $color-black;
+        border-bottom: 3px solid #000;
+        border-left: 3px solid #000;
+        width: calc(100% - 80px);
+        height: 80px;
+    }
+
+    p,
+    a {
+        font-family: 'Fira Mono', 'Andale Mono', monospace;
+    }
+
+    p {
+        margin-top: $spacing-xl;
+    }
+
+    @media #{$mq-lg} {
+        &.c-detached {
+            display: none;
+        }
+
+        &.c-attached {
+            display: block;
+            position: absolute;
+            bottom: -102px;
+            right: -55px;
+            transform: rotate(11deg);
+        }
+    }
+}
+
+.c-sticky-note > .c-button-download-thanks {
+    margin-bottom: 0;
+
+    a {
+        @include text-body-lg;
+        border: 0;
+        background: transparent;
+        color: $color-black;
+        padding: 0;
+
+            &::before {
+            content: ">>>"
+        }
+
+        &::after {
+            content: "<<<<"
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+            color: $color-black;
+            text-decoration: underline solid $color-black !important; /* stylelint-disable-line declaration-no-important */
+            text-decoration-thickness: 2px !important;/* stylelint-disable-line declaration-no-important */
+        }
+    }
+
+    small {
+        display:  none;
+    }
+}
+
+
+
+.c-sign-off {
+    @include font-firefox;
+    @include text-title-xs;
+    margin-top: $layout-xl;
+
+    p {
+        background-color: $page-background;
+        border: 3px solid $color-white;
+        border-radius: 40px;
+        color: $color-white;
+        padding: $spacing-md;
+    }
+
 }

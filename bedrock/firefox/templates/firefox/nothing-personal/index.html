@@ -12,6 +12,9 @@
   {{ css_bundle('firefox-nothing-personal') }}
 {% endblock %}
 
+{% block page_title_prefix %}Nothing Personal{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -34,41 +37,65 @@
     </div>
   </header>
   <main class="c-page-main-content">
-    <div>
-
+    <div class="c-browser-windows">
         {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md') %}
           <div class="c-browser-window-top">
             <h2>We look forward to not getting to know you</h2>
           </div>
         {% endcall %}
 
-        {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='Nothing Personal') %}
+        {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='Nothing Personal') %}
           <div class="c-browser-window-top">
             <h4>You’re great — probably.</h4>
             <p>We just don’t need a lot of your data to be a <strong>fast, reliable</strong> browser that keeps up with the big guys.</p>
           </div>
         {% endcall %}
 
+        <div class="sticky-window">
+
+
          {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='SFAQs') %}
           <div class="c-browser-window-top">
             <h4>[Somewhat Frequently Asked Questions]</h4>
 
             <h5>Are you even any good?</h5>
-            <p>Calm down. And yes. We’re so fast you won’t even notice the difference.</p>
+            <p>Calm down. And yes. <a href="{{ url('firefox.features.fast') }}">We’re so fast</a> you won’t even notice the difference.</p>
 
             <h5>What makes you soooo special?</h5>
-            <p>NBD, but people dump their other browsers for our features (like popping out videos and a built-in PDF editor).</p>
+            <p>NBD, but people dump their other browsers <a href="{{ url('firefox.features.index') }}">for our features</a> (like <a href="{{ url('firefox.features.picture-in-picture') }}">popping out videos</a> and a <a href="{{ url('firefox.features.pdf-editor') }}">built-in PDF editor</a>).</p>
 
             <h5>What does any of this have to do with me?</h5>
-            <p>Hey, you can customize Firefox to be all about you with add-ons and themes. Happy?</p>
+            <p>Hey, you can customize Firefox to be all about you with <a href="{{ url('firefox.features.add-ons') }}">add-ons</a> and <a href="{{ url('firefox.features.customize') }}">themes</a>. Happy?</p>
 
             <h5>Ok, what’s the privacy-catch?</h5>
-            <p>We don’t keep track of where you go because 1. Yawn, and 2. We really don’t need it.</p>
+            <p><a href="{{ url('firefox.privacy.index') }}"">We don’t keep track of where you go</a> because 1. Yawn, and 2. We really don’t need it.</p>
           </div>
-        {% endcall %}
+          <div class="c-sticky-note c-attached">
 
+            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+            <p>Ok, bye.</p>
+
+          </div>
+        </div>
+        {% endcall %}
+    </div>
+
+    <div class="c-sticky-note c-detached">
+      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+      <p>Ok, bye.</p>
+    </div>
+
+    <div class="c-sign-off">
+      <div class="mzp-l-content c-nothing-personal">
+        <p>Nothing personal. Just browsing.</p>
+      </div>
     </div>
   </main>
+
 {% endblock %}
 
 {% block js %}
