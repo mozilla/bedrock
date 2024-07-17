@@ -4,9 +4,7 @@
 
 from pypom import Page, Region
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 
-from pages.regions.consent_banner import ConsentBanner
 from pages.regions.newsletter import NewsletterEmbedForm
 
 
@@ -43,16 +41,8 @@ class BasePage(ScrollElementIntoView, Page):
         return self.Navigation(self)
 
     @property
-    def footer(self):
-        return self.Footer(self)
-
-    @property
     def newsletter(self):
         return NewsletterEmbedForm(self)
-
-    @property
-    def consent_banner(self):
-        return ConsentBanner(self)
 
     class Navigation(BaseRegion):
         _root_locator = (By.CLASS_NAME, "c-navigation")
@@ -121,23 +111,3 @@ class BasePage(ScrollElementIntoView, Page):
             from .manifesto import ManifestoPage
 
             return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
-
-    class Footer(BaseRegion):
-        _root_locator = (By.ID, "colophon")
-        _language_locator = (By.ID, "page-language-select")
-
-        @property
-        def language(self):
-            select = self.find_element(*self._language_locator)
-            option = select.find_element(By.CSS_SELECTOR, "option[selected]")
-            return option.get_attribute("value")
-
-        @property
-        def languages(self):
-            el = self.find_element(*self._language_locator)
-            return [o.get_attribute("value") for o in Select(el).options]
-
-        def select_language(self, value):
-            el = self.find_element(*self._language_locator)
-            Select(el).select_by_value(value)
-            self.wait.until(lambda s: f"/{value}/" in s.current_url)

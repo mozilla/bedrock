@@ -5,7 +5,6 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
-from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxHomePage(BasePage):
@@ -16,7 +15,3 @@ class FirefoxHomePage(BasePage):
     @property
     def is_primary_download_button_displayed(self):
         return self.is_element_displayed(*self._primary_download_button_locator)
-
-    @property
-    def join_firefox_form(self):
-        return JoinFirefoxForm(self)

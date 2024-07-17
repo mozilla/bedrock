@@ -2,41 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from selenium.webdriver.common.by import By
-
 from pages.base import BasePage
 
 
 class HomePage(BasePage):
     _URL_TEMPLATE = "/{locale}/"
-
-    _firefox_download_button_locator = (By.ID, "homepage-get-firefox")
-    _pocket_download_button_locator = (By.ID, "homepage-get-pocket")
-    _relay_download_button_locator = (By.ID, "homepage-get-relay")
-    _mozilla_vpn_download_button_locator = (By.ID, "homepage-get-mozilla-vpn")
-    _monitor_download_button_locator = (By.ID, "homepage-get-monitor")
-    _fakespot_download_button_locator = (By.ID, "homepage-get-fakespot")
-
-    @property
-    def is_firefox_download_button_displayed(self):
-        return self.is_element_displayed(*self._firefox_download_button_locator)
-
-    @property
-    def is_pocket_download_button_displayed(self):
-        return self.is_element_displayed(*self._pocket_download_button_locator)
-
-    @property
-    def is_relay_download_button_displayed(self):
-        return self.is_element_displayed(*self._relay_download_button_locator)
-
-    @property
-    def is_mozilla_vpn_download_button_displayed(self):
-        return self.is_element_displayed(*self._mozilla_vpn_download_button_locator)
-
-    @property
-    def is_monitor_download_button_displayed(self):
-        return self.is_element_displayed(*self._monitor_download_button_locator)
-
-    @property
-    def is_fakespot_download_button_displayed(self):
-        return self.is_element_displayed(*self._fakespot_download_button_locator)
