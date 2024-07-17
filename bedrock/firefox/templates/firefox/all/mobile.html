@@ -21,6 +21,11 @@
 
 <div class="c-mobile">
 
+  {% if product.slug.startswith("ios-beta") %}
+    <p><br>
+      <a href="{{ url('firefox.ios.testflight') }}">{{ ftl('firefox-all-testflight') }}</a>
+    </p>
+  {% else %}
   <figure class="qr-code-wrapper">
     {{ qrcode(qr_url, 12) }}
 
@@ -39,6 +44,7 @@
       </ul>
     </figcaption>
   </figure>
+  {% endif %}
 
   {% if product.slug.startswith('mobile') %}
     <p><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send a link">{{ ftl('firefox-all-product-send-link') }}</a></p>
