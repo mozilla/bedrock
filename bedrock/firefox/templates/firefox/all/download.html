@@ -21,6 +21,11 @@
 
 {% if product and platform and locale %}
 <div class="c-step-contents">
+  {% if platform.startswith("linux") %}
+    <p class="c-linux-debian"><br>
+      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
+    </p>
+  {% endif %}
   {% if product.slug.startswith("desktop") %}
     {% if platform.startswith("win-store") %}
       <p><br>
@@ -33,12 +38,6 @@
       <a href="{{ download_url }}" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
         {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
       </a>
-    </p>
-    {% endif %}
-
-    {% if platform.startswith("linux") %}
-    <p class="c-linux-debian">
-      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
     </p>
     {% endif %}
   {% elif product.slug.startswith('android') or product.slug.startswith('ios') or product.slug.startswith('mobile') %}
