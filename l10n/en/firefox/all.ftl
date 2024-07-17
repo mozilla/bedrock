@@ -36,6 +36,8 @@ firefox-all-the-pre-alpha-version = The pre-alpha version for power users who li
 firefox-all-64-bit-installers = 64-bit installers
 firefox-all-choose-a-64-bit-installer = Choose a 64-bit installer for computers with 64-bit processors, which allow them to allocate more RAM to individual programs — particularly important for games and other demanding applications.
 firefox-all-32-bit-installers = 32-bit installers
+firefox-all-microsoft-store-installers = Microsoft Store
+firefox-all-choose-a-microsoft-store-installer = This option will open a { -brand-name-firefox } product page in the Microsoft Store web portal. If you are running Windows 10 or Windows 11, you will have the option to open the Microsoft Store from this page and install { -brand-name-firefox }. If you install from the Microsoft Store, updates to { -brand-name-firefox } will also be handled by the Microsoft Store. There are minor differences in { -brand-name-firefox } behaviors and capabilities when installed from the Microsoft Store, but for most users these differences are not noticeable.
 
 firefox-all-check-the-system-requirements = Check the system requirements
 firefox-all-release-notes = Release notes
