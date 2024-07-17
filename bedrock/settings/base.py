@@ -2156,6 +2156,6 @@ _allowed_page_models = [
 ]
 
 if DEV is True:
-    CMS_ALLOWED_PAGE_MODELS = "__all__"
+    CMS_ALLOWED_PAGE_MODELS = ["__all__"]
 else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
