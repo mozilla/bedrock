@@ -2138,3 +2138,24 @@ WAGTAIL_RICHEXT_FEATURES_FULL = [
 ]
 
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
+
+# Custom code in bedrock.cms.models.base.AbstractBedrockCMSPage limits what page
+# models can be added as a child page.
+#
+# This means we can control when a page is available for use in the CMS, versus
+# simply being in the codebase. Also, note that removing a particular page class
+# from this allowlist will not break existing pages that are of that class, but
+# will stop anyone adding a _new_ one.
+#
+# NB: EVERY TIME you add a new Wagtail Page subclass to the CMS, you must enable
+# it here if you want it to be selectable as a new child page in Production
+
+_allowed_page_models = [
+    "cms.SimpleRichTextPage",
+    "cms.StructuralPage",
+]
+
+if DEV is True:
+    CMS_ALLOWED_PAGE_MODELS = "__all__"
+else:
+    CMS_ALLOWED_PAGE_MODELS = _allowed_page_models

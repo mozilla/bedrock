@@ -4,9 +4,15 @@
 
 from unittest import mock
 
+from django.test import override_settings
+
 import pytest
 
-from bedrock.cms.models import AbstractBedrockCMSPage, SimpleRichTextPage
+from bedrock.cms.models import (
+    AbstractBedrockCMSPage,
+    SimpleRichTextPage,
+    StructuralPage,
+)
 from bedrock.cms.tests.factories import StructuralPageFactory
 
 pytestmark = [
@@ -67,3 +73,27 @@ def test_StructuralPage_serve_methods(
 
     preview_result = sp.serve_preview(request)
     assert preview_result.headers["location"].endswith(root_page.url)
+
+
+@pytest.mark.parametrize(
+    "config, page_class, success_expected",
+    (
+        ("__all__", SimpleRichTextPage, True),  # same as default
+        ("mozorg.SomeOtherPageClass,cms.StructuralPage,cms.SimpleRichTextPage", StructuralPage, True),
+        ("cms.SimpleRichTextPage", SimpleRichTextPage, True),
+        ("cms.SimpleRichTextPage,mozorg.SomeOtherPageClass", SimpleRichTextPage, True),
+        ("mozorg.SomeOtherPageClass,cms.SimpleRichTextPage", SimpleRichTextPage, True),
+        ("mozorg.SomeOtherPageClass,mozorg.SomeOtherPageClass", SimpleRichTextPage, False),
+        ("mozorg.SomeOtherPageClass", SimpleRichTextPage, False),
+        ("mozorg.SomeOtherPageClass,legal.SomeLegalPageClass", StructuralPage, False),
+    ),
+)
+def test_CMS_ALLOWED_PAGE_MODELS_controls_Page_can_create_at(
+    config,
+    page_class,
+    success_expected,
+    minimal_site,
+):
+    home_page = SimpleRichTextPage.objects.last()
+    with override_settings(Dev=False, CMS_ALLOWED_PAGE_MODELS=config.split(",")):
+        assert page_class.can_create_at(home_page) == success_expected

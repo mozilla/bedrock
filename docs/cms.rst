@@ -44,7 +44,24 @@ Adding new content surfaces
 
 Official `Editor Guide`_.
 
-Bedrock-specific details to come.
+.. note::
+    This is initial documentation, noting relevant things that exist already, but much fuller recommendations will follow
+
+The ``CMS_ALLOWED_PAGE_MODELS`` setting
+=======================================
+
+When you add a new page to the CMS, it will be available to add as a new child page immediately if ``DEV=True``. This means it'll be on Dev (www-dev), but not in Staging or Prod.
+
+So if you ship a page that needs to be used immediately in Production (which will generally be most cases), you must remember to add it to ``CMS_ALLOWED_PAGE_MODELS`` in Bedrock's settings. If you do not, it will not be selectable as a new Child Page in the CMS.
+
+Why do we have this behaviour?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two reasons:
+
+1. This setting allows us to complete initial/eager work to add a new page type, but stop it being used in Production until we are ready for it (e.g. a special new campaign page type that we wanted to get ready in good time). While there will be guard rails and approval workflows around publishing, without this it could still be possible for part of the org to start using a new page without us realising it was off-limits, and possibly before it is allowed to be released.
+
+2. This approach allows us to gracefully deprecate pages: if a page is removed in ``settings.CMS_ALLOWED_PAGE_MODELS``, that doesn't mean it disappears from Prod or can't be edited - it just stops a NEW one being added in Prod.
 
 
 Migrating Django pages to the CMS
