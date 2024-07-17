@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import re
+
 import django.urls
 from django.conf import settings
 from django.utils.text import capfirst
@@ -163,3 +165,8 @@ def get_best_language(accept_lang):
 
 def check_for_bedrock_language(lang_code):
     return lang_code in [x[0] for x in settings.LANGUAGES]
+
+
+def remove_lang_prefix(url):
+    locale_pattern = r"^/([a-z]{2}(-[a-zA-Z]{2})?)/"  # (e.g., /en-US/ or /en-us/)
+    return re.sub(locale_pattern, "/", url)

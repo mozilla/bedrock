@@ -4,6 +4,7 @@
 
 import pytest
 import wagtail_factories
+from wagtail.models import Site
 
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory
 
@@ -13,17 +14,25 @@ def minimal_site(
     client,
     top_level_page=None,
 ):
-    # Boostraps a minimal site with a root page at / and one child page at /test-page/
+    # Bootstraps a minimal site with a root page at / and one child page at /test-page/
 
     if top_level_page is None:
         top_level_page = SimpleRichTextPageFactory(
             slug="root_page",  # this doesn't get shown
+            live=True,
         )
 
-    site = wagtail_factories.SiteFactory(
-        root_page=top_level_page,
-        hostname=client._base_environ()["SERVER_NAME"],
-    )
+    try:
+        site = Site.objects.get(is_default_site=True)
+        site.root_page = top_level_page
+        site.hostname = client._base_environ()["SERVER_NAME"]
+        site.save()
+    except Site.DoesNotExist:
+        site = wagtail_factories.SiteFactory(
+            root_page=top_level_page,
+            is_default_site=True,
+            hostname=client._base_environ()["SERVER_NAME"],
+        )
 
     LocaleFactory(language_code="fr")
 

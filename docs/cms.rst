@@ -47,6 +47,30 @@ Official `Editor Guide`_.
 Bedrock-specific details to come.
 
 
+Migrating Django pages to the CMS
+---------------------------------
+
+.. note::
+    This is initial documentation, noting relevant things that exist already, but much fuller recommendations will follow
+
+The ``@prefer_cms`` decorator
+=============================
+
+If you have an existing Django-based page that you want to move to be a CMS-driven page, you are faced with a quandry.
+
+Let's say the page exists at ``/some/path/``;  you can create it in the CMS with a branch of pages that mirror the same slugs (a parent page with a slug of ``some`` and a child page with a slug of ``path``). However, in order for anyone to see the published page, you would have to remove the reference to the Django view from the URLconf, so that Wagtail would get a chance to render it (because Wagtail's page-serving logic comes last in all URLConfs). **BUT...** how can you enter content into the CMS fast enough replace the just-removed Django page? (Note: we could use a data migraiton here, but that gets complicated when there are images involved)
+
+The answer here is to use the ``bedrock.cms.decorators.prefer_cms`` decorator/helper.
+
+A Django view decorated with ``prefer_cms`` will check if a live CMS page has been added that matches the same overall, relative path as the Django view. If it finds one, it will show the user `that` CMS page instead. If there is no match in the CMS, then the original Django view will be used.
+
+
+The result is a graceful handover flow that allows us to switch to the CMS page without needing to remove the Django view from the URLconf. It doesn't affect previews, so the review of draft pages before publishing can continue with no changes. Once the CMS is populated with a live version of the replacement page, that's when a later changeset can remove the deprecated Django view.
+
+The ``prefer_cms`` decorator can be used directly on function-based views, or can wrap views in the URLconf. It can also be passed to our very handy ``bedrock.mozorg.util.page`` as one of the list of ``decorator`` arguments.
+
+For more details, please see the docstring on ``bedrock.cms.decorators.prefer_cms``.
+
 Images
 ------
 

@@ -63,7 +63,7 @@ def test_StructuralPage_serve_methods(
 
     request = rf.get(_relative_url)
     live_result = sp.serve(request)
-    assert live_result.headers["location"] == root_page.url
+    assert live_result.headers["location"].endswith(root_page.url)
 
     preview_result = sp.serve_preview(request)
-    assert preview_result.headers["location"] == root_page.url
+    assert preview_result.headers["location"].endswith(root_page.url)
