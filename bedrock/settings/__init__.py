@@ -263,26 +263,41 @@ CONTENT_SECURITY_POLICY = {
     },
 }
 
-# Start report-only CSP as a copy. We'll modify it later if needed.
+CMS_ADMIN_IMAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
+# /cms-admin/images/ loads just-uploaded images as blobs.
+CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
+
+CMS_ADMIN_PAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
+# The inline previews require `frame-ancestors 'self'`.
+CMS_ADMIN_PAGES_CSP["DIRECTIVES"]["frame-ancestors"] = [csp.constants.SELF]
+
+# `CSP_PATH_OVERRIDES`` is mainly for overriding CSP settings for CMS admin.
+# Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
+CSP_PATH_OVERRIDES = {
+    # Order these from most specific to least specific.
+    "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
+    "/cms-admin/pages/": CMS_ADMIN_PAGES_CSP,
+}
+
 # Only set up report-only CSP if we have a report-uri set.
 if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
 
-# Mainly for overriding CSP settings for CMS admin.
-# Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
+    CMS_ADMIN_IMAGES_CSP_RO = deepcopy(CONTENT_SECURITY_POLICY_REPORT_ONLY)
+    # /cms-admin/images/ loads just-uploaded images as blobs.
+    CMS_ADMIN_IMAGES_CSP_RO["DIRECTIVES"]["img-src"] += ["blob:"]
 
-# /cms-admin/images/ loads just-uploaded images as blobs.
-CMS_ADMIN_IMAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
-CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
+    CMS_ADMIN_PAGES_CSP_RO = deepcopy(CONTENT_SECURITY_POLICY_REPORT_ONLY)
+    # The inline previews require `frame-ancestors 'self'`.
+    CMS_ADMIN_PAGES_CSP_RO["DIRECTIVES"]["frame-ancestors"] = [csp.constants.SELF]
 
-CSP_PATH_OVERRIDES = {
-    # The first path prefix that matches the request.path.startswith will be used, so order them
-    # from most specific to least.
-    "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
-}
-CSP_PATH_OVERRIDES_REPORT_ONLY = {}
+    CSP_PATH_OVERRIDES_REPORT_ONLY = {
+        # Order these from most specific to least specific.
+        "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP_RO,
+        "/cms-admin/pages/": CMS_ADMIN_PAGES_CSP_RO,
+    }
 
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
