@@ -1,0 +1,76 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "firefox/nothing-personal/includes/browser-macro.html" import browser_border %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-nothing-personal') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      <h1 class="c-page-header-logo-fx">
+        <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg') }}" alt="Firefox" width="180" height="40" class="c-header-logo">
+        <span>Firefox from Mozilla</span>
+      </h1>
+
+      <div class="cta-group">
+        <span>Feeling browser curious? We won’t tell.</span>
+
+        <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Set as default</a>
+
+        <a href="https://blog.mozilla.org/en/firefox/" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Learn more" data-cta-position="{{ position }}">Learn more</a>
+
+        {{ download_firefox_thanks(alt_copy='Download Firefox', dom_id='protocol-nav-download-firefox', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='nav') }}
+      </div>
+    </div>
+  </header>
+  <main class="c-page-main-content">
+    <div>
+
+        {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md') %}
+          <div class="c-browser-window-top">
+            <h2>We look forward to not getting to know you</h2>
+          </div>
+        {% endcall %}
+
+        {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='Nothing Personal') %}
+          <div class="c-browser-window-top">
+            <h4>You’re great — probably.</h4>
+            <p>We just don’t need a lot of your data to be a <strong>fast, reliable</strong> browser that keeps up with the big guys.</p>
+          </div>
+        {% endcall %}
+
+         {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='SFAQs') %}
+          <div class="c-browser-window-top">
+            <h4>[Somewhat Frequently Asked Questions]</h4>
+
+            <h5>Are you even any good?</h5>
+            <p>Calm down. And yes. We’re so fast you won’t even notice the difference.</p>
+
+            <h5>What makes you soooo special?</h5>
+            <p>NBD, but people dump their other browsers for our features (like popping out videos and a built-in PDF editor).</p>
+
+            <h5>What does any of this have to do with me?</h5>
+            <p>Hey, you can customize Firefox to be all about you with add-ons and themes. Happy?</p>
+
+            <h5>Ok, what’s the privacy-catch?</h5>
+            <p>We don’t keep track of where you go because 1. Yawn, and 2. We really don’t need it.</p>
+          </div>
+        {% endcall %}
+
+    </div>
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('nothing-personal') }}
+{% endblock %}

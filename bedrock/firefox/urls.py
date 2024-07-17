@@ -158,7 +158,7 @@ urlpatterns = (
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr"]),
-    page("firefox/nothing-personal/", "firefox/nothing-personal.html"),
+    page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
     # Issue 6604, SEO firefox/new pages
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
     path("firefox/mac/", views.PlatformViewMac.as_view(), name="firefox.mac"),

@@ -7,22 +7,17 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
+// colors
+$browser-cream: #f8f6f4;
+$browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
+
 .c-page-header {
     background: transparent;
 
-    .mzp-l-content {
-        padding-top: $spacing-md;
-        padding-bottom: $spacing-md;
-    }
-
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         .mzp-l-content {
             padding-top: $spacing-xl;
-            padding-bottom: $spacing-xl;
-        }
-
-        .mzp-c-notification-bar {
-            margin-top: 0;
+            padding-bottom: $spacing-sm;
         }
     }
 }
@@ -42,8 +37,12 @@ $image-path: '/media/protocol/img';
     grid-template-columns: 1fr;
     @include grid-row-gap($spacing-lg);
 
-    a {
+    .cta-group {
         justify-self: center;
+
+        span {
+            display: none;
+        }
     }
 }
 
@@ -58,48 +57,72 @@ $image-path: '/media/protocol/img';
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
-        a {
+        .cta-group {
             justify-self: end;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-page-header-inner {
+        .cta-group {
+            span {
+                display: block;
+                margin-right: $spacing-md;
+                width: 370px;
+
+                &::after {
+                    content: "    >>>>>";
+                }
+            }
+        }
+
+        .mzp-c-button {
+            white-space: nowrap;
         }
     }
 }
 
 // -------------------- CTA logic ----------------------- //
-// .mzp-c-button.is-not-default, .mzp-c-button.is-default {
-//     display: none;
-// }
+.mzp-c-button.is-not-default, .mzp-c-button.is-default {
+    display: none;
+}
 
-// html.is-firefox {
-//     .c-button-download-thanks {
-//         display: none;
-//     }
+html.is-firefox {
+    .c-button-download-thanks {
+        display: none;
+    }
 
-//     &.set-default-supported {
-//         .mzp-c-button.is-not-default {
-//             display: block;
-//         }
+    &.set-default-supported {
+        .mzp-c-button.is-not-default {
+            display: block;
+        }
 
-//         .mzp-c-button.is-default {
-//             display: none;
-//         }
+        .mzp-c-button.is-default {
+            display: none;
+        }
 
 
-//         &.is-firefox-default {
-//             .mzp-c-button.is-default {
-//                 display: block;
-//             }
+        &.is-firefox-default {
+            .mzp-c-button.is-default {
+                display: block;
+            }
 
-//             .mzp-c-button.is-not-default {
-//                 display: none;
-//             }
-//         }
-//     }
-// } // -------------------- end CTA logic ----------------------- //
+            .mzp-c-button.is-not-default {
+                display: none;
+            }
+        }
+    }
+} // -------------------- end CTA logic ----------------------- //
 
 // -------------------- CTA styles ----------------------- //
 
 .c-page-header-inner { /* stylelint-disable no-duplicate-selectors  */
     .c-button-download-thanks {
+        margin-bottom: 0;
+
         small {
             display: none;
         }
@@ -109,18 +132,170 @@ $image-path: '/media/protocol/img';
     .c-button-download-thanks > .mzp-c-button {
         @include text-body-lg;
         padding: $spacing-md $spacing-lg;
-        background-image: linear-gradient(to right,#FFEA80, #FF7139);
+        background-color: $color-yellow-20;
+        background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50, $color-yellow-20, $color-yellow-20);
+        background-size: 300% 100%;
         border-radius: 0;
         color: $color-black;
         border-color: $color-black;
-        transition: 0.5s ;
+        transition: all 0.3s ease-out;
+
+        @media (prefers-reduced-motion: reduce) {
+            background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50);
+                transition: background-color 0.3s ease-out;
+            }
 
         &:hover,
         &:focus,
         &:active {
             border-color: $color-black;
             color: $color-black;
+            box-shadow: $box-shadow-sm;
+            background-position: 100% 0;
+
+            @media (prefers-reduced-motion: reduce) {
+                background-image: linear-gradient(to right,$color-yellow-20, $color-yellow-20);
+            }
+        }
+    }
+} // -------------------- end CTA styles ----------------------- //
+
+.c-page-main-content {
+    background: $color-black center top / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+
+    @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
+        background-attachment: fixed;
+    }
+}
+
+// -------------------- Main browser bar styles ----------------------- //
+
+.c-browser {
+    $border-radius: 10px;
+    $size: 15px;
+    border-radius: $border-radius; /* this allows box shadow to have rounded corners */
+
+    .c-browser-bar {
+        background-image: $browser-cool-gradient;
+        background-color: $browser-cream;
+        border-top: 3px solid $color-black;
+        border-left: 3px solid $color-black;
+        border-right: 3px solid $color-black;
+        border-top-left-radius: $border-radius-lg;
+        border-top-right-radius: $border-radius-lg;
+        display: flex;
+        align-items: center;
+        height: 65px;
+        padding-right: $spacing-md;
+        padding-left: $spacing-md;
+
+        &.c-bar-with-heading {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .browser-bar-dot-wrapper > .c-browser-bar-dot,
+        .c-browser-bar-dot {
+            border: 3px solid $color-black;
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            margin-left: $spacing-xs;
+            display: inline-block;
+        }
+
+        h3 {
+            color: $browser-cream;
+            text-align: center;
+            margin-bottom: 0;
         }
     }
 
+    .c-browser-content {
+        background-color: $browser-cream;
+        border: 3px solid $color-black;
+        border-bottom-left-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
+        padding: $layout-sm;
+    }
+
+    @media #{$mq-md} {
+        .c-browser-bar {
+            &.c-bar-with-heading {
+                grid-template-columns: repeat(3, 1fr);
+
+                h3 {
+                    white-space: nowrap;
+                }
+            }
+
+            .browser-bar-dot-wrapper > .c-browser-bar-dot,
+            .c-browser-bar-dot {
+                margin-left: $spacing-md;
+            }
+        }
+    }
+} // -------------------- End main browser bar styles ----------------------- //
+
+.c-browser-window-top-wrapper {
+    // position: relative;
+    // z-index: 10;
+
+    // &::after {
+    //     background-image: url("/media/img/firefox/nothing-personal/browser-highlight.png");
+    //     background-repeat: no-repeat;
+    //     background-size: contain;
+    //     content: "";
+    //     height: 430px;
+    //     left: 20px;
+    //     position: absolute;
+    //     top: 14px;
+    //     width: 720px;
+    //     z-index: -1;
+    // }
+
+    .c-browser-bar {
+            background-image: none;
+        }
+
+    .c-browser-window-top {
+        h2 {
+            @include text-title-lg;
+        }
+
+        &::after{
+            position: absolute;
+            content: "";
+            background-image: url("/media/img/firefox/nothing-personal/heart-sticker.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
+            height: 82px;
+            top: 50px;
+            right: 45px;
+            width: 90px;
+        }
+
+        @media #{$mq-md} {
+            h2 {
+                @include text-title-2xl;
+            }
+
+            &::after {
+                filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
+                height: 95px;
+                bottom: 97px;
+                right: 308px;
+                top: unset;
+                width: 105px;
+            }
+        }
+
+        @media #{$mq-xl} {
+            &::after {
+                bottom: 150px;
+                right: 315px;
+            }
+        }
+    }
 }

@@ -22,8 +22,8 @@ const FirefoxDefault = {
     },
 
     // Update `element` when running the init() function during initialization to be the query selector you want targeted
-    init: (query) => {
-        const main = document.querySelector(query);
+    init: (element) => {
+        const main = document.querySelector(element);
 
         if (!FirefoxDefault.isSupported()) {
             return;

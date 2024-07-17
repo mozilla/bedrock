@@ -1,0 +1,32 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% macro browser_border(
+  class=None,
+  heading=None
+) -%}
+<div class="c-browser {% if class %} {{ class }}{% endif %}">
+  <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
+    <!-- dots -->
+
+    {% if heading %}
+      <div class="browser-bar-dot-wrapper">
+        <span class="c-browser-bar-dot"></span>
+        <span class="c-browser-bar-dot"></span>
+        <span class="c-browser-bar-dot"></span>
+      </div>
+      <h3>{{ heading }}</h3>
+    {% else %}
+      <span class="c-browser-bar-dot"></span>
+      <span class="c-browser-bar-dot"></span>
+      <span class="c-browser-bar-dot"></span>
+    {% endif %}
+  </div>
+  <div class="c-browser-content ">
+    {{ caller() }}
+  </div>
+</div>
+{%- endmacro %}
