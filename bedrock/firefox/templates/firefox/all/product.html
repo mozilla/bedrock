@@ -24,7 +24,7 @@
 {% if not product %}
   <div class="c-step-contents">
     <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/desktop.svg') }}"> Desktop</h3>
-    <ul class="c-product-list">
+    <ul class="c-product-list qa-desktop-list">
       <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='desktop-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
       {% for p in products %}
         {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
@@ -35,7 +35,7 @@
 
     <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/mobile.svg') }}"> Mobile</h3>
 
-    <ul class="c-product-list">
+    <ul class="c-product-list qa-mobile-list">
       <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='mobile-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
       {% for p in products %}
         {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
