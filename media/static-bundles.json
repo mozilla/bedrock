@@ -1746,6 +1746,12 @@
     },
     {
       "files": [
+        "js/products/vpn/ppa-experiment.js"
+      ],
+      "name": "mozilla-vpn-ppa-experiment"
+    },
+    {
+      "files": [
         "js/products/shared/affiliate-init.es6.js"
       ],
       "name": "mozilla-vpn-affiliate"
