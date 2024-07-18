@@ -6,17 +6,17 @@
 
 if (/\sFirefox/.test(navigator.userAgent)) {
     const links = document.getElementsByClassName('js-fxa-product-button');
-    Array.from(links).forEach(link => {
-        "use strict";
+    Array.from(links).forEach((link) => {
+        'use strict';
 
         link.addEventListener('click', () => {
             navigator.privateAttribution.measureConversion({
-                task: "task_id",   // Unique task ID. Supplied by Mozilla.
+                task: 'task_id', // Unique task ID. Supplied by Mozilla.
                 histogramSize: 5, // Supplied by Mozilla
                 lookbackDays: 7, // Number of days to look back for attribution
-                impression: "click",
-                ads: ["moz-mdn-test-2"],
-                sources: ["mozilla.org"]
+                impression: 'click',
+                ads: ['moz-mdn-test-2'],
+                sources: ['mozilla.org']
             });
         });
     });
