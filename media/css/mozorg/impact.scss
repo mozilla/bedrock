@@ -12,7 +12,7 @@ header {
     text-align: center;
 
     .c-hero-banner {
-        min-height: 500px;
+        min-height: 250px;
         background-color: $color-black;
         display: flex;
         flex-direction: column;
@@ -56,10 +56,10 @@ header {
             }
         }
 
-    @media #{$mq-lg} {
-        @include background-size(1300px, auto);
+        @media #{$mq-lg} {
+            @include background-size(1300px, auto);
+        }
     }
-}
 
    .c-subheader {
         padding-bottom: $spacing-md;
