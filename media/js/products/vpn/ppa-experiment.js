@@ -11,12 +11,12 @@ if (/\sFirefox/.test(navigator.userAgent)) {
 
         link.addEventListener('click', () => {
             navigator.privateAttribution.measureConversion({
-                task: "task_id",            // Unique task ID. Supplied by Mozilla.
-                histogramSize: 5,           // Supplied by Mozilla
-                lookbackDays: 7,           // Number of days to look back for attribution
-                impression: "click",         // Attribution model to use
-                ads: ["ad_id"],             // List Ad IDs. Supplied by Mozilla.
-                sources: ["mozilla.org"]  // List of publisher domains
+                task: "task_id",   // Unique task ID. Supplied by Mozilla.
+                histogramSize: 5, // Supplied by Mozilla
+                lookbackDays: 7, // Number of days to look back for attribution
+                impression: "click",
+                ads: ["moz-mdn-test-2"],
+                sources: ["mozilla.org"]
             });
         });
     });
