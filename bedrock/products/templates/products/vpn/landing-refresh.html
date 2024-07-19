@@ -8,7 +8,9 @@
 {% from "products/vpn/includes/macros.html" import vpn_nav_cta_refresh, vpn_conditional_cta_refresh with context %}
 
 {% extends "products/vpn/base.html" %}
-{% block extra_meta %}<meta http-equiv="origin-trial" content="your-token">{% endblock %}
+{% block extra_meta %}
+  <meta http-equiv="origin-trial" content="A19xS8UA1d0lgoVKEygJldabL1yWUWRfHJdPeWhwJbQ0bTZochXMxxWna+SNCTBFkgEVqOmbkEwnqleV8XVMftUAAABXeyJvcmlnaW4iOiJodHRwczovL3d3dy5tb3ppbGxhLm9yZyIsImZlYXR1cmUiOiJQcml2YXRlQXR0cmlidXRpb24iLCJleHBpcnkiOjE3NTI3MDMyMDB9">
+{% endblock %}
 
 {# Issue 13019: Avoid duplicate content for English pages. #}
 {%- block page_title_full -%}

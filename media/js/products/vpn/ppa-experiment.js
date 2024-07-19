@@ -13,7 +13,7 @@ if (/\sFirefox/.test(navigator.userAgent)) {
             navigator.privateAttribution.measureConversion({
                 task: 'task_id', // Unique task ID. Supplied by Mozilla.
                 histogramSize: 5, // Supplied by Mozilla
-                lookbackDays: 7, // Number of days to look back for attribution
+                lookbackDays: 30,
                 impression: 'click',
                 ads: ['moz-mdn-test-2'],
                 sources: ['mozilla.org']
