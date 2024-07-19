@@ -235,3 +235,26 @@ def test_firefox_android_nightly(base_url, selenium):
     slug = "android-nightly/"
     page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_android_download_button_displayed
+
+
+# close/back links, appear when they should and don't when they shouldn't
+
+STEPS_CLOSE_ICON_COUNT = [
+    ("", 0),
+    ("desktop-release/", 1),
+    ("desktop-release/win64/", 2),
+    ("desktop-release/win64/en-US/", 3),
+    ("desktop-release/win-store/", 2),
+    ("mobile-release", 1),
+    ("android-release", 1),
+]
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("slug, count", STEPS_CLOSE_ICON_COUNT)
+def test_close_icons(slug, count, base_url, selenium):
+    slug = f"{slug}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    close_count = page.back_icons_count
+    assert close_count == count

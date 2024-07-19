@@ -45,7 +45,7 @@
 
 {% macro select_platform_list(id, platforms, disabled=False) %}
   <label for="{{ id }}" class="c-selection-label">{{ ftl('firefox-all-select-your-preferred-installer') }}</label>
-  <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
+  <a id="icon-installer-help" href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
     {{ ftl('firefox-all-get-help') }}
   </a>
   <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %} data-testid="firefox-all-platform-select ({{ id }})">

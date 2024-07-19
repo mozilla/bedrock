@@ -18,6 +18,9 @@ class FirefoxAllPage(BasePage):
     _ios_download_button_locator = (By.ID, "appStoreLink")
     _ms_store_download_button_locator = (By.ID, "msStoreLink")
     _linux_atp_link_locator = (By.CSS_SELECTOR, ".c-linux-debian a")
+    _back_icons_locator = (By.CSS_SELECTOR, "[src='/media/protocol/img/icons/close.svg']")
+    _browser_help_modal_locator = (By.ID, "icon-browser-help")
+    _installer_help_modal_locator = (By.ID, "icon-installer-help")
 
     # product
 
@@ -77,10 +80,11 @@ class FirefoxAllPage(BasePage):
     def is_linux_atp_link_displayed(self):
         return self.is_element_displayed(*self._linux_atp_link_locator)
 
-    # check the back buttons are working
+    # back buttons
 
-    # check there are the right number of links in each list on the home and platform pages
+    @property
+    def back_icons_count(self):
+        list = self.find_elements(*self._back_icons_locator)
+        return len(list)
 
-    # step through the stages to download?
-
-    # open the help modals?
+    # help modals
