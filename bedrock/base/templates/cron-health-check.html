@@ -9,40 +9,14 @@
 <head>
   <meta charset="utf-8">
   <title>Time Since Last Cron Task Runs</title>
-  <style>
-    h2.success {
-      color: green;
-    }
-    h2.fail {
-      color: #c00;
-    }
-    th, td {
-      padding: 3px 5px;
-      margin: 5px;
-    }
-    tr:nth-child(even) > td, th {
-      background-color: #eee;
-    }
-    .data-table tr > td:first-child {
-      font-weight: bold;
-      padding-right: 10px;
-    }
-    .error > td {
-      color: #c00;
-      font-weight: bold;
-    }
-    .num {
-      text-align: right;
-    }
-  </style>
 </head>
 
 <body>
   <h1>Time Since Last Cron Task Runs</h1>
   {% if success %}
-    <h2 class="success">PASS</h2>
+    <h2>✅ PASS</h2>
   {% else %}
-    <h2 class="fail">FAIL</h2>
+    <h2>❌ FAIL</h2>
   {% endif %}
   <table>
     <thead>
@@ -54,29 +28,29 @@
     </thead>
     <tbody>
       {% for name, maxt, realt, task_pass in results %}
-      <tr{% if not task_pass %} class="error"{% endif %}>
-        <td>{{ name }}</td>
-        <td class="num">{{ maxt }}</td>
-        <td class="num">{{ realt }}</td>
+      <tr>
+        <td>{% if not task_pass %}<mark>{% endif %}{{ name }}{% if not task_pass %}</mark> ‼️{% endif %}</td>
+        <td align="right">{{ maxt }}</td>
+        <td align="right">{{ realt }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
   <h1 id="other-data">Other Site Data</h1>
-  <table class="data-table">
+  <table>
     <tbody>
       <tr>
-        <td>Hostname</td>
+        <td><b>Hostname</b></td>
         <td>{{ server_info.name }}</td>
       </tr>
       <tr>
-        <td>Request Country</td>
+        <td><b>Request Country</b></td>
         <td>{{ country_code }}</td>
       </tr>
       {% if server_info.git_sha %}
       <tr>
-        <td>Bedrock Git SHA</td>
+        <td><b>Bedrock Git SHA</b></td>
         <td><a href="https://github.com/mozilla/bedrock/commit/{{ server_info.git_sha }}">{{ server_info.git_sha[:10] }}</a></td>
       </tr>
       {% endif %}
@@ -84,39 +58,39 @@
       {% if SQLITE_DB_IN_USE %}
       {% if server_info.db_git_sha %}
       <tr>
-        <td>DB Git SHA</td>
+        <td><b>DB Git SHA</b></td>
         <td><a href="https://github.com/mozilla/bedrock/commit/{{ server_info.db_git_sha }}">{{ server_info.db_git_sha[:10] }}</a></td>
       </tr>
       {% endif %}
       {% if server_info.db_checksum %}
       <tr>
-        <td>DB File Checksum</td>
+        <td><b>DB File Checksum</b></td>
         <td>{{ server_info.db_checksum }}</td>
       </tr>
       {% endif %}
       {% if server_info.db_last_update %}
       <tr>
-        <td>DB Last Updated</td>
-        <td title={{server_info.db_last_updated_timestamp}}>
+        <td><b>DB Last Updated</b></td>
+        <td title="{{server_info.db_last_updated_timestamp}}">
           {{ server_info.db_last_update }}
         </td>
       </tr>
       {% endif %}
       {% if server_info.db_file_name %}
       <tr>
-        <td>DB File</td>
+        <td><b>DB File</b></td>
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
       </tr>
       {% endif %}
       {% endif %}
       {% if most_recent_data_change_ts %}
       <tr title="Timestamp of the most recent change to a data source">
-        <td>Latest data change</td>
-        <td>{{most_recent_data_change_ts}}</td>
+        <td><b>Latest data change</b></td>
+        <td>{{ most_recent_data_change_ts }}</td>
       </tr>
       {% endif %}
       <tr>
-        <td>Latest Contentful sync</td>
+        <td><b>Latest Contentful sync</b></td>
         <td{% if contentful_info.latest_sync %} title="{{contentful_info.latest_sync|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
           {% if contentful_info.time_since_latest_sync %}
             {{ contentful_info.time_since_latest_sync }}
