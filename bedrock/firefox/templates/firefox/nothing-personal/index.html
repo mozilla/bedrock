@@ -22,7 +22,7 @@
     <div class="mzp-l-content c-page-header-inner">
       <h1 class="c-page-header-logo-fx">
         <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg') }}" alt="Firefox" width="180" height="40" class="c-header-logo">
-        <span>Firefox from Mozilla</span>
+        <span>Firefox by Mozilla</span>
       </h1>
 
       <div class="cta-group">
@@ -92,12 +92,14 @@
     <div class="c-sign-off">
       <div class="mzp-l-content c-nothing-personal">
         <p>Nothing personal. Just browsing.</p>
+        <div class="c-sign-off-wordmark">
+          <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="Firefox" width="180" height="40" class="c-header-logo">
+        </div>
       </div>
     </div>
   </main>
-
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('nothing-personal') }}
+  {{ js_bundle('firefox-nothing-personal') }}
 {% endblock %}

@@ -1,0 +1,54 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:color';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// utils
+$browser-background: #f8f6f4;
+$page-background: #333336;
+$browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
+$border-black: 3px solid $color-black;
+
+@import './fonts';
+@import './header';
+@import './primary-cta';
+@import './browser';
+@import './sticky-note';
+
+.c-page-main-content {
+    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    position: relative;
+
+    @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
+        background-attachment: fixed;
+    }
+}
+
+.c-sign-off {
+    @include font-firefox;
+    @include text-title-xs;
+    margin-top: $layout-xl;
+
+    p {
+        background-color: $page-background;
+        border: 3px solid $color-white;
+        border-radius: 40px;
+        color: $color-white;
+        padding: $spacing-md;
+    }
+
+    .c-sign-off-wordmark {
+        text-align: center;
+    }
+
+}

@@ -1,0 +1,155 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-browser {
+    border-radius: $border-radius-md;
+
+    .c-browser-bar {
+        background-image: $browser-cool-gradient;
+        background-color: $browser-background;
+        border-top: $border-black;
+        border-left: $border-black;
+        border-right: $border-black;
+        border-top-left-radius: $border-radius-lg;
+        border-top-right-radius: $border-radius-lg;
+        display: flex;
+        align-items: center;
+        height: 65px;
+        padding-right: $spacing-md;
+        padding-left: $spacing-md;
+
+
+        &.c-bar-with-heading {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .browser-bar-dot-wrapper > .c-browser-bar-dot,
+        .c-browser-bar-dot {
+            border: $border-black;
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            margin-left: $spacing-xs;
+            display: inline-block;
+        }
+
+        h3 {
+            color: $browser-background;
+            text-align: center;
+            margin-bottom: 0;
+            font-family: 'Fira Mono', 'Andale Mono', monospace;
+        }
+    }
+
+    .c-browser-content {
+        background-color: $browser-background;
+        border: $border-black;
+        border-bottom-left-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
+        padding: $layout-sm;
+
+        h4,
+        h5 {
+            font-family: 'Fira Mono', 'Andale Mono', monospace;
+        }
+
+        h4 {
+            margin-bottom: $layout-md;
+        }
+
+        h5 {
+            @include text-title-xs;
+        }
+
+        p {
+            @include text-body-xl;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-browser-bar {
+            &.c-bar-with-heading {
+                grid-template-columns: repeat(3, 1fr);
+
+                h3 {
+                    @include text-title-xs;
+                    white-space: nowrap;
+                }
+            }
+
+            .browser-bar-dot-wrapper > .c-browser-bar-dot,
+            .c-browser-bar-dot {
+                margin-left: $spacing-md;
+            }
+        }
+
+        .c-browser-content {
+            padding: $layout-md;
+        }
+    }
+}
+
+.c-browser-window-top-wrapper {
+    position: relative;
+    z-index: 10;
+
+    &::after {
+        background-image: url("/media/img/firefox/nothing-personal/browser-highlight.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        height: 430px;
+        left: 20px;
+        position: absolute;
+        top: 14px;
+        width: 720px;
+        z-index: -1;
+    }
+
+    .c-browser-bar {
+            background-image: none;
+        }
+
+    .c-browser-window-top {
+        h2 {
+            @include text-title-lg;
+        }
+
+        &::after{
+            position: absolute;
+            content: "";
+            background-image: url("/media/img/firefox/nothing-personal/heart-sticker.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
+            height: 82px;
+            top: 50px;
+            right: 45px;
+            width: 90px;
+        }
+
+        @media #{$mq-md} {
+            h2 {
+                @include text-title-2xl;
+            }
+
+            &::after {
+                filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
+                height: 95px;
+                bottom: 97px;
+                right: 308px;
+                top: unset;
+                width: 105px;
+            }
+        }
+
+        @media #{$mq-xl} {
+            &::after {
+                bottom: 150px;
+                right: 315px;
+            }
+        }
+    }
+}

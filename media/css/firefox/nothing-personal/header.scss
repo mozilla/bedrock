@@ -1,0 +1,78 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-page-header {
+    background: transparent;
+
+    @media #{$mq-md} {
+        .mzp-l-content {
+            padding-top: $spacing-xl;
+            padding-bottom: $spacing-sm;
+        }
+    }
+}
+
+.c-page-header-logo-fx {
+    display: flex;
+    justify-content: center;
+
+    span {
+        @include visually-hidden;
+    }
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    @include grid-row-gap($spacing-lg);
+
+    .cta-group {
+        justify-self: center;
+
+        span {
+            display: none;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-header-logo-fx {
+        justify-content: flex-start;
+        margin: 0;
+    }
+
+    .c-page-header-inner {
+        @include grid-column-gap($spacing-lg);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .cta-group {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .c-page-header-inner {
+        .cta-group {
+            span {
+                display: block;
+                margin-right: $spacing-md;
+                width: 470px;
+                font-family: 'Fira Mono', 'Andale Mono', monospace;
+
+                &::after {
+                    content: "    >>>>>";
+                }
+            }
+        }
+
+        .mzp-c-button {
+            white-space: nowrap;
+        }
+    }
+}

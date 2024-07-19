@@ -1,0 +1,79 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-sticky-note {
+    @include text-body-lg;
+    background-image: url('/media/img/firefox/nothing-personal/sticky-note-bg.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 230px;
+    height: 220px;
+    margin: $layout-md auto;
+    padding: $spacing-lg;
+    transform: rotate(11deg);
+
+    &.c-detached {
+        display: block;
+    }
+
+    &.c-attached {
+        display: none;
+    }
+
+    p,
+    a {
+        font-family: 'Fira Mono', 'Andale Mono', monospace;
+    }
+
+    p {
+        margin-top: $spacing-xl;
+    }
+
+    @media #{$mq-lg} {
+        &.c-detached {
+            display: none;
+        }
+
+        &.c-attached {
+            display: block;
+            position: absolute;
+            bottom: -167px;
+            right: -55px;
+
+        }
+    }
+}
+
+.c-sticky-note > .c-button-download-thanks {
+    margin-bottom: 0;
+
+    a {
+        @include text-body-lg;
+        border: 0;
+        background: transparent;
+        color: $color-black;
+        padding: 0;
+
+            &::before {
+            content: ">>>"
+        }
+
+        &::after {
+            content: "<<<<"
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+            color: $color-black;
+            text-decoration: underline solid $color-black !important; /* stylelint-disable-line declaration-no-important */
+            text-decoration-thickness: 2px !important;/* stylelint-disable-line declaration-no-important */
+        }
+    }
+
+    small {
+        display:  none;
+    }
+}

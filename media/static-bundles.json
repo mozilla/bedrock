@@ -1174,7 +1174,7 @@
     },
     {
       "files": [
-        "css/firefox/nothing-personal.scss"
+        "css/firefox/nothing-personal/styles.scss"
       ],
       "name": "firefox-nothing-personal"
     },
@@ -1833,9 +1833,11 @@
     },
     {
       "files": [
-        "js/firefox/nothing-personal/fx-is-default.es6.js"
+        "js/firefox/nothing-personal/fx-is-default.es6.js",
+        "js/firefox/nothing-personal/fx-is-default-init.es6.js",
+        "js/firefox/nothing-personal/animate-pop-in.es6.js"
       ],
-      "name": "nothing-personal"
+      "name": "firefox-nothing-personal"
     },
     {
       "files": [

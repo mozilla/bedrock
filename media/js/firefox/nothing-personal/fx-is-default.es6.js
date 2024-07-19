@@ -4,7 +4,43 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FirefoxDefault from '../family/fx-is-default.es6';
+const FirefoxDefault = {
+    isDefaultBrowser: () => {
+        return new window.Promise((resolve, reject) => {
+            Mozilla.UITour.getConfiguration('appinfo', (details) => {
+                if (details.defaultBrowser) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
+        });
+    },
 
-// check if firefox is set to default on startup
-FirefoxDefault.init('html');
+    isSupported: () => {
+        return Mozilla.Client._isFirefoxDesktop() && 'Promise' in window;
+    },
+
+    // Update `element` when running the init() function during initialization to be the query selector you want targeted
+    init: () => {
+        const main = document.querySelector('html');
+
+        if (!FirefoxDefault.isSupported()) {
+            return;
+        }
+
+        return new window.Promise(function (resolve) {
+            Mozilla.UITour.ping(() => {
+                main.classList.add('set-default-supported');
+                FirefoxDefault.isDefaultBrowser()
+                    .then(function () {
+                        main.classList.add('is-firefox-default');
+                        resolve();
+                    })
+                    .catch(() => resolve());
+            });
+        });
+    }
+};
+
+export default FirefoxDefault;
