@@ -65,6 +65,8 @@
   {% set headline_exp_v3_sub = 'Protect your digital activity and physical location with just one click.' %}
 {% endif %}
 
+{% set show_vpn_ppa_exp = switch('experiment-vpn-ppa', ['en-US']) and country_code == "US" %}
+
 {% block content %}
 <main>
   {% call split(
@@ -410,7 +412,7 @@
   {% endif %}
 
   {{ js_bundle('data_begincheckout') }}
-  {% if LANG == "en-US" and country_code == 'US' %}
+  {% if show_vpn_ppa_exp %}
     {{ js_bundle('mozilla-vpn-ppa-experiment') }}
   {% endif %}
 {% endblock %}
