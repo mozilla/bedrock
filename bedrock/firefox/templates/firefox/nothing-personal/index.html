@@ -26,7 +26,7 @@
       </h1>
 
       <div class="cta-group">
-        <span>Feeling browser curious? We won’t tell.</span>
+        <span>Feeling browser-curious? We won’t tell.</span>
 
         <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Set as default</a>
 
@@ -38,24 +38,59 @@
   </header>
   <main class="c-page-main-content">
     <div class="c-browser-windows">
+      <div class="c-layered-browser">
         {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md') %}
-          <div class="c-browser-window-top">
-            <h2>We look forward to not getting to know you</h2>
-          </div>
+        <div class="c-browser-window-top">
+          <h2>We look forward to not getting to know you</h2>
+        </div>
         {% endcall %}
 
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser yellow mzp-l-content mzp-t-content-md', aria_hidden=true) %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser dark-yellow mzp-l-content mzp-t-content-md', aria_hidden=true) %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser darker-yellow mzp-l-content mzp-t-content-md', aria_hidden=true) %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        <!-- <div class="layers">
+          <span class="yellow"></span>
+          <span class="dark-yellow"></span>
+          <span class="darker-yellow"></span>
+        </div> -->
+      </div>
+
         {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='Nothing Personal') %}
-          <div class="c-browser-window-top">
+          <div class="">
             <h4>You’re great — probably.</h4>
             <p>We just don’t need a lot of your data to be a <strong>fast, reliable</strong> browser that keeps up with the big guys.</p>
           </div>
         {% endcall %}
 
-        <div class="sticky-window">
+        <!-- <div class="c-thug-life-gif mzp-l-content mzp-t-content-md c-dettached-gif">
+          <img src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
+        </div> -->
 
+        <div class="sticky-window">
+          <div class="c-thug-life-gif c-attached-gif">
+            <img src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
+          </div>
 
          {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='SFAQs') %}
-          <div class="c-browser-window-top">
+          <div class="">
             <h4>[Somewhat Frequently Asked Questions]</h4>
 
             <h5>Are you even any good?</h5>

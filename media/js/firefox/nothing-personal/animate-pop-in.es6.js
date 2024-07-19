@@ -5,45 +5,22 @@
  */
 
 let observer;
-let heroSection;
+let browser;
+let stickyNote;
 
 function createObserver() {
     return new IntersectionObserver(function (entries) {
         let chain = Promise.resolve();
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                if (entry.target.classList.contains('mzp-c-picto')) {
+                if (entry.target.classList.contains('c-browser')) {
                     // chain promises with a 200ms delay in between each one
                     chain = chain.then(() => popIn(entry.target));
                     // remove target observer after triggering animation
                     observer.unobserve(entry.target);
-                } else if (entry.target.classList.contains('toggle')) {
-                    const input = entry.target.querySelector('input');
-                    setTimeout(() => {
-                        entry.target.classList.add('animate-slide');
-                        input.checked = true;
-                    }, 600);
-                } else if (heroSection.contains(entry.target)) {
-                    const heroWrapper =
-                        entry.target.querySelector('.hero-wrapper');
-                    const imageWrapper =
-                        entry.target.querySelector('.c-hero-top-images');
-                    heroWrapper.classList.add('animate-pop-in');
-                    heroWrapper.addEventListener('animationend', function () {
-                        imageWrapper.classList.add('active');
-                    });
-                } else if (
-                    entry.target.classList.contains('ctd-animated-logo')
-                ) {
-                    entry.target.classList.add('animate-active');
-                } else {
-                    entry.target.classList.add('animate-pop-in');
+                } else if (entry.target.classList.contains('c-attached')) {
+                    slideIn(entry.target);
                 }
-            } else if (
-                !entry.isIntersecting &&
-                entry.target.classList.contains('ctd-animated-logo')
-            ) {
-                entry.target.classList.remove('animate-active');
             }
         });
     });
@@ -54,22 +31,16 @@ function init() {
         window.MzpSupports.intersectionObserver &&
         window.Mozilla.Utils.allowsMotion()
     ) {
-        heroSection = document.querySelector('.c-ctd-hero');
+        browser = document.querySelector('.c-browser');
+        stickyNote = document.querySelector('.c-attached');
         observer = createObserver();
 
-        //add picto observers
-        document
-            .querySelectorAll('.c-ctd-features .mzp-c-picto')
-            .forEach(function (element) {
-                observer.observe(element);
-            });
-
-        // add middle toggle
-        document.querySelectorAll('.toggle.middle').forEach(function (toggle) {
-            observer.observe(toggle);
+        document.querySelectorAll('.c-browser').forEach(function (element) {
+            observer.observe(element);
         });
 
-        observer.observe(heroSection);
+        observer.observe(browser);
+        observer.observe(stickyNote);
     }
 }
 
@@ -79,6 +50,15 @@ function popIn(element) {
             element.classList.add('animate-pop-in');
             res();
         }, 200);
+    });
+}
+
+function slideIn(element) {
+    return new Promise((res) => {
+        setTimeout(() => {
+            element.classList.add('animate-slide-in');
+            res();
+        }, 800);
     });
 }
 

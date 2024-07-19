@@ -60,10 +60,11 @@
     .c-page-header-inner {
         .cta-group {
             span {
+                @include text-body-lg;
                 display: block;
                 margin-right: $spacing-md;
-                width: 470px;
-                font-family: 'Fira Mono', 'Andale Mono', monospace;
+                width: 500px;
+                font-family: 'Fira Mono', 'Andale Mono', monospace;;
 
                 &::after {
                     content: "    >>>>>";

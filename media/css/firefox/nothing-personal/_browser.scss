@@ -89,24 +89,15 @@
             padding: $layout-md;
         }
     }
+
+    @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+    }
 }
 
 .c-browser-window-top-wrapper {
     position: relative;
     z-index: 10;
-
-    &::after {
-        background-image: url("/media/img/firefox/nothing-personal/browser-highlight.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        content: "";
-        height: 430px;
-        left: 20px;
-        position: absolute;
-        top: 14px;
-        width: 720px;
-        z-index: -1;
-    }
 
     .c-browser-bar {
             background-image: none;
@@ -117,7 +108,7 @@
             @include text-title-lg;
         }
 
-        &::after{
+        &::after {
             position: absolute;
             content: "";
             background-image: url("/media/img/firefox/nothing-personal/heart-sticker.svg");
@@ -129,8 +120,12 @@
             right: 45px;
             width: 90px;
         }
+    }
 
-        @media #{$mq-md} {
+    @media #{$mq-md} {
+        margin-bottom: $layout-lg;
+
+        .c-browser-window-top {
             h2 {
                 @include text-title-2xl;
             }
@@ -138,8 +133,8 @@
             &::after {
                 filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
                 height: 95px;
-                bottom: 97px;
-                right: 308px;
+                bottom: 115px;
+                right: 280px;
                 top: unset;
                 width: 105px;
             }
@@ -147,8 +142,69 @@
 
         @media #{$mq-xl} {
             &::after {
-                bottom: 150px;
-                right: 315px;
+                bottom: 160px;
+                right: 295px;
+            }
+        }
+    }
+}
+
+// Layered background styles for first window
+.c-browser-windows {
+    .c-layered-browser {
+        position: relative;
+
+        .c-hidden-browser {
+            display: none;
+
+                @media #{$mq-md} {
+                    display: block;
+
+                &.yellow {
+                    position: absolute;
+                    right: -20px;
+                    top: 20px;
+                    z-index: 5;
+
+                    .c-browser-bar,
+                    .c-browser-content {
+                        background-color: $color-yellow-10;
+                    }
+                }
+
+                &.dark-yellow {
+                    position: absolute;
+                    top: 40px;
+                    right: -40px;
+                    z-index: 3;
+
+                    .c-browser-bar,
+                    .c-browser-content {
+                        background-color: $color-yellow-30;
+                    }
+                }
+
+                &.darker-yellow {
+                    position: absolute;
+                    top: 60px;
+                    right: -60px;
+                    z-index: 2;
+
+                    .c-browser-bar,
+                    .c-browser-content {
+                        background-color: $color-yellow-40;
+                    }
+                }
+
+                .c-browser-window-top {
+                    h2 {
+                        visibility: hidden;
+                    }
+
+                    &::after {
+                        content: none;
+                    }
+                }
             }
         }
     }

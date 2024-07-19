@@ -1,0 +1,52 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-thug-life-gif {
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    padding: 0 $spacing-md;
+
+    img {
+        border: 3px solid $color-black;
+        max-height: 200px;
+        display: block;
+    }
+
+    &.c-attached-gif {
+        position: absolute;
+    }
+
+    @media #{$mq-md} {
+        &.c-attached-gif {
+            padding: 0;
+            bottom: 30%;
+            left: 0;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            min-height: 200px;
+            width: 355px;
+            background: $color-white;
+            border: 3px solid $color-black;
+            top: 15px;
+            right: -15px;
+            z-index: -1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            min-height: 200px;
+            width: 355px;
+            background: $color-white;
+            border: 3px solid $color-black;
+            top: 30px;
+            right: -30px;
+            z-index: -5;
+        }
+    }
+}

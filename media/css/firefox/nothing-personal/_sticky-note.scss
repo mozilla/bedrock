@@ -40,7 +40,11 @@
             position: absolute;
             bottom: -167px;
             right: -55px;
+            opacity: 1;
 
+            @media (prefers-reduced-motion: no-preference) {
+                opacity: 0;
+            }
         }
     }
 }

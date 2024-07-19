@@ -16,9 +16,11 @@ $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-5
 $border-black: 3px solid $color-black;
 
 @import './fonts';
+@import './animations';
 @import './header';
 @import './primary-cta';
 @import './browser';
+@import './fox-gif';
 @import './sticky-note';
 
 .c-page-main-content {
