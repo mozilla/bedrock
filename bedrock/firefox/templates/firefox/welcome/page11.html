@@ -25,7 +25,7 @@
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-lg">
-      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="">
+      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="60" alt="Mozilla VPN">
       <h1 class="c-main-title">{{ ftl('welcome-page11-main-heading') }}</h1>
     </div>
   </section>
@@ -38,7 +38,7 @@
 
       <div class="mzp-c-picto">
         <div class="mzp-c-picto-image">
-          {% include 'firefox/welcome/includes/page11/globe.svg' %}
+          <img src="{{ static('img/firefox/welcome/page11/globe.svg') }}" alt="">
         </div>
         <h3 class="mzp-c-picto-title">{{ ftl('welcome-page11-it-helps-you-shop') }}</h3>
         <div class="mzp-c-picto-body">
@@ -48,7 +48,7 @@
 
       <div class="mzp-c-picto">
         <div class="mzp-c-picto-image">
-          {% include 'firefox/welcome/includes/page11/cart.svg' %}
+          <img src="{{ static('img/firefox/welcome/page11/cart.svg') }}" alt="">
         </div>
         <h3 class="mzp-c-picto-title">{{ ftl('welcome-page11-it-prevents-surcharging') }}</h3>
         <div class="mzp-c-picto-body">
@@ -58,7 +58,7 @@
 
       <div class="mzp-c-picto">
         <div class="mzp-c-picto-image">
-          {% include 'firefox/welcome/includes/page11/lock.svg' %}
+          <img src="{{ static('img/firefox/welcome/page11/lock.svg') }}" alt="">
         </div>
         <h3 class="mzp-c-picto-title">{{ ftl('welcome-page11-it-protects-your-credit') }}</h3>
         <div class="mzp-c-picto-body">
