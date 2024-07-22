@@ -67,7 +67,9 @@ Non-SSO authentication
 #. Create a local admin user with ``./manage.py createsuperuser``, setting both the
    username, email and password to whatever you choose (note: these details will only
    be stored locally on your device).
-   #. Alternatively, if you define ``WAGTAIL_ADMIN_EMAIL=YOUR_MOZILLA_LDAP_EMAIL@mozilla.com`` and ``WAGTAIL_ADMIN_PASSWORD=somepassword`` in your ``.env.`` file, ``make preflight`` will automatically create a non-SSO superuser for you
+#. Alternatively, if you define ``WAGTAIL_ADMIN_EMAIL=YOUR_MOZILLA_LDAP_EMAIL@mozilla.com``
+   and ``WAGTAIL_ADMIN_PASSWORD=somepassword`` in your ``.env.`` file, ``make preflight``
+   will automatically create a non-SSO superuser for you
 #. Start bedrock running via ``npm start`` (for local dev) or ``make build run``
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a form for logging in
@@ -89,12 +91,12 @@ When it comes to structuring CMS page models, there are some general guidelines 
 try and follow:
 
 - Models and templates should be defined in the same Django app that corresponds
-  to where the URL exists in Bedrock’s information architecture (IA) hierarchy, similar to what we do for
-  regular Jinja templates already. For example, a Mozilla themed page should be
-  defined in ``/bedrock/mozorg/models.py``, and a Firefox themed page model should
-  be in ``/bedrock/firefox/models.py``.
-- Global ``Page`` models and ``StreamField`` blocks that are shared across many pages throughout the site should
-  be defined in ``/bedrock/cms/``.
+  to where the URL exists in Bedrock’s information architecture (IA) hierarchy,
+  similar to what we do for regular Jinja templates already. For example, a Mozilla
+  themed page should be defined in ``/bedrock/mozorg/models.py``, and a Firefox themed
+  page model should be in ``/bedrock/firefox/models.py``.
+- Global ``Page`` models and ``StreamField`` blocks that are shared across many pages
+  throughout the site should be defined in ``/bedrock/cms/``.
 
 Structuring code in this way should hopefully help to keep things organized and
 migrations in a manageable state.
@@ -139,13 +141,16 @@ Some key things to note here:
   and ``body`` is a ``RichTextField``. The HTML tags and elements that a content
   editor can enter into a rich text field are defined in
   ``settings.WAGTAIL_RICHTEXT_FEATURES_FULL``.
-- There is also a ``title`` field on the page model, which from ``AbstractBedrockCMSPage`` (which in turn comes from ``wagtail.models.Page``). This doesn't make ``heading`` redundant, but it's worth knowing where ``title`` comes from.
+- There is also a ``title`` field on the page model, which from ``AbstractBedrockCMSPage``
+  (which in turn comes from ``wagtail.models.Page``). This doesn't make ``heading``
+  redundant, but it's worth knowing where ``title`` comes from.
 - Both fields are added to the CMS admin panel by adding each as a ``FieldPanel`` to
   ``content_panels``. If you forget to do this, that's usually why you don't see the
   field in the CMS admin.
 - Finally, the template used to render the page type can be found at
   ``mozorg/test_page.html``.
-  If you don't set a custom template name, Wagtail will infer it from the model's name: ``<app_label>/<model_name (in snake case)>.html``
+- If you don't set a custom template name, Wagtail will infer it from the model's
+  name: ``<app_label>/<model_name (in snake case)>.html``
 
 Django model migrations
 -----------------------
@@ -170,7 +175,8 @@ will add a new migration file to the ``/migrations`` directory. When doing local
 development for a new page you might find yourself doing this several times, so to help
 reduce the number of migration files you create you can also squash / merge them.
 
-INSERT LINK TO ARTICLE ON SQUASHING / MERGING?
+- `Django migrations docs`_.
+- `Squashing migrations`_.
 
 Rendering data in templates
 ---------------------------
@@ -201,7 +207,7 @@ Wagtail-provided Jinja2 filter that will render the rich text field as HTML.
 Previewing pages in the CMS admin
 ---------------------------------
 
-Next, restart your local server and log in to the CMS admin. 
+Next, restart your local server and log in to the CMS admin.
 Browse to a page and use the ``+`` icon or similar to add a new "child page".
 You should now see
 your new page type in the list of available pages. Create a new page using the
@@ -443,3 +449,5 @@ admin user in your local build.
 .. _wagtail_factories: https://github.com/wagtail/wagtail-factories
 .. _Stream Fields: https://docs.wagtail.org/en/stable/topics/streamfield.html
 .. _Custom Block types: https://docs.wagtail.org/en/stable/advanced_topics/customisation/streamfield_blocks.html#custom-streamfield-blocks
+.. _Django migrations docs: https://docs.djangoproject.com/en/4.2/topics/migrations/
+.. _Squashing migrations: https://docs.djangoproject.com/en/4.2/topics/migrations/
