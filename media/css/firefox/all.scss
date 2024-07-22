@@ -100,6 +100,10 @@ $image-path: '/media/protocol/img';
     display: none;
 }
 
+.c-step-download {
+    margin-top: $layout-md;
+}
+
 .c-product-list {
     padding-left: 36px; // to match the desktop & mobile icons
 
