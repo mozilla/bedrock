@@ -123,7 +123,7 @@ test: .docker-build-pull
 	${DC} run --rm test
 
 test-cdn: .docker-build-pull test_infra/fixtures/tls.json
-	${DC} run test py.test --base-url https://${TEST_DOMAIN} test_infra
+	${DC} run test pytest --base-url https://${TEST_DOMAIN} test_infra
 
 test-image: .docker-build
 	${DC} run test-image
