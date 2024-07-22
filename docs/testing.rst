@@ -111,7 +111,7 @@ Mozorg mode:
 
 .. code-block:: bash
 
-    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/
+    $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/
 
 This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
@@ -125,7 +125,7 @@ time. You need to define a temporary environment variable (needed by the
 
 .. code-block:: bash
 
-    $ BASE_POCKET_URL=http://localhost:8000 py.test -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
+    $ BASE_POCKET_URL=http://localhost:8000 pytest -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
 
 This will run all test suites found in the ``tests/functional`` directory that have
 the pytest "`mark`" of `pocket_mode` and assumes you have bedrock running *in Pocket mode* at
@@ -151,26 +151,26 @@ processes.
     take a long time to run, especially if they're not running in parallel.
     To skip these tests, add ``-m 'not headless'`` to your command line.
 
-To run a single test file you must tell py.test to execute a specific file
+To run a single test file you must tell pytest to execute a specific file
 e.g. ``tests/functional/test_newsletter.py``:
 
 .. code-block:: bash
 
-    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
+    $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
 
 To run a single test you can filter using the ``-k`` argument supplied with a keyword
 e.g. ``-k test_download_button_displayed``:
 
 .. code-block:: bash
 
-  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
+  $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all functional tests against dev:
 
 .. code-block:: bash
 
-    $ py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html tests/functional/
+    $ pytest --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html tests/functional/
 
 .. Note::
 
@@ -195,7 +195,7 @@ For example, to run the home page tests using Internet Explorer via Sauce Labs:
 
 .. code-block:: bash
 
-    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName 'Windows 10' --html tests/functional/results.html tests/functional/test_home.py
+    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 SAUCELABS_W3C=true SELENIUM_EXCLUDE_DEBUG=logs pytest --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' --capability platformName 'Windows 10' --html tests/functional/results.html tests/functional/test_home.py
 
 
 Writing Selenium tests
