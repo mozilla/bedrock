@@ -196,7 +196,7 @@ The data can be rendered in ``mozorg/test_page.html`` as follows:
     {% endblock %}
 
 Note the ``|richtext`` filter applied to the ``page.body`` field. This is a
-Wagtail/Django filter that will render the rich text field as HTML.
+Wagtail-provided Jinja2 filter that will render the rich text field as HTML.
 
 Previewing pages in the CMS admin
 ---------------------------------
