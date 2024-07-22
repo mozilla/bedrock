@@ -67,6 +67,7 @@ Non-SSO authentication
 #. Create a local admin user with ``./manage.py createsuperuser``, setting both the
    username, email and password to whatever you choose (note: these details will only
    be stored locally on your device).
+   #. Alternatively, if you define ``WAGTAIL_ADMIN_EMAIL=YOUR_MOZILLA_LDAP_EMAIL@mozilla.com`` and ``WAGTAIL_ADMIN_PASSWORD=somepassword`` in your ``.env.`` file, ``make preflight`` will automatically create a non-SSO superuser for you
 #. Start bedrock running via ``npm start`` (for local dev) or ``make build run``
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a form for logging in
