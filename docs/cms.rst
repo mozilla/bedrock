@@ -150,7 +150,7 @@ Some key things to note here:
 Django model migrations
 -----------------------
 
-Once you have your model defined, it’s then time to run migrations to take that
+Once you have your model defined, it’s then time to run create and run migrations to
 model and create a database table:
 
 .. code-block:: shell
