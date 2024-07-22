@@ -139,7 +139,7 @@ Some key things to note here:
   and ``body`` is a ``RichTextField``. The HTML tags and elements that a content
   editor can enter into a rich text field are defined in
   ``settings.WAGTAIL_RICHTEXT_FEATURES_FULL``.
-- Both fields are added to the CSM admin panel by adding each as a ``FieldPanel`` to
+- Both fields are added to the CMS admin panel by adding each as a ``FieldPanel`` to
   ``content_panels``. If you forget to do this, that's usually why you don't see the
   field in the CMS admin.
 - Finally, the template used to render the page type can be found at
