@@ -148,7 +148,7 @@ Some key things to note here:
   If you don't set a custom template name, Wagtail will infer it from the model's name: ``<app_label>/<model_name (in snake case)>.html``
 
 Django model migrations
-------------------
+-----------------------
 
 Once you have your model defined, it’s then time to run migrations to take that
 model and create a database table:
