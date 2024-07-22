@@ -201,7 +201,9 @@ Wagtail-provided Jinja2 filter that will render the rich text field as HTML.
 Previewing pages in the CMS admin
 ---------------------------------
 
-Next, restart your local server and log in to the CMS admin. You should now see
+Next, restart your local server and log in to the CMS admin. 
+Browse to a page and use the ``+`` icon or similar to add a new "child page".
+You should now see
 your new page type in the list of available pages. Create a new page using the
 ``TestPage`` type, give the page a title of ``Test Page`` and a slug of ``test``,
 and then enter some data for the fields you defined. When you click the preview icon
