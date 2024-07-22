@@ -4,6 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FirefoxDefault from './fx-is-default.es6';
+import FirefoxDefault from '../../base/fx-is-default.es6';
 
-FirefoxDefault.init();
+FirefoxDefault.init('html');

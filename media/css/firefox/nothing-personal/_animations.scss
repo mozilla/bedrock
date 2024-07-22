@@ -57,6 +57,61 @@
                 right: 0;
             }
         }
+
+        @keyframes slide-in-mobile {
+            0% {
+                opacity: 0;
+                margin-left: 200px;
+            }
+
+            35% {
+                opacity: 1;
+                margin-left: 80px;
+            }
+
+            65% {
+                margin-left: 60px;
+            }
+
+            100% {
+                opacity: 1;
+                margin-left: auto;
+            }
+        }
+
+        @keyframes spiral-in {
+            0% {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+
+            15% {
+                opacity: 0.5;
+                transform: rotate(60deg);
+            }
+
+            30% {
+                opacity: 1;
+                transform: rotate(120deg);
+            }
+
+            45% {
+                transform: rotate(180deg);
+            }
+
+            60% {
+                transform: rotate(240deg);
+            }
+
+            85% {
+                transform: rotate(300deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(360deg);
+            }
+        }
     }
 
     .animate-pop-in {
@@ -65,5 +120,13 @@
 
     .animate-slide-in {
         animation: 0.5s ease-out 0s 1 normal forwards running slide-in;
+    }
+
+    .animate-slide-in-mobile {
+        animation: 0.5s ease-out 0s 1 normal forwards running slide-in-mobile;
+    }
+
+    .animate-spiral-in {
+        animation: 0.8s ease-out 0s 2 normal forwards running spiral-in;
     }
 }

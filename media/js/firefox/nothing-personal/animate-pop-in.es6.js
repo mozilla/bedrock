@@ -6,7 +6,9 @@
 
 let observer;
 let browser;
-let stickyNote;
+let attachedStickyNote;
+let detachedStickyNote;
+let stickyGif;
 
 function createObserver() {
     return new IntersectionObserver(function (entries) {
@@ -18,8 +20,16 @@ function createObserver() {
                     chain = chain.then(() => popIn(entry.target));
                     // remove target observer after triggering animation
                     observer.unobserve(entry.target);
-                } else if (entry.target.classList.contains('c-attached')) {
+                } else if (
+                    entry.target.classList.contains('c-attached-sticky')
+                ) {
                     slideIn(entry.target);
+                } else if (
+                    entry.target.classList.contains('c-detached-sticky')
+                ) {
+                    slideInMobile(entry.target);
+                } else if (entry.target.classList.contains('c-thug-life-gif')) {
+                    spiralIn(entry.target);
                 }
             }
         });
@@ -32,15 +42,25 @@ function init() {
         window.Mozilla.Utils.allowsMotion()
     ) {
         browser = document.querySelector('.c-browser');
-        stickyNote = document.querySelector('.c-attached');
+        attachedStickyNote = document.querySelector('.c-attached-sticky');
+        detachedStickyNote = document.querySelector('.c-detached-sticky');
+        stickyGif = document.querySelector('.c-thug-life-gif');
         observer = createObserver();
 
         document.querySelectorAll('.c-browser').forEach(function (element) {
             observer.observe(element);
         });
 
+        document
+            .querySelectorAll('.c-thug-life-gif')
+            .forEach(function (element) {
+                observer.observe(element);
+            });
+
         observer.observe(browser);
-        observer.observe(stickyNote);
+        observer.observe(attachedStickyNote);
+        observer.observe(detachedStickyNote);
+        observer.observe(stickyGif);
     }
 }
 
@@ -57,6 +77,24 @@ function slideIn(element) {
     return new Promise((res) => {
         setTimeout(() => {
             element.classList.add('animate-slide-in');
+            res();
+        }, 800);
+    });
+}
+
+function slideInMobile(element) {
+    return new Promise((res) => {
+        setTimeout(() => {
+            element.classList.add('animate-slide-in-mobile');
+            res();
+        }, 800);
+    });
+}
+
+function spiralIn(element) {
+    return new Promise((res) => {
+        setTimeout(() => {
+            element.classList.add('animate-spiral-in');
             res();
         }, 800);
     });

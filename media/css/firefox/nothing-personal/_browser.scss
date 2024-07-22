@@ -134,17 +134,19 @@
                 filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
                 height: 95px;
                 bottom: 115px;
-                right: 280px;
+                right: 250px;
                 top: unset;
                 width: 105px;
             }
         }
 
         @media #{$mq-xl} {
+            .c-browser-window-top {
             &::after {
                 bottom: 160px;
                 right: 295px;
             }
+        }
         }
     }
 }
@@ -208,4 +210,8 @@
             }
         }
     }
+}
+
+.sticky-window {
+    position: relative;
 }

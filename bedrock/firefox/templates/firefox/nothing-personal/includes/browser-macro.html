@@ -6,10 +6,9 @@
 
 {% macro browser_border(
   class=None,
-  heading=None,
-  aria_hidden=None
+  heading=None
 ) -%}
-<div class="c-browser {% if class %} {{ class }}{% endif %}" {% if aria_hidden %}aria-hidden="true"{% endif %}>
+<div class="c-browser {% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
     <!-- dots -->
 

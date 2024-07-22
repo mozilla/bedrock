@@ -13,11 +13,16 @@
     padding: $spacing-lg;
     transform: rotate(11deg);
 
-    &.c-detached {
+    &.c-detached-sticky {
         display: block;
+        opacity: 1;
+
+        @media (prefers-reduced-motion: no-preference) {
+            opacity: 0;
+        }
     }
 
-    &.c-attached {
+    &.c-attached-sticky {
         display: none;
     }
 
@@ -31,11 +36,11 @@
     }
 
     @media #{$mq-lg} {
-        &.c-detached {
+        &.c-detached-sticky {
             display: none;
         }
 
-        &.c-attached {
+        &.c-attached-sticky {
             display: block;
             position: absolute;
             bottom: -167px;
@@ -46,6 +51,7 @@
                 opacity: 0;
             }
         }
+
     }
 }
 

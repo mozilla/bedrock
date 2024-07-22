@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FirefoxDefault from '../family/fx-is-default.es6';
+import FirefoxDefault from '../../base/fx-is-default.es6';
 
 const compareTable = document.querySelector('.comparison-table');
 
@@ -41,4 +41,4 @@ const browser = detectDevice();
 compareTable.dataset.selectedBrowser = browser || 'chrome';
 
 // check if firefox is set to default on startup
-FirefoxDefault.init();
+FirefoxDefault.init('main');

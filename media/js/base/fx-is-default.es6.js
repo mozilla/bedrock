@@ -22,8 +22,8 @@ const FirefoxDefault = {
     },
 
     // Update `element` when running the init() function during initialization to be the query selector you want targeted
-    init: () => {
-        const main = document.querySelector('main');
+    init: (element) => {
+        const targetElement = document.querySelector(element);
 
         if (!FirefoxDefault.isSupported()) {
             return;
@@ -31,10 +31,10 @@ const FirefoxDefault = {
 
         return new window.Promise(function (resolve) {
             Mozilla.UITour.ping(() => {
-                main.classList.add('set-default-supported');
+                targetElement.classList.add('set-default-supported');
                 FirefoxDefault.isDefaultBrowser()
                     .then(function () {
-                        main.classList.add('is-firefox-default');
+                        targetElement.classList.add('is-firefox-default');
                         resolve();
                     })
                     .catch(() => resolve());

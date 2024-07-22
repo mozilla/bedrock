@@ -4,13 +4,6 @@
 
 .c-page-header {
     background: transparent;
-
-    @media #{$mq-md} {
-        .mzp-l-content {
-            padding-top: $spacing-xl;
-            padding-bottom: $spacing-sm;
-        }
-    }
 }
 
 .c-page-header-logo-fx {
@@ -26,7 +19,7 @@
     align-items: center;
     display: grid;
     grid-template-columns: 1fr;
-    @include grid-row-gap($spacing-lg);
+    padding: $spacing-lg;
 
     .cta-group {
         justify-self: center;
@@ -47,6 +40,7 @@
         @include grid-column-gap($spacing-lg);
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        padding: $layout-sm;
 
         .cta-group {
             justify-self: end;
