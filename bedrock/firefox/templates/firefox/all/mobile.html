@@ -22,7 +22,7 @@
 <div class="c-mobile">
 
   {% if product.slug.startswith("ios-beta") %}
-    <p><br>
+    <p class="c-step-download">
       <a href="{{ url('firefox.ios.testflight') }}">{{ ftl('firefox-all-testflight') }}</a>
     </p>
   {% else %}

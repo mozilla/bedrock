@@ -28,13 +28,13 @@
   {% endif %}
   {% if product.slug.startswith("desktop") %}
     {% if platform.startswith("win-store") %}
-      <p><br>
+      <p class="c-step-download">
         {% set ms_store_product = 'firefox_beta' if product.slug.endswith('beta') else 'firefox' %}
         {% set ms_store_href = ms_store_url(product=ms_store_product, campaign='firefox-all') %}
         {{ ms_store_button(href=ms_store_href, id='msStoreLink') }}
       </p>
     {% else %}
-    <p><br>
+    <p class="c-step-download">
       <a href="{{ download_url }}" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
         {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
       </a>
