@@ -146,7 +146,6 @@ urlpatterns = [
     ),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
-    page("rise25/thanks/", "mozorg/rise25/thanks.html"),
 ]
 
 if settings.DEV:
