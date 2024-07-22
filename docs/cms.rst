@@ -80,7 +80,7 @@ This is an introduction to creating new content surfaces in the CMS. It is not a
 comprehensive guide, but rather a starting point to get you up and running with the
 basics.
 
-The page types that you see in the Wagtail admin are defined as regular models in
+The page types that you see in the CMS admin are defined as regular models in
 Django. As such, you can define new page types in the same way you would define any
 other Django model, using Wagtail's field types and panels to define the data that
 can be entered into the page.
