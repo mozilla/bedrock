@@ -129,7 +129,23 @@ function gpcEnabled() {
  * @return {Boolean}.
  */
 function isFirefoxDownloadThanks(location) {
+    if (typeof location !== 'string') {
+        return false;
+    }
     return location.indexOf('/firefox/download/thanks/') > -1;
+}
+
+/**
+ * Determines if the current page URL contains a query string
+ * that allows the consent banner to be displayed.
+ * @param {String} search - The current page URL search string.
+ * @returns {Boolean}
+ */
+function isURLExceptionAllowed(search) {
+    if (typeof search !== 'string') {
+        return false;
+    }
+    return search.indexOf('mozcb=y') > -1;
 }
 
 /**
@@ -183,7 +199,7 @@ function getConsentState(obj) {
      * then show the cookie banner.
      */
     if (obj.consentRequired) {
-        if (obj.isURLPermitted) {
+        if (obj.isURLPermitted || obj.isURLExceptionAllowed) {
             if (obj.hasConsentCookie) {
                 return 'STATE_HAS_CONSENT_COOKIE';
             } else {
@@ -214,6 +230,7 @@ export {
     gpcEnabled,
     hasConsentCookie,
     isFirefoxDownloadThanks,
+    isURLExceptionAllowed,
     isURLPermitted,
     setConsentCookie
 };
