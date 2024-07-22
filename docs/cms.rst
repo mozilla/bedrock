@@ -93,7 +93,7 @@ try and follow:
   regular Jinja templates already. For example, a Mozilla themed page should be
   defined in ``/bedrock/mozorg/models.py``, and a Firefox themed page model should
   be in ``/bedrock/firefox/models.py``.
-- Global models/blocks that are shared across many pages throughout the site should
+- Global ``Page`` models and ``StreamField`` blocks that are shared across many pages throughout the site should
   be defined in ``/bedrock/cms/``.
 
 Structuring code in this way should hopefully help to keep things organized and
