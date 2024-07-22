@@ -151,7 +151,7 @@ Django model migrations
 -----------------------
 
 Once you have your model defined, it’s then time to run create and run migrations to
-model and create a database table:
+set up a database table for it:
 
 .. code-block:: shell
 
