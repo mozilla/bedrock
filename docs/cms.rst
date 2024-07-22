@@ -34,7 +34,7 @@ Useful resources:
 - `The Ultimate Wagtail Developers Course`_.
 
 Accessing the CMS
-==================
+=================
 
 SSO authentication setup
 ------------------------
