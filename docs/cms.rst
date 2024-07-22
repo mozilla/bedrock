@@ -139,6 +139,7 @@ Some key things to note here:
   and ``body`` is a ``RichTextField``. The HTML tags and elements that a content
   editor can enter into a rich text field are defined in
   ``settings.WAGTAIL_RICHTEXT_FEATURES_FULL``.
+- There is also a ``title`` field on the page model, which from ``AbstractBedrockCMSPage`` (which in turn comes from ``wagtail.models.Page``). This doesn't make ``heading`` redundant, but it's worth knowing where ``title`` comes from.
 - Both fields are added to the CMS admin panel by adding each as a ``FieldPanel`` to
   ``content_panels``. If you forget to do this, that's usually why you don't see the
   field in the CMS admin.
