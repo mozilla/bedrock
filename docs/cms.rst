@@ -145,6 +145,7 @@ Some key things to note here:
   field in the CMS admin.
 - Finally, the template used to render the page type can be found at
   ``mozorg/test_page.html``.
+  If you don't set a custom template name, Wagtail will infer it from the model's name: ``<app_label>/<model_name (in snake case)>.html``
 
 Running migrations
 ------------------
