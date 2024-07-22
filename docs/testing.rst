@@ -18,6 +18,11 @@ correctly and that new changes don't break existing functionality.
   environment. These tests are run automatically as part of our CI deployment process against
   dev, stage, and prod. Playwright tests are run against Firefox, Chromium, and Webkit headless
   browsers for cross-engine coverage.
+- `Axe`_ tests are used to test for accessibility issues on key pages. These tests are not
+  run as part of our CI deployment process as they can contain a lot of information, but instead
+  run once per day via a GitHub action against dev. Axe tests are run via Playwright as a subset
+  of tests using the ``@a11y`` tag. Accessibility issues are reported in the GitHub action output,
+  which can be downloaded and reviewed.
 - `Selenium`_ tests are bedrock's older, legacy integration test suite, which will eventually be
   replaced by Playwright. These tests are run against Firefox, Chrome, and Internet Explorer
   (via a mix of both a local Selenium Grid and Sauce Labs) as part of our CI pipeline, and
@@ -33,6 +38,7 @@ The test specs for all of the above suites can be found in the root ``./tests`` 
 
 * ``./tests/unit/`` for Jasmine tests.
 * ``./tests/playwright/`` Playwright tests.
+* ``./tests/playwright/specs/a11y/`` Axe tests.
 * ``./tests/functional/`` for Selenium tests.
 
 Automating the browser
@@ -162,7 +168,7 @@ To run the full suite of tests (from the ``/tests/playwright/`` directory):
 
 .. code-block:: bash
 
-    $ npx playwright test
+    $ npm run integration-tests
 
 This will run all tests against three different headless browser engines (Firefox,
 Chromium, WebKit).
@@ -255,6 +261,30 @@ load a different override instead of using ``openPage``:
 
         await page.goto(url + '?automation=true');
     });
+
+Accessibility testing (Axe)
+===========================
+
+Axe tests are run as a subset of Playwright tests using the ``@a11y`` tag. These
+tests are run against the dev environment once per day via a GitHub action. The
+axe spec files can be found in the ``./tests/playwright/specs/a11y/`` directory.
+
+To run the Axe tests locally, you can use the following command from the
+``./tests/playwright/`` directory:
+
+.. code-block:: bash
+
+    $ npm run a11y-tests
+
+The Axe tests consist of two different test types. One that scans an entire page
+for accessibility issues, and another that scans a specific element for issues
+(such as the main navigation and footer). These tests can also be run at both
+desktop and mobile viewport sizes.
+
+Test results are output to the console, and any issues found will be created as
+HTML report files in the ``./tests/playwright/test-results-a11y/`` directory. When
+run via the GitHub action, the reports are also output to the annotation logs for
+each test job.
 
 Running Selenium tests
 ======================
@@ -509,3 +539,4 @@ via product details are well formed and return valid 200 responses.
 .. _Playwright CLI docs: https://playwright.dev/docs/test-cli
 .. _how to write tests: https://playwright.dev/docs/writing-tests
 .. _locator strategy: https://playwright.dev/docs/locators#locate-by-test-id
+.. _Axe: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md
