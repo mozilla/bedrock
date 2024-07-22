@@ -749,6 +749,7 @@ INSTALLED_APPS = [
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.images",
+    "wagtail_localize_smartling",  # Has to come before wagtail_localize
     "wagtail_localize",
     "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.search",
@@ -2121,6 +2122,29 @@ else:
     # Note: we'll never actually use this as Pocket mode won't be
     # Wagtailed, but we need something valid so Pocket mode will boot up
     WAGTAIL_CONTENT_LANGUAGES = [("en", "English")]
+
+# Settings for https://github.com/mozilla/wagtail-localize-smartling
+WAGTAIL_LOCALIZE_SMARTLING = {
+    # Required settings (get these from "Account settings" > "API" in the Smartling dashboard)
+    "PROJECT_ID": config("WAGTAIL_LOCALIZE_SMARTLING_PROJECT_ID", default="setme"),
+    "USER_IDENTIFIER": config("WAGTAIL_LOCALIZE_SMARTLING_USER_IDENTIFIER", default="setme"),
+    "USER_SECRET": config("WAGTAIL_LOCALIZE_SMARTLING_USER_SECRET", default="setme"),
+    # Optional settings and their default values
+    "REQUIRED": config(
+        "WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND",
+        default="False",
+        parser=bool,
+    ),  # Set this to True to always send translations to Smartling
+    "ENVIRONMENT": config(
+        "WAGTAIL_LOCALIZE_SMARTLING_ENVIRONMENT",
+        default="production",
+    ),  # Set this to "staging" to use Smartling's staging API
+    "API_TIMEOUT_SECONDS": config(
+        "WAGTAIL_LOCALIZE_SMARTLING_API_TIMEOUT_SECONDS",
+        default="5",
+        parser=float,
+    ),  # Timeout in seconds for requests to the Smartling API
+}
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
 WAGTAIL_RICHEXT_FEATURES_FULL = [
