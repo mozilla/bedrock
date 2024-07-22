@@ -23,7 +23,9 @@ a cookie consent banner. These URLs are stored in a strict `allow-list`_. URLs
 that are not in this list will neither show a banner, nor load any non-necessary
 cookies / analytics in the EU/EAA. The intent here is to provide as little
 disruption for our website visitors as possible, whilst still allowing opt-in
-to analytics URLs such as campaign pages.
+to analytics URLs such as campaign pages. It is also possible to force the banner
+to show on any EU page by adding a query parameter `?mozcb=y` (used for specific
+campaign traffic sources such as advertisements).
 
 Visitors in the EU/EAA countries can also send an opt-out signal by enabling
 either `Global Privacy Control`_ (GPC) and `Do Not Track`_ (DNT) in their

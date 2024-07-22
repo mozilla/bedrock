@@ -12,6 +12,7 @@ import {
     getConsentState,
     gpcEnabled,
     hasConsentCookie,
+    isURLExceptionAllowed,
     isURLPermitted
 } from './utils.es6';
 
@@ -139,6 +140,7 @@ function init() {
         gpcEnabled: gpcEnabled(),
         dntEnabled: dntEnabled(),
         consentRequired: consentRequired(),
+        isURLExceptionAllowed: isURLExceptionAllowed(window.location.search),
         isURLPermitted: isURLPermitted(window.location.pathname)
     });
 

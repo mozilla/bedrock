@@ -11,6 +11,7 @@ import {
     getHostName,
     hasConsentCookie,
     isFirefoxDownloadThanks,
+    isURLExceptionAllowed,
     isURLPermitted,
     setConsentCookie
 } from '../../../../../media/js/base/consent/utils.es6';
@@ -78,6 +79,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: true,
                 dntEnabled: false,
                 consentRequired: false,
+                isURLExceptionAllowed: false,
                 isURLPermitted: false
             });
             expect(stateA).toEqual('STATE_GPC_ENABLED');
@@ -87,6 +89,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: true,
                 dntEnabled: false,
                 consentRequired: true,
+                isURLExceptionAllowed: false,
                 isURLPermitted: true
             });
             expect(stateB).toEqual('STATE_GPC_ENABLED');
@@ -98,6 +101,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: true,
                 consentRequired: false,
+                isURLExceptionAllowed: false,
                 isURLPermitted: false
             });
             expect(stateA).toEqual('STATE_DNT_ENABLED');
@@ -107,6 +111,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: true,
                 consentRequired: true,
+                isURLExceptionAllowed: false,
                 isURLPermitted: true
             });
             expect(stateB).toEqual('STATE_DNT_ENABLED');
@@ -120,6 +125,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: false,
                 consentRequired: false,
+                isURLExceptionAllowed: false,
                 isURLPermitted: false
             });
             expect(state).toEqual('STATE_COOKIES_PERMITTED');
@@ -131,6 +137,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: false,
                 consentRequired: false,
+                isURLExceptionAllowed: false,
                 isURLPermitted: false
             });
             expect(state).toEqual('STATE_HAS_CONSENT_COOKIE');
@@ -144,6 +151,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: false,
                 consentRequired: true,
+                isURLExceptionAllowed: false,
                 isURLPermitted: true
             });
             expect(state).toEqual('STATE_HAS_CONSENT_COOKIE');
@@ -155,6 +163,7 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: false,
                 consentRequired: true,
+                isURLExceptionAllowed: false,
                 isURLPermitted: true
             });
             expect(state).toEqual('STATE_SHOW_COOKIE_BANNER');
@@ -166,9 +175,34 @@ describe('getConsentState()', function () {
                 gpcEnabled: false,
                 dntEnabled: false,
                 consentRequired: true,
+                isURLExceptionAllowed: false,
                 isURLPermitted: false
             });
             expect(state).toEqual('STATE_BANNER_NOT_PERMITTED');
+        });
+
+        it('should return the expected state when URL exception is allowed and consent cookie exists', function () {
+            const state = getConsentState({
+                hasConsentCookie: true,
+                gpcEnabled: false,
+                dntEnabled: false,
+                consentRequired: true,
+                isURLExceptionAllowed: true,
+                isURLPermitted: false
+            });
+            expect(state).toEqual('STATE_HAS_CONSENT_COOKIE');
+        });
+
+        it('should return the expected state when URL exception is allowed and no existing consent cookie', function () {
+            const state = getConsentState({
+                hasConsentCookie: false,
+                gpcEnabled: false,
+                dntEnabled: false,
+                consentRequired: true,
+                isURLExceptionAllowed: true,
+                isURLPermitted: false
+            });
+            expect(state).toEqual('STATE_SHOW_COOKIE_BANNER');
         });
     });
 });
@@ -253,6 +287,30 @@ describe('isFirefoxDownloadThanks()', function () {
         expect(
             isFirefoxDownloadThanks('https://localhost:8000/en-US/firefox/new/')
         ).toBeFalse();
+        expect(isFirefoxDownloadThanks('')).toBeFalse();
+        expect(isFirefoxDownloadThanks(null)).toBeFalse();
+        expect(isFirefoxDownloadThanks(undefined)).toBeFalse();
+        expect(isFirefoxDownloadThanks(true)).toBeFalse();
+    });
+});
+
+describe('isURLExceptionAllowed()', function () {
+    it('should return true for URL exceptions', function () {
+        expect(isURLExceptionAllowed('?mozcb=y')).toBeTrue();
+        expect(isURLExceptionAllowed('?mozcb=y&foo=bar')).toBeTrue();
+        expect(isURLExceptionAllowed('?foo=bar&mozcb=y')).toBeTrue();
+        expect(isURLExceptionAllowed('?foo=bar&mozcb=y&baz=qux')).toBeTrue();
+    });
+
+    it('should return false for URLs without exceptions', function () {
+        expect(isURLExceptionAllowed('?mozcb=n')).toBeFalse();
+        expect(isURLExceptionAllowed('?mozcb=n&foo=bar')).toBeFalse();
+        expect(isURLExceptionAllowed('?foo=bar&mozcb=n')).toBeFalse();
+        expect(isURLExceptionAllowed('?foo=bar&mozcb=n&baz=qux')).toBeFalse();
+        expect(isURLExceptionAllowed('')).toBeFalse();
+        expect(isURLExceptionAllowed(null)).toBeFalse();
+        expect(isURLExceptionAllowed(undefined)).toBeFalse();
+        expect(isURLExceptionAllowed(true)).toBeFalse();
     });
 });
 
