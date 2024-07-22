@@ -89,7 +89,7 @@ When it comes to structuring CMS page models, there are some general guidelines 
 try and follow:
 
 - Models and templates should be defined in the same Django app that corresponds
-  to where the URL exists in bedrock’s AI hierarchy, similar to what we do for
+  to where the URL exists in Bedrock’s information architecture (IA) hierarchy, similar to what we do for
   regular Jinja templates already. For example, a Mozilla themed page should be
   defined in ``/bedrock/mozorg/models.py``, and a Firefox themed page model should
   be in ``/bedrock/firefox/models.py``.
