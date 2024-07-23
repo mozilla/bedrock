@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.utils.cache import add_never_cache_headers
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -33,6 +34,14 @@ class AbstractBedrockCMSPage(WagtailBasePage):
 
     class Meta:
         abstract = True
+
+    @classmethod
+    def can_create_at(cls, parent):
+        """Only allow users to add new child pages that are permitted by configuration."""
+        page_model_signature = f"{cls._meta.app_label}.{cls._meta.object_name}"
+        if settings.CMS_ALLOWED_PAGE_MODELS == ["__all__"] or page_model_signature in settings.CMS_ALLOWED_PAGE_MODELS:
+            return super().can_create_at(parent)
+        return False
 
     def _patch_request_for_bedrock(self, request):
         # Add hints that help us integrate CMS pages with core Bedrock logic
