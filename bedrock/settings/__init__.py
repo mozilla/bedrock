@@ -259,31 +259,59 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
-        "frame-ancestors": [csp.constants.NONE],
     },
 }
-
-# Start report-only CSP as a copy. We'll modify it later if needed.
 # Only set up report-only CSP if we have a report-uri set.
 if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
+    # Add reporting.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
+    # CSP directive updates we're testing that we hope to move to the enforced policy.
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
 
-# Mainly for overriding CSP settings for CMS admin.
-# Works in conjunction with the `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 
+# `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
+# for CMS admin, but can override other paths.  Works in conjunction with the
+# `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
+
+
+def _override_csp(csp, append: dict[str, list[str]] = None, replace: dict[str, list[str]] = None):
+    csp = deepcopy(csp)
+
+    if append is not None:
+        for key, value in append.items():
+            if key in csp["DIRECTIVES"]:
+                value = csp["DIRECTIVES"][key] + value
+            csp["DIRECTIVES"][key] = value
+
+    if replace is not None:
+        for key, value in replace.items():
+            csp["DIRECTIVES"][key] = value
+
+    return csp
+
+
+# Path based overrides.
 # /cms-admin/images/ loads just-uploaded images as blobs.
-CMS_ADMIN_IMAGES_CSP = deepcopy(CONTENT_SECURITY_POLICY)
-CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["img-src"] += ["blob:"]
+CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": ["blob:"]})
 
 CSP_PATH_OVERRIDES = {
-    # The first path prefix that matches the request.path.startswith will be used, so order them
-    # from most specific to least.
+    # Order them from most specific to least.
     "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
 }
-CSP_PATH_OVERRIDES_REPORT_ONLY = {}
 
+if csp_report_uri:
+    # Path based overrides for report-only CSP.
+    CMS_ADMIN_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": [csp.constants.SELF]})
+    CMS_ADMIN_IMAGES_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": ["blob:"]})
+
+    CSP_PATH_OVERRIDES_REPORT_ONLY = {
+        # Order them from most specific to least.
+        "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP_RO,
+        "/cms-admin/": CMS_ADMIN_CSP_RO,
+    }
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
 if DEV:
