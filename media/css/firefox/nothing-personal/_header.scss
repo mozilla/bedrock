@@ -24,7 +24,7 @@
     .cta-group {
         justify-self: center;
 
-        span {
+        p {
             display: none;
         }
     }
@@ -53,16 +53,13 @@
 @media #{$mq-lg} {
     .c-page-header-inner {
         .cta-group {
-            span {
+            p {
                 @include text-body-lg;
                 display: block;
+                margin-bottom: 0;
                 margin-right: $spacing-md;
                 width: 500px;
-                font-family: 'Fira Mono', 'Andale Mono', monospace;;
-
-                &::after {
-                    content: "    >>>>>";
-                }
+                font-family: 'Fira Mono', 'Andale Mono', monospace;
             }
         }
 

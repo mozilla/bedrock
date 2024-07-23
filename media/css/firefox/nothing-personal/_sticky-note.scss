@@ -27,12 +27,17 @@
     }
 
     p,
+    span,
     a {
         font-family: 'Fira Mono', 'Andale Mono', monospace;
     }
 
     p {
         margin-top: $spacing-xl;
+    }
+
+    span {
+        font-weight: bold;
     }
 
     @media #{$mq-lg} {
@@ -64,14 +69,6 @@
         background: transparent;
         color: $color-black;
         padding: 0;
-
-            &::before {
-            content: ">>>"
-        }
-
-        &::after {
-            content: "<<<<"
-        }
 
         &:hover,
         &:focus,

@@ -21,12 +21,13 @@
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
       <h1 class="c-page-header-logo-fx">
-        <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg') }}" alt="Firefox" width="180" height="40" class="c-header-logo">
+        <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg') }}" alt="" width="180" height="40" class="c-header-logo">
         <span>Firefox by Mozilla</span>
       </h1>
 
       <div class="cta-group">
-        <span>Feeling browser-curious? We won’t tell.</span>
+        <p>Feeling browser-curious? We won’t tell. <span aria-hidden="true">>>>>></span></p>
+
 
         <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">Set as default</a>
 
@@ -104,9 +105,11 @@
           </div>
           <div class="c-sticky-note c-attached-sticky">
 
-            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
-            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
-            {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+           <br>
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+           <br>
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
             <p>Ok, bye.</p>
 
           </div>
@@ -115,9 +118,11 @@
     </div>
 
     <div class="c-sticky-note c-detached-sticky">
-      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
-      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
-      {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }}
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+      <br>
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+      <br>
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
       <p>Ok, bye.</p>
     </div>
 
@@ -125,7 +130,7 @@
       <div class="mzp-l-content c-nothing-personal">
         <p>Nothing personal. Just browsing.</p>
         <div class="c-sign-off-wordmark">
-          <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="Firefox" width="180" height="40" class="c-header-logo">
+          <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="" width="180" height="40" class="c-header-logo">
         </div>
       </div>
     </div>
