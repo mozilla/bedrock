@@ -39,7 +39,7 @@ describe('fx-is-default.js', function () {
                 }
             );
 
-            return FirefoxDefault.init().then(() => {
+            return FirefoxDefault.init('main').then(() => {
                 expect(document.querySelector('main').classList).toContain(
                     'is-firefox-default'
                 );
@@ -59,7 +59,7 @@ describe('fx-is-default.js', function () {
                 }
             );
 
-            return FirefoxDefault.init().then(() => {
+            return FirefoxDefault.init('main').then(() => {
                 expect(document.querySelector('main').classList).not.toContain(
                     'is-firefox-default'
                 );
