@@ -97,3 +97,12 @@ repos:
         additional_dependencies:
           - "eslint-config-prettier@9.1.0"
   #       Additional excludes in /.eslintignore file
+  - repo: https://github.com/mozmeao/pre-commit-hooks-django
+    rev: v0.4.1a  # this is OUR micro-bumped release of the fork
+    hooks:
+    -   id: check-untracked-migrations
+        # If specified in args, below, this hook will work only on those
+        # branches, otherwise it will work on all branches
+        # args: ["--branches", "main", "other_branch"]
+    -   id: check-unapplied-migrations
+    -   id: check-absent-migrations
