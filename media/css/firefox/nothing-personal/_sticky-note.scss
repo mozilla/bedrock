@@ -84,3 +84,12 @@
         display:  none;
     }
 }
+
+// If Firefox is unsupported, it'll show an alternative CTA to download Firefox ESR.
+// However, the ESR CTA and warning message does not fit in the sticky note,
+// so decided to remove it from the DOM instead.
+html.fx-unsupported {
+    .c-sticky-note {
+        display: none;
+    }
+}
