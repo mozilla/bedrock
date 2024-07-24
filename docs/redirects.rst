@@ -188,7 +188,7 @@ of the site (e.g. www.mozilla.org) you can set the ``--base-url`` command line o
 
 .. code-block:: bash
 
-    $ py.test --base-url https://www.mozilla.org tests/redirects/
+    $ pytest --base-url https://www.mozilla.org tests/redirects/
 
 By default, tests will run one at a time. If you intend to run the suite
 against a remote instance of the site (e.g. production) it will run a lot

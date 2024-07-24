@@ -261,10 +261,10 @@ If you don't have Make you can simply run ``docker-compose run test``.
 If you'd like to run only a subset of the tests or only one of the test commands you can accomplish
 that with a command like the following::
 
-    $ docker-compose run test py.test bedrock/firefox
+    $ docker-compose run test pytest bedrock/firefox
 
 This example will run only the unit tests for the ``firefox`` app in bedrock. You can substitute
-``py.test bedrock/firefox`` with most any shell command you'd like and it will run in the Docker
+``pytest bedrock/firefox`` with most any shell command you'd like and it will run in the Docker
 container and show you the output. You can also just run ``bash`` to get an interactive shell in
 the container which you can then use to run any commands you'd like and inspect the file system::
 
@@ -276,11 +276,11 @@ Local
 From the local install instructions above you should still have your virtualenv
 activated, so running the tests is as simple as::
 
-    $ py.test lib bedrock
+    $ pytest lib bedrock
 
 To test a single app, specify the app by name in the command above. e.g.::
 
-    $ py.test bedrock/firefox
+    $ pytest bedrock/firefox
 
 
 Make it run
