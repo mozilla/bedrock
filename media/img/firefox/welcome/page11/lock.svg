@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 254 190" width="254" height="190">
+<svg xmlns="http://www.w3.org/2000/svg" style="color-scheme:light dark" viewBox="0 0 254 190" width="254" height="190">
   <style>
     .st0{fill:none;stroke:#000;stroke-width:1.51;stroke-miterlimit:10}.st1{fill:#6a52de}.st2,.st5{stroke:#000;stroke-width:1.51}.st2{fill:#fff;stroke-miterlimit:10}.st5{fill:none;stroke-linecap:round;stroke-linejoin:round}
+    @media(prefers-color-scheme:dark){.invert-stroke{stroke:#fff}.invert-fill{fill:#fff}.invert-card{fill:#a77ffa}}
   </style>
   <path d="M140.77 104.92c5.14-2 11.28-.08 16.81-.66 7.25-.77 14.29-2.89 20.76-6.26 4.89-2.56 9.4-5.81 14.37-8.22 3.85-1.86 7.93-3.21 12.14-4 6.94-1.29 15-.66 19.76 4.55 8.3 9.09.05 26.41-4.1 36" class="invert-stroke st0"/>
   <path d="M26.67 65.26c5.75-4.6 16.34-4.6 24.45.02 18.91 10.85 15.27 37.74 36.7 45.89 7.75 2.94 15.55.73 21.13-3 5.58-3.73 9.75-8.78 15.5-12.28s14-5.18 21.52-1.59" class="invert-stroke st0"/>

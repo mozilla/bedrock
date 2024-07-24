@@ -117,20 +117,6 @@ $image-path: '/media/protocol/img';
         color: $color-violet-20;
     }
 
-    .mzp-c-picto-image {
-        .invert-stroke {
-            stroke: #fff;
-        }
-
-        .invert-fill {
-            fill: #fff;
-        }
-
-        .invert-card {
-            fill: #a77ffa;
-        }
-    }
-
     .c-utilities {
         @include white-links;
     }

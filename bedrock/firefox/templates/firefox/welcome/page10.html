@@ -26,7 +26,7 @@
 {% block content_intro %}
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
-      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="">
+      <img class="c-main-image" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="90" alt="Mozilla VPN">
 
       <h1 class="c-main-title">{{ ftl('welcome-page10-main-heading') }}</h1>
       <p class="c-main-tagline">{{ ftl('welcome-page10-main-description') }}</p>
@@ -45,7 +45,7 @@
 
       <div class="mzp-c-picto">
         <div class="mzp-c-picto-image">
-          {% include 'firefox/welcome/includes/page10/laptop.svg' %}
+          <img src="{{ static('img/firefox/welcome/page10/laptop.svg') }}" alt="">
         </div>
         <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-very-fast') }}</h3>
         <div class="mzp-c-picto-body">
@@ -55,7 +55,7 @@
 
       <div class="mzp-c-picto">
         <div class="mzp-c-picto-image">
-          {% include 'firefox/welcome/includes/page10/mobile.svg' %}
+          <img src="{{ static('img/firefox/welcome/page10/mobile.svg') }}" alt="">
         </div>
         <h3 class="mzp-c-picto-title">{{ ftl('welcome-page10-without-trace') }}</h3>
         <div class="mzp-c-picto-body">

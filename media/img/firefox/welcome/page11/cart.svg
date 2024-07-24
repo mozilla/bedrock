@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 266 190" width="266" height="190">
+<svg xmlns="http://www.w3.org/2000/svg" style="color-scheme:light dark" viewBox="0 0 266 190" width="266" height="190">
+  <style>@media(prefers-color-scheme:dark){.invert-stroke{stroke:#fff}.invert-fill{fill:#fff}}</style>
   <path fill="#A77FFA" d="m127.58 102.18 59.28-15.4-.05-31.79-70.12 16.89 10.89 30.3z"/>
   <path fill="#C0C3F6" d="M48.16 68.25c3.25 0 6.42-.96 9.12-2.76 2.7-1.8 4.81-4.36 6.05-7.36 1.24-3 1.57-6.3.94-9.48-.63-3.18-2.19-6.11-4.49-8.41s-5.22-3.86-8.4-4.49c-3.18-.63-6.49-.31-9.48.93s-5.56 3.35-7.37 6.05c-1.8 2.7-2.76 5.87-2.76 9.12 0 4.35 1.73 8.52 4.8 11.59 3.07 3.08 7.24 4.81 11.59 4.81z"/>
   <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.51" d="m231.8 57.08-35.44 72.06h-75.03l-19.43 42.69" class="invert-stroke"/>

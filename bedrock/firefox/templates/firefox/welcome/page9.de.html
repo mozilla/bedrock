@@ -20,14 +20,14 @@
 
 {% block shoulder_cta %}{% endblock %}
 
-{%block page_css %}
- {{ super()}}
+{% block page_css %}
+ {{ super() }}
  {{ css_bundle('protocol-callout') }}
 {% endblock %}
 
 
 {% block content_intro %}
-  <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="">
+  <img class="product-logo" src="{{ static('protocol/img/logos/mozilla/vpn/logo-flat.svg') }}" width="65" alt="Mozilla VPN">
 
   {% call callout(
     title='Standort ändern, <br>Verbindung sichern, <br><strong>Privatsphäre schützen</strong>.'|safe,
@@ -53,7 +53,7 @@
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/illo-vpn-speed.svg' %}
+          <img src="{{ static('img/firefox/welcome/page9/illo-vpn-speed.svg') }}" alt="">
         </div>
         <h3 class="c-picto-block-title">Schnelle Verbindung</h3>
         <div class="c-picto-block-body">
@@ -63,7 +63,7 @@
 
       <div class="c-picto-block">
         <div class="c-picto-block-image">
-          {% include 'firefox/welcome/includes/page9/illo-vpn-lock.svg' %}
+          <img src="{{ static('img/firefox/welcome/page9/illo-vpn-lock.svg') }}" alt="">
         </div>
         <h3 class="c-picto-block-title">Sicher ist sicher</h3>
         <div class="c-picto-block-body">
