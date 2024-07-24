@@ -51,141 +51,21 @@
             }
         }
 
-        .video-play {
-            display: block;
-            position: relative;
-            margin: $spacing-xl auto 0;
-
-            img,
-            video {
-                border: 1px solid fade-out($color-black, 0.5);
-            }
-
-            &::after {
-                background: url("/media/img/mozorg/rise25/play-button.svg") center center no-repeat;
-                background-size: 50px 50px;
-                top: 50%;
-                content: "";
-                display: block;
-                margin: -27px 0 0 -27px;
-                height: 54px;
-                width: 54px;
-                position: absolute;
-                left: 50%;
-                transition: background-size 100ms ease-in-out;
-                z-index: 2;
-            }
-
-            &:focus-visible {
-                outline: 0;
-            }
-
-            &:hover::after,
-            &:focus::after {
-                background-size: 54px 54px;
-            }
-        }
-
-        .r25-c-button {
-            span {
-                display: none;
-            }
-
-            &::after {
-                content: " ↓";
-                white-space: nowrap;
-            }
-        }
-
         @media #{$mq-sm} {
             align-items: center;
-            display: grid;
-            gap: $spacing-lg;
-            grid-template-areas: "notice notice"
-                                 "video button";
             justify-content: center;
-
-            .r25-hero-notice {
-                grid-area: notice;
-
-                br {
-                    display: none;
-                }
-            }
-
-            .video-play {
-                grid-area: video;
-                margin: 0;
-            }
-
-            .r25-c-button {
-                grid-area: button;
-            }
         }
 
         @media #{$mq-md} {
-            justify-content: start;
-            row-gap: $spacing-xl;
-            grid-template-areas: "notice"
-                                 "button";
-
             .r25-hero-notice {
                 text-align: start;
                 margin: 0;
-            }
-
-            .r25-c-button span {
-                display: inline;
-            }
-
-            .video-play {
-                display: none;
-            }
-        }
-
-        @media #{$mq-lg} {
-            grid-template-areas: "button notice";
-            column-gap: $spacing-2xl;
-        }
-
-        @media #{$mq-xl} {
-            .r25-hero-notice br {
-                display: block;
             }
         }
     }
 
     .r25-hero-video {
         display: none;
-
-        .video-play {
-            &::after {
-                @include border-box;
-                background: url("/media/img/mozorg/rise25/play-button.svg") right 2px center no-repeat;
-                background-size: 50px 50px;
-                bottom: $spacing-lg;
-                color: $color-white;
-                content: "Play video";
-                display: block;
-                font-weight: bold;
-                min-height: 50px;
-                padding: $spacing-md 70px $spacing-md;
-                position: absolute;
-                right: $spacing-lg;
-                transition: background-size 100ms ease-in-out, background-position 100ms ease-in-out;
-                z-index: 2;
-            }
-
-            &:focus-visible {
-                outline: 0;
-            }
-
-            &:hover::after,
-            &:focus::after {
-                background-size: 54px 54px;
-                background-position: right 0 center;
-            }
-        }
 
         video,
         img {

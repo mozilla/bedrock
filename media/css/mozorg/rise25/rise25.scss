@@ -7,13 +7,8 @@
 @use 'lib' as r25;
 
 @use "./components/hero.scss";
-@use "./components/promote.scss";
-@use "./components/social.scss";
 @use "./components/category.scss";
-@use "./components/blog.scss";
-@use "./components/faq.scss";
 
-@use "~@mozilla-protocol/core/protocol/css/components/modal";
 @use "~@mozilla-protocol/core/protocol/css/components/video";
 
 @font-face {
@@ -81,7 +76,7 @@ body.rise25 {
 }
 
 .r25-section-title {
-    @include text-title-xl;
+    @include text-title-md;
 }
 
 .r25-c-button {
@@ -89,7 +84,6 @@ body.rise25 {
     @include font-size(16px);
     background: $color-black;
     border-radius: 2em;
-    box-shadow: 0 -1px 2px fade-out($color-white, 0.4);
     color: $color-white;
     display: inline-block;
     font-weight: bold;
@@ -124,44 +118,6 @@ body.rise25 {
 
         @media #{$mq-md} {
             padding: 12px $spacing-xl;
-        }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// Thanks page
-
-.r25-thanks-body {
-    text-align: center;
-
-    .r25-c-wordmark {
-        margin: 0 auto $layout-md;
-    }
-
-    .r25-fancy-title {
-        max-width: $content-md;
-    }
-}
-
-.r25-thanks-newsletter {
-    .mzp-c-newsletter-form {
-        @include white-links;
-
-        .mzp-c-newsletter-title {
-            @include text-body-lg;
-            font-weight: normal;
-            text-align: center;
-            margin: 0 auto $spacing-lg;
-        }
-
-        .mzp-c-newsletter-content {
-            max-width: $content-sm;
-            margin: 0 auto;
-        }
-
-        .mzp-c-button {
-            width: auto;
-            border: 0;
         }
     }
 }
