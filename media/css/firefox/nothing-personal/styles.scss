@@ -12,7 +12,8 @@ $image-path: '/media/protocol/img';
 $browser-background: #f8f6f4;
 $page-background: #333336;
 $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
-$border-black: 3px solid $color-black;
+$border-black: 2px solid $color-black;
+$mq-tad-smaller-sm: 455px;
 
 @import './fonts';
 @import './animations';
@@ -80,18 +81,34 @@ $border-black: 3px solid $color-black;
 .c-sign-off {
     @include font-firefox;
     @include text-title-xs;
-    margin-top: $layout-xl;
+    margin: $layout-lg 0;
 
-    p {
-        background-color: $page-background;
-        border: 3px solid $color-white;
-        border-radius: 40px;
-        color: $color-white;
-        padding: $spacing-md;
+    .c-nothing-personal {
+        padding: 12px;
+
+        p {
+            @include font-size(16px);
+            background-color: $page-background;
+            border: 3px solid $color-white;
+            border-radius: 40px;
+            color: $color-white;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .c-sign-off-wordmark {
+            text-align: center;
+        }
     }
 
-    .c-sign-off-wordmark {
-        text-align: center;
-    }
+    @media #{$mq-md} {
+        margin-top: $layout-2xl;
 
+        .c-nothing-personal {
+            p {
+                @include text-body-xl;
+                padding: $spacing-md;
+            }
+        }
+    }
 }

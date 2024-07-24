@@ -8,8 +8,18 @@
     font-style: normal;
     font-display: swap;
     src:
-        url('/media/fonts/families/FiraMono-Regular.woff2') format('woff2'),
-        url('/media/fonts/families/FiraMono-Regular.woff') format('woff');
+        url('/media/fonts/fira-mono-font/FiraMono-Regular.woff2') format('woff2'),
+        url('/media/fonts/fira-mono-font/FiraMono-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src:
+        url('/media/fonts/fira-mono-font/FiraMono-Medium.woff2') format('woff2'),
+        url('/media/fonts/fira-mono-font/FiraMono-Medium.woff') format('woff');
 }
 
 @font-face {
@@ -18,6 +28,6 @@
     font-style: normal;
     font-display: swap;
     src:
-        url('/media/fonts/families/FiraMono-Bold.woff2') format('woff2'),
-        url('/media/fonts/families/FiraMono-Bold.woff') format('woff');
+        url('/media/fonts/fira-mono-font/FiraMono-Bold.woff2') format('woff2'),
+        url('/media/fonts/fira-mono-font/FiraMono-Bold.woff') format('woff');
 }

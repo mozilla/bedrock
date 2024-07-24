@@ -3,7 +3,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 .c-page-header {
-    background: transparent;
+    background-color: $browser-background;
+    border-bottom: $border-black;
+    position: sticky;
+    top: 0;
+    z-index: 15;
 }
 
 .c-page-header-logo-fx {
@@ -19,7 +23,7 @@
     align-items: center;
     display: grid;
     grid-template-columns: 1fr;
-    padding: $spacing-lg;
+    padding: $spacing-md;
 
     .cta-group {
         justify-self: center;
@@ -30,17 +34,15 @@
     }
 }
 
-@media #{$mq-md} {
+@media (min-width: $mq-tad-smaller-sm) {
     .c-page-header-logo-fx {
         justify-content: flex-start;
         margin: 0;
     }
 
     .c-page-header-inner {
-        @include grid-column-gap($spacing-lg);
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        padding: $layout-sm;
 
         .cta-group {
             justify-self: end;
@@ -60,6 +62,7 @@
                 margin-right: $spacing-md;
                 width: 500px;
                 font-family: 'Fira Mono', 'Andale Mono', monospace;
+                font-weight: 500;
             }
         }
 

@@ -12,63 +12,61 @@
     }
 }
 
-    .c-thug-life-gif {
-        display: inline-block;
-        z-index: 10;
+.c-thug-life-gif {
+    display: inline-block;
+    z-index: 10;
 
-        img {
-            border: 3px solid $color-black;
-            max-height: 200px;
-            display: block;
-        }
-
-        &.c-attached-gif {
-            display: none;
-        }
-
-        @media #{$mq-lg} {
-            &.c-attached-gif {
-                display: block;
-                position: absolute;
-                top: 350px;
-                left: -105px;
-
-                img {
-                    width: 180px;
-                    height: 180px;
-                    object-fit: cover;
-                }
-
-            }
-
-            @media (prefers-reduced-motion: no-preference) {
-                opacity: 0;
-            }
-
-            &::before {
-                content: "";
-                position: absolute;
-                min-height: 180px;
-                width: 180px;
-                background: $color-white;
-                border: 3px solid $color-black;
-                top: 10px;
-                right: -10px;
-                z-index: -1;
-            }
-
-            &::after {
-                content: "";
-                position: absolute;
-                min-height: 180px;
-                width: 180px;
-                background: $color-white;
-                border: 3px solid $color-black;
-                top: 20px;
-                right: -20px;
-                z-index: -5;
-            }
-        }
-
-
+    img {
+        border: 3px solid $color-black;
+        max-height: 200px;
+        display: block;
     }
+
+    &.c-attached-gif {
+        display: none;
+    }
+
+    @media #{$mq-lg} {
+        &.c-attached-gif {
+            display: block;
+            position: absolute;
+            top: 350px;
+            left: -105px;
+
+            img {
+                width: 180px;
+                height: 180px;
+                object-fit: cover;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            opacity: 0;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            min-height: 180px;
+            width: 180px;
+            background: $color-white;
+            border: 3px solid $color-black;
+            top: 10px;
+            right: -10px;
+            z-index: -1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            min-height: 180px;
+            width: 180px;
+            background: $color-white;
+            border: 3px solid $color-black;
+            top: 20px;
+            right: -20px;
+            z-index: -5;
+        }
+    }
+}

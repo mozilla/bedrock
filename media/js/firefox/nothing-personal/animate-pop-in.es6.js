@@ -29,7 +29,7 @@ function createObserver() {
                 ) {
                     slideInMobile(entry.target);
                 } else if (entry.target.classList.contains('c-thug-life-gif')) {
-                    spiralIn(entry.target);
+                    popIn(entry.target);
                 }
             }
         });
@@ -91,13 +91,13 @@ function slideInMobile(element) {
     });
 }
 
-function spiralIn(element) {
-    return new Promise((res) => {
-        setTimeout(() => {
-            element.classList.add('animate-spiral-in');
-            res();
-        }, 800);
-    });
-}
+// function spiralIn(element) {
+//     return new Promise((res) => {
+//         setTimeout(() => {
+//             element.classList.add('animate-spiral-in');
+//             res();
+//         }, 800);
+//     });
+// }
 
 init();

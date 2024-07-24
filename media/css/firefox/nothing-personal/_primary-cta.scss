@@ -61,7 +61,7 @@ html.fx-unsupported {
     .mzp-c-button,
     #protocol-nav-download-firefox > .mzp-c-button {
         @include text-body-lg;
-        padding: $spacing-md $spacing-lg;
+        padding: $spacing-sm $spacing-lg;
         background-color: $color-yellow-20;
         background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50, $color-yellow-20, $color-yellow-20);
         background-size: 300% 100%;

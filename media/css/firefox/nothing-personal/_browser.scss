@@ -15,7 +15,7 @@
         border-top-right-radius: $border-radius-lg;
         display: flex;
         align-items: center;
-        height: 65px;
+        height: 55px;
         padding-right: $spacing-md;
         padding-left: $spacing-md;
 
@@ -25,13 +25,17 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
+        .browser-bar-dot-wrapper {
+            display: flex;
+        }
+
         .browser-bar-dot-wrapper > .c-browser-bar-dot,
         .c-browser-bar-dot {
             border: $border-black;
             border-radius: 50%;
             height: 15px;
             width: 15px;
-            margin-left: $spacing-xs;
+            margin-left: $spacing-md;
             display: inline-block;
         }
 
@@ -40,6 +44,7 @@
             text-align: center;
             margin-bottom: 0;
             font-family: 'Fira Mono', 'Andale Mono', monospace;
+            font-weight: 500;
         }
     }
 
@@ -59,34 +64,53 @@
             margin-bottom: $layout-md;
         }
 
-        h5 {
-            @include text-title-xs;
+        h4,
+        h5,
+        p {
+            @include font-size(20px);
         }
 
-        p {
-            @include text-body-xl;
+        h5 {
+            br {
+                display: none;
+            }
+        }
+    }
+
+    @media (min-width: $mq-tad-smaller-sm) {
+        .c-browser-bar {
+            &.c-bar-with-heading {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
 
     @media #{$mq-md} {
         .c-browser-bar {
-            &.c-bar-with-heading {
-                grid-template-columns: repeat(3, 1fr);
+            height: 45px;
 
+            &.c-bar-with-heading {
                 h3 {
-                    @include text-title-xs;
+                    @include text-title-2xs;
                     white-space: nowrap;
                 }
-            }
-
-            .browser-bar-dot-wrapper > .c-browser-bar-dot,
-            .c-browser-bar-dot {
-                margin-left: $spacing-md;
             }
         }
 
         .c-browser-content {
-            padding: $layout-md;
+            padding: $layout-xs $layout-md;
+
+            h4,
+            h5,
+            p {
+                @include font-size(22px);
+            }
+
+            h5 {
+                br {
+                    display: block;
+                }
+            }
         }
     }
 
@@ -105,7 +129,8 @@
 
     .c-browser-window-top {
         h2 {
-            @include text-title-lg;
+            @include text-title-xl;
+            line-height: 1;
         }
 
         &::after {
@@ -114,7 +139,7 @@
             background-image: url("/media/img/firefox/nothing-personal/heart-sticker.svg");
             background-repeat: no-repeat;
             background-size: contain;
-            filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.2));
             height: 82px;
             top: 50px;
             right: 45px;
@@ -131,10 +156,9 @@
             }
 
             &::after {
-                filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.4));
                 height: 95px;
-                bottom: 115px;
-                right: 250px;
+                bottom: 90px;
+                right: 285px;
                 top: unset;
                 width: 105px;
             }
@@ -143,7 +167,7 @@
         @media #{$mq-xl} {
             .c-browser-window-top {
             &::after {
-                bottom: 160px;
+                bottom: 140px;
                 right: 295px;
             }
         }

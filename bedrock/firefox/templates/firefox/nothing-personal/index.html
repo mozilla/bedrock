@@ -15,6 +15,10 @@
 {% block page_title_prefix %}Nothing Personal{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
+{% block page_image %}{{ static('img/firefox/nothing-personal/meta-img.png') }}{% endblock %}
+{% block page_og_title %}Firefox. Nothing personal. Just browsing.{% endblock %}
+{% block page_desc %}Firefox wants nothing to do with you. Don't take it personally.{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -97,7 +101,7 @@
             <h5 aria-label="What makes you so special?">What makes you soooo special?</h5>
             <p><abbr title="No big deal">NBD</abbr>, but people dump their other browsers <a href="{{ url('firefox.features.index') }}">for our features</a> (like <a href="{{ url('firefox.features.picture-in-picture') }}">popping out videos</a> and a <a href="{{ url('firefox.features.pdf-editor') }}">built-in PDF editor</a>).</p>
 
-            <h5>What does any of this have to do with me?</h5>
+            <h5>What does any of this have to do <br> with me?</h5>
             <p>Hey, you can customize Firefox to be all about you with <a href="{{ url('firefox.features.add-ons') }}">add-ons</a> and <a href="{{ url('firefox.features.customize') }}">themes</a>. Happy?</p>
 
             <h5>Ok, what’s the privacy-catch?</h5>
@@ -128,7 +132,7 @@
 
     <div class="c-sign-off">
       <div class="mzp-l-content c-nothing-personal">
-        <p>Nothing personal. Just browsing.</p>
+         <p>Nothing personal. Just browsing.</p>
         <div class="c-sign-off-wordmark">
           <img loading="lazy" src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="" width="180" height="40" class="c-header-logo">
         </div>

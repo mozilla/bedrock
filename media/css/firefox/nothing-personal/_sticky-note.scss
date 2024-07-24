@@ -48,7 +48,7 @@
         &.c-attached-sticky {
             display: block;
             position: absolute;
-            bottom: -167px;
+            bottom: -230px;
             right: -55px;
             opacity: 1;
 
@@ -56,7 +56,12 @@
                 opacity: 0;
             }
         }
+    }
 
+    @media #{$mq-xl} {
+        &.c-attached-sticky {
+            bottom: -180px;
+        }
     }
 }
 
@@ -86,8 +91,8 @@
 }
 
 // If Firefox is unsupported, it'll show an alternative CTA to download Firefox ESR.
-// However, the ESR CTA and warning message does not fit in the sticky note,
-// so decided to remove it from the DOM instead.
+// However, the ESR CTA and warning message do not fit in the sticky note,
+// so decided to remove the sticky note from the DOM instead.
 html.fx-unsupported {
     .c-sticky-note {
         display: none;
