@@ -178,15 +178,42 @@ def firefox_all(request):
     # Human-readable product labels
     products = OrderedDict(
         [
-            ("desktop_release", ftl("firefox-all-product-firefox", ftl_files=ftl_files)),
-            ("desktop_beta", ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files)),
-            ("desktop_developer", ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files)),
-            ("desktop_nightly", ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files)),
-            ("desktop_esr", ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files)),
-            ("android_release", ftl("firefox-all-product-firefox-android", ftl_files=ftl_files)),
-            ("android_beta", ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files)),
-            ("android_nightly", ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files)),
-            ("ios_release", ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files)),
+            (
+                "desktop_release",
+                ftl("firefox-all-product-firefox", ftl_files=ftl_files),
+            ),
+            (
+                "desktop_beta",
+                ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files),
+            ),
+            (
+                "desktop_developer",
+                ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files),
+            ),
+            (
+                "desktop_nightly",
+                ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files),
+            ),
+            (
+                "desktop_esr",
+                ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files),
+            ),
+            (
+                "android_release",
+                ftl("firefox-all-product-firefox-android", ftl_files=ftl_files),
+            ),
+            (
+                "android_beta",
+                ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files),
+            ),
+            (
+                "android_nightly",
+                ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files),
+            ),
+            (
+                "ios_release",
+                ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
+            ),
         ]
     )
 
@@ -368,8 +395,14 @@ class WhatsnewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/developer/whatsnew.html": ["firefox/developer"],
         "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
-        "firefox/nightly/whatsnew.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/index.html": ["firefox/whatsnew/whatsnew-s2d", "firefox/whatsnew/whatsnew"],
+        "firefox/nightly/whatsnew.html": [
+            "firefox/nightly/whatsnew",
+            "firefox/whatsnew/whatsnew",
+        ],
+        "firefox/whatsnew/index.html": [
+            "firefox/whatsnew/whatsnew-s2d",
+            "firefox/whatsnew/whatsnew",
+        ],
         "firefox/whatsnew/index-thanks.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx125-eu.html": ["firefox/whatsnew/whatsnew"],
@@ -385,6 +418,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx128-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx128-eu-addons.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx128-eu-donate.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx129-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx129-eu.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -474,6 +509,13 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("129."):
+            if locale in ["en-US", "en-CA"]:
+                template = "firefox/whatsnew/whatsnew-fx129-na.html"
+            elif locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
+                template = "firefox/whatsnew/whatsnew-fx129-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("128."):
@@ -691,7 +733,10 @@ class PlatformViewLinux(L10nTemplateView):
     template_name = "firefox/new/basic/download_linux.html"
 
     ftl_files_map = {
-        "firefox/new/basic/download_linux.html": ["firefox/new/platform", "firefox/new/download"],
+        "firefox/new/basic/download_linux.html": [
+            "firefox/new/platform",
+            "firefox/new/download",
+        ],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -703,7 +748,10 @@ class PlatformViewMac(L10nTemplateView):
     template_name = "firefox/new/basic/download_mac.html"
 
     ftl_files_map = {
-        "firefox/new/basic/download_mac.html": ["firefox/new/platform", "firefox/new/download"],
+        "firefox/new/basic/download_mac.html": [
+            "firefox/new/platform",
+            "firefox/new/download",
+        ],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -715,7 +763,10 @@ class PlatformViewWindows(L10nTemplateView):
     template_name = "firefox/new/basic/download_windows.html"
 
     ftl_files_map = {
-        "firefox/new/basic/download_windows.html": ["firefox/new/platform", "firefox/new/download"],
+        "firefox/new/basic/download_windows.html": [
+            "firefox/new/platform",
+            "firefox/new/download",
+        ],
     }
 
     # all active locales, this will make the lang switcher work properly
@@ -767,7 +818,25 @@ def firefox_welcome_page1(request):
 
 @require_safe
 def firefox_features_translate(request):
-    translate_langs = ["bg", "nl", "en-US", "et", "fi", "fr", "de", "el", "hu", "it", "pl", "pt-PT", "ru", "sl", "es-ES", "tr", "uk"]
+    translate_langs = [
+        "bg",
+        "nl",
+        "en-US",
+        "et",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "hu",
+        "it",
+        "pl",
+        "pt-PT",
+        "ru",
+        "sl",
+        "es-ES",
+        "tr",
+        "uk",
+    ]
 
     names = get_translations_native_names(sorted(translate_langs))
 
@@ -775,13 +844,24 @@ def firefox_features_translate(request):
 
     template_name = "firefox/features/translate.html"
 
-    return l10n_utils.render(request, template_name, context, ftl_files=["firefox/features/translate", "firefox/features/shared"])
+    return l10n_utils.render(
+        request,
+        template_name,
+        context,
+        ftl_files=["firefox/features/translate", "firefox/features/shared"],
+    )
 
 
 class firefox_features_fast(L10nTemplateView):
     ftl_files_map = {
-        "firefox/features/fast.html": ["firefox/features/fast-2023", "firefox/features/shared"],
-        "firefox/features/fast-2024.html": ["firefox/features/fast-2024", "firefox/features/shared"],
+        "firefox/features/fast.html": [
+            "firefox/features/fast-2023",
+            "firefox/features/shared",
+        ],
+        "firefox/features/fast-2024.html": [
+            "firefox/features/fast-2024",
+            "firefox/features/shared",
+        ],
     }
 
     def get_template_names(self):
