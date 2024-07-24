@@ -91,13 +91,4 @@ function slideInMobile(element) {
     });
 }
 
-// function spiralIn(element) {
-//     return new Promise((res) => {
-//         setTimeout(() => {
-//             element.classList.add('animate-spiral-in');
-//             res();
-//         }, 800);
-//     });
-// }
-
 init();
