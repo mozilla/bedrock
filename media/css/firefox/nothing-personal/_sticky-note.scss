@@ -57,12 +57,6 @@
             }
         }
     }
-
-    @media #{$mq-xl} {
-        &.c-attached-sticky {
-            // bottom: -180px;
-        }
-    }
 }
 
 .c-sticky-note > .c-button-download-thanks {
