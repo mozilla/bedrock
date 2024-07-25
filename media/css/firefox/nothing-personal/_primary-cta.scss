@@ -4,8 +4,13 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 // -------------------- CTA logic ----------------------- //
-.mzp-c-button.is-not-default, .mzp-c-button.is-default {
+.mzp-c-button.is-not-default,
+.mzp-c-button.is-default {
     display: none;
+}
+
+.is-firefox .mzp-c-button.is-default {
+    display: block;
 }
 
 html.is-firefox {

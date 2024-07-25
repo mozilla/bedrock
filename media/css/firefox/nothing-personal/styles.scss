@@ -32,6 +32,7 @@ $mq-tad-smaller-sm: 455px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow-x: hidden;
     }
 
     aside {
@@ -58,19 +59,19 @@ $mq-tad-smaller-sm: 455px;
                 align-items: center;
                 margin-bottom: $spacing-2xl;
                 padding: $spacing-sm;
-                border: 2px solid transparent;
+                text-decoration: none;
+                cursor: default;
 
                 &:hover,
                 &:active,
                 &:focus {
-                    background-color: $color-blue-60;
                     color: $color-white;
-                    border: 2px dotted $color-white;
                 }
-            }
 
-            .c-trash {
-                cursor: default;
+                &:active,
+                &:focus {
+                    background-color: $color-blue-60;
+                }
             }
         }
     }
