@@ -216,7 +216,7 @@
       </div>
 
       <div class="mzp-c-field {% if form.sr_presentation_topic.errors %}mzp-is-error{% endif %}">
-        <legend class="mzp-c-field-label">Topic of Presentation</legend>
+        <label class="mzp-c-field-label" for="sr_presentation_topic">Topic of Presentation</label>
         {{ field_with_attrs(form.sr_presentation_topic, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_presentation_topic.errors }}</div>
       </div>
