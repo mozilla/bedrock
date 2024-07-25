@@ -7,11 +7,5 @@
 <aside class="mzp-l-content c-utilities">
   {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
   {% set releasenotes_link = 'href="%s" target="_blank"'|safe|format(releasenotes_url) %}
-
-  {% if ftl_has_messages('whatsnew-release-notes-v2') %}
-    <p>{{ ftl('whatsnew-release-notes-v2', url=releasenotes_link) }}</p>
-  {% else %}
-    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
-  {% endif %}
-
+  <p>{{ ftl('whatsnew-release-notes-v2', url=releasenotes_link) }}</p>
 </aside>

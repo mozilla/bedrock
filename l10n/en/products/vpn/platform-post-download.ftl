@@ -58,22 +58,11 @@ vpn-download-faq-working = How do I know the VPN is working?
 #   $monitor (url) link to https://monitor.mozilla.org/
 vpn-download-faq-visual-indicators-v2 = { -brand-name-mozilla-vpn } displays visual indicators of its current status both in the toolbar and the application’s home screen, making it easy to know whether your online activity is protected or not. These indicators allow you to confirm when your navigation is private and secure. Additionally, while connected, you can visit <a href="{ $monitor }">https://monitor.mozilla.org/</a> to confirm if your IP address is masked. For more details, please see <a href="{ $connected }">How can I tell if { -brand-name-mozilla-vpn } is connected?</a>.
 
-# Obsolete string
-# Variables:
-#   $connected (url) - link to https://support.mozilla.org/kb/how-can-i-tell-if-mozilla-vpn-connected
-#   $monitor (url) link to https://monitor.firefox.com/
-vpn-download-faq-visual-indicators = { -brand-name-mozilla-vpn } displays visual indicators of its current status both in the toolbar and the application’s home screen, making it easy to know whether your online activity is protected or not. These indicators allow you to confirm when your navigation is private and secure. Additionally, while connected, you can visit <a href="{ $monitor }">https://monitor.firefox.com/</a> to confirm if your IP address is masked. For more details, please see <a href="{ $connected }">How can I tell if { -brand-name-mozilla-vpn } is connected?</a>.
-
 vpn-download-faq-add-device = How do I add another device?
 
 # Variables:
 #   $subscription - link to https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription
 vpn-download-faq-adding-another-v3 = Adding another device is as simple as downloading and installing the { -brand-name-mozilla-vpn } software and then signing into your existing { -brand-name-mozilla-account } on the new device. For more details, please see <a href="{ $subscription }">How to add devices to your { -brand-name-mozilla-vpn } subscription</a>.
-
-# Obsolete string
-# Variables:
-#   $subscription - link to https://support.mozilla.org/kb/how-add-devices-your-mozilla-vpn-subscription
-vpn-download-faq-adding-another-v2 = Adding another device is as simple as downloading and installing the { -brand-name-mozilla-vpn } software and then signing into your existing { -brand-name-firefox-account } on the new device. For more details, please see <a href="{ $subscription }">How to add devices to your { -brand-name-mozilla-vpn } subscription</a>.
 
 vpn-download-faq-best-practices = What are some VPN best practices?
 vpn-download-faq-traffic = If your goal is to protect your internet traffic while keeping a fast speed, then it’s always best to choose a server location that is as close as possible to your physical location. This will increase the reliability and speed of your connection as your internet traffic will not need to take a significant detour before arriving at its intended destination on the web.

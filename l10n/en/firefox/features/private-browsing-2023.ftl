@@ -15,8 +15,6 @@ features-private-browsing-firefox-protects = { -brand-name-firefox } protects yo
 features-private-browsing-if-you-share-a-computer = If you share a computer with other people or if you want to limit how much data websites can collect about you, you can use private browsing mode in { -brand-name-firefox }. Private browsing erases the digital tracks you leave behind when you browse online — think of them like footprints through the woods.
 features-private-browsing-what-does-private-browsing-do = What does private browsing do?
 features-private-browsing-private-browsing-mode-opens-v2 = Private browsing mode opens a new browser window. When you close the last private browsing window, your browsing history and any tracking cookies from websites you visited will be erased. <strong>{ -brand-name-firefox } Pro Tip:</strong> Don’t forget to close all your private browsing windows when you’re done!
-# Obsolete string (expires: 2024-07-18)
-features-private-browsing-private-browsing-mode-opens = Private browsing mode opens a new browser window. When you close it, your browsing history for that window and any tracking cookies from websites you visited will be erased. <strong>{ -brand-name-firefox } Pro Tip:</strong> Don’t forget to close the private browsing window when you’re done!
 
 # Used as an accessible text alternative for an image
 features-private-browsing-a-firefox-window-in-private = A { -brand-name-firefox } browser window in private browsing mode.

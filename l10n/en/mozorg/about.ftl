@@ -38,10 +38,6 @@ about-san-francisco = San Francisco
 about-talking-tech-issues-irl = Talking Tech Issues IRL
 about-in-mozillas-multi-award-winning = In { -brand-name-mozilla }'s multi-award winning podcast, host Bridget Todd talks to the people shaping the future of the internet and AI.
 
-# Obsolete strings (remove in 1-2 months)
-about-talking-internet-issues-irl = Talking Internet Issues IRL
-about-in-mozillas-irl-podcast-host = In { -brand-name-mozilla }’s IRL podcast, host Manoush Zomorodi shares real stories of life online and real talk about the future of the Web.
-
 # The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase.
 about-2000-non-employee-guests-welcomed = <strong>2000</strong> non-employee guests welcomed each year
 
