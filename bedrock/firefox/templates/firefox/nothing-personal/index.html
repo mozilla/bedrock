@@ -78,15 +78,67 @@
 
         <div class="c-thug-life-gif-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace">
           <div class="c-thug-life-gif c-detached-gif">
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life.gif') }}" alt="" class="c-gif">
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-img.jpg') }}" alt="" class="c-image">
+            {{ picture(
+              url='img/firefox/nothing-personal/thug-life.gif',
+              sources=[
+                {
+                  'media': '(prefers-reduced-motion: reduce)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life-img.jpg': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                },
+                {
+                  'media': '(prefers-reduced-motion: no-preference)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life.gif': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                }
+              ],
+              optional_attributes={
+                  'height': '200',
+                  'loading': 'lazy',
+                  'width': '200'
+              }
+            ) }}
           </div>
         </div>
 
         <div class="sticky-window">
           <div class="c-thug-life-gif c-attached-gif">
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life.gif') }}" alt="" class="c-gif>
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-img.jpg') }}" alt="" class="c-image">
+            {{ picture(
+              url='img/firefox/nothing-personal/thug-life.gif',
+              sources=[
+                {
+                  'media': '(prefers-reduced-motion: reduce)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life-img.jpg': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                },
+                {
+                  'media': '(prefers-reduced-motion: no-preference)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life.gif': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                }
+              ],
+              optional_attributes={
+                  'height': '200',
+                  'loading': 'lazy',
+                  'width': '200'
+              }
+            ) }}
           </div>
 
          {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='SFAQs', aria_label='Somewhat Frequently Asked Questions') %}
