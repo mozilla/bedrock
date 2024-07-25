@@ -4,47 +4,32 @@
 
 .c-browser {
     border-radius: $border-radius-md;
+    margin-bottom: $layout-lg;
 
     .c-browser-bar {
-        background-image: $browser-cool-gradient;
-        background-color: $browser-background;
+        background: url('/media/img/firefox/nothing-personal/browser-dots.svg') left $spacing-md center no-repeat,
+        $browser-background $browser-cool-gradient;
+        background-size: 60px 16px, auto;
         border-top: $border-black;
         border-left: $border-black;
         border-right: $border-black;
         border-top-left-radius: $border-radius-lg;
         border-top-right-radius: $border-radius-lg;
-        display: flex;
-        align-items: center;
-        height: 55px;
-        padding-right: $spacing-md;
-        padding-left: $spacing-md;
-
-
-        &.c-bar-with-heading {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .browser-bar-dot-wrapper {
-            display: flex;
-        }
-
-        .browser-bar-dot-wrapper > .c-browser-bar-dot,
-        .c-browser-bar-dot {
-            border: $border-black;
-            border-radius: 50%;
-            height: 15px;
-            width: 15px;
-            margin-left: $spacing-md;
-            display: inline-block;
-        }
+        padding: $spacing-sm $spacing-md;
 
         h3 {
+            @include font-size(16px);
             color: $browser-background;
-            text-align: center;
-            margin-bottom: 0;
             font-family: 'Fira Mono', 'Andale Mono', monospace;
             font-weight: 500;
+            margin-bottom: 0;
+            padding-left: 80px;
+            text-align: start;
+
+            @media #{$mq-md} {
+                text-align: center;
+                padding: 0;
+            }
         }
     }
 
@@ -61,7 +46,7 @@
         }
 
         h4 {
-            margin-bottom: $layout-md;
+            margin-bottom: $layout-sm;
         }
 
         h4,
@@ -77,24 +62,9 @@
         }
     }
 
-    @media (min-width: $mq-tad-smaller-sm) {
-        .c-browser-bar {
-            &.c-bar-with-heading {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    }
-
     @media #{$mq-md} {
-        .c-browser-bar {
-            height: 45px;
-
-            &.c-bar-with-heading {
-                h3 {
-                    @include text-title-2xs;
-                    white-space: nowrap;
-                }
-            }
+        .c-browser-bar.c-bar-with-heading h3 {
+            white-space: nowrap;
         }
 
         .c-browser-content {
@@ -124,13 +94,17 @@
     z-index: 10;
 
     .c-browser-bar {
-            background-image: none;
-        }
+        min-height: 16px;
+        background: $browser-background url('/media/img/firefox/nothing-personal/browser-dots.svg') left $spacing-md center no-repeat;
+        background-size: 60px 16px;
+    }
 
     .c-browser-window-top {
         h2 {
             @include text-title-xl;
             line-height: 1;
+            margin: 0;
+            padding-right: $spacing-lg;
         }
 
         &::after {
@@ -141,8 +115,8 @@
             background-size: contain;
             filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.2));
             height: 82px;
-            top: 50px;
-            right: 45px;
+            top: 10px;
+            right: 35px;
             width: 90px;
         }
     }
@@ -157,34 +131,32 @@
 
             &::after {
                 height: 95px;
-                bottom: 90px;
-                right: 285px;
-                top: unset;
+                bottom: 6px;
+                right: 205px;
+                top: auto;
                 width: 105px;
             }
-        }
-
-        @media #{$mq-xl} {
-            .c-browser-window-top {
-            &::after {
-                bottom: 140px;
-                right: 295px;
-            }
-        }
         }
     }
 }
 
 // Layered background styles for first window
 .c-browser-windows {
+    padding-top: $layout-lg;
+
     .c-layered-browser {
         position: relative;
+        margin-bottom: $layout-lg;
+
+        @media #{$mq-md} {
+            margin-bottom: $layout-xl + $layout-xs; // extra room for the layered windows
+        }
 
         .c-hidden-browser {
             display: none;
 
-                @media #{$mq-md} {
-                    display: block;
+            @media #{$mq-md} {
+                display: block;
 
                 &.yellow {
                     position: absolute;

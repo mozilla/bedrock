@@ -6,7 +6,7 @@
     background-color: $browser-background;
     border-bottom: $border-black;
 
-    @media (prefers-reduced-motion: no-preference){
+    @media (prefers-reduced-motion: no-preference) {
         position: sticky;
         top: 0;
         z-index: 15;
@@ -14,63 +14,54 @@
 }
 
 .c-page-header-logo-fx {
-    display: flex;
-    justify-content: center;
+    @include image-replaced;
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    background: transparent url('/media/protocol/img/logos/firefox/browser/logo.svg') center left no-repeat;
+    background-size: contain;
 
-    span {
-        @include visually-hidden;
+    @media #{$mq-sm} {
+        width: 180px;
+        height: 60px;
+        background-image: url('/media/img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg');
     }
 }
 
 .c-page-header-inner {
     align-items: center;
     display: grid;
-    grid-template-columns: 1fr;
     padding: $spacing-md;
+    grid-template-columns: 60px 1fr;
+    gap: 0 $spacing-md;
 
     .cta-group {
-        justify-self: center;
+        justify-self: end;
 
         p {
             display: none;
         }
     }
-}
 
-@media (min-width: $mq-tad-smaller-sm) {
-    .c-page-header-logo-fx {
-        justify-content: flex-start;
-        margin: 0;
-    }
-
-    .c-page-header-inner {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-
-        .cta-group {
-            justify-self: end;
-            display: flex;
-            align-items: center;
-        }
+    @media #{$mq-sm} {
+        grid-template-columns: 180px 1fr;
     }
 }
 
 @media #{$mq-lg} {
     .c-page-header-inner {
         .cta-group {
+            align-items: center;
+            display: flex;
+            justify-self: end;
+
             p {
                 @include text-body-lg;
                 display: block;
-                margin-bottom: 0;
-                margin-right: $spacing-md;
-                width: 500px;
                 font-family: 'Fira Mono', 'Andale Mono', monospace;
                 font-weight: 500;
+                margin: 0 $spacing-md 0 0;
             }
-        }
-
-        .mzp-c-button {
-            white-space: nowrap;
         }
     }
 }

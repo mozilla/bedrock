@@ -6,6 +6,7 @@
     text-align: center;
     padding-bottom: 0;
     display: block;
+    margin-bottom: $layout-lg;
 
     @media #{$mq-lg} {
         display: none;

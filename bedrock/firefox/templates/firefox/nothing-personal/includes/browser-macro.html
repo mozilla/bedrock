@@ -11,29 +11,13 @@
 ) -%}
 <div class="c-browser {% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
-    <!-- dots -->
     {% if heading and aria_label %}
-      <div class="browser-bar-dot-wrapper">
-        <span class="c-browser-bar-dot"></span>
-        <span class="c-browser-bar-dot"></span>
-        <span class="c-browser-bar-dot"></span>
-      </div>
       <h3 aria-label="{{ aria_label }}">{{ heading }}</h3>
     {% elif heading %}
-      <div class="browser-bar-dot-wrapper">
-        <span class="c-browser-bar-dot"></span>
-        <span class="c-browser-bar-dot"></span>
-        <span class="c-browser-bar-dot"></span>
-      </div>
       <h3>{{ heading }}</h3>
-
-    {% else %}
-      <span class="c-browser-bar-dot"></span>
-      <span class="c-browser-bar-dot"></span>
-      <span class="c-browser-bar-dot"></span>
     {% endif %}
   </div>
-  <div class="c-browser-content ">
+  <div class="c-browser-content">
     {{ caller() }}
   </div>
 </div>

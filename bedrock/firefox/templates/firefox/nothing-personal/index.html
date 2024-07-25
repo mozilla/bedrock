@@ -24,14 +24,10 @@
 {% block content %}
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
-      <h1 class="c-page-header-logo-fx">
-        <img src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark.svg') }}" alt="" width="180" height="40" class="c-header-logo">
-        <span>Firefox by Mozilla</span>
-      </h1>
+      <h1 class="c-page-header-logo-fx">Firefox by Mozilla</h1>
 
       <div class="cta-group">
         <p>Feeling browser-curious? We won’t tell. <span aria-hidden="true">>>>>></span></p>
-
 
         <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="primary">Set as default</a>
 
@@ -45,27 +41,27 @@
     <section>
     <div class="c-browser-windows">
       <div class="c-layered-browser">
-        {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md') %}
+        {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
         <div class="c-browser-window-top">
           <h2>We look forward to not getting to know you</h2>
         </div>
         {% endcall %}
 
-        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser yellow mzp-l-content mzp-t-content-md') %}
-        <div class="c-browser-window-top">
-          <!-- Content is kept so it matches the size of the visible container above -->
-          <h2>We look forward to not getting to know you</h2>
-        </div>
-        {% endcall %}
-
-        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser dark-yellow mzp-l-content mzp-t-content-md') %}
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
         <div class="c-browser-window-top">
           <!-- Content is kept so it matches the size of the visible container above -->
           <h2>We look forward to not getting to know you</h2>
         </div>
         {% endcall %}
 
-        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser darker-yellow mzp-l-content mzp-t-content-md') %}
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser dark-yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser darker-yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
         <div class="c-browser-window-top">
           <!-- Content is kept so it matches the size of the visible container above -->
           <h2>We look forward to not getting to know you</h2>
@@ -80,7 +76,7 @@
           </div>
         {% endcall %}
 
-        <div class="c-thug-life-gif-wrapper mzp-l-content mzp-t-content-md">
+        <div class="c-thug-life-gif-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace">
           <div class="c-thug-life-gif c-detached-gif">
             <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
           </div>
@@ -91,7 +87,7 @@
             <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
           </div>
 
-         {% call browser_border(class='mzp-l-content mzp-t-content-md', heading='SFAQs', aria_label='Somewhat Frequently Asked Questions') %}
+         {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='SFAQs', aria_label='Somewhat Frequently Asked Questions') %}
           <div class="c-browser-window-top">
             <h4><span aria-hidden="true">[</span>Somewhat Frequently Asked Questions<span aria-hidden="true">]</span></h4>
 
@@ -132,7 +128,7 @@
 
     <div class="c-sign-off">
       <div class="mzp-l-content c-nothing-personal">
-         <p>Nothing personal. Just browsing.</p>
+        <p>Nothing personal. Just browsing.</p>
         <div class="c-sign-off-wordmark">
           <img loading="lazy" src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="" width="180" height="40" class="c-header-logo">
         </div>

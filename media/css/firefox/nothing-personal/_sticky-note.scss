@@ -7,10 +7,10 @@
     background-image: url('/media/img/firefox/nothing-personal/sticky-note-bg.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    width: 230px;
+    width: 220px;
     height: 220px;
-    margin: $layout-md auto;
-    padding: $spacing-lg;
+    margin: 0 auto;
+    padding: $spacing-xl;
     transform: rotate(11deg);
 
     &.c-detached-sticky {
@@ -48,8 +48,8 @@
         &.c-attached-sticky {
             display: block;
             position: absolute;
-            bottom: -230px;
-            right: -55px;
+            bottom: -80px;
+            margin-right: -150px;
             opacity: 1;
 
             @media (prefers-reduced-motion: no-preference) {
@@ -60,7 +60,7 @@
 
     @media #{$mq-xl} {
         &.c-attached-sticky {
-            bottom: -180px;
+            // bottom: -180px;
         }
     }
 }
