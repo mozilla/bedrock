@@ -170,7 +170,7 @@
       </div>
 
       <div class="mzp-c-field {% if form.sr_event_speakers_confirmed.errors %}mzp-is-error{% endif %}">
-        <label class="mzp-c-field-label" or="sr_event_speakers_confirmed">Confirmed Speakers</label>
+        <label class="mzp-c-field-label" for="sr_event_speakers_confirmed">Confirmed Speakers</label>
         {{ field_with_attrs(form.sr_event_speakers_confirmed, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">{{ form.sr_event_speakers_confirmed.errors }}</div>
       </div>
@@ -232,7 +232,7 @@
     <fieldset class="mzp-c-field-set">
       <legend class="mzp-c-form-subtitle">Additional Information</legend>
 
-      <div class="mzp-c-field {% if form.sr_attachment.errors %}mzp-is-error{% endif %}" id="sr_attachment">
+      <div class="mzp-c-field {% if form.sr_attachment.errors %}mzp-is-error{% endif %}">
         <label class="mzp-c-field-label" for="sr_attachment">PDF Attachment</label>
         {{ field_with_attrs(form.sr_attachment, class='mzp-c-field-control'|safe) }}
         <div class="mzp-c-field-info">
