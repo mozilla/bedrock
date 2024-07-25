@@ -127,6 +127,7 @@ main {
     }
 
     .loading-spinner {
+        background: url('/media/img/icons/loading.svg') no-repeat center;
         display: block;
 
         &.hidden {
