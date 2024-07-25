@@ -1174,6 +1174,12 @@
     },
     {
       "files": [
+        "css/firefox/nothing-personal/styles.scss"
+      ],
+      "name": "firefox-nothing-personal"
+    },
+    {
+      "files": [
         "css/products/monitor/waitlist.scss"
       ],
       "name": "monitor-waitlist"
@@ -1805,7 +1811,6 @@
         "js/firefox/family/subnav.js",
         "js/firefox/family/banner.es6.js",
         "js/firefox/family/banner-init.es6.js",
-        "js/firefox/family/fx-is-default.es6.js",
         "js/firefox/family/fx-is-default-init.es6.js",
         "js/firefox/family/copy-to-clipboard.js",
         "js/firefox/family/animate-pop-in.es6.js",
@@ -1824,6 +1829,13 @@
         "js/firefox/challenge-the-default/device-detect.es6.js"
       ],
       "name": "challenge-the-default"
+    },
+    {
+      "files": [
+        "js/firefox/nothing-personal/fx-is-default-init.es6.js",
+        "js/firefox/nothing-personal/animate-pop-in.es6.js"
+      ],
+      "name": "firefox-nothing-personal"
     },
     {
       "files": [

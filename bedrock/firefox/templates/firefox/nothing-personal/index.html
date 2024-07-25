@@ -1,0 +1,206 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "firefox/nothing-personal/includes/browser-macro.html" import browser_border %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-nothing-personal') }}
+{% endblock %}
+
+{% block page_title_prefix %}Nothing Personal{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/nothing-personal/meta-img.png') }}{% endblock %}
+{% block page_og_title %}Firefox. Nothing personal. Just browsing.{% endblock %}
+{% block page_desc %}Firefox isn’t that interested in your data. No offense.{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      <h1 class="c-page-header-logo-fx">Firefox by Mozilla</h1>
+
+      <div class="cta-group">
+        <p>Feeling browser-curious? We won’t tell. <span aria-hidden="true">>>>>></span></p>
+
+        <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="primary">Set as default</a>
+
+        <a href="https://blog.mozilla.org/en/firefox/" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Learn more" data-cta-position="primary">Learn more</a>
+
+        {{ download_firefox_thanks(alt_copy='Download Firefox', dom_id='protocol-nav-download-firefox', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='primary') }}
+      </div>
+    </div>
+  </header>
+  <main class="c-page-main-content">
+    <section>
+    <div class="c-browser-windows">
+      <div class="c-layered-browser">
+        {% call browser_border(class='c-browser-window-top-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
+        <div class="c-browser-window-top">
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser dark-yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+
+        {% call browser_border(class='c-browser-window-top-wrapper c-hidden-browser darker-yellow mzp-l-content mzp-t-content-md mzp-t-content-nospace') %}
+        <div class="c-browser-window-top">
+          <!-- Content is kept so it matches the size of the visible container above -->
+          <h2>We look forward to not getting to know you</h2>
+        </div>
+        {% endcall %}
+      </div>
+
+        {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='Nothing Personal') %}
+          <div class="c-browser-window-top">
+            <h4>You’re great — probably.</h4>
+            <p>We just don’t need a lot of your data to be a <strong>fast, reliable</strong> browser that keeps up with the big guys.</p>
+          </div>
+        {% endcall %}
+
+        <div class="c-thug-life-gif-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace">
+          <div class="c-thug-life-gif c-detached-gif">
+            {{ picture(
+              url='img/firefox/nothing-personal/thug-life.gif',
+              sources=[
+                {
+                  'media': '(prefers-reduced-motion: reduce)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life-img.jpg': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                },
+                {
+                  'media': '(prefers-reduced-motion: no-preference)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life.gif': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                }
+              ],
+              optional_attributes={
+                  'height': '200',
+                  'loading': 'lazy',
+                  'width': '200'
+              }
+            ) }}
+          </div>
+        </div>
+
+        <div class="sticky-window">
+          <div class="c-thug-life-gif c-attached-gif">
+            {{ picture(
+              url='img/firefox/nothing-personal/thug-life.gif',
+              sources=[
+                {
+                  'media': '(prefers-reduced-motion: reduce)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life-img.jpg': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                },
+                {
+                  'media': '(prefers-reduced-motion: no-preference)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/thug-life.gif': '200w'
+                  },
+                  'sizes': {
+                    'default': '200px'
+                  }
+                }
+              ],
+              optional_attributes={
+                  'height': '200',
+                  'loading': 'lazy',
+                  'width': '200'
+              }
+            ) }}
+          </div>
+
+         {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='SFAQs', aria_label='Somewhat Frequently Asked Questions') %}
+          <div class="c-browser-window-top">
+            <h4><span aria-hidden="true">[</span>Somewhat Frequently Asked Questions<span aria-hidden="true">]</span></h4>
+
+            <h5>Are you even any good?</h5>
+            <p>Calm down. And yes. <a href="{{ url('firefox.features.fast') }}">We’re so fast</a> you won’t even notice the difference.</p>
+
+            <h5 aria-label="What makes you so special?">What makes you soooo special?</h5>
+            <p><abbr title="No big deal">NBD</abbr>, but people dump their other browsers <a href="{{ url('firefox.features.index') }}">for our features</a> (like <a href="{{ url('firefox.features.picture-in-picture') }}">popping out videos</a> and a <a href="{{ url('firefox.features.pdf-editor') }}">built-in PDF editor</a>).</p>
+
+            <h5>What does any of this have to do <br> with me?</h5>
+            <p>Hey, you can customize Firefox to be all about you with <a href="{{ url('firefox.features.add-ons') }}">add-ons</a> and <a href="{{ url('firefox.features.customize') }}">themes</a>. Happy?</p>
+
+            <h5>Ok, what’s the privacy-catch?</h5>
+            <p><a href="{{ url('firefox.privacy.index') }}">We don’t keep track of where you go</a> because 1. Yawn, and 2. We really don’t need it.</p>
+          </div>
+          <div class="c-sticky-note c-attached-sticky">
+
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+           <br>
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+           <br>
+           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <p>Ok, bye.</p>
+
+          </div>
+        </div>
+        {% endcall %}
+    </div>
+
+    <div class="c-sticky-note c-detached-sticky">
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+      <br>
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+      <br>
+      <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+      <p>Ok, bye.</p>
+    </div>
+
+    <div class="c-sign-off">
+      <div class="mzp-l-content c-nothing-personal">
+        <p>Nothing personal. Just browsing.</p>
+        <div class="c-sign-off-wordmark">
+          <img loading="lazy" src="{{ static('img/firefox/nothing-personal/firefox-by-mozilla-wordmark-white.svg') }}" alt="" width="180" height="40" class="c-header-logo">
+        </div>
+      </div>
+    </div>
+    </section>
+    <aside>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Link to a Youtube video" target="_blank" rel="external noopener"><img src="{{ static('img/firefox/nothing-personal/folder-icon.svg') }}" alt="">Folder <br> <.< </a>
+      <a href="https://open.spotify.com/playlist/0vvXsWCC9xrXsKd4FyS8kM" aria-label="Link to a Spotify playlist" target="_blank" rel="external noopener"><img src="{{ static('img/firefox/nothing-personal/music-icon.svg') }}" alt="">focus <br> playlist</a>
+      <div class="c-trash" aria-hidden="true">
+        <img src="{{ static('img/firefox/nothing-personal/bin-icon.svg') }}" alt="">
+        <span>MyLife</span>
+      </div>
+    </aside>
+
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-nothing-personal') }}
+{% endblock %}

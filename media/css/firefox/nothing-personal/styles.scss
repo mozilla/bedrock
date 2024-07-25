@@ -1,0 +1,122 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:color';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+$browser-background: #f8f6f4;
+$page-background: #333336;
+$browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
+$border-black: 2px solid $color-black;
+$mq-tad-smaller-sm: 455px;
+
+@import './fonts';
+@import './animations';
+@import './header';
+@import './primary-cta';
+@import './browser';
+@import './fox-gif';
+@import './sticky-note';
+
+.c-page-main-content {
+    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    position: relative;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    aside {
+        display: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
+        background-attachment: fixed;
+    }
+
+    @media #{$mq-lg} {
+        aside {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            text-align: center;
+            top: 105px;
+            right: 0;
+
+            a, .c-trash {
+                color: $color-white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: $spacing-2xl;
+                padding: $spacing-sm;
+                border: 2px solid transparent;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: $color-blue-60;
+                    color: $color-white;
+                    border: 2px dotted $color-white;
+                }
+            }
+
+            .c-trash {
+                cursor: default;
+            }
+        }
+    }
+
+    @media #{$mq-xl} {
+        aside {
+            right: 140px;
+        }
+    }
+}
+
+.c-sign-off {
+    @include font-firefox;
+    @include text-title-xs;
+    margin: $layout-lg 0;
+
+    .c-nothing-personal {
+        padding: 12px;
+
+        p {
+            @include image-replaced;
+            background: transparent url('/media/img/firefox/nothing-personal/tagline.svg') center center no-repeat;
+            background-size: contain;
+            width: 300px;
+            height: 36px;
+        }
+
+        .c-sign-off-wordmark {
+            text-align: center;
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-top: 0;
+
+        .c-nothing-personal p {
+            width: 415px;
+            height: 51px;
+        }
+    }
+}
+
+// Make sure content is visible of JS fails
+html.no-js {
+    .c-browser,
+    .c-sticky-note.c-detached-sticky {
+        opacity: 1 !important; /* stylelint-disable-line declaration-no-important */
+    }
+}

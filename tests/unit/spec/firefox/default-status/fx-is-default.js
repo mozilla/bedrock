@@ -9,7 +9,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-import FirefoxDefault from '../../../../../media/js/firefox/family/fx-is-default.es6.js';
+import FirefoxDefault from '../../../../../media/js/base/fx-is-default.es6.js';
 
 describe('fx-is-default.js', function () {
     beforeEach(function () {
@@ -39,7 +39,7 @@ describe('fx-is-default.js', function () {
                 }
             );
 
-            return FirefoxDefault.init().then(() => {
+            return FirefoxDefault.init('main').then(() => {
                 expect(document.querySelector('main').classList).toContain(
                     'is-firefox-default'
                 );
@@ -59,7 +59,7 @@ describe('fx-is-default.js', function () {
                 }
             );
 
-            return FirefoxDefault.init().then(() => {
+            return FirefoxDefault.init('main').then(() => {
                 expect(document.querySelector('main').classList).not.toContain(
                     'is-firefox-default'
                 );

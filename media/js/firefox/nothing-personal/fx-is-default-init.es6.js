@@ -6,4 +6,4 @@
 
 import FirefoxDefault from '../../base/fx-is-default.es6';
 
-FirefoxDefault.init('main');
+FirefoxDefault.init('html');
