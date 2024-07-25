@@ -18,16 +18,16 @@
         padding: $spacing-sm $spacing-md;
 
         h3 {
-            @include font-size(16px);
+            @include font-size(18px);
             color: $browser-background;
             font-family: 'Fira Mono', 'Andale Mono', monospace;
             font-weight: 500;
             margin-bottom: 0;
             padding-left: 80px;
-            text-align: start;
+            text-align: center;
+            white-space: nowrap;
 
-            @media #{$mq-md} {
-                text-align: center;
+            @media (min-width: $mq-tad-smaller-sm) {
                 padding: 0;
             }
         }
@@ -148,8 +148,27 @@
         position: relative;
         margin-bottom: $layout-lg;
 
+        .c-browser {
+            &::before {
+                content: "";
+                position: absolute;
+                width: 88%;
+                height: 99%;
+                background-color: $color-yellow-30;
+                border-radius: $border-radius-lg;
+                top: 15px;
+                right: 12px;
+                z-index: -1;
+            }
+        }
+
         @media #{$mq-md} {
             margin-bottom: $layout-xl + $layout-xs; // extra room for the layered windows
+            .c-browser {
+                &::before {
+                    content: none;
+                }
+            }
         }
 
         .c-hidden-browser {

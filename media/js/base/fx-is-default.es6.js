@@ -18,7 +18,7 @@ const FirefoxDefault = {
     },
 
     isSupported: () => {
-        return Mozilla.Client._isFirefoxDesktop() && 'Promise' in window;
+        return Mozilla.Client.isFirefoxDesktop && 'Promise' in window;
     },
 
     // Update `element` when running the init() function during initialization to be the query selector you want targeted

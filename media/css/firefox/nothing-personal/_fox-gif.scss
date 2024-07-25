@@ -17,6 +17,14 @@
     display: inline-block;
     z-index: 10;
 
+    .c-gif {
+        display: none;
+    }
+
+    .c-image {
+        display: block;
+    }
+
     img {
         border: 3px solid $color-black;
         max-height: 200px;
@@ -25,6 +33,19 @@
 
     &.c-attached-gif {
         display: none;
+    }
+
+
+
+    @media (prefers-reduced-motion: no-preference) {
+        .c-gif {
+            display: block;
+        }
+
+        .c-image {
+            display: none;
+        }
+
     }
 
     @media #{$mq-lg} {

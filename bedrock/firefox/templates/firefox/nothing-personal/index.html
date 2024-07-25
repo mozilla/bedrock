@@ -17,7 +17,7 @@
 
 {% block page_image %}{{ static('img/firefox/nothing-personal/meta-img.png') }}{% endblock %}
 {% block page_og_title %}Firefox. Nothing personal. Just browsing.{% endblock %}
-{% block page_desc %}Firefox wants nothing to do with you. Don't take it personally.{% endblock %}
+{% block page_desc %}Firefox isn’t that interested in your data. No offense.{% endblock %}
 
 {% block site_header %}{% endblock %}
 
@@ -78,13 +78,15 @@
 
         <div class="c-thug-life-gif-wrapper mzp-l-content mzp-t-content-md mzp-t-content-nospace">
           <div class="c-thug-life-gif c-detached-gif">
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
+            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life.gif') }}" alt="" class="c-gif">
+            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-img.jpg') }}" alt="" class="c-image">
           </div>
         </div>
 
         <div class="sticky-window">
           <div class="c-thug-life-gif c-attached-gif">
-            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-fox.gif') }}" alt="">
+            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life.gif') }}" alt="" class="c-gif>
+            <img loading="lazy" src="{{ static('img/firefox/nothing-personal/thug-life-img.jpg') }}" alt="" class="c-image">
           </div>
 
          {% call browser_border(class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='SFAQs', aria_label='Somewhat Frequently Asked Questions') %}

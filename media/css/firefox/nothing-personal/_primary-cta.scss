@@ -37,6 +37,12 @@ html.is-firefox {
 
 // If Firefox is unsupported, it'll show an alternative CTA to download Firefox ESR
 html.fx-unsupported {
+    .cta-group {
+        p {
+            display: none;
+        }
+    }
+
     #protocol-nav-download-firefox {
        color: $color-black;
 
