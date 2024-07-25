@@ -7,7 +7,7 @@
     background-image: url('/media/img/firefox/nothing-personal/sticky-note-bg.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    width: 220px;
+    width: 200px;
     height: 220px;
     margin: 0 auto;
     padding: $spacing-xl;
@@ -52,6 +52,7 @@
             display: block;
             position: absolute;
             bottom: -80px;
+            right: 0;
             margin-right: -150px;
             opacity: 1;
 

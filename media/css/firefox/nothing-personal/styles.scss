@@ -61,7 +61,9 @@ $mq-tad-smaller-sm: 455px;
                 padding: $spacing-sm;
                 text-decoration: none;
                 cursor: default;
+            }
 
+            a {
                 &:hover,
                 &:active,
                 &:focus {
