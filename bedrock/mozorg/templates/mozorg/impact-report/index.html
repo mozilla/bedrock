@@ -41,7 +41,7 @@
         image=resp_img(
           url='img/mozorg/impact/report-cover.jpg',
           srcset={
-            'img/mozorg/impact/report-cover-high-res.jpg': '2x'
+            'img/mozorg/impact/report-cover-high-res.jpg': '1.5x'
           },
           optional_attributes={
             'class': 'mzp-c-split-media-asset',
@@ -50,9 +50,15 @@
         ),
         media_after=False
     ) %}
+    {% if switch('impact-report-active') %}
         <h3>Our 2024 report</h3>
         <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
-        <a href="" class="mzp-c-button">View the report</a>
+          <a href="https://assets.mozilla.net/pdf/impact-report" class="mzp-c-button">View the report</a>
+        {% else %}
+          <h3>Our 2024 report is coming soon</h3>
+          <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
+          <p><strong>Check back in soon for our annual report ...</strong></p>
+        {% endif %}
     {% endcall %}
     </section>
 
@@ -130,4 +136,4 @@
     </section>
 
   </main>
-{% endblock %}
+  {% endblock %}
