@@ -661,7 +661,6 @@ class NewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/base_download.html": ["firefox/new/download"],
         "firefox/new/desktop/download.html": ["firefox/new/desktop"],
-        "firefox/new/desktop/download-ms-store.html": ["firefox/new/desktop"],
     }
     activation_files = [
         "firefox/new/download",
@@ -669,7 +668,7 @@ class NewView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = ["control", "treatment"]
+    variations = []
 
     def get(self, *args, **kwargs):
         # Remove legacy query parameters (Bug 1236791)
@@ -710,18 +709,13 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         variation = self.request.GET.get("variation", None)
         experience = self.request.GET.get("xv", None)
-        experiment = self.request.GET.get("experiment", None)
-        locale = l10n_utils.get_locale(self.request)
 
         # ensure variant matches pre-defined value
         if variation not in self.variations:
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if locale.startswith("en-") and experiment == "mozorg-firefox-vsinstaller-exp" and variation == "treatment":
-                template = "firefox/new/desktop/download-ms-store.html"
-            else:
-                template = "firefox/new/desktop/download.html"
+            template = "firefox/new/desktop/download.html"
         else:
             template = "firefox/new/basic/base_download.html"
 
