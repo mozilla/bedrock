@@ -73,8 +73,7 @@
               </a>
             </section>
           </li>
-
-          {% if ftl_has_messages('navigation-v2-impact', 'navigation-v2-find-out-how') %}
+        {% if ftl_has_messages('navigation-v2-impact', 'navigation-v2-find-out-how') and switch('impact-report-active') %}
           <li>
             <section class="c-menu-item mzp-has-icon">
               <a class="c-menu-item-link" href="{{ url('mozorg.impact-report.index') }}" data-link-text="Impact" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">
@@ -84,8 +83,7 @@
               </a>
             </section>
           </li>
-          {% endif %}
-
+        {% endif %}
         </ul>
         <p class="c-menu-category-link">
           <a href="{{ url('mozorg.about.index') }}" data-link-text="More About Mozilla" data-link-type="nav" data-link-position="topnav" data-link-group="who-we-are">{{ ftl('navigation-v2-more-about-mozilla') }}</a>
