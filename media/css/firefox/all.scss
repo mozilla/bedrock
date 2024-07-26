@@ -69,9 +69,10 @@ $image-path: '/media/protocol/img';
 
 .c-step-name {
     @include text-body-lg;
-    @include bidi(((clear, left, right),));
+    @include bidi(((padding-right, 30px, padding-left, 0),));
     font-weight: bold;
     margin-top: $spacing-xl;
+    position: relative;
 
     &:first-child {
         margin-top: 0;
@@ -83,7 +84,9 @@ $image-path: '/media/protocol/img';
 }
 
 .c-step-icon {
-    @include bidi(((float, right, left),));
+    position: absolute;
+    top: 0;
+    @include bidi(((right, 0, left, auto),));
 }
 
 .c-step-choice {
@@ -109,7 +112,7 @@ $image-path: '/media/protocol/img';
 
     li,
     .release {
-        background: center left / contain no-repeat;
+        background: top left / 1.5em auto no-repeat;
         padding-left: 1.9em;
         margin-bottom: 0.6rem;
     }
