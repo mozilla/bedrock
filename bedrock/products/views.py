@@ -57,10 +57,10 @@ def vpn_landing_page(request):
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["1", "2", "3"]:
+    if entrypoint_variation not in []:
         entrypoint_variation = None
 
-    if entrypoint_experiment not in ["vpn-headlines"]:
+    if entrypoint_experiment not in []:
         entrypoint_experiment = None
 
     if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
