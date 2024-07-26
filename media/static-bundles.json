@@ -431,6 +431,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-129-na.scss"
+      ],
+      "name": "firefox_whatsnew_129_na"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-129-eu.scss"
+      ],
+      "name": "firefox_whatsnew_129_eu"
+    },
+    {
+      "files": [
         "css/firefox/privacy/promise.scss"
       ],
       "name": "firefox-privacy-promise"
@@ -1557,6 +1569,12 @@
         "js/firefox/whatsnew/whatsnew-128-na.js"
       ],
       "name": "firefox_whatsnew_128_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-129-na.js"
+      ],
+      "name": "firefox_whatsnew_129_na"
     },
     {
       "files": [
