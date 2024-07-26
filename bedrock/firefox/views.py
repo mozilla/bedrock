@@ -266,11 +266,12 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
     locale_name = None
     download_url = None
     template_name = "firefox/all/base.html"
+    lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
 
     if product:
         if product_slug.startswith(("mobile", "android", "ios")):
             locale = "en-US"
-            locale_name = "Multiple Languages"
+            locale_name = lang_multi
             download_url = True  # Set to True to avoid trying to generate this later below.
         if product_slug.startswith("mobile"):
             platform = "mobile"
@@ -284,7 +285,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         elif product_slug in ("desktop-release", "desktop-beta") and platform == "win-store":
             platform_name = "Microsoft Store"
             locale = "en-US"
-            locale_name = "Multiple Languages"
+            locale_name = lang_multi
             download_url = {
                 "desktop-release": "https://www.microsoft.com/store/apps/9NZVDKPMR9RD",
                 "desktop-beta": "https://www.microsoft.com/store/apps/9NZW26FRNDLN",
