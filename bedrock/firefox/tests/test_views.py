@@ -431,28 +431,6 @@ class TestFirefoxNew(TestCase):
 
     # end /thanks?s=direct URL - issue 10520
 
-    # begin firefox ms store experiment tests - issue 11090
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_ms_store_exp_v1(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=control")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_ms_store_exp_v2(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=treatment")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download-ms-store.html"]
-
-    # end firefox ms store experiment tests - issue 11090
-
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):

@@ -23,14 +23,6 @@
   {% endif %}
 {% endblock %}
 
-{% set show_firefox_ms_store_exp = switch('experiment-firefox-ms-store', ['en']) and country_code in ["US", "CA"] %}
-
-{% block experiments %}
-  {% if show_firefox_ms_store_exp %}
-    {{ js_bundle('firefox-ms-store-exp') }}
-  {% endif %}
-{% endblock %}
-
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('protocol-card') }}
@@ -97,9 +89,7 @@
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
           <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
-          {% block firefox_primary_download_cta %}
-            {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
-          {% endblock %}
+          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
@@ -394,9 +384,7 @@
           </ul>
         </div>
       </div>
-      {% block firefox_secondary_download_cta %}
-        {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
-      {% endblock %}
+      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
 
     </div>
   </section>
@@ -557,9 +545,7 @@
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
     </div>
-    {% block firefox_tertiary_download_cta %}
-      {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
-    {% endblock %}
+    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
   </section>
 
   <section class="c-support">

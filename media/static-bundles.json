@@ -1340,12 +1340,6 @@
     },
     {
       "files": [
-        "js/firefox/new/desktop/download-ms-store-exp.es6.js"
-      ],
-      "name": "firefox-ms-store-exp"
-    },
-    {
-      "files": [
         "js/base/stub-attribution/stub-attribution.js",
         "js/base/stub-attribution/stub-attribution-init.es6.js"
       ],
