@@ -101,6 +101,7 @@ header {
     th,
     td {
         max-width: 420px;
+        vertical-align: top;
     }
 
     @media #{$mq-md} {
