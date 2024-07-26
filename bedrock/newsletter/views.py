@@ -41,7 +41,7 @@ invalid_email_address = ftl_lazy("newsletters-this-is-not-a-valid-email", ftl_fi
 UNSUB_UNSUBSCRIBED_ALL = 1
 
 
-def set_country(request, token):
+def set_country(request, token=None):
     """Allow a user to set their country"""
     initial = {}
     countrycode = get_country_from_request(request)
@@ -95,7 +95,7 @@ def confirm(request, token):
 
     if success or rate_limit_error:
         qparams["confirm"] = "1"
-        return HttpResponseRedirect(urlparams(reverse("newsletter.existing.token", kwargs={"token": token}), **qparams))
+        return HttpResponseRedirect(urlparams(reverse("newsletter.existing", kwargs={"token": token}), **qparams))
     else:
         if generic_error:
             qparams["error"] = "1"
@@ -135,7 +135,7 @@ def existing(request, token=None):
     @param string token: A UUID that identifies this user to the backend. It's
     sent to users in each newsletter as part of a link to this page, so they
     can manage their subscriptions without needing an account somewhere with
-    userid & password.
+    userid & password. Optional, will look for `nl-token` cookie if not provided.
     """
     locale = l10n_utils.get_locale(request)
 
@@ -286,14 +286,14 @@ def newsletter_subscribe(request):
     return l10n_utils.render(request, "newsletter/index.html", ftl_files=FTL_FILES)
 
 
-def kip_confirm(request, token):
+def kip_confirm(request, token=None):
     """Allow a user to confirm their subscription to the knowledge-is-power newsletter"""
 
     context = {
         "action": f"{settings.BASKET_URL}/news/subscribe/",
         "newsletters": "knowledge-is-power",
         "recovery_url": reverse("newsletter.recovery"),
-        "source_url": reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": token}).replace(f"{token}/", ""),
+        "source_url": reverse("newsletter.knowledge-is-power.confirm.no-token"),
     }
 
     return l10n_utils.render(request, "newsletter/knowledge-is-power-confirm.html", context)
