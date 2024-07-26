@@ -33,7 +33,7 @@ class TestConfirmView(TestCase):
             confirm.return_value = {"status": "ok"}
             rsp = self.client.get(self.url)
             self.assertEqual(302, rsp.status_code)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}?confirm=1"))
+            self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}?confirm=1")
 
     def test_normal_with_query_params(self):
         """Confirm works with a valid token"""
@@ -41,11 +41,9 @@ class TestConfirmView(TestCase):
             confirm.return_value = {"status": "ok"}
             rsp = self.client.get(self.url + "?utm_tracking=oh+definitely+yes&utm_source=malibu")
             self.assertEqual(302, rsp.status_code)
-            self.assertTrue(
-                rsp["Location"].endswith(
-                    f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}"
-                    "?confirm=1&utm_tracking=oh+definitely+yes&utm_source=malibu"
-                )
+            self.assertURLEqual(
+                rsp["Location"],
+                f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}?confirm=1&utm_tracking=oh+definitely+yes&utm_source=malibu",
             )
 
     def test_basket_down(self):
@@ -55,7 +53,7 @@ class TestConfirmView(TestCase):
             rsp = self.client.get(self.url)
             self.assertEqual(302, rsp.status_code)
             confirm.assert_called_with(self.token)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=1"))
+            self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.confirm.thanks')}?error=1")
 
     def test_bad_token(self):
         """If the token is bad, we report the appropriate error"""
@@ -64,7 +62,7 @@ class TestConfirmView(TestCase):
             rsp = self.client.get(self.url)
             self.assertEqual(302, rsp.status_code)
             confirm.assert_called_with(self.token)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=2"))
+            self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.confirm.thanks')}?error=2")
 
 
 class TestNewsletterSubscribe(TestCase):
