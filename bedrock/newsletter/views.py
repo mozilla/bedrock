@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import re
 from html import escape
 
 from django.conf import settings
@@ -19,6 +18,7 @@ import lib.l10n_utils as l10n_utils
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.base.geo import get_country_from_request
+from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
 from bedrock.newsletter.utils import get_newsletters
 from lib.l10n_utils.fluent import ftl, ftl_lazy
@@ -40,12 +40,8 @@ invalid_email_address = ftl_lazy("newsletters-this-is-not-a-valid-email", ftl_fi
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 
-# A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
-# Here's a regex to match a UUID:
-UUID_REGEX = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", re.IGNORECASE)
 
-
-def set_country(request, token):
+def set_country(request, token=None):
     """Allow a user to set their country"""
     initial = {}
     countrycode = get_country_from_request(request)
@@ -68,6 +64,8 @@ def confirm(request, token):
     """
     Confirm subscriptions.
     """
+    token = str(token)
+
     success = generic_error = token_error = rate_limit_error = False
 
     try:
@@ -91,20 +89,22 @@ def confirm(request, token):
 
     # Assume rate limit error means user already confirmed and clicked confirm
     # link twice in quick succession
+    qparams = {}
+    for k, v in request.GET.items():
+        qparams[k] = v
+
     if success or rate_limit_error:
-        qparams = ["confirm=1"]
-
-        if qs := request.META.get("QUERY_STRING", ""):
-            qparams.append(qs)
-
-        return HttpResponseRedirect("{}?{}".format(reverse("newsletter.existing.token", kwargs={"token": token}), "&".join(qparams)))
+        qparams["confirm"] = "1"
+        return HttpResponseRedirect(urlparams(reverse("newsletter.existing", kwargs={"token": token}), **qparams))
     else:
-        qparams = ["error=1"] if generic_error else ["error=2"] if token_error else ["success=1"]
+        if generic_error:
+            qparams["error"] = "1"
+        elif token_error:
+            qparams["error"] = "2"
+        else:
+            qparams["success"] = "1"
 
-        if qs := request.META.get("QUERY_STRING", ""):
-            qparams.append(qs)
-
-        return HttpResponseRedirect("{}?{}".format(reverse("newsletter.confirm.thanks"), "&".join(qparams)))
+        return HttpResponseRedirect(urlparams(reverse("newsletter.confirm.thanks"), **qparams))
 
 
 def confirm_thanks(request):
@@ -135,7 +135,7 @@ def existing(request, token=None):
     @param string token: A UUID that identifies this user to the backend. It's
     sent to users in each newsletter as part of a link to this page, so they
     can manage their subscriptions without needing an account somewhere with
-    userid & password.
+    userid & password. Optional, will look for `nl-token` cookie if not provided.
     """
     locale = l10n_utils.get_locale(request)
 
@@ -149,7 +149,7 @@ def existing(request, token=None):
         "updated_url": reverse("newsletter.updated"),
         "recovery_url": reverse("newsletter.recovery"),
         "did_confirm": request.GET.get("confirm") == "1",
-        "source_url": reverse("newsletter.existing.token", kwargs={"token": ""}),
+        "source_url": reverse("newsletter.existing.no-token"),
         "form": form,
     }
 
@@ -286,14 +286,14 @@ def newsletter_subscribe(request):
     return l10n_utils.render(request, "newsletter/index.html", ftl_files=FTL_FILES)
 
 
-def kip_confirm(request, token):
+def kip_confirm(request, token=None):
     """Allow a user to confirm their subscription to the knowledge-is-power newsletter"""
 
     context = {
         "action": f"{settings.BASKET_URL}/news/subscribe/",
         "newsletters": "knowledge-is-power",
         "recovery_url": reverse("newsletter.recovery"),
-        "source_url": reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": ""}),
+        "source_url": reverse("newsletter.knowledge-is-power.confirm.no-token"),
     }
 
     return l10n_utils.render(request, "newsletter/knowledge-is-power-confirm.html", context)
