@@ -178,7 +178,6 @@ else:
         "mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
-        "creativecommons.org",
         "images.ctfassets.net",
     ]
     _csp_script_src = [
@@ -270,7 +269,6 @@ if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
     # CSP directive updates we're testing that we hope to move to the enforced policy.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["img-src"].remove("creativecommons.org")
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
