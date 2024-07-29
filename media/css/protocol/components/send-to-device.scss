@@ -41,6 +41,12 @@ $image-path: '/media/protocol/img';
     .more {
         color: inherit;
     }
+
+    .loading-spinner {
+        display: none;
+        height: 36px;
+        background: url('/media/img/icons/loading.svg') no-repeat center;
+    }
 }
 
 // horizontal

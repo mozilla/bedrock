@@ -4,7 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import Spinner from '../libs/spin.min';
 import FormUtils from '../newsletter/form-utils.es6';
 
 const SendToDevice = function (id) {
@@ -27,23 +26,6 @@ const SendToDevice = function (id) {
     this.spinnerTarget = this.form.querySelector('.loading-spinner');
     this.sendAnotherLink = this.form.querySelector('.send-another');
     this.formHeading = this.widget.querySelector('.form-heading');
-    this.spinnerColor =
-        this.widget.getAttribute('data-spinner-color') || '#000';
-
-    this.spinner = new Spinner({
-        lines: 12, // The number of lines to draw
-        length: 4, // The length of each line
-        width: 2, // The line thickness
-        radius: 4, // The radius of the inner circle
-        corners: 0, // Corner roundness (0..1)
-        rotate: 0, // The rotation offset
-        direction: 1, // 1: clockwise, -1: counterclockwise
-        color: this.spinnerColor, // #rgb or #rrggbb or array of colors
-        speed: 1, // Rounds per second
-        trail: 60, // Afterglow percentage
-        shadow: false, // Whether to render a shadow
-        hwaccel: true // Whether to use hardware acceleration
-    });
 };
 
 /**
@@ -116,7 +98,6 @@ SendToDevice.prototype.disableForm = function () {
     this.input.disabled = true;
     this.form.classList.add('loading');
     this.spinnerTarget.style.display = 'block';
-    this.spinner.spin(this.spinnerTarget);
 };
 
 SendToDevice.prototype.validateFields = function () {

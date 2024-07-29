@@ -4,8 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import Spinner from '../libs/spin.min';
-
 import FormUtils from './form-utils.es6';
 
 const FXA_NEWSLETTERS = [
@@ -745,23 +743,7 @@ const NewsletterManagementForm = {
 
                 // Display a loading spinner whilst form data is being fetched.
                 const spinnerTarget = _form.querySelector('.loading-spinner');
-                const spinner = new Spinner({
-                    lines: 12, // The number of lines to draw
-                    length: 4, // The length of each line
-                    width: 2, // The line thickness
-                    radius: 4, // The radius of the inner circle
-                    corners: 0, // Corner roundness (0..1)
-                    rotate: 0, // The rotation offset
-                    direction: 1, // 1: clockwise, -1: counterclockwise
-                    color: '#000', // #rgb or #rrggbb or array of colors
-                    speed: 1, // Rounds per second
-                    trail: 60, // Afterglow percentage
-                    shadow: false, // Whether to render a shadow
-                    hwaccel: true // Whether to use hardware acceleration
-                });
-
                 spinnerTarget.classList.remove('hidden');
-                spinner.spin(spinnerTarget);
 
                 // Fetch all the required data needed to render the form.
                 return window.Promise.all([

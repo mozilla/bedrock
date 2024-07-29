@@ -39,10 +39,6 @@ describe('send-to-device.js', function () {
 
         document.body.insertAdjacentHTML('beforeend', formMarkup);
 
-        // stub out spinner.js
-        window.Spinner = sinon.stub();
-        window.Spinner.prototype.spin = sinon.stub();
-
         // stub out google tag manager
         window.dataLayer = sinon.stub();
         window.dataLayer.push = sinon.stub();
