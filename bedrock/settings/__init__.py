@@ -178,7 +178,6 @@ else:
         "mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
-        "creativecommons.org",
         "images.ctfassets.net",
     ]
     _csp_script_src = [
