@@ -30,6 +30,7 @@ const options = {
     ignoreErrors: [
         '$ is not defined',
         'Event `Event` (type=unhandledrejection) captured as promise rejection',
+        'NS_ERROR_ABORT',
         'NetworkError when attempting to fetch resource',
         'Non-Error promise rejection captured'
     ]
