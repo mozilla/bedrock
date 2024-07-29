@@ -130,14 +130,12 @@ if IS_POCKET_MODE:
     _csp_script_src = [
         # TODO fix use of OptanonWrapper() so that we don't need this
         csp.constants.UNSAFE_INLINE,
-        # TODO onetrust cookie consent breaks
-        # blocked without unsafe-eval. Find a way to remove that.
-        "www.mozilla.org",
+        # TODO onetrust cookie consent needs this, explore ways of fixing
         csp.constants.UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
-        "assets.getpocket.com",  # allow Pocket Snowplow analytics
+        "www.mozilla.org",
     ]
     _csp_style_src = [
         csp.constants.UNSAFE_INLINE,
@@ -154,7 +152,6 @@ if IS_POCKET_MODE:
         "o1069899.ingest.sentry.io",
         "cdn.cookielaw.org",
         "privacyportal.onetrust.com",
-        "getpocket.com",  # Pocket Snowplow
         "geolocation.onetrust.com",
     ]
     _csp_connect_extra_for_dev = [
