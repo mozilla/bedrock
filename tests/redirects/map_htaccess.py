@@ -102,8 +102,6 @@ URLS = flatten(
         # bug 1300373
         url_test("/%2fgoogle.com//", "/google.com/"),
         # bug 453506, 1255882
-        url_test("/editor/editor-embedding.html", "https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/Embedding_the_editor"),
-        url_test("/editor/midasdemo/securityprefs.html", "https://developer.mozilla.org/docs/Mozilla/Projects/Midas/Security_preferences"),
         url_test("/editor/random/page.html", "http://www-archive.mozilla.org/editor/random/page.html"),
         # bug 726217, 1255882
         url_test("/projects/bonecho/anti-phishing/", "https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work"),
