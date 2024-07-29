@@ -8,6 +8,9 @@
 {% from "products/vpn/includes/macros.html" import vpn_nav_cta_refresh, vpn_conditional_cta_refresh with context %}
 
 {% extends "products/vpn/base.html" %}
+{% block extra_meta %}
+  <meta http-equiv="origin-trial" content="A19xS8UA1d0lgoVKEygJldabL1yWUWRfHJdPeWhwJbQ0bTZochXMxxWna+SNCTBFkgEVqOmbkEwnqleV8XVMftUAAABXeyJvcmlnaW4iOiJodHRwczovL3d3dy5tb3ppbGxhLm9yZyIsImZlYXR1cmUiOiJQcml2YXRlQXR0cmlidXRpb24iLCJleHBpcnkiOjE3NTI3MDMyMDB9">
+{% endblock %}
 
 {# Issue 13019: Avoid duplicate content for English pages. #}
 {%- block page_title_full -%}
@@ -61,6 +64,8 @@
   {% set headline_exp_v2_sub = 'Switch on complete web activity and location protection from hackers and trackers.' %}
   {% set headline_exp_v3_sub = 'Protect your digital activity and physical location with just one click.' %}
 {% endif %}
+
+{% set show_vpn_ppa_exp = switch('experiment-vpn-ppa', ['en-US']) and country_code == "US" %}
 
 {% block content %}
 <main>
@@ -407,4 +412,7 @@
   {% endif %}
 
   {{ js_bundle('data_begincheckout') }}
+  {% if show_vpn_ppa_exp %}
+    {{ js_bundle('mozilla-vpn-ppa-experiment') }}
+  {% endif %}
 {% endblock %}
