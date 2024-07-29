@@ -175,7 +175,6 @@ else:
     ]
     _csp_img_src = [
         "data:",
-        "mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "creativecommons.org",
