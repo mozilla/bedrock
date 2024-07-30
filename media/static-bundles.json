@@ -1256,8 +1256,7 @@
       "files": [
         "js/base/site.js",
         "js/base/consent/privacy-helpers.js",
-        "js/base/mozilla-cookie-helper.js",
-        "js/base/core-datalayer-page-id.js"
+        "js/base/mozilla-cookie-helper.js"
       ],
       "name": "site"
     },
@@ -1616,8 +1615,8 @@
     },
     {
       "files": [
-        "js/base/core-datalayer.js",
-        "js/base/core-datalayer-init.js",
+        "js/base/experiment-amo.es6.js",
+        "js/base/experiment-amo-init.es6.js",
         "js/base/datalayer-productdownload-init.es6.js"
       ],
       "name": "data"
