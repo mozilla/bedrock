@@ -56,7 +56,7 @@ const SentryConsent = {
                 browserApiErrorsIntegration(),
                 dedupeIntegration(),
                 globalHandlersIntegration(),
-                httpContextIntegration,
+                httpContextIntegration(),
                 inboundFiltersIntegration(options)
             ]
         });
