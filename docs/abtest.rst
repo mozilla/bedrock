@@ -100,11 +100,6 @@ The variable values may be provided by the analytics team.
 .. code-block:: javascript
 
     if (href.indexOf('v=a') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'de-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
         // GA4
         window.dataLayer.push({
             event: 'experiment_view',
@@ -112,11 +107,6 @@ The variable values may be provided by the analytics team.
             variant: 'de-page',
         });
     } else if (href.indexOf('v=b') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'campaign-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
         // GA4
         window.dataLayer.push({
             event: 'experiment_view',

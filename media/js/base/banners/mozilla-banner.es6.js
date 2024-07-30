@@ -62,13 +62,6 @@ MozBanner.close = function () {
     // Set a cookie to not display it again.
     MozBanner.setCookie(MozBanner.id);
 
-    // UA
-    window.dataLayer.push({
-        event: 'in-page-interaction',
-        eLabel: 'Banner Dismissal',
-        'data-banner-name': MozBanner.id,
-        'data-banner-dismissal': '1'
-    });
     // GA4
     window.dataLayer.push({
         event: 'widget_action',

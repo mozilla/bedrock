@@ -93,7 +93,7 @@
           ) %}
           <div class="l-columns-two">
             <div class="l-column-first">
-              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+              <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
                 {{ ftl('vpn-shared-waitlist-link') }}
               </a>
 
@@ -173,7 +173,7 @@
       ) %}
         <p>{{ ftl('vpn-shared-features-full-list-servers', url='https://mullvad.net/servers/', attrs='target="_blank" rel="external noopener noreferrer"') }}</p>
 
-        <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
+        <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-text="Scroll to pricing" data-cta-position="secondary">
           {{ ftl('vpn-shared-subscribe-link') }}
         </a>
 
@@ -198,7 +198,7 @@
         class_name='vpn-content-media-left-half vpn-more-countries-coming-soon'
       ) %}
 
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
+        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="secondary">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
 
@@ -229,7 +229,7 @@
             {{ ftl('vpn-add-relay-to-protect', url='https://relay.firefox.com/premium/' + _params)}}
           </p>
 
-          <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="secondary">
+          <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-text="Scroll to pricing" data-cta-position="secondary">
             {{ ftl('vpn-shared-get-vpn-plus-relay') }}
           </a>
         {% endcall %}
@@ -326,14 +326,14 @@
         <h3>{{ ftl('vpn-landing-faq-download-heading') }}</h3>
       </summary>
       <p class="vpn-faq-item-detail">
-        {% set attrs = 'href="' ~ url('products.vpn.download') ~ '" data-cta-type="link" data-cta-text="Download Page"' %}
+        {% set attrs = 'href="' ~ url('products.vpn.download') ~ '" data-cta-text="Download Page"' %}
         {{ ftl('vpn-landing-faq-download-desc', attrs=attrs) }}
       </p>
     </details>
     {% endif %}
 
     <footer class="vpn-faq-footer">
-      <a class="vpn-faq-footer-link mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-private-network-vpn{{ _params }}&utm_content=vpn-faq-see-more-link" data-cta-type="link" data-cta-text="FAQ See More">
+      <a class="vpn-faq-footer-link mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-private-network-vpn{{ _params }}&utm_content=vpn-faq-see-more-link" data-cta-text="FAQ See More">
         {{ ftl('vpn-landing-faq-link') }}
       </a>
     </footer>
