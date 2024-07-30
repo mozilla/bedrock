@@ -16,3 +16,16 @@ updates:
     labels:
       - Backend
       - dependencies
+  - package-ecosystem: npm
+    directory: '/tests/playwright'
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    labels:
+      - Frontend
+      - dependencies
+    groups:
+      applies-to: version-updates
+      update-types:
+        - minor
+        - patch
