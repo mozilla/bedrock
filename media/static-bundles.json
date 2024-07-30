@@ -1667,13 +1667,6 @@
     },
     {
       "files": [
-        "js/libs/modernizr.custom.inputtypes.js",
-        "js/press/speaker-request.js"
-      ],
-      "name": "press_speaker_request"
-    },
-    {
-      "files": [
         "js/pocket/mobile-nav.es6.js",
         "js/pocket/mobile-nav-init.es6.js"
       ],
