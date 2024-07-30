@@ -30,7 +30,8 @@ const options = {
     ignoreErrors: [
         '$ is not defined',
         'Event `Event` (type=unhandledrejection) captured as promise rejection',
-        'NS_ERROR_ABORT',
+        'NS_ERROR_ABORT', // https://mozilla.sentry.io/share/issue/3a480856d1784ecdb3d8bbd647df0a7b/
+        'NS_ERROR_FAILURE', // https://mozilla.sentry.io/share/issue/6361b063ea0d4528ac0ef07e181fbb96/
         'NetworkError when attempting to fetch resource',
         'Non-Error promise rejection captured'
     ]
