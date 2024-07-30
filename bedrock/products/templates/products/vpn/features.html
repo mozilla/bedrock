@@ -79,7 +79,7 @@
         </div>
       </li>
       <li class="c-feature-block">
-        {% set wireguard_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://mullvad.net/help/why-wireguard/')) %}
+        {% set wireguard_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://mullvad.net/help/why-wireguard/')) %}
 
         <img src="{{ static('img/products/vpn/features/icons/speed.svg') }}" width="120" alt="">
         <div class="c-feature-block-detail">
@@ -172,7 +172,7 @@
         base_el='li'
       ) %}
         <p>
-          {% set feature_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/multi-hop-encrypt-your-data-twice-enhanced-security' + _params)) %}
+          {% set feature_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/multi-hop-encrypt-your-data-twice-enhanced-security' + _params)) %}
           {{ ftl('vpn-features-multi-hop-feature', feature=feature_url) }}
         </p>
       {% endcall %}
@@ -192,7 +192,7 @@
         base_el='li'
       ) %}
         <p>
-          {% set dns_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/how-do-i-change-my-dns-settings' + _params)) %}
+          {% set dns_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/how-do-i-change-my-dns-settings' + _params)) %}
 
           {{ ftl('vpn-features-keep-traffic-protected', dns=dns_url) }}
         </p>
@@ -288,7 +288,7 @@
     media_after=True
   ) %}
 
-    {% set containers_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn' + _params)) %}
+    {% set containers_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn' + _params)) %}
 
     <h2>{{ ftl('vpn-features-set-different-locations') }}</h2>
 
@@ -337,7 +337,7 @@
         base_el='li'
       ) %}
         <p>
-          {% set privacy_notice = 'href="%s" data-cta-type="link"'|safe|format(url('privacy.notices.subscription-services')) %}
+          {% set privacy_notice = 'href="%s" '|safe|format(url('privacy.notices.subscription-services')) %}
 
           {{ ftl('vpn-features-simply-put-we-dont', privacy=privacy_notice) }}
         </p>
@@ -358,7 +358,7 @@
         base_el='li'
       ) %}
         <p>
-           {% set github_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://github.com/mozilla-mobile/mozilla-vpn-client')) %}
+           {% set github_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://github.com/mozilla-mobile/mozilla-vpn-client')) %}
 
           {{ ftl('vpn-features-made-with-open-source-code', github=github_url) }}
         </p>
@@ -379,7 +379,7 @@
         base_el='li'
       ) %}
         <p>
-          {% set report_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://blog.mozilla.org/mozilla/news/mozilla-vpn-completes-independent-security-audit-by-cure53' + _params)) %}
+          {% set report_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://blog.mozilla.org/mozilla/news/mozilla-vpn-completes-independent-security-audit-by-cure53' + _params)) %}
 
           {{ ftl('vpn-features-weve-been-audited', report=report_url) }}
         </p>
@@ -400,7 +400,7 @@
         base_el='li'
       ) %}
         <p>
-          {% set mofo_url = 'href="%s" data-cta-type="link" rel="external noopener" target="_blank"'|safe|format(('https://foundation.mozilla.org/' + _params)) %}
+          {% set mofo_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://foundation.mozilla.org/' + _params)) %}
 
           {{ ftl('vpn-features-were-backed-by-mofo', mofo=mofo_url) }}
         </p>

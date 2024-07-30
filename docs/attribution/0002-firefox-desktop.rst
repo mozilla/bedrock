@@ -8,6 +8,8 @@
 Firefox desktop attribution
 ===========================
 
+TODO: add something about `data-download-version` being checked to apened stub attribution.
+
 Firefox Desktop Attribution (often referred to as Stub Attribution) is a system
 that enables Mozilla to link website attributable referral data (including Google
 Analytics data) to a user's Firefox profile. When a website visitor lands on

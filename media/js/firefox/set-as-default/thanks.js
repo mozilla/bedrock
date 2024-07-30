@@ -27,8 +27,6 @@
 
     function onDefaultSwitch() {
         document.querySelector('main').classList.add('is-firefox-default');
-        // UA
-        trackEvent('default-changed', 'success');
         // GA4
         window.dataLayer.push({
             event: 'default_browser_set'
@@ -50,15 +48,6 @@
             });
     }
 
-    // UA
-    function trackEvent(action, label) {
-        window.dataLayer.push({
-            event: 'in-page-interaction',
-            eAction: action,
-            eLabel: label
-        });
-    }
-
     function isSupported() {
         return Mozilla.Client.isFirefoxDesktop && 'Promise' in window;
     }
@@ -78,8 +67,6 @@
                 document
                     .querySelector('main')
                     .classList.add('is-firefox-default');
-                // UA
-                trackEvent('visited', 'firefox-default');
                 // GA4
                 window.dataLayer.push({
                     event: 'dimension_set',
@@ -101,8 +88,6 @@
                         timer = setInterval(checkForDefaultSwitch, 1000);
                     }, 1500);
                 }
-                // UA
-                trackEvent('visited', 'firefox-not-default');
                 // GA4
                 window.dataLayer.push({
                     event: 'dimension_set',

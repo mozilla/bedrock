@@ -520,7 +520,7 @@ def test_LinkRenderer__mozilla_link(mock_get_current_request):
     output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
     expected = (
         '<a href="https://subdomain.mozilla.org/test/page/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=TEST" '
-        'data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
+        'data-cta-text="Example" rel="external noopener">Example</a>'
     )
 
     assert output == expected
@@ -534,10 +534,7 @@ def test_LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
     mozilla_mock_hyperlink_node = deepcopy(mock_hyperlink_node)
     mozilla_mock_hyperlink_node["data"]["uri"] = "https://mozilla.org/test/page/?utm_source=UTMTEST"
     output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
-    expected = (
-        '<a href="https://mozilla.org/test/page/?utm_source=UTMTEST" '
-        'data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
-    )
+    expected = '<a href="https://mozilla.org/test/page/?utm_source=UTMTEST" ' 'data-cta-text="Example" rel="external noopener">Example</a>'
 
     assert output == expected
 
@@ -549,7 +546,7 @@ def test_LinkRenderer__non_mozilla():
                 "text": TextRenderer,
             }
         ).render(mock_hyperlink_node)
-        == '<a href="https://example.com" data-cta-type="link" data-cta-text="Example" rel="external noopener">Example</a>'
+        == '<a href="https://example.com" data-cta-text="Example" rel="external noopener">Example</a>'
     )
 
 

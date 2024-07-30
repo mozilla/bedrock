@@ -197,7 +197,7 @@
     <div class="c-sub-navigation-content">
       <h2 class="c-sub-navigation-title">
         {% if title.href %}
-          <a href="{{ title.href }}" data-link-type="nav" data-link-position="subnav" {% if title.cta_name %}data-link-text="{{ title.cta_name }}"{% endif %}>
+          <a href="{{ title.href }}" data-link-position="subnav" {% if title.cta_name %}data-link-text="{{ title.cta_name }}"{% endif %}>
             {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
             {{ title.text }}
           </a>
@@ -214,7 +214,6 @@
         <li class="c-sub-navigation-item">
           <a
             href="{{ link.href }}"
-            data-link-type="nav"
             data-link-position="subnav"
             data-link-text="{{ link.cta_name }}"
             {% if current_page == link.href %} aria-current="page"{% endif %}

@@ -17,19 +17,19 @@
             <div class="moz24-footer-refresh-social-wrapper">
               <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-mozilla') }}</h2>
               <ul class="moz24-footer-links-social">
-                <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-twitter') }}<span> (@mozilla)</span></a></li>
-                <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-type="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-type="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
-                <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-type="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
-                <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-type="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
+                <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-twitter') }}<span> (@mozilla)</span></a></li>
+                <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-position="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-position="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
+                <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-position="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
+                <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-position="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
               </ul>
             </div>
             <div class="moz24-footer-refresh-social-wrapper">
               <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-firefox') }}</h2>
               <ul class="moz24-footer-links-social">
-                <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-refresh-twitter') }}<span> (@firefox)</span></a></li>
-                <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
-                <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
+                <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-refresh-twitter') }}<span> (@firefox)</span></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-position="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
+                <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-position="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
               </ul>
             </div>
           </section>
@@ -40,16 +40,16 @@
               {{ ftl('footer-refresh-company') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-company">
-              <li><a href="{{ url('mozorg.about.leadership.index') }}" data-link-type="footer" data-link-text="footer-refresh-leadership = Leadership">{{ ftl('footer-refresh-leadership') }}</a></li>
-              <li><a href="https://blog.mozilla.org/category/mozilla/news/?{{ utm_params }}&utm_content=company" data-link-type="footer" data-link-text="Press Center">{{ ftl('footer-refresh-press-center') }}</a></li>
-              <li><a href="{{ url('careers.home') }}" data-link-type="footer" data-link-text="Careers">{{ ftl('footer-refresh-careers') }}</a></li>
-              <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-text="Contact">{{ ftl('footer-refresh-contact') }}</a></li>
+              <li><a href="{{ url('mozorg.about.leadership.index') }}" data-link-position="footer" data-link-text="Leadership">{{ ftl('footer-refresh-leadership') }}</a></li>
+              <li><a href="https://blog.mozilla.org/category/mozilla/news/?{{ utm_params }}&utm_content=company" data-link-position="footer" data-link-text="Press Center">{{ ftl('footer-refresh-press-center') }}</a></li>
+              <li><a href="{{ url('careers.home') }}" data-link-position="footer" data-link-text="Careers">{{ ftl('footer-refresh-careers') }}</a></li>
+              <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-position="footer" data-link-text="Contact">{{ ftl('footer-refresh-contact') }}</a></li>
               <li>
 
               </li>
             {% if LANG == "de" %}
               {# Legal requirement in Germany see issue #14240 #}
-              <li><a href="{{ url('legal.impressum') }}" data-link-type="footer" data-link-text="Impressum">Impressum</a></li>
+              <li><a href="{{ url('legal.impressum') }}" data-link-position="footer" data-link-text="Impressum">Impressum</a></li>
             {% endif %}
             </ul>
           </section>
@@ -59,9 +59,9 @@
               {{ ftl('footer-refresh-support') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-support">
-              <li><a href="https://support.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="Product Help">{{ ftl('footer-refresh-product-help', fallback='footer-refresh-support') }}</a></li>
-              <li><a href="https://bugzilla.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="File a Bug">{{ ftl('footer-refresh-file-a-bug') }}</a></li>
-              <li><a href="https://pontoon.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-type="footer" data-link-text="Localise Mozilla">{{ ftl('footer-refresh-localize-mozilla') }}</a></li>
+              <li><a href="https://support.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-position="footer" data-link-text="Product Help">{{ ftl('footer-refresh-product-help', fallback='footer-refresh-support') }}</a></li>
+              <li><a href="https://bugzilla.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-position="footer" data-link-text="File a Bug">{{ ftl('footer-refresh-file-a-bug') }}</a></li>
+              <li><a href="https://pontoon.mozilla.org/?{{ utm_params }}&utm_content=support" data-link-position="footer" data-link-text="Localise Mozilla">{{ ftl('footer-refresh-localize-mozilla') }}</a></li>
             </ul>
           </section>
 
@@ -70,9 +70,9 @@
               {{ ftl('footer-refresh-resources') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-resources">
-              <li><a href="{{ url('mozorg.advertising.landing') }}" data-link-type="footer" data-link-text="Advertise with Mozilla">{{ ftl('footer-refresh-advertise') }}</a></li>
-              <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-type="footer" data-link-text="Brand Standards">{{ ftl('footer-refresh-brand-standards') }}</a></li>
-              <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-type="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
+              <li><a href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Advertise with Mozilla">{{ ftl('footer-refresh-advertise') }}</a></li>
+              <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-position="footer" data-link-text="Brand Standards">{{ ftl('footer-refresh-brand-standards') }}</a></li>
+              <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
             </ul>
           </section>
 
@@ -81,10 +81,10 @@
               {{ ftl('footer-refresh-developers') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-developers">
-              <li><a href="{{ url('firefox.developer.index') }}" data-link-type="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
-              <li><a href="{{ url('firefox.enterprise.index') }}" data-link-type="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
-              <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-type="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
-              <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-type="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn') }}</a></li>
+              <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
+              <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
+              <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-position="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
+              <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn') }}</a></li>
             </ul>
           </section>
         </div>
@@ -104,21 +104,21 @@
     <nav class="moz24-footer-secondary">
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
-          {% set moco_link = 'href="%s" data-link-type="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-type="footer" data-link-text="Mozilla Foundation"'|safe %}
+          {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
+          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
           {{ ftl('footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
           {{ ftl('footer-refresh-portions-of-this-content', href='href="%s"'|safe|format(url('foundation.licensing.website-content')), current_year=current_year|string) }}
         </p>
         <ul class="moz24-footer-terms">
-          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-text="Privacy">{{ ftl('footer-refresh-websites-privacy-notice') }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}" data-link-position="footer" data-link-text="Privacy">{{ ftl('footer-refresh-websites-privacy-notice') }}</a></li>
           <li>
             {# Link to /privacy/websites/cookie-settings/ is a legal requirement and should not be removed. It must be present on every page (Issue 14213). #}
-            <a href="{{ url('privacy.cookie-settings') }}" data-link-type="footer" data-link-text="Cookies">{{ ftl('footer-refresh-websites-cookies') }}</a>
+            <a href="{{ url('privacy.cookie-settings') }}" data-link-position="footer" data-link-text="Cookies">{{ ftl('footer-refresh-websites-cookies') }}</a>
           </li>
-          <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-text="Legal">{{ ftl('footer-refresh-websites-legal') }}</a></li>
-          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-refresh-community-participation-guidelines') }}</a></li>
+          <li><a href="{{ url('legal.index') }}" data-link-position="footer" data-link-text="Legal">{{ ftl('footer-refresh-websites-legal') }}</a></li>
+          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-position="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-refresh-community-participation-guidelines') }}</a></li>
           {% if ftl_has_messages('footer-about-this-site') %}
-            <li><a href="{{ url('mozorg.about.this-site') }}" data-link-type="footer" data-link-text="About this site">{{ ftl('footer-refresh-about-this-site') }}</a></li>
+            <li><a href="{{ url('mozorg.about.this-site') }}" data-link-position="footer" data-link-text="About this site">{{ ftl('footer-refresh-about-this-site') }}</a></li>
           {% endif %}
         </ul>
       </div>

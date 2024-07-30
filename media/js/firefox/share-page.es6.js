@@ -25,13 +25,6 @@ function copyText() {
         copyButtonText.style.display = 'block';
     }, 2500);
 
-    // UA
-    window.dataLayer.push({
-        event: 'in-page-interaction',
-        eAction: 'copy',
-        eLabel: 'Copy and share'
-    });
-
     // GA4
     window.dataLayer.push({
         event: 'widget_action',

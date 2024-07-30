@@ -52,7 +52,7 @@
       <header class="c-pricing-main-header">
         <h1 class="c-section-title">{{ ftl('vpn-pricing-vpn-not-available') }}</h1>
 
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-button">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-button">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </header>
@@ -73,8 +73,8 @@
     </details>
 
     <details id="faq-information" class="c-faq-item mzp-is-anchor-link">
-      {% set privacy_principles = 'href="%s" data-cta-text="Privacy principles" data-cta-type="link"'|safe|format(url('privacy.principles')) %}
-      {% set privacy_notice = 'href="%s" data-cta-text="Privacy notice" data-cta-type="link"'|safe|format(url('privacy.notices.subscription-services')) %}
+      {% set privacy_principles = 'href="%s" data-cta-text="Privacy principles" '|safe|format(url('privacy.principles')) %}
+      {% set privacy_notice = 'href="%s" data-cta-text="Privacy notice" '|safe|format(url('privacy.notices.subscription-services')) %}
 
       <summary class="c-faq-item-heading">
         <h3>{{ ftl('vpn-pricing-what-information') }}</h3>
@@ -84,7 +84,7 @@
 
     <details id="faq-subscriptions" class="c-faq-item mzp-is-anchor-link">
 
-      {% set manage_url = 'href="%s" data-cta-text="Manage VPN" data-cta-type="link"'|safe|format(('https://vpn.mozilla.org/r/vpn/subscription' + _params)) %}
+      {% set manage_url = 'href="%s" data-cta-text="Manage VPN" '|safe|format(('https://vpn.mozilla.org/r/vpn/subscription' + _params)) %}
 
       <summary class="c-faq-item-heading">
         <h3>{{ ftl('vpn-pricing-how-do-i-manage') }}</h3>

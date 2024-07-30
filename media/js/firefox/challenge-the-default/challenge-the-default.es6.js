@@ -49,13 +49,6 @@ for (let index = 0; index < summaries.length; index++) {
             }
 
             if (!parent.hasAttribute('open')) {
-                // UA
-                window.dataLayer.push({
-                    event: 'in-page-interaction',
-                    eAction: 'Open details',
-                    eLabel: label
-                });
-
                 // GA4
                 window.dataLayer.push({
                     event: 'widget_action',
@@ -87,12 +80,6 @@ kittenButton.addEventListener(
             onDestroy: () => {
                 kittenButton.focus();
             }
-        });
-
-        // UA
-        window.dataLayer.push({
-            event: 'in-page-interaction',
-            eAction: 'Kitten modal'
         });
 
         // GA4
@@ -145,11 +132,6 @@ for (let index = 0; index < toggles.length; index++) {
                 input.parentElement.classList.toggle('animate-slide');
             }
             checkToggles();
-            // UA
-            window.dataLayer.push({
-                event: 'in-page-interaction',
-                eAction: 'Toggle change'
-            });
             // GA4
             window.dataLayer.push({
                 event: 'widget_action',
@@ -179,11 +161,6 @@ heroClose.addEventListener(
             heroEasterEgg.classList.toggle('hidden');
         }, 4500);
 
-        // UA
-        window.dataLayer.push({
-            event: 'in-page-interaction',
-            eAction: 'Hero close'
-        });
         // GA4
         window.dataLayer.push({
             event: 'widget_action',
@@ -216,11 +193,6 @@ function isWednesday() {
         wednesdayWrapper.classList.remove('animate-wednesday');
     }, 5000);
 
-    // UA
-    window.dataLayer.push({
-        event: 'in-page-interaction',
-        eAction: 'Wednesday Lizard View'
-    });
     // GA4
     window.dataLayer.push({
         event: 'widget_action',

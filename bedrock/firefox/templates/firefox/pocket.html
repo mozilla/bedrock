@@ -45,7 +45,7 @@
       An Award-Winning App From Firefox
     </h1>
     <p>Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.</p>
-    <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}</p>
+    <p>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text='Try Pocket Now', optional_parameters={'s': _source}, optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'pocket', 'data-cta-position': 'primary'}) }}</p>
   {% endcall %}
 
   {% call split(
@@ -114,7 +114,7 @@
         },
         optional_attributes={
           'data-cta-text': 'Try Pocket Now',
-          'data-cta-type': 'activate pocket',
+          'data-cta-type': 'pocket',
           'data-cta-position': 'secondary'
         }
       ) }}
