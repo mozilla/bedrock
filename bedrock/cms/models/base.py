@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 
 from wagtail.models import Page as WagtailBasePage
+from wagtail_localize.fields import SynchronizedField
 
 from lib import l10n_utils
 
@@ -31,6 +32,13 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         2) Apply `never_cache` headers to the `wagtail.Page` class's
         `serve_password_required_response` method, via the @method_decorator above
     """
+
+    # Make the `slug` field 'synchronised', so it automatically gets copied over to
+    # every localized variant of the page and shouldn't get sent for translation.
+    # See https://wagtail-localize.org/stable/how-to/field-configuration/
+    override_translatable_fields = [
+        SynchronizedField("slug"),
+    ]
 
     class Meta:
         abstract = True
