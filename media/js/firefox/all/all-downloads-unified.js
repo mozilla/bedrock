@@ -263,14 +263,12 @@
         url,
         product,
         platform,
-        language,
         element
     ) {
         var el = element || downloadInfoButton;
         el.href = url;
         el.setAttribute('data-display-name', product.label);
         el.setAttribute('data-download-version', platform.id);
-        el.setAttribute('data-download-language', language.id);
 
         if (/^android/.test(platform.id)) {
             el.setAttribute('data-download-os', 'Android');

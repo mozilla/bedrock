@@ -13,7 +13,7 @@ describe('core-datalayer.js', function () {
     describe('pageHasDownload', function () {
         it('will return "true" when download button is present on page.', function () {
             const downloadMarkup =
-                '<a class="download" href="#" data-link-type="download" data-download-os="Desktop">';
+                '<a class="download" href="#" data-link-type="download" data-cta-type="firefox">';
 
             document.body.insertAdjacentHTML('beforeend', downloadMarkup);
             expect(Mozilla.Analytics.pageHasDownload()).toBe('true');
