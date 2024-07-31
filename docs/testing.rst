@@ -130,7 +130,7 @@ browser using the following command:
 Running Playwright tests
 ========================
 
-Playwright test dependencies are installed via NPN but are not included in the
+Playwright test dependencies are installed via NPM but are not included in the
 ``make preflight`` command along with bedrock's core dependencies. This is because
 the dependencies are not required to run the site, and also include several large
 binary files for each headless browser engine.
