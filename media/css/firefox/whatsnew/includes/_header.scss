@@ -38,7 +38,7 @@ $image-path: '/media/protocol/img';
 
 .c-page-header-logo-fx {
     @include image-replaced;
-    background: url('/media/img/firefox/whatsnew/logo-word-hor.svg') no-repeat;
+    background: url('/media/img/logos/firefox/logo-word-hor.svg') no-repeat;
     @include background-size(120px, 40px);
     width: 120px;
     height: 40px;
