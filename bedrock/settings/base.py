@@ -2101,14 +2101,21 @@ if WAGTAIL_ENABLE_ADMIN:
 
 def lazy_wagtail_langs():
     enabled_wagtail_langs = [
-        ("en-US", "English"),
-        # TODO: expand to other locales supported by our translation vendor
-        # ("de", "Deutsch"),
-        ("fr", "Français"),
-        # ("es", "Español"),
-        # ("es", "Español mexicano"),
-        # ("it", "Italiano"),
-        # more to come
+        # Notes:
+        # 1) The labels are only used internally so can be in English
+        # 2) These are the Bedrock-side lang codes. They are mapped to
+        # Smartling-specific ones in the WAGTAIL_LOCALIZE_SMARTLING settings, below
+        ("en-US", "English (US)"),
+        ("de", "German"),
+        ("fr", "French"),
+        ("es-ES", "Spanish (Spain)"),
+        ("it", "Italian"),
+        ("ja", "Japanese"),
+        ("nl", "Dutch (Netherlands)"),
+        ("pl", "Polish"),
+        ("pt-BR", "Portuguese (Brazil)"),
+        ("ru", "Russian"),
+        ("zh-CN", "Chinese (China-Simplified)"),
     ]
     enabled_language_codes = [x[0] for x in LANGUAGES]
     retval = [wagtail_lang for wagtail_lang in enabled_wagtail_langs if wagtail_lang[0] in enabled_language_codes]
@@ -2144,6 +2151,16 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         default="5",
         parser=float,
     ),  # Timeout in seconds for requests to the Smartling API
+    "LOCALE_TO_SMARTLING_LOCALE": {
+        "de": "de-DE",
+        "fr": "fr-FR",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "nl": "nl-NL",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+    },
+    "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
 }
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
