@@ -83,10 +83,10 @@ defined in ``bedrock/.github/workflows/integration_tests.yml``.
 
 The tests for the dev environment are currently configured as follows:
 
+- Firefox, Chromium, and Webkit headless browsers via `Playwright`_.
 - Chrome (latest) via local Selenium grid.
 - Firefox (latest) via local Selenium grid.
 - Internet Explorer 11 (smoke tests) via `Sauce Labs`_.
-- Internet Explorer 9 (sanity tests) via `Sauce Labs`_.
 - Headless tests.
 
 Note that now we have Mozorg mode and Pocket mode, we actually stand up two dev, two stage
@@ -236,3 +236,4 @@ may be commits on that branch which aren't in yours – so, if you have the
 .. _Docker Hub: https://hub.docker.com/r/mozmeao/bedrock/tags
 .. _production: https://www.mozilla.org
 .. _demo sites: https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites
+.. _Playwright: https://playwright.dev
