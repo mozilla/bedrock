@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@playwright/test": "^1.44.1",
+    "@playwright/test": "^1.45.3",
     "dotenv": "^16.4.1"
   },
   "repository": {
