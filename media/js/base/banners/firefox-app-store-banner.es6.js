@@ -13,6 +13,7 @@ function onLoad() {
 if (
     window.Mozilla.run &&
     window.site &&
+    !window.Mozilla.Client.isFirefox &&
     (window.site.platform === 'android' || window.site.platform === 'ios')
 ) {
     window.Mozilla.run(onLoad);
