@@ -567,4 +567,6 @@ redirectpatterns = (
     # redirects that don't need a lang code prefix
     redirect(r"^diversity/?$", "mozorg.diversity.2022.index", locale_prefix=False),
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
+    # issue 14944
+    redirect(r"^nothing-?personal/?$", "firefox.nothing-personal.index"),
 )

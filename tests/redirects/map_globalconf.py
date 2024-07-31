@@ -1301,5 +1301,7 @@ URLS = flatten(
         url_test("/firefox/privacy/products/", "/products/"),
         url_test("/firefox/privacy/safe-passwords/", "/firefox/features/password-manager/"),
         url_test("/firefox/privacy/book/", "https://support.mozilla.org/kb/how-stay-safe-web"),
+        # issue 14944
+        url_test("/{nothing-personal,nothingpersonal}/", "/firefox/nothing-personal/"),
     )
 )
