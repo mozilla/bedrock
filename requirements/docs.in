@@ -11,5 +11,5 @@ sphinx-autobuild==2024.4.16
 sphinx-copybutton==0.5.2
 sphinx-rtd-theme==2.0.0
 sphinxcontrib-jquery>=4,<5
-sphinxcontrib-websupport==1.2.7
+sphinxcontrib-websupport==2.0.0
 tornado==6.4.1
