@@ -24,44 +24,31 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Get GA data attribute values for download_firefox_thanks() buttons.
+     * Get platform version for download_firefox_thanks() buttons.
      * @param {Object} window.site
-     * @returns {Object} os, name, version
+     * @returns {Object} version
      */
-    Utils.getDownloadAttributionValues = function (site) {
+    Utils.getDownloadPlatformVersion = function (site) {
         var data = {};
         var platform = site.platform;
 
         switch (platform) {
             case 'windows':
-                data.os = 'Desktop';
-                data.name = 'Windows 32-bit';
                 data.version = 'win';
                 break;
             case 'osx':
-                data.os = 'Desktop';
-                data.name = 'macOS';
                 data.version = 'osx';
                 break;
             case 'linux':
-                data.os = 'Desktop';
-                data.name =
-                    site.archSize === 64 ? 'Linux 64-bit' : 'Linux 32-bit';
                 data.version = site.archSize === 64 ? 'linux64' : 'linux';
                 break;
             case 'ios':
-                data.os = 'iOS';
-                data.name = 'iOS';
                 data.version = 'ios';
                 break;
             case 'android':
-                data.os = 'Android';
-                data.name = 'Android';
                 data.version = 'android';
                 break;
             default:
-                data.os = 'Unsupported';
-                data.name = 'Unsupported';
                 data.version = 'unsupported';
         }
 
@@ -69,18 +56,16 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Set platfrom specific GA data attributes for download_firefox_thanks() buttons.
+     * Set stub attribution data attributes for download_firefox_thanks() buttons.
      */
-    Utils.trackDownloadThanksButton = function () {
+    Utils.attributeDownloadThanksButton = function () {
         var downloadButton = document.querySelectorAll(
             '.c-button-download-thanks > .download-link'
         );
-        var data = Utils.getDownloadAttributionValues(window.site);
+        var data = Utils.getDownloadPlatformVersion(window.site);
 
         for (var i = 0; i < downloadButton.length; ++i) {
-            if (data && data.os && data.name && data.version) {
-                downloadButton[i].setAttribute('data-download-os', data.os);
-                downloadButton[i].setAttribute('data-display-name', data.name);
+            if (data && data.version) {
                 downloadButton[i].setAttribute(
                     'data-download-version',
                     data.version

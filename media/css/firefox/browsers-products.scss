@@ -296,7 +296,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 // issue 13317
-.fx-unsupported .cta-download[data-download-os="Desktop"]{
+.fx-unsupported .cta-download[data-cta-type="firefox"]{
     display: none;
 }
 

@@ -129,7 +129,7 @@ class TestDownloadButtons(TestCase):
 
         for link in links:
             link = pq(link)
-            assert link.attr("data-download-location") == "primary cta"
+            assert link.attr("data-cta-position") == "primary cta"
 
         doc = pq(render("{{ download_firefox() }}", {"request": get_request, "fluent_l10n": self.get_l10n(get_request.locale)}))
 
@@ -137,7 +137,7 @@ class TestDownloadButtons(TestCase):
 
         for link in links[1:5]:
             link = pq(link)
-            assert link.attr("data-download-location") is None
+            assert link.attr("data-cta-position") is None
 
     def test_download_nosnippet_attribute(self):
         """
@@ -339,7 +339,7 @@ class TestDownloadThanksButton(TestCase):
 
         assert href == "/firefox/download/thanks/"
         assert button.attr("id") == "download-button-thanks"
-        assert link.attr("data-link-type") == "download"
+        assert link.attr("data-cta-text") == "Download Firefox"
 
         # Direct attribute for legacy IE browsers should always be win 32bit
         assert link.attr("data-direct-link") == f"{settings.BOUNCER_URL}?product=firefox-stub&os=win&lang=en-US"
@@ -368,7 +368,7 @@ class TestDownloadThanksButton(TestCase):
 
         assert href == "/en-US/firefox/download/thanks/"
         assert button.attr("id") == "test-download"
-        assert link.attr("data-download-location") == "primary cta"
+        assert link.attr("data-cta-position") == "primary cta"
         assert "test-css-class" in link.attr("class")
 
 
