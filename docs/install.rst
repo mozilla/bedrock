@@ -63,7 +63,7 @@ If you don't have or want to use Make you can call the docker and compose comman
 
 .. code-block:: bash
 
-    $ docker-compose pull
+    $ docker compose pull
 
 .. code-block:: bash
 
@@ -73,7 +73,7 @@ Then starting it all is simply
 
 .. code-block:: bash
 
-    $ docker-compose up app assets
+    $ docker compose up app assets
 
 All of this is handled by the ``Makefile`` script and called by Make if you follow the above directions.
 You **DO NOT** need to do both.
@@ -101,7 +101,7 @@ If you make a change to ``media/static-bundles.json``, you'll need to restart Do
 
     Sometimes stopping Docker doesn't actually kill the images. To be safe, after stopping docker, run
     ``docker ps`` to ensure the containers were actually stopped. If they have not been stopped, you can force
-    them by running ``docker-compose kill`` to stop all containers, or ``docker kill <container_name>`` to stop
+    them by running ``docker compose kill`` to stop all containers, or ``docker kill <container_name>`` to stop
     a single container, e.g. ``docker kill bedrock_app_1``.
 
 Local Installation
@@ -252,23 +252,23 @@ you've broken something with a change.
 Docker
 ------
 
-We manage our local docker environment with docker-compose and Make. All you need to do here is run::
+We manage our local docker environment with docker compose and Make. All you need to do here is run::
 
     $ make test
 
-If you don't have Make you can simply run ``docker-compose run test``.
+If you don't have Make you can simply run ``docker compose run test``.
 
 If you'd like to run only a subset of the tests or only one of the test commands you can accomplish
 that with a command like the following::
 
-    $ docker-compose run test pytest bedrock/firefox
+    $ docker compose run test pytest bedrock/firefox
 
 This example will run only the unit tests for the ``firefox`` app in bedrock. You can substitute
 ``pytest bedrock/firefox`` with most any shell command you'd like and it will run in the Docker
 container and show you the output. You can also just run ``bash`` to get an interactive shell in
 the container which you can then use to run any commands you'd like and inspect the file system::
 
-    $ docker-compose run test bash
+    $ docker compose run test bash
 
 Local
 -----
@@ -295,9 +295,9 @@ Make it run
 Docker
 ------
 
-You can simply run the ``make run`` script mentioned above, or use docker-compose directly::
+You can simply run the ``make run`` script mentioned above, or use docker compose directly::
 
-    $ docker-compose up app assets
+    $ docker compose up app assets
 
 Local
 -----

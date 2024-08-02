@@ -18,23 +18,23 @@ then
 fi
 
 if [ "${DRIVER}" = "Remote" ]; then
-    docker-compose \
+    docker compose \
         -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d selenium-hub
 
-    docker-compose \
+    docker compose \
         -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d --scale ${BROWSER_NAME}=${NUM_BROWSER_NODES} ${BROWSER_NAME}
 
     SELENIUM_HOST="grid"
     SELENIUM_PORT=4444
-    DOCKER_LINKS=(--link selenium-hub-${CI_JOB_ID}_selenium-hub_1:grid --net selenium-hub-${CI_JOB_ID}_default)
+    DOCKER_LINKS=(--link selenium-hub-${CI_JOB_ID}-selenium-hub-1:grid --net selenium-hub-${CI_JOB_ID}_default)
 
 
     echo -n "Waiting for Selenium Grid to get ready..."
-    IP=$(docker inspect selenium-hub-${CI_JOB_ID}_selenium-hub_1 | jq -r .[0].NetworkSettings.Networks[].IPAddress)
+    IP=$(docker inspect selenium-hub-${CI_JOB_ID}-selenium-hub-1 | jq -r .[0].NetworkSettings.Networks[].IPAddress)
     set +e
     SELENIUM_READY=$((curl -fs  http://${IP}:4444/wd/hub/status  | jq -es 'if . == [] then null else .[] | .value.ready end' > /dev/null) || echo "false")
     while ! ${SELENIUM_READY}; do

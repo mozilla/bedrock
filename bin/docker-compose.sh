@@ -6,4 +6,4 @@
 
 source docker/bin/set_git_env_vars.sh
 
-docker-compose "$@"
+docker compose "$@"

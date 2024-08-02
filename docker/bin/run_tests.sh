@@ -10,4 +10,4 @@ set -exo pipefail
 
 source docker/bin/set_git_env_vars.sh
 
-exec docker-compose run test-image
+exec docker compose run test-image
