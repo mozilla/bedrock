@@ -30,11 +30,11 @@ if [ "${DRIVER}" = "Remote" ]; then
 
     SELENIUM_HOST="grid"
     SELENIUM_PORT=4444
-    DOCKER_LINKS=(--link selenium-hub-${CI_JOB_ID}_selenium-hub_1:grid --net selenium-hub-${CI_JOB_ID}_default)
+    DOCKER_LINKS=(--link selenium-hub-${CI_JOB_ID}-selenium-hub-1:grid --net selenium-hub-${CI_JOB_ID}_default)
 
 
     echo -n "Waiting for Selenium Grid to get ready..."
-    IP=$(docker inspect selenium-hub-${CI_JOB_ID}_selenium-hub_1 | jq -r .[0].NetworkSettings.Networks[].IPAddress)
+    IP=$(docker inspect selenium-hub-${CI_JOB_ID}-selenium-hub-1 | jq -r .[0].NetworkSettings.Networks[].IPAddress)
     set +e
     SELENIUM_READY=$((curl -fs  http://${IP}:4444/wd/hub/status  | jq -es 'if . == [] then null else .[] | .value.ready end' > /dev/null) || echo "false")
     while ! ${SELENIUM_READY}; do
