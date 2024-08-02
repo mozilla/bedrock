@@ -1,5 +1,5 @@
 DC_CI = "bin/docker-compose.sh"
-DC = $(shell which docker-compose)
+DC = $(shell which docker) compose
 DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
 POCKET_MODE = Pocket
@@ -9,7 +9,7 @@ all: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  build                          - build docker images for dev"
-	@echo "  run                            - docker-compose up the entire system for dev"
+	@echo "  run                            - 'docker compose up' the entire system for dev"
 	@echo "  stop                           - stop all docker containers"
 	@echo "  kill                           - kill all docker containers (more forceful than stop)"
 	@echo "  pull                           - pull the latest production images from Docker Hub"

@@ -18,7 +18,7 @@ docker cp "bedrock-${CI_JOB_ID}:/app/tests/results" "results-${CI_JOB_ID}"
 docker rm "bedrock-${CI_JOB_ID}"
 
 if [ "${DRIVER}" = "Remote" ]; then
-    docker-compose \
+    docker compose \
         -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         down --remove-orphans

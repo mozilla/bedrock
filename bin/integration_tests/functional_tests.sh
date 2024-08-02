@@ -18,12 +18,12 @@ then
 fi
 
 if [ "${DRIVER}" = "Remote" ]; then
-    docker-compose \
+    docker compose \
         -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d selenium-hub
 
-    docker-compose \
+    docker compose \
         -f ./bin/integration_tests/docker_compose_for_integration_tests.yml \
         -p "selenium-hub-${CI_JOB_ID}" \
         up -d --scale ${BROWSER_NAME}=${NUM_BROWSER_NODES} ${BROWSER_NAME}
