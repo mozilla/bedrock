@@ -18,7 +18,7 @@ $image-path: '/media/protocol/img';
 }
 
 // * -------------------------------------------------------------------------- */
-// Primary content
+// Main content
 
 .c-main {
     text-align: center;
@@ -40,32 +40,9 @@ $image-path: '/media/protocol/img';
 }
 
 .c-main-tagline {
-    margin: 0 auto $spacing-2xl;
-    max-width: $content-md;
-
-    .variation-1 & {
-        margin-top: $spacing-2xl;
-        max-width: $content-md - ($spacing-2xl * 2);
-        text-align: left;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// Secondary content
-
-.page-body .mzp-l-content {
-    padding-top: 0;
-}
-
-.mzp-c-picto-image {
-    align-items: center;
-    display: flex;
-    min-height: 210px;
-
-    picture {
-        display: inline-block;
-        margin: 0 auto;
-    }
+    margin: $spacing-2xl auto;
+    max-width: $content-md - ($spacing-2xl * 2);
+    text-align: left;
 }
 
 // * -------------------------------------------------------------------------- */
@@ -87,8 +64,8 @@ $image-path: '/media/protocol/img';
         color: $title-text-color-inverse;
 
         @supports (--css: variables) {
-                color: var(--title-text-color-inverse);
-            }
+            color: var(--title-text-color-inverse);
+        }
     }
 
     .c-main-title,
@@ -96,8 +73,8 @@ $image-path: '/media/protocol/img';
         color: $title-text-color-inverse;
 
         @supports (--css: variables) {
-                color: var(--title-text-color-inverse);
-            }
+            color: var(--title-text-color-inverse);
+        }
     }
 
     .c-main-logo {
