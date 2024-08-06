@@ -7,7 +7,6 @@
 {% extends "firefox/welcome/base.html" %}
 
 {% block page_title %}{% endblock %}
-
 {% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
 {% block body_class %}welcome-page15{% endblock %}
@@ -49,9 +48,9 @@
 {% block shoulder_cta %}{% endblock %}
 
 {% block content_intro %}
-      <div class="c-main variation-1 mzp-l-content mzp-t-content-md">
+      <div class="c-main mzp-l-content mzp-t-content-md">
         <img class="c-main-logo" src="/media/protocol/img/logos/mozilla/vpn/logo-flat.svg" width="60" alt="">
-        <h1 class="c-main-title">{{ var_1_main_title }}</h1>
+        <h1 class="c-main-title">{{ main_title }}</h1>
 
         <div class="c-main-image">
           {{ picture(
@@ -78,11 +77,10 @@
           ) }}
         </div>
         <p class="c-main-tagline">
-          {{ var_1_main_tagline }}
+          {{ main_tagline }}
         </p>
-        {% set referral_id = 'welcome-page15' %}
         {{ vpn_product_referral_link(
-          referral_id=referral_id,
+          referral_id='welcome-page15',
           link_to_pricing_page=True,
           link_text=cta_text,
           class_name='mzp-t-product mzp-t-xl',
