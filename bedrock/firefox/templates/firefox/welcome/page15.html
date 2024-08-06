@@ -6,18 +6,44 @@
 
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}{% endblock %}
-{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
-
-{% block body_class %}welcome-page15{% endblock %}
+{% set _entrypoint = 'mozilla.org-firefox-welcome-15' %}
+{% set _utm_campaign = 'welcome-15-vpn' %}
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox_welcome_page15') }}
 {% endblock %}
 
-{% set _entrypoint = 'mozilla.org-firefox-welcome-15' %}
-{% set _utm_campaign = 'welcome-15-vpn' %}
+{% block body_class %}welcome-page15{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set page_title = 'Must-have für den Sommerurlaub — Mozilla VPN' %}
+  {% set main_title = 'Dein Must-have für den Sommerurlaub' %}
+  {% set main_tagline = 'Schütze deine Daten, wenn du dich mit einem offenen Netzwerk im Hotel oder Flughafen verbindest, damit deine persönlichen Informationen (wie dein Online-Banking) sicher sind.' %}
+  {% set cta_text = 'Probier Mozilla VPN aus' %}
+  {% set utility_link_copy = 'Warum wird mir das angezeigt?' %}
+{% elif LANG == 'fr' %}
+  {% set page_title = 'L’indispensable pour vos vacances — Mozilla VPN' %}
+  {% set main_title = 'L’indispensable pour vos vacances' %}
+  {% set main_tagline = 'Protégez vos données lorsque vous vous connectez au Wi-Fi d’un hôtel ou aéroport afin d’accéder à vos informations personnelles (comme votre compte bancaire) en toute sécurité.' %}
+  {% set cta_text = 'Essayer Mozilla VPN' %}
+  {% set utility_link_copy = 'Pourquoi me montre-t-on cette page ?' %}
+{% elif LANG == 'en-GB' %}
+  {% set page_title = 'Your summer holiday must-have — Mozilla VPN' %}
+  {% set main_title = 'Your summer holiday <br>must-have'|safe %}
+  {% set main_tagline = 'Protect your data when connecting to hotel or airport Wi-Fi so you can feel secure accessing personal info (like your bank account).' %}
+  {% set cta_text = 'Try Mozilla VPN' %}
+  {% set utility_link_copy = 'Why am I seeing this?' %}
+{% else %}
+  {% set page_title = 'Your summer vacation must-have — Mozilla VPN' %}
+  {% set main_title = 'Your summer vacation <br>must-have'|safe %}
+  {% set main_tagline = 'Protect your data when connecting to hotel or airport Wi-Fi so you can feel secure accessing personal info (like your bank account).' %}
+  {% set cta_text = 'Try Mozilla VPN' %}
+  {% set utility_link_copy = 'Why am I seeing this?' %}
+{% endif %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+{% block page_image %}{{ static('img/products/vpn/common/social-share.png') }}{% endblock %}
 
 {% block shoulder_logo %}
   {{ picture(
