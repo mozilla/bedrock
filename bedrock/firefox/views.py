@@ -305,6 +305,12 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         "locale_name": locale_name,
     }
 
+    channel_esr_next = "esr_next"
+    esr_next_version = firefox_desktop.latest_version(channel_esr_next)
+    if esr_next_version:
+        context["desktop_esr_latest_version"] = firefox_desktop.latest_version("esr")
+        context["desktop_esr_next_version"] = esr_next_version
+
     # Show download link
     if locale:
         if not download_url:
@@ -314,6 +320,11 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         context.update(
             download_url=download_url,
         )
+        if esr_next_version:
+            # TKTK: this probably needs some kind of saftey around the locale availability
+            context["download_esr_next_url"] = list(
+                filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds(channel_esr_next, esr_next_version))
+            )[0]["platforms"][platform]["download_url"]
 
     # Show platforms with download links
     elif platform:
