@@ -9,9 +9,6 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title-v2') }}{% endblock %}
-{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('firefox_whatsnew_127_eu') }}
@@ -72,8 +69,6 @@
   {% set item_cook = 'Keeping a tutorial video open with a recipe while you cook or bake' %}
   {% set item_entertain = 'Entertaining cats, dogs and kids while you get work done' %}
 {% endif %}
-
-{% block site_header %}{% endblock %}
 
 {% block wnp_content %}
 <section class="wnp-content-main">
