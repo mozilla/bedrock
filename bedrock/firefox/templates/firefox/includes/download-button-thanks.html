@@ -8,9 +8,9 @@
   <a href="{{ transition_url }}"
      class="download-link c-button-download-thanks-link mzp-c-button mzp-t-product {% if button_class %}{{ button_class }}{% else %}mzp-t-xl{% endif %}"
      data-direct-link="{{ download_link_direct }}"
-     data-link-type="download"
      data-testid="{{ id }}"
-     {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>
+     data-cta-text="Download Firefox"
+     {% if download_location %}data-cta-position="{{ download_location }}"{% endif %}>
     {% if alt_copy %}
       {{ alt_copy }}
     {% else %}
