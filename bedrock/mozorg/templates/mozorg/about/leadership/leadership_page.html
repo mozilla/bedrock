@@ -1,0 +1,52 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/about/leadership/base.html" %}
+
+{% block page_title_full %}{{ page.title }}{% endblock %}
+
+{% block sub_navigation %}
+  {{ sub_nav(
+    title={
+      'text': page.title,
+      'href': fullpageurl(page)
+    }
+  ) }}
+{% endblock %}
+
+{% block content %}
+  <div id="main-content" class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+    <aside class="mzp-l-sidebar">
+      {% set nav_bar = [
+        (fullpageurl(page), 'executive-team', page.title),
+      ] -%}
+      {% for section in page.leadership_section %}
+        {{ nav_bar.append(('#' ~ section.value.id, section.value.id, section.value.title)) }}
+      {% endfor %}
+
+      {{ sidemenu_lists([nav_bar]) }}
+    </aside>
+
+    <main class="mzp-l-main">
+      {% for section in page.leadership_section %}
+        <h2>{{ section.value.title }}</h2>
+
+        {% for group in section.value.leadership_group %}
+          <section>
+            <h2 class="group-title">{{ group.title }}</h2>
+            <div class="gallery mgmt-corp">
+              {% for leader in group.leaders %}
+                {% include_block leader %}
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      {% endfor %}
+    </main>
+  </div>
+
+  <div class="mzp-u-modal-content"></div>
+{% endblock %}

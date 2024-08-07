@@ -2147,7 +2147,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
 }
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
-WAGTAIL_RICHEXT_FEATURES_FULL = [
+WAGTAIL_RICHTEXT_FEATURES_FULL = [
     # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
     # Order here is the order used in the editor UI
     "h2",

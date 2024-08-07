@@ -7,6 +7,11 @@ from django.db import models, transaction
 
 import markdown
 from markdown.extensions.toc import TocExtension
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import StreamField
+
+from bedrock.cms.models.base import AbstractBedrockCMSPage
+from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
 def process_md_file(file_path):
@@ -55,3 +60,16 @@ class WebvisionDoc(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class LeadershipPage(AbstractBedrockCMSPage):
+    max_count = 1  # Ensure there's only one instance of this page
+    subpage_types = []  # This page type cannot have any children
+
+    leadership_section = StreamField([("section", LeadershipSectionBlock())], blank=True, null=True)
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("leadership_section"),
+    ]
+
+    template = "mozorg/about/leadership/leadership_page.html"
