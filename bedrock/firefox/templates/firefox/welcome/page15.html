@@ -73,60 +73,59 @@
 
 {% block shoulder_cta %}{% endblock %}
 
-{% block content_intro %}
-      <div class="c-main mzp-l-content mzp-t-content-md">
-        <img class="c-main-logo" src="/media/protocol/img/logos/mozilla/vpn/logo-flat.svg" width="60" alt="">
-        <h1 class="c-main-title">{{ main_title }}</h1>
+{% block content_primary %}
+      <img class="c-main-logo" src="/media/protocol/img/logos/mozilla/vpn/logo-flat.svg" width="60" alt="Mozilla VPN">
+      <h1 class="c-main-title">{{ main_title }}</h1>
 
-        <div class="c-main-image">
-          {{ picture(
-            url="img/firefox/welcome/page15/hero-light.svg",
-            sources=[
-              {
-                "media": "(prefers-color-scheme: light)",
-                "srcset": {
-                  "img/firefox/welcome/page15/hero-light.svg": "default",
-                }
-              },
-              {
-                "media": "(prefers-color-scheme: dark)",
-                "srcset": {
-                  "img/firefox/welcome/page15/hero-dark.svg": "default",
-                }
+      <div class="c-main-image">
+        {{ picture(
+          url="img/firefox/welcome/page15/hero-light.svg",
+          sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/welcome/page15/hero-light.svg": "default",
               }
-            ],
-            optional_attributes={
-              "alt": "",
-              "width": "600",
-              "height": "300",
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/welcome/page15/hero-dark.svg": "default",
+              }
             }
-          ) }}
-        </div>
-        <p class="c-main-tagline">
-          {{ main_tagline }}
-        </p>
-        {{ vpn_product_referral_link(
-          referral_id='welcome-page15',
-          link_to_pricing_page=True,
-          link_text=cta_text,
-          class_name='mzp-t-product mzp-t-xl',
-          optional_attributes= {
-                'data-cta-text' : 'Try Mozilla VPN',
-                'data-cta-type' : 'button'
+          ],
+          optional_attributes={
+            "alt": "",
+            "width": "600",
+            "height": "300",
           }
-        )}}
+        ) }}
       </div>
 {% endblock %}
-
-{% block content_body %}
+{% block content_secondary %}
+      <p class="c-main-tagline">
+        {{ main_tagline }}
+      </p>
+{% endblock %}
+{% block secondary_cta %}
+      {{ vpn_product_referral_link(
+        referral_id='welcome-page15',
+        link_to_pricing_page=True,
+        link_text=cta_text,
+        class_name='mzp-t-product mzp-t-xl',
+        optional_attributes= {
+              'data-cta-text' : 'Try Mozilla VPN',
+              'data-cta-type' : 'button'
+        }
+      )}}
 {% endblock %}
 
 {% block content_utility %}
-<p>
-  <strong>
-    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
-      {{ utility_link_copy }}
-    </a>
-  </strong>
-</p>
+      <p>
+        <strong>
+          <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+            {{ utility_link_copy }}
+          </a>
+        </strong>
+      </p>
 {% endblock %}
