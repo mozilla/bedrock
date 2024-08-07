@@ -4,7 +4,9 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
+    "@axe-core/playwright": "^4.9.1",
     "@playwright/test": "^1.45.3",
+    "axe-html-reporter": "^2.2.5",
     "dotenv": "^16.4.1"
   },
   "repository": {
@@ -17,6 +19,8 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "scripts": {
-    "install-deps": "npx playwright install --with-deps"
+    "install-deps": "npx playwright install --with-deps",
+    "integration-tests": "npx playwright test --grep-invert @a11y",
+    "a11y-tests": "npx playwright test --grep @a11y --project=chromium"
   }
 }
