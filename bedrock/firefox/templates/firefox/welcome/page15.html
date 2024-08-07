@@ -47,25 +47,25 @@
 
 {% block shoulder_logo %}
   {{ picture(
-    url="protocol/img/logos/firefox/browser/logo-word-hor.svg",
+    url="img/logos/firefox/logo-word-hor.svg",
     sources=[
       {
         "media": "(prefers-color-scheme: light)",
         "srcset": {
-          "protocol/img/logos/firefox/browser/logo-word-hor.svg": "default",
+          "img/logos/firefox/logo-word-hor.svg": "default",
         }
       },
       {
         "media": "(prefers-color-scheme: dark)",
         "srcset": {
-          "protocol/img/logos/firefox/browser/logo-word-hor-white.svg": "default",
+          "img/logos/firefox/logo-word-hor-white.svg": "default",
         }
       }
     ],
     optional_attributes={
       "class": "c-header-logo",
       "alt": "Firefox",
-      "width": "216",
+      "width": "120",
       "height": "40",
     }
   ) }}
