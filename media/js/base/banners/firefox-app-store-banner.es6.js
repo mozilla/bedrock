@@ -12,8 +12,9 @@ function onLoad() {
 
 if (
     window.Mozilla.run &&
-    window.site &&
-    (window.site.platform === 'android' || window.site.platform === 'ios')
+    window.Mozilla.Client &&
+    window.Mozilla.Client.isMobile &&
+    !window.Mozilla.Client.isFirefox
 ) {
     window.Mozilla.run(onLoad);
 }
