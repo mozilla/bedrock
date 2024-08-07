@@ -35,7 +35,7 @@
       </p>
     {% else %}
     <p class="c-step-download">
-      <a href="{{ download_url }}" id="download-button-primary" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-link-type="download" data-download-location="primary cta">
+      <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
         {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
       </a>
     </p>
