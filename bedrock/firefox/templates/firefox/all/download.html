@@ -22,25 +22,56 @@
 {% if product and platform and locale %}
 <div class="c-step-contents">
   {% if platform.startswith("linux") %}
+    {# Linux preamble #}
     <p class="c-linux-debian"><br>
       {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
     </p>
   {% endif %}
   {% if product.slug.startswith("desktop") %}
     {% if platform.startswith("win-store") %}
+      {# Windows Store #}
       <p class="c-step-download">
         {% set ms_store_product = 'firefox_beta' if product.slug.endswith('beta') else 'firefox' %}
         {% set ms_store_href = ms_store_url(product=ms_store_product, campaign='firefox-all') %}
         {{ ms_store_button(href=ms_store_href, id='msStoreLink') }}
       </p>
+    {% elif product.slug == "desktop-esr" %}
+      {# ESR #}
+      {% set is_esr_next_version = desktop_esr_next_version %}
+      {# If there are multiple ESR's available, show next as well. #}
+      {% if is_esr_next_version %}
+        <p class="c-step-download">
+          <a href="{{ download_esr_next_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+            Download {{ desktop_esr_next_version }} {{ icon_download|safe }}
+          </a>
+        </p>
+        <p>We are in the transition period between major ESR versions {{ desktop_esr_latest_version.split('.')[0] }} and {{ desktop_esr_next_version.split('.')[0] }}.</p>
+        <p>When there is a major version update, there is always an overlap of a few Firefox ESR point releases to allow people who are using the old version to prepare to move to the new one.</p>
+        <p>If you choose to download the older ESR version, you will be automatically updated to the new one when the transition period ends.</p>
+        <p>
+          <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+            Download {{ desktop_esr_latest_version}} {{ icon_download|safe }}
+          </a>
+        </p>
+        <p>Read more about the <a href="https://support.mozilla.org/kb/firefox-esr-release-cycle">Firefox ESR release cycle</a>.</p>
+      {% else %}
+      {# ESR latest #}
+      <p class="c-step-download">
+        <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+          {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
+        </a>
+      </p>
+      {% endif %}
     {% else %}
-    <p class="c-step-download">
-      <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
-        {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
-      </a>
-    </p>
+      {# All other desktop releases #}
+      <p class="c-step-download">
+        <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+          {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
+        </a>
+      </p>
     {% endif %}
   {% elif product.slug.startswith('android') or product.slug.startswith('ios') or product.slug.startswith('mobile') %}
+    {# all mobile releases #}
     {% include 'firefox/all/mobile.html' %}
   {% else %}
     <p class="c-download-error">
