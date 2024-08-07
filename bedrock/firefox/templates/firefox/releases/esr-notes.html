@@ -6,8 +6,6 @@
 
 {% extends "firefox/releases/notes.html" %}
 
-{% set page_id ='data-gtm-page-id="/firefox/esr/releasenotes/"' %}
-
 {% set download_button_primary %}
   {{ download_firefox('esr', platform='desktop', force_direct=True, alt_copy='Download Firefox ESR', dom_id="download-esr-primary") }}
 {% endset %}

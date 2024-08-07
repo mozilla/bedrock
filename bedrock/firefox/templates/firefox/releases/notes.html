@@ -9,10 +9,6 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{# page ID for gtm #}
-{# page_id may be over-ridden with more appropriate content #}
-{% set page_id = page_id|default('data-gtm-page-id="/firefox/releasenotes/"') %}
-
 {# product_name is the product and channel together. Example: Firefox for Android Beta. #}
 {# product_name may be over-ridden with more appropriate content to avoid bad names like: Firefox Release Release #}
 {% set product_name = product_name|default(release.product + ' ' + release.channel) %}
@@ -43,7 +39,6 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ release.product }} {{ channel_name }} {{ release.version }}, See All New Features, Updates and Fixes{% endblock %}
 {% block page_title_suffix %}{% endblock %}
-{% block gtm_page_id %}{{ page_id }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
 {% block body_class %}mzp-t-firefox {{ theme_class }}{% endblock %}

@@ -10,7 +10,6 @@
 {% set brand_product = 'beta' %}
 
 {% if release.product == 'Firefox for Android' %}
-  {% set page_id = 'data-gtm-page-id="/firefox/android/beta/releasenotes"' %}
   {% set download_button_primary %}
     {{ download_firefox('beta', platform='android', alt_copy='Download Firefox for Android Beta', dom_id="download-android-beta-primary") }}
   {% endset %}
@@ -19,7 +18,6 @@
   {% endset %}
   {% set download_all_link = firefox_url('android', 'all', channel='beta') %}
 {% elif release.product == 'Firefox' %}
-  {% set page_id = 'data-gtm-page-id="/firefox/beta/releasenotes/"' %}
   {% set download_button_primary %}
     {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy='Download Firefox Beta', dom_id="download-beta-primary") }}
   {% endset %}
