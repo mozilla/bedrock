@@ -2,7 +2,7 @@ APScheduler==3.10.4
 babis==0.2.4
 basket-client==1.1.0
 bleach[css]==6.1.0
-boto3==1.34.142
+boto3==1.34.151
 certifi>=2024.7.4  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
@@ -30,7 +30,7 @@ everett==3.3.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==14.1.2  # Must match the required version in the Glean NPM package.
-granian==1.5.0
+granian==1.5.2
 honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.4  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
@@ -40,17 +40,17 @@ Markdown==3.6
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
-newrelic==9.11.0
+newrelic==9.12.0
 Pillow==10.4.0
 psycopg[binary]==3.1.19
 PyGithub==2.3.0
-pyOpenSSL==24.1.0
+pyOpenSSL==24.2.1
 PyYAML==6.0.1
 qrcode==7.4.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests>=2.32.3  # min secure version
 rich-text-renderer==0.2.8
-sentry-sdk==2.7.1
+sentry-sdk==2.12.0
 sentry-processor==0.0.1
 supervisor==4.2.5
 timeago==1.0.16
