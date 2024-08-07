@@ -298,9 +298,9 @@ dj-database-url==2.2.0 \
     --hash=sha256:3e792567b0aa9a4884860af05fe2aa4968071ad351e033b6db632f97ac6db9de \
     --hash=sha256:9f9b05058ddf888f1e6f840048b8d705ff9395e3b52a07165daa3d8b9360551b
     # via -r requirements/prod.in
-django==4.2.15 \
-    --hash=sha256:61ee4a130efb8c451ef3467c67ca99fdce400fedd768634efc86a68c18d80d30 \
-    --hash=sha256:c77f926b81129493961e19c0e02188f8d07c112a1162df69bfab178ae447f94a
+django==5.1 \
+    --hash=sha256:848a5980e8efb76eea70872fb0e4bc5e371619c70fffbe48e3e1b50b2c09455d \
+    --hash=sha256:d3b811bf5371a26def053d7ee42a9df1267ef7622323fe70a601936725aa4557
     # via
     #   -r requirements/prod.in
     #   dj-database-url
