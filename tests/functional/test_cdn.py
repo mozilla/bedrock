@@ -125,7 +125,7 @@ def test_cdn_cache(base_url):
 
     # then test that caching is working
     resp = requests.get(full_url, timeout=5)
-    assert "Hit" in resp.headers["x-cache"]
+    assert "hit" in resp.headers["x-cache"].lower()
 
 
 @pytest.mark.cdn
