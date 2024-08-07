@@ -12,13 +12,15 @@ const href = window.location.href;
 const init = () => {
     if (href.indexOf('v=1') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'exp-home-fundraising-banner-v1',
-            'data-ex-name': 'exp-home-fundraising-banner-july2024'
+            event: 'experiment_view',
+            id: 'exp-home-fundraising-banner-july2024',
+            variant: 'exp-home-fundraising-banner-v1'
         });
     } else if (href.indexOf('v=2') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'exp-home-fundraising-banner-v2',
-            'data-ex-name': 'exp-home-fundraising-banner-july2024'
+            event: 'experiment_view',
+            id: 'exp-home-fundraising-banner-july2024',
+            variant: 'exp-home-fundraising-banner-v2'
         });
     } else if (TrafficCop) {
         // Avoid entering automated tests into random experiments.

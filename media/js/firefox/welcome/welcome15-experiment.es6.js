@@ -13,13 +13,15 @@ const initTrafficCop = () => {
     if (href.indexOf('v=') !== -1) {
         if (href.indexOf('v=1') !== -1) {
             window.dataLayer.push({
-                'data-ex-variant': 'welcome-15-exp-v1',
-                'data-ex-name': 'welcome-15-exp'
+                event: 'experiment_view',
+                id: 'welcome-15-exp',
+                variant: 'welcome-15-exp-v1'
             });
         } else if (href.indexOf('v=2') !== -1) {
             window.dataLayer.push({
-                'data-ex-variant': 'welcome-15-exp-v2',
-                'data-ex-name': 'welcome-15-exp'
+                event: 'experiment_view',
+                id: 'welcome-15-exp',
+                variant: 'welcome-15-exp-v2'
             });
         }
     } else if (TrafficCop) {

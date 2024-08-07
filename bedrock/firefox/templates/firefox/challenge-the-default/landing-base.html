@@ -36,8 +36,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% macro cta_group(position) -%}
-  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="{{ position }}">{{ cta_default }}</a>
-  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Firefox for Mobile" data-cta-position="{{ position }}">{{ cta_mobile }}</a>
+  <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-text="Set as default" data-cta-position="{{ position }}">{{ cta_default }}</a>
+  <a href="{{ url('firefox.browsers.mobile.index') }}" class="is-default mzp-c-button mzp-t-lg" data-cta-text="Firefox for Mobile" data-cta-position="{{ position }}">{{ cta_mobile }}</a>
   {{ download_firefox_thanks(button_class='not-firefox', alt_copy=cta_download, download_location=position, locale_in_transition=True) }}
 {%- endmacro %}
 
@@ -390,7 +390,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <section class="mzp-l-content mzp-t-content-md c-ctd-footer">
     <h3>{{ footer_title }}</h3>
-    <p>{{ footer_body|format('href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-type="link" data-cta-text="Community"')|safe }}</p>
+    <p>{{ footer_body|format('href="https://community.mozilla.org/" target="_blank" rel="noopener noreferrer" data-cta-text="Community"')|safe }}</p>
     {{ cta_group('footer') }}
     <p class="text-bottom mobile">{{ footer_mobile }}</p>
     <p class="text-bottom desktop">{{ footer_desktop }}</p>

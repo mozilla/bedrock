@@ -9,12 +9,6 @@
 
     function handleOpenProtectionReport(e) {
         e.preventDefault();
-        // UA
-        window.dataLayer.push({
-            event: 'in-page-interaction',
-            eAction: 'link click',
-            eLabel: 'View your protection report'
-        });
         // GA4
         window.dataLayer.push({
             event: 'widget_action',
@@ -27,12 +21,6 @@
 
     function handleOpenProtectionReportLink(e) {
         e.preventDefault();
-        // UA
-        window.dataLayer.push({
-            event: 'in-page-interaction',
-            eAction: 'link click',
-            eLabel: 'See what`s blocked'
-        });
         // GA4
         window.dataLayer.push({
             event: 'widget_action',

@@ -47,11 +47,6 @@
                 var validParams = analytics.getAMOExperiment(params);
 
                 if (validParams) {
-                    // UA
-                    dataLayer.push({
-                        'data-ex-name': validParams['experiment'],
-                        'data-ex-variant': validParams['variation']
-                    });
                     // GA4
                     dataLayer.push({
                         event: 'experiment_view',

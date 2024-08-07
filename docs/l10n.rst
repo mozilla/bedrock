@@ -212,7 +212,7 @@ attributes but we do occasionally pass classes with other tags.)
 
 .. code-block:: jinja
 
-    {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
+    {% set created_attrs = 'href="%s" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
     <p>{{ ftl('example-created', attrs=created_attrs) }}</p>
 
     {{ ftl('example-firefox-relay', class_name='class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay"') }}

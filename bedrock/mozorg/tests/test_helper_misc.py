@@ -1012,13 +1012,13 @@ class TestPocketFxAButton(TestCase):
             is_button_class=True,
             include_metrics=True,
             optional_parameters={"s": "ffpocket", "foo": "bar"},
-            optional_attributes={"data-cta-text": "Try Pocket Now", "data-cta-type": "activate pocket", "data-cta-position": "primary"},
+            optional_attributes={"data-cta-text": "Try Pocket Now", "data-cta-type": "pocket", "data-cta-position": "primary"},
         )
         expected = (
             '<a href="https://getpocket.com/ff_signup?entrypoint=mozilla.org-firefox-pocket&form_type=button'
             '&utm_source=mozilla.org-firefox-pocket&utm_medium=referral&s=ffpocket&foo=bar" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product pocket-main-cta-button" '
-            'data-cta-text="Try Pocket Now" data-cta-type="activate pocket" data-cta-position="primary">Try Pocket Now</a>'
+            'data-cta-text="Try Pocket Now" data-cta-type="pocket" data-cta-position="primary">Try Pocket Now</a>'
         )
         self.assertEqual(markup, expected)
 

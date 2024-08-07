@@ -93,18 +93,15 @@ Recording the data
 
     If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/firefox-stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
 
-Including the ``data-ex-variant`` and ``data-ex-name`` in the analytics
-reporting will add the test to an auto generated report in :abbr:`GA (Google Analytics)`.
-The variable values may be provided by the analytics team.
+Send the experiment view events to GA4 with the event name ``experiment_view``. The ``id`` of all variants should be the same
+and all ``variant`` values should be unique.
+
+Make sure any buttons and interaction which are being compared as part of the
+test will report into :abbr:`GA (Google Analytics)`.
 
 .. code-block:: javascript
 
     if (href.indexOf('v=a') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'de-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
         // GA4
         window.dataLayer.push({
             event: 'experiment_view',
@@ -112,11 +109,6 @@ The variable values may be provided by the analytics team.
             variant: 'de-page',
         });
     } else if (href.indexOf('v=b') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'campaign-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
         // GA4
         window.dataLayer.push({
             event: 'experiment_view',
@@ -125,21 +117,11 @@ The variable values may be provided by the analytics team.
         });
     }
 
-Make sure any buttons and interaction which are being compared as part of the
-test will report into :abbr:`GA (Google Analytics)`.
 
 Viewing the data
 ~~~~~~~~~~~~~~~~~~
 
-The ``data-ex-name`` and ``data-ex-variant`` are encoded in Google Analytics as custom dimensions 69 and 70.
-
-Create a custom report.
-
-Set the "Metrics Group" to include Sessions. Configure additional metrics depending on what the experiment was measuring (downloads, events, etc.)
-
-Set the "Dimension Drilldowns to have cd69 in the top position and cd70 in the drilldown position.
-
-View the custom report and drilldown into the experiment with the matching name.
+We have not figured this out for GA4 yet.
 
 Tests
 ~~~~~
@@ -152,16 +134,6 @@ Some things to consider checking:
 - Requests for the default (non variant) page call the correct template.
 - Requests for a variant page call the correct template.
 - Locales excluded from the test call the correct (default) template.
-
-A/B Test PRs that might have useful code to reuse
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- https://github.com/mozilla/bedrock/pull/5736/files
-- https://github.com/mozilla/bedrock/pull/4645/files
-- https://github.com/mozilla/bedrock/pull/5925/files
-- https://github.com/mozilla/bedrock/pull/5443/files
-- https://github.com/mozilla/bedrock/pull/5492/files
-- https://github.com/mozilla/bedrock/pull/5499/files
 
 Avoiding experiment collisions
 ------------------------------

@@ -13,7 +13,7 @@
 {% macro custom_nav_cta() %}
   {% set ms_store_href = ms_store_url(product='firefox', campaign=ms_store_attribution_code, handler='ms-windows-store') %}
   <div class="mzp-c-button-download-container">
-    <a href="{{ ms_store_href }}" class="ga-product-download mzp-c-button mzp-t-product mzp-t-secondary mzp-t-md" data-cta-type="button" data-cta-text="Download Firefox">
+    <a href="{{ ms_store_href }}" class="ga-product-download mzp-c-button mzp-t-product mzp-t-secondary mzp-t-md" data-cta-text="Download Firefox">
       Download Firefox
     </a>
   </div>
@@ -26,7 +26,7 @@
       class_name='mzp-t-product mzp-t-secondary mzp-t-md',
       optional_attributes= {
         'data-cta-text' : 'Get Mozilla VPN',
-        'data-cta-type' : 'button',
+        'data-cta-type' : 'vpn',
         'data-cta-position' : 'navigation'
       }
     ) }}
@@ -44,7 +44,7 @@
   {{ ms_store_button(href=ms_store_href) }}
 
   <div class="c-intro-download-alt">
-    <a href="{{ url('firefox.download.thanks') }}" data-cta-type="link" data-cta-text="Download from the web">
+    <a href="{{ url('firefox.download.thanks') }}" data-cta-text="Download from the web">
       Download from the web
     </a>
   </div>

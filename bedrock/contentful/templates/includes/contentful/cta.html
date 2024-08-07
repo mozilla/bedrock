@@ -16,7 +16,7 @@
 
 {% elif action == 'Explore Firefox' %}
 
-  <a href="{{ url('firefox') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
+  <a href="{{ url('firefox') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" >{{ label }}</a>
 
 {% elif action == 'Create a Firefox Account' %}
 
@@ -30,18 +30,18 @@
 
 {% elif action == 'Get Pocket' %}
 
-  <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-type="link" data-cta-text="{{ cta_text }}">{{ label }}</a>
+  <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="pocket">{{ label }}</a>
 
 {% elif action == 'Get Mozilla VPN' %}
 
-  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
+  <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="vpn">{{ label }}</a>
 
 {% elif action == 'Try Relay' %}
 
-  <a href="https://relay.firefox.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
+  <a href="https://relay.firefox.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="relay">{{ label }}</a>
 
 {% elif action == 'Get MDN Plus' %}
 
-  <a href="https://developer.mozilla.org/plus{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="link">{{ label }}</a>
+  <a href="https://developer.mozilla.org/plus{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}">{{ label }}</a>
 
 {% endif %}

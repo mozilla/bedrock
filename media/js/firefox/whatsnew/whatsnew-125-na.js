@@ -11,13 +11,6 @@ function defaultTrue() {
     document.querySelector('.wnp-default').classList.add('hide');
     document.querySelector('.wnp-fast').classList.add('show');
 
-    // UA
-    window.dataLayer.push({
-        event: 'non-interaction',
-        eAction: 'whatsnew-125-na',
-        eLabel: 'default-true'
-    });
-
     // GA4
     window.dataLayer.push({
         event: 'dimension_set',
@@ -31,13 +24,6 @@ function defaultFalse() {
     document.querySelector('.wnp-loading').classList.add('hide');
     document.querySelector('.wnp-fast').classList.add('hide');
     document.querySelector('.wnp-default').classList.add('show');
-
-    // UA
-    window.dataLayer.push({
-        event: 'non-interaction',
-        eAction: 'whatsnew-125-na',
-        eLabel: 'default-false'
-    });
 
     // GA4
     window.dataLayer.push({
@@ -68,26 +54,12 @@ function init() {
     // Log account status
     Mozilla.Client.getFxaDetails((details) => {
         if (details.setup) {
-            // UA
-            window.dataLayer.push({
-                event: 'non-interaction',
-                eAction: 'whatsnew-125-na',
-                eLabel: 'firefox-signed-in'
-            });
-
             // GA4
             window.dataLayer.push({
                 event: 'dimension_set',
                 firefox_is_signed_in: true
             });
         } else {
-            // UA
-            window.dataLayer.push({
-                event: 'non-interaction',
-                eAction: 'whatsnew-125-na',
-                eLabel: 'firefox-signed-out'
-            });
-
             // GA4
             window.dataLayer.push({
                 event: 'dimension_set',
