@@ -17,6 +17,11 @@
  {{ css_bundle('firefox_all') }}
 {% endblock %}
 
+{# do not index child pages, we prefer people visit more user friendly pages from search results #}
+{% block canonical_urls %}
+{% if product %}<meta name="robots" content="noindex,follow">{% endif %}
+{% endblock %}
+
 {% block site_header %}
   {% with hide_nav_cta=True %}
     {% include 'includes/protocol/navigation/navigation.html' %}
