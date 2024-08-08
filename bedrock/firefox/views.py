@@ -320,7 +320,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         context.update(
             download_url=download_url,
         )
-        if esr_next_version:
+        if not download_url and esr_next_version:
             # TKTK: this probably needs some kind of saftey around the locale availability
             context["download_esr_next_url"] = list(
                 filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds(channel_esr_next, esr_next_version))
