@@ -6,89 +6,276 @@ import pytest
 
 from pages.firefox.all import FirefoxAllPage
 
+# product lists
+
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_release(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    product = page.select_product("Firefox")
-    product.select_platform("Windows 64-bit")
-    product.select_language("English (US)")
+def test_desktop_product_list(base_url, selenium):
+    page = FirefoxAllPage(selenium, base_url, slug="").open()
+    list_length = page.desktop_product_list_length
+    assert list_length == 5
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_mobile_product_list(base_url, selenium):
+    page = FirefoxAllPage(selenium, base_url, slug="").open()
+    list_length = page.mobile_product_list_length
+    assert list_length == 4
+
+
+# platform lists
+
+CHANNEL_PLATFORM_COUNT = [("desktop-release", 9), ("desktop-esr", 8), ("desktop-beta", 9), ("desktop-developer", 8), ("desktop-nightly", 9)]
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("slug, count", CHANNEL_PLATFORM_COUNT)
+def test_desktop_platform_list(slug, count, base_url, selenium):
+    slug = f"{slug}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    list_length = page.platform_list_length
+    assert list_length == count
+
+
+# OS/language pairs
+
+OS_LANG_PAIRS = [
+    # windows
+    ("win64", "en-US"),
+    ("win64-msi", "en-US"),
+    ("win64-aarch64", "en-US"),
+    ("win", "en-US"),
+    ("win-msi", "en-US"),
+    ("win64", "de"),
+    ("win64-msi", "fr"),
+    ("win64-aarch64", "hi-IN"),
+    ("win", "ja"),
+    ("win-msi", "es-ES"),
+    # macos
+    ("osx", "en-US"),
+    ("osx", "de"),
+    ("osx", "fr"),
+    ("osx", "hi-IN"),
+    # linux
+    ("linux64", "en-US"),
+    ("linux", "en-US"),
+    ("linux64", "de"),
+    ("linux", "fr"),
+    ("linux64", "hi-IN"),
+    ("linux", "ja"),
+]
+
+
+# desktop release
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
+def test_firefox_release(os, lang, base_url, selenium):
+    slug = f"desktop-release/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_desktop_download_button_displayed
-    assert "product=firefox-latest-ssl" and "os=win64" and "lang=en-US" in page.desktop_download_link
+    assert "product=firefox-latest-ssl" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    if os.startswith("linux"):
+        assert page.is_linux_atp_link_displayed
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_beta(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    product = page.select_product("Firefox Beta")
-    product.select_platform("macOS")
-    product.select_language("German — Deutsch")
+def test_firefox_microsoft_store_release(base_url, selenium):
+    slug = "desktop-release/win-store/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_ms_store_download_button_displayed
+    assert "https://apps.microsoft.com/detail/9nzvdkpmr9rd" in page.microsoft_store_link
+
+
+# desktop beta - check by platform
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
+def test_firefox_beta(os, lang, base_url, selenium):
+    slug = f"desktop-beta/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_desktop_download_button_displayed
-    assert "product=firefox-beta-latest-ssl" and "os=osx" and "lang=de" in page.desktop_download_link
+    assert "product=firefox-beta-latest" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    if os.startswith("linux"):
+        assert page.is_linux_atp_link_displayed
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_developer(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    product = page.select_product("Firefox Developer Edition")
-    product.select_platform("Linux 64-bit")
-    product.select_language("English (US)")
+def test_firefox_microsoft_store_beta(base_url, selenium):
+    slug = "desktop-beta/win-store/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_ms_store_download_button_displayed
+    assert "https://apps.microsoft.com/detail/9nzw26frndln" in page.microsoft_store_link
+
+
+# desktop developer - check by platform
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+@pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
+def test_firefox_developer(os, lang, base_url, selenium):
+    slug = f"desktop-developer/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_desktop_download_button_displayed
-    assert "product=firefox-devedition-latest-ssl" and "os=linux64" and "lang=en-US" in page.desktop_download_link
+    assert "product=firefox-devedition-latest" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    if os.startswith("linux"):
+        assert page.is_linux_atp_link_displayed
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
+
+
+# desktop nightly - check by platform
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_nightly(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    product = page.select_product("Firefox Nightly")
-    product.select_platform("Windows 32-bit")
-    product.select_language("German — Deutsch")
+@pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
+def test_firefox_nightly(os, lang, base_url, selenium):
+    slug = f"desktop-nightly/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_desktop_download_button_displayed
-    assert "product=firefox-nightly-latest-ssl" and "os=win" and "lang=de" in page.desktop_download_link
+    assert "product=firefox-nightly-latest" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    if os.startswith("linux"):
+        assert page.is_linux_atp_link_displayed
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_esr(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    product = page.select_product("Firefox Extended Support Release")
-    product.select_platform("Linux 32-bit")
-    product.select_language("English (US)")
+@pytest.mark.parametrize("os, lang", [("linux64-aarch64", "es-ES"), ("linux64-aarch64", "pt-BR")])
+def test_firefox_linux_nightly_aarch(os, lang, base_url, selenium):
+    slug = f"desktop-nightly/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_desktop_download_button_displayed
-    assert "product=firefox-esr-latest-ssl" and "os=linux" and "lang=en-US" in page.desktop_download_link
+    assert "product=firefox-nightly-latest" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    assert page.is_linux_atp_link_displayed
+    assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
+
+
+# desktop esr - check by platform
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_android(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    page.select_product("Firefox Android")
+@pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
+def test_firefox_esr(os, lang, base_url, selenium):
+    slug = f"desktop-esr/{os}/{lang}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_desktop_download_button_displayed
+    assert "product=firefox-esr-latest-ssl" and f"os={os}" and f"lang={lang}" in page.desktop_download_link
+    if os.startswith("linux"):
+        assert page.is_linux_atp_link_displayed
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in page.linux_atp_link
+
+
+# mobile release - check by platform
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_firefox_mobile_release(base_url, selenium):
+    slug = "mobile-release/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_android_download_button_displayed
+    assert page.is_ios_download_button_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_firefox_android_release(base_url, selenium):
+    slug = "android-release/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     assert page.is_android_download_button_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
+def test_firefox_ios_release(base_url, selenium):
+    slug = "ios-release/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_ios_download_button_displayed
+
+
+# mobile beta - check by platform
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
 def test_firefox_android_beta(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    page.select_product("Firefox Android Beta")
-    assert page.is_android_beta_download_button_displayed
+    slug = "android-beta/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_android_download_button_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_firefox_ios_beta(base_url, selenium):
+    slug = "ios-beta/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert not page.is_ios_download_button_displayed
+
+
+# mobile nightly - check by platform
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_firefox_android_nightly(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    page.select_product("Firefox Android Nightly")
-    assert page.is_android_nightly_download_button_displayed
+    slug = "android-nightly/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    assert page.is_android_download_button_displayed
+
+
+# close/back links, appear when they should and don't when they shouldn't
+
+STEPS_CLOSE_ICON_COUNT = [
+    ("", 0),
+    ("desktop-release/", 1),
+    ("desktop-release/win64/", 2),
+    ("desktop-release/win64/en-US/", 3),
+    ("desktop-release/win-store/", 2),
+    ("mobile-release", 1),
+    ("android-release", 1),
+]
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_firefox_ios(base_url, selenium):
-    page = FirefoxAllPage(selenium, base_url).open()
-    page.select_product("Firefox iOS")
-    assert page.is_ios_download_button_displayed
+@pytest.mark.parametrize("slug, count", STEPS_CLOSE_ICON_COUNT)
+def test_close_icons(slug, count, base_url, selenium):
+    slug = f"{slug}/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    close_count = page.back_icons_count
+    assert close_count == count
+
+
+# help modals
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_open_browser_help_modal(base_url, selenium):
+    slug = ""
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    modal = page.open_help_modal("icon-browser-help")
+    assert modal.is_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_open_installer_help_modal(base_url, selenium):
+    slug = "/desktop-release/"
+    page = FirefoxAllPage(selenium, base_url, slug=slug).open()
+    modal = page.open_help_modal("icon-installer-help")
+    assert modal.is_displayed

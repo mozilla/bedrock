@@ -1,0 +1,53 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set android_url = play_store_url('firefox', 'firefox-all') %}
+{% set android_beta_url = play_store_url('firefox_beta', 'firefox-all') %}
+{% set android_nightly_url = play_store_url('firefox_nightly', 'firefox-all') %}
+{% set ios_url = app_store_url('firefox', 'firefox-all') %}
+
+{% if product.slug == 'android-beta' %}
+  {% set qr_url = android_beta_url %}
+  {% set android_url = android_beta_url %}
+{% elif product.slug == 'android-nightly' %}
+  {% set qr_url = android_nightly_url %}
+  {% set android_url = android_nightly_url %}
+{% else %}
+  {% set qr_url ="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-all" %}
+{% endif %}
+
+<div class="c-mobile">
+
+  {% if product.slug.startswith("ios-beta") %}
+    <p class="c-step-download">
+      <a href="{{ url('firefox.ios.testflight') }}">{{ ftl('firefox-all-testflight') }}</a>
+    </p>
+  {% else %}
+  <figure class="qr-code-wrapper">
+    {{ qrcode(qr_url, 12) }}
+
+    <figcaption>
+      <ul class="c-store-badges">
+        {% if product.slug.startswith(('mobile', 'android')) %}
+        <li class="c-store-badge-google">
+          {{ google_play_button(href=android_url, id='playStoreLink') }}
+        </li>
+        {% endif %}
+        {% if product.slug.startswith(('mobile', 'ios')) %}
+        <li class="c-store-badge-apple">
+          {{ apple_app_store_button(href=ios_url, id='appStoreLink') }}
+        </li>
+        {% endif %}
+      </ul>
+    </figcaption>
+  </figure>
+  {% endif %}
+
+  {% if product.slug.startswith('mobile') %}
+    <p><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-type="link" data-cta-text="Send a link">{{ ftl('firefox-all-product-send-link') }}</a></p>
+  {% endif %}
+
+</div>
