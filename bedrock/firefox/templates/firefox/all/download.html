@@ -42,18 +42,18 @@
       {% if is_esr_next_version %}
         <p class="c-step-download">
           <a href="{{ download_esr_next_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
-            Download {{ desktop_esr_next_version }} {{ icon_download|safe }}
+            {{ ftl('firefox-all-download-esr-version', esr_version= desktop_esr_next_version) }} {{ icon_download|safe }}
           </a>
         </p>
-        <p>We are in the transition period between major ESR versions {{ desktop_esr_latest_version.split('.')[0] }} and {{ desktop_esr_next_version.split('.')[0] }}.</p>
-        <p>When there is a major version update, there is always an overlap of a few Firefox ESR point releases to allow people who are using the old version to prepare to move to the new one.</p>
-        <p>If you choose to download the older ESR version, you will be automatically updated to the new one when the transition period ends.</p>
+        <p>{{ ftl('firefox-all-esr-we-are-in-transition', esr_next_major=desktop_esr_next_version.split('.')[0], esr_current_major=desktop_esr_latest_version.split('.')[0] ) }}</p>
+        <p>{{ ftl('firefox-all-esr-when-there-is') }}</p>
+        <p>{{ ftl('firefox-all-esr-if-you-choose') }}</p>
         <p>
           <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
-            Download {{ desktop_esr_latest_version}} {{ icon_download|safe }}
+            {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_latest_version) }} {{ icon_download|safe }}
           </a>
         </p>
-        <p>Read more about the <a href="https://support.mozilla.org/kb/firefox-esr-release-cycle">Firefox ESR release cycle</a>.</p>
+        <p>{{ ftl('firefox-all-esr-read-more', attrs='href="https://support.mozilla.org/kb/firefox-esr-release-cycle" rel="external noopener" data-link-text="Firefox ESR release cycle"') }}</p>
       {% else %}
       {# ESR latest #}
       <p class="c-step-download">

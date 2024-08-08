@@ -39,6 +39,19 @@ firefox-all-32-bit-installers = 32-bit installers
 firefox-all-microsoft-store-installers = Microsoft Store
 firefox-all-choose-a-microsoft-store-installer = This option will open a { -brand-name-firefox } product page in the Microsoft Store web portal. If you are running Windows 10 or Windows 11, you will have the option to open the Microsoft Store from this page and install { -brand-name-firefox }. If you install from the Microsoft Store, updates to { -brand-name-firefox } will also be handled by the Microsoft Store. There are minor differences in { -brand-name-firefox } behaviors and capabilities when installed from the Microsoft Store, but for most users these differences are not noticeable.
 
+# Variables:
+#   $esr_version (string) e.g. 115.13.0esr
+firefox-all-download-esr-version = Download { $esr_version }
+# Variables:
+#   $esr_next_major (string) Next major version number e.g. 128
+#   $esr_current_major (string) Current major version number e.g. 115
+firefox-all-esr-we-are-in-transition = We are in the transition period between major ESR versions {$esr_next_major} and { $esr_current_major }.
+firefox-all-esr-when-there-is = When there is a major version update, there is always an overlap of a few { -brand-name-firefox-esr } point releases to allow people who are using the old version to prepare to move to the new one.
+firefox-all-esr-if-you-choose = If you choose to download the older ESR version, you will be automatically updated to the new one when the transition period ends.
+# Variables:
+#   $attrs (string) link to https://support.mozilla.org/kb/firefox-esr-release-cycle
+firefox-all-esr-read-more = Read more about the <a { $attrs }>{ -brand-name-firefox-esr } release cycle</a>.
+
 firefox-all-check-the-system-requirements = Check the system requirements
 firefox-all-release-notes = Release notes
 firefox-all-source-code = Source code
