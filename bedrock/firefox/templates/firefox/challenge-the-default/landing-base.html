@@ -11,19 +11,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
 {% block page_title_suffix %} — {{ ftl('firefox-home-mozilla') }}{% endblock %}
 {% block page_desc %}{{ seo_desc }}{% endblock %}
-{% block page_image %}
-  {% if LANG == "fr" %}
-    {{ static('img/firefox/challenge-the-default/ctd-share-fr.png') }}
-  {% elif LANG == "es-ES" %}
-    {{ static('img/firefox/challenge-the-default/ctd-share-es.png') }}
-  {% elif LANG == "it" %}
-    {{ static('img/firefox/challenge-the-default/ctd-share-it.png') }}
-  {% elif LANG == "pl" %}
-    {{ static('img/firefox/challenge-the-default/ctd-share-pl.png') }}
-  {% else %}
-    {{ static('img/firefox/challenge-the-default/ctd-share.png') }}
-  {% endif %}
-{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
