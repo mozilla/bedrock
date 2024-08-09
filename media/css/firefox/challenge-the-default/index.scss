@@ -5,22 +5,22 @@
 $image-path: '/media/protocol/img';
 $font-path: '/media/protocol/fonts';
 
-@import "./toggle";
-@import "./animations";
-@import "./hero";
-@import "./compare-table";
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/includes/forms';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
-@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 
 $campaign-red: #ff6a75;
 $campaign-pink: #ffbdc5;
 $campaign-mint: #d1ffee;
 $campaign-green: #2ac3a2;
+
+@import "./toggle";
+@import "./animations";
+@import "./hero";
+@import "./compare-table";
 
 // fonts to be included for CTD and should be removed when the page is no longer live
 @font-face {
@@ -349,6 +349,10 @@ html:not(.is-firefox) {
         border-radius: $border-radius-lg;
         margin-top: $spacing-lg;
 
+        summary {
+          cursor: pointer;
+        }
+
         h3 {
             margin-bottom: 0;
             @include font-size(18px);
@@ -363,7 +367,6 @@ html:not(.is-firefox) {
             color: $color-marketing-gray-70;
             font-weight: 600;
             margin-top: $spacing-xl;
-
         }
     }
 }
@@ -397,7 +400,6 @@ html:not(.is-firefox) {
         display: none;
         position: absolute;
         max-width: 90%;
-
 
         @media #{$mq-md} {
             max-width: 440px;

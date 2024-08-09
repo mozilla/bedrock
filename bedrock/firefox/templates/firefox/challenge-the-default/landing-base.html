@@ -4,35 +4,30 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% from "macros-protocol.html" import picto with context %}
 
 {% block page_title %}{{ ftl('firefox-home-firefox-protect-your') }}{% endblock %}
-
-{% block page_title_suffix %}{{ ftl('firefox-home-mozilla') }}{% endblock %}
-
-{% block page_desc %}
-  {{ seo_desc }}
-{% endblock %}
+{% block page_title_suffix %} — {{ ftl('firefox-home-mozilla') }}{% endblock %}
+{% block page_desc %}{{ seo_desc }}{% endblock %}
 {% block page_image %}
   {% if LANG == "fr" %}
     {{ static('img/firefox/challenge-the-default/ctd-share-fr.png') }}
+  {% elif LANG == "es-ES" %}
+    {{ static('img/firefox/challenge-the-default/ctd-share-es.png') }}
+  {% elif LANG == "it" %}
+    {{ static('img/firefox/challenge-the-default/ctd-share-it.png') }}
+  {% elif LANG == "pl" %}
+    {{ static('img/firefox/challenge-the-default/ctd-share-pl.png') }}
   {% else %}
     {{ static('img/firefox/challenge-the-default/ctd-share.png') }}
   {% endif %}
 {% endblock %}
-{% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('challenge-the-default') }}
-{% endblock %}
-
-
-{% block sub_navigation %}
 {% endblock %}
 
 {% macro cta_group(position) -%}
@@ -46,7 +41,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% if variation not in ["2", "3", "4", "5", "6"] %}
   <div class="ctd-mobile-banner">
     {{ resp_img(
-        url='img/firefox/challenge-the-default/logo-firefox.svg',
+        url='protocol/img/logos/firefox/browser/logo.svg',
         optional_attributes={
           'loading': 'eager',
           'height': '24',
@@ -141,7 +136,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="c-hero-top-images">
             {% if variation not in ["2", "3", "4", "5", "6"] %}
               {{ resp_img(
-                url='img/firefox/challenge-the-default/logo-firefox.svg',
+                url='protocol/img/logos/firefox/browser/logo.svg',
                 optional_attributes={
                   'loading': 'eager',
                   'alt': hero_alt,
@@ -213,7 +208,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         )%}
           <p>{{ features_power_body }}</p>
           <small>{{ features_power_small }}</small>
-          </p>
         {% endcall %}
         {% call picto(
           base_el='li',
@@ -261,56 +255,56 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <tbody>
             <tr>
               <th scope="row">{{ compare_passwords }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
-              <td class="safari" aria-label="checkmark">&#x2713;</td>
-              <td class="chrome" aria-label="checkmark">&#x2713;</td>
-              <td class="edge" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
+              <td class="safari" aria-label="checkmark">✓</td>
+              <td class="chrome" aria-label="checkmark">✓</td>
+              <td class="edge" aria-label="checkmark">✓</td>
             </tr>
             <tr>
               <th scope="row" class="break-word">{{ compare_search }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
-              <td class="safari" aria-label="checkmark">&#x2713;</td>
-              <td class="chrome" aria-label="checkmark">&#x2713;</td>
-              <td class="edge" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
+              <td class="safari" aria-label="checkmark">✓</td>
+              <td class="chrome" aria-label="checkmark">✓</td>
+              <td class="edge" aria-label="checkmark">✓</td>
             </tr>
             <tr>
               <th scope="row">{{ compare_sync }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
-              <td class="safari" aria-label="checkmark">&#x2713;</td>
-              <td class="chrome" aria-label="checkmark">&#x2713;</td>
-              <td class="edge" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
+              <td class="safari" aria-label="checkmark">✓</td>
+              <td class="chrome" aria-label="checkmark">✓</td>
+              <td class="edge" aria-label="checkmark">✓</td>
             </tr>
             <tr>
               <th scope="row">{{ compare_block }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
-              <td class="safari" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
+              <td class="safari" aria-label="checkmark">✓</td>
               <td class="chrome"></td>
-              <td class="edge" aria-label="checkmark">&#x2713;</td>
+              <td class="edge" aria-label="checkmark">✓</td>
             </tr>
             <tr>
               <th scope="row">{{ compare_profit }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">{{ compare_privacy }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">{{ compare_shareholders }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
             </tr>
             <tr>
               <th scope="row">{{ compare_logo }}</th>
-              <td class="firefox" aria-label="checkmark">&#x2713;</td>
+              <td class="firefox" aria-label="checkmark">✓</td>
               <td class="safari"></td>
               <td class="chrome"></td>
               <td class="edge"></td>
