@@ -7,6 +7,7 @@
 // do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
 $token-color-black: #000;
 $token-color-light-gray: #f4f4f4;
+$token-color-medium-gray: #e8e8e8;
 $token-color-dark-gray: #181818;
 $token-color-functional-gray-on-white: #707070;
 $token-color-functional-gray-on-black: #828282;
@@ -33,6 +34,7 @@ $token-color-feedback-error: $token-color-orange;
 
     // gray
     --m24-light-gray: #{$token-color-light-gray};
+    --m24-medium-gray: #{$token-color-medium-gray};
     --m24-dark-gray: #{$token-color-dark-gray};
     --m24-functional-gray: #{$token-color-functional-gray-on-white};
 
@@ -62,6 +64,7 @@ $m24-color-black: var(--m24-black);
 
 // gray
 $m24-color-light-gray: var(--m24-light-gray);
+$m24-color-medium-gray: var(--m24-medium-gray);
 $m24-color-dark-gray: var(--m24-dark-gray);
 $m24-color-functional-gray: var(--m24-functional-gray);
 

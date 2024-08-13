@@ -1,0 +1,29 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ <div class="c-navigation mzp-is-sticky moz24-navigation-refresh">
+  <div class="c-navigation-l-content">
+    <div class="c-navigation-container">
+      <button class="c-navigation-menu-button" type="button" aria-controls="c-navigation-items" data-testid="navigation-refresh-menu-button">{{ ftl('ui-menu') }}</button>
+      <div class="c-navigation-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-text="mozilla home icon" data-link-type="nav">
+          <img loading="lazy" class="c-navigation-logo-image" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ ftl('navigation-refresh-mozilla') }}" width="88" height="21">
+        </a>
+      </div>
+      <div class="c-navigation-items" id="c-navigation-items" data-testid="navigation-menu-items">
+        <div class="c-navigation-menu">
+          <nav class="c-menu mzp-is-basic">
+            <ul class="c-menu-category-list">
+              {% include 'includes/protocol/navigation/menus-refresh/firefox.html' %}
+              {% include 'includes/protocol/navigation/menus-refresh/products.html' %}
+              {% include 'includes/protocol/navigation/menus-refresh/about-us.html' %}
+            </ul>
+          </nav>
+        </div><!-- close .c-navigation-menu -->
+      </div><!-- close .c-navigation-items -->
+    </div>
+  </div>
+</div>

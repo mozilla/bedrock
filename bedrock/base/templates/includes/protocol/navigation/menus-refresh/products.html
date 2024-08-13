@@ -1,0 +1,82 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' %}
+
+<li class="c-menu-category mzp-has-drop-down mzp-js-expandable">
+  <a class="c-menu-title" href="{{ url('products.landing') }}" aria-haspopup="true" aria-controls="c-menu-panel-products" data-testid="navigation-link-products">{{ ftl('navigation-refresh-products') }}</a>
+  <div class="c-menu-panel" id="c-menu-panel-products" data-testid="navigation-menu-products">
+    <div class="c-menu-panel-container">
+      <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-products">{{ ftl('navigation-refresh-close-products-menu') }}</button>
+      <div class="c-menu-panel-content">
+        <ul class="mzp-l-content">
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-text="Mozilla VPN" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('protocol/img/logos/mozilla/vpn/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-mozilla-vpn') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://monitor.mozilla.org/?{{ utm_params }}" data-link-text="Mozilla Monitor" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-mozilla-monitor') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://relay.firefox.com/?{{ utm_params }}" data-link-text="Firefox Relay" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('protocol/img/logos/firefox/relay/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-firefox-relay') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://getpocket.com/firefox_learnmore/?{{ utm_params }}" data-link-text="Pocket" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('protocol/img/logos/pocket/logo.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-pocket') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://developer.mozilla.org/plus?{{ utm_params }}" data-link-text="MDN Plus" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('img/nav/icons/icon-mdn-plus.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-mdn-plus') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://fakespot.com/?{{ utm_params }}" data-link-text="Fakespot" data-link-type="nav" data-link-position="topnav" data-link-group="projects">
+                <img loading="lazy" src="{{ static('img/logos/fakespot/logo-blue.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-fakespot') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item mzp-has-icon">
+              <a class="c-menu-item-link" href="https://www.thunderbird.net/{{ referrals }}" data-link-text="Thunderbird" data-link-type="nav" data-link-position="topnav" data-link-group="products">
+                <img loading="lazy" src="{{ static('img/logos/thunderbird/logo-thunderbird.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-thunderbird') }}</h4>
+              </a>
+            </section>
+          </li>
+        </ul>
+        <p class="c-menu-category-link">
+          <a href="{{ url('products.landing') }}" data-link-text="Go to all browsers and products" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+            {{ ftl('navigation-refresh-all-products') }}
+            <svg fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath><g clip-path="url(#a)"><path d="M10.45 10.789v1.806H5V10.79zm8.55.903L10.45 4.5v6.289h1.806v-2.41l3.938 3.313-3.938 3.312v-2.409H10.45v6.289z" fill="#fff"/></g></svg>
+          </a>
+        </p>
+      </div>
+    </div><!-- close .c-menu-panel-container -->
+  </div><!-- close .c-menu-panel -->
+</li><!-- close products -->
