@@ -16,6 +16,7 @@ const {
 const { test, expect } = require('@playwright/test');
 
 const testURL = '/en-US/firefox/new/';
+const footerTestURL = '/de/firefox/new/';
 
 test.describe(
     'Navigation (desktop)',
@@ -137,7 +138,7 @@ test.describe(
     },
     () => {
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(testURL, page, browserName);
+            await openPage(footerTestURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
@@ -157,7 +158,7 @@ test.describe(
         test.use({ viewport: { width: 360, height: 780 } });
 
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(testURL, page, browserName);
+            await openPage(footerTestURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {

@@ -6,6 +6,9 @@
 
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer' %}
 
+{% if switch('m24-navigation-and-footer')  and LANG.startswith('en-') %}
+  {% include 'includes/protocol/footer/footer-refresh.html' %}
+{% else %}
 <footer class="mzp-c-footer {% if theme_class %}{{ theme_class }}{% endif %}" id="colophon">
   <div class="mzp-l-content">
     <nav class="mzp-c-footer-primary">
@@ -123,3 +126,4 @@
     </nav>
   </div>
 </footer>
+{% endif %}

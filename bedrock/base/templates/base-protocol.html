@@ -73,6 +73,9 @@
     {# Global styles, hidden from IE9 and lower #}
     {% block site_css %}
       {{ css_bundle('protocol-firefox') }}
+      {% if switch('m24-navigation-and-footer') and LANG.startswith('en-') %}
+        {{ css_bundle('m24-navigation-and-footer') }}
+      {% endif %}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE9 and lower #}
