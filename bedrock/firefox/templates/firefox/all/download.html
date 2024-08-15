@@ -42,7 +42,7 @@
       {% if is_esr_next_version %}
         <p class="c-step-download">
           <a href="{{ download_esr_next_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
-            {{ ftl('firefox-all-download-esr-version', esr_version= desktop_esr_next_version) }} {{ icon_download|safe }}
+            {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_next_version) }} {{ icon_download|safe }}
           </a>
         </p>
         <p>{{ ftl('firefox-all-esr-we-are-in-transition', esr_next_major=desktop_esr_next_version.split('.')[0], esr_current_major=desktop_esr_latest_version.split('.')[0] ) }}</p>

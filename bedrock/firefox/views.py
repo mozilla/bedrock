@@ -305,10 +305,10 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         "locale_name": locale_name,
     }
 
-    channel_esr_next = "esr_next"
-    esr_next_version = firefox_desktop.latest_version(channel_esr_next)
+    # `firefox_desktop.esr_minor_versions` could have 0, 1, or 2 elements. This adds defaults so we always have 2 to unpack.
+    esr_latest_version, esr_next_version = (firefox_desktop.esr_minor_versions + [None, None])[:2]
     if esr_next_version:
-        context["desktop_esr_latest_version"] = firefox_desktop.latest_version("esr")
+        context["desktop_esr_latest_version"] = esr_latest_version
         context["desktop_esr_next_version"] = esr_next_version
 
     # Show download link
@@ -320,11 +320,18 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         context.update(
             download_url=download_url,
         )
-        if not download_url and esr_next_version:
-            # TKTK: this probably needs some kind of saftey around the locale availability
-            context["download_esr_next_url"] = list(
-                filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds(channel_esr_next, esr_next_version))
-            )[0]["platforms"][platform]["download_url"]
+        if esr_next_version:
+            try:
+                download_esr_next_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr_next")))[0][
+                    "platforms"
+                ][platform]["download_url"]
+                context.update(
+                    download_esr_next_url=download_esr_next_url,
+                )
+            except IndexError:
+                # If the ESR next version is not available for the locale, remove the context variables.
+                context.pop("desktop_esr_latest_version", None)
+                context.pop("desktop_esr_next_version", None)
 
     # Show platforms with download links
     elif platform:
