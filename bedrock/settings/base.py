@@ -277,6 +277,7 @@ FLUENT_DEFAULT_FILES = [
     "brands",
     "download_button",
     "footer",
+    "footer-refresh",
     "fxa_form",
     "mozorg/about/shared",
     "navigation",

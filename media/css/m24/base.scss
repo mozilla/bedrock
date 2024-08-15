@@ -8,6 +8,7 @@
 // variables
 @import 'vars/animation';
 @import 'vars/color';
+@import 'vars/fonts';
 @import 'vars/grid';
 @import 'vars/spacing';
 @import 'vars/text';
@@ -21,67 +22,6 @@
 @import 'showcase';
 @import 'spring';
 @import 'transition';
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla Sans Text';
-    font-style: normal;
-    font-weight: normal;
-    src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla Sans Text';
-    font-style: normal;
-    font-weight: bold;
-    src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Bold.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla Sans Text';
-    font-style: italic;
-    font-weight: normal;
-    src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla Sans Text';
-    font-style: italic;
-    font-weight: bold;
-    src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-BoldIt.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-BoldIt.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla SemiSlab';
-    font-style: normal;
-    font-weight: normal;
-    src:
-        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-SemiBold.woff2') format('woff2'),
-        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlab-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Mozilla SemiSlab';
-    font-style: normal;
-    font-weight: bold;
-    src:
-        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-Bold.woff2') format('woff2'),
-        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlab-Bold.woff') format('woff');
-}
-
 
 /* Protocol overrides ------------------------------------------------------------ */
 
