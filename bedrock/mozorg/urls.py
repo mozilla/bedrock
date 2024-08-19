@@ -124,7 +124,10 @@ urlpatterns = [
     page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # SEI page
-    path("impact/", views.ImpactPageView.as_view(), name="mozorg.impact-report.index"),
+    #  This URL is temporarily commented out as it's behind a switch, and is causing issues
+    #  with the sitemap-generator which does not expect a 404 response. We can include this
+    #  URL again when the page is ready to go live and the switch is active.
+    #  path("impact/", views.ImpactPageView.as_view(), name="mozorg.impact-report.index"),
     # Webvision
     # there's also a redirect in mozorg.nonlocale_urls
     path(
