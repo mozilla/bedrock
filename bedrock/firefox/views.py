@@ -583,35 +583,6 @@ class WhatsnewView(L10nTemplateView):
         return [template]
 
 
-WNP117_VPN_EXPANSION_COUNTRIES = [
-    "AT",  # Austria
-    "BE",  # Belgium
-    "BG",  # Bulgaria
-    "CH",  # Switzerland
-    "CY",  # Cyprus
-    "CZ",  # Czech Republic
-    "DK",  # Denmark
-    "EE",  # Estonia
-    "ES",  # Spain
-    "FI",  # Finland
-    "HR",  # Croatia
-    "HU",  # Hungary
-    "IE",  # Ireland
-    "IT",  # Italy
-    "LT",  # Lithuania
-    "LU",  # Luxembourg
-    "LV",  # Latvia
-    "MT",  # Malta
-    "NL",  # Netherlands
-    "PL",  # Poland
-    "PT",  # Portugal
-    "RO",  # Romania
-    "SE",  # Sweden
-    "SI",  # Slovenia
-    "SK",  # Slovakia
-]
-
-
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/thanks.html": ["firefox/new/download"],
