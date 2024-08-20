@@ -19,7 +19,7 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==14.0
 pytest-selenium==4.0.1
 responses==0.25.3
-ruff==0.5.5
+ruff==0.6.1
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.13.2
 wagtail-factories==4.2.1
