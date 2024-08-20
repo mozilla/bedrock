@@ -1308,12 +1308,6 @@
     },
     {
       "files": [
-        "js/firefox/welcome/welcome15-experiment.es6.js"
-      ],
-      "name": "firefox_welcome_page15_experiment"
-    },
-    {
-      "files": [
         "js/firefox/welcome/welcome16.js"
       ],
       "name": "firefox_welcome_page16"
