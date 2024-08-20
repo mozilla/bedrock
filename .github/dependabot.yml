@@ -9,10 +9,35 @@ updates:
       - Backend
       - dependencies
   - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: monthly
+    groups:
+      frontend:
+        dependency-type: production
+        update-types:
+          - 'minor'
+          - 'patch'
+        patterns:
+          - '*'
+        exclude-patterns:
+          - '@mozilla/glean'  # Glean.js needs to be kept in sync with glean_parser Python dependency
+          - '@mozilla-protocol/*'  # Protocol package updates require individual testing.
+          - '@mozmeao/*'  # Owned NPM package updates require individual testing.
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - 'minor'
+          - 'patch'
+    open-pull-requests-limit: 10
+    labels:
+      - Frontend
+      - dependencies
+  - package-ecosystem: npm
     directory: '/tests/playwright'
     schedule:
       interval: monthly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     groups:
       playwright:
         update-types:
