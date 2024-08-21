@@ -814,6 +814,7 @@ def firefox_welcome_page1(request):
 def firefox_features_translate(request):
     translate_langs = [
         "bg",
+        "ca",
         "hr",
         "cs",
         "da",
