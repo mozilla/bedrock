@@ -189,6 +189,14 @@ check_status_and_handle_failure "Failed to load data from JSON"
 # we need to manually delete them once we've served their purpose
 echo "Preparing statements for nullifying columns in temporary sql file. (Output is hidden because it's captured from stdout)."
 
+# Define the array of tables to be nullified
+tables_to_nullify=("auth_user" "wagtailcore_revision")
+
+# Convert the array into a comma-separated string suitable for the SQL IN clause
+tables_list=$(printf "'%s'," "${tables_to_nullify[@]}")
+tables_list=${tables_list%,}  # Remove the trailing comma
+
+# Execute the SQLite commands
 sqlite3 "$output_db" <<EOF
 BEGIN;
 
@@ -202,7 +210,7 @@ FROM
 JOIN
     pragma_foreign_key_list(fk_table.name) AS fk
 WHERE
-    fk."table" IN ('auth_user', 'wagtailcore_revision')
+    fk."table" IN ($tables_list)
 AND
     fk_table.type = 'table';
 
@@ -230,8 +238,12 @@ echo "Deleting that temporary sql"
 rm -f $columns_to_nullify_sql || all_well=false
 check_status_and_handle_failure "Unable to remove temporary SQL file"
 
-sqlite3 $output_db "DELETE FROM auth_user";
-sqlite3 $output_db "DELETE FROM wagtailcore_revision";
+# 6. Delete rows from tables mentioned in tables_to_nullify
+for table in "${tables_to_nullify[@]}"
+do
+    echo "Purging now-redundant data from: $table"
+    sqlite3 $output_db "DELETE FROM $table"
+done
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
 echo "Restoring original DATABASE_URL to $DATABASE_URL"
