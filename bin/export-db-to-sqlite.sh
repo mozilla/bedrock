@@ -229,7 +229,6 @@ FROM
 COMMIT;
 EOF
 
-
 echo "This is the SQL we ran to null out the columns:"
 cat $columns_to_nullify_sql || all_well=false
 check_status_and_handle_failure "Unable to show temporary SQL file"
@@ -244,6 +243,19 @@ do
     sqlite3 $output_db "DELETE FROM $table"
     echo "Purged now-redundant data from: $table"
 done
+
+# 7. Check if tables in tables_to_nullify are empty
+for table in "${tables_to_nullify[@]}"
+do
+    count=$(sqlite3 $output_db "SELECT COUNT(*) FROM $table")
+    if [[ $count -ne 0 ]]; then
+        echo "ERROR: Table $table is not empty"
+        all_well=false
+    fi
+done
+echo "Checked that the tables we expect to be empty are empty"
+
+check_status_and_handle_failure "Tables in tables_to_nullify are not empty when they should be"
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
 echo "Restored original DATABASE_URL to $DATABASE_URL"
