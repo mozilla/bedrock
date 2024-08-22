@@ -712,6 +712,8 @@ in the browser's web console.
 - ``window.Glean.setLogPings(true)`` (enable verbose ping logging in the web console).
 - ``window.Glean.setDebugViewTag('bedrock')`` (send pings to the `Glean debug dashboard`_
   with the tag name ``bedrock``).
+- You can also use ``window.Glean.debugSession()`` for automatically opening a link to
+  the Debug Ping Viewer with your current session selected.
 
 .. Note::
 
