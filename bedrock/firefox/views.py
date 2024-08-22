@@ -308,8 +308,10 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
     # `firefox_desktop.esr_minor_versions` could have 0, 1, or 2 elements. This adds defaults so we always have 2 to unpack.
     esr_latest_version, esr_next_version = (firefox_desktop.esr_minor_versions + [None, None])[:2]
     if esr_next_version:
-        context["desktop_esr_latest_version"] = esr_latest_version
-        context["desktop_esr_next_version"] = esr_next_version
+        context.update(
+            desktop_esr_latest_version=esr_latest_version,
+            desktop_esr_next_version=esr_next_version,
+        )
 
     # Show download link
     if locale:
