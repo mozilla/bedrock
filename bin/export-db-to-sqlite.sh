@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -137,6 +137,8 @@ python manage.py dumpdata \
 check_status_and_handle_failure "Could not dump main data"
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
+echo "Setting up a fresh Sqlite DB ($output_db) and running migrations"
+
 rm -f $output_db || all_well=false
 
 export DATABASE_URL=sqlite:///$output_db  # Note that the three slashes is key - see dj-database-url docs
@@ -151,6 +153,8 @@ check_status_and_handle_failure "Failed to run Django migrations"
 # 3. We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail ones
 # except for the search indices
+
+echo "Purging data that was automatically added via Django/Wagtail migrations"
 
 for tbl in $(sqlite3 $output_db ".tables 'wagtail%'")
 do
