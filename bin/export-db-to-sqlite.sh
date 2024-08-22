@@ -28,7 +28,6 @@ check_status_and_handle_failure() {
 }
 
 # 0. Are we configured appropriately?
-echo "Checking for Postgres source DB"
 ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
 
 if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
@@ -37,12 +36,13 @@ if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
 fi
 
 check_status_and_handle_failure "Bad source database"
+echo "Checked that source DB is Postgres"
 
 # Back up DATABASE_URL
 export ORIGINAL_DATABASE_URL=$DATABASE_URL
 
 # 1. Dump out to json from the default, source DB
-echo "Dumping JSON from the source DB"
+echo "Dumping JSON from the source DB:"
 
 python manage.py dumpdata \
     contenttypes \
@@ -137,7 +137,7 @@ python manage.py dumpdata \
 check_status_and_handle_failure "Could not dump main data"
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
-echo "Setting up a fresh Sqlite DB ($output_db) and running migrations"
+echo "Setting up a fresh Sqlite DB ($output_db) and running migrations:"
 
 rm -f $output_db || all_well=false
 
@@ -153,8 +153,6 @@ check_status_and_handle_failure "Failed to run Django migrations"
 # 3. We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail ones
 # except for the search indices
-
-echo "Purging data that was automatically added via Django/Wagtail migrations"
 
 for tbl in $(sqlite3 $output_db ".tables 'wagtail%'")
 do
@@ -174,6 +172,8 @@ sqlite3 $output_db "DELETE FROM product_details_productdetailsfile";
 
 # Don't forget to reset sequences
 sqlite3 $output_db "VACUUM";
+
+echo "Purged data that was automatically added via Django/Wagtail migrations"
 
 # 4. Load the data, getting the contenttypes table in first
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
@@ -234,19 +234,19 @@ echo "This is the SQL we ran to null out the columns:"
 cat $columns_to_nullify_sql || all_well=false
 check_status_and_handle_failure "Unable to show temporary SQL file"
 
-echo "Deleting that temporary sql"
 rm -f $columns_to_nullify_sql || all_well=false
 check_status_and_handle_failure "Unable to remove temporary SQL file"
+echo "Deleted that temporary sql"
 
 # 6. Delete rows from tables mentioned in tables_to_nullify
 for table in "${tables_to_nullify[@]}"
 do
-    echo "Purging now-redundant data from: $table"
     sqlite3 $output_db "DELETE FROM $table"
+    echo "Purged now-redundant data from: $table"
 done
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
-echo "Restoring original DATABASE_URL to $DATABASE_URL"
+echo "Restored original DATABASE_URL to $DATABASE_URL"
 
 check_status_and_handle_failure "Final check for all_well turned out to be false"
 
