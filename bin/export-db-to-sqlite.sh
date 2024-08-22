@@ -14,17 +14,21 @@
 # time of running), pointing to the source *Postgres* DB
 
 output_db=$1
+columns_to_nullify_sql="/tmp/columns_to_nullify.sql"
 
 all_well=true
 
-check_status() {
+check_status_and_handle_failure() {
     if [[ $all_well == false ]]; then
         echo "ERROR: there was a problem with the export process. Error code: $1"
+        echo "Deleting exported DB"
+        rm -f $output_db $columns_to_nullify_sql
         exit $1
     fi
 }
 
 # 0. Are we configured appropriately?
+echo "Checking for Postgres source DB"
 ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
 
 if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
@@ -32,27 +36,23 @@ if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
     all_well=false
 fi
 
+check_status_and_handle_failure 100
+
 # Back up DATABASE_URL
 export ORIGINAL_DATABASE_URL=$DATABASE_URL
 
-check_status 100
-
 # 1. Dump out to json from the default, source DB
+echo "Dumping JSON from the source DB"
 
 python manage.py dumpdata \
     contenttypes \
-    --natural-primary \
-    --natural-foreign \
     --indent 2 \
     --output /tmp/export_contenttypes.json || all_well=false
 
 python manage.py dumpdata \
     wagtailcore.Locale \
-    --natural-primary \
-    --natural-foreign \
     --indent 2 \
     --output /tmp/export_wagtail_locales.json || all_well=false
-
 
 # Deliberate exclusions:
 # sessions.Session  # Excluded: security risk
@@ -77,10 +77,8 @@ python manage.py dumpdata \
 # django_rq.Queue  # Excluded: irrelevant and may contain sensitive data in RQ obs
 
 # Deliberate TEMPORARY INCLUSIONS (because without them we cannot load the data) - tables are cleaned at the end
-
 # auth.User  # Will be excluded because of  PII
 # wagtailcore.Revision  # Will be excluded: drafts may leak pre-published content, or stale/dead content
-
 
 python manage.py dumpdata \
     auth.Permission \
@@ -129,24 +127,22 @@ python manage.py dumpdata \
     pocketfeed.PocketArticle \
     careers.Position \
     admin.LogEntry \
-    --natural-primary \
-    --natural-foreign \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
 
-check_status 99
+check_status_and_handle_failure 99
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
-rm -f $output_db
+rm -f $output_db || all_well=false
 
 export DATABASE_URL=sqlite:///$output_db  # Note that the three slashes is key - see dj-database-url docs
 
-check_status 98
+check_status_and_handle_failure 98
 
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
-    python manage.py migrate --verbosity=3 || all_well=false
+    python manage.py migrate || all_well=false
 
-check_status 97
+check_status_and_handle_failure 97
 
 # 3. We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail ones
@@ -179,18 +175,60 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
         "/tmp/export_remainder.json" \
         || all_well=false
 
-check_status 96
+check_status_and_handle_failure 96
 
 # 5. There are things we can't omit or redact in the steps above, so
-# we need to manually delete them
+# we need to manually delete them once we've served their purpose
+echo "Preparing statements for nullifying columns in temporary sql file. (Output is hidden because it's captured from stdout)."
+
+sqlite3 "$output_db" <<EOF
+BEGIN;
+
+-- Step 1: Create a temporary table to store the relations
+CREATE TEMPORARY TABLE fk_relations AS
+SELECT
+    fk_table.name AS table_name,
+    fk."from" AS fk_column
+FROM
+    sqlite_master AS fk_table
+JOIN
+    pragma_foreign_key_list(fk_table.name) AS fk
+WHERE
+    fk."table" IN ('auth_user', 'wagtailcore_revision')
+AND
+    fk_table.type = 'table';
+
+-- Step 2: Generate and execute UPDATE statements in a loop
+-- Output the UPDATE statements and execute them immediately
+.output $columns_to_nullify_sql
+SELECT
+    'UPDATE "' || table_name || '" SET "' || fk_column || '" = NULL;'
+FROM
+    fk_relations;
+.output stdout
+
+-- Step 3: Execute the generated SQL statements
+.read $columns_to_nullify_sql
+
+COMMIT;
+EOF
+
+echo "This is the SQL we ran to null out the columns:"
+cat $columns_to_nullify_sql
+
+echo "Deleting that temporary sql"
+rm -f $columns_to_nullify_sql
+
+# TODO make this check real - not working at the moment
+check_status_and_handle_failure 94
 
 sqlite3 $output_db "DELETE FROM auth_user";
 sqlite3 $output_db "DELETE FROM wagtailcore_revision";
 
-check_status 95
+# TODO make this check real - not working at the moment
+check_status_and_handle_failure 93
 
-echo "Export to $output_db successful"
-
-# Back up DATABASE_URL
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
 echo "Restoring original DATABASE_URL to $DATABASE_URL"
+
+echo "Export to $output_db successful"
