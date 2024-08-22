@@ -814,6 +814,10 @@ def firefox_welcome_page1(request):
 def firefox_features_translate(request):
     translate_langs = [
         "bg",
+        "ca",
+        "hr",
+        "cs",
+        "da",
         "nl",
         "en-US",
         "et",
@@ -822,14 +826,21 @@ def firefox_features_translate(request):
         "de",
         "el",
         "hu",
+        "id",
         "it",
+        "lv",
+        "lt",
         "pl",
         "pt-PT",
+        "ro",
         "ru",
+        "sr",
+        "sk",
         "sl",
         "es-ES",
         "tr",
         "uk",
+        "vi",
     ]
 
     names = get_translations_native_names(sorted(translate_langs))
