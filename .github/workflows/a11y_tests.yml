@@ -48,7 +48,7 @@ jobs:
     - name: Install dependencies
       run: cd tests/playwright && npm ci && npm run install-deps
     - name: Run accessibility tests
-      run: npm run a11y-tests
+      run: cd tests/playwright && npm run a11y-tests
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
