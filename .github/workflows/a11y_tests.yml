@@ -53,7 +53,7 @@ jobs:
       if: ${{ !cancelled() }}
       with:
         name: test-results-a11y-${{ github.sha }}
-        path: test-results-a11y/
+        path: tests/playwright/test-results-a11y/
         retention-days: 30
 
   notify-of-test-run-completion:
