@@ -443,6 +443,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-130.scss"
+      ],
+      "name": "firefox_whatsnew_130"
+    },
+    {
+      "files": [
         "css/firefox/privacy/promise.scss"
       ],
       "name": "firefox-privacy-promise"
@@ -1569,6 +1575,12 @@
         "js/firefox/whatsnew/whatsnew-129-na.js"
       ],
       "name": "firefox_whatsnew_129_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-130.js"
+      ],
+      "name": "firefox_whatsnew_130"
     },
     {
       "files": [
