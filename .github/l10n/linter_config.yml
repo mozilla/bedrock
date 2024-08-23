@@ -27,6 +27,4 @@ CO01:
     - "{ -brand-name-mozilla } account"
   exclusions:
     files: []
-    messages:
-      # firefox/features/translate.ftl
-      - features-translate-for-everyone
+    messages: []
