@@ -1,0 +1,69 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+
+.m24-c-showcase {
+    @include container;
+    padding-top: $spacer-xl;
+    padding-bottom: $spacer-xl;
+
+    * {
+        margin-bottom: 0;
+    }
+}
+
+.m24-c-showcase-title {
+    font-size: $alias-text-title-h2;
+}
+
+.m24-c-showcase-subtitle {
+    font-size: $alias-text-title-h4;
+    text-wrap-style: balance;
+}
+
+.m24-c-showcase-media {
+    text-align: center;
+    padding: $spacer-xl 0;
+    position: relative;
+}
+
+.m24-c-showcase-info {
+    padding-bottom: $spacer-xl;
+    font-size: $alias-text-title-h3;
+}
+
+.m24-c-showcase-cta {
+    text-align: right;
+}
+
+@media #{$mq-lg} {
+    .m24-c-showcase {
+        @include grid;
+        grid-template-rows: min-content min-content auto min-content;
+    }
+
+    .m24-c-showcase-title {
+        grid-column: 1/-1;
+    }
+
+    .m24-c-showcase-subtitle {
+        grid-column: 1/10;
+    }
+
+    .m24-c-showcase-media {
+        grid-column: 1/-1;
+        align-self: center;
+    }
+
+    .m24-c-showcase-info {
+        grid-column: 1/7;
+        padding-bottom: 0;
+    }
+
+    .m24-c-showcase-cta {
+        grid-column: 7/-1;
+
+    }
+}

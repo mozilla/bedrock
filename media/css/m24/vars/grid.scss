@@ -1,0 +1,56 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+:root {
+    // grid
+    --grid-margin: 16px;
+    --grid-gutter: 8px;
+}
+
+@media #{$mq-md} {
+    :root {
+        // grid
+        --grid-margin: 24px;
+        --grid-gutter: 12px;
+    }
+}
+
+@media #{$mq-xl} {
+    :root {
+        // grid
+        --grid-margin: 32px;
+        --grid-gutter: 16px;
+    }
+}
+
+// grid
+$grid-margin: var(--grid-margin);
+$grid-gutter: var(--grid-gutter);
+$grid-columns: 12;
+
+// image in grid
+$mobile-square-img-max-width: 363px;
+
+@function grid($n) {
+    // can only be used inside a container that is full width with $content-padding on each side
+    $total-columns: 12;
+    $one-column: calc(100% / #{$total-columns});
+    $minus: calc($grid-gutter * ($grid-columns - $n) / $grid-columns);
+    @return calc($one-column * #{$n} - #{$minus});
+}
+
+@mixin grid {
+    // can only be used inside a container that is full width with $content-padding on each side
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    gap: $grid-gutter;
+}
+
+@mixin container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: $content-max;
+    padding: 0 $container-padding;
+    position: relative;
+}

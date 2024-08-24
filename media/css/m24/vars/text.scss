@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$m24-font-path: '/media/fonts/m24/';
+
 :root {
     // titles
     --text-title-2xl: 48px;
@@ -75,7 +77,6 @@ $text-body-sm: var(--text-body-sm);
 // buttons
 $text-button-lg: var(--text-button-lg);
 $text-button-sm: var(--text-button-sm);
-
 
 // aliases are to help with copying styles from the Basic Figma files
 // these should be find/replaced out at some point in the future

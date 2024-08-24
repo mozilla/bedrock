@@ -1,0 +1,85 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+.m24-c-accordion {
+    padding: $spacer-lg 0;
+}
+
+.m24-c-accordion-contents {
+    border-bottom: 4px solid $m24-color-light-gray;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+
+    &[open],
+    &:hover {
+        @include invert-colors;
+    }
+}
+
+.m24-c-accordion-title {
+    display: grid;
+    gap: 0 $grid-gutter;
+    grid-template-columns: 24px 1fr 48px;
+    grid-template-rows: repeat(2, auto);
+    margin: 0 calc($container-padding * -1);
+    padding: $spacer-sm calc($container-padding / 2);
+    position: relative;
+    text-decoration: none;
+    background-color: $m24-color-white;
+
+    &::before {
+        background-image: url('/media/img/icons/m24-small/plus.svg');
+        background-repeat: no-repeat;
+        background-size: 20px auto;
+        right: $spacer-sm;
+    }
+
+    [open] &,
+    &:hover {
+        &::before {
+            background-image: url('/media/img/icons/m24-small/plus-white.svg');
+        }
+    }
+
+    &:focus {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.m24-c-accordion-name {
+    display: inline-block;
+    font-size: $alias-text-title-h4;
+    font-weight: 600;
+    grid-column: 2/3;
+    margin: 0;
+    min-width: 100%;
+    padding-right: $grid-gutter;
+    color: $m24-color-black;
+}
+
+.m24-c-accordion-info {
+    grid-column: 2/3;
+    color: $m24-color-functional-gray;
+    margin: 0;
+}
+
+.m24-c-accordion-body {
+    margin: 0 calc($container-padding * -1);
+    padding: $spacer-lg $container-padding;
+}
+
+
+@media #{$mq-lg} {
+    .m24-c-accordion-title {
+        grid-template-columns: 24px calc(grid(4) - 24px - $grid-gutter) auto 48px;
+        grid-template-rows: 1fr auto;
+    }
+
+    .m24-c-accordion-info {
+        align-self: end;
+        grid-column: 3/4;
+    }
+}

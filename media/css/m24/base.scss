@@ -6,26 +6,166 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // variables
+@import 'vars/animation';
 @import 'vars/color';
+@import 'vars/grid';
 @import 'vars/spacing';
 @import 'vars/text';
-@import 'vars/animation';
 
-$mobile-square-img-max-width: 363px;
+// components
+@import 'accordion';
+@import 'consider';
+@import 'copy';
+@import 'grid';
+@import 'hero';
+@import 'showcase';
+@import 'spring';
+@import 'transition';
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: normal;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: normal;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Bold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: italic;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: italic;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-BoldIt.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-BoldIt.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla SemiSlab';
+    font-style: normal;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlabBETA-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlabBETA-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla SemiSlab';
+    font-style: normal;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlabBETA-Bold.woff2') format('woff2'),
+        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlabBETA-Bold.woff') format('woff');
+}
+
+
+/* Protocol overrides ------------------------------------------------------------ */
+
+body {
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+    font-family: 'Mozilla Sans Text BETA', sans-serif;
+    font-variant-ligatures: none;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5 {
+    color: $m24-color-black;
+    font-family: 'Mozilla SemiSlab BETA', serif;
+    font-variant-ligatures: none;
+    font-weight: 900;
+}
+
+strong {
+    font-weight: 900;
+}
+
+a:link {
+    color: $m24-color-black;
+
+    &:hover,
+    &:focus {
+        color: $m24-color-black;
+    }
+
+    &:visited{
+        &:hover,
+        &:focus {
+            color: $m24-color-black;
+        }
+    }
+}
+
+*:focus,
+*:focus-visible {
+    outline-offset: 6px;
+}
 
 /* ------------------------------------------------------------------------------- */
 
-// can only be used inside a component that is 1440px with $content-padding on each side
-@function grid($n) {
-    $total-columns: 12;
-    $one-column: calc(100% / #{$total-columns});
-    $minus: calc($grid-gutter * ($grid-columns - $n) / $grid-columns);
-    @return calc($one-column * #{$n} - #{$minus});
+.m24-c-container {
+    @include container;
 }
 
-// can only be used inside a component that is 1440px with $content-padding on each side
-@mixin grid {
-    display: grid;
-    grid-template-columns: repeat($grid-columns, 1fr);
-    gap: $grid-gutter;
+.m24-c-content {
+    @include container;
+    padding-top: $spacer-xl;
+    padding-bottom: $spacer-xl;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+.m24-c-section-cta {
+    margin-bottom: 0;
+    padding: $spacer-xs 0;
+    text-align: right;
+}
+
+.m24-c-cta {
+    color: $color-black-on-white;
+    display: inline-block;
+    font-family: 'Mozilla SemiSlab BETA', serif;
+    font-size: $text-button-lg;
+
+    &:hover {
+        color: $color-green-on-white;
+    }
+
+    &:focus-visible {
+        color: $color-black-on-white;
+    }
+
+    &:active {
+        color: $color-black-on-white;
+    }
+
+    &.m24-t-small {
+        font-family: 'Mozilla Sans Text BETA', sans-serif;
+        font-size: $text-button-sm;
+    }
 }

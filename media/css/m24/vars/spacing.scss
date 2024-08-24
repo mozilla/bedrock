@@ -13,10 +13,6 @@
     --spacer-xs: 8px;
     --spacer-2xs: 4px;
 
-    // grid
-    --grid-margin: 16px;
-    --grid-gutter: 8px;
-
     // container
     --container-padding: 16px;
 }
@@ -32,10 +28,6 @@
         --spacer-sm: 16px;
         --spacer-xs: 8px;
         --spacer-2xs: 4px;
-
-        // grid
-        --grid-margin: 24px;
-        --grid-gutter: 12px;
 
         // container
         --container-padding: 24px;
@@ -54,10 +46,6 @@
         --spacer-xs: 8px;
         --spacer-2xs: 4px;
 
-        // grid
-        --grid-margin: 32px;
-        --grid-gutter: 16px;
-
         // container
         --container-padding: 32px;
     }
@@ -72,11 +60,6 @@ $spacer-md: var(--spacer-md);
 $spacer-sm: var(--spacer-sm);
 $spacer-xs: var(--spacer-xs);
 $spacer-2xs: var(--spacer-2xs);
-
-// grid
-$grid-margin: var(--grid-margin);
-$grid-gutter: var(--grid-gutter);
-$grid-columns: 12;
 
 // container
 $container-padding: var(--container-padding);
