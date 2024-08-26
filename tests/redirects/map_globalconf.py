@@ -882,7 +882,7 @@ URLS = flatten(
         url_test("/hacking", "https://firefox-source-docs.mozilla.org/"),
         # issue 10736
         url_test("/jobs", "/careers/"),
-        url_test("/join", "https://foundation.mozilla.org/donate/"),
+        url_test("/join", "/careers/"),
         # Bug 1293539
         url_test("/firefox/{48.0,48.0.1,49.0a1,49.0a2}/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
         url_test("/firefox/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
@@ -915,12 +915,12 @@ URLS = flatten(
         ),
         # Bug 936362
         # only upper-case for XBL. /xbl is a namespace URL for the standard.
-        url_test("/XBL", "https://developer.mozilla.org/docs/XBL"),
+        url_test("/XBL", "https://www.w3.org/TR/xbl/"),
         url_test("/xbl", status_code=200),
-        url_test("/RDF", "https://developer.mozilla.org/docs/RDF"),
-        url_test("/rdf", "https://developer.mozilla.org/docs/RDF"),
-        # Bug 1332008
-        url_test("{/en-US,}/protocol/", "https://blog.mozilla.org/opendesign/"),
+        url_test("/RDF", "https://www.w3.org/RDF/"),
+        url_test("/rdf", "https://www.w3.org/RDF/"),
+        # Bug 1332008, 1525853
+        url_test("{/en-US,}/protocol/", "https://protocol.mozilla.org"),
         # Bug 1322959, issue 8375
         url_test("/onlineprivacy", "https://foundation.mozilla.org/internet-health/"),
         # Bug 1335569, issue 8375
@@ -931,11 +931,11 @@ URLS = flatten(
         # Bug 1335569, issue 8375
         url_test("/open-innovation", "https://foundation.mozilla.org/internet-health/"),
         # Bug 1335040
-        url_test("/gigabit/{,apply/}", "https://learning.mozilla.org/gigabit/"),
+        url_test("/gigabit/{,apply/}", "https://wiki.mozilla.org/Gigabit"),
         # Bug 1329931
         url_test("/firefox/os/{,devices/}", "https://support.mozilla.org/products/firefox-os"),
         # Bug 1324504
-        url_test("/contribute/studentambassadors/{,join/,thanks/}", "https://campus.mozilla.community/"),
+        url_test("/contribute/studentambassadors/{,join/,thanks/}", "/contribute/"),
         # Bug 1340600, Issue 7840
         url_test(
             "/css-grid",
@@ -994,8 +994,8 @@ URLS = flatten(
         # bug 1419244
         url_test("/firefox/mobile-download/{,desktop/}", "/firefox/browsers/mobile/"),
         # Bug 1438464
-        url_test("/collusion/", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
-        url_test("/lightbeam/{,about/}?", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
+        url_test("/collusion/", "https://github.com/mozilla/lightbeam-we"),
+        url_test("/lightbeam/{,about/}?", "https://github.com/mozilla/lightbeam-we"),
         # Bug 1428150
         url_test("/tabzilla/media/css/tabzilla.css", "https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css"),
         # bug 960651, 1436973
@@ -1030,8 +1030,8 @@ URLS = flatten(
         # Issue 6979
         url_test("/firefoxfightsforyou/", "/firefox/"),
         # Issue 6994
-        url_test("/contribute/signup/", "https://activate.mozilla.community/"),
-        url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "https://activate.mozilla.community/"),
+        url_test("/contribute/signup/", "/contribute/"),
+        url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "/contribute/"),
         url_test("/contribute/friends/", "/contribute/"),
         # Issue 7287
         url_test("/accounts/", "/account/"),
@@ -1087,15 +1087,7 @@ URLS = flatten(
         # Issue 8418
         url_test("/styleguide/", "https://mozilla.design/"),
         # Issue 8644, 8932
-        url_test(
-            "/builders{,/}",
-            "https://builders.mozilla.community/",
-            query={
-                "utm_source": "www.mozilla.org",
-                "utm_medium": "referral",
-                "utm_campaign": "builders-redirect",
-            },
-        ),
+        url_test("/builders{,/}", "https://future.mozilla.org/builders/"),
         # Issue 6824, 14364
         url_test("/technology/", "https://future.mozilla.org/"),
         # Issue 8419
