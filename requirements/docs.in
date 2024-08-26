@@ -6,7 +6,7 @@ markdown-it-py>=2.2.0
 markupsafe==2.1.4
 myst-parser==3.0.1
 requests>=2.31.0  # hard-pin to bring it up to a secure version
-Sphinx==7.3.7
+Sphinx==7.4.7
 sphinx-autobuild==2024.4.16
 sphinx-copybutton==0.5.2
 sphinx-rtd-theme==2.0.0
