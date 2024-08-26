@@ -1216,12 +1216,6 @@
     },
     {
       "files": [
-        "css/mozorg/try-picture-in-picture.scss"
-      ],
-      "name": "try-picture-in-picture"
-    },
-    {
-      "files": [
         "css/products/mozsocial/invite.scss"
       ],
       "name": "mozsocial-invite"
