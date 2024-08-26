@@ -569,4 +569,6 @@ redirectpatterns = (
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
     # issue 14944
     redirect(r"^nothing-?personal/?$", "firefox.nothing-personal.index"),
+    # Issue 15008
+    redirect(r"^try-picture-in-picture/?$", "firefox.features.picture-in-picture"),
 )

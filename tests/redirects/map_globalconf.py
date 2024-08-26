@@ -1304,5 +1304,7 @@ URLS = flatten(
         # issue 14944
         url_test("/{nothing-personal,nothingpersonal}/", "/firefox/nothing-personal/"),
         url_test("/firefox/nothingpersonal/", "/firefox/nothing-personal/"),
+        # issue 15008
+        url_test("/try-picture-in-picture/", "/firefox/features/picture-in-picture/"),
     )
 )
