@@ -258,12 +258,6 @@ locales = [
         "zh-TW",
     ]
 [[paths]]
-    reference = "en/mozorg/try-picture-in-picture.ftl"
-    l10n = "{locale}/mozorg/try-picture-in-picture.ftl"
-    locales = [
-        "it"
-    ]
-[[paths]]
     reference = "en/newsletter/opt-out-confirmation.ftl"
     l10n = "{locale}/newsletter/opt-out-confirmation.ftl"
     locales = [
