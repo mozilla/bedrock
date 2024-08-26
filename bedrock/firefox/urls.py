@@ -218,6 +218,16 @@ urlpatterns = (
     page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
     # Firefox for Families evergreen page, Issue #12004
     page("firefox/family/", "firefox/family/index.html"),
+    # Issue 14985 - "Built For You" campaign landing page
+    path(
+        "firefox/built-for-you/",
+        VariationTemplateView.as_view(
+            template_name="firefox/built-for-you/landing.html",
+            active_locales=["de", "fr"],
+            variation_locales=["de", "fr"],
+            template_context_variations=["1", "2", "3", "4", "5"],
+        ),
+    ),
 )
 
 # Contentful
