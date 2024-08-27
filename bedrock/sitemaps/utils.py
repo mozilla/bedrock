@@ -150,10 +150,6 @@ def get_static_urls():
 
                 locales = set(render.call_args[0][2]["translations"].keys())
 
-                # zh-CN is a redirect on the homepage
-                if path == "/":
-                    locales -= {"zh-CN"}
-
                 # Firefox Focus has a different URL in German
                 if path == "/privacy/firefox-focus/":
                     locales -= {"de"}
