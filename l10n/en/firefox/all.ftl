@@ -5,9 +5,13 @@
 ### URL: https://www-dev.allizom.org/firefox/all/
 
 # HTML page title. Replace "English (US)" with your local language.
+firefox-all-download-the-firefox-v2 = Download { -brand-name-firefox } in English (US) and more than 90 other languages
+# Obsolete string (expires 2024-10-27)
 firefox-all-download-the-firefox = Download the { -brand-name-firefox-browser } in English (US) and more than 90 other languages
 
 # HTML page description, also used as the introductory text.
+firefox-all-everyone-deserves-access-v2 = Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make { -brand-name-firefox } available in more than 90 languages.
+# Obsolete string (expires 2024-10-27)
 firefox-all-everyone-deserves-access = Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make the { -brand-name-firefox-browser } available in more than 90 languages.
 
 # Variables:
