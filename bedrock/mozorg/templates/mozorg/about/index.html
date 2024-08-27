@@ -25,11 +25,12 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-callout mzp-t-hero"  {% if variant %}data-variant="{{ variant }}"{% endif%}>
+<main>
+<section class="mzp-c-callout mzp-t-hero" {% if variant %}data-variant="{{ variant }}"{% endif%}>
   <div class="mzp-l-content">
     <h1 class="mzp-c-callout-title">{{ ftl('about-mozilla-makes-browsers-apps') }}</h1>
     <p class="mzp-c-callout-desc">{{ ftl('about-our-mission-keep-the-internet') }}</p>
-     <p class="c-callout-cta">
+    <p class="c-callout-cta">
         <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-link-name="Read Our Mission" data-link-type="button" data-cta-position="primary cta">
           {{ ftl('about-read-our-mission') }}
         </a>
@@ -81,7 +82,7 @@
   </div>
 </div>
 
-   {% call split(
+  {% call split(
     image=resp_img(
       url='img/mozorg/about/foundation.jpg',
       srcset={
@@ -118,7 +119,7 @@
   <section class="t-global">
     <div class="mzp-l-content">
       <div class="t-global-text">
-        <h1 class="t-global-title">{{ ftl('about-a-global-view') }}</h1>
+        <h2 class="t-global-title">{{ ftl('about-a-global-view') }}</h2>
         <div class="t-global-desc">
           {{ ftl('about-with-offices-all-over-the', url=url('mozorg.contact.spaces.spaces-landing')) }}
         </div>
@@ -187,6 +188,8 @@
     </div>
   </aside>
 </div>
+</main>
+
 {% endblock %}
 
 {% block js %}
