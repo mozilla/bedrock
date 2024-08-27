@@ -41,7 +41,7 @@
       {# If there are multiple ESR's available, show next as well. #}
       {% if is_esr_next_version %}
         <p class="c-step-download">
-          <a href="{{ download_esr_next_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+          <a href="{{ download_esr_next_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
             {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_next_version) }} {{ icon_download|safe }}
           </a>
         </p>
@@ -49,7 +49,7 @@
         <p>{{ ftl('firefox-all-esr-when-there-is') }}</p>
         <p>{{ ftl('firefox-all-esr-if-you-choose') }}</p>
         <p>
-          <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+          <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
             {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_latest_version) }} {{ icon_download|safe }}
           </a>
         </p>
@@ -57,7 +57,7 @@
       {% else %}
       {# ESR latest #}
       <p class="c-step-download">
-        <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+        <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
           {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
         </a>
       </p>
@@ -65,7 +65,7 @@
     {% else %}
       {# All other desktop releases #}
       <p class="c-step-download">
-        <a href="{{ download_url }}" class="mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform.slug }}" data-cta-text="Download Now">
+        <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
           {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
         </a>
       </p>
