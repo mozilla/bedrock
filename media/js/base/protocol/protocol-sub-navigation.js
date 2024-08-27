@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    var subNavTitle = '.c-sub-navigation .c-sub-navigation-title';
+    var subNavTitle = '.c-sub-navigation .c-sub-navigation-mobile-toggle';
 
     function handleMqChange(mq) {
         if (mq.matches) {

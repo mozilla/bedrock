@@ -4,31 +4,29 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
-        <a href="{{ url('products.vpn.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Mozilla VPN">
-          {{ ftl('vpn-subnav-title') }}
-        </a>
-      </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('products.vpn.resource-center.landing') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Learn about VPNs">
-            {{ ftl('vpn-subnav-learn-about-vpns') }}
-          </a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('products.vpn.features') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Features">
-            {{ ftl('vpn-subnav-features') }}
-          </a>
-        </li>
-        <li class="c-sub-navigation-item">
-          <a href="{{ url('products.vpn.download') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Download Mozilla VPN">
-            {{ ftl('vpn-subnav-download-mozilla-vpn') }}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text':  ftl('vpn-subnav-title'),
+    'href':  url('products.vpn.landing'),
+    'cta_name': 'Mozilla VPN'
+  },
+  links=[
+    {
+      'text':  ftl('vpn-subnav-features'),
+      'href':  url('products.vpn.resource-center.landing'),
+      'cta_name': 'Learn about VPNs'
+    },
+    {
+      'text': ftl('sub-navigation-mobile'),
+      'href': url('products.vpn.features'),
+      'cta_name': 'Features'
+    },
+    {
+      'text': ftl('vpn-subnav-download-mozilla-vpn'),
+      'href': url('products.vpn.download'),
+      'cta_name': 'Download Mozilla VPN'
+    }
+  ]
+) }}
