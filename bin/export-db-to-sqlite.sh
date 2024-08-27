@@ -117,7 +117,7 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 # wagtailcore.Comment           # Excluded: may contain sensitive info
 # wagtailcore.CommentReply      # Excluded: may contain sensitive info
 # wagtailcore.PageSubscription  # Excluded: dependent on User model
-# django_rq.Queue               # Excluded: irrelevant to loacl use and not a real DB table: data lives in Redis
+# django_rq.Queue               # Excluded: irrelevant to local use and not a real DB table: data lives in Redis
 
 # Deliberate TEMPORARY INCLUSIONS (because without them we cannot load the data) - tables are
 # cleaned at the end, which is why they are in the tables_to_wipe_after_import variable, defined earlier.
@@ -194,7 +194,7 @@ check_status_and_handle_failure "Running Django migrations"
 # We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail
 # ones, except for wagtailsearch's tables because there's a virtual table that
-# causes fatal problems when loading data it if it's empty. We'll update this later
+# causes fatal problems when loading data if it's empty. We'll update this later
 # in this script
 
 for table in $(sqlite3 $output_db ".tables 'wagtail%'")
