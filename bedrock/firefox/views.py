@@ -275,7 +275,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
             download_url = True  # Set to True to avoid trying to generate this later below.
         if product_slug.startswith("mobile"):
             platform = "mobile"
-            platform_name = "Mobile (iOS or Android)"
+            platform_name = ftl("firefox-all-plat-mobile", ftl_files=ftl_files)
         elif product_slug.startswith("android"):
             platform = "android"
             platform_name = "Android"

@@ -29,10 +29,13 @@ firefox-all-down-arrow = Choose from the list below
 
 # Used as an accessible label for a help button. The text is replaced with a "?" icon.
 firefox-all-get-help = Get help
-firefox-all-browser = Browser:
-firefox-all-platform = Platform:
-firefox-all-language = Language:
-firefox-all-download = Download:
+firefox-all-browser = 1. Browser:
+firefox-all-platform = 2. Platform:
+firefox-all-language = 3. Language:
+firefox-all-download = 4. Download:
+firefox-all-desktop = Desktop
+firefox-all-mobile = Mobile
+firefox-all-recommended = (Recommended)
 firefox-all-lang-multi = Multiple languages
 firefox-all-plat-mobile = Android and iOS
 firefox-all-sorry-we-couldnt-find = Sorry, we couldn’t find the download you’re looking for. Please try again, or select a download from the list below.
@@ -99,3 +102,4 @@ firefox-all-product-firefox-android = { -brand-name-firefox } { -brand-name-andr
 firefox-all-product-firefox-android-beta = { -brand-name-firefox } { -brand-name-android } { -brand-name-beta }
 firefox-all-product-firefox-android-nightly = { -brand-name-firefox } { -brand-name-android } { -brand-name-nightly }
 firefox-all-product-firefox-ios = { -brand-name-firefox } { -brand-name-ios }
+firefox-all-product-firefox-ios-testflight = { -brand-name-firefox } iOS TestFlight

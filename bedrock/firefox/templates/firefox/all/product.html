@@ -7,7 +7,7 @@
 {# Choose product #}
 
 <h2 class="c-step-name">
-  1. {{ ftl('firefox-all-browser') }}
+  {{ ftl('firefox-all-browser') }}
   {% if product %}
     <span class="c-step-choice">{{ product and product.name }}</span> <a href="{{ url('firefox.all') }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-browser') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
   {% else %}
@@ -23,9 +23,9 @@
 
 {% if not product %}
   <div class="c-step-contents">
-    <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/desktop.svg') }}"> Desktop</h3>
+    <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/desktop.svg') }}"> {{ ftl('firefox-all-desktop') }}</h3>
     <ul class="c-product-list qa-desktop-list">
-      <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='desktop-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
+      <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='desktop-release') }}">{{ ftl('firefox-all-product-firefox') }}</a> <strong>{{ ftl('firefox-all-recommended') }}</strong></li>
       {% for p in products %}
         {% if p.slug.startswith('desktop') and not p.slug.endswith('release') %}
           <li class="{{ p.slug }}"><a href="{{ url('firefox.all.platforms', product_slug=p.slug) }}">{{ p.name }}</a></li>
@@ -33,23 +33,23 @@
       {% endfor %}
     </ul>
 
-    <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/mobile.svg') }}"> Mobile</h3>
+    <h3 class="c-product-title"><img alt="" role="presentation" src="{{ static('protocol/img/icons/mobile.svg') }}"> {{ ftl('firefox-all-mobile') }}</h3>
 
     <ul class="c-product-list qa-mobile-list">
-      <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='mobile-release') }}">Firefox</a> <strong>(Recommended)</strong></li>
+      <li class="release"><a href="{{ url('firefox.all.platforms', product_slug='mobile-release') }}">{{ ftl('firefox-all-product-firefox') }}</a> <strong>{{ ftl('firefox-all-recommended') }}</strong></li>
       {% for p in products %}
         {% if p.slug.startswith('android') and not p.slug.endswith('release')%}
           <li class="{{ p.slug }}"><a href="{{ url('firefox.all.platforms', product_slug=p.slug) }}">{{ p.name }}</a></li>
         {% endif %}
       {% endfor %}
-      <li class="ios-testflight"><a href="{{ url('firefox.ios.testflight') }}">Firefox iOS TestFlight</a></li>
+      <li class="ios-testflight"><a href="{{ url('firefox.ios.testflight') }}">{{ ftl('firefox-all-product-firefox-ios-testflight') }}</a></li>
     </ul>
 
     <div id="browser-help" class="c-help mzp-u-modal-content">
       <h3>{{ ftl('firefox-all-learn-about-firefox') }}</h3>
       <ul>
         <li>
-          <h4 class="c-help-title"><a href="{{ url('firefox.new') }}">Firefox</a></h4>
+          <h4 class="c-help-title"><a href="{{ url('firefox.new') }}">{{ ftl('firefox-all-product-firefox') }}</a></h4>
           <p class="c-help-desc">{{ ftl('firefox-all-the-standard-firefox') }}</p>
         </li>
         <li>
