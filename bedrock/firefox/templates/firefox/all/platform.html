@@ -61,12 +61,14 @@
             {{ ftl('firefox-all-arm64-installers-optimized-v2') }}
           </p>
         </li>
+        {% if ftl_has_messages('firefox-all-choose-a-microsoft-store-installer') %}
         <li>
           <h4 class="c-help-title">{{ ftl('firefox-all-microsoft-store-installers') }}</h4>
           <p class="c-help-desc">
             {{ ftl('firefox-all-choose-a-microsoft-store-installer') }}
           </p>
         </li>
+        {% endif %}
       </ul>
     </div>
   </div>
