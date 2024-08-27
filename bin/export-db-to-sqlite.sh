@@ -35,7 +35,7 @@ if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
     all_well=false
 fi
 
-check_status_and_handle_failure "Bad source database"
+check_status_and_handle_failure "Getting source Postgres database"
 echo "Checked that source DB is Postgres"
 
 # Back up DATABASE_URL
@@ -49,14 +49,14 @@ python manage.py dumpdata \
     --indent 2 \
     --output /tmp/export_contenttypes.json || all_well=false
 
-check_status_and_handle_failure "Could not dump contenttypes"
+check_status_and_handle_failure "Dumping contenttypes"
 
 python manage.py dumpdata \
     wagtailcore.Locale \
     --indent 2 \
     --output /tmp/export_wagtail_locales.json || all_well=false
 
-check_status_and_handle_failure "Could not dump wagtailcore.Locale"
+check_status_and_handle_failure "Dumping wagtailcore.Locale"
 
 # Deliberate exclusions:
 # sessions.Session  # Excluded: security risk
@@ -134,7 +134,7 @@ python manage.py dumpdata \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
 
-check_status_and_handle_failure "Could not dump main data"
+check_status_and_handle_failure "Dumping main data"
 
 # 2. Prep a fresh sqlite DB with schema, deleting the original
 echo "Setting up a fresh Sqlite DB ($output_db) and running migrations:"
@@ -143,12 +143,12 @@ rm -f $output_db || all_well=false
 
 export DATABASE_URL=sqlite:///$output_db  # Note that the three slashes is key - see dj-database-url docs
 
-check_status_and_handle_failure "Failed to powerwash db output path $output_db"
+check_status_and_handle_failure "Setting up new output DB at $output_db"
 
 PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
     python manage.py migrate || all_well=false
 
-check_status_and_handle_failure "Failed to run Django migrations"
+check_status_and_handle_failure "Running Django migrations"
 
 # 3. We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail ones
@@ -183,7 +183,7 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
         "/tmp/export_remainder.json" \
         || all_well=false
 
-check_status_and_handle_failure "Failed to load data from JSON"
+check_status_and_handle_failure "Loading data from JSON"
 
 # 5. There are things we can't omit or redact in the steps above, so
 # we need to manually delete them once we've served their purpose
@@ -231,10 +231,10 @@ EOF
 
 echo "This is the SQL we ran to null out the columns:"
 cat $columns_to_nullify_sql || all_well=false
-check_status_and_handle_failure "Unable to show temporary SQL file"
+check_status_and_handle_failure "Showing temporary SQL file"
 
 rm -f $columns_to_nullify_sql || all_well=false
-check_status_and_handle_failure "Unable to remove temporary SQL file"
+check_status_and_handle_failure "Removing temporary SQL file"
 echo "Deleted that temporary sql"
 
 # 6. Delete rows from tables mentioned in tables_to_nullify
@@ -246,6 +246,8 @@ done
 
 # 7. Check if tables in tables_to_nullify are empty
 for table in "${tables_to_nullify[@]}"
+check_status_and_handle_failure "Running rebuild_references_index"
+check_status_and_handle_failure "Running wagtail_update_index"
 do
     count=$(sqlite3 $output_db "SELECT COUNT(*) FROM $table")
     if [[ $count -ne 0 ]]; then
@@ -255,11 +257,11 @@ do
 done
 echo "Checked that the tables we expect to be empty are empty"
 
-check_status_and_handle_failure "Tables in tables_to_nullify are not empty when they should be"
+check_status_and_handle_failure "Seeking expected empty tables"
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
 echo "Restored original DATABASE_URL to $DATABASE_URL"
 
-check_status_and_handle_failure "Final check for all_well turned out to be false"
+check_status_and_handle_failure "Checking all_well at the end of the run"
 
 echo "Export to $output_db successful"
