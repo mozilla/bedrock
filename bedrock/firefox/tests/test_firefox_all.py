@@ -385,3 +385,29 @@ def test_platform_404(client):
 def test_locale_404(client):
     resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"}))
     assert resp.status_code == 404
+
+
+@pytest.mark.parametrize("product_slug", [("desktop-release"), ("desktop-esr"), ("desktop-beta"), ("desktop-developer")])
+@pytest.mark.parametrize("lang", [("ckb"), ("ltg"), ("hye"), ("wo"), ("lo"), ("scn"), ("brx"), ("meh"), ("bo")])
+def test_nightly_locales_only_on_nightly(client, product_slug, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": product_slug, "platform": "win64", "locale": lang}))
+    assert resp.status_code == 404
+
+
+@pytest.mark.parametrize(
+    "product_slug",
+    [
+        ("desktop-developer"),
+        ("desktop-nightly"),
+        ("desktop-esr"),
+        ("android-release"),
+        ("android-beta"),
+        ("android-nightly"),
+        ("ios-release"),
+        ("ios-beta"),
+        ("mobile-release"),
+    ],
+)
+def test_win_store_only_on_release_and_beta(client, product_slug):
+    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": product_slug, "platform": "win-store"}))
+    assert resp.status_code == 404

@@ -262,17 +262,23 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         "linux64-aarch64": "Linux ARM64/AArch64",
     }
 
-    product = None
+    # 404 checks.
+    if product_slug and product_slug not in product_map.keys():
+        raise Http404()
+    if platform and platform not in platform_map.keys():
+        raise Http404()
+    if locale and locale not in product_details.languages.keys():
+        raise Http404()
+    # 404 if win-store and not desktop-release.
+    if platform == "win-store" and product_slug not in ["desktop-release", "desktop-beta"]:
+        raise Http404()
+
+    product = product_map.get(product_slug)
     platform_name = None
     locale_name = None
     download_url = None
     template_name = "firefox/all/base.html"
     lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
-
-    if product_slug:
-        if product_slug not in product_map.keys():
-            raise Http404()
-        product = product_map.get(product_slug)
 
     if product:
         if product_slug.startswith(("mobile", "android", "ios")):
@@ -297,16 +303,13 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
                 "desktop-beta": settings.MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK,
             }.get(product_slug)
         else:
-            if platform and platform not in platform_map.keys():
-                raise Http404()
-
             platform_name = platform and platform_map[platform]
             locale_name = None
             if locale:
-                if locale not in product_details.languages.keys():
+                try:
+                    build = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0]
+                except IndexError:
                     raise Http404()
-
-                build = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0]
                 locale_name = f"{build['name_en']} - {build['name_native']}"
 
     context = {
@@ -327,9 +330,6 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
 
     # Show download link
     if locale:
-        if locale not in product_details.languages.keys():
-            raise Http404()
-
         if not download_url:
             download_url = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0][
                 "platforms"
@@ -352,9 +352,6 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
 
     # Show platforms with download links
     elif platform:
-        if platform not in platform_map.keys():
-            raise Http404()
-
         locales = []
         for b in product["product"].get_filtered_full_builds(product["channel"]):
             locale_name = f"{b['name_en']} - {b['name_native']}"
