@@ -38,6 +38,18 @@ html.is-firefox {
             }
         }
     }
+
+    &.ios {
+        .c-page-header .app-store-badge {
+            display: none;
+        }
+    }
+
+    &.android {
+        .c-page-header .play-store-badge {
+            display: none;
+        }
+    }
 }
 
 // If Firefox is unsupported, it'll show an alternative CTA to download Firefox ESR
@@ -56,7 +68,45 @@ html.fx-unsupported {
         border: $border-black;
        }
     }
-} // -------------------- end CTA logic ----------------------- //
+}
+
+// Mobile CTA logic for Android and iOS.
+.app-store-badge,
+.play-store-badge {
+    display: none;
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+html.ios,
+html.android {
+    #protocol-nav-download-firefox {
+        display: none;
+    }
+
+    .c-sticky-note {
+        &> span,
+        .c-button-download-thanks {
+            display: none;
+        }
+    }
+}
+
+html.ios {
+    .app-store-badge {
+        display: inline-block;
+    }
+}
+
+html.android {
+    .play-store-badge {
+        display: inline-block;
+    }
+}
+
+// -------------------- end CTA logic ----------------------- //
 
 // -------------------- CTA styles ----------------------- //
 
