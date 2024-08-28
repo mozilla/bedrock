@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import apple_app_store_button, google_play_button with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% from "firefox/nothing-personal/includes/browser-macro.html" import browser_border %}
@@ -21,6 +23,9 @@
 
 {% block site_header %}{% endblock %}
 
+{% set ios_url = app_store_url('firefox', 'firefox-nothing-personal') %}
+{% set android_url = play_store_url('firefox', 'firefox-nothing-personal') %}
+
 {% block content %}
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
@@ -34,6 +39,9 @@
         <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="primary">Set as default</a>
 
         {{ download_firefox_thanks(alt_copy='Download Firefox', dom_id='protocol-nav-download-firefox', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='primary') }}
+
+        {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+        {{ google_play_button(href=android_url, class_name='play-store-badge') }}
       </div>
     </div>
   </header>
@@ -159,11 +167,15 @@
           </div>
 
           <div class="c-sticky-note c-attached-sticky">
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
-           <br>
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
-           <br>
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <br>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <br>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+
+            {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+            {{ google_play_button(href=android_url, class_name='play-store-badge') }}
+
             <p>Ok, bye.</p>
           </div>
 
@@ -177,6 +189,10 @@
       <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
       <br>
       <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+
+      {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+      {{ google_play_button(href=android_url, class_name='play-store-badge') }}
+
       <p>Ok, bye.</p>
     </div>
 
