@@ -370,3 +370,18 @@ def test_close_icons(client, slug, count):
     resp = client.get(url)
     doc = pq(resp.content)
     assert len(doc("[src='/media/protocol/img/icons/close.svg']")) == count
+
+
+def test_product_404(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "xxx"}))
+    assert resp.status_code == 404
+
+
+def test_platform_404(client):
+    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "xxx"}))
+    assert resp.status_code == 404
+
+
+def test_locale_404(client):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"}))
+    assert resp.status_code == 404
