@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
+from unittest.mock import patch
 
 from django.conf import settings
 from django.core.cache import caches
@@ -242,6 +243,69 @@ def test_firefox_esr(client, os, lang):
     else:
         product = "firefox-esr-latest-ssl"
     assert all(substr in download_url for substr in [f"product={product}", f"os={os}", f"lang={lang}"])
+    if os.startswith("linux"):
+        linux_link = doc(".c-linux-debian a")
+        assert len(linux_link) == 1
+        assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
+
+
+@pytest.mark.parametrize("os, lang", [("win64", "en-US"), ("win64", "de"), ("osx", "en-US"), ("linux", "en-US")])
+def test_firefox_esr_next(client, os, lang):
+    # Note: Only testing a few os/lang pairs to avoid mocking too much. We're mostly checking that 2 buttons show up.
+
+    # Set an esr_next version.
+    orig_latest_version = firefox_desktop.latest_version
+    orig_get_filtered_full_builds = firefox_desktop.get_filtered_full_builds
+
+    def mock_latest_version(channel="release"):
+        if channel == "esr_next":
+            return "128.0"
+        else:
+            return orig_latest_version(channel)
+
+    def mock_get_filtered_full_builds(channel, query=None):
+        if channel == "esr_next":
+            return [
+                {
+                    "locale": "en-US",
+                    "platforms": {
+                        "win64": {
+                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=win64&lang=en-US",
+                        },
+                        "linux": {
+                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=linux&lang=en-US",
+                        },
+                        "osx": {
+                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=osx&lang=en-US",
+                        },
+                    },
+                },
+                {
+                    "locale": "de",
+                    "platforms": {
+                        "win64": {
+                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=win64&lang=de",
+                        },
+                    },
+                },
+            ]
+        else:
+            return orig_get_filtered_full_builds(channel, query)
+
+    with patch("bedrock.firefox.views.firefox_desktop.latest_version", side_effect=mock_latest_version):
+        with patch("bedrock.firefox.views.firefox_desktop.get_filtered_full_builds", side_effect=mock_get_filtered_full_builds):
+            resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-esr", "platform": os, "locale": lang}))
+            doc = pq(resp.content)
+
+    link = doc(".c-download-button")
+    assert len(link) == 2  # We show both the current ESR and the next ESR download buttons.
+
+    download_esr_next_url = link.eq(0).attr("href")
+    download_esr_url = link.eq(1).attr("href")
+
+    assert all(substr in download_esr_next_url for substr in ["product=firefox-esr-next-latest-ssl", f"os={os}", f"lang={lang}"])
+    assert all(substr in download_esr_url for substr in ["product=firefox-esr-latest-ssl", f"os={os}", f"lang={lang}"])
+
     if os.startswith("linux"):
         linux_link = doc(".c-linux-debian a")
         assert len(linux_link) == 1
