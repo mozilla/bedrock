@@ -12,6 +12,8 @@ from django.test import override_settings
 from django.test.client import Client
 from django.urls import resolvers
 
+from wagtail.models import Page
+
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -186,11 +188,32 @@ def get_contentful_urls():
     return urls
 
 
+def get_wagtail_urls():
+    urls = defaultdict(list)
+
+    # Get all live, non-private Wagtail pages
+    for cms_page in Page.objects.live().public().order_by("path"):
+        # We don't want the Wagtail structural Root page, nor the
+        # site root page, because that isn't surfaced from the CMS (yet)
+        if cms_page.is_root() or cms_page.is_site_root():
+            continue
+
+        _url = cms_page.get_url()
+        if _url:
+            lang_code = cms_page.locale.language_code
+            _path = _url.lstrip("/").replace(lang_code, "")
+            urls[_path].append(lang_code)
+
+    return urls
+
+
 def update_sitemaps():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
     urls.update(get_security_urls())
     urls.update(get_contentful_urls())
+    urls.update(get_wagtail_urls())
+
     # Output static files
     output_json(urls)
 
