@@ -57,7 +57,7 @@
   <section class="c-block-list">
     <ul>
       {% for locale in available_locales if locale in languages %}
-        <li lang="{{ locale }}"><a href="/{{ locale }}{{ request.path_info }}" title="{{ 'Browse {0} in the {1} language'|f(request.path_info, languages[locale]["native"]) }}">{{ languages[locale]['native'] }}</a></li>
+        <li lang="{{ locale }}"><a href="/{{ locale }}{{ request.path_info }}" title="{{ 'Browse {0} in the {1} language'|f(request.path_info, languages[locale]["English"]) }}">{{ languages[locale]['native'] }}</a></li>
       {% endfor %}
     </ul>
   </section>
