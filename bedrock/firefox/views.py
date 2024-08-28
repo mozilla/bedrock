@@ -287,8 +287,8 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
             locale = "en-US"
             locale_name = lang_multi
             download_url = {
-                "desktop-release": "https://www.microsoft.com/store/apps/9NZVDKPMR9RD",
-                "desktop-beta": "https://www.microsoft.com/store/apps/9NZW26FRNDLN",
+                "desktop-release": settings.MICROSOFT_WINDOWS_STORE_FIREFOX_WEB_LINK,
+                "desktop-beta": settings.MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK,
             }.get(product_slug)
         else:
             platform_name = platform and platform_map[platform]
