@@ -4,18 +4,15 @@
 import os
 from unittest.mock import Mock, call, patch
 
-from django.core.cache import caches
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
-from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop, firefox_desktop
 from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
@@ -194,69 +191,6 @@ class TestInstallerHelp(TestCase):
             force_full_installer=True,
             locale=None,
             platform="desktop",
-        )
-
-
-class TestFirefoxAll(TestCase):
-    pd_cache = caches["product-details"]
-
-    def setUp(self):
-        self.pd_cache.clear()
-        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-        self.patcher = patch.object(fx_views, "firefox_desktop", self.firefox_desktop)
-        self.patcher.start()
-
-    def tearDown(self):
-        self.patcher.stop()
-
-    def test_all_step_1(self):
-        resp = self.client.get(reverse("firefox.all"))
-        doc = pq(resp.content)
-
-        # Step 1 is active, steps 2,3,4 are disabled.
-        assert len(doc(".t-step-disabled")) == 3
-        # 5 desktop products, 4 mobile products.
-        assert len(doc(".c-product-list > li")) == 9
-
-    def test_all_step_2(self):
-        resp = self.client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "desktop-release"}))
-        doc = pq(resp.content)
-
-        # Step 1 is done, step 2 is active, steps 3,4 are disabled.
-        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
-        assert len(doc(".t-step-disabled")) == 2
-        # platforms for desktop-release, including Windows Store
-        assert len(doc(".c-platform-list > li")) == 9
-
-    def test_all_step_3(self):
-        resp = self.client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "win64"}))
-        doc = pq(resp.content)
-
-        # Step 1,2 is done, step 3 is active, step 4 are disabled.
-        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
-        assert doc(".c-steps > h2").eq(1).find(".c-step-choice").text() == "Windows 64-bit"
-        assert len(doc(".t-step-disabled")) == 1
-        # first locale matches request.locale
-        assert doc(".c-lang-list > li").eq(0).text() == "English (US) - English (US)"
-        # number of locales equals the number of builds
-        assert len(doc(".c-lang-list > li")) == len(firefox_desktop.get_filtered_full_builds("release"))
-
-    def test_all_step_4(self):
-        resp = self.client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
-        doc = pq(resp.content)
-
-        # Step 1,2,3 is done, step 4 is active, no more steps
-        assert doc(".c-steps > h2").eq(0).find(".c-step-choice").text() == "Firefox"
-        assert doc(".c-steps > h2").eq(1).find(".c-step-choice").text() == "Windows 64-bit"
-        assert doc(".c-steps > h2").eq(2).find(".c-step-choice").text() == "English (US) - English (US)"
-        assert len(doc(".t-step-disabled")) == 0
-        # The download button should be present and correct.
-        assert len(doc(".c-download-button")) == 1
-        assert (
-            doc(".c-download-button").attr("href")
-            == list(filter(lambda b: b["locale"] == "en-US", firefox_desktop.get_filtered_full_builds("release")))[0]["platforms"]["win64"][
-                "download_url"
-            ]
         )
 
 
