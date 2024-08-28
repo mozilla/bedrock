@@ -38,7 +38,7 @@ newsletter-form-yes = Yes
 newsletter-form-no = No
 
 # An accessible label used to describe purpose of the form.
-newsletter-form-label = Newsletter form
+newsletter-form-label = Newsletter sign up form
 
 multi-newsletter-form-checkboxes-legend = I want information about:
 multi-newsletter-form-checkboxes-label-mozilla = { -brand-name-mozilla-foundation }

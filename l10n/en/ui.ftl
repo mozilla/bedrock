@@ -21,5 +21,5 @@ ui-hide-all = Hide All
 ui-learn-more = Learn more
 ui-view = View
 
-# An accessible label used to describe the purpose of a page "banner".
-ui-banner-label = Banner
+# An accessible label used to describe the purpose of a cross-promotional page element.
+ui-promo-label = Promotion

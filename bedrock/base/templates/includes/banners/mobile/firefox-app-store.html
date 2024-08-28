@@ -8,7 +8,7 @@
 {% set ios_url = app_store_url('firefox', 'app-store-banner') %}
 
 {% if ftl_has_messages('banner-firefox-app-store-title', 'banner-firefox-app-store-free-google-play', 'banner-firefox-app-store-free-app-store', 'ui-view') %}
-<aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-native" id="firefox-app-store-banner" aria-label="{{ ftl('ui-banner-label') }}">
+<aside class="c-banner hide-from-legacy-ie mzp-t-firefox t-native" id="firefox-app-store-banner" aria-label="{{ ftl('banner-firefox-app-store-label') }}">
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <div class="c-banner-inner" data-nosnippet="true">
     <div class="mzp-l-content">
