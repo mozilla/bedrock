@@ -221,14 +221,7 @@ def test_firefox_linux_nightly_aarch(client, os, lang):
     link = doc(".c-download-button")
     assert len(link) == 1
     download_url = link.attr("href")
-    if "msi" in os:
-        product = "firefox-nightly-msi-latest-l10n-ssl"
-        os = os.replace("-msi", "")
-    else:
-        product = "firefox-nightly-latest-l10n-ssl"
-    if lang == "en-US":
-        # en-us downloads don't get the l10n releases
-        product = product.replace("-l10n", "")
+    product = "firefox-nightly-latest-l10n-ssl"
     assert all(substr in download_url for substr in [f"product={product}", f"os={os}", f"lang={lang}"])
     linux_link = doc(".c-linux-debian a")
     assert len(linux_link) == 1
