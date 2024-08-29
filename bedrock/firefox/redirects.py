@@ -33,6 +33,12 @@ def mobile_app(request, *args, **kwargs):
         "firefox-welcome-17-fr",
         "firefox-browsers-mobile-get-app",
         "firefox-browsers-mobile-focus",
+        "mzaonboardingemail-de",
+        "mzaonboardingemail-fr",
+        "mzaonboardingemail-es",
+        "mzaonboardingemail-it",
+        "mzaonboardingemail-nl",
+        "mzaonboardingemail-pl",
         "firefox-all",
     ]
 
