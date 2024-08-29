@@ -12,7 +12,7 @@ from wagtail.models import Page as WagtailBasePage
 from .base import AbstractBedrockCMSPage
 
 
-class AbstractStructuralPage(AbstractBedrockCMSPage):
+class StructuralPage(AbstractBedrockCMSPage):
     """A page used to create a folder-like structure within a page tree,
     under/in which other pages live.
     Not directly viewable - will redirect to its parent page if called"""
@@ -20,7 +20,7 @@ class AbstractStructuralPage(AbstractBedrockCMSPage):
     # There are minimal fields on this model - only exactly what we need
     # `title` and `slug` fields come from Page->AbstractBedrockCMSPage
     is_structural_page = True
-    # TO COME: guard rails on page heirarchy
+    # TO COME: guard rails on page hierarchy
     # subpage_types = []
     settings_panels = WagtailBasePage.settings_panels + [
         FieldPanel("show_in_menus"),
@@ -31,19 +31,12 @@ class AbstractStructuralPage(AbstractBedrockCMSPage):
     ]
     promote_panels = []
 
-    class Meta:
-        abstract = True
-
     def serve_preview(self, request, mode_name="irrelevant"):
         # Regardless of mode_name, always redirect to the parent page
         return redirect(self.get_parent().get_full_url())
 
     def serve(self, request):
         return redirect(self.get_parent().get_full_url())
-
-
-class StructuralPage(AbstractStructuralPage):
-    pass
 
 
 class SimpleRichTextPage(AbstractBedrockCMSPage):
