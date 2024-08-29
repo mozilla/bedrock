@@ -40,48 +40,52 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
             });
         }
 
-        Mozilla.FirefoxDownloader.init();
-
         // Browser help modal.
-        browserHelpIcon.addEventListener(
-            'click',
-            function (e) {
-                e.preventDefault();
-                showHelpModal.call(
-                    this,
-                    browserHelpContent,
-                    browserHelpIcon.textContent,
-                    'Get Browser Help'
-                );
-            },
-            false
-        );
-
-        // Installer help modal.
-        for (let i = 0; i < installerHelpIcon.length; i++) {
-            installerHelpIcon[i].addEventListener(
+        if (browserHelpIcon) {
+            browserHelpIcon.addEventListener(
                 'click',
                 function (e) {
                     e.preventDefault();
                     showHelpModal.call(
                         this,
-                        installerHelpContent,
-                        e.target.textContent,
-                        'Get Installer Help'
+                        browserHelpContent,
+                        browserHelpIcon.textContent,
+                        'Get Browser Help'
                     );
                 },
                 false
             );
         }
 
+        // Installer help modal.
+        if (installerHelpIcon) {
+            for (let i = 0; i < installerHelpIcon.length; i++) {
+                installerHelpIcon[i].addEventListener(
+                    'click',
+                    function (e) {
+                        e.preventDefault();
+                        showHelpModal.call(
+                            this,
+                            installerHelpContent,
+                            e.target.textContent,
+                            'Get Installer Help'
+                        );
+                    },
+                    false
+                );
+            }
+        }
+
         // event tracking for GA4
-        downloadButton.addEventListener(
-            'click',
-            function (event) {
-                TrackProductDownload.handleLink(event);
-            },
-            false
-        );
+        if (downloadButton) {
+            downloadButton.addEventListener(
+                'click',
+                function (event) {
+                    TrackProductDownload.handleLink(event);
+                },
+                false
+            );
+        }
     }
 
     Mozilla.run(onLoad);

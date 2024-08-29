@@ -1,0 +1,75 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+
+{# Choose platform #}
+
+<h2 class="c-step-name{% if not product %} t-step-disabled{% endif %}">
+  {{ ftl('firefox-all-platform') }}
+  {% if product and platform %}
+    <span class="c-step-choice">{{ platform_name }}</span>
+    {% if product.slug.startswith('desktop') %}
+      <a href="{{ url('firefox.all.platforms', product_slug=product.slug) }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-platform') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+    {% endif %}
+  {% elif product %}
+    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+  {% endif %}
+
+  {% if product and not platform %}
+  <a id="icon-installer-help" href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
+    {{ ftl('firefox-all-get-help') }}
+  </a>
+  {% endif %}
+</h2>
+
+{% if product and not platform %}
+  <div class="c-step-contents">
+    <ul class="c-platform-list">
+      {% for platform, name in platforms %}
+        <li><a href="{{ url('firefox.all.locales', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
+      {% endfor %}
+    </ul>
+    <div id="installer-help" class="c-help mzp-u-modal-content">
+      <h3>{{ ftl('firefox-all-learn-about-installers')}}</h3>
+      <ul>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-choose-a-64-bit-installer') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-windows-installers-for') }}
+          </p>
+        </li>
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-arm64-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-arm64-installers-optimized-v2') }}
+          </p>
+        </li>
+        {% if ftl_has_messages('firefox-all-choose-a-microsoft-store-installer') %}
+        <li>
+          <h4 class="c-help-title">{{ ftl('firefox-all-microsoft-store-installers') }}</h4>
+          <p class="c-help-desc">
+            {{ ftl('firefox-all-choose-a-microsoft-store-installer') }}
+          </p>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+{% endif %}

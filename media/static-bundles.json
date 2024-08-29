@@ -516,15 +516,9 @@
     },
     {
       "files": [
-        "css/firefox/all/all-unified.scss"
+        "css/firefox/all.scss"
       ],
-      "name": "firefox_all_unified"
-    },
-    {
-      "files": [
-        "css/firefox/all/all-unified-old-ie.scss"
-      ],
-      "name": "firefox_all_unified_old_ie"
+      "name": "firefox_all"
     },
     {
       "files": [
@@ -1499,10 +1493,9 @@
     },
     {
       "files": [
-        "js/firefox/all/all-downloads-unified.js",
-        "js/firefox/all/all-downloads-unified-init.es6.js"
+        "js/firefox/all/all-init.es6.js"
       ],
-      "name": "firefox_all_unified"
+      "name": "firefox_all"
     },
     {
       "files": [
