@@ -19,18 +19,18 @@ def test_leadership_page(minimal_site, rf, serving_method):  # noqa
 
     leadership_page = factories.LeadershipPageFactory(
         parent=root_page,
-        leadership_section__0__section__title="Test Section Title",
-        leadership_section__0__section__leadership_group__0__title="Test Leadership Group Title",
-        leadership_section__0__section__leadership_group__0__leaders__0__name="Test Name",
-        leadership_section__0__section__leadership_group__0__leaders__0__headshot=factories.LeadershipHeadshotBlockFactory(
+        leadership_sections__0__section__title="Test Section Title",
+        leadership_sections__0__section__leadership_group__0__title="Test Leadership Group Title",
+        leadership_sections__0__section__leadership_group__0__leaders__0__name="Test Name",
+        leadership_sections__0__section__leadership_group__0__leaders__0__headshot=factories.LeadershipHeadshotBlockFactory(
             image_alt_text="Text Alt Text",
             photos_link="https://example.com/photos.zip",
         ),
-        leadership_section__0__section__leadership_group__0__leaders__0__job_title="Test Job Title",
-        leadership_section__0__section__leadership_group__0__leaders__0__biography=RichText("Test Biography"),
-        leadership_section__0__section__leadership_group__0__leaders__0__external_links__0__url="https://example.com",
-        leadership_section__0__section__leadership_group__0__leaders__0__external_links__0__type="Website",
-        leadership_section__0__section__leadership_group__0__leaders__0__external_links__0__text="Test Blog link",
+        leadership_sections__0__section__leadership_group__0__leaders__0__job_title="Test Job Title",
+        leadership_sections__0__section__leadership_group__0__leaders__0__biography=RichText("Test Biography"),
+        leadership_sections__0__section__leadership_group__0__leaders__0__external_links__0__url="https://example.com",
+        leadership_sections__0__section__leadership_group__0__leaders__0__external_links__0__type="Website",
+        leadership_sections__0__section__leadership_group__0__leaders__0__external_links__0__text="Test Blog link",
     )
 
     leadership_page.save()

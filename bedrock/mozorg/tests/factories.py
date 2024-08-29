@@ -59,7 +59,7 @@ class LeadershipPageFactory(wagtail_factories.PageFactory):
     live = True
     slug = "leadership"
 
-    leadership_section = wagtail_factories.StreamFieldFactory({"section": factory.SubFactory(LeadershipSectionBlockFactory)})
+    leadership_sections = wagtail_factories.StreamFieldFactory({"section": factory.SubFactory(LeadershipSectionBlockFactory)})
 
     class Meta:
         model = models.LeadershipPage

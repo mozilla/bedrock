@@ -2179,6 +2179,7 @@ WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
+    "mozorg.LeadershipPage",
 ]
 
 if DEV is True:

@@ -66,10 +66,10 @@ class LeadershipPage(AbstractBedrockCMSPage):
     max_count = 1  # Ensure there's only one instance of this page
     subpage_types = []  # This page type cannot have any children
 
-    leadership_section = StreamField([("section", LeadershipSectionBlock())], blank=True, null=True)
+    leadership_sections = StreamField([("section", LeadershipSectionBlock())], blank=True, null=True)
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("leadership_section"),
+        FieldPanel("leadership_sections"),
     ]
 
-    template = "mozorg/about/leadership/leadership_page.html"
+    template = "mozorg/cms/about/leadership.html"

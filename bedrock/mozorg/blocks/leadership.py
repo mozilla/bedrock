@@ -63,7 +63,7 @@ class LeadershipExternalLinkBlock(blocks.StructBlock):
 
 
 class LeadershipBioID(blocks.StructValue):
-    """ID Value class for LeadershipBioBlock."""
+    """ID Value class for LeadershipBioBlock. Used for page anchor links."""
 
     @property
     def id(self):
@@ -92,7 +92,11 @@ class LeadershipBioBlock(blocks.StructBlock):
         features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
     )
 
-    external_links = blocks.ListBlock(LeadershipExternalLinkBlock(), min_num=0, max_num=5)
+    external_links = blocks.ListBlock(
+        LeadershipExternalLinkBlock(),
+        min_num=0,
+        max_num=5,
+    )
 
     class Meta:
         value_class = LeadershipBioID
@@ -110,14 +114,17 @@ class LeadershipGroupBlock(blocks.StructBlock):
         required=False,
     )
 
-    leaders = blocks.ListBlock(LeadershipBioBlock(), min_num=1)
+    leaders = blocks.ListBlock(
+        LeadershipBioBlock(),
+        min_num=1,
+    )
 
     class Meta:
         icon = "group"
 
 
 class LeadershipSectionID(blocks.StructValue):
-    """ID Value class for LeadershipSectionBlock."""
+    """ID Value class for LeadershipSectionBlock. Used for page anchor links."""
 
     @property
     def id(self):
@@ -132,7 +139,10 @@ class LeadershipSectionBlock(blocks.StructBlock):
         max_length=255, blank=True, null=True, help_text="Title for the section of the page e.g. 'Mozilla Corporation' or 'Mozilla Foundation."
     )
 
-    leadership_group = blocks.ListBlock(LeadershipGroupBlock(), min_num=1)
+    leadership_group = blocks.ListBlock(
+        LeadershipGroupBlock(),
+        min_num=1,
+    )
 
     class Meta:
         value_class = LeadershipSectionID

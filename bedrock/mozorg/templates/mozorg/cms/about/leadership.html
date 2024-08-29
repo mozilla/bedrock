@@ -23,7 +23,7 @@
       {% set nav_bar = [
         (fullpageurl(page), 'executive-team', page.title),
       ] -%}
-      {% for section in page.leadership_section %}
+      {% for section in page.leadership_sections %}
         {{ nav_bar.append(('#' ~ section.value.id, section.value.id, section.value.title)) }}
       {% endfor %}
 
@@ -31,22 +31,24 @@
     </aside>
 
     <main class="mzp-l-main">
-      {% for section in page.leadership_section %}
-        {% set first_group = section.value.leadership_group[0] %}
-        <h2 class="leadership-title{% if first_group.title %} compact{% endif %}">{{ section.value.title }}</h2>
+      {% for section in page.leadership_sections %}
+        <section class="leadership-section" id="{{ section.value.id }}">
+          {% set first_group = section.value.leadership_group[0] %}
+          <h2 class="leadership-title{% if first_group.title %} compact{% endif %}">{{ section.value.title }}</h2>
 
-        {% for group in section.value.leadership_group %}
-          <section>
-            {% if group.title %}
-              <h2 class="group-title">{{ group.title }}</h2>
-            {% endif %}
-            <div class="gallery mgmt-corp">
-              {% for leader in group.leaders %}
-                {% include_block leader %}
-              {% endfor %}
-            </div>
-          </section>
-        {% endfor %}
+          {% for group in section.value.leadership_group %}
+            <section>
+              {% if group.title %}
+                <h2 class="group-title">{{ group.title }}</h2>
+              {% endif %}
+              <div class="gallery mgmt-corp">
+                {% for leader in group.leaders %}
+                  {% include_block leader %}
+                {% endfor %}
+              </div>
+            </section>
+          {% endfor %}
+        </section>
       {% endfor %}
     </main>
   </div>
