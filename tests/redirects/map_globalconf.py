@@ -1051,7 +1051,7 @@ URLS = flatten(
         # Issue 7970
         url_test("/moss/mission-partners-india/", "/moss/mission-partners/"),
         # Issue 7983, 14248
-        url_test("/privacy/products/", "/firefox/privacy/"),
+        url_test("/privacy/products/", "/privacy/"),
         # Issue #8206
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}tracking-protection/start/", "https://support.mozilla.org/kb/tracking-protection"),
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}content-blocking/start/", "https://support.mozilla.org/kb/content-blocking"),
@@ -1290,6 +1290,7 @@ URLS = flatten(
         url_test("/privacy/hubs/", "/privacy/archive/mozilla-hubs/notice-2024-06/"),
         url_test("/about/legal/terms/hubs/", "/privacy/archive/mozilla-hubs/tos-2024-06/"),
         # issue 14248
+        url_test("/firefox/privacy/", "/privacy/"),
         url_test("/firefox/privacy/products/", "/products/"),
         url_test("/firefox/privacy/safe-passwords/", "/firefox/features/password-manager/"),
         url_test("/firefox/privacy/book/", "https://support.mozilla.org/kb/how-stay-safe-web"),
