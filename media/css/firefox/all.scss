@@ -80,6 +80,11 @@ $image-path: '/media/protocol/img';
 
     &.t-step-disabled {
         opacity: 0.4;
+
+
+    [dir='rtl'] & .c-step-icon {
+        transform: rotate(180deg);
+    }
     }
 }
 
@@ -94,7 +99,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-step-contents {
-    @include bidi(((padding-left, $spacing-lg, 0),));
+    @include bidi(((padding-left, $spacing-lg, padding-right, 0),));
 }
 
 .c-step-prompt {
@@ -108,12 +113,16 @@ $image-path: '/media/protocol/img';
 }
 
 .c-product-list {
-    padding-left: 36px; // to match the desktop & mobile icons
+    @include bidi(((padding-left, 36px, padding-right, 0),)); // to match the desktop & mobile icons
 
     li,
     .release {
-        background: top left / 1.5em auto no-repeat;
-        padding-left: 1.9em;
+        @include bidi((
+            (background-position, top left, top right),
+            (padding-left, 1.9em, padding-right, 0),
+            ));
+        background-size: 1.5em auto;
+        background-repeat: no-repeat;
         margin-bottom: 0.6rem;
     }
 
@@ -206,10 +215,12 @@ $image-path: '/media/protocol/img';
 // help buttons & modals
 
 .c-button-help {
+    @include bidi((
+        (background-position, top left, top right),
+    ));
     background-image: url('/media/img/firefox/all/icon-question.svg');
     background-size: 16px 16px;
     @include image-replaced;
-    background-position: top left;
     background-repeat: no-repeat;
     display: inline-block;
     height: 21px;
