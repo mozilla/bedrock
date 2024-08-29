@@ -449,12 +449,6 @@
     },
     {
       "files": [
-        "css/firefox/privacy/promise.scss"
-      ],
-      "name": "firefox-privacy-promise"
-    },
-    {
-      "files": [
         "css/privacy/privacy-email.scss"
       ],
       "name": "privacy_email"
