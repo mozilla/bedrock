@@ -4,18 +4,15 @@
 import os
 from unittest.mock import Mock, call, patch
 
-from django.core.cache import caches
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
-from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
@@ -195,74 +192,6 @@ class TestInstallerHelp(TestCase):
             locale=None,
             platform="desktop",
         )
-
-
-class TestFirefoxAll(TestCase):
-    pd_cache = caches["product-details"]
-
-    def setUp(self):
-        self.pd_cache.clear()
-        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-        self.patcher = patch.object(fx_views, "firefox_desktop", self.firefox_desktop)
-        self.patcher.start()
-
-    def tearDown(self):
-        self.patcher.stop()
-
-    def test_all_builds_results(self):
-        """
-        The unified page should display builds for all products
-        """
-        resp = self.client.get(reverse("firefox.all"))
-        doc = pq(resp.content)
-        assert len(doc(".c-all-downloads-build")) == 9
-
-        desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds("release"))
-        assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
-        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 8
-
-        desktop_beta_builds = len(self.firefox_desktop.get_filtered_full_builds("beta"))
-        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
-        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 8
-
-        desktop_developer_builds = len(self.firefox_desktop.get_filtered_full_builds("alpha"))
-        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
-        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 8
-
-        desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds("nightly"))
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
-        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 9
-
-        desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds("esr"))
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 8
-
-        android_release_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
-        assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
-
-        android_beta_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
-        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 1
-
-        android_nightly_builds = 1
-        assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
-        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 1
-
-        ios_release_builds = 1
-        assert len(doc('.c-locale-list[data-product="ios_release"] > li')) == ios_release_builds
-        assert len(doc('.c-locale-list[data-product="ios_release"] > li[data-language="multi"] > ul > li > a')) == 2
-
-    def test_no_locale_details(self):
-        """
-        When a localized build has been added to the Firefox details while the
-        locale details are not updated yet, the filtered build list should not
-        include the localized build.
-        """
-        builds = self.firefox_desktop.get_filtered_full_builds("release")
-        assert "uz" in self.firefox_desktop.firefox_primary_builds
-        assert "uz" not in self.firefox_desktop.languages
-        assert len([build for build in builds if build["locale"] == "uz"]) == 0
 
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
