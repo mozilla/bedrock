@@ -21,7 +21,7 @@ def test_open_browser_help_modal(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_installer_help_modal(base_url, selenium):
-    slug = "/desktop-release/"
+    slug = "desktop-release/"
     page = FirefoxAllPage(selenium, base_url, slug=slug).open()
     modal = page.open_help_modal("icon-installer-help")
     assert modal.is_displayed
