@@ -935,6 +935,15 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx130.html"]
 
+    @override_settings(DEV=True)
+    def test_fx_130_0_0_en_us_v1(self, render_mock):
+        """Should use default WNP template for en-US locale when v=1"""
+        req = self.rf.get("/firefox/whatsnew/?v=1")
+        req.locale = "en-US"
+        self.view(req, version="130.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
     # end 130.0 whatsnew tests
 
 

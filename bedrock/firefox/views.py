@@ -581,7 +581,10 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("130."):
             if locale in ["en-US", "en-GB", "en-CA", "de", "fr", "es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx130.html"
+                if variant == "1":
+                    template = "firefox/whatsnew/index.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx130.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("129."):
