@@ -1231,6 +1231,12 @@
         "css/privacy/cookie-settings-form.scss"
       ],
       "name": "cookie-settings-form"
+    },
+    {
+      "files": [
+        "css/firefox/built-for-you/landing.scss"
+      ],
+      "name": "firefox-built-for-you"
     }
   ],
   "js": [
