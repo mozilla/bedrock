@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$token-color-black: #000;
+$token-color-light-gray: #f4f4f4;
+$token-color-dark-gray: #181818;
+$token-color-functional-gray-on-white: #707070;
+$token-color-functional-gray-on-black: #828282;
+$token-color-white: #fff;
+$token-color-green: #00D230;
+$token-color-light-green: #E5F4E5;
+$token-color-dark-green: #155E2A;
+$token-color-orange: #ff9502;
+$token-color-light-orange: #FFF9F0;
+$token-color-dark-orange: #F10900;
+$token-color-pink: #FF0089;
+$token-color-light-pink: #FFEAF4;
+$token-color-dark-pink: #7F00CA;
+$token-color-feedback-success: $token-color-green;
+$token-color-feedback-caution: $token-color-dark-orange;
+$token-color-feedback-error: $token-color-orange;
+
+:root {
+        --white-on-black: #{$token-color-white};
+        --black-on-white: #{$token-color-black};
+        --light-gray-on-white: #{$token-color-light-gray};
+        --light-gray-on-dark-gray: #{$token-color-light-gray};
+        --dark-gray-on-light-gray: #{$token-color-dark-gray};
+        --white-on-light-gray: #{$token-color-white};
+        --white-on-dark-gray: #{$token-color-white};
+        --black-on-dark-gray: #{$token-color-black};
+        --dark-gray-on-black: #{$token-color-dark-gray};
+        --functional-gray-on-white: #{$token-color-functional-gray-on-white};
+        --functional-gray-on-black: #{$token-color-functional-gray-on-black};
+        --green-on-white: #{$token-color-dark-green};
+        --green-on-black: #{$token-color-green};
+}
+
+.m24-t-dark,
+.m24-t-purple {
+    --white-on-black: #{$token-color-black};
+    --black-on-white: #{$token-color-white};
+    --light-gray-on-white: #{$token-color-dark-gray};
+    --light-gray-on-dark-gray: #{$token-color-dark-gray};
+    --dark-gray-on-light-gray: #{$token-color-light-gray};
+    --white-on-light-gray: #{$token-color-light-gray};
+    --white-on-dark-gray: #{$token-color-dark-gray};
+    --black-on-dark-gray: #{$token-color-dark-gray};
+    --dark-gray-on-black: #{$token-color-black};
+    --functional-gray-on-white: #{$token-color-functional-gray-on-black};
+    --functional-gray-on-black: #{$token-color-functional-gray-on-white};
+    --green-on-white: #{$token-color-green};
+    --green-on-black: #{$token-color-dark-green};
+
+    // dark mode not supported for now
+    // @media (prefers-color-scheme: dark) {
+    //     --white-on-black: #{$token-color-dark-gray};
+    //     --black-on-white: #{$token-color-functional-gray-on-black};
+    //     --light-gray-on-white: #{$token-color-light-gray};
+    //     --light-gray-on-dark-gray: #{$token-color-light-gray};
+    //     --dark-gray-on-light-gray: #{$token-color-dark-gray};
+    //     --white-on-light-gray: #{$token-color-white};
+    //     --white-on-dark-gray: #{$token-color-white};
+    //     --black-on-dark-gray: #{$token-color-black};
+    //     --dark-gray-on-black: #{$token-color-dark-gray};
+    //     --functional-gray-on-white: #{$token-color-functional-gray-on-black);
+    //     --functional-gray-on-black: #{$token-color-functional-gray-on-white};
+    //     --green-on-white: #{$token-color-dark-green};
+    //     --green-on-black: #{$token-color-green};
+    // }
+}
+
+// dark mode not supported for now
+// @media (prefers-color-scheme: dark) {
+//     :root {
+//         --white-on-black: #{$token-color-black};
+//         --black-on-white: #{$token-color-white};
+//         --light-gray-on-white: #{$token-color-dark-gray};
+//         --light-gray-on-dark-gray: #{$token-color-dark-gray};
+//         --dark-gray-on-light-gray: #{$token-color-light-gray};
+//         --white-on-light-gray: #{$token-color-light-gray};
+//         --white-on-dark-gray: #{$token-color-dark-gray};
+//         --black-on-dark-gray: #{$token-color-dark-gray};
+//         --dark-gray-on-black: #{$token-color-black};
+//         --functional-gray-on-white: #{$token-color-functional-gray-on-black};
+//         --functional-gray-on-black: #{$token-color-functional-gray-on-white};
+//         --green-on-white: #{$token-color-green};
+//         --green-on-black: #{$token-color-dark-green};
+//     }
+
+//     .m24-t-purple {
+//         --black-on-white: #{$token-color-black};
+//     }
+// }
+
+$color-white-on-black: var(--white-on-black);
+$color-black-on-white: var(--black-on-white);
+$color-light-gray-on-white: var(--light-gray-on-white);
+$color-light-gray-on-dark-gray: var(--light-gray-on-dark-gray);
+$color-dark-gray-on-light-gray: var(--dark-gray-on-light-gray);
+$color-white-on-light-gray: var(--white-on-light-gray);
+$color-white-on-dark-gray: var(--white-on-dark-gray);
+$color-black-on-dark-gray: var(--black-on-dark-gray);
+$color-dark-gray-on-black: var(--dark-gray-on-black);
+$color-functional-gray-on-white: var(--functional-gray-on-white);
+$color-functional-gray-on-black: var(--functional-gray-on-black);
+$color-green-on-white: var(--green-on-white);
+$color-green-on-black: var(--green-on-black);
+$color-purple: #{$token-color-dark-pink};
+$color-black: #{$token-color-black};
