@@ -283,7 +283,7 @@ desktop and mobile viewport sizes.
 
 Test results are output to the console, and any issues found will be created as
 HTML report files in the ``./tests/playwright/test-results-a11y/`` directory. When
-run via the GitHub action, the reports are also output to the annotation logs for
+run via the `GitHub action`_, the reports are also output to the annotation logs for
 each test job.
 
 A list of all the Axe rules that are checked by the tests can be viewed in the
@@ -380,7 +380,7 @@ dev:
 For more information on command line options, see the `pytest documentation`_.
 
 Running tests in Sauce Labs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 You can also run tests in Sauce Labs directly from the command line. This can be useful
 if you want to run tests against Internet Explorer when you're on Mac OSX, for instance.
@@ -544,3 +544,4 @@ via product details are well formed and return valid 200 responses.
 .. _locator strategy: https://playwright.dev/docs/locators#locate-by-test-id
 .. _Axe: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md
 .. _axe-core repo: https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md
+.. _GitHub action: https://github.com/mozilla/bedrock/actions/workflows/a11y_tests.yml
