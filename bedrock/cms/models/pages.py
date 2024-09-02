@@ -20,7 +20,7 @@ class StructuralPage(AbstractBedrockCMSPage):
     # There are minimal fields on this model - only exactly what we need
     # `title` and `slug` fields come from Page->AbstractBedrockCMSPage
     is_structural_page = True
-    # TO COME: guard rails on page heirarchy
+    # TO COME: guard rails on page hierarchy
     # subpage_types = []
     settings_panels = WagtailBasePage.settings_panels + [
         FieldPanel("show_in_menus"),
@@ -54,7 +54,7 @@ class SimpleRichTextPage(AbstractBedrockCMSPage):
     # `title` and `slug` fields come from Page->AbstractBedrockCMSPage
     content = RichTextField(
         blank=True,
-        features=settings.WAGTAIL_RICHEXT_FEATURES_FULL,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
     )
     # Note there are no other custom fields here
 
