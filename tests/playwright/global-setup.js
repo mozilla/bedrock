@@ -6,26 +6,29 @@
 
 'use strict';
 
-const fs = require('fs');
+const fs = require('fs').promises;
 
 /**
  * Clean up /test-results-a11y/ directory before running tests.
  */
-function cleanA11yReportDir() {
+async function cleanA11yReportDir() {
     const dir = 'test-results-a11y/';
-    if (fs.existsSync(dir)) {
-        fs.rmdirSync(dir, {
-            recursive: true
-        });
+    try {
+        const stats = await fs.stat(dir);
+        if (stats.isDirectory()) {
+            await fs.rm(dir, { recursive: true, force: true });
+        }
+    } catch (err) {
+        if (err.code !== 'ENOENT') {
+            throw err;
+        }
     }
 
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
-    }
+    await fs.mkdir(dir);
 }
 
-function globalSetup() {
-    cleanA11yReportDir();
+async function globalSetup() {
+    await cleanA11yReportDir();
 }
 
 module.exports = globalSetup;
