@@ -30,7 +30,7 @@ $image-path: '/media/protocol/img';
     small {
         @include text-body-md;
         text-transform: uppercase;
-        color: $color-violet-60;
+        color: $color-moz-dark-purple;
         font-weight: bold;
         margin: $spacing-md 0;
         display: block;
@@ -43,10 +43,6 @@ $image-path: '/media/protocol/img';
         font-weight: bold;
         text-align: center;
         margin: $spacing-lg 0;
-
-        span {
-            color: $color-violet-60;
-        }
     }
 
     a {
