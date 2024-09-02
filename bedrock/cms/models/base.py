@@ -63,7 +63,7 @@ class AbstractBedrockCMSPage(WagtailBasePage):
             _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
             request._locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
         except ValueError:
-            # when there's just a draft and no potential for aliases, etc, the above lookup will fail
+            # when there's no draft and no potential for aliases, etc, the above lookup will fail
             pass
         return request
 
