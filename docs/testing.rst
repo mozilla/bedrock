@@ -265,7 +265,7 @@ load a different override instead of using ``openPage``:
 Accessibility testing (Axe)
 ===========================
 
-Axe tests are run as a subset of Playwright tests using the ``@a11y`` tag. These
+`Axe`_ tests are run as a subset of Playwright tests using the ``@a11y`` tag. These
 tests are run against the dev environment once per day via a GitHub action. The
 axe spec files can be found in the ``./tests/playwright/specs/a11y/`` directory.
 
@@ -285,6 +285,9 @@ Test results are output to the console, and any issues found will be created as
 HTML report files in the ``./tests/playwright/test-results-a11y/`` directory. When
 run via the GitHub action, the reports are also output to the annotation logs for
 each test job.
+
+A list of all the Axe rules that are checked by the tests can be viewed in the
+`axe-core repo`_.
 
 Running Selenium tests
 ======================
@@ -540,3 +543,4 @@ via product details are well formed and return valid 200 responses.
 .. _how to write tests: https://playwright.dev/docs/writing-tests
 .. _locator strategy: https://playwright.dev/docs/locators#locate-by-test-id
 .. _Axe: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md
+.. _axe-core repo: https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md
