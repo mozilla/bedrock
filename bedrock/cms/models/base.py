@@ -58,8 +58,13 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         request.is_cms_page = True
 
         # Patch in a list of CMS-available locales for pages that are translations, not just aliases
-        _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
-        request._locales_available_via_cms = [self.locale.language_code] + [x.locale.language_code for x in _actual_translations]
+        request._locales_available_via_cms = [self.locale.language_code]
+        try:
+            _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
+            request._locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
+        except ValueError:
+            # when there's just a draft and no potential for aliases, etc, the above lookup will fail
+            pass
         return request
 
     def _render_with_fluent_string_support(self, request, *args, **kwargs):
