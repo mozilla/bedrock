@@ -104,8 +104,6 @@ def pytest_generate_tests(metafunc):
                     for url in lang_urls:
                         doc = get_web_page(f"{base_url}{url}")
                         download_urls = [a.attrib["href"] for a in doc("a.download-link")]
-                        # Only check links to download.mozilla.org
-                        download_urls = [link for link in download_urls if link.startswith("https://download.mozilla.org/")]
                         for url in download_urls:
                             urls.append(url)
             assert urls
