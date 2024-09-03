@@ -8,7 +8,7 @@
 {# Choose platform #}
 
 <h2 class="c-step-name{% if not product %} t-step-disabled{% endif %}">
-  {{ ftl('firefox-all-platform') }}
+  {{ ftl('firefox-all-platform-v2', fallback='firefox-all-platform') }}
   {% if product and platform %}
     <span class="c-step-choice">{{ platform_name }}</span>
     {% if product.slug.startswith('desktop') %}
