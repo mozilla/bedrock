@@ -1,0 +1,86 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+:root {
+    // titles
+    --text-title-2xl: 48px;
+    --text-title-xl: 32px;
+    --text-title-lg: 24px;
+    --text-title-md: 18px;
+    --text-title-sm: 16px;
+
+    // body
+    --text-body-lg: 18px;
+    --text-body-md: 16px;
+    --text-body-sm: 12px;
+
+    // buttons
+    --text-button-lg: 24px;
+    --text-button-sm: 18px;
+}
+
+@media #{$mq-md} {
+    :root {
+        // title
+        --text-title-2xl: 64px;
+        --text-title-xl: 48px;
+        --text-title-lg: 32px;
+        --text-title-md: 24px;
+        --text-title-sm: 16px;
+
+        // body
+        --text-body-lg: 18px;
+        --text-body-md: 16px;
+        --text-body-sm: 12px;
+
+        // buttons
+        --text-button-lg: 32px;
+        --text-button-sm: 18px;
+    }
+}
+
+@media #{$mq-xl} {
+    :root {
+        // titles
+        --text-title-2xl: 128px;
+        --text-title-xl: 80px;
+        --text-title-lg: 48px;
+        --text-title-md: 24px;
+        --text-title-sm: 16px;
+
+        // body
+        --text-body-lg: 18px;
+        --text-body-md: 16px;
+        --text-body-sm: 12px;
+
+        // buttons
+        --text-button-lg: 48px;
+        --text-button-sm: 18px;
+    }
+}
+
+// titles
+$text-title-2xl: var(--text-title-2xl);
+$text-title-xl: var(--text-title-xl);
+$text-title-lg: var(--text-title-lg);
+$text-title-md: var(--text-title-md);
+$text-title-sm: var(--text-title-sm);
+
+// body
+$text-body-lg: var(--text-body-lg);
+$text-body-md: var(--text-body-md);
+$text-body-sm: var(--text-body-sm);
+
+// buttons
+$text-button-lg: var(--text-button-lg);
+$text-button-sm: var(--text-button-sm);
+
+
+// aliases are to help with copying styles from the Basic Figma files
+// these should be find/replaced out at some point in the future
+$alias-text-title-h1: $text-title-2xl;
+$alias-text-title-h2: $text-title-xl;
+$alias-text-title-h3: $text-title-lg;
+$alias-text-title-h4: $text-title-md;
+$alias-text-title-h5: $text-title-sm;

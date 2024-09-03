@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// variables
+@import 'vars/color';
+@import 'vars/spacing';
+@import 'vars/text';
+@import 'vars/animation';
+
+$mobile-square-img-max-width: 363px;
+
+/* ------------------------------------------------------------------------------- */
+
+// can only be used inside a component that is 1440px with $content-padding on each side
+@function grid($n) {
+    $total-columns: 12;
+    $one-column: calc(100% / #{$total-columns});
+    $minus: calc($grid-gutter * ($grid-columns - $n) / $grid-columns);
+    @return calc($one-column * #{$n} - #{$minus});
+}
+
+// can only be used inside a component that is 1440px with $content-padding on each side
+@mixin grid {
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    gap: $grid-gutter;
+}
