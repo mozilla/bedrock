@@ -8,8 +8,6 @@
 
 {% from "macros-protocol.html" import callout, callout_compact %}
 
-{% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
-
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
 {% block page_title_prefix %}{% endblock %}
