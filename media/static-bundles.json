@@ -1448,12 +1448,6 @@
     },
     {
       "files": [
-        "js/base/gtm/ie/gtm-snippet-ie-init.es6.js"
-      ],
-      "name": "gtm-snippet-ie"
-    },
-    {
-      "files": [
         "js/base/protocol/init-sidemenu.es6.js"
       ],
       "name": "protocol-sidemenu"
