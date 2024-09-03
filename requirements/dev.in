@@ -9,7 +9,7 @@ pipdeptree==2.23.1
 py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
-pyquery==2.0.0
+pyquery==2.0.1
 pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
 pytest-cov==5.0.0
 pytest-datadir==1.5.0
@@ -19,7 +19,7 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==14.0
 pytest-selenium==4.0.1
 responses==0.25.3
-ruff==0.6.2
+ruff==0.6.3
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
 translate-toolkit==3.13.3
 wagtail-factories==4.2.1
