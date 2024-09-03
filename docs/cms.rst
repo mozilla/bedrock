@@ -457,6 +457,25 @@ Basically, there is plenty of flexibility. The flipside of that flexibility is w
 
     It's worth investing 15 mins in watching the `Wagtail Localize original demo`_ to get a good feel of how it can work.
 
+Overridden Wagtail Behaviour
+============================
+
+*This section outlines areas of the codebase where we have deliberately disabled or amended default Wagtail behaviour*
+
+.. important::
+  **We have disabled the auto-creation of Alias pages by** ``wagtail-localize`` **when a new page is added.**
+
+  By default, when a page is added, Aliases to it are automatically created for each locale. However, this means that if you add a page intended purely to be available in ``en-US``, you also end up with, say, ``/fr/new-page/`` that is served on that path but contains ``en-US`` content – this is not behaviour we wanted to have.
+
+  Now, with Alias auto-creation disabled, this no longer happens, so in our example ``/en-US/new-page/`` exists, but ``/fr/new-page/`` does not exist as a Page or an Alias, so will 404 - which is what we want.
+
+  Linked, syncable, translated pages can still be deliberately created via the ``Translate this page`` menu item.
+
+  **Warning: it's possible that this change will bite us in some way, but we'll work out a different path if need be.**
+
+  This change was added via the ``CmsConfig.ready`` method in ``bedrock/cms/apps.py``.
+
+
 Localization process
 ====================
 
