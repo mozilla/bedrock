@@ -457,6 +457,17 @@ Basically, there is plenty of flexibility. The flipside of that flexibility is w
 
     It's worth investing 15 mins in watching the `Wagtail Localize original demo`_ to get a good feel of how it can work.
 
+Locale configuration within Wagtail
+===================================
+
+While the list of available overall locales is defined in code in ``settings.base.WAGTAIL_CONTENT_LANGUAGES``, any locale also needs enabling via the Wagtail Admin UI before it can be used.
+
+When you go to ``Settings > Locales`` in the Wagtail fly-out menu, you will see which locales are currenly enabled. You can add new ones via the ``+`` icon.
+
+.. warning::
+
+    When you add/edit a Locale in this part of the admin, you will see an option to enable syncronisation between locales. **Do not enable this**. If it is enabled, for every new page added in ``en-US``, it will auto-create page aliases in every other enabled locale and these will deliver the ``en-US`` content under locale-specific paths, which is not what we want.
+
 Localization process
 ====================
 
