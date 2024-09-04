@@ -10,6 +10,20 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 
-./bin/run-db-download.py --force
+# Check whether --retain-db was passed
+DO_DB_DOWNLOAD=true
+for arg in "$@"; do
+  if [ "$arg" == "--retain-db" ]; then
+    DO_DB_DOWNLOAD=false
+    break
+  fi
+done
+
+if [ "$DO_DB_DOWNLOAD" = true ]; then
+    ./bin/run-db-download.py --force
+else
+    echo "Skipping DB download"
+fi
+
 ./manage.py migrate --noinput
 ./manage.py l10n_update

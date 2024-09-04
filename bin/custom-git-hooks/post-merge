@@ -15,7 +15,7 @@ def check_for_dependency_changes():
             WARNING,
             "Dependency files have changed! Remember to install new dependencies with",
             COMMAND,
-            "make preflight",
+            "make preflight -- --retain-db",
             RESET,
         )
 
