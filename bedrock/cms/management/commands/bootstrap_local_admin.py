@@ -24,10 +24,10 @@ class Command(BaseCommand):
         WAGTAIL_ADMIN_PASSWORD = config("WAGTAIL_ADMIN_PASSWORD", default="")
 
         if not WAGTAIL_ADMIN_EMAIL:
-            sys.stdout.write("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment.")
+            sys.stdout.write("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment\n")
             return
         if not WAGTAIL_ADMIN_EMAIL.endswith("@mozilla.com"):
-            sys.stdout.write("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL is not a @mozilla.com email address.")
+            sys.stdout.write("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL is not a @mozilla.com email address\n")
             return
 
         user, created = User.objects.get_or_create(email=WAGTAIL_ADMIN_EMAIL)
@@ -39,8 +39,8 @@ class Command(BaseCommand):
             user.is_superuser = True
             if not WAGTAIL_ADMIN_PASSWORD:
                 user.set_unusable_password()  # They won't need one to use SSO
-                sys.stdout.write(f"Created Admin user {WAGTAIL_ADMIN_EMAIL} for local SSO use")
+                sys.stdout.write(f"Created Admin user {WAGTAIL_ADMIN_EMAIL} for local SSO use.\n")
             else:
                 user.set_password(WAGTAIL_ADMIN_PASSWORD)
-                sys.stdout.write(f"Created Admin user {WAGTAIL_ADMIN_EMAIL} with password '{WAGTAIL_ADMIN_PASSWORD}'")
+                sys.stdout.write(f"Created Admin user {WAGTAIL_ADMIN_EMAIL} with password '{WAGTAIL_ADMIN_PASSWORD}'\n")
             user.save()
