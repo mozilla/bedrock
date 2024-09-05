@@ -11,12 +11,15 @@
  * Pages will be scanned at both desktop and mobile resolutions.
  */
 const pageTestURLs = [
+    '/de/firefox/built-for-you/',
+    '/de/firefox/challenge-the-default/',
     '/en-US/',
     '/en-US/about/',
     '/en-US/firefox/',
     '/en-US/firefox/all/',
     '/en-US/firefox/channel/desktop/',
     '/en-US/firefox/new/',
+    '/en-US/firefox/nothing-personal/',
     '/en-US/products/',
     '/en-US/products/vpn/'
 ];
