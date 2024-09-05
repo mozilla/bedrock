@@ -4,9 +4,9 @@
 
 .. _cms:
 
-====================
-CMS capability (WIP)
-====================
+===
+CMS
+===
 
 From 2024, Bedrock's CMS will be powered by `Wagtail CMS`_.
 
@@ -451,6 +451,32 @@ Instead, we pre-generate those renditions when the image is saved.
 This approach will not be a problem if we stick to image filter-specs from the
 'approved' list. Note that extending the list of filter-specs is possible, if
 we need to.
+
+
+I've downloaded a fresh DB and the images are missing!
+------------------------------------------------------
+
+That's expected: the images don't live in the DB, only references to them live there.
+CMS images are destined for public consumption, and Dev, Stage and Prod all store
+their images in a publicly-accessible cloud bucket.
+
+We have a tool to help you sync down the images from the relevant bucket.
+
+By default, the sqlite DB you can download to run bedrock locally is based on the data in
+Bedrock Dev. To get images from the cloud bucket for dev, run:
+
+.. code-block:: shell
+  ./manage.py download_media_to_local
+
+This will look at your local DB, find the image files that it says should be
+available locally, copy them down to your local machine, then trigger the
+versions/renditions of them that should also exist.
+
+The command will only download images you don't already have locally.
+You can use the ``--redownload`` option to force a redownload of all images.
+
+If you have a DB from Stage you can pass the ``--environment=stage`` option
+to get the images from the Stage bucket instead. Same goes for Production.
 
 L10N and Translation Management
 -------------------------------
