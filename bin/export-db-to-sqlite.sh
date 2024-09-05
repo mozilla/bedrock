@@ -154,7 +154,6 @@ python manage.py dumpdata \
     cms.StructuralPage \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
-    cms.BedrockRendition \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
     newsletter.Newsletter \
