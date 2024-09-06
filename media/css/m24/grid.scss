@@ -2,61 +2,75 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.m24-c-grid {
-    padding: $spacer-xl 0;
-}
 
-.m24-c-grid-cell {
-    padding-top: $spacer-lg;
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-    &:first-child {
-        padding-top: 0;
+// variables
+@import 'vars/color';
+@import 'vars/spacing';
+@import 'vars/text';
+@import 'vars/animation';
+
+.m24-c-grid-container {
+    @media #{$mq-md} {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: var(--grid-gutter);
+    }
+
+    @media #{$mq-lg} {
+        grid-template-columns: repeat(12, 1fr);
     }
 }
 
-.m24-l-grid-pair .m24-c-grid-cell {
-    max-width: $mobile-square-img-max-width;
-    margin: 0 auto;
-}
+.m24-c-grid-tile {
+    margin-bottom: var(--spacer-xl);
 
-.m24-grid-cell-cta {
-    margin: 0;
-}
-
-@media #{$mq-md} {
-    .m24-c-grid {
-        @include grid;
+    .m24-c-grid-tile-image {
+        margin-bottom: var(--spacer-sm);
     }
 
-    .m24-c-grid-cell {
-        padding-top: 0;
+    .m24-c-grid-tile-title {
+        font-size: var(--text-title-md);
     }
 
-    .m24-l-grid-pair .m24-c-grid-cell {
-        grid-column: 1/7;
-        max-width: auto;
+    @media #{$mq-lg} {
+        grid-column: auto / span 3;
 
-        + .m24-c-grid-cell {
-            grid-column: 7/-1;
+        &.m24-l-grid-third {
+            grid-column: auto / span 4;
+        }
+
+        &.m24-l-grid-half {
+            grid-column: auto / span 6;
+        }
+
+        &.m24-l-grid-two-thirds {
+            grid-column: auto / span 8;
+        }
+
+        // Add the `.m24-l-grid-pair` class to the grid container for
+        // a minimal grid of two spaced out tiles.
+        .m24-l-grid-pair & {
+            &:nth-child(odd) {
+                grid-column: 2/6;
+            }
+
+            &:nth-child(even) {
+                grid-column: 8/-2;
+            }
         }
     }
-}
 
-@media #{$mq-xl} {
-    .m24-l-grid-pair .m24-c-grid-cell {
-        grid-column: 2/5;
+    @media #{$mq-xl} {
+        .m24-l-grid-pair & {
+            &:nth-child(odd) {
+                grid-column: 2/5;
+            }
 
-        + .m24-c-grid-cell {
-            grid-column: 9/-2;
+            &:nth-child(even) {
+                grid-column: 9/-2;
+            }
         }
     }
-}
-
-.m24-grid-cell-media {
-    padding-bottom: $spacer-sm;
-}
-
-.m24-grid-cell-title {
-    margin-bottom: 0;
-    padding-bottom: $spacer-sm;
 }
