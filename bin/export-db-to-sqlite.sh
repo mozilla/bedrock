@@ -126,6 +126,8 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 # auth.User                     # Will be purged because of  PII
 # wagtailcore.Revision          # Will be purged: drafts may leak pre-published content, or stale/dead content
 
+# MAIN LIST OF MODELS BEING EXPORTED
+
 python manage.py dumpdata \
     auth.Permission \
     auth.Group \
@@ -157,6 +159,7 @@ python manage.py dumpdata \
     cms.BedrockRendition \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
+    mozorg.LeadershipPage \
     newsletter.Newsletter \
     externalfiles.ExternalFile \
     security.Product \
