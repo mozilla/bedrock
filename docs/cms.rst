@@ -151,6 +151,9 @@ Some key things to note here:
   ``mozorg/test_page.html``.
 - If you don't set a custom template name, Wagtail will infer it from the model's
   name: ``<app_label>/<model_name (in snake case)>.html``
+- All new models must be added to the config for the DB exporter script. If you
+  do not, the page will not be correctly exported for local development and will
+  break for anyone using that DB export file. See `Add your new model to the DB export`, below.
 
 Django model migrations
 -----------------------
@@ -301,6 +304,23 @@ give it some data to render:
         page_content = str(resp.content)
         assert "Test Heading" in page_content
         assert "Test Body" in page_content
+
+Add your new model to the DB export
+-----------------------------------
+When you add a new model, you must update the script that generates the sqlite DB
+export of our data, so that the model is included in the export. (It's an allowlist
+pattern, as requested by Mozilla Security).
+
+**If you do not, the page will not be correctly exported for local development and will
+break for anyone using that DB export file.**
+
+(It's down to Wagtail's multi-table inheritance
+pattern: if you don't specify your new model for export, Wagtail's core metadata ``Page`` is exported,
+but not the actual new data model that holds the content that's linked to that ``Page``)
+
+The script is ``bin/export-db-to-sqlite.sh`` and you need to add your new model
+to the list of models being exported. Search for ``MAIN LIST OF MODELS BEING EXPORTED``
+and add your model (in the format ``appname.ModelName``) there.
 
 Editing current content surfaces
 ================================
