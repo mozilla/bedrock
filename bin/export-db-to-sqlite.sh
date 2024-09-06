@@ -113,6 +113,7 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 # wagtailcore.Revision          # Excluded: drafts may leak pre-published content, or stale/dead content
 # wagtailcore.PageViewRestriction  # Excluded: may include passwords
 # wagtailcore.TaskState         # Excluded: comment field may contain sensitive info
+# wagtailcore.WorkflowState     # Excluded: if included, causes integrity errors because it needs TaskState to be present, too
 # wagtailcore.PageLogEntry      # Excluded: may contain sensitive info
 # wagtailcore.Comment           # Excluded: may contain sensitive info
 # wagtailcore.CommentReply      # Excluded: may contain sensitive info
@@ -124,6 +125,8 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 #
 # auth.User                     # Will be purged because of  PII
 # wagtailcore.Revision          # Will be purged: drafts may leak pre-published content, or stale/dead content
+
+# MAIN LIST OF MODELS BEING EXPORTED
 
 python manage.py dumpdata \
     auth.Permission \
@@ -147,7 +150,6 @@ python manage.py dumpdata \
     wagtailcore.Task \
     wagtailcore.Workflow \
     wagtailcore.GroupApprovalTask \
-    wagtailcore.WorkflowState \
     taggit.Tag \
     taggit.TaggedItem \
     base.ConfigValue \
@@ -157,6 +159,7 @@ python manage.py dumpdata \
     cms.BedrockRendition \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
+    mozorg.LeadershipPage \
     newsletter.Newsletter \
     externalfiles.ExternalFile \
     security.Product \
