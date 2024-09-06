@@ -318,7 +318,7 @@ When you add a new page to the CMS, it will be available to add as a new child p
 So if you ship a page that needs to be used immediately in Production (which will generally be most cases), you must remember to add it to ``CMS_ALLOWED_PAGE_MODELS`` in Bedrock's settings. If you do not, it will not be selectable as a new Child Page in the CMS.
 
 Why do we have this behaviour?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Two reasons:
 
@@ -472,12 +472,12 @@ Localization process
 ====================
 
 Manual updates
-~~~~~~~~~~~~~~
+--------------
 
 At its most basic, there's nothing stopping us using copy-and-paste to enter translations into lang-specific pages, which might work well if we have a page in just one non-en-US lang and an in-house colleague doing the translation.
 
 Automated via Smartling
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 However, we also have automation available to send source strings to translation vendor Smartling. This uses the ``wagtail-localize-smartling`` package.
 
@@ -498,7 +498,7 @@ Here's the workflow:
 
 
 Automated via Pontoon
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 It should also be possible to use `Pontoon`_ with `wagtail-localize`. (There are notes on the `Pontoon integration`_ here, but we have not yet tried to enable this alongside `wagtail-localize-smartling`).
 
