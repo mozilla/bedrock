@@ -42,7 +42,14 @@ urlpatterns = (
     path("newsletter/opt-out-confirmation/", views.recovery, name="newsletter.opt-out-confirmation"),
     # Branded signup pages for individual newsletters
     page("newsletter/mozilla/", "newsletter/mozilla.html", ftl_files=["mozorg/newsletters"]),
-    page("newsletter/firefox/", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),
+    # Firefox newsletter A/B test. See issue 15075
+    path(
+        "newsletter/firefox/",
+        VariationTemplateView.as_view(
+            template_name="newsletter/firefox.html", template_context_variations=["1", "2"], ftl_files=["mozorg/newsletters"]
+        ),
+        name="newsletter.firefox",
+    ),
     page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
