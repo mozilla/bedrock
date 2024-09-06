@@ -113,6 +113,7 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 # wagtailcore.Revision          # Excluded: drafts may leak pre-published content, or stale/dead content
 # wagtailcore.PageViewRestriction  # Excluded: may include passwords
 # wagtailcore.TaskState         # Excluded: comment field may contain sensitive info
+# wagtailcore.WorkflowState     # Excluded: if included, causes integrity errors because it needs TaskState to be present, too
 # wagtailcore.PageLogEntry      # Excluded: may contain sensitive info
 # wagtailcore.Comment           # Excluded: may contain sensitive info
 # wagtailcore.CommentReply      # Excluded: may contain sensitive info
@@ -147,7 +148,6 @@ python manage.py dumpdata \
     wagtailcore.Task \
     wagtailcore.Workflow \
     wagtailcore.GroupApprovalTask \
-    wagtailcore.WorkflowState \
     taggit.Tag \
     taggit.TaggedItem \
     base.ConfigValue \
