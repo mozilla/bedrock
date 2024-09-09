@@ -15,9 +15,7 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
         const installerHelpIcon = document.querySelectorAll(
             '.icon-installer-help'
         );
-        const downloadButton = document.getElementById(
-            'download-button-primary'
-        );
+        const downloadButtons = document.querySelectorAll('.download-link');
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
             MzpModal.createModal(this, modalContent, {
@@ -77,14 +75,17 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
         }
 
         // event tracking for GA4
-        if (downloadButton) {
-            downloadButton.addEventListener(
-                'click',
-                function (event) {
-                    TrackProductDownload.handleLink(event);
-                },
-                false
-            );
+        if (downloadButtons) {
+            for (let i = 0; i < downloadButtons.length; ++i) {
+                const downloadButton = downloadButtons[i];
+                downloadButton.addEventListener(
+                    'click',
+                    function (event) {
+                        TrackProductDownload.handleLink(event);
+                    },
+                    false
+                );
+            }
         }
     }
 
