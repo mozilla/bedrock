@@ -4,9 +4,13 @@
 
 import re
 
+from django.conf import settings
+
 import pytest
 from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
+
+from lib.l10n_utils.fluent import fluent_l10n
 
 jinja_env = Jinja2.get_default()
 
@@ -70,14 +74,15 @@ EXPECTED_NAV_HTML = {
     ],
 )
 def test_sub_nav_markup(test_input, expected):
-    mock_request = {"request": {"path": "/current"}}
+    mock_request = {"request": {"path": "/current"}, "fluent_l10n": fluent_l10n(["en-US", "en"], settings.FLUENT_DEFAULT_FILES)}
     # need to import with context for the request key to pass along the path value
     markup = render("{% from 'macros.html' import sub_nav with context %}" + f"{{{{ sub_nav({test_input}) }}}}", mock_request)
     doc = pq(markup)
 
     nav_title = doc(".c-sub-navigation-title")
+    nav_toggle = doc(".c-sub-navigation-mobile-toggle")
     assert nav_title.text() == expected["title_text"]
-    assert EXPECTED_NAV_HTML["is_summary"] in nav_title.outer_html()
+    assert EXPECTED_NAV_HTML["is_summary"] in nav_toggle.outer_html()
 
     nav_list = doc(".c-sub-navigation-list")
     assert EXPECTED_NAV_HTML["is_details_default_closed"] in nav_list.outer_html()
