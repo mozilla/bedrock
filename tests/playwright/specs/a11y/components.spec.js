@@ -113,12 +113,14 @@ test.describe(
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
-            const subNavigationTitle = page.getByTestId('sub-navigation-title');
+            const subNavigationToggle = page.getByTestId(
+                'sub-navigation-mobile-toggle'
+            );
             const subNavigationMenu = page.getByTestId('sub-navigation-menu');
 
             // Open sub-navigation menu
             await expect(subNavigationMenu).not.toBeVisible();
-            await subNavigationTitle.click();
+            await subNavigationToggle.click();
             await expect(subNavigationMenu).toBeVisible();
 
             const results = await scanPageElement(page, subNavigationLocator);

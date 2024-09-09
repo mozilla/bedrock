@@ -4,9 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "firefox/base/base-protocol.html" %}
-
+{% from "macros.html" import sub_nav with context %}
 {% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ ftl('firefox-developer-page-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('firefox-developer-firefox-developer-edition-desc') }}{% endblock %}
@@ -32,23 +33,31 @@
 {% endblock %}
 
 {% block sub_navigation %}
-<nav class="c-sub-navigation">
-  <div class="mzp-l-content">
-    <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
-        <a href="{{ url('firefox') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Firefox">
-          <img class="c-sub-navigation-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" width="24" height="24" alt="">
-         {{ ftl('sub-navigation-firefox') }}
-        </a>
-      </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.enterprise.index') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Enterprise">{{ ftl('sub-navigation-enterprise') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-position="subnav" data-link-text="Nightly and Beta">{{ ftl('sub-navigation-nightly-and-beta') }}</a></li>
-        <li class="c-sub-navigation-item"><a href="{{ url('firefox.all') }}" data-link-type="nav" data-link-position="subnav" data-link-text="All Languages">{{ ftl('sub-navigation-all-languages', fallback='download-button-systems-languages') }}</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  {{ sub_nav(
+    title={
+      'text':  ftl('sub-navigation-firefox'),
+      'href':  url('firefox'),
+      'icon':  static('protocol/img/logos/firefox/logo.svg'),
+      'cta_name': 'Firefox'
+    },
+    links=[
+      {
+        'text':  ftl('sub-navigation-enterprise'),
+        'href':  url('firefox.enterprise.index'),
+        'cta_name': 'Enterprise'
+      },
+      {
+        'text':  ftl('sub-navigation-nightly-and-beta'),
+        'href':  url('firefox.channel.desktop'),
+        'cta_name': 'Nightly and Beta'
+      },
+      {
+        'text':  ftl('sub-navigation-all-languages', fallback='download-button-systems-languages'),
+        'href':  url('firefox.all'),
+        'cta_name': 'All Languages'
+      }
+    ]
+  ) }}
 {% endblock %}
 
 {% block content %}

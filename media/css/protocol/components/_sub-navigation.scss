@@ -34,7 +34,9 @@
     .c-sub-navigation-title {
         @include font-base;
         @include text-body-md;
+        display: inline-block;
         font-weight: bold;
+        margin-bottom: 0;
 
         a:link,
         a:visited {
@@ -47,14 +49,32 @@
         a:active {
             text-decoration: underline;
         }
+    }
+
+    .c-sub-navigation-mobile-toggle {
+        @include bidi((
+            (float, right, left),
+            (margin-right, $spacing-sm, margin-left, $spacing-sm),
+        ));
+        @include font-base;
+        @include text-body-md;
+        font-weight: bold;
+        width: 40%;
+
+        span {
+            @include visually-hidden;
+            display: block;
+        }
 
         & button {
-            @include text-body-md;
             @include bidi(((text-align, left, right),));
+            @include text-body-md;
             background-color: transparent;
             border: 0;
             color: inherit;
+            display: block;
             font-weight: bold;
+            height: 24px;
             margin-bottom: 0;
             padding: 0;
             position: relative;
@@ -137,6 +157,12 @@
         }
     }
 
+    @media #{$mq-sm} {
+        .c-sub-navigation-mobile-toggle {
+            width: 50%;
+        }
+    }
+
     @media #{$mq-md} {
         @include clearfix;
 
@@ -145,7 +171,12 @@
                 (float, left, right),
                 (margin-right, $spacing-sm * 2, margin-left, 0),
             ));
+            display: block;
             margin-bottom: 0;
+        }
+
+        .c-sub-navigation-mobile-toggle {
+            display: none
         }
 
         .c-sub-navigation-list {
