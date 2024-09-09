@@ -28,8 +28,8 @@
     font-style: normal;
     font-weight: normal;
     src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff') format('woff');
 }
 
 @font-face {
@@ -48,8 +48,8 @@
     font-style: italic;
     font-weight: normal;
     src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff') format('woff');
 }
 
 @font-face {
@@ -68,8 +68,8 @@
     font-style: normal;
     font-weight: normal;
     src:
-        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlabBETA-Regular.woff2') format('woff2'),
-        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlabBETA-Regular.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlabBETA-SemiBold.woff2') format('woff2'),
+        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlabBETA-SemiBold.woff') format('woff');
 }
 
 @font-face {
@@ -88,17 +88,16 @@
 body {
     background-color: $m24-color-white;
     color: $m24-color-black;
-    font-family: 'Mozilla Sans Text BETA', sans-serif;
+    font-family: 'Mozilla Sans Text', sans-serif;
     font-variant-ligatures: none;
-    font-weight: 600;
     line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5 {
     color: $m24-color-black;
-    font-family: 'Mozilla SemiSlab BETA', serif;
+    font-family: 'Mozilla SemiSlab', serif;
     font-variant-ligatures: none;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 strong {
@@ -149,7 +148,7 @@ a:link {
 .m24-c-cta {
     color: $color-black-on-white;
     display: inline-block;
-    font-family: 'Mozilla SemiSlab BETA', serif;
+    font-family: 'Mozilla SemiSlab', serif;
     font-size: $text-button-lg;
 
     &:hover {
@@ -165,7 +164,7 @@ a:link {
     }
 
     &.m24-t-small {
-        font-family: 'Mozilla Sans Text BETA', sans-serif;
+        font-family: 'Mozilla Sans Text', sans-serif;
         font-size: $text-button-sm;
     }
 }

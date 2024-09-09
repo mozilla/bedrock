@@ -56,7 +56,8 @@ $logo-spacing: calc(24px + #{$spacer-xs});
         right: $container-padding;
     }
 
-    &:hover::after{
+    &:focus-visible::after,
+    &:hover::after {
         background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
     }
 }
