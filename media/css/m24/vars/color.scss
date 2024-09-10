@@ -2,7 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// define hex code colors
+/* ------------------------------------------------------------------------------- */
+// hex code colors
+// do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
 $token-color-black: #000;
 $token-color-light-gray: #f4f4f4;
 $token-color-dark-gray: #181818;
@@ -23,6 +25,7 @@ $token-color-feedback-caution: $token-color-dark-orange;
 $token-color-feedback-error: $token-color-orange;
 
 // define CSS variables for the browser
+// do not reference these directly, use the $m24-color-* variables
 :root {
     // black and white
     --m24-white: #{$token-color-white};
@@ -49,7 +52,10 @@ $token-color-feedback-error: $token-color-orange;
     --m24-dark-orange: #{$token-color-dark-orange};
 }
 
+/* ------------------------------------------------------------------------------- */
 // define sass variables to hold CSS variables
+// reference these!
+
 // black and white
 $m24-color-white: var(--m24-white);
 $m24-color-black: var(--m24-black);
@@ -76,6 +82,7 @@ $m24-color-dark-pink: var(--m24-dark-pink);
 
 
 /* ------------------------------------------------------------------------------- */
+// this mixin will invert the values of the CSS variables, essentially giving you "dark mode"
 
 @mixin invert-colors {
     // black and white
