@@ -33,8 +33,8 @@ Useful resources:
 - `Wagtail Docs`_.
 - `The Ultimate Wagtail Developers Course`_.
 
-Accessing the CMS
-=================
+Accessing the CMS on your local machine
+=======================================
 
 SSO authentication setup
 ------------------------
@@ -52,7 +52,8 @@ SSO authentication setup
 
 #. Run ``make preflight`` to update bedrock with the latest DB version. As part of
    this step, the make file will also create a local admin user for you, using the
-   Mozilla LDAP email address you added in the previous step.
+   Mozilla LDAP email address you added in the previous step. **If you do not want
+   to overwrite your local database, run** ``make preflight -- --retain-db`` **instead.**
 #. Start bedrock running via ``npm start`` (for local dev) or ``make build run``
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a button to login
@@ -63,7 +64,8 @@ Non-SSO authentication
 ----------------------
 
 #. In your ``.env`` file set ``USE_SSO_AUTH=False``, and ``WAGTAIL_ENABLE_ADMIN=TRUE``.
-#. Run ``make preflight`` to update bedrock with the latest DB version.
+#. Run ``make preflight`` to update bedrock with the latest DB version. **If you do not want
+   to overwrite your local database, run** ``make preflight -- --retain-db`` **instead.**
 #. Create a local admin user with ``./manage.py createsuperuser``, setting both the
    username, email and password to whatever you choose (note: these details will only
    be stored locally on your device).
@@ -74,6 +76,40 @@ Non-SSO authentication
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a form for logging in
    with a username and password. Use the details you created in the previous step.
+
+Fetching the latest CMS data for local work
+===========================================
+
+.. note::
+  **TL;DR version:**
+
+  1. Get the DB with ``make preflight``
+  2. If you need the images that the DB expects to exist, use ``python manage.py download_media_to_local``
+
+The CMS content exists in hosted cloud database and a trimmed-down version of this
+data is exported to a sqlite DB for use in local development and other processes.
+The exported database contains all the same content, but deliberately omits
+sensitive info like user accounts, unpublished drafts and outmoded versions of pages.
+
+The DB export is generated twice a day and is put into the same public cloud buckets
+we've used for years. Your local Bedrock install will just download the `bedrock-dev`
+one as part of ``make preflight``.
+
+The DB will contain a table that knows the relative paths of the images uploaded to
+the CMS, but not the actual images. Those are in a cloud storage bucket, and if you want
+your local machine to have them available after you download the DB that expects them
+to be present, you can run ``python manage.py download_media_to_local`` which will
+sync down any images you don't already have.
+
+.. note::
+  By default, ``make preflight`` and ``./bin/run-db-download.py`` will download
+  a database file based on ``bedrock-dev``. If you want to download from stage or
+  prod, which are also available in sanitised form, you need to tell Bedrock which
+  environment you want by prefixing the command with ``AWS_DB_S3_BUCKET=bedrock-db-stage``
+  or ``AWS_DB_S3_BUCKET=bedrock-db-prod``.
+
+  ``AWS_DB_S3_BUCKET=bedrock-db-stage make preflight``
+  ``AWS_DB_S3_BUCKET=bedrock-db-stage python manage.py download_media_to_local``
 
 Adding new content surfaces
 ===========================
