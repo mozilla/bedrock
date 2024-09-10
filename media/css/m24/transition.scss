@@ -18,7 +18,7 @@
         display: block;
         height: $spacer-xl;
         width: 100%;
-        background-color: $color-green-on-black;
+        background-color: $m24-color-light-green;
         margin: 0;
         border: 0;
         top: 0;
@@ -32,7 +32,7 @@
         hr,
         &::before,
         &::after {
-            background-color: $token-color-dark-pink;
+            background-color: $token-color-light-pink;
         }
     }
 
@@ -42,7 +42,7 @@
         hr,
         &::before,
         &::after {
-            background-color: $color-black-on-white;
+            background-color: $m24-color-black;
         }
     }
 

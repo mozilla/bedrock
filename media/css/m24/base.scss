@@ -146,21 +146,21 @@ a:link {
 }
 
 .m24-c-cta {
-    color: $color-black-on-white;
+    color: $m24-color-black;
     display: inline-block;
     font-family: 'Mozilla SemiSlab', serif;
     font-size: $text-button-lg;
 
     &:hover {
-        color: $color-green-on-white;
+        color: $m24-color-dark-green;
     }
 
     &:focus-visible {
-        color: $color-black-on-white;
+        color: $m24-color-black;
     }
 
     &:active {
-        color: $color-black-on-white;
+        color: $m24-color-black;
     }
 
     &.m24-t-small {
