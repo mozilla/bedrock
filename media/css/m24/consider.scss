@@ -16,19 +16,22 @@
 
 .m24-c-consider-title {
     font-size: $alias-text-title-h2;
-    padding-bottom: $spacer-3xl;
+    padding-bottom: $spacer-xl;
     text-wrap-style: balance;
 }
 
 .m24-c-consider-media {
-    img {
-        display: inline-block;
-        vertical-align: bottom;
-        margin-left: $grid-gutter;
+    @include grid;
+    padding-bottom: $spacer-xl;
 
-        &:first-child {
-            margin-left: 0;
-        }
+    picture {
+        display: grid; // removes line height so there's no extra space underneath
+        grid-column: auto / span 6;
+    }
+
+    picture:nth-child(1),
+    picture:nth-child(3) {
+        justify-self: end;
     }
 }
 
@@ -36,10 +39,17 @@
     font-size: $alias-text-title-h4;
 }
 
-.m24-consider-cta-text {
-    font-size: $alias-text-title-h4;
+.m24-c-consider-cta {
+    padding-top: $spacer-lg;
+    text-align: right;
 }
 
+@media #{$mq-md} {
+    .m24-c-consider-media {
+        display: flex;
+        gap: $grid-gutter;
+    }
+}
 
 @media #{$mq-lg} {
     .m24-c-consider {
@@ -48,11 +58,17 @@
 
     .m24-c-consider-title {
         grid-column: 1/-1;
+        padding-bottom: $spacer-xl;
     }
 
     .m24-c-consider-media {
         grid-column: 1/-1;
         grid-row: 2/4;
+        padding: 0;
+
+        picture {
+            grid-column: auto / span 3;
+        }
     }
 
     .m24-consider-cta-info {
@@ -61,6 +77,7 @@
 
     .m24-c-consider-cta {
         grid-column: 7/-1;
+        padding: 0;
         place-self: end;
     }
 }
