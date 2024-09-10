@@ -18,7 +18,7 @@
 .m24-c-copy-title {
     font-size: $alias-text-title-h2;
     margin-bottom: 0;
-    padding-bottom: 16px; // does not adjust dynamically
+    padding-bottom: $spacer-sm;
     text-wrap-style: balance;
 
     &.m24-t-2xl{
