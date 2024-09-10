@@ -23,7 +23,7 @@ from .util import page
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name="mozorg.home"),
-    page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
+    path("about/", views.AboutView.as_view(), name="mozorg.about.index"),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
     page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),

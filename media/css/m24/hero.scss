@@ -1,0 +1,33 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+.m24-c-hero {
+    @include container;
+    padding-top: $spacer-2xl;
+
+    * {
+        margin-bottom: 0;
+    }
+}
+
+.m24-c-hero-title {
+    font-size: $text-title-2xl;
+}
+
+.m24-c-hero-media {
+    margin: 0 calc(-1 * $container-padding);
+    padding-top: $spacer-xl;
+
+    img {
+        display: block;
+        border: $spacer-xs solid $color-black; // this does not change from light to dark mode
+        box-sizing: border-box;
+    }
+}
+
+.m24-c-hero-cta {
+    padding: $spacer-md 0 0;
+    text-align: right;
+}

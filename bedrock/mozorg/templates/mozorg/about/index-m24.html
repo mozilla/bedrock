@@ -1,0 +1,32 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Learn About Mozilla{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.
+{% endblock %}
+
+{% block body_id %}about{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('m24') }}
+{% endblock %}
+
+{% block content %}
+
+{% include 'mozorg/about/includes/m24/hero.html'%}
+{% include 'mozorg/about/includes/m24/amplify.html'%}
+{% include 'mozorg/about/includes/m24/idea.html'%}
+{% include 'mozorg/about/includes/m24/careers.html'%}
+{% include 'mozorg/about/includes/m24/leadership.html'%}
+
+<div class="m24-c-transition m24-t-black"><hr></div>
+
+{% endblock %}

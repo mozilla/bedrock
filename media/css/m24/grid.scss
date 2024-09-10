@@ -1,0 +1,62 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.m24-c-grid {
+    padding: $spacer-xl 0;
+}
+
+.m24-c-grid-cell {
+    padding-top: $spacer-lg;
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.m24-l-grid-pair .m24-c-grid-cell {
+    max-width: $mobile-square-img-max-width;
+    margin: 0 auto;
+}
+
+.m24-grid-cell-cta {
+    margin: 0;
+}
+
+@media #{$mq-md} {
+    .m24-c-grid {
+        @include grid;
+    }
+
+    .m24-c-grid-cell {
+        padding-top: 0;
+    }
+
+    .m24-l-grid-pair .m24-c-grid-cell {
+        grid-column: 1/7;
+        max-width: auto;
+
+        + .m24-c-grid-cell {
+            grid-column: 7/-1;
+        }
+    }
+}
+
+@media #{$mq-xl} {
+    .m24-l-grid-pair .m24-c-grid-cell {
+        grid-column: 2/5;
+
+        + .m24-c-grid-cell {
+            grid-column: 9/-2;
+        }
+    }
+}
+
+.m24-grid-cell-media {
+    padding-bottom: $spacer-sm;
+}
+
+.m24-grid-cell-title {
+    margin-bottom: 0;
+    padding-bottom: $spacer-sm;
+}

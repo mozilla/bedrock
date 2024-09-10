@@ -1,0 +1,87 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+// TODO: shutter lines are not equal height in Figma
+
+.m24-c-transition {
+    overflow: hidden;
+    position: relative;
+    height: calc($spacer-xl * 2);
+    background-color: transparent;
+
+    hr,
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        height: $spacer-xl;
+        width: 100%;
+        background-color: $m24-color-light-green;
+        margin: 0;
+        border: 0;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+
+    &.m24-t-purple {
+        background-color: transparent;
+
+        hr,
+        &::before,
+        &::after {
+            background-color: $token-color-light-pink;
+        }
+    }
+
+    &.m24-t-black {
+        background-color: transparent;
+
+        hr,
+        &::before,
+        &::after {
+            background-color: $m24-color-black;
+        }
+    }
+
+    &::before {
+        transform: translate(calc(grid(10) * -1), 0);
+    }
+
+    hr {
+        transform: translate(calc(grid(8) * -1), 0);
+        top: $spacer-xl;
+    }
+
+    &::after {
+        top: $spacer-xl;
+        transform: translate(grid(8), 0);
+    }
+
+    &.m24-l-reverse {
+        &::before {
+            display: none;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+
+        hr {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%,0);
+            margin-left: grid(2);
+        }
+
+        &::after {
+            left: 50%;
+            transform: translate(-50%,0);
+            width: grid(4);
+        }
+    }
+
+    &.m24-l-reverse + .m24-c-transition {
+        margin-top: calc($spacer-xl * -2);
+    }
+}

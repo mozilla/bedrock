@@ -1237,6 +1237,12 @@
         "css/firefox/built-for-you/landing.scss"
       ],
       "name": "firefox-built-for-you"
+    },
+    {
+      "files":  [
+        "css/m24/base.scss"
+      ],
+      "name": "m24"
     }
   ],
   "js": [

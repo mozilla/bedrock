@@ -2,6 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+/* ------------------------------------------------------------------------------- */
+// hex code colors
+// do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
 $token-color-black: #000;
 $token-color-light-gray: #f4f4f4;
 $token-color-dark-gray: #181818;
@@ -9,103 +12,120 @@ $token-color-functional-gray-on-white: #707070;
 $token-color-functional-gray-on-black: #828282;
 $token-color-white: #fff;
 $token-color-green: #00D230;
-$token-color-light-green: #E5F4E5;
-$token-color-dark-green: #155E2A;
-$token-color-orange: #ff9502;
-$token-color-light-orange: #FFF9F0;
-$token-color-dark-orange: #F10900;
-$token-color-pink: #FF0089;
-$token-color-light-pink: #FFEAF4;
-$token-color-dark-pink: #7F00CA;
+$token-color-light-green: #D6FFCD;
+$token-color-dark-green: #28733F;
+$token-color-orange: #FF9456;
+$token-color-light-orange: #FAF0E6;
+$token-color-dark-orange: #FF453F;
+$token-color-pink: #FF97E2;
+$token-color-light-pink: #FFF1F8;
+$token-color-dark-pink: #AE49EC;
 $token-color-feedback-success: $token-color-green;
 $token-color-feedback-caution: $token-color-dark-orange;
 $token-color-feedback-error: $token-color-orange;
 
+// define CSS variables for the browser
+// do not reference these directly, use the $m24-color-* variables
 :root {
-        --white-on-black: #{$token-color-white};
-        --black-on-white: #{$token-color-black};
-        --light-gray-on-white: #{$token-color-light-gray};
-        --light-gray-on-dark-gray: #{$token-color-light-gray};
-        --dark-gray-on-light-gray: #{$token-color-dark-gray};
-        --white-on-light-gray: #{$token-color-white};
-        --white-on-dark-gray: #{$token-color-white};
-        --black-on-dark-gray: #{$token-color-black};
-        --dark-gray-on-black: #{$token-color-dark-gray};
-        --functional-gray-on-white: #{$token-color-functional-gray-on-white};
-        --functional-gray-on-black: #{$token-color-functional-gray-on-black};
-        --green-on-white: #{$token-color-dark-green};
-        --green-on-black: #{$token-color-green};
+    // black and white
+    --m24-white: #{$token-color-white};
+    --m24-black: #{$token-color-black};
+
+    // gray
+    --m24-light-gray: #{$token-color-light-gray};
+    --m24-dark-gray: #{$token-color-dark-gray};
+    --m24-functional-gray: #{$token-color-functional-gray-on-white};
+
+    // green
+    --m24-green: #{$token-color-green};
+    --m24-light-green: #{$token-color-light-green};
+    --m24-dark-green: #{$token-color-dark-green};
+
+    // pink
+    --m24-pink: #{$token-color-pink};
+    --m24-light-pink: #{$token-color-light-pink};
+    --m24-dark-pink: #{$token-color-dark-pink};
+
+    // orange
+    --m24-orange: #{$token-color-orange};
+    --m24-light-orange: #{$token-color-light-orange};
+    --m24-dark-orange: #{$token-color-dark-orange};
 }
 
-.m24-t-dark,
+/* ------------------------------------------------------------------------------- */
+// define sass variables to hold CSS variables
+// reference these!
+
+// black and white
+$m24-color-white: var(--m24-white);
+$m24-color-black: var(--m24-black);
+
+// gray
+$m24-color-light-gray: var(--m24-light-gray);
+$m24-color-dark-gray: var(--m24-dark-gray);
+$m24-color-functional-gray: var(--m24-functional-gray);
+
+// green
+$m24-color-green: var(--m24-green);
+$m24-color-light-green: var(--m24-light-green);
+$m24-color-dark-green: var(--m24-dark-green);
+
+// orange
+$m24-color-orange: var(--m24-orange);
+$m24-color-light-orange: var(--m24-light-orange);
+$m24-color-dark-orange: var(--m24-dark-orange);
+
+// pink
+$m24-color-pink: var(--m24-pink);
+$m24-color-light-pink: var(--m24-light-pink);
+$m24-color-dark-pink: var(--m24-dark-pink);
+
+
+/* ------------------------------------------------------------------------------- */
+// this mixin will invert the values of the CSS variables, essentially giving you "dark mode"
+
+@mixin invert-colors {
+    // black and white
+    --m24-white: #{$token-color-black};
+    --m24-black: #{$token-color-white};
+
+    // gray
+    --m24-light-gray: #{$token-color-dark-gray};
+    --m24-dark-gray: #{$token-color-light-gray};
+    --m24-functional-gray: #{$token-color-functional-gray-on-black};
+
+    // green
+    --m24-green: #{$token-color-green};
+    --m24-light-green: #{$token-color-dark-green};
+    --m24-dark-green: #{$token-color-light-green};
+
+    // pink
+    --m24-pink: #{$token-color-pink};
+    --m24-light-pink: #{$token-color-dark-pink};
+    --m24-dark-pink: #{$token-color-light-pink};
+
+    // orange
+    --m24-orange: #{$token-color-orange};
+    --m24-light-orange: #{$token-color-dark-orange};
+    --m24-dark-orange: #{$token-color-light-orange};
+}
+
+/* ------------------------------------------------------------------------------- */
+
+.m24-t-light-alt {
+    background-color: $m24-color-light-gray;
+}
+
+.m24-t-dark {
+    @include invert-colors;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+}
+
+.m24-t-green {
+    background-color: $m24-color-light-green;
+}
+
 .m24-t-purple {
-    --white-on-black: #{$token-color-black};
-    --black-on-white: #{$token-color-white};
-    --light-gray-on-white: #{$token-color-dark-gray};
-    --light-gray-on-dark-gray: #{$token-color-dark-gray};
-    --dark-gray-on-light-gray: #{$token-color-light-gray};
-    --white-on-light-gray: #{$token-color-light-gray};
-    --white-on-dark-gray: #{$token-color-dark-gray};
-    --black-on-dark-gray: #{$token-color-dark-gray};
-    --dark-gray-on-black: #{$token-color-black};
-    --functional-gray-on-white: #{$token-color-functional-gray-on-black};
-    --functional-gray-on-black: #{$token-color-functional-gray-on-white};
-    --green-on-white: #{$token-color-green};
-    --green-on-black: #{$token-color-dark-green};
-
-    // dark mode not supported for now
-    // @media (prefers-color-scheme: dark) {
-    //     --white-on-black: #{$token-color-dark-gray};
-    //     --black-on-white: #{$token-color-functional-gray-on-black};
-    //     --light-gray-on-white: #{$token-color-light-gray};
-    //     --light-gray-on-dark-gray: #{$token-color-light-gray};
-    //     --dark-gray-on-light-gray: #{$token-color-dark-gray};
-    //     --white-on-light-gray: #{$token-color-white};
-    //     --white-on-dark-gray: #{$token-color-white};
-    //     --black-on-dark-gray: #{$token-color-black};
-    //     --dark-gray-on-black: #{$token-color-dark-gray};
-    //     --functional-gray-on-white: #{$token-color-functional-gray-on-black);
-    //     --functional-gray-on-black: #{$token-color-functional-gray-on-white};
-    //     --green-on-white: #{$token-color-dark-green};
-    //     --green-on-black: #{$token-color-green};
-    // }
+    background-color: $token-color-light-pink;
 }
-
-// dark mode not supported for now
-// @media (prefers-color-scheme: dark) {
-//     :root {
-//         --white-on-black: #{$token-color-black};
-//         --black-on-white: #{$token-color-white};
-//         --light-gray-on-white: #{$token-color-dark-gray};
-//         --light-gray-on-dark-gray: #{$token-color-dark-gray};
-//         --dark-gray-on-light-gray: #{$token-color-light-gray};
-//         --white-on-light-gray: #{$token-color-light-gray};
-//         --white-on-dark-gray: #{$token-color-dark-gray};
-//         --black-on-dark-gray: #{$token-color-dark-gray};
-//         --dark-gray-on-black: #{$token-color-black};
-//         --functional-gray-on-white: #{$token-color-functional-gray-on-black};
-//         --functional-gray-on-black: #{$token-color-functional-gray-on-white};
-//         --green-on-white: #{$token-color-green};
-//         --green-on-black: #{$token-color-dark-green};
-//     }
-
-//     .m24-t-purple {
-//         --black-on-white: #{$token-color-black};
-//     }
-// }
-
-$color-white-on-black: var(--white-on-black);
-$color-black-on-white: var(--black-on-white);
-$color-light-gray-on-white: var(--light-gray-on-white);
-$color-light-gray-on-dark-gray: var(--light-gray-on-dark-gray);
-$color-dark-gray-on-light-gray: var(--dark-gray-on-light-gray);
-$color-white-on-light-gray: var(--white-on-light-gray);
-$color-white-on-dark-gray: var(--white-on-dark-gray);
-$color-black-on-dark-gray: var(--black-on-dark-gray);
-$color-dark-gray-on-black: var(--dark-gray-on-black);
-$color-functional-gray-on-white: var(--functional-gray-on-white);
-$color-functional-gray-on-black: var(--functional-gray-on-black);
-$color-green-on-white: var(--green-on-white);
-$color-green-on-black: var(--green-on-black);
-$color-purple: #{$token-color-dark-pink};
-$color-black: #{$token-color-black};

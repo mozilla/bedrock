@@ -1,0 +1,95 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$logo-spacing: calc(24px + #{$spacer-xs});
+
+.m24-c-spring {
+    padding: $spacer-xl 0;
+    margin: 0;
+}
+
+.m24-c-spring-item {
+    border-bottom: 4px solid $m24-color-light-gray;
+    margin-bottom: 0;
+}
+
+.m24-c-spring-link {
+    @include grid;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+    display: grid;
+    gap: $spacer-2xs $grid-gutter;
+    margin: 0 calc($container-padding * -1);
+    padding: $spacer-sm $container-padding;
+    position: relative;
+    text-decoration: none;
+
+    &:hover,
+    &:link:active, // override protocol
+    &:focus-visible {
+        @include invert-colors;
+        background-color: $m24-color-white; // override protocl
+        position: relative;
+        z-index: 2;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        background-image: url('/media/img/m24/todo-1-1.svg');
+        background-size: 15px auto;
+        background-repeat: no-repeat;
+        background-position: center left;
+        display: block;
+        width: 24px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+
+    &::before {
+        left: $container-padding;
+    }
+
+    &::after {
+        content: '';
+        background-image: url('/media/img/icons/m24-small/arrow-right.svg');
+        right: $container-padding;
+    }
+
+    &:focus-visible::after,
+    &:active::after,
+    &:hover::after {
+        background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
+    }
+}
+
+.m24-c-spring-title {
+    color: $m24-color-black;
+    display: inline-block;
+    font-size: $alias-text-title-h4;
+    font-weight: 600;
+    grid-column: 1 / span 10;
+    padding-left: $logo-spacing;
+    line-height: 1;
+}
+
+.m24-c-spring-info {
+    color: $m24-color-functional-gray;
+    grid-column: 1 / span 11;
+    padding-left: $logo-spacing;
+}
+
+@media #{$mq-lg} {
+    .m24-c-spring-title {
+        grid-column: 1 / 4;
+        align-content: center;
+    }
+
+    .m24-c-spring-info {
+        grid-column: 4 / 11;
+        padding-left: 0;
+        align-content: end;
+    }
+}

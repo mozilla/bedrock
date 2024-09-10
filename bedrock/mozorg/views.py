@@ -17,12 +17,12 @@ from django.views.generic import TemplateView
 from jsonview.decorators import json_view
 from product_details import product_details
 
+from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.utils.views import VariationTemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 from lib.l10n_utils.fluent import ftl_file_is_active
@@ -125,7 +125,8 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-class HomeView(VariationTemplateView):
+class HomeView(L10nTemplateView):
+    m24_template_name = "mozorg/home/home-m24.html"
     template_name = "mozorg/home/home-new.html"
     old_template_name = "mozorg/home/home-old.html"
     template_context_variations = ["1", "2", "3"]
@@ -136,10 +137,26 @@ class HomeView(VariationTemplateView):
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
-        if ftl_file_is_active("mozorg/home-new") and experience != "legacy":
+        if switch("m24-home") and self.request.locale.startswith("en"):
+            return [self.m24_template_name]
+        elif ftl_file_is_active("mozorg/home-new") and experience != "legacy":
             return [self.template_name]
 
         return [self.old_template_name]
+
+
+class AboutView(L10nTemplateView):
+    m24_template_name = "mozorg/about/index-m24.html"
+    template_name = "mozorg/about/index.html"
+    activation_files = ["mozorg/about"]
+
+    ftl_files_map = {template_name: ["mozorg/about"]}
+
+    def get_template_names(self):
+        if switch("m24-about") and self.request.locale.startswith("en"):
+            return [self.m24_template_name]
+
+        return [self.template_name]
 
 
 @method_decorator(never_cache, name="dispatch")
