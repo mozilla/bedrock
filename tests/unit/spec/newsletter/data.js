@@ -28,21 +28,6 @@ const newsletterData = {
         is_mofo: false,
         order: 1
     },
-    'knowledge-is-power': {
-        title: 'Knowledge is Power',
-        description:
-            'Get all the knowledge you need to stay safer and smarter online.',
-        show: false,
-        active: true,
-        private: false,
-        indent: false,
-        vendor_id: 'Sub_Knowledge_is_Power__c',
-        languages: ['en', 'de', 'fr'],
-        requires_double_optin: false,
-        firefox_confirm: false,
-        is_mofo: false,
-        order: 2
-    },
     'test-pilot': {
         title: 'New Product Testing',
         description:
@@ -882,11 +867,6 @@ const stringData = {
     },
     'join-mozilla': {
         title: 'Join Mozilla'
-    },
-    'knowledge-is-power': {
-        description:
-            'Get all the knowledge you need to stay safer and smarter online.',
-        title: 'Knowledge is Power'
     },
     'security-privacy-news': {
         description:

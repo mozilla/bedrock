@@ -341,18 +341,6 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter-knowledge-is-power.scss"
-      ],
-      "name": "newsletter-knowledge-is-power"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-knowledge-is-power-confirm.scss"
-      ],
-      "name": "newsletter-knowledge-is-power-confirm"
-    },
-    {
-      "files": [
         "css/newsletter/newsletter-security-privacy-news.scss"
       ],
       "name": "newsletter-security-privacy-news"
@@ -1349,12 +1337,6 @@
         "js/newsletter/newsletter-init.es6.js"
       ],
       "name": "newsletter"
-    },
-    {
-      "files": [
-        "js/newsletter/confirm-init.es6.js"
-      ],
-      "name": "newsletter-knowledge-is-power-confirm"
     },
     {
       "files": [

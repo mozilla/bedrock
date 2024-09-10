@@ -59,9 +59,6 @@ home-eventually-the-open = Eventually, the open-source { -brand-name-mozilla } p
 home-today-mozilla-continues = Today, { -brand-name-mozilla } continues its movement toward a better internet with millions of active community members spanning the globe, advocating for ethical tech, trustworthy AI and producing privacy-first products that give more power to the people.
 home-learn-more-about-mozilla = Learn more about { -brand-name-mozilla }
 
-home-get-good-news = Get (good) { -brand-name-mozilla } news
-home-get-news-and-tips = Get news and tips from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
-
 # VPN Feature
 home-featured-product = Featured product
 

@@ -5,7 +5,6 @@ from django.urls import path
 
 from bedrock.mozorg.util import page
 from bedrock.newsletter import views
-from bedrock.utils.views import VariationTemplateView
 
 # NOTE:
 # URLs are defined with two variations for token handling. This dual approach allows flexibility in
@@ -46,15 +45,6 @@ urlpatterns = (
     page("newsletter/firefox/", "newsletter/firefox.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
-    path(
-        "newsletter/knowledge-is-power/",
-        VariationTemplateView.as_view(
-            template_name="newsletter/knowledge-is-power.html", template_context_variations=["rise25"], ftl_files=["mozorg/newsletters"]
-        ),
-        name="newsletter.knowledge-is-power",
-    ),
-    path("newsletter/knowledge-is-power/confirm/<uuid:token>/", views.kip_confirm, name="newsletter.knowledge-is-power.confirm"),
-    path("newsletter/knowledge-is-power/confirm/", views.kip_confirm, name="newsletter.knowledge-is-power.confirm.no-token"),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
     page("newsletter/security-and-privacy/", "newsletter/security-privacy-news.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/security-and-privacy/online-harassment/", "newsletter/online-harassment.html"),

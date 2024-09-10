@@ -1299,5 +1299,7 @@ URLS = flatten(
         url_test("/firefox/nothingpersonal/", "/firefox/nothing-personal/"),
         # issue 15008
         url_test("/try-picture-in-picture/", "/firefox/features/picture-in-picture/"),
+        # issue 15075
+        url_test("/newsletter/knowledge-is-power{,/,/confirm,/confirm/token}", "/newsletter/firefox/"),
     )
 )

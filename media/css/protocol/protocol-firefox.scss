@@ -61,7 +61,8 @@
 
 #newsletter-submit + .mzp-c-fieldnote {
     @include text-body-xs;
-    margin-top: 0;
+    margin: 0 auto;
+    max-width: 25em;
 }
 
 // style classes automatically added by python to match Protocol form error styles

@@ -977,15 +977,6 @@ EXTERNAL_FILES = {
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config("CDN_BASE_URL", default="")
 
-# newsletters that always show for FxA holders
-FXA_NEWSLETTERS = [
-    "firefox-accounts-journey",
-    "test-pilot",
-    "take-action-for-the-internet",
-    "knowledge-is-power",
-]
-FXA_NEWSLETTERS_LOCALES = ["en", "de", "fr"]
-
 DONATE_LINK = "https://foundation.mozilla.org/{location}"
 
 # Official Firefox Twitter accounts
