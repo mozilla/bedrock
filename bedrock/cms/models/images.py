@@ -8,7 +8,18 @@ from wagtail.images.models import AbstractImage, AbstractRendition, Image
 
 from bedrock.base.tasks import defer_task
 
-AUTOMATIC_RENDITION_FILTER_SPECS = [f"width-{size}" for size in range(2400, 0, -200)] + ["width-100"]
+AUTOMATIC_RENDITION_FILTER_SPECS = [
+    # Generate agreed step sizes:
+    f"width-{size}"
+    for size in range(2400, 0, -200)
+] + [
+    # Add agreed smallest size
+    "width-100",
+    # Add the size that the Wagtail Image Library uses for its listing page - we make sure we
+    # regenerate it, if needed, so that the image library is updated locally after
+    # downloading images from Dev, Stage or Prod
+    "max-165x165",
+]
 
 
 class BedrockImage(AbstractImage):

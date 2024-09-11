@@ -22,7 +22,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         self._run_test(
             mock_write=mock_write,
             expected_output=[
-                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment."),
+                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment\n"),
             ],
         )
 
@@ -31,7 +31,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         self._run_test(
             mock_write=mock_write,
             expected_output=[
-                call("Created Admin user test@mozilla.com for local SSO use"),
+                call("Created Admin user test@mozilla.com for local SSO use\n"),
             ],
         )
 
@@ -40,7 +40,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         self._run_test(
             mock_write=mock_write,
             expected_output=[
-                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL is not a @mozilla.com email address."),
+                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL is not a @mozilla.com email address\n"),
             ],
         )
 
@@ -49,7 +49,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         self._run_test(
             mock_write=mock_write,
             expected_output=[
-                call("Created Admin user test@mozilla.com with password 'secret'"),
+                call("Created Admin user test@mozilla.com with password 'secret'\n"),
             ],
         )
 
@@ -58,7 +58,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         self._run_test(
             mock_write=mock_write,
             expected_output=[
-                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment."),
+                call("Not bootstrapping an Admin user: WAGTAIL_ADMIN_EMAIL not defined in environment\n"),
             ],
         )
 
@@ -69,8 +69,8 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         call_command("bootstrap_local_admin", stdout=out)
         output = mock_write.call_args_list
         expected_output = [
-            call("Created Admin user test@mozilla.com for local SSO use"),
-            call("Admin user test@mozilla.com already exists"),
+            call("Created Admin user test@mozilla.com for local SSO use\n"),
+            call("Admin user test@mozilla.com already exists\n"),
         ]
         self.assertEqual(output, expected_output)
 
@@ -81,7 +81,7 @@ class BootstrapLocalAdminTests(TransactionTestCase):
         call_command("bootstrap_local_admin", stdout=out)
         output = mock_write.call_args_list
         expected_output = [
-            call("Created Admin user test@mozilla.com with password 'secret'"),
-            call("Admin user test@mozilla.com already exists"),
+            call("Created Admin user test@mozilla.com with password 'secret'\n"),
+            call("Admin user test@mozilla.com already exists\n"),
         ]
         self.assertEqual(output, expected_output)

@@ -36,6 +36,7 @@ help:
 	@echo "  uninstall-custom-git-hooks     - uninstall custom git hooks"
 	@echo "  clean-local-deps               - remove all local installed Python dependencies"
 	@echo "  preflight                      - refresh installed dependencies and fetch latest DB ahead of local dev"
+	@echo "  preflight -- --retain-DB		- refresh installed dependencies WITHOUT fetching latest DB"
 	@echo "  run-local-task-queue           - run rqworker on your local machine. Requires redis to be running"
 
 .env:
@@ -169,18 +170,22 @@ check-requirements: .docker-build-pull
 # For use in local-machine development (not in Docker)
 ######################################################
 
+# Trick to avoid treating flags (eg --retain-db) as a make target
+%:
+	@:
+
+preflight:
+	${MAKE} install-local-python-deps
+	@npm install
+	@$(if $(findstring --retain-db,$(MAKECMDGOALS)),bin/sync-all.sh --retain-db,bin/sync-all.sh)
+	@python manage.py bootstrap_local_admin
+
 install-local-python-deps:
 	# Dev requirements are a superset of prod requirements, but we install
 	# them in the same separate steps that we use for our Docker-based build,
 	# so that it mirrors Production and Dev image building
 	pip install -r requirements/prod.txt
 	pip install -r requirements/dev.txt
-
-preflight:
-	${MAKE} install-local-python-deps
-	$ npm install
-	$ bin/sync-all.sh
-	$ python manage.py bootstrap_local_admin
 
 run-local-task-queue:
 	# We temporarily source the .env for the command's duration only
