@@ -2,11 +2,11 @@ APScheduler==3.10.4
 babis==0.2.4
 basket-client==1.1.0
 bleach[css]==6.1.0
-boto3==1.35.10
+boto3==1.35.15
 certifi>=2024.7.4  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
-contentful==2.1.1
+contentful==2.2.0
 contextlib2==21.6.0
 dirsync==2.2.5
 dj-database-url==2.2.0
@@ -50,7 +50,7 @@ qrcode==7.4.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests>=2.32.3  # min secure version
 rich-text-renderer==0.2.8
-sentry-sdk==2.13.0
+sentry-sdk==2.14.0
 sentry-processor==0.0.1
 supervisor==4.2.5
 timeago==1.0.16
