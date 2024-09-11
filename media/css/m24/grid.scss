@@ -65,17 +65,4 @@
             }
         }
     }
-
-    // TODO: decide if we keep this or not.
-    // @media #{$mq-xl} {
-    //     .m24-l-grid-pair & {
-    //         &:nth-child(odd) {
-    //             grid-column: 2/5;
-    //         }
-
-    //         &:nth-child(even) {
-    //             grid-column: 9/-2;
-    //         }
-    //     }
-    // }
 }
