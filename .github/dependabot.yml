@@ -29,6 +29,14 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+        patterns:
+          - '*'
+        exclude-patterns:
+          - 'eslint'  # The following deps need to be kept in sync with pre-commit-config.yaml.
+          - 'eslint-config-prettier'
+          - 'prettier'
+          - 'stylelint'
+          - 'stylelint-config-standard-scss'
     open-pull-requests-limit: 10
     labels:
       - Frontend
