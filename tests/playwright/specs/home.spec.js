@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
-const url = '/en-US/';
+const url = '/de/';
 
 test.describe(
     `${url} page`,
@@ -23,6 +23,7 @@ test.describe(
         test('Newsletter submit success', async ({ page }) => {
             const form = page.getByTestId('newsletter-form');
             const emailField = page.getByTestId('newsletter-email-input');
+            const countryField = page.getByTestId('newsletter-country-select');
             const privacyCheckbox = page.getByTestId(
                 'newsletter-privacy-checkbox'
             );
@@ -34,6 +35,7 @@ test.describe(
 
             await expect(thanksMessage).not.toBeVisible();
             await emailField.fill('success@example.com');
+            await countryField.selectOption('us');
             await privacyCheckbox.click();
             await submitButton.click();
             await expect(form).not.toBeVisible();
@@ -42,6 +44,7 @@ test.describe(
 
         test('Newsletter submit failure', async ({ page }) => {
             const emailField = page.getByTestId('newsletter-email-input');
+            const countryField = page.getByTestId('newsletter-country-select');
             const privacyCheckbox = page.getByTestId(
                 'newsletter-privacy-checkbox'
             );
@@ -54,6 +57,7 @@ test.describe(
 
             await expect(errorMessage).not.toBeVisible();
             await emailField.fill('failure@example.com');
+            await countryField.selectOption('us');
             await privacyCheckbox.click();
             await submitButton.click();
             await expect(errorMessage).toBeVisible();

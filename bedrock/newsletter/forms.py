@@ -223,7 +223,8 @@ class NewsletterFooterForm(forms.Form):
             "required": "required",
             "aria-required": "true",
         }
-        country_widget = widgets.Select(attrs=required_args)
+        country_select_args = {"data-testid": "newsletter-country-select"}
+        country_widget = widgets.Select(attrs=required_args | country_select_args)
         country_label = ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country")
         self.fields["country"] = forms.ChoiceField(widget=country_widget, choices=regions, initial=country, required=False, label=country_label)
         lang_widget = widgets.Select(attrs=required_args)
