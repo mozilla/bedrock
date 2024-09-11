@@ -6,42 +6,40 @@
 
 {% from "macros-m24.html" import grid_tile with context %}
 
-<section class="m24-c-grid">
-  <div class="mzp-l-content">
-    <div class="m24-c-grid-container m24-l-grid-pair">
-      {{ grid_tile(
-        image=resp_img(
-          url="img/m24/todo-3-2.svg",
-          optional_attributes={
-            "loading": "lazy",
-            "alt": "",
-            "width": "900",
-            "height": "600",
-          }
-        ),
-        title='Privacy Not Included',
-        desc='Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.',
-        cta_link='https://foundation.mozilla.org/privacynotincluded/',
-        cta_text='Search now',
-        cta_attributes='rel="external" target="_blank" data-link-type="link" data-link-text="Search now"',
-      ) }}
+<section class="m24-c-content">
+  <div class="m24-c-grid-container m24-l-grid-pair">
+    {{ grid_tile(
+      image=resp_img(
+        url="img/m24/todo-3-2.svg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+          "width": "900",
+          "height": "600",
+        }
+      ),
+      title='Privacy Not Included',
+      desc='Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.',
+      cta_link='https://foundation.mozilla.org/privacynotincluded/',
+      cta_text='Search now',
+      cta_attributes='rel="external" target="_blank" data-link-type="link" data-link-text="Search now"',
+    ) }}
 
-      {{ grid_tile(
-        image=resp_img(
-          url="img/m24/todo-3-2.svg",
-          optional_attributes={
-            "loading": "lazy",
-            "alt": "",
-            "width": "900",
-            "height": "600",
-          }
-        ),
-        title='IRL Podcast',
-        desc='Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.',
-        cta_link='https://irlpodcast.org/',
-        cta_text='Listen',
-        cta_attributes='rel="external" data-link-type="link" data-link-text="Listen"',
-      ) }}
-    </div>
+    {{ grid_tile(
+      image=resp_img(
+        url="img/m24/todo-3-2.svg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+          "width": "900",
+          "height": "600",
+        }
+      ),
+      title='IRL Podcast',
+      desc='Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.',
+      cta_link='https://irlpodcast.org/',
+      cta_text='Listen',
+      cta_attributes='rel="external" data-link-type="link" data-link-text="Listen"',
+    ) }}
   </div>
 </section>
