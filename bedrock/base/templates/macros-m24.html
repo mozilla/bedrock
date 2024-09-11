@@ -28,18 +28,18 @@
   image=None,
   title=''
 ) -%}
-<div class="m24-c-grid-tile {% if class %}{{ class }}{% endif %}">
+<div class="m24-c-grid-tile{% if class %} {{ class }}{% endif %}">
   {% if image %}
   <div class="m24-c-grid-tile-image">{{ image|safe }}</div>
   {% endif %}
-  <div class="m24-grid-tile-content">
+  <div class="m24-c-grid-tile-content">
     <h{{ heading_level }} class="m24-c-grid-tile-title"><span>{{ title }}</span></h{{ heading_level }}>
     {% if desc %}
     <p class="m24-c-grid-tile-desc">{{ desc }}</p>
     {% endif %}
     {% if cta_text and cta_link %}
     <p class="m24-c-grid-tile-cta">
-      <a class="m24-cta m25-t-small" href="{{ cta_link }}" {% if cta_attributes %}{{ cta_attributes|safe }}{% endif %}>{{ cta_text }}</a>
+      <a class="m24-cta m24-t-small" href="{{ cta_link }}" {% if cta_attributes %}{{ cta_attributes|safe }}{% endif %}>{{ cta_text }}</a>
     </p>
     {% endif %}
   </div>

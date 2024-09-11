@@ -6,16 +6,15 @@
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // variables
-@import 'vars/color';
 @import 'vars/spacing';
 @import 'vars/text';
-@import 'vars/animation';
 
 .m24-c-grid-container {
     @media #{$mq-md} {
+        gap: var(--spacer-xl) var(--grid-gutter);
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        column-gap: var(--grid-gutter);
+        margin-top: $spacer-xl;
     }
 
     @media #{$mq-lg} {
@@ -25,6 +24,10 @@
 
 .m24-c-grid-tile {
     margin-bottom: var(--spacer-xl);
+
+    .m24-c-grid-tile-content > :last-child {
+        margin-bottom: 0;
+    }
 
     .m24-c-grid-tile-image {
         margin-bottom: var(--spacer-sm);
@@ -36,6 +39,7 @@
 
     @media #{$mq-lg} {
         grid-column: auto / span 3;
+        margin-bottom: 0;
 
         &.m24-l-grid-third {
             grid-column: auto / span 4;
@@ -62,15 +66,16 @@
         }
     }
 
-    @media #{$mq-xl} {
-        .m24-l-grid-pair & {
-            &:nth-child(odd) {
-                grid-column: 2/5;
-            }
+    // TODO: decide if we keep this or not.
+    // @media #{$mq-xl} {
+    //     .m24-l-grid-pair & {
+    //         &:nth-child(odd) {
+    //             grid-column: 2/5;
+    //         }
 
-            &:nth-child(even) {
-                grid-column: 9/-2;
-            }
-        }
-    }
+    //         &:nth-child(even) {
+    //             grid-column: 9/-2;
+    //         }
+    //     }
+    // }
 }
