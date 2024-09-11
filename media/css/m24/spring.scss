@@ -29,7 +29,7 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     &:link:active, // override protocol
     &:focus-visible {
         @include invert-colors;
-        background-color: $m24-color-white; // override protocl
+        background-color: $m24-color-white; // override protocol
         position: relative;
         z-index: 2;
     }
@@ -37,7 +37,6 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     &::before,
     &::after {
         content: '';
-        background-image: url('/media/img/m24/todo-1-1.svg');
         background-size: 15px auto;
         background-repeat: no-repeat;
         background-position: center left;
@@ -49,6 +48,7 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     }
 
     &::before {
+        background-image: url('/media/img/m24/todo-1-1.svg');
         left: $container-padding;
     }
 
@@ -62,6 +62,42 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     &:active::after,
     &:hover::after {
         background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
+    }
+
+    &.m24-t-product-firefox::before {
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
+    }
+
+    &.m24-t-product-fakespot{
+        &::before {
+            background-image: url('/media/img/logos/fakespot/logo.svg');
+        }
+
+        &:hover::before {
+            background-image: url('/media/img/logos/fakespot/logo-white.svg');
+        }
+    }
+
+    &.m24-t-product-pocket::before {
+        background-image: url('/media/protocol/img/logos/pocket/logo.svg');
+    }
+
+    &.m24-t-product-vpn{
+        &::before {
+            background-image: url('/media/protocol/img/logos/mozilla/vpn/logo.svg');
+        }
+
+        &:hover::before {
+            background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-flat-white.svg');
+        }
+    }
+
+    &.m24-t-product-monitor::before {
+        background-image: url('/media/protocol/img/logos/firefox/monitor/logo.svg');
+    }
+
+    &.m24-t-product-thunderbird::before {
+        background-image: url('/media/img/logos/thunderbird/logo-thunderbird.svg');
     }
 }
 
