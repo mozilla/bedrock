@@ -16,13 +16,23 @@ newsletter-form-select-country-or-region = Select country or region
 newsletter-form-select-language = Select language
 newsletter-form-your-email-here = YOUR EMAIL HERE
 newsletter-form-get-firefox-news = Get { -brand-name-firefox } news
+newsletter-form-join-the-community = Join the Community
+newsletter-form-sign-up-to-receive = Sign up to receive monthly updates from { -brand-name-firefox } and internet trends that shape your life online.
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/privacy/websites/
 newsletter-form-im-okay-with-mozilla = I’m okay with { -brand-name-mozilla } handling my info as explained in <a href="{ $url }">this Privacy Notice</a>
 
+newsletter-form-we-will-only-send-v2 = We will only send you { -brand-name-mozilla }-related information. You can unsubscribe at any time.
+
+# Obsolete string (expires: 2024-11-01)
 newsletter-form-we-will-only-send = We will only send you { -brand-name-mozilla }-related information.
+
+newsletter-form-we-will-only-send-firefox-v2 = We will only send you { -brand-name-firefox }-related information. You can unsubscribe at any time.
+
+# Obsolete string (expires: 2024-11-01)
 newsletter-form-we-will-only-send-firefox = We will only send you { -brand-name-firefox }-related information.
+
 newsletter-form-if-you-havent-previously = If you haven’t previously confirmed a subscription to a { -brand-name-mozilla }-related newsletter, you may have to do so. Please check your inbox or your spam filter for an email from us.
 newsletter-form-firefox-and-you = <span>{ -brand-name-firefox }</span> + You
 newsletter-form-get-firefox-tips = Get { -brand-name-firefox } tips, tricks, news and more

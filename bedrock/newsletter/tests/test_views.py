@@ -313,20 +313,3 @@ class TestNewsletterCountryPage(TestCase):
         country_choices = dict(form.fields["country"].choices)
         # We always set the locale to 'en-US' in the form, thus why this isn't "États-Unis".
         self.assertEqual(country_choices["us"], "United States")
-
-
-class TestNewsletterConfirmPage(TestCase):
-    def setUp(self):
-        self.token = str(uuid.uuid4())
-        self.url = reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": self.token})
-        self.url_no_token = reverse("newsletter.knowledge-is-power.confirm.no-token")
-
-    def test_newsletter_knowledge_is_power_confirm(self):
-        rsp = self.client.get(self.url)
-        self.assertEqual(rsp.status_code, 200)
-        self.assertTemplateUsed(rsp, "newsletter/knowledge-is-power-confirm.html")
-
-    def test_no_token_okay(self):
-        rsp = self.client.get(self.url_no_token)
-        self.assertEqual(rsp.status_code, 200)
-        self.assertTemplateUsed(rsp, "newsletter/knowledge-is-power-confirm.html")

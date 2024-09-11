@@ -342,13 +342,13 @@
   <aside class="c-newsletter" aria-label="{{ ftl('newsletter-form-label') }}">
     <div class="c-newsletter-wrapper mzp-l-content mzp-t-content-lg">
       <div class="c-newsletter-info">
-        <h2>{{ ftl('home-get-good-news') }}</h2>
-        <p>{{ ftl('home-get-news-and-tips') }}</p>
+        <h2>{{ ftl('newsletter-form-join-the-community', fallback='newsletter-form-get-firefox-news') }}</h2>
+        <p>{{ ftl('newsletter-form-sign-up-to-receive', fallback='newsletter-form-get-firefox-tips') }}</p>
       </div>
 
       <div class="c-newsletter-content">
         {{ email_newsletter_form(
-          newsletters='knowledge-is-power',
+          newsletters='mozilla-and-you',
           title=None,
           button_class='button-dark',
           )}}
