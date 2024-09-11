@@ -10,7 +10,6 @@ from pages.mission import MissionPage
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
 from pages.newsletter.index import NewsletterPage
-from pages.newsletter.knowledge_is_power import KnowledgeIsPowerNewsletterPage
 from pages.newsletter.mozilla import MozillaNewsletterPage
 from pages.newsletter.security_privacy_news import SecurityPrivacyNewsletterPage
 
@@ -26,7 +25,6 @@ from pages.newsletter.security_privacy_news import SecurityPrivacyNewsletterPage
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
-        KnowledgeIsPowerNewsletterPage,
         SecurityPrivacyNewsletterPage,
     ],
 )
@@ -51,7 +49,6 @@ def test_newsletter_default_values(page_class, base_url, selenium):
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
-        KnowledgeIsPowerNewsletterPage,
         SecurityPrivacyNewsletterPage,
     ],
 )
@@ -78,7 +75,6 @@ def test_newsletter_sign_up_success(page_class, base_url, selenium):
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
         MozillaNewsletterPage,
-        KnowledgeIsPowerNewsletterPage,
         SecurityPrivacyNewsletterPage,
     ],
 )
