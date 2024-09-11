@@ -63,7 +63,7 @@ describe('thanks.js', function () {
                     <li><a id="thanks-download-button-linux64" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=linux64&amp;lang=en-US">Download Firefox</a></li>
                     <li><a id="thanks-download-button-linux" href="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=linux&amp;lang=en-US">Download Firefox</a></li>
                     <li><a id="thanks-download-button-android" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">Firefox for Android</a></li>
-                    <li><a id="thanks-download-button-ios" href="https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926" data-download-version="ios" data-cta-text="Firefox for iOS" data-cta-type="firefox_mobile">Firefox for iOS</a></li>
+                    <li><a id="thanks-download-button-ios" href="https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926" data-cta-text="Firefox for iOS" data-cta-type="firefox_mobile">Firefox for iOS</a></li>
                 </ul>`;
 
             document.body.insertAdjacentHTML('beforeend', button);
