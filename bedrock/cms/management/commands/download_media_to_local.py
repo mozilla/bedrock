@@ -41,10 +41,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # If we're not using sqlite, stop, because this tool isn't for that
 
-        storage_client = storage.Client.create_anonymous_client()
-
         if settings.DATABASES["default"]["ENGINE"] != "django.db.backends.sqlite3":
-            self.stderr.write(f"This command only works if you are using sqlite as your local DB. Got {settings.DATABASES['default']['engine']}\n")
+            self.stderr.write(f"This command only works if you are using sqlite as your local DB. Got {settings.DATABASES['default']['ENGINE']}\n")
             sys.exit(1)
 
         try:
@@ -53,6 +51,7 @@ class Command(BaseCommand):
             self.stderr.write(f"Couldn't determine which bucket you wanted. Got {options['environment']}\n")
             sys.exit(1)
 
+        storage_client = storage.Client.create_anonymous_client()
         bucket = storage_client.bucket(bucket_name)
 
         # Get the files, ideally in a way that checks whether we have them already
