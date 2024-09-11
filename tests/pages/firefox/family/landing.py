@@ -14,9 +14,9 @@ class FamilyPage(BasePage):
 
     _firefox_nav_cta_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder")
 
-    _firefox_nav_download_button_locator = (By.CSS_SELECTOR, "[data-download-location='nav']")
+    _firefox_nav_download_button_locator = (By.CSS_SELECTOR, "[data-cta-position='nav']")
 
-    _firefox_desktop_download_button_locator = (By.CSS_SELECTOR, "[data-download-location='download section']")
+    _firefox_desktop_download_button_locator = (By.CSS_SELECTOR, "[data-cta-position='download section']")
 
     _firefox_make_default_button_locator = (By.CSS_SELECTOR, "[data-cta-text='Set Firefox as your default browser']")
 
