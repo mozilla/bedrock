@@ -9,5 +9,5 @@ from pages.about import AboutPage
 
 @pytest.mark.nondestructive
 def test_read_mission_button_displayed(base_url, selenium):
-    page = AboutPage(selenium, base_url).open()
+    page = AboutPage(selenium, base_url, locale="de").open()
     assert page.is_read_mission_button_displayed
