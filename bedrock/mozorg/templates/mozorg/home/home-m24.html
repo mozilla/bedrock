@@ -45,5 +45,10 @@
 
 </main>
 
-<div class="m24-c-transition m24-t-black"><hr></div>
+{% endblock %}
+
+{% block site_footer %}
+  {% with show_newsletter=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}
