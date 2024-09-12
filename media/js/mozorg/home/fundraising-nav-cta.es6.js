@@ -9,6 +9,10 @@ import { isApprovedToRun } from '../../base/experiment-utils.es6.js';
 
 const href = window.location.href;
 
+if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+}
+
 const init = () => {
     if (href.indexOf('v=1') !== -1) {
         window.dataLayer.push({
