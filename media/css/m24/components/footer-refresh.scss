@@ -5,14 +5,14 @@
 $max-footer-content-width: $content-max;
 
 @mixin divider-line {
-        display: block;
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 4px;
-        left: 0;
-        top: -10px;
-        background: $m24-color-light-gray;
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    top: -10px;
+    background: $m24-color-light-gray;
 }
 
 // whole footer
