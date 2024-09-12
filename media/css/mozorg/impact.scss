@@ -20,7 +20,6 @@ header {
         align-items: center;
 
         h1 {
-            @include font-base;
             @include text-title-lg;
             color: $color-white;
             font-weight: normal;
@@ -67,9 +66,9 @@ header {
 
         h2 {
             @include text-title-xs;
-            @include font-base;
             color: $color-white;
-            font-weight: 500;
+            font-family: var(--body-font-family);
+            font-weight: 600;
         }
     }
 }

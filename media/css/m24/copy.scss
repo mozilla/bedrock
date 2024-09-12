@@ -10,7 +10,9 @@
     max-width: $content-max;
 
     p {
+        font-weight: 600;
         margin-bottom: 0;
+        text-wrap: balance;
         text-wrap-style: balance;
     }
 }
@@ -19,6 +21,7 @@
     font-size: $alias-text-title-h2;
     margin-bottom: 0;
     padding-bottom: $spacer-sm;
+    text-wrap: balance;
     text-wrap-style: balance;
 
     &.m24-t-2xl {

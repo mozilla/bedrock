@@ -13,14 +13,12 @@ $image-path: '/media/protocol/img';
     }
 
     .page-title {
-        @include font-mozilla;
         @include text-title-lg;
         text-align: center;
         font-weight: 600;
     }
 
     .section-title {
-        @include font-base;
         @include text-body-xl;
         text-align: center;
         font-weight: normal;

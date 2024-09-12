@@ -23,8 +23,9 @@ $image-path: '/media/protocol/img';
     @include clearfix;
 
     li {
-        @include font-mozilla;
         @include text-title-sm;
+        font-family: var(--title-font-family);
+        font-weight: normal;
         padding-bottom: $spacing-2xl;
         padding-top: $spacing-xl;
         position: relative;
@@ -89,8 +90,8 @@ $image-path: '/media/protocol/img';
 }
 
 .principle-desc {
-    @include font-mozilla;
     @include text-title-sm;
+    font-family: var(--title-font-family);
     margin-bottom: 0;
 }
 

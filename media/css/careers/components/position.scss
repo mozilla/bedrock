@@ -40,7 +40,7 @@
     margin-bottom: $spacing-lg;
 
     .mzp-c-menu-list-title {
-        @include font-base;
+        font-family: var(--body-font-family);
     }
 
     ul {

@@ -10,8 +10,8 @@ $image-path: '/media/protocol/img';
 
 main {
     h1, h2, h3, h4, h5, h6 {
-        @include font-base;
         line-height: $vpn-title-line-height;
+        font-family: var(--body-font-family);
     }
 
     .u-title-xl {
@@ -153,8 +153,8 @@ main {
     padding-bottom: $layout-md;
 
     blockquote {
-        @include font-base;
         border: none;
+        font-family: var(--body-font-family);
         padding: 0;
         margin-bottom: $layout-lg;
 

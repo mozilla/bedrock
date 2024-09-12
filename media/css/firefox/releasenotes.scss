@@ -172,8 +172,8 @@ $image-path: '/media/protocol/img';
 }
 
 .c-release-version {
-    @include font-base;
     @include text-title-xl;
+    font-family: var(--body-font-family);
     display: block;
 }
 
@@ -184,20 +184,20 @@ $image-path: '/media/protocol/img';
 
 .mzp-l-content {
     .c-release-product {
-        @include font-base;
         @include text-title-2xs;
+        font-family: var(--body-font-family);
         display: block;
     }
 
     .c-release-date {
-        @include font-base;
         @include text-title-2xs;
+        font-family: var(--body-font-family);
     }
 
     .c-release-first-title,
     .c-release-draft-title {
-        @include font-base;
         @include text-title-2xs;
+        font-family: var(--body-font-family);
         font-weight: bold;
 
         // pushes the text down after the big release-version text

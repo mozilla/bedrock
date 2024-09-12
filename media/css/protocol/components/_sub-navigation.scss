@@ -32,9 +32,9 @@
     }
 
     .c-sub-navigation-title {
-        @include font-base;
         @include text-body-md;
         display: inline-block;
+        font-family: var(--body-font-family);
         font-weight: bold;
         margin-bottom: 0;
 
@@ -56,8 +56,8 @@
             (float, right, left),
             (margin-right, $spacing-sm, margin-left, $spacing-sm),
         ));
-        @include font-base;
         @include text-body-md;
+        font-family: var(--body-font-family);
         font-weight: bold;
         width: 40%;
 
@@ -136,9 +136,9 @@
 
         a:link,
         a:visited {
-            @include font-base;
             @include text-body-sm;
             color: $color-black;
+            font-family: var(--body-font-family);
             text-decoration: none;
 
             &:hover,

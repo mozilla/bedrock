@@ -76,7 +76,7 @@ $image-path: '/media/protocol/img';
 
 .resource-center-cta-desc {
     @include text-body-sm;
-    @include font-base;
+    font-family: var(--body-font-family);
 
     // this color will be added to protocol, this should be updated once its availible as a token
     color: #666;
