@@ -151,17 +151,17 @@ test.describe(
                 await expect(downloadOsxUnsupported).toBeVisible();
                 await expect(downloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(downloadFeaturesOsxUnsupported).toBeVisible();
                 await expect(downloadFeaturesOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(downloadDiscoverOsxUnsupported).toBeVisible();
                 await expect(downloadDiscoverOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
             } else {
                 // Set Windows 8.1 UA strings (64-bit).
@@ -179,17 +179,17 @@ test.describe(
                 await expect(downloadWinUnsupported).toBeVisible();
                 await expect(downloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win/
+                    /\?product=firefox-esr115-latest-ssl&os=win/
                 );
                 await expect(downloadFeaturesWinUnsupported).toBeVisible();
                 await expect(downloadFeaturesWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win/
+                    /\?product=firefox-esr115-latest-ssl&os=win/
                 );
                 await expect(downloadDiscoverWinUnsupported).toBeVisible();
                 await expect(downloadDiscoverWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win/
+                    /\?product=firefox-esr115-latest-ssl&os=win/
                 );
             }
         });

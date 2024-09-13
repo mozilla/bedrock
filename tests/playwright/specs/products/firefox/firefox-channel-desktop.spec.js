@@ -240,7 +240,7 @@ test.describe(
                 await expect(betaDownloadOsxUnsupported).toBeVisible();
                 await expect(betaDownloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(osxBetaDownload).not.toBeVisible();
 
@@ -248,7 +248,7 @@ test.describe(
                 await expect(devDownloadOsxUnsupported).toBeVisible();
                 await expect(devDownloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(osxDevDownload).not.toBeVisible();
 
@@ -256,7 +256,7 @@ test.describe(
                 await expect(nightlyDownloadOsxUnsupported).toBeVisible();
                 await expect(nightlyDownloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(osxNightlyDownload).not.toBeVisible();
             } else {
@@ -270,7 +270,7 @@ test.describe(
                 await expect(betaDownloadWinUnsupported).toBeVisible();
                 await expect(betaDownloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win64/
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
                 );
                 await expect(win64BetaDownload).not.toBeVisible();
 
@@ -278,7 +278,7 @@ test.describe(
                 await expect(devDownloadWinUnsupported).toBeVisible();
                 await expect(devDownloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win64/
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
                 );
                 await expect(winDevDownload).not.toBeVisible();
 
@@ -286,7 +286,7 @@ test.describe(
                 await expect(nightlyDownloadWinUnsupported).toBeVisible();
                 await expect(nightlyDownloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win64/
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
                 );
                 await expect(winNightlyDownload).not.toBeVisible();
             }

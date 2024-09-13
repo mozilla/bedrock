@@ -154,12 +154,12 @@ test.describe(
                 await expect(introDownloadOsxUnsupported).toBeVisible();
                 await expect(introDownloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
                 await expect(footerDownloadOsxUnsupported).toBeVisible();
                 await expect(footerDownloadOsxUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=osx/
+                    /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
 
                 // Assert regular download buttons are not displayed.
@@ -176,12 +176,12 @@ test.describe(
                 await expect(introDownloadWinUnsupported).toBeVisible();
                 await expect(introDownloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win64/
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
                 );
                 await expect(footerDownloadWinUnsupported).toBeVisible();
                 await expect(footerDownloadWinUnsupported).toHaveAttribute(
                     'href',
-                    /\?product=firefox-esr-latest-ssl&os=win64/
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
                 );
 
                 // Assert regular download buttons are not displayed.
