@@ -1,0 +1,54 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import grid_tile with context %}
+
+<section class="m24-c-content">
+    <header class="m24-c-copy">
+      <h2 class="m24-c-copy-title">Latest Mozilla news & articles</h2>
+    </header>
+
+    <div class="m24-c-grid-container m24-l-grid-pair">
+      {{ grid_tile(
+        image=resp_img(
+          url="img/mozorg/about/2024/cards/news-ai.png",
+          srcset={
+            "img/mozorg/about/2024/cards/news-ai-high-res.png": "2x"
+          },
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "448",
+            "height": "299",
+          }
+        ),
+        desc='Next steps for Mozilla and Trustworthy AI',
+        link_url='https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/',
+        link_attributes='rel="external" target="_blank" data-link-text="Read more (Trustworthy AI)"',
+        cta_text='Read more',
+      ) }}
+
+      {{ grid_tile(
+        image=resp_img(
+          url="img/mozorg/about/2024/cards/news-rise25.png",
+          srcset={
+            "img/mozorg/about/2024/cards/news-rise25-high-res.png": "2x"
+          },
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "448",
+            "height": "448",
+          }
+        ),
+        desc='At the Rise25 Awards, the future of AI is ethical, inclusive and accountable',
+        link_url='https://blog.mozilla.org/en/mozilla/rise25-dublin/',
+        link_attributes='rel="external" target="_blank" data-link-text="Read more (Rise25)"',
+        cta_text='Read more',
+      ) }}
+    </div>
+</section>

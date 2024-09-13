@@ -12,8 +12,12 @@
     p {
         font-weight: 600;
         margin-bottom: 0;
+        margin-top: $spacer-md;
         text-wrap: balance;
-        text-wrap-style: balance;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
     }
 }
 
@@ -22,7 +26,6 @@
     margin-bottom: 0;
     padding-bottom: $spacer-sm;
     text-wrap: balance;
-    text-wrap-style: balance;
 
     &.m24-t-2xl {
         font-size: $alias-text-title-h1;
@@ -30,8 +33,9 @@
 }
 
 .m24-c-copy-cta {
-    text-align: right;
+    margin: 0;
     padding-top: $spacer-md;
+    text-align: right;
 }
 
 @media #{$mq-xl} {

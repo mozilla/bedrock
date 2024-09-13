@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$logo-spacing: calc(24px + #{$spacer-xs});
+$logo-spacing: calc(48px + #{$spacer-xs});
 
 .m24-c-spring {
     padding: $spacer-xl 0;
@@ -21,7 +21,7 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     display: grid;
     gap: $spacer-2xs $grid-gutter;
     margin: 0 calc($container-padding * -1);
-    padding: $spacer-sm $container-padding;
+    padding: $spacer-lg $container-padding;
     position: relative;
     text-decoration: none;
 
@@ -39,7 +39,7 @@ $logo-spacing: calc(24px + #{$spacer-xs});
         content: '';
         background-size: 15px auto;
         background-repeat: no-repeat;
-        background-position: center left;
+        background-position: center right;
         display: block;
         width: 24px;
         position: absolute;
@@ -50,6 +50,9 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     &::before {
         background-image: url('/media/img/m24/todo-1-1.svg');
         left: $container-padding;
+        background-position: center left;
+        background-size: 32px auto;
+        width: 48px;
     }
 
     &::after {
@@ -99,6 +102,14 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     &.m24-t-product-thunderbird::before {
         background-image: url('/media/img/logos/thunderbird/logo-thunderbird.svg');
     }
+
+    @media #{$mq-md} {
+        padding: $spacer-sm $container-padding;
+    }
+
+    @media #{$mq-lg} {
+        display: block;
+    }
 }
 
 .m24-c-spring-title {
@@ -109,6 +120,10 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     grid-column: 1 / span 10;
     padding-left: $logo-spacing;
     line-height: 1;
+
+    @media #{$mq-lg} {
+        padding-right: $spacer-lg;
+    }
 }
 
 .m24-c-spring-info {

@@ -6,15 +6,25 @@
 
 <div class="m24-t-dark" id="donate">
   <div class="m24-c-donate">
-    <h2 class="m24-c-donate-title">Donate to Mozilla’s non-profit</h2>
-    <div class="m24-c-donate-media"><img src="{{ static('img/m24/todo-27-1.svg') }}" alt="" height="253" width="680"></div>
+    <h2 class="m24-c-donate-title">Donate to the Mozilla Foundation</h2>
+    <div class="m24-c-donate-media">
+      {{ resp_img(
+        url="img/home/2024/donate.png",
+        srcset={
+          "img/home/2024/donate-high-res.png": "2x"
+        },
+        optional_attributes={
+          "alt": "",
+          "height": "253",
+          "loading": "lazy",
+          "width": "680"
+      }
+      )}}
+    </div>
     <div class="m24-c-donate-info">
       <p class="m24-c-donate-info-title">Where do your dollars go?</p>
-      <ul class="mzp-u-list-styled">
-        <li>Funding new AI privacy technologies</li>
-        <li>Building innovation labs</li>
-        <li>Sponsoring incoming 2025 Fellows</li>
-      </ul>
+      <p>Mozilla is building a movement to reclaim the internet for everyone, everywhere. Together we can build a future where our privacy is protected, AI is trustworthy and irresponsible tech companies are held accountable. But that’s only possible if we do it together.</p>
+      <p>We're proudly non-profit. Will you donate to Mozilla today?</p>
     </div>
     <p class="m24-c-donate-cta"><a href="https://foundation.mozilla.org/?form=Mozilla-Website-Homepage" class="m24-c-cta" data-cta-text="Donate">Donate</a></p>
   </div>

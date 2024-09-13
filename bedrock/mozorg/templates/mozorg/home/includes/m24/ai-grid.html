@@ -14,9 +14,12 @@
 
   <div class="m24-c-grid-container">
     {{ grid_tile(
-      class='m24-l-grid-half',
+      class='m24-l-grid-third',
       image=resp_img(
-        url="img/m24/todo-3-2.svg",
+        url="img/m24/llamafile.png",
+        srcset={
+          "img/home/2024/cards/llamafile-high-res.png": "2x"
+        },
         optional_attributes={
           "loading": "lazy",
           "alt": "",
@@ -26,67 +29,97 @@
       ),
       title='Llamafile',
       desc='Run large language models (LLMs) easily on your computer Llamafile – no installation needed, and your data stays safe on your device.',
-      link_url='#',
+      link_url='https://github.com/Mozilla-Ocho/llamafile',
+      link_attributes='rel="external" target="_blank" data-link-text="Visit (Llamafile)"',
+      cta_text='Visit',
+    ) }}
+
+    {{ grid_tile(
+      class='m24-l-grid-third',
+      image=resp_img(
+        url="img/m24/lumigator.png",
+        srcset={
+          "img/home/2024/cards/lumigator-high-res.png": "2x"
+        },
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+          "width": "448",
+          "height": "448",
+        }
+      ),
+      title='Lumigator',
+      desc='Find the ‘just right’ LLM for your needs, use case, and data - like Goldilocks, but with sharper teeth...',
+      link_url='https://www.mozilla.ai/lumigator',
+      link_attributes='rel="external" target="_blank" data-link-text="Visit (Lumigator)"',
+      cta_text='Visit',
+    ) }}
+
+    {{ grid_tile(
+      class='m24-l-grid-third',
+      image=resp_img(
+        url="img/m24/common-voice.png",
+        srcset={
+          "img/home/2024/cards/common-voice-high-res.png": "2x"
+        },
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+          "width": "448",
+          "height": "560",
+        }
+      ),
+      title='Common Voice',
+      desc='Help make speech technology more inclusive and accessible for everyone.',
+      link_url='https://commonvoice.mozilla.org/ ',
+      link_attributes='rel="external" target="_blank" data-link-text="Visit (Common Voice)"',
+      cta_text='Visit',
+    ) }}
+
+
+    {{ grid_tile(
+      class='m24-l-grid-half m24-t-drop',
+      image=resp_img(
+        url="img/m24/builders.png",
+        srcset={
+          "img/home/2024/cards/builders-high-res.png": "2x"
+        },
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+          "width": "680",
+          "height": "453",
+        }
+      ),
+      title='Mozilla Builders',
+      desc='Turn your AI idea into reality with our 12-week accelerator. Get funding, mentorship and a chance to pitch your innovation to investors.',
+      link_url='https://future.mozilla.org/builders/',
+      link_attributes='rel="external" target="_blank" data-link-text="Visit (Builders)"',
       cta_text='Visit',
     ) }}
 
     {{ grid_tile(
       class='m24-l-grid-half',
       image=resp_img(
-        url="img/m24/todo-3-2.svg",
+        url="img/m24/ventures.png",
+        srcset={
+          "img/home/2024/cards/ventures-high-res.png": "2x"
+        },
         optional_attributes={
           "loading": "lazy",
           "alt": "",
-          "width": "900",
-          "height": "600",
+          "width": "680",
+          "height": "680",
         }
       ),
-      title='Lumigator',
-      desc='Find the “just right” LLM for your needs, use case, and data – like Goldilocks, but with sharper teeth.',
-      link_url='#',
+      title='Mozilla Ventures',
+      desc='Got an early-stage startup? Pitch your company to Mozilla Ventures and secure funding to drive positive change for the future of AI and the internet.',
+      link_url='https://future.mozilla.org/builders/',
+      link_attributes='rel="external" target="_blank" data-link-text="Visit (Ventures)"',
       cta_text='Visit',
     ) }}
 
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-1-1.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Data Futures Lab',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
-
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-5-4.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Trustworthy AI Fellow',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
-
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-5-7.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Mozilla Builders',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
   </div>
+  <p class="m24-c-section-cta"><a href="https://www.mozilla.ai/portfolio" class="m24-c-cta" data-cta-text="Explore more">Explore more</a></p>
+
 </section>
