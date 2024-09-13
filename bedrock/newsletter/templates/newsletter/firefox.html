@@ -6,8 +6,43 @@
 
 {% extends 'base-protocol.html' %}
 
-{% block page_title %}{{ ftl('newsletters-put-more-fox-in-your-inbox') }}{% endblock page_title %}
-{% block page_desc %}{{ ftl('newsletters-see-where-the-web-can-take') }}{% endblock %}
+{% if LAND == 'de' %}
+  {% set page_title_copy = 'Entfalte das volle Potential von Firefox' %}
+  {% set page_desc_copy = 'Melde dich an, um monatliche Updates von Firefox und Infos zu aktuellen Internet-Trends zu erhalten.' %}
+{% elif LANG == 'en-GB' %}
+  {% set page_title_copy = 'Put more fox in your inbox' %}
+  {% set page_desc_copy = 'Make your Firefox experience work best for you with monthly how-tos and internet security tips.' %}
+{% elif LANG == 'en-US' %}
+  {% set page_title_copy = 'Put more fox in your inbox' %}
+  {% set page_desc_copy = 'Get the most out of Firefox with monthly how-tos and internet security tips.' %}
+{% elif LANG == 'es-ES' %}
+  {% set page_title_copy = 'Exprime todo el potencial de Firefox' %}
+  {% set page_desc_copy = 'Regístrate para recibir actualizaciones mensuales de Firefox y las últimas tendencias en Internet que mejoran tu vida online.' %}
+{% elif LANG == 'fr' %}
+  {% set page_title_copy = 'Révélez tout le potentiel de Firefox' %}
+  {% set page_desc_copy = 'Abonnez-vous et retrouvez les dernières actualités et astuces pour améliorer votre expérience internet.' %}
+{% elif LANG == 'it' %}
+  {% set page_title_copy = 'Goditi tutto il potenziale di Firefox' %}
+  {% set page_desc_copy = 'Iscriviti per ricevere aggiornamenti da Firefox ogni mese sulle tendenze di internet che migliorano la tua vita online.' %}
+{% elif LANG == 'nl' %}
+  {% set page_title_copy = 'Haal meer uit Firefox' %}
+  {% set page_desc_copy = 'Meld u aan voor maandelijkse updates van Firefox en internettrends die bepalend zijn voor uw leven online.' %}
+{% elif LANG == 'pl' %}
+  {% set page_title_copy = 'Wyciśnij z Firefoksa, ile się da' %}
+  {% set page_desc_copy = 'Zarejestruj się, aby co miesiąc otrzymywać nowości od Firefoksa i zawsze wiedzieć, co słychać w internecie.' %}
+{% else %}
+  {% set page_title_copy = ftl('newsletters-make-the-most', fallback='newsletters-put-more-fox-in-your-inbox') %}
+  {% set page_desc_copy = ftl('newsletters-sign-up-to-receive-monthly', fallback='newsletters-see-where-the-web-can-take') %}
+{% endif %}
+
+{% block page_title %}{{ page_title_copy }}{% endblock page_title %}
+{% block page_desc %}{{ page_desc_copy }}{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-newsletter-firefox', ['en-US', 'de', 'fr']) %}
+    {{ js_bundle('newsletter-firefox-experiment') }}
+  {% endif %}
+{% endblock %}
 
 {% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
@@ -21,15 +56,38 @@
 {% block content %}
 <main>
   <div class="section-intro">
-    <div class="mzp-l-content"></div>
+    <div class="intro-image-container mzp-l-content">
+      {% if LANG in ['de', 'fr'] and variation == '2' %}
+        {{ resp_img(
+          url='img/newsletter/firefox/eu/typing-500.jpg',
+          srcset={
+            'img/newsletter/firefox/eu/typing-500.jpg': '500w',
+            'img/newsletter/firefox/eu/typing-1000.jpg': '1000w'
+          },
+          sizes={
+            '(min-width: 600px)': 'calc(100vw - 50px)',
+            'default': '500px'
+          },
+          optional_attributes={
+            'class': 'intro-image',
+            'width': '500',
+            'height': '250'
+          }
+        ) }}
+      {% elif LANG == 'en-US' and variation == '2' %}
+        <img class="intro-image" src="{{ static('img/newsletter/firefox/na/features.svg') }}" width="600" height="300" alt="">
+      {% else %}
+        <img class="intro-image" src="{{ static('img/newsletter/firefox/fox-tail.svg') }}" width="556" height="278" alt="">
+      {% endif %}
+    </div>
   </div>
 
   <section class="section-subscribe">
-    <header class="mzp-l-content mzp-t-firefox">
-      <h1 class="page-title">{{ self.page_title() }}</h1>
-      <h2 class="section-title">{{ self.page_desc() }}</h2>
+    <header class="section-main-header mzp-l-content mzp-t-firefox">
+      <h1 class="page-title">{{ page_title_copy }}</h1>
+      <p class="tagline">{{ page_desc_copy }}</p>
     </header>
-    <div class="mzp-l-content mzp-t-content-sm">
+    <div class="section-newsletter-form mzp-l-content mzp-t-content-sm">
       {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
         {{ email_newsletter_form(
           newsletters='mozilla-foundation, mozilla-and-you',

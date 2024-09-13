@@ -1346,6 +1346,12 @@
     },
     {
       "files": [
+        "js/newsletter/newsletter-firefox-experiment.es6.js"
+      ],
+      "name": "newsletter-firefox-experiment"
+    },
+    {
+      "files": [
         "js/firefox/features/features-article.es6.js"
       ],
       "name": "firefox_features_article"
