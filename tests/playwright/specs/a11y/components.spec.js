@@ -15,8 +15,8 @@ const {
 } = require('./includes/locators');
 const { test, expect } = require('@playwright/test');
 
-const testURL = '/en-US/firefox/new/';
-const footerTestURL = '/de/firefox/new/';
+const testURL = '/en-US/';
+const subNavURL = '/en-US/firefox/new/';
 
 test.describe(
     'Navigation (desktop)',
@@ -90,7 +90,7 @@ test.describe(
     },
     () => {
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(testURL, page, browserName);
+            await openPage(subNavURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
@@ -110,7 +110,7 @@ test.describe(
         test.use({ viewport: { width: 360, height: 780 } });
 
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(testURL, page, browserName);
+            await openPage(subNavURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
@@ -138,7 +138,7 @@ test.describe(
     },
     () => {
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(footerTestURL, page, browserName);
+            await openPage(testURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
@@ -158,7 +158,7 @@ test.describe(
         test.use({ viewport: { width: 360, height: 780 } });
 
         test.beforeEach(async ({ page, browserName }) => {
-            await openPage(footerTestURL, page, browserName);
+            await openPage(testURL, page, browserName);
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
