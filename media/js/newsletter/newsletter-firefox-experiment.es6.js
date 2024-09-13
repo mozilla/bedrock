@@ -16,13 +16,15 @@ if (typeof window.dataLayer === 'undefined') {
 const init = () => {
     if (href.indexOf('v=1') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'experiment-newsletter-firefox-v1',
-            'data-ex-name': 'experiment-newsletter-firefox'
+            event: 'experiment_view',
+            id: 'experiment-newsletter-firefox',
+            variant: 'experiment-newsletter-firefox-v1'
         });
     } else if (href.indexOf('v=2') !== -1) {
         window.dataLayer.push({
-            'data-ex-variant': 'experiment-newsletter-firefox-v2',
-            'data-ex-name': 'experiment-newsletter-firefox'
+            event: 'experiment_view',
+            id: 'experiment-newsletter-firefox',
+            variant: 'experiment-newsletter-firefox-v2'
         });
     } else if (TrafficCop) {
         if (isApprovedToRun()) {

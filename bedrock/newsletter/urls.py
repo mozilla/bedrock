@@ -5,6 +5,7 @@ from django.urls import path
 
 from bedrock.mozorg.util import page
 from bedrock.newsletter import views
+from bedrock.utils.views import VariationTemplateView
 
 # NOTE:
 # URLs are defined with two variations for token handling. This dual approach allows flexibility in
