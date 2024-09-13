@@ -1,0 +1,29 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="m24-t-green">
+  <section class="m24-c-showcase">
+    <h2 class="m24-c-showcase-title">Community love — our driving force</h2>
+    <p class="m24-c-showcase-subtitle">Mozilla isn’t just an organization—it’s a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998. From writing code and spotting bugs to advocating for privacy and keeping the internet open for everyone, they’re the backbone of everything we do, and we couldn’t do this without them. And guess what? You can join the team too!</p>
+    <div class="m24-c-showcase-media">
+      {{ resp_img(
+        url="img/mozorg/about/2024/community.png",
+        srcset={
+          "img/mozorg/about/2024/community-high-res.png": "2x"
+        },
+        optional_attributes={
+          "alt": "",
+          "height": "496",
+          "loading": "lazy",
+          "width": "496"
+      }
+      )}}
+    </div>
+    <p class="m24-c-showcase-cta"><a href="{{ url('mozorg.contribute') }}" class="m24-c-cta" data-cta-text="Join the movement">Join the movement</a></p>
+  </section>
+</div>
+
+<div class="m24-c-transition m24-l-reverse"><hr></div>
