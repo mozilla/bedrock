@@ -284,6 +284,7 @@ FLUENT_DEFAULT_FILES = [
     "navigation_v2",
     "navigation_refresh",
     "newsletter_form",
+    "m24-pencil-banner",
     "send_to_device",
     "sub_navigation",
     "ui",

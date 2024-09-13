@@ -1,0 +1,48 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+@import 'vars/color';
+@import 'vars/fonts';
+@import 'vars/grid';
+@import 'vars/spacing';
+@import 'vars/text';
+
+.m24-pencil-banner {
+    background-color: $m24-color-light-green;
+    border-bottom: 2px solid $m24-color-green;
+    padding: $spacer-sm;
+
+    .m24-pencil-banner-copy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+            color: $m24-color-black;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .c-banner-mofo-donate {
+            display: none;
+        }
+
+        .c-banner-firefox-download {
+            display: block;
+        }
+
+        .is-firefox & {
+            .c-banner-mofo-donate {
+                display: block;
+            }
+
+            .c-banner-firefox-download {
+                display: none;
+            }
+        }
+
+    }
+}
