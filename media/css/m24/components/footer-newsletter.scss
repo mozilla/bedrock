@@ -72,6 +72,7 @@ $max-footer-content-width: $content-max;
     // form
 
     .moz24-newsletter {
+        width: 100%;
 
         @media(min-width: $screen-md) {
             width: grid(6);

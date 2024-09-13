@@ -332,28 +332,7 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-c-language-switcher-link {
-        color: $m24-color-black;
-        font-family: $primary-font;
-        text-decoration: none;
-        position: relative;
-
-        &::after {
-            display: block;
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            left: 0;
-            bottom: 0;
-            background: $m24-color-black;
-        }
-
-        &:hover,
-        &:focus-visible {
-            &::after {
-                display: none;
-            }
-        }
+        @include visually-hidden;
     }
 
     .mzp-js-language-switcher-select {
