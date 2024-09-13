@@ -2,17 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@import 'footer-newsletter';
+
 $max-footer-content-width: $content-max;
 
 @mixin divider-line {
-    display: block;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    left: 0;
-    top: -10px;
-    background: $m24-color-light-gray;
+    border-bottom: 4px solid $m24-color-light-gray;
 }
 
 // whole footer
@@ -20,6 +15,7 @@ $max-footer-content-width: $content-max;
     @include invert-colors;
     background-color: $m24-color-white;
     color: $m24-color-black;
+    padding-top: $spacer-xl;
 
     *:focus,
     *:focus-visible {
@@ -27,240 +23,9 @@ $max-footer-content-width: $content-max;
     }
 }
 
-// newsletter form
-.moz24-newsletter-container {
-    margin: 0 $spacer-lg;
-
-    &.c-newsletter.mzp-l-content {
-        padding-bottom: 0;
-    }
-
-    .moz24-newsletter-wrapper {
-        padding: $spacer-2xl 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-
-        @media(min-width: $screen-md) {
-            max-width: $max-footer-content-width;
-            margin: 0 auto;
-            flex-direction: row;
-            align-items: flex-start;
-        }
-
-        &::after{
-            @include divider-line;
-            top: 100%;
-        }
-    }
-
-    .moz24-newsletter-wrapper .moz24-newsletter-info {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: $grid-margin;
-
-        @media(min-width: $screen-md) {
-            width: 40%;
-            @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
-        }
-
-        p {
-            margin-bottom: 0;
-            line-height: 1.3;
-            font-weight: 600;
-            font-family: $primary-font;
-            text-align: start;
-        }
-    }
-
-    .moz24-newsletter-image {
-        width: 40px;
-        @include bidi(((margin-right, $spacer-xl, 0), (margin-left, 0, $spacer-xl)));
-    }
-
-    .moz24-newsletter {
-        @media(min-width: $screen-md) {
-            width: 50%;
-        }
-
-        h2 {
-            color: $m24-color-white;
-        }
-
-        .mzp-c-newsletter-thanks {
-            h3 {
-                color: $m24-color-black;
-                font-family: $secondary-font;
-            }
-
-            p {
-                font-family: $primary-font;
-                font-weight: 400;
-            }
-        }
-
-        .error-try-again-later {
-            font-family: $primary-font;
-            font-weight: 400;
-        }
-    }
-
-    .moz24-newsletter-wrapper .mzp-c-newsletter-form {
-        .mzp-c-newsletter-header {
-            display: none;
-        }
-
-        .mzp-c-newsletter-content {
-            input {
-                margin-bottom: $spacer-lg;
-                width: 100%;
-                font-family: $primary-font;
-                border: 2px solid $m24-color-black;
-                color: $m24-color-functional-gray;
-
-                @media(min-width: $screen-md) {
-                    min-width: 100%;
-                }
-            }
-        }
-
-        .mzp-c-newsletter-details {
-            max-width: 100%;
-
-            @media(min-width: $screen-lg) {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 30px 45px 75px;
-                column-gap: $spacer-lg;
-            }
-
-            p {
-                margin-bottom: 0;
-                line-height: 1.3;
-                font-weight: 600;
-                font-family: $primary-font;
-                text-align: start;
-
-                @media(min-width: $screen-lg) {
-                    display: inline-grid;
-
-                    &:first-of-type {
-                        grid-column-start: 1;
-                        grid-column-end: 2;
-                    }
-
-                    &:nth-of-type(2) {
-                        grid-column-start: 2;
-                        grid-column-end: 3;
-                    }
-                }
-
-                &:has(> label.mzp-u-inline) {
-                    margin: $spacer-lg 0 $spacer-md;
-
-                    @media(min-width: $screen-lg) {
-                        grid-column-start: 1;
-                        grid-column-end: 3;
-                    }
-
-                    input {
-                        margin: 0;
-                    }
-                }
-            }
-
-            label {
-                margin-bottom: 0;
-                line-height: 1.3;
-                font-weight: 600;
-                font-family: $primary-font;
-                text-align: start;
-
-                @media(min-width: $screen-lg) {
-                    display: inline-grid;
-
-                    &:first-of-type {
-                        grid-column-start: 1;
-                    }
-
-                    &:nth-of-type(2) {
-                        grid-column-start: 2;
-                        grid-column-end: 3;
-                        grid-row-start: 1;
-                        grid-row-end: 2;
-                    }
-                }
-            }
-
-            select {
-                font-family: $primary-font;
-                border: 2px solid $m24-color-black;
-                color: $m24-color-functional-gray;
-                width: 100%;
-                background-position-x: 100%;
-                background-position-y: 9px;
-                background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
-                background-repeat: no-repeat;
-
-                @media(min-width: $screen-lg) {
-                    min-width: 100%;
-                }
-            }
-
-            .mzp-u-inline {
-                display: inline;
-
-                input {
-                    width: 13px;
-                    height: 13px;
-                    min-width: unset;
-                    line-height: 1;
-                }
-            }
-
-            a:visited {
-                color: $m24-color-black;
-            }
-        }
-
-        .mzp-c-form-submit button {
-            border: 2px solid $m24-color-green;
-            border-radius: 0;
-            font-family: $secondary-font;
-            position: relative;
-
-            &:hover,
-            &:focus-visible {
-                box-shadow: 4px 4px 0 0 $m24-color-green;
-                background-color: $m24-color-white;
-                color: $m24-color-black;
-            }
-
-            &:active {
-                background-color: $m24-color-black;
-                color: $m24-color-green;
-                box-shadow: none;
-            }
-
-            @media(min-width: $screen-md) {
-                width: fit-content;
-                display: flex;
-                justify-content: flex-start;
-            }
-        }
-
-        .mzp-c-fieldnote {
-            display: none;
-        }
-    }
-}
-
 // main content
 .moz24-footer-content {
-    padding: $spacer-xl $container-padding;
-    max-width: $max-footer-content-width;
+    @include container;
     margin: 0 auto;
 }
 
@@ -272,6 +37,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-sections-wrapper {
     display: flex;
     flex-direction: column-reverse;
+    gap: $grid-gutter;
 
     @media(min-width: $screen-lg) {
         flex-direction: row;
@@ -284,7 +50,7 @@ $max-footer-content-width: $content-max;
     width: 100%;
 
     @media(min-width: $screen-lg) {
-        width: 20%;
+        width: grid(4);
     }
 
     &.moz24-links-section {
@@ -294,7 +60,7 @@ $max-footer-content-width: $content-max;
         place-items: stretch start;
 
         @media(min-width: $screen-lg) {
-            width: 70%;
+            width: grid(8);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -319,7 +85,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-heading-social {
     padding: 0;
     font-family: $primary-font;
-    color: $m24-color-black;
+    color: $m24-color-functional-gray;
     margin: 0;
     font-size: $text-title-sm;
 
@@ -448,6 +214,9 @@ $max-footer-content-width: $content-max;
 
 // actions section
 .moz24-footer-actions {
+    @include divider-line;
+    padding-bottom: $spacer-lg;
+    margin-bottom: $spacer-lg;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -456,7 +225,6 @@ $max-footer-content-width: $content-max;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0;
     }
 }
 
@@ -473,7 +241,7 @@ $max-footer-content-width: $content-max;
     border: 2px solid $m24-color-green;
     text-decoration: none;
     text-align: center;
-    max-width: 120px;
+    max-width: 800px;
 
     &:hover,
     &:visited:hover {
@@ -531,14 +299,6 @@ $max-footer-content-width: $content-max;
     margin-top: $spacer-lg;
     margin-bottom: 0;
     position: relative;
-
-    &::before {
-        @include divider-line;
-
-        @media(min-width: $screen-md) {
-            display: none;
-        }
-    }
 }
 
 .moz24-c-language-switcher {
@@ -572,28 +332,7 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-c-language-switcher-link {
-        color: $m24-color-black;
-        font-family: $primary-font;
-        text-decoration: none;
-        position: relative;
-
-        &::after {
-            display: block;
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            left: 0;
-            bottom: 0;
-            background: $m24-color-black;
-        }
-
-        &:hover,
-        &:focus-visible {
-            &::after {
-                display: none;
-            }
-        }
+        @include visually-hidden;
     }
 
     .mzp-js-language-switcher-select {
@@ -623,13 +362,10 @@ $max-footer-content-width: $content-max;
 .moz24-footer-secondary {
     position: relative;
     margin-top: $grid-margin;
+    line-height: 1.5;
 
     @media(min-width: $screen-md) {
         padding-top: $grid-margin;
-
-        &::before {
-            @include divider-line;
-        }
     }
 }
 
@@ -665,8 +401,12 @@ $max-footer-content-width: $content-max;
 .moz24-footer-terms {
     li {
         font-family: $primary-font;
-        display: inline-block;
         padding: 0 24px 0 0;
+        margin-bottom: $spacer-xs;
+
+        @media(min-width: $screen-md) {
+            display: inline;
+        }
     }
 
     a,
