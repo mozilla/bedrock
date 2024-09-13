@@ -13,11 +13,20 @@
             color: $color-white !important;
             border-color: $color-white !important;
 
+            .mzp-c-button-icon-start > svg > path {
+                fill: $color-white !important;
+            }
+
             &:hover,
             &:focus,
             &:active {
                 color: $color-black !important;
+
+                .mzp-c-button-icon-start > svg > path {
+                    fill: $color-black !important;
+                }
             }
+
         }
     }
 }
