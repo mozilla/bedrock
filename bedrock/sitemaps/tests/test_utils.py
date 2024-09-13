@@ -7,7 +7,7 @@ from unittest.mock import patch
 import pytest
 from wagtail.models import Locale, Page, PageViewRestriction, Site
 
-from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory
+from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory, StructuralPageFactory
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
     CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -78,6 +78,17 @@ def dummy_wagtail_pages():
     fr_root_page = en_us_root_page.copy_for_translation(fr_locale)
     pt_br_root_page = en_us_root_page.copy_for_translation(pt_br_locale)
 
+    en_us_structural_page = StructuralPageFactory(
+        title="Structural test page",
+        slug="test-structural-page",
+        parent=en_us_root_page,
+    )
+    en_us_child_of_structural = SimpleRichTextPageFactory(
+        title="Child of structural",
+        slug="structural-sub-child",
+        parent=en_us_structural_page,
+    )
+
     en_us_page = SimpleRichTextPageFactory(title="Test Page", slug="test-page", parent=en_us_root_page)
 
     fr_page = en_us_page.copy_for_translation(fr_locale)
@@ -113,6 +124,8 @@ def dummy_wagtail_pages():
     assert pt_br_root_page.locale == pt_br_locale
     assert fr_root_page.locale == fr_locale
 
+    assert en_us_structural_page.locale == en_us_locale
+    assert en_us_child_of_structural.locale == en_us_locale
     assert en_us_page.locale == en_us_locale
     assert pt_br_page.locale == pt_br_locale
     assert pt_br_child.locale == pt_br_locale
@@ -120,10 +133,21 @@ def dummy_wagtail_pages():
     assert fr_child.locale == fr_locale
     assert fr_grandchild.locale == fr_locale
 
-    for page in (en_us_page, pt_br_page, pt_br_child, fr_page, fr_child, fr_grandchild):
+    for page in (
+        en_us_page,
+        en_us_structural_page,
+        en_us_child_of_structural,
+        pt_br_page,
+        pt_br_child,
+        fr_page,
+        fr_child,
+        fr_grandchild,
+    ):
         page.refresh_from_db()
 
     assert en_us_page.live is True
+    assert en_us_structural_page.live is True
+    assert en_us_child_of_structural.live is True
     assert pt_br_page.live is True
     assert pt_br_child.live is True
     assert fr_page.live is True
@@ -134,8 +158,10 @@ def dummy_wagtail_pages():
 def test_get_wagtail_urls(dummy_wagtail_pages):
     urls = get_wagtail_urls()
 
-    # Initially, all the pages set up in `dummy_wagtail_pages` are available
+    # Initially, all the pages set up in `dummy_wagtail_pages` are available, unless
+    # they are StructuralPages - but note that children of StructuralPages _must_ be included
     assert urls == {
+        "/test-structural-page/structural-sub-child/": ["en-US"],
         "/test-page/": ["en-US", "fr", "pt-BR"],
         "/test-page/child-page/": ["fr", "pt-BR"],
         "/test-page/child-page/grandchild-page/": ["fr"],
@@ -148,6 +174,7 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
 
     urls = get_wagtail_urls()
     assert urls == {
+        "/test-structural-page/structural-sub-child/": ["en-US"],
         "/test-page/": ["en-US", "fr", "pt-BR"],
         "/test-page/child-page/": ["fr"],
         "/test-page/child-page/grandchild-page/": ["fr"],
@@ -160,6 +187,18 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
         restriction_type=PageViewRestriction.PASSWORD,
         password="secretpassword",
     )
+    urls = get_wagtail_urls()
+    assert urls == {
+        "/test-structural-page/structural-sub-child/": ["en-US"],
+        "/test-page/": ["en-US", "fr", "pt-BR"],
+        "/test-page/child-page/": ["fr"],
+    }
+
+    # Now unpublish the child of the structural page and it should disappear, along with
+    # the parent (test-structural-page) route
+    en_structural_child = Page.objects.get(locale__language_code="en-US", slug="structural-sub-child")
+    en_structural_child.unpublish()
+    en_structural_child.save()
     urls = get_wagtail_urls()
     assert urls == {
         "/test-page/": ["en-US", "fr", "pt-BR"],

@@ -193,9 +193,18 @@ def get_wagtail_urls():
 
     # Get all live, non-private Wagtail pages
     for cms_page in Page.objects.live().public().order_by("path"):
-        # We don't want the Wagtail structural Root page, nor the
-        # site root page, because that isn't surfaced from the CMS (yet)
-        if cms_page.is_root() or cms_page.is_site_root():
+        # We don't want the Wagtail core Root page, nor the site root page,
+        # because that isn't surfaced from the CMS (yet) and we don't want our
+        # StructuralPage type either, which has a handy annotation to identify
+        # it (If you don't know what 'specific' refers to, see
+        # https://docs.wagtail.org/en/v6.2.1/reference/pages/model_reference.html#wagtail.models.Page.specific)
+        if (
+            cms_page.is_root()
+            or cms_page.is_site_root()
+            # not all pages have the is_structural_page attribute, so default those to False
+            or getattr(cms_page.specific, "is_structural_page", False) is True
+        ):
+            # Don't include these pages in the sitemap
             continue
 
         _url = cms_page.get_url()
