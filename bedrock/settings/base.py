@@ -282,6 +282,7 @@ FLUENT_DEFAULT_FILES = [
     "mozorg/about/shared",
     "navigation",
     "navigation_v2",
+    "navigation_refresh",
     "newsletter_form",
     "send_to_device",
     "sub_navigation",

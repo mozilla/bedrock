@@ -1,0 +1,498 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.moz24-navigation-refresh {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+    background-color: $m24-color-medium-gray;
+
+    @media #{$mq-md} {
+        position: sticky;
+        display: block;
+    }
+
+    .c-navigation-container {
+        width: 100%;
+        padding: 0;
+
+        @media #{$mq-md} {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .c-navigation-items {
+        // mobile specfic styles
+        @media (max-width: $screen-md) {
+            display: flex;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: calc(100vh - 48px); // 48px margin top
+            background-color: #fff;
+            transition: 0.45s;
+            transform: translateX(100%);
+            margin-top: 48px;
+            padding-top: 0;
+            overflow: hidden auto;
+
+            &.mzp-is-open {
+                transform: translateX(0);
+            }
+        }
+    }
+
+    .c-navigation-logo {
+        padding: 0;
+        margin: 0;
+
+        .c-navigation-logo-image {
+            height: 21px;
+        }
+    }
+
+    .c-navigation-menu {
+        width: 100%;
+        margin-bottom: 0;
+
+        @media #{$mq-md} {
+            width: auto;
+        }
+    }
+
+    .c-menu-category > .c-menu-title {
+        position: relative;
+        font-family: $primary-font;
+        font-size: $text-button-sm;
+        border-bottom: 2px solid $token-color-light-gray;
+        padding: 0;
+
+        &::before {
+            background: url('/media/img/m24/arrow-dark-up.svg') top left repeat;
+            transform: rotate(90deg);
+        }
+
+        @media #{$mq-md} {
+            border-bottom: transparent;
+
+            &::after {
+                display: block;
+                background: $color-black;
+                bottom: 7px;
+                content: "";
+                height: 1px;
+                left: 0;
+                position: absolute;
+                width: 100%;
+            }
+        }
+
+        @media(min-width: $screen-lg) {
+            &::after {
+                bottom: 7px;
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    .c-menu-category-list {
+        padding: 0;
+        position: relative;
+
+        @media #{$mq-md} {
+            position: unset;
+            display: flex;
+            justify-content: space-between;
+            gap: 48px;
+        }
+    }
+
+    // Common navigation styles
+    .c-navigation-l-content {
+        position: relative;
+        padding: $spacer-xs $spacer-md;
+        width: 100%;
+        display: flex;
+
+        @media #{$mq-md} {
+            padding: $spacer-sm $spacer-md;
+            width: auto;
+            display: block;
+        }
+    }
+
+    .c-navigation {
+        background-color: $color-black;
+        color: $color-white;
+    }
+
+    button.c-navigation-menu-button {
+        background-color: $m24-color-medium-gray;
+        margin: 0;
+        color: $color-black;
+        position: relative;
+        font-family: $primary-font;
+
+        &::after {
+            display: block;
+            background: $color-black;
+            bottom: 7px;
+            content: "";
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%
+        }
+
+        &.mzp-is-active {
+            &::after {
+                display: none;
+            }
+        }
+
+        &:not(.mzp-is-active) {
+            text-indent: unset;
+            background-image: none;
+            width: fit-content;
+        }
+
+        @media (min-width: $screen-md) {
+            margin: 24px 0;
+        }
+    }
+
+    .c-menu-category.mzp-has-drop-down {
+        .c-menu-panel {
+            background-color: $color-white;
+            color: $color-black;
+
+            @media (min-width: $screen-md) {
+                left: 0;
+                right: auto;
+                top: 64px;
+                width: 100%;
+                padding: 0;
+                border-bottom: 4px solid $m24-color-medium-gray;
+            }
+        }
+    }
+
+    .c-menu-panel .c-menu-panel-container {
+        max-width: unset;
+        box-shadow: none;
+
+        @media (min-width: $screen-md) {
+            border-radius: 0;
+            padding: $spacer-lg 0;
+        }
+    }
+
+    .c-menu.mzp-is-enhanced .c-menu-category {
+        position: unset;
+        border: transparent;
+        padding: 8px 16px;
+
+        @media (min-width: $screen-md) {
+            padding: 0;
+        }
+
+        &.mzp-is-selected {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            min-width: 100%;
+            background-color: $color-white;
+
+            @media (min-width: $screen-md) {
+                position: unset;
+                min-width: unset;
+            }
+
+            .c-menu-title {
+                border-bottom: transparent;
+                padding: 0 0 0 48px;
+
+                @media (min-width: $screen-md) {
+                    color: $m24-color-dark-green;
+                    border-bottom: transparent;
+                    padding: 0;
+                    background-color: $m24-color-medium-gray;
+                }
+
+                &::before {
+                    left: 0;
+                    transform: rotate(-90deg);
+                }
+
+                &::after {
+                    background: $m24-color-dark-green;
+                    height: 1px;
+                    width: 100%;
+                    left: 0;
+                    bottom: 7px;
+                }
+            }
+
+            .c-menu-panel {
+                transform: translateX(0);
+            }
+        }
+    }
+
+    .c-menu-panel {
+        // mobile specfic styles
+        @media (max-width: $screen-md) {
+            display: block;
+                position: fixed;
+                z-index: 100;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: auto;
+                background-color: #fff;
+                overflow: hidden auto;
+                transition: 0.45s;
+                margin-top: 50px;
+                transform: translateX(100%);
+        }
+
+        @media (min-width: $screen-md) {
+            padding: 0;
+        }
+    }
+
+    h4.c-menu-item-title {
+        font-size: $text-button-sm;
+        font-family: $primary-font;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .mzp-l-content {
+        min-width: unset;
+        padding: $spacer-md 0;
+
+        @media (min-width: $screen-md) {
+            padding: 0;
+        }
+    }
+
+    .c-menu-item {
+        min-width: unset;
+        max-width: 100%;
+        padding: 0;
+
+        @media (min-width: $screen-md) {
+            min-width: 216px;
+            width: auto;
+        }
+
+        .c-menu-item-link {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            width: fit-content;
+
+            h4.c-menu-item-title {
+                border: none;
+
+                &::after {
+                    display: block;
+                    background: $color-black;
+                    bottom: 11px;
+                    content: "";
+                    height: 1px;
+                    left: 0;
+                    position: absolute;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .c-menu-item .c-menu-item-link
+    .c-menu-item .c-menu-item-link:link,
+    .c-menu-item .c-menu-item-link:visited {
+        h4.c-menu-item-title {
+            border: none;
+
+            &::after {
+                display: block;
+                background: $color-black;
+                bottom: 11px;
+                content: "";
+                height: 1px;
+                left: 0;
+                position: absolute;
+                width: 100%;
+            }
+        }
+
+        svg path {
+            fill: $color-black;
+        }
+    }
+
+    .c-menu-item .c-menu-item-link:hover,
+    .c-menu-item .c-menu-item-link:visited:hover {
+        h4.c-menu-item-title {
+            color: $m24-color-dark-green;
+            border: none;
+
+            &::after {
+                background: $m24-color-dark-green;
+            }
+        }
+
+        svg path {
+            fill: $m24-color-dark-green;
+        }
+    }
+
+    .c-menu-item:hover,
+    .c-menu-item:focus,
+    .c-menu-item:active {
+        background-color: unset;
+    }
+
+    .c-menu-panel .c-menu-panel-content > ul.mzp-l-content {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: $spacer-md $grid-margin;
+
+        @media (min-width: $screen-md) {
+            padding: 0 $grid-margin;
+        }
+
+        & > li {
+            border-bottom: 2px solid transparent;
+            width: 100%;
+
+            @media (min-width: $screen-md) {
+                border-bottom: 2px solid $token-color-light-gray;
+            }
+
+            .c-menu-item {
+                border-bottom: transparent;
+            }
+        }
+    }
+
+    .c-menu-panel .c-menu-category-link {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0;
+        margin: $spacer-lg $spacer-lg 0;
+        font-family: $primary-font;
+        font-size: $text-button-sm;
+        border: none;
+    }
+
+    .c-menu-panel .c-menu-category-link a,
+    .c-menu-panel .c-menu-category-link a:visited,
+    .c-menu-panel .c-menu-category-link a:link {
+        position: relative;
+        display: flex;
+        width: fit-content;
+        border: none;
+
+        svg path {
+            fill: $color-black;
+        }
+    }
+
+    .c-menu-panel .c-menu-category-link a:hover {
+        color: $m24-color-dark-green;
+
+        .c-menu-item-title::after {
+            display: block;
+            background: $m24-color-dark-green;
+            bottom: -2px;
+            content: "";
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        svg path {
+            fill: $m24-color-dark-green;
+        }
+    }
+
+    .mzp-has-icon .c-menu-item-link {
+        .c-menu-item-icon {
+            height: 16px;
+            width: 16px;
+            position: unset;
+            @include bidi(((padding-right, 4px, 0), (padding-left, 0, 4px)));
+        }
+    }
+
+    .mzp-has-icon.c-menu-item .c-menu-item-link,
+    .mzp-has-icon.c-menu-item .c-menu-item-link:link,
+    .mzp-has-icon.c-menu-item .c-menu-item-link:active,
+    .mzp-has-icon.c-menu-item .c-menu-item-link:visited {
+        h4.c-menu-item-title {
+            font-weight: 600;
+            border: none;
+            position: relative;
+
+            &::after {
+                display: block;
+                background: $color-black;
+                bottom: 1px;
+                content: "";
+                height: 1px;
+                left: 0;
+                position: absolute;
+                width: 100%;
+            }
+        }
+    }
+
+    .mzp-has-icon.c-menu-item .c-menu-item-link:hover,
+    .mzp-has-icon.c-menu-item .c-menu-item-link:visited:hover {
+        h4.c-menu-item-title {
+            border: none;
+
+            &::after {
+                background: $m24-color-dark-green;
+            }
+        }
+    }
+
+    .c-menu.mzp-is-enhanced .c-menu-category.c-menu-category-has-icon {
+        .c-menu-title-icon {
+            margin-right: 8px;
+        }
+
+        .c-menu-title::after {
+            bottom: 7px;
+            left: 24px;
+            width: calc(100% - 24px);
+        }
+    }
+}
+
+// page content
+#outer-wrapper {
+    margin-top: 48px;
+
+    @media (min-width: $screen-md) {
+        margin-top: 0;
+    }
+}

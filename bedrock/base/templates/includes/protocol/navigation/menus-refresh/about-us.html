@@ -1,0 +1,60 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ <li class="c-menu-category mzp-has-drop-down mzp-js-expandable">
+   <a class="c-menu-title" href="{{ url('mozorg.about.index') }}" aria-haspopup="true" aria-controls="c-menu-panel-about" data-testid="navigation-link-about-us">{{ ftl('navigation-refresh-about-us') }}</a>
+   <div class="c-menu-panel" id="c-menu-panel-about" data-testid="navigation-menu-about-us">
+     <div class="c-menu-panel-container">
+       <button class="c-menu-button-close" type="button" aria-controls="c-menu-panel-about">{{ ftl('navigation-refresh-close-about-us-menu') }}</button>
+       <div class="c-menu-panel-content">
+         <ul class="mzp-l-content">
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="{{ url('mozorg.about.index') }}" data-link-text="About us" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-about-us') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="{{ url('mozorg.about.manifesto') }}" data-link-text="Mozilla manifesto" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-mozilla-manifesto') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="https://foundation.mozilla.org/?{{ utm_params }}" data-link-text="Mozilla Foundation" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-mozilla-foundation') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="{{ url('mozorg.contribute') }}" data-link-text="Get Involved" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-get-involved') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="https://future.mozilla.org/?{{ utm_params }}" data-link-text="Mozilla Innovation Projects" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-innovation-projects') }}</h4>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="c-menu-item">
+              <a class="c-menu-item-link" href="https://blog.mozilla.org/?{{ utm_params }}" data-link-text="Blog" data-link-type="nav" data-link-position="topnav" data-link-group="about-us">
+                <h4 class="c-menu-item-title">{{ ftl('navigation-refresh-blog') }}</h4>
+              </a>
+            </section>
+          </li>
+         </ul>
+       </div>
+     </div><!-- close .c-menu-panel-container -->
+   </div><!-- close .c-menu-panel -->
+ </li><!-- close about us -->
