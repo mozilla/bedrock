@@ -35,6 +35,15 @@
 
     .m24-c-grid-tile-title {
         font-size: var(--text-title-md);
+        text-decoration: underline 0.075em transparent;
+        transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
+    }
+
+    .m24-c-grid-tile-cta > span {
+        font-size: var(--text-body-lg);
+        font-weight: bold;
+        text-decoration: underline 0.075em transparent;
+        transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
     }
 
     @media #{$mq-lg} {
@@ -63,6 +72,30 @@
             &:nth-child(even) {
                 grid-column: 8/-2;
             }
+        }
+    }
+}
+
+.m24-c-grid-tile-link {
+    text-decoration: none;
+    color: inherit;
+
+    .m24-c-grid-tile-image > * {
+        outline: 2px solid transparent;
+        transition: outline-color 150ms ease-in-out;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        .m24-c-grid-tile-image > * {
+            outline-color: $m24-color-dark-green;
+        }
+
+        .m24-c-grid-tile-title,
+        .m24-c-grid-tile-cta > span {
+            text-decoration-color: $m24-color-dark-green;
+            color: $m24-color-dark-green;
         }
     }
 }
