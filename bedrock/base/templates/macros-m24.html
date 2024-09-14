@@ -10,38 +10,40 @@
   CSS Import: @import '[path to]/m24/grid';
   Macro Parameters:
     class: String providing modifier class(es) to the tile component.
-    cta_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
-    cta_link: String or url helper function provides href value for cta link.
-    cta_text: String indicating link text (usually a translation id wrapped in an ftl function).
+    cta_text: String indicating CTA text (usually a translation id wrapped in an ftl function).
     desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
-    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
     image: Image to be used in the tile. Can pass an <img> element, resp_img or picture Python helpers.
+    link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
+    link_url (Required): String or url helper function provides href value for the tile link.
+    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
 #}
 {% macro grid_tile(
   class=None,
-  cta_attributes=None,
-  cta_link=None,
   cta_text=None,
   desc=None,
   heading_level=3,
   image=None,
+  link_attributes=None,
+  link_url=None,
   title=''
 ) -%}
 <div class="m24-c-grid-tile{% if class %} {{ class }}{% endif %}">
-  {% if image %}
-  <div class="m24-c-grid-tile-image">{{ image|safe }}</div>
-  {% endif %}
-  <div class="m24-c-grid-tile-content">
-    <h{{ heading_level }} class="m24-c-grid-tile-title"><span>{{ title }}</span></h{{ heading_level }}>
-    {% if desc %}
-    <p class="m24-c-grid-tile-desc">{{ desc }}</p>
+  <a href="{{ cta_link }}" class="m24-c-grid-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
+    {% if image %}
+    <div class="m24-c-grid-tile-image">{{ image|safe }}</div>
     {% endif %}
-    {% if cta_text and cta_link %}
-    <p class="m24-c-grid-tile-cta">
-      <a class="m24-cta m24-t-small" href="{{ cta_link }}" {% if cta_attributes %}{{ cta_attributes|safe }}{% endif %}>{{ cta_text }}</a>
-    </p>
-    {% endif %}
-  </div>
+    <div class="m24-c-grid-tile-content">
+      <h{{ heading_level }} class="m24-c-grid-tile-title"><span>{{ title }}</span></h{{ heading_level }}>
+      {% if desc %}
+      <p class="m24-c-grid-tile-desc">{{ desc }}</p>
+      {% endif %}
+      {% if cta_text %}
+      <p class="m24-c-grid-tile-cta">
+        <span>{{ cta_text }}</span>
+      </p>
+      {% endif %}
+    </div>
+  </a>
 </div>
 {%- endmacro %}
