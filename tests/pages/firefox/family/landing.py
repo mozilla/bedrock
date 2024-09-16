@@ -14,8 +14,6 @@ class FamilyPage(BasePage):
 
     _firefox_nav_cta_locator = (By.CSS_SELECTOR, ".c-navigation-shoulder")
 
-    _firefox_nav_download_button_locator = (By.CSS_SELECTOR, "[data-cta-position='nav']")
-
     _firefox_desktop_download_button_locator = (By.CSS_SELECTOR, "[data-cta-position='download section']")
 
     _firefox_make_default_button_locator = (By.CSS_SELECTOR, "[data-cta-text='Set Firefox as your default browser']")
@@ -25,10 +23,6 @@ class FamilyPage(BasePage):
     @property
     def is_firefox_nav_cta_displayed(self):
         return self.is_element_displayed(*self._firefox_nav_cta_locator)
-
-    @property
-    def is_firefox_nav_download_button_displayed(self):
-        return self.is_element_displayed(*self._firefox_nav_download_button_locator)
 
     @property
     def is_firefox_desktop_download_button_displayed(self):

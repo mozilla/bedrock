@@ -10,43 +10,46 @@ from pages.home import HomePage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
-    firefox_desktop_page = page.navigation.open_firefox_desktop_page()
-    assert firefox_desktop_page.seed_url in selenium.current_url
+    page = HomePage(selenium, base_url, locale="de").open()
+    page.navigation.open_firefox_menu()
+    assert page.navigation.is_firefox_menu_displayed
 
-    page.open()
-    developer_edition_page = page.navigation.open_developer_edition_page()
-    assert developer_edition_page.seed_url in selenium.current_url
+    page.navigation.open_products_menu()
+    assert page.navigation.is_products_menu_displayed
+    assert not page.navigation.is_firefox_menu_displayed
 
-    page.open()
-    manifesto_page = page.navigation.open_manifesto_page()
-    assert manifesto_page.seed_url in selenium.current_url
+    page.navigation.open_about_menu()
+    assert page.navigation.is_about_menu_displayed
+    assert not page.navigation.is_products_menu_displayed
+
+    page.navigation.open_innovation_menu()
+    assert page.navigation.is_innovation_menu_displayed
+    assert not page.navigation.is_about_menu_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_mobile_navigation(base_url, selenium_mobile):
-    page = HomePage(selenium_mobile, base_url).open()
+    page = HomePage(selenium_mobile, base_url, locale="de").open()
     page.navigation.show()
-    firefox_desktop_page = page.navigation.open_firefox_desktop_page()
-    assert firefox_desktop_page.seed_url in selenium_mobile.current_url
+    page.navigation.open_firefox_menu()
+    assert page.navigation.is_firefox_menu_displayed
 
-    page.open()
-    page.navigation.show()
-    developer_edition_page = page.navigation.open_developer_edition_page()
-    assert developer_edition_page.seed_url in selenium_mobile.current_url
+    page.navigation.open_products_menu()
+    assert page.navigation.is_products_menu_displayed
 
-    page.open()
-    page.navigation.show()
-    manifesto_page = page.navigation.open_manifesto_page()
-    assert manifesto_page.seed_url in selenium_mobile.current_url
+    page.navigation.open_about_menu()
+    assert page.navigation.is_about_menu_displayed
+
+    page.navigation.open_innovation_menu()
+    assert page.navigation.is_innovation_menu_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.skip_if_firefox(reason="Firefox download button is shown only to non-Firefox users.")
 def test_navigation_download_firefox_button(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
+    page = HomePage(selenium, base_url, locale="de").open()
     assert not page.navigation.is_mozilla_vpn_button_displayed
     assert page.navigation.is_firefox_download_button_displayed
 
@@ -54,6 +57,6 @@ def test_navigation_download_firefox_button(base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.skip_if_not_firefox(reason="Mozilla VPN button is shown only to Firefox users.")
 def test_navigation_mozilla_vpn_button(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
+    page = HomePage(selenium, base_url, locale="de").open()
     assert not page.navigation.is_firefox_download_button_displayed
     assert page.navigation.is_mozilla_vpn_button_displayed

@@ -25,9 +25,6 @@ test.describe(
                 });
 
                 test(`Country code: ${country}`, async ({ page }) => {
-                    const getVpnNavButton = page.getByTestId(
-                        'get-mozilla-vpn-nav-button'
-                    );
                     const getVpnHeroButton = page.getByTestId(
                         'get-mozilla-vpn-hero-button'
                     );
@@ -45,10 +42,6 @@ test.describe(
                     );
                     const getVpnFooterButton = page.getByTestId(
                         'get-mozilla-vpn-footer-button'
-                    );
-
-                    const waitlistNavButton = page.getByTestId(
-                        'join-waitlist-nav-button'
                     );
                     const waitlistHeroButton = page.getByTestId(
                         'join-waitlist-hero-button'
@@ -67,7 +60,6 @@ test.describe(
                     );
 
                     // Assert Get Mozilla VPN buttons are displayed.
-                    await expect(getVpnNavButton).toBeVisible();
                     await expect(getVpnHeroButton).toBeVisible();
                     await expect(getVpnTwelveMonthButton).toBeVisible();
                     await expect(getVpnMonthlyButton).toBeVisible();
@@ -78,7 +70,6 @@ test.describe(
                     // Assert Join Waitlist buttons are not displayed.
                     await expect(waitlistHeroButton).not.toBeVisible();
                     await expect(waitlistNotAvailableButton).not.toBeVisible();
-                    await expect(waitlistNavButton).not.toBeVisible();
                     await expect(waitlistSecondaryButton).not.toBeVisible();
                     await expect(waitlistTertiaryButton).not.toBeVisible();
                     await expect(waitlistFooterButton).not.toBeVisible();
@@ -93,9 +84,6 @@ test.describe(
                 });
 
                 test(`Country code: ${country}`, async ({ page }) => {
-                    const getVpnNavButton = page.getByTestId(
-                        'get-mozilla-vpn-nav-button'
-                    );
                     const getVpnHeroButton = page.getByTestId(
                         'get-mozilla-vpn-hero-button'
                     );
@@ -114,10 +102,6 @@ test.describe(
                     const getVpnFooterButton = page.getByTestId(
                         'get-mozilla-vpn-footer-button'
                     );
-
-                    const waitlistNavButton = page.getByTestId(
-                        'join-waitlist-nav-button'
-                    );
                     const waitlistHeroButton = page.getByTestId(
                         'join-waitlist-hero-button'
                     );
@@ -135,7 +119,6 @@ test.describe(
                     );
 
                     // Assert Join Waitlist buttons are displayed.
-                    await expect(waitlistNavButton).toBeVisible();
                     await expect(waitlistHeroButton).toBeVisible();
                     await expect(waitlistNotAvailableButton).toBeVisible();
                     await expect(waitlistSecondaryButton).toBeVisible();
@@ -143,7 +126,6 @@ test.describe(
                     await expect(waitlistFooterButton).toBeVisible();
 
                     // Assert Get Mozilla VPN buttons are not displayed.
-                    await expect(getVpnNavButton).not.toBeVisible();
                     await expect(getVpnHeroButton).not.toBeVisible();
                     await expect(getVpnTwelveMonthButton).not.toBeVisible();
                     await expect(getVpnMonthlyButton).not.toBeVisible();
