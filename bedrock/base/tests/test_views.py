@@ -51,7 +51,7 @@ class TestGeoTemplateView(TestCase):
 @pytest.mark.django_db
 def test_get_contentful_sync_info(mock_timeago_format, mock_tz_now):
     mock_timeago_format.return_value = "mock-formatted-time-delta"
-    _now = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc)
+    _now = datetime.datetime.utcnow().replace(tzinfo=datetime.UTC)
     mock_tz_now.return_value = _now
 
     middle = tz_now()
