@@ -17,10 +17,6 @@ $image-path: '/media/protocol/img';
     .mzp-l-content {
         max-width: $content-md;
 
-        .mzp-c-callout-title {
-            @include font-firefox;
-        }
-
         .mzp-c-callout-desc {
             font-weight: 700;
             margin-left: auto;

@@ -137,7 +137,7 @@ class HomeView(L10nTemplateView):
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
-        if switch("m24-home") and self.request.locale.startswith("en"):
+        if switch("m24-home") and self.request.locale.startswith("en") and experience != "legacy":
             return [self.m24_template_name]
         elif ftl_file_is_active("mozorg/home-new") and experience != "legacy":
             return [self.template_name]

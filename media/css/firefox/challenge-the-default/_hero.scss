@@ -41,7 +41,6 @@ $campaign-red: #ff6a75;
 }
 
 .c-ctd-hero {
-    @include font-firefox;
     background: $campaign-red;
     padding: 6px 24px 24px;
     width: 100%;
@@ -214,7 +213,6 @@ $campaign-red: #ff6a75;
         }
 
         h1 {
-            @include font-firefox;
             @include font-size(36px);
             color: $color-black;
             font-weight: 800;

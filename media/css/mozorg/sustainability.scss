@@ -84,7 +84,8 @@ header {
 
     blockquote {
         @include text-body-lg;
-        @include font-firefox;
+        font-family: var(--body-font-family);
+        font-weight: 600;
 
         cite {
             @include text-body-lg;

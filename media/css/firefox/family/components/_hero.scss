@@ -40,7 +40,6 @@ $image-path: '/media/protocol/img';
 
     .c-blurb {
         @include text-body-lg;
-        @include font-firefox;
 
         --shadow-offset: #{$border-radius-md};
         @include f3.card-shadow;

@@ -67,7 +67,6 @@ $border: 2px solid $color-marketing-gray-20;
 }
 
 .privacy-title {
-    @include font-firefox;
     margin-bottom: $spacing-lg;
 
     @media #{$mq-sm} {

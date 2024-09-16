@@ -310,6 +310,11 @@ $image-path: '/media/protocol/img';
 }
 
 // icons
+.c-release-notes .mzp-l-sidebar {
+    display: flex;
+    align-items: flex-start;
+}
+
 .sidebar-icon {
     float: left;
     margin-right: $spacing-sm;
