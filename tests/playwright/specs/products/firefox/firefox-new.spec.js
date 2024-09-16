@@ -115,24 +115,36 @@ test.describe(
                 'css=#download-button-thanks .fx-unsupported-message.mac .download-link'
             );
 
-            const downloadWinUnsupported = page.locator(
+            const downloadWinUnsupported64bit = page.locator(
                 'css=#download-button-thanks .fx-unsupported-message.win .download-link.os_win64'
+            );
+
+            const downloadWinUnsupported32bit = page.locator(
+                'css=#download-button-thanks .fx-unsupported-message.win .download-link.os_win'
             );
 
             const downloadFeaturesOsxUnsupported = page.locator(
                 'css=#download-features .fx-unsupported-message.mac .download-link'
             );
 
-            const downloadFeaturesWinUnsupported = page.locator(
+            const downloadFeaturesWinUnsupported64bit = page.locator(
                 'css=#download-features .fx-unsupported-message.win .download-link.os_win64'
+            );
+
+            const downloadFeaturesWinUnsupported32bit = page.locator(
+                'css=#download-features .fx-unsupported-message.win .download-link.os_win'
             );
 
             const downloadDiscoverOsxUnsupported = page.locator(
                 'css=#download-discover .fx-unsupported-message.mac .download-link'
             );
 
-            const downloadDiscoverWinUnsupported = page.locator(
+            const downloadDiscoverWinUnsupported64bit = page.locator(
                 'css=#download-discover .fx-unsupported-message.win .download-link.os_win64'
+            );
+
+            const downloadDiscoverWinUnsupported32bit = page.locator(
+                'css=#download-discover .fx-unsupported-message.win .download-link.os_win'
             );
 
             if (browserName === 'webkit') {
@@ -176,18 +188,45 @@ test.describe(
                 await expect(downloadDiscoverButton).not.toBeVisible();
 
                 // Assert Firefox ESR windows download button is displayed.
-                await expect(downloadWinUnsupported).toBeVisible();
-                await expect(downloadWinUnsupported).toHaveAttribute(
+                await expect(downloadWinUnsupported64bit).toBeVisible();
+                await expect(downloadWinUnsupported64bit).toHaveAttribute(
+                    'href',
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
+                );
+                await expect(downloadWinUnsupported32bit).not.toBeVisible();
+                await expect(downloadWinUnsupported32bit).toHaveAttribute(
                     'href',
                     /\?product=firefox-esr115-latest-ssl&os=win/
                 );
-                await expect(downloadFeaturesWinUnsupported).toBeVisible();
-                await expect(downloadFeaturesWinUnsupported).toHaveAttribute(
+                await expect(downloadFeaturesWinUnsupported64bit).toBeVisible();
+                await expect(
+                    downloadFeaturesWinUnsupported64bit
+                ).toHaveAttribute(
+                    'href',
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
+                );
+                await expect(
+                    downloadFeaturesWinUnsupported32bit
+                ).not.toBeVisible();
+                await expect(
+                    downloadFeaturesWinUnsupported32bit
+                ).toHaveAttribute(
                     'href',
                     /\?product=firefox-esr115-latest-ssl&os=win/
                 );
-                await expect(downloadDiscoverWinUnsupported).toBeVisible();
-                await expect(downloadDiscoverWinUnsupported).toHaveAttribute(
+                await expect(downloadDiscoverWinUnsupported64bit).toBeVisible();
+                await expect(
+                    downloadDiscoverWinUnsupported64bit
+                ).toHaveAttribute(
+                    'href',
+                    /\?product=firefox-esr115-latest-ssl&os=win64/
+                );
+                await expect(
+                    downloadDiscoverWinUnsupported32bit
+                ).not.toBeVisible();
+                await expect(
+                    downloadDiscoverWinUnsupported32bit
+                ).toHaveAttribute(
                     'href',
                     /\?product=firefox-esr115-latest-ssl&os=win/
                 );

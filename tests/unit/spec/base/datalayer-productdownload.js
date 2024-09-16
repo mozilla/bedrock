@@ -263,9 +263,15 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['release_channel']).toBe('esr');
     });
-    it('should identify release_channel for Firefox ESR 115', function () {
+    it('should identify release_channel for Firefox ESR 115 64-bit', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr115');
+    });
+    it('should identify release_channel for Firefox ESR 115 32-bit', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win&lang=en-US'
         );
         expect(testEvent['release_channel']).toBe('esr115');
     });
