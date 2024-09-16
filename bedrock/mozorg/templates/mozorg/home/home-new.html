@@ -22,8 +22,7 @@
 
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-july2024', ["en", "de", "fr"]) %}
-{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) and not show_fundraising_banner %}
+{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
@@ -40,9 +39,7 @@
     {{ css_bundle('ctd-promo') }}
   {% endif %}
 
-  {% if show_fundraising_banner %}
-    {{ css_bundle('fundraising-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
@@ -71,25 +68,21 @@
 {% block site_header %}
   {% if show_fundraising_nav_cta and variation == '1' %}
     {% with custom_nav_cta=donate_button() %}
-  {% include 'includes/protocol/navigation/navigation.html' %}
-{% endwith %}
+      {% include 'includes/protocol/navigation/navigation.html' %}
+    {% endwith %}
   {% else %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_fundraising_banner %}
-    {% include 'includes/banners/fundraiser.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
 {% block experiments %}
-  {% if show_fundraising_banner and switch('fundraising-banner-experiment-july2024', ["en-US", "en-CA"]) %}
-    {{ js_bundle('fundraising-banner-experiment') }}
-  {% elif show_fundraising_nav_cta %}
+  {% if show_fundraising_nav_cta %}
     {{ js_bundle('fundraising-nav-cta')}}
   {% endif %}
 {% endblock %}
@@ -361,9 +354,7 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if show_fundraising_banner %}
-    {{ js_bundle('fundraising-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
