@@ -35,7 +35,7 @@ def complete_articles_data(articles):
         article["pocket_id"] = article["id"]
 
         # convert time_shared from unix timestamp to datetime
-        article["time_shared"] = make_aware(datetime.datetime.fromtimestamp(int(article["time_shared"])), datetime.timezone.utc)
+        article["time_shared"] = make_aware(datetime.datetime.fromtimestamp(int(article["time_shared"])), datetime.UTC)
 
         # remove data points we don't need
         del article["comment"]

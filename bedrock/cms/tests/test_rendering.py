@@ -109,5 +109,5 @@ def test_locales_are_drawn_from_page_translations(minimal_site, rf, serving_meth
     page_content = str(resp.content)
     assert "Test Page" in page_content
     assert '<option lang="en-US" value="en-US" selected>English</option>' in page_content
-    assert '<option lang="fr" value="fr">Français</option>'.encode("utf-8") in resp.content
+    assert '<option lang="fr" value="fr">Français</option>'.encode() in resp.content
     assert '<option lang="en-GB" value="en-US">English (British) </option>' not in page_content

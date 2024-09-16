@@ -59,7 +59,7 @@ class Command(BaseCommand):
         # Note: we don't want to render the actual template at this stage,
         # we just want to augment what's IN the template with the HTML from
         # the Policy doc, rendered from Markdown
-        with open(WRAPPING_TEMPLATE_PATH, "r") as fp:
+        with open(WRAPPING_TEMPLATE_PATH) as fp:
             template = fp.read()
         wrapped_html = template.replace("__HTML_POLICY_CONTENT_PLACEHOLDER__", html)
         return wrapped_html
