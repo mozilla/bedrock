@@ -39,7 +39,7 @@
   "devDependencies": {
     "concurrently": "^9.0.0",
     "dotenv-webpack": "^8.1.0",
-    "eslint": "^9.4.0",
+    "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.3.0",
     "jasmine-browser-runner": "^2.4.0",
