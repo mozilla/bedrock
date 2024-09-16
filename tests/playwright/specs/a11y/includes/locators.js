@@ -10,7 +10,7 @@
  * CSS selectors of common elements for
  * inclusion / exclusion in a11y scans.
  */
-const footerLocator = '.mzp-c-footer';
+const footerLocator = '#colophon';
 const navigationLocator = '.c-navigation';
 const subNavigationLocator = '.c-sub-navigation';
 
