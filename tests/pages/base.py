@@ -48,13 +48,14 @@ class BasePage(ScrollElementIntoView, Page):
         _root_locator = (By.CLASS_NAME, "c-navigation")
         _toggle_locator = (By.CLASS_NAME, "c-navigation-menu-button")
         _menu_locator = (By.CLASS_NAME, "c-navigation-items")
-        _firefox_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-firefox"]')
-        _products_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-products"]')
-        _about_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-about"]')
-        _innovation_menu_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-innovation"]')
-        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Desktop Browser"]')
-        _developer_edition_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Firefox Developer Edition"]')
-        _manifesto_page_locator = (By.CSS_SELECTOR, '.c-menu-item-link[data-link-text="Mozilla Manifesto"]')
+        _firefox_menu_link_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-firefox"]')
+        _firefox_menu_locator = (By.ID, "c-menu-panel-firefox")
+        _products_menu_link_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-products"]')
+        _products_menu_locator = (By.ID, "c-menu-panel-products")
+        _about_menu_link_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-about"]')
+        _about_menu_locator = (By.ID, "c-menu-panel-about")
+        _innovation_menu_link_locator = (By.CSS_SELECTOR, '.c-menu-title[aria-controls="c-menu-panel-innovation"]')
+        _innovation_menu_locator = (By.ID, "c-menu-panel-innovation")
         _firefox_download_button_locator = (By.CSS_SELECTOR, "#protocol-nav-download-firefox > .download-link")
         _mozilla_vpn_button_locator = (By.CSS_SELECTOR, '.c-navigation-vpn-cta-container > [data-cta-text="Get Mozilla VPN"]')
 
@@ -78,36 +79,37 @@ class BasePage(ScrollElementIntoView, Page):
             return self.find_element(*self._menu_locator).is_displayed() and "is-active" in toggle.get_attribute("class")
 
         def open_navigation_menu(self, locator):
-            firefox_menu = self.find_element(*locator)
-            firefox_menu.click()
-            self.wait.until(lambda s: firefox_menu.is_displayed)
+            menu = self.find_element(*locator)
+            menu.click()
 
-        def open_firefox_desktop_page(self):
-            self.open_navigation_menu(self._firefox_menu_locator)
-            link = self.find_element(*self._firefox_desktop_page_locator)
-            href = link.get_attribute("href")
-            self.page.set_attribute(link, att_name="href", att_value=href + "?automation=true")
-            link.click()
-            from .firefox.new.download import DownloadPage
+        @property
+        def is_firefox_menu_displayed(self):
+            return self.is_element_displayed(*self._firefox_menu_locator)
 
-            return DownloadPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+        @property
+        def is_products_menu_displayed(self):
+            return self.is_element_displayed(*self._products_menu_locator)
 
-        def open_developer_edition_page(self):
-            self.open_navigation_menu(self._innovation_menu_locator)
-            link = self.find_element(*self._developer_edition_page_locator)
-            href = link.get_attribute("href")
-            self.page.set_attribute(link, att_name="href", att_value=href + "?automation=true")
-            link.click()
-            from .firefox.developer import DeveloperPage
+        @property
+        def is_about_menu_displayed(self):
+            return self.is_element_displayed(*self._about_menu_locator)
 
-            return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+        @property
+        def is_innovation_menu_displayed(self):
+            return self.is_element_displayed(*self._innovation_menu_locator)
 
-        def open_manifesto_page(self):
-            self.open_navigation_menu(self._about_menu_locator)
-            link = self.find_element(*self._manifesto_page_locator)
-            href = link.get_attribute("href")
-            self.page.set_attribute(link, att_name="href", att_value=href + "?automation=true")
-            link.click()
-            from .manifesto import ManifestoPage
+        def open_firefox_menu(self):
+            self.open_navigation_menu(self._firefox_menu_link_locator)
+            self.wait.until(lambda s: self.is_firefox_menu_displayed)
 
-            return ManifestoPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+        def open_products_menu(self):
+            self.open_navigation_menu(self._products_menu_link_locator)
+            self.wait.until(lambda s: self.is_products_menu_displayed)
+
+        def open_about_menu(self):
+            self.open_navigation_menu(self._about_menu_link_locator)
+            self.wait.until(lambda s: self.is_about_menu_displayed)
+
+        def open_innovation_menu(self):
+            self.open_navigation_menu(self._innovation_menu_link_locator)
+            self.wait.until(lambda s: self.is_innovation_menu_displayed)

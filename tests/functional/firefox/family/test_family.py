@@ -7,13 +7,6 @@ import pytest
 from pages.firefox.family.landing import FamilyPage
 
 
-@pytest.mark.skip_if_firefox(reason="Nav download button is displayed only to non-Firefox users")
-@pytest.mark.nondestructive
-def test_firefox_nav_download_button_is_displayed(base_url, selenium):
-    page = FamilyPage(selenium, base_url).open()
-    assert page.is_firefox_nav_download_button_displayed
-
-
 @pytest.mark.skip_if_not_firefox(reason="Nav CTA is only hidden for Firefox users")
 @pytest.mark.nondestructive
 def test_firefox_nav_cta_is_displayed(base_url, selenium):
