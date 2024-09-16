@@ -11,7 +11,7 @@ import subprocess
 def extract_pinned(requirements_file):
     """Extract pinned dependencies from a requirements file."""
     pinned_deps = {}
-    with open(requirements_file, "r") as file:
+    with open(requirements_file) as file:
         for line in file:
             # Skip comments and empty lines
             if line.strip() and not line.startswith("#"):

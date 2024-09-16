@@ -54,7 +54,7 @@ def test_complete_articles_data(req_mock):
     assert "quote" not in articles[0][1]
 
     # 'time_shared' should be converted to a datetime value
-    assert articles[0][1]["time_shared"] == make_aware(datetime.datetime(2018, 7, 18, 11, 14, 18), datetime.timezone.utc)
+    assert articles[0][1]["time_shared"] == make_aware(datetime.datetime(2018, 7, 18, 11, 14, 18), datetime.UTC)
 
     # should have attempted to GET request against image_src
     req_mock.get.assert_called_once_with("https://www.test.com/test.png")
