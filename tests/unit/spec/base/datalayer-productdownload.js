@@ -245,6 +245,12 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['release_channel']).toBe('esr');
     });
+    it('should identify release_channel for Firefox ESR 115', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=osx&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr115');
+    });
     it('should identify release_channel for Firefox MSI', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-US'
@@ -256,6 +262,18 @@ describe('TrackProductDownload.getEventFromUrl', function () {
             'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US'
         );
         expect(testEvent['release_channel']).toBe('esr');
+    });
+    it('should identify release_channel for Firefox ESR 115 64-bit', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win64&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr115');
+    });
+    it('should identify release_channel for Firefox ESR 115 32-bit', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win&lang=en-US'
+        );
+        expect(testEvent['release_channel']).toBe('esr115');
     });
     it('should identify release_channel for Firefox iOS', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
