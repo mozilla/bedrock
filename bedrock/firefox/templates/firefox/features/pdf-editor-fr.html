@@ -1,0 +1,105 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+
+{% block article_title_short %}Comment modifier un PDF en ligne{% endblock %}
+{% block article_title %}Comment modifier un PDF en ligne et en toute sécurité{% endblock %}
+{% block page_desc %}Apprenez à modifier vos documents PDF avec Firefox à travers un guide détaillant les fonctionnalités pour ajouter du texte et même de signer vos documents{% endblock %}
+
+{% block article_content %}
+
+<p>Ah, cette frustration du quotidien qu’on connaît trop bien :  modifier un PDF pour le travail ou les études, mais avoir à imprimer sur papier, écrire à la main, et le scanner de nouveau vers votre ordinateur.</p>
+
+<p>Des options en ligne, il y en a plein. Mais est-ce totalement sécurisé ? Ces outils vous invitent à ouvrir votre document sur leur site et à le modifier dans une plateforme inconnue, avec peu de détails sur la protection de vos données. </p>
+
+<p>Après tout, fournir des informations fiscales, financières, ou personnelles, revient à partager des données sensibles à une entreprise extérieure qui pourrait de ne pas disposer de la sécurité suffisante pour protéger vos données.</p>
+
+<p>Avec <a href="{{ url('firefox.features.pdf-free') }}">l’éditeur PDF</a> Firefox, fini de se retrouver sur des interfaces peu sécurisées, chargées de pubs ou encore télécharger des logiciels encombrants. </p>
+
+<p><a href="{{ url('firefox.features.pdf-complete') }}">Remplir un PDF</a>, le modifier ou l'enregistrer n’a jamais été aussi simple et rapide. Qu'il s'agisse d'une déclaration d’impôts, d’un contrat à signer ou de documents de travail, il suffit de quelques clics pour remplir un PDF&nbsp;!</p>
+
+<h2>Modifier un PDF en ligne rapidement et facilement</h2>
+
+<ol class="mzp-u-list-styled">
+  <li>
+    <p>Il suffit d’ouvrir le PDF à remplir directement dans Firefox. Retrouver votre PDF sur votre ordinateur, de faire un clic droit dessus et de sélectionner "Ouvrir avec Firefox".</p>
+  </li>
+
+  <li>
+    <p>Le document apparaît dans un onglet de votre navigateur. La barre d'outils PDF apparaît en haut à droite de l'écran.</p>
+    <p><figure class="c-article-figure">
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </figure></p>
+  </li>
+
+  <li><p>Pour ajouter du texte, cliquez sur l'icône Texte et cliquez directement sur votre formulaire, là où vous souhaitez renseigner des informations.</p>
+    <p><figure class="c-article-figure">
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-texte.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-texte-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </figure></p>
+  </li>
+
+  <li><p>Vous pouvez déplacer vos blocs de texte et ajuster la taille, la police ou la couleur du texte ajouté, comme bon vous semble. Vous avez saisi trop d’informations ? Une icône Corbeille apparaît sous chaque bloc pour vous permettre de les effacer facilement.</p></li>
+
+  <li><p>Pour signer votre PDF, cliquez sur l'icône Dessin qui vous permettra d’ apposer vos initiales ou ajouter votre signature. Vous pouvez également surligner ou ajouter des images à votre document.</p>
+    <p><figure class="c-article-figure">
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-surligner.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-surligner-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </figure></p>
+  </li>
+
+  <li><p>Une fois vos modifications terminées, enregistrez le nouveau document où vous le souhaitez sur votre ordinateur au format PDF, tout simplement en cliquant sur l’icône Dossier. Donnez un nouveau nom à votre fichier et hop le voilà complet, ajouté, et classé&nbsp;!</p>
+    <p><figure class="c-article-figure">
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-sauvegarder.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-sauvegarder-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </figure></p>
+  </li>
+</ol>
+
+<p>Modifier des PDF oui, mais de façon simple et sécurisée !</p>
+
+<hr>
+
+<h2>Vous n'avez pas encore Firefox ?</h2>
+<p><a href="{{ url('firefox.features.index') }}">En savoir plus</a> sur nos fonctionnalités, ou <a href="">Téléchargez Firefox</a> dès maintenant.</p>
+
+
+{% endblock article_content %}
