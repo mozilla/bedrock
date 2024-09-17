@@ -1144,12 +1144,19 @@
     },
     {
       "files":  [
+        "css/m24/root.scss"
+      ],
+      "name": "m24-root"
+    },
+    {
+      "files":  [
         "css/m24/base.scss"
       ],
-      "name": "m24"
+      "name": "m24-base"
     },
     {
       "files": [
+        "css/m24/root.scss",
         "css/protocol/protocol-mozilla-2024.scss"
       ],
       "name": "protocol-mozilla-2024"

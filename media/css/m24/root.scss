@@ -1,0 +1,222 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'vars/color';
+
+:root {
+    // black and white
+    --m24-white: #{$token-color-white};
+    --m24-black: #{$token-color-black};
+
+    // gray
+    --m24-light-gray: #{$token-color-light-gray};
+    --m24-medium-gray: #{$token-color-medium-gray};
+    --m24-dark-gray: #{$token-color-dark-gray};
+    --m24-functional-gray: #{$token-color-functional-gray-on-white};
+
+    // green
+    --m24-green: #{$token-color-green};
+    --m24-light-green: #{$token-color-light-green};
+    --m24-dark-green: #{$token-color-dark-green};
+
+    // pink
+    --m24-pink: #{$token-color-pink};
+    --m24-light-pink: #{$token-color-light-pink};
+    --m24-dark-pink: #{$token-color-dark-pink};
+
+    // orange
+    --m24-orange: #{$token-color-orange};
+    --m24-light-orange: #{$token-color-light-orange};
+    --m24-dark-orange: #{$token-color-dark-orange};
+
+    // grid
+    --grid-margin: 16px;
+    --grid-gutter: 8px;
+
+    // spacers
+    --spacer-3xl: 80px;
+    --spacer-2xl: 64px;
+    --spacer-xl: 32px;
+    --spacer-lg: 24px;
+    --spacer-md: 16px;
+    --spacer-sm: 8px;
+    --spacer-xs: 8px;
+    --spacer-2xs: 4px;
+
+    // container
+    --container-padding: 16px;
+
+    // titles
+    --text-title-2xl: 48px;
+    --text-title-xl: 32px;
+    --text-title-lg: 24px;
+    --text-title-md: 18px;
+    --text-title-sm: 16px;
+
+    // body
+    --text-body-lg: 18px;
+    --text-body-md: 16px;
+    --text-body-sm: 12px;
+
+    // buttons
+    --text-button-lg: 24px;
+    --text-button-sm: 18px;
+}
+
+@media #{$mq-md} {
+    :root {
+        // grid
+        --grid-margin: 24px;
+        --grid-gutter: 12px;
+
+        // spacers
+        --spacer-3xl: 128px;
+        --spacer-2xl: 80px;
+        --spacer-xl: 64px;
+        --spacer-lg: 32px;
+        --spacer-md: 24px;
+        --spacer-sm: 16px;
+        --spacer-xs: 8px;
+        --spacer-2xs: 4px;
+
+        // container
+        --container-padding: 24px;
+
+        // title
+        --text-title-2xl: 64px;
+        --text-title-xl: 48px;
+        --text-title-lg: 32px;
+        --text-title-md: 24px;
+        --text-title-sm: 16px;
+
+        // body
+        --text-body-lg: 18px;
+        --text-body-md: 16px;
+        --text-body-sm: 12px;
+
+        // buttons
+        --text-button-lg: 32px;
+        --text-button-sm: 18px;
+    }
+}
+
+@media #{$mq-xl} {
+    :root {
+        // grid
+        --grid-margin: 32px;
+        --grid-gutter: 16px;
+
+        // spacers
+        --spacer-3xl: 200px;
+        --spacer-2xl: 128px;
+        --spacer-xl: 64px;
+        --spacer-lg: 32px;
+        --spacer-md: 24px;
+        --spacer-sm: 16px;
+        --spacer-xs: 8px;
+        --spacer-2xs: 4px;
+
+        // container
+        --container-padding: 32px;
+
+        // titles
+        --text-title-2xl: 128px;
+        --text-title-xl: 80px;
+        --text-title-lg: 48px;
+        --text-title-md: 24px;
+        --text-title-sm: 16px;
+
+        // body
+        --text-body-lg: 18px;
+        --text-body-md: 16px;
+        --text-body-sm: 12px;
+
+        // buttons
+        --text-button-lg: 48px;
+        --text-button-sm: 18px;
+    }
+}
+
+$m24-font-path: '/media/fonts/m24';
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: normal;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: normal;
+    font-weight: 600;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: italic;
+    font-weight: 600;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldItalic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldItalic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: normal;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Bold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: italic;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Italic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Text';
+    font-style: italic;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldItalic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldItalic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Headline';
+    font-style: normal;
+    font-weight: normal;
+    src:
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Headline';
+    font-style: normal;
+    font-weight: bold;
+    src:
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Bold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Bold.woff') format('woff');
+}

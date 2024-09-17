@@ -25,35 +25,6 @@ $token-color-feedback-success: $token-color-green;
 $token-color-feedback-caution: $token-color-dark-orange;
 $token-color-feedback-error: $token-color-orange;
 
-// define CSS variables for the browser
-// do not reference these directly, use the $m24-color-* variables
-:root {
-    // black and white
-    --m24-white: #{$token-color-white};
-    --m24-black: #{$token-color-black};
-
-    // gray
-    --m24-light-gray: #{$token-color-light-gray};
-    --m24-medium-gray: #{$token-color-medium-gray};
-    --m24-dark-gray: #{$token-color-dark-gray};
-    --m24-functional-gray: #{$token-color-functional-gray-on-white};
-
-    // green
-    --m24-green: #{$token-color-green};
-    --m24-light-green: #{$token-color-light-green};
-    --m24-dark-green: #{$token-color-dark-green};
-
-    // pink
-    --m24-pink: #{$token-color-pink};
-    --m24-light-pink: #{$token-color-light-pink};
-    --m24-dark-pink: #{$token-color-dark-pink};
-
-    // orange
-    --m24-orange: #{$token-color-orange};
-    --m24-light-orange: #{$token-color-light-orange};
-    --m24-dark-orange: #{$token-color-dark-orange};
-}
-
 /* ------------------------------------------------------------------------------- */
 // define sass variables to hold CSS variables
 // reference these!
@@ -111,24 +82,4 @@ $m24-color-dark-pink: var(--m24-dark-pink);
     --m24-orange: #{$token-color-orange};
     --m24-light-orange: #{$token-color-dark-orange};
     --m24-dark-orange: #{$token-color-light-orange};
-}
-
-/* ------------------------------------------------------------------------------- */
-
-.m24-t-light-alt {
-    background-color: $m24-color-light-gray;
-}
-
-.m24-t-dark {
-    @include invert-colors;
-    background-color: $m24-color-white;
-    color: $m24-color-black;
-}
-
-.m24-t-green {
-    background-color: $m24-color-light-green;
-}
-
-.m24-t-purple {
-    background-color: $token-color-light-pink;
 }
