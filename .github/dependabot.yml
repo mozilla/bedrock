@@ -10,6 +10,21 @@ updates:
       - dependencies
   - package-ecosystem: npm
     directory: '/'
+    ignore:
+      # Needs to be kept in sync with glean_parser Python dependency.
+      - dependency-name: '@mozilla/glean'
+      # Owned NPM packages that require manual testing.
+      - dependency-name: '@mozilla-protocol/core'
+      - dependency-name: '@mozmeao/consent-banner'
+      - dependency-name: '@mozmeao/cookie-helper'
+      - dependency-name: '@mozmeao/dnt-helper'
+      - dependency-name: '@mozmeao/trafficcop'
+      # Need to be kept in sync with pre-commit-config.yaml.
+      - dependency-name: 'eslint'
+      - dependency-name: 'eslint-config-prettier'
+      - dependency-name: 'prettier'
+      - dependency-name: 'stylelint'
+      - dependency-name: 'stylelint-config-standard-scss'
     schedule:
       interval: monthly
     groups:
@@ -18,25 +33,11 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
-        patterns:
-          - '*'
-        exclude-patterns:
-          - '@mozilla/glean'  # Glean.js needs to be kept in sync with glean_parser Python dependency
-          - '@mozilla-protocol/*'  # Protocol package updates require individual testing.
-          - '@mozmeao/*'  # Owned NPM package updates require individual testing.
       dev-dependencies:
         dependency-type: development
         update-types:
           - 'minor'
           - 'patch'
-        patterns:
-          - '*'
-        exclude-patterns:
-          - 'eslint'  # The following deps need to be kept in sync with pre-commit-config.yaml.
-          - 'eslint-config-prettier'
-          - 'prettier'
-          - 'stylelint'
-          - 'stylelint-config-standard-scss'
     open-pull-requests-limit: 10
     labels:
       - Frontend
