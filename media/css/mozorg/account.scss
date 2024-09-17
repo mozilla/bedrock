@@ -60,7 +60,7 @@ $image-path: '/media/protocol/img';
 .accounts-products {
     h2 {
         @include text-title-xs;
-        @include font-base;
+        font-family: var(--body-font-family);
     }
 
     h4 {

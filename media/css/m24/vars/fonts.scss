@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$m24-font-path: '/media/fonts/m24/';
+$m24-font-path: '/media/fonts/m24';
 
 @font-face {
     font-display: swap;
@@ -10,8 +10,28 @@ $m24-font-path: '/media/fonts/m24/';
     font-style: normal;
     font-weight: normal;
     src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    src:
         url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff2') format('woff2'),
         url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Sans Text';
+    font-style: italic;
+    font-weight: 600;
+    src:
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff') format('woff');
 }
 
 @font-face {
@@ -30,8 +50,8 @@ $m24-font-path: '/media/fonts/m24/';
     font-style: italic;
     font-weight: normal;
     src:
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-SemiBoldIt.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-sans-text/MozillaSansTextBETA-Italic.woff') format('woff');
 }
 
 @font-face {
@@ -50,8 +70,8 @@ $m24-font-path: '/media/fonts/m24/';
     font-style: normal;
     font-weight: normal;
     src:
-        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-SemiBold.woff2') format('woff2'),
-        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlab-SemiBold.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-Regular.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -61,8 +81,10 @@ $m24-font-path: '/media/fonts/m24/';
     font-weight: bold;
     src:
         url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-Bold.woff2') format('woff2'),
-        url('#{$m24-font-path}mozilla-semi-slab/MozillaSemiSlab-Bold.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-semi-slab/MozillaSemiSlab-Bold.woff') format('woff');
 }
 
-$primary-font: "Mozilla Sans Text", inter, x-localespecific, sans-serif;
-$secondary-font: "Mozilla SemiSlab", "Zilla Slab", inter, x-localespecific;
+/* stylelint-disable value-keyword-case  */
+$primary-font: "Mozilla Sans Text", Inter, Arial, "X-LocaleSpecific", sans-serif;
+$secondary-font: "Mozilla SemiSlab", Rockwell, "Roboto Slab", "X-LocaleSpecific", serif;
+/* stylelint-enable */

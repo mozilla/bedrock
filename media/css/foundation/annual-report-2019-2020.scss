@@ -118,9 +118,8 @@ $image-path: '/media/protocol/img';
 // Content sections
 .c-intro-section {
     p {
-        @include font-mozilla;
         @include text-title-sm;
-        font-style: italic;
+        font-family: var(--title-font-family);
         margin-bottom: 0;
     }
 }
@@ -333,8 +332,8 @@ $image-path: '/media/protocol/img';
     }
 
     li {
-        @include font-mozilla;
         @include text-title-sm;
+        font-family: var(--title-font-family);
         margin-left: $spacing-md;
         margin-bottom: $spacing-lg;
         padding-left: $spacing-sm;
@@ -537,8 +536,8 @@ $image-path: '/media/protocol/img';
     }
 
     span {
-        @include font-mozilla;
         @include text-title-xs;
+        font-family: var(--title-font-family);
         font-weight: bold;
         display: block;
         margin-bottom: $spacing-md;
@@ -587,8 +586,8 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-2xl;
 
     .highlight {
-        @include font-mozilla;
         @include text-title-xs;
+        font-family: var(--title-font-family);
         font-weight: bold;
     }
 

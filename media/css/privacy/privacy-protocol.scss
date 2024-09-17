@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 $border: 2px solid $color-marketing-gray-20;
 
 .mzp-c-sidemenu .mzp-c-sidemenu-title {
-    @include font-base;
+    font-family: var(--body-font-family);
 }
 
 @media #{$mq-md} {
@@ -67,7 +67,6 @@ $border: 2px solid $color-marketing-gray-20;
 }
 
 .privacy-title {
-    @include font-firefox;
     margin-bottom: $spacing-lg;
 
     @media #{$mq-sm} {
@@ -265,7 +264,6 @@ $border: 2px solid $color-marketing-gray-20;
 #privacy-principles {
     ol {
         @include text-title-md;
-        @include font-mozilla;
         font-weight: bold;
         margin-left: 1.15em;
 
@@ -274,7 +272,6 @@ $border: 2px solid $color-marketing-gray-20;
         }
 
         p {
-            @include font-base;
             @include text-body-md;
             font-weight: normal;
         }

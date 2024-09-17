@@ -10,8 +10,8 @@ $image-path: '/media/protocol/img';
 
 .c-careers-diversity-numbers {
     .mzp-c-picto-heading {
-        @include font-base;
         margin-bottom: $spacing-md;
+        font-family: var(--body-font-family);
         font-weight: 400;
     }
 }
@@ -87,8 +87,8 @@ $image-path: '/media/protocol/img';
 
                 p {
                     @include text-body-sm;
-                    @include font-base;
                     color: $color-dark-gray-20;
+                    font-family: var(--body-font-family);
                     font-weight: 700;
                     margin-bottom: 0;
                 }

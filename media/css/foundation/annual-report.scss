@@ -187,9 +187,8 @@ $image-path: '/media/protocol/img';
 
 .c-intro-section {
     p {
-        @include font-mozilla;
         @include text-title-sm;
-        font-style: italic;
+        font-family: var(--title-font-family);
         margin-bottom: 0;
     }
 }

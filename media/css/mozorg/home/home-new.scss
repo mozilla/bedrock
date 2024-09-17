@@ -47,8 +47,8 @@ header {
         }
 
         p {
-            @include font-mozilla;
             @include font-size(18px);
+            font-family: var(--title-font-family);
             margin: 0 auto;
             max-width: 780px;
             line-height: 1.4;
@@ -68,7 +68,6 @@ header {
 
 .c-homepage {
     h2 {
-        @include font-mozilla;
         text-align: center;
 
         @media #{$mq-xs} {
@@ -98,7 +97,7 @@ header {
 
         blockquote,
         cite {
-            @include font-base;
+            font-family: var(--body-font-family);
             text-align: center;
         }
 
@@ -175,9 +174,9 @@ header {
     }
 
     h3 {
-        @include font-base;
         @include text-body-md;
-        font-weight: bold;
+        font-family: var(--body-font-family);
+        font-weight: 600;
         line-height: 1.2;
     }
 

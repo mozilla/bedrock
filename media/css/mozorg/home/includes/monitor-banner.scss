@@ -31,8 +31,8 @@ rgba(91, 109, 248, 0.15) 100%;
         }
 
         h2 {
-            @include font-base;
             @include font-size(22px);
+            font-family: var(--body-font-family);
             margin: 0 0 $spacing-md;
 
             span {
@@ -106,7 +106,7 @@ rgba(91, 109, 248, 0.15) 100%;
 
 // Mid-page banner
 .monitor-feature {
-    @include font-base;
+    font-family: var(--body-font-family);
     padding-top: 0;
 
     .feature-wrapper {
@@ -123,8 +123,8 @@ rgba(91, 109, 248, 0.15) 100%;
         }
 
         h2 {
-            @include font-base;
             @include font-size(32px);
+            font-family: var(--body-font-family);
             margin: $spacing-lg 0;
             text-align: start;
 
