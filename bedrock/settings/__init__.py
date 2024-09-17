@@ -246,8 +246,11 @@ _csp_child_src = list(set(_csp_default_src + _csp_child_src))
 csp_extra_frame_src = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
 if csp_extra_frame_src:
     _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
+csp_report_uri = config("CSP_REPORT_URI", default="") or None
 
 CONTENT_SECURITY_POLICY = {
+    # Default report percentage to 1% just in case the env var isn't set, we don't want to bombard Sentry.
+    "REPORT_PERCENTAGE": config("CSP_REPORT_PERCENTAGE", default="1", parser=int),
     "DIRECTIVES": {
         "default-src": _csp_default_src,
         "img-src": list(set(_csp_default_src + _csp_img_src)),
@@ -258,14 +261,12 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
+        "report-uri": csp_report_uri,
     },
 }
 # Only set up report-only CSP if we have a report-uri set.
-if csp_report_uri := config("CSP_REPORT_URI", default="") or None:
+if csp_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
-    # Add reporting.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["REPORT_PERCENTAGE"] = config("CSP_REPORT_PERCENTAGE", default="100", parser=int)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_report_uri
     # CSP directive updates we're testing that we hope to move to the enforced policy.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
