@@ -11,20 +11,20 @@ navigation-refresh-close-about-us-menu = Close About us menu
 navigation-refresh-mozilla-manifesto = { -brand-name-mozilla } manifesto
 navigation-refresh-mozilla-foundation = { -brand-name-mozilla-foundation }
 navigation-refresh-get-involved = Get involved
-navigation-refresh-innovation-projects = Innovation Projects
+navigation-refresh-innovation-projects = Innovation projects
 navigation-refresh-blog = Blog
 
 ## Firefox
 
-navigation-refresh-firefox-browsers = { -brand-name-firefox-browsers }
-navigation-refresh-close-firefox-browsers-menu = Close { -brand-name-firefox-browsers } menu
+navigation-refresh-firefox-browsers = { -brand-name-firefox } browsers
+navigation-refresh-close-firefox-browsers-menu = Close { -brand-name-firefox } browsers menu
 navigation-refresh-firefox-for-desktop = { -brand-name-firefox } for Desktop
 navigation-refresh-firefox-for-android = { -brand-name-firefox } for { -brand-name-android }
 navigation-refresh-firefox-for-ios = { -brand-name-firefox } for { -brand-name-ios }
 navigation-refresh-firefox-focus = { -brand-name-firefox-focus }
 navigation-refresh-firefox-relay = { -brand-name-firefox-relay }
 navigation-refresh-all-products = All products
-navigation-refresh-firefox-blog = { -brand-name-firefox } Blog
+navigation-refresh-firefox-blog = { -brand-name-firefox } blog
 
 ## Products
 
