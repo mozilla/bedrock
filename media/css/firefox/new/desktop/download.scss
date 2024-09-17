@@ -913,7 +913,6 @@ button.mzp-c-cta-link {
 
     thead {
         th {
-            @include font-firefox;
             @include text-title-xs;
             border-bottom: 3px solid $color-marketing-gray-20;
             font-weight: bold;

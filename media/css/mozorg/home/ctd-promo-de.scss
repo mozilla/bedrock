@@ -11,10 +11,6 @@ $image-path: '/media/protocol/img';
 .ctd-promo {
     .ctd-promo-non-fx,
     .ctd-promo-fx {
-        h2 {
-            @include font-firefox;
-        }
-
         p {
             @include text-body-lg;
         }

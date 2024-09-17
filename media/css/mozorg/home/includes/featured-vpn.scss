@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .vpn-feature {
-    @include font-base;
+    font-family: var(--body-font-family);
     padding-top: 0;
 
     .feature-wrapper {
@@ -38,8 +38,8 @@ $image-path: '/media/protocol/img';
     }
 
     h2 {
-        @include font-base;
         @include text-title-xs;
+        font-family: var(--body-font-family);
         font-weight: bold;
         text-align: center;
         margin: $spacing-lg 0;

@@ -27,7 +27,8 @@ ol li ol {
 
     h3 {
         @include text-title-xs;
-        @include font-base;
+        font-family: var(--body-font-family);
+        font-weight: 600;
     }
 
     details {

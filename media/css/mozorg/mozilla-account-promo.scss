@@ -38,9 +38,9 @@ $promo-sm-mq: 400px;
     }
 
     h2 {
-        @include font-base;
         @include font-size(56px);
         @include bidi(((text-align, left, right),));
+        font-family: var(--body-font-family);
         line-height: 1;
         color: $color-white;
         letter-spacing: -2px;
@@ -65,10 +65,10 @@ $promo-sm-mq: 400px;
     }
 
     .accounts-cta-wrapper {
-        @include font-base;
+        align-items: flex-start;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        font-family: var(--body-font-family);
 
         #fxa-email-form {
             color: $color-white;
@@ -110,7 +110,7 @@ $promo-sm-mq: 400px;
         margin-top: $spacing-2xl;
 
         a {
-            @include font-base;
+            font-family: var(--body-font-family);
         }
 
         small {
@@ -211,7 +211,7 @@ $promo-sm-mq: 400px;
             width: 100%;
 
             #fxa-email-form-submit {
-                @include font-base;
+                font-family: var(--body-font-family);
             }
         }
 

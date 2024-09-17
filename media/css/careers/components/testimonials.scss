@@ -87,9 +87,9 @@ $image-path: '/media/protocol/img';
             }
 
             q {
-                @include font-mozilla;
                 @include font-size(28px);
                 color: $color-black;
+                font-family: var(--title-font-family);
                 font-weight: bold;
                 margin-bottom: $spacing-md;
                 position: relative;
@@ -210,8 +210,9 @@ $image-path: '/media/protocol/img';
 
         blockquote {
             @include text-title-2xs;
-            font-weight: 400;
             border: 0;
+            color: $color-black;
+            font-weight: 400;
 
             .c-careers-testimonial-quote {
                 position: relative;
@@ -261,8 +262,8 @@ $image-path: '/media/protocol/img';
 
     p {
         @include text-body-sm;
-        @include font-base;
         color: $color-dark-gray-20;
+        font-family: var(--body-font-family);
         font-weight: 700;
         margin-bottom: 0;
     }

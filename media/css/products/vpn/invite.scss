@@ -53,8 +53,8 @@ $image-path: '/media/protocol/img';
     }
 
     legend {
-        @include font-base;
         @include text-body-md;
+        font-family: var(--body-font-family);
     }
 }
 

@@ -198,8 +198,8 @@ $aht-color-secondary: #FDA1DE;
     }
 
     .mzp-c-picto-heading {
-        @include font-base;
         @include font-size(18px);
+        font-family: var(--body-font-family);
         margin-bottom: $spacing-lg;
     }
 }

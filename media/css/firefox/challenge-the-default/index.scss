@@ -257,7 +257,6 @@ html:not(.is-firefox) {
     background-color: $color-white;
 
     h2 {
-        @include font-firefox;
         @include font-size(40px);
         font-weight: 800;
         margin-bottom: $spacing-lg;
@@ -265,7 +264,6 @@ html:not(.is-firefox) {
     }
 
     p {
-        @include font-firefox;
         color: $color-marketing-gray-70;
         font-weight: 600;
     }
@@ -359,7 +357,6 @@ html:not(.is-firefox) {
         }
 
         p {
-            @include font-firefox;
             color: $color-marketing-gray-70;
             font-weight: 600;
             margin-top: $spacing-xl;
@@ -422,7 +419,6 @@ html:not(.is-firefox) {
     }
 
     p {
-        @include font-firefox;
         @include font-size(20px);
         font-weight: 600;
         max-width: 475px;

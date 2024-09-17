@@ -18,7 +18,6 @@
 
         a,
         span {
-            @include font-mozilla;
             @include text-body-xl;
             font-weight: bold;
         }

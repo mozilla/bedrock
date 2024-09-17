@@ -126,10 +126,6 @@
         margin-bottom: $layout-lg;
 
         .c-browser-window-top {
-            h2 {
-                @include text-title-2xl;
-            }
-
             &::after {
                 height: 95px;
                 bottom: 6px;

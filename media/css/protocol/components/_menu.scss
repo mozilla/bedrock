@@ -36,7 +36,7 @@
     h4,
     h5,
     h6 {
-        @include font-base;
+        font-family: var(--body-font-family);
     }
 
     @media #{$mq-md} {
@@ -59,10 +59,10 @@
     position: relative;
 
     .c-menu-title {
-        @include font-base;
         @include text-body-md;
         color: $color-black;
         display: block;
+        font-family: var(--body-font-family);
         font-weight: bold;
         margin-bottom: 0;
         min-height: 32px;

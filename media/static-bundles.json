@@ -1237,6 +1237,12 @@
         "css/m24/base.scss"
       ],
       "name": "m24"
+    },
+    {
+      "files": [
+        "css/protocol/protocol-mozilla-2024.scss"
+      ],
+      "name": "protocol-mozilla-2024"
     }
   ],
   "js": [
