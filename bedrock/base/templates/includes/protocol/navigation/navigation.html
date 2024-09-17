@@ -22,7 +22,11 @@
         <button class="c-navigation-menu-button" type="button" aria-controls="c-navigation-items" data-testid="navigation-menu-button">{{ ftl('navigation-v2-menu') }}</button>
         <div class="c-navigation-logo">
           <a href="{{ url('mozorg.home') }}" data-link-text="mozilla home icon" data-link-type="nav">
+          {% if switch('m24-logo') %}
+            <img class="c-navigation-logo-image m24-logo" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ logo_alt }}" width="88" height="21">
+          {% else %}
             <img class="c-navigation-logo-image" src="{{ static('protocol/img/logos/mozilla/logo-word-hor.svg') }}" alt="{{ logo_alt }}" width="112" height="32">
+          {% endif %}
           </a>
         </div>
 
