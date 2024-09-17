@@ -2,6 +2,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@keyframes nav-slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
 .moz24-navigation-refresh {
     display: flex;
     width: 100%;
@@ -32,22 +42,30 @@
     .c-navigation-items {
         // mobile specfic styles
         @media (max-width: $screen-md) {
-            display: flex;
-            position: fixed;
-            z-index: 100;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: calc(100vh - 48px); // 48px margin top
-            background-color: #fff;
-            transition: 0.45s;
-            transform: translateX(100%);
-            margin-top: 48px;
-            padding-top: 0;
-            overflow: hidden auto;
+            display: none;
 
             &.mzp-is-open {
-                transform: translateX(0);
+                display: flex;
+                position: fixed;
+                z-index: 100;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: calc(100vh - 48px); // 48px margin top
+                background-color: #fff;
+                transition: 0.45s;
+                margin-top: 48px;
+                padding-top: 0;
+                overflow: hidden auto;
+                animation: nav-slide-in 0.45s ease;
+
+                .c-menu-category-list:has(.c-menu-category.mzp-is-selected) {
+                    margin-bottom: 0;
+
+                    .c-menu-category:not(.mzp-is-selected) {
+                        display: none;
+                    }
+                }
             }
         }
     }
@@ -246,15 +264,7 @@
             }
 
             .c-menu-panel {
-                transform: translateX(0);
-            }
-        }
-    }
-
-    .c-menu-panel {
-        // mobile specfic styles
-        @media (max-width: $screen-md) {
-            display: block;
+                display: block;
                 position: fixed;
                 z-index: 100;
                 top: 0;
@@ -263,9 +273,21 @@
                 height: auto;
                 background-color: #fff;
                 overflow: hidden auto;
-                transition: 0.45s;
-                margin-top: 50px;
-                transform: translateX(100%);
+                margin-top: 98px;
+                animation: nav-slide-in 0.45s ease;
+
+                @media (min-width: $screen-md) {
+                    margin-top: 64px;
+                    animation: none;
+                }
+            }
+        }
+    }
+
+    .c-menu-panel {
+        // mobile specfic styles
+        @media (max-width: $screen-md) {
+            display: none;
         }
 
         @media (min-width: $screen-md) {
@@ -489,6 +511,17 @@
 }
 
 // page content
+// page content here is not part of Protocol, it is specifc to Bedrock; should be documented in future
+body:has(.c-navigation-items.mzp-is-open) {
+    #outer-wrapper {
+        display: none;
+
+        @media (min-width: $screen-md) {
+            display: block;
+        }
+    }
+}
+
 #outer-wrapper {
     margin-top: 48px;
 
