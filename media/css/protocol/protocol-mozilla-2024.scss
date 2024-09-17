@@ -164,6 +164,10 @@ textarea {
     font-family: var(--body-font-family);
 }
 
+.mzp-c-card .mzp-c-card-content .mzp-c-card-tag {
+    font-family: var(--body-font-family);
+}
+
 // Keep the old link colors on Firefox-branded pages
 body.mzp-t-firefox {
     --link-color-hover-inverse: #{$color-blue-05};
