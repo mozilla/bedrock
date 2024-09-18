@@ -437,6 +437,18 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-131-na.scss"
+      ],
+      "name": "firefox_whatsnew_131_na"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-131-eu.scss"
+      ],
+      "name": "firefox_whatsnew_131_eu"
+    },
+    {
+      "files": [
         "css/privacy/privacy-email.scss"
       ],
       "name": "privacy_email"
@@ -1548,6 +1560,18 @@
         "js/firefox/whatsnew/whatsnew-130.js"
       ],
       "name": "firefox_whatsnew_130"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-131.js"
+      ],
+      "name": "firefox_whatsnew_131"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-131-protections-dashboard.js"
+      ],
+      "name": "firefox_whatsnew_131_protections_dashboard"
     },
     {
       "files": [

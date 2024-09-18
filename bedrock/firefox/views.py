@@ -488,6 +488,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx129-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx129-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -496,6 +498,9 @@ class WhatsnewView(L10nTemplateView):
 
     # place expected ?v= values in this list
     variations = ["1", "2", "3", "4"]
+
+    # Nimbus experiment variation expected values
+    nimbus_variations = ["v1", "v2", "v3", "v4"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -522,12 +527,18 @@ class WhatsnewView(L10nTemplateView):
         ctx["utm_params"] = f"utm_source={entrypoint}&utm_medium=referral&utm_campaign={campaign}&entrypoint={entrypoint}"
 
         variant = self.request.GET.get("v", None)
+        nimbus_variant = self.request.GET.get("variant", None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
+        # ensure nimbus_variant matches pre-defined value
+        if nimbus_variant not in self.nimbus_variations:
+            nimbus_variant = None
+
         ctx["variant"] = variant
+        ctx["nimbus_variant"] = nimbus_variant
 
         return ctx
 
@@ -575,6 +586,18 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-de.html"
                 elif locale == "fr":
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("131."):
+            if nimbus_branch == "experiment-wnp-131-tabs":
+                if nimbus_variant == "v1":
+                    template = "firefox/whatsnew/index.html"
+                elif locale in ["en-US", "en-CA"] and nimbus_variant == "v2":
+                    template = "firefox/whatsnew/whatsnew-fx131-na.html"
+                elif locale in ["en-GB", "de", "fr"] and nimbus_variant in ["v3", "v4"]:
+                    template = "firefox/whatsnew/whatsnew-fx131-eu.html"
                 else:
                     template = "firefox/whatsnew/index.html"
             else:
