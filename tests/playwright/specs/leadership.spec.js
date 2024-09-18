@@ -21,8 +21,10 @@ test.describe(
         });
 
         test('Open / close biography', async ({ page }) => {
-            const leader = page.locator('#laura-chambers.vcard.has-bio');
-            const bio = page.locator('.mzp-c-modal .vcard.has-bio .person-bio');
+            const leader = page.getByText('Chief Executive Officer', {
+                exact: true
+            });
+            const bio = page.locator('.mzp-c-modal .has-bio .person-bio');
             const modal = page.locator('.mzp-c-modal');
             const modalCloseButton = page.locator('.mzp-c-modal-button-close');
 
