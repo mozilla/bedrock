@@ -4,6 +4,13 @@ DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
 POCKET_MODE = Pocket
 
+# Check if 'uv' exists and set the command accordingly
+ifneq (, $(shell which uv 2>/dev/null))
+	pip = uv pip
+else
+	pip = pip
+endif
+
 all: help
 
 help:
@@ -164,7 +171,7 @@ compile-requirements: .docker-build-pull
 	${DC} run --rm compile-requirements
 
 check-requirements: .docker-build-pull
-	${DC} run --rm test pip list -o
+	${DC} run --rm app ./bin/check-pinned-requirements.py
 
 ######################################################
 # For use in local-machine development (not in Docker)
@@ -184,8 +191,8 @@ install-local-python-deps:
 	# Dev requirements are a superset of prod requirements, but we install
 	# them in the same separate steps that we use for our Docker-based build,
 	# so that it mirrors Production and Dev image building
-	pip install -r requirements/prod.txt
-	pip install -r requirements/dev.txt
+	$(pip) install -r requirements/prod.txt
+	$(pip) install -r requirements/dev.txt
 
 run-local-task-queue:
 	# We temporarily source the .env for the command's duration only
@@ -195,7 +202,7 @@ run-local-task-queue:
 
 
 clean-local-deps:
-	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
+	$(pip) uninstall mdx_outline -y && $(pip) freeze | xargs $(pip) uninstall -y
 
 # Done explicitly to avoid surprises
 install-custom-git-hooks:
