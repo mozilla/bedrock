@@ -96,7 +96,7 @@ template {
     background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
 }
 
-.c-navigation-logo-image.m24-logo {
+.c-navigation-logo .c-navigation-logo-image.m24-logo {
     @media #{$mq-md} {
         height: 21px;
         position: relative;
