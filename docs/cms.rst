@@ -423,6 +423,33 @@ views in the URLconf. It can also be passed to our very handy
 
 For more details, please see the docstring on ``bedrock.cms.decorators.prefer_cms``.
 
+
+Generating URLs for CMS pages in non-CMS templates
+==================================================
+
+Pages in the CMS don't appear in the hard-coded URLConfs in Bedrock. Normally,
+this means there's no way to use `url()` to generate a path to it.
+
+However, if there's a page in the CMS you need to generate a URL for using
+the ``url()`` template tag, _and you know what its path will be_, Bedrock contains
+a solution.
+
+``bedrock.cms.cms_only_urls`` is a special URLConf that only gets loaded during
+the call to the ``url()`` helper. If you expand it with a named route definition
+that matches the path you know will/should exist in the CMS (and most of our
+CMS-backed pages _do_ have carefully curated paths), the ``url()`` helper will
+give you a path that points to that page, even though it doesn't really exist
+as a static Django view.
+
+See the example in the ``bedrock.cms.cms_only_urls.py`` file.
+
+.. note::
+  Moving a URL route to ``cms_only_urls.py`` is a natural next step after
+  you've migrated a page to the CMS using the ``@prefer_cms`` decorator
+  and now want to remove the old view without breaking all the calls to
+  `url('some.view')` or `reverse('some.view')`.
+
+
 Images
 ======
 
@@ -502,6 +529,7 @@ By default, the sqlite DB you can download to run bedrock locally is based on th
 Bedrock Dev. To get images from the cloud bucket for dev, run:
 
 .. code-block:: shell
+
   ./manage.py download_media_to_local
 
 This will look at your local DB, find the image files that it says should be
