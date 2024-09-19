@@ -350,7 +350,7 @@ html:not(.is-firefox) {
         margin-top: $spacing-lg;
 
         summary {
-          cursor: pointer;
+          cursor: pointer; // Temporary fix until https://github.com/mozilla/protocol/issues/948
         }
 
         h3 {
