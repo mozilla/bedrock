@@ -51,6 +51,8 @@ urlpatterns = (
         ),
         name="newsletter.firefox",
     ),
+    path("newsletter/firefox/confirm/<uuid:token>/", views.firefox_confirm, name="newsletter.firefox.confirm"),
+    path("newsletter/firefox/confirm/", views.firefox_confirm, name="newsletter.firefox.confirm.no-token"),
     page("newsletter/developer/", "newsletter/developer.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/fxa-error/", "newsletter/fxa-error.html", ftl_files=["mozorg/newsletters"]),
     page("newsletter/family/", "newsletter/family.html", ftl_files=["mozorg/newsletters"], active_locales=["en-US"]),
