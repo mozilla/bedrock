@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# coding=utf-8
-
 import re
 from collections import OrderedDict
 from operator import itemgetter
@@ -11,10 +9,7 @@ from urllib.parse import urlencode
 
 from django.conf import settings
 
-from everett.manager import ListOf
 from product_details import ProductDetails
-
-from bedrock.base.waffle import config
 
 
 # TODO: port this to django-mozilla-product-details
@@ -225,8 +220,6 @@ class FirefoxDesktop(_ProductDetails):
         locale,
         force_direct=False,
         force_full_installer=False,
-        force_funnelcake=False,
-        funnelcake_id=None,
         locale_in_transition=False,
     ):
         """
@@ -239,9 +232,6 @@ class FirefoxDesktop(_ProductDetails):
                 always True for non-release URLs.
         :param force_full_installer: Force the installer download to not be
                 the stub installer (for aurora).
-        :param force_funnelcake: Force the download version for en-US Windows to be
-                'latest', which bouncer will translate to the funnelcake build.
-        :param funnelcake_id: ID for the the funnelcake build.
         :param locale_in_transition: Include the locale in the transition URL
         :return: string url
         """
@@ -253,7 +243,6 @@ class FirefoxDesktop(_ProductDetails):
         force_direct = True if channel != "release" else force_direct
         stub_platforms = ["win", "win64"]
         esr_channels = ["esr", "esr_next"]
-        include_funnelcake_param = False
 
         # support optional MSI installer downloads
         # bug 1493205
@@ -261,21 +250,11 @@ class FirefoxDesktop(_ProductDetails):
         if is_msi:
             platform = platform[:-4]
 
-        # Bug 1345467 - Only allow specifically configured funnelcake builds
-        if funnelcake_id:
-            fc_platforms = config(f"FUNNELCAKE_{funnelcake_id}_PLATFORMS", default="", parser=ListOf(str))
-            fc_locales = config(f"FUNNELCAKE_{funnelcake_id}_LOCALES", default="", parser=ListOf(str))
-            include_funnelcake_param = platform in fc_platforms and _locale in fc_locales
-
         # Check if direct download link has been requested
         # if not just use transition URL
         if not force_direct:
             # build a link to the transition page
             transition_url = self.download_base_url_transition
-            if funnelcake_id:
-                # include funnelcake in scene 2 URL
-                transition_url += f"?f={funnelcake_id}"
-
             if locale_in_transition:
                 transition_url = f"/{locale}{transition_url}"
 
@@ -294,11 +273,7 @@ class FirefoxDesktop(_ProductDetails):
                 prod_name = "firefox-esr-next"
         elif platform in stub_platforms and not is_msi and not force_full_installer:
             # Use the stub installer for approved platforms
-            # append funnelcake id to version if we have one
-            if include_funnelcake_param:
-                suffix = f"stub-f{funnelcake_id}"
-            else:
-                suffix = "stub"
+            suffix = "stub"
         elif channel == "nightly" and locale != "en-US":
             # Nightly uses a different product name for localized builds,
             # and is the only one ಠ_ಠ

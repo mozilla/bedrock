@@ -41,7 +41,6 @@ Contents
    send-to-device
    download-buttons
    mozilla-accounts
-   funnelcake
    abtest
    vpn-subscriptions
    attribution

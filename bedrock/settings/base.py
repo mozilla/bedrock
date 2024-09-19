@@ -743,6 +743,7 @@ INSTALLED_APPS = [
     # third-party apps
     "django_jinja_markdown",
     "django_jinja",
+    "waffle",
     "watchman",
     # Wagtail CMS and related, necessary apps
     "wagtail.contrib.redirects",
@@ -861,7 +862,6 @@ TEMPLATES = [
                 "bedrock.mozorg.context_processors.canonical_path",
                 "bedrock.mozorg.context_processors.contrib_numbers",
                 "bedrock.mozorg.context_processors.current_year",
-                "bedrock.mozorg.context_processors.funnelcake_param",
                 "bedrock.firefox.context_processors.latest_firefox_versions",
             ],
             "extensions": [
@@ -1270,14 +1270,6 @@ markus.configure(backends=MARKUS_BACKENDS)
 
 # Django-CSP settings are in settings/__init__.py, where they are
 # set according to site mode
-
-# Bug 1345467: Funnelcakes are now explicitly configured in the environment.
-# Set experiment specific variables like the following:
-#
-# FUNNELCAKE_103_PLATFORMS=win,win64
-# FUNNELCAKE_103_LOCALES=de,fr,en-US
-#
-# where "103" in the variable name is the funnelcake ID.
 
 # Countries that need to see cookie banner
 # See https://www.gov.uk/eu-eea
