@@ -280,6 +280,7 @@
                 @media #{$mq-md} {
                     margin-top: 64px;
                     animation: none;
+                    max-height: calc(100vh - 64px);
                 }
             }
         }
