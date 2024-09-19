@@ -8,6 +8,7 @@ import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.urls import NoReverseMatch
 from django.utils.encoding import smart_str
 
 import jinja2
@@ -60,7 +61,20 @@ def thisyear():
 @library.global_function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
-    return reverse(viewname, args=args, kwargs=kwargs)
+
+    try:
+        # First, look for URLs which only exist in the CMS - these are solely defined
+        # in bedrock/cms/cms_only_urls.py. These URLs are not listed in
+        # the main URLConf because they aren't served by the Django views in
+        # bedrock, but they will/must have matching routes set up in the CMS.
+        return reverse(
+            viewname,
+            urlconf="bedrock.cms.cms_only_urls",
+            args=args,
+            kwargs=kwargs,
+        )
+    except NoReverseMatch:
+        return reverse(viewname, args=args, kwargs=kwargs)
 
 
 @library.filter
