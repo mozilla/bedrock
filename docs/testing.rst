@@ -304,7 +304,7 @@ to pull in external data such as event/blog feeds etc. These are required for
 some of the tests to pass.
 
 To run the full Selenium integration test suite against your local bedrock
-instance in Mozorg mode:
+instance:
 
 .. code-block:: bash
 
@@ -314,25 +314,11 @@ This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
 be reported in ``tests/functional/results.html``.
 
-To run the full Selenium test suite against your local bedrock instance in
-Pocket mode, things are slightly different, because of the way things are set
-up in order to allow CI to test both Mozorg Mode and Pocket Mode at the same
-time. You need to define a temporary environment variable (needed by the
-`pocket_base_url` fixture) and scope pytest to only run Pocket tests:
-
-.. code-block:: bash
-
-    $ BASE_POCKET_URL=http://localhost:8000 pytest -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
-
-This will run all test suites found in the ``tests/functional`` directory that have
-the pytest "`mark`" of `pocket_mode` and assumes you have bedrock running *in Pocket mode* at
-``localhost`` on port ``8000``. Results will be reported in ``tests/functional/results.html``.
-
 .. Note::
 
-    If you omit the ``--base-url`` command line option in Mozorg mode (ie, not
-    in Pocket mode) then a local instance of bedrock will be started, however
-    the tests are not currently able to run against bedrock in this way.
+    If you omit the ``--base-url`` command line option then a local instance
+    of bedrock will be started, however the tests are not currently able to
+    run against bedrock in this way.
 
 By default, tests will run one at a time. This is the safest way to ensure
 predictable results, due to
