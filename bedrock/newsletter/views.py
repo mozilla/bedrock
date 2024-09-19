@@ -284,3 +284,19 @@ def newsletter_subscribe(request):
             return l10n_utils.render(request, "newsletter/index.html", ctx, ftl_files=FTL_FILES)
 
     return l10n_utils.render(request, "newsletter/index.html", ftl_files=FTL_FILES)
+
+
+def firefox_confirm(request, token=None):
+    locale = l10n_utils.get_locale(request)
+
+    context = {
+        "action": f"{settings.BASKET_URL}/news/subscribe/",
+        "active_locales": ["en-US", "en-GB", "en-CA", "de", "fr"],
+        "ftl_files": ["mozorg/newsletters"],
+        "newsletter_lang": locale.split("-")[0],
+        "newsletters": "mozilla-and-you",
+        "recovery_url": reverse("newsletter.recovery"),
+        "source_url": reverse("newsletter.firefox.confirm.no-token"),
+    }
+
+    return l10n_utils.render(request, "newsletter/firefox-confirm.html", context)
