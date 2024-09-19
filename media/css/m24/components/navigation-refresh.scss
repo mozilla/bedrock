@@ -115,7 +115,7 @@
             }
         }
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             &::after {
                 bottom: 7px;
                 left: 0;
@@ -161,6 +161,7 @@
         color: $color-black;
         position: relative;
         font-family: $primary-font;
+        font-weight: 600;
 
         &::after {
             display: block;
@@ -185,7 +186,7 @@
             width: fit-content;
         }
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             margin: 24px 0;
         }
     }
@@ -195,7 +196,7 @@
             background-color: $color-white;
             color: $color-black;
 
-            @media (min-width: $screen-md) {
+            @media #{$mq-md} {
                 left: 0;
                 right: auto;
                 top: 64px;
@@ -210,7 +211,7 @@
         max-width: unset;
         box-shadow: none;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             border-radius: 0;
             padding: $spacer-lg 0;
         }
@@ -221,7 +222,7 @@
         border: transparent;
         padding: 8px 16px;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             padding: 0;
         }
 
@@ -233,7 +234,7 @@
             min-width: 100%;
             background-color: $color-white;
 
-            @media (min-width: $screen-md) {
+            @media #{$mq-md} {
                 position: unset;
                 min-width: unset;
             }
@@ -242,7 +243,7 @@
                 border-bottom: transparent;
                 padding: 0 0 0 48px;
 
-                @media (min-width: $screen-md) {
+                @media #{$mq-md} {
                     color: $m24-color-dark-green;
                     border-bottom: transparent;
                     padding: 0;
@@ -276,7 +277,7 @@
                 margin-top: 98px;
                 animation: nav-slide-in 0.45s ease;
 
-                @media (min-width: $screen-md) {
+                @media #{$mq-md} {
                     margin-top: 64px;
                     animation: none;
                 }
@@ -290,7 +291,7 @@
             display: none;
         }
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             padding: 0;
         }
     }
@@ -306,7 +307,7 @@
         min-width: unset;
         padding: $spacer-md 0;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             padding: 0;
         }
     }
@@ -316,7 +317,7 @@
         max-width: 100%;
         padding: 0;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             min-width: 216px;
             width: auto;
         }
@@ -395,7 +396,7 @@
         margin: 0 auto;
         padding: $spacer-md $grid-margin;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             padding: 0 $grid-margin;
         }
 
@@ -403,7 +404,7 @@
             border-bottom: 2px solid transparent;
             width: 100%;
 
-            @media (min-width: $screen-md) {
+            @media #{$mq-md} {
                 border-bottom: 2px solid $token-color-light-gray;
             }
 
@@ -456,6 +457,8 @@
     }
 
     .mzp-has-icon .c-menu-item-link {
+        @include bidi(((padding-right, 0, 0), (padding-left, 0, 0)));
+
         .c-menu-item-icon {
             height: 16px;
             width: 16px;
@@ -497,26 +500,42 @@
         }
     }
 
+    .c-menu-button-close {
+        @media #{$mq-md} {
+            right: 15px;
+            left: auto;
+            display: block;
+            top: 15px;
+            @include bidi(((right, 15px, unset), (left, unset, 15px)));
+
+            &:hover,
+            &:focus,
+            &:active {
+                top: 15px;
+            }
+        }
+    }
+
     .c-menu.mzp-is-enhanced .c-menu-category.c-menu-category-has-icon {
         .c-menu-title-icon {
-            margin-right: 8px;
+            @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
         }
 
         .c-menu-title::after {
             bottom: 7px;
-            left: 24px;
+            @include bidi(((left, 24px, unset), (right, unset, 24px)));
             width: calc(100% - 24px);
         }
     }
 }
 
 // page content
-// page content here is not part of Protocol, it is specifc to Bedrock; should be documented in future
+// This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.c-navigation-items.mzp-is-open) {
     #outer-wrapper {
         display: none;
 
-        @media (min-width: $screen-md) {
+        @media #{$mq-md} {
             display: block;
         }
     }
@@ -525,7 +544,7 @@ body:has(.c-navigation-items.mzp-is-open) {
 #outer-wrapper {
     margin-top: 48px;
 
-    @media (min-width: $screen-md) {
+    @media #{$mq-md} {
         margin-top: 0;
     }
 }
