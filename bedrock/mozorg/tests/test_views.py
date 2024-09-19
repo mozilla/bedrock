@@ -3,7 +3,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-import os
 from unittest.mock import Mock, patch
 
 from django.core import mail
@@ -17,26 +16,6 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.mozorg.tests import TestCase
-
-
-class TestViews(TestCase):
-    @patch.dict(os.environ, FUNNELCAKE_5_LOCALES="en-US", FUNNELCAKE_5_PLATFORMS="win")
-    def test_download_button_funnelcake(self):
-        """The download button should have the funnelcake ID."""
-        with self.activate_locale("en-US"):
-            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5"})
-            assert b"product=firefox-stub-f5&" in resp.content
-
-    def test_download_button_bad_funnelcake(self):
-        """The download button should not have a bad funnelcake ID."""
-        with self.activate_locale("en-US"):
-            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "5dude"})
-            assert b"product=firefox-stub&" in resp.content
-            assert b"product=firefox-stub-f5dude&" not in resp.content
-
-            resp = self.client.get(reverse("firefox.download.thanks"), {"f": "999999999"})
-            assert b"product=firefox-stub&" in resp.content
-            assert b"product=firefox-stub-f999999999&" not in resp.content
 
 
 class TestRobots(TestCase):

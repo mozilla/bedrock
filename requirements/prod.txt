@@ -329,6 +329,7 @@ django==4.2.16 \
     #   django-storages
     #   django-taggit
     #   django-treebeard
+    #   django-waffle
     #   django-watchman
     #   djangorestframework
     #   laces
@@ -405,6 +406,10 @@ django-treebeard==4.7.1 \
     --hash=sha256:846e462904b437155f76e04907ba4e48480716855f88b898df4122bdcfbd6e98 \
     --hash=sha256:995c7120153ab999898fe3043bbdcd8a0fc77cc106eb94de7350e9d02c885135
     # via wagtail
+django-waffle==4.1.0 \
+    --hash=sha256:5979a2f3dd674ef7086480525b39651fc2045427f6d8e6a614192656d3402c5b \
+    --hash=sha256:e49d7d461d89f3bd8e53f20efe39310acca8f275c9888495e68e195345bf18b1
+    # via -r requirements/prod.in
 django-watchman==1.3.0 \
     --hash=sha256:33b5fc734d689b83cb96fc17beda624ae2955f4cede0856897d990c363eac962 \
     --hash=sha256:5f04300bd7fbdd63b8a883b2730ed1e4d9b0f9991133b33a1281134b81f466eb
