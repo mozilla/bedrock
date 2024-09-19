@@ -24,8 +24,6 @@ def desktop_builds(
     locale=None,
     force_direct=False,
     force_full_installer=False,
-    force_funnelcake=False,
-    funnelcake_id=False,
     locale_in_transition=False,
     classified=False,
 ):
@@ -65,8 +63,6 @@ def desktop_builds(
             locale,
             force_direct=force_direct,
             force_full_installer=force_full_installer,
-            force_funnelcake=force_funnelcake,
-            funnelcake_id=funnelcake_id,
             locale_in_transition=locale_in_transition,
         )
 
@@ -83,8 +79,6 @@ def desktop_builds(
                 locale,
                 force_direct=True,
                 force_full_installer=force_full_installer,
-                force_funnelcake=force_funnelcake,
-                funnelcake_id=funnelcake_id,
             )
             if download_link_direct == download_link:
                 download_link_direct = False
@@ -120,7 +114,6 @@ def download_firefox(
     locale=None,
     force_direct=False,
     force_full_installer=False,
-    force_funnelcake=False,
     alt_copy=None,
     button_class="mzp-t-xl",
     locale_in_transition=False,
@@ -136,8 +129,6 @@ def download_firefox(
     :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
             the stub installer (for aurora).
-    :param force_funnelcake: Force the download version for en-US Windows to be
-            'latest', which bouncer will translate to the funnelcake build.
     :param alt_copy: Specifies alternate copy to use for download buttons.
     :param button_class: Classes to add to the download button, contains size mzp-t-xl by default
     :param locale_in_transition: Include the page locale in transitional download link.
@@ -149,7 +140,6 @@ def download_firefox(
     show_ios = platform in ["all", "ios"]
     alt_channel = "" if channel == "release" else channel
     locale = locale or get_locale(ctx["request"])
-    funnelcake_id = ctx.get("funnelcake_id", False)
     dom_id = dom_id or f"download-button-{'desktop' if platform == 'all' else platform}-{channel}"
 
     # Gather data about the build for each platform
@@ -157,7 +147,7 @@ def download_firefox(
 
     if show_desktop:
         version = firefox_desktop.latest_version(channel)
-        builds = desktop_builds(channel, builds, locale, force_direct, force_full_installer, force_funnelcake, funnelcake_id, locale_in_transition)
+        builds = desktop_builds(channel, builds, locale, force_direct, force_full_installer, locale_in_transition)
 
     if show_android:
         version = firefox_android.latest_version(channel)
@@ -208,15 +198,9 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
 
     channel = "release"
     locale = locale or get_locale(ctx["request"])
-    funnelcake_id = ctx.get("funnelcake_id", False)
     dom_id = dom_id or "download-button-thanks"
     transition_url = "/firefox/download/thanks/"
     version = firefox_desktop.latest_version(channel)
-
-    # if there's a funnelcake param in the page URL e.g. ?f=123
-    if funnelcake_id:
-        # include param in transitional URL e.g. /firefox/download/thanks/?f=123
-        transition_url += f"?f={funnelcake_id}"
 
     if locale_in_transition:
         transition_url = f"/{locale}{transition_url}"
@@ -228,8 +212,6 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
         locale,
         force_direct=True,
         force_full_installer=False,
-        force_funnelcake=False,
-        funnelcake_id=funnelcake_id,
     )
 
     data = {
@@ -262,8 +244,9 @@ def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=No
     dom_id = dom_id or f"download-platform-list-{channel}"
     locale = locale or get_locale(ctx["request"])
 
-    # Make sure funnelcake_id is not passed as builds are often Windows only.
-    builds = desktop_builds(channel, None, locale, True, force_full_installer, False, False, False, True)
+    builds = desktop_builds(
+        channel, builds=None, locale=locale, force_direct=True, force_full_installer=force_full_installer, locale_in_transition=False, classified=True
+    )
 
     recommended_builds = []
     traditional_builds = []
