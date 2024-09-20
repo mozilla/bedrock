@@ -507,7 +507,7 @@
             left: auto;
             display: block;
             top: 15px;
-            @include bidi(((right, 15px, unset), (left, unset, 15px)));
+            @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
 
             &:hover,
             &:focus,
@@ -524,7 +524,7 @@
 
         .c-menu-title::after {
             bottom: 7px;
-            @include bidi(((left, 24px, unset), (right, unset, 24px)));
+            @include bidi(((left, 24px, right, auto), (right, auto, left, 24px)));
             width: calc(100% - 24px);
         }
     }
