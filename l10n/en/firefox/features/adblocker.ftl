@@ -27,7 +27,7 @@ features-adblocker-considered-by-many-to-be-the = Considered by many to be the g
 # Variables:
 #   $attrs1 (string) - link to https://addons.mozilla.org/firefox/addon/adguard-adblocker/ with other attributes
 #   $attsr2 (string) - link to https://addons.mozilla.org/firefox/addon/popup-blocker/ with other attributes
-features-adblocker-adguard-adblocker-blunts = <a { $attrs1 }>AdGuard AdBlocker</a> blunts advertising everywhere. It blocks ads on the web, social media, even those annoying pop-ups (however if you’re looking to just suppress pop-ups you can’t go wrong with <a { $attrs2 }>Popup Blocker</a>).
+features-adblocker-adguard-adblocker-blunts = <a { $attrs1 }>AdGuard AdBlocker</a> blunts advertising everywhere. It blocks ads on the web, social media, even those annoying pop-ups (however if you’re looking to just suppress pop-ups, you can’t go wrong with <a { $attrs2 }>Popup Blocker</a>).
 
 # Variables:
 #   $attrs (string) - link to https://addons.mozilla.org/firefox/addon/ghostery/ with other attributes
