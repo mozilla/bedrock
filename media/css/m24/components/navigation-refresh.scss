@@ -503,8 +503,6 @@
 
     .c-menu-button-close {
         @media #{$mq-md} {
-            right: 15px;
-            left: auto;
             display: block;
             top: 15px;
             @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
