@@ -1,0 +1,25 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "products/vpn/cms/resource-center/includes/macros.html" import call_to_action_image with context %}
+
+{% call split(
+  block_class='resource-center-split mzp-t-content-lg mzp-l-split-center-on-sm-md',
+  media_class='resource-center-split-media',
+  image=call_to_action_image(snippet.image)
+) %}
+  <h2 class="resource-center-wordmark mzp-c-wordmark mzp-t-wordmark-sm mzp-t-product-vpn">{{ ftl('vpn-resource-center-mozilla-vpn') }}</h2>
+  <h3 class="resource-center-split-heading mzp-c-callout-title">{{ snippet.heading }}</h3>
+  {{ vpn_resource_center_cta(
+    referral_id='vpn-resource-center',
+    link_text=vpn_saving(country_code=country_code, lang=LANG, ftl_string='vpn-shared-save-percent-on'),
+    alt_link_text=ftl('vpn-shared-waitlist-link'),
+    class_name='mzp-c-button mzp-t-product',
+  ) }}
+  {% if vpn_available %}
+    <p class="resource-center-cta-desc"><em>{{ ftl('vpn-shared-when-you-subscribe') }}</em></p>
+  {% endif %}
+{% endcall %}
