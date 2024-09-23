@@ -6,17 +6,120 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-.c-header {
-    p {
-        @include text-body-lg;
+$color-ads-off-black: #161616;
+
+.mzp-t-dark.mozads-t-dark {
+    background-color: $color-ads-off-black;
+}
+
+.c-sub-navigation-list {
+    a[href*="anonymco.com"],
+    a[href*="mozilla.formstack.com"] {
+        padding-right: 1.2em;
+        background: url("/media/protocol/img/icons/external-link.svg") right center no-repeat;
+        background-size: 1em auto;
     }
 }
 
-.c-purple-callout {
-    background-color: $color-purple-90;
+.mozads-header {
+    text-align: start;
+    padding: $layout-md 0;
 
-    h2 {
-        color: $color-white;
+    .mzp-c-callout-desc {
+        @include text-body-xl;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-callout-title {
+            @include text-title-2xl;
+        }
+
+        .mzp-c-callout-desc {
+            max-width: 60ch;
+        }
+    }
+}
+
+.mozads-footer {
+    text-align: start;
+}
+
+.mozads-anonym .mzp-c-split-media-asset {
+    margin: 0 auto;
+}
+
+.mozads-content-intro {
+    @include text-body-xl;
+
+    @media #{$mq-lg} {
+        .ads-section-header & {
+            max-width: 60ch;
+        }
+    }
+}
+
+.mozads-product {
+    padding-bottom: $layout-md;
+
+    .mzp-c-split-media-asset {
+        border-radius: $border-radius-lg;
+        margin: 0 auto;
+    }
+}
+
+.mozads-valueprops {
+    .mzp-c-picto-body p {
+        margin: 0;
+    }
+}
+
+.mozads-product-audience {
+    background: $color-light-gray-20;
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg $spacing-md;
+    margin-top: $spacing-md;
+    text-align: start;
+
+    & > p:last-child {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        @include text-body-sm;
+        display: flex;
+        text-align: center;
+        padding: 0;
+
+        & > p {
+            border-right: 1px solid $color-light-gray-40;
+            flex: 1 1 0;
+            margin: 0;
+            padding: $spacing-lg $spacing-md;
+
+            &:last-child {
+                border: 0;
+            }
+        }
+
+        strong {
+            @include font-mozilla;
+            @include text-title-md;
+            display: block;
+            margin-bottom: $spacing-sm;
+        }
+    }
+}
+
+@media #{$mq-xl} {
+    .mozads-principles.mzp-t-picto-side {
+        .mzp-c-picto {
+            padding-left: $layout-2xl;
+        }
+
+        .mzp-c-picto-image {
+            width: 135px;
+        }
     }
 }
