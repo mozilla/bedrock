@@ -1,0 +1,49 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from 'macros-protocol.html' import split %}
+{% from "products/vpn/includes/macros.html" import vpn_resource_center_cta with context %}
+
+{% extends "products/vpn/cms/resource-center/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split')}}
+  {{ css_bundle('vpn-resource-center')}}
+{% endblock page_css %}
+
+{% block content %}
+<nav class="mzp-c-breadcrumb">
+  <ol class="mzp-c-breadcrumb-list">
+    <li class="mzp-c-breadcrumb-item">
+      <a href="{{ url('products.vpn.resource-center.landing') }}">{{ ftl('vpn-resource-center-title') }}</a>
+    </li>
+    <li class="mzp-c-breadcrumb-item">
+      {{ page.title }}
+    </li>
+  </ol>
+</nav>
+<div class="vpn-article-container">
+  <div class="mzp-l-content mzp-t-content-md">
+    <article class="mzp-c-article vpn-article w-rich-text">
+      <h2>{{ page.title }}</h2>
+      {{ page.content|richtext }}
+    </article>
+    {% with slug = page.slug %}
+      {% include 'products/vpn/cms/resource-center/includes/voting-widget.html' %}
+    {% endwith %}
+  </div>
+<div>
+
+  {% if page.call_to_action_bottom %}
+    {% with snippet = page.call_to_action_bottom %}
+      {% include 'products/vpn/cms/snippets/call_to_action.html' %}
+    {% endwith %}
+  {% endif %}
+{% endblock content %}
+
+{% block js %}
+  {{ js_bundle("vpn-resource-center-article") }}
+{% endblock js %}
