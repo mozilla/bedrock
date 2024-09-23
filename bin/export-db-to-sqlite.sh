@@ -119,6 +119,7 @@ check_status_and_handle_failure "Dumping wagtailcore.Locale"
 # wagtailcore.CommentReply      # Excluded: may contain sensitive info
 # wagtailcore.PageSubscription  # Excluded: dependent on User model
 # django_rq.Queue               # Excluded: irrelevant to local use and not a real DB table: data lives in Redis
+# django.contrib.admin.LogEntry # Excluded: dependent on User model
 
 # Deliberate TEMPORARY INCLUSIONS (because without them we cannot load the data) - tables are
 # cleaned at the end, which is why they are in the tables_to_wipe_after_import variable, defined earlier.
@@ -173,7 +174,6 @@ python manage.py dumpdata \
     sitemaps.SitemapURL \
     pocketfeed.PocketArticle \
     careers.Position \
-    admin.LogEntry \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
 
