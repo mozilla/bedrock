@@ -20,8 +20,8 @@
   {{ css_bundle('firefox-built-for-you') }}
 {% endblock %}
 
-{% set android_url = play_store_url('firefox', 'built-for-you') %}
-{% set ios_url = app_store_url('firefox', 'built-for-you') %}
+{% set android_url = 'https://play.google.com/store/apps/details?id=org.mozilla.firefox&listing=built-for-you-fr&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dbuilt-for-you' %}
+{% set ios_url = 'https://apps.apple.com/app/firefox-private-safe-browser/id989804926?ppid=4a5a3315-553e-4bbd-ac61-2f1e001c0fdc&pt=373246&ct=built-for-you&mt=8' %}
 
 {% if variation == "1" %}
   {% set media_include = 'firefox/built-for-you/includes/v1-pinocchio-fr.html' %}
