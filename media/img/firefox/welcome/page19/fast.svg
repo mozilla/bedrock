@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+  <!-- Speedometer Circle -->
+  <circle cx="100" cy="50" r="40" stroke="#000" stroke-width="2" fill="none" />
+
+  <!-- Speedometer Needle -->
+  <polygon points="100,50 110,30 120,50" fill="#6C4CE4" />
+
+  <!-- Arc (speed) -->
+  <path d="M 70,50 A 30,30 0 0 1 130,50" fill="none" stroke="#A68BFF" stroke-width="8"/>
+
+  <!-- Speed lines -->
+  <line x1="30" y1="50" x2="60" y2="50" stroke="#000" stroke-width="2" />
+  <line x1="25" y1="40" x2="55" y2="40" stroke="#000" stroke-width="2" />
+  <line x1="20" y1="60" x2="50" y2="60" stroke="#000" stroke-width="2" />
+
+  <!-- Clouds -->
+  <circle cx="140" cy="70" r="10" fill="#D3C9FF"/>
+  <circle cx="150" cy="70" r="15" fill="#D3C9FF"/>
+  <circle cx="160" cy="70" r="10" fill="#D3C9FF"/>
+</svg>

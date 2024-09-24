@@ -852,6 +852,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome19.scss"
+      ],
+      "name": "firefox_welcome_page19"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"

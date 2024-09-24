@@ -1,0 +1,311 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+{% from "macros-protocol.html" import picto with context %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block body_class %}welcome-page19{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page19') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set old_version= 'Deine Firefox Version ist veraltet' %}
+  {% set page_title = 'Aktualisiere deinen Firefox Browser' %}
+  {% set main_title = 'Aktualisiere deinen Firefox Browser' %}
+  {% set main_tagline = '<strong>Bei älteren Versionen von Firefox können ab 14. Januar 2025 Probleme auftreten.</strong> Ein Wurzelzertifikat läuft ab, was dazu führt, dass Einstellungen und andere Funktionen nicht mehr funktionieren. Mit einer Aktualisierung erhältst du die bestmögliche Browsing-Experience. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Lies mehr über diese Änderung</a>'|safe %}
+  {% set cta_text = 'Jetzt aktualisieren' %}
+  {% set update_time = 'Dauert normalerweise 2–3 Minuten' %}
+  {% set picto_one_heading = 'Blitzschnelle' %}
+  {% set picto_one_tagline = 'Tracker führen dazu, dass Dinge langsam geladen werden, deshalb blockieren wir möglichst viele davon.' %}
+  {% set picto_two_heading = 'Automatischer Datenschutz' %}
+  {% set picto_two_tagline = 'Tracking- und Cookie-Schutz ist automatisch eingeschaltet.' %}
+  {% set picto_three_heading = 'Wie du’s brauchst' %}
+  {% set picto_three_tagline = 'Mit endlos vielen Add-ons und Wahlmöglichkeiten kannst du alles so einrichten, wie du möchtest.' %}
+
+{% elif LANG == 'fr' %}
+  {% set old_version= 'Vous utilisez une ancienne version de Firefox' %}
+  {% set page_title = 'Mettez à jour votre navigateur Firefox' %}
+  {% set main_title = 'Mettez à jour votre navigateur Firefox' %}
+  {% set main_tagline = '<strong>Les anciennes versions de Firefox pourraient commencer à moins bien fonctionner à partir du 14 janvier 2025.</strong> Un certificat racine expirera à cette date, et certaines préférences et autres fonctionnalités ne seront plus prises en charge. Mettez votre navigateur à jour pour bénéficier de la meilleure expérience possible. <a href="https://support.mozilla.org/kb/root-certificate-expiration">En savoir plus sur ce changement</a>'|safe %}
+  {% set cta_text = 'Mettre à jour' %}
+  {% set update_time = 'Cette opération dure 2 à 3 minutes' %}
+  {% set picto_one_heading = 'Rapidité foudroyante' %}
+  {% set picto_one_tagline = 'Les traqueurs ralentissent le chargement des pages, c’est pourquoi nous les bloquons autant que possible.' %}
+  {% set picto_two_heading = 'Confidentialité garantie' %}
+  {% set picto_two_tagline = 'Les protections contre le pistage et les cookies sont activées par défaut.' %}
+  {% set picto_three_heading = 'Expérience personnalisée' %}
+  {% set picto_three_tagline = 'Les nombreux modules et fonctionnalités de personnalisation vous offrent un navigateur sur mesure.' %}
+
+{% elif LANG == 'es-ES' %}
+  {% set old_version= 'Estás usando una versión antigua de Firefox' %}
+  {% set page_title = 'Actualiza tu navegador Firefox' %}
+  {% set main_title = 'Actualiza tu navegador Firefox' %}
+  {% set main_tagline = '<strong>Las versiones antiguas de Firefox podrían empezar a dar problemas a partir del 14 de enero de 2025.</strong> Va a expirar un certificado raíz, lo que podría ocasionar que algunas preferencias y otras características dejen de funcionar. Actualiza Firefox para obtener la mejor experiencia de navegación posible. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Lee más acerca de este cambio.</a>'|safe %}
+  {% set cta_text = 'Actualizar ahora' %}
+  {% set update_time = 'No debería tomarte más de 2 o 3 minutos.' %}
+  {% set picto_one_heading = 'Ultrarrápido' %}
+  {% set picto_one_tagline = 'Los rastreadores ralentizan las cargas y descargas, así que bloqueamos todos los que podemos.' %}
+  {% set picto_two_heading = 'Privacidad automática' %}
+  {% set picto_two_tagline = 'Las protecciones contra rastreadores y cookies están activadas de manera predefinida.' %}
+  {% set picto_three_heading = 'Adáptalo' %}
+  {% set picto_three_tagline = 'Un sinfín de complementos y personalizaciones para que puedas ajustarlo a tu manera.' %}
+
+{% elif LANG == 'it' %}
+  {% set old_version= 'Stai utilizzando una versione precedente di Firefox' %}
+  {% set page_title = 'Aggiorna il tuo browser Firefox' %}
+  {% set main_title = 'Aggiorna il tuo browser Firefox' %}
+  {% set main_tagline = '<strong>Le versioni precedenti di Firefox potrebbero riscontrare dei problemi a partire dal 14 gennaio 2025.</strong> Un certificato radice sta per scadere, causando il probabile malfunzionamento di alcune preferenze e altre funzionalità. Effettua l’aggiornamento per garantirti la migliore esperienza di navigazione. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Scopri di più su questa modifica</a>'|safe %}
+  {% set cta_text = 'Aggiorna subito' %}
+  {% set update_time = 'Richiede dai 2 ai 3 minuti' %}
+  {% set picto_one_heading = 'Veloce come un lampo' %}
+  {% set picto_one_tagline = 'Gli elementi traccianti rallentano la navigazione. Per questo ne blocchiamo il più possibile.' %}
+  {% set picto_two_heading = 'Privacy automatica' %}
+  {% set picto_two_tagline = 'Il tracciamento e le protezioni dai cookie sono funzionalità sempre attive.' %}
+  {% set picto_three_heading = 'Su misura per te' %}
+  {% set picto_three_tagline = 'Una lista infinita di componenti aggiuntive e personalizzazioni lo rendono fatto apposta per le tue esigenze.' %}
+
+{% elif LANG == 'el' %}
+  {% set old_version= 'Βρίσκεστε σε μια παλαιότερη έκδοση του Firefox' %}
+  {% set page_title = 'Ενημερώστε το πρόγραμμα περιήγησης Firefox' %}
+  {% set main_title = 'Ενημερώστε το πρόγραμμα περιήγησης Firefox' %}
+  {% set main_tagline = '<strong>Οι παλαιότερες εκδόσεις του Firefox ενδέχεται να αρχίσουν να παρουσιάζουν προβλήματα στις 14 Ιανουαρίου 2025.</strong> Μία Αρχή Πιστοποίησης Βάσης θα λήξει, με αποτέλεσμα ορισμένες προτιμήσεις και λειτουργίες να πάψουν να είναι σε ισχύ. Ενημερώστε για να έχετε την καλύτερη δυνατή εμπειρία περιήγησης. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Διαβάστε περισσότερα για αυτή την αλλαγή</a>'|safe %}
+  {% set cta_text = 'Ενημερώστε τώρα' %}
+  {% set update_time = 'Συνήθως διαρκεί 2–3 λεπτά' %}
+  {% set picto_one_heading = 'Αστραπιαίοι' %}
+  {% set picto_one_tagline = 'ιχνηλάτες οδηγούν σε αργή φόρτωση, επομένως αποκλείουμε όσους περισσότερους μπορούμε.' %}
+  {% set picto_two_heading = 'Αυτόματο απόρρητο' %}
+  {% set picto_two_tagline = 'Η προστασία για παρακολούθηση και cookie είναι ενεργοποιημένη από προεπιλογή.' %}
+  {% set picto_three_heading = 'Κάντε το δικό σας' %}
+  {% set picto_three_tagline = 'Τα ατελείωτα πρόσθετα και η δυνατότητα εξατομίκευσης σάς επιτρέπουν να ρυθμίζετε τα πράγματα ακριβώς όπως θέλετε.' %}
+
+{% elif LANG == 'pl' %}
+  {% set old_version= 'Korzystasz ze starszej wersji przeglądarki Firefox' %}
+  {% set page_title = 'ZAKTUALIZUJ PRZEGLĄDARKĘ FIREFOX' %}
+  {% set main_title = 'ZAKTUALIZUJ PRZEGLĄDARKĘ FIREFOX' %}
+  {% set main_tagline = '<strong>Starsze wersje przeglądarki Firefox mogą nie działać poprawnie po 14 stycznia 2025 r.</strong> W tym dniu wygasa certyfikat główny, w związku z czym niektóre preferencje i inne funkcje przestaną działać. Uruchom aktualizację, aby bez przeszkód korzystać z internetu. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Dowiedz się więcej o tych zmianach</a>'|safe %}
+  {% set cta_text = 'Zaktualizuj teraz' %}
+  {% set update_time = 'Aktualizacja trwa zwykle 2–3 minuty' %}
+  {% set picto_one_heading = 'Niewiarygodna szybkość' %}
+  {% set picto_one_tagline = 'Elementy śledzące spowalniają ładowanie, dlatego staramy się blokować ich jak najwięcej.' %}
+  {% set picto_two_heading = 'Zautomatyzowana ochrona prywatności' %}
+  {% set picto_two_tagline = 'Domyślna ochrona przed śledzeniem i plikami cookie.' %}
+  {% set picto_three_heading = 'W 100% Twoja' %}
+  {% set picto_three_tagline = 'Nieskończony wybór dodatków i opcji personalizacji pomoże Ci stworzyć Twoją własną przeglądarkę.' %}
+
+{% elif LANG == 'cs' %}
+  {% set old_version= 'Používáte starší verzi prohlížeče Firefox' %}
+  {% set page_title = 'Aktualizujte prohlížeč Firefox' %}
+  {% set main_title = 'Aktualizujte prohlížeč Firefox' %}
+  {% set main_tagline = '<strong>Starší verze prohlížeče Firefox mohou mít od 14. ledna 2025 problémy..</strong> Vyprší platnost kořenového certifikátu, což způsobí, že přestanou fungovat některé předvolby a další funkce. Aktualizací získáte nejlepší možný zážitek z prohlížení. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Přečtěte si více informací o této změně</a>'|safe %}
+  {% set cta_text = 'Aktualizujte nyní' %}
+  {% set update_time = 'Obvykle to zabere 2–3 minuty' %}
+  {% set picto_one_heading = 'Bleskově rychlý' %}
+  {% set picto_one_tagline = 'Sledovací prvky způsobují pomalé načítání, proto jich co nejvíce blokujeme.' %}
+  {% set picto_two_heading = 'Automatická ochrana soukromí' %}
+  {% set picto_two_tagline = 'Ve výchozím nastavení je zapnuta ochrana před sledováním a soubory cookie.' %}
+  {% set picto_three_heading = 'Vlastní nastavení' %}
+  {% set picto_three_tagline = 'Nekonečné množství doplňků a přizpůsobení vám umožní nastavit si věci přesně podle svých představ.' %}
+
+{% elif LANG == 'zh-CN' %}
+  {% set old_version= '您用的是旧版 Firefox' %}
+  {% set page_title = '更新您的 Firefox 浏览器' %}
+  {% set main_title = '更新您的 Firefox 浏览器' %}
+  {% set main_tagline = '<strong>旧版 Firefoxfox 从 2025 年 1 月 14 日起可能会开始出现问题。</strong> 根证书将过期，导致一些首选项和其他功能停止工作。赶快更新，获享升级浏览体验。<a href="https://support.mozilla.org/kb/root-certificate-expiration">进一步了解此变化</a>'|safe %}
+  {% set cta_text = '现在更新' %}
+  {% set update_time = '通常需要两三分钟' %}
+  {% set picto_one_heading = '快如闪电' %}
+  {% set picto_one_tagline = '跟踪器会使加载变慢，因此我们会最大限度拦截跟踪器。' %}
+  {% set picto_two_heading = '自动隐私保护' %}
+  {% set picto_two_tagline = '默认启用跟踪和 Cookie 保护。' %}
+  {% set picto_three_heading = '更合心意' %}
+  {% set picto_three_tagline = '无数的插件和自定义选项，让您可以按照自己的喜好进行种种设置。' %}
+
+{% elif LANG == 'pt-BR' %}
+  {% set old_version= 'Você está usando uma versão antiga do Firefox' %}
+  {% set page_title = 'Atualize seu navegador Firefox' %}
+  {% set main_title = 'Atualize seu navegador Firefox' %}
+  {% set main_tagline = '<strong>A partir de 14 de janeiro de 2025, versões mais antigas do Firefox podem começar a ter problemas.</strong> Um certificado raiz vai expirar, e algumas preferências e recursos talvez parem de funcionar. Atualize agora para garantir a melhor experiência de navegação. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Saiba mais sobre essa mudança</a>'|safe %}
+  {% set cta_text = 'Atualizar agora' %}
+  {% set update_time = 'Costuma levar de 2 a 3 minutos' %}
+  {% set picto_one_heading = 'Mais veloz' %}
+  {% set picto_one_tagline = 'Rastreadores deixam as coisas mais lentas, então bloqueamos o máximo que podemos.' %}
+  {% set picto_two_heading = 'Privacidade automática' %}
+  {% set picto_two_tagline = 'As proteções contra rastreamento e cookies já vêm ativadas por padrão.' %}
+  {% set picto_three_heading = 'Do seu jeito' %}
+  {% set picto_three_tagline = 'Com inúmeras extensões e personalizações, você configura como preferir.' %}
+
+{% elif LANG == 'ar' %}
+  {% set old_version= 'إنك تستخدم إصدارًا قديمًا من Firefox' %}
+  {% set page_title = 'حدّث متصفّح فَيَرفُكس' %}
+  {% set main_title = 'حدّث متصفّح فَيَرفُكس' %}
+  {% set main_tagline = '<strong>قد تبدأ الإصدارات القديمة من Firefox في مواجهة مشاكل في 14 يناير 2025.</strong> سوف تنتهي صلاحية شهادة جذرية، مما سيؤدي إلى توقف بعض التفضيلات والميزات الأخرى عن العمل. حدّث الآن لتحصل على أفضل تجربة ممكنة للتصفّح <a href="https://support.mozilla.org/kb/root-certificate-expiration">اقرأ المزيد عن هذا التغيير</a>'|safe %}
+  {% set cta_text = 'حدّث الآن' %}
+  {% set update_time = 'يستغرق 2–3 دقائق عادةً' %}
+  {% set picto_one_heading = 'سرعة فائقة' %}
+  {% set picto_one_tagline = 'تتسبّب المُتعقّبات في إبطاء التحميل، ولذلك فإننا نحظر أكبر عدد ممكن منها.' %}
+  {% set picto_two_heading = 'الخصوصية التلقائية' %}
+  {% set picto_two_tagline = 'يتم تفعيل حماية التعقّب وملفات تعريف الارتباط بشكل افتراضي.' %}
+  {% set picto_three_heading = 'إعداد على طريقتك' %}
+  {% set picto_three_tagline = 'تُمكّنك عناصر إضافية وتخصيصات لا حدّ لها من إعداد الأمور بالطريقة التي تروق لك.' %}
+
+{% elif LANG == 'ru' %}
+  {% set old_version= 'Вы используете более старую версию Firefox' %}
+  {% set page_title = 'Обновите ваш браузер Firefox' %}
+  {% set main_title = 'Обновите ваш браузер Firefox' %}
+  {% set main_tagline = '<strong>С 14 января 2025 года могут возникнуть проблемы со старыми версиями Firefox.</strong> Истечет срок действия корневого сертификата, что приведет к прекращению работы некоторых настроек и других функций. Обновите браузер для его оптимальной работы. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Узнайте больше об этом изменении</a>'|safe %}
+  {% set cta_text = 'Обновить сейчас' %}
+  {% set update_time = 'Обычно это занимает 2–3 минуты' %}
+  {% set picto_one_heading = 'Молниеносная скорость' %}
+  {% set picto_one_tagline = 'Трекеры замедляют загрузку, поэтому мы блокируем многие из них.' %}
+  {% set picto_two_heading = 'Автоматическая защита' %}
+  {% set picto_two_tagline = 'конфиденциальности Отслеживание и защита файлов cookie включены по умолчанию.' %}
+  {% set picto_three_heading = 'Настройте под себя' %}
+  {% set picto_three_tagline = 'Бесконечные дополнения и настройки позволяют вам настраивать все на свой вкус.' %}
+
+{% elif LANG == 'ja' %}
+  {% set old_version= '古いバージョンの Firefox をお使いです' %}
+  {% set page_title = 'Firefox ブラウザーをアップデートしてください' %}
+  {% set main_title = 'Firefox ブラウザーをアップデートしてください' %}
+  {% set main_tagline = '<strong>古いバージョンの Firefox では、2025 年 1 月 14 日から問題が発生する可能性があります。</strong> ルート証明書の有効期限が切れ、一部の基本設定やその他の機能が機能しなくなります。快適にブラウズするためにアップデートしてください。 <a href="https://support.mozilla.org/kb/root-certificate-expiration">この変更の詳細</a>'|safe %}
+  {% set cta_text = '今すぐアップデート' %}
+  {% set update_time = '通常は 2~3 分かかります' %}
+  {% set picto_one_heading = '超高速' %}
+  {% set picto_one_tagline = 'トラッカーは読み込みを遅くするため、Firefox は可能な限りブロックしています。' %}
+  {% set picto_two_heading = '自動プライバシー' %}
+  {% set picto_two_tagline = 'トラッキングと Cookie 防止がデフォルトでオンになっています。' %}
+  {% set picto_three_heading = 'オリジナル仕様に' %}
+  {% set picto_three_tagline = '無限のアドオンやカスタマイズで、お好みのままに設定できます。' %}
+
+  {% elif LANG == 'id' %}
+  {% set old_version= 'Anda menggunakan Firefox versi lama' %}
+  {% set page_title = 'Perbarui peramban Firefox Anda' %}
+  {% set main_title = 'Perbarui peramban Firefox Anda' %}
+  {% set main_tagline = '<strong>Firefox versi lama mungkin mulai mengalami masalah pada 14 Januari 2025.</strong> Sertifikat root akan kedaluwarsa, yang dapat menyebabkan beberapa preferensi dan fitur berhenti berfungsi. Perbarui untuk mendapatkan pengalaman browsing terbaik. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Baca lebih lanjut tentang perubahan ini</a>'|safe %}
+  {% set cta_text = 'Perbarui sekarang' %}
+  {% set update_time = 'Biasanya memerlukan waktu 2–3 menit' %}
+  {% set picto_one_heading = 'Secepat kilat' %}
+  {% set picto_one_tagline = 'Pelacak dapat memperlambat pemuatan halaman, jadi kami memblokir sebanyak mungkin.' %}
+  {% set picto_two_heading = 'Privasi otomatis' %}
+  {% set picto_two_tagline = 'Perlindungan terhadap pelacakan dan kuki diaktifkan secara bawaan.' %}
+  {% set picto_three_heading = 'Jadikan milik Anda' %}
+  {% set picto_three_tagline = 'Pengaya dan penyesuaian yang tak terbatas memungkinkan Anda mengatur segalanya sesuai keinginan.' %}
+
+{% elif LANG == 'hu' %}
+  {% set old_version= 'A Firefox egy korábbi verzióját használja' %}
+  {% set page_title = 'FRISSÍTSE FIREFOX-BÖNGÉSZŐJÉT' %}
+  {% set main_title = 'FRISSÍTSE FIREFOX-BÖNGÉSZŐJÉT' %}
+  {% set main_tagline = '<strong>A Firefox korábbi verzióival 2025. január 14. után problémák adódhatnak.</strong> Egy főtanúsítvány lejár, és emiatt bizonyos beállítások és egyéb funkciók működése leáll. Frissítsen az új verzióra, hogy zavartalanul böngészhessen. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Tudjon meg többet a változásról</a>'|safe %}
+  {% set cta_text = 'Frissítés most' %}
+  {% set update_time = 'Általában 2–3 percet vesz igénybe' %}
+  {% set picto_one_heading = 'Villámgyors' %}
+  {% set picto_one_tagline = 'A követők lelassítják a betöltést, ezért ha csak lehet, blokkoljuk azokat.' %}
+  {% set picto_two_heading = 'Automatikus adatvédelem' %}
+  {% set picto_two_tagline = 'Alapértelmezésben bekapcsoljuk a nyomkövetés- és cookie-védelmet.' %}
+  {% set picto_three_heading = 'Személyre szabható' %}
+  {% set picto_three_tagline = 'Végtelen számú bővítménnyel és beállítással alakíthatja kedvére.' %}
+
+{% else %}
+  {% set old_version= 'You’re on an older version of Firefox' %}
+  {% set page_title = 'Update your Firefox browser' %}
+  {% set main_title = 'Update your Firefox browser' %}
+  {% set main_tagline = '<strong>Older versions of Firefox may start to have problems on January 14, 2025.</strong> A root certificate will expire, causing some preferences and other features to stop working. Update to get the best possible browsing experience. <a href="https://support.mozilla.org/kb/root-certificate-expiration">Read more about this change</a>'|safe %}
+  {% set cta_text = 'Update now' %}
+  {% set update_time = 'Usually takes 2–3 minutes' %}
+  {% set picto_one_heading = 'Lightning fast' %}
+  {% set picto_one_tagline = 'Trackers make things load slowly, so we block as many as we can.' %}
+  {% set picto_two_heading = 'Automatic privacy' %}
+  {% set picto_two_tagline = 'Tracking and cookie protections are on by default.' %}
+  {% set picto_three_heading = 'Make it yours' %}
+  {% set picto_three_tagline = 'Endless add-ons and customizations let you set things up just how you like.' %}
+{% endif %}
+
+{% set warning_notification_bar = true %}
+
+{% block warning_notification %}
+  <aside class="c-page-header-notification">
+    <div class="mzp-c-notification-bar mzp-t-warning">
+      {{ old_version }}
+    </div>
+  </aside>
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+
+<section class="c-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
+    <h1 class="c-main-title">{{ main_title }}</h1>
+    <p class="c-main-tagline">{{ main_tagline }}</p>
+    <p class="c-main-cta"><a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-product mzp-t-xl" rel="external" data-cta-text="Update now">{{ cta_text }}</a></p>
+    <small>{{ update_time }}</small>
+  </div>
+</section>
+{% endblock %}
+
+{% block content_body %}
+  <ul class="mzp-l-content mzp-t-content-lg mzp-l-columns mzp-t-columns-three">
+      {% call picto(
+        title=picto_one_heading,
+        image=resp_img(
+          url='img/firefox/welcome/page19/fast-test.png',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ picto_one_tagline }}</p>
+      {% endcall %}
+
+      {% call picto(
+        title=picto_two_heading,
+        image=resp_img(
+          url='img/firefox/welcome/page19/private-resize.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ picto_two_tagline }}</p>
+      {% endcall %}
+
+      {% call picto(
+        title=picto_three_heading,
+        image=resp_img(
+          url='img/firefox/welcome/page19/yours-resize.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+      <p>{{ picto_three_tagline }}</p>
+      {% endcall %}
+    </ul>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page11-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}
