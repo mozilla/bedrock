@@ -471,7 +471,7 @@ mentions by providing a "filter spec" e.g.
 
 .. code-block:: jinja
 
-    {% set the_image=image(page.product_image, "max-1024x1024") %}
+    {% set the_image=image(page.product_image, "width-1200") %}
     <img class="some-class" src="{{ the_image.url }})"/>
 
 (More examples are available in the `Wagtail Images docs`_.)
