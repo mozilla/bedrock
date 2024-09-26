@@ -56,11 +56,11 @@
             justify-self: end;
 
             p {
-                @include text-body-lg;
                 display: block;
                 font-family: 'Fira Mono', 'Andale Mono', monospace;
                 font-weight: 500;
                 margin: 0 $spacing-md 0 0;
+                @include text-body-lg;
             }
         }
     }
