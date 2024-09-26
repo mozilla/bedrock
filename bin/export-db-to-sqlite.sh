@@ -18,7 +18,7 @@
 # cd /path/to/checkout/of/bedrock/
 # DATABASE_URL="postgres://user:pass@host:5432/bedrock" ./bin/export-db-to-sqlite.sh /path/to/output.db
 
-# If you want to run this in debug mode, insert `bash -x` (without quotes) before ./bin/
+# If you want to run this in debug mode, insert `bash -ex` (without quotes) before ./bin/
 
 # Set up variables to point to the new output DB and to a temporary sql script which we'll generate later
 
