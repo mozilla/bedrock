@@ -18,7 +18,7 @@
 # cd /path/to/checkout/of/bedrock/
 # DATABASE_URL="postgres://user:pass@host:5432/bedrock" ./bin/export-db-to-sqlite.sh /path/to/output.db
 
-# If you want to run this in debug mode, insert `bash -x` (without quotes) before ./bin/
+# If you want to run this in debug mode, insert `bash -ex` (without quotes) before ./bin/
 
 # Set up variables to point to the new output DB and to a temporary sql script which we'll generate later
 
@@ -50,8 +50,6 @@ tables_to_wipe_after_initial_migrate=(
     "auth_group_permissions"
     "auth_group"
     "auth_permission"
-    "auth_user_groups"
-    "auth_user_user_permissions"
     "product_details_productdetailsfile"
 )
 
@@ -63,6 +61,8 @@ tables_to_wipe_after_initial_migrate=(
 
 tables_to_wipe_after_import=(
     "auth_user"
+    "auth_user_groups"
+    "auth_user_user_permissions"
     "wagtailcore_revision"
 )
 
@@ -231,6 +231,15 @@ check_status_and_handle_failure "Loading data from JSON"
 
 # There are things we can't omit or redact in the steps above, so
 # we need to manually delete them once we've served their purpose
+
+# Delete rows from tables mentioned in tables_to_wipe_after_import
+for table in "${tables_to_wipe_after_import[@]}"
+do
+    sqlite3 $output_db "DELETE FROM $table"
+    echo "Purged now-redundant data from: $table"
+done
+
+# And to be sure that there are no relations pointing back to non-existent rows
 echo "Preparing statements for nullifying columns in temporary sql file. (Output is hidden because it's captured from stdout)."
 
 # Convert the array into a comma-separated string suitable for the SQL IN clause
@@ -278,13 +287,6 @@ rm -f $nullify_specific_columns_sql || all_well=false
 check_status_and_handle_failure "Removing temporary SQL file"
 echo "Deleted that temporary sql"
 
-# Delete rows from tables mentioned in tables_to_wipe_after_import
-for table in "${tables_to_wipe_after_import[@]}"
-do
-    sqlite3 $output_db "DELETE FROM $table"
-    echo "Purged now-redundant data from: $table"
-done
-
 python manage.py rebuild_references_index
 check_status_and_handle_failure "Running rebuild_references_index"
 
@@ -293,6 +295,7 @@ check_status_and_handle_failure "Running wagtail_update_index"
 echo "Rebuilt Wagtail object reference helper and search index"
 
 # Check if tables in tables_to_wipe_after_import are empty
+echo "Checking that the tables we expect to be empty are empty"
 for table in "${tables_to_wipe_after_import[@]}"
 do
     count=$(sqlite3 $output_db "SELECT COUNT(*) FROM $table")
@@ -301,8 +304,6 @@ do
         all_well=false
     fi
 done
-echo "Checked that the tables we expect to be empty are empty"
-
 check_status_and_handle_failure "Seeking expected empty tables"
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
