@@ -65,7 +65,7 @@
 
       <p>
           {% set attrs = 'href="#" class="nightly-experiments-link"' %}
-          {{ ftl('nightly-whatsnew-want-to-know-which-v2', attrs=attrs) }}
+          {{ ftl('nightly-whatsnew-want-to-know-which-v3', fallback='nightly-whatsnew-want-to-know-which-v2', attrs=attrs) }}
         </p>
 
       <p>{{ ftl('nightly-whatsnew-do-you-experience', bugzilla='https://bugzilla.mozilla.org') }}</p>
