@@ -293,6 +293,7 @@ check_status_and_handle_failure "Running wagtail_update_index"
 echo "Rebuilt Wagtail object reference helper and search index"
 
 # Check if tables in tables_to_wipe_after_import are empty
+echo "Checking that the tables we expect to be empty are empty"
 for table in "${tables_to_wipe_after_import[@]}"
 do
     count=$(sqlite3 $output_db "SELECT COUNT(*) FROM $table")
@@ -301,8 +302,6 @@ do
         all_well=false
     fi
 done
-echo "Checked that the tables we expect to be empty are empty"
-
 check_status_and_handle_failure "Seeking expected empty tables"
 
 export DATABASE_URL=$ORIGINAL_DATABASE_URL
