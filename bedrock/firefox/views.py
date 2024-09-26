@@ -911,6 +911,7 @@ def firefox_features_translate(request):
         "sk",
         "sl",
         "es-ES",
+        "sv-SE",
         "tr",
         "uk",
         "vi",
