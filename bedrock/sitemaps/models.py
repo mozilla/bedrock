@@ -47,7 +47,6 @@ class SitemapURLManager(models.Manager):
 class SitemapURL(models.Model):
     path = models.CharField(max_length=200)
     locale = models.CharField(max_length=5)
-    lastmod = models.CharField(max_length=40, blank=True)
 
     objects = SitemapURLManager()
 
