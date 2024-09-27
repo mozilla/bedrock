@@ -15,7 +15,7 @@
 .moz24-navigation-refresh {
     display: flex;
     width: 100%;
-    position: fixed;
+    position: sticky;
     z-index: 100;
     top: 0;
     left: 0;
@@ -528,22 +528,17 @@
     }
 }
 
-// page content
+// page content - hide all content except for the nav when mobile nav menu is open
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.c-navigation-items.mzp-is-open) {
-    #outer-wrapper {
-        display: none;
+    & > .c-sub-navigation,
+    & > .moz-consent-banner.is-visible,
+    & > .c-banner.c-banner-is-visible,
+    & > #outer-wrapper {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
 
         @media #{$mq-md} {
-            display: block;
+            display: block !important; /* stylelint-disable-line declaration-no-important */
         }
-    }
-}
-
-#outer-wrapper {
-    margin-top: 48px;
-
-    @media #{$mq-md} {
-        margin-top: 0;
     }
 }
