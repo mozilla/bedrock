@@ -528,22 +528,17 @@
     }
 }
 
-// page content - hide sub nav and page content when nav menu is open
+// page content - hide all content except for the nav when mobile nav menu is open
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.c-navigation-items.mzp-is-open) {
-    .c-sub-navigation {
-        display: none;
+    & > .c-sub-navigation,
+    & > .moz-consent-banner.is-visible,
+    & > .c-banner.c-banner-is-visible,
+    & > #outer-wrapper {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
 
         @media #{$mq-md} {
-            display: block;
-        }
-    }
-
-    #outer-wrapper {
-        display: none;
-
-        @media #{$mq-md} {
-            display: block;
+            display: block !important; /* stylelint-disable-line declaration-no-important */
         }
     }
 }
