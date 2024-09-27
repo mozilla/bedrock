@@ -15,7 +15,7 @@
 .moz24-navigation-refresh {
     display: flex;
     width: 100%;
-    position: fixed;
+    position: sticky;
     z-index: 100;
     top: 0;
     left: 0;
@@ -531,41 +531,19 @@
 // page content
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.c-navigation-items.mzp-is-open) {
-    #outer-wrapper {
+    .c-sub-navigation {
         display: none;
 
         @media #{$mq-md} {
             display: block;
         }
     }
-}
 
-body:has(.c-sub-navigation) {
-    .c-sub-navigation {
-        margin-top: 48px;
+    #outer-wrapper {
+        display: none;
 
         @media #{$mq-md} {
-            margin-top: 0;
+            display: block;
         }
-    }
-
-    #outer-wrapper {
-        margin-top: 0;
-    }
-}
-
-body:not(:has(.c-sub-navigation)) {
-    nav.c-sub-navigation {
-        margin-top: 0;
-    }
-
-    #outer-wrapper {
-        margin-top: 48px;
-    }
-}
-
-#outer-wrapper {
-    @media #{$mq-md} {
-        margin-top: 0;
     }
 }
