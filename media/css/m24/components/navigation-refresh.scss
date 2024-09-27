@@ -528,7 +528,7 @@
     }
 }
 
-// page content
+// page content - hide sub nav and page content when nav menu is open
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.c-navigation-items.mzp-is-open) {
     .c-sub-navigation {
