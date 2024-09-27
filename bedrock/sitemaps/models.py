@@ -12,33 +12,21 @@ NO_LOCALE = "__"  # special value for no locale
 
 
 def load_sitemaps_data():
-    with SITEMAPS_DATA.joinpath("etags.json").open() as fh:
-        etags = json.load(fh)
-
     with SITEMAPS_DATA.joinpath("sitemap.json").open() as fh:
         sitemap = json.load(fh)
 
-    return sitemap, etags
+    return sitemap
 
 
 def get_sitemap_objs():
     objs = []
-    sitemap, etags = load_sitemaps_data()
+    sitemap = load_sitemaps_data()
     for url, locales in sitemap.items():
         if not locales:
             locales = [NO_LOCALE]
 
         for locale in locales:
-            if locale == NO_LOCALE:
-                full_url = f"{settings.CANONICAL_URL}{url}"
-            else:
-                full_url = f"{settings.CANONICAL_URL}/{locale}{url}"
-
-            kwargs = {"path": url, "locale": locale}
-            etag = etags.get(full_url)
-            if etag:
-                kwargs["lastmod"] = etag["date"]
-            objs.append(SitemapURL(**kwargs))
+            objs.append(SitemapURL(path=url, locale=locale))
 
     return objs
 
