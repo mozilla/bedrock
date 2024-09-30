@@ -64,6 +64,16 @@ class Command(BaseCommand):
             image_key = f"media/cms/{image.file.name}"
             local_dest = build_path(settings.MEDIA_ROOT, image.file.name)
 
+            expected_output_dirs = [
+                os.path.join(settings.MEDIA_ROOT, "original_images"),
+                os.path.join(settings.MEDIA_ROOT, "images"),
+            ]
+
+            for dir_path in expected_output_dirs:
+                if not os.path.exists(dir_path):
+                    self.stdout.write(f"setting up: {dir_path}\n")
+                    os.makedirs(dir_path)
+
             if os.path.exists(local_dest) and not redownload:
                 self.stdout.write(f"Skipping: {local_dest} already exists locally.\n")
             else:
