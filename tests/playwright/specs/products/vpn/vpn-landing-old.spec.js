@@ -50,6 +50,9 @@ test.describe(
                     const waitlistPrimaryButton = page.getByTestId(
                         'join-waitlist-primary-button'
                     );
+                    const waitlistPricingButton = page.getByTestId(
+                        'join-waitlist-pricing-button'
+                    );
                     const waitlistSecondaryButton = page.getByTestId(
                         'join-waitlist-secondary-button'
                     );
@@ -68,6 +71,7 @@ test.describe(
                     // Assert Join Waitlist buttons are not displayed.
                     await expect(waitlistPrimaryButton).not.toBeVisible();
                     await expect(waitlistNavButton).not.toBeVisible();
+                    await expect(waitlistPricingButton).not.toBeVisible();
                     await expect(waitlistSecondaryButton).not.toBeVisible();
                     await expect(waitlistFooterButton).not.toBeVisible();
                 });
@@ -106,6 +110,9 @@ test.describe(
                     const waitlistPrimaryButton = page.getByTestId(
                         'join-waitlist-primary-button'
                     );
+                    const waitlistPricingButton = page.getByTestId(
+                        'join-waitlist-pricing-button'
+                    );
                     const waitlistSecondaryButton = page.getByTestId(
                         'join-waitlist-secondary-button'
                     );
@@ -116,6 +123,7 @@ test.describe(
                     // Assert Join Waitlist buttons are displayed.
                     await expect(waitlistNavButton).toBeVisible();
                     await expect(waitlistPrimaryButton).toBeVisible();
+                    await expect(waitlistPricingButton).toBeVisible();
                     await expect(waitlistSecondaryButton).toBeVisible();
                     await expect(waitlistFooterButton).toBeVisible();
 
