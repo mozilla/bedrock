@@ -21,7 +21,7 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
-from bedrock.products.forms import MozSocialWaitlistForm, VPNWaitlistForm
+from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.fluent import ftl_file_is_active
@@ -411,18 +411,6 @@ def resource_center_article_view(request, slug):
             "products/vpn/shared",
         ],
     )
-
-
-@require_safe
-def mozsocial_waitlist_page(request):
-    template_name = "products/mozsocial/invite.html"
-    ftl_files = ["products/mozsocial/invite"]
-    locale = l10n_utils.get_locale(request)
-    newsletter_form = MozSocialWaitlistForm(locale)
-
-    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "mozilla-social-waitlist"}
-
-    return l10n_utils.render(request, template_name, ctx, ftl_files=ftl_files)
 
 
 @require_safe
