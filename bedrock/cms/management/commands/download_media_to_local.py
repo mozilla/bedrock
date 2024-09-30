@@ -79,7 +79,10 @@ class Command(BaseCommand):
                 blob = bucket.blob(image_key)
                 blob.download_to_filename(local_dest)
                 self.stdout.write(f"Downloaded {image_key} from {bucket_name} to {local_dest}\n")
-
+                if redownload:
+                    # The DB will still think it has renditions included, and we want to regenerate those
+                    self.stdout.write(f"Deleting DB records of old renditions for {image_key}\n")
+                    image.renditions.all().delete()
                 image._pre_generate_expected_renditions()
                 self.stdout.write("Triggered local generation of renditions\n")
 
