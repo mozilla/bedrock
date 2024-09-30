@@ -65,10 +65,9 @@ class Command(BaseCommand):
             local_dest = build_path(settings.MEDIA_ROOT, image.file.name)
 
             expected_output_dirs = [
-                os.path.join(settings.MEDIA_ROOT, "original_images"),
-                os.path.join(settings.MEDIA_ROOT, "images"),
+                build_path(settings.MEDIA_ROOT, "original_images"),
+                build_path(settings.MEDIA_ROOT, "images"),
             ]
-
             for dir_path in expected_output_dirs:
                 if not os.path.exists(dir_path):
                     self.stdout.write(f"setting up: {dir_path}\n")
