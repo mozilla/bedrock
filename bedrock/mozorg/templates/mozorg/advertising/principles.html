@@ -33,9 +33,9 @@
     content_width='xl',
   ) }}
 
-  <div class="mozads-principles mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-two mzp-t-picto-side">
+  <ul class="mozads-principles mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-two mzp-t-picto-side">
     {% call picto(
-      base_el='div',
+      base_el='li',
       title='Privacy',
       heading_level=2,
       image=resp_img(
@@ -56,7 +56,7 @@
     {% endcall %}
 
     {% call picto(
-      base_el='div',
+      base_el='li',
       title='Safe data practices',
       heading_level=2,
       image=resp_img(
@@ -78,7 +78,7 @@
     {% endcall %}
 
     {% call picto(
-      base_el='div',
+      base_el='li',
       title='Community + collaboration',
       heading_level=2,
       image=resp_img(
@@ -99,7 +99,7 @@
     {% endcall %}
 
     {% call picto(
-      base_el='div',
+      base_el='li',
       title='Advertising on the internet',
       heading_level=2,
       image=resp_img(
@@ -116,7 +116,7 @@
       <p>Commercial involvement in the development of the internet brings many
         benefits; a balance between commercial profit and public benefit is critical.</p>
     {% endcall %}
-  </div>
+  </ul>
 
   {% include 'mozorg/advertising/includes/blog-articles.html' %}
 
