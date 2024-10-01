@@ -49,6 +49,9 @@
           </h2>
           <ul class="mzp-c-footer-list" data-testid="footer-list-resources">
             <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-text="Privacy Hub">{{ ftl('footer-privacy-hub', fallback='footer-privacy') }}</a></li>
+          {% if ftl_has_messages('footer-advertise') %}
+            <li><a href="{{ url('mozorg.advertising.landing') }}" data-link-type="footer" data-link-text="Advertise with Mozilla">{{ ftl('footer-advertise') }}</a></li>
+          {% endif %}
             <li><a href="https://mozilla.design/?{{ utm_params }}&utm_content=resources" data-link-type="footer" data-link-text="Brand Standards">{{ ftl('footer-brand-standards') }}</a></li>
           </ul>
         </section>
