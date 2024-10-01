@@ -38,7 +38,7 @@ def email_newsletter_form(
     spinner_color=None,
     email_label=None,
     email_placeholder=None,
-    multi_opt_in=False,
+    multi_opt_in_required=False,  # switches multi-newsletter forms to be opt-in rather than pre-checked.
 ):
     request = ctx["request"]
     context = ctx.get_all()
@@ -50,7 +50,7 @@ def email_newsletter_form(
 
     form = ctx.get("newsletter_form", None)
     if not form:
-        form = NewsletterFooterForm(newsletters, get_locale(request), multi_opt_in=multi_opt_in)
+        form = NewsletterFooterForm(newsletters, get_locale(request), multi_opt_in_required=multi_opt_in_required)
 
     if isinstance(newsletters, list):
         newsletters = ", ".join(newsletters)

@@ -189,10 +189,9 @@ class NewsletterFooterForm(forms.Form):
 
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
-    def __init__(self, newsletters, locale, data=None, multi_opt_in=False, *args, **kwargs):
+    def __init__(self, newsletters, locale, data=None, multi_opt_in_required=False, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(iter(regions.items()), key=itemgetter(1))
-        is_multi_newsletter = "," in newsletters
 
         try:
             if isinstance(newsletters, str):
@@ -203,6 +202,7 @@ class NewsletterFooterForm(forms.Form):
             # form validation will work with submitted data
             newsletters = ["mozilla-and-you"]
 
+        is_multi_newsletter = len(newsletters) > 1
         lang = locale.lower()
         if "-" in lang:
             lang, country = lang.split("-", 1)
@@ -235,7 +235,7 @@ class NewsletterFooterForm(forms.Form):
         self.fields["newsletters"].choices = [(n, self.choice_labels.get(n, n)) for n in newsletters]
 
         # Automatically check newsletter choices unless opt-in is explicitly required.
-        if is_multi_newsletter and multi_opt_in:
+        if is_multi_newsletter and multi_opt_in_required:
             self.fields["newsletters"].initial = None
         else:
             self.fields["newsletters"].initial = newsletters
