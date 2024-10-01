@@ -10,7 +10,7 @@
   heading=None,
   aria_label=None
 ) -%}
-<div class="c-browser{% if id %} {{ id }}{% endif %}{% if class %} {{ class }}{% endif %}">
+<div {% if id %}id="{{ id }}" {% endif %}class="c-browser{% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
     {% if heading and aria_label %}
       <h3 aria-label="{{ aria_label }}">{{ heading }}</h3>
