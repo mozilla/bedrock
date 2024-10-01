@@ -121,7 +121,6 @@ html.android {
 
     .mzp-c-button,
     #protocol-nav-download-firefox > .mzp-c-button {
-        @include text-body-lg;
         padding: $spacing-sm $spacing-lg;
         background-color: $color-yellow-20;
         background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50, $color-yellow-20, $color-yellow-20);
@@ -130,6 +129,7 @@ html.android {
         color: $color-black;
         border-color: $color-black;
         transition: all 0.3s ease-out;
+        @include text-body-lg;
 
         @media (prefers-reduced-motion: reduce) {
             background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50);

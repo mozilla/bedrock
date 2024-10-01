@@ -12,6 +12,7 @@
 
 {% block page_css %}
   {{ css_bundle('firefox-nothing-personal') }}
+  {{ css_bundle('protocol-newsletter') }}
 {% endblock %}
 
 {% block page_title_prefix %}Nothing Personal{% endblock %}
@@ -181,6 +182,22 @@
 
         </div>
         {% endcall %}
+
+         {% call browser_border(id="newsletter-signup", class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='Newsletter') %}
+          <div class="c-browser-window-top">
+            <h4><span aria-hidden="true">[</span>Sign up for our newsletter<span aria-hidden="true">]</span></h4>
+
+            {{ email_newsletter_form(
+              include_title=False,
+              include_language=False,
+              include_country=False,
+              newsletters='mozilla-and-you, nothing-personal-college-interest',
+              multi_opt_in_required=True
+            )}}
+
+            <p>By subscribing, you’ll receive Mozilla updates, plus exclusive college-related content if you opt in. You may unsubscribe from either at any time.</p>
+          </div>
+        {% endcall %}
     </div>
 
     <div class="c-sticky-note c-detached-sticky">
@@ -219,4 +236,5 @@
 
 {% block js %}
   {{ js_bundle('firefox-nothing-personal') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

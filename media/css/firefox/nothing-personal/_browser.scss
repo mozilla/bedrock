@@ -102,10 +102,10 @@
 
     .c-browser-window-top {
         h2 {
-            @include text-title-xl;
             line-height: 1;
             margin: 0;
             padding-right: $spacing-lg;
+            @include text-title-xl;
         }
 
         &::after {
