@@ -4,9 +4,17 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "mozorg/about/leadership/base.html" %}
+{% from "macros-protocol.html" import sidemenu_lists with context %}
+{% from "macros.html" import sub_nav with context %}
+
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title_full %}{{ page.title }}{% endblock %}
+{% block body_class %}{{ super() }} about-leadership{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('about-leadership') }}
+{% endblock %}
 
 {% block sub_navigation %}
   {{ sub_nav(
@@ -54,4 +62,8 @@
   </div>
 
   <div class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-leadership') }}
 {% endblock %}
