@@ -3,7 +3,6 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 .c-sticky-note {
-    @include text-body-lg;
     background-image: url('/media/img/firefox/nothing-personal/sticky-note-bg.svg');
     background-repeat: no-repeat;
     background-size: contain;
@@ -13,6 +12,7 @@
     padding: $spacing-xl;
     transform: rotate(11deg);
     text-align: center;
+    @include text-body-lg;
 
     &.c-detached-sticky {
         position: relative;
@@ -67,11 +67,11 @@
     margin-bottom: 0;
 
     a {
-        @include text-body-lg;
         border: 0;
         background: transparent;
         color: $color-black;
         padding: 0;
+        @include text-body-lg;
 
         &:hover,
         &:focus,
