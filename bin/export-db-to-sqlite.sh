@@ -153,7 +153,7 @@ python manage.py dumpdata \
     wagtailcore.GroupApprovalTask \
     taggit.Tag \
     taggit.TaggedItem \
-    base.ConfigValue \
+    waffle.Switch \
     cms.StructuralPage \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
