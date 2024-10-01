@@ -756,6 +756,7 @@ INSTALLED_APPS = [
     "wagtail_localize",
     "wagtail_localize.locales",  # This replaces "wagtail.locales"
     "wagtail.search",
+    "wagtaildraftsharing",  # has to come before wagtail.admin due to template overriding; also needs wagtail.snippets
     "wagtail.admin",
     "wagtail",
     "modelcluster",
@@ -2080,6 +2081,7 @@ if WAGTAIL_ENABLE_ADMIN:
             "django-admin",
             "django-rq",
             "oidc",
+            "_internal_draft_preview",
         ]
     )
 
@@ -2153,6 +2155,11 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     },
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
 }
+
+WAGTAIL_DRAFTSHARING_ADMIN_MENU_POSITION = 9000
+# WAGTAIL_DRAFTSHARING_VERBOSE_NAME = "Internal Share"
+# WAGTAIL_DRAFTSHARING_VERBOSE_NAME_PLURAL = "Internal Shares"
+# WAGTAIL_DRAFTSHARING_MENU_ITEM_LABEL = "Create internal sharing link"
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
 WAGTAIL_RICHTEXT_FEATURES_FULL = [
