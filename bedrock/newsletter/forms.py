@@ -175,7 +175,7 @@ class NewsletterFooterForm(forms.Form):
     choice_labels = {
         "mozilla-foundation": ftl("multi-newsletter-form-checkboxes-label-mozilla"),
         "mozilla-and-you": ftl("multi-newsletter-form-checkboxes-label-firefox"),
-        "nothing-personal-college-interest": "Exclusive college-related content",  # issue 15218.
+        "nothing-personal-college-interest-waitlist": "Exclusive college-related content",  # issue 15218.
     }
 
     email = forms.EmailField(widget=EmailInput(attrs={"required": "required", "data-testid": "newsletter-email-input"}))
