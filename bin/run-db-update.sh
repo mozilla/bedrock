@@ -39,7 +39,6 @@ python manage.py update_release_notes --quiet || failure_detected=true
 python manage.py update_content_cards --quiet || failure_detected=true
 python manage.py update_externalfiles --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
-python manage.py update_www_config --quiet || failure_detected=true
 python manage.py update_legal_docs --quiet || failure_detected=true
 python manage.py update_webvision_docs --quiet || failure_detected=true
 python manage.py update_sitemaps_data --quiet || failure_detected=true

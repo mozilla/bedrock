@@ -14,7 +14,3 @@ class ConfigValue(models.Model):
 
     def __str__(self):
         return f"{self.name}={self.value}"
-
-
-def get_config_dict():
-    return {c.name: c.value for c in ConfigValue.objects.all()}

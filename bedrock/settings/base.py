@@ -2195,3 +2195,9 @@ if DEV is True:
     CMS_ALLOWED_PAGE_MODELS = ["__all__"]
 else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
+
+
+# Our use of django-waffle relies on the following 2 settings to be set this way so that if a switch
+# doesn't exist, we get `None` back from `switch_is_active`.
+WAFFLE_SWITCH_DEFAULT = None
+WAFFLE_CREATE_MISSING_SWITCHES = False

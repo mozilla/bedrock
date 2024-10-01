@@ -2,13 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import os
 from unittest.mock import Mock, patch
 
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
 from django.urls import reverse
+
+from waffle.testutils import override_switch
 
 from bedrock.contentful.constants import (
     CONTENT_CLASSIFICATION_VPN,
@@ -64,7 +65,7 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_available"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_landing_page_geo_available_affiliate_flow_enabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -75,7 +76,7 @@ class TestVPNLandingPage(TestCase):
         self.assertTrue(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="False")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=False)
     def test_vpn_landing_page_geo_available_affiliate_flow_disabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -86,7 +87,7 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_landing_page_geo_not_available_affiliate_flow_enabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="cn")
         req.locale = "en-US"
@@ -97,7 +98,7 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_landing_page_geo_available_affiliate_not_supported_in_country(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="it")
         req.locale = "en-US"
@@ -108,7 +109,7 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    @override_switch("VPN_RELAY_BUNDLE", active=True)
     def test_vpn_landing_page_relay_bundle_available(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -118,7 +119,7 @@ class TestVPNLandingPage(TestCase):
         self.assertTrue(ctx["relay_bundle_available_in_country"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="True")
+    @override_switch("VPN_RELAY_BUNDLE", active=True)
     def test_vpn_landing_page_relay_bundle_not_available(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="gb")
         req.locale = "en-US"
@@ -128,7 +129,7 @@ class TestVPNLandingPage(TestCase):
         self.assertFalse(ctx["relay_bundle_available_in_country"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_RELAY_BUNDLE="False")
+    @override_switch("VPN_RELAY_BUNDLE", active=False)
     def test_vpn_landing_page_relay_bundle_disabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -175,7 +176,7 @@ class TestVPNPricingPage(TestCase):
         self.assertFalse(ctx["vpn_available"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_pricing_page_geo_available_affiliate_flow_enabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -186,7 +187,7 @@ class TestVPNPricingPage(TestCase):
         self.assertTrue(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="False")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=False)
     def test_vpn_pricing_page_geo_available_affiliate_flow_disabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="us")
         req.locale = "en-US"
@@ -197,7 +198,7 @@ class TestVPNPricingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_pricing_page_geo_not_available_affiliate_flow_enabled(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="cn")
         req.locale = "en-US"
@@ -208,7 +209,7 @@ class TestVPNPricingPage(TestCase):
         self.assertFalse(ctx["vpn_affiliate_attribution_enabled"])
 
     @override_settings(DEV=False)
-    @patch.dict(os.environ, SWITCH_VPN_AFFILIATE_ATTRIBUTION="True")
+    @override_switch("VPN_AFFILIATE_ATTRIBUTION", active=True)
     def test_vpn_pricing_page_geo_available_affiliate_not_supported_in_country(self, render_mock):
         req = RequestFactory().get("/products/vpn/pricing/", HTTP_CF_IPCOUNTRY="it")
         req.locale = "en-US"
