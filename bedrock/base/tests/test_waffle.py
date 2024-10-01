@@ -2,14 +2,35 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from unittest.mock import patch
+from django.test import override_settings
 
-from django.conf import settings
+import pytest
+from waffle.testutils import override_switch
 
-from bedrock.base import waffle
+from bedrock.base.waffle import switch
+
+pytestmark = [
+    pytest.mark.django_db,
+]
 
 
-@patch("bedrock.base.waffle.config")
-def test_switch_helper(config_mock):
-    waffle.switch("dude-and-walter")
-    config_mock.assert_called_with("DUDE_AND_WALTER", namespace="SWITCH", default=str(settings.DEV), parser=bool)
+@override_settings(DEV=True)
+def test_switch_helper_dev_true():
+    # When no switch exists, we return the value of `settings.DEV`.
+    assert switch("dude-and-walter") is True
+    # Then test explicityly set switch values.
+    with override_switch("DUDE_AND_WALTER", active=True):
+        assert switch("dude-and-walter") is True
+    with override_switch("DUDE_AND_WALTER", active=False):
+        assert switch("dude-and-walter") is False
+
+
+@override_settings(DEV=False)
+def test_switch_helper_dev_false():
+    # When no switch exists, we return the value of `settings.DEV`.
+    assert switch("dude-and-walter") is False
+    # Then test explicityly set switch values.
+    with override_switch("DUDE_AND_WALTER", active=True):
+        assert switch("dude-and-walter") is True
+    with override_switch("DUDE_AND_WALTER", active=False):
+        assert switch("dude-and-walter") is False
