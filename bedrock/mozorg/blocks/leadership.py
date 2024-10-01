@@ -100,7 +100,7 @@ class LeadershipBioBlock(blocks.StructBlock):
 
     class Meta:
         value_class = LeadershipBioID
-        template = "mozorg/about/leadership/blocks/leadership_block.html"
+        template = "mozorg/cms/about/blocks/leadership_block.html"
         icon = "user"
         label = "Leadership Profile"
 
