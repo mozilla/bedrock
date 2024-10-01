@@ -38,6 +38,7 @@ def email_newsletter_form(
     spinner_color=None,
     email_label=None,
     email_placeholder=None,
+    multi_opt_in=False,
 ):
     request = ctx["request"]
     context = ctx.get_all()
@@ -49,7 +50,7 @@ def email_newsletter_form(
 
     form = ctx.get("newsletter_form", None)
     if not form:
-        form = NewsletterFooterForm(newsletters, get_locale(request))
+        form = NewsletterFooterForm(newsletters, get_locale(request), multi_opt_in=multi_opt_in)
 
     if isinstance(newsletters, list):
         newsletters = ", ".join(newsletters)

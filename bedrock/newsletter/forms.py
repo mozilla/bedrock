@@ -189,9 +189,10 @@ class NewsletterFooterForm(forms.Form):
 
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
-    def __init__(self, newsletters, locale, data=None, *args, **kwargs):
+    def __init__(self, newsletters, locale, data=None, multi_opt_in=False, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(iter(regions.items()), key=itemgetter(1))
+        is_multi_newsletter = "," in newsletters
 
         try:
             if isinstance(newsletters, str):
@@ -232,7 +233,12 @@ class NewsletterFooterForm(forms.Form):
         lang_label = ftl_lazy("newsletter-form-select-language", fallback="newsletter-form-available-languages")
         self.fields["lang"] = forms.TypedChoiceField(widget=lang_widget, choices=lang_choices, initial=lang, required=False, label=lang_label)
         self.fields["newsletters"].choices = [(n, self.choice_labels.get(n, n)) for n in newsletters]
-        self.fields["newsletters"].initial = newsletters
+
+        # Automatically check newsletter choices unless opt-in is explicitly required.
+        if is_multi_newsletter and multi_opt_in:
+            self.fields["newsletters"].initial = None
+        else:
+            self.fields["newsletters"].initial = newsletters
 
     def clean_newsletters(self):
         return validate_newsletters(self.cleaned_data["newsletters"])

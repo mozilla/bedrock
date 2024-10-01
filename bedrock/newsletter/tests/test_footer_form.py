@@ -60,3 +60,20 @@ class TestNewsletterFooter(TestCase):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
         assert doc('#id_lang option[selected="selected"]').val() == ""
+
+    @override_settings(DEV=True)
+    def test_newsletters_selected(self):
+        """
+        By default both newsletters should be checked.
+        """
+        with self.activate_locale("en-US"):
+            resp = self.client.get(reverse(self.view_name))
+        doc = pq(resp.content)
+        assert doc('#id_newsletters_0[checked="checked"]').length == 1
+        assert doc('#id_newsletters_1[checked="checked"]').length == 1
+
+        with self.activate_locale("en-US"):
+            resp = self.client.get(reverse("firefox.nothing-personal.index"))
+        doc = pq(resp.content)
+        assert doc('#id_newsletters_0[checked="checked"]').length == 0
+        assert doc('#id_newsletters_1[checked="checked"]').length == 0
