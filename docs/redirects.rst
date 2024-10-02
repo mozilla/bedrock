@@ -32,7 +32,7 @@ a call to the ``bedrock.redirects.util.redirect`` helper function in a list name
 
 
     redirectpatterns = [
-        redirect(r'^rubble/barny/$', '/flintstone/fred/'),
+        redirect(r"^rubble/barny/$", "/flintstone/fred/"),
     ]
 
 This will make sure that requests to ``/rubble/barny/`` (or with the locale like
@@ -42,9 +42,23 @@ The ``redirect()`` function has several options. Its signature is as follows:
 
 .. code-block:: python
 
-    def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=None,
-                 query=None, vary=None, cache_timeout=12, decorators=None, re_flags=None,
-                 to_args=None, to_kwargs=None, prepend_locale=True, merge_query=False):
+    def redirect(
+        pattern,
+        to,
+        permanent=True,
+        locale_prefix=True,
+        anchor=None,
+        name=None,
+        query=None,
+        vary=None,
+        cache_timeout=12,
+        decorators=None,
+        re_flags=None,
+        to_args=None,
+        to_kwargs=None,
+        prepend_locale=True,
+        merge_query=False,
+    ):
         """
         Return a url matcher suited for urlpatterns.
 
@@ -121,9 +135,11 @@ to send the user. For example:
 
 
     redirectpatterns = [
-        redirect(r'^rubble/barny/$',
-                 ua_redirector('firefox(os)?', '/firefox/', '/not-firefox/'),
-                 cache_timeout=0),
+        redirect(
+            r"^rubble/barny/$",
+            ua_redirector("firefox(os)?", "/firefox/", "/not-firefox/"),
+            cache_timeout=0,
+        ),
     ]
 
 You simply pass it a regex to match, the destination URL (substitutions from the original URL do
@@ -149,9 +165,11 @@ of the header:
 
 
     redirectpatterns = [
-        redirect(r'^rubble/barny/$',
-                 header_redirector('cookie', 'been-here', '/firefox/', '/firefox/new/'),
-                 vary='cookie'),
+        redirect(
+            r"^rubble/barny/$",
+            header_redirector("cookie", "been-here", "/firefox/", "/firefox/new/"),
+            vary="cookie",
+        ),
     ]
 
 .. _testing-redirects:
