@@ -440,6 +440,13 @@ Example Usage in Python
 
 You may also use switches in Python code (though locale support is unavailable in this context):
 
+.. Note::
+
+    **Avoid using switch() outside the request/response cycle** (e.g., during module-level imports
+    or in a urls.py file), as the switch’s state is managed in the database and can be changed via
+    the admin interface. Using it outside the request cycle would prevent the switch value from
+    reflecting real-time updates.
+
 .. code-block:: python
 
     from bedrock.base.waffle import switch
