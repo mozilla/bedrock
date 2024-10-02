@@ -23,10 +23,11 @@ The easiest way to make the data available to a page is to add the
 
     from bedrock.contentcards.models import get_page_content_cards
 
+
     def view_with_cards(request):
         locale = l10n_utils.get_locale(request)
-        ctx = {'page_content_cards': get_page_content_cards('home', locale)}
-        return l10n_utils.render(request, 'sweet-words.html', ctx)
+        ctx = {"page_content_cards": get_page_content_cards("home", locale)}
+        return l10n_utils.render(request, "sweet-words.html", ctx)
 
 The ``get_page_content_cards`` returns a dict of card data dicts for the given page (``home`` in this case)
 and locale. The dict keys are the names of the cards (e.g. ``card_1``). If the ``page_content_cards`` context

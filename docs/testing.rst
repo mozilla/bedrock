@@ -398,7 +398,7 @@ and assertions as shown in the following example:
 
     def test_sign_up_for_newsletter(base_url, selenium):
         page = NewsletterPage(base_url, selenium).open()
-        page.type_email('noreply@mozilla.com')
+        page.type_email("noreply@mozilla.com")
         page.accept_privacy_policy()
         page.click_sign_me_up()
         assert page.sign_up_successful
@@ -427,12 +427,13 @@ you can also read the `pytest markers`_ documentation for more options.
 
     import pytest
 
+
     @pytest.mark.nondestructive
     def test_newsletter_default_values(base_url, selenium):
         page = NewsletterPage(base_url, selenium).open()
-        assert '' == page.email
-        assert 'United States' == page.country
-        assert 'English' == page.language
+        assert "" == page.email
+        assert "United States" == page.country
+        assert "English" == page.language
         assert page.html_format_selected
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
@@ -448,10 +449,11 @@ be enough to cover our most critical pages where legacy browser support is impor
 
     import pytest
 
+
     @pytest.mark.smoke
     @pytest.mark.nondestructive
     def test_download_button_displayed(base_url, selenium):
-        page = DownloadPage(selenium, base_url, params='').open()
+        page = DownloadPage(selenium, base_url, params="").open()
         assert page.is_download_button_displayed
 
 You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
@@ -474,7 +476,8 @@ considered displayed:
     from selenium.webdriver.support.ui import WebDriverWait as Wait
 
     Wait(selenium, timeout=10).until(
-        expected.visibility_of_element_located(By.ID, 'my_element'))
+        expected.visibility_of_element_located(By.ID, "my_element")
+    )
 
 For convenience, the Selenium project offers some basic `expected conditions`_,
 which can be used for the most common cases.
