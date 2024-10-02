@@ -591,15 +591,16 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("131."):
-            if nimbus_branch == "experiment-wnp-131-tabs":
+            if locale in ["en-US", "en-CA"]:
                 if nimbus_variant == "v1":
                     template = "firefox/whatsnew/index.html"
-                elif locale in ["en-US", "en-CA"] and nimbus_variant == "v2":
-                    template = "firefox/whatsnew/whatsnew-fx131-na.html"
-                elif locale in ["en-GB", "de", "fr"] and nimbus_variant in ["v3", "v4"]:
-                    template = "firefox/whatsnew/whatsnew-fx131-eu.html"
                 else:
+                    template = "firefox/whatsnew/whatsnew-fx131-na.html"
+            elif locale in ["en-GB", "de", "fr"]:
+                if nimbus_variant == "v1":
                     template = "firefox/whatsnew/index.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx131-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("130."):
