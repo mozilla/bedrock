@@ -393,60 +393,105 @@ after changing settings you can run the following command::
 
 You can read more details about how to localize content :ref:`here <l10n>`.
 
-Feature Flipping (aka Switches)
-===============================
+Feature Flipping (aka Switches, or waffle switches)
+===================================================
 
-Environment variables are used to configure behavior and/or features of select pages on bedrock
-via a template helper function called ``switch()``. It will take whatever name you pass to it
-(must be only numbers, letters, and dashes), convert it to uppercase, convert dashes to underscores,
-and lookup that name in the environment. For example: ``switch('the-dude')`` would look for the
-environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any of "on", "true", "1", or
-"yes", then it will be considered "on", otherwise it will be "off".
+Switches are managed using django-waffle and are stored in the database. These switches control
+behavior and/or features of select pages on Bedrock, and their state (active or inactive) is based
+on an ``active`` boolean field in the database.
 
-You can also supply a list of locale codes that will be the only ones for which the switch is active.
-If the page is viewed in any other locale the switch will always return ``False``, even in ``DEV``
-mode. This list can also include a "Locale Group", which is all locales with a common prefix
-(e.g. "en-US, en-GB" or "zh-CN, zh-TW"). You specify these with just the prefix. So if you
-used ``switch('the-dude', ['en', 'de'])`` in a template, the switch would be active for German and
-any English locale the site supports.
+Defining and Using Switches
+---------------------------
 
-You may also use these switches in Python in ``views.py`` files (though not with locale support).
-For example::
+The ``switch()`` template helper function allows you to check whether a specific switch is active. You
+pass a name to the function (using only letters, numbers, and dashes), which is automatically
+converted to uppercase and with dashes replaced by underscores for the lookup in the database. For
+example, ``switch('the-dude')`` will look for a switch named ``THE_DUDE`` in the database.
+
+Locale-Specific Switches
+------------------------
+
+You can provide a list of locale codes to limit the switch’s activation to specific locales. If the
+page is viewed in a locale not included in the list, the switch will return False. You can also use
+"Locale Groups," which apply to all locales with a common prefix (e.g., "en-US, en-GB" or "zh-CN,
+zh-TW"). To use these groups, pass the prefix. For example, ``switch('the-dude', ['en', 'de'])`` will
+activate the switch for German and any English locale supported by the site.
+
+Managing Switches
+-----------------
+
+Switches are managed through the Django Admin interface, where you can add, edit, or remove switches
+from the database directly. This interface allows for easy management of feature toggles without
+modifying environment variables or code.
+
+Example Usage in Templates
+--------------------------
+
+You can use the ``switch()`` helper function in your templates as follows:
+
+.. code-block:: html
+
+    {% if switch('the-dude') %}
+        <!-- Feature-specific HTML goes here -->
+    {% endif %}
+
+Example Usage in Python
+-----------------------
+
+You may also use switches in Python code (though locale support is unavailable in this context):
+
+.. code-block:: python
 
     from bedrock.base.waffle import switch
 
+
     def home_view(request):
-        title = 'Staging Home' if switch('staging-site') else 'Prod Home'
+        title = "Staging Home" if switch("staging-site") else "Prod Home"
         ...
 
 Testing
 -------
 
-If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered "on" unless they are
-explicitly "off" in the environment. ``DEV`` defaults to "true" in local development and demo servers.
+If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered active unless they are
+explicitly set as not active in the database. ``DEV`` defaults to "true" in local development and demo servers.
 
-To test switches locally:
+To test switches locally, add the switch to the database. This can be done in one of two ways.
 
-#. Set ``DEV=False`` in your ``.env`` file.
-#. Enable the switch in your ``.env`` file.
-#. Restart your web server.
+1. Add the switch via the Django management command:
 
-To configure switches/env vars for a demo branch. Follow the `demo-site instructions here <https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites>`_.
+    .. code-block:: bash
+
+        ./manage.py waffle_switch --create SWITCH_NAME on
+
+    If the switch already exists, you can toggle it using:
+
+    .. code-block:: bash
+
+        ./manage.py waffle_switch SWITCH_NAME on
+        ./manage.py waffle_switch SWITCH_NAME off
+
+    And you can view all the switches via:
+
+    .. code-block:: bash
+
+        ./manage.py waffle_switch -l
+
+    To delete a switch, run:
+
+    .. code-block:: bash
+
+        ./manage.py waffle_delete --switches SWITCH_NAME
+
+2. Add the switch in the Django admin at ``/django-admin/``. There you will see the "Django-Waffle"
+module with the "Switches" table. Click through to view the switches and add/edit/delete as needed.
 
 Traffic Cop
 -----------
 
 Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozmeao/trafficcop/>`_ experiments
-on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You
-can see the current state of these switches and other configuration values in our `configuration
-repo <https://mozmeao.github.io/www-config/configs/>`_.
+on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test.
 
-To work with/test these experiment switches locally, you must add the switches to your local environment. For example::
-
-    # to switch on firstrun-copy-experiment you'd add the following to your ``.env`` file
-    SWITCH_FIRSTRUN_COPY_EXPERIMENT=on
-
-To do the equivalent in one of the bedrock apps see the `www-config <https://mozmeao.github.io/www-config/>`_ documentation.
+To work with/test these experiment switches locally, you must add the switches to your local database.
 
 Notes
 -----
