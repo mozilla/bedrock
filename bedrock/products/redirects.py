@@ -14,4 +14,5 @@ redirectpatterns = (
     # Issue 11875
     redirect(r"^vpn/download/windows/?$", "products.vpn.windows-download"),
     redirect(r"^vpn/download/mac/?$", "products.vpn.mac-download"),
+    redirect(r"^products/mozsocial/invite/?$", "products.landing"),
 )

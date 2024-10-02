@@ -1204,12 +1204,6 @@
     },
     {
       "files": [
-        "css/products/mozsocial/invite.scss"
-      ],
-      "name": "mozsocial-invite"
-    },
-    {
-      "files": [
         "css/mozorg/antiharassment-tool.scss"
       ],
       "name": "antiharassment-tool"
@@ -1849,12 +1843,6 @@
         "js/firefox/nothing-personal/animate-pop-in.es6.js"
       ],
       "name": "firefox-nothing-personal"
-    },
-    {
-      "files": [
-        "js/products/mozsocial/invite.es6.js"
-      ],
-      "name": "mozsocial-waitlist"
     },
     {
       "files": [

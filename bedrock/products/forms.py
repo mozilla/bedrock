@@ -8,8 +8,3 @@ from bedrock.newsletter.forms import NewsletterFooterForm
 class VPNWaitlistForm(NewsletterFooterForm):
     def __init__(self, locale, data=None, *args, **kwargs):
         super().__init__("guardian-vpn-waitlist", locale, data, *args, **kwargs)
-
-
-class MozSocialWaitlistForm(NewsletterFooterForm):
-    def __init__(self, locale, data=None, *args, **kwargs):
-        super().__init__("mozilla-social-waitlist", locale, data, *args, **kwargs)
