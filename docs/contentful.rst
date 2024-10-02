@@ -654,6 +654,7 @@ Contentful Content Model & Entries
 
     # example content type def
 
+
     def get_section_data(self, entry_obj):
         fields = entry_obj.fields()
         # run `print(fields)` here to verify field values from Contentful
@@ -717,7 +718,11 @@ Using Django shell (with an example query to get data from first entry of "pageP
 
     from bedrock.contentful.models import ContentfulEntry
 
-    product_stories = ContentfulEntry.objects.filter(content_type="pageProductJournalismStory", localisation_complete=True, locale="en-US")
+    product_stories = ContentfulEntry.objects.filter(
+        content_type="pageProductJournalismStory",
+        localisation_complete=True,
+        locale="en-US",
+    )
 
     product_stories[0].data  # to see the data stored for the first story in the results
 

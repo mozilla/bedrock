@@ -152,6 +152,7 @@ in ``bedrock/mozorg/models.py``.
 
     from bedrock.cms.models.base import AbstractBedrockCMSPage
 
+
     class TestPage(AbstractBedrockCMSPage):
         heading = models.CharField(max_length=255, blank=True)
         body = RichTextField(
@@ -294,6 +295,7 @@ for your tests to import:
 
     from bedrock.mozorg import TestPage
 
+
     class TestPageFactory(wagtail_factories.PageFactory):
         title = "Test Page"
         live = True
@@ -319,6 +321,7 @@ give it some data to render:
     pytestmark = [
         pytest.mark.django_db,
     ]
+
 
     @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
     def test_page(minimal_site, rf, serving_method):  # noqa
