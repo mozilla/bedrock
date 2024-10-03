@@ -273,9 +273,6 @@ locales = [
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
 [[paths]]
-    reference = "en/products/vpn/landing.ftl"
-    l10n = "{locale}/products/vpn/landing.ftl"
-[[paths]]
     reference = "en/products/vpn/download.ftl"
     l10n = "{locale}/products/vpn/download.ftl"
 [[paths]]

@@ -7,23 +7,12 @@
 vpn-shared-product-name = { -brand-name-mozilla-vpn }
 vpn-shared-subscribe-link = Get { -brand-name-mozilla-vpn }
 vpn-shared-waitlist-link = Join the Waitlist
-vpn-shared-sign-in-link = Already a subscriber?
 
 vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Bulgaria, Canada, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malaysia, Malta, the Netherlands, New Zealand, Poland, Portugal, Romania, Singapore, Slovenia, Slovakia, Spain, Sweden, Switzerland, the UK, and the US.
 
 # This is a standalone string that is typically displayed underneath a "Get Mozilla VPN" button.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee
-
-# This string will be followed by a lockup of press logos for publications that have featured Mozilla VPN.
-vpn-shared-featured-in = Featured in
-
 vpn-shared-features-encrypt = Device-level encryption
-
-# Variables:
-#   $servers (number) - number of available servers
-#   $countries (number) - number of available countries
-vpn-shared-features-servers = { $servers }+ servers in { $countries }+ countries
-
 vpn-shared-features-bandwidth = No bandwidth restrictions
 vpn-shared-features-activity = No logging of your network activity
 vpn-shared-features-activity-logs = No online activity logs now or ever
@@ -33,26 +22,8 @@ vpn-shared-features-activity-logs = No online activity logs now or ever
 vpn-shared-features-access-countries = Access to servers in { $countries }+ countries
 
 # Variables:
-#   $devices (number) - maximum number of connected devices
-vpn-shared-features-devices = Option to connect up to { $devices } devices
-
-# Variables:
 #   $devices (number) - number of available devices
 vpn-shared-features-protection = Protection for up to { $devices } devices
-
-# Variables:
-#   $servers (number) - number of available servers
-#   $countries (number) - number of available countries
-vpn-shared-features-server-countries = Connect to more than { $servers } servers in over { $countries } countries
-
-# Variables:
-#   $countries (number) - number of available countries
-vpn-shared-countries-coming-soon = Available in { $countries } countries now. More regions coming soon
-
-# Variables:
-#   $url (number) - link to https://mullvad.net/servers/
-#   $attrs (string) - specific attributes added to external links
-vpn-shared-features-full-list-servers = See our full list of <a href="{ $url }" { $attrs }>servers</a>.
 
 # Variables:
 #   $countries (number) - number of available countries
@@ -65,24 +36,13 @@ vpn-shared-features-connect = Connect up to { $devices } devices
 # This string is displayed as an item in a list of features.
 vpn-shared-features-guarantee = 30-day money-back guarantee
 
-vpn-shared-refund-policy = Refund Policy
 vpn-shared-privacy-notice = Privacy Notice
 vpn-shared-terms-conditions = Terms and Conditions
 vpn-shared-wireguard-copyright = { -brand-name-wireguard } is a registered trademark of Jason A. Donenfeld
 
 ## Pricing options. Some offers may be only shown in select countries (e.g. German and France).
 
-vpn-shared-pricing-variable-heading-v2 = Choose a subscription plan that works for you
-
-vpn-shared-one-subscription-heading = One subscription for all your devices
-vpn-shared-choose-a-plan-sub-heading = Choose a plan that works for you
-
-vpn-shared-pricing-variable-sub-heading = All of our plans include:
 vpn-shared-pricing-recommended-offer = Recommended
-
-vpn-shared-pricing-plan-12-month-v2 = 12 Month plan
-
-vpn-shared-pricing-plan-monthly-v2 = Monthly plan
 
 # Variables:
 #   $amount (string) - a string containing the monthly subscription price together with the appropriate currency symbol e.g. 'US$4.99' or '6,99 €'.
@@ -92,9 +52,6 @@ vpn-shared-pricing-monthly = { $amount }<span>/month</span>
 # Variables:
 #   $amount (string) - a string containing the monthly subscription price together with the appropriate currency symbol e.g. 'US$4.99' or '6,99 €'.
 vpn-shared-pricing-monthly-plus-tax = { $amount }<span>/month + tax</span>
-
-vpn-shared-pricing-get-12-month-v2 = Get 12-month plan
-vpn-shared-pricing-get-monthly = Get monthly plan
 
 # Variables:
 #   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
@@ -123,62 +80,16 @@ vpn-shared-pricing-total-plus-tax = { $amount } total + tax
 
 vpn-shared-platform-cta-headline = Let’s get started
 vpn-shared-platform-cta-button = See pricing & availability
-
 vpn-shared-platform-privacy-promise = Your privacy is our promise
-
-vpn-shared-platform-trust-partner-headline = About our trusted partner
-
 vpn-shared-platform-what-is = What is { -brand-name-mozilla-vpn }?
 vpn-shared-platfrom-why-choose = Why { -brand-name-mozilla-vpn }?
-# Variables:
-#   $policy (url) - link to https://mullvad.net/help/no-logging-data-policy/
-#   $wireguard (url) - link to https://mullvad.net/help/why-wireguard/
-vpn-shared-platform-trust-partner-copy = The { -brand-name-mozilla-vpn } runs on a global network of servers powered by <a href="{ $policy }">{ -brand-name-mullvad }</a> using the <a href="{ $wireguard }">{ -brand-name-wireguard }</a>® protocol. { -brand-name-mullvad } puts your privacy first and does not keep logs of any kind.
-
 vpn-shared-platform-what-youll-get = What you’ll get with { -brand-name-mozilla-vpn }:
 
 # Subnav strings
 vpn-subnav-title = { -brand-name-mozilla-vpn }
-vpn-subnav-whats-a-vpn = What’s a VPN?
-vpn-subnav-faqs = FAQs
-vpn-subnav-get-help = Get Help
-vpn-subnav-platform-android = { -brand-name-android }
-vpn-subnav-platform-desktop = Desktop
-vpn-subnav-platform-ios = { -brand-name-ios }
-vpn-subnav-platform-linux = { -brand-name-linux }
-vpn-subnav-platform-mac = { -brand-name-mac-short }
-vpn-subnav-platform-mobile = Mobile
-vpn-subnav-platform-windows = { -brand-name-windows }
-vpn-subnav-whats-an-ip-address = What’s an IP address?
-vpn-subnav-when-to-use-a-vpn = When to use a VPN
-vpn-subnav-vpn-vs-proxy = VPN vs Proxy
-vpn-subnav-subscribe = Subscribe to { -brand-name-mozilla-vpn }
 vpn-subnav-learn-about-vpns = Learn about VPNs
 vpn-subnav-download-mozilla-vpn = Download { -brand-name-mozilla-vpn }
 vpn-subnav-features = Features
-
-## VPN + Relay bundle offer
-
-vpn-shared-increase-your-privacy = Increase your privacy with { -brand-name-vpn } + { -brand-name-relay }
-
-# Variables:
-#   $url (string) - link to https://relay.firefox.com/premium/
-vpn-add-relay-to-protect = Add { -brand-name-firefox-relay } to your subscription to protect your email and phone number. <a href="{ $url }">Learn more</a>.
-
-# Variables:
-#   $class_name (string) - CSS class name used to replace brand name with wordmark logo
-vpn-shared-add-firefox-relay = Add <span class="{ $class_name }">{ -brand-name-firefox-relay }</span>
-
-vpn-shared-relay-email-masking = Email masking
-vpn-shared-relay-phone-masking = Phone masking
-vpn-shared-get-vpn-plus-relay = Get { -brand-name-vpn } + { -brand-name-relay }
-vpn-shared-why-bundle = Why bundle?
-
-# Variables:
-#   $percent (number) - percentage saved with chosen subscription plan e.g. '40'
-vpn-shared-save-on-relay-premium = <span>Save { $percent }%</span> on { -brand-name-relay-premium } yearly plan
-
-vpn-shared-mozilla-vpn-is-not-yet-available = { -brand-name-mozilla-vpn } is not yet available in your country
 
 ## Press quotations
 

@@ -63,10 +63,7 @@ def vpn_landing_page(request):
     if entrypoint_experiment not in []:
         entrypoint_experiment = None
 
-    if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
-        template_name = "products/vpn/landing-refresh.html"
-    else:
-        template_name = "products/vpn/landing.html"
+    template_name = "products/vpn/landing-refresh.html"
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -93,13 +90,7 @@ def vpn_pricing_page(request):
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
-
-    if ftl_file_is_active("products/vpn/pricing-2023") and experience != "legacy":
-        template_name = "products/vpn/pricing-refresh.html"
-    elif experience == "legacy":
-        template_name = "products/vpn/pricing.html"
-    else:
-        template_name = "products/vpn/pricing.html"
+    template_name = "products/vpn/pricing-refresh.html"
 
     context = {
         "vpn_available": vpn_available_in_country,
