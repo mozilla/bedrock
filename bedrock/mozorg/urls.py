@@ -86,6 +86,7 @@ urlpatterns = [
     page("about/policy/transparency/jul-dec-2022/", "mozorg/about/policy/transparency/jul-dec-2022.html"),
     page("about/policy/transparency/jan-jun-2023/", "mozorg/about/policy/transparency/jan-jun-2023.html"),
     page("about/policy/transparency/jul-dec-2023/", "mozorg/about/policy/transparency/jul-dec-2023.html"),
+    page("about/policy/transparency/jan-jun-2024/", "mozorg/about/policy/transparency/jan-jun-2024.html"),
     page("contact/", "mozorg/contact/contact-landing.html"),
     page("contact/spaces/", "mozorg/contact/spaces/spaces-landing.html"),
     page("MPL/", "mozorg/mpl/index.html"),
