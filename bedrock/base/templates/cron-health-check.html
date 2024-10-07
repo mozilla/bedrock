@@ -130,5 +130,28 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <h1 id="waffle-switches">Waffle Switches</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for switch in switches %}
+      <tr>
+        <td>{{ switch.name }}</td>
+        <td>{% if switch.active %}✅{% else %}❌{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="2">No switches found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 </body>
 </html>
