@@ -15,6 +15,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 
 import timeago
+from waffle.models import Switch
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.contentful.models import ContentfulEntry
@@ -174,6 +175,7 @@ def cron_health_check(request):
             "fluent_repo": get_l10n_repo_info(),
             "SQLITE_DB_IN_USE": SQLITE_DB_IN_USE,
             "most_recent_data_change_ts": most_recent_data_change_ts,
+            "switches": Switch.objects.order_by("name"),
         },
         status=200 if check_pass else 500,
     )
