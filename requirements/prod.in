@@ -2,7 +2,7 @@ APScheduler==3.10.4
 babis==0.2.4
 basket-client==1.1.0
 bleach[css]==6.1.0
-boto3==1.35.31
+boto3==1.35.35
 certifi>=2024.7.4  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
