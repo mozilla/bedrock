@@ -16,7 +16,7 @@ We use Google Analytics (GA) to track how our website is used.
 *Implementation*
 
 Google calls a 3rd party JavaScript library that is imported by adding a script tag to a website,
-Google names these "tag"s.
+Google names these "tags".
 
 We include the tag for Google Tag Manager (GTM) on our website. GTM is a service meant to simplify and centralize
 the tags included on a website in cases where multiple tags are needed. Their web-based user interface can then be
@@ -74,7 +74,7 @@ Enhanced Event Measurement
 
 Pageviews, scrolls, video events, and outbound link clicks are being collected using GA4's `enhanced event measurement`_.
 
-Some form submissions are also being collected but newsletter signups are not. `(See Bug #13348)`_ They are instead
+Some form submissions are also being collected but newsletter signups are not `(see bug #13348)`_ . They are instead
 being tracked with the ``newsletter_subscribe`` event.
 
 See the full list of events GA collects by default. https://support.google.com/analytics/answer/9216061
@@ -93,7 +93,7 @@ CTA ("Call to Action") click is intented to track the one or two main actions th
 to do. This data-attribute can be used on either ``<button>`` or ``<a>``. Links can go to or away from the site,
 a button might trigger a JS function instead of going away from the page, that's still a cta.
 
-The attribute ``data-cta-text`` must be present to trigger the event. All links to accounts.firefox.com must also use cta-type.
+The attribute ``data-cta-text`` must be present to trigger the event. All links to accounts.mozilla.com must also use ``data-cta-type``.
 
 +-----------------------+----------------------------------------------------------------------------------+
 | Data Attribute        | Expected Value                                                                   |
@@ -103,6 +103,7 @@ The attribute ``data-cta-text`` must be present to trigger the event. All links 
 |                       |                                                                                  |
 |                       | - This does not need to exactly match the text displayed to the user             |
 |                       | - Defining this is useful to group the link clicks across locales                |
+|                       | - * this attribute is required                                                   |
 +-----------------------+----------------------------------------------------------------------------------+
 | ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``banner``,        |
 |                       | ``pricing``)                                                                     |
@@ -113,6 +114,7 @@ The attribute ``data-cta-text`` must be present to trigger the event. All links 
 |                       | - This is to group CTAs by their destination                                     |
 |                       | - Do not use this to identify the element (ie. link, button)                     |
 +-----------------------+----------------------------------------------------------------------------------+
+
 
 
 .. code-block:: html
@@ -137,6 +139,7 @@ The attribute ``data-link-text`` must be present to trigger the event.
 +=======================+================================================================================================+
 | ``data-link-text`` *  | Text or name of the link (e.g. ``Monitor``, ``Features``, ``Instagram (mozilla)``,             |
 |                       | ``Mozilla VPN``).                                                                              |
+|                       | - * this attribute is required                                                                 |
 +-----------------------+------------------------------------------------------------------------------------------------+
 | ``data-link-position``| Location of CTA on the page (e.g. ``topnav``, ``subnav``, ``body``, ``features``)              |
 +-----------------------+------------------------------------------------------------------------------------------------+
@@ -225,7 +228,6 @@ script is expecting the following values:
 +---------------+----------------------------------------------------------------------------------+
 | ``discount``  | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
 +---------------+----------------------------------------------------------------------------------+
-
 
 
 - item_id: Stripe Plan ID
