@@ -888,16 +888,6 @@
     },
     {
       "files": [
-        "css/products/vpn/components/hero.scss",
-        "css/products/vpn/components/block.scss",
-        "css/products/vpn/components/pricing-plus-relay.scss",
-        "css/products/vpn/common.scss",
-        "css/products/vpn/landing.scss"
-      ],
-      "name": "mozilla-vpn-landing"
-    },
-    {
-      "files": [
         "css/products/vpn/common-refresh.scss"
       ],
       "name": "mozilla-vpn-common-refresh"
@@ -913,14 +903,6 @@
         "css/products/vpn/features.scss"
       ],
       "name": "mozilla-vpn-features"
-    },
-    {
-      "files": [
-        "css/products/vpn/components/block.scss",
-        "css/products/vpn/components/pricing-basic.scss",
-        "css/products/vpn/common.scss"
-      ],
-      "name": "mozilla-vpn-pricing"
     },
     {
       "files": [
@@ -1745,12 +1727,6 @@
         "js/products/shared/stripe-init.es6.js"
       ],
       "name": "stripe"
-    },
-    {
-      "files": [
-        "js/products/vpn/landing.js"
-      ],
-      "name": "mozilla-vpn-landing"
     },
     {
       "files": [
