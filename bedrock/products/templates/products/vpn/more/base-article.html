@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_nav_cta_link, vpn_content_block, with context %}
+{% from "products/vpn/includes/macros.html" import vpn_hero, vpn_content_block, with context %}
 
 {% extends "products/vpn/base.html" %}
 
@@ -12,18 +12,6 @@
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('mozilla-vpn-article') }}
 {% endblock %}
-
-{# {% block site_header %}
-  {% with
-    custom_nav_cta=vpn_nav_cta_link()
-  %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block sub_navigation %}
-  {% include 'products/vpn/includes/subnav-more.html' %}
-{% endblock %} #}
 
 {% block content %}
   {% block hero %}
