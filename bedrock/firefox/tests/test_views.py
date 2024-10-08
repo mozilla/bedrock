@@ -431,28 +431,6 @@ class TestFirefoxNew(TestCase):
 
     # end /thanks?s=direct URL - issue 10520
 
-    # begin firefox ms store experiment tests - issue 11090
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_ms_store_exp_v1(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=control")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_ms_store_exp_v2(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?experiment=mozorg-firefox-vsinstaller-exp&variation=treatment")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download-ms-store.html"]
-
-    # end firefox ms store experiment tests - issue 11090
-
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):
@@ -507,17 +485,14 @@ class TestFirefoxGA(TestCase):
     def assert_ga_attr(self, response):
         doc = pq(response.content)
         links = doc(".mzp-c-button")
+        # test buttons all have appropriate attribute to trigger tracking in GA
         for link in links.items():
-            cta_data = link.attr("data-cta-type")
-            cta_link = link.attr("data-link-type")
-            if cta_data:
-                contains_cta = any(cta_data in item for item in ["link", "button"])
-                assert contains_cta or "fxa-" in cta_data
-            elif cta_link:
-                cta_link_types = ["download", "button", "link"]
-                assert cta_link in cta_link_types
+            cta_text = link.attr("data-cta-text")
+            link_text = link.attr("data-link-text")
+            if cta_text or link_text:
+                assert True
             else:
-                assert False, f"{link} does not contain attr cta-type or link-type"
+                assert False, f"{link} does not contain attr data-cta-text or data-link-text"
 
     def test_firefox_home_GA(self):
         req = RequestFactory().get("/en-US/firefox/")

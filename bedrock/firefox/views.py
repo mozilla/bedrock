@@ -8,12 +8,13 @@ from collections import OrderedDict
 from urllib.parse import urlparse
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, JsonResponse
+from django.http import Http404, HttpResponsePermanentRedirect, JsonResponse
 from django.utils.cache import patch_response_headers
 from django.utils.encoding import force_str
 from django.views.decorators.http import require_safe
 
 import querystringsafe_base64
+from product_details import product_details
 from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
@@ -169,150 +170,216 @@ def sign_attribution_codes(codes):
 
 
 @require_safe
-def firefox_all(request):
+def firefox_all(request, product_slug=None, platform=None, locale=None):
     ftl_files = "firefox/all"
-    product_android = firefox_android
-    product_desktop = firefox_desktop
-    product_ios = firefox_ios
 
-    # Human-readable product labels
-    products = OrderedDict(
-        [
-            (
-                "desktop_release",
-                ftl("firefox-all-product-firefox", ftl_files=ftl_files),
-            ),
-            (
-                "desktop_beta",
-                ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files),
-            ),
-            (
-                "desktop_developer",
-                ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files),
-            ),
-            (
-                "desktop_nightly",
-                ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files),
-            ),
-            (
-                "desktop_esr",
-                ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files),
-            ),
-            (
-                "android_release",
-                ftl("firefox-all-product-firefox-android", ftl_files=ftl_files),
-            ),
-            (
-                "android_beta",
-                ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files),
-            ),
-            (
-                "android_nightly",
-                ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files),
-            ),
-            (
-                "ios_release",
-                ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
-            ),
-        ]
-    )
+    # A product object for android OR ios.
+    class MobileRelease:
+        slug = "mobile-release"
 
-    channel_release = "release"
-    channel_beta = "beta"
-    channel_dev = "devedition"
-    channel_nightly = "nightly"
-    channel_esr = "esr"
-    channel_esr_next = "esr_next"
+    mobile_release = MobileRelease()
 
-    latest_release_version_desktop = product_desktop.latest_version(channel_release)
-    latest_beta_version_desktop = product_desktop.latest_version(channel_beta)
-    latest_developer_version_desktop = product_desktop.latest_version(channel_dev)
-    latest_nightly_version_desktop = product_desktop.latest_version(channel_nightly)
-    latest_esr_version_desktop = product_desktop.latest_version(channel_esr)
-    latest_esr_next_version_desktop = product_desktop.latest_version(channel_esr_next)
-
-    latest_release_version_android = product_android.latest_version(channel_release)
-    latest_beta_version_android = product_android.latest_version(channel_beta)
-    latest_nightly_version_android = product_android.latest_version(channel_nightly)
-    latest_release_version_ios = product_ios.latest_version(channel_release)
-
-    lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
-
-    context = {
-        "products": products.items(),
-        "desktop_release_platforms": product_desktop.platforms(channel_release),
-        "desktop_release_full_builds": product_desktop.get_filtered_full_builds(channel_release, latest_release_version_desktop),
-        "desktop_release_channel_label": product_desktop.channel_labels.get(channel_release, "Firefox"),
-        "desktop_release_latest_version": latest_release_version_desktop,
-        "desktop_beta_platforms": product_desktop.platforms(channel_beta),
-        "desktop_beta_full_builds": product_desktop.get_filtered_full_builds(channel_beta, latest_beta_version_desktop),
-        "desktop_beta_channel_label": product_desktop.channel_labels.get(channel_beta, "Firefox"),
-        "desktop_beta_latest_version": latest_beta_version_desktop,
-        "desktop_developer_platforms": product_desktop.platforms(channel_dev),
-        "desktop_developer_full_builds": product_desktop.get_filtered_full_builds(channel_dev, latest_developer_version_desktop),
-        "desktop_developer_channel_label": product_desktop.channel_labels.get(channel_dev, "Firefox"),
-        "desktop_developer_latest_version": latest_developer_version_desktop,
-        "desktop_nightly_platforms": product_desktop.platforms(channel_nightly),
-        "desktop_nightly_full_builds": product_desktop.get_filtered_full_builds(channel_nightly, latest_nightly_version_desktop),
-        "desktop_nightly_channel_label": product_desktop.channel_labels.get(channel_nightly, "Firefox"),
-        "desktop_nightly_latest_version": latest_nightly_version_desktop,
-        "desktop_esr_platforms": product_desktop.platforms(channel_esr),
-        "desktop_esr_full_builds": product_desktop.get_filtered_full_builds(channel_esr, latest_esr_version_desktop),
-        "desktop_esr_channel_label": product_desktop.channel_labels.get(channel_esr, "Firefox"),
-        "desktop_esr_latest_version": latest_esr_version_desktop,
-        "android_release_platforms": [("android", "Android")],
-        "android_release_full_builds": [
-            {
-                "locale": "multi",
-                "name_en": lang_multi,
-                "name_native": lang_multi,
-                "platforms": {"android": {"download_url": settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS}},
-            }
-        ],
-        "android_release_channel_label": product_android.channel_labels.get(channel_release, "Firefox"),
-        "android_release_latest_version": latest_release_version_android,
-        "android_beta_platforms": [("android", "Android")],
-        "android_beta_full_builds": [
-            {
-                "locale": "multi",
-                "name_en": lang_multi,
-                "name_native": lang_multi,
-                "platforms": {"android": {"download_url": settings.GOOGLE_PLAY_FIREFOX_BETA_LINK}},
-            }
-        ],
-        "android_beta_channel_label": product_android.channel_labels.get(channel_beta, "Firefox"),
-        "android_beta_latest_version": latest_beta_version_android,
-        "android_nightly_platforms": [("android", "Android")],
-        "android_nightly_full_builds": [
-            {
-                "locale": "multi",
-                "name_en": lang_multi,
-                "name_native": lang_multi,
-                "platforms": {"android": {"download_url": settings.GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK}},
-            }
-        ],
-        "android_nightly_channel_label": product_android.channel_labels.get(channel_nightly, "Firefox"),
-        "android_nightly_latest_version": latest_nightly_version_android,
-        "ios_release_platforms": [("ios", "iOS")],
-        "ios_release_full_builds": [
-            {
-                "locale": "multi",
-                "name_en": lang_multi,
-                "name_native": lang_multi,
-                "platforms": {"ios": {"download_url": settings.APPLE_APPSTORE_FIREFOX_LINK.replace("/{country}/", "/")}},
-            }
-        ],
-        "ios_release_channel_label": product_ios.channel_labels.get(channel_release, "Firefox"),
-        "ios_release_latest_version": latest_release_version_ios,
+    product_map = {
+        "desktop-release": {
+            "slug": "desktop-release",
+            "product": firefox_desktop,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
+        },
+        "desktop-beta": {
+            "slug": "desktop-beta",
+            "product": firefox_desktop,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files),
+        },
+        "desktop-developer": {
+            "slug": "desktop-developer",
+            "product": firefox_desktop,
+            "channel": "devedition",
+            "name": ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files),
+        },
+        "desktop-nightly": {
+            "slug": "desktop-nightly",
+            "product": firefox_desktop,
+            "channel": "nightly",
+            "name": ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files),
+        },
+        "desktop-esr": {
+            "slug": "desktop-esr",
+            "product": firefox_desktop,
+            "channel": "esr",
+            "name": ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files),
+        },
+        "android-release": {
+            "slug": "android-release",
+            "product": firefox_android,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox-android", ftl_files=ftl_files),
+        },
+        "android-beta": {
+            "slug": "android-beta",
+            "product": firefox_android,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files),
+        },
+        "android-nightly": {
+            "slug": "android-nightly",
+            "product": firefox_android,
+            "channel": "nightly",
+            "name": ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files),
+        },
+        "ios-release": {
+            "slug": "ios-release",
+            "product": firefox_ios,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
+        },
+        "ios-beta": {
+            "slug": "ios-beta",
+            "product": firefox_ios,
+            "channel": "beta",
+            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
+        },
+        # mobile-release is a special case for both android and ios.
+        "mobile-release": {
+            "slug": "mobile-release",
+            "product": mobile_release,
+            "channel": "release",
+            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
+        },
     }
 
-    if latest_esr_next_version_desktop:
-        context["desktop_esr_platforms_next"] = product_desktop.platforms(channel_esr_next, True)
-        context["desktop_esr_full_builds_next"] = product_desktop.get_filtered_full_builds(channel_esr_next, latest_esr_next_version_desktop)
-        context["desktop_esr_channel_label_next"] = (product_desktop.channel_labels.get(channel_esr_next, "Firefox"),)
-        context["desktop_esr_next_version"] = latest_esr_next_version_desktop
+    platform_map = {
+        "win64": "Windows 64-bit",
+        "win64-msi": "Windows 64-bit MSI",
+        "win64-aarch64": "Windows ARM64/AArch64",
+        "win": "Windows 32-bit",
+        "win-msi": "Windows 32-bit MSI",
+        "win-store": "Microsoft Store",
+        "osx": "macOS",
+        "linux64": "Linux 64-bit",
+        "linux": "Linux 32-bit",
+        "linux64-aarch64": "Linux ARM64/AArch64",
+    }
 
-    return l10n_utils.render(request, "firefox/all-unified.html", context, ftl_files=ftl_files)
+    # 404 checks.
+    if product_slug and product_slug not in product_map.keys():
+        raise Http404()
+    if platform and platform not in platform_map.keys():
+        raise Http404()
+    if locale and locale not in product_details.languages.keys():
+        raise Http404()
+    # 404 if win-store and not desktop-release.
+    if platform == "win-store" and product_slug not in ["desktop-release", "desktop-beta"]:
+        raise Http404()
+
+    product = product_map.get(product_slug)
+    platform_name = None
+    locale_name = None
+    download_url = None
+    template_name = "firefox/all/base.html"
+    lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
+
+    if product:
+        if product_slug.startswith(("mobile", "android", "ios")):
+            locale = "en-US"
+            locale_name = lang_multi
+            download_url = True  # Set to True to avoid trying to generate this later below.
+        if product_slug.startswith("mobile"):
+            platform = "mobile"
+            platform_name = ftl("firefox-all-plat-mobile", ftl_files=ftl_files)
+        elif product_slug.startswith("android"):
+            platform = "android"
+            platform_name = "Android"
+        elif product_slug.startswith("ios"):
+            platform = "ios"
+            platform_name = "iOS"
+        elif product_slug in ("desktop-release", "desktop-beta") and platform == "win-store":
+            platform_name = "Microsoft Store"
+            locale = "en-US"
+            locale_name = lang_multi
+            download_url = {
+                "desktop-release": settings.MICROSOFT_WINDOWS_STORE_FIREFOX_WEB_LINK,
+                "desktop-beta": settings.MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK,
+            }.get(product_slug)
+        else:
+            platform_name = platform and platform_map[platform]
+            locale_name = None
+            if locale:
+                try:
+                    build = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0]
+                except IndexError:
+                    raise Http404()
+                locale_name = f"{build['name_en']} - {build['name_native']}"
+
+    context = {
+        "product": product,
+        "platform": platform,
+        "platform_name": platform_name,
+        "locale": locale,
+        "locale_name": locale_name,
+    }
+
+    # `firefox_desktop.esr_minor_versions` could have 0, 1, or 2 elements. This adds defaults so we always have 2 to unpack.
+    esr_latest_version, esr_next_version = (firefox_desktop.esr_minor_versions + [None, None])[:2]
+    if esr_next_version:
+        context.update(
+            desktop_esr_latest_version=esr_latest_version,
+            desktop_esr_next_version=esr_next_version,
+        )
+
+    # Show download link
+    if locale:
+        if not download_url:
+            download_url = list(filter(lambda b: b["locale"] == locale, product["product"].get_filtered_full_builds(product["channel"])))[0][
+                "platforms"
+            ][platform]["download_url"]
+        context.update(
+            download_url=download_url,
+        )
+        if product_slug == "desktop-esr" and esr_next_version:
+            try:
+                download_esr_next_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr_next")))[0][
+                    "platforms"
+                ][platform]["download_url"]
+                context.update(
+                    download_esr_next_url=download_esr_next_url,
+                )
+            except IndexError:
+                # If the ESR next version is not available for the locale, remove the context variables.
+                context.pop("desktop_esr_latest_version", None)
+                context.pop("desktop_esr_next_version", None)
+
+    # Show platforms with download links
+    elif platform:
+        locales = []
+        for b in product["product"].get_filtered_full_builds(product["channel"]):
+            locale_name = f"{b['name_en']} - {b['name_native']}"
+            if b["locale"] == request.locale:
+                # If locale matches request's locale, put it at the top.
+                locales.insert(0, (b["locale"], locale_name))
+            else:
+                locales.append((b["locale"], locale_name))
+
+        context.update(
+            locales=locales,
+        )
+
+    # Show locales.
+    elif product_slug:
+        platforms = product["product"].platforms(product["channel"])
+        if product_slug in ["desktop-release", "desktop-beta"]:
+            idx = platforms.index(("osx", "macOS"))
+            platforms.insert(idx, ("win-store", "Microsoft Store"))
+        context.update(platforms=platforms)
+
+    # Show products.
+    else:
+        context.update(
+            products=[{"slug": k, "name": v["name"]} for k, v in product_map.items()],
+        )
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
 
 
 def detect_channel(version):
@@ -420,6 +487,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx128-eu-donate.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx129-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx129-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -428,6 +498,9 @@ class WhatsnewView(L10nTemplateView):
 
     # place expected ?v= values in this list
     variations = ["1", "2", "3", "4"]
+
+    # Nimbus experiment variation expected values
+    nimbus_variations = ["v1", "v2", "v3", "v4"]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -454,12 +527,18 @@ class WhatsnewView(L10nTemplateView):
         ctx["utm_params"] = f"utm_source={entrypoint}&utm_medium=referral&utm_campaign={campaign}&entrypoint={entrypoint}"
 
         variant = self.request.GET.get("v", None)
+        nimbus_variant = self.request.GET.get("variant", None)
 
         # ensure variant matches pre-defined value
         if variant not in self.variations:
             variant = None
 
+        # ensure nimbus_variant matches pre-defined value
+        if nimbus_variant not in self.nimbus_variations:
+            nimbus_variant = None
+
         ctx["variant"] = variant
+        ctx["nimbus_variant"] = nimbus_variant
 
         return ctx
 
@@ -509,6 +588,30 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("131."):
+            if locale in ["en-US", "en-CA"]:
+                if nimbus_variant == "v1":
+                    template = "firefox/whatsnew/index.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx131-na.html"
+            elif locale in ["en-GB", "de", "fr"]:
+                if nimbus_variant == "v1":
+                    template = "firefox/whatsnew/index.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx131-eu.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("130."):
+            if locale in ["en-US", "en-GB", "en-CA", "de", "fr", "es-ES", "it", "pl"]:
+                if nimbus_branch == "experiment-wnp-130-tabs":
+                    if nimbus_variant == "v1":
+                        template = "firefox/whatsnew/index.html"
+                    else:
+                        template = "firefox/whatsnew/whatsnew-fx130.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx130.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("129."):
@@ -583,35 +686,6 @@ class WhatsnewView(L10nTemplateView):
         return [template]
 
 
-WNP117_VPN_EXPANSION_COUNTRIES = [
-    "AT",  # Austria
-    "BE",  # Belgium
-    "BG",  # Bulgaria
-    "CH",  # Switzerland
-    "CY",  # Cyprus
-    "CZ",  # Czech Republic
-    "DK",  # Denmark
-    "EE",  # Estonia
-    "ES",  # Spain
-    "FI",  # Finland
-    "HR",  # Croatia
-    "HU",  # Hungary
-    "IE",  # Ireland
-    "IT",  # Italy
-    "LT",  # Lithuania
-    "LU",  # Luxembourg
-    "LV",  # Latvia
-    "MT",  # Malta
-    "NL",  # Netherlands
-    "PL",  # Poland
-    "PT",  # Portugal
-    "RO",  # Romania
-    "SE",  # Sweden
-    "SI",  # Slovenia
-    "SK",  # Slovakia
-]
-
-
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/thanks.html": ["firefox/new/download"],
@@ -661,7 +735,6 @@ class NewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/base_download.html": ["firefox/new/download"],
         "firefox/new/desktop/download.html": ["firefox/new/desktop"],
-        "firefox/new/desktop/download-ms-store.html": ["firefox/new/desktop"],
     }
     activation_files = [
         "firefox/new/download",
@@ -669,7 +742,7 @@ class NewView(L10nTemplateView):
     ]
 
     # place expected ?v= values in this list
-    variations = ["control", "treatment"]
+    variations = []
 
     def get(self, *args, **kwargs):
         # Remove legacy query parameters (Bug 1236791)
@@ -710,18 +783,13 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         variation = self.request.GET.get("variation", None)
         experience = self.request.GET.get("xv", None)
-        experiment = self.request.GET.get("experiment", None)
-        locale = l10n_utils.get_locale(self.request)
 
         # ensure variant matches pre-defined value
         if variation not in self.variations:
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if locale.startswith("en-") and experiment == "mozorg-firefox-vsinstaller-exp" and variation == "treatment":
-                template = "firefox/new/desktop/download-ms-store.html"
-            else:
-                template = "firefox/new/desktop/download.html"
+            template = "firefox/new/desktop/download.html"
         else:
             template = "firefox/new/basic/base_download.html"
 
@@ -820,6 +888,10 @@ def firefox_welcome_page1(request):
 def firefox_features_translate(request):
     translate_langs = [
         "bg",
+        "ca",
+        "hr",
+        "cs",
+        "da",
         "nl",
         "en-US",
         "et",
@@ -828,14 +900,22 @@ def firefox_features_translate(request):
         "de",
         "el",
         "hu",
+        "id",
         "it",
+        "lv",
+        "lt",
         "pl",
         "pt-PT",
+        "ro",
         "ru",
+        "sr",
+        "sk",
         "sl",
         "es-ES",
+        "sv-SE",
         "tr",
         "uk",
+        "vi",
     ]
 
     names = get_translations_native_names(sorted(translate_langs))

@@ -8,68 +8,43 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .section-intro {
-    background-color: $color-ink-80;
+    .intro-image-container {
+        padding-bottom: $spacing-2xl;
+        padding-top: $spacing-2xl;
+    }
 
-    .mzp-l-content {
-        @include background-size(141px 157px, 153px 115px);
-        background-image:
-            url('/media/img/newsletter/firefox/mailbox.svg'),
-            url('/media/img/newsletter/firefox/fox-tail.svg');
-        background-position: bottom -40px left 10px, bottom -45px right -10px;
-        background-repeat: no-repeat, no-repeat;
-        height: 167px;
-        width: $content-xs;
-
-        @media #{$mq-sm} {
-            @include background-size(215px 239px, 230px 173px);
-            background-position: bottom -60px left, bottom -65px right;
-            height: 229px;
-            width: $content-sm;
-        }
-
-        @media #{$mq-md} {
-            @include background-size(300px 333px, 320px 241px);
-            background-position: bottom -90px left 40px, bottom -90px right 40px;
-            height: 290px;
-            width: $content-md;
-        }
-
-        @media #{$mq-lg} {
-            @include background-size(381px 423px, 428px 322px);
-            background-position: bottom -100px left 60px, bottom -120px right 60px;
-            height: 370px;
-            width: $content-lg;
-        }
-
-        @media #{$mq-lg} and #{$mq-short} {
-            @include background-size(300px 333px, 320px 241px);
-            background-position: bottom -90px left 160px, bottom -90px right 140px;
-            height: 290px;
-        }
+    .intro-image {
+        border-radius: $border-radius-md;
+        display: block;
+        margin: 0 auto;
     }
 }
 
 .section-subscribe {
-    background: #fff;
     padding: $spacing-lg 0;
+}
 
-    .mzp-l-content:first-child {
-        padding-bottom: 0;
-    }
+.section-main-header {
+    padding-bottom: 0;
+    padding-top: 0;
 
-    h1 {
-        @include text-title-xl;
+    .page-title {
+        @include text-title-lg;
         text-align: center;
     }
 
-    h2 {
-        @include text-title-xs;
-        color: $color-ink-80;
-        font-weight: normal;
+    .tagline {
+        @include text-body-xl;
+        color: $color-marketing-gray-70;
         margin: $spacing-lg auto $spacing-xl;
         max-width: 30em;
         text-align: center;
     }
+}
+
+.section-newsletter-form {
+    padding-bottom: $spacing-2xl;
+    padding-top: $spacing-2xl;
 }
 
 .mzp-c-newsletter-thanks {

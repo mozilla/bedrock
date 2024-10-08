@@ -277,10 +277,12 @@ FLUENT_DEFAULT_FILES = [
     "brands",
     "download_button",
     "footer",
+    "footer-refresh",
     "fxa_form",
     "mozorg/about/shared",
     "navigation",
     "navigation_v2",
+    "navigation_refresh",
     "newsletter_form",
     "send_to_device",
     "sub_navigation",
@@ -740,6 +742,7 @@ INSTALLED_APPS = [
     # third-party apps
     "django_jinja_markdown",
     "django_jinja",
+    "waffle",
     "watchman",
     # Wagtail CMS and related, necessary apps
     "wagtail.contrib.redirects",
@@ -858,7 +861,6 @@ TEMPLATES = [
                 "bedrock.mozorg.context_processors.canonical_path",
                 "bedrock.mozorg.context_processors.contrib_numbers",
                 "bedrock.mozorg.context_processors.current_year",
-                "bedrock.mozorg.context_processors.funnelcake_param",
                 "bedrock.firefox.context_processors.latest_firefox_versions",
             ],
             "extensions": [
@@ -976,15 +978,6 @@ EXTERNAL_FILES = {
 # Prefix for media. No trailing slash.
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config("CDN_BASE_URL", default="")
-
-# newsletters that always show for FxA holders
-FXA_NEWSLETTERS = [
-    "firefox-accounts-journey",
-    "test-pilot",
-    "take-action-for-the-internet",
-    "knowledge-is-power",
-]
-FXA_NEWSLETTERS_LOCALES = ["en", "de", "fr"]
 
 DONATE_LINK = "https://foundation.mozilla.org/{location}"
 
@@ -1276,14 +1269,6 @@ markus.configure(backends=MARKUS_BACKENDS)
 
 # Django-CSP settings are in settings/__init__.py, where they are
 # set according to site mode
-
-# Bug 1345467: Funnelcakes are now explicitly configured in the environment.
-# Set experiment specific variables like the following:
-#
-# FUNNELCAKE_103_PLATFORMS=win,win64
-# FUNNELCAKE_103_LOCALES=de,fr,en-US
-#
-# where "103" in the variable name is the funnelcake ID.
 
 # Countries that need to see cookie banner
 # See https://www.gov.uk/eu-eea
@@ -2098,17 +2083,30 @@ if WAGTAIL_ENABLE_ADMIN:
         ]
     )
 
+    # Increase the number of form fields allowed to be submitted in one GET/POST,
+    # but only for deployments where the CMS is enabled. This is needed to support
+    # complex pages with lots of (small, but) nested fields.
+    # Resolves https://mozilla.sentry.io/issues/5800147294
+    DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
+
 
 def lazy_wagtail_langs():
     enabled_wagtail_langs = [
-        ("en-US", "English"),
-        # TODO: expand to other locales supported by our translation vendor
-        # ("de", "Deutsch"),
-        ("fr", "Français"),
-        # ("es", "Español"),
-        # ("es", "Español mexicano"),
-        # ("it", "Italiano"),
-        # more to come
+        # Notes:
+        # 1) The labels are only used internally so can be in English
+        # 2) These are the Bedrock-side lang codes. They are mapped to
+        # Smartling-specific ones in the WAGTAIL_LOCALIZE_SMARTLING settings, below
+        ("en-US", "English (US)"),
+        ("de", "German"),
+        ("fr", "French"),
+        ("es-ES", "Spanish (Spain)"),
+        ("it", "Italian"),
+        ("ja", "Japanese"),
+        ("nl", "Dutch (Netherlands)"),
+        ("pl", "Polish"),
+        ("pt-BR", "Portuguese (Brazil)"),
+        ("ru", "Russian"),
+        ("zh-CN", "Chinese (China-Simplified)"),
     ]
     enabled_language_codes = [x[0] for x in LANGUAGES]
     retval = [wagtail_lang for wagtail_lang in enabled_wagtail_langs if wagtail_lang[0] in enabled_language_codes]
@@ -2144,10 +2142,20 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         default="5",
         parser=float,
     ),  # Timeout in seconds for requests to the Smartling API
+    "LOCALE_TO_SMARTLING_LOCALE": {
+        "de": "de-DE",
+        "fr": "fr-FR",
+        "it": "it-IT",
+        "ja": "ja-JP",
+        "nl": "nl-NL",
+        "pl": "pl-PL",
+        "ru": "ru-RU",
+    },
+    "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
 }
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
-WAGTAIL_RICHEXT_FEATURES_FULL = [
+WAGTAIL_RICHTEXT_FEATURES_FULL = [
     # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
     # Order here is the order used in the editor UI
     "h2",
@@ -2179,9 +2187,16 @@ WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
+    "mozorg.LeadershipPage",
 ]
 
 if DEV is True:
     CMS_ALLOWED_PAGE_MODELS = ["__all__"]
 else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
+
+
+# Our use of django-waffle relies on the following 2 settings to be set this way so that if a switch
+# doesn't exist, we get `None` back from `switch_is_active`.
+WAFFLE_SWITCH_DEFAULT = None
+WAFFLE_CREATE_MISSING_SWITCHES = False

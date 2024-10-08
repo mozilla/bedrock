@@ -24,7 +24,11 @@ nightly-whatsnew-if-you-want-to-v3 = If you want to know what’s happening arou
 
 # Variables:
 #   $attrs (string) - link href and additional attributes
+# Obsolete string (expires: 2024-11-26)
 nightly-whatsnew-want-to-know-which-v2 = Want to know which platform features you could test on { -brand-name-nightly } and can’t see yet on other { -brand-name-firefox } channels? Then have a look at the <a { $attrs }>Nightly Experiments</a> preferences page.
+# Variables:
+#   $attrs (string) - link href and additional attributes
+nightly-whatsnew-want-to-know-which-v3 = Want to know which platform features you could test on { -brand-name-nightly } and can’t see yet on other { -brand-name-firefox } channels? Then have a look at the <a { $attrs }>{ -brand-name-firefox-labs }</a> preferences page.
 
 # Variables:
 #   $bugzilla (url) - link to https://bugzilla.mozilla.org/

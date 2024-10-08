@@ -100,14 +100,14 @@ URLS = flatten(
         # bug 957664
         url_test("/press/awards{/,.html}", "https://blog.mozilla.org/press/awards/"),
         # issue 8096
-        url_test("/firefox/beta/all/", "/firefox/all/#product-desktop-beta"),
-        url_test("/firefox/developer/all/", "/firefox/all/#product-desktop-developer"),
-        url_test("/firefox/aurora/all/", "/firefox/all/#product-desktop-developer"),
-        url_test("/firefox/nightly/all/", "/firefox/all/#product-desktop-nightly"),
-        url_test("/firefox/organizations/all/", "/firefox/all/#product-desktop-esr"),
-        url_test("/firefox/android/all/", "/firefox/all/#product-android-release"),
-        url_test("/firefox/android/beta/all/", "/firefox/all/#product-android-beta"),
-        url_test("/firefox/android/nightly/all/", "/firefox/all/#product-android-nightly"),
+        url_test("/firefox/beta/all/", "/firefox/all/desktop-beta/"),
+        url_test("/firefox/developer/all/", "/firefox/all/desktop-developer/"),
+        url_test("/firefox/aurora/all/", "/firefox/all/desktop-developer/"),
+        url_test("/firefox/nightly/all/", "/firefox/all/desktop-nightly/"),
+        url_test("/firefox/organizations/all/", "/firefox/all/desktop-esr/"),
+        url_test("/firefox/android/all/", "/firefox/all/android-release/"),
+        url_test("/firefox/android/beta/all/", "/firefox/all/android-beta/"),
+        url_test("/firefox/android/nightly/all/", "/firefox/all/android-nightly/"),
         url_test("/projects/firefox/3.6.10/whatsnew/bunny-lebowski/", "/firefox/3.6.10/whatsnew/bunny-lebowski/"),
         url_test("/projects/firefox/4.0/firstrun/", "/firefox/4.0/firstrun/"),
         url_test("/projects/firefox/4.0a2/firstrun/stuff", "/firefox/nightly/firstrun/stuff"),
@@ -158,10 +158,10 @@ URLS = flatten(
         # bug 727561
         url_test("/firefox/search{,.html}", "/firefox/new/"),
         # bug 860865, 1101220, issue 8096
-        url_test("/firefox/all-{beta,rc}{/,.html}", "/firefox/all/#product-desktop-beta"),
-        url_test("/firefox/all-aurora{/,.html}", "/firefox/all/#product-desktop-developer"),
+        url_test("/firefox/all-{beta,rc}{/,.html}", "/firefox/all/desktop-beta/"),
+        url_test("/firefox/all-aurora{/,.html}", "/firefox/all/desktop-developer/"),
         url_test("/firefox/aurora/{notes,system-requirements}/", "/firefox/developer/{notes,system-requirements}/"),
-        url_test("/firefox/organizations/all.html", "/firefox/all/#product-desktop-esr"),
+        url_test("/firefox/organizations/all.html", "/firefox/all/desktop-esr/"),
         # bug 729329
         url_test("/mobile/sync/is/da/best/", "/firefox/features/sync/"),
         # bug 882845
@@ -882,7 +882,7 @@ URLS = flatten(
         url_test("/hacking", "https://firefox-source-docs.mozilla.org/"),
         # issue 10736
         url_test("/jobs", "/careers/"),
-        url_test("/join", "https://foundation.mozilla.org/donate/"),
+        url_test("/join", "/careers/"),
         # Bug 1293539
         url_test("/firefox/{48.0,48.0.1,49.0a1,49.0a2}/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
         url_test("/firefox/tour", "https://support.mozilla.org/kb/get-started-firefox-overview-main-features"),
@@ -915,12 +915,12 @@ URLS = flatten(
         ),
         # Bug 936362
         # only upper-case for XBL. /xbl is a namespace URL for the standard.
-        url_test("/XBL", "https://developer.mozilla.org/docs/XBL"),
+        url_test("/XBL", "https://www.w3.org/TR/xbl/"),
         url_test("/xbl", status_code=200),
-        url_test("/RDF", "https://developer.mozilla.org/docs/RDF"),
-        url_test("/rdf", "https://developer.mozilla.org/docs/RDF"),
-        # Bug 1332008
-        url_test("{/en-US,}/protocol/", "https://blog.mozilla.org/opendesign/"),
+        url_test("/RDF", "https://www.w3.org/RDF/"),
+        url_test("/rdf", "https://www.w3.org/RDF/"),
+        # Bug 1332008, 1525853
+        url_test("{/en-US,}/protocol/", "https://protocol.mozilla.org"),
         # Bug 1322959, issue 8375
         url_test("/onlineprivacy", "https://foundation.mozilla.org/internet-health/"),
         # Bug 1335569, issue 8375
@@ -931,11 +931,11 @@ URLS = flatten(
         # Bug 1335569, issue 8375
         url_test("/open-innovation", "https://foundation.mozilla.org/internet-health/"),
         # Bug 1335040
-        url_test("/gigabit/{,apply/}", "https://learning.mozilla.org/gigabit/"),
+        url_test("/gigabit/{,apply/}", "https://wiki.mozilla.org/Gigabit"),
         # Bug 1329931
         url_test("/firefox/os/{,devices/}", "https://support.mozilla.org/products/firefox-os"),
         # Bug 1324504
-        url_test("/contribute/studentambassadors/{,join/,thanks/}", "https://campus.mozilla.community/"),
+        url_test("/contribute/studentambassadors/{,join/,thanks/}", "/contribute/"),
         # Bug 1340600, Issue 7840
         url_test(
             "/css-grid",
@@ -994,8 +994,8 @@ URLS = flatten(
         # bug 1419244
         url_test("/firefox/mobile-download/{,desktop/}", "/firefox/browsers/mobile/"),
         # Bug 1438464
-        url_test("/collusion/", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
-        url_test("/lightbeam/{,about/}?", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
+        url_test("/collusion/", "https://github.com/mozilla/lightbeam-we"),
+        url_test("/lightbeam/{,about/}?", "https://github.com/mozilla/lightbeam-we"),
         # Bug 1428150
         url_test("/tabzilla/media/css/tabzilla.css", "https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css"),
         # bug 960651, 1436973
@@ -1030,8 +1030,8 @@ URLS = flatten(
         # Issue 6979
         url_test("/firefoxfightsforyou/", "/firefox/"),
         # Issue 6994
-        url_test("/contribute/signup/", "https://activate.mozilla.community/"),
-        url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "https://activate.mozilla.community/"),
+        url_test("/contribute/signup/", "/contribute/"),
+        url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "/contribute/"),
         url_test("/contribute/friends/", "/contribute/"),
         # Issue 7287
         url_test("/accounts/", "/account/"),
@@ -1051,7 +1051,7 @@ URLS = flatten(
         # Issue 7970
         url_test("/moss/mission-partners-india/", "/moss/mission-partners/"),
         # Issue 7983, 14248
-        url_test("/privacy/products/", "/firefox/privacy/"),
+        url_test("/privacy/products/", "/privacy/"),
         # Issue #8206
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}tracking-protection/start/", "https://support.mozilla.org/kb/tracking-protection"),
         url_test("/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}content-blocking/start/", "https://support.mozilla.org/kb/content-blocking"),
@@ -1087,15 +1087,7 @@ URLS = flatten(
         # Issue 8418
         url_test("/styleguide/", "https://mozilla.design/"),
         # Issue 8644, 8932
-        url_test(
-            "/builders{,/}",
-            "https://builders.mozilla.community/",
-            query={
-                "utm_source": "www.mozilla.org",
-                "utm_medium": "referral",
-                "utm_campaign": "builders-redirect",
-            },
-        ),
+        url_test("/builders{,/}", "https://future.mozilla.org/builders/"),
         # Issue 6824, 14364
         url_test("/technology/", "https://future.mozilla.org/"),
         # Issue 8419
@@ -1298,11 +1290,17 @@ URLS = flatten(
         url_test("/privacy/hubs/", "/privacy/archive/mozilla-hubs/notice-2024-06/"),
         url_test("/about/legal/terms/hubs/", "/privacy/archive/mozilla-hubs/tos-2024-06/"),
         # issue 14248
+        url_test("/firefox/privacy/", "/privacy/"),
         url_test("/firefox/privacy/products/", "/products/"),
         url_test("/firefox/privacy/safe-passwords/", "/firefox/features/password-manager/"),
         url_test("/firefox/privacy/book/", "https://support.mozilla.org/kb/how-stay-safe-web"),
         # issue 14944
         url_test("/{nothing-personal,nothingpersonal}/", "/firefox/nothing-personal/"),
         url_test("/firefox/nothingpersonal/", "/firefox/nothing-personal/"),
+        # issue 15008
+        url_test("/try-picture-in-picture/", "/firefox/features/picture-in-picture/"),
+        # issue 15075
+        url_test("/newsletter/knowledge-is-power{,/,/confirm,/confirm/token}", "/newsletter/firefox/"),
+        url_test("/products/mozsocial/invite/", "/products/"),
     )
 )

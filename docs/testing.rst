@@ -18,6 +18,11 @@ correctly and that new changes don't break existing functionality.
   environment. These tests are run automatically as part of our CI deployment process against
   dev, stage, and prod. Playwright tests are run against Firefox, Chromium, and Webkit headless
   browsers for cross-engine coverage.
+- `Axe`_ tests are used to test for accessibility issues on key pages. These tests are not
+  run as part of our CI deployment process as they can contain a lot of information, but instead
+  run once per day via a GitHub action against dev. Axe tests are run via Playwright as a subset
+  of tests using the ``@a11y`` tag. Accessibility issues are reported in the GitHub action output,
+  which can be downloaded and reviewed.
 - `Selenium`_ tests are bedrock's older, legacy integration test suite, which will eventually be
   replaced by Playwright. These tests are run against Firefox, Chrome, and Internet Explorer
   (via a mix of both a local Selenium Grid and Sauce Labs) as part of our CI pipeline, and
@@ -33,6 +38,7 @@ The test specs for all of the above suites can be found in the root ``./tests`` 
 
 * ``./tests/unit/`` for Jasmine tests.
 * ``./tests/playwright/`` Playwright tests.
+* ``./tests/playwright/specs/a11y/`` Axe tests.
 * ``./tests/functional/`` for Selenium tests.
 
 Automating the browser
@@ -162,7 +168,7 @@ To run the full suite of tests (from the ``/tests/playwright/`` directory):
 
 .. code-block:: bash
 
-    $ npx playwright test
+    $ npm run integration-tests
 
 This will run all tests against three different headless browser engines (Firefox,
 Chromium, WebKit).
@@ -256,6 +262,33 @@ load a different override instead of using ``openPage``:
         await page.goto(url + '?automation=true');
     });
 
+Accessibility testing (Axe)
+===========================
+
+`Axe`_ tests are run as a subset of Playwright tests using the ``@a11y`` tag. These
+tests are run against the dev environment once per day via a GitHub action. The
+axe spec files can be found in the ``./tests/playwright/specs/a11y/`` directory.
+
+To run the Axe tests locally, you can use the following command from the
+``./tests/playwright/`` directory:
+
+.. code-block:: bash
+
+    $ npm run a11y-tests
+
+The Axe tests consist of two different test types. One that scans an entire page
+for accessibility issues, and another that scans a specific element for issues
+(such as the main navigation and footer). These tests can also be run at both
+desktop and mobile viewport sizes.
+
+Test results are output to the console, and any issues found will be created as
+HTML report files in the ``./tests/playwright/test-results-a11y/`` directory. When
+run via the `GitHub action`_, the reports are also output to the annotation logs for
+each test job.
+
+A list of all the Axe rules that are checked by the tests can be viewed in the
+`axe-core repo`_.
+
 Running Selenium tests
 ======================
 
@@ -271,7 +304,7 @@ to pull in external data such as event/blog feeds etc. These are required for
 some of the tests to pass.
 
 To run the full Selenium integration test suite against your local bedrock
-instance in Mozorg mode:
+instance:
 
 .. code-block:: bash
 
@@ -281,25 +314,11 @@ This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
 be reported in ``tests/functional/results.html``.
 
-To run the full Selenium test suite against your local bedrock instance in
-Pocket mode, things are slightly different, because of the way things are set
-up in order to allow CI to test both Mozorg Mode and Pocket Mode at the same
-time. You need to define a temporary environment variable (needed by the
-`pocket_base_url` fixture) and scope pytest to only run Pocket tests:
-
-.. code-block:: bash
-
-    $ BASE_POCKET_URL=http://localhost:8000 pytest -m pocket_mode --driver Firefox --html tests/functional/results.html tests/functional/
-
-This will run all test suites found in the ``tests/functional`` directory that have
-the pytest "`mark`" of `pocket_mode` and assumes you have bedrock running *in Pocket mode* at
-``localhost`` on port ``8000``. Results will be reported in ``tests/functional/results.html``.
-
 .. Note::
 
-    If you omit the ``--base-url`` command line option in Mozorg mode (ie, not
-    in Pocket mode) then a local instance of bedrock will be started, however
-    the tests are not currently able to run against bedrock in this way.
+    If you omit the ``--base-url`` command line option then a local instance
+    of bedrock will be started, however the tests are not currently able to
+    run against bedrock in this way.
 
 By default, tests will run one at a time. This is the safest way to ensure
 predictable results, due to
@@ -347,7 +366,7 @@ dev:
 For more information on command line options, see the `pytest documentation`_.
 
 Running tests in Sauce Labs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 You can also run tests in Sauce Labs directly from the command line. This can be useful
 if you want to run tests against Internet Explorer when you're on Mac OSX, for instance.
@@ -379,7 +398,7 @@ and assertions as shown in the following example:
 
     def test_sign_up_for_newsletter(base_url, selenium):
         page = NewsletterPage(base_url, selenium).open()
-        page.type_email('noreply@mozilla.com')
+        page.type_email("noreply@mozilla.com")
         page.accept_privacy_policy()
         page.click_sign_me_up()
         assert page.sign_up_successful
@@ -408,12 +427,13 @@ you can also read the `pytest markers`_ documentation for more options.
 
     import pytest
 
+
     @pytest.mark.nondestructive
     def test_newsletter_default_values(base_url, selenium):
         page = NewsletterPage(base_url, selenium).open()
-        assert '' == page.email
-        assert 'United States' == page.country
-        assert 'English' == page.language
+        assert "" == page.email
+        assert "United States" == page.country
+        assert "English" == page.language
         assert page.html_format_selected
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
@@ -429,10 +449,11 @@ be enough to cover our most critical pages where legacy browser support is impor
 
     import pytest
 
+
     @pytest.mark.smoke
     @pytest.mark.nondestructive
     def test_download_button_displayed(base_url, selenium):
-        page = DownloadPage(selenium, base_url, params='').open()
+        page = DownloadPage(selenium, base_url, params="").open()
         assert page.is_download_button_displayed
 
 You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
@@ -455,7 +476,8 @@ considered displayed:
     from selenium.webdriver.support.ui import WebDriverWait as Wait
 
     Wait(selenium, timeout=10).until(
-        expected.visibility_of_element_located(By.ID, 'my_element'))
+        expected.visibility_of_element_located(By.ID, "my_element")
+    )
 
 For convenience, the Selenium project offers some basic `expected conditions`_,
 which can be used for the most common cases.
@@ -509,3 +531,6 @@ via product details are well formed and return valid 200 responses.
 .. _Playwright CLI docs: https://playwright.dev/docs/test-cli
 .. _how to write tests: https://playwright.dev/docs/writing-tests
 .. _locator strategy: https://playwright.dev/docs/locators#locate-by-test-id
+.. _Axe: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md
+.. _axe-core repo: https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md
+.. _GitHub action: https://github.com/mozilla/bedrock/actions/workflows/a11y_tests.yml

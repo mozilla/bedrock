@@ -296,7 +296,7 @@ class LinkRenderer(BaseBlockRenderer):
             rel = ' rel="external noopener"'
             # add analytics
             cta_text = _make_plain_text(node)
-            data_cta = f' data-cta-type="link" data-cta-text="{cta_text}"'
+            data_cta = f' data-cta-text="{cta_text}"'
 
         return f'<a href="{urlunparse(url)}{ref}"{data_cta}{rel}>{self._render_content(node)}</a>'
 

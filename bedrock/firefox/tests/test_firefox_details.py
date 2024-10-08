@@ -655,28 +655,6 @@ class TestFirefoxDesktopBase(TestCase):
             ],
         )
 
-    def test_get_download_url_scene2_funnelcake(self):
-        scene2 = self.firefox_desktop.download_base_url_transition
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "en-US")
-        self.assertEqual(url, scene2)
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "en-US", funnelcake_id="64")
-        self.assertEqual(url, scene2 + "?f=64")
-
-    def test_get_download_url_scene2_with_locale(self):
-        scene2 = self.firefox_desktop.download_base_url_transition
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "de", locale_in_transition=True)
-        self.assertEqual(url, "/de" + scene2)
-
-        url = self.firefox_desktop.get_download_url(
-            "release",
-            "45.0",
-            "win",
-            "fr",
-            locale_in_transition=True,
-            funnelcake_id="64",
-        )
-        self.assertEqual(url, "/fr" + scene2 + "?f=64")
-
     def get_download_url_ssl(self):
         """
         SSL-enabled links should always be used except Windows stub installers.
@@ -809,70 +787,6 @@ class TestFirefoxDesktopBase(TestCase):
             Mock(return_value=dict(LATEST_FIREFOX_VERSION="Phoenix")),
         ):
             assert self.firefox_desktop.latest_major_version("release") == 0
-
-    @patch.dict(os.environ, FUNNELCAKE_64_LOCALES="en-US", FUNNELCAKE_64_PLATFORMS="win")
-    def test_funnelcake_direct_links_en_us_win_only(self):
-        """
-        Ensure funnelcake params are included for Windows en-US builds only.
-        """
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "en-US", force_direct=True, funnelcake_id="64")
-        assert "product=firefox-stub-f64" in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win64", "en-US", force_direct=True, funnelcake_id="64")
-        assert "product=firefox-stub-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "de", force_direct=True, funnelcake_id="64")
-        assert "product=firefox-stub-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "osx", "en-US", force_direct=True, funnelcake_id="64")
-        assert "product=firefox-stub-f64" not in url
-
-    def test_no_funnelcake_direct_links_if_not_configured(self):
-        """
-        Ensure funnelcake params are included for Linux and OSX en-US builds only.
-        """
-        url = self.firefox_desktop.get_download_url("release", "45.0", "win", "en-US", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url(
-            "release",
-            "45.0",
-            "win",
-            "en-US",
-            force_direct=True,
-            force_full_installer=True,
-            funnelcake_id="64",
-        )
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url(
-            "release",
-            "45.0",
-            "win",
-            "en-US",
-            force_direct=True,
-            force_funnelcake=True,
-            funnelcake_id="64",
-        )
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "osx", "de", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "osx", "en-US", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "osx", "fr", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "linux", "de", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "linux", "en-US", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
-
-        url = self.firefox_desktop.get_download_url("release", "45.0", "linux", "fr", force_direct=True, funnelcake_id="64")
-        assert "-f64" not in url
 
     def test_stub_installer_win_only(self):
         """

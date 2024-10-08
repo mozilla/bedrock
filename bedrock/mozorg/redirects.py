@@ -285,7 +285,7 @@ redirectpatterns = (
     redirect(r"contact/spaces/(?:auckland|tokyo|taipei|london|mountain-view|vancouver|portland)/?$", "/contact/spaces/"),
     redirect("^contribute/buttons/", "https://affiliates.mozilla.org/"),
     # bug 875052
-    redirect(r"^about/get-involved", "/contribute/"),
+    redirect(r"^about/get-involved", "mozorg.contribute"),
     # bug 878926
     redirect(r"^firefoxflicks/?(?P<p>.*)$", "https://firefoxflicks.mozilla.org/{locale}{p}"),
     # bug 849426
@@ -304,13 +304,13 @@ redirectpatterns = (
     redirect(r"^rhino/shell\.html$", "https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Shell"),
     redirect(r"^rhino/?", "https://developer.mozilla.org/docs/Mozilla/Projects/Rhino"),
     # bug 846362
-    redirect(r"^community/(index(\.(de|fr|hr|sq))?\.html)?$", "/contribute/"),
+    redirect(r"^community/(index(\.(de|fr|hr|sq))?\.html)?$", "mozorg.contribute"),
     # bug 860532 - Reidrects for governance pages
     redirect(r"^about/governance\.html$", "/about/governance/"),
     redirect(r"^about/roles\.html$", "/about/governance/roles/"),
     redirect(r"^about/organizations\.html$", "/about/governance/organizations/"),
     # bug 876233
-    redirect(r"^about/participate/?$", "/contribute/"),
+    redirect(r"^about/participate/?$", "mozorg.contribute"),
     # bug 790784
     # NB: The /foundation/privacy-policy.html redirect must appear before the
     # foundation redirects added with bug 724633. Otherwise, the address will first
@@ -374,8 +374,6 @@ redirectpatterns = (
     # Bug 1255882
     redirect(r"^firefox/about/?$", "mozorg.about.index"),
     # bug 453506, 1255882
-    redirect(r"^editor/editor-embedding\.html$", "https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/Embedding_the_editor"),
-    redirect(r"^editor/midasdemo/securityprefs\.html$", "https://developer.mozilla.org/docs/Mozilla/Projects/Midas/Security_preferences"),
     redirect(r"^editor/(?P<page>.*)$", "http://www-archive.mozilla.org/editor/{page}"),
     # Bug 453876, 840416
     redirect(r"^add-ons/kodak", "https://addons.mozilla.org/en-US/firefox/addon/4441"),
@@ -389,7 +387,7 @@ redirectpatterns = (
     redirect(r"^hacking/?$", "https://firefox-source-docs.mozilla.org/"),
     # Issue 10736
     redirect(r"^jobs/?$", "careers.home"),
-    redirect(r"^join/?$", "https://foundation.mozilla.org/donate/"),
+    redirect(r"^join/?$", "careers.home"),
     # Bug 1262593
     redirect(r"^unix/remote\.html$", "http://www-archive.mozilla.org/unix/remote.html"),
     # Bug 1313023
@@ -401,10 +399,10 @@ redirectpatterns = (
     ),
     # Bug 936362
     # only upper-case for XBL. /xbl is a namespace URL for the standard.
-    redirect(r"^XBL/?$", "https://developer.mozilla.org/docs/XBL"),
-    redirect(r"^RDF/?$", "https://developer.mozilla.org/docs/RDF", re_flags="i"),
-    # Bug 1332008
-    redirect(r"^protocol/?$", "https://blog.mozilla.org/opendesign/"),
+    redirect(r"^XBL/?$", "https://www.w3.org/TR/xbl/"),
+    redirect(r"^RDF/?$", "https://www.w3.org/RDF/", re_flags="i"),
+    # Bug 1332008, 1525853
+    redirect(r"^protocol/?$", "https://protocol.mozilla.org"),
     # Bug 1322959 - vanity URL, Issue 8375
     redirect(r"^onlineprivacy/?$", "https://foundation.mozilla.org/internet-health/"),
     # Bug 1335569 - vanity URL, Issue 8375
@@ -414,9 +412,9 @@ redirectpatterns = (
     # Bug 1333146
     redirect(r"^internet-?health-?report/?$", "https://internethealthreport.org/"),
     # Bug 1335040
-    redirect(r"^gigabit(/.*)?", "https://learning.mozilla.org/gigabit/"),
+    redirect(r"^gigabit(/.*)?", "https://wiki.mozilla.org/Gigabit"),
     # Bug 1324504, issue 6994
-    redirect(r"^/contribute/studentambassadors(/.*)?", "https://campus.mozilla.community/"),
+    redirect(r"^/contribute/studentambassadors(/.*)?", "mozorg.contribute"),
     # Bug 1340600, Issue 7840 - vanity URL
     redirect(
         r"^css-?grid/?$",
@@ -432,8 +430,8 @@ redirectpatterns = (
     # Bug 1384370, Issue 7840
     redirect(r"^developers/?$", "https://developer.mozilla.com/"),
     # Bug 1438464
-    redirect(r"^collusion/?$", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
-    redirect(r"^lightbeam(/.*)?", "https://addons.mozilla.org/firefox/addon/lightbeam/"),
+    redirect(r"^collusion/?$", "https://github.com/mozilla/lightbeam-we"),
+    redirect(r"^lightbeam(/.*)?", "https://github.com/mozilla/lightbeam-we"),
     # Bug 1428150
     gone(r"^tabzilla/transbar\.jsonp$"),
     gone(r"^tabzilla/tabzilla\.js$"),
@@ -455,10 +453,10 @@ redirectpatterns = (
     # Issue 6756 - vanity URL, Issue 8375
     redirect(r"^decentralization/?$", "https://foundation.mozilla.org/internet-health/"),
     # issue 6971
-    redirect(r"^gear/?$", "https://mozillagear.corpmerchandise.com/"),
+    redirect(r"^gear/?$", "https://wiki.mozilla.org/SwagStore"),
     # issue 6994
-    redirect(r"^contribute/signup/?$", "https://activate.mozilla.community/"),
-    redirect(r"^/contribute/task(/.*)?", "https://activate.mozilla.community/"),
+    redirect(r"^contribute/signup/?$", "mozorg.contribute"),
+    redirect(r"^/contribute/task(/.*)?", "mozorg.contribute"),
     redirect(r"^contribute/friends/?$", "mozorg.contribute"),
     redirect(r"^contribute/stories(/.*)?$", "mozorg.contribute"),
     # Issue 6461
@@ -479,15 +477,7 @@ redirectpatterns = (
     redirect(r"^styleguide/identity/mozilla(.+)", "https://mozilla.design/mozilla/"),
     redirect(r"^styleguide(/.*)?", "https://mozilla.design/"),
     # Issue 8644, 8932
-    redirect(
-        r"^builders/?$",
-        "https://builders.mozilla.community/",
-        query={
-            "utm_source": "www.mozilla.org",
-            "utm_medium": "referral",
-            "utm_campaign": "builders-redirect",
-        },
-    ),
+    redirect(r"^builders/?$", "https://future.mozilla.org/builders/"),
     # Issue 6824, 14364
     redirect(r"^technology/?$", "https://future.mozilla.org/"),
     # Issue 8668
@@ -569,4 +559,6 @@ redirectpatterns = (
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
     # issue 14944
     redirect(r"^nothing-?personal/?$", "firefox.nothing-personal.index"),
+    # Issue 15008
+    redirect(r"^try-picture-in-picture/?$", "firefox.features.picture-in-picture"),
 )

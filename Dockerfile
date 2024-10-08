@@ -1,7 +1,7 @@
 ########
 # Python dependencies builder
 #
-FROM python:3.11-slim-bookworm AS python-builder
+FROM python:3.12-slim-bookworm AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -52,7 +52,7 @@ RUN npm run build --verbose
 ########
 # django app container
 #
-FROM python:3.11-slim-bookworm AS app-base
+FROM python:3.12-slim-bookworm AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -68,7 +68,7 @@ EXPOSE 8000
 CMD ["./bin/run.sh"]
 
 COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install gettext libxslt1.1 git curl
+RUN apt-install gettext libxslt1.1 git curl sqlite3
 
 # copy in Python environment
 COPY --from=python-builder /venv /venv
@@ -98,7 +98,7 @@ FROM app-base AS devapp
 
 CMD ["./bin/run-tests.sh"]
 
-RUN apt-install make sqlite3
+RUN apt-install make
 COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
 COPY requirements/* ./requirements/
 RUN pip install --require-hashes --no-cache-dir -r requirements/dev.txt

@@ -58,15 +58,13 @@ describe('mozilla-utils.js', function () {
         });
     });
 
-    describe('getDownloadAttributionValues', function () {
+    describe('getDownloadPlatformVersion', function () {
         it('should return expected values for Windows', function () {
             const site = {
                 platform: 'windows'
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Desktop',
-                name: 'Windows 32-bit',
                 version: 'win'
             });
         });
@@ -75,10 +73,8 @@ describe('mozilla-utils.js', function () {
             const site = {
                 platform: 'osx'
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Desktop',
-                name: 'macOS',
                 version: 'osx'
             });
         });
@@ -88,10 +84,8 @@ describe('mozilla-utils.js', function () {
                 platform: 'linux',
                 archSize: 32
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Desktop',
-                name: 'Linux 32-bit',
                 version: 'linux'
             });
         });
@@ -101,10 +95,8 @@ describe('mozilla-utils.js', function () {
                 platform: 'linux',
                 archSize: 64
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Desktop',
-                name: 'Linux 64-bit',
                 version: 'linux64'
             });
         });
@@ -113,10 +105,8 @@ describe('mozilla-utils.js', function () {
             const site = {
                 platform: 'ios'
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'iOS',
-                name: 'iOS',
                 version: 'ios'
             });
         });
@@ -125,10 +115,8 @@ describe('mozilla-utils.js', function () {
             const site = {
                 platform: 'android'
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Android',
-                name: 'Android',
                 version: 'android'
             });
         });
@@ -137,10 +125,8 @@ describe('mozilla-utils.js', function () {
             const site = {
                 platform: 'other'
             };
-            const result = Mozilla.Utils.getDownloadAttributionValues(site);
+            const result = Mozilla.Utils.getDownloadPlatformVersion(site);
             expect(result).toEqual({
-                os: 'Unsupported',
-                name: 'Unsupported',
                 version: 'unsupported'
             });
         });

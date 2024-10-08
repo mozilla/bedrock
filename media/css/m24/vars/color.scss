@@ -1,0 +1,134 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+/* ------------------------------------------------------------------------------- */
+// hex code colors
+// do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
+$token-color-black: #000;
+$token-color-light-gray: #f4f4f4;
+$token-color-medium-gray: #e8e8e8;
+$token-color-dark-gray: #181818;
+$token-color-functional-gray-on-white: #707070;
+$token-color-functional-gray-on-black: #828282;
+$token-color-white: #fff;
+$token-color-green: #00D230;
+$token-color-light-green: #D6FFCD;
+$token-color-dark-green: #28733F;
+$token-color-orange: #FF9456;
+$token-color-light-orange: #FAF0E6;
+$token-color-dark-orange: #FF453F;
+$token-color-pink: #FF97E2;
+$token-color-light-pink: #FFF1F8;
+$token-color-dark-pink: #AE49EC;
+$token-color-feedback-success: $token-color-green;
+$token-color-feedback-caution: $token-color-dark-orange;
+$token-color-feedback-error: $token-color-orange;
+
+// define CSS variables for the browser
+// do not reference these directly, use the $m24-color-* variables
+:root {
+    // black and white
+    --m24-white: #{$token-color-white};
+    --m24-black: #{$token-color-black};
+
+    // gray
+    --m24-light-gray: #{$token-color-light-gray};
+    --m24-medium-gray: #{$token-color-medium-gray};
+    --m24-dark-gray: #{$token-color-dark-gray};
+    --m24-functional-gray: #{$token-color-functional-gray-on-white};
+
+    // green
+    --m24-green: #{$token-color-green};
+    --m24-light-green: #{$token-color-light-green};
+    --m24-dark-green: #{$token-color-dark-green};
+
+    // pink
+    --m24-pink: #{$token-color-pink};
+    --m24-light-pink: #{$token-color-light-pink};
+    --m24-dark-pink: #{$token-color-dark-pink};
+
+    // orange
+    --m24-orange: #{$token-color-orange};
+    --m24-light-orange: #{$token-color-light-orange};
+    --m24-dark-orange: #{$token-color-dark-orange};
+}
+
+/* ------------------------------------------------------------------------------- */
+// define sass variables to hold CSS variables
+// reference these!
+
+// black and white
+$m24-color-white: var(--m24-white);
+$m24-color-black: var(--m24-black);
+
+// gray
+$m24-color-light-gray: var(--m24-light-gray);
+$m24-color-medium-gray: var(--m24-medium-gray);
+$m24-color-dark-gray: var(--m24-dark-gray);
+$m24-color-functional-gray: var(--m24-functional-gray);
+
+// green
+$m24-color-green: var(--m24-green);
+$m24-color-light-green: var(--m24-light-green);
+$m24-color-dark-green: var(--m24-dark-green);
+
+// orange
+$m24-color-orange: var(--m24-orange);
+$m24-color-light-orange: var(--m24-light-orange);
+$m24-color-dark-orange: var(--m24-dark-orange);
+
+// pink
+$m24-color-pink: var(--m24-pink);
+$m24-color-light-pink: var(--m24-light-pink);
+$m24-color-dark-pink: var(--m24-dark-pink);
+
+
+/* ------------------------------------------------------------------------------- */
+// this mixin will invert the values of the CSS variables, essentially giving you "dark mode"
+
+@mixin invert-colors {
+    // black and white
+    --m24-white: #{$token-color-black};
+    --m24-black: #{$token-color-white};
+
+    // gray
+    --m24-light-gray: #{$token-color-dark-gray};
+    --m24-dark-gray: #{$token-color-light-gray};
+    --m24-functional-gray: #{$token-color-functional-gray-on-black};
+
+    // green
+    --m24-green: #{$token-color-green};
+    --m24-light-green: #{$token-color-dark-green};
+    --m24-dark-green: #{$token-color-light-green};
+
+    // pink
+    --m24-pink: #{$token-color-pink};
+    --m24-light-pink: #{$token-color-dark-pink};
+    --m24-dark-pink: #{$token-color-light-pink};
+
+    // orange
+    --m24-orange: #{$token-color-orange};
+    --m24-light-orange: #{$token-color-dark-orange};
+    --m24-dark-orange: #{$token-color-light-orange};
+}
+
+/* ------------------------------------------------------------------------------- */
+
+.m24-t-light-alt {
+    background-color: $m24-color-light-gray;
+}
+
+.m24-t-dark {
+    @include invert-colors;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+}
+
+.m24-t-green {
+    background-color: $m24-color-light-green;
+}
+
+.m24-t-purple {
+    background-color: $token-color-light-pink;
+}

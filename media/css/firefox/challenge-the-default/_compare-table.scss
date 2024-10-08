@@ -14,14 +14,12 @@
         padding-right: $spacing-md;
 
         h2 {
-            @include font-firefox;
             @include font-size(40px);
             font-weight: 800;
             margin-bottom: $spacing-lg;
         }
 
         p {
-            @include font-firefox;
             color: $color-marketing-gray-70;
             font-weight: 600;
         }
@@ -66,7 +64,6 @@
         }
 
         th {
-            @include font-firefox;
             max-width: 150px;
             border: 2.5px solid $color-black;
             font-size: 14px;

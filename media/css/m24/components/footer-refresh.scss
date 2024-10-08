@@ -1,0 +1,422 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'footer-newsletter';
+
+$max-footer-content-width: $content-max;
+
+@mixin divider-line {
+    border-bottom: 4px solid $m24-color-light-gray;
+}
+
+// whole footer
+.moz24-footer {
+    @include invert-colors;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+    padding-top: $spacer-xl;
+
+    *:focus,
+    *:focus-visible {
+        outline-offset: $spacer-2xs;
+    }
+}
+
+// main content
+.moz24-footer-content {
+    @include container;
+    margin: 0 auto;
+}
+
+// primary nav
+.moz24-footer-primary {
+    margin-bottom: $spacer-lg;
+}
+
+.moz24-footer-sections-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: $grid-gutter;
+
+    @media(min-width: $screen-lg) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.moz24-footer-primary .moz24-footer-section-wrapper {
+    width: 100%;
+
+    @media(min-width: $screen-lg) {
+        width: grid(4);
+    }
+
+    &.moz24-links-section {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        place-items: stretch start;
+
+        @media(min-width: $screen-lg) {
+            width: grid(8);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+        }
+    }
+}
+
+.moz24-footer-refresh-social-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacer-lg;
+
+    @media(min-width: $screen-md) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
+
+
+.moz24-footer-heading-social {
+    padding: 0;
+    font-family: $primary-font;
+    color: $m24-color-functional-gray;
+    margin: 0;
+    font-size: $text-title-sm;
+
+    @media(min-width: $screen-md) {
+        margin-bottom: $spacer-sm;
+    }
+}
+
+.moz24-footer-links-social {
+    margin: 0 0 0 $spacer-lg;
+    display: flex;
+
+    @media(min-width: $screen-md) {
+        margin: 0;
+    }
+
+    li {
+        margin-right: $spacer-2xs;
+        display: inline-block;
+
+        a {
+            background-repeat: no-repeat;
+            border-bottom: 1px solid rgba(0,0,0,0);
+            direction: ltr;
+            display: block;
+            height: 16px;
+            overflow: hidden;
+            text-align: left;
+            text-indent: -9999px;
+            white-space: nowrap;
+            width: 16px;
+            @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
+
+            @media(min-width: $screen-md) {
+                @include bidi(((margin-right, 16px, 0), (margin-left, 0, 16px)));
+            }
+
+            &:hover {
+                outline: 1px dotted $m24-color-black;
+                border-bottom-color: transparent;
+                background-repeat: no-repeat;
+            }
+
+            &.linkedin {
+                background-image: url('/media/protocol/img/icons/social/linkedin/white.svg');
+            }
+
+            &.tiktok {
+                background-image: url('/media/protocol/img/icons/social/tiktok/white.svg');
+            }
+
+            &.spotify {
+                background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
+            }
+
+            &.mastodon {
+                background-image: url('/media/protocol/img/icons/social/mastodon/white.svg');
+                background-size: contain;
+            }
+
+            &.twitter {
+                background-image: url('/media/protocol/img/icons/social/x/white.svg');
+            }
+
+            &.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+            }
+
+            &.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+            }
+        }
+    }
+}
+
+.moz24-footer-label {
+    color: $m24-color-functional-gray;
+    font-weight: 600;
+    font-size: $text-title-md;
+    font-family: $secondary-font;
+}
+
+.moz24-footer-primary-list {
+    li {
+        font-family: $primary-font;
+        padding-bottom: $spacer-xs;
+    }
+
+    a,
+    a:link,
+    a:visited {
+        text-decoration: none;
+        position: relative;
+        color: $m24-color-black;
+        font-weight: normal;
+    }
+
+    a:hover,
+    a:link:hover,
+    a:visited:hover {
+        color: $m24-color-black;
+
+        &::after {
+            display: block;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: 1px;
+            background: $m24-color-black;
+        }
+    }
+
+    a:focus-visible,
+    a:link:focus-visible,
+    a:active,
+    a:link:active {
+        color: $m24-color-black;
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+// actions section
+.moz24-footer-actions {
+    @include divider-line;
+    padding-bottom: $spacer-lg;
+    margin-bottom: $spacer-lg;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    @media(min-width: $screen-md) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+// donation link
+.moz24-footer-donate {
+    position: relative;
+    border-radius: 0;
+    font-family: $secondary-font;
+    font-weight: 600;
+    background-color: transparent;
+    color: $m24-color-black;
+    padding: 6px 24px;
+    border: 2px solid $m24-color-green;
+    text-decoration: none;
+    text-align: center;
+    max-width: 800px;
+
+    &:hover,
+    &:visited:hover {
+        box-shadow: 4px 4px 0 0 $m24-color-green;
+        background-color: transparent;
+        color: $m24-color-black;
+    }
+
+    &:active,
+    &:visited:active {
+        background-color: transparent;
+        box-shadow: none;
+
+        .mzp-c-button-icon-text::after {
+            display: none;
+        }
+    }
+
+    &:focus-visible,
+    &:visited:focus-visible {
+        color: $m24-color-green;
+
+        .mzp-c-button-icon-start svg path {
+            fill: $m24-color-green;
+        }
+
+       .mzp-c-button-icon-text::after {
+            background: $m24-color-green;
+        }
+    }
+
+    @media(min-width: $screen-md) {
+        margin-bottom: 0;
+    }
+}
+
+.mzp-c-button-icon-start {
+    font-size: 1.7em;
+    vertical-align: middle;
+    margin-right: 0;
+
+    svg path {
+        fill: $m24-color-black;
+    }
+}
+
+.mzp-c-button-icon-text {
+    position: relative;
+    font-family: $secondary-font;
+    color: $m24-color-black;
+}
+
+// language form
+.moz24-footer-language {
+    margin-top: $spacer-lg;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.moz24-c-language-switcher {
+    position: relative;
+    border-color: transparent;
+
+    &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        @include bidi(((left, 0, 0), (right, 0, 102px)));
+        bottom: 0;
+        color: $m24-color-white;
+        background-repeat: no-repeat;
+        background-position-x: 8px;
+        background-position-y: -2px;
+        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-globe.svg');
+    }
+
+    label {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .mzp-c-language-switcher-link {
+        @include visually-hidden;
+    }
+
+    .mzp-js-language-switcher-select {
+        border: 2px solid transparent;
+        border-radius: 0;
+        font-family: $secondary-font;
+        font-weight: 600;
+        padding-left: 36px;
+        min-width: unset;
+        width: 136px;
+        background: $m24-color-white;
+        color: $m24-color-black;
+        background-position-x: 95px;
+        background-position-y: 9px;
+        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
+        background-repeat: no-repeat;
+        margin-top: 16px;
+
+        &:hover,
+        &:focus-visible {
+            border-color: $m24-color-black;
+        }
+    }
+}
+
+// secondary nav
+.moz24-footer-secondary {
+    position: relative;
+    margin-top: $grid-margin;
+    line-height: 1.5;
+
+    @media(min-width: $screen-md) {
+        padding-top: $grid-margin;
+    }
+}
+
+.moz24-footer-legal {
+    display: flex;
+    flex-direction: column;
+    color: $m24-color-black;
+    font-weight: 600;
+    font-size: $text-body-sm;
+
+    @media(min-width: $screen-lg) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.moz24-footer-license {
+    font-family: $primary-font;
+
+    @media(min-width: $screen-md) {
+        max-width: unset;
+        @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
+    }
+
+    a,
+    a:link,
+    a:visited {
+        color: $m24-color-black;
+        font-weight: 600;
+    }
+}
+
+.moz24-footer-terms {
+    li {
+        font-family: $primary-font;
+        padding: 0 24px 0 0;
+        margin-bottom: $spacer-xs;
+
+        @media(min-width: $screen-md) {
+            display: inline;
+        }
+    }
+
+    a,
+    a:link,
+    a:visited {
+        color: $m24-color-black;
+        font-weight: 600;
+    }
+}
+
+.moz24-footer-logo-image-bottom {
+    width: 100%;
+}

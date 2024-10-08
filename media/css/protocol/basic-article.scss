@@ -48,8 +48,8 @@ blockquote.t-small {
 }
 
 .side-reference-title {
-    @include font-base;
     @include text-body-lg;
+    font-family: var(--body-font-family);
 }
 
 .t-love {

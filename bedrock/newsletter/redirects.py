@@ -11,4 +11,6 @@ redirectpatterns = (
     redirect(r"^newsletter/new(?:/(?:index\.html)?)?$", "newsletter.subscribe"),
     redirect(r"^newsletter/ios(?:/(?:index\.html)?)?$", "firefox.browsers.mobile.ios"),
     redirect(r"^newsletter/country/success/?$", "newsletter.updated"),
+    # issue 15075
+    redirect(r"^newsletter/knowledge-is-power/?", "newsletter.firefox"),
 )

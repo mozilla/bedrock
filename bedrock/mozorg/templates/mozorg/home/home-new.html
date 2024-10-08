@@ -22,8 +22,7 @@
 
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-july2024', ["en", "de", "fr"]) %}
-{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) and not show_fundraising_banner %}
+{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
@@ -40,9 +39,7 @@
     {{ css_bundle('ctd-promo') }}
   {% endif %}
 
-  {% if show_fundraising_banner %}
-    {{ css_bundle('fundraising-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
@@ -71,25 +68,21 @@
 {% block site_header %}
   {% if show_fundraising_nav_cta and variation == '1' %}
     {% with custom_nav_cta=donate_button() %}
-  {% include 'includes/protocol/navigation/navigation.html' %}
-{% endwith %}
+      {% include 'includes/protocol/navigation/navigation.html' %}
+    {% endwith %}
   {% else %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endif %}
 {% endblock %}
 
 {% block page_banner %}
-  {% if show_fundraising_banner %}
-    {% include 'includes/banners/fundraiser.html' %}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
   {% endif %}
 {% endblock %}
 
 {% block experiments %}
-  {% if show_fundraising_banner and switch('fundraising-banner-experiment-july2024', ["en-US", "en-CA"]) %}
-    {{ js_bundle('fundraising-banner-experiment') }}
-  {% elif show_fundraising_nav_cta %}
+  {% if show_fundraising_nav_cta %}
     {{ js_bundle('fundraising-nav-cta')}}
   {% endif %}
 {% endblock %}
@@ -140,7 +133,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
+        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" >{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
 
       <!-- Pocket -->
@@ -158,7 +151,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="pocket">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
       <!-- Fakespot -->
@@ -176,7 +169,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
+        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="fakespot">{{ ftl('home-cta-get-fakespot') }}</a>
       {% endcall %}
 
       <!-- Relay -->
@@ -194,7 +187,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
+        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="relay">{{ ftl('home-cta-get-relay') }}</a>
       {% endcall %}
 
       <!-- VPN -->
@@ -212,7 +205,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="vpn">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
       <!-- Monitor -->
@@ -230,7 +223,7 @@
           ),
           body=True,
           ) %}
-         <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
+         <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="monitor">{{ ftl('home-cta-get-monitor')}}</a>
       {% endcall %}
 
     </ul>
@@ -271,8 +264,8 @@
       {% endcall %}
     {% endif %}
 
-    {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
-    {% set moz_ai = 'href="%s" data-cta-type="link" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
+    {% set moz_ventures = 'href="%s" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
+    {% set moz_ai = 'href="%s" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
 
     <!-- Foundation -->
     {% call split(
@@ -339,16 +332,16 @@
     </div>
   </section>
 
-  <aside class="c-newsletter">
+  <aside class="c-newsletter" aria-label="{{ ftl('newsletter-form-label') }}">
     <div class="c-newsletter-wrapper mzp-l-content mzp-t-content-lg">
       <div class="c-newsletter-info">
-        <h2>{{ ftl('home-get-good-news') }}</h2>
-        <p>{{ ftl('home-get-news-and-tips') }}</p>
+        <h2>{{ ftl('newsletter-form-join-the-community', fallback='newsletter-form-get-firefox-news') }}</h2>
+        <p>{{ ftl('newsletter-form-sign-up-to-receive', fallback='newsletter-form-get-firefox-tips') }}</p>
       </div>
 
       <div class="c-newsletter-content">
         {{ email_newsletter_form(
-          newsletters='knowledge-is-power',
+          newsletters='mozilla-and-you',
           title=None,
           button_class='button-dark',
           )}}
@@ -361,9 +354,7 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if show_fundraising_banner %}
-    {{ js_bundle('fundraising-banner') }}
-  {% elif show_firefox_app_store_banner %}
+  {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}

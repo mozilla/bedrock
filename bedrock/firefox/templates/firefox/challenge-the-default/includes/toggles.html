@@ -9,7 +9,7 @@
     <div class="toggle-grid small">
         {% for element in range(4) %}
           <label class="toggle" for="toggle-top-s{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-top-s{{ loop.index }}" class="toggle-input" />
+            <input type="checkbox" name="toggle" id="toggle-top-s{{ loop.index }}" class="toggle-input" tabindex="-1" />
             <span class="toggle-display"></span>
           </label>
         {% endfor %}
@@ -19,7 +19,7 @@
         </label>
         {% for element in range(4) %}
           <label class="toggle" for="toggle-bottom-s{{ loop.index }}">
-            <input type="checkbox" name="toggle" id="toggle-bottom-s{{ loop.index }}" class="toggle-input" />
+            <input type="checkbox" name="toggle" id="toggle-bottom-s{{ loop.index }}" class="toggle-input" tabindex="-1" />
             <span class="toggle-display"></span>
           </label>
         {% endfor %}
@@ -27,17 +27,17 @@
     <div class="toggle-grid medium">
       {% for element in range(7) %}
       <label class="toggle" for="toggle-top-m{{ loop.index }}">
-        <input type="checkbox" name="toggle" id="toggle-top-m{{ loop.index }}" class="toggle-input" />
+        <input type="checkbox" name="toggle" id="toggle-top-m{{ loop.index }}" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% endfor %}
       <label class="toggle middle" for="toggle-middle-m">
-        <input type="checkbox" name="toggle" id="toggle-middle-m" class="toggle-input" />
+        <input type="checkbox" name="toggle" id="toggle-middle-m" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% for element in range(7) %}
       <label class="toggle" for="toggle-bottom-m{{ loop.index }}">
-        <input type="checkbox" name="toggle" id="toggle-bottom-m{{ loop.index }}" class="toggle-input" />
+        <input type="checkbox" name="toggle" id="toggle-bottom-m{{ loop.index }}" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% endfor %}
@@ -45,17 +45,17 @@
     <div class="toggle-grid large">
       {% for element in range(10) %}
       <label class="toggle" for="toggle-top-l{{ loop.index }}">
-        <input type="checkbox" name="toggle" id="toggle-top-l{{ loop.index }}" class="toggle-input" />
+        <input type="checkbox" name="toggle" id="toggle-top-l{{ loop.index }}" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% endfor %}
       <label class="toggle middle" for="toggle-middle-l">
-        <input type="checkbox" name="toggle-middle" id="toggle-middle-l" class="toggle-input" />
+        <input type="checkbox" name="toggle-middle" id="toggle-middle-l" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% for element in range(10) %}
       <label class="toggle" for="toggle-bottom-l{{ loop.index }}">
-        <input type="checkbox" name="toggle" id="toggle-bottom-l{{ loop.index }}" class="toggle-input" />
+        <input type="checkbox" name="toggle" id="toggle-bottom-l{{ loop.index }}" class="toggle-input" tabindex="-1" />
         <span class="toggle-display"></span>
       </label>
       {% endfor %}

@@ -8,272 +8,227 @@
 Mozorg analytics
 =================
 
-Google Tag Manager (GTM)
-************************
+Google Analytics
+****************
 
-In mozorg mode, bedrock uses `Google Tag Manager (GTM)`_ to manage and organize
-its `Google Analytics`_ solution.
+We use Google Analytics (GA) to track how our website is used.
 
-:abbr:`GTM (Google Tag Manager)` is a tag management system that allows for
-easy implementation of Google Analytics (GA) tags and other 3rd party marketing
-tags in a nice :abbr:`GUI (Graphical User Interface)` experience. Tags can be
-added, updated, or removed directly from the GUI. GTM allows for a "one
-source of truth" approach to managing an analytics solution in that all
-analytics tracking can be inside GTM.
+*Implementation*
 
-Bedrock's GTM solution is :abbr:`CSP (Content Security Policy)` compliant and
-does not allow for the injection of custom HTML or JavaScript but all tags use
-built in templates to minimize any chance of introducing a bug into Bedrock.
+Google calls a 3rd party JavaScript library that is imported by adding a script tag to a website,
+Google names these "tags".
 
-The GTM DataLayer
------------------
+We include the tag for Google Tag Manager (GTM) on our website. GTM is a service meant to simplify and centralize
+the tags included on a website in cases where multiple tags are needed. Their web-based user interface can then be
+used to watch for user actions on the website and then trigger events to be sent to tags.
 
-How an application communicates with GTM is via the ``dataLayer`` object, which
-is  a simple JavaScript array GTM instantiates on the page. Bedrock will send
-messages to the ``dataLayer`` object by means of pushing an object literal onto
-the ``dataLayer``. GTM creates an abstract data model from these pushed objects
-that consists of the most recent value for all keys that have been pushed to
-the ``dataLayer``.
+We do no not use any of GTM's most powerful features. Our use of GTM is a historical artifact of our
+Universal Analytics (UA) (aka GA3) implementation. GTM is a tool to let non-technical users add code to a website, however,
+there is no one outside of the websites team who is trained to do that.
 
-The only reserved key in an object pushed to the ``dataLayer`` is ``event`` which
-will cause GTM to evaluate the firing conditions for all tag triggers.
+The only tag we include with GTM is the Google Tag (GTag), and that in turn connects to our Google Analytics (GA) account.
 
-DataLayer push example
-----------------------
+There are three ways we send events from our site to GA:
 
-If we wanted to track clicks on a carousel and capture what the image was that
-was clicked, we might write a dataLayer push like this:
+1. Google's Enhanced Event Measurement logs certain events automatically.
+2. GTM watches elements with specific data-attributes for user interaction
+3. Bedrock watches for specific events, formats them, and sends them to GTM using the dataLayer
 
-.. code-block:: javascript
+*Implementation Principles*
 
-    dataLayer.push({
-        'event': 'carousel-click',
-        'image': 'house'
-    });
+The current implementation tries very hard to keep any kind of logic and formatting of our events in bedrock where it can be
+tested, code reviewed, and version controlled.
 
-In the dataLayer push there is an event value to have GTM evaluate the firing
-conditions for tag triggers, making it possible to fire a tag off the dataLayer
-push. The event value is descriptive to the user action so it's clear to someone
-coming in later what the dataLayer push signifies. There is also an image property
-to capture the image that is clicked, in this example it's the house picture.
+Many user interactions will trigger multiple events. For example: clicking the "get subscription" button on the VPN page will
+trigger ``link``, ``cta_click``, and ``begin_checkout`` events. This is totally fine.
 
-In GTM, a tag could be setup to fire when the event ``carousel-click`` is pushed
-to the dataLayer and could consume the image value to pass on what image was clicked.
+If you're creating a new event use the two word noun_verb scheme that Google came up with and use snake_case,
+even if one of your noun or verb is more than one word.
 
-The Core DataLayer object
--------------------------
+*Debugging*
 
-For the passing of contextual data on the user and page to GTM, we've created what we
-call the Core DataLayer Object. This object passes as soon as all required API calls
-for contextual data have completed. Unless there is a significant delay to when data
-will be available, please pass all contextual or meta data on the user or page here
-that you want to make available to GTM.
+- GTM is managed with Tag Manager https://tagmanager.google.com/
+- Our gTag is also managed with Tag Manager https://tagmanager.google.com/#/home#tags
+- GA, GTM, and gTag can be debugged using Tag Assistant https://tagassistant.google.com/
+- GA also has a debug view https://support.google.com/analytics/answer/7201382?hl=en
 
 
-Conditional banners
-~~~~~~~~~~~~~~~~~~~
-
-When a banner is shown:
-
-.. code-block:: javascript
-
-    // UA
-    window.dataLayer.push({
-        'eLabel': 'Banner Impression',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-impression': '1',
-        'event': 'non-interaction'
-    });
-    // GA4
-    window.dataLayer.push({
-        event: 'widget_action',
-        type: 'banner',
-        action: 'display',
-        name: '<banner name>', //ex. Fb-Video-Compat
-        non_interaction: true
-    });
-
-When an element in the banner is clicked:
-
-.. code-block:: javascript
-
-    // UA
-    window.dataLayer.push({
-        'eLabel': 'Banner Click (OK)',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-click': '1',
-        'event': 'in-page-interaction'
-    });
-    // GA4
-    window.dataLayer.push({
-        event: 'widget_action',
-        type: 'banner',
-        action: 'clickthrough',
-        name: '<banner name>', //ex. Fb-Video-Compat
-    });
-
-When a banner is dismissed:
-
-.. code-block:: javascript
-
-    // UA
-    dataLayer.push({
-        'eLabel': 'Banner Dismissal',
-        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
-        'data-banner-dismissal': '1',
-        'event': 'in-page-interaction'
-    });
-    // GA4
-    window.dataLayer.push({
-        event: 'widget_action',
-        type: 'banner',
-        action: 'dismiss',
-        name: '<banner name>' //ex. Fb-Video-Compat
-    });
-
-
-A/B tests
-~~~~~~~~~
-
-.. code-block:: javascript
-
-    if (href.indexOf('v=a') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'de-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
-        // GA4
-        window.dataLayer.push({
-            event: 'experiment_view',
-            id: 'Berlin-Campaign-Landing-Page',
-            variant: 'de-page',
-        });
-    } else if (href.indexOf('v=b') !== -1) {
-        // UA
-        window.dataLayer.push({
-            'data-ex-variant': 'campaign-page',
-            'data-ex-name': 'Berlin-Campaign-Landing-Page'
-        });
-        // GA4
-        window.dataLayer.push({
-            event: 'experiment_view',
-            id: 'Berlin-Campaign-Landing-Page',
-            variant: 'campaign-page',
-        });
-    }
-
-GTM listeners & data attributes
+How can visitors opt out of GA?
 -------------------------------
 
-GTM also uses click and form submit listeners to gather context on what is happening
-on the page. Listeners push to the dataLayer data on the specific element that
-triggered the event, along with the element object itself.
+Visitors to the website can opt-out of loading Google Analytics on our
+website by enabling `Do Not Track (DNT)`_ in their web browser. We
+facilitate this by using a `DNT helper`_ that our team maintains. We
+also respect `Global Privacy Control (GPC)`_ as an additional opt-out
+signal.
 
-Since GTM listeners pass the interacted element object to the dataLayer, the use of
-data attributes works very well when trying to identify key elements that you want to
-be tracked and for storing data on that element to be passed into Google Analytics. We
-use data attributes to track clicks on all downloads, buttons elements, and nav, footer,
-and :abbr:`CTA (Call To Action)`/button link elements.
+Alternatively, visitors can also opt-out of GA by visiting the
+`cookie settings page`_, which is linked to in the main site
+footer on every page.
 
-.. Important::
-
-    When adding any new elements to a Bedrock page, please follow the below guidelines
-    to ensure accurate analytics tracking.
-
-Generic CTAs
-~~~~~~~~~~~~
-
-For all generic CTA links and ``<button>`` elements, add these data attributes
-(* indicates a required attribute):
-
-+-----------------------+---------------------------------------------------------------------------+
-| Data Attribute        | Expected Value (lowercase)                                                |
-+=======================+===========================================================================+
-| ``data-cta-type`` *   | Link type (e.g. ``navigation``, ``footer``, or ``button``)                |
-+-----------------------+---------------------------------------------------------------------------+
-| ``data-cta-text``     | name or text of the link                                                  |
-+-----------------------+---------------------------------------------------------------------------+
-| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``) |
-+-----------------------+---------------------------------------------------------------------------+
-
-For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
-
-+-----------------------+----------------------------------------------------------------------------------+
-| Data Attribute        | Expected Value                                                                   |
-+=======================+==================================================================================+
-| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
-+-----------------------+----------------------------------------------------------------------------------+
-| ``data-cta-text``     | Name or text of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
-|                       |                                                                                  |
-|                       | We use this when the link text is not useful, as is the case with many           |
-|                       | account forms that say, ``Continue``. We replace ``Continue`` with ``Register``. |
-+-----------------------+----------------------------------------------------------------------------------+
-| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
-+-----------------------+----------------------------------------------------------------------------------+
-
-Links identified with ``data-cta-type`` become UA events with the following format:
-
-| **Category:** ``cta click``
-| **Action:** ``cta: {{data-cta-type}}``
-| **Label:** ``{{data-cta-text}}``
-| **CD Index 9 - CTA Position:** ``{{data-cta-position}}``
-
-
-Download Links
-~~~~~~~~~~~~~~
-
-For Firefox download buttons, add these data attributes (* indicates a required attribute).
-Note that ``data-download-name`` and ``data-download-version`` should be included for download
-buttons that serve multiple platforms. For mobile specific store badges, they are not strictly
-required.
-
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-| Data Attribute             | Expected Value                                                                                              |
-+============================+=============================================================================================================+
-| ``data-link-type`` *       | ``download``                                                                                                |
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-| ``data-download-os`` *     | ``Desktop``, ``Android``, ``iOS``                                                                           |
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-| ``data-download-name``     | ``Windows 32-bit``, ``Windows 64-bit``, ``macOS``, ``Linux 32-bit``, ``Linux 64-bit``, ``iOS``, ``Android`` |
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-| ``data-download-version``  | ``win``, ``win64``, ``osx``, ``linux``, ``linux64``, ``ios``, ``android``                                   |
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-| ``data-download-location`` | ``primary``, ``secondary``, ``nav``, ``other``                                                              |
-+----------------------------+-------------------------------------------------------------------------------------------------------------+
-
-
-GA4
----
-
-.. Note::
-
-    The migration to GA4 has begun but is incomplete.
+Event Tracking
+--------------
 
 Enhanced Event Measurement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Pageviews, video events, and external link clicks are being collected using GA4's
-`enhanced event measurement`_.
+Pageviews, scrolls, video events, and outbound link clicks are being collected using GA4's `enhanced event measurement`_.
 
-Some form submissions are also being collected but newsletter signups are not.
-`(See Bug #13348)`_
+Some form submissions are also being collected but newsletter signups are not `(see bug #13348)`_ . They are instead
+being tracked with the ``newsletter_subscribe`` event.
+
+See the full list of events GA collects by default. https://support.google.com/analytics/answer/9216061
+
+Data Attributes
+~~~~~~~~~~~~~~~
+
+One place where we do still rely on GTM to watch for an trigger events is when we use data-attributes to pass
+information. There are only two events we do this with and they are primarily used on buttons and links.
+
+
+CTA Click
+"""""""""
+
+CTA ("Call to Action") click is intented to track the one or two main actions the page is designed to get the user
+to do. This data-attribute can be used on either ``<button>`` or ``<a>``. Links can go to or away from the site,
+a button might trigger a JS function instead of going away from the page, that's still a cta.
+
+The attribute ``data-cta-text`` must be present to trigger the event. All links to accounts.mozilla.com must also use ``data-cta-type``.
+
++-----------------------+----------------------------------------------------------------------------------+
+| Data Attribute        | Expected Value                                                                   |
++=======================+==================================================================================+
+| ``data-cta-text`` *   | Text or name of the link (e.g. ``Sign Up``, ``Start Here``, ``Get Relay``,       |
+|                       | ``See your report``, ``Read the Manifesto``).                                    |
+|                       |                                                                                  |
+|                       | - This does not need to exactly match the text displayed to the user             |
+|                       | - Defining this is useful to group the link clicks across locales                |
+|                       | - * this attribute is required                                                   |
++-----------------------+----------------------------------------------------------------------------------+
+| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``banner``,        |
+|                       | ``pricing``)                                                                     |
++-----------------------+----------------------------------------------------------------------------------+
+| ``data-cta-type``     | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``, ``fxa-vpn``, ``monitor``,   |
+|                       | ``relay``, ``pocket``)                                                           |
+|                       |                                                                                  |
+|                       | - This is to group CTAs by their destination                                     |
+|                       | - Do not use this to identify the element (ie. link, button)                     |
++-----------------------+----------------------------------------------------------------------------------+
+
+
+
+.. code-block:: html
+
+    <a href="https://monitor.firefox.com/" data-cta-text="Check for breaches" data-cta-type="fxa-monitor">Check for breaches</a>
+
+    <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-text="Send Link for Firefox Mobile" data-cta-position="banner">Send me a link</a>
+
+    <a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-text="Firefox for iOS">Firefox for iOS</a>
+
+
+Link Click
+""""""""""
+
+Link click is intended to track links that are of interest but not the focus of the page. Examples include links in paragraphs,
+lists, FAQs, supplemental content, or in a navigation menu. Links can go to or away from the site.
+
+The attribute ``data-link-text`` must be present to trigger the event.
+
++-----------------------+------------------------------------------------------------------------------------------------+
+| Data Attribute        | Expected Value                                                                                 |
++=======================+================================================================================================+
+| ``data-link-text`` *  | Text or name of the link (e.g. ``Monitor``, ``Features``, ``Instagram (mozilla)``,             |
+|                       | ``Mozilla VPN``).                                                                              |
+|                       | - * this attribute is required                                                                 |
++-----------------------+------------------------------------------------------------------------------------------------+
+| ``data-link-position``| Location of CTA on the page (e.g. ``topnav``, ``subnav``, ``body``, ``features``)              |
++-----------------------+------------------------------------------------------------------------------------------------+
+
+.. code-block:: html
+
+    <p>This is text with a <a href="#" data-link-text="simple">simple</a>example.</p>
+
+    <li><a href="{{ url('firefox.features.pdf-editor') }}" data-link-text="Edit PDFs">Edit PDFs</a> on the go within your Firefox browser window.</li>
+
+
+Link click is also commonly used for navigation menus. If you wish to indicate that a link is nested you can include the categories
+seperated by a dash (``topnav - firefox``, ``footer - company``)
+
+.. code-block:: html
+
+    <li><a href="{{ url('firefox.developer.index') }}" data-link-text="Firefox Developer Edition" data-link-position="footer">{{ ftl('footer-developer-edition') }}</a></li>
+
+    <li><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-text="Firefox for Android" data-link-position="topnav - firefox"></li>
+
+
+Data Layer Events
+~~~~~~~~~~~~~~~~~
+
+The data layer is a JS object we can push events to and GTM will read from it.
+
+.. code-block:: js
+
+    window.dataLayer.push({'event': 'event_name'});
+
+We push a mix of recommended events and custom events to the data layer. When creating a new custom event please follow the
+Implementation Principles outlined above. Remember, both GTM and GA must be configured to recieve new events.
+
+https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtag#begin_checkout
+
+https://mozilla-hub.atlassian.net/wiki/spaces/EN/pages/430866463/GA4+Custom+Events
+
+https://developers.google.com/tag-platform/tag-manager/datalayer
+
+
+Events that bedrock will send to GTM include:
+
+- begin_checkout
+- cta_click
+- default_browser_set
+- dimension_set
+- experiment_view
+- link_click
+- newsletter_subscribe
+- product_download (firefox_download, firefox_mobile_download, etc)
+- send_to_device
+- social_share
+- stub_session_set
+- widget_action
 
 
 Begin Checkout
-~~~~~~~~~~~~~~
+""""""""""""""
 
-We are using GA4's recommended eCommerce event `begin_checkout`_ for VPN and Relay
-referrals to the FxA Subscription Platform with purchase intent.
+We are using GA4's recommended eCommerce event `begin_checkout`_ for VPN referrals to the FxA Subscription Platform with purchase intent.
+This event can accept values for other products but we are not currently using it for anything other than VPN.
 
 .. Note::
 
     Any link to Mozilla accounts should also be using :ref:`mozilla accounts attribution<mozilla-accounts-attribution>`
 
 
-``datalayer-begincheckout.es6.js`` contains generic functions
-that can be called on to push the appropriate information to the dataLayer. The
+``datalayer-begincheckout.es6.js`` contains generic functions that can be called on to push the appropriate information to the dataLayer. The
 script is expecting the following values:
+
+
++---------------+----------------------------------------------------------------------------------+
+| Property      | Value                                                                            |
++===============+==================================================================================+
+| ``item_id``   | Text or name of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
++---------------+----------------------------------------------------------------------------------+
+| ``brand``     | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
++---------------+----------------------------------------------------------------------------------+
+| ``plan``      | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++---------------+----------------------------------------------------------------------------------+
+| ``period``    | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++---------------+----------------------------------------------------------------------------------+
+| ``price``     | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++---------------+----------------------------------------------------------------------------------+
+| ``currency``  | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++---------------+----------------------------------------------------------------------------------+
+| ``discount``  | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
++---------------+----------------------------------------------------------------------------------+
+
 
 - item_id: Stripe Plan ID
 - brand: ``relay``, ``vpn``, or ``monitor``
@@ -327,64 +282,26 @@ To use this method you will need to include ``datalayer-begincheckout-init.es6.j
     </a>
 
 
-CTA Click
-~~~~~~~~~
 
-Like our UA implementation (documented above) the implementation of ``cta_click`` for GA4 is based of
-the existence of certain data-attributes on an element.
+Default Browser
+"""""""""""""""
 
-`data-cta-text` must be present to trigger the event:
+Trigger this event when a user sets their default browser to Firefox. It's an important conversion for us!
 
-- data-cta-text
-  - Defining this is useful to group the link clicks across locales
-  - The value does not need to exactly match the text
-  - Provide something more useful than "click here" or "learn more". If that is the copy you were provided consider asking for copy that is more useful to the users too!
-- data-cta-position (examples: banner, pricing, primary, secondary)
-- data-cta-type (examples: fxa-sync, fxa-monitor, fxa-vpn, monitor, relay, pocket)
-  - This is to group CTAs by their destination
-  - Do not use this to identify the element (ie. link, button)
+.. code-block:: javascript
+
+    window.dataLayer.push({
+        event: 'default_browser_set',
+    });
 
 
-.. code-block:: html
 
-    <a href="https://monitor.firefox.com/" data-cta-text="Check for breaches" data-cta-type="fxa-monitor">Check for breaches</a>
-
-    <a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-text="Send Link for Firefox Mobile" data-cta-position="banner">Send me a link</a>
-
-    <a href="{{ url('firefox.browsers.mobile.ios') }}" data-cta-text="Firefox for iOS">Firefox for iOS</a>
-
-
-For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
-
-+-----------------------+----------------------------------------------------------------------------------+
-| Data Attribute        | Expected Value                                                                   |
-+=======================+==================================================================================+
-| ``data-cta-text`` *   | Text or name of the link (e.g. ``Sign Up``, ``Join Now``, ``Start Here``).       |
-+-----------------------+----------------------------------------------------------------------------------+
-| ``data-cta-type`` *   | fxa-servicename (e.g. ``fxa-sync``, ``fxa-monitor``)                             |
-+-----------------------+----------------------------------------------------------------------------------+
-| ``data-cta-position`` | Location of CTA on the page (e.g. ``primary``, ``secondary``, ``header``)        |
-+-----------------------+----------------------------------------------------------------------------------+
-
-
-Link Click
-~~~~~~~~~~
-
-Our implementation of ``link_click`` for GA4 is based of the existence of certain data-attributes on a
-link element.
-
-`data-link-text` must be present to trigger the event:
-
-- data-link-text (examples: “Monitor”, “Features”, “Instagram (mozilla)”, “Mozilla VPN”)
-- data-link-position (examples: topnav, subnav, topnav - firefox, footer - company)
-
-```
-<a href="" data-link-text=""></a>
-```
+Newsletter Subscribe
+""""""""""""""""""""
 
 
 Product Downloads
-~~~~~~~~~~~~~~~~~
+"""""""""""""""""
 
 .. Important::
 
@@ -401,10 +318,6 @@ talked about as `product_download` :
 - `focus_download`
 - `klar_download`
 - `pocket_download`
-
-We are not using the default GA4 event file_download for a combination of reasons:
-it does not trigger for the Firefox file types, we would like to collect more information than is included with
-the default events, and we would like to treat product downloads as goals but not all file downloads are goals.
 
 Properties for use with `product_download` (not all products will have all options):
 
@@ -450,8 +363,28 @@ get and send the event object manually. This most often happens with adjust link
     TrackProductDownload.sendEvent(customEventObject);
 
 
+.. Note::
+
+    Calling TrackProductDownload will also fire an event named `product_download` so two events are being logged for each product download.
+    This is because prior to Feb 2024 we only used one unified product download event and did not have the individual product download
+    events yet. The split events are considered easier to deal with for reporting purposes inside GA4. Some data science dashboards
+    use `product_download` because it has existed longer. Ideally, we will remove it some day.
+
+
+Send to Device
+""""""""""""""
+
+Social Share
+""""""""""""
+
+
+Stub Session Set
+""""""""""""""""
+
+
+
 Widget Action
-~~~~~~~~~~~~~
+"""""""""""""
 
 We are using the custom event ``widget_action`` to track the behaviour of javascript widgets.
 
@@ -480,7 +413,7 @@ We are using the custom event ``widget_action`` to track the behaviour of javasc
 +-------------------------------------------------+-------------------------------------------------+
 
 
-Properties for use with `widget_action`  (not all widgets will use all options):
+Properties for use with `widget_action` (not all widgets will use all options):
 
 - type
     - **Required.**
@@ -492,16 +425,15 @@ Properties for use with `widget_action`  (not all widgets will use all options):
     - The thing that happened.
     - Examples: "open", "accept", "timeout", "vote up".
     - *Avoid “click”. If you want to track a click use `cta_click`.*
-- name
-    - Give the widget a name.
-    - This can help you group actions from the same widget, or make it easier to find
-      the widget in the reports.
-    - The dashes are not required but they're allowed if you want to match the element
-      class or ID.
-    - Examples: "dad-joke-banner", "focus-qr-code", "Join Firefox Modal"
 - text
     - How is this action labeled to the user?
     - Examples: "Okay", "Check your protection report", "Get the app"
+- name
+    - Give the widget a name.
+    - You probably only need this optional attribute if the `text` value is not enough to tell the widgets apart.
+    - This can help you group actions from the same widget, or make it easier to find the widget in the reports.
+    - The dashes are not required but they're allowed if you want to match the element class or ID.
+    - Examples: "dad-joke-banner", "focus-qr-code", "Join Firefox Modal"
 - non_interaction (boolean)
     - True if the action was triggered by something other than a user gesture.
     - If it's not included we assume the value is *false*
@@ -541,20 +473,10 @@ To use ``widget_action`` push your event to the ``dataLayer``:
         text: 'Where is Relay available?'
     });
 
-Default Browser
-~~~~~~~~~~~~~~~
-
-Trigger this event when a user sets their default browser to Firefox. It's an important conversion for us!
-
-.. code-block:: javascript
-
-    window.dataLayer.push({
-        event: 'default_browser_set',
-    });
 
 
-User Scoped Custom Dimensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Dimension Set
+"""""""""""""
 
 When using GA4 through GTM there isn’t a way to set user scoped custom dimensions without an accompanying event.
 The custom event we use for this is `dimension_set`.
@@ -572,18 +494,6 @@ User scoped custom dimensions must be configured in GA4. The list of supported c
 - `firefox_is_signed_in` (boolean)
 
 
-How can visitors opt out of GA?
--------------------------------
-
-Visitors to the website can opt-out of loading Google Analytics on our
-website by enabling `Do Not Track (DNT)`_ in their web browser. We
-facilitate this by using a `DNT helper`_ that our team maintains. We
-also respect `Global Privacy Control (GPC)`_ as an additional opt-out
-signal.
-
-Alternatively, visitors can also opt-out of GA by visiting the
-`cookie settings page`_, which is linked to in the main site
-footer on every page.
 
 Glean
 *****
@@ -712,6 +622,8 @@ in the browser's web console.
 - ``window.Glean.setLogPings(true)`` (enable verbose ping logging in the web console).
 - ``window.Glean.setDebugViewTag('bedrock')`` (send pings to the `Glean debug dashboard`_
   with the tag name ``bedrock``).
+- You can also use ``window.Glean.debugSession()`` for automatically opening a link to
+  the Debug Ping Viewer with your current session selected.
 
 .. Note::
 

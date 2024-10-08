@@ -4,6 +4,13 @@ DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
 POCKET_MODE = Pocket
 
+# Check if 'uv' exists and set the command accordingly
+ifneq (, $(shell which uv 2>/dev/null))
+	pip = uv pip
+else
+	pip = pip
+endif
+
 all: help
 
 help:
@@ -36,6 +43,7 @@ help:
 	@echo "  uninstall-custom-git-hooks     - uninstall custom git hooks"
 	@echo "  clean-local-deps               - remove all local installed Python dependencies"
 	@echo "  preflight                      - refresh installed dependencies and fetch latest DB ahead of local dev"
+	@echo "  preflight -- --retain-DB		- refresh installed dependencies WITHOUT fetching latest DB"
 	@echo "  run-local-task-queue           - run rqworker on your local machine. Requires redis to be running"
 
 .env:
@@ -163,24 +171,28 @@ compile-requirements: .docker-build-pull
 	${DC} run --rm compile-requirements
 
 check-requirements: .docker-build-pull
-	${DC} run --rm test pip list -o
+	${DC} run --rm app ./bin/check-pinned-requirements.py
 
 ######################################################
 # For use in local-machine development (not in Docker)
 ######################################################
 
+# Trick to avoid treating flags (eg --retain-db) as a make target
+%:
+	@:
+
+preflight:
+	${MAKE} install-local-python-deps
+	@npm install
+	@$(if $(findstring --retain-db,$(MAKECMDGOALS)),bin/sync-all.sh --retain-db,bin/sync-all.sh)
+	@python manage.py bootstrap_local_admin
+
 install-local-python-deps:
 	# Dev requirements are a superset of prod requirements, but we install
 	# them in the same separate steps that we use for our Docker-based build,
 	# so that it mirrors Production and Dev image building
-	pip install -r requirements/prod.txt
-	pip install -r requirements/dev.txt
-
-preflight:
-	${MAKE} install-local-python-deps
-	$ npm install
-	$ bin/sync-all.sh
-	$ python manage.py bootstrap_local_admin
+	$(pip) install -r requirements/prod.txt
+	$(pip) install -r requirements/dev.txt
 
 run-local-task-queue:
 	# We temporarily source the .env for the command's duration only
@@ -190,7 +202,7 @@ run-local-task-queue:
 
 
 clean-local-deps:
-	pip uninstall mdx_outline -y && pip freeze | xargs pip uninstall -y
+	$(pip) uninstall mdx_outline -y && $(pip) freeze | xargs $(pip) uninstall -y
 
 # Done explicitly to avoid surprises
 install-custom-git-hooks:

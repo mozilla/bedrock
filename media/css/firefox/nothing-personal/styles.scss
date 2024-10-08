@@ -86,9 +86,8 @@ $mq-tad-smaller-sm: 455px;
 }
 
 .c-sign-off {
-    @include font-firefox;
-    @include text-title-xs;
     margin: $layout-lg 0;
+    @include text-title-xs;
 
     .c-nothing-personal {
         padding: 12px;

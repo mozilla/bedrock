@@ -247,7 +247,6 @@ $image-path: '/media/protocol/img';
     }
 
     .contribute-banner-gethelp-title {
-        @include font-firefox;
         @include font-size(24px);
         color: $title-text-color-inverse;
         position: relative;

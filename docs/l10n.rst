@@ -212,7 +212,7 @@ attributes but we do occasionally pass classes with other tags.)
 
 .. code-block:: jinja
 
-    {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
+    {% set created_attrs = 'href="%s" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
     <p>{{ ftl('example-created', attrs=created_attrs) }}</p>
 
     {{ ftl('example-firefox-relay', class_name='class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-relay"') }}
@@ -282,7 +282,7 @@ string ID in the case that the primary one isn't translated you can specify that
 
 .. code-block:: python
 
-    ftl('primary-string-id', fallback='fallback-string-id')
+    ftl("primary-string-id", fallback="fallback-string-id")
 
 When a fallback is specified it will be used only if the primary isn't translated in the current
 locale. English locales (e.g. en-US, en-GB) will never use the fallback and will print the simplified
@@ -320,10 +320,11 @@ always call it in the view itself:
     from lib.l10n_utils import render
     from lib.l10n_utils.fluent import ftl
 
+
     def about_view(request):
-        ftl_files = 'mozorg/about'
-        hello_string = ftl('about-hello', ftl_files=ftl_files)
-        render(request, 'about.html', {'hello': hello_string}, ftl_files=ftl_files)
+        ftl_files = "mozorg/about"
+        hello_string = ftl("about-hello", ftl_files=ftl_files)
+        render(request, "about.html", {"hello": hello_string}, ftl_files=ftl_files)
 
 If you need to use this string in a view, but define it outside of the view itself, you can use the
 ``ftl_lazy`` variant which will delay evaluation until render time. This is mostly useful for defining
@@ -364,17 +365,22 @@ same way but is meant to be used in the view Python code.
     from lib.l10n_utils import render
     from lib.l10n_utils.fluent import ftl, has_messages
 
-    def about_view(request):
-        ftl_files = 'mozorg/about'
-        if has_messages('about-hello-v2', 'about-title-v2',
-                        ftl_files=ftl_files):
-            hello_string = ftl('about-hello-v2', ftl_files=ftl_files)
-            title_string = ftl('about-title-v2', ftl_files=ftl_files)
-        else:
-            hello_string = ftl('about-hello', ftl_files=ftl_files)
-            title_string = ftl('about-title', ftl_files=ftl_files)
 
-        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files=ftl_files)
+    def about_view(request):
+        ftl_files = "mozorg/about"
+        if has_messages("about-hello-v2", "about-title-v2", ftl_files=ftl_files):
+            hello_string = ftl("about-hello-v2", ftl_files=ftl_files)
+            title_string = ftl("about-title-v2", ftl_files=ftl_files)
+        else:
+            hello_string = ftl("about-hello", ftl_files=ftl_files)
+            title_string = ftl("about-title", ftl_files=ftl_files)
+
+        render(
+            request,
+            "about.html",
+            {"hello": hello_string, "title": title_string},
+            ftl_files=ftl_files,
+        )
 
 .. _fluent variables: https://projectfluent.org/fluent/guide/variables.html
 
@@ -396,8 +402,8 @@ just add a line like the following to your ``urls.py`` file:
 .. code-block:: python
 
     urlpatterns = [
-        page('about', 'about.html'),
-        page('about/contact', 'about/contact.html'),
+        page("about", "about.html"),
+        page("about/contact", "about/contact.html"),
     ]
 
 To tell this page to use the Fluent framework for l10n you just need to tell it which file(s)
@@ -406,8 +412,12 @@ to use:
 .. code-block:: python
 
     urlpatterns = [
-        page('about', 'about.html', ftl_files='mozorg/about'),
-        page('about/contact', 'about/contact.html', ftl_files=['mozorg/about/contact', 'mozorg/about']),
+        page("about", "about.html", ftl_files="mozorg/about"),
+        page(
+            "about/contact",
+            "about/contact.html",
+            ftl_files=["mozorg/about/contact", "mozorg/about"],
+        ),
     ]
 
 The system uses the first (or only) file in the list to determine which locales are active for that
@@ -426,9 +436,10 @@ than just render the page, then you can use this:
 
     from lib.l10n_utils import L10nTemplateView
 
+
     class AboutView(L10nTemplateView):
-        template_name = 'about.html'
-        ftl_files = 'mozorg/about'
+        template_name = "about.html"
+        ftl_files = "mozorg/about"
 
 Using that CBV will do the right things for l10n, and then you can override other useful methods
 (e.g. ``get_context_data``) to do what you need. Also, if you do need to do anything fancy with
@@ -439,16 +450,17 @@ so by setting ``ftl_files`` in the context instead of the class attribute.
 
     from lib.l10n_utils import L10nTemplateView
 
+
     class AboutView(L10nTemplateView):
-        template_name = 'about.html'
+        template_name = "about.html"
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
-            ftl_files = ['mozorg/about']
-            if request.GET.get('fancy'):
-                ftl_files.append('fancy')
+            ftl_files = ["mozorg/about"]
+            if request.GET.get("fancy"):
+                ftl_files.append("fancy")
 
-            ctx['ftl_files'] = ftl_files
+            ctx["ftl_files"] = ftl_files
             return ctx
 
 A common case is needing to use :abbr:`FTL (Fluent Translation List)` files when one template is used, but not with another. In this case
@@ -461,21 +473,19 @@ FTL files for that template (or a single file name if that's all you need).
     # views.py
     from lib.l10n_utils import L10nTemplateView
 
+
     # class-based view example
     class AboutView(L10nTemplateView):
-        ftl_files_map = {
-            'about_es.html': ['about_es']
-            'about_new.html': ['about']
-        }
+        ftl_files_map = {"about_es.html": ["about_es"], "about_new.html": ["about"]}
 
         def get_template_names(self):
-            if self.request.locale.startswith('en'):
-                template_name = 'about_new.html'
-            elif self.request.locale.startswith('es'):
-                template_name = 'about_es.html'
+            if self.request.locale.startswith("en"):
+                template_name = "about_new.html"
+            elif self.request.locale.startswith("es"):
+                template_name = "about_es.html"
             else:
                 # FTL system not used
-                template_name = 'about.html'
+                template_name = "about.html"
 
             return [template_name]
 
@@ -494,8 +504,9 @@ template in ``template_name`` only for requests for an active locale for the FTL
 
     from lib.l10n_utils import L10nTemplateView
 
+
     class AboutView(L10nTemplateView):
-        template_name = 'about_new.html'
+        template_name = "about_new.html"
         old_template_name = "about.html"
         ftl_files_map = {
             "about_new.html": ["about_new", "about_shared"],
@@ -515,8 +526,9 @@ the template with the context. You can use the ``ftl_files`` argument with this 
 
     from lib.l10n_utils import render
 
+
     def about_view(request):
-        render(request, 'about.html', {'name': 'Duder'}, ftl_files='mozorg/about')
+        render(request, "about.html", {"name": "Duder"}, ftl_files="mozorg/about")
 
 Fluent File Configuration
 -------------------------
@@ -637,28 +649,31 @@ For example:
     from lib.l10n_utils import L10nTemplateView
     from lib.l10n_utils.fluent import ftl_file_is_active
 
+
     # class-based view example
     class AboutView(L10nTemplateView):
         ftl_files_map = {
-            'about.html': ['about']
-            'about_new.html': ['about_new', 'about']
+            "about.html": ["about"],
+            "about_new.html": ["about_new", "about"],
         }
+
         def get_template_names(self):
-            if ftl_file_is_active('mozorg/about_new'):
-                template_name = 'about_new.html'
+            if ftl_file_is_active("mozorg/about_new"):
+                template_name = "about_new.html"
             else:
-                template_name = 'about.html'
+                template_name = "about.html"
 
             return [template_name]
 
+
     # function view example
     def about_view(request):
-        if ftl_file_is_active('mozorg/about_new'):
-            template = 'mozorg/about_new.html'
-            ftl_files = ['mozorg/about_new', 'mozorg/about']
+        if ftl_file_is_active("mozorg/about_new"):
+            template = "mozorg/about_new.html"
+            ftl_files = ["mozorg/about_new", "mozorg/about"]
         else:
-            template = 'about.html'
-            ftl_files = ['mozorg/about']
+            template = "about.html"
+            ftl_files = ["mozorg/about"]
 
         render(request, template, ftl_files=ftl_files)
 
@@ -864,14 +879,14 @@ translations. Use `add_active_locales` if you want to add languages to the exist
 .. code-block:: python
 
     def french_and_german_only(request):
-        return l10n_utils.render(request, 'home.html', {'active_locales': ['de', 'fr'])
+        return l10n_utils.render(request, "home.html", {"active_locales": ["de", "fr"]})
 
 If you don't need a custom view and are just using the `page()` helper function in your `urls.py`
 file, then you can similarly pass in a list:
 
 .. code-block:: python
 
-    page('about', 'about.html', active_locales=['en-US', 'es-ES']),
+    page("about", "about.html", active_locales=["en-US", "es-ES"]),
 
 Or if your view is even more fancy and you're using a Class-Based-View that inherits from `LangFilesMixin`
 (which it must if you want it to be translated) then you can specify the list as part of the view Class
@@ -880,13 +895,13 @@ definition:
 .. code-block:: python
 
     class MyView(LangFilesMixin, View):
-        active_locales = ['zh-CN', 'hi-IN']
+        active_locales = ["zh-CN", "hi-IN"]
 
 Or in the `urls.py` when using a CBV:
 
 .. code-block:: python
 
-    url(r'about/$', MyView.as_view(active_locales=['de', 'fr'])),
+    url(r"about/$", MyView.as_view(active_locales=["de", "fr"])),
 
 The main thing to keep in mind is that if you specify `active_locales` that will be the full list of
 localizations available for that page. If you'd like to add to the existing list of locales generated

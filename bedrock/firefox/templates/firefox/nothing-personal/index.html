@@ -4,12 +4,15 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import apple_app_store_button, google_play_button with context %}
+
 {% extends "firefox/base/base-protocol.html" %}
 
 {% from "firefox/nothing-personal/includes/browser-macro.html" import browser_border %}
 
 {% block page_css %}
   {{ css_bundle('firefox-nothing-personal') }}
+  {{ css_bundle('protocol-newsletter') }}
 {% endblock %}
 
 {% block page_title_prefix %}Nothing Personal{% endblock %}
@@ -21,6 +24,9 @@
 
 {% block site_header %}{% endblock %}
 
+{% set ios_url = app_store_url('firefox', 'firefox-nothing-personal') %}
+{% set android_url = play_store_url('firefox', 'firefox-nothing-personal') %}
+
 {% block content %}
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
@@ -29,11 +35,14 @@
       <div class="cta-group">
         <p>Feeling browser-curious? We won’t tell. <span aria-hidden="true">>>>>></span></p>
 
-        <a href="https://blog.mozilla.org/en/firefox/" class="is-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Learn more" data-cta-position="primary">Learn more</a>
+        <a href="https://blog.mozilla.org/en/firefox/" class="is-default mzp-c-button mzp-t-lg" data-cta-text="Learn more" data-cta-position="primary">Learn more</a>
 
-        <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-type="button" data-cta-text="Set as default" data-cta-position="primary">Set as default</a>
+        <a href="{{ url('firefox.set-as-default.thanks')}}" class="is-not-default mzp-c-button mzp-t-lg" data-cta-text="Set as default" data-cta-position="primary">Set as default</a>
 
         {{ download_firefox_thanks(alt_copy='Download Firefox', dom_id='protocol-nav-download-firefox', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='primary') }}
+
+        {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+        {{ google_play_button(href=android_url, class_name='play-store-badge') }}
       </div>
     </div>
   </header>
@@ -155,19 +164,39 @@
             <p>Hey, you can customize Firefox to be all about you with <a href="{{ url('firefox.features.add-ons') }}" target="_blank" data-link-text="Add-ons">add-ons</a> and <a href="{{ url('firefox.features.customize') }}" target="_blank" data-link-text="Themes">themes</a>. Happy?</p>
 
             <h5>Ok, what’s the privacy-catch?</h5>
-            <p><a href="{{ url('firefox.privacy.index') }}" target="_blank" data-link-text="We don’t keep track of where you go">We don’t keep track of where you go</a> because 1. Yawn, and 2. We really don’t need it.</p>
+            <p><a href="{{ url('privacy.notices.firefox') }}" target="_blank" data-link-text="We don’t keep track of where you go">We don’t keep track of where you go</a> because 1. Yawn, and 2. We really don’t need it.</p>
           </div>
 
           <div class="c-sticky-note c-attached-sticky">
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
-           <br>
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
-           <br>
-           <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <br>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+            <br>
+            <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+
+            {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+            {{ google_play_button(href=android_url, class_name='play-store-badge') }}
+
             <p>Ok, bye.</p>
           </div>
 
         </div>
+        {% endcall %}
+
+         {% call browser_border(id="newsletter-signup", class='mzp-l-content mzp-t-content-md mzp-t-content-nospace', heading='Newsletter') %}
+          <div class="c-browser-window-top">
+            <h4><span aria-hidden="true">[</span>Sign up for our newsletter<span aria-hidden="true">]</span></h4>
+
+            {{ email_newsletter_form(
+              include_title=False,
+              include_language=False,
+              include_country=False,
+              newsletters='mozilla-and-you, nothing-personal-college-interest-waitlist',
+              multi_opt_in_required=True
+            )}}
+
+            <p>By subscribing, you’ll receive Mozilla updates, plus exclusive college-related content if you opt in. You may unsubscribe from either at any time.</p>
+          </div>
         {% endcall %}
     </div>
 
@@ -177,6 +206,10 @@
       <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
       <br>
       <span aria-hidden="true">>>></span> {{ download_firefox_thanks(alt_copy='download', button_class='mzp-t-primary mzp-t-lg c-download-firefox-cta', download_location='secondary cta') }} <span aria-hidden="true"> <<<< </span>
+
+      {{ apple_app_store_button(href=ios_url, class_name='app-store-badge') }}
+      {{ google_play_button(href=android_url, class_name='play-store-badge') }}
+
       <p>Ok, bye.</p>
     </div>
 
@@ -203,4 +236,5 @@
 
 {% block js %}
   {{ js_bundle('firefox-nothing-personal') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}

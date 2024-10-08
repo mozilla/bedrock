@@ -59,6 +59,7 @@ tests/functional/results.html
 tests/unit/coverage
 tests/unit/dist/
 tests/playwright/test-results/
+tests/playwright/test-results-a11y/
 Thumbs.db
 tmp/*
 venv

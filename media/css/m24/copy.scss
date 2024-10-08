@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+.m24-c-copy {
+    box-sizing: border-box;
+    font-size: $alias-text-title-h4;
+    margin: 0 auto;
+    max-width: $content-max;
+
+    p {
+        font-weight: 600;
+        margin-bottom: 0;
+        text-wrap: balance;
+        text-wrap-style: balance;
+    }
+}
+
+.m24-c-copy-title {
+    font-size: $alias-text-title-h2;
+    margin-bottom: 0;
+    padding-bottom: $spacer-sm;
+    text-wrap: balance;
+    text-wrap-style: balance;
+
+    &.m24-t-2xl {
+        font-size: $alias-text-title-h1;
+    }
+}
+
+.m24-c-copy-cta {
+    text-align: right;
+    padding-top: $spacer-md;
+}
+
+@media #{$mq-xl} {
+    .m24-c-copy {
+        p {
+            max-width: grid(9);
+        }
+    }
+
+    p.m24-c-copy-cta {
+        max-width: 100%;
+    }
+}

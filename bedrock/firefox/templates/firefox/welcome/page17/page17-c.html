@@ -45,25 +45,25 @@
 
 {% block shoulder_logo %}
   {{ picture(
-    url="img/firefox/welcome/page17/firefox-wordmark-light.svg",
+    url="img/logos/firefox/logo-word-hor.svg",
     sources=[
       {
         "media": "(prefers-color-scheme: light)",
         "srcset": {
-          "img/firefox/welcome/page17/firefox-wordmark-light.svg": "default",
+          "img/logos/firefox/logo-word-hor.svg": "default",
         }
       },
       {
         "media": "(prefers-color-scheme: dark)",
         "srcset": {
-          "img/firefox/welcome/page17/firefox-wordmark-dark.svg": "default",
+          "img/logos/firefox/logo-word-hor-white.svg": "default",
         }
       }
     ],
     optional_attributes={
       "class": "c-header-logo",
       "alt": "Firefox",
-      "width": "108",
+      "width": "120",
       "height": "40",
     }
   ) }}
@@ -75,7 +75,7 @@
   <section class="c-content-main">
     <div class="mzp-l-content mzp-t-content-md">
       <h1 class="c-main-title">{{ main_title }}</h1>
-      <p class="c-main-cta"><a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-text="Try it now" data-cta-type="button">{{ main_cta }}</a></p>
+      <p class="c-main-cta"><a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-text="Try it now" >{{ main_cta }}</a></p>
 
       <img src="{{ static('img/firefox/welcome/page17/pip-hero.jpg') }}" alt="" class="c-main-image">
       <h2 class="c-main-subheading">{{ main_tagline }}</h2>

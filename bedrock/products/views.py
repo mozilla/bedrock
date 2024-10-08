@@ -21,9 +21,8 @@ from bedrock.contentful.constants import (
 )
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.contentful.utils import locales_with_available_content
-from bedrock.products.forms import MozSocialWaitlistForm, VPNWaitlistForm
+from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.fluent import ftl_file_is_active
 
 
@@ -63,10 +62,7 @@ def vpn_landing_page(request):
     if entrypoint_experiment not in []:
         entrypoint_experiment = None
 
-    if ftl_file_is_active("products/vpn/landing-2023") and experience != "legacy":
-        template_name = "products/vpn/landing-refresh.html"
-    else:
-        template_name = "products/vpn/landing.html"
+    template_name = "products/vpn/landing-refresh.html"
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -93,13 +89,7 @@ def vpn_pricing_page(request):
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
-
-    if ftl_file_is_active("products/vpn/pricing-2023") and experience != "legacy":
-        template_name = "products/vpn/pricing-refresh.html"
-    elif experience == "legacy":
-        template_name = "products/vpn/pricing.html"
-    else:
-        template_name = "products/vpn/pricing.html"
+    template_name = "products/vpn/pricing-refresh.html"
 
     context = {
         "vpn_available": vpn_available_in_country,
@@ -197,76 +187,6 @@ def vpn_invite_page(request):
     ctx = {"action": action, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "products/vpn/invite.html", ctx, ftl_files=ftl_files)
-
-
-class VPNWindowsView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/windows.html"
-    old_template_name = "products/vpn/platforms/windows.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/windows", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/windows_v2", "products/vpn/shared"],
-    }
-
-
-class VPNLinuxView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/linux.html"
-    old_template_name = "products/vpn/platforms/linux.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/linux", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/linux_v2", "products/vpn/shared"],
-    }
-
-
-class VPNDesktopView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/desktop.html"
-    old_template_name = "products/vpn/platforms/desktop.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/desktop", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/desktop_v2", "products/vpn/shared"],
-    }
-
-
-class VPNMacView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/mac.html"
-    old_template_name = "products/vpn/platforms/mac.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/mac", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/mac_v2", "products/vpn/shared"],
-    }
-
-
-class VPNMobileView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/mobile.html"
-    old_template_name = "products/vpn/platforms/mobile.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/mobile", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/mobile_v2", "products/vpn/shared"],
-    }
-
-
-class VPNIosView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/ios.html"
-    old_template_name = "products/vpn/platforms/ios.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/ios", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/ios_v2", "products/vpn/shared"],
-    }
-
-
-class VPNAndroidView(L10nTemplateView):
-    template_name = "products/vpn/platforms/v2/android.html"
-    old_template_name = "products/vpn/platforms/android.html"
-
-    ftl_files_map = {
-        old_template_name: ["products/vpn/platforms/android", "products/vpn/shared"],
-        template_name: ["products/vpn/platforms/android_v2", "products/vpn/shared"],
-    }
 
 
 def _build_category_list(entry_list):
@@ -411,18 +331,6 @@ def resource_center_article_view(request, slug):
             "products/vpn/shared",
         ],
     )
-
-
-@require_safe
-def mozsocial_waitlist_page(request):
-    template_name = "products/mozsocial/invite.html"
-    ftl_files = ["products/mozsocial/invite"]
-    locale = l10n_utils.get_locale(request)
-    newsletter_form = MozSocialWaitlistForm(locale)
-
-    ctx = {"action": settings.BASKET_SUBSCRIBE_URL, "newsletter_form": newsletter_form, "product": "mozilla-social-waitlist"}
-
-    return l10n_utils.render(request, template_name, ctx, ftl_files=ftl_files)
 
 
 @require_safe

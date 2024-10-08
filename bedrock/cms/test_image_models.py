@@ -27,6 +27,7 @@ class BedrockImageTestCase(TestCase):
             "width-400",
             "width-200",
             "width-100",
+            "max-165x165",
         ]
 
         with patch.object(image, "get_renditions") as get_renditions_mock:
@@ -50,6 +51,7 @@ class BedrockImageTestCase(TestCase):
             "width-400",
             "width-200",
             "width-100",
+            "max-165x165",
         ]
 
         with patch("bedrock.base.tasks.django_rq") as mock_django_rq:
@@ -80,6 +82,7 @@ class BedrockImageTestCase(TestCase):
             "width-400",
             "width-200",
             "width-100",
+            "max-165x165",
         ]
         with patch("bedrock.cms.models.images.defer_task") as mock_defer_task:
             image._pre_generate_expected_renditions()

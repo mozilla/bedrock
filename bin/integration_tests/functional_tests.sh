@@ -61,7 +61,6 @@ docker run \
     -e "PLATFORM=${PLATFORM:-}" \
     -e "MARK_EXPRESSION=${MARK_EXPRESSION:-}" \
     -e "BASE_URL=${BASE_URL:-}" \
-    -e "BASE_POCKET_URL=${BASE_POCKET_URL:-}" \
     -e "PYTEST_PROCESSES=${PYTEST_PROCESSES:=4}" \
     -e "BOUNCER_URL=${BOUNCER_URL:=https://download.mozilla.org/}" \
     -e "SCREEN_WIDTH=1600" \

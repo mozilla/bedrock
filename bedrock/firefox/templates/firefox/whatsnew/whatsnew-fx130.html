@@ -1,0 +1,110 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title-v2') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_130') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Zu viele Tabs? Wir haben da was!' %}
+  {% set main_tagline = 'Bei so vielen Dingen, die man online erledigen muss, ist es kein Wunder, dass man den Überblick verliert und den gleichen Tab zwei Mal geöffnet hat. Deshalb ermöglicht dir unser neues Feature jetzt, ganz einfach doppelte Tabs zu schließen.' %}
+  {% set main_cta = 'So funktionierts' %}
+  {% set cta_link = 'https://support.mozilla.org/de/kb/Surfen-mit-Tabs?' + utm_params + '#w_tabs-schliessen' %}
+{% elif LANG == 'es-ES' %}
+  {% set main_title = '¿Demasiadas pestañas abiertas? Prueba esto.' %}
+  {% set main_tagline = 'Con todo lo que tienes que hacer online cada día, es normal perder la cuenta y acabar con la misma pestaña abierta varias veces. La última funcionalidad de Firefox te permite cerrar fácilmente las pestañas duplicadas.' %}
+  {% set main_cta = 'Así funciona' %}
+  {% set cta_link = 'https://support.mozilla.org/es/kb/changes-tab-context-menu-firefox-78?' + utm_params %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Trop d’onglets ouverts ? Essayez ça.' %}
+  {% set main_tagline = 'Avec tout ce que vous avez à faire en ligne, c’est normal de perdre le fil et d’avoir le même onglet ouvert deux fois. La dernière fonctionnalité de Firefox permet de fermer les onglets en double.' %}
+  {% set main_cta = 'Comment faire' %}
+  {% set cta_link = 'https://support.mozilla.org/fr/kb/utiliser-onglets-pour-organiser-sites-web?' + utm_params + '#w_fermer-les-onglets' %}
+{% elif LANG == 'it' %}
+  {% set main_title = 'Troppe schede aperte? Prova questo.' %}
+  {% set main_tagline = 'Con tutto quello che devi fare online ogni giorno è normale perdere il filo e ritrovarti con la stessa scheda aperta più volte nel tuo browser. Quest’ultima funzionalità di Firefox ti permette di chiudere facilmente le schede duplicate.' %}
+  {% set main_cta = 'Funziona così' %}
+  {% set cta_link = 'https://support.mozilla.org/it/kb/Navigazione%20a%20schede?' + utm_params + '#w_chiudere-le-schede' %}
+{% elif LANG == 'pl' %}
+  {% set main_title = 'Za dużo otwartych zakładek? Spróbuj tego.' %}
+  {% set main_tagline = 'Nic dziwnego, że z taką ilością internetowych spraw do załatwienia czasem tracisz rachubę i masz otwarte te same karty w jednej sesji. Najnowsza funkcja Firefoksa jest tu po to, żeby zaradzić takim sytuacjom i pomóc ci zamknąć zduplikowane karty.' %}
+  {% set main_cta = 'Jak to działa' %}
+  {% set cta_link = 'https://support.mozilla.org/pl/kb/Przegl%C4%85danie%20stron%20w%20kartach?' + utm_params + '#w_zamykanie-kart' %}
+{% else %}
+  {% set main_title = 'Too many tabs? Try this.' %}
+  {% set main_tagline = 'With everything you need to get done online, it’s no wonder you could lose track of having the same tab open twice. That’s why Firefox’s latest feature makes it easy to close duplicate tabs.' %}
+  {% set main_cta = 'Here’s how' %}
+  {% set cta_link = 'https://support.mozilla.org/en-US/kb/tabs-organize-websites-single-window?' + utm_params + '#w_close-tabs' %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+    {{ picture(
+      url='firefox/wnp-130/duplicate-tabs-500.gif',
+      sources=[
+        {
+          'media': '(prefers-reduced-motion: reduce)',
+          'srcset': {
+            'firefox/wnp-130/duplicate-tabs-1000.png': '1000w',
+            'firefox/wnp-130/duplicate-tabs-500.png': '500w'
+          },
+          'sizes': {
+            '(min-width: 550px)': '500px',
+            'default': '100vw'
+          }
+        },
+        {
+          'media': '(prefers-reduced-motion: no-preference)',
+          'srcset': {
+            'firefox/wnp-130/duplicate-tabs-1000.gif': '1000w',
+            'firefox/wnp-130/duplicate-tabs-500.gif': '500w'
+          },
+          'sizes': {
+            '(min-width: 550px)': '500px',
+            'default': '100vw'
+          }
+        }
+      ],
+      optional_attributes={
+          'height': '282',
+          'width': '500',
+          'l10n': True
+      }
+    ) }}
+
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+
+    <p class="wnp-main-tagline">{{ main_tagline }}</p>
+
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="{{ cta_link }}" data-cta-text="Here’s how">
+        {{ main_cta }}
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_130') }}
+{% endblock %}

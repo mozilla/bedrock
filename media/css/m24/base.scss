@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// variables
+@import 'vars/animation';
+@import 'vars/color';
+@import 'vars/fonts';
+@import 'vars/grid';
+@import 'vars/spacing';
+@import 'vars/text';
+
+// components
+@import 'consider';
+@import 'copy';
+@import 'donate';
+@import 'grid';
+@import 'hero';
+@import 'showcase';
+@import 'spring';
+@import 'transition';
+
+/* Protocol overrides ------------------------------------------------------------ */
+
+body {
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+    font-family: var(--body-font-family);
+    font-variant-ligatures: none;
+    line-height: var(--body-line-height);
+}
+
+h1, h2, h3, h4, h5 {
+    color: $m24-color-black;
+    font-family: var(--title-font-family);
+    font-variant-ligatures: none;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+strong {
+    font-weight: 900;
+}
+
+a:link {
+    color: $m24-color-black;
+
+    &:hover,
+    &:focus {
+        color: $m24-color-black;
+    }
+
+    &:visited{
+        &:hover,
+        &:focus {
+            color: $m24-color-black;
+        }
+    }
+}
+
+*:focus,
+*:focus-visible {
+    outline-offset: 6px;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+.m24-c-container {
+    @include container;
+}
+
+.m24-c-content {
+    @include container;
+    padding-top: $spacer-xl;
+    padding-bottom: $spacer-xl;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+.m24-c-section-cta {
+    margin-bottom: 0;
+    padding: $spacer-xs 0;
+    text-align: right;
+}
+
+.m24-c-cta {
+    color: $m24-color-black;
+    display: inline-block;
+    font-family: var(--title-font-family);
+    font-size: $text-button-lg;
+
+    &:hover {
+        color: $m24-color-dark-green;
+    }
+
+    &:focus-visible {
+        color: $m24-color-black;
+    }
+
+    &:active {
+        color: $m24-color-black;
+    }
+
+    &.m24-t-small {
+        font-family: var(--body-font-family);
+        font-size: $text-button-sm;
+    }
+}

@@ -34,7 +34,6 @@ header {
 
     h2 {
         @include text-title-xs;
-        @include font-mozilla;
         font-weight: 500;
     }
 
@@ -85,7 +84,8 @@ header {
 
     blockquote {
         @include text-body-lg;
-        @include font-firefox;
+        font-family: var(--body-font-family);
+        font-weight: 600;
 
         cite {
             @include text-body-lg;
@@ -130,9 +130,9 @@ header {
         margin: $spacing-md 0;
 
         figcaption {
-            @include font-base;
             @include text-body-lg;
-            font-weight: 700;
+            font-family: var(--body-font-family);
+            font-weight: 600;
             text-align: center;
         }
 

@@ -9,7 +9,14 @@
   {% set os = 'win' if build == '32' else 'win64' %}
   <div class="firefox-platform-button-windows">
     <div class="firefox-platform-button">
-      <a class="download-link {{ class_name }} mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-stub&os={{ os }}&lang={{ LANG }}" data-link-type="download" data-display-name="Windows {{ build }}-bit" data-download-version="{{ os }}" data-download-os="Desktop" data-download-location="{{ position }}">
+      <a class="download-link {{ class_name }} mzp-t-xl mzp-c-button mzp-t-product ga-product-download"
+        id="{{ id }}"
+        href="{{ settings.BOUNCER_URL }}?product=firefox-stub&os={{ os }}&lang={{ LANG }}"
+        data-download-version="{{ os }}"
+        data-cta-text="Download Now"
+        data-cta-type="firefox"
+        data-cta-position="{{ position }}"
+        >
         <strong class="download-title">
           {{ cta_copy }}
         </strong>
@@ -33,7 +40,13 @@
 {% macro firefox_download_desktop_button_mac(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-osx', position='primary cta') -%}
   <div class="firefox-platform-button-mac">
     <div class="firefox-platform-button">
-      <a class="download-link os_osx mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-display-name="macOS" data-download-version="osx" data-download-os="Desktop" data-download-location="{{ position }}">
+      <a class="download-link os_osx mzp-t-xl mzp-c-button mzp-t-product ga-product-download"
+        id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=osx&lang={{ LANG }}"
+        data-download-version="osx"
+        data-cta-text="Download Now"
+        data-cta-type="firefox"
+        data-cta-position="{{ position }}"
+        >
         <strong class="download-title">
           {{ cta_copy }}
         </strong>
@@ -57,19 +70,19 @@
 {% macro firefox_download_desktop_button_linux(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-linux', position='primary cta') -%}
   <div class="firefox-platform-button-linux">
     <div class="firefox-platform-button">
-      <a class="download-link os_linux mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 32-bit" data-download-version="linux" data-download-os="Desktop" data-download-location="{{ position }}">
+      <a class="download-link os_linux mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" data-download-version="linux" data-cta-text="Download for Linux 32-bit" data-cta-position="{{ position }}">
         <strong class="download-title">
           {{ ftl('download-button-linux-32-v2') }}
         </strong>
       </a>
 
-      <a class="download-link os_linux64 mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}-64" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" data-link-type="download" data-display-name="Linux 64-bit" data-download-version="linux64" data-download-os="Desktop" data-download-location="{{ position }}">
+      <a class="download-link os_linux64 mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}-64" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" data-download-version="linux64" data-cta-text="Download for Linux 64-bit" data-cta-position="{{ position }}">
         <strong class="download-title">
           {{ ftl('download-button-linux-64-v2') }}
         </strong>
       </a>
 
-      <p class="c-linux-debian">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link"
+      <p class="c-linux-debian">{{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener"
       data-cta-text="You can set up our APT repository instead"')}}</p>
 
       <small class="mzp-c-button-download-privacy-link">

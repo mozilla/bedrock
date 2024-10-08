@@ -217,8 +217,8 @@ describe('management.es6.js', function () {
             );
 
             // total number of active newsletters to display
-            expect(newsletters.length).toEqual(10);
-            expect(active.length).toEqual(10);
+            expect(newsletters.length).toEqual(9);
+            expect(active.length).toEqual(9);
 
             // number of subscribed newsletters to display
             expect(subscribed.length).toEqual(3);
@@ -231,7 +231,7 @@ describe('management.es6.js', function () {
             expect(show.length).toEqual(5);
 
             // FxA newsletters to display
-            expect(fxaNewsletters.length).toEqual(4);
+            expect(fxaNewsletters.length).toEqual(3);
 
             expect(newsletters[0].title).toEqual('Firefox Accounts Tips');
             expect(newsletters[0].newsletter).toEqual(
@@ -239,45 +239,41 @@ describe('management.es6.js', function () {
             );
             expect(newsletters[0].subscribed).toBeFalse();
 
-            expect(newsletters[1].title).toEqual('Knowledge is Power');
-            expect(newsletters[1].newsletter).toEqual('knowledge-is-power');
+            expect(newsletters[1].title).toEqual('New Product Testing');
+            expect(newsletters[1].newsletter).toEqual('test-pilot');
             expect(newsletters[1].subscribed).toBeFalse();
 
-            expect(newsletters[2].title).toEqual('New Product Testing');
-            expect(newsletters[2].newsletter).toEqual('test-pilot');
-            expect(newsletters[2].subscribed).toBeFalse();
-
-            expect(newsletters[3].title).toEqual(
+            expect(newsletters[2].title).toEqual(
                 'Take Action for the Internet'
             );
-            expect(newsletters[3].newsletter).toEqual(
+            expect(newsletters[2].newsletter).toEqual(
                 'take-action-for-the-internet'
             );
-            expect(newsletters[3].subscribed).toBeFalse();
+            expect(newsletters[2].subscribed).toBeFalse();
 
-            expect(newsletters[4].title).toEqual('Firefox News');
-            expect(newsletters[4].newsletter).toEqual('mozilla-and-you');
+            expect(newsletters[3].title).toEqual('Firefox News');
+            expect(newsletters[3].newsletter).toEqual('mozilla-and-you');
+            expect(newsletters[3].subscribed).toBeTrue();
+
+            expect(newsletters[4].title).toEqual('Mozilla News');
+            expect(newsletters[4].newsletter).toEqual('mozilla-foundation');
             expect(newsletters[4].subscribed).toBeTrue();
 
-            expect(newsletters[5].title).toEqual('Mozilla News');
-            expect(newsletters[5].newsletter).toEqual('mozilla-foundation');
-            expect(newsletters[5].subscribed).toBeTrue();
+            expect(newsletters[5].title).toEqual('Mozilla Festival');
+            expect(newsletters[5].newsletter).toEqual('mozilla-festival');
+            expect(newsletters[5].subscribed).toBeFalse();
 
-            expect(newsletters[6].title).toEqual('Mozilla Festival');
-            expect(newsletters[6].newsletter).toEqual('mozilla-festival');
+            expect(newsletters[6].title).toEqual('Insights');
+            expect(newsletters[6].newsletter).toEqual('internet-health-report');
             expect(newsletters[6].subscribed).toBeFalse();
 
-            expect(newsletters[7].title).toEqual('Insights');
-            expect(newsletters[7].newsletter).toEqual('internet-health-report');
+            expect(newsletters[7].title).toEqual('Common Voice');
+            expect(newsletters[7].newsletter).toEqual('common-voice');
             expect(newsletters[7].subscribed).toBeFalse();
 
-            expect(newsletters[8].title).toEqual('Common Voice');
-            expect(newsletters[8].newsletter).toEqual('common-voice');
-            expect(newsletters[8].subscribed).toBeFalse();
-
-            expect(newsletters[9].title).toEqual('Mozilla Community');
-            expect(newsletters[9].newsletter).toEqual('about-mozilla');
-            expect(newsletters[9].subscribed).toBeTrue();
+            expect(newsletters[8].title).toEqual('Mozilla Community');
+            expect(newsletters[8].newsletter).toEqual('about-mozilla');
+            expect(newsletters[8].subscribed).toBeTrue();
         });
 
         it('should not include FxA newsletters if not an FxA user', function () {
@@ -468,7 +464,7 @@ describe('management.es6.js', function () {
             const rows = document.querySelectorAll(
                 '.newsletter-table tbody > tr'
             );
-            expect(rows.length).toEqual(11);
+            expect(rows.length).toEqual(10);
 
             expect(rows[0].querySelector('th > h4').innerText).toEqual(
                 'Firefox Accounts Tips'
@@ -481,11 +477,11 @@ describe('management.es6.js', function () {
             ).toBeFalsy();
 
             expect(rows[4].querySelector('th > h4').innerText).toEqual(
-                'Firefox News'
+                'Mozilla News'
             );
             expect(
                 rows[4].querySelector('td > input[type="checkbox"]').value
-            ).toEqual('mozilla-and-you');
+            ).toEqual('mozilla-foundation');
             expect(
                 rows[4].querySelector('td > input[type="checkbox"]').checked
             ).toBeTruthy();

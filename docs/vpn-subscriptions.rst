@@ -89,18 +89,40 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
             "usd": {
                 "en": {
                     "12-month": {
-                        "id": "price_1J0Y1iKb9q6OnNsLXwdOFgDr" if DEV else "price_1Iw85dJNcmPzuWtRyhMDdtM7",
+                        "id": (
+                            "price_1J0Y1iKb9q6OnNsLXwdOFgDr"
+                            if DEV
+                            else "price_1Iw85dJNcmPzuWtRyhMDdtM7"
+                        ),
                         "price": "US$4.99",
                         "total": "US$59.88",
                         "saving": 50,
-                        "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                        "analytics": {
+                            "brand": "vpn",
+                            "plan": "vpn",
+                            "currency": "USD",
+                            "discount": "60.00",
+                            "price": "59.88",
+                            "period": "yearly",
+                        },
                     },
                     "monthly": {
-                        "id": "price_1J0owvKb9q6OnNsLExNhEDXm" if DEV else "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
+                        "id": (
+                            "price_1J0owvKb9q6OnNsLExNhEDXm"
+                            if DEV
+                            else "price_1Iw7qSJNcmPzuWtRMUZpOwLm"
+                        ),
                         "price": "US$9.99",
                         "total": None,
                         "saving": None,
-                        "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "period": "monthly"},
+                        "analytics": {
+                            "brand": "vpn",
+                            "plan": "vpn",
+                            "currency": "USD",
+                            "discount": "0",
+                            "price": "9.99",
+                            "period": "monthly",
+                        },
                     },
                 }
             },
@@ -145,7 +167,7 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
 
     .. code-block:: python
 
-        vpn_available_in_country = vpn_available(request),
+        vpn_available_in_country = (vpn_available(request),)
 
 4. If you now test the landing page locally, you should hopefully see the newly added
    pricing for each new country (add the ``?geo=[INSERT_COUNTRY_CODE]`` param to the
@@ -163,6 +185,7 @@ The majority of config changes need to happen in ``bedrock/settings/base.py``:
                 lang="en-US",
             )
             self.assertIn("?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7", markup)
+
 
         def test_vpn_subscribe_link_variable_monthly_us_en(self):
             """Should contain expected monthly plan ID (US / en-US)"""

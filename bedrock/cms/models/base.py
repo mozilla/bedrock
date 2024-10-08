@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 
 from wagtail.models import Page as WagtailBasePage
+from wagtail_localize.fields import SynchronizedField
 
 from lib import l10n_utils
 
@@ -32,6 +33,13 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         `serve_password_required_response` method, via the @method_decorator above
     """
 
+    # Make the `slug` field 'synchronised', so it automatically gets copied over to
+    # every localized variant of the page and shouldn't get sent for translation.
+    # See https://wagtail-localize.org/stable/how-to/field-configuration/
+    override_translatable_fields = [
+        SynchronizedField("slug"),
+    ]
+
     class Meta:
         abstract = True
 
@@ -44,9 +52,19 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         return False
 
     def _patch_request_for_bedrock(self, request):
-        # Add hints that help us integrate CMS pages with core Bedrock logic
+        "Add hints that help us integrate CMS pages with core Bedrock logic"
+
+        # Quick annotation to help us track the origin of the page
         request.is_cms_page = True
-        request._locales_available_via_cms = [self.locale.language_code] + [x.locale.language_code for x in self.get_translations()]
+
+        # Patch in a list of CMS-available locales for pages that are translations, not just aliases
+        request._locales_available_via_cms = [self.locale.language_code]
+        try:
+            _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
+            request._locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
+        except ValueError:
+            # when there's no draft and no potential for aliases, etc, the above lookup will fail
+            pass
         return request
 
     def _render_with_fluent_string_support(self, request, *args, **kwargs):

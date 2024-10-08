@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .mofo-donate-promo {
-    @include font-base;
+    font-family: var(--body-font-family);
     padding-top: 0;
 
     .feature-wrapper {
@@ -30,7 +30,7 @@ $image-path: '/media/protocol/img';
     small {
         @include text-body-md;
         text-transform: uppercase;
-        color: $color-violet-60;
+        color: $color-moz-dark-purple;
         font-weight: bold;
         margin: $spacing-md 0;
         display: block;
@@ -38,15 +38,11 @@ $image-path: '/media/protocol/img';
     }
 
     h2 {
-        @include font-base;
         @include text-title-xs;
+        font-family: var(--body-font-family);
         font-weight: bold;
         text-align: center;
         margin: $spacing-lg 0;
-
-        span {
-            color: $color-violet-60;
-        }
     }
 
     a {

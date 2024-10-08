@@ -54,8 +54,8 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
 .vpn-download-secondary-list {
     .platform-body {
         h2 {
-            @include font-base;
             @include text-body-xl;
+            font-family: var(--body-font-family);
         }
 
         p {

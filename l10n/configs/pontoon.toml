@@ -258,12 +258,6 @@ locales = [
         "zh-TW",
     ]
 [[paths]]
-    reference = "en/mozorg/try-picture-in-picture.ftl"
-    l10n = "{locale}/mozorg/try-picture-in-picture.ftl"
-    locales = [
-        "it"
-    ]
-[[paths]]
     reference = "en/newsletter/opt-out-confirmation.ftl"
     l10n = "{locale}/newsletter/opt-out-confirmation.ftl"
     locales = [
@@ -278,12 +272,6 @@ locales = [
 [[paths]]
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
-[[paths]]
-    reference = "en/products/mozsocial/*.ftl"
-    l10n = "{locale}/products/mozsocial/*.ftl"
-[[paths]]
-    reference = "en/products/vpn/landing.ftl"
-    l10n = "{locale}/products/vpn/landing.ftl"
 [[paths]]
     reference = "en/products/vpn/download.ftl"
     l10n = "{locale}/products/vpn/download.ftl"

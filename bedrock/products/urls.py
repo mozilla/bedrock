@@ -14,16 +14,16 @@ urlpatterns = (
     path("vpn/features/", views.vpn_features_page, name="products.vpn.features"),
     path("vpn/invite/", views.vpn_invite_page, name="products.vpn.invite"),
     # Pages that do not use allowed_countries or default_monthly_price contexts
-    path("vpn/desktop/", views.VPNDesktopView.as_view(), name="products.vpn.platforms.desktop"),
-    path("vpn/desktop/linux/", views.VPNLinuxView.as_view(), name="products.vpn.platforms.linux"),
-    path("vpn/desktop/mac/", views.VPNMacView.as_view(), name="products.vpn.platforms.mac"),
-    path("vpn/desktop/windows/", views.VPNWindowsView.as_view(), name="products.vpn.platforms.windows"),
+    page("vpn/desktop/", "products/vpn/platforms/desktop.html", ftl_files=["products/vpn/platforms/desktop_v2", "products/vpn/shared"]),
+    page("vpn/desktop/linux/", "products/vpn/platforms/linux.html", ftl_files=["products/vpn/platforms/linux_v2", "products/vpn/shared"]),
+    page("vpn/desktop/mac/", "products/vpn/platforms/mac.html", ftl_files=["products/vpn/platforms/mac_v2", "products/vpn/shared"]),
+    page("vpn/desktop/windows/", "products/vpn/platforms/windows.html", ftl_files=["products/vpn/platforms/windows_v2", "products/vpn/shared"]),
     path("vpn/download/", views.vpn_download_page, name="products.vpn.download"),
     path("vpn/download/mac/thanks/", views.vpn_mac_download_page, name="products.vpn.mac-download"),
     path("vpn/download/windows/thanks/", views.vpn_windows_download_page, name="products.vpn.windows-download"),
-    path("vpn/mobile/", views.VPNMobileView.as_view(), name="products.vpn.platforms.mobile"),
-    path("vpn/mobile/ios/", views.VPNIosView.as_view(), name="products.vpn.platforms.ios"),
-    path("vpn/mobile/android/", views.VPNAndroidView.as_view(), name="products.vpn.platforms.android"),
+    page("vpn/mobile/", "products/vpn/platforms/mobile.html", ftl_files=["products/vpn/platforms/mobile_v2", "products/vpn/shared"]),
+    page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios_v2", "products/vpn/shared"]),
+    page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android_v2", "products/vpn/shared"]),
     page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
     # Evergreen SEO articles (issue #10224)
     path(
@@ -46,7 +46,6 @@ urlpatterns = (
         views.resource_center_article_view,
         name="products.vpn.resource-center.article",
     ),
-    path("mozsocial/invite/", views.mozsocial_waitlist_page, name="products.mozsocial.invite"),
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )

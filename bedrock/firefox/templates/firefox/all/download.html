@@ -1,0 +1,89 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button, apple_app_store_button, ms_store_button with context %}
+
+{% set icon_download ='<span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 13c.2 0 .4-.1.5-.2l4.4-4.4-1.1-1.1-3.1 3.1V1H7.2v9.4L4.1 7.3l-1 1.1 4.4 4.4c.1.1.3.2.5.2z" /><path d="M13.5 12v2c0 .3-.2.5-.5.5H3c-.3 0-.5-.2-.5-.5v-2H1v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2h-1.5z" /></svg></span>' %}
+
+{# Show download #}
+<h2 {% if not (product and platform and locale) %} class="c-step-name t-step-disabled" aria-disabled="true" {% else %} class="c-step-name" aria-disabled="false" {% endif %}>
+  {{ ftl('firefox-all-download') }}
+  {% if product and platform and locale %}
+    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+  {% else %}
+    <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
+  {% endif %}
+</h2>
+
+{% if product and platform and locale %}
+<div class="c-step-contents">
+  {% if platform.startswith("linux") %}
+    {# Linux preamble #}
+    <p class="c-linux-debian"><br>
+      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-text="You can set up our APT repository instead"'|safe) }}
+    </p>
+  {% endif %}
+  {% if product.slug.startswith("desktop") %}
+    {% if platform.startswith("win-store") %}
+      {# Windows Store #}
+      <p class="c-step-download">
+        {% set ms_store_product = 'firefox_beta' if product.slug.endswith('beta') else 'firefox' %}
+        {% set ms_store_href = ms_store_url(product=ms_store_product, campaign='firefox-all') %}
+        {{ ms_store_button(href=ms_store_href, id='msStoreLink') }}
+      </p>
+    {% elif product.slug == "desktop-esr" %}
+      {# ESR #}
+      {% set is_esr_next_version = desktop_esr_next_version %}
+      {# If there are multiple ESR's available, show next as well. #}
+      {% if is_esr_next_version %}
+        <p class="c-step-download">
+          <a href="{{ download_esr_next_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
+            {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_next_version) }} {{ icon_download|safe }}
+          </a>
+        </p>
+
+        {% if ftl_has_messages('firefox-all-esr-we-are-in-transition', 'firefox-all-esr-when-there-is', 'firefox-all-esr-if-you-choose') %}
+        <p>{{ ftl('firefox-all-esr-we-are-in-transition', esr_next_major=desktop_esr_next_version.split('.')[0], esr_current_major=desktop_esr_latest_version.split('.')[0] ) }}</p>
+        <p>{{ ftl('firefox-all-esr-when-there-is') }}</p>
+        <p>{{ ftl('firefox-all-esr-if-you-choose') }}</p>
+        {% endif %}
+
+        <p>
+          <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
+            {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_latest_version) }} {{ icon_download|safe }}
+          </a>
+        </p>
+
+        {% if ftl_has_messages('firefox-all-esr-read-more') %}
+        <p>{{ ftl('firefox-all-esr-read-more', attrs='href="https://support.mozilla.org/kb/firefox-esr-release-cycle" rel="external noopener" data-link-text="Firefox ESR release cycle"') }}</p>
+        {% endif %}
+
+      {% else %}
+      {# ESR latest #}
+      <p class="c-step-download">
+        <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
+          {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
+        </a>
+      </p>
+      {% endif %}
+    {% else %}
+      {# All other desktop releases #}
+      <p class="c-step-download">
+        <a href="{{ download_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
+          {{ ftl('download-button-download-now') }} {{ icon_download|safe }}
+        </a>
+      </p>
+    {% endif %}
+  {% elif product.slug.startswith('android') or product.slug.startswith('ios') or product.slug.startswith('mobile') %}
+    {# all mobile releases #}
+    {% include 'firefox/all/mobile.html' %}
+  {% else %}
+    <p class="c-download-error">
+      {{ ftl('firefox-all-sorry-we-couldnt-find') }}
+    </p>
+  {% endif %}
+</div>
+{% endif %}

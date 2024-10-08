@@ -14,11 +14,6 @@ const successCustomCallback = () => {
     ).map((newsletter) => newsletter.value);
 
     if (window.dataLayer) {
-        // UA
-        window.dataLayer.push({
-            event: 'newsletter-signup-success',
-            newsletter: newsletters
-        });
         // GA4
         for (let i = 0; i < newsletters.length; ++i) {
             window.dataLayer.push({

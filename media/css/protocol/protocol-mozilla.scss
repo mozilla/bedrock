@@ -63,7 +63,8 @@
 
 #newsletter-submit + .mzp-c-fieldnote {
     @include text-body-xs;
-    margin-top: 0;
+    margin: 0 auto;
+    max-width: 30em;
 }
 
 // style classes automatically added by python to match Protocol form error styles
@@ -93,4 +94,17 @@ template {
 // temporary override for Mozilla Monitor word mark
 .mzp-c-wordmark.t-product-mozilla-monitor {
     background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
+}
+
+.c-navigation-logo-image.m24-logo {
+    @media #{$mq-md} {
+        height: 21px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.mzp-c-footer-primary-logo.m24-logo a {
+    background-image: url('/media/img/logos/m24/lockup-white.svg');
+    height: 27px;
 }

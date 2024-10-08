@@ -1,28 +1,28 @@
 {#
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_nav_cta_link with context %}
+{% from "products/vpn/includes/macros.html" import vpn_nav_platform_cta, vpn_platform_hero with context %}
 
 {% extends "products/vpn/base.html" %}
 
-{% block page_css %}
-{{ css_bundle('protocol-article') }}
-{{ css_bundle('mozilla-vpn-platforms') }}
-{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('mozilla-vpn-platforms') }}
+{% endblock %}
 
 {% block site_header %}
   {% with
-  custom_nav_cta=vpn_nav_cta_link()
+    custom_nav_cta=vpn_nav_platform_cta(
+      alt_link_text='vpn-shared-subscribe-link',
+    )
   %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
 {% endblock %}
-
-
 
 {% block content %}
 <main>
@@ -42,9 +42,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         }
       )
       ) %}
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-subscribe-link')}}</a>
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-subscribe-link')}}</a>
       <p class="guarantee-copy">
-        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
+        {{ ftl('vpn-shared-money-back-guarantee') }}
       </p>
     {% endcall %}
   {% endblock %}
@@ -58,8 +58,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <div class="mzp-l-content mzp-t-content-lg c-vpn-platform-footer">
       <div class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-shared-product-name') }}</div>
-      <p><a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">{{ ftl('vpn-shared-subscribe-link') }}</a></p>
-      <p class="guarantee-copy"><a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ftl('vpn-shared-money-back-guarantee') }}</a></p>
+      <p><a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}#pricing">{{ ftl('vpn-shared-subscribe-link') }}</a></p>
+      <p class="guarantee-copy">{{ftl('vpn-shared-money-back-guarantee') }}</p>
   </div>
   </main>
 {% endblock %}

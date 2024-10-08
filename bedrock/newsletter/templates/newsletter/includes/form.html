@@ -99,7 +99,7 @@
       </div>
 
       <p class="mzp-c-form-submit">
-        <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-type="Newsletter-{{ id }}" data-cta-text="Newsletter Sign Up" data-testid="newsletter-submit-button">
+        <button type="submit" id="newsletter-submit" class="mzp-c-button {{ button_class }}" data-cta-text="Newsletter Sign Up" data-testid="newsletter-submit-button">
           {% if submit_text %}
             {{ submit_text }}
           {% else %}
@@ -113,9 +113,9 @@
             <span class="mzp-c-fieldnote">
               {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
               {% if id == 'mozilla-and-you' %}
-                {{ ftl('newsletter-form-we-will-only-send-firefox', fallback='newsletter-form-we-will-only-send') }}
+                {{ ftl('newsletter-form-we-will-only-send-firefox-v2', fallback='newsletter-form-we-will-only-send-firefox') }}
               {% else %}
-                {{ ftl('newsletter-form-we-will-only-send') }}
+                {{ ftl('newsletter-form-we-will-only-send-v2', fallback='newsletter-form-we-will-only-send') }}
               {% endif %}
             </span>
         {% endif %}

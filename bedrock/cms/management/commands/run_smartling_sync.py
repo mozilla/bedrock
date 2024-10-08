@@ -29,6 +29,6 @@ class Command(BaseCommand):
             )
             if SMARTLING_SYNC_SNITCH_URL:
                 requests.get(SMARTLING_SYNC_SNITCH_URL)
-            sys.stdout.write("Snitch pinged\n")
+                sys.stdout.write("Snitch pinged\n")
         except Exception as ex:
             sys.stderr.write(f"\nsync_smartling did not execute successfully: {ex}\n")

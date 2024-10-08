@@ -1,25 +1,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-import json
 import uuid
 from unittest.mock import patch
 
-from django.http import HttpResponse
-from django.test.client import RequestFactory
+from django.conf import settings
 
 import basket
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
-from bedrock.newsletter.views import (
-    general_error,
-    invalid_email_address,
-    kip_confirm,
-    newsletter_all_json,
-    newsletter_strings_json,
-)
+from bedrock.newsletter.views import general_error, invalid_email_address
 
 
 class TestConfirmView(TestCase):
@@ -27,44 +19,48 @@ class TestConfirmView(TestCase):
         self.token = str(uuid.uuid4())
         self.url = reverse("newsletter.confirm", kwargs={"token": self.token})
 
-    def test_normal(self):
+    @patch("basket.confirm")
+    def test_normal(self, confirm):
         """Confirm works with a valid token"""
-        with patch("basket.confirm") as confirm:
-            confirm.return_value = {"status": "ok"}
-            rsp = self.client.get(self.url)
-            self.assertEqual(302, rsp.status_code)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}?confirm=1"))
+        confirm.return_value = {"status": "ok"}
+        rsp = self.client.get(self.url)
+        self.assertEqual(302, rsp.status_code)
+        self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.existing', kwargs={'token': self.token})}?confirm=1")
 
-    def test_normal_with_query_params(self):
+    @patch("basket.confirm")
+    def test_normal_with_query_params(self, confirm):
         """Confirm works with a valid token"""
-        with patch("basket.confirm") as confirm:
-            confirm.return_value = {"status": "ok"}
-            rsp = self.client.get(self.url + "?utm_tracking=oh+definitely+yes&utm_source=malibu")
-            self.assertEqual(302, rsp.status_code)
-            self.assertTrue(
-                rsp["Location"].endswith(
-                    f"{reverse('newsletter.existing.token', kwargs={'token': self.token})}"
-                    "?confirm=1&utm_tracking=oh+definitely+yes&utm_source=malibu"
-                )
-            )
+        confirm.return_value = {"status": "ok"}
+        rsp = self.client.get(self.url + "?utm_tracking=oh+definitely+yes&utm_source=malibu")
+        self.assertEqual(302, rsp.status_code)
+        self.assertURLEqual(
+            rsp["Location"],
+            f"{reverse('newsletter.existing', kwargs={'token': self.token})}?confirm=1&utm_tracking=oh+definitely+yes&utm_source=malibu",
+        )
 
-    def test_basket_down(self):
+    def test_no_token_404(self):
+        """The confirm view requires a token"""
+        url = self.url.replace(f"{self.token}/", "")
+        rsp = self.client.get(url)
+        self.assertEqual(rsp.status_code, 404)
+
+    @patch("basket.confirm")
+    def test_basket_down(self, confirm):
         """If basket is down, we report the appropriate error"""
-        with patch("basket.confirm") as confirm:
-            confirm.side_effect = basket.BasketException()
-            rsp = self.client.get(self.url)
-            self.assertEqual(302, rsp.status_code)
-            confirm.assert_called_with(self.token)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=1"))
+        confirm.side_effect = basket.BasketException()
+        rsp = self.client.get(self.url)
+        self.assertEqual(302, rsp.status_code)
+        confirm.assert_called_with(self.token)
+        self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.confirm.thanks')}?error=1")
 
-    def test_bad_token(self):
+    @patch("basket.confirm")
+    def test_bad_token(self, confirm):
         """If the token is bad, we report the appropriate error"""
-        with patch("basket.confirm") as confirm:
-            confirm.side_effect = basket.BasketException(status_code=403, code=basket.errors.BASKET_UNKNOWN_TOKEN)
-            rsp = self.client.get(self.url)
-            self.assertEqual(302, rsp.status_code)
-            confirm.assert_called_with(self.token)
-            self.assertTrue(rsp["Location"].endswith(f"{reverse('newsletter.confirm.thanks')}?error=2"))
+        confirm.side_effect = basket.BasketException(status_code=403, code=basket.errors.BASKET_UNKNOWN_TOKEN)
+        rsp = self.client.get(self.url)
+        self.assertEqual(302, rsp.status_code)
+        confirm.assert_called_with(self.token)
+        self.assertURLEqual(rsp["Location"], f"{reverse('newsletter.confirm.thanks')}?error=2")
 
 
 class TestNewsletterSubscribe(TestCase):
@@ -88,7 +84,7 @@ class TestNewsletterSubscribe(TestCase):
             "email": "fred@example.com",
         }
         resp = self.ajax_request(data)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertFalse(resp_data["success"])
         self.assertEqual(len(resp_data["errors"]), 1)
         self.assertIn("privacy", resp_data["errors"][0])
@@ -107,7 +103,7 @@ class TestNewsletterSubscribe(TestCase):
             "country": '<svg/onload=alert("NEFARIOUSNESS")>',
         }
         resp = self.ajax_request(data)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertFalse(resp_data["success"])
         self.assertEqual(len(resp_data["errors"]), 1)
         self.assertNotIn(data["country"], resp_data["errors"][0])
@@ -125,7 +121,7 @@ class TestNewsletterSubscribe(TestCase):
         }
         source_url = "https://example.com/bambam"
         resp = self.ajax_request(data, HTTP_REFERER=source_url)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertDictEqual(resp_data, {"success": True})
         basket_mock.subscribe.assert_called_with("fred@example.com", "flintstones", source_url=source_url)
 
@@ -135,7 +131,7 @@ class TestNewsletterSubscribe(TestCase):
         source_url = "https://example.com/bambam"
         data = {"newsletters": ["flintstones"], "email": "fred@example.com", "privacy": True, "source_url": source_url}
         resp = self.ajax_request(data, HTTP_REFERER=source_url + "_WILMA")
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertDictEqual(resp_data, {"success": True})
         basket_mock.subscribe.assert_called_with("fred@example.com", "flintstones", source_url=source_url)
 
@@ -148,7 +144,7 @@ class TestNewsletterSubscribe(TestCase):
             "privacy": True,
         }
         resp = self.ajax_request(data)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertDictEqual(resp_data, {"success": True})
         basket_mock.subscribe.assert_called_with("fred@example.com", "flintstones")
 
@@ -162,7 +158,7 @@ class TestNewsletterSubscribe(TestCase):
             "privacy": True,
         }
         resp = self.ajax_request(data)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertFalse(resp_data["success"])
         self.assertEqual(resp_data["errors"][0], str(invalid_email_address))
 
@@ -176,7 +172,7 @@ class TestNewsletterSubscribe(TestCase):
             "privacy": True,
         }
         resp = self.ajax_request(data)
-        resp_data = json.loads(resp.content)
+        resp_data = resp.json()
         self.assertFalse(resp_data["success"])
         self.assertEqual(resp_data["errors"][0], str(general_error))
 
@@ -186,7 +182,7 @@ class TestNewsletterSubscribe(TestCase):
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
         self.assertTrue(doc('input[value="mozilla-foundation"]'))
-        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-type"], "Newsletter-mozilla-firefox-multi")
+        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-text"], "Newsletter Sign Up")
 
     def test_shows_form_single(self):
         """The MPL page only subscribes to 'mozilla-foundation', so not a multi-newsletter form."""
@@ -194,7 +190,7 @@ class TestNewsletterSubscribe(TestCase):
         doc = pq(resp.content)
         self.assertTrue(doc("#newsletter-form"))
         self.assertTrue(doc('input[value="mozilla-foundation"]'))
-        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-type"], "Newsletter-mozilla-foundation")
+        self.assertEqual(doc("#newsletter-submit")[0].attrib["data-cta-text"], "Newsletter Sign Up")
 
     @patch("bedrock.newsletter.views.basket")
     def test_returns_success(self, basket_mock):
@@ -253,33 +249,67 @@ class TestNewsletterSubscribe(TestCase):
 
 class TestNewsletterAllJson(TestCase):
     def test_newsletter_all_json(self):
-        req = RequestFactory().get("/newsletter/newsletter-all.json")
-        req.locale = "en-US"
-        resp = newsletter_all_json(req)
+        resp = self.client.get(reverse("newsletter.all"))
         self.assertEqual(resp.status_code, 200)
-        data = json.loads(resp.content)
-        self.assertTrue("newsletters" in data)
+        self.assertIn("newsletters", resp.json())
 
 
-@patch("bedrock.newsletter.views.l10n_utils.render", return_value=HttpResponse())
 class TestNewsletterStringsJson(TestCase):
-    def test_newsletter_strings_json(self, render_mock):
-        req = RequestFactory().get("/newsletter/newsletter-strings.json")
-        req.locale = "en-US"
-        newsletter_strings_json(req)
-        template = render_mock.call_args[0][1]
-        self.assertTrue(template == "newsletter/includes/newsletter-strings.json")
+    def test_newsletter_strings_json(self):
+        resp = self.client.get(reverse("newsletter.strings"))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "newsletter/includes/newsletter-strings.json")
 
 
-@patch("bedrock.newsletter.views.l10n_utils.render", return_value=HttpResponse())
-class TestNewsletterConfirmPage(TestCase):
+class TestNewsletterExistingPage(TestCase):
     def setUp(self):
         self.token = str(uuid.uuid4())
-        self.url = reverse("newsletter.knowledge-is-power.confirm", kwargs={"token": self.token})
+        self.url = reverse("newsletter.existing", kwargs={"token": self.token})
+        self.url_no_token = reverse("newsletter.existing.no-token")
 
-    def test_newsletter_knowledge_is_power_confirm(self, render_mock):
-        req = RequestFactory().get(self.url)
-        req.locale = "en-US"
-        kip_confirm(req, self.token)
-        template = render_mock.call_args[0][1]
-        self.assertTrue(template == "newsletter/knowledge-is-power-confirm.html")
+    def test_with_token(self):
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "newsletter/management.html")
+
+    def test_template_context(self):
+        resp = self.client.get(self.url)
+        context = resp.context
+        self.assertEqual(context["source_url"], reverse("newsletter.existing.no-token"))
+        self.assertEqual(context["did_confirm"], False)
+
+    def test_no_token_okay(self):
+        resp = self.client.get(self.url_no_token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "newsletter/management.html")
+
+
+class TestNewsletterCountryPage(TestCase):
+    def setUp(self):
+        self.token = str(uuid.uuid4())
+        self.url = reverse("newsletter.country", kwargs={"token": self.token})
+        self.url_no_token = reverse("newsletter.country.no-token")
+
+    def test_with_token(self):
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "newsletter/country.html")
+
+    def test_template_context(self):
+        resp = self.client.get(self.url)
+        context = resp.context
+        self.assertEqual(context["action"], f"{settings.BASKET_URL}/news/user-meta/")
+        self.assertEqual(context["recovery_url"], reverse("newsletter.recovery"))
+
+    def test_no_token_okay(self):
+        resp = self.client.get(self.url_no_token)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, "newsletter/country.html")
+
+    def test_country_form(self):
+        resp = self.client.get(self.url + "?geo=fr")
+        form = resp.context["form"]
+        self.assertEqual(form.initial, {"country": "fr"})
+        country_choices = dict(form.fields["country"].choices)
+        # We always set the locale to 'en-US' in the form, thus why this isn't "États-Unis".
+        self.assertEqual(country_choices["us"], "United States")

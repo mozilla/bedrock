@@ -438,7 +438,6 @@ $image-path: '/media/protocol/img';
             margin-bottom: $layout-lg;
 
             figcaption {
-                @include font-firefox;
                 @include text-body-lg;
                 text-align: center;
                 font-weight: 700;

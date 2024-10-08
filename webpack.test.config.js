@@ -20,12 +20,10 @@ module.exports = {
             'media/js/base/search-params.js',
             'media/js/base/mozilla-cookie-helper.js',
             'media/js/base/mozilla-run.js',
-            'media/js/base/core-datalayer-page-id.js',
-            'media/js/base/core-datalayer.js',
+            'media/js/base/experiment-amo.es6.js',
             'media/js/base/mozilla-fxa.js',
             'media/js/base/mozilla-smoothscroll.js',
             'media/js/base/stub-attribution/stub-attribution.js',
-            'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/common/thanks.js',
             'media/js/pocket/analytics.es6.js',
             'node_modules/sinon/pkg/sinon.js'

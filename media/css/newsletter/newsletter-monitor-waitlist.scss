@@ -19,10 +19,10 @@ $image-path: '/media/protocol/img';
     }
 
     .section-title {
-        @include font-base;
         @include text-body-xl;
-        text-align: center;
+        font-family: var(--body-font-family);
         font-weight: normal;
+        text-align: center;
     }
 
     .c-not-available {

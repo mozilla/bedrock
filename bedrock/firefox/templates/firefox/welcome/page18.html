@@ -18,25 +18,25 @@
 
 {% block shoulder_logo %}
   {{ picture(
-    url="img/firefox/welcome/page16/firefox-wordmark-light.svg",
+    url="img/logos/firefox/logo-word-hor.svg",
     sources=[
       {
         "media": "(prefers-color-scheme: light)",
         "srcset": {
-          "img/firefox/welcome/page16/firefox-wordmark-light.svg": "default",
+          "img/logos/firefox/logo-word-hor.svg": "default",
         }
       },
       {
         "media": "(prefers-color-scheme: dark)",
         "srcset": {
-          "img/firefox/welcome/page16/firefox-wordmark-dark.svg": "default",
+          "img/logos/firefox/logo-word-hor-white.svg": "default",
         }
       }
     ],
     optional_attributes={
       "class": "c-header-logo",
       "alt": "Firefox",
-      "width": "108",
+      "width": "120",
       "height": "40",
     }
   ) }}
@@ -51,8 +51,8 @@
     <p class="c-main-tagline has-rc-icon">New in Firefox: Review Checker analyzes
       product reviews and checks them for authenticity. Click on the price tag
       icon <span></span> when you shop on Amazon, Best Buy, or Walmart.
-      <a href="https://support.mozilla.org/kb/review-checker-review-quality/?{{ utm_params }}" rel="external noopener" target="_blank" data-cta-type="link" data-cta-text="Learn more">Learn more</a></p>
-    <p class="c-main-cta"><a href="https://www.amazon.com/dp/B01N22BMJB" class="mzp-c-button mzp-t-product" rel="external" data-cta-text="Try it now" data-cta-type="button">Try it now</a></p>
+      <a href="https://support.mozilla.org/kb/review-checker-review-quality/?{{ utm_params }}" rel="external noopener" target="_blank" data-cta-text="Learn more">Learn more</a></p>
+    <p class="c-main-cta"><a href="https://www.amazon.com/dp/B01N22BMJB" class="mzp-c-button mzp-t-product" rel="external" data-cta-text="Try it now" >Try it now</a></p>
 
     {{ resp_img('img/firefox/welcome/page18/fakespot-rc.png',
       srcset={

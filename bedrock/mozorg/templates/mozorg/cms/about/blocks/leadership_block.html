@@ -1,0 +1,43 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<article {% if value.biography %}id="{{ value.id }}"{% endif %} class="vcard{% if value.biography %} has-bio{% endif %}" itemscope itemtype="http://schema.org/Person">
+  <figure class="headshot">
+    {{ srcset_image(value.headshot.image, "width-{200,400}", class="photo", sizes="160px", alt=value.headshot.image_alt_text) }}
+    <figcaption>
+      <h3 class="fn" itemprop="name">{{ value.name }}</h3>
+    </figcaption>
+  </figure>
+
+  <div class="person-info">
+    {% if value.job_title %}
+      <p class="title" itemprop="jobTitle">{{ value.job_title }}</p>
+    {% endif %}
+
+    {% if value.biography %}
+      {% if value.external_links %}
+        <ul class="elsewhere">
+          {% for link in value.external_links %}
+            <li><a class="{{ link.type }}" href="{{ link.url }}">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <ul class="utility">
+        {% if value.headshot.photos_link %}
+          <li><a class="file" href="{{ value.headshot.photos_link }}">Download photos</a></li>
+        {% endif %}
+        <li><a class="link" href="{{ fullpageurl(page) }}#{{ value.id }}">Link to this bio</a></li>
+      </ul>
+    {% endif %}
+  </div>
+
+  {% if value.biography %}
+    <div class="person-bio w-rich-text">
+      {{ value.biography|richtext }}
+    </div>
+  {% endif %}
+</article>

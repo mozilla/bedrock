@@ -1,0 +1,83 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+.m24-c-donate {
+    @include container;
+    color: $m24-color-black;
+    background-color: $m24-color-white;
+    padding: $spacer-xl $container-padding;
+
+    * {
+        margin-bottom: 0;
+    }
+}
+
+.m24-c-donate-title {
+    font-size: $alias-text-title-h2;
+    padding-bottom: $spacer-3xl;
+    text-wrap-style: balance;
+}
+
+.m24-c-donate-media {
+    img {
+        display: block;
+    }
+}
+
+.m24-c-donate-info {
+    padding-top: $spacer-xl;
+    font-size: $alias-text-title-h5;
+}
+
+.m24-c-donate-info-title {
+    font-size: $alias-text-title-h4;
+    padding-bottom: $spacer-xs;
+}
+
+.m24-c-donate-cta {
+    padding: $spacer-lg 0 0;
+    text-align: right;
+
+    a {
+        text-align: right;
+    }
+}
+
+.m24-consider-cta-text {
+    font-size: $alias-text-title-h4;
+    padding-top: $spacer-xs;
+}
+
+
+@media #{$mq-lg} {
+    .m24-c-donate {
+        @include grid;
+    }
+
+    .m24-c-donate-title {
+        grid-column: 1/-1;
+    }
+
+    .m24-c-donate-media {
+        grid-column: 1/7;
+        grid-row: 2/4;
+    }
+
+    .m24-c-donate-info {
+        padding-top: 0;
+        grid-column: 7/-1;
+        text-wrap-style: balance;
+    }
+
+    .m24-c-donate-cta {
+        place-self: end;
+        grid-column: 1/-1;
+        padding: 0;
+
+        a {
+            grid-column: 2/-1;
+        }
+    }
+}

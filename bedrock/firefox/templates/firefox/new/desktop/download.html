@@ -23,14 +23,6 @@
   {% endif %}
 {% endblock %}
 
-{% set show_firefox_ms_store_exp = switch('experiment-firefox-ms-store', ['en']) and country_code in ["US", "CA"] %}
-
-{% block experiments %}
-  {% if show_firefox_ms_store_exp %}
-    {{ js_bundle('firefox-ms-store-exp') }}
-  {% endif %}
-{% endblock %}
-
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('protocol-card') }}
@@ -77,7 +69,7 @@
 
 {% if outdated %}
 
-  {% set update_url = 'href="%s" data-cta-type="link" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/kb/update-firefox-latest-release' + referrals)) %}
+  {% set update_url = 'href="%s" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/kb/update-firefox-latest-release' + referrals)) %}
 
   {% if ftl_has_messages('firefox-desktop-out-of-date') %}
     <aside class="c-page-header-notification">
@@ -97,13 +89,11 @@
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
           <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
-          {% block firefox_primary_download_cta %}
-            {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
-          {% endblock %}
+          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
-          <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-type="link" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
+          <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
         </div>
       </div>
       <div class="c-block-media l-v-center">
@@ -205,7 +195,7 @@
       </ul>
 
     {% if LANG.startswith('en-') %}
-      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-type="link" data-cta-text="See Release Notes">See Release Notes</a></p>
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">See Release Notes</a></p>
     {% endif %}
     </div>
   </section>
@@ -238,7 +228,7 @@
         </li>
       </ul>
 
-      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-type="link" data-cta-text="See Release Notes">See Release Notes</a></p>
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">See Release Notes</a></p>
     </div>
   </section>
 {% endif %}
@@ -275,7 +265,7 @@
         <div class="c-block-body l-v-center l-h-end">
           <h3 class="mzp-u-title-sm">{{ ftl('firefox-desktop-download-for-everyone') }}</h3>
           <p>{{ ftl('firefox-desktop-download-available-in-over') }}</p>
-          <p><a id="system-requirements" href="{{ url('firefox.sysreq') }}" class="mzp-c-cta-link" data-cta-type="link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
+          <p><a id="system-requirements" href="{{ url('firefox.sysreq') }}" class="mzp-c-cta-link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
           {{ download_picture('everyone', 367, 302, '', 'mzp-c-block-media-img') }}
@@ -394,9 +384,7 @@
           </ul>
         </div>
       </div>
-      {% block firefox_secondary_download_cta %}
-        {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
-      {% endblock %}
+      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
 
     </div>
   </section>
@@ -455,7 +443,7 @@
     <ul class="c-trio">
       <li>
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-extensions-for-every') }}</h3>
-        {% set extensions_attrs = 'href="https://addons.mozilla.org/firefox/extensions/%s" rel="external noopener" data-cta-type="link" data-cta-text="extension for everyone"'|safe|format(referrals) %}
+        {% set extensions_attrs = 'href="https://addons.mozilla.org/firefox/extensions/%s" rel="external noopener" data-cta-text="extension for everyone"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-from-security-to', attrs=extensions_attrs) }}</p>
       </li>
 
@@ -488,7 +476,7 @@
           }
         ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-challenging-the-status') }}</h3>
-        {% set created_attrs = 'href="%s" data-cta-type="link" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
+        {% set created_attrs = 'href="%s" data-cta-text="created by Mozilla"'|safe|format(url('mozorg.about.index')) %}
         <p>{{ ftl('firefox-desktop-download-firefox-was-created', attrs=created_attrs) }}</p>
       </div>
 
@@ -505,7 +493,7 @@
           }
         ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-your-privacy-comes') }}</h3>
-        {% set internet_attrs = 'href="%s" data-cta-type="link" data-cta-text="Personal Data Promise"'|safe|format(url('firefox.privacy.index')) %}
+        {% set internet_attrs = 'href="%s" data-cta-text="Personal Data Promise"'|safe|format(url('privacy')) %}
         <p>{{ ftl('firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>
       </div>
     </div>
@@ -525,7 +513,7 @@
       <div class="mzp-c-card js-animate">
         {{ download_picture('contain-mr1', '131', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-facebook-container') }}</h3>
-        {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-type="link" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
+        {% set addon_attrs = 'href="https://addons.mozilla.org/firefox/addon/facebook-container/%s" rel="external noopener" data-cta-text="Download this browser extension"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-download-this-browser', attrs=addon_attrs) }}</p>
       </div>
 
@@ -540,14 +528,14 @@
       <div class="mzp-c-card js-animate">
         {{ download_picture('screenshots-mr1', '131', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-screenshots') }}</h3>
-        {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-type="link" data-cta-text="screenshot"'|safe|format(referrals) %}
+        {% set screenshot_attrs = 'href="https://support.mozilla.org/kb/firefox-screenshots%s" rel="external noopener" data-cta-text="screenshot"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-grab-a-high', attrs=screenshot_attrs) }}</p>
       </div>
 
       <div class="mzp-c-card js-animate">
         {{ download_picture('etp', '134', 138) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-enhanced-tracking-protection') }}</h3>
-        {% set automatically_attrs = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop%s" rel="external noopener" data-cta-type="link" data-cta-text="block many trackers"'|safe|format(referrals) %}
+        {% set automatically_attrs = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop%s" rel="external noopener" data-cta-text="block many trackers"'|safe|format(referrals) %}
         <p>{{ ftl('firefox-desktop-download-firefox-automatically', attrs=automatically_attrs) }}</p>
       </div>
 
@@ -557,13 +545,11 @@
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
     </div>
-    {% block firefox_tertiary_download_cta %}
-      {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
-    {% endblock %}
+    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
   </section>
 
   <section class="c-support">
-    {% set questions_attrs = 'href="https://support.mozilla.org/products/firefox%s&utm_content=mozilla-support" rel="external noopener" data-cta-type="link" data-cta-text="Mozilla support"'|safe|format(referrals) %}
+    {% set questions_attrs = 'href="https://support.mozilla.org/products/firefox%s&utm_content=mozilla-support" rel="external noopener" data-cta-text="Mozilla support"'|safe|format(referrals) %}
     {{ ftl('firefox-desktop-download-questions', attrs=questions_attrs) }}
   </section>
 

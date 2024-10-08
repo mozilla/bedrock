@@ -36,6 +36,9 @@ urlpatterns = (
         ),
     ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),
+    path("firefox/all/<slug:product_slug>/", views.firefox_all, name="firefox.all.platforms"),
+    path("firefox/all/<slug:product_slug>/<str:platform>/", views.firefox_all, name="firefox.all.locales"),
+    path("firefox/all/<slug:product_slug>/<str:platform>/<str:locale>/", views.firefox_all, name="firefox.all.download"),
     page("firefox/channel/desktop/", "firefox/channel/desktop.html", ftl_files=["firefox/channel"]),
     page("firefox/channel/android/", "firefox/channel/android.html", ftl_files=["firefox/channel"]),
     page("firefox/channel/ios/", "firefox/channel/ios.html", ftl_files=["firefox/channel"]),
@@ -141,20 +144,33 @@ urlpatterns = (
     page("firefox/welcome/12/", "firefox/welcome/page12.html", active_locales=["en-US", "en-CA", "en-GB"]),
     page("firefox/welcome/13/", "firefox/welcome/page13.html", ftl_files=["firefox/welcome/page13"]),
     page("firefox/welcome/14/", "firefox/welcome/page14.html", ftl_files=["firefox/welcome/page14"]),
-    path(
-        "firefox/welcome/15/",
-        VariationTemplateView.as_view(
-            template_name="firefox/welcome/page15/page15.html",
-            active_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
-            variation_locales=["en-US", "en-CA", "en-GB", "de", "fr"],
-            template_context_variations=["1", "2"],
-        ),
-    ),
+    page("firefox/welcome/15/", "firefox/welcome/page15.html", active_locales=["en-US", "en-CA", "en-GB", "fr", "de"]),
     page("firefox/welcome/16/", "firefox/welcome/page16.html"),
     page("firefox/welcome/17a/", "firefox/welcome/page17/page17-a.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
     page("firefox/welcome/17b/", "firefox/welcome/page17/page17-b.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
     page("firefox/welcome/17c/", "firefox/welcome/page17/page17-c.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
     page("firefox/welcome/18/", "firefox/welcome/page18.html"),
+    page(
+        "firefox/welcome/19/",
+        "firefox/welcome/page19.html",
+        active_locales=[
+            "en-US",
+            "ar",
+            "cs",
+            "de",
+            "el",
+            "es-ES",
+            "fr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "pl",
+            "pt-BR",
+            "ru",
+            "zh-CN",
+        ],
+    ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr"]),
@@ -207,8 +223,6 @@ urlpatterns = (
         "firefox/browsers/compare/safari.html",
         ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
     ),
-    # Issue 7765, 7709
-    page("firefox/privacy/", "firefox/privacy/index.html", ftl_files=["firefox/privacy-hub"]),
     # Issue 8432
     # Issue 13253: Ensure that Firefox can continue to refer to this URL.
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
@@ -223,6 +237,16 @@ urlpatterns = (
     page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
     # Firefox for Families evergreen page, Issue #12004
     page("firefox/family/", "firefox/family/index.html"),
+    # Issue 14985 - "Built For You" campaign landing page
+    path(
+        "firefox/built-for-you/",
+        VariationTemplateView.as_view(
+            template_name="firefox/built-for-you/landing.html",
+            active_locales=["de", "fr"],
+            variation_locales=["de", "fr"],
+            template_context_variations=["1", "2", "3", "4", "5"],
+        ),
+    ),
 )
 
 # Contentful

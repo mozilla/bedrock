@@ -42,32 +42,11 @@
           {{ caller() }}
         </div>
       </div>
-      <div class="vpn-hero-image hide-from-legacy-ie" data-illustration="n-1">
+      <div class="vpn-hero-image hide-from-legacy-ie">
         {{ hero_image(
           'img/products/vpn/landing/vpn-hero-01.png',
           'img/products/vpn/landing/vpn-hero-01-high-res.png',
-          'n-1')
-        }}
-        {{ hero_image(
-          'img/products/vpn/landing/vpn-hero-02.png',
-          'img/products/vpn/landing/vpn-hero-02-high-res.png',
-          'n-2')
-        }}
-        {{ hero_image(
-          'img/products/vpn/landing/vpn-hero-03.png',
-          'img/products/vpn/landing/vpn-hero-03-high-res.png',
-          'n-3')
-        }}
-        {{ hero_image(
-          'img/products/vpn/landing/vpn-hero-04.png',
-          'img/products/vpn/landing/vpn-hero-04-high-res.png',
-          'n-4')
-        }}
-        {{ hero_image(
-          'img/products/vpn/landing/vpn-hero-05.png',
-          'img/products/vpn/landing/vpn-hero-05-high-res.png',
-          'n-5')
-        }}
+        ) }}
       </div>
     </div>
   </div>
@@ -96,14 +75,14 @@
 
 {% macro vpn_conditional_cta(position) -%}
   {% if vpn_available %}
-    <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-type="button" data-cta-text="Scroll to pricing" data-cta-position="{{ position }}">
+    <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-text="Scroll to pricing" data-cta-position="{{ position }}" data-testid="get-mozilla-vpn-{{ position }}-button">
     {{ ftl('vpn-shared-subscribe-link') }}
     </a>
     <p class="guarantee-copy">
       <a href="#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
     </p>
   {% else %}
-    <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="{{ position }}">
+    <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="{{ position }}" data-testid="join-waitlist-{{ position }}-button">
       {{ ftl('vpn-shared-waitlist-link') }}
     </a>
 
@@ -118,14 +97,14 @@
     {% if vpn_available %}
       <p>
         {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ pricing_url }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="{{ position }}" data-testid="get-mozilla-vpn-{{ position }}-button">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ pricing_url }}" data-cta-text="Get Mozilla VPN" data-cta-position="{{ position }}" data-testid="get-mozilla-vpn-{{ position }}-button">
           {{ ftl('vpn-shared-subscribe-link') }}
         </a>
       </p>
       <p class="c-guarantee">{{ ftl('vpn-shared-features-guarantee') }}</p>
     {% else %}
       <p>
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-{{ position }}-button">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-{{ position }}-button">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </p>
@@ -136,11 +115,11 @@
 {% macro vpn_nav_cta(link_text, alt_link_text, download_link_text, utm_source, utm_campaign) -%}
   <div class="vpn-nav-cta">
     {% if vpn_available %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="#pricing" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation">
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="#pricing" data-cta-text="Get Mozilla VPN" data-cta-position="navigation" data-testid="get-mozilla-vpn-nav-button">
         {{ ftl('vpn-shared-subscribe-link') }}
       </a>
     {% else %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation" data-testid="join-waitlist-nav-button">
         {{ ftl('vpn-shared-waitlist-link') }}
       </a>
     {% endif %}
@@ -151,11 +130,11 @@
   <div class="vpn-nav-cta">
     {% if vpn_available %}
       {% set pricing_url = '#pricing' if request.path.endswith('/products/vpn/') else url('products.vpn.landing') + '#pricing' %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ pricing_url }}" data-cta-type="button" data-cta-text="Get Mozilla VPN" data-cta-position="navigation" data-testid="get-mozilla-vpn-nav-button">
+      <a class="mzp-c-button mzp-t-secondary mzp-t-product mzp-t-md" href="{{ pricing_url }}" data-cta-text="Get Mozilla VPN" data-cta-position="navigation" data-testid="get-mozilla-vpn-nav-button">
         {{ ftl('vpn-shared-subscribe-link') }}
       </a>
     {% else %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation" data-testid="join-waitlist-nav-button">
+      <a class="mzp-c-button mzp-t-secondary mzp-t-product mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation" data-testid="join-waitlist-nav-button">
         {{ ftl('vpn-shared-waitlist-link') }}
       </a>
     {% endif %}
@@ -211,11 +190,11 @@
         class_name=class_name,
         optional_attributes= {
           'data-cta-text' : 'Get Mozilla VPN',
-          'data-cta-type' : 'button',
+          'data-cta-type' : 'vpn',
         }
       ) }}
     {% else %}
-      <a class="{{ class_name }}" href="{{ url('products.vpn.invite') }}" data-cta-type="button" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
+      <a class="{{ class_name }}" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation">
         {{ alt_link_text }}
       </a>
     {% endif %}

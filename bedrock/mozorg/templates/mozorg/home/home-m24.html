@@ -1,0 +1,54 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/home/base.html" %}
+
+{# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Internet for people, not profit — Mozilla (US)
+  {%- elif LANG == 'en-GB' -%}
+    Internet for people, not profit — Mozilla (UK)
+  {%- else -%}
+    Internet for people, not profit
+  {%- endif -%}
+{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}Did you know? Mozilla — the maker of Firefox — fights to keep the internet a global public resource, open and accessible to all.{% endblock %}
+
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
+{% block page_css %}
+  {{ css_bundle('m24') }}
+{% endblock %}
+
+{% block site_header %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage' %}
+
+{% block content %}
+
+<main>
+
+  {% include 'mozorg/home/includes/m24/hero.html'%}
+  {% include 'mozorg/home/includes/m24/products.html'%}
+  {% include 'mozorg/home/includes/m24/donate.html'%}
+  {% include 'mozorg/home/includes/m24/ai-grid.html'%}
+  {% include 'mozorg/home/includes/m24/showcase.html'%}
+  {% include 'mozorg/home/includes/m24/resources-grid.html'%}
+
+</main>
+
+{% endblock %}
+
+{% block site_footer %}
+  {% with show_newsletter=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
+{% endblock %}

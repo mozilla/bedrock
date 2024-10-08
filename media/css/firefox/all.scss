@@ -1,0 +1,287 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:color';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/forms';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+
+
+.c-product-info {
+    @include clearfix;
+    position: relative;
+}
+
+.c-intro {
+    margin-bottom: $layout-md;
+
+    .c-intro-heading {
+        @include background-size(64px, 64px);
+        @include bidi(((background-position, top left, top right),));
+        @include text-title-md;
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
+        background-repeat: no-repeat;
+        margin-bottom: $spacing-xl;
+        padding-top: 64px + $spacing-lg;
+
+        [data-current='desktop-beta'] &,
+        [data-current='android-beta'] & {
+            background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo.svg');
+        }
+
+        [data-current='desktop-developer'] & {
+            background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo.svg');
+        }
+
+        [data-current='desktop-nightly'] &,
+        [data-current='android-nightly'] & {
+            background-image: url('/media/protocol/img/logos/firefox/browser/nightly/logo.svg');
+        }
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((float, left, right),));
+        width: calc(50% - #{$spacing-lg});
+    }
+
+    @media #{$mq-lg} {
+        width: calc(50% - #{$spacing-2xl});
+    }
+}
+
+.c-steps {
+    @media #{$mq-md} {
+        @include bidi(((float, right, left),));
+        margin-bottom: $layout-xl;
+        width: calc(50% - #{$spacing-lg});
+    }
+
+    @media #{$mq-lg} {
+        width: calc(50% - #{$spacing-2xl});
+    }
+}
+
+.c-step-name {
+    @include text-body-lg;
+    @include bidi(((padding-right, 30px, padding-left, 0),));
+    font-weight: bold;
+    margin-top: $spacing-xl;
+    position: relative;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &.t-step-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+
+
+    [dir='rtl'] & .c-step-icon {
+        transform: rotate(180deg);
+    }
+    }
+}
+
+.c-step-icon {
+    position: absolute;
+    top: 0;
+    @include bidi(((right, 0, left, auto),));
+}
+
+.c-step-choice {
+    font-weight: normal;
+}
+
+.c-step-contents {
+    @include bidi(((padding-left, $spacing-lg, padding-right, 0),));
+}
+
+.c-step-prompt {
+    @include text-title-sm;
+    margin-top: 0;
+    display: none;
+}
+
+.c-step-download {
+    margin-top: $layout-md;
+}
+
+.c-product-list {
+    @include bidi(((padding-left, 36px, padding-right, 0),)); // to match the desktop & mobile icons
+
+    li,
+    .release {
+        @include bidi((
+            (background-position, top left, top right),
+            (padding-left, 1.9em, padding-right, 0),
+            ));
+        background-size: 1.5em auto;
+        background-repeat: no-repeat;
+        margin-bottom: 0.6rem;
+    }
+
+    .release,
+    .desktop-release,
+    .desktop-esr {
+        background-image: url('#{$image-path}/logos/firefox/browser/logo.svg');
+    }
+
+    .desktop-beta,
+    .android-beta {
+        background-image: url('#{$image-path}/logos/firefox/browser/beta/logo.svg');
+    }
+
+    .desktop-developer {
+        background-image: url('#{$image-path}/logos/firefox/browser/developer/logo.svg');
+    }
+
+    .desktop-nightly,
+    .android-nightly {
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo.svg');
+    }
+
+    .ios-testflight {
+       background-image: url('/media/img/logos/testflight/testflight.svg');
+    }
+}
+
+.c-platform-list,
+.c-lang-list {
+    margin-bottom: $spacing-xl;
+}
+
+
+// mobile downloads
+
+.c-mobile {
+    width: fit-content;
+}
+
+.qr-code-wrapper {
+    background: $color-white;
+    border-radius: $border-radius-lg;
+    border: 2px solid $color-marketing-gray-20;
+    box-shadow: $box-shadow-sm;
+    margin: $layout-sm auto;
+    max-width: 220px;
+    padding: $spacing-lg;
+
+    svg {
+        height: auto;
+        max-width: 100%;
+    }
+
+    figcaption {
+        color: $color-black;
+        font-weight: bold;
+        line-height: 1.125;
+        padding: 0 $spacing-lg;
+        text-align: center;
+
+        em {
+            display: block;
+        }
+    }
+}
+
+.c-store-badges {
+    margin-bottom: 0;
+    text-align: center;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing-sm;
+    }
+}
+
+.c-get-app {
+    @include bidi((
+        (padding-right, 20px, padding-left, 0),
+        (background-position, center right, center left),
+    ));
+    background-image: url('/media/img/firefox/all/icon-get.svg');
+    background-repeat: no-repeat;
+    background-size: auto 1em;
+    display: inline-block;
+    margin-top: $spacing-sm;
+}
+
+// help buttons & modals
+
+.c-button-help {
+    @include bidi((
+        (background-position, top left, top right),
+    ));
+    background-image: url('/media/img/firefox/all/icon-question.svg');
+    background-size: 16px 16px;
+    @include image-replaced;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 21px;
+    padding-bottom: $spacing-sm;
+    vertical-align: middle;
+    width: 21px;
+}
+
+.c-help {
+    ul {
+        background: $color-white;
+        color: $color-black;
+        padding: $spacing-lg;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-black;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-black;
+        }
+    }
+
+    .c-help-title {
+        @include text-title-xs;
+
+        span {
+            font-weight: normal;
+        }
+    }
+
+    .c-help-desc {
+        @include text-body-sm;
+    }
+}
+
+// Custom narrow modal style.
+// These should be standardized into a narrow theme.
+// https://github.com/mozilla/protocol/issues/358
+
+.mzp-c-modal.help-modal {
+    h3 {
+        color: $color-white;
+    }
+
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        background: transparent;
+        max-width: 600px;
+        padding: $spacing-xl 0 0;
+
+        header {
+            // Hide header visually and add top padding to compensate
+            @include visually-hidden;
+        }
+    }
+
+    .mzp-c-modal-close {
+        @include bidi(((right, 0, left, auto),));
+    }
+}

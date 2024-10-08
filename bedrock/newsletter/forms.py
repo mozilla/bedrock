@@ -175,6 +175,7 @@ class NewsletterFooterForm(forms.Form):
     choice_labels = {
         "mozilla-foundation": ftl("multi-newsletter-form-checkboxes-label-mozilla"),
         "mozilla-and-you": ftl("multi-newsletter-form-checkboxes-label-firefox"),
+        "nothing-personal-college-interest-waitlist": "Exclusive college-related content",  # issue 15218.
     }
 
     email = forms.EmailField(widget=EmailInput(attrs={"required": "required", "data-testid": "newsletter-email-input"}))
@@ -188,7 +189,7 @@ class NewsletterFooterForm(forms.Form):
 
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
-    def __init__(self, newsletters, locale, data=None, *args, **kwargs):
+    def __init__(self, newsletters, locale, data=None, multi_opt_in_required=False, *args, **kwargs):
         regions = product_details.get_regions(locale)
         regions = sorted(iter(regions.items()), key=itemgetter(1))
 
@@ -201,6 +202,7 @@ class NewsletterFooterForm(forms.Form):
             # form validation will work with submitted data
             newsletters = ["mozilla-and-you"]
 
+        is_multi_newsletter = len(newsletters) > 1
         lang = locale.lower()
         if "-" in lang:
             lang, country = lang.split("-", 1)
@@ -223,14 +225,20 @@ class NewsletterFooterForm(forms.Form):
             "required": "required",
             "aria-required": "true",
         }
-        country_widget = widgets.Select(attrs=required_args)
+        country_select_args = {"data-testid": "newsletter-country-select"}
+        country_widget = widgets.Select(attrs=required_args | country_select_args)
         country_label = ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country")
         self.fields["country"] = forms.ChoiceField(widget=country_widget, choices=regions, initial=country, required=False, label=country_label)
         lang_widget = widgets.Select(attrs=required_args)
         lang_label = ftl_lazy("newsletter-form-select-language", fallback="newsletter-form-available-languages")
         self.fields["lang"] = forms.TypedChoiceField(widget=lang_widget, choices=lang_choices, initial=lang, required=False, label=lang_label)
         self.fields["newsletters"].choices = [(n, self.choice_labels.get(n, n)) for n in newsletters]
-        self.fields["newsletters"].initial = newsletters
+
+        # Automatically check newsletter choices unless opt-in is explicitly required.
+        if is_multi_newsletter and multi_opt_in_required:
+            self.fields["newsletters"].initial = None
+        else:
+            self.fields["newsletters"].initial = newsletters
 
     def clean_newsletters(self):
         return validate_newsletters(self.cleaned_data["newsletters"])

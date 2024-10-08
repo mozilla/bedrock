@@ -1,0 +1,65 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+:root {
+    // spacers
+    --spacer-3xl: 80px;
+    --spacer-2xl: 64px;
+    --spacer-xl: 32px;
+    --spacer-lg: 24px;
+    --spacer-md: 16px;
+    --spacer-sm: 8px;
+    --spacer-xs: 8px;
+    --spacer-2xs: 4px;
+
+    // container
+    --container-padding: 16px;
+}
+
+@media #{$mq-md} {
+    :root {
+        // spacers
+        --spacer-3xl: 128px;
+        --spacer-2xl: 80px;
+        --spacer-xl: 64px;
+        --spacer-lg: 32px;
+        --spacer-md: 24px;
+        --spacer-sm: 16px;
+        --spacer-xs: 8px;
+        --spacer-2xs: 4px;
+
+        // container
+        --container-padding: 24px;
+    }
+}
+
+@media #{$mq-xl} {
+    :root {
+        // spacers
+        --spacer-3xl: 200px;
+        --spacer-2xl: 128px;
+        --spacer-xl: 64px;
+        --spacer-lg: 32px;
+        --spacer-md: 24px;
+        --spacer-sm: 16px;
+        --spacer-xs: 8px;
+        --spacer-2xs: 4px;
+
+        // container
+        --container-padding: 32px;
+    }
+}
+
+// spacers
+$spacer-3xl: var(--spacer-3xl);
+$spacer-2xl: var(--spacer-2xl);
+$spacer-xl: var(--spacer-xl);
+$spacer-lg: var(--spacer-lg);
+$spacer-md: var(--spacer-md);
+$spacer-sm: var(--spacer-sm);
+$spacer-xs: var(--spacer-xs);
+$spacer-2xs: var(--spacer-2xs);
+
+// container
+$container-padding: var(--container-padding);

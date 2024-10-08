@@ -21,11 +21,10 @@ from .util import page
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name="mozorg.home"),
-    page("about/", "mozorg/about/index.html", ftl_files=["mozorg/about"]),
+    path("about/", views.AboutView.as_view(), name="mozorg.about.index"),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
     page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),
-    page("about/leadership/", "mozorg/about/leadership/index.html"),
     page("about/policy/lean-data/", "mozorg/about/policy/lean-data/index.html"),
     page("about/policy/lean-data/build-security/", "mozorg/about/policy/lean-data/build-security.html"),
     page("about/policy/lean-data/stay-lean/", "mozorg/about/policy/lean-data/stay-lean.html"),
@@ -124,7 +123,7 @@ urlpatterns = [
     page("sustainability/carbon-neutral/", "mozorg/sustainability/carbon-neutral.html"),
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # SEI page
-    path("impact/", views.ImpactPageView.as_view(), name="mozorg.impact-report.index"),
+    page("impact/", "mozorg/impact-report/index.html"),
     # Webvision
     # there's also a redirect in mozorg.nonlocale_urls
     path(
@@ -139,13 +138,9 @@ urlpatterns = [
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
-    page("advertising/", "mozorg/advertising.html"),
-    page(
-        "try-picture-in-picture/",
-        "mozorg/try-picture-in-picture.html",
-        ftl_files=["mozorg/try-picture-in-picture"],
-        active_locales=["en-US", "de", "fr", "it"],
-    ),
+    page("advertising/", "mozorg/advertising/landing.html"),
+    page("advertising/formats/", "mozorg/advertising/formats.html"),
+    page("advertising/principles/", "mozorg/advertising/principles.html"),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
 ]

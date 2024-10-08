@@ -48,7 +48,14 @@
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': ftl('download-button-google-play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
-<a class="ga-product-download {{ class_name }}"{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
+<a class="ga-product-download {{ class_name }}"
+    {% if id %}id="{{ id }}"{% endif %}
+    {% if target %}target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %}
+    href="{{ href }}"
+    data-cta-text="Play Store"
+    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% endif %}
+    {% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}
+    >
   {{ resp_img(
     url='img/firefox/android/btn-google-play.png',
     srcset={
@@ -61,7 +68,14 @@
 
 {% macro apple_app_store_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.APPLE_APPSTORE_FIREFOX_LINK, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'width': '152', 'height': '45'} %}
-<a class="ga-product-download {{ class_name }}"{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="iOS"{% endif %}{% if product == 'Firefox' %} {% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
+<a class="ga-product-download {{ class_name }}"
+    {% if id %} id="{{ id }}"{% endif %}
+    {% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %}
+    href="{{ href }}"
+    data-cta-text="App Store"
+    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% endif %}
+    {% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}
+    >
   <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}"{% for attr, val in optional_img_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
 </a>
 {%- endmacro %}
@@ -181,9 +195,9 @@
 <nav class="c-sub-navigation">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title is-summary">
+      <h2 class="c-sub-navigation-title">
         {% if title.href %}
-          <a href="{{ title.href }}" data-link-type="nav" data-link-position="subnav" data-link-text="{{ title.cta_name }}">
+          <a href="{{ title.href }}" data-link-position="subnav" {% if title.cta_name %}data-link-text="{{ title.cta_name }}"{% endif %}>
             {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}
             {{ title.text }}
           </a>
@@ -192,12 +206,14 @@
           {{ title.text }}
         {% endif %}
       </h2>
-      <ul class="c-sub-navigation-list is-details is-closed">
+      <div class="c-sub-navigation-mobile-toggle is-summary" data-testid="sub-navigation-mobile-toggle">
+        <span>{{ ftl('ui-menu')}}</span>
+      </div>
+      <ul class="c-sub-navigation-list is-details is-closed" data-testid="sub-navigation-menu">
         {% for link in links %}
         <li class="c-sub-navigation-item">
           <a
             href="{{ link.href }}"
-            data-link-type="nav"
             data-link-position="subnav"
             data-link-text="{{ link.cta_name }}"
             {% if current_page == link.href %} aria-current="page"{% endif %}

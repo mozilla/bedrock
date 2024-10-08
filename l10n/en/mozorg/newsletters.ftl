@@ -117,9 +117,15 @@ newsletters-love-the-web-so-do-we = Love the web? So do we!
 newsletters-unlock-the-world-of-web = Unlock the world of web development with our weekly { -brand-name-mozilla } Developer Newsletter. Each edition brings you coding techniques and best practices, { -brand-name-mdn } updates, info about emerging technologies, developer tools tips, and more.
 
 # Headline for https://www-dev.allizom.org/newsletter/firefox/
+newsletters-make-the-most = Make the most out of { -brand-name-firefox }
+
+# Obsolete string (expires: 2024-11-01)
 newsletters-put-more-fox-in-your-inbox = Put more fox in your inbox.
 
 # Subtitle for https://www-dev.allizom.org/newsletter/firefox/
+newsletters-sign-up-to-receive-monthly = Sign up to receive monthly updates from { -brand-name-firefox } and internet trends that shape your life online.
+
+# Obsolete string (expires: 2024-11-01)
 newsletters-see-where-the-web-can-take = See where the Web can take you with monthly { -brand-name-firefox } tips, tricks and Internet intel.
 
 newsletters-we-are-sorry-but-there = We are sorry, but there was a problem with our system. Please try again later!
@@ -376,18 +382,8 @@ newsletters-welcome-emails = Welcome emails
 # Description for the newsletter in Newsletter subscription page (Welcome emails)
 newsletter-welcome-emails-that-get-you = Welcome emails that get you started using our products and services.
 
-# Headline for https://www-dev.allizom.org/newsletter/knowledge-is-power
+# Headline for https://www-dev.allizom.org/newsletter/security-and-privacy/
 newsletters-subscribe-to-the-newsletter = Subscribe to the newsletter
-
-# Subtitle for https://www-dev.allizom.org/newsletter/knowledge-is-power/
-newsletters-get-the-news-and-tips = Get news and tips from { -brand-name-mozilla } to stay safe and informed on everything that makes the web a healthier place.
-
-## Brand names for https://www-dev.allizom.org/newsletter/knowledge-is-power/
-
-knowledge-is-power-mozilla = { -brand-name-mozilla }
-knowledge-is-power-firefox = { -brand-name-firefox } browser
-knowledge-is-power-vpn = { -brand-name-mozilla-vpn }
-knowledge-is-power-pocket = { -brand-name-pocket }
 
 # Out of date browser message for newsletter management page.
 newsletters-update-your-browser = Your web browser needs to be updated in order to use this page.

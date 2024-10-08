@@ -1,13 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: '/requirements'
-    schedule:
-      interval: monthly
-    open-pull-requests-limit: 20
-    labels:
-      - Backend
-      - dependencies
   - package-ecosystem: docker
     directory: '/'
     schedule:
@@ -17,10 +9,44 @@ updates:
       - Backend
       - dependencies
   - package-ecosystem: npm
+    directory: '/'
+    ignore:
+      # Needs to be kept in sync with glean_parser Python dependency.
+      - dependency-name: '@mozilla/glean'
+      # Owned NPM packages that require manual testing.
+      - dependency-name: '@mozilla-protocol/core'
+      - dependency-name: '@mozmeao/consent-banner'
+      - dependency-name: '@mozmeao/cookie-helper'
+      - dependency-name: '@mozmeao/dnt-helper'
+      - dependency-name: '@mozmeao/trafficcop'
+      # Need to be kept in sync with pre-commit-config.yaml.
+      - dependency-name: 'eslint'
+      - dependency-name: 'eslint-config-prettier'
+      - dependency-name: 'prettier'
+      - dependency-name: 'stylelint'
+      - dependency-name: 'stylelint-config-standard-scss'
+    schedule:
+      interval: monthly
+    groups:
+      frontend:
+        dependency-type: production
+        update-types:
+          - 'minor'
+          - 'patch'
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - 'minor'
+          - 'patch'
+    open-pull-requests-limit: 10
+    labels:
+      - Frontend
+      - dependencies
+  - package-ecosystem: npm
     directory: '/tests/playwright'
     schedule:
       interval: monthly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     groups:
       playwright:
         update-types:

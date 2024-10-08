@@ -8,6 +8,7 @@ import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.urls import NoReverseMatch
 from django.utils.encoding import smart_str
 
 import jinja2
@@ -27,18 +28,8 @@ log = logging.getLogger(__name__)
 @library.global_function
 @jinja2.pass_context
 def switch(cxt, name, locales=None):
-    """A template helper that replaces waffle
-
-    * All calls default to True when DEV setting is True (for the listed locales).
-    * If the env var is explicitly false it will be false even when DEV = True.
-    * Otherwise the call is False by default and True is a specific env var exists and is truthy.
-
-    For example:
-
-        {% if switch('dude-and-walter') %}
-
-    would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
-    `switch()` call is converted to uppercase and dashes replaced with underscores.
+    """
+    A template helper around `base.waffle.switch`. See docs there for details.
 
     If the `locales` argument is a list of locales then it will only check the switch in those
     locales, and return False otherwise. The `locales` argument could also contain a "locale group",
@@ -60,7 +51,20 @@ def thisyear():
 @library.global_function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
-    return reverse(viewname, args=args, kwargs=kwargs)
+
+    try:
+        # First, look for URLs which only exist in the CMS - these are solely defined
+        # in bedrock/cms/cms_only_urls.py. These URLs are not listed in
+        # the main URLConf because they aren't served by the Django views in
+        # bedrock, but they will/must have matching routes set up in the CMS.
+        return reverse(
+            viewname,
+            urlconf="bedrock.cms.cms_only_urls",
+            args=args,
+            kwargs=kwargs,
+        )
+    except NoReverseMatch:
+        return reverse(viewname, args=args, kwargs=kwargs)
 
 
 @library.filter

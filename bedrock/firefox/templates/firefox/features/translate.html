@@ -25,6 +25,10 @@
 <ul class="c-lang-list mzp-u-list-styled">
 {% if LANG.startswith('en-') %}
   <li>Bulgarian</li>
+  <li>Catalan</li>
+  <li>Croatian</li>
+  <li>Czech</li>
+  <li>Danish</li>
   <li>Dutch</li>
   <li>English</li>
   <li>Estonian</li>
@@ -33,14 +37,22 @@
   <li>German</li>
   <li>Greek</li>
   <li>Hungarian</li>
+  <li>Indonesian</li>
   <li>Italian</li>
+  <li>Latvian</li>
+  <li>Lithuanian</li>
   <li>Polish</li>
   <li>Portuguese</li>
+  <li>Romanian</li>
   <li>Russian</li>
+  <li>Serbian</li>
+  <li>Slovak</li>
   <li>Slovenian</li>
   <li>Spanish</li>
+  <li>Swedish</li>
   <li>Turkish</li>
   <li>Ukrainian</li>
+  <li>Vietnamese</li>
 {% else %}
   {% for lang in context_test -%}
     {% set name = context_test[lang] %}
@@ -57,5 +69,5 @@
 <p>{{ ftl('features-translate-and-more-languages-are-in') }}</p>
 
 <h2>{{ ftl('features-translate-firefox-speaks-your-language') }}</h2>
-<p>{{ ftl('features-translate-the-firefox-translations-feature', download='href="%s" data-cta-type="link" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.new'))) }}</p>
+<p>{{ ftl('features-translate-the-firefox-translations-feature', download='href="%s" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.new'))) }}</p>
 {% endblock %}

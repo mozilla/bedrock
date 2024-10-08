@@ -4,9 +4,9 @@
 
 .. _cms:
 
-====================
-CMS capability (WIP)
-====================
+===
+CMS
+===
 
 From 2024, Bedrock's CMS will be powered by `Wagtail CMS`_.
 
@@ -33,8 +33,8 @@ Useful resources:
 - `Wagtail Docs`_.
 - `The Ultimate Wagtail Developers Course`_.
 
-Accessing the CMS
-=================
+Accessing the CMS on your local machine
+=======================================
 
 SSO authentication setup
 ------------------------
@@ -52,7 +52,8 @@ SSO authentication setup
 
 #. Run ``make preflight`` to update bedrock with the latest DB version. As part of
    this step, the make file will also create a local admin user for you, using the
-   Mozilla LDAP email address you added in the previous step.
+   Mozilla LDAP email address you added in the previous step. **If you do not want
+   to overwrite your local database, run** ``make preflight -- --retain-db`` **instead.**
 #. Start bedrock running via ``npm start`` (for local dev) or ``make build run``
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a button to login
@@ -63,7 +64,8 @@ Non-SSO authentication
 ----------------------
 
 #. In your ``.env`` file set ``USE_SSO_AUTH=False``, and ``WAGTAIL_ENABLE_ADMIN=TRUE``.
-#. Run ``make preflight`` to update bedrock with the latest DB version.
+#. Run ``make preflight`` to update bedrock with the latest DB version. **If you do not want
+   to overwrite your local database, run** ``make preflight -- --retain-db`` **instead.**
 #. Create a local admin user with ``./manage.py createsuperuser``, setting both the
    username, email and password to whatever you choose (note: these details will only
    be stored locally on your device).
@@ -74,6 +76,40 @@ Non-SSO authentication
    (for Docker).
 #. Go to ``http://localhost:8000/cms-admin/`` and you should see a form for logging in
    with a username and password. Use the details you created in the previous step.
+
+Fetching the latest CMS data for local work
+===========================================
+
+.. note::
+  **TL;DR version:**
+
+  1. Get the DB with ``make preflight``
+  2. If you need the images that the DB expects to exist, use ``python manage.py download_media_to_local``
+
+The CMS content exists in hosted cloud database and a trimmed-down version of this
+data is exported to a sqlite DB for use in local development and other processes.
+The exported database contains all the same content, but deliberately omits
+sensitive info like user accounts, unpublished drafts and outmoded versions of pages.
+
+The DB export is generated twice a day and is put into the same public cloud buckets
+we've used for years. Your local Bedrock install will just download the `bedrock-dev`
+one as part of ``make preflight``.
+
+The DB will contain a table that knows the relative paths of the images uploaded to
+the CMS, but not the actual images. Those are in a cloud storage bucket, and if you want
+your local machine to have them available after you download the DB that expects them
+to be present, you can run ``python manage.py download_media_to_local`` which will
+sync down any images you don't already have.
+
+.. note::
+  By default, ``make preflight`` and ``./bin/run-db-download.py`` will download
+  a database file based on ``bedrock-dev``. If you want to download from stage or
+  prod, which are also available in sanitised form, you need to tell Bedrock which
+  environment you want by prefixing the command with ``AWS_DB_S3_BUCKET=bedrock-db-stage``
+  or ``AWS_DB_S3_BUCKET=bedrock-db-prod``.
+
+  ``AWS_DB_S3_BUCKET=bedrock-db-stage make preflight``
+  ``AWS_DB_S3_BUCKET=bedrock-db-stage python manage.py download_media_to_local``
 
 Adding new content surfaces
 ===========================
@@ -116,6 +152,7 @@ in ``bedrock/mozorg/models.py``.
 
     from bedrock.cms.models.base import AbstractBedrockCMSPage
 
+
     class TestPage(AbstractBedrockCMSPage):
         heading = models.CharField(max_length=255, blank=True)
         body = RichTextField(
@@ -151,6 +188,9 @@ Some key things to note here:
   ``mozorg/test_page.html``.
 - If you don't set a custom template name, Wagtail will infer it from the model's
   name: ``<app_label>/<model_name (in snake case)>.html``
+- All new models must be added to the config for the DB exporter script. If you
+  do not, the page will not be correctly exported for local development and will
+  break for anyone using that DB export file. See `Add your new model to the DB export`, below.
 
 Django model migrations
 -----------------------
@@ -255,6 +295,7 @@ for your tests to import:
 
     from bedrock.mozorg import TestPage
 
+
     class TestPageFactory(wagtail_factories.PageFactory):
         title = "Test Page"
         live = True
@@ -281,6 +322,7 @@ give it some data to render:
         pytest.mark.django_db,
     ]
 
+
     @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
     def test_page(minimal_site, rf, serving_method):  # noqa
         root_page = minimal_site.root_page
@@ -302,6 +344,23 @@ give it some data to render:
         assert "Test Heading" in page_content
         assert "Test Body" in page_content
 
+Add your new model to the DB export
+-----------------------------------
+When you add a new model, you must update the script that generates the sqlite DB
+export of our data, so that the model is included in the export. (It's an allowlist
+pattern, as requested by Mozilla Security).
+
+**If you do not, the page will not be correctly exported for local development and will
+break for anyone using that DB export file.**
+
+(It's down to Wagtail's multi-table inheritance
+pattern: if you don't specify your new model for export, Wagtail's core metadata ``Page`` is exported,
+but not the actual new data model that holds the content that's linked to that ``Page``)
+
+The script is ``bin/export-db-to-sqlite.sh`` and you need to add your new model
+to the list of models being exported. Search for ``MAIN LIST OF MODELS BEING EXPORTED``
+and add your model (in the format ``appname.ModelName``) there.
+
 Editing current content surfaces
 ================================
 
@@ -318,7 +377,7 @@ When you add a new page to the CMS, it will be available to add as a new child p
 So if you ship a page that needs to be used immediately in Production (which will generally be most cases), you must remember to add it to ``CMS_ALLOWED_PAGE_MODELS`` in Bedrock's settings. If you do not, it will not be selectable as a new Child Page in the CMS.
 
 Why do we have this behaviour?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Two reasons:
 
@@ -367,6 +426,33 @@ views in the URLconf. It can also be passed to our very handy
 
 For more details, please see the docstring on ``bedrock.cms.decorators.prefer_cms``.
 
+
+Generating URLs for CMS pages in non-CMS templates
+==================================================
+
+Pages in the CMS don't appear in the hard-coded URLConfs in Bedrock. Normally,
+this means there's no way to use `url()` to generate a path to it.
+
+However, if there's a page in the CMS you need to generate a URL for using
+the ``url()`` template tag, `and you know what its path will be`, Bedrock contains
+a solution.
+
+``bedrock.cms.cms_only_urls`` is a special URLConf that only gets loaded during
+the call to the ``url()`` helper. If you expand it with a named route definition
+that matches the path you know will/should exist in the CMS (and most of our
+CMS-backed pages `do` have carefully curated paths), the ``url()`` helper will
+give you a path that points to that page, even though it doesn't really exist
+as a static Django view.
+
+See the example in the ``bedrock.cms.cms_only_urls.py`` file.
+
+.. note::
+  Moving a URL route to ``cms_only_urls.py`` is a natural next step after
+  you've migrated a page to the CMS using the ``@prefer_cms`` decorator
+  and now want to remove the old view without breaking all the calls to
+  `url('some.view')` or `reverse('some.view')`.
+
+
 Images
 ======
 
@@ -388,7 +474,7 @@ mentions by providing a "filter spec" e.g.
 
 .. code-block:: jinja
 
-    {% set the_image=image(page.product_image, "max-1024x1024") %}
+    {% set the_image=image(page.product_image, "width-1200") %}
     <img class="some-class" src="{{ the_image.url }})"/>
 
 (More examples are available in the `Wagtail Images docs`_.)
@@ -432,6 +518,33 @@ This approach will not be a problem if we stick to image filter-specs from the
 'approved' list. Note that extending the list of filter-specs is possible, if
 we need to.
 
+
+I've downloaded a fresh DB and the images are missing!
+------------------------------------------------------
+
+That's expected: the images don't live in the DB, only references to them live there.
+CMS images are destined for public consumption, and Dev, Stage and Prod all store
+their images in a publicly-accessible cloud bucket.
+
+We have a tool to help you sync down the images from the relevant bucket.
+
+By default, the sqlite DB you can download to run bedrock locally is based on the data in
+Bedrock Dev. To get images from the cloud bucket for dev, run:
+
+.. code-block:: shell
+
+  ./manage.py download_media_to_local
+
+This will look at your local DB, find the image files that it says should be
+available locally, copy them down to your local machine, then trigger the
+versions/renditions of them that should also exist.
+
+The command will only download images you don't already have locally.
+You can use the ``--redownload`` option to force a redownload of all images.
+
+If you have a DB from Stage you can pass the ``--environment=stage`` option
+to get the images from the Stage bucket instead. Same goes for Production.
+
 L10N and Translation Management
 -------------------------------
 
@@ -457,16 +570,27 @@ Basically, there is plenty of flexibility. The flipside of that flexibility is w
 
     It's worth investing 15 mins in watching the `Wagtail Localize original demo`_ to get a good feel of how it can work.
 
+Locale configuration within Wagtail
+===================================
+
+While the list of available overall locales is defined in code in ``settings.base.WAGTAIL_CONTENT_LANGUAGES``, any locale also needs enabling via the Wagtail Admin UI before it can be used.
+
+When you go to ``Settings > Locales`` in the Wagtail fly-out menu, you will see which locales are currenly enabled. You can add new ones via the ``+`` icon.
+
+.. warning::
+
+    When you add/edit a Locale in this part of the admin, you will see an option to enable syncronisation between locales. **Do not enable this**. If it is enabled, for every new page added in ``en-US``, it will auto-create page aliases in every other enabled locale and these will deliver the ``en-US`` content under locale-specific paths, which is not what we want.
+
 Localization process
 ====================
 
 Manual updates
-~~~~~~~~~~~~~~
+--------------
 
 At its most basic, there's nothing stopping us using copy-and-paste to enter translations into lang-specific pages, which might work well if we have a page in just one non-en-US lang and an in-house colleague doing the translation.
 
 Automated via Smartling
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 However, we also have automation available to send source strings to translation vendor Smartling. This uses the ``wagtail-localize-smartling`` package.
 
@@ -487,7 +611,7 @@ Here's the workflow:
 
 
 Automated via Pontoon
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 It should also be possible to use `Pontoon`_ with `wagtail-localize`. (There are notes on the `Pontoon integration`_ here, but we have not yet tried to enable this alongside `wagtail-localize-smartling`).
 

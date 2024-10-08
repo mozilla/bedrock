@@ -196,6 +196,7 @@ Bedrock comes with a handy shortcut to automate all of this:
 .. code-block:: python
 
     from bedrock.mozorg.util import page
+
     page("channel/", "mozorg/channel.html")
 
 You don't need to create a view. It will serve up the specified
@@ -205,8 +206,11 @@ You can also pass template data as keyword arguments:
 
 .. code-block:: python
 
-    page("channel/", "mozorg/channel.html",
-         latest_version=product_details.firefox_versions["LATEST_FIREFOX_VERSION"])
+    page(
+        "channel/",
+        "mozorg/channel.html",
+        latest_version=product_details.firefox_versions["LATEST_FIREFOX_VERSION"],
+    )
 
 The variable ``latest_version`` will be available in the template.
 
@@ -344,12 +348,12 @@ The example below shows how to serve an appropriately sized, responsive red pand
         srcset={
             "img/panda-500.png": "500w",
             "img/panda-750.png": "750w",
-            "img/panda-1000.png": "1000w"
+            "img/panda-1000.png": "1000w",
         },
         sizes={
             "(min-width: 1000px)": "calc(50vw - 200px)",
-            "default": "calc(100vw - 50px)"
-        }
+            "default": "calc(100vw - 50px)",
+        },
     )
 
 This would output:
@@ -378,12 +382,7 @@ Another example might be to serve a high resolution alternative for a fixed size
 
 .. code-block:: python
 
-    resp_img(
-        url="img/panda.png",
-        srcset={
-            "img/panda-high-res.png": "2x"
-        }
-    )
+    resp_img(url="img/panda.png", srcset={"img/panda-high-res.png": "2x"})
 
 This would output:
 
@@ -407,15 +406,13 @@ The ``resp_img()`` helper also supports localized images by setting the ``'l10n'
         srcset={
             "img/panda-500.png": "500w",
             "img/panda-750.png": "750w",
-            "img/panda-1000.png": "1000w"
+            "img/panda-1000.png": "1000w",
         },
         sizes={
             "(min-width: 1000px)": "calc(50vw - 200px)",
-            "default": "calc(100vw - 50px)"
+            "default": "calc(100vw - 50px)",
         },
-        optional_attributes={
-            "l10n": True
-        }
+        optional_attributes={"l10n": True},
     )
 
 This would output (assuming ``de`` was your locale):
@@ -435,11 +432,11 @@ Finally, you can also specify any other additional attributes you might need usi
         srcset={
             "img/panda-500.png": "500w",
             "img/panda-750.png": "750w",
-            "img/panda-1000.png": "1000w"
+            "img/panda-1000.png": "1000w",
         },
         sizes={
             "(min-width: 1000px)": "calc(50vw - 200px)",
-            "default": "calc(100vw - 50px)"
+            "default": "calc(100vw - 50px)",
         },
         optional_attributes={
             "alt": "Red Panda",
@@ -447,8 +444,8 @@ Finally, you can also specify any other additional attributes you might need usi
             "height": "500",
             "l10n": True,
             "loading": "lazy",
-            "width": "500"
-        }
+            "width": "500",
+        },
     )
 
 picture()
@@ -464,19 +461,9 @@ The example below shows how to serve a different image for desktop and mobile si
     picture(
         url="img/panda-mobile.png",
         sources=[
-            {
-                "media": "(max-width: 799px)",
-                "srcset": {
-                    "img/panda-mobile.png": "default"
-                }
-            },
-            {
-                "media": "(min-width: 800px)",
-                "srcset": {
-                    "img/panda-desktop.png": "default"
-                }
-            }
-        ]
+            {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+            {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
+        ],
     )
 
 This would output:
@@ -513,26 +500,26 @@ images for users who set ``(prefers-reduced-motion: reduce)``:
                 "srcset": {
                     "img/sleeping-panda-500.png": "500w",
                     "img/sleepinng-panda-750.png": "750w",
-                    "img/sleeping-panda-1000.png": "1000w"
+                    "img/sleeping-panda-1000.png": "1000w",
                 },
                 "sizes": {
                     "(min-width: 1000px)": "calc(50vw - 200px)",
-                    "default": "calc(100vw - 50px)"
-                }
+                    "default": "calc(100vw - 50px)",
+                },
             },
             {
                 "media": "(prefers-reduced-motion: no-preference)",
                 "srcset": {
                     "img/dancing-panda-500.gif": "500w",
                     "img/dancing-panda-750.gif": "750w",
-                    "img/dancing-panda-1000.gif": "1000w"
+                    "img/dancing-panda-1000.gif": "1000w",
                 },
                 "sizes": {
                     "(min-width: 1000px)": "calc(50vw - 200px)",
-                    "default": "calc(100vw - 50px)"
-                }
-            }
-        ]
+                    "default": "calc(100vw - 50px)",
+                },
+            },
+        ],
     )
 
 This would output:
@@ -558,14 +545,7 @@ Another type of use case might be to serve different image formats, so capable b
 
     picture(
         url="img/red-panda.png",
-        sources=[
-            {
-                "type": "image/webp",
-                "srcset": {
-                    "img/red-panda.webp": "default"
-                }
-            }
-        ]
+        sources=[{"type": "image/webp", "srcset": {"img/red-panda.webp": "default"}}],
     )
 
 This would output:
@@ -587,25 +567,15 @@ Like ``resp_img()``, the ``picture()`` helper also supports L10n images and othe
     picture(
         url="img/panda-mobile.png",
         sources=[
-            {
-                "media": "(max-width: 799px)",
-                "srcset": {
-                    "img/panda-mobile.png": "default"
-                }
-            },
-            {
-                "media": "(min-width: 800px)",
-                "srcset": {
-                    "img/panda-desktop.png": "default"
-                }
-            }
+            {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}},
+            {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}},
         ],
         optional_attributes={
             "alt": "Red Panda",
             "class": "panda-hero",
             "l10n": True,
             "loading": "lazy",
-        }
+        },
     )
 
 Which image helper should you use?
@@ -738,15 +708,19 @@ your own, or use it directly in a ``urls.py`` file.
     # app/views.py
     from lib.l10n_utils import L10nTemplateView
 
+
     class FirefoxRoxView(L10nTemplateView):
         template_name = "app/firefox-rox.html"
+
 
     # app/urls.py
     urlpatterns = [
         # from views.py
         path("firefox/rox/", FirefoxRoxView.as_view()),
         # directly
-        path("firefox/sox/", L10nTemplateView.as_view(template_name="app/firefox-sox.html")),
+        path(
+            "firefox/sox/", L10nTemplateView.as_view(template_name="app/firefox-sox.html")
+        ),
     ]
 
 The ``L10nTemplateView`` functionality is mostly in a template mixin called ``LangFilesMixin`` which
@@ -769,10 +743,13 @@ context variable for switching, this will help you out. For example.
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path("testing/",
-             VariationTemplateView.as_view(template_name="testing.html",
-                                           template_context_variations=["a", "b"]),
-             name="testing"),
+        path(
+            "testing/",
+            VariationTemplateView.as_view(
+                template_name="testing.html", template_context_variations=["a", "b"]
+            ),
+            name="testing",
+        ),
     ]
 
 This will give you a context variable called ``variation`` that will either be an empty
@@ -797,10 +774,13 @@ If you'd rather have a fully separate template for your test, you can use the
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path("testing/",
-             VariationTemplateView.as_view(template_name="testing.html",
-                                           template_name_variations=["1", "2"]),
-             name="testing"),
+        path(
+            "testing/",
+            VariationTemplateView.as_view(
+                template_name="testing.html", template_name_variations=["1", "2"]
+            ),
+            name="testing",
+        ),
     ]
 
 This will not provide any extra template context variables, but will instead look for
@@ -828,11 +808,15 @@ the template name example above could be modified to only work for English or Ge
     from bedrock.utils.views import VariationTemplateView
 
     urlpatterns = [
-        path("testing/",
-             VariationTemplateView.as_view(template_name="testing.html",
-                                           template_name_variations=["1", "2"],
-                                           variation_locales=["en-US", "de"]),
-             name="testing"),
+        path(
+            "testing/",
+            VariationTemplateView.as_view(
+                template_name="testing.html",
+                template_name_variations=["1", "2"],
+                variation_locales=["en-US", "de"],
+            ),
+            name="testing",
+        ),
     ]
 
 Any request to the page in for example French would not use the alternate template even if a
@@ -856,6 +840,7 @@ the proper template for the country from which the request originated.
 .. code-block:: python
 
     from bedrock.base.views import GeoTemplateView
+
 
     class CanadaIsSpecialView(GeoTemplateView):
         geo_template_names = {
@@ -881,12 +866,13 @@ just like above).
 
     from bedrock.base.geo import get_country_from_request
 
+
     def dude_view(request):
         country = get_country_from_request(request)
         if country == "US":
-            # do a thing for the US
+            ...  # do a thing for the US
         else:
-            # do the default thing
+            ...  # do the default thing
 
 The other convenience available is that the country code, either from the :abbr:`CDN (Content Delivery Network)`
 or the query param, is avilable in any template in the ``country_code`` variable.
@@ -939,7 +925,7 @@ Here's an example of how to use Markus to record a metric:
 
     # Or timing events with context manager
     with metrics.timer("event_name"):
-        # code to time goes here
+        ...  # code to time goes here
 
 In addition to recording the metric values, Markus also allows you to add tags to your metrics. Tags
 are key-value pairs that provide additional context about the metric, making it easier to filter and

@@ -75,21 +75,21 @@
           'height': '233'
         }
       ) }}
-      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
       <p>{{ ftl('firefox-browsers-seriously-private-browsing') }}</p>
 
       <p id="desktop-download">
         {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
         <!--[if IE]>
-          <a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
+          <a href="{{ url('firefox.new') }}" data-cta-text="Firefox Desktop">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
         <![endif]-->
         <!--[if !IE]><!-->
           {# Download link should be locale neutral see issue 7982 #}
-          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-testid="firefox-desktop-download">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
+          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-cta-text="Download for Desktop" data-cta-type="firefox" data-download-version="standard" data-testid="firefox-desktop-download">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
         <!--<![endif]-->
       </p>
 
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-text="Desktop Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
     <div class="c-landing-grid-item">
@@ -104,7 +104,7 @@
           'height': '233'
         }
       ) }}
-      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-text="Mobile">{{ ftl('firefox-browsers-mobile') }}</a></h2>
       <p>{{ ftl('firefox-browsers-take-the-same-level-of-privacy') }}</p>
 
       <div class="appstore-android">
@@ -116,12 +116,12 @@
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title" data-testid="firefox-mobile-download-menu-button">{{ ftl('firefox-browsers-download-for-mobile') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
-          <li class="mzp-c-menu-list-item"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android" data-testid="firefox-android-menu-link">{{ ftl('firefox-browsers-android') }}</a></li>
-          <li class="mzp-c-menu-list-item"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS" data-testid="firefox-ios-menu-link">{{ ftl('firefox-browsers-ios') }}</a></li>
-          <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">{{ ftl('firefox-browsers-send-me-a-link') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ android_url }}" rel="external noopener" class="ga-product-download" data-cta-text="Download for Mobile - Android" data-cta-type="firefox_mobile" data-testid="firefox-android-menu-link">{{ ftl('firefox-browsers-android') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ ios_url }}" rel="external noopener" class="ga-product-download" data-cta-text="Download for Mobile - iOS" data-cta-type="firefox_mobile" data-testid="firefox-ios-menu-link">{{ ftl('firefox-browsers-ios') }}</a></li>
+          <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.browsers.mobile.get-app') }}" data-cta-text="Get App Mobile">{{ ftl('firefox-browsers-send-me-a-link') }}</a></li>
         </ul>
       </div>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.mobile.index') }}" data-cta-text="Mobile Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
     <div class="c-landing-grid-item">
@@ -136,10 +136,10 @@
           'height': '233'
         }
       ) }}
-      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
       <p>{{ ftl('firefox-browsers-get-unmatched-data-protection') }}</p>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-type="link" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
   </div>
 

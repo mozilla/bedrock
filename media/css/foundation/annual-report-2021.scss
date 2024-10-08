@@ -56,7 +56,6 @@ main {
     text-align: center;
 
     h1 {
-        @include font-base;
         @include text-title-xl;
         color: $color-white;
         font-weight: normal;
@@ -277,8 +276,8 @@ main {
     }
 
     span {
-        @include font-mozilla;
         @include text-title-xs;
+        font-family: var(--title-font-family);
         display: block;
         font-weight: bold;
         margin-bottom: $spacing-md;
