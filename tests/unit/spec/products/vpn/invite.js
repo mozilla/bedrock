@@ -71,7 +71,7 @@ describe('WaitListForm', function () {
                         </select>
                     </div>
                     <p class="mzp-c-form-submit">
-                        <button class="mzp-c-button mzp-t-xl" id="newsletter-submit" type="submit">Join the Waitlist</button>
+                        <button class="mzp-c-button mzp-t-xl" id="newsletter-submit" type="submit" data-cta-text="Join the Waitlist">Join the Waitlist</button>
                     </p>
                 </fieldset>
             </form>

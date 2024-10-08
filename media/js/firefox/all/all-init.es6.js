@@ -23,12 +23,6 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
                 className: 'help-modal'
             });
 
-            // UA
-            window.dataLayer.push({
-                event: 'in-page-interaction',
-                eAction: 'link click',
-                eLabel: eventLabel
-            });
             // GA4
             window.dataLayer.push({
                 event: 'widget_action',

@@ -169,7 +169,7 @@ The helper supports the following parameters:
 +--------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------+
 | ``page_anchor``          | An optional page anchor for the link destination.                                                | String                            | '#pricing'                                                                                         |
 +--------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------+
-| ``optional_attributes``  | An dictionary of key value pairs containing additional data attributes to include in the button. | Dictionary                        | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'button', 'data-cta-position': 'navigation'} |
+| ``optional_attributes``  | An dictionary of key value pairs containing additional data attributes to include in the button. | Dictionary                        | {'data-cta-text': 'Get Mozilla VPN', 'data-cta-type': 'vpn', 'data-cta-position': 'navigation'}    |
 +--------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------+
 
 The cookie has the following configuration:

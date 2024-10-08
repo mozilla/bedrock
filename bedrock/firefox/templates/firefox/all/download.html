@@ -23,7 +23,7 @@
   {% if platform.startswith("linux") %}
     {# Linux preamble #}
     <p class="c-linux-debian"><br>
-      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-type="link" data-cta-text="You can set up our APT repository instead"'|safe) }}
+      {{ ftl('download-button-using-debian', attrs='href="https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions" rel="external noopener" data-cta-text="You can set up our APT repository instead"'|safe) }}
     </p>
   {% endif %}
   {% if product.slug.startswith("desktop") %}
