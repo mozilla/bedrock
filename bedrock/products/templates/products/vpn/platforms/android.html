@@ -1,21 +1,14 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "products/vpn/includes/macros.html" import vpn_platform_hero, vpn_content_media, vpn_content_block, vpn_nav_platform_cta with context %}
+{% extends "products/vpn/platforms/platform-base.html" %}
 
-{% extends "products/vpn/base.html" %}
+{% block page_title_full %}{{ ftl('vpn-android-ease-security') }}{% endblock %}
 
-{% set vpn_countries = settings.VPN_CONNECT_COUNTRIES %}
-{% set vpn_devices = settings.VPN_CONNECT_DEVICES %}
-{% set vpn_servers = settings.VPN_CONNECT_SERVERS %}
-
-{% block page_title_full %}{{ ftl('vpn-android-page-title') }}{% endblock %}
-{% block page_title_suffix %}{% endblock %}
-
-{% block page_desc %}{{ ftl('vpn-android-page-description') }}{% endblock %}
+{% block page_desc %}{{ ftl('vpn-android-looking-for-a') }}{% endblock %}
 
 {% block body_id %}mozilla-vpn-platforms-android{% endblock %}
 
@@ -23,214 +16,25 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% block page_css %}
-  {{ css_bundle('mozilla-vpn-platforms') }}
-{% endblock %}
+{% set subheading = ftl('vpn-android-vpn-for-android') %}
+{% set desc = self.page_title_full() %}
 
-{% block site_header %}
-  {% with
-    custom_nav_cta=vpn_nav_platform_cta(
-      alt_link_text='vpn-shared-platform-cta-button',
-    )
-  %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block content %}
-<main>
-  {% block hero %}
-    {% call vpn_platform_hero(
-      heading=ftl('vpn-shared-product-name'),
-      subheading=ftl('vpn-android-hero-headline'),
-      desc=ftl('vpn-android-page-description'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-hero-mobile.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-hero-mobile-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480'
-        }
-      )
-    ) %}
-      <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-      <p class="guarantee-copy">
-        <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-      </p>
-    {% endcall %}
-  {% endblock %}
-
-  <div class="mzp-l-content mzp-t-content-xl">
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-privacy-promise'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-privacy-promise.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-privacy-promise-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480'
-        }
-      ),
-      class_name='vpn-content-media-right-half',
-      has_outline=True
-    ) %}
-      <p>{{ ftl('vpn-android-maker-of-firefox') }}</p>
-      <p>{{ ftl('vpn-android-ability') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-shared-platform-what-youll-get'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-check-mark.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-check-mark-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-left-half',
-    ) %}
-      <ul class="mzp-u-list-styled vpn-feature-list">
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-protection', devices=vpn_devices) }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-access-countries', countries=vpn_countries) }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-encrypt') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-bandwidth') }}</li>
-        <li class="vpn-feature-list-item">{{ ftl('vpn-shared-features-activity-logs') }}</li>
-      </ul>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-wifi-headline'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-public-wifi-mobile.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-public-wifi-mobile-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-right-half',
-    ) %}
-      <p>{{ ftl('vpn-android-wifi-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-privacy-headline'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-one-click.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-one-click-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-left-half',
-    ) %}
-      <p>{{ ftl('vpn-android-privacy-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-servers-headline', servers=vpn_servers, countries=vpn_countries),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-globe.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-globe-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-right-half',
-    ) %}
-      <p>{{ ftl('vpn-android-servers-copy', countries=vpn_countries) }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-devices-headline', devices=vpn_devices),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-devices.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-devices-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-left-half',
-    ) %}
-      <p>{{ ftl('vpn-android-devices-copy', devices=vpn_devices) }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-speed-headline'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-speed-guage.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-speed-guage-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-right-half',
-    ) %}
-      <p>{{ ftl('vpn-android-speed-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_media(
-      heading=ftl('vpn-android-log-headline'),
-      image=resp_img(
-        url='img/products/vpn/platforms/vpn-cntwell-privacy.png',
-        srcset={
-          'img/products/vpn/platforms/vpn-cntwell-privacy-high-res.png': '2x'
-        },
-        optional_attributes={
-          'width': '480',
-          'height': '480',
-          'loading': 'lazy'
-        }
-      ),
-      class_name='vpn-content-media-left-half',
-    ) %}
-      <p>{{ ftl('vpn-android-log-copy') }}</p>
-    {% endcall %}
-
-    {% call vpn_content_block(
-      class_name='t-highlight t-center'
-    ) %}
-      <h2 class="vpn-content-well-title">{{ ftl('vpn-shared-platform-cta-headline') }}</h2>
-      <div class="vpn-content-well-desc">
-        <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.landing') }}">{{ ftl('vpn-shared-platform-cta-button') }}</a>
-        <p class="guarantee-copy">
-          <a href="{{ url('products.vpn.landing') }}#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-        </p>
-      </div>
-    {% endcall %}
-
-  </div>
-
-  <footer class="vpn-footer mzp-l-content">
-    {% include 'products/vpn/includes/footer-legal.html' %}
-  </footer>
-
-</main>
+{% block article %}
+  <p>{{ ftl('vpn-android-whether-youre') }}</p>
+  <p>{{ ftl('vpn-android-using-the-fast') }}</p>
+  <h3>{{ ftl('vpn-android-how-does-a') }}</h3>
+  <p>{{ ftl('vpn-android-vpns-help')}}</p>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('vpn-android-your-internet-activity') }}</li>
+    <li>{{ ftl('vpn-android-low-video') }}</li>
+    <li>{{ ftl('vpn-android-your-personal') }}</li>
+  </ul>
+  <h3>{{ ftl('vpn-android-why-should-i') }}</h3>
+  <ul class="mzp-u-list-styled">
+    <li>{{ ftl('vpn-android-browse-the-internet') }}</li>
+    <li>{{ ftl('vpn-android-be-more-comfortable') }}</li>
+    <li>{{ ftl('vpn-android-avoid-intrusive') }}</li>
+  </ul>
+  <p>{{ ftl('vpn-android-the-mozilla-vpn-mobile') }}</p>
+  <p>{{ ftl('vpn-android-unlike-free') }}</p>
 {% endblock %}
