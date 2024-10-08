@@ -133,7 +133,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" data-cta-type="link">{{ ftl('home-cta-get-firefox') }}</a>
+        <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" >{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
 
       <!-- Pocket -->
@@ -151,7 +151,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="link">{{ ftl('home-cta-get-pocket') }}</a>
+        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="pocket">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
       <!-- Fakespot -->
@@ -169,7 +169,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="link">{{ ftl('home-cta-get-fakespot') }}</a>
+        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="fakespot">{{ ftl('home-cta-get-fakespot') }}</a>
       {% endcall %}
 
       <!-- Relay -->
@@ -187,7 +187,7 @@
           ),
           body=True,
           ) %}
-        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="link">{{ ftl('home-cta-get-relay') }}</a>
+        <a href="https://relay.firefox.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-relay" data-cta-text="Get Relay" data-cta-type="relay">{{ ftl('home-cta-get-relay') }}</a>
       {% endcall %}
 
       <!-- VPN -->
@@ -205,7 +205,7 @@
           ),
           body=True,
           ) %}
-        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="link">{{ ftl('home-cta-get-vpn') }}</a>
+        <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-mozilla-vpn" data-cta-text="Get Mozilla VPN" data-cta-type="vpn">{{ ftl('home-cta-get-vpn') }}</a>
       {% endcall %}
 
       <!-- Monitor -->
@@ -223,7 +223,7 @@
           ),
           body=True,
           ) %}
-         <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="link">{{ ftl('home-cta-get-monitor')}}</a>
+         <a href="https://monitor.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-monitor" data-cta-text="Get Mozilla Monitor" data-cta-type="monitor">{{ ftl('home-cta-get-monitor')}}</a>
       {% endcall %}
 
     </ul>
@@ -264,8 +264,8 @@
       {% endcall %}
     {% endif %}
 
-    {% set moz_ventures = 'href="%s" data-cta-type="link" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
-    {% set moz_ai = 'href="%s" data-cta-type="link" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
+    {% set moz_ventures = 'href="%s" data-cta-text="Mozilla Ventures"'|safe|format(('https://mozilla.vc/'+utm_params)) %}
+    {% set moz_ai = 'href="%s" data-cta-text="Mozilla AI"'|safe|format(('https://mozilla.ai/'+utm_params)) %}
 
     <!-- Foundation -->
     {% call split(

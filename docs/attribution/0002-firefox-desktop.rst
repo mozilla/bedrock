@@ -66,6 +66,10 @@ of the steps below (Mozilla access only).
 #. During analysis, the download token can be used to join Telemetry data
    with the corresponding GA data in the server logs.
 
+.. Note::
+
+   The stub attribution script uses the attribute ``data-download-version`` to identify what links are download links.
+
 Attribution data
 ----------------
 

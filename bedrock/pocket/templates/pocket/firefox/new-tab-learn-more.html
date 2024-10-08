@@ -36,7 +36,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <span class="tagline">{{ ftl('pocket-new-tab-pocket-for-firefox') }}</span>
       <h2 class="new-tab-section-header top">{{ ftl('pocket-new-tab-build-your-personal') }}</h2>
       <p class="new-tab-section-body top">{{ ftl('pocket-new-tab-included-inside') }}</p>
-      {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-new-tab-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+      {{ pocket_fxa_button(entrypoint='pocket', class_name='new-tab-pocket-cta', button_text='<span class="mzp-c-logo mzp-t-logo-sm mzp-t-product-family"></span>'|safe + ftl('pocket-new-tab-activate-pocket'), optional_parameters={'s': 'fflearnmore', 'utm_campaign': 'landing-page', 'utm_content': 'page-button'}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'pocket', 'data-cta-position': 'primary'}) }}
       <a href="https://getpocket.com/signup" class="sub-cta">{{ ftl('pocket-new-tab-more-ways-to') }}</a>
     {% endcall %}
   </section>

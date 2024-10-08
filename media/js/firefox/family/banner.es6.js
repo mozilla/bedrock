@@ -33,13 +33,6 @@ function showBanner() {
 }
 
 function hideBanner() {
-    // UA
-    window.dataLayer.push({
-        eLabel: 'Banner Dismissal',
-        'data-banner-name': 'firefox-for-families-banner',
-        'data-banner-dismissal': '1',
-        event: 'in-page-interaction'
-    });
     // GA4
     window.dataLayer.push({
         event: 'widget_action',

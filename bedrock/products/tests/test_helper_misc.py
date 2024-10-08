@@ -1661,12 +1661,12 @@ class TestVPNProductReferralLink(TestCase):
             page_anchor="#pricing",
             link_text="Get Mozilla VPN",
             class_name="mzp-t-product mzp-t-secondary mzp-t-md",
-            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "vpn"},
         )
         expected = (
             '<a href="/en-US/products/vpn/#pricing" class="mzp-c-button js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
-            'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+            'data-cta-text="Get Mozilla VPN" data-cta-type="vpn">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)
 
@@ -1677,12 +1677,12 @@ class TestVPNProductReferralLink(TestCase):
             link_to_pricing_page=True,
             link_text="Get Mozilla VPN",
             class_name="mzp-t-product mzp-t-secondary mzp-t-md",
-            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "vpn"},
         )
         expected = (
             '<a href="/en-US/products/vpn/pricing/" class="mzp-c-button js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
-            'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+            'data-cta-text="Get Mozilla VPN" data-cta-type="vpn">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)
 
@@ -1693,12 +1693,12 @@ class TestVPNProductReferralLink(TestCase):
             link_to_pricing_page=True,
             link_text="Get Mozilla VPN",
             class_name="mzp-t-product mzp-t-secondary mzp-t-md",
-            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "button"},
+            optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "vpn"},
             optional_parameters={"coupon": "cyber20"},
         )
         expected = (
             '<a href="/en-US/products/vpn/pricing/?coupon=cyber20" class="mzp-c-button js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
-            'data-cta-text="Get Mozilla VPN" data-cta-type="button">Get Mozilla VPN</a>'
+            'data-cta-text="Get Mozilla VPN" data-cta-type="vpn">Get Mozilla VPN</a>'
         )
         self.assertEqual(markup, expected)
