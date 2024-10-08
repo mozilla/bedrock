@@ -1598,7 +1598,8 @@
       "files": [
         "js/base/experiment-amo.es6.js",
         "js/base/experiment-amo-init.es6.js",
-        "js/base/datalayer-productdownload-init.es6.js"
+        "js/base/datalayer-productdownload-init.es6.js",
+        "js/base/datalayer-trackscroll-init.es6.js"
       ],
       "name": "data"
     },
