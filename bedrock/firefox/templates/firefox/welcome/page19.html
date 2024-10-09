@@ -228,8 +228,13 @@
   <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
     <h1 class="c-main-title">{{ main_title }}</h1>
     <p class="c-main-tagline">{{ main_tagline }}</p>
-    <p class="c-main-cta"><a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-product mzp-t-xl" rel="external" data-cta-text="Update now">{{ cta_text }}</a></p>
+
+    {{ download_firefox_thanks(alt_copy=cta_text, button_class='mzp-t-xl', dom_id='update-firefox') }}
+
+    <p class="c-main-cta" id="update-firefox-esr"><a href="{{ url('firefox.enterprise.index') + '#download' }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">{{ cta_text }}</a></p>
+
     <small>{{ update_time }}</small>
+
   </div>
 </section>
 {% endblock %}
@@ -292,3 +297,8 @@
   </strong>
 </p>
 {% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page19') }}
+{% endblock %}
+
