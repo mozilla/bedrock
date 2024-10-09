@@ -6,14 +6,9 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ ftl('whatsnew-page-title-v2') }}{% endblock %}
-{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_126_eu') }}
 {% endblock %}
-
-{% block site_header %}{% endblock %}
 
 {% if LANG == 'fr' %}
   {% set main_heading = 'Modifiez vos PDF dans Firefox' %}
