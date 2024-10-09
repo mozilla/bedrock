@@ -1,0 +1,94 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import apple_app_store_button, google_play_button with context %}
+
+{% set android_url = play_store_url('vpn', campaign) %}
+{% set ios_url = app_store_url('vpn', campaign) %}
+{% set redirect_url = 'http://www.mozilla.org/products/vpn/mobile/app/?product=vpn&campaign=' + campaign %}
+
+<section class="mzp-c-split vpn-pricing-mobile-subscription mzp-l-split-center-on-sm-md mzp-t-content-xl">
+  <div class="mzp-c-split-container">
+    <div class="mzp-c-split-body">
+      {% if heading %}
+        <h2 class="u-title-lg">{{ heading }}</h2>
+      {% endif %}
+      <p class="vpn-pricing-desktop-instruction u-body-lg">{{ ftl('vpn-pricing-scan-qrcode-to-download') }}</p>
+
+      <ol class="vpn-pricing-mobile-steps u-body-lg">
+        <li><span>{{ ftl('vpn-pricing-sign-up-on-your-mobile-device') }}</span></li>
+        <li><span>{{ ftl('vpn-pricing-connect-up-to-platforms', fallback='vpn-pricing-connect-up-to', devices=connect_devices) }}</span></li>
+        <li><span>{{ ftl('vpn-pricing-access', servers=connect_servers, countries=connect_countries) }}</span></li>
+      </ol>
+
+      {{ picture(
+        url='img/products/vpn/landing-refresh/devices.svg',
+        sources=[
+          {
+            'media': '(min-width: 769px)',
+            'srcset': {
+              'img/placeholder.png': 'default'
+            }
+          }
+        ],
+        optional_attributes={
+          'class': 'vpn-pricing-devices-image',
+          'width': '310',
+          'height': '155',
+          'loading': 'lazy'
+        }
+      ) }}
+
+      <ul class="vpn-pricing-mobile-badges">
+        {% if not android_sub_only %}
+          <li class="ios-badge">{{ apple_app_store_button(product="vpn", href=ios_url) }}</li>
+        {% endif %}
+        <li class="android-badge">{{ google_play_button(product="vpn", href=android_url) }}</li>
+      </ul>
+
+      <p class="vpn-pricing-mobile-button">
+        <a class="ga-product-download ios-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ ios_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
+          {{ ftl('vpn-pricing-download-the-app') }}
+        </a>
+        <a class="ga-product-download android-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="App Store" data-cta-type="mozilla_vpn">
+          {{ ftl('vpn-pricing-download-the-app') }}
+        </a>
+      </p>
+    </div>
+    <div class="mzp-c-split-media mzp-l-split-h-center">
+      <div class="vpn-pricing-mobile-qrcode-wrapper">
+        <div class="vpn-pricing-mobile-qrcode-image">
+          {% if android_sub_only %}
+            {{ qrcode(android_url, 10) }}
+          {% else %}
+            {{ qrcode(redirect_url, 10) }}
+          {% endif %}
+        </div>
+        {{ picture(
+          url='img/products/vpn/landing-refresh/qrcode-background.svg',
+          sources=[
+            {
+              'media': '(max-width: 768px)',
+              'srcset': {
+                'img/placeholder.png': 'default'
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'vpn-pricing-qrcode-background',
+            'width': '480',
+            'height': '508',
+            'loading': 'lazy'
+          }
+        ) }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="vpn-pricing-mobile-unsupported-language mzp-l-content mzp-t-content-xl">
+  {% include 'products/vpn/includes/unsupported-language.html' %}
+</div>

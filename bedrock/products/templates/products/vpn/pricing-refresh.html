@@ -14,7 +14,7 @@
 
 {% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
 
-{% block body_id %}mozilla-vpn-pricing{% endblock %}
+{% block body_class %}mozilla-vpn-pricing-page{% endblock %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
@@ -39,25 +39,34 @@
 
 {% block content %}
 <main>
-  <section class="mzp-l-content mzp-t-content-xl">
-    {% if vpn_available %}
-      <header class="c-pricing-main-header">
+  {% if vpn_available %}
+    {% if mobile_sub_only %}
+      <header class="c-pricing-main-header mzp-l-content mzp-t-content-xl">
         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-pricing-mozilla-vpn') }}</h1>
         <h2 class="c-section-title">{{ ftl('vpn-pricing-one-subscription') }}</h2>
       </header>
-
-      {% include 'products/vpn/includes/pricing-refresh.html' %}
-
+      {% with campaign = 'vpn-pricing-page' %}
+        {% include 'products/vpn/includes/mobile-subscribe.html' %}
+      {% endwith %}
     {% else %}
-      <header class="c-pricing-main-header">
-        <h1 class="c-section-title">{{ ftl('vpn-pricing-vpn-not-available') }}</h1>
-
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-button">
-          {{ ftl('vpn-shared-waitlist-link') }}
-        </a>
+      <header class="c-pricing-main-header mzp-l-content mzp-t-content-xl">
+        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-vpn">{{ ftl('vpn-pricing-mozilla-vpn') }}</h1>
+        <h2 class="c-section-title">{{ ftl('vpn-pricing-one-subscription') }}</h2>
       </header>
+      <div class="mzp-l-content mzp-t-content-xl">
+        {% include 'products/vpn/includes/pricing-refresh.html' %}
+      </div>
     {% endif %}
-  </section>
+  {% else %}
+    <header class="c-pricing-main-header mzp-l-content mzp-t-content-xl">
+      <h1 class="c-section-title">{{ ftl('vpn-pricing-vpn-not-available') }}</h1>
+    </header>
+    <div class="mzp-l-content mzp-t-content-xl mzp-u-centered">
+      <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-button">
+        {{ ftl('vpn-shared-waitlist-link') }}
+      </a>
+    </div>
+  {% endif %}
 
   {% include 'products/vpn/includes/press.html' %}
 
