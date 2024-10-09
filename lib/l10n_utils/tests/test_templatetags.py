@@ -86,7 +86,6 @@ def test_ftl_bleach_allowlists_are_comprehensive():
 
     for starting_dir in [
         "l10n/",
-        "l10n-pocket",
     ]:
         for root, _, files in os.walk(starting_dir):
             for file in files:

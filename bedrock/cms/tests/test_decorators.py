@@ -11,7 +11,7 @@ from bedrock.base.i18n import bedrock_i18n_patterns
 from bedrock.cms.decorators import prefer_cms
 from bedrock.cms.tests import decorator_test_views
 from bedrock.mozorg.util import page
-from bedrock.urls.mozorg_mode import urlpatterns as mozorg_urlpatterns
+from bedrock.urls import urlpatterns as mozorg_urlpatterns
 
 from .factories import SimpleRichTextPageFactory
 

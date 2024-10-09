@@ -70,10 +70,7 @@ def normalize_language(language):
     if not language:
         return None
 
-    if settings.IS_POCKET_MODE:
-        lang_code = language.lower()
-    else:
-        lang_code = language
+    lang_code = language
 
     if lang_code in settings.LANGUAGE_URL_MAP_WITH_FALLBACKS:
         return settings.LANGUAGE_URL_MAP_WITH_FALLBACKS[lang_code]

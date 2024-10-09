@@ -8,7 +8,6 @@ ruff check .
 ruff format --check .
 moz-l10n-lint l10n/l10n-pontoon.toml
 moz-l10n-lint l10n/l10n-vendor.toml
-moz-l10n-lint l10n-pocket/l10n-vendor.toml
 python manage.py lint_ftl -q
 python manage.py version
 python manage.py migrate --noinput

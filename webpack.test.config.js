@@ -25,7 +25,6 @@ module.exports = {
             'media/js/base/mozilla-smoothscroll.js',
             'media/js/base/stub-attribution/stub-attribution.js',
             'media/js/firefox/new/common/thanks.js',
-            'media/js/pocket/analytics.es6.js',
             'node_modules/sinon/pkg/sinon.js'
         ]
     },

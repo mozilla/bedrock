@@ -115,12 +115,6 @@ These are the websites that Bedrock is usually deployed to as part of developmen
 Demo sites
 ``````````
 
-Bedrock as a platform can run in two modes: Mozorg Mode (for content that will
-appear on mozilla.org) and Pocket Mode (for content that will end up on getpocket.com).
-
-To support this, we have two separate sets of URLs we use for demos. To get code up to
-one of those URLs, push it to the specified branch on ``github.com/mozilla/bedrock``:
-
 - *Mozorg:*
    - Branch ``mozorg-demo-1`` -> https://www-demo1.allizom.org/
    - Branch ``mozorg-demo-2`` -> https://www-demo2.allizom.org/
@@ -132,25 +126,11 @@ one of those URLs, push it to the specified branch on ``github.com/mozilla/bedro
    - Branch ``mozorg-demo-8`` -> https://www-demo8.allizom.org/
    - Branch ``mozorg-demo-9`` -> https://www-demo9.allizom.org/
 
-- *Pocket:*
-   - Branch ``pocket-demo-1`` -> https://www-demo1.tekcopteg.com/
-   - Branch ``pocket-demo-2`` -> https://www-demo2.tekcopteg.com/
-   - Branch ``pocket-demo-3`` -> https://www-demo3.tekcopteg.com/
-   - Branch ``pocket-demo-4`` -> https://www-demo4.tekcopteg.com/
-   - Branch ``pocket-demo-5`` -> https://www-demo5.tekcopteg.com/
-
-For example, for Mozorg:
+For example:
 
 .. code-block:: bash
 
   $ git push -f mozilla my-demo-branch:mozorg-demo-2
-
-Or for Pocket:
-
-.. code-block:: bash
-
-  $ git push -f mozilla my-demo-branch:pocket-demo-1
-
 
 **Deployment notification and logs**
 
@@ -166,11 +146,10 @@ status of demo builds. (Work is ticketed to make those notifications richer in d
 **Env vars**
 
 Rather than tweak env vars via a web UI, they are set in config files.
-Both Mozorg and Pocket mode have specific demo-use-only env var files, which
-are only used by our GCP demo setup. They are:
+We have specific demo-use-only env var files, which are only used by our GCP demo setup.
+They are:
 
 * ``bedrock/gcp/bedrock-demos/cloudrun/mozorg-demo.env.yaml``
-* ``bedrock/gcp/bedrock-demos/cloudrun/pocket-demo.env.yaml``
 
 If you need to set/add/remove an env var, you can edit the relevant file on
 your feature branch, commit it and push it along with the rest of
