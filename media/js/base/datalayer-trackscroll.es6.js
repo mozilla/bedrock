@@ -46,7 +46,7 @@ TrackScroll.scrollListener = () => {
 
     // remove the event listener if we've scrolled past all thresholds
     if (thresholds.length === 0) {
-        removeEventListener('scroll', TrackScroll.scrollListener);
+        window.removeEventListener('scroll', TrackScroll.scrollListener, false);
     }
 };
 
