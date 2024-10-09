@@ -9,7 +9,13 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title_full %}{{ page.seo_title }}{% endblock %}
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title_full %}{{ meta_title }}{% endblock %}
 {% block page_desc %}{{ page.search_description }}{% endblock %}
 {% block body_class %}{{ super() }} about-leadership{% endblock %}
 
