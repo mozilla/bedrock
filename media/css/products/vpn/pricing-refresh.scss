@@ -26,9 +26,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.mozilla-vpn-pricing-page .c-pricing-main-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .c-pricing-details-heading {
-    @include font-size($vpn-title-2xs-size);
     margin-bottom: $spacing-xl;
+    @include font-size($vpn-title-2xs-size);
 
     @media #{$mq-md} {
         @include font-size($vpn-title-xs-size);
@@ -49,29 +54,29 @@ $image-path: '/media/protocol/img';
 }
 
 .c-pricing-block-tag {
-    @include text-body-sm;
     background: $color-vpn-brand-refresh-purple-20;
     border-radius: $border-radius-md;
     color: $color-white;
     display: inline-block;
     font-weight: bold;
     padding: $spacing-xs $spacing-md;
+    @include text-body-sm;
 
     html[lang^='en'] & {
         text-transform: uppercase;
     }
 
     @media #{$mq-lg} {
-        @include bidi(((left, 0, right, auto),));
         position: absolute;
         top: 0;
+        @include bidi(((left, 0, right, auto),));
     }
 }
 
 .c-pricing-block-heading {
-    @include text-title-md;
     border-bottom: 2px solid $color-black;
     padding-bottom: $spacing-xl;
+    @include text-title-md;
 
     @media #{$mq-lg} {
         padding-top: $spacing-2xl;
@@ -90,15 +95,15 @@ $image-path: '/media/protocol/img';
 }
 
 .c-pricing-block-sub-heading {
-    @include text-title-xs;
     margin-bottom: $spacing-2xl;
+    @include text-title-xs;
 }
 
 .c-pricing-block-saving {
-    @include text-title-xs;
     color: $color-vpn-brand-refresh-blue;
     font-weight: bold;
     margin-bottom: $spacing-sm;
+    @include text-title-xs;
 }
 
 .c-pricing-block-total {
@@ -124,69 +129,28 @@ $image-path: '/media/protocol/img';
 
     @supports (--css: variables) {
         @media #{$mq-lg} {
-                .mzp-l-columns {
-                    grid-gap: var(--v-grid-sm) var(--h-grid-sm);
-                    gap: var(--v-grid-sm) var(--h-grid-sm);
-                }
+            .mzp-l-columns {
+                grid-gap: var(--v-grid-sm) var(--h-grid-sm);
+                gap: var(--v-grid-sm) var(--h-grid-sm);
             }
+        }
 
-            @media #{$mq-xl} {
-                .mzp-l-columns {
-                    grid-gap: var(--v-grid-lg) var(--h-grid-xl);
-                    gap: var(--v-grid-lg) var(--h-grid-xl);
-                }
+        @media #{$mq-xl} {
+            .mzp-l-columns {
+                grid-gap: var(--v-grid-lg) var(--h-grid-xl);
+                gap: var(--v-grid-lg) var(--h-grid-xl);
             }
-    }
-}
-
-// * -------------------------------------------------------------------------- */
-// Vertical pricing (variation v=2)
-
-.c-pricing-block-vertical {
-    @media #{$mq-lg} {
-        .c-pricing-details {
-            margin-bottom: $spacing-2xl;
-        }
-
-        .c-pricing-block-tag {
-            position: static;
-        }
-
-        .c-pricing-block-heading {
-            padding-top: 0;
-        }
-
-        .c-pricing-block-sub-heading {
-            margin-bottom: 0;
-        }
-
-        .c-pricing-block-detail {
-            @include bidi(((text-align, right, left),));
-            align-self: flex-end;
-        }
-
-        .c-pricing-block-detail-highlight {
-            @include bidi(((
-                border-right, 8px solid $color-vpn-brand-refresh-blue,
-                border-left, none),
-            ));
-            @include bidi(((
-                padding-right, $spacing-xl,
-                padding-left, 0),
-            ));
-            margin-top: -$spacing-xl;
         }
     }
 }
-
 
 // * -------------------------------------------------------------------------- */
 // FAQ Section
 
 .c-faq-section-heading {
-    @include text-title-md;
     margin-bottom: $layout-xl;
     text-align: center;
+    @include text-title-md;
 }
 
 .c-faq-item {
@@ -210,8 +174,169 @@ $image-path: '/media/protocol/img';
 }
 
 .c-faq-item-detail {
+    margin: $spacing-xl 0 0;
     @include bidi((
         (padding-right, $spacing-xl, padding-left, 0),
     ));
-    margin: $spacing-xl 0 0;
+}
+
+// * -------------------------------------------------------------------------- */
+// Mobile only subscription CTA
+
+// QR Code scanning instructions show on wide view ports only.
+.vpn-pricing-desktop-instruction {
+    background: $color-marketing-gray-20 url('/media/img/products/vpn/landing-refresh/icons/info.svg') no-repeat;
+    border-radius: $border-radius-md;
+    display: none;
+    padding: $spacing-lg;
+    @include bidi((
+        (background-position, left $spacing-md center, right $spacing-md center),
+        (padding-left, 60px, padding-right, $spacing-lg),
+        (text-align, left, right),
+    ));
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+// Steps for signing up on mobile.
+.vpn-pricing-mobile-steps {
+    counter-reset: vpn-mobile-step-counter;
+    list-style: none;
+    margin: $spacing-xl 0;
+
+    li {
+        counter-increment: vpn-mobile-step-counter;
+        line-height: 40px;
+        margin-bottom: $spacing-md;
+        min-height: 40px;
+        position: relative;
+        @include bidi((
+            (padding-left, 40px + $spacing-md, padding-right, 0),
+            (text-align, left, right),
+        ));
+
+        span {
+            display: inline-block;
+            line-height: normal;
+            vertical-align: middle;
+        }
+
+        &::before {
+            background: $color-marketing-gray-20;
+            border-radius: 100%;
+            content: counter(vpn-mobile-step-counter);
+            display: inline-block;
+            font-weight: bold;
+            height: 40px;
+            line-height: 40px;
+            margin-top: -20px;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            width: 40px;
+            @include bidi((
+                (left, 0, right, auto),
+            ));
+        }
+    }
+
+    li:nth-child(1)::before {
+        background: $color-vpn-brand-refresh-purple-10;
+    }
+
+    @media #{$mq-md} {
+        margin: $spacing-2xl 0;
+    }
+}
+
+// QR Code image shown on wide view ports only.
+.vpn-pricing-mobile-qrcode-wrapper {
+    display: none;
+    margin: 0 auto;
+    max-width: 480px;
+    position: relative;
+
+    .vpn-pricing-mobile-qrcode-image {
+        left: 29%;
+        position: absolute;
+        right: 29%;
+        top: 30%;
+
+        svg {
+            height: auto;
+            width: 100%;
+        }
+    }
+
+    .vpn-pricing-qrcode-background {
+        display: block;
+        margin: 0 auto;
+    }
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+// Devices image shown on small view ports only.
+.vpn-pricing-devices-image {
+    display: block;
+    margin: 0 auto $spacing-lg;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+// App store badges show on desktop devices.
+.vpn-pricing-mobile-badges li {
+    display: inline-block;
+     padding-top: $spacing-sm;
+}
+
+// Download app buttons shown on Android and iOS devices.
+.vpn-pricing-mobile-button {
+    display: none;
+
+    .ios-cta,
+    .android-cta {
+        display: none;
+    }
+}
+
+// iOS platform detection logic.
+html.ios {
+    .vpn-pricing-mobile-badges {
+        display: none;
+    }
+
+    .vpn-pricing-mobile-button {
+        display: block;
+
+        .ios-cta {
+            display: inline-block;
+        }
+    }
+}
+
+// Android platform detection logic.
+html.android {
+    .vpn-pricing-mobile-badges {
+        display: none;
+    }
+
+    .vpn-pricing-mobile-button {
+        display: block;
+
+        .android-cta {
+            display: inline-block;
+        }
+    }
+}
+
+.vpn-pricing-mobile-unsupported-language {
+    padding-top: 0;
+    margin-top: -$spacing-2xl;
 }

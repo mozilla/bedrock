@@ -1778,7 +1778,7 @@ VPN_VARIABLE_PRICING = {
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 
-# Countries where VPN is available.
+# Countries where VPN is available for subscription via desktop (FxA) or mobile app stores.
 VPN_COUNTRY_CODES = [
     "CA",  # Canada
     "MY",  # Malaysia
@@ -1829,8 +1829,44 @@ VPN_COUNTRY_CODES = [
     "SK",  # Slovakia
 ]
 
+# Countries where VPN is available but subscriptions are only available through mobile app stores.
+VPN_MOBILE_SUB_COUNTRY_CODES = [
+    "AU",  # Australia
+    "BD",  # Bangladesh
+    "BR",  # Brazil
+    "CL",  # Chile
+    "CO",  # Colombia
+    "EG",  # Egypt
+    "GR",  # Greece
+    "ID",  # Indonesia
+    "IN",  # India
+    "KE",  # Kenya
+    "KR",  # South Korea
+    "MA",  # Morocco
+    "MX",  # Mexico
+    "NG",  # Nigeria
+    "NO",  # Norway
+    "SA",  # Saudi Arabia
+    "SN",  # Senegal
+    "TH",  # Thailand
+    "TR",  # Türkiye
+    "TW",  # Taiwan
+    "UA",  # Ukraine
+    "UG",  # Uganda
+    "VN",  # Viet Nam
+    "ZA",  # South Africa
+]
+
+# Countries where VPN is available for subscription only via Google Play Store.
+VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES = [
+    "BD",  # Bangladesh
+    "MA",  # Morocco
+    "SN",  # Senegal
+]
+
 VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
 VPN_AVAILABLE_COUNTRIES = 33
+VPN_AVAILABLE_COUNTRIES_WAVE_VII = 57
 VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
@@ -1853,7 +1889,6 @@ VPN_EXCLUDED_COUNTRY_CODES = [
     "SD",  # Sudan
     "SY",  # Syria
     "TM",  # Turkmenistan
-    "TR",  # Turkey
 ]
 
 # Countries where we block Mozilla VPN downloads

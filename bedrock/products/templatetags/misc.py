@@ -116,16 +116,6 @@ def vpn_supported_locale(LANG):
 
 
 @library.global_function
-def vpn_available_in_country(country_code):
-    """
-    Global helper that can be passed a country_code via a template
-    in order to determine if VPN is available in that country.
-    """
-    country_list = settings.VPN_COUNTRY_CODES
-    return country_code in country_list
-
-
-@library.global_function
 @jinja2.pass_context
 def vpn_subscribe_link(
     ctx,

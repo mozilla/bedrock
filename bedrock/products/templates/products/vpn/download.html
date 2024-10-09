@@ -20,6 +20,9 @@
   {{ css_bundle('mozilla-vpn-download') }}
 {% endblock %}
 
+{% set android_download_url = play_store_url('vpn', 'vpn-download-page') %}
+{% set ios_download_url = app_store_url('vpn', 'vpn-download-page') %}
+
 {% set _utm_source = 'www.mozilla.org-vpn-download-page' %}
 {% set _utm_campaign = 'vpn-download-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}

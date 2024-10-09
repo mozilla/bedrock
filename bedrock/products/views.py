@@ -27,8 +27,47 @@ from lib.l10n_utils.fluent import ftl_file_is_active
 
 
 def vpn_available(request):
+    """
+    Returns `True` if Mozilla VPN is available via one or more subscription channels
+    in a users country. On desktop, users can subscribe via their Mozilla account (FxA).
+    On mobile, users can subscribe via the Google Play Store or the Apple App Store.
+    """
     country = get_country_from_request(request)
     country_list = settings.VPN_COUNTRY_CODES
+
+    if switch("vpn-wave-vii"):
+        country_list = settings.VPN_COUNTRY_CODES + settings.VPN_MOBILE_SUB_COUNTRY_CODES
+
+    return country in country_list
+
+
+def vpn_available_mobile_sub_only(request):
+    """
+    Returns `True` if Mozilla VPN can ONLY be purchased via a Google Play Store or Apple App
+    Store subscription in a users country. This is used to present a different signup flow
+    in the pricing section on the main VPN landing page, to prevent people signing up via
+    subplat / FxA.
+    """
+    country = get_country_from_request(request)
+    country_list = settings.VPN_MOBILE_SUB_COUNTRY_CODES
+
+    if not switch("vpn-wave-vii"):
+        return False
+
+    return country in country_list
+
+
+def vpn_available_android_sub_only(request):
+    """
+    Returns `True` if Mozilla VPN can ONLY be purchased via a Google Play Store subscription
+    in a users country. This is used to prevent showing an Apple App Store badge in countries
+    where the Apple App Store is not available.
+    """
+    country = get_country_from_request(request)
+    country_list = settings.VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES
+
+    if not switch("vpn-wave-vii"):
+        return False
 
     return country in country_list
 
@@ -45,9 +84,10 @@ def active_locale_available(slug, locale):
 @require_safe
 def vpn_landing_page(request):
     ftl_files = ["products/vpn/landing", "products/vpn/landing-2023", "products/vpn/shared", "products/vpn/pricing-2023"]
-    available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
+    mobile_sub_only = vpn_available_mobile_sub_only(request)
+    android_sub_only = vpn_available_android_sub_only(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
@@ -65,7 +105,9 @@ def vpn_landing_page(request):
 
     context = {
         "vpn_available": vpn_available_in_country,
-        "available_countries": available_countries,
+        "mobile_sub_only": mobile_sub_only,
+        "android_sub_only": android_sub_only,
+        "available_countries": settings.VPN_AVAILABLE_COUNTRIES_WAVE_VII if switch("vpn-wave-vii") else settings.VPN_AVAILABLE_COUNTRIES,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
@@ -84,6 +126,8 @@ def vpn_pricing_page(request):
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
+    mobile_sub_only = vpn_available_mobile_sub_only(request)
+    android_sub_only = vpn_available_android_sub_only(request)
     attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
     vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
@@ -91,6 +135,8 @@ def vpn_pricing_page(request):
 
     context = {
         "vpn_available": vpn_available_in_country,
+        "mobile_sub_only": mobile_sub_only,
+        "android_sub_only": android_sub_only,
         "available_countries": available_countries,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
@@ -126,16 +172,12 @@ def vpn_download_page(request):
     windows_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/windows"
     mac_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/mac"
     linux_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/linux"
-    android_download_url = "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn"
-    ios_download_url = "https://apps.apple.com/us/app/mozilla-vpn/id1489407738"
     block_download = country in settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES
 
     context = {
         "windows_download_url": windows_download_url,
         "mac_download_url": mac_download_url,
         "linux_download_url": linux_download_url,
-        "android_download_url": android_download_url,
-        "ios_download_url": ios_download_url,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
         "block_download": block_download,
     }

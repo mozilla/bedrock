@@ -360,6 +360,22 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         expect(testEvent['method']).toBe('store');
         expect(testEvent['release_channel']).toBe('beta');
     });
+    it('should identify Mozilla VPN for Android', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&hl=en'
+        );
+        expect(testEvent['product']).toBe('vpn');
+        expect(testEvent['platform']).toBe('android');
+        expect(testEvent['method']).toBe('store');
+    });
+    it('should identify Mozilla VPN for iOS', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://apps.apple.com/us/app/apple-store/id1489407738?pt=373246&ct=vpn-landing-page&mt=8'
+        );
+        expect(testEvent['product']).toBe('vpn');
+        expect(testEvent['platform']).toBe('ios');
+        expect(testEvent['method']).toBe('store');
+    });
 });
 
 describe('TrackProductDownload.handleLink', function () {

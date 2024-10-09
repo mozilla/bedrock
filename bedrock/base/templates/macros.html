@@ -53,7 +53,7 @@
     {% if target %}target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %}
     href="{{ href }}"
     data-cta-text="Play Store"
-    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% endif %}
+    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% elif product == 'vpn' %}data-cta-type="mozilla_vpn"{% endif %}
     {% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}
     >
   {{ resp_img(
@@ -73,7 +73,7 @@
     {% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %}
     href="{{ href }}"
     data-cta-text="App Store"
-    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% endif %}
+    {% if product in ['Firefox'] %}data-cta-type="firefox_mobile"{% elif product in ['Focus', 'Klar'] %}data-cta-type="firefox_focus"{% elif product == 'vpn' %}data-cta-type="mozilla_vpn"{% endif %}
     {% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}
     >
   <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}"{% for attr, val in optional_img_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>

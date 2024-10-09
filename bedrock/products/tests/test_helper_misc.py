@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -10,7 +9,7 @@ import pytest
 from django_jinja.backend import Jinja2
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.products.templatetags.misc import vpn_available_in_country, vpn_supported_locale
+from bedrock.products.templatetags.misc import vpn_supported_locale
 
 TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_VPN_ENDPOINT = "https://vpn.mozilla.org/"
@@ -521,24 +520,6 @@ def test_vpn_supported_locale(locale):
 def test_vpn_not_supported_locale(locale):
     """Should return False for locales where the VPN client is not localized"""
     assert vpn_supported_locale(locale) is False
-
-
-@pytest.mark.parametrize("country_code", settings.VPN_COUNTRY_CODES)
-def test_available_country_codes(country_code):
-    """Should return True for country codes where VPN is available"""
-    assert vpn_available_in_country(country_code) is True
-
-
-@pytest.mark.parametrize("country_code", settings.VPN_EXCLUDED_COUNTRY_CODES)
-def test_vpn_excluded_country_codes(country_code):
-    """Should return False for country codes where VPN is not available"""
-    assert vpn_available_in_country(country_code) is False
-
-
-@pytest.mark.parametrize("country_code", settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES)
-def test_vpn_blocked_download_country_codes(country_code):
-    """Should return False for country codes where VPN downloads are also blocked"""
-    assert vpn_available_in_country(country_code) is False
 
 
 jinja_env = Jinja2.get_default()

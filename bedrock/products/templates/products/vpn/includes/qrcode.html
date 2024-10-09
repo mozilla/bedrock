@@ -1,0 +1,36 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set redirect_url = 'http://www.mozilla.org/products/vpn/mobile/app/?product=vpn&campaign=vpn-landing-page' %}
+{% set android_url = play_store_url('vpn', 'vpn-landing-page') %}
+
+<div class="vpn-pricing-mobile-qrcode-wrapper">
+  <div class="vpn-pricing-mobile-qrcode-image">
+    {% if android_sub_only %}
+      {{ qrcode(android_url, 10) }}
+    {% else %}
+      {{ qrcode(redirect_url, 10) }}
+    {% endif %}
+  </div>
+  {{ picture(
+    url='img/products/vpn/landing-refresh/qrcode-background.svg',
+    sources=[
+      {
+        'media': '(max-width: 768px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      }
+    ],
+    optional_attributes={
+      'class': 'vpn-pricing-qrcode-background',
+      'width': '480',
+      'height': '508',
+      'loading': 'lazy'
+    }
+  ) }}
+</div>
