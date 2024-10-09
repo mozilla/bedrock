@@ -50,6 +50,16 @@ $image-path: '/media/protocol/img';
     text-wrap: balance;
 }
 
+// visible by default and used as a fallback, will be hidden via JS for ESR browsers
+#update-firefox {
+    display: block;
+}
+
+// not displayed by default, will be visible via JS for ESR browsers
+#update-firefox-esr {
+    display: none;
+}
+
 
 .mzp-l-columns {
     padding-top: 0;

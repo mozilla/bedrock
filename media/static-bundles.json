@@ -1298,6 +1298,12 @@
       ],
       "name": "firefox_welcome_page16"
     },
+        {
+      "files": [
+        "js/firefox/welcome/welcome19.js"
+      ],
+      "name": "firefox_welcome_page19"
+    },
     {
       "files": [
         "js/firefox/new/desktop/download.js"
