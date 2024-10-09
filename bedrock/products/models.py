@@ -5,13 +5,14 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel
+from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.pages import ArticleDetailPageBase, ArticleIndexPageBase
 from bedrock.products.views import vpn_available
 
 
-class VPNCallToActionSnippet(models.Model):
+class VPNCallToActionSnippet(TranslatableMixin):
     heading = models.CharField(
         max_length=255,
     )
@@ -65,7 +66,7 @@ class VPNResourceCenterIndexPage(ArticleIndexPageBase):
         ARTICLE_GROUP_SIZE = 6
         context = super().get_context(request)
         vpn_available_in_country = vpn_available(request)
-        article_data = VPNResourceCenterDetailPage.objects.live().public()
+        article_data = VPNResourceCenterDetailPage.objects.filter(locale=self.locale).live().public()
 
         first_article_group, second_article_group = (
             article_data[:ARTICLE_GROUP_SIZE],
