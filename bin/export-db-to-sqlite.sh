@@ -312,3 +312,9 @@ echo "Restored original DATABASE_URL to $DATABASE_URL"
 check_status_and_handle_failure "Checking all_well at the end of the run"
 
 echo "Export to $output_db successful"
+
+# If all is well, ping DMS to avoid an alert being raised.
+if [[ -n "${DB_EXPORT_SCRIPT_DMS_URL}" ]]; then
+    curl "${DB_EXPORT_SCRIPT_DMS_URL}"
+    echo "Pinged snitch"
+fi
