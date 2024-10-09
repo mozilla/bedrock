@@ -12,6 +12,13 @@
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}
 
+{% block page_title %}{{ ftl('whatsnew-page-title-v2') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+
+{% block site_header %}{% endblock %}
+
 {% block content %}
   <main class="content-wrapper mzp-t-firefox">
     {% block wnp_header %}
