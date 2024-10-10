@@ -25,24 +25,5 @@
             margin-bottom: 0;
             text-align: center;
         }
-
-        .c-banner-mofo-donate {
-            display: none;
-        }
-
-        .c-banner-firefox-download {
-            display: block;
-        }
-
-        .is-firefox & {
-            .c-banner-mofo-donate {
-                display: block;
-            }
-
-            .c-banner-firefox-download {
-                display: none;
-            }
-        }
-
     }
 }

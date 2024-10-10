@@ -4,8 +4,4 @@
 
 # Variables:
 # $donate (url) - link to https://foundation.mozilla.org/en/?form=donate-today
-m24-pencil-banner-support-ethical = Support ethical AI and internet privacy — <a { $donate }>donate today!</a>
-
-# Variables:
-# $download (url) - link to https://www.mozilla.org/en-US/firefox/new/
-m24-pencil-banner-download-firefox = Love a fast, private browser? <a { $download }>Download { -brand-name-firefox }</a>
+m24-pencil-banner-support-ethical = Support ethical AI and internet privacy — <strong><a { $donate }>donate today!</a></strong>
