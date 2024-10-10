@@ -2180,9 +2180,19 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "link",
     "ol",
     "ul",
+    "image",
 ]
 
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
+
+WAGTAILIMAGES_EXTENSIONS = [
+    "gif",
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "svg",
+]
 
 # Custom code in bedrock.cms.models.base.AbstractBedrockCMSPage limits what page
 # models can be added as a child page.
@@ -2199,6 +2209,8 @@ _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
     "mozorg.LeadershipPage",
+    "products.VPNResourceCenterDetailPage",
+    "products.VPNResourceCenterIndexPage",
 ]
 
 if DEV is True:

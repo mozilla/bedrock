@@ -12,6 +12,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
 @import '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+@import '../../cms/rich-text';
 
 .resource-center-page-header {
     .mzp-l-content {
@@ -68,13 +69,14 @@ $image-path: '/media/protocol/img';
 
 .resource-center-cta-title {
     margin-bottom: $spacing-2xl;
+    @include text-title-md;
 }
 
 .resource-center-cta-desc {
-    @include text-body-sm;
     font-family: var(--body-font-family);
+    @include text-body-sm;
 
-    // this color will be added to protocol, this should be updated once its availible as a token
+    // this color will be added to protocol, this should be updated once its available as a token
     color: #666;
 }
 
@@ -92,10 +94,9 @@ $image-path: '/media/protocol/img';
 .vpn-article {
     background-color: $color-white;
     box-sizing: border-box;
-    padding: $layout-sm $layout-md 0 $layout-md;
+    padding: $layout-sm $layout-md;
 
     .vpn-article-category {
-        @include text-body-xs;
         background: $color-black;
         border-radius: $border-radius-sm;
         color: $color-white;
@@ -103,6 +104,7 @@ $image-path: '/media/protocol/img';
         font-weight: 300;
         padding: $spacing-xs $spacing-md $spacing-xs $spacing-md;
         text-transform: uppercase;
+        @include text-body-xs;
     }
 
     .vpn-article-date {
@@ -137,8 +139,8 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .vpn-c-vote-btn-container {
-        @include bidi(((margin-right, $layout-lg, margin-left, $layout-lg),));
         position: relative;
+        @include bidi(((margin-right, $layout-lg, margin-left, $layout-lg),));
 
         .vpn-c-vote-btn {
             background: none;
@@ -150,9 +152,9 @@ $image-path: '/media/protocol/img';
             width: $layout-md - 6px;
 
             &.down {
-                @include bidi(((margin-left, $spacing-sm, margin-right, $spacing-sm),));
                 position: absolute;
                 top: 13px;
+                @include bidi(((margin-left, $spacing-sm, margin-right, $spacing-sm),));
             }
 
             &[aria-pressed='true'] {
