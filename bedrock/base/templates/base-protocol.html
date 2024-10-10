@@ -140,7 +140,7 @@
         {{ js_bundle('lib') }}
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
-        {% if switch('m24-navigation-and-footer')and LANG.startswith('en-') %}
+        {% if switch('m24-navigation-and-footer') and LANG.startswith('en-') %}
           {{ js_bundle('m24-ui') }}
         {% else %}
           {{ js_bundle('ui') }}
