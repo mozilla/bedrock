@@ -1,0 +1,94 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+
+{% block article_title_short %}Remplir un PDF en ligne: fiche d’impôts{% endblock %}
+{% block article_title %}Remplir un PDF en ligne : fiche d’impôts{% endblock %}
+{% block page_desc %}Retrouvez un guide pas-à-pas pour remplir et même corriger sa déclaration d’impôts, en utilisant les options intégrées de Firefox.{% endblock %}
+
+{% block article_content %}
+
+<p>Fini les soucis liés à la paperasse, place à la simplicité administrative !  Que vous ayez besoin de remplir une première déclaration, de corriger une erreur ou de gérer vos justificatifs, Firefox vous offre une solution rapide et sécurisée pour vos données. </p>
+
+<p>Remplir des PDF n'a jamais été aussi simple et fiable, même quand on parle de fiches d’impôts.</p>
+
+<h2>Remplir sa PDF</h2>
+
+<p>Renseigner les informations de manière électronique plutôt que de le faire à la main pour éviter les erreurs, les reprises et un procédé administratif qui traine. C’est d’autant plus à portée de main si c’est votre première déclaration fiscale&nbsp;! </p>
+
+<ol class="mzp-u-list-styled">
+  <li>
+    <p><strong>Ouvrir le document :</strong> une fois le formulaire vierge téléchargé, faites un clic droit dessus et sélectionnez "Ouvrir avec Firefox". Le document apparaît dans un onglet de votre navigateur.</p>
+    <p>
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+  <li>
+    <p><strong>Renseigner vos informations :</strong> Cochez  les cases appropriées à l’aide de l’outil Dessin symbolisé par un crayon.</p>
+  </li>
+  <li>
+    <p><strong>Pour ajouter du texte :</strong> cliquez sur l'icône Texte pour ajouter du texte tels que votre numéro fiscal, vos noms, adresse et autre renseignements fiscaux. </p>
+    <p>
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-texte.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-texte-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+  <li>
+    <p>Vous pouvez déplacer n’importe quel de vos blocs de texte et ajuster la taille, comme bon vous semble. Vous pouvez facilement passer d’une page à l’autre de votre déclaration ou avoir une vue d’ensemble en sélectionnant dans les Outils. </p>
+    <p>{{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-modifier.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-modifier-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+</ol>
+
+<p>Enregistrez le document une fois terminé et envoyez-le aux services fiscaux en suivant les instructions.</p>
+
+<p>Si vous souhaitez corriger une déclaration :  suivez les mêmes étapes pour ouvrir et <a href="{{ url('firefox.features.pdf-editor') }}">remplir votre PDF</a> avec Firefox. N'oubliez pas d'ajouter la mention "DÉCLARATION RECTIFICATIVE, ANNULE ET REMPLACE" en haut de votre formulaire. </p>
+
+<p>Faites les corrections nécessaires, enregistrez le nouveau fichier et envoyez-le selon les instructions.</p>
+
+<h2>Enregistrer sa déclaration au format PDF</h2>
+
+<p>L’éditeur PDF Firefox vous aide à remplir mais aussi à classer et archiver vos tâches administratives, en toute confidentialité.</p>
+
+<p>Vous pouvez organiser vos justificatifs comme les factures, les reçus de dons, et l’imprimé fiscal unique. Ces documents n'ont pas à être fournis lors de la déclaration mais doivent être conservés en cas de contrôle, pendant au moins 3 ans. Pourquoi ne pas se simplifier la tâche dès l’étape de la déclaration&nbsp;? </p>
+
+<p>Enregistrez tous vos PDF dans des dossiers bien nommés pour une gestion facile et sécurisée.</p>
+
+<hr>
+
+<h2>Vous n'avez pas encore Firefox ?</h2>
+<p><a href="{{ url('firefox.features.index') }}">En savoir plus</a> sur nos fonctionnalités, ou <a href="">Téléchargez Firefox</a> dès maintenant.</p>
+
+
+{% endblock article_content %}
