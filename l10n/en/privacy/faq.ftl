@@ -18,15 +18,9 @@ privacy-faq-we-follow-a-set-of-data-privacy = We follow a set of <a href="{ $lin
 privacy-faq-we-only-collect-the-data-we = We only collect the data we need to make the best products.
 privacy-faq-we-put-people-in-control-of = We put people in control of their data and online experiences.
 
-# Obsolete string (expires 2024-09-11)
-privacy-faq-we-adhere-to-no-surprises-principle = We adhere to “no surprises” principle, meaning we work hard to ensure people’s understanding of { -brand-name-firefox } matches reality.
-
 privacy-faq-we-adhere-to-no-surprises-principle-v2 = We adhere to the “no surprises” principle, meaning we work hard to ensure people’s understanding of { -brand-name-firefox } matches reality.
 privacy-faq-the-following-questions-and = The following questions and answers should help you understand what to expect from { -brand-name-mozilla } and { -brand-name-firefox }:
 privacy-faq-i-use-firefox-for-almost-everything = I use { -brand-name-firefox } for almost everything on the web. You folks at { -brand-name-mozilla } must know a ton of stuff about me, right?
-
-# Obsolete string (expires 2024-09-11)
-privacy-faq-firefox-the-web-browser-that = { -brand-name-firefox }, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information stays on your device. { -brand-name-mozilla }, the company that makes { -brand-name-firefox }, doesn’t collect it (unless you ask us to).
 
 privacy-faq-firefox-the-web-browser-that-v2 = { -brand-name-firefox }, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information generally stays on your device. { -brand-name-mozilla }, the company that makes { -brand-name-firefox }, doesn’t collect it (unless you ask us to).
 privacy-faq-really-you-dont-collect-my-browsing = Really, you don’t collect my browsing history?
@@ -43,12 +37,6 @@ privacy-faq-mozilla-is-not-your-average = { -brand-name-mozilla } is not your av
 # A "softball" is a question that is really easy to answer.
 privacy-faq-okay-those-first-few-were-softballs = Okay, those first few were softballs. What data do you collect?
 
-# Obsolete string (expires 2024-09-11)
-# Variables:
-#   $data (url) - link to https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/
-#   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
-privacy-faq-mozilla-does-collect-a-limited = { -brand-name-mozilla } does collect a limited set of data by default from { -brand-name-firefox } that helps us to understand how people use the browser. That data is tied to a random identifier rather than your name or email address. You can read more about that on our <a href="{ $privacy }">privacy notice</a> and you can read the <a href="{ $data }">full documentation for that data collection</a>.
-
 # Variables:
 #   $data (url) - link to https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/
 #   $privacy (url) - link to https://www.mozilla.org/privacy/firefox/
@@ -60,21 +48,10 @@ privacy-faq-that-documentation-is-gobbledygook = That documentation is gobbledyg
 privacy-faq-there-are-two-categories-of = There are two categories of data that we collect by default in our release version of { -brand-name-firefox }.
 privacy-faq-the-first-is-what-we-call-technical = The first is what we call “technical data.” This is data about the browser itself, such as the operating system it is running on and information about errors or crashes.
 
-# Obsolete string (expires 2024-09-11)
-privacy-faq-the-second-is-what-we-call-interaction = The second is what we call “interaction data.” This is data about an individual’s engagement with { -brand-name-firefox }, such as the number of tabs that were open, the status of user preferences, or number of times certain browser features were used, such as screenshots or containers. For example, we collect this data in terms of the back button, that arrow in the upper left corner of your browser that lets you navigate back to a previous webpage in a way that shows us someone used the back button, but doesn’t tell what specific webpages are accessed.
-
 privacy-faq-the-second-is-what-we-call-interaction-v2 = The second is what we call “interaction data.” This is data about an individual’s engagement with { -brand-name-firefox }, such as the number of tabs that were open, the status of user preferences, or number of times certain browser features were used, such as screenshots or containers. For example, we collect this data through the back button (that arrow in the upper left corner of your browser that lets you navigate back to a previous webpage) in a way that shows us someone used the back button, but doesn’t tell what specific webpages are accessed.
 privacy-faq-do-you-collect-more-data-in = Do you collect more data in pre-release versions of { -brand-name-firefox }?
 
-# Obsolete string (expires 2024-09-11)
-privacy-faq-sort-of-in-addition-to-the-data = Sort-of. In addition to the data described above, we receive crash and error reports by default in pre-release version of { -brand-name-firefox }.
-
 privacy-faq-sort-of-in-addition-to-the-data-v2 = Sort-of. In addition to the data described above, we receive crash and error reports by default in pre-release versions of { -brand-name-firefox }.
-
-# Obsolete string (expires 2024-09-11)
-# Variables:
-#   $link (url) - link to https://support.mozilla.org/kb/shield
-privacy-faq-we-may-also-collect-additional = We may also collect additional data in pre-release for one of our <a href="{ $link }">studies</a>. For example, some studies require what we call “web activity data” data, which may include URLs and other information about certain websites. This helps us answer specific questions to improve { -brand-name-firefox }, for example, how to better integrate popular websites in specific locales.
 
 # Variables:
 #   $link (url) - link to https://support.mozilla.org/kb/shield
