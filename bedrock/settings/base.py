@@ -791,6 +791,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "lib.l10n_utils",
     "django_rq",
+    "django_rq_email_backend",
     "mozilla_django_oidc",  # needs to be loaded after django.contrib.auth
 ]
 
@@ -952,8 +953,11 @@ RECAPTCHA_USE_SSL = config("RECAPTCHA_USE_SSL", parser=bool, default="true")
 # This can be changed to use session once we do add a database.
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-
-default_email_backend = "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend"
+default_email_backend = "django.core.mail.backends.smtp.EmailBackend"
+if DEBUG:
+    default_email_backend = "django.core.mail.backends.console.EmailBackend"
+elif TASK_QUEUE_AVAILABLE is True:
+    default_email_backend = "django_rq_email_backend.backends.RQEmailBackend"
 
 DEFAULT_FROM_EMAIL = "Mozilla.com <noreply@mozilla.com>"
 

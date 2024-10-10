@@ -326,6 +326,7 @@ django==4.2.16 \
     #   django-mozilla-product-details
     #   django-permissionedforms
     #   django-rq
+    #   django-rq-email-backend
     #   django-storages
     #   django-taggit
     #   django-treebeard
@@ -393,6 +394,12 @@ django-permissionedforms==0.1 \
 django-rq==2.10.2 \
     --hash=sha256:5fe340e071c141a23ea0859df73c48b0a3df33a851835b2a8f8c4fca7a8b1849 \
     --hash=sha256:d1690b6a409934a0ea23c208ccb00d69477899f8edc61106ce5395c19dcdfb1e
+    # via
+    #   -r requirements/prod.in
+    #   django-rq-email-backend
+django-rq-email-backend==2.0.0 \
+    --hash=sha256:402ced0d8078a856a684be37206fbfb0a6056c5bfe8a753dd7eec7fcaccca224 \
+    --hash=sha256:4e8a6c6f492f9e78711e6b563c96f7b8feaf17c8737767a30fc68b9833e3b82f
     # via -r requirements/prod.in
 django-storages[google]==1.14.4 \
     --hash=sha256:69aca94d26e6714d14ad63f33d13619e697508ee33ede184e462ed766dc2a73f \
@@ -1476,14 +1483,16 @@ rpds-py==0.20.0 \
 rq==1.16.2 \
     --hash=sha256:52e619f6cb469b00e04da74305045d244b75fecb2ecaa4f26422add57d3c5f09 \
     --hash=sha256:5c5b9ad5fbaf792b8fada25cc7627f4d206a9a4455aced371d4f501cc3f13b34
-    # via django-rq
+    # via
+    #   django-rq
+    #   django-rq-email-backend
 rsa==4.9 \
     --hash=sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7 \
     --hash=sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21
     # via google-auth
-s3transfer==0.10.2 \
-    --hash=sha256:0711534e9356d3cc692fdde846b4a1e4b0cb6519971860796e6bc4c7aea00ef6 \
-    --hash=sha256:eca1c20de70a39daee580aef4986996620f365c4e0fda6a86100231d62f1bf69
+s3transfer==0.10.3 \
+    --hash=sha256:263ed587a5803c6c708d3ce44dc4dfedaab4c1a32e8329bab818933d79ddcf5d \
+    --hash=sha256:4f50ed74ab84d474ce614475e0b8d5047ff080810aac5d01ea25231cfc944b0c
     # via boto3
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
