@@ -271,6 +271,7 @@ FLUENT_DEFAULT_FILES = [
     "mozorg/about/shared",
     "navigation",
     "navigation_v2",
+    "m24-pencil-banner",
     "navigation_refresh",
     "newsletter_form",
     "send_to_device",
