@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
 from django.http import Http404
 from django.views.generic import TemplateView
 
@@ -55,16 +54,10 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
-        _ftl_files = []
-        if settings.IS_MOZORG_MODE:
-            _ftl_files = [
-                "mozorg/about/legal",
-                "privacy/index",
-            ]
-        elif settings.IS_POCKET_MODE:
-            _ftl_files = [
-                "pocket/legal",
-            ]
+        _ftl_files = [
+            "mozorg/about/legal",
+            "privacy/index",
+        ]
         return l10n_utils.render(
             self.request,
             self.get_template_names()[0],
