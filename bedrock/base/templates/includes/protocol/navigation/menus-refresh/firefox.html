@@ -7,18 +7,18 @@
  {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox' %}
 
  <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable m24-c-menu-category-has-icon">
-  <a class="m24-c-menu-title" href="{{ url('firefox') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-firefox" data-testid="navigation-refresh-link-firefox">
+  <a class="m24-c-menu-title" href="{{ url('firefox') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-firefox" data-testid="m24-navigation-link-firefox">
     <img class="m24-c-menu-title-icon" loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-item-icon" width="16" height="16" alt="">
     {{ ftl('navigation-refresh-firefox-browsers') }}
   </a>
   <div class="m24-c-menu-panel" id="m24-c-menu-panel-firefox">
-    <div class="m24-c-menu-panel-container" data-testid="navigation-menu-firefox">
+    <div class="m24-c-menu-panel-container" data-testid="m24-navigation-menu-firefox">
       <button class="m24-c-menu-button-close" type="button" aria-controls="m24-c-menu-panel-firefox">{{ ftl('navigation-refresh-close-firefox-browsers-menu') }}</button>
       <div class="m24-c-menu-panel-content">
         <ul class="m24-mzp-l-content">
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="{{ url('firefox.new') }}" data-link-text="Firefox Desktop Browser" data-link-position="topnav - firefox" data-testid="navigation-menu-link-firefox-desktop">
+              <a class="m24-c-menu-item-link" href="{{ url('firefox.new') }}" data-link-text="Firefox Desktop Browser" data-link-position="topnav - firefox" data-testid="m24-navigation-menu-link-firefox-desktop">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h4 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-firefox-for-desktop') }}</h4>
               </a>
