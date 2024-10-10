@@ -251,6 +251,18 @@
     },
     {
       "files": [
+        "css/m24/base-navigation-and-footer.scss"
+      ],
+      "name": "m24-navigation-and-footer"
+    },
+    {
+      "files": [
+        "css/m24/pencil-banner.scss"
+      ],
+      "name": "m24-pencil-banner"
+    },
+    {
+      "files": [
         "css/legal/legal.scss"
       ],
       "name": "legal"
