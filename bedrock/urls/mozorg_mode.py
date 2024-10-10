@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.utils.module_loading import import_string
 
+import wagtaildraftsharing.urls as wagtaildraftsharing_urls
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
@@ -68,6 +69,7 @@ if settings.WAGTAIL_ENABLE_ADMIN:
         path("cms-admin/", include(wagtailadmin_urls)),
         path("django-admin/", admin.site.urls),  # needed to show django-rq UI
         path("django-rq/", include("django_rq.urls")),  # task queue management
+        path("_internal_draft_preview/", include(wagtaildraftsharing_urls)),  # ONLY available in CMS mode
     )
 
 if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage":
