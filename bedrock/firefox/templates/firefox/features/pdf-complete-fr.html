@@ -55,21 +55,20 @@
       ) }}
     </p>
   </li>
-  <li>
-    <p>Vous pouvez déplacer n’importe quel de vos blocs de texte et ajuster la taille, comme bon vous semble. Vous pouvez facilement passer d’une page à l’autre de votre déclaration ou avoir une vue d’ensemble en sélectionnant dans les Outils. </p>
-    <p>{{ resp_img(
-        url="img/firefox/features/edit-pdf/fr-edit-pdf-modifier.png",
-        srcset={
-            "img/firefox/features/edit-pdf/fr-edit-pdf-modifier-high-res.png": "1.5x"
-        },
-        optional_attributes={
-          "alt": "",
-          "width": "600"
-        }
-      ) }}
-    </p>
-  </li>
 </ol>
+
+<p>Vous pouvez déplacer n’importe quel de vos blocs de texte et ajuster la taille, comme bon vous semble. Vous pouvez facilement passer d’une page à l’autre de votre déclaration ou avoir une vue d’ensemble en sélectionnant dans les Outils. </p>
+<p>{{ resp_img(
+    url="img/firefox/features/edit-pdf/fr-edit-pdf-modifier.png",
+    srcset={
+        "img/firefox/features/edit-pdf/fr-edit-pdf-modifier-high-res.png": "1.5x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</p>
 
 <p>Enregistrez le document une fois terminé et envoyez-le aux services fiscaux en suivant les instructions.</p>
 
@@ -85,10 +84,9 @@
 
 <p>Enregistrez tous vos PDF dans des dossiers bien nommés pour une gestion facile et sécurisée.</p>
 
-<hr>
-
-<h2>Vous n'avez pas encore Firefox ?</h2>
-<p><a href="{{ url('firefox.features.index') }}">En savoir plus</a> sur nos fonctionnalités, ou <a href="">Téléchargez Firefox</a> dès maintenant.</p>
-
+<div class="hide-from-firefox">
+  <h2>Vous n'avez pas encore Firefox ?</h2>
+  <p><a href="{{ url('firefox.features.index') }}" data-cta-link="Learn more about our features">En savoir plus</a> sur nos fonctionnalités, ou <a href="{{ url('firefox.new') }}" data-link-text="Download Firefox" data-link-position="content">Téléchargez Firefox</a> dès maintenant.</p>
+</div>
 
 {% endblock article_content %}
