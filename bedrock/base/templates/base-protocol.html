@@ -138,9 +138,13 @@
       <!--[if !IE]><!-->
         {# Standard site JS bundles served to all evergreen browsers plus IE 10 and above. #}
         {{ js_bundle('lib') }}
-        {{ js_bundle('ui') }}
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
+        {% if switch('m24-navigation-and-footer') and LANG.startswith('en-') %}
+          {{ js_bundle('m24-ui') }}
+        {% else %}
+          {{ js_bundle('ui') }}
+        {% endif %}
       <!--<![endif]-->
 
       <!--[if IE 9]>
