@@ -11,7 +11,7 @@
 
 .m24-c-grid-container {
     @media #{$mq-md} {
-        gap: var(--spacer-xl) var(--grid-gutter);
+        gap: $spacer-xl $grid-gutter;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         margin-top: $spacer-xl;
@@ -23,24 +23,24 @@
 }
 
 .m24-c-grid-tile {
-    margin-bottom: var(--spacer-xl);
+    margin-bottom: $spacer-xl;
 
     .m24-c-grid-tile-content > :last-child {
         margin-bottom: 0;
     }
 
     .m24-c-grid-tile-image {
-        margin-bottom: var(--spacer-sm);
+        margin-bottom: $spacer-sm;
     }
 
     .m24-c-grid-tile-title {
-        font-size: var(--text-title-md);
+        font-size: $text-title-md;
         text-decoration: underline 0.075em transparent;
         transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
     }
 
     .m24-c-grid-tile-cta > span {
-        font-size: var(--text-body-lg);
+        font-size: $text-body-lg;
         font-weight: bold;
         text-decoration: underline 0.075em transparent;
         transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;

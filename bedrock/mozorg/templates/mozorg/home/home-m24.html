@@ -23,7 +23,8 @@
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block page_css %}
-  {{ css_bundle('m24') }}
+  {{ css_bundle('m24-root') }}
+  {{ css_bundle('m24-base') }}
 {% endblock %}
 
 {% block site_header %}

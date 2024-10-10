@@ -2,27 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-:root {
-    // grid
-    --grid-margin: 16px;
-    --grid-gutter: 8px;
-}
-
-@media #{$mq-md} {
-    :root {
-        // grid
-        --grid-margin: 24px;
-        --grid-gutter: 12px;
-    }
-}
-
-@media #{$mq-xl} {
-    :root {
-        // grid
-        --grid-margin: 32px;
-        --grid-gutter: 16px;
-    }
-}
 
 // grid
 $grid-margin: var(--grid-margin);
