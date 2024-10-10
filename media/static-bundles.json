@@ -1596,7 +1596,6 @@
     {
       "files": [
         "js/base/protocol/init-details.es6.js",
-        "js/base/protocol/init-footer.es6.js",
         "js/base/protocol/init-lang-switcher.es6.js",
         "js/base/protocol/protocol-sub-navigation.js",
         "js/base/base-page-init.js",

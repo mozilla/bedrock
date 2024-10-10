@@ -28,22 +28,6 @@
         }
     }
 
-    function initNavButton() {
-        if (typeof Mozilla.Client === 'undefined') {
-            return false;
-        }
-
-        var nav = document.querySelector('.m24-navigation-refresh');
-
-        // Nav should be present on page.
-        if (nav) {
-            // Add a CSS hook for animating the nav button (issue #9009)
-            nav.classList.add('nav-button-is-ready');
-        }
-    }
-
-    initNavButton();
-
     window.MzpMenu.init({
         onMenuOpen: handleOnMenuOpen
     });
