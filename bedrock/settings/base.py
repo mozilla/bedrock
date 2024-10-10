@@ -179,6 +179,7 @@ LOCALES_BY_REGION = {
         "kk",
         "km",
         "ko",
+        "lo",
         "ml",
         "mr",
         "ms",
