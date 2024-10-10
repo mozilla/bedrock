@@ -315,6 +315,6 @@ echo "Export to $output_db successful"
 
 # If all is well, ping DMS to avoid an alert being raised.
 if [[ -n "${DB_EXPORT_SCRIPT_DMS_URL}" ]]; then
-    curl "${DB_EXPORT_SCRIPT_DMS_URL}"
+    curl -m 10 --retry 5 "${DB_EXPORT_SCRIPT_DMS_URL}"
     echo "Pinged snitch"
 fi
