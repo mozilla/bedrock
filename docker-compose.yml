@@ -30,8 +30,6 @@ services:
     env_file:
       - docker/envfiles/local.env
       - .env
-    environment:
-        SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8080:8080"
     volumes:
@@ -118,7 +116,6 @@ services:
       - .env
     environment:
       RUN_SUPERVISOR: "true"
-      SITE_MODE: "${SITE_MODE:-Mozorg}"
     ports:
       - "8000:8000"
     volumes:

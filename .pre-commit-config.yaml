@@ -74,7 +74,7 @@ repos:
     hooks:
       - id: fluent_linter
         files: \.ftl$
-        args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/, l10n-pocket/en/]
+        args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/]
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
     hooks:

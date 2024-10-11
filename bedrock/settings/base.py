@@ -2,10 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-"""IMPORTANT: bedrock/settings/__init__.py contains important logic that determines
-which site will be served.
-"""
-
 import json
 import platform
 import socket
@@ -60,10 +56,6 @@ PROD = config("PROD", parser=bool, default="false")
 
 DEBUG = config("DEBUG", parser=bool, default="false")
 
-site_mode = config("SITE_MODE", default="Mozorg")
-
-IS_POCKET_MODE = site_mode == "Pocket"
-IS_MOZORG_MODE = not IS_POCKET_MODE
 
 db_connection_max_age_secs = config("DB_CONN_MAX_AGE", default="0", parser=int)
 db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="False", parser=bool)
@@ -267,9 +259,6 @@ PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), 
 
 GITHUB_REPO = "https://github.com/mozilla/bedrock"
 
-# NOTE: This default l10n config is for mozorg.
-# In settings/__init__.py we plug in an alternative Pocket-appropriate l10n setup.
-
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
@@ -311,16 +300,6 @@ FLUENT_PATHS = [
     # remote FTL files from l10n team
     FLUENT_REPO_PATH,
 ]
-
-# These are defined up front, because we need them for more than just Pocket mode, but
-# note that they are also swapped in as the Fluent defaults in settings/__init__.py
-POCKET_FLUENT_REPO = config(
-    "POCKET_FLUENT_REPO",
-    default="mozilla-l10n/pocket-www-l10n",
-)
-POCKET_FLUENT_REPO_URL = f"https://github.com/{POCKET_FLUENT_REPO}"
-POCKET_FLUENT_REPO_PATH = DATA_PATH / "pocket-www-l10n"
-POCKET_FLUENT_REPO_BRANCH = config("POCKET_FLUENT_REPO_BRANCH", default="main")
 
 # Templates to exclude from having an "edit this page" link in the footer
 # these are typically ones for which most of the content is in the DB
@@ -478,22 +457,22 @@ SUPPORTED_NONLOCALES = [
     "static",
     "certs",
     "images",  # root_files
-    "credits",  # in mozorg urls
-    "robots.txt",  # in mozorg urls
-    ".well-known",  # in mozorg urls
+    "credits",
+    "robots.txt",
+    ".well-known",
     "telemetry",  # redirect only
     "webmaker",  # redirect only
     "healthz",  # Needed for k8s
     "readiness",  # Needed for k8s
-    "healthz-cron",  # status dash, in urls/mozorg_mode.py
-    "2004",  # in mozorg urls
-    "2005",  # in mozorg urls
-    "2006",  # in mozorg urls
-    "keymaster",  # in mozorg urls
-    "microsummaries",  # in mozorg urls
-    "xbl",  # in mozorg urls
+    "healthz-cron",  # status dash
+    "2004",
+    "2005",
+    "2006",
+    "keymaster",
+    "microsummaries",
+    "xbl",
     "revision.txt",  # from root_files
-    "locales",  # in mozorg urls
+    "locales",
     "csrf_403",
 ]
 
@@ -775,7 +754,6 @@ INSTALLED_APPS = [
     "bedrock.privacy",
     "bedrock.products",
     "bedrock.externalfiles",
-    "bedrock.pocket",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
@@ -1170,10 +1148,7 @@ ignore_logger("django.security.DisallowedHost")
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
-GA_ACCOUNT_CODE = ""  # DELETE ME: Deprecated?
-GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")  # NB: Will be used in both modes (bedrock and pocket).
-# Pocket mode will be running both GA UA and GA4 for a while going forward
-GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")  # NB: Not used in all Bedrock modes (Pocket only).
+GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
 
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
@@ -2120,12 +2095,7 @@ def lazy_wagtail_langs():
 
 
 WAGTAIL_I18N_ENABLED = True
-if IS_MOZORG_MODE:
-    WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
-else:
-    # Note: we'll never actually use this as Pocket mode won't be
-    # Wagtailed, but we need something valid so Pocket mode will boot up
-    WAGTAIL_CONTENT_LANGUAGES = [("en", "English")]
+WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Settings for https://github.com/mozilla/wagtail-localize-smartling
 WAGTAIL_LOCALIZE_SMARTLING = {

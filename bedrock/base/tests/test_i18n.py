@@ -20,7 +20,6 @@ from bedrock.base.i18n import (
 from lib.l10n_utils import translation
 
 
-@override_settings(IS_MOZORG_MODE=True, IS_POCKET_MODE=False)
 @pytest.mark.parametrize(
     "lang_code, expected",
     (
@@ -65,81 +64,6 @@ from lib.l10n_utils import translation
     ),
 )
 def test_normalize_language_mozorg_mode(lang_code, expected):
-    assert normalize_language(lang_code) == expected
-
-
-@override_settings(
-    IS_MOZORG_MODE=False,
-    IS_POCKET_MODE=True,
-    LANGUAGE_URL_MAP_WITH_FALLBACKS={
-        # patch in what we set in settings.__init__
-        "de": "de",
-        "en": "en",
-        "es": "es",
-        "es-la": "es-la",
-        "fr-ca": "fr-ca",
-        "fr": "fr",
-        "it": "it",
-        "ja": "ja",
-        "ko": "ko",
-        "nl": "nl",
-        "pl": "pl",
-        "pt-br": "pt-br",
-        "pt": "pt",
-        "ru": "ru",
-        "zh-cn": "zh-cn",
-        "zh-tw": "zh-tw",
-    },
-)
-@pytest.mark.parametrize(
-    "lang_code, expected",
-    (
-        (None, None),
-        ("", None),  # General normalization
-        ("de", "de"),
-        ("de-DE", "de"),
-        ("DE", "de"),
-        ("en", "en"),
-        ("en-US", "en"),
-        ("EN", "en"),
-        ("es", "es"),
-        ("ES", "es"),
-        ("es-la", "es-la"),
-        ("es-LA", "es-la"),
-        ("ES-LA", "es-la"),
-        ("fr-ca", "fr-ca"),
-        ("fr-CA", "fr-ca"),
-        ("FR-CA", "fr-ca"),
-        ("fr", "fr"),
-        ("FR", "fr"),
-        ("it", "it"),
-        ("IT", "it"),
-        ("ja", "ja"),
-        ("JA", "ja"),
-        ("ko", "ko"),
-        ("KO", "ko"),
-        ("nl", "nl"),
-        ("NL", "nl"),
-        ("pl", "pl"),
-        ("PL", "pl"),
-        ("pt-br", "pt-br"),
-        ("pt-BR", "pt-br"),
-        ("PT-BR", "pt-br"),
-        ("pt", "pt"),
-        ("PT", "pt"),
-        ("pt-PT", "pt"),
-        ("PT-PT", "pt"),
-        ("ru", "ru"),
-        ("RU", "ru"),
-        ("zh-cn", "zh-cn"),
-        ("zh-CN", "zh-cn"),
-        ("ZH-CN", "zh-cn"),
-        ("zh-tw", "zh-tw"),
-        ("zh-TW", "zh-tw"),
-        ("ZH-TW", "zh-tw"),
-    ),
-)
-def test_normalize_language_pocket_mode(lang_code, expected):
     assert normalize_language(lang_code) == expected
 
 

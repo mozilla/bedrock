@@ -248,20 +248,17 @@ def get_best_translation(translations, accept_languages, strict=False):
         if pre in valid_lang_map:
             return valid_lang_map[pre]
 
-    if settings.IS_MOZORG_MODE:
-        if strict:
-            # We couldn't find a best locale to return so we return `None`.
-            return None
-        else:
-            # Use the default locale if it is an available translation.
-            if settings.LANGUAGE_CODE in translations:
-                return settings.LANGUAGE_CODE
-
-            # In the rare case the default language isn't in the list,
-            # return the first translation in the valid_lang_map.
-            return list(valid_lang_map.values())[0]
+    if strict:
+        # We couldn't find a best locale to return so we return `None`.
+        return None
     else:
-        return settings.LANGUAGE_CODE
+        # Use the default locale if it is an available translation.
+        if settings.LANGUAGE_CODE in translations:
+            return settings.LANGUAGE_CODE
+
+        # In the rare case the default language isn't in the list,
+        # return the first translation in the valid_lang_map.
+        return list(valid_lang_map.values())[0]
 
 
 def get_translations_native_names(locales):
