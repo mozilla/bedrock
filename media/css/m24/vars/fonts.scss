@@ -60,8 +60,8 @@ $m24-font-path: '/media/fonts/m24';
     font-style: italic;
     font-weight: bold;
     src:
-        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldIt.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldIt.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldItalic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-BoldItalic.woff') format('woff');
 }
 
 @font-face {
