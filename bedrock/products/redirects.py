@@ -2,7 +2,28 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from bedrock.redirects.util import redirect
+from bedrock.redirects.util import mobile_app_redirector, redirect
+
+
+def mobile_app(request, *args, **kwargs):
+    qs = request.META.get("QUERY_STRING", "")
+    campaign = None
+    product = "vpn"
+
+    product_options = ["vpn"]
+
+    campaign_options = ["vpn-landing-page"]
+
+    for p in product_options:
+        if f"product={p}" in qs:
+            product = p
+
+    for c in campaign_options:
+        if f"campaign={c}" in qs:
+            campaign = c
+
+    return mobile_app_redirector(request, product, campaign)
+
 
 redirectpatterns = (
     # Issue 10335
@@ -15,4 +36,5 @@ redirectpatterns = (
     redirect(r"^vpn/download/windows/?$", "products.vpn.windows-download"),
     redirect(r"^vpn/download/mac/?$", "products.vpn.mac-download"),
     redirect(r"^products/mozsocial/invite/?$", "products.landing"),
+    redirect(r"^products/vpn/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
 )

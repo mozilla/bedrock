@@ -1302,5 +1302,30 @@ URLS = flatten(
         # issue 15075
         url_test("/newsletter/knowledge-is-power{,/,/confirm,/confirm/token}", "/newsletter/firefox/"),
         url_test("/products/mozsocial/invite/", "/products/"),
+        # Issue 15262
+        url_test(
+            "/products/vpn/mobile/app/?product=vpn",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/products/vpn/mobile/app/?product=vpn",
+            "https://apps.apple.com/app/apple-store/id1489407738",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/products/vpn/mobile/app/?product=vpn&campaign=vpn-landing-page",
+            "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page",
+            req_headers=UA_ANDROID,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
+        url_test(
+            "/products/vpn/mobile/app/?product=vpn&campaign=vpn-landing-page",
+            "https://apps.apple.com/app/apple-store/id1489407738?pt=373246&ct=vpn-landing-page&mt=8",
+            req_headers=UA_IOS,
+            resp_headers={"Cache-Control": "max-age=0"},
+        ),
     )
 )
