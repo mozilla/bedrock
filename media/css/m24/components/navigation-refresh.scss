@@ -81,14 +81,13 @@
     }
 
     &.mzp-is-active {
-        background-color: $color-marketing-gray-20;
-        background-image: url('#{$image-path}/icons/close.svg');
-    }
+        background: url('/media/protocol/img/icons/close.svg') center center no-repeat;
+        width: 40px;
+        @include image-replaced;
 
-    &:not(.mzp-is-active) {
-        text-indent: unset;
-        background-image: none;
-        width: fit-content;
+        &::after {
+            content: none;
+        }
     }
 
     @media #{$mq-md} {
