@@ -130,14 +130,12 @@ if IS_POCKET_MODE:
     _csp_script_src = [
         # TODO fix use of OptanonWrapper() so that we don't need this
         csp.constants.UNSAFE_INLINE,
-        # TODO onetrust cookie consent breaks
-        # blocked without unsafe-eval. Find a way to remove that.
-        "www.mozilla.org",
+        # TODO onetrust cookie consent needs this, explore ways of fixing
         csp.constants.UNSAFE_EVAL,
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "cdn.cookielaw.org",
-        "assets.getpocket.com",  # allow Pocket Snowplow analytics
+        "www.mozilla.org",
     ]
     _csp_style_src = [
         csp.constants.UNSAFE_INLINE,
@@ -154,7 +152,6 @@ if IS_POCKET_MODE:
         "o1069899.ingest.sentry.io",
         "cdn.cookielaw.org",
         "privacyportal.onetrust.com",
-        "getpocket.com",  # Pocket Snowplow
         "geolocation.onetrust.com",
     ]
     _csp_connect_extra_for_dev = [
@@ -175,7 +172,6 @@ else:
     ]
     _csp_img_src = [
         "data:",
-        "mozilla.org",
         "www.googletagmanager.com",
         "www.google-analytics.com",
         "images.ctfassets.net",
@@ -269,6 +265,7 @@ if csp_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
     # CSP directive updates we're testing that we hope to move to the enforced policy.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
 
 
