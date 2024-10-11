@@ -20,13 +20,9 @@ by reading their respective pieces of documentation:
 Deployed site URLs
 ------------------
 
-Note that a deployment of Bedrock will actually trigger two separate deployments:
-one serving all of ``mozilla.org`` and another serving certain parts of ``getpocket.com``
-
 Dev
 ~~~
 - *Mozorg URL:* https://www-dev.allizom.org/
-- *Pocket Marketing pages URL:* https://dev.tekcopteg.com/
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* main, deployed on git push
 - *Firefox download URL:* https://bouncer-bouncer.stage.mozaws.net/
@@ -34,7 +30,6 @@ Dev
 Staging
 ~~~~~~~
 - *Mozorg URL:* https://www.allizom.org/
-- *Pocket Marketing pages URL:* https://www.tekcopteg.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* stage, deployed on git push
 - *Firefox download URL:* https://download.mozilla.org/
@@ -42,7 +37,6 @@ Staging
 Production
 ~~~~~~~~~~
 - *Mozorg URL:* https://www.mozilla.org/
-- *Pocket Marketing pages URL:* https://getpocket.com/
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
 - *Firefox download URL:* https://download.mozilla.org/
@@ -88,10 +82,6 @@ The tests for the dev environment are currently configured as follows:
 - Firefox (latest) via local Selenium grid.
 - Internet Explorer 11 (smoke tests) via `Sauce Labs`_.
 - Headless tests.
-
-Note that now we have Mozorg mode and Pocket mode, we actually stand up two dev, two stage
-and two test deployments and we run the appropriate integration tests against each deployment:
-most tests are written for Mozorg, but there are some for Pocket mode that also get run.
 
 .. note::
 

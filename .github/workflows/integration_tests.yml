@@ -17,9 +17,6 @@ on:
       mozorg_service_hostname:
         description: The root URL of the Mozorg service to run tests against
         required: true
-      pocket_service_hostname:
-        description: The root URL of the Pocket service to run tests against
-        required: true
 jobs:
   notify-of-test-run-start:
     runs-on: ubuntu-latest
@@ -64,7 +61,6 @@ jobs:
 
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
-      BASE_POCKET_URL: ${{ github.event.inputs.pocket_service_hostname }}
       BROWSER_NAME: ${{ matrix.BROWSER_NAME }}
       CI_JOB_ID: ${{ github.run_id }}
       DRIVER: ${{ matrix.DRIVER }}

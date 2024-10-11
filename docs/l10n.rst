@@ -37,15 +37,6 @@ are plain and easy to understand English, as free from colloquialisms as possibl
 translators are able to easily understand the meaning of the string, and can then add their
 own local flair to the ideas.
 
-.. note::
-
-    Much of this documentation also applies to the use of Fluent with Pocket templates,
-    with the main differences being that:
-
-    * the English Pocket Fluent directory is called ``l10n-pocket/``
-    * there are no activation-threshold checks for Pocket templates - we expect all strings to be translated in one go, because they are done via a vendor
-
-
 .. _Project Fluent: https://projectfluent.org/
 
 .ftl files
@@ -717,8 +708,7 @@ String extraction
 
 The string extraction process for both new .ftl content and updates to existing .ftl
 content is handled through automation. On each commit to ``main`` a command is run that
-looks for changes to the ``l10n/`` and ``l10n-pocket/`` directories. If a change is
-detected, it will copy
+looks for changes to the ``l10n/`` directory. If a change is detected, it will copy
 those files into a new branch in `mozilla-l10n/www-l10n`_ and then a bot will open a
 pull request containing those changes. Once the pull request has been reviewed and
 merged by the L10n team, everything is done.
@@ -726,14 +716,12 @@ merged by the L10n team, everything is done.
 To view the state of the latest automated attempt to open an L10N PR, see:
 
 * `Mozorg L10N PR action`_
-* `Pocket L10N PR action`_
 
 (We also just try to open L10N PRs every 3 hours, to catch any failed jobs that
 are triggered by a commit to ``main``)
 
 .. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
 .. _Mozorg L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_mozorg_fluent_strings_to_l10n_org.yml
-.. _Pocket L10N PR action: https://github.com/mozilla/bedrock/actions/workflows/send_pocket_fluent_strings_to_l10n_org.yml
 
 CSS
 ---
@@ -912,142 +900,76 @@ an active tag in it because we have a locale-specific-template with text in the 
 the template and therefore do not otherwise need a .lang file.
 
 
-Adding new L10N integrations
-============================
+About L10N integrations
+=======================
 
-Bedrock, as a platform, can operate in different modes, and it is possible
-(necessary, even) to support multiple L10N pipelines, so that each mode of
-operation can have its own distinct Fluent files and translation strategy.
+Bedrock manages an l10n pipeline that moves the l10n data (fluent ``.ftl`` files) between the l10n
+team and bedrock. This section describes how that works.
 
-As of Summer 2022, there are two separate L10N integrations within Bedrock:
+1. **FILE SETUP**
 
-* Mozilla.org ("Mozorg mode")
-* Pocket Marketing Pages ("Pocket mode")
+The source for Fluent files currently is ``./l10n/``.
 
-These integrations are similar in their approach, but not identical in how they run.
-They use different translations strategies, which requires slightly different data flows.
-
-Moving L10N data (essentially Fluent ``.ftl`` files) happens via various
-automation steps, which aren't captured here, as they are more about
-infrastructure and operations. However, what follows outlines the steps needed
-to add a new L10N integration (for "``newintegration``") to Bedrock.
-
-1. **FILE SETUP (Bedrock developer)**
-
-Add a directory for the source (``en``) Fluent strings that will
-need translation.
-
-.. note::
-    For source Fluent files currently...
-
-    * ...Mozorg uses ``./l10n/``
-    * ...Pocket uses ``./l10n-pocket/``
-
-Add the following files:
+Here's a summary of the files within this directory:
 
 .. code-block:: bash
 
-    ./l10n-newintegration/
-    ./l10n-newintegration/en/  # This is where source Fluent templates go for 'newintegration'
-    ./l10n-newintegration/en/configs/pontoon.toml  # If using community/Pontoon translations at all
-    ./l10n-newintegration/en/configs/vendor.toml  # If using a paid-for translation service such as Smartling
-    ./l10n-newintegration/en/configs/special-templates.toml   # Only needed to exclude certain files from all community AND vendor translation. e.g. we use staff translation only.
+    ./l10n/en/  # This is where source Fluent templates go
+    ./l10n/configs/pontoon.toml  # Config if using community/Pontoon translations
+    ./l10n/configs/vendor.toml  # Config if using a paid-for translation service such as Smartling
+    ./l10n/configs/special-templates.toml   # Only needed to exclude certain files from all community AND vendor translation, e.g. we use staff translation only
 
-    ./l10n-newintegration/l10n-pontoon.toml  # If using community/Pontoon translations at all
-    ./l10n-newintegration/l10n-vendor.toml  # If using a paid-for translation service such as Smartling
+    ./l10n/l10n-pontoon.toml  # Entrypoint for community localization.
+    ./l10n/l10n-vendor.toml  # Entrypoint for vendor and staff localization
 
-    ./data/l10n-newintegration-team/  # leave this empty - it will be populated via a git sync using data FROM the l10n team
+    ./data/l10n-team/  # populated via a git sync using data FROM the l10n team
 
-For the exact content of each `.toml` or `.json` file, see the examples in
-``./l10n/`` and ``./l10n-pocket/`` for inspiration - they're not too hard to work out.
-The ``.toml`` files outside of ``/en/`` basically point to the ones in ``/en/configs/``
-and are a 'gateway' through which we spec which config files are relevant to which
-translation stragegy (community or vendor - or neither if it's staff-only translation).
+The root ``.toml`` files point to the ones in ``/configs/`` and are a 'gateway' through which we
+specify which config files are relevant to which translation strategy (community or vendor - or
+neither if it's staff-only translation).
 
-2. **REPO SETUP (Bedrock and/or L10N team admin)**
+2. **REPO SETUP**
 
-You will need to set up one or two new repos, to hold the translation files as
-part of the pipeline.
+There are two repos, to hold the translation files as part of the pipeline.
 
-i. **A repo in where the files are sent to** in ``https://github.com/mozilla-l10n/``
-for the L10N team's automation to pick up.
+    * **A repo in where the files are sent to** for the L10N team's automation to pick up.
+      For example, Mozorg uses ``github.com/mozilla-l10n/www-l10n/``.
 
-For example, Mozorg uses ``github.com/mozilla-l10n/www-l10n/`` and Pocket uses
-``github.com/mozilla-l10n/www-pocket-l10n/``.
-Your new ``github.com/mozilla-l10n/www-newintegration-l10n/`` repo will be needed
-regardless of who does the actual translation work.
+    * **An optional repo where files are post-processed following translation**.  For example,
+      Mozorg uses ``github.com/mozmeao/www-l10n/``.
 
-ii. **An optional repo where files are post-processed following translation**.
+    .. important::
+        **This repo is optional if not using Pontoon/community translations.**
+        Why? If the translations are done by the community (via Pontoon), there is a
+        possibility that not enough of the strings will be translated in order to render
+        the content in the relevant locale. We run a :abbr:`CI (Continuous Integration)`
+        task to determine whether a locale has enough translated strings to be considered
+        'active'. If we used a vendor entirely, we would expect all locales to be 100% translated.
 
-If relevant, this will live in ``github.com/mozmeao/`` - for example ``github.com/mozmeao/www-newintegration-l10n/``
+3. **CI SETUP**
 
-.. important::
-    **If you are not using Pontoon/community translations, you do NOT need to create
-    this repo.**
-    Why? If the translations are done by the community (via Pontoon), there is a
-    possibility that not enough of the strings will be translated in order to render
-    the content in the relevant locale. We run a :abbr:`CI (Continuous Integration)`
-    task to determine whether a locale has enough translated strings to be considered
-    'active'. At the moment, only Mozorg uses this pattern. The Pocket-mode translations
-    do not have their activation measured because their translations come entirely from
-    a vendor and we expect the Pocket strings to be 100% translated.
-
-3. **CI SETUP (Bedrock dev)**
-
-Only relevant if using Pontoon community translations. Details of how MozMarRobot
-is hooked are best gleaned from looking at ``https://gitlab.com/mozmeao/www-fluent-update``.
+Details of how MozMarRobot is hooked are best gleaned from looking at
+``https://gitlab.com/mozmeao/www-fluent-update``.
 
 In short, once new translations land in the string-source repo (e.g.
-``github.com/mozilla-l10n/www-newintegration-l10n``) they are cloned over to the
-activation-check repo ``github.com/mozmeao/www-newintegration-l10n/`` by CI
-and later pulled into Bedrock from there.
+``github.com/mozilla-l10n/www-l10n``) they are cloned over to the activation-check repo
+``github.com/mozmeao/www-l10n/`` by CI and later pulled into Bedrock from there.
 
-4. **CONFIGURE SETTINGS (Bedrock dev)**.
+4. **CONFIGURATION SETTINGS**.
 
-You'll also have to update settings so that when the site is in
-'newintegration' mode, it knows which L10N-related local folders and remote repos
-to use. Look in ``settings/__init__.py`` to see what we did for Pocket mode.
+There are many settings in ``settings/base.py`` that help bedrock know what remote repos and local
+folders to use.  Search this file for settings starting with ``FLUENT_`` to find them.
 
-You'll also have to set up new env vars to provide the new repo and filepath
-settings' values, which will mean updating ``github.com/mozmeao/www-config/``
-and possibly getting new secrets provisioned in Kubernetes if you need to use
-a separate auth token for ``github.com/mozilla-l10n/``. (You may not.)
-
-Note that if you are *not* using community/Pontoon translations - and therefore you
-don't need to use an intermediary repo to calculate activation status - you can
-just use the ``mozilla-l10n/www-newintegration-l10n`` repo for both outbound and
-inbound translations - look at the Pocket Mode setting for an example of this.
-
-5. **EXPAND L10N UPDATE SCRIPT (Bedrock dev)**.
+5. **L10N UPDATE SCRIPT**.
 
 **Uploading strings for translation**
 
-Uploading ```en``-locale source strings from Bedrock to the
-``github.com/mozilla-l10n/`` repos is handled by ``bedrock/bin/open-ftl-pr.sh``.
-This file requires no specific code changes to support a new integration as long as
-you have already set up a ``SITE_MODE`` for 'newintegration'.
+Uploading ``en``-locale source strings from Bedrock to the
+``github.com/mozilla-l10n/`` repo is handled by ``bedrock/bin/open-ftl-pr.sh``.
 
-However, you **do** need to add a new entry to ``bedrock/.gitlab-ci.yml`` –
-copy the ``update-l10n`` step, in a similar way to how it's been duplicated
-for ``update-pocket-l10n``.
+See the Github workflow in ``.github/workflows/`` for where this is triggered.
 
 **Downloading translated strings**
 
-Update the configuration dict at the top of ``bedrock/lib/l10n_utils/management/commands/l10n_update.py``
-so that when that management command is run, it will pull down the appropriate translations for "newintegration".
-
-Tip: to test drive things, you can fork the real repos and test against your
-forks by specifying them via local env vars.
-
-6. **VENDOR SETUP (L10N Team)**
-
-The vendor (e.g. Smartling) will need to add the new string-source repo
-(``github.com/mozilla-l10n/www-newintegration-l10n``) to its configuration.
-Once this is done new translations from the vendor will be added to that repo,
-and synced down to Bedrock. This step is out of our hands, but the vendor's
-technical contact should be able to make it happen.
-
-7. **PONTOON SETUP (L10N Team)**
-
-Details to come for setting up community translations using Pontoon.
-(Contributions about this aspect are welcome!)
+The script ``bedrock/lib/l10n_utils/management/commands/l10n_update.py`` will pull down the
+appropriate translations.

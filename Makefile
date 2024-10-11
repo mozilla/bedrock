@@ -2,7 +2,6 @@ DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker) compose
 DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
-POCKET_MODE = Pocket
 
 # Check if 'uv' exists and set the command accordingly
 ifneq (, $(shell which uv 2>/dev/null))
@@ -71,19 +70,11 @@ pull: .env
 
 rebuild: clean build
 
-# Run in Mozorg-only mode, using Bedrock to serve ONLY Mozorg pages
 run: .docker-build-pull
 	${DC} up assets app
 
 run-prod: .docker-build-pull
 	${DC} up release-local
-
-# Run in Pocket-only mode, using Bedrock to serve ONLY Pocket pages _at the root path_
-run-pocket: .docker-build-pull
-	-SITE_MODE=${POCKET_MODE} ${DC} up assets app
-
-run-pocket-prod: .docker-build-pull
-	-SITE_MODE=${POCKET_MODE} ${DC} up release-local
 
 stop:
 	${DC} stop
@@ -213,4 +204,4 @@ install-custom-git-hooks:
 uninstall-custom-git-hooks:
 	rm .git/hooks/post-merge
 
-.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod run-pocket run-pocket-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks run-local-task-queue
+.PHONY: all clean build pull docs livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks run-local-task-queue
