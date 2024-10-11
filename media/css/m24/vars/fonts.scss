@@ -30,8 +30,8 @@ $m24-font-path: '/media/fonts/m24';
     font-style: italic;
     font-weight: 600;
     src:
-        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldIt.woff2') format('woff2'),
-        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldIt.woff') format('woff');
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldItalic.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-text/MozillaText-SemiBoldItalic.woff') format('woff');
 }
 
 @font-face {
