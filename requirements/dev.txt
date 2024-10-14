@@ -2286,8 +2286,8 @@ wagtail-localize-smartling==0.3.0 \
     --hash=sha256:0b09d2986c464e5aaa632b250d4b8a4ac2a130101035106afe8c18030baec82b \
     --hash=sha256:4dc69b6bba8834f0bd3a91a482a8ed7727b6cd0b34aa3107f141d0033c7954a7
     # via -r requirements/prod.txt
-wagtaildraftsharing @ https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.1.0.tar.gz#egg=wagtaildraftsharing \
-    --hash=sha256:085b641f63e55a85f38e5a56db943601fdff74cada9a4befc59b69db9c327377
+wagtaildraftsharing @ https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.1.1.tar.gz#egg=wagtaildraftsharing \
+    --hash=sha256:606c45c305dda042f8d058ef49d789cab5cced4c6905adebb82620e8ebbcf1cd
     # via -r requirements/prod.txt
 wcwidth==0.2.13 \
     --hash=sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859 \
