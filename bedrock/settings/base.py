@@ -1865,50 +1865,6 @@ VPN_BLOCK_DOWNLOAD_COUNTRY_CODES = [
     "SY",  # Syria
 ]
 
-# VPN / RELAY BUNDLE ============================================================================
-
-# Product ID for VPN & Relay bundle subscriptions.
-VPN_RELAY_BUNDLE_PRODUCT_ID = config("VPN_RELAY_BUNDLE_PRODUCT_ID", default="prod_MQ9Zf1cyI81XS2" if DEV else "prod_MIex7Q079igFZJ")
-
-# VPN & Relay bundle plan IDs by currency/language.
-VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
-    "usd": {
-        "en": {
-            "12-month": {
-                "id": "price_1Lwp7uKb9q6OnNsLQYzpzUs5" if DEV else "price_1LwoSDJNcmPzuWtR6wPJZeoh",
-                "price": "6.99",
-                "total": "83.88",
-                "currency": "USD",
-                "saving": 40,
-                "analytics": {
-                    "brand": "vpn",
-                    "plan": "vpn + relay",
-                    "currency": "USD",
-                    "discount": "83.88",
-                    "price": "83.88",
-                    "period": "yearly",
-                },
-            },
-        }
-    },
-}
-
-# Map of country codes to allocated VPN & Relay bundle currency/language plan IDs.
-# Each country can support both a default language and (optionally) a set of one
-# or more alternative languages.
-VPN_RELAY_BUNDLE_PRICING = {
-    "US": {
-        "default": VPN_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
-    },
-}
-
-# Countries where VPN & Relay bundle is available.
-# Phone masking is only supported in these countries.
-VPN_RELAY_BUNDLE_COUNTRY_CODES = [
-    "CA",  # Canada
-    "US",  # United States of America
-]
-
 # List of locales that are supported in the Mozilla VPN client application.
 VPN_SUPPORTED_LOCALES = [
     "co",

@@ -485,22 +485,6 @@ TEST_VPN_VARIABLE_PRICING = {
     },
 }
 
-TEST_VPN_RELAY_BUNDLE_PRODUCT_ID = "prod_MIex7Q079igFZJ"
-
-TEST_VPN_RELAY_BUNDLE_PLAN_ID_MATRIX = {
-    "usd": {
-        "en": {
-            "12-month": {"id": "price_1LwoSDJNcmPzuWtR6wPJZeoh", "price": "6.99", "total": "83.88", "currency": "USD", "saving": 50},
-        }
-    },
-}
-
-TEST_VPN_RELAY_BUNDLE_PRICING = {
-    "US": {
-        "default": TEST_VPN_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
-    },
-}
-
 
 @pytest.mark.parametrize(
     "locale",
@@ -570,8 +554,6 @@ def render(s, context=None):
     VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
-    VPN_RELAY_BUNDLE_PRODUCT_ID=TEST_VPN_RELAY_BUNDLE_PRODUCT_ID,
-    VPN_RELAY_BUNDLE_PRICING=TEST_VPN_RELAY_BUNDLE_PRICING,
 )
 class TestVPNSubscribeLink(TestCase):
     rf = RequestFactory()
@@ -584,7 +566,6 @@ class TestVPNSubscribeLink(TestCase):
         class_name="mzp-c-button",
         country_code=None,
         lang=None,
-        bundle_relay=False,
         optional_parameters=None,
         optional_attributes=None,
     ):
@@ -592,7 +573,7 @@ class TestVPNSubscribeLink(TestCase):
         req.locale = "en-US"
         return render(
             f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
-                                        '{lang}', {bundle_relay}, {optional_parameters}, {optional_attributes}) }}}}""",
+                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
             {"request": req},
         )
 
@@ -649,26 +630,6 @@ class TestVPNSubscribeLink(TestCase):
             "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
-
-    def test_vpn_relay_bundle_subscribe_link_variable_12_month_us_en(self):
-        """Should return expected markup for variable 12-month plan link"""
-        markup = self._render(
-            plan="12-month",
-            country_code="US",
-            lang="en-US",
-            bundle_relay=True,
-        )
-        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh", markup)
-
-    def test_vpn_relay_bundle_subscribe_link_variable_12_month_ca_en(self):
-        """Should return expected markup for variable 12-month plan link"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CA",
-            lang="en-CA",
-            bundle_relay=True,
-        )
-        self.assertIn("/prod_MIex7Q079igFZJ?plan=price_1LwoSDJNcmPzuWtR6wPJZeoh", markup)
 
     def test_vpn_subscribe_link_variable_12_month_us_en(self):
         """Should contain expected 12-month plan ID (US / en-US)"""
@@ -1445,15 +1406,14 @@ class TestVPNMonthlyPrice(TestCase):
 
 @override_settings(
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
-    VPN_RELAY_BUNDLE_PRICING=TEST_VPN_RELAY_BUNDLE_PRICING,
 )
 class TestVPNTotalPrice(TestCase):
     rf = RequestFactory()
 
-    def _render(self, country_code, lang, bundle_relay=False):
+    def _render(self, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render(f"{{{{ vpn_total_price('{country_code}', '{lang}', {bundle_relay}) }}}}", {"request": req})
+        return render(f"{{{{ vpn_total_price('{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_12_month_total_price_usd_en_us(self):
         """Should return expected markup"""
@@ -1533,18 +1493,6 @@ class TestVPNTotalPrice(TestCase):
         expected = "264,00\xa0zł total"
         self.assertEqual(markup, expected)
 
-    def test_vpn_relay_bundle_12_month_total_price_usd_en_us(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="US", lang="en-US", bundle_relay=True)
-        expected = "$83.88 total + tax"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_relay_bundle_12_month_total_price_usd_en_ca(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="CA", lang="en-CA", bundle_relay=True)
-        expected = "US$83.88 total + tax"
-        self.assertEqual(markup, expected)
-
     def test_vpn_12_month_total_price_unknown_locale(self):
         """Should return expected markup"""
         markup = self._render(country_code="US", lang="ach")
@@ -1554,15 +1502,14 @@ class TestVPNTotalPrice(TestCase):
 
 @override_settings(
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
-    VPN_RELAY_BUNDLE_PRICING=TEST_VPN_RELAY_BUNDLE_PRICING,
 )
 class TestVPNSaving(TestCase):
     rf = RequestFactory()
 
-    def _render(self, country_code, lang, bundle_relay=False):
+    def _render(self, country_code, lang):
         req = self.rf.get("/")
         req.locale = "en-US"
-        return render(f"{{{{ vpn_saving('{country_code}', '{lang}', {bundle_relay}) }}}}", {"request": req})
+        return render(f"{{{{ vpn_saving('{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_12_month_saving_usd(self):
         """Should return expected markup"""
@@ -1615,18 +1562,6 @@ class TestVPNSaving(TestCase):
     def test_vpn_12_month_saving_ron(self):
         """Should return expected markup"""
         markup = self._render(country_code="RO", lang="en-US")
-        expected = "Save 50%"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_relay_bundle_12_month_saving_usd(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="US", lang="en-US", bundle_relay=True)
-        expected = "Save 50%"
-        self.assertEqual(markup, expected)
-
-    def test_vpn_relay_bundle_12_month_saving_ca(self):
-        """Should return expected markup"""
-        markup = self._render(country_code="CA", lang="en-US", bundle_relay=True)
         expected = "Save 50%"
         self.assertEqual(markup, expected)
 
