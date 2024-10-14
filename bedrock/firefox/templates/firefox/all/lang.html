@@ -10,7 +10,7 @@
   {% if product and platform and locale %}
     <span class="c-step-choice">{{ locale_name }}</span>
     {% if product.slug.startswith('desktop') and platform != "win-store" %}
-      <a href="{{ url('firefox.all.locales', product_slug=product.slug, platform=platform) }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-language') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+      <a href="{{ url('firefox.all.locales', product_slug=product.slug, platform=platform) }}" class="load-content-partial c-step-icon"><img alt="{{ ftl('firefox-all-change-language') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
     {% endif %}
   {% elif product and platform %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
@@ -24,7 +24,7 @@
   <h3 class="c-step-prompt">{{ ftl('firefox-all-select-your-preferred-language') }}<img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30"></h3>
   <ul class="c-lang-list">
     {% for locale, name in locales %}
-      <li><a href="{{ url('firefox.all.download', product_slug=product.slug, platform=platform, locale=locale) }}">{{ name }}</a></li>
+      <li><a href="{{ url('firefox.all.download', product_slug=product.slug, platform=platform, locale=locale) }}" class="load-content-partial">{{ name }}</a></li>
     {% endfor %}
   </ul>
 </div>

@@ -276,7 +276,10 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
     platform_name = None
     locale_name = None
     download_url = None
-    template_name = "firefox/all/base.html"
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        template_name = "firefox/all/includes/main.html"
+    else:
+        template_name = "firefox/all/base.html"
     lang_multi = ftl("firefox-all-lang-multi", ftl_files=ftl_files)
 
     if product:
