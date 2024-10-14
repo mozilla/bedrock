@@ -15,6 +15,7 @@
     {{ css_bundle('protocol-mozilla') }}
   {% endif %}
   {% if switch('m24-navigation-and-footer') and LANG.startswith('en-') %}
+    {{ css_bundle('m24-root') }}
     {{ css_bundle('m24-navigation-and-footer') }}
   {% endif %}
 {% endblock %}
