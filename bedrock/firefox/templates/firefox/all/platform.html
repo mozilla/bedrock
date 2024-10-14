@@ -12,7 +12,7 @@
   {% if product and platform %}
     <span class="c-step-choice">{{ platform_name }}</span>
     {% if product.slug.startswith('desktop') %}
-      <a href="{{ url('firefox.all.platforms', product_slug=product.slug) }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-platform') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
+      <a href="{{ url('firefox.all.platforms', product_slug=product.slug) }}" class="load-content-partial c-step-icon"><img alt="{{ ftl('firefox-all-change-platform') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
     {% endif %}
   {% elif product %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
@@ -31,7 +31,7 @@
   <div class="c-step-contents">
     <ul class="c-platform-list">
       {% for platform, name in platforms %}
-        <li><a href="{{ url('firefox.all.locales', product_slug=product.slug, platform=platform) }}">{{ name }}</a></li>
+        <li><a href="{{ url('firefox.all.locales', product_slug=product.slug, platform=platform) }}" class="load-content-partial">{{ name }}</a></li>
       {% endfor %}
     </ul>
     <div id="installer-help" class="c-help mzp-u-modal-content">
