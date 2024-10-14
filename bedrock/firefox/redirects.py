@@ -40,6 +40,10 @@ def mobile_app(request, *args, **kwargs):
         "mzaonboardingemail-nl",
         "mzaonboardingemail-pl",
         "firefox-all",
+        "fxshare1",
+        "fxshare2",
+        "fxshare3",
+        "fxshare4",
     ]
 
     for p in product_options:
