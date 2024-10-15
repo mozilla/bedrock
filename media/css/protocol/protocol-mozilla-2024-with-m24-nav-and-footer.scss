@@ -1,0 +1,17 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// These are general styles for elements/components that occur on every page.
+// Individual pages may include additional component styles as needed.
+@import './protocol-common-styles';
+
+// m24 nav and footer
+@import './m24-nav-and-footer';
+
+// Temporary styling until the newsletter component is updated in Protocol
+// https://github.com/mozilla/protocol/issues/578
+@import './protocol-temporary-styles';
+
+// Mozilla 2024 brand theme
+@import './protocol-m24-brand-theme';

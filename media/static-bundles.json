@@ -251,12 +251,6 @@
     },
     {
       "files": [
-        "css/m24/base-navigation-and-footer.scss"
-      ],
-      "name": "m24-navigation-and-footer"
-    },
-    {
-      "files": [
         "css/legal/legal.scss"
       ],
       "name": "legal"
@@ -1157,9 +1151,16 @@
     {
       "files": [
         "css/m24/root.scss",
-        "css/protocol/protocol-mozilla-2024.scss"
+        "css/protocol/protocol-mozilla-2024-with-legacy-nav-and-footer.scss"
       ],
-      "name": "protocol-mozilla-2024"
+      "name": "protocol-mozilla-2024-with-legacy-nav-and-footer"
+    },
+    {
+      "files": [
+        "css/m24/root.scss",
+        "css/protocol/protocol-mozilla-2024-with-m24-nav-and-footer.scss"
+      ],
+      "name": "protocol-mozilla-2024-with-m24-nav-and-footer"
     }
   ],
   "js": [
