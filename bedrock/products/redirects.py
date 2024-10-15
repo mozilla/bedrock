@@ -12,7 +12,10 @@ def mobile_app(request, *args, **kwargs):
 
     product_options = ["vpn"]
 
-    campaign_options = ["vpn-landing-page"]
+    campaign_options = [
+        "vpn-landing-page",
+        "vpn-pricing-page",
+    ]
 
     for p in product_options:
         if f"product={p}" in qs:
