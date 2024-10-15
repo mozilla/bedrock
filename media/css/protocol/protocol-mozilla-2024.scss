@@ -91,6 +91,12 @@ template {
     background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
 }
 
+// temporary logo refresh for old footer
+.mzp-c-footer-primary-logo.m24-logo a {
+    background-image: url('/media/img/logos/m24/lockup-white.svg');
+    height: 27px;
+}
+
 /* ----------------------------------------------------------------------------- */
 // Mozilla 2024 brand theme
 :root {
