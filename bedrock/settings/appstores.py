@@ -117,3 +117,9 @@ MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK = "https://apps.microsoft.com/deta
 
 # Link to Firefox Beta on the Microsoft Windows Store with custom protocol handler.
 MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_DIRECT_LINK = "ms-windows-store://pdp/?productid=9nzw26frndln"
+
+# Link to Mozilla VPN on the Google Play Store.
+GOOGLE_PLAY_VPN_LINK = "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn"
+
+# Link to Mozilla VPN on the Apple App Store.
+APPLE_APPSTORE_VPN_LINK = "https://apps.apple.com/{country}/app/apple-store/id1489407738"
