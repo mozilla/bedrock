@@ -30,6 +30,10 @@ class VPNCallToActionSnippet(TranslatableMixin):
         FieldPanel("image"),
     ]
 
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "VPN Call To Action Snippet"
+        verbose_name_plural = "VPN Call To Action Snippets"
+
     def __str__(self):
         return f"{self.heading} – {self.locale}"
 
