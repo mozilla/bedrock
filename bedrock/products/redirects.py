@@ -6,7 +6,6 @@ from bedrock.redirects.util import mobile_app_redirector, redirect
 
 
 def mobile_app(request, *args, **kwargs):
-    qs = request.META.get("QUERY_STRING", "")
     campaign = None
     product = "vpn"
 
@@ -18,12 +17,14 @@ def mobile_app(request, *args, **kwargs):
     ]
 
     for p in product_options:
-        if f"product={p}" in qs:
+        if p == request.GET.get("product"):
             product = p
+            break
 
     for c in campaign_options:
-        if f"campaign={c}" in qs:
+        if c == request.GET.get("campaign"):
             campaign = c
+            break
 
     return mobile_app_redirector(request, product, campaign)
 
