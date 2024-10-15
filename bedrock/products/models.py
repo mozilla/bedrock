@@ -31,7 +31,7 @@ class VPNCallToActionSnippet(TranslatableMixin):
     ]
 
     def __str__(self):
-        return self.heading
+        return f"{self.heading} – {self.locale}"
 
 
 register_snippet(VPNCallToActionSnippet)
