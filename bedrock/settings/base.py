@@ -263,6 +263,7 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
     "banners/firefox-app-store",
+    "banners/m24-pencil-banner",
     "brands",
     "download_button",
     "footer",
@@ -271,7 +272,6 @@ FLUENT_DEFAULT_FILES = [
     "mozorg/about/shared",
     "navigation",
     "navigation_v2",
-    "m24-pencil-banner",
     "navigation_refresh",
     "newsletter_form",
     "send_to_device",
