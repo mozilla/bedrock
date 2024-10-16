@@ -1790,13 +1790,11 @@ VPN_COUNTRY_CODES = [
     "IM",  # Isle of Man (a British Crown dependency)
     "IO",  # British Indian Ocean Territory
     "JE",  # Jersey (a British Crown dependency)
-    "UK",  # United Kingdom
     "VG",  # Virgin Islands (British)
     # USA + "Territories"
     "AS",  # American Samoa
     "MP",  # Northern Mariana Islands
     "PR",  # Puerto Rico
-    "UM",  # United States Minor Outlying Islands
     "US",  # United States of America
     "VI",  # Virgin Islands (U.S.)
     # EU Countries
