@@ -31,14 +31,13 @@
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
-  {% if switch('m24-global-styles') %}
+  {% if switch('m24-website-refresh') %}
     {{ css_bundle('protocol-mozilla-2024') }}
+    {% if LANG.startswith('en-') %}
+      {{ css_bundle('m24-navigation-and-footer') }}
+    {% endif %}
   {% else %}
     {{ css_bundle('protocol-firefox') }}
-  {% endif %}
-  {% if switch('m24-navigation-and-footer') and LANG.startswith('en-') %}
-    {{ css_bundle('m24-root') }}
-    {{ css_bundle('m24-navigation-and-footer') }}
   {% endif %}
 
   <!--[if IE]>
