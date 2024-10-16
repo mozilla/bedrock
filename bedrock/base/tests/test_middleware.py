@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from contextlib import suppress
+from importlib import reload
 from unittest import mock
 
 from django.http import HttpResponse
@@ -351,3 +352,43 @@ def test_csp_report_percentage_zero(csp_middleware):
     assert csp.constants.HEADER_REPORT_ONLY in response.headers
     assert "report-uri" not in response.headers[csp.constants.HEADER]
     assert "report-uri" in response.headers[csp.constants.HEADER_REPORT_ONLY]
+
+
+@mock.patch.dict("os.environ", {"CSP_REPORT_PERCENTAGE": "0.5"})
+def test_csp_report_percentage_can_be_float():
+    # Test report percentage is cast to a float.
+    from bedrock import settings
+
+    # Force settings to reload pulling in the mocked environ
+    reload(settings)
+
+    assert settings.CONTENT_SECURITY_POLICY["REPORT_PERCENTAGE"] == 0.5
+    assert settings.CONTENT_SECURITY_POLICY_REPORT_ONLY is None
+
+
+@mock.patch.dict("os.environ", {"CSP_REPORT_URI": "/_the_csp_dude"}, clear=True)
+def test_csp_report_uri():
+    # Test if report-uri is set it is added to CSP config.
+    from bedrock import settings
+
+    # Force settings to reload pulling in the mocked environ
+    reload(settings)
+
+    assert settings.csp_report_uri == "/_the_csp_dude"
+    assert settings.CONTENT_SECURITY_POLICY["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
+    assert settings.csp_ro_report_uri is None
+    assert settings.CONTENT_SECURITY_POLICY_REPORT_ONLY is None
+
+
+@mock.patch.dict("os.environ", {"CSP_REPORT_URI": "/_the_csp_dude", "CSP_RO_REPORT_URI": "/_csp_ro"}, clear=True)
+def test_csp_ro_report_uri():
+    # Test if report-only report-uri is set it is added to CSP config.
+    from bedrock import settings
+
+    # Force settings to reload pulling in the mocked environ
+    reload(settings)
+
+    assert settings.csp_report_uri == "/_the_csp_dude"
+    assert settings.CONTENT_SECURITY_POLICY["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
+    assert settings.csp_ro_report_uri == "/_csp_ro"
+    assert settings.CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] == "/_csp_ro"
