@@ -608,6 +608,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-firefox-confirm.scss"
+      ],
+      "name": "newsletter-firefox-confirm"
+    },
+    {
+      "files": [
         "css/mozorg/mpl-2-0.scss"
       ],
       "name": "mpl-2-0"
@@ -1278,6 +1284,12 @@
         "js/newsletter/newsletter-firefox-experiment.es6.js"
       ],
       "name": "newsletter-firefox-experiment"
+    },
+    {
+      "files": [
+        "js/newsletter/confirm-init.es6.js"
+      ],
+      "name": "newsletter-firefox-confirm"
     },
     {
       "files": [
