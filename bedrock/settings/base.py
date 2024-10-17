@@ -1847,7 +1847,7 @@ VPN_MOBILE_SUB_COUNTRY_CODES = [
     "SA",  # Saudi Arabia
     "SN",  # Senegal
     "TH",  # Thailand
-    "TR",  # Türkiye
+    "TR",  # Turkey
     "TW",  # Taiwan
     "UA",  # Ukraine
     "UG",  # Uganda
@@ -1858,6 +1858,7 @@ VPN_MOBILE_SUB_COUNTRY_CODES = [
 # Countries where VPN is available for subscription only via Google Play Store.
 VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES = [
     "BD",  # Bangladesh
+    "BR",  # Brazil
     "MA",  # Morocco
     "SN",  # Senegal
 ]
