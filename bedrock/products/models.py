@@ -9,7 +9,7 @@ from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.pages import ArticleDetailPageBase, ArticleIndexPageBase
-from bedrock.products.views import vpn_available
+from bedrock.products.views import vpn_available, vpn_available_mobile_sub_only
 
 
 class VPNCallToActionSnippet(TranslatableMixin):
@@ -70,6 +70,7 @@ class VPNResourceCenterIndexPage(ArticleIndexPageBase):
         ARTICLE_GROUP_SIZE = 6
         context = super().get_context(request)
         vpn_available_in_country = vpn_available(request)
+        mobile_sub_only = vpn_available_mobile_sub_only(request)
         article_data = VPNResourceCenterDetailPage.objects.filter(locale=self.locale).live().public()
 
         first_article_group, second_article_group = (
@@ -81,6 +82,7 @@ class VPNResourceCenterIndexPage(ArticleIndexPageBase):
         context["ftl_files"] = ["products/vpn/resource-center", "products/vpn/shared"]
         context["second_article_group"] = second_article_group
         context["vpn_available"] = vpn_available_in_country
+        context["mobile_sub_only"] = mobile_sub_only
         return context
 
 
