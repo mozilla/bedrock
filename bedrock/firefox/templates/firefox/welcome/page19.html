@@ -242,6 +242,7 @@
 {% block content_body %}
   <ul class="mzp-l-content mzp-t-content-lg mzp-l-columns mzp-t-columns-three" role="group" aria-label="Why update?">
       {% call picto(
+        base_el='li',
         title=picto_one_heading,
         image=resp_img(
           url='img/firefox/welcome/page19/fast.svg',
@@ -257,6 +258,7 @@
       {% endcall %}
 
       {% call picto(
+        base_el='li',
         title=picto_two_heading,
         image=resp_img(
           url='img/firefox/welcome/page19/private.svg',
@@ -272,6 +274,7 @@
       {% endcall %}
 
       {% call picto(
+        base_el='li',
         title=picto_three_heading,
         image=resp_img(
           url='img/firefox/welcome/page19/yours.svg',

@@ -51,9 +51,10 @@
 {% endblock %}
 
 {% block content_body %}
-  <ul class="mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-three c-pages-20-21-items" role="group" aria-label="Why update?">
+  <ul class="mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-three c-pages-20-21-items" role="group" aria-label="{{ ftl('welcome-page20-21-why-update') }}">
       {% call picto(
-        title=ftl('welcome-page20-21-protect-your-date'),
+        base_el='li',
+        title=ftl('welcome-page20-21-protect-your-data'),
         image=resp_img(
           url='img/firefox/welcome/page20-21/back-up.svg',
           optional_attributes={
@@ -69,6 +70,7 @@
       {% endcall %}
 
       {% call picto(
+        base_el='li',
         title=ftl('welcome-page20-21-keep-using'),
         image=resp_img(
           url='img/firefox/welcome/page20-21/add-ons.svg',
@@ -85,6 +87,7 @@
       {% endcall %}
 
       {% call picto(
+        base_el='li',
         title=ftl('welcome-page20-21-talk-to-us'),
         image=resp_img(
           url='img/firefox/welcome/page20-21/community.svg',
@@ -97,7 +100,7 @@
         body=True,
       ) %}
       <p>{{ ftl('welcome-page20-21-firefox-support-community') }}</p>
-      <p><a href="" data-cta-text="Get in touch">{{ ftl('welcome-page20-21-get-in-touch') }}</a></p>
+      <p><a href="https://support.mozilla.org/en-US/questions/1468274" data-cta-text="Get in touch">{{ ftl('welcome-page20-21-get-in-touch') }}</a></p>
       {% endcall %}
     </ul>
 {% endblock %}
