@@ -51,7 +51,7 @@ and may be preferred, particularly if you're doing frontend work, which is curre
     easier across all contributors by ensuring everyone has the same ones set up.
 
     Install the framework by running ``pip install pre-commit``, then - ensuring you are in your ``bedrock`` directory -
-    run ``pre-commit install`` in your terminal. This will set up the hooks that are specified in ``bedrock/.precommit.yaml``
+    run ``pre-commit install`` in your terminal, followed by ``pre-commit install-hooks``. This will set up the hooks that are specified in ``bedrock/.precommit.yaml``
 
     After that setup, whenever you try to make a commit, the 'hooks' will check/lint your Python, JS, and CSS files
     beforehand and report on problems that need to be fixed before the commit can be made. This will save
