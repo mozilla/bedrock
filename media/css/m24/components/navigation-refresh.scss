@@ -13,23 +13,24 @@
 }
 
 body:has(.m24-pencil-banner) {
-    .moz24-navigation-refresh
-    .c-navigation-items {
-        &.mzp-is-open {
-            height: calc(100vh - 87px);
-            margin-top: 87px;
-        }
-
-        @media (max-width: $screen-sm) {
+    .m24-navigation-refresh {
+        .m24-c-navigation-items {
             &.mzp-is-open {
-                height: calc(100vh - 110px);
-                margin-top: 110px;
+                height: calc(100vh - 87px);
+                margin-top: 87px;
+            }
+
+            @media (max-width: $screen-sm) {
+                &.mzp-is-open {
+                    height: calc(100vh - 110px);
+                    margin-top: 110px;
+                }
             }
         }
     }
 }
 
-.moz24-navigation-refresh {
+.m24-navigation-refresh {
     background-color: $m24-color-medium-gray;
     display: flex;
     width: 100%;
