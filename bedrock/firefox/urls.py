@@ -171,6 +171,8 @@ urlpatterns = (
             "zh-CN",
         ],
     ),
+    page("firefox/welcome/20/", "firefox/welcome/page20.html", ftl_files=["firefox/welcome/page20-21"]),
+    page("firefox/welcome/21/", "firefox/welcome/page21.html", ftl_files=["firefox/welcome/page20-21"]),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr"]),
