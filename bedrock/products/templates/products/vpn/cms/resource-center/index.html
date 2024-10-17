@@ -45,6 +45,7 @@
     {% endif %}
 
     {% if second_article_group %}
+    <div class="mzp-l-card-third">
       {% for article in second_article_group %}
         {{ card(
           title=article.title,
@@ -55,6 +56,7 @@
           link_url=article.url
         ) }}
       {% endfor %}
+    </div>
 
       {# Only show the second split if there was something after the first split #}
       {% if page.call_to_action_bottom %}
