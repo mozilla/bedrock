@@ -11,23 +11,51 @@ Installing Bedrock
 Installation Methods
 ====================
 
-There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source
+There are two primary methods of installing bedrock: Docker and Local. Whichever
+you choose, you'll start by getting the source.
+
+The codebase lives at https://github.com/mozilla/bedrock/
+
+Only Mozilla staff have write access to that repository; community contributors
+do not, so should instead make a fork of the repo to work from. You will still
+be able to make pull requests from your fork into ``mozilla/bedrock``.
+
+Get the source code:
 
 .. code-block:: bash
 
+    # If you're a Mozilla staff member with write access to the repo
     $ git clone https://github.com/mozilla/bedrock.git
+
+    # Or if you lack write access to the repo
+    $ git clone https://github.com/YOUR_GITHUB_USERNAME_HERE/bedrock.git
+
+Once the codebase is cloned, switch into it:
 
 .. code-block:: bash
 
     $ cd bedrock
 
-After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
-and may be preferred by people for various reasons.
+After these basic steps you can choose your install method below.
 
-You should also install our git pre-commit hooks. Our setup uses the `pre-commit <https://pre-commit.com/>`_
-framework. Install the framework using the instructions on their site depending on your platform, then run
-``pre-commit install``. After that it will check your Python, JS, and CSS files before you commit to save you
-time waiting for the tests to run in our :abbr:`CI (Continuous Integration)` before noticing a linting error.
+Docker is the easiest and recommended way, but local installation directly onto your machine is also possible
+and may be preferred, particularly if you're doing frontend work, which is currently slower when using Docker.
+
+.. note::
+
+    You should also install our git pre-commit hooks. These are checks that automatically run before a git commit
+    is allowed. You don't have to do this in order to get bedrock running locally, but it's recommended
+    to do before you start making contributions.
+
+    The Bedrock project uses the `pre-commit <https://pre-commit.com/>`_ framework that makes managing git hooks
+    easier across all contributors by ensuring everyone has the same ones set up.
+
+    Install the framework by running ``pip install pre-commit``, then - ensuring you are in your ``bedrock`` directory -
+    run ``pre-commit install`` in your terminal. This will set up the hooks that are specified in ``bedrock/.precommit.yaml``
+
+    After that setup, whenever you try to make a commit, the 'hooks' will check/lint your Python, JS, and CSS files
+    beforehand and report on problems that need to be fixed before the commit can be made. This will save
+    you time waiting for the tests to run in our :abbr:`CI (Continuous Integration)` before noticing a linting error.
 
 Docker Installation
 -------------------
@@ -84,7 +112,6 @@ or Node then you'll need to build new images for local testing. You can do this 
 files and/or package.json file then simply running::
 
     $ make build
-
 
 .. note::
 
@@ -193,7 +220,7 @@ deactivate it when you exit the directory, you can do so with::
 
     $ pip install --upgrade pip
 
-4. Install / update dependencies ::
+4. Install / update Python dependencies ::
 
     $ make install-local-python-deps
 
@@ -216,8 +243,8 @@ deactivate it when you exit the directory, you can do so with::
 
         python3-dev libxslt-dev
 
-**Sync the database and all of the external data locally.** This gets product-details, security-advisories,
-credits, release notes, localizations, legal-docs etc::
+**Download a fresh copy of the sqlite database that Bedrock uses locally** This contains product-details, security-advisories,
+credits, release notes, localizations, legal-docs etc. We also download the latest translations of site content in many languages::
 
     $ bin/bootstrap.sh
 
@@ -234,13 +261,13 @@ credits, release notes, localizations, legal-docs etc::
 
 .. note::
 
-    As a convenience, there is a ``make preflight`` command which automatically brings your installed Python and NPM
-    dependencies up to date and also fetches the latest DB containing the latest site
-    content. This is a good thing to run after pulling latest changes from the ``main`` branch.
+    As a convenience, there is a ``make preflight`` command which calls some of the commands above to bring your
+    installed Python and NPM dependencies up to date and also fetches the latest DB containing the latest site
+    content. This is a good thing to run after pulling in latest changes from the ``main`` branch.
 
     IMPORTANT: if you do not want to replace your local DB with a fresher one, use ``make preflight -- --retain-db`` instead.
 
-    We also have a git hook that will alert you if ``make preflight`` needs to be run. You can install that with ``make install-custom-git-hooks``.
+    We also have an optional git hook that will alert you if ``make preflight`` needs to be run. You can install that with ``make install-custom-git-hooks``.
 
 .. _run-python-tests:
 
@@ -285,8 +312,8 @@ To test a single app, specify the app by name in the command above. e.g.::
     $ pytest bedrock/firefox
 
 
-Make it run
-===========
+Run a local server
+==================
 
 
 .. ATTENTION::
@@ -304,14 +331,15 @@ You can simply run the ``make run`` script mentioned above, or use docker compos
 Local
 -----
 
-To make the server run, make sure your virtualenv is activated, and then
-run the server::
+To make the server run, make sure your virtualenv is activated with
+``pyenv activate bedrock``, and then run the server::
 
     $ npm start
 
-If you are not inside a virtualenv, you can activate it by doing::
 
-    $ pyenv activate bedrock
+Wait for the server to start up and then browse to http://localhost:8000
+
+Congratulations, you should now have your own copy of www.mozilla.org running locally!
 
 Prod Mode
 ---------
