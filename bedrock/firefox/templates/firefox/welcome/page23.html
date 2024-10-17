@@ -1,0 +1,66 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+{% from "macros-protocol.html" import picto with context %}
+
+{% block page_title %}{{ ftl('welcome-page23-update-before') }}{% endblock %}
+
+{% block body_class %}welcome-page19{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page19_to_24') }}
+{% endblock %}
+
+{% block warning_notification %}
+  <aside class="c-page-header-notification">
+    <div class="mzp-c-notification-bar mzp-t-warning">
+      {{ ftl('welcome-page23-old-version') }}
+    </div>
+  </aside>
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+
+<section class="c-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
+
+    {% set sumo_url = 'href="https://support.mozilla.org/kb/root-certificate-expiration" data-cta-text="Read more about this change"' %}
+
+    <div class="c-header-image">
+      <img src="{{ static('img/firefox/welcome/root-ceritification-alert.svg') }}" alt="">
+    </div>
+
+    <h1 class="c-main-title">{{ ftl('welcome-page23-update-before') }}</h1>
+    <p class="c-main-tagline">{{ ftl('welcome-page23-your-version-of-firefox', sumo=sumo_url) }}</p>
+
+    {{ download_firefox_thanks(alt_copy=ftl('welcome-page23-update-now-cta'), button_class='mzp-t-xl', dom_id='update-firefox') }}
+
+    <p class="c-main-cta" id="update-firefox-esr"><a href="{{ url('firefox.enterprise.index') + '#download' }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">{{ ftl('welcome-page23-update-now-cta') }}</a></p>
+
+    <small>{{ ftl('welcome-page23-usually-takes') }}</small>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page11-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page19_to_24') }}
+{% endblock %}
+

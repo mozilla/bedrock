@@ -20,7 +20,7 @@ welcome-page20-21-update-your-browser = Update your { -brand-name-firefox } brow
 
 # Page 21 body
 #   $sumo (url) - link to https://support.mozilla.org/kb/root-certificate-expiration
-welcome-page20-21-on-march-14 = <strong>On March 14, 2025, your current Firefox version won’t work properly</strong>. A root certificate will expire, causing streaming video, add-ons, and other features to stop working. <a { $sumo }>Read more about this change</a>
+welcome-page20-21-on-march-14 = <strong>On March 14, 2025, your current { -brand-name-firefox } version won’t work properly</strong>. A root certificate will expire, causing streaming video, add-ons, and other features to stop working. <a { $sumo }>Read more about this change</a>
 
 welcome-page20-21-update-now-cta = Update now
 welcome-page20-21-usually-takes = Usually takes 2–3 minutes

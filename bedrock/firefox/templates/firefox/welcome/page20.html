@@ -31,7 +31,7 @@
 <section class="c-content-main">
   <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
 
-    {% set sumo_url = 'href="https://support.mozilla.org/kb/root-certificate-expiration" data-cta-type="link" data-cta-text="Read more about this change"' %}
+    {% set sumo_url = 'href="https://support.mozilla.org/kb/root-certificate-expiration" data-cta-text="Read more about this change"' %}
 
     <div class="c-header-image">
       <img src="{{ static('img/firefox/welcome/root-ceritification-alert.svg') }}" alt="">
@@ -65,7 +65,7 @@
         body=True,
       ) %}
         <p>{{ ftl('welcome-page20-21-make-sure-your-passwords') }}</p>
-        <p><a href="https://support.mozilla.org/kb/back-and-restore-information-firefox-profiles" data-cta-type="link" data-cta-text="How to back up">{{ ftl('welcome-page20-21-how-to-back-up') }}</a></p>
+        <p><a href="https://support.mozilla.org/kb/back-and-restore-information-firefox-profiles" data-cta-text="How to back up">{{ ftl('welcome-page20-21-how-to-back-up') }}</a></p>
       {% endcall %}
 
       {% call picto(
@@ -81,7 +81,7 @@
         body=True,
       ) %}
         <p>{{ ftl('welcome-page20-21-does-the-latest') }}</p>
-        <p><a href="https://addons.mozilla.org/firefox/" data-cta-type="link" data-cta-text="Search add-ons">{{ ftl('welcome-page20-21-search-add-ons') }}</a></p>
+        <p><a href="https://addons.mozilla.org/firefox/" data-cta-text="Search add-ons">{{ ftl('welcome-page20-21-search-add-ons') }}</a></p>
       {% endcall %}
 
       {% call picto(
@@ -97,7 +97,7 @@
         body=True,
       ) %}
       <p>{{ ftl('welcome-page20-21-firefox-support-community') }}</p>
-      <p><a href="" data-cta-type="link" data-cta-text="Get in touch">{{ ftl('welcome-page20-21-get-in-touch') }}</a></p>
+      <p><a href="" data-cta-text="Get in touch">{{ ftl('welcome-page20-21-get-in-touch') }}</a></p>
       {% endcall %}
     </ul>
 {% endblock %}
