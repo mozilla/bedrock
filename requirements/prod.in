@@ -2,7 +2,7 @@ APScheduler==3.10.4
 babis==0.2.4
 basket-client==1.1.0
 bleach[css]==6.1.0
-boto3==1.35.35
+boto3==1.35.42
 certifi>=2024.7.4  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
@@ -11,7 +11,7 @@ contextlib2==21.6.0
 dirsync==2.2.5
 dj-database-url==2.2.0
 django-allow-cidr==0.7.1
-django-cors-headers==4.4.0
+django-cors-headers==4.5.0
 django-crum==0.7.9
 django-csp==4.0b2
 django-extensions==3.2.3
@@ -32,7 +32,7 @@ everett==3.3.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==14.5.0  # Must match the required version in the Glean NPM package.
-granian==1.6.0
+granian==1.6.1
 honcho==1.1.0
 html5lib==1.1
 jinja2==3.1.4  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
@@ -42,7 +42,7 @@ Markdown==3.7
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
-newrelic==10.0.0
+newrelic==10.2.0
 Pillow==10.4.0
 psycopg[binary]==3.1.19
 PyGithub==2.4.0
@@ -53,7 +53,7 @@ querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures 
 requests>=2.32.3  # min secure version
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
-sentry-sdk==2.15.0
+sentry-sdk==2.17.0
 supervisor==4.2.5
 timeago==1.0.16
 https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.1.1.tar.gz#egg=wagtaildraftsharing
