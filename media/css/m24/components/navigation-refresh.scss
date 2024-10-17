@@ -12,6 +12,24 @@
     }
 }
 
+body:has(.m24-pencil-banner) {
+    .m24-navigation-refresh {
+        .m24-c-navigation-items {
+            &.mzp-is-open {
+                height: calc(100vh - 87px);
+                margin-top: 87px;
+            }
+
+            @media (max-width: $screen-sm) {
+                &.mzp-is-open {
+                    height: calc(100vh - 110px);
+                    margin-top: 110px;
+                }
+            }
+        }
+    }
+}
+
 .m24-navigation-refresh {
     background-color: $m24-color-medium-gray;
     display: flex;
