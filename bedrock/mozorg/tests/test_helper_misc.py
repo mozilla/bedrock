@@ -795,6 +795,21 @@ class TestAppStoreURL(TestCase):
             == "https://apps.apple.com/de/app/apple-store/id309601447?pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
 
+    def test_vpn_app_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("vpn", "vpn-landing-page", "en-US")
+            == "https://apps.apple.com/us/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+        )
+        assert (
+            self._render("vpn", "vpn-landing-page", "es-ES")
+            == "https://apps.apple.com/es/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+        )
+        assert (
+            self._render("vpn", "vpn-landing-page", "de")
+            == "https://apps.apple.com/de/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+        )
+
 
 class TestPlayStoreURL(TestCase):
     rf = RequestFactory()
@@ -860,6 +875,21 @@ class TestPlayStoreURL(TestCase):
         assert (
             self._render("pocket", "firefox-home", "de")
             == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+        )
+
+    def test_vpn_play_store_url_localized_campaign(self):
+        """should return localized URL with additional campaign parameters"""
+        assert (
+            self._render("vpn", "vpn-landing-page", "en-US")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=en"
+        )
+        assert (
+            self._render("vpn", "vpn-landing-page", "es-ES")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=es"
+        )
+        assert (
+            self._render("vpn", "vpn-landing-page", "de")
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=de"
         )
 
 

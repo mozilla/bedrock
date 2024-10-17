@@ -74,12 +74,19 @@
 
     {% if vpn_available %}
       <p class="c-main-cta">
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-text="Save on Mozilla VPN" data-cta-position="primary" data-testid="get-mozilla-vpn-hero-button">
-          {{ vpn_saving(country_code=country_code, lang=LANG, ftl_string='vpn-shared-save-percent-on') }}
-        </a>
-        <small>
-          {{ ftl('vpn-shared-with-an-annual-subscription') }}
-        </small>
+        {% if mobile_sub_only %}
+          <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-text="Get Mozilla VPN" data-cta-position="primary" data-testid="get-mozilla-vpn-hero-button">
+            {{ ftl('vpn-shared-subscribe-link') }}
+          </a>
+        {% else %}
+          {# Only mention 12-month subscription in the CTA if visitor can purchase through subplat / FxA. #}
+          <a class="mzp-c-button mzp-t-product mzp-t-xl" href="#pricing" data-cta-text="Save on Mozilla VPN" data-cta-position="primary" data-testid="get-mozilla-vpn-hero-button">
+            {{ vpn_saving(country_code=country_code, lang=LANG, ftl_string='vpn-shared-save-percent-on') }}
+          </a>
+          <small>
+            {{ ftl('vpn-shared-with-an-annual-subscription') }}
+          </small>
+        {% endif %}
       </p>
 
     {% else %}
@@ -128,24 +135,32 @@
   {% endcall %}
 
   {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-  <section id="pricing" class="mzp-l-content mzp-t-content-xl">
+  <div id="pricing">
     {% if vpn_available %}
-      <header class="c-pricing-main-header">
-        <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
-      </header>
-
-      {% include 'products/vpn/includes/pricing-refresh.html' %}
-
+      {% if mobile_sub_only %}
+        {% with heading = ftl('vpn-landing-one-subscription-for-all-your'), campaign = 'vpn-landing-page' %}
+          {% include 'products/vpn/includes/mobile-subscribe.html' %}
+        {% endwith %}
+      {% else %}
+        <section class="mzp-l-content mzp-t-content-xl">
+          <header class="c-pricing-main-header">
+            <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
+          </header>
+          {% include 'products/vpn/includes/pricing-refresh.html' %}
+        </section>
+      {% endif %}
     {% else %}
-      <header class="c-pricing-main-header">
-        <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
+      <section class="mzp-l-content mzp-t-content-xl">
+        <header class="c-pricing-main-header">
+          <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
 
-        <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-not-available-button">
-          {{ ftl('vpn-shared-waitlist-link') }}
-        </a>
-      </header>
+          <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-not-available-button">
+            {{ ftl('vpn-shared-waitlist-link') }}
+          </a>
+        </header>
+      </section>
     {% endif %}
-  </section>
+  </div>
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you') }}</h2>
