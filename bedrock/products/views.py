@@ -153,9 +153,11 @@ def vpn_features_page(request):
     template_name = "products/vpn/features.html"
     ftl_files = ["products/vpn/features", "products/vpn/shared"]
     vpn_available_in_country = vpn_available(request)
+    mobile_sub_only = vpn_available_mobile_sub_only(request)
 
     context = {
         "vpn_available": vpn_available_in_country,
+        "mobile_sub_only": mobile_sub_only,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,

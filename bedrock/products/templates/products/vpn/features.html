@@ -303,24 +303,26 @@
     <h2 class="c-section-title">{{ ftl('vpn-features-trustworthy') }}</h2>
 
     <ul class="mzp-l-columns mzp-t-columns-three">
-      {% call picto(
-        title=ftl('vpn-features-money-back'),
-        image=resp_img(
-          url='img/products/vpn/features/icons/guarantee.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'width': '51',
-            'height': '64',
-            'loading': 'lazy'
-          }
-        ),
-        body=True,
-        base_el='li'
-      ) %}
-        <p>
-          {{ ftl('vpn-features-plus-customer-support') }}
-        </p>
-      {% endcall %}
+      {% if not mobile_sub_only %}
+        {% call picto(
+          title=ftl('vpn-features-money-back'),
+          image=resp_img(
+            url='img/products/vpn/features/icons/guarantee.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '51',
+              'height': '64',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+          base_el='li'
+        ) %}
+          <p>
+            {{ ftl('vpn-features-plus-customer-support') }}
+          </p>
+        {% endcall %}
+      {% endif %}
 
       {% call picto(
         title=ftl('vpn-features-we-never-log'),
