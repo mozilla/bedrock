@@ -8,16 +8,11 @@
     padding: $spacer-sm;
 
     .m24-pencil-banner-copy {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        text-align: center;
 
         p {
             color: $m24-color-black;
             margin-bottom: 0;
-            text-align: center;
         }
     }
 }
-
-
