@@ -264,6 +264,7 @@ def resource_center_landing_view(request):
     ARTICLE_GROUP_SIZE = 6
     template_name = "products/vpn/resource-center/landing.html"
     vpn_available_in_country = vpn_available(request)
+    mobile_sub_only = vpn_available_mobile_sub_only(request)
     active_locales = locales_with_available_content(
         classification=CONTENT_CLASSIFICATION_VPN,
         content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
@@ -301,6 +302,7 @@ def resource_center_landing_view(request):
     ctx = {
         "active_locales": active_locales,
         "vpn_available": vpn_available_in_country,
+        "mobile_sub_only": mobile_sub_only,
         "category_list": category_list,
         "first_article_group": first_article_group,
         "second_article_group": second_article_group,

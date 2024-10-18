@@ -1785,7 +1785,7 @@ VPN_COUNTRY_CODES = [
     "NZ",  # New Zealand
     "SG",  # Singapore
     # United Kingdom + "Territories"
-    "GB",  # United Kingdom of Great Britain and Northern Island
+    "GB",  # United Kingdom of Great Britain and Northern Ireland
     "GG",  # Guernsey (a British Crown dependency)
     "IM",  # Isle of Man (a British Crown dependency)
     "IO",  # British Indian Ocean Territory
