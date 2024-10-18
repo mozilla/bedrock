@@ -63,5 +63,7 @@ vpn-pricing-if-already-subscribed = If you’re already subscribed to { -brand-n
 ## Mobile only subscription copy
 
 vpn-pricing-scan-qrcode-to-download = To download the app, scan the QR Code with your mobile device or tablet
+vpn-pricing-scan-qrcode-to-download-android = To download the app, scan the QR Code with your Android device or tablet
 vpn-pricing-sign-up-on-your-mobile-device = Sign up for a { -brand-name-mozilla-vpn } subscription on your mobile device
+vpn-pricing-sign-up-on-your-android-device = Sign up for a { -brand-name-mozilla-vpn } subscription on your Android device
 vpn-pricing-download-the-app = Download the app
