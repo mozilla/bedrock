@@ -16,10 +16,20 @@
       {% if heading %}
         <h2 class="u-title-lg">{{ heading }}</h2>
       {% endif %}
-      <p class="vpn-pricing-desktop-instruction u-body-lg">{{ ftl('vpn-pricing-scan-qrcode-to-download') }}</p>
+      <p class="vpn-pricing-desktop-instruction u-body-lg">
+        {% if android_sub_only %}
+          {{ ftl('vpn-pricing-scan-qrcode-to-download-android', fallback='vpn-pricing-scan-qrcode-to-download') }}
+        {% else %}
+          {{ ftl('vpn-pricing-scan-qrcode-to-download') }}
+        {% endif %}
+      </p>
 
       <ol class="vpn-pricing-mobile-steps u-body-lg">
-        <li><span>{{ ftl('vpn-pricing-sign-up-on-your-mobile-device') }}</span></li>
+        {% if android_sub_only %}
+          <li><span>{{ ftl('vpn-pricing-sign-up-on-your-android-device', fallback='vpn-pricing-sign-up-on-your-mobile-device') }}</span></li>
+        {% else %}
+          <li><span>{{ ftl('vpn-pricing-sign-up-on-your-mobile-device') }}</span></li>
+        {% endif %}
         <li><span>{{ ftl('vpn-pricing-connect-up-to-platforms', fallback='vpn-pricing-connect-up-to', devices=connect_devices) }}</span></li>
         <li><span>{{ ftl('vpn-pricing-access', servers=connect_servers, countries=connect_countries) }}</span></li>
       </ol>
@@ -50,12 +60,19 @@
       </ul>
 
       <p class="vpn-pricing-mobile-button">
-        <a class="ga-product-download ios-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ ios_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
-          {{ ftl('vpn-pricing-download-the-app') }}
-        </a>
-        <a class="ga-product-download android-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="App Store" data-cta-type="mozilla_vpn">
-          {{ ftl('vpn-pricing-download-the-app') }}
-        </a>
+        {# In countries where people can only subscribe using the Google Play Store, we always link to that even for iOS. See #15328. #}
+        {% if android_sub_only %}
+          <a class="ga-product-download mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
+            {{ ftl('vpn-pricing-download-the-app') }}
+          </a>
+        {% else %}
+          <a class="ga-product-download ios-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ ios_url }}" data-cta-text="App Store" data-cta-type="mozilla_vpn">
+            {{ ftl('vpn-pricing-download-the-app') }}
+          </a>
+          <a class="ga-product-download android-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
+            {{ ftl('vpn-pricing-download-the-app') }}
+          </a>
+        {% endif %}
       </p>
     </div>
     <div class="mzp-c-split-media mzp-l-split-h-center">
