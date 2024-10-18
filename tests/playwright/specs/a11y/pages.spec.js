@@ -8,10 +8,10 @@
 
 const openPage = require('../../scripts/open-page');
 const { createReport, scanPage } = require('./includes/helpers');
-const { pageTestURLs } = require('./includes/urls');
+const { desktopTestURLs, mobileTestURLs } = require('./includes/urls');
 const { test, expect } = require('@playwright/test');
 
-for (const url of pageTestURLs) {
+for (const url of desktopTestURLs) {
     test.describe(
         `${url} page (desktop)`,
         {
@@ -33,7 +33,7 @@ for (const url of pageTestURLs) {
     );
 }
 
-for (const url of pageTestURLs) {
+for (const url of mobileTestURLs) {
     test.describe(
         `${url} page (mobile)`,
         {
