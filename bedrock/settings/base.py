@@ -1906,7 +1906,9 @@ VPN_SUPPORTED_LOCALES = [
     "co",
     "cs",
     "cy",
+    "da",
     "de",
+    "dsb",
     "el",
     "en",
     "es",
@@ -1920,6 +1922,7 @@ VPN_SUPPORTED_LOCALES = [
     "is",
     "it",
     "ja",
+    "ko",
     "lo",
     "nl",
     "pa",
@@ -1932,6 +1935,7 @@ VPN_SUPPORTED_LOCALES = [
     "sv",
     "tr",
     "uk",
+    "vi",
     "zh",
 ]
 
