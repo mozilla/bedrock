@@ -16,14 +16,14 @@ body:has(.m24-pencil-banner) {
     .m24-navigation-refresh {
         .m24-c-navigation-items {
             &.mzp-is-open {
-                height: calc(100vh - 87px);
                 margin-top: 87px;
-            }
 
-            @media (max-width: $screen-sm) {
-                &.mzp-is-open {
-                    height: calc(100vh - 110px);
+                @media (max-width: $screen-sm) {
                     margin-top: 110px;
+                }
+
+                @media #{$mq-md} {
+                    margin-top: 0;
                 }
             }
         }
