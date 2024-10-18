@@ -11,14 +11,14 @@ from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 class TestSitemapView(TestCase):
     def setUp(self):
         data = [
-            {"path": "/firefox/all/", "locale": "de", "lastmod": "2020-07-01T21:07:08.730133+00:00"},
-            {"path": "/firefox/", "locale": "de", "lastmod": "2020-07-01T21:07:08.730133+00:00"},
+            {"path": "/firefox/all/", "locale": "de"},
+            {"path": "/firefox/", "locale": "de"},
             {
                 "path": "/privacy/",
                 "locale": "fr",
             },
-            {"path": "/firefox/", "locale": "fr", "lastmod": "2020-07-01T21:07:08.730133+00:00"},
-            {"path": "/keymaster/gatekeeper/there.is.only.xul", "locale": NO_LOCALE, "lastmod": "2020-07-01T21:07:08.730133+00:00"},
+            {"path": "/firefox/", "locale": "fr"},
+            {"path": "/keymaster/gatekeeper/there.is.only.xul", "locale": NO_LOCALE},
             {
                 "path": "/locales/",
                 "locale": NO_LOCALE,
@@ -52,7 +52,6 @@ class TestSitemapView(TestCase):
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
                 <loc>https://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</loc>
-                <lastmod>2020-07-01T21:07:08.730133+00:00</lastmod>
               </url>
               <url>
                 <loc>https://www.mozilla.org/locales/</loc>
@@ -69,11 +68,9 @@ class TestSitemapView(TestCase):
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
                 <loc>https://www.mozilla.org/de/firefox/</loc>
-                <lastmod>2020-07-01T21:07:08.730133+00:00</lastmod>
               </url>
               <url>
                 <loc>https://www.mozilla.org/de/firefox/all/</loc>
-                <lastmod>2020-07-01T21:07:08.730133+00:00</lastmod>
               </url>
             </urlset>"""
         )
@@ -86,7 +83,6 @@ class TestSitemapView(TestCase):
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
                 <loc>https://www.mozilla.org/fr/firefox/</loc>
-                <lastmod>2020-07-01T21:07:08.730133+00:00</lastmod>
               </url>
               <url>
                 <loc>https://www.mozilla.org/fr/privacy/</loc>
