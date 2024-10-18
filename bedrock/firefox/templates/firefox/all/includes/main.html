@@ -1,0 +1,95 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<main id="partial-target">
+  <div class="mzp-l-content">
+    <div class="c-product-info" {% if product %} data-current="{{ product.slug }}"{% endif %}>
+      <div class="c-intro">
+        <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
+        <p>{{ ftl('firefox-all-everyone-deserves-access-v2', fallback="'firefox-all-everyone-deserves-access") }}</p>
+        {% if product %}
+          {% if product.slug == "desktop-release" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('desktop', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+                <li><a href="https://firefox-source-docs.mozilla.org/">{{ ftl('firefox-all-source-code') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug == "desktop-beta" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('desktop', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+                <li><a href="https://firefox-source-docs.mozilla.org/">{{ ftl('firefox-all-source-code') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug == "desktop-developer" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('desktop', 'sysreq', 'alpha') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('desktop', 'notes', 'alpha') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+                <li><a href="https://firefox-source-docs.mozilla.org/">{{ ftl('firefox-all-source-code') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug == "desktop-nightly" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('desktop', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+                <li><a href="https://firefox-source-docs.mozilla.org/">{{ ftl('firefox-all-source-code') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug == "desktop-esr" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('desktop', 'sysreq', 'organizations') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('desktop', 'notes', 'organizations') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+                <li><a href="https://firefox-source-docs.mozilla.org/">{{ ftl('firefox-all-source-code') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug == "android-beta" %}
+            <div>
+              <ul>
+                <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+              </ul>
+            </div>
+          {% elif product.slug in ["mobile-release", "android-release", "ios-release"] %}
+            <div>
+              {% if product.slug in ["android-release", "mobile-release"] %}
+              Android:
+              <ul>
+                <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+              </ul>
+              {% endif %}
+              {% if product.slug in ["ios-release", "mobile-release"] %}
+              iOS:
+              <ul>
+                <li><a href="{{ firefox_url('ios', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+                <li><a href="{{ firefox_url('ios', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+              </ul>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endif %}
+        <div class="c-support-links">
+          <ul>
+            <li><a href="{{ url('privacy.notices.firefox') }}">{{ ftl('firefox-all-firefox-privacy-notice') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/?utm_source=mozilla.org&utm_medium=referral&utm_campaign=need-help-link">{{ ftl('firefox-all-need-help') }}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="c-steps">
+        {% include 'firefox/all/product.html' %}
+        {% include 'firefox/all/platform.html' %}
+        {% include 'firefox/all/lang.html' %}
+        {% include 'firefox/all/download.html' %}
+      </div>
+    </div>
+  </div>
+</main>
