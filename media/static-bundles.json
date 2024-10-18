@@ -251,12 +251,6 @@
     },
     {
       "files": [
-        "css/m24/base-navigation-and-footer.scss"
-      ],
-      "name": "m24-navigation-and-footer"
-    },
-    {
-      "files": [
         "css/legal/legal.scss"
       ],
       "name": "legal"
@@ -1166,6 +1160,13 @@
         "css/protocol/protocol-mozilla-2024.scss"
       ],
       "name": "protocol-mozilla-2024"
+    },
+    {
+      "files": [
+        "css/m24/root.scss",
+        "css/protocol/protocal-mozilla-2024-with-new-nav-and-footer.scss"
+      ],
+      "name": "protocal-mozilla-2024-with-new-nav-and-footer"
     }
   ],
   "js": [
