@@ -13,14 +13,14 @@
 }
 
 .m24-navigation-refresh {
-    background-color: $m24-color-medium-gray;
+    background-color: $color-white;
+    border-bottom: 2px solid $m24-color-medium-gray;
     display: flex;
     width: 100%;
     position: sticky;
     z-index: 100;
     top: 0;
     left: 0;
-    box-shadow: none;
 
     @media (prefers-reduced-motion: reduce) {
         position: static;
@@ -165,9 +165,11 @@
 .m24-c-navigation-menu {
     width: 100%;
     margin-bottom: 0;
+    border-top: 2px solid $m24-color-medium-gray;
 
     @media #{$mq-md} {
         width: auto;
+        border-top: transparent;
     }
 }
 
