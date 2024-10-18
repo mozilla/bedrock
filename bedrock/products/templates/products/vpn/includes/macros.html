@@ -73,25 +73,6 @@
 </section>
 {%- endmacro %}
 
-{% macro vpn_conditional_cta(position) -%}
-  {% if vpn_available %}
-    <a class="mzp-c-button mzp-t-xl" href="#pricing" data-cta-text="Scroll to pricing" data-cta-position="{{ position }}" data-testid="get-mozilla-vpn-{{ position }}-button">
-    {{ ftl('vpn-shared-subscribe-link') }}
-    </a>
-    <p class="guarantee-copy">
-      <a href="#faq-refunds">{{ ftl('vpn-shared-money-back-guarantee') }}</a>
-    </p>
-  {% else %}
-    <a class="mzp-c-button mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="{{ position }}" data-testid="join-waitlist-{{ position }}-button">
-      {{ ftl('vpn-shared-waitlist-link') }}
-    </a>
-
-    <p class="availability-copy">
-      {{ ftl('vpn-shared-available-countries-v6') }}
-    </p>
-  {% endif %}
-{%- endmacro %}
-
 {% macro vpn_conditional_cta_refresh(position) -%}
   <div class="c-aside {{ position }} mzp-l-content mzp-t-content-xl">
     {% if vpn_available %}
@@ -101,27 +82,15 @@
           {{ ftl('vpn-shared-subscribe-link') }}
         </a>
       </p>
-      <p class="c-guarantee">{{ ftl('vpn-shared-features-guarantee') }}</p>
+      {% if not mobile_sub_only %}
+        <p class="c-guarantee">{{ ftl('vpn-shared-features-guarantee') }}</p>
+      {% endif %}
     {% else %}
       <p>
         <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-{{ position }}-button">
           {{ ftl('vpn-shared-waitlist-link') }}
         </a>
       </p>
-    {% endif %}
-  </div>
-{%- endmacro %}
-
-{% macro vpn_nav_cta(link_text, alt_link_text, download_link_text, utm_source, utm_campaign) -%}
-  <div class="vpn-nav-cta">
-    {% if vpn_available %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="#pricing" data-cta-text="Get Mozilla VPN" data-cta-position="navigation" data-testid="get-mozilla-vpn-nav-button">
-        {{ ftl('vpn-shared-subscribe-link') }}
-      </a>
-    {% else %}
-      <a class="mzp-c-button mzp-t-secondary mzp-t-md" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-cta-position="navigation" data-testid="join-waitlist-nav-button">
-        {{ ftl('vpn-shared-waitlist-link') }}
-      </a>
     {% endif %}
   </div>
 {%- endmacro %}
@@ -151,25 +120,6 @@
     </div>
   {% endif %}
 </div>
-{%- endmacro %}
-
-{% macro vpn_content_media(heading, image, class_name=None, has_outline=False) -%}
-  <section class="vpn-content-media {% if has_outline %}has-outline{% endif %} {% if class_name %}{{ class_name }}{% endif %}">
-    <div class="vpn-content-media-image-container">
-      <div class="vpn-content-media-image">
-        {{ image }}
-      </div>
-    </div>
-
-    <div class="vpn-content-media-copy">
-      <div class="vpn-content-media-copy-container">
-        <h2 class="vpn-content-media-heading">{{ heading }}</h2>
-        <div class="vpn-content-media-desc">
-          {{ caller() }}
-        </div>
-      </div>
-    </div>
-  </section>
 {%- endmacro %}
 
 {% macro vpn_nav_platform_cta(alt_link_text) -%}
