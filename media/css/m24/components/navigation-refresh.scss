@@ -12,24 +12,6 @@
     }
 }
 
-body:has(.m24-pencil-banner) {
-    .m24-navigation-refresh {
-        .m24-c-navigation-items {
-            &.mzp-is-open {
-                margin-top: 87px;
-
-                @media (max-width: $screen-sm) {
-                    margin-top: 110px;
-                }
-
-                @media #{$mq-md} {
-                    margin-top: 0;
-                }
-            }
-        }
-    }
-}
-
 .m24-navigation-refresh {
     background-color: $m24-color-medium-gray;
     display: flex;
@@ -587,6 +569,7 @@ body:has(.m24-pencil-banner) {
 // page content - hide all content except for the nav when mobile nav menu is open
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.m24-c-navigation-items.mzp-is-open) {
+    & > .m24-pencil-banner,
     & > .c-sub-navigation,
     & > .moz-consent-banner.is-visible,
     & > .c-banner.c-banner-is-visible,
