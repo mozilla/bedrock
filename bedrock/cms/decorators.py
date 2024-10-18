@@ -63,7 +63,12 @@ def prefer_cms(view_func):
         except Http404:
             pass
 
-        # If not, call the original view function
+        # If not, call the original view function, but remember to
+        # un-mark the request as being for a CMS page. This is so to avoid
+        # lib.l10n_utils.render() incorrectly looking for available translations
+        # based on CMS data - we're falling back to non-CMS pages, so we want
+        # the Fluent translations that are normal for a Django-rendered page
+        request.is_cms_page = False
         return view_func(request, *args, **kwargs)
 
     return wrapped_view

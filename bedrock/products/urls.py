@@ -4,6 +4,7 @@
 
 from django.urls import path
 
+from bedrock.cms.decorators import prefer_cms
 from bedrock.mozorg.util import page
 from bedrock.products import views
 
@@ -38,12 +39,12 @@ urlpatterns = (
     # VPN Resource Center
     path(
         "vpn/resource-center/",
-        views.resource_center_landing_view,
+        prefer_cms(views.resource_center_landing_view),
         name="products.vpn.resource-center.landing",
     ),
     path(
         "vpn/resource-center/<slug:slug>/",
-        views.resource_center_article_view,
+        prefer_cms(views.resource_center_article_view),
         name="products.vpn.resource-center.article",
     ),
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
