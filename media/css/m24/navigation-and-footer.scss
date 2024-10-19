@@ -1,0 +1,18 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+// variables
+@import 'vars/animation';
+@import 'vars/color';
+@import 'vars/fonts';
+@import 'vars/grid';
+@import 'vars/spacing';
+@import 'vars/text';
+
+// global components
+@import 'components/footer-newsletter';
+@import 'components/footer-refresh';
+@import 'components/navigation-refresh';

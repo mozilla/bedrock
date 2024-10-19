@@ -2,17 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
-// variables
-@import 'vars/animation';
-@import 'vars/color';
-@import 'vars/fonts';
-@import 'vars/grid';
-@import 'vars/spacing';
-@import 'vars/text';
+@import '~@mozilla-protocol/core/protocol/css/components/footer';
+@import '~@mozilla-protocol/core/protocol/css/components/language-switcher';
 
-// global components
-@import 'components/footer-refresh';
-@import 'components/navigation-refresh';
+@import 'components/footer';
+@import 'components/navigation';
+@import 'components/menu';
+@import 'components/menu-item';
