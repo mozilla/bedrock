@@ -2093,6 +2093,9 @@ def lazy_wagtail_langs():
 WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
+# Don't automatically make a page for a non-default locale availble in the default locale
+WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False
+
 # Settings for https://github.com/mozilla/wagtail-localize-smartling
 WAGTAIL_LOCALIZE_SMARTLING = {
     # Required settings (get these from "Account settings" > "API" in the Smartling dashboard)
@@ -2146,9 +2149,19 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "link",
     "ol",
     "ul",
+    "image",
 ]
 
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
+
+WAGTAILIMAGES_EXTENSIONS = [
+    "gif",
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "svg",
+]
 
 # Custom code in bedrock.cms.models.base.AbstractBedrockCMSPage limits what page
 # models can be added as a child page.
@@ -2165,6 +2178,8 @@ _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
     "mozorg.LeadershipPage",
+    "products.VPNResourceCenterDetailPage",
+    "products.VPNResourceCenterIndexPage",
 ]
 
 if DEV is True:

@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.db import models
 from django.shortcuts import redirect
 
 from wagtail.admin.panels import FieldPanel
@@ -67,3 +68,47 @@ class SimpleRichTextPage(AbstractBedrockCMSPage):
     # If not set, Wagtail will automatically choose a name for the template
     # in the format `<app_label>/<model_name_in_snake_case>.html`
     template = "cms/simple_rich_text_page.html"
+
+
+class ArticleIndexPageBase(AbstractBedrockCMSPage):
+    sub_title = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("sub_title"),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class ArticleDetailPageBase(AbstractBedrockCMSPage):
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    desc = models.CharField(
+        max_length=500,
+        blank=True,
+        help_text="A short description used on index page.",
+    )
+
+    content = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("image"),
+        FieldPanel("desc"),
+        FieldPanel("content"),
+    ]
+
+    class Meta:
+        abstract = True

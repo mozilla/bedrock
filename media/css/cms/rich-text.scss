@@ -44,4 +44,25 @@
             margin-bottom: 0;
         }
     }
+
+    .richtext-image {
+        display: block;
+        height: auto;
+        margin-bottom: $spacing-lg;
+        max-width: 100%;
+
+        &.full-width {
+            margin: 0 auto $spacing-lg;
+        }
+
+        @media #{$mq-md} {
+            &.left {
+                @include bidi(((margin-left, 0, margin-right, 0),));
+            }
+
+            &.right {
+                @include bidi(((margin-right, 0, margin-left, 0),));
+            }
+        }
+    }
 }
