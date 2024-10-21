@@ -894,11 +894,6 @@ WP_BLOGS = {
 
 GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 
-# used to connect to @MozillaHQ Pocket account
-POCKET_API_URL = config("POCKET_API_URL", default="https://getpocket.com/v3/firefox/profile-recs")
-POCKET_CONSUMER_KEY = config("POCKET_CONSUMER_KEY", default="")
-POCKET_ACCESS_TOKEN = config("POCKET_ACCESS_TOKEN", default="")
-
 # Todo: move this into Pocket-only settings in a way that can also be accessed in tests
 BRAZE_API_URL_BASE = config("BRAZE_API_URL_BASE", default="https://rest.iad-05.braze.com")
 BRAZE_API_KEY = config("BRAZE_API_KEY", default="")

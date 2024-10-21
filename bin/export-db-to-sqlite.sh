@@ -173,7 +173,6 @@ python manage.py dumpdata \
     utils.GitRepoState \
     wordpress.BlogPost \
     sitemaps.SitemapURL \
-    pocketfeed.PocketArticle \
     careers.Position \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
