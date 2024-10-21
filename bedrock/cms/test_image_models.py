@@ -6,7 +6,11 @@ from unittest.mock import Mock, patch
 
 from django.test import TestCase, override_settings
 
-from bedrock.cms.models.images import BedrockImage
+import pytest
+
+from bedrock.cms.models.images import BedrockImage, _make_renditions
+
+pytestmark = [pytest.mark.django_db]
 
 
 class BedrockImageTestCase(TestCase):
@@ -30,9 +34,9 @@ class BedrockImageTestCase(TestCase):
             "max-165x165",
         ]
 
-        with patch.object(image, "get_renditions") as get_renditions_mock:
+        with patch("bedrock.cms.models.images._make_renditions") as _make_renditions_mock:
             image._pre_generate_expected_renditions()
-            get_renditions_mock.assert_called_once_with(*expected_filter_specs)
+            _make_renditions_mock.assert_called_once_with(image_id=image.id, filter_specs=expected_filter_specs)
 
     @override_settings(TASK_QUEUE_AVAILABLE=True)
     def test_pre_generate_expected_renditions__queue_available(self):
@@ -62,8 +66,9 @@ class BedrockImageTestCase(TestCase):
 
             mock_django_rq.get_queue.assert_called_once_with("image_renditions")
             mock_queue.enqueue.assert_called_once_with(
-                image.get_renditions,
-                *expected_filter_specs,
+                _make_renditions,
+                image_id=image.id,
+                filter_specs=expected_filter_specs,
             )
 
     def test_pre_generate_expected_renditions_uses_defer_task(self):
@@ -87,9 +92,12 @@ class BedrockImageTestCase(TestCase):
         with patch("bedrock.cms.models.images.defer_task") as mock_defer_task:
             image._pre_generate_expected_renditions()
             mock_defer_task.assert_called_once_with(
-                image.get_renditions,
+                _make_renditions,
                 queue_name="image_renditions",
-                func_args=expected_filter_specs,
+                func_kwargs={
+                    "image_id": image.id,
+                    "filter_specs": expected_filter_specs,
+                },
             )
 
     def test_pre_generate_expected_renditions_called_on_save(self):

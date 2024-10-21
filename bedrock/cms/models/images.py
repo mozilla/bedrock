@@ -22,6 +22,11 @@ AUTOMATIC_RENDITION_FILTER_SPECS = [
 ]
 
 
+def _make_renditions(image_id, filter_specs):
+    image = BedrockImage.objects.get(id=image_id)
+    image.get_renditions(*filter_specs)
+
+
 class BedrockImage(AbstractImage):
     """
     Custom image model from which we can hang extra methods, such as the one that
@@ -64,9 +69,12 @@ class BedrockImage(AbstractImage):
         # If a background worker queue is available, this call will use it
         # to generate renditions, else it will immediately generate them
         defer_task(
-            self.get_renditions,
+            _make_renditions,
             queue_name="image_renditions",
-            func_args=AUTOMATIC_RENDITION_FILTER_SPECS,
+            func_kwargs={
+                "image_id": self.id,
+                "filter_specs": AUTOMATIC_RENDITION_FILTER_SPECS,
+            },
         )
 
 
