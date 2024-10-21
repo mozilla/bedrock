@@ -1,0 +1,121 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+{% from "macros-protocol.html" import picto with context %}
+
+{% block page_title %}{{ ftl('welcome-page20-21-your-firefox') }}{% endblock %}
+
+{% block body_class %}welcome-page19{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_welcome_page19_to_24') }}
+{% endblock %}
+
+{% block warning_notification %}
+  <aside class="c-page-header-notification">
+    <div class="mzp-c-notification-bar mzp-t-warning">
+      {{ ftl('welcome-page20-21-old-version') }}
+    </div>
+  </aside>
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+
+<section class="c-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
+
+    {% set sumo_url = 'href="https://support.mozilla.org/kb/root-certificate-expiration" data-cta-text="Read more about this change"' %}
+
+    <div class="c-header-image">
+      <img src="{{ static('img/firefox/welcome/root-ceritification-alert.svg') }}" alt="">
+    </div>
+
+    <h1 class="c-main-title">{{ ftl('welcome-page20-21-your-firefox') }}</h1>
+    <p class="c-main-tagline">{{ ftl('welcome-page20-21-update-now', sumo=sumo_url) }}</p>
+
+    {{ download_firefox_thanks(alt_copy=ftl('welcome-page20-21-update-now-cta'), button_class='mzp-t-xl', dom_id='update-firefox') }}
+
+    <p class="c-main-cta" id="update-firefox-esr"><a href="{{ url('firefox.enterprise.index') + '#download' }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">{{ ftl('welcome-page20-21-update-now-cta') }}</a></p>
+
+    <small>{{ ftl('welcome-page20-21-usually-takes') }}</small>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block content_body %}
+  <ul class="mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-three c-pages-20-21-items" role="group" aria-label="{{ ftl('welcome-page20-21-why-update') }}">
+      {% call picto(
+        base_el='li',
+        title=ftl('welcome-page20-21-protect-your-data'),
+        image=resp_img(
+          url='img/firefox/welcome/page20-21/back-up.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ ftl('welcome-page20-21-make-sure-your-passwords') }}</p>
+        <p><a href="https://support.mozilla.org/kb/back-and-restore-information-firefox-profiles" data-cta-text="How to back up">{{ ftl('welcome-page20-21-how-to-back-up') }}</a></p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title=ftl('welcome-page20-21-keep-using'),
+        image=resp_img(
+          url='img/firefox/welcome/page20-21/add-ons.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ ftl('welcome-page20-21-does-the-latest') }}</p>
+        <p><a href="https://addons.mozilla.org/firefox/" data-cta-text="Search add-ons">{{ ftl('welcome-page20-21-search-add-ons') }}</a></p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title=ftl('welcome-page20-21-talk-to-us'),
+        image=resp_img(
+          url='img/firefox/welcome/page20-21/community.svg',
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'width': '64',
+            'loading': 'lazy'
+          }
+        ),
+        body=True,
+      ) %}
+      <p>{{ ftl('welcome-page20-21-firefox-support-community') }}</p>
+      <p><a href="https://support.mozilla.org/en-US/questions/1468274" data-cta-text="Get in touch">{{ ftl('welcome-page20-21-get-in-touch') }}</a></p>
+      {% endcall %}
+    </ul>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page11-why-see-this') }}
+    </a>
+  </strong>
+</p>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page19_to_24') }}
+{% endblock %}
+

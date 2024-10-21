@@ -45,6 +45,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-header-image {
+    margin-bottom: $spacing-xl;
+
+    img {
+        width: 170px;
+    }
+}
+
 .c-main-tagline {
     @include text-body-lg;
     text-wrap: balance;
@@ -80,4 +88,12 @@ $image-path: '/media/protocol/img';
 
 .page-footer {
     display: none;
+}
+
+.c-pages-20-21-items {
+    .mzp-c-picto {
+        img {
+            width: 150px;
+        }
+    }
 }
