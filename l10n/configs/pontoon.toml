@@ -182,6 +182,66 @@ locales = [
     reference = "en/firefox/welcome/page14.ftl"
     l10n = "{locale}/firefox/welcome/page14.ftl"
 [[paths]]
+    reference = "en/firefox/welcome/page20-21.ftl"
+    l10n = "{locale}/firefox/welcome/page20-21.ftl"
+    locales = [
+        "cs",
+        "el",
+        "en-GB",
+        "es-ES",
+        "hu",
+        "it",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN",
+    ]
+[[paths]]
+    reference = "en/firefox/welcome/page22.ftl"
+    l10n = "{locale}/firefox/welcome/page22.ftl"
+    locales = [
+        "cs",
+        "el",
+        "en-GB",
+        "es-ES",
+        "hu",
+        "it",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN",
+    ]
+[[paths]]
+    reference = "en/firefox/welcome/page23.ftl"
+    l10n = "{locale}/firefox/welcome/page23.ftl"
+    locales = [
+        "cs",
+        "el",
+        "en-GB",
+        "es-ES",
+        "hu",
+        "it",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN",
+    ]
+[[paths]]
+    reference = "en/firefox/welcome/page24.ftl"
+    l10n = "{locale}/firefox/welcome/page24.ftl"
+    locales = [
+        "cs",
+        "el",
+        "en-GB",
+        "es-ES",
+        "hu",
+        "it",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN",
+    ]
+[[paths]]
     reference = "en/firefox/whatsnew/whatsnew-s2d.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew-s2d.ftl"
 [[paths]]
