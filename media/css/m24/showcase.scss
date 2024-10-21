@@ -3,95 +3,12 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-
 .m24-c-showcase {
     @include container;
-    padding-top: $spacer-xl;
-    padding-bottom: $spacer-xl;
-
-    * {
-        margin-bottom: 0;
-    }
-}
-
-.m24-c-showcase-text {
-    grid-column: 1 / -1;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.m24-c-showcase-title {
-    font-size: $alias-text-title-h2;
-}
-
-.m24-c-showcase-subtitle {
-    font-size: $alias-text-title-h4;
-    text-wrap-style: balance;
-    padding-top: $spacer-sm;
 }
 
 .m24-c-showcase-media {
     text-align: center;
     padding: $spacer-xl 0;
     position: relative;
-}
-
-.m24-c-showcase-info {
-    padding-bottom: $spacer-xl;
-    font-size: $alias-text-title-h3;
-}
-
-.m24-c-showcase-cta {
-    text-align: right;
-}
-
-@media #{$mq-md} {
-    .m24-c-showcase-text {
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 5%;
-    }
-
-    .m24-c-showcase-title {
-        width: 45%;
-    }
-
-    .m24-c-showcase-subtitle-containter {
-        width: 45%;
-    }
-
-    .m24-c-showcase-subtitle:first-of-type {
-        padding-top: 0;
-    }
-}
-
-@media #{$mq-lg} {
-    .m24-c-showcase {
-        @include grid;
-        grid-template-rows: min-content min-content auto min-content;
-    }
-
-    .m24-c-showcase-title {
-        grid-column: 1/-1;
-    }
-
-    .m24-c-showcase-subtitle {
-        grid-column: 1/10;
-    }
-
-    .m24-c-showcase-media {
-        grid-column: 1/-1;
-        align-self: center;
-    }
-
-    .m24-c-showcase-info {
-        grid-column: 1/7;
-        padding-bottom: 0;
-    }
-
-    .m24-c-showcase-cta {
-        grid-column: 7/-1;
-
-    }
 }

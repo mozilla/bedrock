@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$logo-spacing: calc(24px + #{$spacer-xs});
+$logo-spacing: calc(32px + #{$spacer-md});
 
 .m24-c-spring {
     padding: $spacer-xl 0;
@@ -20,76 +20,76 @@ $logo-spacing: calc(24px + #{$spacer-xs});
     color: $m24-color-black;
     display: grid;
     gap: $spacer-2xs $grid-gutter;
-    margin: 0 calc($container-padding * -1);
     padding: $spacer-sm $container-padding;
     position: relative;
     text-decoration: none;
+    transition: background-color 100ms ease-in-out;
 
     &:hover,
     &:link:active, // override protocol
     &:focus-visible {
-        @include invert-colors;
-        background-color: $m24-color-white; // override protocol
+        background-color: $m24-color-light-gray;
         position: relative;
         z-index: 2;
     }
 
     &::before,
     &::after {
+        @include bidi(((background-position, center left, center right),));
         content: '';
-        background-size: 15px auto;
         background-repeat: no-repeat;
-        background-position: center left;
         display: block;
-        width: 24px;
         position: absolute;
         top: 0;
         bottom: 0;
     }
 
     &::before {
-        background-image: url('/media/img/m24/todo-1-1.svg');
-        left: $container-padding;
+        @include bidi((
+            (left, $container-padding, auto),
+            (right, auto, $container-padding),
+        ));
+        background-size: 32px auto;
+        width: 48px;
     }
 
     &::after {
-        content: '';
+        @include bidi((
+            (right, $container-padding, auto),
+            (left, auto, $container-padding),
+            (transition-property, right, left),
+            (background-image, url('/media/img/icons/m24-small/arrow-right.svg'), url('/media/img/icons/m24-small/arrow-left.svg'))
+        ));
         background-image: url('/media/img/icons/m24-small/arrow-right.svg');
-        right: $container-padding;
+        background-size: 18px auto;
+        transition-duration: 100ms;
+        transition-timing-function: ease-in-out;
+        width: 32px;
     }
 
     &:focus-visible::after,
     &:active::after,
     &:hover::after {
-        background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
+        @include bidi((
+            (right, calc($container-padding - $spacing-sm), auto),
+            (left, auto, calc($container-padding - $spacing-sm)),
+        ));
     }
 
     &.m24-t-product-firefox::before {
         background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
     }
 
-    &.m24-t-product-fakespot{
-        &::before {
-            background-image: url('/media/img/logos/fakespot/logo.svg');
-        }
-
-        &:hover::before {
-            background-image: url('/media/img/logos/fakespot/logo-white.svg');
-        }
+    &.m24-t-product-fakespot::before {
+        background-image: url('/media/img/logos/fakespot/logo.svg');
     }
 
     &.m24-t-product-pocket::before {
         background-image: url('/media/protocol/img/logos/pocket/logo.svg');
     }
 
-    &.m24-t-product-vpn{
-        &::before {
-            background-image: url('/media/protocol/img/logos/mozilla/vpn/logo.svg');
-        }
-
-        &:hover::before {
-            background-image: url('/media/protocol/img/logos/mozilla/vpn/logo-flat-white.svg');
-        }
+    &.m24-t-product-vpn::before {
+        background-image: url('/media/protocol/img/logos/mozilla/vpn/logo.svg');
     }
 
     &.m24-t-product-monitor::before {
@@ -102,17 +102,21 @@ $logo-spacing: calc(24px + #{$spacer-xs});
 }
 
 .m24-c-spring-title {
+    @include bidi((
+        (padding-left, $logo-spacing, 0),
+        (padding-right, 0, $logo-spacing),
+    ));
     color: $m24-color-black;
     display: inline-block;
     font-size: $alias-text-title-h4;
     font-weight: 600;
     grid-column: 1 / span 10;
-    padding-left: $logo-spacing;
     line-height: 1;
 }
 
 .m24-c-spring-info {
-    color: $m24-color-functional-gray;
+    color: $m24-color-dark-gray;
+    font-size: $text-body-lg;
     grid-column: 1 / span 11;
     padding-left: $logo-spacing;
 }

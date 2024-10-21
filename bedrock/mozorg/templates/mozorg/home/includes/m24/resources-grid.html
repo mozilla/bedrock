@@ -6,19 +6,27 @@
 
 {% from "macros-m24.html" import grid_tile with context %}
 
-<section class="m24-c-content">
-  <div class="m24-c-grid-container m24-l-grid-pair">
+<section class="m24-c-content m24-t-transition-next">
+  <header class="m24-c-copy">
+    <h2 class="m24-c-copy-title">Explore issues shaping the future of the internet</h2>
+  </header>
+
+  <div class="m24-c-grid-container">
     {{ grid_tile(
+      class='m24-l-grid-half',
       image=resp_img(
-        url="img/m24/todo-3-2.svg",
+        url="img/home/2024/pni.jpg",
+        srcset={
+          'img/home/2024/pni-high-res.jpg': '1.5x'
+        },
         optional_attributes={
           "loading": "lazy",
           "alt": "",
-          "width": "900",
-          "height": "600",
+          "width": "680",
+          "height": "340",
         }
       ),
-      title='Privacy Not Included',
+      title='*Privacy Not Included',
       desc='Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.',
       link_url='https://foundation.mozilla.org/privacynotincluded/',
       cta_text='Search now',
@@ -26,13 +34,17 @@
     ) }}
 
     {{ grid_tile(
+      class='m24-l-grid-half',
       image=resp_img(
-        url="img/m24/todo-3-2.svg",
+        url="img/home/2024/irl-podcast.jpg",
+        srcset={
+          'img/home/2024/irl-podcast-high-res.jpg': '1.5x'
+        },
         optional_attributes={
           "loading": "lazy",
           "alt": "",
-          "width": "900",
-          "height": "600",
+          "width": "680",
+          "height": "340",
         }
       ),
       title='IRL Podcast',
@@ -42,4 +54,6 @@
       link_attributes='rel="external" data-link-type="link" data-link-text="Listen"',
     ) }}
   </div>
+
+  <p class="m24-c-section-cta"><a href="#TODO" class="m24-c-cta">Dive deeper</a></p>
 </section>

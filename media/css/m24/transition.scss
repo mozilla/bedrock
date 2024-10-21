@@ -2,86 +2,61 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-// TODO: shutter lines are not equal height in Figma
-
-.m24-c-transition {
-    overflow: hidden;
+// Adds a pseudo-element at the top of a section with an SVG mask to produce
+// a decorative transition between sections.
+@mixin m24-transition {
     position: relative;
-    height: calc($spacer-xl * 2);
-    background-color: transparent;
-
-    hr,
-    &::before,
-    &::after {
-        content: '';
-        display: block;
-        height: $spacer-xl;
-        width: 100%;
-        background-color: $m24-color-light-green;
-        margin: 0;
-        border: 0;
-        top: 0;
-        left: 0;
-        position: absolute;
-    }
-
-    &.m24-t-purple {
-        background-color: transparent;
-
-        hr,
-        &::before,
-        &::after {
-            background-color: $token-color-light-pink;
-        }
-    }
-
-    &.m24-t-black {
-        background-color: transparent;
-
-        hr,
-        &::before,
-        &::after {
-            background-color: $m24-color-black;
-        }
-    }
 
     &::before {
-        transform: translate(calc(grid(10) * -1), 0);
-    }
+        content: '';
+        display: block;
+        position: absolute;
+        height: 40px;
+        top: -40px;
+        left: 0;
+        right: 0;
+        background: inherit;
 
-    hr {
-        transform: translate(calc(grid(8) * -1), 0);
-        top: $spacer-xl;
+        @media #{$mq-md} {
+            height: 90px;
+            top: -90px;
+        }
     }
+}
 
-    &::after {
-        top: $spacer-xl;
-        transform: translate(grid(8), 0);
-    }
+@supports (clip-path: url('/media/img/m24/pixel-transition.svg#pixel01')) {
+    .m24-t-transition-01 {
+        @include m24-transition;
 
-    &.m24-l-reverse {
         &::before {
-            display: none;
-            left: 50%;
-            transform: translate(-50%,0);
-        }
-
-        hr {
-            top: 0;
-            left: 50%;
-            transform: translate(-50%,0);
-            margin-left: grid(2);
-        }
-
-        &::after {
-            left: 50%;
-            transform: translate(-50%,0);
-            width: grid(4);
+            clip-path: url('/media/img/m24/pixel-transition.svg#pixel01');
         }
     }
 
-    &.m24-l-reverse + .m24-c-transition {
-        margin-top: calc($spacer-xl * -2);
+    .m24-t-transition-02 {
+        @include m24-transition;
+
+        &::before {
+            clip-path: url('/media/img/m24/pixel-transition.svg#pixel02');
+        }
+    }
+
+    .m24-t-transition-03 {
+        @include m24-transition;
+
+        &::before {
+            clip-path: url('/media/img/m24/pixel-transition.svg#pixel03');
+        }
+    }
+
+    // Adds sufficient bottom padding for the transition on the following section to overlap
+    .m24-t-transition-next::after {
+        content: '';
+        display: block;
+        padding-bottom: 50px;
+
+        @media #{$mq-md} {
+            padding-bottom: 100px;
+        }
     }
 }

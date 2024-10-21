@@ -2,22 +2,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+.m24-section-donate {
+    background: $m24-color-light-pink;
+}
 
 .m24-c-donate {
     @include container;
     color: $m24-color-black;
-    background-color: $m24-color-white;
     padding: $spacer-xl $container-padding;
-
-    * {
-        margin-bottom: 0;
-    }
 }
 
 .m24-c-donate-title {
     font-size: $alias-text-title-h2;
-    padding-bottom: $spacer-3xl;
+    margin-bottom: $spacer-lg;
     text-wrap-style: balance;
+    font-weight: 600;
 }
 
 .m24-c-donate-media {
@@ -33,21 +32,12 @@
 
 .m24-c-donate-info-title {
     font-size: $alias-text-title-h4;
-    padding-bottom: $spacer-xs;
+    margin-bottom: $spacer-xs;
 }
 
 .m24-c-donate-cta {
-    padding: $spacer-lg 0 0;
-    text-align: right;
-
-    a {
-        text-align: right;
-    }
-}
-
-.m24-consider-cta-text {
-    font-size: $alias-text-title-h4;
-    padding-top: $spacer-xs;
+    margin: $spacer-lg 0 0;
+    text-align: end;
 }
 
 
@@ -57,27 +47,28 @@
     }
 
     .m24-c-donate-title {
-        grid-column: 1/-1;
+        grid-column: 1/7;
     }
 
     .m24-c-donate-media {
         grid-column: 1/7;
-        grid-row: 2/4;
+        grid-row: 2;
     }
 
     .m24-c-donate-info {
+        @include bidi((
+            (margin-left, $spacer-lg, 0),
+            (margin-right, 0, $spacer-lg),
+        ));
+        grid-column: 7/13;
+        grid-row: 2;
         padding-top: 0;
-        grid-column: 7/-1;
         text-wrap-style: balance;
     }
 
     .m24-c-donate-cta {
-        place-self: end;
-        grid-column: 1/-1;
-        padding: 0;
-
-        a {
-            grid-column: 2/-1;
-        }
+        grid-column: 7/13;
+        grid-row: 1;
+        margin: 0;
     }
 }
