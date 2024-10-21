@@ -102,3 +102,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
     margin-top: $spacing-2xl;
 }
+
+.is-firefox .hide-from-firefox {
+    display: none;
+}

@@ -56,9 +56,7 @@ urlpatterns = (
     page(
         "firefox/features/eyedropper/", "firefox/features/eyedropper.html", ftl_files=["firefox/features/eyedropper-2023", "firefox/features/shared"]
     ),
-    page(
-        "firefox/features/pdf-editor/", "firefox/features/pdf-editor.html", ftl_files=["firefox/features/pdf-editor-2023", "firefox/features/shared"]
-    ),
+    path("firefox/features/pdf-editor/", views.firefox_features_pdf.as_view(), name="firefox.features.pdf-editor"),
     page("firefox/features/adblocker/", "firefox/features/adblocker.html", ftl_files=["firefox/features/adblocker", "firefox/features/shared"]),
     page("firefox/features/bookmarks/", "firefox/features/bookmarks.html", ftl_files=["firefox/features/bookmarks-2023", "firefox/features/shared"]),
     path("firefox/features/fast/", views.firefox_features_fast.as_view(), name="firefox.features.fast"),
@@ -96,6 +94,20 @@ urlpatterns = (
             template_context_variations=["picture-in-picture", "eyedropper", "forget"],
         ),
         name="firefox.features.tips",
+    ),
+    path(
+        "firefox/features/complete-pdf/",
+        VariationTemplateView.as_view(
+            template_name="firefox/features/pdf-complete-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
+        ),
+        name="firefox.features.pdf-complete",
+    ),
+    path(
+        "firefox/features/free-pdf-editor/",
+        VariationTemplateView.as_view(
+            template_name="firefox/features/pdf-free-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
+        ),
+        name="firefox.features.pdf-free",
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),

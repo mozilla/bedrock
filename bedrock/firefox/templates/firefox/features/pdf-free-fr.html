@@ -1,0 +1,88 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+
+{% block article_title_short %}Éditeur PDF gratuit pour remplir un formulaire{% endblock %}
+{% block article_title %}Utiliser un éditeur PDF gratuit{% endblock %}
+{% block page_desc %}Découvrez comment utiliser l’éditeur PDF de Firefox avec un mode d’emploi simple et bref pour remplir, modifier et archiver vos démarches en ligne{% endblock %}
+
+{% block article_content %}
+
+<p>Pas si simple de remplir un formulaire administratif  en ligne, surtout quand ça demande beaucoup d’informations et que les délais sont serrés. Pas de panique&nbsp;!  L'éditeur PDF Firefox est là pour vous simplifier la vie.</p>
+
+<p>Prenons l’exemple d’une démarche en ligne courante, si vous possédez une voiture : comment immatriculer son véhicule, par le biais du formulaire Cerfa 13750*07.</p>
+
+<h2>Faire sa demande Cerfa 13750*07 grâce à un éditeur PDF simple et gratuit</h2>
+
+<p>Pour immatriculer votre véhicule, il est nécessaire de faire une demande auprès des autorités. Vous pouvez facilement trouver le formulaire vierge Cerfa 13750*07 en ligne.</p>
+
+<ol class="mzp-u-list-styled">
+  <li>
+    <p><strong>Ouvrir le formulaire :</strong> Ouvrez le formulaire Cerfa 13750*07 sur votre ordinateur avec Firefox en faisant un clic droit et en sélectionnant “Ouvrir avec Firefox”. Le document s'affiche dans un onglet de votre navigateur.</p>
+    <p>
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-ouvrir-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+  <li>
+    <p><strong>Remplir les informations nécessaires :</strong> Cliquez sur l'icône Texte pour ajouter vos informations personnelles et les détails du véhicule directement sur le formulaire. Ajustez les blocs de texte et déplacez-les selon vos besoins.</p>
+    <p>
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-modifier.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-modifier-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+  <li>
+    <p><strong>Cocher des cases :</strong> Utilisez l'outil Dessin pour cocher les cases appropriées sur le formulaire.</p>
+    <p>
+      {{ resp_img(
+        url="img/firefox/features/edit-pdf/fr-edit-pdf-dessin.png",
+        srcset={
+            "img/firefox/features/edit-pdf/fr-edit-pdf-dessin-high-res.png": "1.5x"
+        },
+        optional_attributes={
+          "alt": "",
+          "width": "600"
+        }
+      ) }}
+    </p>
+  </li>
+  <li>
+    <p><strong>Signer :</strong> Pour signer au bas de la demande, cliquez sur l'icône Dessin et ajoutez votre signature.</p>
+    </li>
+  <li><p><strong>Enregistrer et soumettre :</strong> Une fois complété, enregistrez le document en cliquant sur l'icône Dossier. Donnez un nouveau nom à votre fichier et soumettez-le en ligne avec les autres pièces demandées ou imprimez-le pour l'envoyer par courrier.</p></li>
+</ol>
+
+<h2>Adoptez la simplicité et la sécurité avec l'éditeur PDF Firefox</h2>
+
+<p>Faire ses demandes administratives en ligne devient une option de plus en plus répandue ; encore faut-il pouvoir compter sur un éditeur PDF pratique, gratuit pour accomplir vos démarches en toute tranquillité&nbsp;!</p>
+
+<p>Que ce soit pour gérer des demandes liées à votre voiture, l’état civil, la santé, le travail, l’éditeur PDF Firefox facilite la modification de vos documents PDF sans les risques associés à l'utilisation de plateformes en ligne inconnues.</p>
+
+<p>Ne laissez plus la complexité des formulaires administratifs vous stresser.</p>
+
+<p>Découvrez comment Firefox peut rendre vos tâches quotidiennes plus simples et plus sécurisées.</p>
+
+<p class="hide-from-firefox"><a href="{{ url('firefox.new') }}" data-link-text="Download Firefox" data-link-position="content">Téléchargez Firefox</a> dès aujourd'hui et reprenez le contrôle de vos documents PDF&nbsp;!</p>
+
+{% endblock article_content %}
