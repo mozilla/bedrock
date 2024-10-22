@@ -761,7 +761,6 @@ INSTALLED_APPS = [
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
-    "bedrock.pocketfeed",
     "bedrock.careers",
     # last so that redirects here will be last
     "bedrock.redirects",
