@@ -98,22 +98,11 @@ CACHES = {
     },
 }
 
-# in case django-pylibmc is in use
-PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
-PYLIBMC_COMPRESS_LEVEL = 1  # zlib.Z_BEST_SPEED
-
 # Logging
 LOG_LEVEL = config("LOG_LEVEL", default="INFO")
 HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
-
-# CEF Logging - TODO: remove these if def redundant
-CEF_PRODUCT = "Bedrock"
-CEF_VENDOR = "Mozilla"
-CEF_VERSION = "0"
-CEF_DEVICE_VERSION = "0"
-
 
 # Internationalization.
 
@@ -441,10 +430,6 @@ LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
 LANGUAGE_URL_MAP_WITH_FALLBACKS = lazy(language_url_map_with_fallbacks, dict)()  # used in normalize_language
 LANGUAGES = lazy(lazy_langs, list)()
-
-FEED_CACHE = 3900
-# 30 min during dev and 10 min in prod
-DOTLANG_CACHE = config("DOTLANG_CACHE", default="1800" if DEBUG else "600", parser=int)
 
 # country code for GEO-IP lookup to return in dev mode
 DEV_GEO_COUNTRY_CODE = config("DEV_GEO_COUNTRY_CODE", default="US")
@@ -839,7 +824,6 @@ TEMPLATES = [
                 "bedrock.base.context_processors.globals",
                 "bedrock.base.context_processors.geo",
                 "bedrock.mozorg.context_processors.canonical_path",
-                "bedrock.mozorg.context_processors.contrib_numbers",
                 "bedrock.mozorg.context_processors.current_year",
                 "bedrock.firefox.context_processors.latest_firefox_versions",
             ],
@@ -894,33 +878,12 @@ WP_BLOGS = {
 
 GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 
-# Todo: move this into Pocket-only settings in a way that can also be accessed in tests
-BRAZE_API_URL_BASE = config("BRAZE_API_URL_BASE", default="https://rest.iad-05.braze.com")
-BRAZE_API_KEY = config("BRAZE_API_KEY", default="")
-BRAZE_API_NEWSLETTERS = {
-    "news": config("BRAZE_API_NEWSLETTER_ID_NEWS", default=""),
-    "hits": config("BRAZE_API_NEWSLETTER_ID_HITS", default=""),
-}
-BRAZE_POCKET_COOKIE_NAME = config("BRAZE_POCKET_COOKIE_NAME", default="a95b4b6")
-
-# Contribute numbers
-# TODO: automate these
-CONTRIBUTE_NUMBERS = {
-    "num_mozillians": 10554,
-    "num_languages": 87,
-}
-
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
 BASKET_SUBSCRIBE_URL = BASKET_URL + "/news/subscribe/"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
-
-# reCAPTCHA keys
-RECAPTCHA_PUBLIC_KEY = config("RECAPTCHA_PUBLIC_KEY", default="")
-RECAPTCHA_PRIVATE_KEY = config("RECAPTCHA_PRIVATE_KEY", default="")
-RECAPTCHA_USE_SSL = config("RECAPTCHA_USE_SSL", parser=bool, default="true")
 
 # Use a message storage mechanism that doesn't need a database.
 # This can be changed to use session once we do add a database.

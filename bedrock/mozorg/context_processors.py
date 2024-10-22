@@ -23,7 +23,3 @@ def canonical_path(request):
 
 def current_year(request):
     return {"current_year": datetime.today().year}
-
-
-def contrib_numbers(request):
-    return settings.CONTRIBUTE_NUMBERS
