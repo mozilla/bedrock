@@ -1,0 +1,27 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+@import '~@mozilla-protocol/core/protocol/css/components/footer';
+@import '~@mozilla-protocol/core/protocol/css/components/language-switcher';
+
+@import 'components/footer';
+@import 'components/navigation';
+@import 'components/menu';
+@import 'components/menu-item';
+
+// temporary branding refresh tweaks
+.c-navigation-logo .c-navigation-logo-image.m24-logo {
+    @media #{$mq-md} {
+        height: 21px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.mzp-c-footer-primary-logo.m24-logo a {
+    background-image: url('/media/img/logos/m24/lockup-white.svg');
+    height: 27px;
+}

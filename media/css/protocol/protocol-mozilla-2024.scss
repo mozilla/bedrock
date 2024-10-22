@@ -20,8 +20,6 @@
 
 // Global components
 @import '~@mozilla-protocol/core/protocol/css/components/button';
-@import '~@mozilla-protocol/core/protocol/css/components/footer';
-@import '~@mozilla-protocol/core/protocol/css/components/language-switcher';
 @import 'components/download-button';
 
 // Consent banner
@@ -29,10 +27,6 @@
 
 // Custom global components for nav and footer
 // These will later be backported to Protocol
-@import 'components/footer';
-@import 'components/navigation';
-@import 'components/menu';
-@import 'components/menu-item';
 @import 'components/sub-navigation';
 
 // Mozilla 2024 brand variables
@@ -89,12 +83,6 @@ template {
 // temporary override for Mozilla Monitor word mark
 .mzp-c-wordmark.t-product-mozilla-monitor {
     background-image: url('/media/img/logos/mozilla/monitor/wordmark.svg');
-}
-
-// temporary logo refresh for old footer
-.mzp-c-footer-primary-logo.m24-logo a {
-    background-image: url('/media/img/logos/m24/lockup-white.svg');
-    height: 27px;
 }
 
 /* ----------------------------------------------------------------------------- */

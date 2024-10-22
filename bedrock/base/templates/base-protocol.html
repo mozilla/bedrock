@@ -76,8 +76,10 @@
         {{ css_bundle('protocol-mozilla-2024') }}
         {% if LANG.startswith('en-') %}
           {{ css_bundle('m24-navigation-and-footer') }}
+        {% else %}
+          {{ css_bundle('legacy-navigation-and-footer') }}
         {% endif %}
-          {% else %}
+      {% else %}
         {{ css_bundle('protocol-firefox') }}
       {% endif %}
     {% endblock %}

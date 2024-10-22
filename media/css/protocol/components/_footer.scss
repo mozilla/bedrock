@@ -36,6 +36,14 @@ $image-path: '/media/protocol/img';
             &.twitter {
                 background-image: url('#{$image-path}/icons/social/x/white.svg');
             }
+
+            &.instagram {
+                background-image: url('#{$image-path}/icons/social/instagram/white.svg');
+            }
+
+            &.youtube {
+                background-image: url('#{$image-path}/icons/social/youtube/white.svg');
+            }
         }
     }
 }
