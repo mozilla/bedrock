@@ -11,3 +11,17 @@
 @import 'components/navigation';
 @import 'components/menu';
 @import 'components/menu-item';
+
+// temporary branding refresh tweaks
+.c-navigation-logo .c-navigation-logo-image.m24-logo {
+    @media #{$mq-md} {
+        height: 21px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.mzp-c-footer-primary-logo.m24-logo a {
+    background-image: url('/media/img/logos/m24/lockup-white.svg');
+    height: 27px;
+}
