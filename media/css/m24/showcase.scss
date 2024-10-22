@@ -14,6 +14,13 @@
     }
 }
 
+.m24-c-showcase-text {
+    grid-column: 1 / -1;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
 .m24-c-showcase-title {
     font-size: $alias-text-title-h2;
 }
@@ -37,6 +44,26 @@
 
 .m24-c-showcase-cta {
     text-align: right;
+}
+
+@media #{$mq-md} {
+    .m24-c-showcase-text {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5%;
+    }
+
+    .m24-c-showcase-title {
+        width: 45%;
+    }
+
+    .m24-c-showcase-subtitle-containter {
+        width: 45%;
+    }
+
+    .m24-c-showcase-subtitle:first-of-type {
+        padding-top: 0;
+    }
 }
 
 @media #{$mq-lg} {
