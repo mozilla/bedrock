@@ -80,11 +80,12 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        position: static;
     }
 }
 
 .m24-c-navigation-menu-button {
-    background-color: $m24-color-medium-gray;
+    background-color: inherit;
     margin: 0;
     padding: 0;
     color: $color-black;
@@ -107,7 +108,7 @@
     }
 
     &.mzp-is-active {
-        background: url('/media/protocol/img/icons/close.svg') center center no-repeat;
+        background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
         width: 40px;
         @include image-replaced;
 
@@ -140,7 +141,6 @@
             right: 0;
             width: 100%;
             height: calc(100vh - 48px); // 48px margin top
-            background-color: #fff;
             transition: 0.45s;
             margin-top: 48px;
             padding-top: 0;
@@ -195,17 +195,13 @@
     }
 
     &.mzp-is-selected {
-        position: absolute;
-        top: 0;
-        left: 0;
         z-index: 1000;
         width: calc(100% - 32px);
         border-bottom: transparent;
+        position: static;
 
         @media #{$mq-md} {
-            width: fit-content;
-            position: unset;
-            min-width: unset;
+            width: auto;
         }
 
         &::before {
@@ -220,7 +216,6 @@
             @media #{$mq-md} {
                 color: $m24-color-dark-green;
                 padding: 0;
-                background-color: $m24-color-medium-gray;
             }
 
             &::after {
@@ -232,15 +227,11 @@
 
         .m24-c-menu-panel {
             display: block;
-            position: fixed;
             z-index: 100;
-            top: 0;
-            right: 0;
             width: 100%;
             height: auto;
             background-color: #fff;
             overflow: hidden auto;
-            margin-top: 98px;
             animation: nav-slide-in 0.45s ease;
 
             @media (prefers-reduced-motion: reduce) {
@@ -248,10 +239,14 @@
             }
 
             @media #{$mq-md} {
+                position: absolute;
                 display: block;
-                margin-top: 64px;
                 animation: none;
                 max-height: calc(100vh - 64px);
+                overflow: auto;
+                top: 61px;
+                left: 0;
+                right: 0;
             }
         }
     }
@@ -290,7 +285,7 @@
     position: relative;
 
     @media #{$mq-md} {
-        position: unset;
+        position: static;
         display: flex;
         justify-content: space-between;
         gap: 48px;
@@ -366,7 +361,6 @@
 }
 
 .m24-c-menu-item {
-    min-width: unset;
     max-width: 100%;
     padding: 0;
 
@@ -430,12 +424,6 @@
     svg path {
         fill: $m24-color-dark-green;
     }
-}
-
-.m24-c-menu-item:hover,
-.m24-c-menu-item:focus,
-.m24-c-menu-item:active {
-    background-color: unset;
 }
 
 .m24-c-menu-panel .m24-c-menu-panel-content > .m24-mzp-l-content {
@@ -503,7 +491,6 @@
     .m24-c-menu-item-icon {
         height: 16px;
         width: 16px;
-        position: unset;
         @include bidi(((padding-right, 4px, 0), (padding-left, 0, 4px)));
     }
 }
@@ -559,12 +546,6 @@
         width: 24px;
         top: 15px;
         @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
-
-        &:hover,
-        &:focus,
-        &:active {
-            top: 15px;
-        }
     }
 }
 
