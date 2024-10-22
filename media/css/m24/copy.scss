@@ -4,10 +4,12 @@
 
 
 .m24-c-copy {
+    @include container;
     box-sizing: border-box;
     font-size: $alias-text-title-h4;
     margin: 0 auto;
     max-width: $content-max;
+    padding: $spacer-2xl  $spacer-md $spacer-xl;
 
     p {
         font-weight: 600;
