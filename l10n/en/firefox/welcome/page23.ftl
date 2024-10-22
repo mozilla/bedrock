@@ -10,10 +10,7 @@ welcome-page23-update-before = Update before March 14, 2025 to keep using { -bra
 
 # Variables:
 #   $sumo (url) - link to https://support.mozilla.org/kb/root-certificate-expiration
-welcome-page23-your-version-of-firefox = <strong>Your version of { -brand-name-firefox } will stop working soon.</strong> A root certificate will expire, streaming video, add-ons, and other features to stop working. <a { $sumo }>Read more about this change</a>
+welcome-page23-your-version-of-firefox = <strong>Your version of { -brand-name-firefox } will stop working soon.</strong> A root certificate will expire, causing streaming video, add-ons, and other features to stop working. <a { $sumo }>Read more about this change</a>
 
 welcome-page23-update-now-cta = Update now
 welcome-page23-usually-takes = Usually takes 2–3 minutes
-
-
-
