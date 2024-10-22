@@ -8,6 +8,10 @@ exclude: >
     | bedrock/externalfiles/files_cache
     | git-repos
   )
+
+default_language_version:
+  node: lts
+
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
   - repo: https://github.com/pre-commit/pre-commit-hooks
