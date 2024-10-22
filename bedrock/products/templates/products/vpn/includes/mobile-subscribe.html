@@ -60,19 +60,16 @@
       </ul>
 
       <p class="vpn-pricing-mobile-button">
-        {# In countries where people can only subscribe using the Google Play Store, we always link to that even for iOS. See #15328. #}
-        {% if android_sub_only %}
-          <a class="ga-product-download mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
-            {{ ftl('vpn-pricing-download-the-app') }}
-          </a>
-        {% else %}
-          <a class="ga-product-download ios-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ ios_url }}" data-cta-text="App Store" data-cta-type="mozilla_vpn">
-            {{ ftl('vpn-pricing-download-the-app') }}
-          </a>
-          <a class="ga-product-download android-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
-            {{ ftl('vpn-pricing-download-the-app') }}
-          </a>
+        {# Only show iOS download CTA if Apple App Store subscriptions are available in a person's country. See #15328. #}
+        {% if not android_sub_only %}
+        <a class="ga-product-download ios-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ ios_url }}" data-cta-text="App Store" data-cta-type="mozilla_vpn">
+          {{ ftl('vpn-pricing-download-the-app') }}
+        </a>
         {% endif %}
+
+        <a class="ga-product-download android-cta mzp-c-button mzp-t-product mzp-t-xl" href="{{ android_url }}" data-cta-text="Play Store" data-cta-type="mozilla_vpn">
+          {{ ftl('vpn-pricing-download-the-app') }}
+        </a>
       </p>
     </div>
     <div class="mzp-c-split-media mzp-l-split-h-center">
@@ -88,7 +85,7 @@
           url='img/products/vpn/landing-refresh/qrcode-background.svg',
           sources=[
             {
-              'media': '(max-width: 768px)',
+              'media': '(max-width: 767px)',
               'srcset': {
                 'img/placeholder.png': 'default'
               }
