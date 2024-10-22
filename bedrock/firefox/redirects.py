@@ -43,6 +43,7 @@ def mobile_app(request, *args, **kwargs):
         "fxshare2",
         "fxshare3",
         "fxshare4",
+        "fxshare5",
     ]
 
     for p in product_options:
