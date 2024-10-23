@@ -1,0 +1,61 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_132') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  {% call split(
+    block_class='mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    media_include='firefox/whatsnew/includes/fx132/video.html',
+    media_after=True
+    ) %}
+      <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew132/firefox-20th.png') }}" width="396" height="160" alt="">
+      <h1 class="wnp-main-title">Celebrating 20 years</h1>
+      <p class="wnp-main-body">Whether you just downloaded Firefox or have been with us since the beginning, you are a vital part of helping us make the internet a better place. We can’t wait to show you what’s coming next.</p>
+  {% endcall %}
+
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="mzp-l-columns mzp-t-columns-two">
+      <div class="wnp-action-container">
+        <h2>Brighten your browser experience</h2>
+        <p>Check out our special edition wallpapers — open a new tab and click the gear icon at the top right corner.</p>
+        <button class="c-cta-button js-new-tab" data-cta-text="Try it now">Try it now</button>
+        <img class="wnp-sticker-heart" src="{{ static('img/firefox/whatsnew/whatsnew132/sticker-heart.svg') }}" width="92" height="85" alt="">
+        <img class="wnp-sticker-fox" src="{{ static('img/firefox/whatsnew/whatsnew132/sticker-fox.svg') }}" width="119" height="96" alt="">
+        <img class="wnp-sticker-happy" src="{{ static('img/firefox/whatsnew/whatsnew132/sticker-happy.svg') }}" width="86" height="86" alt="">
+      </div>
+
+      <div class="wnp-action-container">
+        <h2>We’d love to hear your ideas</h2>
+        <p>By joining the Mozilla Connect community, you can help build your next favorite Firefox feature.</p>
+        <a class="mzp-c-cta-link" href="https://connect.mozilla.org/?{{ utm_params }}" data-cta-text="Join now">
+          Join now
+        </a>
+        <img class="wnp-sticker-chat" src="{{ static('img/firefox/whatsnew/whatsnew132/sticker-chat.svg') }}" width="110" height="105" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_132') }}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}
