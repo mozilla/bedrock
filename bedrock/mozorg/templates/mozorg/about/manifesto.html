@@ -136,33 +136,33 @@
         </footer>
       </section>
     </div>
-    <div class="mzp-l-content">
-      <aside class="mzp-c-newsletter">
-        <div class="mzp-c-newsletter-image">
-          {{ resp_img(
-            url='img/home/2018/newsletter-graphic.png',
-            srcset={
-              'img/home/2018/newsletter-graphic-high-res.png': '2x'
-            }
-          ) }}
-        </div>
-
-        <div class="newsletter-content">
-          {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
-            {{ email_newsletter_form(
-              newsletters='mozilla-foundation, mozilla-and-you',
-              button_class='button-dark'
-            )}}
-          {% elif LANG.startswith('en-') %}
-            {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff') }}
-          {% else %}
-            {{ email_newsletter_form(spinner_color='#fff') }}
-          {% endif %}
-        </div>
-      </aside>
-    </div>
-  </article>
+   </article>
 </main>
+<div class="mzp-l-content">
+  <aside class="mzp-c-newsletter">
+    <div class="mzp-c-newsletter-image">
+      {{ resp_img(
+        url='img/home/2018/newsletter-graphic.png',
+        srcset={
+          'img/home/2018/newsletter-graphic-high-res.png': '2x'
+        }
+      ) }}
+    </div>
+
+    <div class="newsletter-content">
+      {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-foundation, mozilla-and-you',
+          button_class='button-dark'
+        )}}
+      {% elif LANG.startswith('en-') %}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff') }}
+      {% else %}
+        {{ email_newsletter_form(spinner_color='#fff') }}
+      {% endif %}
+    </div>
+  </aside>
+</div>
 {% endblock %}
 
 {% block js %}
