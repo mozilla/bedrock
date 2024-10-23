@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- <div class="m24-navigation-refresh m24-mzp-is-sticky">
+ <nav class="m24-navigation-refresh m24-mzp-is-sticky" role="navigation">
   <div class="m24-c-navigation-l-content">
     <div class="m24-c-navigation-container">
       <button class="m24-c-navigation-menu-button" type="button" aria-controls="m24-c-navigation-items" data-testid="m24-navigation-menu-button">{{ ftl('ui-menu') }}</button>
@@ -15,15 +15,15 @@
       </div>
       <div class="m24-c-navigation-items" id="m24-c-navigation-items" data-testid="m24-navigation-menu-items">
         <div class="m24-c-navigation-menu">
-          <nav class="m24-c-menu m24-mzp-is-basic">
+          <div class="m24-c-menu m24-mzp-is-basic">
             <ul class="m24-c-menu-category-list">
               {% include 'includes/protocol/navigation/menus-refresh/firefox.html' %}
               {% include 'includes/protocol/navigation/menus-refresh/products.html' %}
               {% include 'includes/protocol/navigation/menus-refresh/about-us.html' %}
             </ul>
-          </nav>
+          </div>
         </div><!-- close .m24-c-navigation-menu -->
       </div><!-- close .m24-c-navigation-items -->
     </div><!-- close .m24-c-navigation-container -->
   </div><!-- close .m24-c-navigation-l-content -->
-</div>
+</nav>
