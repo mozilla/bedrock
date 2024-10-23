@@ -5,9 +5,6 @@
 #}
 
 {% if switch('m24-website-refresh', ['en']) %}
-  <div class="c-banner c-banner-is-visible mzp-u-centered">
-    <h2>This is some kind of promo, hello!</h2>
-  </div>
   {% include 'includes/protocol/navigation/navigation-refresh.html' %}
 {% else %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
