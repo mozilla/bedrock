@@ -1,0 +1,63 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import "../../protocol/components/video";
+@import 'includes/mofo-donate-cta';
+
+.wnp-footer {
+    text-align: center;
+}
+
+.wnp-content-main {
+    background: linear-gradient(261deg, #AD35DC -29.4%, #6863E5 58.88%, #45278D 109.18%);
+    ;
+    color: $color-white;
+    padding: 50px 0;
+
+    .mzp-l-columns > div {
+        align-self: center;
+    }
+
+    h1 {
+        @include text-title-xl;
+        color: $color-white;
+        margin: $spacing-xl 0 $spacing-lg;
+    }
+
+    h2 {
+        @include text-title-xs;
+        font-weight: 400;
+        color: $color-white;
+        margin-bottom: $spacing-xl;
+    }
+
+    .mzp-c-video {
+        height: auto;
+    }
+
+    .wnp-main-cta {
+        margin-top: $spacing-xl;
+
+        &.mzp-c-button.mzp-t-secondary {
+            background-color: $color-white;
+            border-color: transparent;
+
+            &:hover {
+                border-color: $color-black;
+            }
+        }
+
+        @media #{$mq-md} {
+            margin-top: $spacing-md;
+        }
+    }
+
+    .new-tab.hide {
+        display: none;
+    }
+}

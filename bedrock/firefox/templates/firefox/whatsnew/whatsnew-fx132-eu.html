@@ -1,0 +1,70 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_132_eu') }}
+{% endblock %}
+
+{% if LANG == "fr" %}
+  {% set main_title = 'Firefox fête ses 20 ans' %}
+  {% set main_body_part_one = 'Que vous veniez de télécharger Firefox, ou que vous soyez à nos côtés depuis le début, vous contribuez grandement à notre mission de créer une meilleure version d’Internet. Nous avons hâte de vous dévoiler la suite.' %}
+  {% set main_body_part_two = 'Célébrez avec nous avec nos fonds d’écran en édition spéciale. Ouvrez un nouvel onglet et cliquez sur la roulette en haut à droite pour donner un nouveau look à votre navigateur.' %}
+  {% set video_id = '9RLq8JDY0mI' %}
+  {% set video_image_url = 'img/firefox/whatsnew/whatsnew128-na/gymnast.jpg' %}
+  {% set video_image_url_high_res = 'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg' %}
+  {% set cta = 'Essayer maintenant' %}
+{% elif LANG == "de" %}
+  {% set main_title = '20 Jahre Firefox – feier mit uns!' %}
+  {% set main_body_part_one = 'Egal, ob du gerade erst Firefox heruntergeladen hast oder schon von Anfang an dabei bist – du bist ein wichtiger Teil davon, das Internet zu einem besseren Ort zu machen. Wir können es kaum erwarten, dir zu zeigen, was als Nächstes kommt.' %}
+  {% set main_body_part_two = 'Feier mit uns mit einem speziellen Hintergrundbild. Öffne einen Tab und klicke auf das Zahnrad-Symbol oben rechts, um deinem Browser einen neuen Look zu verpassen.' %}
+  {% set video_id = '9RLq8JDY0mI' %}
+  {% set video_image_url = 'img/firefox/whatsnew/whatsnew128-na/gymnast.jpg' %}
+  {% set video_image_url_high_res = 'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg' %}
+  {% set cta = 'Jetzt ausprobieren' %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-xxl">
+    <div class="mzp-l-columns mzp-t-columns-two">
+      <div>
+        <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew132/firefox-20th.png') }}" width="396" height="160" alt="">
+        <h1>{{ main_title }}</h1>
+        <h2>{{ main_body_part_one }}</h2>
+        <h2>{{ main_body_part_two }}</h2>
+      </div>
+      <div class="c-video-wrapper">
+        {{ video_inline_embed(
+          id=video_id,
+          image=resp_img(
+            url=video_image_url,
+            srcset={
+              video_image_url_high_res: '2x'
+            },
+            optional_attributes={
+              'width': '800',
+              'height': '450'
+            }
+          ),
+        ) }}
+      </div>
+    </div>
+    <button class="wnp-main-cta mzp-c-button mzp-t-secondary new-tab" type="button">{{ cta }}</a>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_132') }}
+{% endblock %}

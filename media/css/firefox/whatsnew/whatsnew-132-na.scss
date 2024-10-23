@@ -1,0 +1,126 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import "../../protocol/components/video";
+@import 'includes/mofo-donate-cta';
+
+.wnp-footer {
+    text-align: center;
+}
+
+.wnp-content-main {
+    background: linear-gradient(261deg, #AD35DC -29.4%, #6863E5 58.88%, #45278D 109.18%);
+    ;
+    color: $color-white;
+    padding-top: 50px;
+
+    .mzp-l-columns > div {
+        align-self: center;
+    }
+
+    h1 {
+        @include text-title-xl;
+        color: $color-white;
+        margin: $spacing-xl 0 $spacing-lg;
+    }
+
+    h2 {
+        @include text-title-xs;
+        font-weight: 400;
+        color: $color-white;
+    }
+
+    .mzp-c-video {
+        height: auto;
+    }
+}
+
+.wnp-action-container {
+    background-color: $color-white;
+    color: $color-black;
+    padding: 82px $spacing-lg $spacing-lg;
+    margin-bottom: $spacing-xl;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: $spacing-md;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: $border-radius-sm;
+    position: relative;
+
+    .mzp-l-columns {
+        margin: 0 64px;
+    }
+
+    h3 {
+        @include text-title-sm;
+        margin-bottom: 0;
+
+        @media #{$mq-xl} {
+            min-height: 72px;
+        }
+    }
+
+    p {
+        @include text-body-md;
+        margin-bottom: 0;
+    }
+
+    .wnp-sticker-heart {
+        position: absolute;
+        top: -28px;
+        left: 94px;
+
+        @media #{$mq-md} {
+            top: -40px;
+            left: 16px;
+        }
+    }
+
+    .wnp-sticker-fox {
+        position: absolute;
+        top: -2px;
+        left: -28px;
+
+        @media #{$mq-md} {
+            top: 48px;
+            left: -72px;
+        }
+    }
+
+    .wnp-sticker-happy {
+        position: absolute;
+        top: -48px;
+        left: 30px;
+
+        @media #{$mq-md} {
+            top: -16px;
+            left: -40px;
+        }
+    }
+
+    .wnp-sticker-chat {
+        position: absolute;
+        bottom: -48px;
+        right: -24px;
+
+        @media #{$mq-md} {
+            right: -64px;
+        }
+    }
+
+    .mzp-c-button.mzp-t-product.mzp-t-secondary {
+        border-color: transparent;
+    }
+
+    .new-tab.hide {
+        display: none;
+    }
+}
