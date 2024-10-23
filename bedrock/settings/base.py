@@ -263,6 +263,7 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
     "banners/firefox-app-store",
+    "banners/m24-pencil-banner",
     "brands",
     "download_button",
     "footer",

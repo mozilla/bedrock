@@ -552,6 +552,7 @@
 // page content - hide all content except for the nav when mobile nav menu is open
 // This is not part of Protocol, it is specifc to Bedrock; should be documented in future
 body:has(.m24-c-navigation-items.mzp-is-open) {
+    & > .m24-pencil-banner,
     & > .c-sub-navigation,
     & > .moz-consent-banner.is-visible,
     & > .c-banner.c-banner-is-visible,
