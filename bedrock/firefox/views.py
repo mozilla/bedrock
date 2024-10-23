@@ -490,6 +490,8 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx132-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx132-eu.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -588,6 +590,13 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("132."):
+            if locale in ["en-US", "en-CA", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx132-na.html"
+            elif locale in ["de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx132-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("131."):

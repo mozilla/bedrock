@@ -1,0 +1,36 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% if LANG == "fr" %}
+  {% set video_id = '9RLq8JDY0mI' %}
+  {% set video_image_url = 'img/firefox/whatsnew/whatsnew128-na/gymnast.jpg' %}
+  {% set video_image_url_high_res = 'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg' %}
+{% elif LANG == "de" %}
+  {% set video_id = '9RLq8JDY0mI' %}
+  {% set video_image_url = 'img/firefox/whatsnew/whatsnew128-na/gymnast.jpg' %}
+  {% set video_image_url_high_res = 'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg' %}
+{% else %}
+  {% set video_id = '9RLq8JDY0mI' %}
+  {% set video_image_url = 'img/firefox/whatsnew/whatsnew128-na/gymnast.jpg' %}
+  {% set video_image_url_high_res = 'img/firefox/whatsnew/whatsnew128-na/gymnast-high-res.jpg' %}
+{% endif %}
+
+{{ video_inline_embed(
+  id=video_id,
+  title='Stick the landing with Firefox',
+  image=resp_img(
+    url=video_image_url,
+    srcset={
+      video_image_url_high_res: '2x'
+    },
+    optional_attributes={
+      'width': '800',
+      'height': '450'
+    }
+  ),
+) }}
