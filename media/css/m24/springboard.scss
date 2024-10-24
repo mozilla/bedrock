@@ -1,0 +1,209 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+// TODO: RTL
+
+
+@property --border-edge {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+.m24-c-springboard {
+    position: relative;
+    display: grid;
+    margin: 0 calc($container-padding * -1);
+}
+
+.m24-c-springboard-head {
+    @include visually-hidden;
+}
+
+.m24-c-springboard-item {
+    --border-edge: #{$m24-color-white};
+    background-color: $m24-color-white;
+    background-image: linear-gradient(90deg, var(--border-edge) $container-padding, $m24-color-black $container-padding, $m24-color-black calc(100% - $container-padding), var(--border-edge) calc(100% - $container-padding));
+    background-repeat: no-repeat;
+    background-size: auto $border-width;
+    color: $m24-color-black;
+    display: grid;
+    gap: $spacer-md;
+    grid-template:
+        "type cat cat"
+        "summary summary summary"
+        "date author author";
+    padding: calc($spacer-md + 2px) $container-padding $spacer-md;
+    transition: all 0.3s ease-in-out, --border-edge 0.3s ease-in-out;
+
+    tbody > &:first-child {
+        border-top: 0;
+    }
+
+    :link,
+    :visited {
+        color: $m24-color-black;
+        text-decoration: none;
+    }
+
+    :link:hover {
+        text-decoration: underline;
+    }
+
+    &.m24-is-clickable {
+        &:hover {
+            --border-edge: #{$m24-color-black};
+            background-color: $m24-color-black;
+            color: $m24-color-white;
+            cursor: pointer;
+
+            & + .m24-c-springboard-item {
+                --border-edge: #{$m24-color-black};
+            }
+
+            :link,
+            :visited {
+                color: $m24-color-white;
+            }
+
+            :link:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+.m24-c-springboard-type {
+    grid-area: type;
+    font-weight: bold;
+}
+
+.m24-c-springboard-icon {
+    display: inline-block;
+    height: 24px;
+    margin-right: $spacer-xs;
+    vertical-align: middle;
+    width: 24px;
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.m24-c-springboard-cat {
+    font-weight: bold;
+    grid-area: cat;
+    text-align: end;
+}
+
+.m24-c-springboard-preview {
+    color: $m24-color-functional-gray;
+    grid-area: summary;
+
+    a:hover & {
+        color: $m24-color-black;
+    }
+}
+
+.m24-c-springboard-date {
+    grid-area: date;
+}
+
+.m24-c-springboard-author {
+    grid-area: author;
+    text-align: end;
+}
+
+.m24-c-springboard-thumb {
+    display: none;
+}
+
+@media #{$mq-lg} {
+    .m24-c-springboard {
+        display: table;
+        border-collapse: collapse;
+    }
+
+    .m24-c-springboard-item {
+        display: table-row;
+
+        > td {
+            display: table-cell;
+            padding: calc($spacer-sm + 2px) $spacer-lg $spacer-sm 0;
+            vertical-align: top;
+            text-wrap: nowrap;
+        }
+
+        &:first-child > td {
+            border-top: 0;
+        }
+
+        &:hover {
+            .m24-c-springboard-thumb {
+                opacity: 1;
+            }
+        }
+
+        .m24-c-springboard-type {
+            padding-left: $container-padding;
+        }
+
+        .m24-c-springboard-preview {
+            padding-right: $container-padding;
+            text-wrap: wrap;
+        }
+
+        .m24-c-springboard-thumb {
+            border: 0;
+            bottom: calc(100% + #{$spacer-sm});
+            display: block;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            transition: opacity 0.3s ease-in-out;
+            width: 152px;
+        }
+
+    }
+
+    .m24-c-springboard-author,
+    .m24-c-springboard-cat {
+        text-align: start;
+    }
+
+}
+
+// icons
+.m24-c-springboard-item,
+.m24-t-dark .m24-c-springboard-item.m24-is-clickable:hover {
+    .m24-c-springboard-icon-article {
+        background-image: url('/media/img/icons/m24-small/glasses.svg');
+    }
+
+    .m24-c-springboard-icon-podcast {
+        background-image: url('/media/img/icons/m24-small/headphones.svg');
+        background-size: 18px 18px;
+    }
+
+    .m24-c-springboard-icon-video {
+        background-image: url('/media/img/icons/m24-small/arrow-right.svg');
+        background-size: 16px 16px;
+    }
+}
+
+.m24-c-springboard-item.m24-is-clickable:hover,
+.m24-t-dark .m24-c-springboard-item {
+    .m24-c-springboard-icon-article {
+        background-image: url('/media/img/icons/m24-small/glasses-white.svg');
+    }
+
+    .m24-c-springboard-icon-podcast {
+        background-image: url('/media/img/icons/m24-small/headphones-white.svg');
+    }
+
+    .m24-c-springboard-icon-video {
+        background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
+    }
+}

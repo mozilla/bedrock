@@ -14,7 +14,7 @@
 
 .m24-navigation-refresh {
     background-color: $color-white;
-    border-bottom: 2px solid $m24-color-medium-gray;
+    border-bottom: $border-width solid $m24-color-medium-gray;
     display: flex;
     width: 100%;
     position: sticky;
@@ -165,7 +165,7 @@
 .m24-c-navigation-menu {
     width: 100%;
     margin-bottom: 0;
-    border-top: 2px solid $m24-color-medium-gray;
+    border-top: $border-width solid $m24-color-medium-gray;
 
     @media #{$mq-md} {
         width: auto;
@@ -185,7 +185,7 @@
 // Enhanced hover interactions with JavaScript enabled.
 .m24-c-menu.m24-mzp-is-enhanced .m24-c-menu-category {
     border-top: none;
-    border-bottom: 2px solid $token-color-light-gray;
+    border-bottom: $border-width solid $token-color-light-gray;
     padding: 8px 16px;
     position: relative;
 
@@ -437,11 +437,11 @@
     }
 
     & > li {
-        border-bottom: 2px solid transparent;
+        border-bottom: $border-width solid transparent;
         width: 100%;
 
         @media #{$mq-md} {
-            border-bottom: 2px solid $token-color-light-gray;
+            border-bottom: $border-width solid $token-color-light-gray;
         }
 
         .m24-c-menu-item {

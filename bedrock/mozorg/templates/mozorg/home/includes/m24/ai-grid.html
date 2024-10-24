@@ -4,89 +4,215 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-m24.html" import grid_tile with context %}
+{% from "macros-m24.html" import grid_tile, springboard_item with context %}
 
-<section class="m24-c-content">
-  <header class="m24-c-copy">
-    <h2 class="m24-c-copy-title">AI for the people</h2>
-    <p>Our mission is to make it easy for people to build with and collaborate on open-source, trustworthy AI.</p>
-  </header>
+<div class="m24-t-dark">
+  <section class="m24-c-content">
+    <header class="m24-c-copy">
+      <h2 class="m24-c-copy-title">AI for the people</h2>
+      <p>Our mission is to make it easy for people to build with and collaborate on open-source, trustworthy AI.</p>
+    </header>
+    <div class="m24-c-grid-container">
+      {{ grid_tile(
+        class='m24-l-grid-half',
+        image=resp_img(
+          url="img/m24/todo-3-2.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "900",
+            "height": "600",
+          }
+        ),
+        title='Llamafile',
+        desc='Run large language models (LLMs) easily on your computer Llamafile – no installation needed, and your data stays safe on your device.',
+        link_url='#',
+        cta_text='Visit',
+      ) }}
 
-  <div class="m24-c-grid-container">
-    {{ grid_tile(
-      class='m24-l-grid-half',
-      image=resp_img(
-        url="img/m24/todo-3-2.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": "",
-          "width": "900",
-          "height": "600",
-        }
-      ),
-      title='Llamafile',
-      desc='Run large language models (LLMs) easily on your computer Llamafile – no installation needed, and your data stays safe on your device.',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
+      {{ grid_tile(
+        class='m24-l-grid-half',
+        image=resp_img(
+          url="img/m24/todo-3-2.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "900",
+            "height": "600",
+          }
+        ),
+        title='Lumigator',
+        desc='Find the “just right” LLM for your needs, use case, and data – like Goldilocks, but with sharper teeth.',
+        link_url='#',
+        cta_text='Visit',
+      ) }}
 
-    {{ grid_tile(
-      class='m24-l-grid-half',
-      image=resp_img(
-        url="img/m24/todo-3-2.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": "",
-          "width": "900",
-          "height": "600",
-        }
-      ),
-      title='Lumigator',
-      desc='Find the “just right” LLM for your needs, use case, and data – like Goldilocks, but with sharper teeth.',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
+      {{ grid_tile(
+        class='m24-l-grid-third',
+        image=resp_img(
+          url="img/m24/todo-1-1.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": ""
+          }
+        ),
+        title='Data Futures Lab',
+        link_url='#',
+        cta_text='Visit',
+      ) }}
 
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-1-1.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Data Futures Lab',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
+      {{ grid_tile(
+        class='m24-l-grid-third',
+        image=resp_img(
+          url="img/m24/todo-5-4.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": ""
+          }
+        ),
+        title='Trustworthy AI Fellow',
+        link_url='#',
+        cta_text='Visit',
+      ) }}
 
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-5-4.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Trustworthy AI Fellow',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
+      {{ grid_tile(
+        class='m24-l-grid-third',
+        image=resp_img(
+          url="img/m24/todo-5-7.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": ""
+          }
+        ),
+        title='Mozilla Builders',
+        link_url='#',
+        cta_text='Visit',
+      ) }}
+    </div>
+  </section>
+  <section class="m24-c-content" id="media">
+    <header class="m24-c-copy">
+      <h2 class="m24-c-copy-title">You, AI and the internet — what’s really going on?</h2>
+    </header>
 
-    {{ grid_tile(
-      class='m24-l-grid-third',
-      image=resp_img(
-        url="img/m24/todo-5-7.svg",
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ""
-        }
-      ),
-      title='Mozilla Builders',
-      link_url='#',
-      cta_text='Visit',
-    ) }}
-  </div>
-</section>
+    <table class="m24-c-springboard" id="ai-media">
+        <thead class="m24-c-springboard-head">
+            <tr>
+              <th>Media</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Author</th>
+              <th>Preview</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{ springboard_item(
+          link_url='https://blog.mozilla.org/en/mozilla/mozilla-anonym-raising-the-bar-for-privacy-preserving-digital-advertising/',
+          type='Article',
+          date='06.11.24',
+          category='Artificial Intelligence',
+          author='Laura Chambers',
+          preview='Introducing Anonym: Raising the bar for privacy-preserving digital advertising.',
+          image=resp_img(
+            url="img/home/2024/media/chambers.png",
+            srcset={'img/home/2024/media/chambers-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url='https://blog.mozilla.org/en/mozilla/keeping-genai-technologies-secure-is-a-shared-responsibility/',
+          type='Article',
+          date='06.01.24',
+          category='Privacy & Security',
+          author='Saoud Khalifah',
+          preview='Keeping GenAI technologies secure is a shared responsibility.',
+          image=resp_img(
+            url="img/home/2024/media/khalifah.png",
+            srcset={'img/home/2024/media/khalifah-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url="https://irlpodcast.org/season7/episode5/",
+          type='Podcast',
+          date='05.23.24',
+          category='Artificial Intelligence',
+          author='IRL Podcast',
+          preview='From Hollywood to Hip Hop, artists are negotiating consent for use of AI in the creative industries. Bridget Todd speaks to artists who are pushing the boundaries.',
+          image=resp_img(
+            url="img/home/2024/media/irl-green.png",
+            srcset={'img/home/2024/media/irl-green-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url="https://blog.mozilla.org/en/products/firefox/new-mozilla-docuseries-firefox-presents-launch/",
+          type='Video',
+          date='05.01.24',
+          category='News',
+          author='Rebecca Smith',
+          preview='Mozilla celebrates groundbreaking creators in new docuseries ‘Firefox Presents’.',
+          image=resp_img(
+            url="img/home/2024/media/smith.png",
+            srcset={'img/home/2024/media/smith-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url="https://irlpodcast.org/season7/episode4/",
+          type='Podcast',
+          date='28.07.22',
+          category='Artificial Intelligence',
+          author='IRL Podcast',
+          preview='Big tech’s power over language, means power over people. Bridget Todd talks to language community leaders paving the way for voice AI in their own languages and dialects.',
+          image=resp_img(
+            url="img/home/2024/media/irl-pink.png",
+            srcset={'img/home/2024/media/irl-pink-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url="https://irlpodcast.org/season7/episode3/",
+          type='Podcast',
+          date='07.11.23',
+          category='Artificial Intelligence',
+          author='IRL Podcast',
+          preview='Why does it so often feel like we’re part of a mass AI experiment? What is the responsible way to test new technologies? Bridget Todd explores what it means to live with unproven AI systems that impact millions of people as they roll out across public life.',
+          image=resp_img(
+            url="img/home/2024/media/irl-orange.png",
+            srcset={'img/home/2024/media/irl-orange-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+        {{ springboard_item(
+          link_url="https://blog.mozilla.org/en/internet-culture/kids-mental-health-screen-time-technology/",
+          type='Article',
+          date='16.06.22',
+          category='Privacy & Security',
+          author='Kristina Bravo',
+          preview='Kids are growing up in a very online world. What’s a concerned parent to do?',
+          image=resp_img(
+            url="img/home/2024/media/bravo.png",
+            srcset={'img/home/2024/media/bravo-high-res.png': '2x'},
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ""
+            })
+        ) }}
+      </tbody>
+    </table>
+  </section>
+</div>
+<div class="m24-c-transition m24-l-reverse m24-t-black"><hr></div>

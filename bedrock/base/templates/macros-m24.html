@@ -47,3 +47,38 @@
   </a>
 </div>
 {%- endmacro %}
+
+
+{#
+  Springboard Item
+  HTML Import: {% from "macros-m24.html" import springboard_item with context %}
+  CSS Import: @import '[path to]/m24/foo';
+  Macro Parameters:
+    link_url (Required):
+    class: String providing modifier class(es) to the tile component.
+
+#}
+{% macro springboard_item(
+  author=None,
+  category=None,
+  class=None,
+  date=None,
+  heading_level=3,
+  icon='',
+  image=None,
+  link_attributes=None,
+  link_url=None,
+  preview=None,
+  type=None
+) -%}
+<tr class="m24-c-springboard-item">
+  <td class="m24-c-springboard-type"><span class="m24-c-springboard-icon m24-c-springboard-icon-{{ type|lower }}"></span>{{ type }}</td>
+  <td class="m24-c-springboard-date">{{ date }}</td>
+  <td class="m24-c-springboard-cat">{{ category }}</td>
+  <td class="m24-c-springboard-author">{{ author }}</td>
+  <td class="m24-c-springboard-preview"><a href="{{ link_url }}" class="m24-c-springboard-link">{{ preview }}</a></td>
+  <td class="m24-c-springboard-thumb">
+    {{ image }}
+  </td>
+</tr>
+{%- endmacro %}

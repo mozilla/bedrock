@@ -236,7 +236,7 @@ $max-footer-content-width: $content-max;
     background-color: transparent;
     color: $m24-color-black;
     padding: 6px 24px;
-    border: 2px solid $m24-color-green;
+    border: $border-width solid $m24-color-green;
     text-decoration: none;
     text-align: center;
     max-width: 800px;
@@ -334,7 +334,7 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        border: 2px solid transparent;
+        border: $border-width solid transparent;
         border-radius: 0;
         font-family: $secondary-font;
         font-weight: 600;

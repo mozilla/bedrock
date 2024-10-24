@@ -1796,6 +1796,12 @@
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
+    },
+    {
+      "files": [
+        "js/base/protocol/m24-springboard.es6.js"
+      ],
+      "name": "m24-springboard"
     }
   ]
 }

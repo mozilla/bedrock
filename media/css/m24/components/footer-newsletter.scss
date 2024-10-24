@@ -137,7 +137,7 @@ $max-footer-content-width: $content-max;
 
         input[type="email"],
         select {
-            border: 2px solid $m24-color-black;
+            border: $border-width solid $m24-color-black;
             border-radius: 0;
             background-color: $m24-color-light-gray;
             color: $m24-color-black;
@@ -242,7 +242,7 @@ $max-footer-content-width: $content-max;
         margin-bottom: 0;
 
         button {
-            border: 2px solid $m24-color-green;
+            border: $border-width solid $m24-color-green;
             border-radius: 0;
             font-family: $secondary-font;
             position: relative;
