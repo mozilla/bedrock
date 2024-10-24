@@ -162,6 +162,9 @@ python manage.py dumpdata \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
     newsletter.Newsletter \
+    products.VPNCallToActionSnippet \
+    products.VPNResourceCenterIndexPage \
+    products.VPNResourceCenterDetailPage \
     externalfiles.ExternalFile \
     security.Product \
     security.SecurityAdvisory \
@@ -238,6 +241,10 @@ do
     sqlite3 $output_db "DELETE FROM $table"
     echo "Purged now-redundant data from: $table"
 done
+
+# Delete Wagtail Page records that are not marked as Live
+sqlite3 $output_db "DELETE FROM wagtailcore_page WHERE live=0;"
+echo "Purged Page records that are not marked as live any more"
 
 # And to be sure that there are no relations pointing back to non-existent rows
 echo "Preparing statements for nullifying columns in temporary sql file. (Output is hidden because it's captured from stdout)."
