@@ -12,19 +12,21 @@
     }
 }
 
+@keyframes nav-slide-in-reverse {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
 .m24-navigation-refresh {
     background-color: $color-white;
     border-bottom: 2px solid $m24-color-medium-gray;
     display: flex;
     width: 100%;
-    position: sticky;
-    z-index: 100;
-    top: 0;
-    left: 0;
-
-    @media (prefers-reduced-motion: reduce) {
-        position: static;
-    }
 
     @media #{$mq-md} {
         display: block;
@@ -36,9 +38,11 @@
 @supports (position: sticky) {
     html.mzp-has-sticky-navigation {
         .m24-navigation-refresh.m24-mzp-is-sticky {
-            @include transition(transform 300ms ease-in-out);
             position: sticky;
             z-index: 1000;
+            left: 0;
+            top: 0;
+            @include transition(transform 300ms ease-in-out);
 
             &.mzp-is-scrolling {
                 // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
@@ -49,62 +53,72 @@
             &.mzp-is-hidden {
                 @include transform(translate(0, -110%));
             }
+
+            @media (prefers-reduced-motion: reduce) {
+                position: static;
+            }
         }
     }
 }
 
 // Common navigation styles
 .m24-c-navigation-l-content {
-    position: relative;
-    padding: $spacer-xs $spacer-md;
-    width: 100%;
     display: flex;
+    padding: $spacer-xs $spacer-md;
+    position: relative;
+    width: 100%;
 
     @media #{$mq-md} {
-        padding: $spacer-sm $spacer-md;
-        width: auto;
         display: block;
+        padding: $spacer-sm $spacer-md 0;
+        width: auto;
     }
 }
 
 .m24-c-navigation-container {
-    @include clearfix;
-    width: 100%;
-    padding: 0;
-    max-width: $content-max;
     margin: 0 auto;
+    max-width: $content-max;
+    padding: 0;
     position: relative;
+    width: 100%;
+    @include clearfix;
 
     @media #{$mq-md} {
+        align-items: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
         position: static;
     }
 }
 
+// Mobile navigation menu button.
 .m24-c-navigation-menu-button {
+    display: none;
+}
+
+.js .m24-c-navigation-menu-button {
     background-color: inherit;
-    margin: 0;
-    padding: 0;
+    border: none;
     color: $color-black;
-    position: relative;
+    display: block;
     font-family: $primary-font;
     font-weight: 600;
-    border: none;
     height: 32px;
+    margin: 0;
+    padding: 0;
+    position: relative;
     @include bidi(((float, right, left),));
 
     &::after {
-        display: block;
         background: $color-black;
         bottom: 4px;
         content: "";
+        display: block;
         height: 1px;
         left: 0;
         position: absolute;
-        width: 100%
+        width: 100%;
     }
 
     &.mzp-is-active {
@@ -125,30 +139,33 @@
 
 .m24-c-navigation-logo-image {
     height: 21px;
-    padding: 0;
+    padding-top: $spacing-xs;
+
+    @media #{$mq-md} {
+        padding: 0 0 $spacing-sm;
+    }
 }
 
-.m24-c-navigation-items {
-    // mobile specfic styles
-    @media (max-width: $screen-md) {
-        display: none;
+// Mobile navigation menu with JS enabled.
+.js .m24-c-navigation-items {
+    display: none;
 
+    @media (max-width: $screen-md) {
         &.mzp-is-open {
             display: flex;
-            position: fixed;
-            z-index: 100;
-            top: 0;
-            right: 0;
-            width: 100%;
             height: calc(100vh - 48px); // 48px margin top
-            transition: 0.45s;
             margin-top: 48px;
-            padding-top: 0;
             overflow: hidden auto;
-            animation: nav-slide-in 0.45s ease;
+            padding-top: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            @include bidi(((animation, nav-slide-in 0.45s ease, nav-slide-in-reverse 0.45s ease),));
 
             @media (prefers-reduced-motion: reduce) {
-                animation: none;
+                @include bidi(((animation, none, none),));
             }
 
             .m24-c-menu-category-list:has(.m24-c-menu-category.mzp-is-selected) {
@@ -160,122 +177,104 @@
             }
         }
     }
+
+    @media #{$mq-md} {
+        display: block;
+    }
 }
 
 .m24-c-navigation-menu {
-    width: 100%;
-    margin-bottom: 0;
     border-top: 2px solid $m24-color-medium-gray;
+    margin-bottom: 0;
+    width: 100%;
 
     @media #{$mq-md} {
-        width: auto;
         border-top: transparent;
+        width: auto;
     }
 }
 
 // Basic hover interactions with JavaScript disabled or not supported.
-.m24-c-menu.m24-mzp-is-basic .m24-c-menu-panel {
-    display: block;
-
+.m24-c-menu.m24-mzp-is-basic .m24-c-menu-category {
     @media #{$mq-md} {
-        display: none;
+        &.mzp-has-drop-down:hover,
+        &.mzp-has-drop-down:focus {
+            .m24-c-menu-panel {
+                display: block;
+            }
+        }
+
+        &.mzp-has-drop-down:focus-within {
+            .m24-c-menu-panel {
+                display: block;
+            }
+        }
     }
 }
 
 // Enhanced hover interactions with JavaScript enabled.
 .m24-c-menu.m24-mzp-is-enhanced .m24-c-menu-category {
-    border-top: none;
-    border-bottom: 2px solid $token-color-light-gray;
-    padding: 8px 16px;
-    position: relative;
-
-    @media #{$mq-md} {
-        padding: 0;
-        border-bottom: transparent;
-    }
-
     &.mzp-is-selected {
-        z-index: 1000;
-        width: calc(100% - 32px);
         border-bottom: transparent;
-        position: static;
-
-        @media #{$mq-md} {
-            width: auto;
-        }
-
-        &::before {
-            left: 0;
-            @include bidi(((left, 8px, right, auto), (right, 8px, left, auto)));
-            transform: rotate(-90deg);
-        }
 
         .m24-c-menu-title {
-            padding: 0 0 0 48px;
-
-            @media #{$mq-md} {
-                color: $m24-color-dark-green;
-                padding: 0;
-            }
-
-            &::after {
-                @media #{$mq-md} {
-                    background: $m24-color-dark-green;
-                }
-            }
+            @include bidi(((padding-left, 48px, padding-right, 48px),));
         }
 
         .m24-c-menu-panel {
             display: block;
-            z-index: 100;
-            width: 100%;
-            height: auto;
-            background-color: #fff;
-            overflow: hidden auto;
-            animation: nav-slide-in 0.45s ease;
+            @include bidi(((animation, nav-slide-in 0.45s ease, nav-slide-in-reverse 0.45s ease),));
 
             @media (prefers-reduced-motion: reduce) {
-                animation: none;
-            }
-
-            @media #{$mq-md} {
-                position: absolute;
-                display: block;
-                animation: none;
-                max-height: calc(100vh - 64px);
-                overflow: auto;
-                top: 61px;
-                left: 0;
-                right: 0;
+                @include bidi(((animation, none, none),));
             }
         }
     }
 
+    // Arrow styles for mobile menu items.
     &::before {
         background: url('/media/img/m24/arrow-dark-up.svg') top left repeat;
-        transform: rotate(90deg);
         content: '';
         height: 20px;
         position: absolute;
         top: 10px;
         width: 20px;
-        @include bidi(((right, 8px, left, auto),));
+        @include bidi((
+            (transform, rotate(90deg), rotate(-90deg)),
+            (right, 8px, left, auto),
+        ));
+    }
 
-        @media #{$mq-md} {
+    &.mzp-is-selected::before {
+        @include bidi((
+            (transform, rotate(-90deg), rotate(90deg)),
+            (left, 8px, right, auto),
+        ));
+    }
+
+    @media #{$mq-md} {
+        &.mzp-is-selected {
+            .m24-c-menu-button-close {
+                display: block;
+            }
+
+            .m24-c-menu-title {
+                color: $m24-color-dark-green;
+                @include bidi(((padding-left, 0, padding-right, 0),));
+            }
+
+            &::after {
+                background: $m24-color-dark-green;
+            }
+
+            .m24-c-menu-panel {
+                @include bidi(((animation, none, none),));
+            }
+        }
+
+        &::before {
             display: none;
         }
-    }
-}
-
-.m24-c-menu.m24-mzp-is-enhanced .m24-c-menu-category.m24-c-menu-category-has-icon {
-    .m24-c-menu-title-icon {
-        @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
-    }
-
-    .m24-c-menu-title::after {
-        bottom: 1px;
-        @include bidi(((left, 24px, right, auto), (right, auto, left, 24px)));
-        width: calc(100% - 24px);
     }
 }
 
@@ -292,42 +291,52 @@
     }
 }
 
-.m24-c-menu-category.mzp-has-drop-down {
-    .m24-c-menu-panel {
-        background-color: $color-white;
-        color: $color-black;
-        @include border-box;
-        display: none;
+.m24-c-menu-category {
+    border-bottom: 2px solid $token-color-light-gray;
+    border-top: none;
+    padding: 8px 16px;
+    position: relative;
+    width: calc(100% - 32px);
+    z-index: 1000;
 
-        @media #{$mq-md} {
-            left: 0;
-            right: auto;
-            top: 64px;
-            width: 100%;
-            padding: 0;
-            border-bottom: 4px solid $m24-color-medium-gray;
+    .m24-c-menu-category-has-icon {
+        .m24-c-menu-title-icon {
+            @include bidi(((margin-right, 8px, margin-right, 8px),));
         }
+
+        .m24-c-menu-title::after {
+            bottom: 1px;
+            width: calc(100% - 24px);
+            @include bidi(((left, 24px, right, auto),));
+        }
+    }
+
+    @media #{$mq-md} {
+        border-bottom: transparent;
+        padding: 0 0 $spacer-sm;
+        position: static;
+        width: auto;
     }
 }
 
-.m24-c-menu-category > .m24-c-menu-title {
-    position: relative;
+.m24-c-menu-title {
+    border: none;
+    color: $color-black;
+    display: block;
     font-family: $primary-font;
     font-size: $text-button-sm;
     font-weight: 600;
     padding: 0;
-    color: $color-black;
+    position: relative;
     text-decoration: none;
-    border: none;
     width: 100%;
-    display: block;
 
     @media #{$mq-md} {
         &::after {
-            display: block;
             background: $color-black;
             bottom: 1px;
             content: "";
+            display: block;
             height: 1px;
             left: 0;
             position: absolute;
@@ -337,14 +346,36 @@
 }
 
 .m24-c-menu-panel {
-    // mobile specfic styles
-    @media (max-width: $screen-md) {
-        display: none;
-    }
+    background-color: $color-white;
+    color: $color-black;
+    height: auto;
+    overflow: hidden auto;
+    width: 100%;
+    z-index: 1000;
+    @include border-box;
 
     @media #{$mq-md} {
+        border-bottom: 4px solid $m24-color-medium-gray;
+        left: 0;
+        overflow: auto;
         padding: 0;
+        position: absolute;
+        right: auto;
+        top: 58px;
+        width: 100%;
     }
+}
+
+.m24-mzp-is-basic .m24-c-menu-panel {
+    display: block;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+.m24-mzp-is-enhanced .m24-c-menu-panel {
+    display: none;
 }
 
 .m24-c-menu-panel .m24-c-menu-panel-container {
@@ -354,8 +385,8 @@
 }
 
 .m24-c-menu-item-title {
-    font-size: $text-button-sm;
     font-family: $primary-font;
+    font-size: $text-button-sm;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -370,11 +401,11 @@
     }
 
     .m24-c-menu-item-link {
-        display: flex;
         align-items: center;
+        display: flex;
         padding: 8px 0;
-        width: 100%;
         text-decoration: none;
+        width: 100%;
 
         &:visited {
             text-decoration: none;
@@ -385,10 +416,10 @@
             position: relative;
 
             &::after {
-                display: block;
                 background: $color-black;
                 bottom: 1px;
                 content: "";
+                display: block;
                 height: 1px;
                 left: 0;
                 position: absolute;
@@ -451,26 +482,26 @@
 }
 
 .m24-c-menu-panel .m24-c-menu-category-link {
+    border: none;
     display: flex;
-    justify-content: flex-end;
-    padding: 0;
-    margin: $spacer-lg $spacer-lg 0;
     font-family: $primary-font;
     font-size: $text-button-sm;
-    border: none;
+    justify-content: flex-end;
+    margin: $spacer-lg $spacer-lg 0;
+    padding: 0;
 }
 
 .m24-c-menu-panel .m24-c-menu-category-link a,
 .m24-c-menu-panel .m24-c-menu-category-link a:visited,
 .m24-c-menu-panel .m24-c-menu-category-link a:link {
-    position: relative;
-    display: flex;
-    width: fit-content;
     border: none;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: $primary-font;
     color: $color-black;
+    display: flex;
+    font-family: $primary-font;
+    font-weight: 600;
+    position: relative;
+    text-decoration: none;
+    width: fit-content;
 
     svg path {
         fill: $color-black;
@@ -500,15 +531,15 @@
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:active,
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited {
     .m24-c-menu-item-title {
-        font-weight: 600;
         border: none;
+        font-weight: 600;
         position: relative;
 
         &::after {
-            display: block;
             background: $color-black;
             bottom: 1px;
             content: "";
+            display: block;
             height: 1px;
             left: 0;
             position: absolute;
@@ -528,25 +559,22 @@
     }
 }
 
+// Menu panel close button shown on desktop sized view ports.
 .m24-c-menu-button-close {
+    background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
+    border-radius: $border-radius-sm;
+    border: none;
+    box-shadow: $box-shadow-sm;
+    cursor: pointer;
     display: none;
-
-    @media #{$mq-md} {
-        position: absolute;
-        display: block;
-        cursor: pointer;
-        @include image-replaced;
-        background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
-        @include background-size(20px, 20px);
-        border-radius: $border-radius-sm;
-        border: none;
-        box-shadow: $box-shadow-sm;
-        padding: var(--spacer-xs);
-        height: 24px;
-        width: 24px;
-        top: 15px;
-        @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
-    }
+    height: 24px;
+    padding: var(--spacer-xs);
+    position: absolute;
+    top: 15px;
+    width: 24px;
+    @include background-size(20px, 20px);
+    @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
+    @include image-replaced;
 }
 
 // page content - hide all content except for the nav when mobile nav menu is open
