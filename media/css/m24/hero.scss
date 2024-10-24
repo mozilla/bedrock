@@ -4,9 +4,6 @@
 
 
 .m24-c-hero {
-    @include container;
-    padding-top: $spacer-2xl;
-
     * {
         margin-bottom: 0;
     }
@@ -17,17 +14,80 @@
 }
 
 .m24-c-hero-media {
-    margin: 0 calc(-1 * $container-padding);
-    padding-top: $spacer-xl;
+    margin: 0;
+    background-color: $color-black;
+
+
+}
+
+.m24-c-hero-media-container {
+    padding: $spacer-md $spacer-md 0;
+
+    @media #{$mq-md} {
+        padding: $spacer-lg $spacer-lg 0;
+    }
 
     img {
         display: block;
         border: $spacer-xs solid $color-black; // this does not change from light to dark mode
         box-sizing: border-box;
+        margin: 0 auto;
     }
 }
 
-.m24-c-hero-cta {
-    padding: $spacer-md 0 0;
+.m24-c-hero-media-content {
+    padding: $spacer-xl $spacer-md;
+}
+
+.m24-c-hero-media-text {
+    @media #{$mq-md} {
+        max-width: 80%;
+    }
+
+    .m24-c-hero-media-heading {
+        color: $color-white;
+        font-size: $text-title-xl;
+        line-height: 0.95;
+        margin-bottom: $spacer-xl;
+    }
+
+    li {
+        color: $color-white;
+        margin-bottom: $grid-margin;
+        font-size: $text-title-md;
+        line-height: 1.2;
+
+        @media #{$mq-md} {
+            max-width: 80%;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &.mzp-c-picto {
+            display: flex;
+            align-items: center;
+        }
+
+        .mzp-c-picto-image {
+            width: 48px;
+            height: 48px;
+            margin-right: 16px;
+        }
+    }
+}
+
+.m24-c-hero-media-cta {
+    padding: $spacer-xl 0 0;
     text-align: right;
+
+    .m24-c-cta {
+        color: $color-white;
+
+        &:hover {
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
 }

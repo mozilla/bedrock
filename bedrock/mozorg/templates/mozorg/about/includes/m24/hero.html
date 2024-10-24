@@ -4,17 +4,89 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros-protocol.html" import picto with context %}
+
 <section class="m24-c-hero">
   <div class="m24-c-copy">
-    <h1 class="m24-c-copy-title m24-t-2xl">Activists for change on and off the screen</h1>
-    <p>We don't answer to shareholders because we don't have any. We're guided by ten principles. And a love for the interweb.</p>
-    <p class="m24-c-copy-cta"><a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Mission">Read our mission</a></p>
+    <h1 class="m24-c-copy-title m24-t-2xl">Reclaim the internet with us</h1>
+    <p>Mozilla is an activist organization working to put control of the internet back in the hands of the people using it.</p>
   </div>
 
   <div class="m24-c-hero-media">
-    <picture>
-      <source srcset="{{ static('img/m24/todo-2-1.svg') }}" media="(max-width: 768px)" width="768" height="384"> <!-- 2:1 -->
-      <img src="{{ static('img/m24/todo-27-1.svg') }}" alt="" width="1440" height="533"> <!-- 2.7:1 -->
-    </picture>
+    <div class="m24-c-hero-media-container">
+      <picture>
+        <source srcset="{{ static('img/m24/todo-2-1.svg') }}" media="(max-width: 768px)" width="768" height="384"> <!-- 2:1 -->
+        <img src="{{ static('img/m24/todo-27-1.svg') }}" alt="" width="1440" height="533"> <!-- 2.7:1 -->
+      </picture>
+    </div>
+
+    <div class="m24-c-hero-media-content">
+      <div class="m24-c-hero-media-text">
+        <h2 class="m24-c-hero-media-heading">Together, we can keep the internet easy, safe and free, for everyone</h2>
+        <ul class="mzp-t-picto-side">
+          {% call picto(
+            base_el='li',
+            image=resp_img(
+              url='img/icons/m24-small/icon-bell-light-green.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+          ) %}
+            <strong>We advocate</strong> for better products, holding governments and tech corporations accountable for what they create.
+          {% endcall %}
+
+          {% call picto(
+            base_el='li',
+            image=resp_img(
+              url='img/icons/m24-small/icon-glasses-light-green.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+          ) %}
+            <p><strong>We monitor</strong> developments, conduct research, and campaign to improve products and drive policies that will represent your interests.</p>
+          {% endcall %}
+
+          {% call picto(
+            base_el='li',
+            image=resp_img(
+              url='img/icons/m24-small/icon-pencil-light-green.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+          ) %}
+            <p><strong>We build</strong> products that put you in control. Like Firefox, Fakespot and more.</p>
+          {% endcall %}
+
+          {% call picto(
+            base_el='li',
+            image=resp_img(
+              url='img/icons/m24-small/icon-dollar-light-green.svg',
+              optional_attributes={
+                'class': 'mzp-c-picto-image',
+                'loading': 'lazy'
+              }
+            ),
+            body=True,
+          ) %}
+            <p><strong>We fund</strong> and invest in the people and efforts taking technology, the internet, and AI in the right direction.</p>
+          {% endcall %}
+        </ul>
+      </div>
+
+      <p class="m24-c-hero-media-cta">
+        <a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Mission">Read our mission</a>
+      </p>
+    </div>
   </div>
 </section>
+
+<div class="m24-c-transition m24-l-reverse m24-t-black"><hr></div>
