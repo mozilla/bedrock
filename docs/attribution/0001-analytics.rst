@@ -114,7 +114,10 @@ The attribute ``data-cta-text`` must be present to trigger the event. All links 
 |                       | - This is to group CTAs by their destination                                     |
 |                       | - Do not use this to identify the element (ie. link, button)                     |
 +-----------------------+----------------------------------------------------------------------------------+
-
+| ``data-cta-name``     | A identifier for this cta that is unique across the entire site. (e.g.           |
+|                       | ``fx20-primarycta``, ``wnp118-sfaq-so-special-features``). This is to help with  |
+|                       | reporting since it is difficult to filter on more than one parameter at a time.  |
++-----------------------+----------------------------------------------------------------------------------+
 
 
 .. code-block:: html
