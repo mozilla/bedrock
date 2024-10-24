@@ -5,6 +5,7 @@
 from io import StringIO
 from unittest.mock import call, patch
 
+from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import TransactionTestCase
 
@@ -85,3 +86,91 @@ class BootstrapLocalAdminTests(TransactionTestCase):
             call("Admin user test@mozilla.com already exists\n"),
         ]
         self.assertEqual(output, expected_output)
+
+
+@patch("bedrock.cms.management.commands.bootstrap_demo_server_admins.sys.stdout.write")
+class BootstrapDemoAdminsTests(TransactionTestCase):
+    maxDiff = None
+
+    def _run_test(self, mock_write, expected_output):
+        out = StringIO()
+        call_command("bootstrap_demo_server_admins", stdout=out)
+        output = mock_write.call_args_list
+        self.assertEqual(output, expected_output)
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": ""})
+    def test_no_env_vars_available(self, mock_write):
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Not bootstrapping users: DEMO_SERVER_ADMIN_USERS not set\n"),
+            ],
+        )
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": ","})
+    def test_only_empty_list_available(self, mock_write):
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Not bootstrapping users: DEMO_SERVER_ADMIN_USERS not set\n"),
+            ],
+        )
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "test@mozilla.com, test2@mozilla.com, test3@mozilla.com"})
+    def test_multiple_emails_available(self, mock_write):
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Bootstrapping 3 SSO users\n"),
+                call("Created Admin user test@mozilla.com for local SSO use\n"),
+                call("Created Admin user test2@mozilla.com for local SSO use\n"),
+                call("Created Admin user test3@mozilla.com for local SSO use\n"),
+            ],
+        )
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "testadmin@mozilla.com"})
+    def test_single_email_available(self, mock_write):
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Bootstrapping 1 SSO users\n"),
+                call("Created Admin user testadmin@mozilla.com for local SSO use\n"),
+            ],
+        )
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "testadmin@mozilla.com"})
+    def test_user_created_has_appropriate_perms(self, mock_write):
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Bootstrapping 1 SSO users\n"),
+                call("Created Admin user testadmin@mozilla.com for local SSO use\n"),
+            ],
+        )
+        user = User.objects.get(email="testadmin@mozilla.com")
+        self.assertTrue(user.is_staff)
+        self.assertTrue(user.is_superuser)
+        self.assertFalse(user.has_usable_password())
+
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "test@mozilla.com, test2@mozilla.com, test3@mozilla.com"})
+    def test_multiple_emails_available_but_exist_already_somehow(self, mock_write):
+        # This is not likely to happen in reality, but worth testing
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Bootstrapping 3 SSO users\n"),
+                call("Created Admin user test@mozilla.com for local SSO use\n"),
+                call("Created Admin user test2@mozilla.com for local SSO use\n"),
+                call("Created Admin user test3@mozilla.com for local SSO use\n"),
+            ],
+        )
+        mock_write.reset_mock()
+        self._run_test(
+            mock_write=mock_write,
+            expected_output=[
+                call("Bootstrapping 3 SSO users\n"),
+                call("User test@mozilla.com already exists - not creating\n"),
+                call("User test2@mozilla.com already exists - not creating\n"),
+                call("User test3@mozilla.com already exists - not creating\n"),
+            ],
+        )
