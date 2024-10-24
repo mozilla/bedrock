@@ -47,3 +47,50 @@
   </a>
 </div>
 {%- endmacro %}
+
+{#
+  Springboard Item
+  HTML Import: {% from "macros-m24.html" import springboard_item with context %}
+  CSS Import: @import '[path to]/m24/foo';
+  Macro Parameters:
+    link_url (Required):
+    class: String providing modifier class(es) to the tile component.
+
+#}
+{% macro springboard_item(
+  author=None,
+  category=None,
+  class=None,
+  date=None,
+  image=None,
+  link_attributes=None,
+  link_url=None,
+  preview=None,
+  type=None,
+  icon=''
+) -%}
+
+<li class="m24-c-springboard-item {{ class }}">
+  {% if link_url %}
+    <a href="{{ link_url }}" class="m24-c-springboard-link" {{ link_attributes }}>
+  {% else %}
+    <div class="m24-c-springboard-link">
+  {% endif %}
+    <div class="m24-c-springboard-thumb">
+      {{ image }}
+    </div>
+    <div class="m24-c-springboard-type">
+      {% if icon %}<span class="m24-c-springboard-icon m24-c-springboard-icon-{{ icon|lower }}"></span>{% endif %}
+      {{ type }}
+    </div>
+    <!-- <div class="m24-c-springboard-date">{{ date }}</div> -->
+    <div class="m24-c-springboard-author">{{ author }}</div>
+    <div class="m24-c-springboard-cat">{{ category }}</div>
+    <div class="m24-c-springboard-preview">{{ preview }}</div>
+  {% if link_url %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
+</li>
+{%- endmacro %}
