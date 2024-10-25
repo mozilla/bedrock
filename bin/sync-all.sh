@@ -27,3 +27,7 @@ fi
 
 ./manage.py migrate --noinput
 ./manage.py l10n_update
+
+if [[ -n "${DEMO_SERVER_ADMIN_USERS}" ]]; then
+    ./manage.py bootstrap_demo_server_admins
+fi
