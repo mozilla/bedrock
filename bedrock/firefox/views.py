@@ -337,6 +337,13 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         context.update(
             download_url=download_url,
         )
+        if product_slug == "desktop-esr":
+            download_esr_115_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr115")))[0]["platforms"][
+                platform
+            ]["download_url"]
+            context.update(
+                download_esr_115_url=download_esr_115_url,
+            )
         if product_slug == "desktop-esr" and esr_next_version:
             try:
                 download_esr_next_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr_next")))[0][

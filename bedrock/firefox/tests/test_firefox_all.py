@@ -235,7 +235,7 @@ def test_firefox_esr(client, os, lang):
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
-    assert len(link) == 1
+    assert len(link) == 2
     download_url = link.attr("href")
     if "msi" in os:
         product = "firefox-esr-msi-latest-ssl"
@@ -298,7 +298,7 @@ def test_firefox_esr_next(client, os, lang):
             doc = pq(resp.content)
 
     link = doc(".c-download-button")
-    assert len(link) == 2  # We show both the current ESR and the next ESR download buttons.
+    assert len(link) == 3  # We show both the current ESR and the next ESR download buttons, as well as ESR 115.
 
     download_esr_next_url = link.eq(0).attr("href")
     download_esr_url = link.eq(1).attr("href")
