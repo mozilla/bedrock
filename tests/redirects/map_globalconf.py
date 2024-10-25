@@ -1327,5 +1327,7 @@ URLS = flatten(
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
+        # Issue 15386
+        url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
     )
 )
