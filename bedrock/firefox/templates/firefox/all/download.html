@@ -69,12 +69,15 @@
         </a>
       </p>
       {% endif %}
-      <p class="c-step-download mzp-u-body-sm">{{ ftl('firefox-all-note-unsupported') }}</p>
-      <p>
-        <a href="{{ download_esr_115_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-secondary mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
-          {{ ftl('firefox-all-download-esr-115') }} {{ icon_download|safe }}
-        </a>
-      </p>
+      {# ESR 115 issue: 15083 #}
+      {% if download_esr_115_url %}
+        <p class="c-step-download mzp-u-body-sm">{{ ftl('firefox-all-note-unsupported') }}</p>
+        <p>
+          <a href="{{ download_esr_115_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-secondary mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
+            {{ ftl('firefox-all-download-esr-115') }} {{ icon_download|safe }}
+          </a>
+        </p>
+      {% endif %}
     {% else %}
       {# All other desktop releases #}
       <p class="c-step-download">
