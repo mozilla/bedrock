@@ -19,9 +19,13 @@
     padding-top: 50px;
 
     .wnp-main-title {
-        @include text-title-xl;
+        @include font-size(40px);
         color: $color-white;
         margin: $spacing-xl 0 $spacing-lg;
+
+        @media #{$mq-lg} {
+            @include font-size(56px);
+        }
     }
 
     .wnp-main-body {
