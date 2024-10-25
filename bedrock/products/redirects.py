@@ -41,4 +41,6 @@ redirectpatterns = (
     redirect(r"^vpn/download/mac/?$", "products.vpn.mac-download"),
     redirect(r"^products/mozsocial/invite/?$", "products.landing"),
     redirect(r"^products/vpn/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
+    # Issue 15386
+    redirect(r"^products/vpn/resource-center/no-Logging-vpn-from-mozilla/$", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
 )
