@@ -12,20 +12,21 @@ const TrackScroll = {};
 
 // track when page has been scrolled these percentages:
 let thresholds = [25, 50, 75, 90];
-// variables to support both throttle and debounce
-const pushDelay = 200;
-let lastPush = 0;
-let pushTimer;
 let listening = true;
 
+function debounce(func, delay) {
+    let timer;
+    return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.apply(this, arguments);
+        }, delay);
+    };
+}
+
 // get what percentage of the page has been scrolled
-TrackScroll.getDepth = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const innerHeight = window.innerHeight;
-    const scrollY = window.scrollY;
-    const scrollPosition = innerHeight + scrollY;
-    const depth = (100 * scrollPosition) / scrollHeight;
-    return depth;
+TrackScroll.getDepth = (scrollHeight, innerHeight, scrollY) => {
+    return (scrollY / (scrollHeight - innerHeight)) * 100;
 };
 
 // log the event to the dataLayer
@@ -44,18 +45,17 @@ TrackScroll.removeListener = () => {
     }
 };
 
-// delayed call to scrollHandler, will keep getting delayed if it keeps getting called (aka this is a debouced call)
-TrackScroll.delayedScrollHandler = () => {
-    clearTimeout(pushTimer);
-    pushTimer = setTimeout(function () {
-        TrackScroll.scrollHandler();
-    }, pushDelay);
-};
-
 TrackScroll.scrollHandler = () => {
     // check the browser supports filter before doing anything else
     if (typeof Array.prototype.filter === 'function') {
-        const currentDepth = TrackScroll.getDepth();
+        const scrollHeight = document.documentElement.scrollHeight;
+        const innerHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+        const currentDepth = TrackScroll.getDepth(
+            scrollHeight,
+            innerHeight,
+            scrollY
+        );
 
         // get a list of thresholds we've passed
         const matchingThresholds = thresholds.filter(
@@ -80,17 +80,6 @@ TrackScroll.scrollHandler = () => {
     }
 };
 
-TrackScroll.scrollListener = () => {
-    const now = new Date();
-
-    // if it's been a while since the last one, log it
-    if (now - lastPush >= pushDelay) {
-        TrackScroll.scrollHandler();
-        lastPush = new Date();
-    }
-
-    // cue up one last check after scrolling stops
-    TrackScroll.delayedScrollHandler();
-};
+TrackScroll.onScroll = debounce(TrackScroll.scrollHandler, 100);
 
 export default TrackScroll;

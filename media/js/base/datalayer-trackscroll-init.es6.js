@@ -13,4 +13,4 @@ if (typeof window.Mozilla === 'undefined') {
 
 window.Mozilla.TrackScroll = TrackScroll;
 
-window.addEventListener('scroll', TrackScroll.scrollListener, false);
+window.addEventListener('scroll', TrackScroll.onScroll, false);
