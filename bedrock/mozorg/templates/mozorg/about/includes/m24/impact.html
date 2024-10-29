@@ -6,11 +6,19 @@
 
 <div class="m24-t-green">
   <section class="m24-c-showcase">
-    <h2 class="m24-c-showcase-title">Building a fairer future</h2>
+    <h2 class="m24-c-showcase-title">Let’s build a fairer future</h2>
     <p class="m24-c-showcase-subtitle">See how we’re fostering a diverse, inclusive and accessible online environment for all.</p>
     <div class="m24-c-showcase-media">
-      <img src="{{ static('img/m24/todo-1-1.svg') }}" alt="" height="500" width="500">
+      {{ resp_img('img/mozorg/about/m24/impact.png',
+        srcset={'img/mozorg/about/m24/impact-high-res.png': '2x'},
+        optional_attributes={
+          'loading': 'lazy',
+          'width': '496',
+          'height': '467',
+          'alt': ''
+        }
+        ) }}
     </div>
-    <p class="m24-c-showcase-cta"><a href="{{ url('mozorg.impact-report.index') }}" class="m24-c-cta" data-cta-text="IMPACT">See more</a></p>
+    <p class="m24-c-showcase-cta"><a href="{{ url('mozorg.impact-report.index') }}" class="m24-c-cta" data-cta-text="Read about our commitment">Read about our commitment</a></p>
   </section>
 </div>

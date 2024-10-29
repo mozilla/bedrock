@@ -9,13 +9,29 @@
     <div class="m24-c-showcase-text">
       <h2 class="m24-c-showcase-title">Community love — our driving force</h2>
       <div class="m24-c-showcase-subtitle-containter">
-        <p class="m24-c-showcase-subtitle">Mozilla isn’t just an organization—it’s a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998.</p>
+        <p class="m24-c-showcase-subtitle">Mozilla is a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998.</p>
         <p class="m24-c-showcase-subtitle">From writing code and spotting bugs to advocating for privacy and keeping the internet open for everyone, they’re the backbone of everything we do, and we couldn’t do this without them. And guess what? You can join the team too!</p>
       </div>
     </div>
 
     <div class="m24-c-showcase-media">
-      <img src="{{ static('img/m24/todo-1-1.svg') }}" alt="" height="500" width="500">
+
+      {{ resp_img(
+          url="img/mozorg/about/m24/community.png",
+          srcset={
+              "img/mozorg/about/m24/community.png": "1440w",
+              "img/mozorg/about/m24/community-high-res.png": "2880w",
+          },
+          sizes={
+              "default": "100vw",
+          },
+          optional_attributes={
+            'class': 'mzp-c-picto-image',
+            'loading': 'lazy',
+            'alt': ''
+          }
+      ) }}
+
     </div>
     <p class="m24-c-showcase-cta"><a href="{{ url('mozorg.contribute') }}" class="m24-c-cta" data-cta-text="Join the movement">Join the movement</a></p>
   </section>
