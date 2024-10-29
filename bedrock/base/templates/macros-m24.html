@@ -29,7 +29,7 @@
   title=''
 ) -%}
 <div class="m24-c-grid-tile{% if class %} {{ class }}{% endif %}">
-  <a href="{{ cta_link }}" class="m24-c-grid-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
+  <a href="{{ link_url }}" class="m24-c-grid-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
     {% if image %}
     <div class="m24-c-grid-tile-image">{{ image|safe }}</div>
     {% endif %}
