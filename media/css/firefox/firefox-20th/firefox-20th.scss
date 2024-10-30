@@ -1,0 +1,127 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '../whatsnew/includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import "../../protocol/components/video";
+@import '../whatsnew/includes/mofo-donate-cta';
+
+.content-wrapper {
+    text-align: center;
+
+    .mzp-c-cta-link {
+        text-decoration: none;
+    }
+}
+
+.wnp-content-main {
+    background-color: $color-marketing-gray-30;
+    padding-top: $layout-xl;
+
+    .wnp-main-image {
+        margin-bottom: $spacing-xl;
+    }
+
+    .wnp-main-title {
+        margin-top: $spacing-sm;
+
+        @media #{$mq-lg} {
+            @include font-size(56px);
+        }
+    }
+
+    .wnp-main-body {
+        @include font-firefox;
+        @include text-title-xs;
+
+        @media #{$mq-lg} {
+            padding-bottom: $layout-lg;
+        }
+    }
+
+    .mzp-c-video {
+        max-width: 800px;
+        margin: $layout-md auto $layout-sm;
+
+        @media #{$mq-lg} {
+            margin: $layout-lg auto $layout-md ;
+        }
+    }
+
+}
+
+.wnp-action-container {
+    background-color: $color-marketing-gray-30;
+    margin-bottom: $spacing-lg;
+    text-align: start;
+    padding: $spacing-lg;
+
+    @media #{$mq-md} {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        @include text-title-sm;
+    }
+}
+
+.wnp-content-fanart {
+    background-color: $color-marketing-gray-30;
+    text-align: start;
+
+    .wnp-fanart-title {
+        @include text-title-lg;
+
+        @media #{$mq-xl} {
+            @include text-title-xl;
+            max-width: 60%;
+        }
+    }
+
+    .wnp-fanart-body {
+        @include font-firefox;
+        @include text-title-xs;
+    }
+
+}
+
+.wnp-content-community,
+.wnp-content-cta {
+    .wnp-cta-wrapper {
+        background-color: $color-marketing-gray-30;
+        padding: $spacing-lg;
+    }
+
+    h2 {
+        @include text-title-sm;
+    }
+}
+
+.wnp-cta-wrapper {
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+
+        .mzp-c-button-download-privacy-link {
+            margin: $spacing-sm auto 0;
+        }
+    }
+
+    a.mzp-c-button.mzp-t-product.set-as-default {
+        display: none;
+    }
+}
+
+.is-firefox {
+    #firefox20-download-firefox {
+        display:none;
+    }
+
+    a.mzp-c-button.mzp-t-product.set-as-default {
+        display: block;
+        max-width: fit-content;
+        margin: 0 auto;
+    }
+}

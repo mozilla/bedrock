@@ -264,6 +264,12 @@ urlpatterns = (
             template_context_variations=["1", "2", "3", "4", "5"],
         ),
     ),
+    page(
+        "firefox/firefox20/",
+        "firefox/firefox-20th/index.html",
+        active_locales=["de", "fr", "en-US", "en-CA", "en-GB"],
+        ftl_files="firefox/whatsnew/whatsnew",
+    ),
 )
 
 # Contentful
