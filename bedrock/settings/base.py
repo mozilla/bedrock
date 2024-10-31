@@ -17,7 +17,7 @@ from django.utils.functional import lazy
 import dj_database_url
 import markus
 import sentry_sdk
-from everett.manager import ListOf
+from everett.manager import ChoiceOf, ListOf
 from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
@@ -58,7 +58,7 @@ DEBUG = config("DEBUG", parser=bool, default="false")
 
 
 db_connection_max_age_secs = config("DB_CONN_MAX_AGE", default="0", parser=int)
-db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="False", parser=bool)
+db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="false", parser=bool)
 db_default_url = config(
     "DATABASE_URL",
     default=f"sqlite:////{data_path('bedrock.db')}",
@@ -99,7 +99,14 @@ CACHES = {
 }
 
 # Logging
-LOG_LEVEL = config("LOG_LEVEL", default="INFO")
+LOG_LEVEL = config(
+    "LOG_LEVEL",
+    default="INFO",
+    parser=ChoiceOf(
+        str,
+        ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+    ),
+)
 HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
@@ -527,8 +534,16 @@ SITEMAPS_PATH = DATA_PATH / "sitemaps"
 #   },
 ALT_CANONICAL_PATHS = {}
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", parser=ListOf(str), default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org")
-ALLOWED_CIDR_NETS = config("ALLOWED_CIDR_NETS", default="", parser=ListOf(str))
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    parser=ListOf(str, allow_empty=False),
+    default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+)
+ALLOWED_CIDR_NETS = config(
+    "ALLOWED_CIDR_NETS",
+    parser=ListOf(str, allow_empty=False),
+    default="",
+)
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = "https://www.mozilla.org"
@@ -539,8 +554,8 @@ SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
 # If config is available, we use Google Cloud Storage, else (for local dev)
 # fall back to filesytem storage
 
-GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
-GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
+GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="")
+GS_PROJECT_ID = config("GS_PROJECT_ID", default="")
 
 STORAGES = {
     # In production only the CMS/Editing deployment has write access
@@ -881,7 +896,7 @@ GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
-BASKET_SUBSCRIBE_URL = BASKET_URL + "/news/subscribe/"
+BASKET_SUBSCRIBE_URL = f"{BASKET_URL}/news/subscribe/"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 
@@ -1179,10 +1194,7 @@ if SENTRY_DSN:
 
 # Frontend uses the same DSN as backend by default, but we'll
 # specify a separate one for FE use in Production only
-SENTRY_FRONTEND_DSN = config(
-    "SENTRY_FRONTEND_DSN",
-    default=SENTRY_DSN,
-)
+SENTRY_FRONTEND_DSN = config("SENTRY_FRONTEND_DSN", default=SENTRY_DSN)
 
 # Statsd metrics via markus
 if DEBUG and not config("DISABLE_LOCAL_MARKUS", default="False", parser=bool):
@@ -1922,8 +1934,8 @@ OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = config(
 
 OIDC_CREATE_USER = False  # We don't want drive-by signups
 
-OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default="", parser=str)
-OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default="", parser=str)
+OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default="")
+OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default="")
 
 OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.mozilla.auth0.com/authorize"
 OIDC_OP_TOKEN_ENDPOINT = "https://auth.mozilla.auth0.com/oauth/token"
@@ -1933,7 +1945,7 @@ OIDC_OP_JWKS_ENDPOINT = "https://auth.mozilla.auth0.com/.well-known/jwks.json"
 
 # If True (which should only be for local work in your .env), then show
 # username and password fields when signing up, not the SSO button
-USE_SSO_AUTH = config("USE_SSO_AUTH", default="True", parser=bool)
+USE_SSO_AUTH = config("USE_SSO_AUTH", default="true", parser=bool)
 
 if USE_SSO_AUTH:
     AUTHENTICATION_BACKENDS = (
@@ -1966,30 +1978,20 @@ CSRF_FAILURE_VIEW = "bedrock.base.views.csrf_failure"
 
 # WAGTAIL =======================================================================================
 
-WAGTAIL_SITE_NAME = config(
-    "WAGTAIL_SITE_NAME",
-    default="Mozilla.org",
-)
+WAGTAIL_SITE_NAME = config("WAGTAIL_SITE_NAME", default="Mozilla.org")
 
 # Disable use of Gravatar URLs.
 # Important: if this is enabled in the future, make sure you redact the
 # `wagtailusers_profile.avatar` column when exporting the DB to sqlite
 WAGTAIL_GRAVATAR_PROVIDER_URL = None
 
-WAGTAILADMIN_BASE_URL = config(
-    "WAGTAILADMIN_BASE_URL",
-    default="",
-)
+WAGTAILADMIN_BASE_URL = config("WAGTAILADMIN_BASE_URL", default="")
 
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 # Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
-WAGTAIL_ENABLE_ADMIN = config(
-    "WAGTAIL_ENABLE_ADMIN",
-    default="False",
-    parser=bool,
-)
+WAGTAIL_ENABLE_ADMIN = config("WAGTAIL_ENABLE_ADMIN", default="false", parser=bool)
 
 if WAGTAIL_ENABLE_ADMIN:
     # Enable Middleware essential for admin
@@ -2063,12 +2065,13 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     # Optional settings and their default values
     "REQUIRED": config(
         "WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND",
-        default="False",
+        default="false",
         parser=bool,
     ),  # Set this to True to always send translations to Smartling
     "ENVIRONMENT": config(
         "WAGTAIL_LOCALIZE_SMARTLING_ENVIRONMENT",
         default="production",
+        parser=ChoiceOf(str, ["production", "staging"]),
     ),  # Set this to "staging" to use Smartling's staging API
     "API_TIMEOUT_SECONDS": config(
         "WAGTAIL_LOCALIZE_SMARTLING_API_TIMEOUT_SECONDS",
