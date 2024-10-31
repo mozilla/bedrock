@@ -30,9 +30,9 @@ navigation-refresh-firefox-blog = { -brand-name-firefox } blog
 
 navigation-refresh-products = Products
 navigation-refresh-close-products-menu = Close Products menu
-navigation-refresh-mozilla-monitor = { -brand-name-monitor }
+navigation-refresh-mozilla-monitor-v2 = { -brand-name-mozilla-monitor }
 navigation-refresh-pocket = { -brand-name-pocket }
-navigation-refresh-mozilla-vpn = { -brand-name-vpn }
+navigation-refresh-mozilla-vpn-v2 = { -brand-name-mozilla-vpn }
 navigation-refresh-mdn-plus = { -brand-name-mdn-plus }
 navigation-refresh-fakespot = { -brand-name-fakespot }
 navigation-refresh-thunderbird = { -brand-name-thunderbird }
