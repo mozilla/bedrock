@@ -6,15 +6,19 @@
 
 <section class="m24-c-hero">
   <div class="m24-c-copy">
-    <h1 class="m24-c-copy-title m24-t-2xl">Welcome to Mozilla</h1>
-    <p>From ethical tech to policies that defend your digital rights, we put you first—always.</p>
-    <p class="m24-c-copy-cta"><a href="{{ url('mozorg.about.index') }}" class="m24-c-cta" data-cta-text="Learn about us">Learn about us</a></p>
+    <div class="m24-c-copy-wrapper">
+      <h1 class="m24-c-copy-title m24-t-2xl">Welcome to Mozilla</h1>
+      <p>From ethical tech to policies that defend your digital rights, we put you first—always.</p>
+      <p class="m24-c-copy-cta"><a href="{{ url('mozorg.about.index') }}" class="m24-c-cta" data-cta-text="Learn about us">Learn about us</a></p>
+    </div>
   </div>
 
   <div class="m24-c-hero-media m24-t-transition-next">
-    <picture>
-      <source srcset="{{ static('img/home/2024/hero-symbol-white-2-1.svg') }}" media="(max-width: 768px)" width="768" height="384">
-      <img src="{{ static('img/home/2024/hero-symbol-white-27-1.svg') }}" alt="" width="1440" height="533">
-    </picture>
+    <div class="m24-c-hero-media-container">
+      <picture>
+        <source srcset="{{ static('img/home/2024/hero-symbol-white-2-1.svg') }}" media="(max-width: 768px)" width="768" height="384">
+        <img src="{{ static('img/home/2024/hero-symbol-white-27-1.svg') }}" alt="" width="1440" height="533">
+      </picture>
+    </div>
   </div>
 </section>

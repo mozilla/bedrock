@@ -3,12 +3,36 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-.m24-c-showcase {
-    @include container;
+.m24-c-showcase-title {
+    font-size: $alias-text-title-h2;
+}
+
+.m24-c-showcase-body {
+    font-weight: 500;
+    font-size: $text-body-xl;
+
+    @media #{$mq-xl} {
+        max-width: grid(6);
+    }
 }
 
 .m24-c-showcase-media {
     text-align: center;
     padding: $spacer-xl 0;
     position: relative;
+}
+
+@media #{$mq-lg} {
+    .m24-c-showcase-text.m24-l-two-columns {
+        @include grid;
+
+        .m24-c-showcase-title {
+            grid-column: 1/7;
+        }
+
+        .m24-c-showcase-body {
+            grid-column: 7/-1;
+            max-width: none;
+        }
+    }
 }
