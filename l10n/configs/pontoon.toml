@@ -351,6 +351,9 @@ locales = [
     reference = "en/products/vpn/platform-post-download.ftl"
     l10n = "{locale}/products/vpn/platform-post-download.ftl"
 [[paths]]
+    reference = "en/products/vpn/landing.ftl"
+    l10n = "{locale}/products/vpn/landing.ftl"
+[[paths]]
     reference = "en/products/vpn/landing-2023.ftl"
     l10n = "{locale}/products/vpn/landing-2023.ftl"
 [[paths]]
