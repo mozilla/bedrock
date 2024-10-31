@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import TransactionTestCase
 
+import everett
+
 
 @patch("bedrock.cms.management.commands.bootstrap_local_admin.sys.stdout.write")
 class BootstrapLocalAdminTests(TransactionTestCase):
@@ -109,14 +111,13 @@ class BootstrapDemoAdminsTests(TransactionTestCase):
 
     @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": ","})
     def test_only_empty_list_available(self, mock_write):
-        self._run_test(
-            mock_write=mock_write,
-            expected_output=[
-                call("Not bootstrapping users: DEMO_SERVER_ADMIN_USERS not set\n"),
-            ],
-        )
+        with self.assertRaises(everett.InvalidValueError):
+            self._run_test(
+                mock_write=None,
+                expected_output=None,
+            )
 
-    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "test@mozilla.com, test2@mozilla.com, test3@mozilla.com"})
+    @patch.dict("os.environ", {"DEMO_SERVER_ADMIN_USERS": "test@mozilla.com, test2@mozilla.com,  test3@mozilla.com "})
     def test_multiple_emails_available(self, mock_write):
         self._run_test(
             mock_write=mock_write,

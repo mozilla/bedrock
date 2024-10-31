@@ -21,8 +21,11 @@ class Command(BaseCommand):
 
     @atomic
     def handle(self, *args, **kwargs):
-        _users = config("DEMO_SERVER_ADMIN_USERS", default="", parser=ListOf(str))
-        DEMO_SERVER_ADMIN_USERS = [x.strip() for x in _users if x]
+        DEMO_SERVER_ADMIN_USERS = config(
+            "DEMO_SERVER_ADMIN_USERS",
+            default="",
+            parser=ListOf(str, allow_empty=False),
+        )
 
         if not DEMO_SERVER_ADMIN_USERS:
             sys.stdout.write("Not bootstrapping users: DEMO_SERVER_ADMIN_USERS not set\n")
