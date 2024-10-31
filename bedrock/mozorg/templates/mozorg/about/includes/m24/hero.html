@@ -16,7 +16,16 @@
 
   <div class="m24-c-hero-media">
     <div class="m24-c-hero-media-container">
-      <img src="{{ static('img/m24/about/about-hero.jpeg') }}" srcset="/media/img/m24/about/about-hero-high-res.jpeg 2x" alt="" width="1024" height="682">
+      {{ resp_img(
+        url='img/m24/about/about-hero.jpeg',
+        srcset={
+          'img/m24/about/about-hero-high-res.jpeg': '2x'
+        },
+        optional_attributes={
+          'width': '1024',
+          'height': '682'
+        }
+      ) }}
       <div class="m24-c-hero-media-content">
         <h2 class="m24-c-hero-media-heading">Together, we can keep the internet easy, safe and free, for everyone</h2>
         <p class="m24-c-hero-media-cta">
