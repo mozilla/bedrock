@@ -3,31 +3,123 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-.m24-c-hero {
-    @include container;
-    padding-top: $spacer-2xl;
+#about .m24-c-hero {
+    padding-top: $spacer-lg;
 
-    * {
-        margin-bottom: 0;
+    .m24-c-copy {
+        padding: $spacing-2xl $spacer-md;
+        max-width: none;
+
+        .m24-c-copy-wrapper {
+            max-width: $content-max;
+            margin: auto;
+        }
     }
-}
 
-.m24-c-hero-title {
-    font-size: $text-title-2xl;
+    .m24-c-hero-title {
+        font-size: $text-title-2xl;
+    }
 }
 
 .m24-c-hero-media {
-    margin: 0 calc(-1 * $container-padding);
-    padding-top: $spacer-xl;
+    margin: 0;
+    background-color: $color-black;
+}
+
+.m24-c-hero-media-container {
+    max-width: $content-max;
+    margin: auto;
+    padding: $spacer-md $spacer-md 0;
+
+    @media #{$mq-md} {
+        padding: $spacer-lg $spacer-md 0;
+    }
 
     img {
         display: block;
-        border: $spacer-xs solid $color-black; // this does not change from light to dark mode
         box-sizing: border-box;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .m24-c-hero-media-content {
+        padding: $spacer-xl 0;
+    }
+
+    .m24-c-hero-media-heading {
+        color: $color-white;
+        font-size: $text-title-xl;
+        line-height: 0.95;
+        margin-bottom: $spacer-xl;
+
+        @media #{$mq-md} {
+            width: 75%;
+        }
+
+        @media #{$mq-lg} {
+            width: 60%;
+        }
+    }
+
+    .m24-c-hero-media-cta {
+        padding: 0;
+        text-align: end;
+
+        .m24-c-cta {
+            color: $color-white;
+
+            &:hover {
+                color: $color-white;
+                text-decoration: none;
+            }
+        }
     }
 }
 
-.m24-c-hero-cta {
-    padding: $spacer-md 0 0;
-    text-align: right;
+.m24-c-hero-media-text {
+    background-color: #fafafa;
+    padding: $spacing-2xl $spacer-md;
+
+    ul {
+        max-width: $content-max;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        @media #{$mq-lg} {
+            flex-direction: row;
+            gap: $spacer-md;
+        }
+     }
+
+    li.mzp-c-picto {
+        margin-bottom: $grid-margin;
+        font-size: $text-title-md;
+        line-height: 1.2;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        @media #{$mq-lg} {
+            width: calc((100% - 3 * $spacer-md) / 4);
+            margin-bottom: 0;
+        }
+
+        .mzp-c-picto-image {
+            width: 48px;
+            height: 48px;
+
+            @media #{$mq-md} {
+                margin-bottom: $spacer-sm;
+            }
+        }
+
+        p {
+            @media #{$mq-lg} {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
