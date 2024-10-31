@@ -1057,15 +1057,6 @@ RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_not
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
 
-WWW_CONFIG_PATH = config("WWW_CONFIG_PATH", default=data_path("www_config"))
-WWW_CONFIG_REPO = config("WWW_CONFIG_REPO", default="https://github.com/mozmeao/www-config.git")
-WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="main")
-
-MONITOR_SWITCH_WAITLIST = "SWITCH_MONITOR_WAITLIST"
-MONITOR_SWITCH_WAITLIST_DEFAULT = "off"
-MONITOR_ENDPOINT = config("MONITOR_ENDPOINT", default="https://monitor.mozilla.org/api/v1/stats")
-MONITOR_TOKEN = config("MONITOR_TOKEN", default="")
-
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
 LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
