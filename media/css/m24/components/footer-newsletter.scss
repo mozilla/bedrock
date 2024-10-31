@@ -8,6 +8,12 @@ $max-footer-content-width: $content-max;
     border-bottom: 4px solid $m24-color-light-gray;
 }
 
+// hide details for JS users
+// (displayed when email field is focused)
+.js .mzp-c-newsletter-details {
+    @include hidden;
+}
+
 // newsletter form
 .moz24-newsletter-container {
     @include container;
@@ -179,7 +185,7 @@ $max-footer-content-width: $content-max;
         }
     }
 
-    .mzp-c-newsletter-details {
+    .mzp-c-newsletter-details-inner {
         max-width: 100%;
 
         @media(min-width: $screen-lg) {
