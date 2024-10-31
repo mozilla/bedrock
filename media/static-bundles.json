@@ -1557,6 +1557,7 @@
     },
     {
       "files": [
+        "js/base/banners/m24-pencil-banner-init.es6.js",
         "js/base/protocol/init-details.es6.js",
         "js/base/protocol/init-lang-switcher.es6.js",
         "js/base/protocol/protocol-sub-navigation.js",

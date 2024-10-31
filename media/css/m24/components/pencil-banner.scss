@@ -6,13 +6,38 @@
     background-color: $m24-color-light-green;
     border-bottom: $border-width solid $m24-color-green;
     padding: $spacer-sm;
+    position: relative;
+
+    &.hidden {
+        display: none;
+    }
 
     .m24-pencil-banner-copy {
         text-align: center;
+        max-width: 80%;
+        margin: 0 auto;
 
         p {
             color: $m24-color-black;
             margin-bottom: 0;
+        }
+    }
+
+    .m24-pencil-banner-close {
+        background: transparent url('/media/img/m24/close.svg') center center no-repeat;
+        border: none;
+        cursor: pointer;
+        height: 24px;
+        position: absolute;
+        top: $spacer-sm;
+        width: 24px;
+        @include bidi(((right, $spacer-sm, auto), (left, auto, $spacer-sm)));
+        @include image-replaced;
+
+        &:hover,
+        &:focus {
+            @include transition(transform 0.1s ease-in-out);
+            @include transform(scale(1.1));
         }
     }
 }
