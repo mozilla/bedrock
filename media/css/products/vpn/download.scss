@@ -90,7 +90,6 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         border-radius: 6px;
         box-shadow: $box-shadow-sm;
         padding: $spacing-xl;
-        height: 315px;
         display: none;
 
         .platform-image {
@@ -101,9 +100,14 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
             color: $color-violet-70;
         }
 
-        &.android {
-            height: 325px;
+        &.android,
+        &.ios {
+            .platform-download-link {
+                display: block;
+            }
+        }
 
+        &.android {
             .platform-download-link {
                 img {
                     width: 220px;
