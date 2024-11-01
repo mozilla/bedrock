@@ -1,7 +1,7 @@
 ########
 # Python dependencies builder
 #
-FROM python:3.12-slim-bookworm AS python-builder
+FROM python:3.13-slim-bookworm AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -52,7 +52,7 @@ RUN npm run build --verbose
 ########
 # django app container
 #
-FROM python:3.12-slim-bookworm AS app-base
+FROM python:3.13-slim-bookworm AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
