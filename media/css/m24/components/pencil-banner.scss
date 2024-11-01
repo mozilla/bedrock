@@ -4,7 +4,7 @@
 
 .m24-pencil-banner {
     background-color: $m24-color-light-green;
-    border-bottom: 2px solid $m24-color-green;
+    border-bottom: $border-width solid $m24-color-green;
     padding: $spacer-sm;
 
     .m24-pencil-banner-copy {
