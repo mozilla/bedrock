@@ -7,11 +7,21 @@
 {% from "macros-protocol.html" import split with context %}
 {% from "macros.html" import video_inline_embed with context %}
 
-{% extends "firefox/whatsnew/base.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox_20th') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
 {% endblock %}
 
 {% if LANG == "fr" %}
@@ -39,20 +49,20 @@
   {% set fan_body = 'We’ll never get tired of your fan art.' %}
 {% endif %}
 
-{% block wnp_content %}
-<section class="wnp-content-main">
+{% block content %}
+<section class="fx20-content-main">
   <div class="mzp-l-content mzp-t-content-2xl">
-    <img class="wnp-main-image" src="{{ static('img/firefox/firefox-20th/firefox-20th-dark.png') }}" width="321" height="129" alt="">
-    <h1 class="wnp-main-title">{{ main_title }}</h1>
-    <p class="wnp-main-body">{{ main_body }}</p>
+    <img class="fx20-main-image" src="{{ static('img/firefox/firefox-20th/firefox-20th-dark.png') }}" width="321" height="129" alt="">
+    <h1 class="fx20-main-title">{{ main_title }}</h1>
+    <p class="fx20-main-body">{{ main_body }}</p>
     {% include 'firefox/whatsnew/includes/fx132/video.html' %}
   </div>
 </section>
 
 {% if LANG in ['fr', 'de'] %}
-  <section class="wnp-content-cta">
+  <section class="fx20-content-cta">
     <div class="mzp-l-content mzp-t-content-2xl">
-      <div class="wnp-cta-wrapper">
+      <div class="fx20-cta-wrapper">
         <h2>{{ cta_title }}</h2>
         <p>{{ cta_body }}</p>
         {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='firefox20-download-firefox', button_class='download-firefox mzp-t-secondary mzp-t-md', download_location='firefox20') }}
@@ -66,7 +76,7 @@
   <section>
     <div class="mzp-l-content mzp-t-content-2xl">
       <div class="mzp-l-columns mzp-t-columns-two">
-        <div class="wnp-action-container">
+        <div class="fx20-action-container">
           <h2>Features you fell in love with</h2>
           <p>It’s official — the built-in PDF editor, popping videos out of your window and tab containers made the list.</p>
           <a class="mzp-c-cta-link" href="#" data-link-text="View blog Features">
@@ -74,7 +84,7 @@
           </a>
         </div>
 
-        <div class="wnp-action-container">
+        <div class="fx20-action-container">
           <h2>Let’s take a look back</h2>
           <p>It’s always good to look back on where you’ve been, to see how far you’ve come. Take a trip down memory lane with us.</p>
           <a class="mzp-c-cta-link" href="#" data-link-text="View blog Memory">
@@ -87,19 +97,19 @@
 {% endif %}
 
 {% call split(
-    block_class='wnp-content-fanart mzp-l-split-center-on-sm-md',
+    block_class='fx20-content-fanart mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-h-center',
     media_include='firefox/firefox-20th/video-fanart.html',
     media_after=True
   ) %}
-    <h2 class="wnp-fanart-title">{{ fan_title }}</h1>
-    <p class="wnp-fanart-body">{{ fan_body }}</p>
+    <h2 class="fx20-fanart-title">{{ fan_title }}</h1>
+    <p class="fx20-fanart-body">{{ fan_body }}</p>
 {% endcall %}
 
 {% if LANG.startswith('en-') %}
-  <section class="wnp-content-community">
+  <section class="fx20-content-community">
     <div class="mzp-l-content mzp-t-content-2xl">
-      <div class="wnp-cta-wrapper">
+      <div class="fx20-cta-wrapper">
         <h2>Be a part of Firefox’s future</h2>
         <p>Help us come up with our next big feature by joining the
           Mozilla Connect community.</p>
@@ -111,10 +121,6 @@
   </section>
 {% endif %}
 
-<section class="wnp-footer">
-  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
-  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
-</section>
 {% endblock %}
 
 {% block js %}

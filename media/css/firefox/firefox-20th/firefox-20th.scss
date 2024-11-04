@@ -2,30 +2,25 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '../whatsnew/includes/base';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '../../protocol/components/custom-menu-list';
+@import '../../protocol/components/sub-navigation';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import "../../protocol/components/video";
-@import '../whatsnew/includes/mofo-donate-cta';
 
-.content-wrapper {
-    text-align: center;
-
-    .mzp-c-cta-link {
-        text-decoration: none;
-    }
-}
-
-.wnp-content-main {
+.fx20-content-main {
     background-color: $color-marketing-gray-30;
     padding-top: $layout-xl;
+    text-align: center;
 
-    .wnp-main-image {
+    .fx20-main-image {
         margin-bottom: $spacing-xl;
     }
 
-    .wnp-main-title {
+    .fx20-main-title {
         margin-top: $spacing-sm;
 
         @media #{$mq-lg} {
@@ -33,7 +28,7 @@
         }
     }
 
-    .wnp-main-body {
+    .fx20-main-body {
         @include font-firefox;
         @include text-title-xs;
 
@@ -53,7 +48,7 @@
 
 }
 
-.wnp-action-container {
+.fx20-action-container {
     background-color: $color-marketing-gray-30;
     margin-bottom: $spacing-lg;
     text-align: start;
@@ -66,13 +61,17 @@
     h2 {
         @include text-title-sm;
     }
+
+    .mzp-c-cta-link {
+        text-decoration: none;
+    }
 }
 
-.wnp-content-fanart {
+.fx20-content-fanart {
     background-color: $color-marketing-gray-30;
     text-align: start;
 
-    .wnp-fanart-title {
+    .fx20-fanart-title {
         @include text-title-lg;
 
         @media #{$mq-xl} {
@@ -81,16 +80,18 @@
         }
     }
 
-    .wnp-fanart-body {
+    .fx20-fanart-body {
         @include font-firefox;
         @include text-title-xs;
     }
 
 }
 
-.wnp-content-community,
-.wnp-content-cta {
-    .wnp-cta-wrapper {
+.fx20-content-community,
+.fx20-content-cta {
+    text-align: center;
+
+    .fx20-cta-wrapper {
         background-color: $color-marketing-gray-30;
         padding: $spacing-lg;
     }
@@ -100,7 +101,7 @@
     }
 }
 
-.wnp-cta-wrapper {
+.fx20-cta-wrapper {
     .mzp-c-button-download-container {
         margin-bottom: 0;
 
@@ -111,6 +112,10 @@
 
     a.mzp-c-button.mzp-t-product.set-as-default {
         display: none;
+    }
+
+    .mzp-c-cta-link {
+        text-decoration: none;
     }
 }
 

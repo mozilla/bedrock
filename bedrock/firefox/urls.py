@@ -264,11 +264,11 @@ urlpatterns = (
             template_context_variations=["1", "2", "3", "4", "5"],
         ),
     ),
+    # Issue 15383 - Firefox 20th landing page
     page(
         "firefox/firefox20/",
         "firefox/firefox-20th/index.html",
         active_locales=["de", "fr", "en-US", "en-CA", "en-GB"],
-        ftl_files="firefox/whatsnew/whatsnew",
     ),
 )
 
