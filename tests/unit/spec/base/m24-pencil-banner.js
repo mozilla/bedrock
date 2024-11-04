@@ -13,7 +13,7 @@ import M24PencilBanner from '../../../../media/js/base/banners/m24-pencil-banner
 
 describe('mozilla-banner.es6.js', function () {
     beforeEach(function () {
-        const content = `<aside class="m24-pencil-banner hidden">
+        const content = `<aside class="m24-pencil-banner">
             <div class="m24-pencil-banner-copy">
                 <p>Promo copy</p>
             </div>
@@ -26,34 +26,42 @@ describe('mozilla-banner.es6.js', function () {
         window.dataLayer.push = sinon.stub();
     });
 
+    afterEach(function () {
+        document.documentElement.removeAttribute('data-pencil-banner-closed');
+    });
+
     describe('init()', function () {
-        it('should show the banner if no cookie is set', function () {
-            spyOn(M24PencilBanner, 'hasCookie').and.returnValue(false);
-            spyOn(M24PencilBanner, 'show');
+        it('should initialize the banner if no cookie is set', function () {
+            spyOn(M24PencilBanner, 'bindEvents');
             M24PencilBanner.init();
-            expect(M24PencilBanner.show).toHaveBeenCalled();
+            expect(M24PencilBanner.bindEvents).toHaveBeenCalled();
         });
 
-        it('should not show the banner if there is a cookie', function () {
-            spyOn(M24PencilBanner, 'hasCookie').and.returnValue(true);
-            spyOn(M24PencilBanner, 'show');
+        it('should initialize the banner if there is a cookie', function () {
+            document.documentElement.setAttribute(
+                'data-pencil-banner-closed',
+                'true'
+            );
+            spyOn(M24PencilBanner, 'bindEvents');
             M24PencilBanner.init();
-            expect(M24PencilBanner.show).not.toHaveBeenCalled();
+            expect(M24PencilBanner.bindEvents).not.toHaveBeenCalled();
         });
     });
 
     describe('close()', function () {
         it('should close the banner when clicked and set a cookie', function () {
-            spyOn(M24PencilBanner, 'hasCookie').and.returnValue(false);
             spyOn(M24PencilBanner, 'setCookie');
             spyOn(M24PencilBanner, 'close').and.callThrough();
             M24PencilBanner.init();
-            const banner = document.querySelector('.m24-pencil-banner');
-            expect(banner.classList.contains('hidden')).toBeFalsy();
             const close = document.querySelector('.m24-pencil-banner-close');
             close.click();
             expect(M24PencilBanner.close).toHaveBeenCalled();
             expect(M24PencilBanner.setCookie).toHaveBeenCalled();
+            expect(
+                document.documentElement.getAttribute(
+                    'data-pencil-banner-closed'
+                )
+            ).toEqual('true');
         });
     });
 

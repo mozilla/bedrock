@@ -8,10 +8,6 @@
     padding: $spacer-sm;
     position: relative;
 
-    &.hidden {
-        display: none;
-    }
-
     .m24-pencil-banner-copy {
         text-align: center;
         max-width: 80%;
@@ -39,5 +35,11 @@
             @include transition(transform 0.1s ease-in-out);
             @include transform(scale(1.1));
         }
+    }
+}
+
+html[data-pencil-banner-closed="true"] {
+    .m24-pencil-banner {
+        display: none;
     }
 }

@@ -39,7 +39,7 @@ M24PencilBanner.setCookie = function () {
     }
 
     const date = new Date();
-    const cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
+    const cookieDuration = 7 * 24 * 60 * 60 * 1000; // 7 day expiration
     date.setTime(date.getTime() + cookieDuration);
     window.Mozilla.Cookies.setItem(
         BANNER_ID,
@@ -52,13 +52,16 @@ M24PencilBanner.setCookie = function () {
     );
 };
 
-M24PencilBanner.hasCookie = function () {
-    return Mozilla.Cookies.hasItem(BANNER_ID);
+M24PencilBanner.hasBeenClosed = () => {
+    return (
+        document.documentElement.getAttribute('data-pencil-banner-closed') ===
+        'true'
+    );
 };
 
 M24PencilBanner.close = function () {
-    // Remove the banner from the DOM.
-    _pencilBanner.parentNode.removeChild(_pencilBanner);
+    // Hide the pencil banner.
+    document.documentElement.setAttribute('data-pencil-banner-closed', 'true');
 
     // Set a cookie to not display it again.
     M24PencilBanner.setCookie();
@@ -72,10 +75,7 @@ M24PencilBanner.close = function () {
     });
 };
 
-M24PencilBanner.show = function () {
-    // Display the banner
-    _pencilBanner.classList.remove('hidden');
-
+M24PencilBanner.bindEvents = function () {
     // Wire up close button
     _pencilBanner
         .querySelector('.m24-pencil-banner-close')
@@ -104,8 +104,8 @@ M24PencilBanner.init = function () {
     }
 
     // Show only if cookies enabled & banner not previously dismissed.
-    if (cookiesEnabled && !M24PencilBanner.hasCookie()) {
-        M24PencilBanner.show();
+    if (cookiesEnabled && !M24PencilBanner.hasBeenClosed()) {
+        M24PencilBanner.bindEvents();
     }
 };
 

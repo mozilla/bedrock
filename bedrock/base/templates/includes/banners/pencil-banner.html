@@ -6,7 +6,7 @@
 
 {% if not hide_pencil_banner %}
 {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
-<aside class="m24-pencil-banner hidden" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
+<aside class="m24-pencil-banner" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
   <div class="m24-pencil-banner-copy">
     {% set donate_url = 'href="https://foundation.mozilla.org/en/?form=donate-today" data-cta-type="link" data-cta-text="donate today"' %}
     <p>{{ ftl('m24-pencil-banner-support-ethical', donate=donate_url) }}</p>
