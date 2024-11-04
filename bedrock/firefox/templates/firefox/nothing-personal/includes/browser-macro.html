@@ -10,12 +10,12 @@
   heading=None,
   aria_label=None
 ) -%}
-<div {% if id %}id="{{ id }}" {% endif %}class="c-browser{% if class %} {{ class }}{% endif %}">
+<div {% if id %}id="{{ id }}" {% endif %} data-animation="pop-in" class="c-browser{% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
     {% if heading and aria_label %}
-      <h3 aria-label="{{ aria_label }}">{{ heading }}</h3>
+      <h3 aria-label="{{ aria_label }}" class="c-browser-bar-title">{{ heading }}</h3>
     {% elif heading %}
-      <h3>{{ heading }}</h3>
+      <h3 class="c-browser-bar-title">{{ heading }}</h3>
     {% endif %}
   </div>
   <div class="c-browser-content">

@@ -15,6 +15,7 @@ $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-5
 $border-black: 2px solid $color-black;
 $mq-tad-smaller-sm: 455px;
 
+@import './feature-box';
 @import './fonts';
 @import './animations';
 @import './header';
@@ -22,82 +23,185 @@ $mq-tad-smaller-sm: 455px;
 @import './browser';
 @import './fox-gif';
 @import './sticky-note';
+@import './things';
 
-.c-page-main-content {
-    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+.u-text-uppercase {
+    text-transform: uppercase;
+}
+
+.c-content-layout {
     font-family: 'Fira Mono', 'Andale Mono', monospace;
-    position: relative;
-
-    section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow-x: hidden;
-    }
-
-    aside {
-        display: none;
-    }
+    padding-top: $layout-lg;
+    padding-bottom: $layout-lg;
+    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
 
     @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
         background-attachment: fixed;
     }
+}
 
-    @media #{$mq-lg} {
-        aside {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            text-align: center;
-            top: 105px;
-            right: 0;
+.c-main {
+    > *:not(:last-child) {
+        margin-bottom: calc(#{$layout-xl} + #{$layout-xs});
 
-            a, .c-trash {
-                color: $color-white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-bottom: $spacing-2xl;
-                padding: $spacing-sm;
-                text-decoration: none;
-                cursor: default;
-            }
-
-            a {
-                &:hover,
-                &:active,
-                &:focus {
-                    color: $color-white;
-                }
-
-                &:active,
-                &:focus {
-                    background-color: $color-blue-60;
-                }
-            }
+        @media #{$mq-md} {
+            margin-bottom: calc(#{$layout-xl} + #{$layout-md});
         }
     }
 
-    @media #{$mq-xl} {
-        aside {
-            right: 140px;
+    .mzp-t-content-md {
+        max-width: remify(510px);
+    }
+}
+
+.c-aside {
+    display: none;
+}
+
+// Add aside sidebar
+@media #{$mq-lg} {
+    .c-content-layout {
+        display: grid;
+        grid-template-columns: 1fr [main-start] auto [main-end aside-start] 1fr [aside-end];
+    }
+
+    .c-main {
+        grid-area: main;
+    }
+
+    .c-aside {
+        grid-area: aside;
+        display: flex;
+        flex-direction: column;
+        margin-left: -#{$layout-lg}; // shift over padding
+        justify-self: start;
+        position: relative;
+        text-align: center;
+
+        a, .c-trash {
+            color: $color-white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: $spacing-2xl;
+            padding: $spacing-sm;
+            text-decoration: none;
+            cursor: default;
+        }
+
+        a {
+            &:hover,
+            &:active,
+            &:focus {
+                color: $color-white;
+            }
+
+            &:active,
+            &:focus {
+                background-color: $color-blue-60;
+            }
         }
     }
 }
 
+.c-text-section {
+    margin-bottom: $spacing-xl;
+
+    * {
+        color: var(--body-text-color-inverse);
+    }
+}
+
+.c-text-title {
+    @include font-size(34px);
+    margin-bottom: $spacing-xl;
+
+    @media #{$mq-md} {
+        @include font-size(38px);
+    }
+}
+
+.c-text-body {
+    @include text-body-md;
+    font-weight: 500;
+
+    @media #{$mq-md} {
+        @include text-body-lg;
+    }
+}
+
+.c-mono-title {
+    @include text-body-md;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    font-weight: 700;
+}
+
+@media #{$mq-md} {
+    // sizing
+    .c-things,
+    .c-newsletter {
+        .c-mono-title {
+            @include text-body-lg;
+        }
+    }
+
+    // line breaking
+    .c-feature-fast,
+    .c-privacy-default {
+        .c-mono-title {
+            max-width: 25ch;
+        }
+    }
+}
+
+.c-grid {
+    display: grid;
+    gap: $spacing-md;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        &.mzp-t-content-md {
+            max-width: $screen-md;
+        }
+    }
+}
+
+// TODO: fix dimensions/high-res
+// TODO: get proper default privacy image (centered & with shield)
+.c-privacy-image {
+    display: block;
+    width: 100%;
+    margin-bottom: $spacing-md;
+}
+
+.c-slide-in-container {
+    overflow: hidden;
+}
+
+.c-newsletter-gif-container {
+    position: relative;
+}
+
+// bit magic number-y :(
+.c-thug-life-gif {
+    position: absolute;
+    left: -170px;
+    top: -50px;
+}
+
 .c-sign-off {
-    margin: $layout-lg 0;
     @include text-title-xs;
 
     .c-nothing-personal {
-        padding: 12px;
-
         p {
             @include image-replaced;
             background: transparent url('/media/img/firefox/nothing-personal/tagline.svg') center center no-repeat;
             background-size: contain;
             width: 300px;
             height: 36px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .c-sign-off-wordmark {
@@ -106,8 +210,6 @@ $mq-tad-smaller-sm: 455px;
     }
 
     @media #{$mq-md} {
-        margin-top: 0;
-
         .c-nothing-personal p {
             width: 415px;
             height: 51px;
@@ -115,10 +217,42 @@ $mq-tad-smaller-sm: 455px;
     }
 }
 
+// Special border padding overrides
+@media (max-width: #{$screen-sm}) {
+    .c-things {
+        .c-browser-content {
+            padding-right: $spacing-md;
+            padding-left: $spacing-md;
+        }
+    }
+
+    .c-newsletter {
+        .c-browser-content {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-animation="pop-in"] {
+        opacity: 0;
+    }
+
+    [data-animation="slide-in"] {
+        position: relative;
+        opacity: 0;
+    }
+}
+
 // Make sure content is visible of JS fails
 html.no-js {
-    .c-browser,
-    .c-sticky-note.c-detached-sticky {
-        opacity: 1 !important; /* stylelint-disable-line declaration-no-important */
+    [data-animation="pop-in"] {
+        opacity: 1;
+    }
+
+    [data-animation="slide-in"] {
+        position: static;
+        opacity: 1;
     }
 }

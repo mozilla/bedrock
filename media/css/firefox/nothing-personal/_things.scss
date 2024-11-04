@@ -1,0 +1,227 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-things {
+    @media screen and (max-width: #{$screen-md}) {
+        // no room on mobile for browser buttons and fox sticker
+        .c-browser-bar {
+            background: $browser-background $browser-cool-gradient;
+        }
+    }
+
+    .c-browser-bar h3 {
+        padding-left: 0;
+        text-align: start;
+
+        @media (min-width: $mq-tad-smaller-sm) {
+            text-align: center;
+            padding: 0;
+        }
+    }
+}
+
+.c-things-list-container {
+    display: none;
+}
+
+.c-things-list {
+    background-color: var(--background-color);
+    border: $border-black;
+    padding: $spacing-md;
+
+    &.mzp-u-list-styled {
+        margin-left: 0;
+        padding-left: $spacing-xl;
+    }
+}
+
+.c-things-browser-fox-bush-container {
+    position: relative;
+}
+
+$fox-bush-width: 124px;
+$fox-bush-height: 79px;
+
+.c-things-fox-bush {
+    display: none;
+
+    @media #{$mq-lg} {
+        display: block;
+        position: absolute;
+        left: -#{$layout-xl};
+        top: $layout-lg;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-color: #0EBF45;
+            height: $fox-bush-height;
+            width: $fox-bush-width;
+            left: 10px;
+            top: 10px;
+        }
+    }
+}
+
+.c-things-fox-bush-image {
+    height: $fox-bush-height;
+    width: $fox-bush-width;
+    object-fit: cover;
+    object-position: bottom; // cut off browser bar at top
+    position: relative;
+    z-index: 10;
+}
+
+.c-things-browser {
+    position: relative;
+
+    &::before {
+        position: absolute;
+        content: "";
+        background-image: url("/media/img/firefox/nothing-personal/foxy-sticker.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(15deg);
+        height: 80px;
+        width: 100px;
+        right: 0;
+        top: -20px;
+
+        @media #{$mq-md} {
+            height: 100px;
+            width: 122px;
+            right: -70px;
+            top: 30px;
+        }
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        background-image: url("/media/img/firefox/nothing-personal/heart-smiley-stickers.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 107px;
+        width: 128px;
+        left: 10px;
+        bottom: -70px;
+
+        @media #{$mq-md} {
+            left: 30px;
+        }
+    }
+}
+
+.c-things-output-container {
+    background-color: var(--background-color);
+    border: $border-black;
+    margin-bottom: $layout-sm; // match title margin
+    padding: $spacing-md;
+}
+
+.c-things-output {
+    margin-bottom: 0;
+    text-wrap: pretty;
+}
+
+.c-things-button-container {
+    text-align: center;
+}
+
+$sparkle-size: 22px;
+
+// TODO: confirm hover, focus, active styling
+.c-things-button {
+    $push-depth: 2px;
+    background-color: $color-pink-10;
+    background-image: linear-gradient(to right,$color-pink-10, $color-pink-10, $color-pink-40, $color-pink-10, $color-pink-10);
+        background-size: 400% 100%;
+    border: $border-black;
+    box-shadow: $spacing-xs $spacing-xs var(--background-color-inverse);
+    display: flex; // center text within button
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-md;
+    position: relative;
+
+    @media #{$mq-md} {
+        padding: $spacing-md $spacing-lg;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover,
+        &:focus-visible {
+            background-position: 200% 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: background-position 0.3s ease-out;
+
+        &:hover,
+        &:focus-visible {
+            background-position: 100% 0;
+        }
+    }
+
+    &:active {
+        transform: translate($push-depth, $push-depth);
+        box-shadow: $push-depth $push-depth var(--background-color-inverse);
+    }
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        background-image: url("/media/img/firefox/nothing-personal/sparkle.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $sparkle-size;
+        width: $sparkle-size;
+    }
+
+    // top left
+    &::before {
+        left: -17px;
+        top: 5px;
+    }
+
+    // bottom right
+    &::after {
+        right: -10px;
+        bottom: -10px;
+    }
+}
+
+// top right
+.c-things-button-sparkle {
+    position: absolute;
+    width: $sparkle-size;
+    height: $sparkle-size;
+    top: -12px;
+    right: 10px;
+}
+
+.c-things-note {
+    @include text-body-xs;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-bottom: 0 !important; // override the extra specificity margin from c-browser
+
+    @media #{$mq-md} {
+        @include text-body-sm;
+    }
+}
+
+// use details instead of button
+html.no-js {
+    .c-things-list-container {
+        display: block;
+    }
+
+    .c-things-output-container,
+    .c-things-button-container {
+        display: none;
+    }
+}
