@@ -81,7 +81,7 @@
     color: inherit;
 
     .m24-c-grid-tile-image > * {
-        outline: 2px solid transparent;
+        outline: $border-width solid transparent;
         transition: outline-color 150ms ease-in-out;
     }
 

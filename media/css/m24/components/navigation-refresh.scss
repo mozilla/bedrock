@@ -24,7 +24,7 @@
 
 .m24-navigation-refresh {
     background-color: $color-white;
-    border-bottom: 2px solid $m24-color-medium-gray;
+    border-bottom: $border-width solid $m24-color-medium-gray;
     display: flex;
     width: 100%;
 
@@ -47,7 +47,7 @@
             &.mzp-is-scrolling {
                 // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
                 // We can't use a $box-shadow token here because it needs a different size and offset
-                box-shadow: 0 0 6px 1px rgba(29, 17, 51, 0.04), 0 0 8px 2px rgba(9, 32, 77, 0.12), 0 0 5px -3px rgba(29, 17, 51, 0.12);
+                box-shadow: 0 0 6px 1px rgba(29, 17, 51, 0.04), 0 0 8px $border-width rgba(9, 32, 77, 0.12), 0 0 5px -3px rgba(29, 17, 51, 0.12);
             }
 
             &.mzp-is-hidden {
@@ -184,7 +184,7 @@
 }
 
 .m24-c-navigation-menu {
-    border-top: 2px solid $m24-color-medium-gray;
+    border-top: $border-width solid $m24-color-medium-gray;
     margin-bottom: 0;
     width: 100%;
 
@@ -292,7 +292,7 @@
 }
 
 .m24-c-menu-category {
-    border-bottom: 2px solid $token-color-light-gray;
+    border-bottom: $border-width solid $token-color-light-gray;
     border-top: none;
     padding: 8px 16px;
     position: relative;
@@ -355,7 +355,7 @@
     @include border-box;
 
     @media #{$mq-md} {
-        border-bottom: 4px solid $m24-color-medium-gray;
+        border-bottom: $border-width solid $m24-color-medium-gray;
         left: 0;
         overflow: auto;
         padding: 0;
@@ -468,11 +468,11 @@
     }
 
     & > li {
-        border-bottom: 2px solid transparent;
+        border-bottom: $border-width solid transparent;
         width: 100%;
 
         @media #{$mq-md} {
-            border-bottom: 2px solid $token-color-light-gray;
+            border-bottom: $border-width solid $token-color-light-gray;
         }
 
         .m24-c-menu-item {

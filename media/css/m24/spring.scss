@@ -10,7 +10,7 @@ $logo-spacing: calc(24px + #{$spacer-xs});
 }
 
 .m24-c-spring-item {
-    border-bottom: 4px solid $m24-color-light-gray;
+    border-bottom: $border-width solid $m24-color-light-gray;
     margin-bottom: 0;
 }
 
