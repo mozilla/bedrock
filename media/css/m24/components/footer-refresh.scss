@@ -34,7 +34,7 @@ $max-footer-content-width: $content-max;
 
 .moz24-footer-sections-wrapper {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: $grid-gutter;
 
     @media(min-width: $screen-lg) {
@@ -48,7 +48,7 @@ $max-footer-content-width: $content-max;
     width: 100%;
 
     @media(min-width: $screen-lg) {
-        width: grid(4);
+        width: grid(2);
     }
 
     &.moz24-links-section {
