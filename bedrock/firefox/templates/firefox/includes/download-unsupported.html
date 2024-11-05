@@ -14,7 +14,7 @@
   {% set channel_name = 'Firefox' %}
 {% endif %}
 
-{# ESR115 builds do not exist for "sat" ans "skr" languages (see issue #15437). #}
+{# ESR115 builds do not exist for "sat" and "skr" languages (see issue #15437). #}
 {% set ESR115_LANG = 'en-US' if LANG in ["sat", "skr"] else LANG %}
 
 <div class="fx-unsupported-message win" data-nosnippet="true">
