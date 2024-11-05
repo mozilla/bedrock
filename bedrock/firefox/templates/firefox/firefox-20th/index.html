@@ -14,6 +14,8 @@
   {{ css_bundle('firefox_20th') }}
 {% endblock %}
 
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox20' %}
+
 {% block site_header %}
   {% with hide_nav_download_button=True %}
     {% include 'includes/protocol/navigation/navigation.html' %}
@@ -102,7 +104,7 @@
     media_include='firefox/firefox-20th/video-fanart.html',
     media_after=True
   ) %}
-    <h2 class="fx20-fanart-title">{{ fan_title }}</h1>
+    <h2 class="fx20-fanart-title">{{ fan_title }}</h2>
     <p class="fx20-fanart-body">{{ fan_body }}</p>
 {% endcall %}
 
