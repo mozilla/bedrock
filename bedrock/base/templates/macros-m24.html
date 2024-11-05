@@ -28,18 +28,18 @@
   link_url=None,
   title=''
 ) -%}
-<div class="m24-c-grid-tile{% if class %} {{ class }}{% endif %}">
-  <a href="{{ link_url }}" class="m24-c-grid-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
+<div class="m24-c-gallery-tile{% if class %} {{ class }}{% endif %}">
+  <a href="{{ link_url }}" class="m24-c-gallery-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
     {% if image %}
-    <div class="m24-c-grid-tile-image">{{ image|safe }}</div>
+    <div class="m24-c-gallery-tile-image">{{ image|safe }}</div>
     {% endif %}
-    <div class="m24-c-grid-tile-content">
-      <h{{ heading_level }} class="m24-c-grid-tile-title"><span>{{ title }}</span></h{{ heading_level }}>
+    <div class="m24-c-gallery-tile-content">
+      <h{{ heading_level }} class="m24-c-gallery-tile-title"><span>{{ title }}</span></h{{ heading_level }}>
       {% if desc %}
-      <p class="m24-c-grid-tile-desc">{{ desc }}</p>
+      <p class="m24-c-gallery-tile-desc">{{ desc }}</p>
       {% endif %}
       {% if cta_text %}
-      <p class="m24-c-grid-tile-cta">
+      <p class="m24-c-gallery-tile-cta">
         <span>{{ cta_text }}</span>
       </p>
       {% endif %}

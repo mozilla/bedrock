@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-.m24-c-consider {
+.m24-c-careers {
     @include container;
     color: $m24-color-black;
     background-color: $m24-color-white;
@@ -14,13 +14,13 @@
     }
 }
 
-.m24-c-consider-title {
+.m24-c-careers-title {
     font-size: $alias-text-title-h2;
     padding-bottom: $spacer-xl;
     text-wrap-style: balance;
 }
 
-.m24-c-consider-media {
+.m24-c-careers-media {
     @include grid;
     padding-bottom: $spacer-xl;
 
@@ -39,29 +39,29 @@
     font-size: $alias-text-title-h4;
 }
 
-.m24-c-consider-cta {
+.m24-c-careers-cta {
     padding-top: $spacer-lg;
     text-align: right;
 }
 
 @media #{$mq-md} {
-    .m24-c-consider-media {
+    .m24-c-careers-media {
         display: flex;
         gap: $grid-gutter;
     }
 }
 
 @media #{$mq-lg} {
-    .m24-c-consider {
+    .m24-c-careers {
         @include grid;
     }
 
-    .m24-c-consider-title {
+    .m24-c-careers-title {
         grid-column: 1/-1;
         padding-bottom: $spacer-xl;
     }
 
-    .m24-c-consider-media {
+    .m24-c-careers-media {
         grid-column: 1/-1;
         grid-row: 2/4;
         padding: 0;
@@ -75,7 +75,7 @@
         grid-column: 1/7;
     }
 
-    .m24-c-consider-cta {
+    .m24-c-careers-cta {
         grid-column: 7/-1;
         padding: 0;
         place-self: end;
