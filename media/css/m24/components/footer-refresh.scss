@@ -83,7 +83,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-heading-social {
     padding: 0;
     font-family: $primary-font;
-    color: $color-white;
+    color: $m24-color-black;
     margin: 0;
     font-size: $text-title-sm;
     font-weight: 400;
@@ -237,22 +237,36 @@ $max-footer-content-width: $content-max;
     background-color: transparent;
     color: $m24-color-black;
     padding: 6px 24px;
-    border: $border-width solid $m24-color-green;
+    border: $border-width solid $m24-color-black;
     text-decoration: none;
     text-align: center;
     max-width: 800px;
 
     &:hover,
     &:visited:hover {
-        box-shadow: 4px 4px 0 0 $m24-color-green;
-        background-color: transparent;
-        color: $m24-color-black;
+        background-color: $m24-color-black;
+
+        span {
+            color: $m24-color-white;
+        }
+
+        .mzp-c-button-icon-start svg path {
+            fill: $m24-color-white;
+        }
     }
 
     &:active,
     &:visited:active {
         background-color: transparent;
         box-shadow: none;
+
+        span {
+            color: $m24-color-black;
+        }
+
+        .mzp-c-button-icon-start svg path {
+            fill: $m24-color-black;
+        }
 
         .mzp-c-button-icon-text::after {
             display: none;
@@ -261,14 +275,10 @@ $max-footer-content-width: $content-max;
 
     &:focus-visible,
     &:visited:focus-visible {
-        color: $m24-color-green;
+        color: $m24-color-white;
 
         .mzp-c-button-icon-start svg path {
-            fill: $m24-color-green;
-        }
-
-       .mzp-c-button-icon-text::after {
-            background: $m24-color-green;
+            fill: $m24-color-black;
         }
     }
 
