@@ -12,17 +12,40 @@
     </header>
 
     <div class="m24-c-showcase">
-      <div class="m24-c-showcase-media">
+      <div class="m24-c-showcase-media m24-t-media-three">
         {{ resp_img(
-          url='img/home/2024/rise25-static.png',
-          srcset={
-            'img/home/2024/rise25-static-high-res.png': '1.5x'
-          },
+          url='img/home/2024/rise25-one.jpg',
+          srcset={'img/home/2024/rise25-one-high-res.jpg': '1.5x'},
           optional_attributes={
             'loading': 'lazy',
-            'width': '500',
-            'height': '500',
+            'width': '360',
+            'height': '360',
             'alt': '',
+            'class': 'm24-c-showcase-image image-one',
+          }
+        ) }}
+
+        {{ resp_img(
+          url='img/home/2024/rise25-two.jpg',
+          srcset={'img/home/2024/rise25-two-high-res.jpg': '1.5x'},
+          optional_attributes={
+            'loading': 'lazy',
+            'width': '360',
+            'height': '360',
+            'alt': '',
+            'class': 'm24-c-showcase-image image-two',
+          }
+        ) }}
+
+        {{ resp_img(
+          url='img/home/2024/rise25-three.jpg',
+          srcset={'img/home/2024/rise25-three-high-res.jpg': '1.5x'},
+          optional_attributes={
+            'loading': 'lazy',
+            'width': '360',
+            'height': '360',
+            'alt': '',
+            'class': 'm24-c-showcase-image image-three',
           }
         ) }}
       </div>
