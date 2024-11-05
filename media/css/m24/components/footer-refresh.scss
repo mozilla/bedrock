@@ -83,9 +83,10 @@ $max-footer-content-width: $content-max;
 .moz24-footer-heading-social {
     padding: 0;
     font-family: $primary-font;
-    color: $m24-color-functional-gray;
+    color: $color-white;
     margin: 0;
     font-size: $text-title-sm;
+    font-weight: 400;
 
     @media(min-width: $screen-md) {
         margin-bottom: $spacer-sm;
@@ -161,8 +162,8 @@ $max-footer-content-width: $content-max;
 
 .moz24-footer-label {
     color: $m24-color-functional-gray;
-    font-weight: 600;
-    font-size: $text-title-md;
+    font-weight: 400;
+    font-size: $text-title-sm;
     font-family: $secondary-font;
 }
 
@@ -178,7 +179,7 @@ $max-footer-content-width: $content-max;
         text-decoration: none;
         position: relative;
         color: $m24-color-black;
-        font-weight: normal;
+        font-weight: 400;
     }
 
     a:hover,
