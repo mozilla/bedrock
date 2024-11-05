@@ -12,6 +12,8 @@ from wagtail_localize.fields import SynchronizedField
 
 from lib import l10n_utils
 
+from ..utils import get_locales_for_cms_page
+
 
 @method_decorator(never_cache, name="serve_password_required_response")
 class AbstractBedrockCMSPage(WagtailBasePage):
@@ -58,13 +60,7 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         request.is_cms_page = True
 
         # Patch in a list of CMS-available locales for pages that are translations, not just aliases
-        request._locales_available_via_cms = [self.locale.language_code]
-        try:
-            _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
-            request._locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
-        except ValueError:
-            # when there's no draft and no potential for aliases, etc, the above lookup will fail
-            pass
+        request._locales_available_via_cms = get_locales_for_cms_page(self)
         return request
 
     def _render_with_fluent_string_support(self, request, *args, **kwargs):
