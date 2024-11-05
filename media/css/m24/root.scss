@@ -56,6 +56,7 @@
     --text-title-sm: 16px;
 
     // body
+    --text-body-xl: 24px;
     --text-body-lg: 18px;
     --text-body-md: 16px;
     --text-body-sm: 12px;
@@ -92,6 +93,7 @@
         --text-title-sm: 16px;
 
         // body
+        --text-body-xl: 24px;
         --text-body-lg: 18px;
         --text-body-md: 16px;
         --text-body-sm: 12px;
@@ -129,6 +131,7 @@
         --text-title-sm: 16px;
 
         // body
+        --text-body-xl: 24px;
         --text-body-lg: 18px;
         --text-body-md: 16px;
         --text-body-sm: 12px;
@@ -209,6 +212,16 @@ $m24-font-path: '/media/fonts/m24';
     src:
         url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Regular.woff2') format('woff2'),
         url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Mozilla Headline';
+    font-style: normal;
+    font-weight: 600;
+    src:
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-SemiBold.woff2') format('woff2'),
+        url('#{$m24-font-path}/mozilla-headline/MozillaHeadline-SemiBold.woff') format('woff');
 }
 
 @font-face {

@@ -4,18 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="m24-t-purple">
-  <section class="m24-c-showcase">
-    <div class="m24-c-showcase-text">
-      <h2 class="m24-c-showcase-title">Community love — our driving force</h2>
-      <div class="m24-c-showcase-subtitle-containter">
-        <p class="m24-c-showcase-subtitle">Mozilla is a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998.</p>
-        <p class="m24-c-showcase-subtitle">From writing code and spotting bugs to advocating for privacy and keeping the internet open for everyone, they’re the backbone of everything we do, and we couldn’t do this without them. And guess what? You can join the team too!</p>
+<section class="m24-c-showcase m24-t-purple m24-t-transition-next">
+  <div class="m24-c-content">
+    <header class="m24-c-showcase-text m24-l-two-columns">
+      <h2 class="m24-c-showcase-title">Community love<br> — our driving force</h2>
+
+      <div class="m24-c-showcase-body">
+        <p>Mozilla is a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998.</p>
+        <p>From writing code and spotting bugs to advocating for privacy and keeping the internet open for everyone, they’re the backbone of everything we do, and we couldn’t do this without them. And guess what? You can join the team too!</p>
       </div>
-    </div>
+    </header>
 
     <div class="m24-c-showcase-media">
-
       {{ resp_img(
           url="img/mozorg/about/m24/community.png",
           srcset={
@@ -31,10 +31,8 @@
             'alt': ''
           }
       ) }}
-
     </div>
-    <p class="m24-c-showcase-cta"><a href="{{ url('mozorg.contribute') }}" class="m24-c-cta" data-cta-text="Join the movement">Join the movement</a></p>
-  </section>
-</div>
 
-<div class="m24-c-transition m24-l-reverse m24-t-purple"><hr></div>
+    <p class="m24-c-section-cta"><a href="{{ url('mozorg.contribute') }}" class="m24-c-cta" data-cta-text="Join the movement">Join the movement</a></p>
+  </div>
+</section>

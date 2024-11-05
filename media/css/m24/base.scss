@@ -84,7 +84,7 @@ a:link {
 .m24-c-section-cta {
     margin-bottom: 0;
     padding: $spacer-xs 0;
-    text-align: right;
+    text-align: end;
 }
 
 .m24-c-cta {
@@ -92,6 +92,7 @@ a:link {
     display: inline-block;
     font-family: var(--title-font-family);
     font-size: $text-button-lg;
+    font-weight: 600;
 
     &:hover {
         color: $m24-color-dark-green;

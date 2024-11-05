@@ -20,6 +20,10 @@
     @media #{$mq-lg} {
         grid-template-columns: repeat(12, 1fr);
     }
+
+    & + .m24-c-section-cta {
+        margin-top: $spacer-xl;
+    }
 }
 
 .m24-c-grid-tile {
