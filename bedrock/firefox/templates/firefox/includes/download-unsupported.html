@@ -14,17 +14,20 @@
   {% set channel_name = 'Firefox' %}
 {% endif %}
 
+{# ESR115 builds do not exist for "sat" and "skr" languages (see issue #15437). #}
+{% set ESR115_LANG = 'en-US' if LANG in ["sat", "skr"] else LANG %}
+
 <div class="fx-unsupported-message win" data-nosnippet="true">
   <p><strong>{{ ftl('download-button-unsupported-platform', channel_name=channel_name, help_url='https://support.mozilla.org/kb/firefox-users-windows-7-8-and-81-moving-extended-support', os_version='Windows 8.1') }}</strong></p>
   <p>{{ ftl('download-button-please-download-esr') }}</p>
   <div class="download-platform-list">
     <p>
-      <a class="mzp-c-button mzp-t-product download-link os_win64 ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win64&lang={{ LANG }}" data-download-version="win64" data-cta-text="Download Firefox Extended Support Release 64-bit" data-cta-type="firefox">
+      <a class="mzp-c-button mzp-t-product download-link os_win64 ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win64&lang={{ ESR115_LANG }}" data-download-version="win64" data-cta-text="Download Firefox Extended Support Release 64-bit" data-cta-type="firefox">
         {{ ftl('download-firefox-esr-64') }}
       </a>
     </p>
     <p>
-      <a class="mzp-c-button mzp-t-product download-link os_win ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win&lang={{ LANG }}" data-download-version="win" data-cta-text="Download Firefox Extended Support Release 32-bit" data-cta-type="firefox">
+      <a class="mzp-c-button mzp-t-product download-link os_win ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=win&lang={{ ESR115_LANG }}" data-download-version="win" data-cta-text="Download Firefox Extended Support Release 32-bit" data-cta-type="firefox">
         {{ ftl('download-firefox-esr-32') }}
       </a>
     </p>
@@ -42,7 +45,7 @@
   <p>{{ ftl('download-button-please-download-esr') }}</p>
 
   <div class="download-platform-list">
-    <a class="mzp-c-button mzp-t-product download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=osx&lang={{ LANG }}" data-download-version="osx" data-cta-text="Firefox Extended Support Release MacOS" data-cta-type="firefox">
+    <a class="mzp-c-button mzp-t-product download-link ga-product-download" href="https://download.mozilla.org/?product=firefox-esr115-latest-ssl&os=osx&lang={{ ESR115_LANG }}" data-download-version="osx" data-cta-text="Firefox Extended Support Release MacOS" data-cta-type="firefox">
       {{ ftl('download-firefox-esr') }}
     </a>
   </div>
