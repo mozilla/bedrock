@@ -1193,7 +1193,8 @@
       "files": [
         "js/base/site.js",
         "js/base/consent/privacy-helpers.js",
-        "js/base/mozilla-cookie-helper.js"
+        "js/base/mozilla-cookie-helper.js",
+        "js/base/banners/m24-pencil-banner-check.js"
       ],
       "name": "site"
     },
@@ -1557,6 +1558,7 @@
     },
     {
       "files": [
+        "js/base/banners/m24-pencil-banner-init.es6.js",
         "js/base/protocol/init-details.es6.js",
         "js/base/protocol/init-lang-switcher.es6.js",
         "js/base/protocol/protocol-sub-navigation.js",

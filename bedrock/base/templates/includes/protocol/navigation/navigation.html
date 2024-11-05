@@ -5,7 +5,7 @@
 #}
 
 {% if switch('m24-website-refresh', ['en']) %}
-  {% include 'includes/protocol/navigation/pencil-banner.html' %}
+  {% include 'includes/banners/pencil-banner.html' %}
   {% include 'includes/protocol/navigation/navigation-refresh.html' %}
 {% else %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
