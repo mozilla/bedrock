@@ -8,8 +8,12 @@ def get_locales_for_cms_page(page):
     # translations, not just aliases
     locales_available_via_cms = [page.locale.language_code]
     try:
-        _actual_translations = page.get_translations().exclude(
-            id__in=[x.id for x in page.aliases.all()],
+        _actual_translations = (
+            page.get_translations()
+            .live()
+            .exclude(
+                id__in=[x.id for x in page.aliases.all()],
+            )
         )
         locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
     except ValueError:
