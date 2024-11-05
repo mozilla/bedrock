@@ -342,6 +342,9 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
                 download_esr_115_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr115")))[0][
                     "platforms"
                 ][platform]["download_url"]
+                # ESR115 builds do not exist for "sat" ans "skr" languages (see issue #15437).
+                if locale in ["sat", "skr"]:
+                    download_esr_115_url = None
                 context.update(
                     download_esr_115_url=download_esr_115_url,
                 )
