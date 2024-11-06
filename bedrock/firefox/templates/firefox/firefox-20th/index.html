@@ -66,9 +66,11 @@
 {% block content %}
 <section class="fx20-content-main">
   <div class="mzp-l-content mzp-t-content-2xl">
-    <img class="fx20-main-image" src="{{ static('img/firefox/firefox-20th/firefox-20th-dark.png') }}" width="321" height="129" alt="">
-    <h1 class="fx20-main-title">{{ main_title }}</h1>
-    <p class="fx20-main-body">{{ main_body }}</p>
+    <div class="fx20-main-wrapper">
+      <img class="fx20-main-image" src="{{ static('img/firefox/firefox-20th/firefox-20th-dark.png') }}" width="321" height="129" alt="">
+      <h1 class="fx20-main-title">{{ main_title }}</h1>
+      <p class="fx20-main-body">{{ main_body }}</p>
+    </div>
     {% include 'firefox/whatsnew/includes/fx132/video.html' %}
   </div>
 </section>

@@ -14,9 +14,14 @@ $image-path: '/media/protocol/img';
 @import "../../protocol/components/video";
 
 .fx20-content-main {
-    background-color: $color-marketing-gray-30;
+    background-color: $color-marketing-gray-10;
     padding-top: $layout-xl;
     text-align: center;
+
+    .fx20-main-wrapper {
+        max-width: 80%;
+        margin: 0 auto;
+    }
 
     .fx20-main-image {
         margin-bottom: $spacing-xl;
@@ -51,10 +56,13 @@ $image-path: '/media/protocol/img';
 }
 
 .fx20-action-container {
-    background-color: $color-marketing-gray-30;
+    background-color: $color-marketing-gray-10;
     margin-bottom: $spacing-lg;
     text-align: start;
     padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media #{$mq-md} {
         margin-bottom: 0;
@@ -70,7 +78,7 @@ $image-path: '/media/protocol/img';
 }
 
 .fx20-content-fanart {
-    background-color: $color-marketing-gray-30;
+    background-color: $color-marketing-gray-10;
     text-align: start;
 
     .fx20-fanart-title {
@@ -94,7 +102,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .fx20-cta-wrapper {
-        background-color: $color-marketing-gray-30;
+        background-color: $color-marketing-gray-10;
         padding: $spacing-lg;
     }
 
