@@ -9,7 +9,7 @@
 @import 'vars/spacing';
 @import 'vars/text';
 
-.m24-c-grid-container {
+.m24-c-gallery-container {
     @media #{$mq-md} {
         gap: $spacer-xl $grid-gutter;
         display: grid;
@@ -26,24 +26,24 @@
     }
 }
 
-.m24-c-grid-tile {
+.m24-c-gallery-tile {
     margin-bottom: $spacer-xl;
 
-    .m24-c-grid-tile-content > :last-child {
+    .m24-c-gallery-tile-content > :last-child {
         margin-bottom: 0;
     }
 
-    .m24-c-grid-tile-image {
+    .m24-c-gallery-tile-image {
         margin-bottom: $spacer-sm;
     }
 
-    .m24-c-grid-tile-title {
+    .m24-c-gallery-tile-title {
         font-size: $text-title-md;
         text-decoration: underline 0.075em transparent;
         transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
     }
 
-    .m24-c-grid-tile-cta > span {
+    .m24-c-gallery-tile-cta > span {
         font-size: $text-body-lg;
         font-weight: bold;
         text-decoration: underline 0.075em transparent;
@@ -80,11 +80,11 @@
     }
 }
 
-.m24-c-grid-tile-link {
+.m24-c-gallery-tile-link {
     text-decoration: none;
     color: inherit;
 
-    .m24-c-grid-tile-image > * {
+    .m24-c-gallery-tile-image > * {
         outline: $border-width solid transparent;
         transition: outline-color 150ms ease-in-out;
     }
@@ -92,12 +92,12 @@
     &:hover,
     &:focus,
     &:active {
-        .m24-c-grid-tile-image > * {
+        .m24-c-gallery-tile-image > * {
             outline-color: $m24-color-dark-green;
         }
 
-        .m24-c-grid-tile-title,
-        .m24-c-grid-tile-cta > span {
+        .m24-c-gallery-tile-title,
+        .m24-c-gallery-tile-cta > span {
             text-decoration-color: $m24-color-dark-green;
             color: $m24-color-dark-green;
         }

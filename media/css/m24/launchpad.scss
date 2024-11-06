@@ -4,17 +4,17 @@
 
 $logo-spacing: calc(32px + #{$spacer-md});
 
-.m24-c-spring {
+.m24-c-launchpad {
     padding: $spacer-xl 0;
     margin: 0;
 }
 
-.m24-c-spring-item {
+.m24-c-launchpad-item {
     border-bottom: $border-width solid $m24-color-light-gray;
     margin-bottom: 0;
 }
 
-.m24-c-spring-link {
+.m24-c-launchpad-link {
     @include grid;
     background-color: $m24-color-white;
     color: $m24-color-black;
@@ -101,7 +101,7 @@ $logo-spacing: calc(32px + #{$spacer-md});
     }
 }
 
-.m24-c-spring-title {
+.m24-c-launchpad-title {
     @include bidi((
         (padding-left, $logo-spacing, 0),
         (padding-right, 0, $logo-spacing),
@@ -114,7 +114,7 @@ $logo-spacing: calc(32px + #{$spacer-md});
     line-height: 1;
 }
 
-.m24-c-spring-info {
+.m24-c-launchpad-info {
     color: $m24-color-dark-gray;
     font-size: $text-body-lg;
     grid-column: 1 / span 11;
@@ -122,12 +122,12 @@ $logo-spacing: calc(32px + #{$spacer-md});
 }
 
 @media #{$mq-lg} {
-    .m24-c-spring-title {
+    .m24-c-launchpad-title {
         grid-column: 1 / 4;
         align-content: center;
     }
 
-    .m24-c-spring-info {
+    .m24-c-launchpad-info {
         grid-column: 4 / 11;
         padding-left: 0;
         align-content: end;

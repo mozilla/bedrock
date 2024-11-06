@@ -3,14 +3,14 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-.m24-c-copy {
+.m24-c-intro {
     font-weight: 500;
     font-size: $text-body-xl;
     text-wrap: balance;
     text-wrap-style: balance;
 }
 
-.m24-c-copy-title {
+.m24-c-intro-title {
     font-size: $alias-text-title-h2;
     margin-bottom: 0;
     padding-bottom: $spacer-sm;
@@ -22,17 +22,17 @@
     }
 }
 
-.m24-c-copy-cta {
+.m24-c-intro-cta {
     text-align: end;
     padding-top: $spacer-md;
 }
 
 @media #{$mq-xl} {
-    .m24-c-copy p {
+    .m24-c-intro p {
         max-width: grid(9);
     }
 
-    p.m24-c-copy-cta {
+    p.m24-c-intro-cta {
         max-width: 100%;
     }
 }
