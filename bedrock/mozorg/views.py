@@ -129,7 +129,6 @@ class HomeView(L10nTemplateView):
     m24_template_name = "mozorg/home/home-m24.html"
     template_name = "mozorg/home/home-new.html"
     old_template_name = "mozorg/home/home-old.html"
-    template_context_variations = ["1", "2", "3"]
     activation_files = ["mozorg/home-new", "mozorg/home"]
 
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
