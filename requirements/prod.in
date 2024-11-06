@@ -52,6 +52,7 @@ qrcode==8.0
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests>=2.32.3  # min secure version
 rich-text-renderer==0.2.8
+rq==1.16.2  # downpinned until django-rq has support for rq>=2.0.0
 sentry-processor==0.0.1
 sentry-sdk==2.17.0
 supervisor==4.2.5

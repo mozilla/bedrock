@@ -1493,10 +1493,11 @@ rpds-py==0.20.1 \
     # via
     #   jsonschema
     #   referencing
-rq==2.0.0 \
-    --hash=sha256:76d2a4a27f8fd5c4cfa200cd442efe3c1fd73525c676af06f07fcc0b81bdb70d \
-    --hash=sha256:a3a767876675dcc42683bac1869494c5020ba7fcf5c026d1f6d36a8ab98573a6
+rq==1.16.2 \
+    --hash=sha256:52e619f6cb469b00e04da74305045d244b75fecb2ecaa4f26422add57d3c5f09 \
+    --hash=sha256:5c5b9ad5fbaf792b8fada25cc7627f4d206a9a4455aced371d4f501cc3f13b34
     # via
+    #   -r requirements/prod.in
     #   django-rq
     #   django-rq-email-backend
 rsa==4.9 \
