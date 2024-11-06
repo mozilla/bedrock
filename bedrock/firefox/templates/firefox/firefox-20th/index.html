@@ -4,10 +4,20 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% extends "firefox/base/base-protocol.html" %}
+
 {% from "macros-protocol.html" import split with context %}
 {% from "macros.html" import video_inline_embed with context %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% block page_title_full %}
+  title placeholder
+{% endblock %}
+{% block page_desc %}
+  desc placeholder
+{% endblock %}
+{% block page_image %}
+  {{ static('img/firefox/firefox-20th/firefox-20th-social-share.png') }}
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -15,6 +25,8 @@
 {% endblock %}
 
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox20' %}
+
+{% block body_id %}firefox20{% endblock %}
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
@@ -81,7 +93,7 @@
         <div class="fx20-action-container">
           <h2>Features you fell in love with</h2>
           <p>It’s official — the built-in PDF editor, popping videos out of your window and tab containers made the list.</p>
-          <a class="mzp-c-cta-link" href="#" data-link-text="View blog Features">
+          <a class="mzp-c-cta-link" href="https://blog.mozilla.org/en/products/firefox/firefox-subreddit/?{{ utm_params }}" data-link-text="View blog Features">
             View blog
           </a>
         </div>
@@ -89,7 +101,7 @@
         <div class="fx20-action-container">
           <h2>Let’s take a look back</h2>
           <p>It’s always good to look back on where you’ve been, to see how far you’ve come. Take a trip down memory lane with us.</p>
-          <a class="mzp-c-cta-link" href="#" data-link-text="View blog Memory">
+          <a class="mzp-c-cta-link" href="https://blog.mozilla.org/en/products/firefox/firefox-milestones/?{{ utm_params }}" data-link-text="View blog Memory">
             View blog
           </a>
         </div>
