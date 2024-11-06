@@ -152,8 +152,12 @@ $max-footer-content-width: $content-max;
             &:focus,
             &:focus-visible,
             &:focus-within {
-                border-color: $m24-color-green;
-                background-color: $m24-color-white;
+                color: $m24-color-white;
+                background-color: $m24-color-black;
+
+                &::placeholder {
+                    color: $m24-color-white;
+                }
             }
         }
 
@@ -231,7 +235,9 @@ $max-footer-content-width: $content-max;
         }
 
         .mzp-u-inline {
-            display: inline;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: $spacer-2xs;
 
             input {
                 height: 20px;
@@ -248,7 +254,7 @@ $max-footer-content-width: $content-max;
         margin-bottom: 0;
 
         button {
-            border: $border-width solid $m24-color-green;
+            border: $border-width solid $m24-color-black;
             border-radius: 0;
             font-family: $secondary-font;
             position: relative;
@@ -257,15 +263,13 @@ $max-footer-content-width: $content-max;
 
             &:hover,
             &:focus-visible {
-                box-shadow: 4px 4px 0 0 $m24-color-green;
-                background-color: $m24-color-white;
-                color: $m24-color-black;
+                background-color: $m24-color-black;
+                color: $m24-color-white;
             }
 
             &:active {
-                background-color: $m24-color-black;
-                color: $m24-color-green;
-                box-shadow: none;
+                background-color: $m24-color-white;
+                color: $m24-color-black;
             }
 
             @media(min-width: $screen-md) {
