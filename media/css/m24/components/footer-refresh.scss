@@ -123,38 +123,66 @@ $max-footer-content-width: $content-max;
             }
 
             &:hover {
-                outline: 1px dotted $m24-color-black;
                 border-bottom-color: transparent;
                 background-repeat: no-repeat;
+
+                &.linkedin {
+                    background-image: url('/media/protocol/img/icons/social/linkedin/white.svg');
+                }
+
+                &.tiktok {
+                    background-image: url('/media/protocol/img/icons/social/tiktok/white.svg');
+                }
+
+                &.spotify {
+                    background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
+                }
+
+                &.mastodon {
+                    background-image: url('/media/protocol/img/icons/social/mastodon/white.svg');
+                    background-size: contain;
+                }
+
+                &.twitter {
+                    background-image: url('/media/protocol/img/icons/social/x/white.svg');
+                }
+
+                &.instagram {
+                    background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+                }
+
+                &.youtube {
+                    background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+                }
             }
 
             &.linkedin {
-                background-image: url('/media/protocol/img/icons/social/linkedin/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-linkedin-gray.svg');
             }
 
             &.tiktok {
-                background-image: url('/media/protocol/img/icons/social/tiktok/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-tiktok-gray.svg');
             }
 
             &.spotify {
-                background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-spotify-gray.svg');
             }
 
             &.mastodon {
-                background-image: url('/media/protocol/img/icons/social/mastodon/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-mastodon-gray.svg');
                 background-size: contain;
             }
 
             &.twitter {
-                background-image: url('/media/protocol/img/icons/social/x/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-x-gray.svg');
             }
 
             &.instagram {
-                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-instagram-gray.svg');
             }
 
             &.youtube {
-                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
+                background-image: url('/media/img/icons/m24-small/social-youtube-gray.svg');
             }
         }
     }
