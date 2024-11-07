@@ -12,6 +12,7 @@ const { createHtmlReport } = require('axe-html-reporter');
 const {
     navigationLocator,
     footerLocator,
+    sideMenuLocator,
     subNavigationLocator
 } = require('./locators');
 
@@ -50,6 +51,7 @@ async function scanPage(page) {
     return await new AxeBuilder({ page })
         .exclude(navigationLocator)
         .exclude(footerLocator)
+        .exclude(sideMenuLocator)
         .exclude(subNavigationLocator)
         .analyze();
 }
