@@ -122,7 +122,8 @@ $max-footer-content-width: $content-max;
                 @include bidi(((margin-right, 16px, 0), (margin-left, 0, 16px)));
             }
 
-            &:hover {
+            &:hover,
+            &:focus {
                 border-bottom-color: transparent;
                 background-repeat: no-repeat;
 
@@ -136,11 +137,6 @@ $max-footer-content-width: $content-max;
 
                 &.spotify {
                     background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
-                }
-
-                &.mastodon {
-                    background-image: url('/media/protocol/img/icons/social/mastodon/white.svg');
-                    background-size: contain;
                 }
 
                 &.twitter {
@@ -166,11 +162,6 @@ $max-footer-content-width: $content-max;
 
             &.spotify {
                 background-image: url('/media/img/icons/m24-small/social-spotify-gray.svg');
-            }
-
-            &.mastodon {
-                background-image: url('/media/img/icons/m24-small/social-mastodon-gray.svg');
-                background-size: contain;
             }
 
             &.twitter {
