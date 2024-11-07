@@ -13,5 +13,11 @@
 const footerLocator = '#colophon';
 const navigationLocator = '.c-navigation';
 const subNavigationLocator = '.c-sub-navigation';
+const sideMenuLocator = '.mzp-c-sidemenu';
 
-module.exports = { navigationLocator, footerLocator, subNavigationLocator };
+module.exports = {
+    navigationLocator,
+    footerLocator,
+    sideMenuLocator,
+    subNavigationLocator
+};
