@@ -59,7 +59,7 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         # Quick annotation to help us track the origin of the page
         request.is_cms_page = True
 
-        # Patch in a list of CMS-available locales for pages that are translations, not just aliases
+        # Patch in a list of available locales for pages that are translations, not just aliases
         request._locales_available_via_cms = get_locales_for_cms_page(self)
         return request
 
