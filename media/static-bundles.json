@@ -455,6 +455,12 @@
     },
     {
       "files": [
+        "css/firefox/firefox-20th/firefox-20th.scss"
+      ],
+      "name": "firefox_20th"
+    },
+    {
+      "files": [
         "css/privacy/privacy-email.scss"
       ],
       "name": "privacy_email"
@@ -1516,6 +1522,12 @@
         "js/firefox/whatsnew/whatsnew-132.js"
       ],
       "name": "firefox_whatsnew_132"
+    },
+    {
+      "files": [
+        "js/firefox/firefox-20th/firefox-20th.js"
+      ],
+      "name": "firefox_20th"
     },
     {
       "files": [
