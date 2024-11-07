@@ -1,0 +1,31 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% if LANG == "fr" %}
+  {% set video_title = 'Firefox a 20 ans - Célébrez avec nous' %}
+{% elif LANG == "de" %}
+  {% set video_title = 'Firefox wird 20 - Feiere mit uns' %}
+{% else %}
+  {% set video_title = 'Firefox Turns 20 - Celebrate with Us' %}
+{% endif %}
+
+{{ video_inline_embed(
+  id='SiLWHYrZyRc',
+  title=video_title,
+  image=resp_img(
+    url='img/firefox/firefox-20th/fan-art.png',
+    srcset={
+      'img/firefox/firefox-20th/fan-art-high-res.png': '2x'
+    },
+    optional_attributes={
+      'width': '800',
+      'height': '450',
+      'alt': '',
+    }
+  ),
+) }}

@@ -115,12 +115,7 @@
 {% call split(
     block_class='fx20-content-fanart mzp-l-split-center-on-sm-md',
     media_class='mzp-l-split-h-center',
-    image=resp_img(
-          url='img/firefox/firefox-20th/fan-art.png',
-          srcset={
-            'img/firefox/firefox-20th/fan-art-high-res.png': '2x'
-          },
-        ),
+    media_include='firefox/firefox-20th/video-fanart.html',
     media_after=True
   ) %}
     <h2 class="fx20-fanart-title">{{ fan_title }}</h2>
