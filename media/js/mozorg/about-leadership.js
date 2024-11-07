@@ -20,14 +20,14 @@ if (typeof window.Mozilla === 'undefined') {
 
     for (var i = 0; i < bios.length; i++) {
         var bio = bios[i];
-        bio.setAttribute('aria-role', 'button');
+        bio.setAttribute('role', 'button');
         bio.setAttribute('tabindex', '0');
 
         bio.addEventListener('click', function (e) {
             e.preventDefault();
             var modalContent = this.cloneNode(true);
             modalContent.removeAttribute('id');
-            modalContent.setAttribute('aria-role', 'article');
+            modalContent.setAttribute('role', 'article');
 
             MzpModal.createModal(e.target, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),

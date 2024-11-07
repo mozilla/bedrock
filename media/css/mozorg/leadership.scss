@@ -23,6 +23,10 @@ $image-path: '/media/protocol/img';
     font-style: normal;
 }
 
+.visually-hidden {
+    @include visually-hidden;
+}
+
 // Navigation
 #page-nav {
     margin: $spacing-md auto;
@@ -82,7 +86,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-main .leadership-section:first-child .leadership-title:first-child {
+main .leadership-section:first-of-type .leadership-title:first-of-type {
     margin-top: 0;
 }
 

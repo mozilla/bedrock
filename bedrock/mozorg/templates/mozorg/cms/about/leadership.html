@@ -46,6 +46,7 @@
     </aside>
 
     <main class="mzp-l-main">
+      <h1 class="visually-hidden">{{ page.title }}</h1>
       {% for section in page.leadership_sections %}
         <section class="leadership-section" id="{{ section.value.id }}">
           {% set first_group = section.value.leadership_group[0] %}
