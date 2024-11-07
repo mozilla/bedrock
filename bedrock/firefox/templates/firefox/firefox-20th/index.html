@@ -59,15 +59,9 @@
   {% set fan_body = 'We’ll never get tired of your fan art.' %}
 {% endif %}
 
-{% block page_title_full %}
-  {{ page_title }}
-{% endblock %}
-{% block page_desc %}
-  {{ page_desc }}
-{% endblock %}
-{% block page_image %}
-  {{ static('img/firefox/firefox-20th/firefox-20th-social-share.png') }}
-{% endblock %}
+{% block page_title_full %}{{ page_title }}{% endblock %}
+{% block page_desc %}{{ page_desc }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/firefox-20th/firefox-20th-social-share.png') }}{% endblock %}
 
 {% block content %}
 <section class="fx20-content-main">
