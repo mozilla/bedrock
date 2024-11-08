@@ -6,16 +6,20 @@
 .m24-c-intro {
     font-weight: 500;
     font-size: $text-body-xl;
+    margin-bottom: $spacer-xl;
     text-wrap: balance;
     text-wrap-style: balance;
 }
 
 .m24-c-intro-title {
     font-size: $alias-text-title-h2;
-    margin-bottom: 0;
-    padding-bottom: $spacer-sm;
+    margin-bottom: $spacer-sm;
     text-wrap: balance;
     text-wrap-style: balance;
+
+    &.m24-t-lg {
+        font-size: $alias-text-title-h3;
+    }
 
     &.m24-t-2xl {
         font-size: $alias-text-title-h1;
@@ -24,7 +28,7 @@
 
 .m24-c-intro-cta {
     text-align: end;
-    padding-top: $spacer-md;
+    margin-top: $spacer-md;
 }
 
 @media #{$mq-xl} {
