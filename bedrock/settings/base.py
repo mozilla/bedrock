@@ -1736,6 +1736,286 @@ VPN_VARIABLE_PRICING = {
     },
 }
 
+# Simplified pricing matrix for countries that can
+# only purchase a subscription through the app store.
+VPN_MOBILE_SUB_PRICING = {
+    "AU": {  # Australia
+        "12-month": {
+            "price": "7.5",
+            "total": "89.99",
+            "currency": "AUD",
+        },
+        "monthly": {
+            "price": "14.99",
+            "currency": "AUD",
+        },
+    },
+    "BD": {  # Bangladesh
+        "12-month": {
+            "price": "583.33",
+            "total": "7000",
+            "currency": "BDT",
+        },
+        "monthly": {
+            "price": "1200",
+            "currency": "BDT",
+        },
+    },
+    "BR": {  # Brazil
+        "12-month": {
+            "price": "27.50",
+            "total": "330",
+            "currency": "BRL",
+        },
+        "monthly": {
+            "price": "56",
+            "currency": "BRL",
+        },
+    },
+    "CL": {  # Chile
+        "12-month": {
+            "price": "4582.50",
+            "total": "54990",
+            "currency": "CLP",
+        },
+        "monthly": {
+            "price": "9300",
+            "currency": "CLP",
+        },
+    },
+    "CO": {  # Colombia
+        "12-month": {
+            "price": "20825",
+            "total": "249900",
+            "currency": "COP",
+        },
+        "monthly": {
+            "price": "41900",
+            "currency": "COP",
+        },
+    },
+    "EG": {  # Egypt
+        "12-month": {
+            "price": "241.67",
+            "total": "2899.99",
+            "currency": "EGP",
+        },
+        "monthly": {
+            "price": "479.99",
+            "currency": "EGP",
+        },
+    },
+    "GR": {  # Greece
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "EUR",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "EUR",
+        },
+    },
+    "ID": {  # Indonesia
+        "12-month": {
+            "price": "75000",
+            "total": "900000",
+            "currency": "IDR",
+        },
+        "monthly": {
+            "price": "155000",
+            "currency": "IDR",
+        },
+    },
+    "IN": {  # India
+        "12-month": {
+            "price": "416.58",
+            "total": "4999",
+            "currency": "INR",
+        },
+        "monthly": {
+            "price": "839",
+            "currency": "INR",
+        },
+    },
+    "KE": {  # Kenya
+        "12-month": {
+            "price": "5.00",
+            "total": "59.99",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "KR": {  # South Korea
+        "12-month": {
+            "price": "6658.33",
+            "total": "79900",
+            "currency": "KRW",
+        },
+        "monthly": {
+            "price": "13500",
+            "currency": "KRW",
+        },
+    },
+    "MA": {  # Morocco
+        "12-month": {
+            "price": "50",
+            "total": "600",
+            "currency": "MAD",
+        },
+        "monthly": {
+            "price": "99",
+            "currency": "MAD",
+        },
+    },
+    "MX": {  # Mexico
+        "12-month": {
+            "price": "95.75",
+            "total": "1149",
+            "currency": "MXN",
+        },
+        "monthly": {
+            "price": "189",
+            "currency": "MXN",
+        },
+    },
+    "NG": {  # Nigeria
+        "12-month": {
+            "price": "8325",
+            "total": "99900",
+            "currency": "NGN",
+        },
+        "monthly": {
+            "price": "15900",
+            "currency": "NGN",
+        },
+    },
+    "NO": {  # Norway
+        "12-month": {
+            "price": "54.17",
+            "total": "650",
+            "currency": "NOK",
+        },
+        "monthly": {
+            "price": "110",
+            "currency": "NOK",
+        },
+    },
+    "SA": {  # Saudi Arabia
+        "12-month": {
+            "price": "18.75",
+            "total": "224.99",
+            "currency": "SAR",
+        },
+        "monthly": {
+            "price": "36.99",
+            "currency": "SAR",
+        },
+    },
+    "SN": {  # Senegal
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "TH": {  # Thailand
+        "12-month": {
+            "price": "165.83",
+            "total": "1990",
+            "currency": "THB",
+        },
+        "monthly": {
+            "price": "330",
+            "currency": "THB",
+        },
+    },
+    "TR": {  # Turkey
+        "12-month": {
+            "price": "166.67",
+            "total": "1999.99",
+            "currency": "TRY",
+        },
+        "monthly": {
+            "price": "339.99",
+            "currency": "TRY",
+        },
+    },
+    "TW": {  # Taiwan
+        "12-month": {
+            "price": "158.33",
+            "total": "1900",
+            "currency": "TWD",
+        },
+        "monthly": {
+            "price": "320",
+            "currency": "TWD",
+        },
+    },
+    "UA": {  # Ukraine
+        "12-month": {
+            "price": "5.00",
+            "total": "59.99",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "UG": {  # Uganda
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "US": {  # United States (only used as a fallback should a country match not be found).
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "VN": {  # Vietnam
+        "12-month": {
+            "price": "124917",
+            "total": "1499000",
+            "currency": "VND",
+        },
+        "monthly": {
+            "price": "249000",
+            "currency": "VND",
+        },
+    },
+    "ZA": {  # South Africa
+        "12-month": {
+            "price": "83.33",
+            "total": "999.99",
+            "currency": "ZAR",
+        },
+        "monthly": {
+            "price": "169.99",
+            "currency": "ZAR",
+        },
+    },
+}
+
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 

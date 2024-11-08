@@ -74,6 +74,15 @@ def _vpn_get_available_plans(country_code, lang):
     return country_plans.get(lang, country_plans.get("default"))
 
 
+def _vpn_get_mobile_plans(country_code):
+    """
+    Get mobile only subscription plans using country_code.
+    Defaults to "US" if no matching country code is found.
+    """
+
+    return settings.VPN_MOBILE_SUB_PRICING.get(country_code, settings.VPN_MOBILE_SUB_PRICING["US"])
+
+
 def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optional_parameters=None, optional_attributes=None):
     separator = "&" if "?" in product_url else "?"
     client_id = settings.VPN_CLIENT_ID
@@ -196,6 +205,37 @@ def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None)
 
 @library.global_function
 @jinja2.pass_context
+def vpn_mobile_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None):
+    """
+    Render a localized string displaying VPN monthly plan price for a mobile subscription.
+    This is used for countries where a VPN subscription can only be purchased through the
+    Google Play Store or the Apple App Store, and uses a different pricing plan matrix to
+    countries that purchase through FxA / sub-plat.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ vpn_mobile_monthly_price(country_code=country_code, lang=LANG) }}
+    """
+
+    available_plans = _vpn_get_mobile_plans(country_code)
+    selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
+    price = selected_plan.get("price")
+    currency = selected_plan.get("currency")
+    currency_locale = lang.replace("-", "_")
+    amount = _format_currency(price, currency, currency_locale)
+    price = ftl("vpn-shared-pricing-monthly", amount=amount, ftl_files=FTL_FILES)
+
+    markup = f'<span class="vpn-monthly-price-display">{price}</span>'
+
+    return Markup(markup)
+
+
+@library.global_function
+@jinja2.pass_context
 def vpn_total_price(ctx, country_code=None, lang=None):
     """
     Render a localized string displaying VPN total plan price.
@@ -220,6 +260,37 @@ def vpn_total_price(ctx, country_code=None, lang=None):
         price = ftl("vpn-shared-pricing-total-plus-tax", fallback="vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
     else:
         price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
+
+    markup = price
+
+    return Markup(markup)
+
+
+@library.global_function
+@jinja2.pass_context
+def vpn_mobile_total_price(ctx, country_code=None, lang=None):
+    """
+    Render a localized string displaying VPN total plan price for a mobile subscription.
+    This is used for countries where a VPN subscription can only be purchased through the
+    Google Play Store or the Apple App Store, and uses a different pricing plan matrix to
+    countries that purchase through FxA / sub-plat.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ vpn_mobile_total_price(country_code=country_code, lang=LANG) }}
+    """
+
+    available_plans = _vpn_get_mobile_plans(country_code)
+    selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
+    price = selected_plan.get("total")
+    currency = selected_plan.get("currency")
+    currency_locale = lang.replace("-", "_")
+    amount = _format_currency(price, currency, currency_locale)
+    price = ftl("vpn-shared-pricing-total", amount=amount, ftl_files=FTL_FILES)
 
     markup = price
 
