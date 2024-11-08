@@ -4,21 +4,15 @@
 
 
 .m24-c-hero {
-    padding-top: $spacer-lg;
-
-    .m24-c-intro {
-        padding: $spacing-2xl $spacer-md;
-        max-width: none;
-
-        .m24-c-intro-wrapper {
-            max-width: $content-max;
-            margin: auto;
-        }
-    }
+    padding-top: $spacer-xl;
 
     .m24-c-hero-title {
         font-size: $text-title-2xl;
     }
+}
+
+.m24-c-hero-intro {
+    @include container;
 }
 
 .m24-c-hero-media {
