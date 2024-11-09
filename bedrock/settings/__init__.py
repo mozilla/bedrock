@@ -28,16 +28,13 @@ _csp_default_src = [
 ]
 _csp_img_src = [
     "data:",
-    "mozilla.org",
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
 ]
 _csp_script_src = [
-    # TODO fix things so that we don't need this
+    # TODO change settings so we don't need unsafes even in dev
     csp.constants.UNSAFE_INLINE,
-    # TODO snap.svg.js passes a string to Function() which is
-    # blocked without unsafe-eval. Find a way to remove that.
     csp.constants.UNSAFE_EVAL,
     "www.googletagmanager.com",
     "www.google-analytics.com",
@@ -125,6 +122,7 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = [csp.constants.SELF]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
 
