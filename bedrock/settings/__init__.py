@@ -123,6 +123,7 @@ if csp_ro_report_uri:
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = [csp.constants.SELF]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
 
