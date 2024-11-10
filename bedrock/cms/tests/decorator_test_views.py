@@ -16,5 +16,15 @@ def decorated_dummy_view(request):
     return HttpResponse("This is a dummy response from the decorated view")
 
 
+@prefer_cms(fallback_lang_codes=["fr-CA", "es-MX", "sco"])
+def decorated_dummy_view_with_locale_strings(request):
+    return HttpResponse("This is a dummy response from the decorated view with locale strings passed in")
+
+
+@prefer_cms(fallback_ftl_files=["test/fluentA", "test/fluentB"])
+def decorated_dummy_view_with_fluent_files(request):
+    return HttpResponse("This is a dummy response from the decorated view with fluent files explicitly passed in")
+
+
 def wrapped_dummy_view(request):
     return HttpResponse("This is a dummy response from the wrapped view")

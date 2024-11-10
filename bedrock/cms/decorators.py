@@ -70,17 +70,14 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
 
         ...
 
-    Or, in a URLconf with Bedrock's page() helper:
-        page(
-            "about/leadership/",
-            "mozorg/about/leadership/index.html",
-            ftl_files=["some/path/to/fluent/data"],
-            decorators=[prefer_cms],
-        )
+    IMPORTANT: there's no support for bedrock.mozorg.util.page(), deliberately.
 
-        (Note that no fallback_ftl_files is needed here - we'll just pick up the regular
-        ftl_files kwarg that's already used for page(). ALSO: fallback_ftl_files is NOT
-        supported for the page() helper, as we shouldn't need it in real use)
+        Making prefer_cms work with our page() helper would have made that function
+        more complex. Given that it's straightforward to convert a page()-based view to
+        a dedicated TemplateView, which _can_ be decorated with prefer_cms at the
+        URLConf level, that is the recommended approach if you are migrating a page()
+        based view to the CMS, or need to have hybrid behaviour.
+
     """
 
     if fallback_ftl_files and fallback_lang_codes:
@@ -98,8 +95,6 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
         if fallback_lang_codes:
             return fallback_lang_codes
 
-        # If we're looking at Fluent files, prefer the ftl_files kwarg (as used
-        # with page()) but also accept an explicitly added fallback_ftl_files param
         _ftl_files = kwargs.get("ftl_files", fallback_ftl_files)
         return get_active_locales(_ftl_files, force=True)
 

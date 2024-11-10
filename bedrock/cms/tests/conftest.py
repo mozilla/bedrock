@@ -77,7 +77,11 @@ def tiny_localized_site():
     fr_root_page = en_us_root_page.copy_for_translation(fr_locale)
     pt_br_root_page = en_us_root_page.copy_for_translation(pt_br_locale)
 
-    en_us_homepage = SimpleRichTextPageFactory(title="Test Page", slug="test-page", parent=en_us_root_page)
+    en_us_homepage = SimpleRichTextPageFactory(
+        title="Test Page",
+        slug="test-page",
+        parent=en_us_root_page,
+    )
 
     en_us_child = SimpleRichTextPageFactory(
         title="Child",
@@ -97,9 +101,14 @@ def tiny_localized_site():
     rev = fr_child.save_revision()
     fr_child.publish(rev)
 
+    # WARNING: there may be a bug with the page tree here
+    # fr_grandchild cannot be found with Page.find_for_request
+    # when all the others can. TODO: debug this, but manually
+    # it works
     fr_grandchild = SimpleRichTextPageFactory(
         title="Petit-enfant",
         slug="grandchild-page",
+        locale=fr_locale,
         parent=fr_child,
     )
 

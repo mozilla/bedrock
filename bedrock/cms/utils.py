@@ -1,20 +1,33 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 
+from wagtail.models import Locale, Page
 
-def get_page_for_path(request, path):
-    from wagtail.models import Site
+from bedrock.base.i18n import split_path_and_normalize_language
 
-    site = Site.find_for_request(request)
+
+def get_page_for_request(*, request):
+    """For the given HTTPRequest (and its path) find the corresponding Wagtail
+    page, if one exists"""
+
+    lang_code, path, _ = split_path_and_normalize_language(request.path)
     try:
-        page, args, kwargs = site.root_page.specific.route(request, path)
-        return page
-    except Http404:
-        pass
+        locale = Locale.objects.get(language_code=lang_code)
+    except Locale.DoesNotExist:
+        locale = None
 
-    return None
+    try:
+        page = Page.find_for_request(request=request, path=path)
+        if page and locale and locale != page.locale:
+            page = page.get_translation(locale=locale)
+
+    except (ObjectDoesNotExist, Http404):
+        page = None
+
+    return page
 
 
 def get_locales_for_cms_page(page):
@@ -41,7 +54,7 @@ def get_locales_for_cms_page(page):
 def get_cms_locales_for_path(request):
     locales = []
 
-    if page := get_page_for_path(request=request, path=request.path):
-        locales = get_locales_for_cms_page(page)
+    if page := get_page_for_request(request=request):
+        locales = get_locales_for_cms_page(page=page)
 
     return locales
