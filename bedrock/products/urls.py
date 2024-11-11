@@ -45,7 +45,6 @@ urlpatterns = (
         "vpn/resource-center/<slug:slug>/",
         prefer_cms(
             views.resource_center_article_view,
-            # fallback_lang_codes=["de", "en-US", "es-ES", "fr", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
             fallback_callable=views.resource_center_article_available_locales_lookup,
         ),
         name="products.vpn.resource-center.article",
