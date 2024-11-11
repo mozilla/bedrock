@@ -99,8 +99,10 @@ def prefer_cms(
 
     """
 
-    if fallback_ftl_files and fallback_lang_codes:
-        raise RuntimeError("The prefer_cms decorator can be configured with either fallback_ftl_files or fallback_lang_codes but not both.")
+    if len([x for x in [fallback_ftl_files, fallback_lang_codes, fallback_callable] if x]) > 1:
+        raise RuntimeError(
+            "The prefer_cms decorator can be configured with only one of fallback_ftl_files or fallback_lang_codes or fallback_callable."
+        )
 
     fallback_ftl_files = fallback_ftl_files or []
     fallback_lang_codes = fallback_lang_codes or []

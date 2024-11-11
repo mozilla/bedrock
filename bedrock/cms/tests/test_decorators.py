@@ -382,3 +382,69 @@ def test_draft_pages_do_not_get_preferred_over_django_views(lang_code_prefix, mi
     resp = client.get("/decorated/view/path/", follow=True)
     assert resp.status_code == 200
     assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view"
+
+
+def _fake_callable():
+    pass
+
+
+@pytest.mark.parametrize(
+    "config, expect_exeption",
+    (
+        (
+            {
+                "fallback_ftl_files": ["test/files"],
+                "fallback_lang_codes": ["sco", "en-CA"],
+            },
+            True,
+        ),
+        (
+            {
+                "fallback_ftl_files": ["test/files"],
+                "fallback_callable": _fake_callable,
+            },
+            True,
+        ),
+        (
+            {
+                "fallback_lang_codes": ["sco", "en-CA"],
+                "fallback_callable": _fake_callable,
+            },
+            True,
+        ),
+        (
+            {
+                "fallback_ftl_files": ["test/files"],
+                "fallback_lang_codes": ["sco", "en-CA"],
+                "fallback_callable": _fake_callable,
+            },
+            True,
+        ),
+        (
+            {
+                "fallback_ftl_files": ["test/files"],
+            },
+            False,
+        ),
+        (
+            {
+                "fallback_lang_codes": ["sco", "en-CA"],
+            },
+            False,
+        ),
+        (
+            {
+                "fallback_callable": _fake_callable,
+            },
+            False,
+        ),
+    ),
+)
+def test_prefer_cms_rejects_invalid_setup(mocker, config, expect_exeption):
+    fake_view = mocker.Mock(name="fake view")
+
+    if expect_exeption:
+        with pytest.raises(RuntimeError):
+            prefer_cms(view_func=fake_view, **config)
+    else:
+        prefer_cms(view_func=fake_view, **config)
