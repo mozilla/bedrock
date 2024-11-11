@@ -377,6 +377,17 @@ def resource_center_article_view(request, slug):
     )
 
 
+def resource_center_article_available_locales_lookup(*, slug: str) -> list[str]:
+    # Helper func to get a list of language codes available for the given
+    # Contentful-powered VPN RC slug
+    return list(
+        ContentfulEntry.objects.filter(
+            localisation_complete=True,
+            slug=slug,
+        ).values_list("locale", flat=True)
+    )
+
+
 @require_safe
 def monitor_waitlist_scan_page(request):
     template_name = "products/monitor/waitlist/scan.html"
