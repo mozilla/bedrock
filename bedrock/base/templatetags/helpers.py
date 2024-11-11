@@ -157,7 +157,7 @@ def alternate_url(path, locale):
 
 
 @library.global_function
-def get_lang_switcher_options(request, translations):
+def get_locale_options(request, translations):
     # For purely Django-rendered pages, or purely CMS-backed pages, we can just
     # rely on the `translations` var in the render context to know what locales
     # are viable for the page being rendered. Great! \o/

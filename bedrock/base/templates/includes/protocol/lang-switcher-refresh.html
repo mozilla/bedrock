@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- {%- set available_languages = get_lang_switcher_options(request, translations) -%}
+ {%- set available_languages = get_locale_options(request, translations) -%}
 
  {% if available_languages|length > 1 %}
 

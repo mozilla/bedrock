@@ -89,7 +89,7 @@ def test_switch():
         ),
     ),
 )
-def test_get_lang_switcher_options(rf, translations_locales, cms_locales, django_locales, expected):
+def test_get_locale_options(rf, translations_locales, cms_locales, django_locales, expected):
     native_translations = get_translations_native_names(translations_locales)
     native_expected = get_translations_native_names(expected)
 
@@ -99,7 +99,7 @@ def test_get_lang_switcher_options(rf, translations_locales, cms_locales, django
         request._locales_available_via_cms = cms_locales
         request._locales_for_django_fallback_view = django_locales
 
-    assert native_expected == helpers.get_lang_switcher_options(
+    assert native_expected == helpers.get_locale_options(
         request=request,
         translations=native_translations,
     )
