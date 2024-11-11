@@ -16,7 +16,12 @@ from .utils import get_cms_locales_for_path
 HTTP_200_OK = 200
 
 
-def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None):
+def prefer_cms(
+    view_func=None,
+    fallback_ftl_files=None,
+    fallback_lang_codes=None,
+    fallback_callable=None,
+):
     """
     A decorator that helps us migrate from pure Django-based views
     to CMS views, or support having _some_ locales served from the CMS and
@@ -39,7 +44,15 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
             (e.g. the Fluent files cover 20 locales for some strings which appear
             on the page, but the main localized content is only in two languages,
             because the contnet doesn't come from Fluent - such as Legal Docs,
-            which comes from a git repo)
+            which comes from a git repo). This works best when all the pages
+            for the decorated route are available in all the specified locales --
+            if not, some of the footer language-selector options will 404.
+        fallback_callable (optional) - a method or function that takes the same
+            arguments as the URL path (if any) in order to return a list of appropriate
+            locale language codes. This is intended for use if we can't reliably
+            pass either fluent files or specific lang codes (e.g. the view being
+            decorated is not consistently translated via whatever non-Fluent method
+            is being used)
 
         Note that setting both fallback_lang_codes and fallback_ftl_files will cause
         an exception to be raised - only one should be set, not both.
@@ -55,7 +68,7 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
 
     Example for a function-based view:
 
-        @prefer_cms(fallback_ftl_files=[...])  # or fallback_lang_codes=["fr", "es-MX",]
+        @prefer_cms(fallback_ftl_files=[...])  # or fallback_lang_codes or fallback_callable
         def some_path(request):
             ...
 
@@ -67,6 +80,12 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
         # or
 
         path("some/path/", prefer_cms(views.some_view, fallback_lang_codes=["fr", "pt-BR",])),
+
+        ...
+
+        # or
+
+        path("some/path/", prefer_cms(views.some_view, fallback_callable=path.to.callable)),
 
         ...
 
@@ -87,11 +106,17 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
     fallback_lang_codes = fallback_lang_codes or []
 
     def _get_django_locales_available(
+        *,
         fallback_ftl_files,
         fallback_lang_codes,
+        fallback_callable,
         kwargs,
     ):
-        # Prefer explicit list of lang codes over everything else
+        # Prefer explicit callable to get lang codes
+        if fallback_callable:
+            return fallback_callable(**kwargs)
+
+        # Use explicit list of lang codes over fluent files
         if fallback_lang_codes:
             return fallback_lang_codes
 
@@ -106,9 +131,11 @@ def prefer_cms(view_func=None, fallback_ftl_files=None, fallback_lang_codes=None
             # Annotate the request with the Django/fallback locales, as we'll
             # need them for the language picket in the footer when rendering
             # the Wagtail response IF there is a Wagtail match
+
             request._locales_for_django_fallback_view = _get_django_locales_available(
                 fallback_ftl_files=fallback_ftl_files,
                 fallback_lang_codes=fallback_lang_codes,
+                fallback_callable=fallback_callable,
                 kwargs=kwargs,
             )
 
