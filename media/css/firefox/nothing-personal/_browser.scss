@@ -14,8 +14,8 @@
     border-top: $border-black;
     border-left: $border-black;
     border-right: $border-black;
-    border-top-left-radius: $border-radius-lg;
-    border-top-right-radius: $border-radius-lg;
+    border-top-left-radius: $border-radius-md;
+    border-top-right-radius: $border-radius-md;
     padding: $spacing-sm $spacing-md;
     min-height: 1rem; // fallback
     min-height: var(--heading-size); // reserve space for bars without text
@@ -44,8 +44,8 @@
 .c-browser-content {
     background-color: $browser-background;
     border: $border-black;
-    border-bottom-left-radius: $border-radius-lg;
-    border-bottom-right-radius: $border-radius-lg;
+    border-bottom-left-radius: $border-radius-md;
+    border-bottom-right-radius: $border-radius-md;
     padding: 40px $layout-sm;
 
     h4 {
