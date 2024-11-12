@@ -118,6 +118,14 @@ $fox-bush-height: 79px;
     border: $border-black;
     margin-bottom: $layout-sm; // match title margin
     padding: $spacing-md;
+
+    // progressive enhancement:
+    // always preserve space for longest line length responses
+    min-height: 3lh;
+
+    @media #{$mq-sm} {
+        min-height: 2lh;
+    }
 }
 
 .c-things-output {
