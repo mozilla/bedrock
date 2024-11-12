@@ -41,6 +41,8 @@ $mq-tad-smaller-sm: 455px;
 }
 
 .c-main {
+    font-weight: 500;
+
     > *:not(:last-child) {
         margin-bottom: calc(#{$layout-xl} + #{$layout-xs});
 
