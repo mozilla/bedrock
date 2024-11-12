@@ -255,7 +255,8 @@ $mq-tad-smaller-sm: 455px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    [data-animation="pop-in"] {
+    [data-animation="pop-in"],
+    [data-animation="dependent-pop-in"] {
         opacity: 0;
     }
 
@@ -267,7 +268,8 @@ $mq-tad-smaller-sm: 455px;
 
 // Make sure content is visible of JS fails
 html.no-js {
-    [data-animation="pop-in"] {
+    [data-animation="pop-in"],
+    [data-animation="dependent-pop-in"] {
         opacity: 1;
     }
 

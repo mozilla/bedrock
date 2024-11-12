@@ -75,41 +75,48 @@ $fox-bush-height: 79px;
 
 .c-things-browser {
     position: relative;
+}
 
-    &::before {
-        position: absolute;
-        content: "";
-        background-image: url("/media/img/firefox/nothing-personal/foxy-sticker.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-        transform: rotate(15deg);
-        height: 80px;
-        width: 100px;
-        right: 0;
-        top: -20px;
+.c-things-foxy-sticker {
+    position: absolute;
+    right: -10px;
+    top: -50px;
+    width: 127px;
+    height: 119px;
 
-        @media #{$mq-md} {
-            height: 100px;
-            width: 122px;
-            right: -70px;
-            top: 30px;
-        }
+    @media #{$mq-md} {
+        right: -70px;
+        top: 30px;
+        height: 145px;
+        width: 155px;
     }
+}
 
-    &::after {
-        position: absolute;
-        content: "";
-        background-image: url("/media/img/firefox/nothing-personal/heart-smiley-stickers.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-        height: 107px;
-        width: 128px;
-        left: 10px;
-        bottom: -70px;
+.c-things-smiley-sticker {
+    position: absolute;
+    left: 50px;
+    bottom: -70px;
+    width: 91px;
+    height: 89px;
 
-        @media #{$mq-md} {
-            left: 30px;
-        }
+    @media #{$mq-md} {
+        left: 75px;
+        width: 104px;
+        height: 102px;
+    }
+}
+
+.c-things-heart-sticker {
+    position: absolute;
+    left: 10px;
+    bottom: -70px;
+    width: 62px;
+    height: 57px;
+
+    @media #{$mq-md} {
+        left: 30px;
+        width: 72px;
+        height: 66px;
     }
 }
 

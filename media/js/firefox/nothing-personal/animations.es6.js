@@ -46,6 +46,20 @@ function init() {
 }
 
 function popIn(element) {
+    const dependents = element.querySelectorAll(
+        "[data-animation='dependent-pop-in']"
+    );
+
+    // After main pop-in finishes, add delayed dependent pop-ins
+    if (dependents.length !== 0) {
+        element.addEventListener('animationend', () => {
+            let chain = Promise.resolve();
+            dependents.forEach((dependent) => {
+                chain = chain.then(() => popIn(dependent));
+            });
+        });
+    }
+
     return new Promise((res) => {
         setTimeout(() => {
             element.classList.add('animate-pop-in');
