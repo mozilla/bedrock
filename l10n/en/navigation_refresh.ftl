@@ -19,6 +19,7 @@ navigation-refresh-our-work = Our Work
 navigation-refresh-mozilla-ai = { -brand-name-mozilla } AI
 navigation-refresh-mozilla-ventures = { -brand-name-mozilla } Ventures
 navigation-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
+
 ## Firefox
 
 navigation-refresh-firefox-browsers = { -brand-name-firefox } browsers
