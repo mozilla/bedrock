@@ -144,14 +144,48 @@ $fox-bush-height: 79px;
     text-align: center;
 }
 
-$sparkle-size: 22px;
+@keyframes shine {
+    0%{
+        background-position: 0 0;
+    }
 
-// TODO: confirm hover, focus, active styling
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        scale: 1;
+    }
+
+    5% {
+        scale: 1.05;
+    }
+
+    10% {
+        scale: 1;
+    }
+
+    15% {
+        scale: 1.025;
+    }
+
+    20% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
 .c-things-button {
     $push-depth: 2px;
     background-color: $color-pink-10;
     background-image: linear-gradient(to right,$color-pink-10, $color-pink-10, $color-pink-40, $color-pink-10, $color-pink-10);
-        background-size: 400% 100%;
+    background-position: 0 0;
+    background-size: 400% 100%;
     border: $border-black;
     box-shadow: $spacing-xs $spacing-xs var(--background-color-inverse);
     display: flex; // center text within button
@@ -160,63 +194,81 @@ $sparkle-size: 22px;
     margin-bottom: $spacing-sm;
     padding: $spacing-md;
     position: relative;
+    animation-name: shine, pulse;
+    animation-duration: 1s, 5s;
+    animation-delay: 3s, 4s;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: 1, infinite;
+    transition: background-position 0.5s;
 
     @media #{$mq-md} {
         padding: $spacing-md $spacing-lg;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        &:hover,
-        &:focus-visible {
-            background-position: 200% 0;
-        }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        transition: background-position 0.3s ease-out;
-
-        &:hover,
-        &:focus-visible {
-            background-position: 100% 0;
-        }
+    &:hover,
+    &:focus {
+        background-position: 75% 0;
+        animation-play-state: paused;
     }
 
     &:active {
         transform: translate($push-depth, $push-depth);
         box-shadow: $push-depth $push-depth var(--background-color-inverse);
     }
+}
 
-    &::before,
-    &::after {
-        position: absolute;
-        content: "";
-        background-image: url("/media/img/firefox/nothing-personal/sparkle.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-        height: $sparkle-size;
-        width: $sparkle-size;
+[class^="c-things-button-sparkle"] {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0;
+        translate: 0 0;
+        rotate: 0;
+        scale:1;
     }
 
-    // top left
-    &::before {
-        left: -17px;
-        top: 5px;
+    10%  {
+        opacity: 1;
     }
 
-    // bottom right
-    &::after {
-        right: -10px;
-        bottom: -10px;
+    50% {
+        translate: 0 -20%;
+        scale: 1.3;
+        opacity: 1;
+    }
+
+    100% {
+        translate: 0 0;
+        rotate: 360deg;
+        scale:1;
+        opacity: 1;
     }
 }
 
 // top right
-.c-things-button-sparkle {
-    position: absolute;
-    width: $sparkle-size;
-    height: $sparkle-size;
+.c-things-button-sparkle-1 {
     top: -12px;
     right: 10px;
+    animation: 1s 2s sparkle forwards;
+}
+
+// top left
+.c-things-button-sparkle-2 {
+    left: -17px;
+    top: 5px;
+    animation: 1s 3s sparkle forwards;
+}
+
+// bottom right
+.c-things-button-sparkle-3 {
+    right: -10px;
+    bottom: -10px;
+    animation: 1s 3.5s sparkle forwards;
 }
 
 .c-things-note {
