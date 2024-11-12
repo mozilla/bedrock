@@ -4,6 +4,7 @@
 
 // TODO: check mobile/tablet expectations for this asset
 .c-thug-life-gif {
+    $border-width: 1.5px;
     display: none;
 
     @media #{$mq-lg} {
@@ -12,7 +13,7 @@
         z-index: 10;
 
         img {
-            border: 3px solid $color-black;
+            border: $border-width solid $color-black;
             display: block;
             width: 180px;
             height: 180px;
@@ -25,7 +26,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: 3px solid $color-black;
+            border: $border-width solid $color-black;
             top: 10px;
             right: -10px;
             z-index: -1;
@@ -37,7 +38,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: 3px solid $color-black;
+            border: $border-width solid $color-black;
             top: 20px;
             right: -20px;
             z-index: -5;

@@ -8,9 +8,10 @@
 
 .c-browser-bar {
     --heading-size: var(--body-sm-size);
-    background: url('/media/img/firefox/nothing-personal/browser-dots.svg') left $spacing-md center no-repeat,
-    $browser-background $browser-cool-gradient;
-    background-size: 60px 16px, auto;
+    background: $browser-background $browser-cool-gradient;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     border-top: $border-black;
     border-left: $border-black;
     border-right: $border-black;
@@ -25,7 +26,19 @@
     }
 }
 
+.c-browser-bar-dot-container {
+    position: absolute;
+    left: 16px;
+}
+
+// match $border-black styles
+.c-browser-bar-dot {
+    stroke: #333336;
+    stroke-width: 1.5px;
+}
+
 .c-browser-bar-title {
+    grid-area: full-width;
     color: $browser-background;
     font-family: 'Fira Mono', 'Andale Mono', monospace;
     font-size: var(--heading-size);

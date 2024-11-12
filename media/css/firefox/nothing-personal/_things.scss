@@ -5,8 +5,8 @@
 .c-things {
     @media screen and (max-width: #{$screen-md}) {
         // no room on mobile for browser buttons and fox sticker
-        .c-browser-bar {
-            background: $browser-background $browser-cool-gradient;
+        .c-browser-bar-dot-container {
+            display: none;
         }
     }
 
