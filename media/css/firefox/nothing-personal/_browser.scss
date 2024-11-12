@@ -31,14 +31,8 @@
     font-size: var(--heading-size);
     font-weight: 500;
     margin-bottom: 0;
-    padding-left: 80px;
-    text-align: end;
+    text-align: center;
     white-space: nowrap;
-
-    @media (min-width: $mq-tad-smaller-sm) {
-        text-align: center;
-        padding: 0;
-    }
 }
 
 .c-browser-content {
